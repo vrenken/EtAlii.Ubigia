@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    using System.Collections.Generic;
+    using System;
     using System.Linq;
 
     class ConstantRootHandlerPathPartMatcher : IConstantRootHandlerPathPartMatcher
@@ -15,8 +15,12 @@
         public bool CanMatch(MatchParameters parameters)
         {
             bool canMatch = false;
+
             var next = parameters.PathRest.FirstOrDefault();
-            if (next is ConstantPathSubjectPart)
+            var name = ((ConstantPathSubjectPart) next)?.Name;
+            var requiredName = ((ConstantPathSubjectPart)parameters.CurrentTemplatePart).Name;
+
+            if (String.Equals(requiredName, name, StringComparison.OrdinalIgnoreCase))
             {
                 canMatch = true;
             }

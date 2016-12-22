@@ -1,6 +1,7 @@
 namespace EtAlii.Servus.Api.Functional
 {
     using System;
+    using System.Linq;
 
     public class TimeRootByPathBasedYyyymmddhhHandler : IRootHandler
     {
@@ -18,10 +19,14 @@ namespace EtAlii.Servus.Api.Functional
             };
         }
 
-        public void Process(IRootContext context, IObservable<object> input, ExecutionScope scope,
-            IObserver<object> output, bool processAsSubject)
+        public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            
+            var parts = new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"), new IsParentOfPathSubjectPart() }
+                .Concat(match)
+                .Concat(rest)
+                .ToArray();
+            var path = new AbsolutePathSubject(parts);
+            context.Converter.Convert(path, scope, output);
         }
     }
 }

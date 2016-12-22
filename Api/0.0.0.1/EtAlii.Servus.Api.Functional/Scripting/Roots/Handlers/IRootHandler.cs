@@ -6,6 +6,6 @@ namespace EtAlii.Servus.Api.Functional
     {
 
         PathSubjectPart[] Template { get; }
-        void Process(IRootContext context, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject);
+        void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output);
     }
 }
