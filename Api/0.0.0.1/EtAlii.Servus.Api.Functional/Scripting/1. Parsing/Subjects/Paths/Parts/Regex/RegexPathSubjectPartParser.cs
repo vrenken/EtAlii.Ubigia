@@ -26,11 +26,11 @@ namespace EtAlii.Servus.Api.Functional
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
 
-            var startDoubleQuote = Lp.Term("[\"").Debug("StartBracket");
-            var endDoubleQuote = Lp.Term("\"]").Debug("EndBracket");
+            var startDoubleQuote = Lp.Term("[\"");//.Debug("StartBracket");
+            var endDoubleQuote = Lp.Term("\"]");//.Debug("EndBracket");
 
-            var startSingleQuote = Lp.Term("[\'").Debug("StartBracket");
-            var endSingleQuote = Lp.Term("\']").Debug("EndBracket");
+            var startSingleQuote = Lp.Term("[\'");//.Debug("StartBracket");
+            var endSingleQuote = Lp.Term("\']");//.Debug("EndBracket");
 
             _parser = new LpsParser
                 (Id, true,
