@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Servus.Api.Functional.Tests
 {
     using System;
-    using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Servus.Api.Diagnostics.Tests;
     using EtAlii.Servus.Api.Logical;
     using EtAlii.Servus.Api.Logical.Tests;
     using EtAlii.Servus.Api.Tests;
@@ -133,6 +131,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016);
+
             var addQueries = new[]
             {
                 "time:'2016'+=/09/01/22/05/23",
@@ -174,6 +174,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016);
+
             var addQueries = new[]
             {
                 "time:'2016'+=/09/01/22/05/23",
@@ -216,6 +218,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9);
+
             var addQueries = new[]
             {
                 "time:'201609'+=/01/22/05/23",
@@ -257,6 +261,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9);
+
             var addQueries = new[]
             {
                 "time:'201609'+=01/22/05/23",
@@ -298,6 +304,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9, 1);
+
             var addQueries = new[]
             {
                 "time:'20160901'+=/22/05/23",
@@ -339,6 +347,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9, 1);
+
             var addQueries = new[]
             {
                 "time:'20160901'+=22/05/23",
@@ -380,6 +390,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22);
+
             var addQueries = new[]
             {
                 "time:'2016090122'+=/05/23",
@@ -421,6 +433,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22);
+
             var addQueries = new[]
             {
                 "time:'2016090122'+=05/23",
@@ -462,6 +476,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22, 5);
+
             var addQueries = new[]
             {
                 "time:'201609012205'+=/23",
@@ -503,6 +519,8 @@
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
+            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22, 5);
+
             var addQueries = new[]
             {
                 "time:'201609012205'+=23",
