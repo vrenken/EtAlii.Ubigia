@@ -1,0 +1,100 @@
+﻿<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-body clearfix">
+            <h4 class="panel-title pull-left col-xs-2 col-md-9" style="padding-top: 7.5px;"></h4>
+            <!--<div class="input-group col-xs-10 col-md-3">
+                <input id="inputSearch" type="search" ng-model="filterText" class="form-control shortInputSearch" placeholder="Search...">
+                <div class="input-group-btn">
+                    <button class="btn btn-primary" ng-click="search();"><i class="glyphicon glyphicon-search"></i></button>
+                    <button class="btn btn-primary" ng-click="clearSearch();"><i class="glyphicon glyphicon-remove-sign"></i></button>
+                </div>
+            </div>-->
+        </div>
+
+        <div class="panel-body">
+
+            <form role="form" novalidate angular-validator name="accountForm" angular-validator-submit="Register()">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="account.Name" name="name" id="name" placeholder="Name"
+                                   validate-on="blur" required required-message="'Name is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="account.Password" name="password" id="password" placeholder="Password"
+                                   validate-on="blur" required required-message="'Password is required'">
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="newCustomer.LastName" name="lastName" id="lastName" placeholder="Last Name"
+                                   validate-on="blur" required required-message="'Last Name is required'">
+                        </div>
+                    </div>-->
+                    <!--<div class="form-group">
+                        <label for="email">Email address</label>
+                        <div class="form-group">
+                            <input type="email" class="form-control" ng-model="newCustomer.Email" id="email" name="email" placeholder="Email address"
+                                   validate-on="blur" required required-message="'Email is required'">
+                        </div>
+                    </div>-->
+                    <!--<div class="form-group">
+                        <label for="identityCard">Identity Card</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="newCustomer.IdentityCard" id="identityCard" name="identityCard" placeholder="Identity Card number"
+                                   validate-on="blur" required required-message="'Identity Card is required'">
+                        </div>
+                    </div>-->
+                    <!--<div class="form-group">
+                        <label for="dateOfBirth">Date of Birth</label>
+                        <p class="input-group">
+                            <input type="text" class="form-control" name="dateOfBirth" datepicker-popup="{{format}}" ng-model="newCustomer.DateOfBirth" is-open="datepicker.opened" datepicker-options="dateOptions" ng-required="true" datepicker-append-to-body="true" close-text="Close"
+                                   validate-on="blur" required required-message="'Date of birth is required'"/>
+                            <span class="input-group-btn">
+                                <button type="button" class="btn btn-default" ng-click="openDatePicker($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobilePhone">Mobile phone</label>
+                        <div class="form-group">
+                            <input type="text" ng-model="newCustomer.Mobile" class="form-control" id="mobilePhone" name="mobilePhone" placeholder="Mobile phone"
+                                   validate-on="blur" required required-message="'Mobile phone is required'">
+                        </div>
+                    </div>-->
+                    <input type="button" name="cancel" id="cancel" value="Cancel" class="btn btn-info pull-left">
+                    <input type="submit" name="submit" id="submit" value="Save" class="btn btn-info pull-right">
+                </div>
+            </form>
+
+
+            <!--<div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Consumed storage</th>
+                        <th>Spaces</th>
+                        <th>Registered on</th>
+                        <th>Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="account in accounts | filter:filterText">
+                        <td>{{account.Name}}</td>
+                        <td>{{account.ConsumedStorage}}</td>
+                        <td>{{account.NumberOfSpaces}}</td>
+                        <td>{{account.RegisteredOn}}</td>
+                        <td>{{account.Status}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>-->
+        </div>
+    </div>
+</div>

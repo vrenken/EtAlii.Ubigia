@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Choose>
+    <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
+      <ItemGroup>
+        <Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Servus.Api\bin\$(Configuration)\EtAlii.Servus.Api.dll">
+          <Name>Assembly Reference\EtAlii.Ubigia.Api ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Servus.Api.Functional\bin\$(Configuration)\EtAlii.Servus.Api.Functional.dll">
+          <Name>Assembly Reference\EtAlii.Ubigia.Api.Functional ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Servus.Api.Logical\bin\$(Configuration)\EtAlii.Servus.Api.Logical.dll">
+          <Name>Assembly Reference\EtAlii.Ubigia.Api.Logical ($(Configuration))</Name>
+        </Reference>
+
+        <Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Servus.Api.Fabric.Management\bin\$(Configuration)\EtAlii.Servus.Api.Fabric.Management.dll">
+          <Name>Assembly Reference\EtAlii.Ubigia.Api.Fabric.Management</Name>
+        </Reference>
+        <Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Servus.Api.Transport.Management\bin\$(Configuration)\EtAlii.Servus.Api.Transport.Management.dll">
+          <Name>Assembly Reference\EtAlii.Ubigia.Api.Transport.Management</Name>
+        </Reference>
+        <!--<Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Servus.Api.Transport.Management.SignalR\bin\$(Configuration)\EtAlii.Servus.Api.Transport.Management.SignalR.dll">
+          <Name>Assembly Reference\EtAlii.Ubigia.Api.Transport.Management.SignalR</Name>
+        </Reference>-->
+
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\bin\$(Configuration)\EtAlii.xTechnology.Logging.Gibraltar.NET45.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45 ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\bin\$(Configuration)\EtAlii.xTechnology.Logging.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.Logging ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\bin\$(Configuration)\EtAlii.xTechnology.MicroContainer.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.MicroContainer ($(Configuration))</Name>
+        </Reference>
+      </ItemGroup>
+    </When>
+  </Choose>
+</Project>

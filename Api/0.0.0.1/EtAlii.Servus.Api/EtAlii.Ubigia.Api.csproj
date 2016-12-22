@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EtAlii.Servus.Api</RootNamespace>
+    <AssemblyName>EtAlii.Servus.Api</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- A reference to the entire .NET Framework is automatically included -->
+  <!-- Non-conditional project references -->
+  <!-- Normal project references -->
+  <Import Project="Properties\ProjectReferences.Targets" />
+  <!-- Output based assembly references -->
+  <Import Project="Properties\AssemblyReferences.Targets" />
+  <ItemGroup>
+    <Compile Include="2. Fabric\Base36\Base36Convert.Bytes.cs" />
+    <Compile Include="2. Fabric\Base36\Base36Convert.Guid.cs" />
+    <Compile Include="2. Fabric\Base36\Base36Convert.Uint64.cs" />
+    <Compile Include="2. Fabric\Base36\BitShift.Add.cs" />
+    <Compile Include="2. Fabric\Base36\BitShift.Divide.cs" />
+    <Compile Include="2. Fabric\Base36\BitShift.Multiply.cs" />
+    <Compile Include="3. Transport\AccountName.cs" />
+    <Compile Include="3. Transport\AccountTemplate.cs" />
+    <Compile Include="3. Transport\Role.cs" />
+    <Compile Include="3. Transport\Serialization\DateTimeJSonConverter.cs" />
+    <Compile Include="3. Transport\Serialization\DecimalJSonConverter.cs" />
+    <Compile Include="3. Transport\Serialization\ISerializer.cs" />
+    <Compile Include="3. Transport\Serialization\PropertyDictionaryJSonConverter.cs" />
+    <Compile Include="3. Transport\Serialization\PropertyDictionaryJSonConverter.ReadAsArray.cs" />
+    <Compile Include="3. Transport\Serialization\PropertyDictionaryJSonConverter.ReadAsDictionary.cs" />
+    <Compile Include="3. Transport\Serialization\Serializer.cs" />
+    <Compile Include="3. Transport\Serialization\SerializerFactory.cs" />
+    <Compile Include="3. Transport\Serialization\TypeId.cs" />
+    <Compile Include="3. Transport\Serialization\UnsignedLongJSonConverter.cs" />
+    <Compile Include="3. Transport\SpaceName.cs" />
+    <Compile Include="3. Transport\SpaceTemplate.cs" />
+    <Compile Include="IObservable.SubscribeWithNext.cs" />
+    <Compile Include="AsyncHelpers.cs" />
+    <Compile Include="IObservable.ToHotObservable.cs" />
+    <Compile Include="Entries\Components\ComponentHelper.cs" />
+    <Compile Include="ExecutionScope.cs" />
+    <Compile Include="Entries\EntryType.cs" />
+    <Compile Include="Properties_\PropertiesHelper.cs" />
+    <Compile Include="Properties_\PropertyDictionary.cs" />
+    <Compile Include="Properties_\IPropertyDictionary.cs" />
+    <Compile Include="Account.cs" />
+    <Compile Include="Content\Blobs\BlobBase.cs" />
+    <Compile Include="Content\Blobs\BlobHelper.cs" />
+    <Compile Include="Content\Blobs\BlobPartBase.cs" />
+    <Compile Include="Content\Blobs\BlobPartHelper.cs" />
+    <Compile Include="Content\Blobs\BlobSummary.cs" />
+    <Compile Include="Content\Blobs\IBlob.cs" />
+    <Compile Include="Content\Blobs\IBlobPart.cs" />
+    <Compile Include="Entries\Components\RelationsComponentCollection.cs" />
+    <Compile Include="Entries\Components\ComponentBase.cs" />
+    <Compile Include="Entries\Components\RelationComponent.cs" />
+    <Compile Include="Entries\Components\RelationsComponent.cs" />
+    <Compile Include="Entries\Components\CompositeComponent.cs" />
+    <Compile Include="Entries\Components\IComponent.cs" />
+    <Compile Include="Entries\Components\NonCompositeComponent.cs" />
+    <Compile Include="Entries\Components\Hierarchical2\Children2Component.cs" />
+    <Compile Include="Entries\Components\Hierarchical2\Children2ComponentCollection.cs" />
+    <Compile Include="Entries\Components\Hierarchical2\Parent2Component.cs" />
+    <Compile Include="Entries\Components\Hierarchical\ChildrenComponent.cs" />
+    <Compile Include="Entries\Components\Hierarchical\ChildrenComponentCollection.cs" />
+    <Compile Include="Entries\Components\Hierarchical\ParentComponent.cs" />
+    <Compile Include="Entries\Components\IdentifierComponent.cs" />
+    <Compile Include="Entries\Components\Indexed\IndexedComponent.cs" />
+    <Compile Include="Entries\Components\Indexed\IndexesComponent.cs" />
+    <Compile Include="Entries\Components\Indexed\IndexesComponentCollection.cs" />
+    <Compile Include="Entries\Components\Sequential\NextComponent.cs" />
+    <Compile Include="Entries\Components\Sequential\PreviousComponent.cs" />
+    <Compile Include="Entries\Components\Transformational\DowndateComponent.cs" />
+    <Compile Include="Entries\Components\Transformational\UpdatesComponent.cs" />
+    <Compile Include="Entries\Components\Transformational\UpdatesComponentCollection.cs" />
+    <Compile Include="Entries\Components\TypeComponent.cs" />
+    <Compile Include="Content\Content.cs" />
+    <Compile Include="Content\ContentDefinition.Comparison.cs" />
+    <Compile Include="Content\ContentDefinition.cs" />
+    <Compile Include="Content\ContentDefinitionPart.cs" />
+    <Compile Include="Content\ContentPart.cs" />
+    <Compile Include="Content\ContentType\ContentType.cs" />
+    <Compile Include="Content\ContentType\ImageContentType.cs" />
+    <Compile Include="Content\ContentType\StructureContentType.cs" />
+    <Compile Include="Content\ContentType\TimeContentType.cs" />
+    <Compile Include="Content\EntryContent.cs" />
+    <Compile Include="Content\IReadOnlyContent.cs" />
+    <Compile Include="Content\IReadOnlyContentDefinition.cs" />
+    <Compile Include="Content\IReadOnlyContentDefinitionPart.cs" />
+    <Compile Include="Content\IReadOnlyContentPart.cs" />
+    <Compile Include="Entries\Entry.Comparison.cs" />
+    <Compile Include="Entries\Entry.Construction.cs" />
+    <Compile Include="Entries\Entry.Content.cs" />
+    <Compile Include="Entries\Entry.cs" />
+    <Compile Include="Entries\Entry.Hierarchical.cs" />
+    <Compile Include="Entries\Entry.Hierarchical2.cs" />
+    <Compile Include="Entries\Entry.Indexed.cs" />
+    <Compile Include="Entries\Entry.Sequential.cs" />
+    <Compile Include="Entries\Entry.Transformational.cs" />
+    <Compile Include="Entries\EntryHelper.cs" />
+    <Compile Include="Entries\EntryRelation.cs" />
+    <Compile Include="Entries\IComponentEditableEntry.cs" />
+    <Compile Include="Entries\IEditableEntry.cs" />
+    <Compile Include="Entries\IReadOnlyEntry.cs" />
+    <Compile Include="Identifiers\Identifier.Comparison.cs" />
+    <Compile Include="Identifiers\Identifier.Construction.cs" />
+    <Compile Include="Identifiers\Identifier.cs" />
+    <Compile Include="Identifiers\IdentifierSplitter.cs" />
+    <Compile Include="Identifiers\IEditableIdentifier.cs" />
+    <Compile Include="IIdentifiable.cs" />
+    <Compile Include="Roots\DefaultRoot.cs" />
+    <Compile Include="Roots\Root.cs" />
+    <Compile Include="Space.cs" />
+    <Compile Include="Cache.cs" />
+    <Compile Include="Storage.cs" />
+    <Compile Include="Entries\Relations\Relation.Comparison.cs" />
+    <Compile Include="Entries\Relations\Relation.Construction.cs" />
+    <Compile Include="Entries\Relations\Relation.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyReferences.Targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\ProjectReferences.Targets">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="config.nsdepcop">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Core.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Linq.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-PlatformServices.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

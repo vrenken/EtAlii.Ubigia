@@ -1,0 +1,110 @@
+﻿<fluent:Ribbon 
+    x:Class="EtAlii.Servus.Client.Windows.Diagnostics.Ribbon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:servus="clr-namespace:EtAlii.Servus.Client.Windows.Diagnostics"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="700"            
+    AutomaticStateManagement="True"
+    CanQuickAccessLocationChanging="False"
+    CanCustomizeRibbon="False"
+    CanCustomizeQuickAccessToolBar="False"
+    ShowQuickAccessToolBarAboveRibbon="False" 
+    IsAutomaticCollapseEnabled="False" 
+    IsQuickAccessToolBarVisible="False"
+    Initialized="OnRibbonInitialized">
+
+    <fluent:Ribbon.ToolBarItems>
+    </fluent:Ribbon.ToolBarItems>
+
+    <fluent:Ribbon.Resources>
+    </fluent:Ribbon.Resources>
+    <fluent:Ribbon.Menu>
+        <fluent:Backstage>
+            <fluent:BackstageTabControl 
+                SelectedIndex="0">
+                <fluent:BackstageTabControl.Resources>
+                    <ResourceDictionary>
+                        <Style TargetType="{x:Type fluent:BackstageTabItem}" BasedOn="{StaticResource BackstageTabItemStyle}">
+                        </Style>
+                        <Style TargetType="{x:Type fluent:SeparatorTabItem}" BasedOn="{StaticResource SeparatorTabItemStyle}">
+                            <Setter Property="MinWidth" Value="200" />
+                        </Style>
+                        <Style TargetType="{x:Type fluent:Button}" BasedOn="{StaticResource ButtonBackstageStyle}">
+                            <Setter Property="Height" Value="85" />
+                            <Setter Property="Width" Value="85" />
+                            <Setter Property="HorizontalAlignment" Value="Left" />
+                            <Setter Property="VerticalAlignment" Value="Top" />
+                        </Style>
+                    </ResourceDictionary>
+                </fluent:BackstageTabControl.Resources>
+                <servus:NewBackstageTabItem />
+
+                <servus:OpenBackstageTabItem />
+
+                <fluent:BackstageTabItem 
+                    Header="Save"
+                    fluent:KeyTip.Keys="S" >
+                </fluent:BackstageTabItem>
+
+                <fluent:BackstageTabItem Header="Info"/>
+                <fluent:BackstageTabItem Header="Print"/>
+
+                <fluent:Button 
+                    Style="{StaticResource BackstageButtonStyle}"
+                    Header="Exit"
+                    fluent:KeyTip.Keys="X"
+                    Command="{Binding CloseCommand}" />
+            </fluent:BackstageTabControl>
+
+        </fluent:Backstage>
+    </fluent:Ribbon.Menu>
+    <fluent:RibbonTabItem
+        x:Name="GraphRibbonTabItem"
+        Header="Graph"
+        fluent:KeyTip.Keys="G" IsOpen="False" >
+        <servus:MaintenanceRibbonGroupBox />
+        <servus:NewEntriesRibbonGroupBox />
+        <servus:EntrySelectionRibbonGroupBox />
+        <servus:ActionsRibbonGroupBox/>
+        <servus:RelationsRibbonGroupBox />
+        <servus:SettingsRibbonGroupBox />
+    </fluent:RibbonTabItem>
+
+    <fluent:RibbonTabItem
+        x:Name="CodeRibbonTabItem"
+        Header="Code"
+        fluent:KeyTip.Keys="C" >
+        <servus:EditCodeRibbonGroupBox />
+        <servus:ExecuteCodeRibbonGroupBox />
+        <servus:CodeMaintenanceRibbonGroupBox />
+    </fluent:RibbonTabItem>
+
+    <fluent:RibbonTabItem
+        x:Name="QueryRibbonTabItem"
+        Header="Query"
+        fluent:KeyTip.Keys="Q" >
+        <servus:EditRibbonGroupBox />
+        <servus:ExecuteRibbonGroupBox />
+        <servus:QueryMaintenanceRibbonGroupBox />
+    </fluent:RibbonTabItem>
+
+
+    <fluent:RibbonTabItem
+        x:Name="ProfilingRibbonTabItem"
+        Header="Profiling"
+        fluent:KeyTip.Keys="P" >
+        <servus:ProfilingFiltersRibbonGroupBox />
+        <servus:ProfilingActionsRibbonGroupBox />
+        <servus:ProfilingOptionsRibbonGroupBox />
+    </fluent:RibbonTabItem>
+
+    <fluent:RibbonTabItem
+        x:Name="ViewRibbonTabItem"
+        Header="View"
+        fluent:KeyTip.Keys="V" >
+    </fluent:RibbonTabItem>
+</fluent:Ribbon>

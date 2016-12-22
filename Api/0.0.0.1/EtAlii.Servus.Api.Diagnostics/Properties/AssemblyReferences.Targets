@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Choose>
+    <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
+      <ItemGroup>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\bin\$(Configuration)\EtAlii.xTechnology.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Collections\bin\$(Configuration)\EtAlii.xTechnology.Collections.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.Collections ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\bin\$(Configuration)\EtAlii.xTechnology.MicroContainer.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.MicroContainer ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\bin\$(Configuration)\EtAlii.xTechnology.Logging.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.Logging ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\bin\$(Configuration)\EtAlii.xTechnology.Diagnostics.dll">
+          <Name>Assembly Reference\EtAlii.xTechnology.Diagnostics ($(Configuration))</Name>
+        </Reference>
+        <Reference Include="..\..\..\Frameworks\Moppet.Lapa\Moppet.Lapa.Pcl\bin\$(Configuration)\Moppet.Lapa.dll">
+          <Name>Assembly Reference\Moppet.Lapa ($(Configuration))</Name>
+        </Reference>
+
+        <!--<Reference Include="..\..\..\Frameworks\HashLib\HashLib\bin\$(Configuration)\HashLib.dll">
+          <Name>Assembly Reference\HashLib ($(Configuration))</Name>
+        </Reference>-->
+      </ItemGroup>
+    </When>
+  </Choose>
+</Project>

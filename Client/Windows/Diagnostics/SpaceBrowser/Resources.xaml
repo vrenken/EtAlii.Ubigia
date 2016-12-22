@@ -1,0 +1,40 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style TargetType="ListBox">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <Style TargetType="DataGrid">
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="GridLinesVisibility" Value="None" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="CanUserDeleteRows" Value="False" />
+        <Setter Property="CanUserResizeRows" Value="False" />
+        <Setter Property="HeadersVisibility" Value="None" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="IsTextSearchEnabled" Value="False" />
+        <Setter Property="IsManipulationEnabled" Value="False" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
+        <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="IsReadOnly" Value="True" />
+    </Style>
+    <Style TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <Style TargetType="DataGridCell">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="Background" Value="{Binding Background, RelativeSource={RelativeSource TemplatedParent}}" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+    </Style>
+
+    <Style TargetType="{x:Type TextBlock}" x:Key="BackStageHeaderStyle">
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="FontWeight" Value="Thin" />
+        <Setter Property="FontFamily" Value="Segoe WP" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Margin" Value="0,10,0,10" />
+    </Style>
+
+</ResourceDictionary>

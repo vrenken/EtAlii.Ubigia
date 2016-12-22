@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Choose>
+    <When Condition="'$(SolutionName)' == 'EtAlii.Ubigia'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Servus.Api\EtAlii.Ubigia.Api.csproj">
+          <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Servus.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+          <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Transport</Name>
+        </ProjectReference>
+        
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Servus.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj">
+          <!-- TODO: This reference has been added to create compatibility as long as the SignalR transport depends on the WebApi one -->
+          <Project>{ae581332-d0b8-4481-ba67-71d11bfb056e}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Transport.WebApi</Name>
+        </ProjectReference>
+
+        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
+          <Project>{a4fc7d78-36b0-475e-8a38-b27d2518f368}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Diagnostics</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
+          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
+        </ProjectReference>
+
+        <ProjectReference Include="..\..\Storages\EtAlii.Servus.Storage.Shared.Tests\EtAlii.Ubigia.Storage.Tests.csproj">
+          <Project>{4a10d0a5-73a9-410a-9e5d-297a2edce933}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Storage.Tests</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Storages\EtAlii.Servus.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
+          <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Storage</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+          <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.MicroContainer</Name>
+        </ProjectReference>
+      </ItemGroup>
+    </When>
+	</Choose>
+</Project>

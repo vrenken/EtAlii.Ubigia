@@ -1,0 +1,54 @@
+﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+{
+    using EtAlii.Servus.Api;
+    using EtAlii.Servus.Api.Fabric;
+    using EtAlii.xTechnology.Mvvm;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using System.Windows;
+    using System.Windows.Input;
+    using EtAlii.Servus.Windows;
+
+    public class RootsViewModel : BindableBase
+    {
+        public IEnumerable<Root> AvailableRoots { get { return _availableRoots; } set { SetProperty(ref _availableRoots, value); } }
+        private IEnumerable<Root> _availableRoots;
+
+        public Root SelectedRoot { get { return _selectedRoot; } set { SetProperty(ref _selectedRoot, value); } }
+        private Root _selectedRoot;
+
+
+        protected IFabricContext Fabric { get { return _fabric; } }
+        private readonly IFabricContext _fabric;
+
+        public ICommand BeginEntryDragCommand { get { return _beginEntryDragCommand; } }
+        private readonly ICommand _beginEntryDragCommand;
+
+        public RootsViewModel(IFabricContext fabric)
+        {
+            _fabric = fabric;
+            _beginEntryDragCommand = new RelayCommand(BeginEntryDrag, CanBeginEntryDrag);
+            ReloadAvailableRoots();
+        }
+
+        private void BeginEntryDrag(object obj)
+        {
+            var frameworkElement = obj as FrameworkElement;
+            DragDrop.DoDragDrop(frameworkElement, SelectedRoot.Identifier, DragDropEffects.Move);
+        }
+
+        private bool CanBeginEntryDrag(object obj)
+        {
+            return _selectedRoot != null && obj is FrameworkElement;    
+        }
+
+        private void ReloadAvailableRoots()
+        {
+            var task = Task.Run(async () =>
+            {
+                AvailableRoots = await Fabric.Roots.GetAll();
+            });
+            task.Wait();
+        }
+    }
+}
