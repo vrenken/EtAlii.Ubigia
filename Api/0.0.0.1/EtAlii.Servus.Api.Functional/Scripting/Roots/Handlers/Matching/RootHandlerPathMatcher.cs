@@ -74,7 +74,7 @@ namespace EtAlii.Servus.Api.Functional
                     .ToArray();
             }
 
-            if (templateParts.Count == 0 && result.Count > 0)
+            if (templateParts.Count == 0 && (result.Count > 0 || isFirst))
             {
                 // 5. if we do have matches: Add match to result.
                 return new MatchResult(rootHandler, result.ToArray(), rest);

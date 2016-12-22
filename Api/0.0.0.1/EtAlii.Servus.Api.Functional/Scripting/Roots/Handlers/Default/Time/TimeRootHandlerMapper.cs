@@ -23,16 +23,21 @@ namespace EtAlii.Servus.Api.Functional
                 new TimeRootByPathBasedYyyymmHandler(), // 04: YYYY/MM
                 new TimeRootByPathBasedYyyyHandler(), // 05: YYYY
 
-                new TimeRootByConstantBasedNow1Handler(), // 06: now
-                new TimeRootByConstantBasedNow2Handler(), // 07: NOW
-                new TimeRootByConstantBasedNow3Handler(), // 08: now
+                new TimeRootByRegexBasedNowHandler(), // 06: now, NOW, Now, NoW, noW, nOw
 
-                new TimeRootByRegexBasedYyyymmddhhmmssHandler(), // 09: "YYYY-MM-DD HH:MM:SS"
-                new TimeRootByRegexBasedYyyymmddhhmmHandler(), // 10: "YYYY-MM-DD HH:MM"
-                new TimeRootByRegexBasedYyyymmddhhHandler(), // 11: "YYYY-MM-DD HH"
-                new TimeRootByRegexBasedYyyymmddHandler(), // 12: "YYYY-MM-DD"
-                new TimeRootByRegexBasedYyyymmHandler(), // 13: "YYYY-MM"
-                new TimeRootByRegexBasedYyyyHandler(), // 14: "YYYY"
+                new TimeRootByRegexBasedYyyymmddhhmmssHandler(), // 09: "YYYYMMDDHHMMSS"
+                new TimeRootByRegexBasedYyyymmddhhmmHandler(), // 10: "YYYYMMDDHHMM"
+                new TimeRootByRegexBasedYyyymmddhhHandler(), // 11: "YYYYMMDDHH"
+                new TimeRootByRegexBasedYyyymmddHandler(), // 12: "YYYYMMDD"
+                new TimeRootByRegexBasedYyyymmHandler(), // 13: "YYYYMM"
+
+                new TimeRootByRegexBasedSeparatedYyyymmddhhmmssHandler(), // 14: "YYYY-MM-DD HH:MM:SS" 
+                new TimeRootByRegexBasedSeparatedYyyymmddhhmmHandler(), // 15: "YYYY-MM-DD HH:MM"
+                new TimeRootByRegexBasedSeparatedYyyymmddhhHandler(), // 16: "YYYY-MM-DD HH" 
+                new TimeRootByRegexBasedSeparatedYyyymmddHandler(), // 17: "YYYY-MM-DD"
+                new TimeRootByRegexBasedSeparatedYyyymmHandler(), // 18: "YYYY-MM" 
+
+                new TimeRootByEmptyHandler(), // 05: only root, no arguments, should be at the end.
             };
         }
 
