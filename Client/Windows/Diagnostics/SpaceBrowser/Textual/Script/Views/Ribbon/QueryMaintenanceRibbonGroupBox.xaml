@@ -1,0 +1,22 @@
+﻿<Fluent:RibbonGroupBox 
+    x:Class="EtAlii.Servus.Client.Windows.Diagnostics.QueryMaintenanceRibbonGroupBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"  
+    xmlns:views="clr-namespace:EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views"
+    xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300"
+    Fluent:KeyTip.Keys="A"
+    Header="Actions">
+
+    <!--DataContext="{Binding Buttons}"-->
+    <Fluent:Button 
+        Header="Clear current query"
+        Command="{Binding ClearCommand}"
+        CommandParameter="{Binding Code}"
+        LargeIcon="\Images\Icons\Garbage-Closed.png" />
+</Fluent:RibbonGroupBox>

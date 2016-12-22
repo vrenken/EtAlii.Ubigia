@@ -1,0 +1,22 @@
+﻿# Clear the cache.
+clr()
+
+# Function call
+$v1 <= testfunction()
+
+#Get the full identifier for an item.
+$id <= id(/Persons/Doe/John)
+$id <= id($johnDoe)
+$id <= id() <= /Persons/Doe/John
+$id <= id() <= $johnDoe
+
+
+#Output format function.
+$person <= /Person/
+<= format($person, "{item} {parent}")
+<= format($person, "{item} [{branch}]") # add additional characters.
+
+<= format("{item} {parent}") <= $person
+<= format("{item} [{branch}]") <= $person # add additional characters.
+
+<= view("Graph view 2") <= /Person/*/*/Emails/.IsPrimary=true # Output the nodes into the specified Space browser view.

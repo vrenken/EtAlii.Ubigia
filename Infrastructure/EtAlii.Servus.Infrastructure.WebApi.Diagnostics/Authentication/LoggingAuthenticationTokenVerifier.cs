@@ -1,0 +1,36 @@
+﻿namespace EtAlii.Servus.Infrastructure.WebApi
+{
+    using System;
+    using System.Net;
+    using System.Web.Http.Controllers;
+    //using EtAlii.xTechnology.Logging;
+
+    internal class LoggingAuthenticationTokenVerifier : IAuthenticationTokenVerifier
+    {
+        private readonly IAuthenticationTokenVerifier _verifier;
+        //private readonly ILogger _logger;
+
+        public LoggingAuthenticationTokenVerifier(
+            IAuthenticationTokenVerifier verifier
+            //, ILogger logger
+            )
+        {
+            _verifier = verifier;
+            //_logger = logger;
+        }
+
+        public HttpStatusCode Verify(HttpActionContext actionContext, string requiredRole)
+        {
+            //var message = String.Format("Verifying authentication token");
+            //_logger.Info(message);
+            var start = Environment.TickCount;
+
+            var result = _verifier.Verify(actionContext, requiredRole);
+
+            //message = String.Format("Verified authentication token (Status: {0} Duration: {1}ms)", result, Environment.TickCount - start);
+            //_logger.Info(message);
+
+            return result;
+        }
+    }
+}

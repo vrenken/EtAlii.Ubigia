@@ -1,0 +1,52 @@
+﻿<tb:TaskbarIcon 
+    x:Class="EtAlii.Servus.Client.Windows.TaskbarIcon.TaskbarIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"
+    xmlns:Commands="clr-namespace:EtAlii.Servus.Client.Windows.TaskbarIcon"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    mc:Ignorable="d" 
+    IconSource="/Storage.ico" 
+    DoubleClickCommand="{Commands:ShowUserInterfaceCommand}" >
+    
+    <tb:TaskbarIcon.ContextMenu>
+        <ContextMenu>
+            <MenuItem Header="Open your Servus folder" FontWeight="Bold" />
+            <MenuItem Header="Go to servus.com" />
+            <Separator />
+            <MenuItem Header="View usage statistics" />
+            <Separator />
+            <MenuItem Header="Manage storage" />
+            <MenuItem 
+                Header="Settings" 
+                Command="{Commands:ShowSettingsCommand}"
+                CommandParameter="{Binding}" >
+            </MenuItem>
+            <MenuItem 
+                Header="Help" >
+                <MenuItem 
+                    Header="Help" 
+                    Command="{Commands:ShowAboutCommand}"
+                    CommandParameter="{Binding}" />
+                <MenuItem 
+                    Header="Feedback" 
+                    Command="{Commands:ShowAboutCommand}"
+                    CommandParameter="{Binding}" />
+                <MenuItem 
+                    Header="Report a problem"                             
+                    Command="{Commands:ShowAboutCommand}"
+                    CommandParameter="{Binding}" />
+            </MenuItem>
+
+            <MenuItem 
+                Header="About"
+                Command="{Commands:ShowAboutCommand}"
+                CommandParameter="{Binding}" />
+            <Separator />
+            <MenuItem 
+                Header="Exit" 
+                Command="{Commands:ExitApplicationCommand}" />
+        </ContextMenu>
+    </tb:TaskbarIcon.ContextMenu>
+</tb:TaskbarIcon>

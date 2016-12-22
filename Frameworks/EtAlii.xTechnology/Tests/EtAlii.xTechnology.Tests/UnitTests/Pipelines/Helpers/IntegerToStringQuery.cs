@@ -1,0 +1,15 @@
+namespace EtAlii.xTechnology.Tests
+{
+    using EtAlii.xTechnology.Structure;
+
+    public class IntegerToStringQuery : Query<int>
+    {
+        public IntegerToStringQuery(int parameter) 
+            : base(parameter)
+        {
+        }
+
+        public int Integer { get { return ((IParams<int>)this).Parameter; } }
+
+    }
+}

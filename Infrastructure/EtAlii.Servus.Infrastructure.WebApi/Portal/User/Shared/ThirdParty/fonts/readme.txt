@@ -1,0 +1,1 @@
+This folder with fonts is here to satisfy a weird bootstrap/angular error that shows when using the accounts page.

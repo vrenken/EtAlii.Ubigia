@@ -1,0 +1,77 @@
+﻿<views:GraphViewBase x:Class="EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views.TreeView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:go="http://schemas.nwoods.com/GoXam"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:EtAlii.Servus.Client.Windows.Diagnostics.Views"
+    xmlns:views="clr-namespace:EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views"
+             
+    xmlns:mvvm="clr-namespace:EtAlii.Servus.Windows.Mvvm;assembly=EtAlii.Servus.Windows.Mvvm"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                     mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300">
+
+    <FrameworkElement.Resources>
+
+        <DataTemplate x:Key="treeLinkTemplate">
+            <go:LinkShape Stroke="Black" StrokeThickness="1">
+                <go:Link.Route>
+                    <go:Route Routing="Orthogonal" Corner="4" />
+                </go:Link.Route>
+            </go:LinkShape>
+        </DataTemplate>
+
+        <DataTemplate x:Key="treeNodeTemplate">
+            <TextBlock 
+                Text="{Binding Path=Data.Entry.Type}"
+                FontSize="14" 
+                FontWeight="Normal"
+                Foreground="Black" />
+        </DataTemplate>
+        <!--FontSize="{Binding Path=Data.FontSize}"
+            FontWeight="{Binding Path=Data.FontWeight}"-->
+
+    </FrameworkElement.Resources>
+
+    <go:Diagram 
+        Model="{Binding}"
+        InitialStretch="UniformToFill"
+        HorizontalContentAlignment="Stretch"
+        VerticalContentAlignment="Stretch"
+        AllowClipboard="True"
+        AllowCopy="False"
+        AllowDelete="False"
+        AllowDragOut="False"
+        AllowDrop="True"
+        AllowEdit="False"
+        AllowGroup="True"
+        AllowInsert="False"
+        AllowLink="False"
+        AllowMove="True"
+        AllowPrint="False"
+        AllowRelink="False"
+        AllowReshape="False"
+        AllowResize="False"
+        AllowRotate="False"
+        AllowScroll="True"
+        AllowSelect="True"
+        AllowUndo="False"
+        AllowUngroup="True"
+        AllowZoom="True"
+        mvvm:DragDropBehaviour.DragDropHandler="{Binding}"  
+        mvvm:DragDropBehaviour.IsDragSource="False"
+        NodeTemplate="{StaticResource treeNodeTemplate}"
+        LinkTemplate="{StaticResource treeLinkTemplate}">
+        <go:Diagram.ClickSelectingTool>
+            <local:ClickSelectingTool CommandProcessor="{Binding CommandProcessor}" />
+        </go:Diagram.ClickSelectingTool>
+
+
+        <go:Diagram.DragSelectingTool><x:Null/></go:Diagram.DragSelectingTool>
+        <go:Diagram.PanningTool><go:PanningTool/></go:Diagram.PanningTool>
+        <go:Diagram.DraggingTool><x:Null /></go:Diagram.DraggingTool> <!--<go:DraggingTool Inclusions="SubTree" />-->
+
+        <go:Diagram.Layout><local:TreeLayout /></go:Diagram.Layout>
+        <go:Diagram.LayoutManager><local:ContinuousLayoutManager /></go:Diagram.LayoutManager>
+    </go:Diagram>
+</views:GraphViewBase>

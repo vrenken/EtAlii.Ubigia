@@ -1,0 +1,38 @@
+﻿<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <form role="form" novalidate angular-validator name="accountsform">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>Account name</th>
+                                <th>Private Key</th>
+                                <th>Registered on</th>
+                                <th>Last updated</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="account in data">
+                                <td><a ng-href="#/account/edit/{{account.Id}}" title="View {{account.Name}} details">{{account.Name}}</a></td>
+                                <td>{{account.PrivateKey}}</td>
+                                <td>{{account.Created|date:'yyyy-MM-dd HH:mm'}}</td>
+                                <td>{{account.Updated|date:'yyyy-MM-dd HH:mm'}}</td>
+                                <td>{{account.Status}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <input type="button" name="add" id="add" value="Add" ng-click="addAccount()" class="btn btn-info pull-left">
+
+                    <tr ng-repeat="(key, value) in userInfo.profile">
+                        <td>{{key}}</td>
+                        <td>{{value}}</td>
+                    </tr>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

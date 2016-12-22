@@ -1,0 +1,84 @@
+﻿<f:RibbonGroupBox 
+    x:Class="EtAlii.Servus.Client.Windows.Diagnostics.ProfilingFiltersRibbonGroupBox"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:f="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mvvm="clr-namespace:EtAlii.Servus.Windows.Mvvm;assembly=EtAlii.Servus.Windows.Mvvm"
+    xmlns:servus="clr-namespace:EtAlii.Servus.Client.Windows.Diagnostics"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="300"
+    f:KeyTip.Keys="F"
+    DataContext="{Binding Aspects}"
+    Header="Filters">
+<f:RibbonGroupBox.Resources>
+    <ResourceDictionary>
+        <Style TargetType="{x:Type f:Gallery}">
+                <Setter Property="MaxItemsInRow" Value="1" />
+                <Setter Property="Orientation" Value="Vertical" />
+                <Setter Property="ItemTemplateSelector">
+                    <Setter.Value>
+                        <mvvm:ListBasedTemplateSelector>
+                            <mvvm:ListBasedTemplateSelector.Templates>
+                                <DataTemplate DataType="{x:Type servus:ProfilingAspectViewModel}">
+                                    <f:CheckBox IsChecked="{Binding IsActive}" Header="{Binding Title}" HorizontalAlignment="Stretch" />
+                                </DataTemplate>
+                                <DataTemplate DataType="{x:Type servus:ProfilingAspectActionViewModel}">
+                                    <MenuItem 
+                                        Margin="0"
+                                        Header="{Binding Title}" 
+                                        Command="{Binding InvokeActionCommand}" 
+                                        HorizontalAlignment="Stretch" />
+                                </DataTemplate>
+                            </mvvm:ListBasedTemplateSelector.Templates>
+                        </mvvm:ListBasedTemplateSelector>
+
+                    </Setter.Value>
+                </Setter>
+                <!--<Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <f:GalleryItem HorizontalContentAlignment="Stretch">
+                                <f:CheckBox IsChecked="{Binding IsActive}" Header="{Binding Title}" />
+                            </f:GalleryItem>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>-->
+            </Style>
+    </ResourceDictionary>
+</f:RibbonGroupBox.Resources>
+    <f:DropDownButton
+        Name="FunctionalDropDownButton" 
+        SizeDefinition="Large" 
+        Header="Functional"
+        LargeIcon="\Images\Icons\Formula-Support.png">
+        <f:Gallery GroupBy="Group" ItemsSource="{Binding Functional}" />
+    </f:DropDownButton>
+
+    <f:DropDownButton 
+        Name="LogicalDropDownButton" 
+        SizeDefinition="Large" 
+        Header="Logical"
+        LargeIcon="\Images\Icons\Graph-Diagram.png" >
+        <f:Gallery GroupBy="Group" ItemsSource="{Binding Logical}" />
+    </f:DropDownButton>
+
+    <f:DropDownButton 
+        Name="FabricDropDownButton" 
+        SizeDefinition="Large" 
+        Header="Fabric"
+        LargeIcon="\Images\Icons\Cube-Molecule.png" >
+        <f:Gallery GroupBy="Group" ItemsSource="{Binding Fabric}" />
+    </f:DropDownButton>
+
+    <f:DropDownButton 
+        ClosePopupOnMouseDown="False"        
+        Name="TransportDropDownButton" 
+        SizeDefinition="Large" 
+        Header="Transport"
+        LargeIcon="\Images\Icons\Link - 07.png" >
+        <f:Gallery GroupBy="Group" ItemsSource="{Binding Transport}" />
+    </f:DropDownButton>
+
+</f:RibbonGroupBox>

@@ -1,0 +1,49 @@
+﻿<fluent:BackstageTabItem 
+    x:Class="EtAlii.Servus.Client.Windows.Diagnostics.OpenBackstageTabItem"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:u="clr-namespace:EtAlii.Servus.Client.Windows.Diagnostics"
+    mc:Ignorable="d" 
+    d:DesignHeight="300" d:DesignWidth="700"
+    Header="Open"
+    fluent:KeyTip.Keys="O" >
+    <StackPanel Margin="20,20,0,0">
+        <TextBlock Text="Open" Style="{DynamicResource BackStageHeaderStyle}" />
+        <TabControl 
+            Style="{DynamicResource InnerBackstageTabControlStyle}"
+            SelectedIndex="0">
+            <TabItem Header="Local computer">
+                <Grid Margin="35,0,0,0">
+                    <StackPanel>
+                        <fluent:SeparatorTabItem Header="Local computer" />
+                        <ItemsControl ItemsSource="{Binding OpenDocumentFromFileCommands}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <u:DocumentDataTemplateContent />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Remote space">
+                <Grid Margin="35,0,0,0">
+                    <StackPanel>
+                        <fluent:SeparatorTabItem Header="Remote space" />
+                        <ItemsControl ItemsSource="{Binding OpenDocumentFromSpaceCommands}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <u:DocumentDataTemplateContent />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+    </StackPanel>
+</fluent:BackstageTabItem>

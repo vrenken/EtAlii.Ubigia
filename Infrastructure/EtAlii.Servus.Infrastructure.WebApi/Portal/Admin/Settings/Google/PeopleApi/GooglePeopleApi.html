@@ -1,0 +1,66 @@
+﻿<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-body clearfix">
+            <h4 class="panel-title pull-left col-xs-2 col-md-9" style="padding-top: 7.5px;"></h4>
+        </div>
+
+        <div class="panel-body">
+
+            <form role="form" novalidate angular-validator name="settingsForm" angular-validator-submit="save()">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="name">Client Id</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.ClientId" name="clientId" id="clientId" placeholder="Client Id"
+                                   validate-on="blur" required required-message="'Client Id is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Project Id</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.ProjectId" name="projectId" id="projectId" placeholder="Project Id"
+                                   validate-on="blur" required required-message="'Project Id is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Authentication Url</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.AuthenticationUrl" name="authenticationUrl" id="authenticationUrl" placeholder="Authentication Url"
+                                   validate-on="blur" required required-message="'Authentication Url is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Token Url</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.TokenUrl" name="tokenUrl" id="tokenUrl" placeholder="Token Url"
+                                   validate-on="blur" required required-message="'Token Url is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Authentication Provider x509 Certificate Url</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.AuthenticationProviderx509CertificateUrl" name="authenticationProviderx509CertificateUrl" id="authenticationProviderx509CertificateUrl" placeholder="Authentication Provider x509 Certificate Url"
+                                   validate-on="blur" required required-message="'Authentication Provider x509 Certificate Url is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Client Secret</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.ClientSecret" name="clientSecret" id="clientSecret" placeholder="Client Secret"
+                                   validate-on="blur" required required-message="'Client Secret is required'">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Redirect Url</label>
+                        <div class="form-group">
+                            <input type="text" class="form-control" ng-model="settings.RedirectUrl" name="redirectUrl" id="redirectUrl" placeholder="Redirect Url"
+                                   validate-on="blur" required required-message="'Redirect Url is required'">
+                        </div>
+                    </div>
+
+                    <input type="submit" name="submit" id="submit" value="Save" class="btn btn-info pull-right">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
