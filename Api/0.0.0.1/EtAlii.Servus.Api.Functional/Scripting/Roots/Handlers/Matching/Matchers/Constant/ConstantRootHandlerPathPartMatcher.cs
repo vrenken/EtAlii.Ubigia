@@ -17,12 +17,15 @@
             bool canMatch = false;
 
             var next = parameters.PathRest.FirstOrDefault();
-            var name = ((ConstantPathSubjectPart) next)?.Name;
-            var requiredName = ((ConstantPathSubjectPart)parameters.CurrentTemplatePart).Name;
-
-            if (String.Equals(requiredName, name, StringComparison.OrdinalIgnoreCase))
+            if (next != null)
             {
-                canMatch = true;
+                var name = (next as ConstantPathSubjectPart)?.Name;
+                var requiredName = ((ConstantPathSubjectPart) parameters.CurrentTemplatePart).Name;
+
+                if (String.Equals(requiredName, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    canMatch = true;
+                }
             }
             return canMatch;
         }
