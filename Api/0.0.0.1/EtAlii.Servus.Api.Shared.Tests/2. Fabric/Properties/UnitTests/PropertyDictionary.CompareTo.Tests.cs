@@ -163,12 +163,12 @@
             var result2 = second.CompareTo(first);
 
             // Assert.
-            //Assert.Equal(-1, result1, "result1");
-            //Assert.Equal(+1, result2, "result2");
+            Assert.Equal(-1, result1);//, "result1");
+            Assert.Equal(+1, result2);//, "result2");
 
             // On 64 bit unit tests (Resharper).
-            Assert.Equal(+1, result1);//, "result1");
-            Assert.Equal(-1, result2);//, "result2");
+            //Assert.Equal(+1, result1);//, "result1");
+            //Assert.Equal(-1, result2);//, "result2");
         }
 
 
@@ -186,12 +186,12 @@
             var result2 = second.CompareTo(first);
 
             // Assert.
-            //Assert.Equal(+1, result1, "result1");
-            //Assert.Equal(-1, result2, "result2");
+            Assert.Equal(+1, result1);//, "result1");
+            Assert.Equal(-1, result2);//, "result2");
 
             // On 64 bit unit tests (Resharper).
-            Assert.Equal(-1, result1);//, "result1");
-            Assert.Equal(+1, result2);//, "result2");
+            //Assert.Equal(-1, result1);//, "result1");
+            //Assert.Equal(+1, result2);//, "result2");
         }
 
 
