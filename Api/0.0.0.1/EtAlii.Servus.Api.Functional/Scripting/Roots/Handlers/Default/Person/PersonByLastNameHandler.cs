@@ -3,19 +3,15 @@ namespace EtAlii.Servus.Api.Functional
     using System;
     using System.Linq;
 
-    public class PersonByLastNameFirstNameHandler : IRootHandler
+    public class PersonByLastNameHandler : IRootHandler
     {
 
         public PathSubjectPart[] Template { get { return _template; } }
         private readonly PathSubjectPart[] _template;
 
-        public PersonByLastNameFirstNameHandler()
+        public PersonByLastNameHandler()
         {
-            _template = new PathSubjectPart[]
-            {
-                new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter), new IsParentOfPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
-            };
+            _template = new PathSubjectPart[] { new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter) };
         }
 
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)

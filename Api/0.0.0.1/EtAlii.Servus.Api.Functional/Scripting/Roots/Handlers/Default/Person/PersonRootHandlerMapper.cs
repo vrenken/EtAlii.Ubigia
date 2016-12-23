@@ -16,7 +16,10 @@ namespace EtAlii.Servus.Api.Functional
 
             _allowedPaths = new IRootHandler[]
             {
-                new PersonByLastNameFirstNameHandler() 
+                new PersonByLastNameFirstNameHandler(),
+                new PersonByLastNameHandler(),
+
+                new PersonRootByEmptyHandler(), // Should be at the end.
             };
         }
 
