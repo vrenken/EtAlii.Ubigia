@@ -113,6 +113,8 @@
     <Compile Include="Scripting\1. Parsing\Subjects\Paths\__IAbsolutePathSubjectParser.cs" />
     <Compile Include="Scripting\1. Parsing\Subjects\Paths\__AbsolutePathSubjectParser.cs" />
     <Compile Include="Scripting\Functions\Handlers\Validation\IFunctionHandlerValidator.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameWildcardFirstNameHandler.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameFirstNameWildcardHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonRootByEmptyHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Time\Regex\TimeRootByRegexBasedNowHandler.cs" />

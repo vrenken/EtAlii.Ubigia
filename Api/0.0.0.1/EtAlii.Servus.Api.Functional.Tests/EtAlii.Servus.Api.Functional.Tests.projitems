@@ -17,6 +17,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Functional\Context\UnitTests\" />
+    <Folder Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\1. Parsing\IntegrationTests\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Context\IntegrationTests\DataContextFactory.RootHandlers.Tests.cs" />
@@ -41,6 +42,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Querying\IntegrationTests\DataContext.Nodes.ToArray.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Querying\UnitTests\ChangeTracker.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Querying\UnitTests\NodeSet.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\1. Parsing\UnitTests\RegexPathSubjectPartParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\1. Parsing\UnitTests\TypedPathSubjectPartParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.SingleQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.DoubleQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.String.SingleQuotes.Tests.cs" />
@@ -92,7 +95,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Root.Assign.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Root.Unassign.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Scripted.Add.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Person.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Typed.Person.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Regex.Person.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Time.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\UnitTests\RootHandlerPathMatcher.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\UnitTests\ScopeVariable.Tests.cs" />

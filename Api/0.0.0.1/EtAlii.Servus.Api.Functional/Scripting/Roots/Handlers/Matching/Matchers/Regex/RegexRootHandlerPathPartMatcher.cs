@@ -21,10 +21,13 @@ namespace EtAlii.Servus.Api.Functional
             if (next != null)
             {
                 var content = GetPartContent(next);
-                var regexTemplatePart = (RegexPathSubjectPart)parameters.CurrentTemplatePart;
+                if (content != null)
+                {
+                    var regexTemplatePart = (RegexPathSubjectPart) parameters.CurrentTemplatePart;
 
-                var match = Regex.Match(content, regexTemplatePart.Regex, RegexOptions.None);
-                canMatch = match != System.Text.RegularExpressions.Match.Empty;
+                    var match = Regex.Match(content, regexTemplatePart.Regex, RegexOptions.None);
+                    canMatch = match != System.Text.RegularExpressions.Match.Empty;
+                }
             }
             return canMatch;
         }
@@ -32,14 +35,7 @@ namespace EtAlii.Servus.Api.Functional
         private string GetPartContent(PathSubjectPart part)
         {
             var constantPathSubjectPart = part as ConstantPathSubjectPart;
-            if (constantPathSubjectPart != null)
-            {
-                return constantPathSubjectPart.Name;
-            }
-            else
-            {
-                throw new InvalidOperationException("Unable to get content for part: " + part);
-            }
+            return constantPathSubjectPart?.Name;
         }
     }
 }

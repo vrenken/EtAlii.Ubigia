@@ -42,7 +42,8 @@
             var downdateOfPathSubjectPartParser = new DowndateOfPathSubjectPartParser(nodeValidator, pathRelationParserBuilder);
             var updatesOfPathSubjectPartParser = new UpdatesOfPathSubjectPartParser(nodeValidator, pathRelationParserBuilder);
             var typedPathSubjectPartParser = new TypedPathSubjectPartParser(nodeValidator, nodeFinder);
-            var pathSubjectPartsParser = new PathSubjectPartsParser(traversingWildcardPathSubjectPartParser, wildcardPathSubjectPartParser, conditionalPathSubjectPartParser, constantPathSubjectPartParser, variablePathSubjectPartParser, identifierPathSubjectPartParser, isParentOfPathSubjectPartParser, isChildOfPathSubjectPartParser, downdateOfPathSubjectPartParser, updatesOfPathSubjectPartParser, typedPathSubjectPartParser, nodeValidator);
+            var regexPathSubjectPartParser = new RegexPathSubjectPartParser(nodeValidator, nodeFinder);
+            var pathSubjectPartsParser = new PathSubjectPartsParser(traversingWildcardPathSubjectPartParser, wildcardPathSubjectPartParser, conditionalPathSubjectPartParser, constantPathSubjectPartParser, variablePathSubjectPartParser, identifierPathSubjectPartParser, isParentOfPathSubjectPartParser, isChildOfPathSubjectPartParser, downdateOfPathSubjectPartParser, updatesOfPathSubjectPartParser, typedPathSubjectPartParser, regexPathSubjectPartParser, nodeValidator);
             _parser = new RootDefinitionSubjectParser(nodeValidator, nodeFinder, typeValueParser, pathSubjectPartsParser);
         }
 
