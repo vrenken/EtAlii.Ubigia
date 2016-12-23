@@ -60,20 +60,20 @@
         {
             PathSubject pathToAdd = null;
 
-            var task = Task.Run(async () =>
+            if (parameters.RightSubject is PathSubject)
             {
-                if (parameters.RightSubject is PathSubject)
-                {
-                    pathToAdd = (PathSubject)parameters.RightSubject;
-                }
-                else
+                pathToAdd = (PathSubject)parameters.RightSubject;
+            }
+            else
+            {
+                var task = Task.Run(async () =>
                 {
                     var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
                     _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-                }
-            });
-            task.Wait();
+                });
+                task.Wait();
+            }
 
             return pathToAdd;
         }
