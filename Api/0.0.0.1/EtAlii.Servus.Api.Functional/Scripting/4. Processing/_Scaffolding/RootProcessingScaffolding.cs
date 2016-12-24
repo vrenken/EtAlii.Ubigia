@@ -17,6 +17,8 @@
 
             container.Register<IRootHandlerPathMatcher, RootHandlerPathMatcher>();
             container.Register<IRootHandlerPathPartMatcherSelector, RootHandlerPathPartMatcherSelector>();
+            container.Register<IPathSubjectPartContentGetter, PathSubjectPartContentGetter>();
+
             container.Register<ITypedRootHandlerPathPartMatcher, TypedRootHandlerPathPartMatcher>();
             container.Register<IRegexRootHandlerPathPartMatcher, RegexRootHandlerPathPartMatcher>();
             container.Register<IConstantRootHandlerPathPartMatcher, ConstantRootHandlerPathPartMatcher>();

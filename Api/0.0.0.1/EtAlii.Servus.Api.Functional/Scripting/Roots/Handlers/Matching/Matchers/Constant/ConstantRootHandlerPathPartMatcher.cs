@@ -5,6 +5,13 @@
 
     class ConstantRootHandlerPathPartMatcher : IConstantRootHandlerPathPartMatcher
     {
+        private readonly IPathSubjectPartContentGetter _pathSubjectPartContentGetter;
+
+        public ConstantRootHandlerPathPartMatcher(IPathSubjectPartContentGetter pathSubjectPartContentGetter)
+        {
+            _pathSubjectPartContentGetter = pathSubjectPartContentGetter;
+        }
+
         public MatchResult[] Match(MatchParameters parameters)
         {
             var match = parameters.PathRest.Take(1).ToArray();
@@ -19,12 +26,15 @@
             var next = parameters.PathRest.FirstOrDefault();
             if (next != null)
             {
-                var name = (next as ConstantPathSubjectPart)?.Name;
-                var requiredName = ((ConstantPathSubjectPart) parameters.CurrentTemplatePart).Name;
-
-                if (String.Equals(requiredName, name, StringComparison.OrdinalIgnoreCase))
+                var content = _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
+                if (content != null)
                 {
-                    canMatch = true;
+                    var requiredName = ((ConstantPathSubjectPart) parameters.CurrentTemplatePart).Name;
+
+                    if (String.Equals(requiredName, content, StringComparison.OrdinalIgnoreCase))
+                    {
+                        canMatch = true;
+                    }
                 }
             }
             return canMatch;

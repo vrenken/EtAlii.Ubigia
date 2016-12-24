@@ -1,12 +1,17 @@
 namespace EtAlii.Servus.Api.Functional
 {
-    using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Text.RegularExpressions;
 
     class TypedRootHandlerPathPartMatcher : ITypedRootHandlerPathPartMatcher
     {
+        private readonly IPathSubjectPartContentGetter _pathSubjectPartContentGetter;
+
+        public TypedRootHandlerPathPartMatcher(IPathSubjectPartContentGetter pathSubjectPartContentGetter)
+        {
+            _pathSubjectPartContentGetter = pathSubjectPartContentGetter;
+        }
+
         public MatchResult[] Match(MatchParameters parameters)
         {
             var match = parameters.PathRest.Take(1).ToArray();
@@ -20,7 +25,7 @@ namespace EtAlii.Servus.Api.Functional
             var next = parameters.PathRest.FirstOrDefault();
             if (next != null)
             {
-                var content = GetPartContent(next);
+                var content = _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
                 if (content != null)
                 {
                     var typedTemplatePart = (TypedPathSubjectPart) parameters.CurrentTemplatePart;
@@ -30,12 +35,6 @@ namespace EtAlii.Servus.Api.Functional
                 }
             }
             return canMatch;
-        }
-
-        private string GetPartContent(PathSubjectPart part)
-        {
-            var constantPathSubjectPart = part as ConstantPathSubjectPart;
-            return constantPathSubjectPart?.Name;
         }
     }
 }
