@@ -8,21 +8,15 @@
     {
         private readonly IRootContext _rootContext;
         private readonly IRootHandlerMapperFinder _rootHandlerMapperFinder;
-        private readonly IRootHandlerFinder _rootHandlerFinder;
-        private readonly IPathSubjectForOutputConverter _converter;
         private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
 
         public RootedPathSubjectProcessor(
             IRootContext rootContext,
             IRootHandlerMapperFinder rootHandlerMapperFinder, 
-            IRootHandlerFinder rootHandlerFinder, 
-            IPathSubjectForOutputConverter converter, 
             IRootHandlerPathMatcher rootHandlerPathMatcher)
         {
             _rootContext = rootContext;
             _rootHandlerMapperFinder = rootHandlerMapperFinder;
-            _rootHandlerFinder = rootHandlerFinder;
-            _converter = converter;
             _rootHandlerPathMatcher = rootHandlerPathMatcher;
         }
 
