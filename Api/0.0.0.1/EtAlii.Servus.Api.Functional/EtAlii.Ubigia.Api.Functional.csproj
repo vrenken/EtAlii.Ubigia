@@ -551,6 +551,7 @@
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonRootHandlerMapper.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Time\TimeRootHandlerMapper.cs" />
     <Compile Include="Scripting\Roots\Handlers\IRootHandler.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Matching\IPathSubjectPartContentGetter.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\IRootHandlerPathMatcher.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\Matchers\Conditional\ConditionalRootHandlerPathPartMatcher.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\Matchers\Conditional\IConditionalRootHandlerPathPartMatcher.cs" />
@@ -577,6 +578,7 @@
     <Compile Include="Scripting\Roots\Handlers\Matching\Matchers\IRootHandlerPathPartMatcherSelector.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\Matchers\IRootHandlerPathPartMatcher.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\Matchers\Wildcard\WildcardRootHandlerPathPartMatcher.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Matching\PathSubjectPartContentGetter.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\RootHandlerPathMatcher.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\_Model\MatchResult.Comparison.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\_Model\MatchParameters.cs" />
