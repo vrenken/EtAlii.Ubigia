@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Servus.Api.Functional.Tests
 {
-    using System;
-    using System.Linq;
     using EtAlii.Servus.Api.Tests;
     using Xunit;
 
@@ -9,12 +7,12 @@
     public partial class RootHandlerPathMatcher_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_01()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_01()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] { new ConstantPathSubjectPart("LastName"), new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("FirstName") };
+            var template = new PathSubjectPart[] { new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(), new RegexPathSubjectPart(@"^\p{L}+$") };
             var path = new PathSubjectPart[] { new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("John") };
             var rootHandler = new TestRootHandler(template);
 
@@ -26,7 +24,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_02()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_02()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -34,8 +32,8 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("LastName"), new IsParentOfPathSubjectPart(),
-                new ConstantPathSubjectPart("FirstName")
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
@@ -52,7 +50,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_03()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_030()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -60,8 +58,35 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("LastName"), new IsParentOfPathSubjectPart(),
-                new ConstantPathSubjectPart("FirstName")
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
+            };
+            var path = new PathSubjectPart[]
+            {
+                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new WildcardPathSubjectPart("Jo*"),
+            };
+            var rootHandler = new TestRootHandler(template);
+
+            // Act.
+            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+
+            // Assert.
+            Assert.True(match == MatchResult.NoMatch);
+        }
+
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_031()
+        {
+            // Arrange.
+            var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
+            var scriptscope = new ScriptScope();
+            scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var template = new PathSubjectPart[]
+            {
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new WildcardPathSubjectPart("*"), 
             };
             var path = new PathSubjectPart[]
             {
@@ -78,7 +103,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_04()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_040()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -86,8 +111,34 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("LastName"), new IsParentOfPathSubjectPart(),
-                new ConstantPathSubjectPart("FirstName")
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
+            };
+            var path = new PathSubjectPart[]
+            {
+                new WildcardPathSubjectPart("Do*"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("John"),
+            };
+            var rootHandler = new TestRootHandler(template);
+
+            // Act.
+            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+
+            // Assert.
+            Assert.True(match == MatchResult.NoMatch);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_041()
+        {
+            // Arrange.
+            var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
+            var scriptscope = new ScriptScope();
+            scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var template = new PathSubjectPart[]
+            {
+                new WildcardPathSubjectPart("*"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
@@ -105,7 +156,7 @@
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_05_False()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_05_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -113,8 +164,8 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("LastName"), new IsParentOfPathSubjectPart(),
-                new ConstantPathSubjectPart("FirstName")
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
@@ -131,7 +182,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_06_False()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_06_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -139,8 +190,8 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("LastName"), new IsParentOfPathSubjectPart(),
-                new ConstantPathSubjectPart("FirstName")
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
@@ -155,22 +206,22 @@
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
         }
-
-
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_07()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_07_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
+            scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var template = new PathSubjectPart[]
+            {
+                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter")
+                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("12")
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -178,82 +229,24 @@
             var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
-            Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/Vrenken/Peter", String.Join("", match.Match.Select(m => m.ToString())));//, "Match");
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest");
+            Assert.Equal(MatchResult.NoMatch, match);
         }
-
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_08()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_08_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+            scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var template = new PathSubjectPart[]
+            {
+                new RegexPathSubjectPart(@"\w"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"\w")
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
-            };
-            var rootHandler = new TestRootHandler(template);
-
-            // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
-
-            // Assert.
-            Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/Vrenken/Peter/0", String.Join("", match.Match.Select(m => m.ToString())));//, "Match");
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest");
-        }
-
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_09()
-        {
-            // Arrange.
-            var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
-            };
-            var path = new PathSubjectPart[]
-            {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
-            };
-            var rootHandler = new TestRootHandler(template);
-
-            // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
-
-            // Assert.
-            Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/Vrenken/Peter", String.Join("", match.Match.Select(m => m.ToString())));//, "Match");
-            Assert.Equal("/0", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest");
-        }
-
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_10_False()
-        {
-            // Arrange.
-            var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
-            };
-            var path = new PathSubjectPart[]
-            {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("&")
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -265,21 +258,21 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_11_False()
+        public void RootHandlerPathMatcher_Regex_FirstNameLastName_09_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+            scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
+            var template = new PathSubjectPart[]
+            {
+                new RegexPathSubjectPart(@"\w"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"\w")
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("*")
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -289,33 +282,5 @@
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
         }
-
-
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_FirstNameLastName_12_False()
-        {
-            // Arrange.
-            var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
-            };
-            var path = new PathSubjectPart[]
-            {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
-            };
-            var rootHandler = new TestRootHandler(template);
-
-            // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
-
-            // Assert.
-            Assert.Equal(MatchResult.NoMatch, match);
-        }
-
     }
 }
