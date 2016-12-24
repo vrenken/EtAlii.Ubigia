@@ -7,7 +7,7 @@ using Xunit;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-//[assembly: CollectionBehavior(DisableTestParallelization = true)]
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = true)]
 
 [assembly: AssemblyTitle("Unit tests - Api (management)")]
 [assembly: AssemblyDescription("")]
