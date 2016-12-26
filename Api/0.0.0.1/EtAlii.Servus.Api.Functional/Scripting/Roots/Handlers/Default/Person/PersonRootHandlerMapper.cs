@@ -7,14 +7,14 @@ namespace EtAlii.Servus.Api.Functional
         public string Name { get { return _name; } }
         private readonly string _name;
 
-        public IRootHandler[] AllowedPaths { get { return _allowedPaths; } }
-        private readonly IRootHandler[] _allowedPaths;
+        public IRootHandler[] AllowedRootHandlers { get { return _allowedRootHandlers; } }
+        private readonly IRootHandler[] _allowedRootHandlers;
 
         public PersonRootHandlerMapper()
         {
             _name = "person";
 
-            _allowedPaths = new IRootHandler[]
+            _allowedRootHandlers = new IRootHandler[]
             {
                 new PersonByLastNameFirstNameHandler(),
                 new PersonByLastNameFirstNameWildcardHandler(),

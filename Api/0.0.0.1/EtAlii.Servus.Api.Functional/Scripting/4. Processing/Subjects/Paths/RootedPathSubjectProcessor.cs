@@ -34,7 +34,7 @@
             }
             // Find the matching root handler.
             var scriptScope = new ScriptScope();
-            var match = rootHandlerMapper.AllowedPaths
+            var match = rootHandlerMapper.AllowedRootHandlers
                 .Select(rh => _rootHandlerPathMatcher.Match(scriptScope, rh, rootedPathSubject.Parts))
                 .FirstOrDefault(m => m != MatchResult.NoMatch);
             if (match == null)

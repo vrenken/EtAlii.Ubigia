@@ -6,15 +6,15 @@
     {
         public string Name { get { return _name; } }
 
-        public IRootHandler[] AllowedPaths { get { return _allowedPaths; } }
-        private readonly IRootHandler[] _allowedPaths;
+        public IRootHandler[] AllowedRootHandlers { get { return _allowedRootHandlers; } }
+        private readonly IRootHandler[] _allowedRootHandlers;
 
         private readonly string _name;
 
         public InvalidTestRootHandlerMapper()
         {
             _name = "TestRoot";
-            _allowedPaths = new IRootHandler[]
+            _allowedRootHandlers = new IRootHandler[]
             {
                 new TimeRootByPathBasedYyyymmddhhmmssHandler(),
                 new TimeRootByPathBasedYyyymmddhhmmssHandler(),

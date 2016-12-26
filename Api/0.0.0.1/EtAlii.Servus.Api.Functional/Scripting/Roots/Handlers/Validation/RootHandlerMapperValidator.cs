@@ -19,8 +19,8 @@ namespace EtAlii.Servus.Api.Functional
         {
             foreach (var rootHandlerMapper in rootHandlerMappersProvider.RootHandlerMappers)
             {
-                var firstSet = rootHandlerMapper.AllowedPaths.ToArray();
-                var secondSet = rootHandlerMapper.AllowedPaths.ToArray();
+                var firstSet = rootHandlerMapper.AllowedRootHandlers.ToArray();
+                var secondSet = rootHandlerMapper.AllowedRootHandlers.ToArray();
                 Compare(firstSet, secondSet, rootHandlerMapper);
             }
         }

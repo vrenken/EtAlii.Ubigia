@@ -13,7 +13,7 @@ namespace EtAlii.Servus.Api.Functional
 
         public IRootHandler Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
         {
-            return rootHandlerMapper.AllowedPaths
+            return rootHandlerMapper.AllowedRootHandlers
                 .Select(rootHandler => _rootHandlerPathMatcher.Match(scope, rootHandler, rootedPathSubject.Parts))
                 .Select(match => match.RootHandler)
                 .FirstOrDefault();
