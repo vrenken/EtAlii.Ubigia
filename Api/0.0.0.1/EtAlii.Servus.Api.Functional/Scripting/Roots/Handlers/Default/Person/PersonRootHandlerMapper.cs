@@ -24,11 +24,5 @@ namespace EtAlii.Servus.Api.Functional
                 new PersonRootByEmptyHandler(), // Should be at the end.
             };
         }
-
-        public void Process(IRootContext context, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
-        {
-            //context.PathProcessor.Process()
-            throw new NotImplementedException();
-        }
     }
 }
