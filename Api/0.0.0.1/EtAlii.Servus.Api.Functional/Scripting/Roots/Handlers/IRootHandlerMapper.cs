@@ -5,7 +5,7 @@ namespace EtAlii.Servus.Api.Functional
     {
         string Name { get; }
 
-        IRootHandler[] AllowedPaths { get; }
+        IRootHandler[] AllowedRootHandlers { get; }
 
         //string TypeName { get; }
 

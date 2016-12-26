@@ -7,13 +7,13 @@
         public string Name { get { return _name; } }
         private readonly string _name;
 
-        public IRootHandler[] AllowedPaths { get { return _allowedPaths; } }
-        private readonly IRootHandler[] _allowedPaths;
+        public IRootHandler[] AllowedRootHandlers { get { return _allowedRootHandlers; } }
+        private readonly IRootHandler[] _allowedRootHandlers;
 
         public TestRootHandlerMapper()
         {
             _name = "TestRoot";
-            _allowedPaths = new IRootHandler[0];
+            _allowedRootHandlers = new IRootHandler[0];
         }
 
         public void Process(IRootContext context, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
