@@ -3,7 +3,7 @@ namespace EtAlii.Servus.Api.Functional
     using System;
     using System.Linq;
 
-    public class PersonRootByEmptyHandler : IRootHandler
+    internal class PersonRootByEmptyHandler : IRootHandler
     {
 
         public PathSubjectPart[] Template { get { return _template; } }
