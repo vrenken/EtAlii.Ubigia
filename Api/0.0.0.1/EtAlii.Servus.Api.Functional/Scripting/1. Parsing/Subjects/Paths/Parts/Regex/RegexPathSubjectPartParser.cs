@@ -17,7 +17,6 @@ namespace EtAlii.Servus.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private const string TextId = "Text";
-        private readonly string[] _types;
 
         public RegexPathSubjectPartParser(
             INodeValidator nodeValidator,
