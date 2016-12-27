@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial class MatchResult : IEquatable<MatchResult>
+    internal partial class MatchResult : IEquatable<MatchResult>
     {
         public override bool Equals(object obj)
         {

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    public partial class MatchResult
+    internal partial class MatchResult
     {
         public IRootHandler RootHandler { get; }
         public PathSubjectPart[] Match { get; }
