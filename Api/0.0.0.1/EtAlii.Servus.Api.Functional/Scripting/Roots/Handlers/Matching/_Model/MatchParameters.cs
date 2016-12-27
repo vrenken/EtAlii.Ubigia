@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    using System.Collections.Generic;
-
-    public class MatchParameters
+    internal class MatchParameters
     {
         public IScriptScope Scope { get; }
         public PathSubjectPart[] PathRest { get; }
