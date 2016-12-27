@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    public interface IRootHandlerFinder
+    internal interface IRootHandlerFinder
     {
         IRootHandler Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject);
     }

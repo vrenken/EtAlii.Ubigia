@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    public interface IRootHandlerMapperFinder
+    internal interface IRootHandlerMapperFinder
     {
         IRootHandlerMapper Find(RootedPathSubject rootedPathSubject);
     }

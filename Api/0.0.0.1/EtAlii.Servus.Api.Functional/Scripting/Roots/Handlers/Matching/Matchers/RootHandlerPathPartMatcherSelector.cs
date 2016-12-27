@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    using System;
     using EtAlii.xTechnology.Structure;
 
-    public class RootHandlerPathPartMatcherSelector : Selector<PathSubjectPart, IRootHandlerPathPartMatcher>, IRootHandlerPathPartMatcherSelector
+    internal class RootHandlerPathPartMatcherSelector : Selector<PathSubjectPart, IRootHandlerPathPartMatcher>, IRootHandlerPathPartMatcherSelector
     {
         public RootHandlerPathPartMatcherSelector(
             ITypedRootHandlerPathPartMatcher typedRootHandlerPathPartMatcher,
