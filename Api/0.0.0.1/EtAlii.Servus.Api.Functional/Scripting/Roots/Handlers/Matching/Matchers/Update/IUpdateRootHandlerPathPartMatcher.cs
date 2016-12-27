@@ -1,6 +1,6 @@
 namespace EtAlii.Servus.Api.Functional
 {
-    public interface IUpdateRootHandlerPathPartMatcher : IRootHandlerPathPartMatcher
+    internal interface IUpdateRootHandlerPathPartMatcher : IRootHandlerPathPartMatcher
     {
     }
 }
