@@ -19,6 +19,8 @@
             private static readonly Lazy<TypedPathFormatter> _minuteFormatter = new Lazy<TypedPathFormatter>(() => new TypedPathFormatter("mm", @"^[012345]?[0123456789]$"));
             public static TypedPathFormatter SecondFormatter => _secondFormatter.Value;
             private static readonly Lazy<TypedPathFormatter> _secondFormatter = new Lazy<TypedPathFormatter>(() => new TypedPathFormatter("ss", @"^[012345]?[0123456789]$"));
+            public static TypedPathFormatter MillisecondFormatter => _millisecondFormatter.Value;
+            private static readonly Lazy<TypedPathFormatter> _millisecondFormatter = new Lazy<TypedPathFormatter>(() => new TypedPathFormatter("MMM", @"^[0123456789]{1,3]$"));
         }
 
         public static class Text
@@ -46,6 +48,7 @@
             Time.HourFormatter,
             Time.MinuteFormatter,
             Time.SecondFormatter,
+            Time.MillisecondFormatter,
 
             Text.WordFormatter,
             Text.NumberFormatter,
