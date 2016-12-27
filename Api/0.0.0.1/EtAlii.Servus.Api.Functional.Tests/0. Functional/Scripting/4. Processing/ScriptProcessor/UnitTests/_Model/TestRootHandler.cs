@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class TestRootHandler : IRootHandler
+    internal class TestRootHandler : IRootHandler
     {
         public PathSubjectPart[] Template { get; }
 
