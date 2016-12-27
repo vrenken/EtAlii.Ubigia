@@ -3,7 +3,7 @@ namespace EtAlii.Servus.Api.Functional
     using System;
     using System.Linq;
 
-    public class PersonByLastNameHandler : IRootHandler
+    internal class PersonByLastNameHandler : IRootHandler
     {
 
         public PathSubjectPart[] Template { get { return _template; } }
