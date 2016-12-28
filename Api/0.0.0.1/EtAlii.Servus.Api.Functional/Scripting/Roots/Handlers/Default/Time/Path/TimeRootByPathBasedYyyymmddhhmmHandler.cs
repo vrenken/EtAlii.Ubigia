@@ -3,14 +3,16 @@ namespace EtAlii.Servus.Api.Functional
     using System;
     using System.Linq;
 
-    public class TimeRootByPathBasedYyyymmddhhmmHandler : IRootHandler
+    internal class TimeRootByPathBasedYyyymmddhhmmHandler : IRootHandler
     {
 
         public PathSubjectPart[] Template { get { return _template; } }
         private readonly PathSubjectPart[] _template;
+        private readonly ITimePreparer _timePreparer;
 
-        public TimeRootByPathBasedYyyymmddhhmmHandler()
+        public TimeRootByPathBasedYyyymmddhhmmHandler(ITimePreparer timePreparer)
         {
+            _timePreparer = timePreparer;
             _template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new IsParentOfPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new IsParentOfPathSubjectPart(),
@@ -22,11 +24,30 @@ namespace EtAlii.Servus.Api.Functional
 
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            var parts = new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"), new IsParentOfPathSubjectPart() }
-                .Concat(match)
+            var year = Int32.Parse(match[0].ToString());
+            var month = Int32.Parse(match[2].ToString());
+            var day = Int32.Parse(match[4].ToString());
+            var hour = Int32.Parse(match[6].ToString());
+            var minute = Int32.Parse(match[8].ToString());
+
+            var time = new DateTime(year, month, day, hour, minute, 0, 0);
+            _timePreparer.Prepare(context, scope, time);
+
+            var parts = new PathSubjectPart[] 
+                {
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(year.ToString("D4")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(month.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(day.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(hour.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(minute.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // second
+                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
+                }
                 .Concat(rest)
                 .ToArray();
             var path = new AbsolutePathSubject(parts);
+
             context.Converter.Convert(path, scope, output);
         }
     }

@@ -3,21 +3,25 @@ namespace EtAlii.Servus.Api.Functional
     using System;
     using System.Linq;
 
-    internal class TimeRootByPathBasedYyyymmddHandler : IRootHandler
+    internal class TimeRootByPathBasedYyyymmddhhmmssmmmHandler : IRootHandler
     {
 
         public PathSubjectPart[] Template { get { return _template; } }
         private readonly PathSubjectPart[] _template;
         private readonly ITimePreparer _timePreparer;
 
-        public TimeRootByPathBasedYyyymmddHandler(ITimePreparer timePreparer)
+        public TimeRootByPathBasedYyyymmddhhmmssmmmHandler(ITimePreparer timePreparer)
         {
             _timePreparer = timePreparer;
 
             _template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new IsParentOfPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new IsParentOfPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter)
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new IsParentOfPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter), new IsParentOfPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.MinuteFormatter), new IsParentOfPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.SecondFormatter), new IsParentOfPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.MillisecondFormatter)
             };
         }
 
@@ -26,20 +30,24 @@ namespace EtAlii.Servus.Api.Functional
             var year = Int32.Parse(match[0].ToString());
             var month = Int32.Parse(match[2].ToString());
             var day = Int32.Parse(match[4].ToString());
+            var hour = Int32.Parse(match[6].ToString());
+            var minute = Int32.Parse(match[8].ToString());
+            var second = Int32.Parse(match[10].ToString());
+            var millisecond = Int32.Parse(match[12].ToString());
 
-            var time = new DateTime(year, month, day);
+            var time = new DateTime(year, month, day, hour, minute, second, millisecond);
             _timePreparer.Prepare(context, scope, time);
 
-            var parts = new PathSubjectPart[] 
+            var parts = new PathSubjectPart[]
                 {
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(year.ToString("D4")),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(month.ToString("D2")),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(day.ToString("D2")),
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // hour
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // minute
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // second
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(hour.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(minute.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(second.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(millisecond.ToString("D3")),
                 }
                 .Concat(rest)
                 .ToArray();
