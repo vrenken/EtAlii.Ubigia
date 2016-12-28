@@ -26,7 +26,7 @@ namespace EtAlii.Servus.Api.Functional
             var hour = Int32.Parse(timeString.Substring(11, 2));
             var minute = Int32.Parse(timeString.Substring(14, 2));
             var second = Int32.Parse(timeString.Substring(17, 2));
-            var millisecond = Int32.Parse(timeString.Substring(19, 3));
+            var millisecond = Int32.Parse(timeString.Substring(20, 3));
 
             var time = new DateTime(year, month, day, hour, minute, second, millisecond);
             _timePreparer.Prepare(context, scope, time);
