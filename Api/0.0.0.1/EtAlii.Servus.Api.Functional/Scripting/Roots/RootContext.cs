@@ -1,24 +1,21 @@
 namespace EtAlii.Servus.Api.Functional
 {
-    public class RootContext : IRootContext
+    internal class RootContext : IRootContext
     {
-        IPathProcessor IRootContext.PathProcessor { get { return _pathProcessor; } }
-        private readonly IPathProcessor _pathProcessor;
+        public IPathSubjectForOutputConverter Converter { get; }
 
-        IToIdentifierConverter IRootContext.ToIdentifierConverter { get { return _toIdentifierConverter; } }
-        private readonly IToIdentifierConverter _toIdentifierConverter;
+        public IAddByNameToRelativePathProcessor AddByNameToRelativePathProcessor { get; }
 
-        IPathSubjectForOutputConverter IRootContext.Converter { get { return _converter; } }
-        private IPathSubjectForOutputConverter _converter;
+        public INonRootedPathSubjectProcessor NonRootedPathSubjectProcessor { get; }
 
         internal RootContext(
-            IPathProcessor pathProcessor, 
-            IToIdentifierConverter toIdentifierConverter, 
-            IPathSubjectForOutputConverter converter)
+            IPathSubjectForOutputConverter converter,
+            IAddByNameToRelativePathProcessor addByNameToRelativePathProcessor, 
+            INonRootedPathSubjectProcessor nonRootedPathSubjectProcessor)
         {
-            _pathProcessor = pathProcessor;
-            _toIdentifierConverter = toIdentifierConverter;
-            _converter = converter;
+            Converter = converter;
+            AddByNameToRelativePathProcessor = addByNameToRelativePathProcessor;
+            NonRootedPathSubjectProcessor = nonRootedPathSubjectProcessor;
         }
     }
 }

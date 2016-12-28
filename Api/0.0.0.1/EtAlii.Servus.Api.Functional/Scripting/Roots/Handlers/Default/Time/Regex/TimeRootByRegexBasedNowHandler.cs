@@ -3,28 +3,34 @@ namespace EtAlii.Servus.Api.Functional
     using System;
     using System.Linq;
 
-    public class TimeRootByRegexBasedNowHandler : IRootHandler
+    internal class TimeRootByRegexBasedNowHandler : IRootHandler
     {
-        public PathSubjectPart[] Template { get { return _template; } }
-        private readonly PathSubjectPart[] _template;
+        public PathSubjectPart[] Template { get; }
 
-        public TimeRootByRegexBasedNowHandler()
+        private readonly ITimePreparer _timePreparer;
+
+        public TimeRootByRegexBasedNowHandler(ITimePreparer timePreparer)
         {
-            _template = new PathSubjectPart[] { new RegexPathSubjectPart(@"now") };
+            _timePreparer = timePreparer;
+            Template = new PathSubjectPart[] { new RegexPathSubjectPart(@"now") };
         }
+
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            var now = DateTime.Now;
+            var time = DateTime.Now;
+
+            _timePreparer.Prepare(context, scope, time);
 
             var parts = new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"), new IsParentOfPathSubjectPart() }
                 .Concat(new PathSubjectPart[]
                 {
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{now:yyyy}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{now:MM}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{now:dd}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{now:HH}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{now:mm}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{now:ss}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:HH}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:mm}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:ss}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:fff}"),
                 })
                 .Concat(rest)
                 .ToArray();
