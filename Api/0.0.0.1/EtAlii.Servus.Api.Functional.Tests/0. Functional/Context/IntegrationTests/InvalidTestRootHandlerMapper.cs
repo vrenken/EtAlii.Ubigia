@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional.Tests
 {
-    using System;
-
-    public class InvalidTestRootHandlerMapper : IRootHandlerMapper
+    internal class InvalidTestRootHandlerMapper : IRootHandlerMapper
     {
         public string Name { get { return _name; } }
 
@@ -14,16 +12,14 @@
         public InvalidTestRootHandlerMapper()
         {
             _name = "TestRoot";
+
+            var timePreparer = new TimePreparer();
+
             _allowedRootHandlers = new IRootHandler[]
             {
-                new TimeRootByPathBasedYyyymmddhhmmssHandler(),
-                new TimeRootByPathBasedYyyymmddhhmmssHandler(),
+                new TimeRootByPathBasedYyyymmddhhmmssHandler(timePreparer),
+                new TimeRootByPathBasedYyyymmddhhmmssHandler(timePreparer),
             };
-        }
-
-        public void Process(IRootContext context, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
-        {
-            throw new NotImplementedException();
         }
     }
 }
