@@ -45,102 +45,18 @@
         }
 
         [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_YYYYMMDDHHMMSS_Path_Absolute()
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYY_Path()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
-                "time:+=/2016/09/01/22/05/23",
+                "time:2016",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-        public async Task ScriptProcessor_RootedPath_Time_Create_YYYYMMDDHHMMSS_Path_Relative()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            var addQueries = new[]
-            {
-                "/Time+=2016/09/01/22/05/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_MMDDHHMMSS_Path_Absolute()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016);
-
-            var addQueries = new[]
-            {
-                "time:2016+=/09/01/22/05/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
+            var selectQuery1 = "/Time/2016/01/01/00/00/00/000";
+            var selectQuery2 = "time:2016";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -170,64 +86,19 @@
         }
 
         [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_MMDDHHMMSS_Path_Relative()
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMM_Path()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016);
 
             var addQueries = new[]
             {
-                "time:2016+=/09/01/22/05/23",
+                "time:2016/09",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_DDHHMMSS_Path_Absolute()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9);
-
-            var addQueries = new[]
-            {
-                "time:2016/09+=/01/22/05/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
+            var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
+            var selectQuery2 = "time:2016/09";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -257,19 +128,144 @@
         }
 
         [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_DDHHMMSS_Path_Relative()
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDD_Path()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9);
 
             var addQueries = new[]
             {
-                "time:2016/09+=01/22/05/23",
+                "time:2016/09/01",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
+            var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
+            var selectQuery2 = "time:2016/09/01";
+
+            var addScript = _parser.Parse(addQuery).Script;
+            var selectScript1 = _parser.Parse(selectQuery1).Script;
+            var selectScript2 = _parser.Parse(selectQuery2).Script;
+
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(addScript);
+            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            lastSequence = await processor.Process(selectScript1);
+            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            lastSequence = await processor.Process(selectScript2);
+            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+
+            // Assert.
+            Assert.NotNull(addResult);
+            Assert.NotNull(firstResult);
+            Assert.NotNull(secondResult);
+            Assert.Equal(addResult.Id, firstResult.Id);
+            Assert.Equal(addResult.Id, secondResult.Id);
+        }
+
+        [Fact]
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHH_Path()
+        {
+            // Arrange.
+            var logicalContext = await _testContext.CreateLogicalContext(true);
+
+            var addQueries = new[]
+            {
+                "time:2016/09/01/22",
+            };
+
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery1 = "/Time/2016/09/01/22/00/00/000";
+            var selectQuery2 = "time:2016/09/01/22";
+
+            var addScript = _parser.Parse(addQuery).Script;
+            var selectScript1 = _parser.Parse(selectQuery1).Script;
+            var selectScript2 = _parser.Parse(selectQuery2).Script;
+
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(addScript);
+            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            lastSequence = await processor.Process(selectScript1);
+            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            lastSequence = await processor.Process(selectScript2);
+            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+
+            // Assert.
+            Assert.NotNull(addResult);
+            Assert.NotNull(firstResult);
+            Assert.NotNull(secondResult);
+            Assert.Equal(addResult.Id, firstResult.Id);
+            Assert.Equal(addResult.Id, secondResult.Id);
+        }
+
+        [Fact]
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMM_Path()
+        {
+            // Arrange.
+            var logicalContext = await _testContext.CreateLogicalContext(true);
+
+            var addQueries = new[]
+            {
+                "time:2016/09/01/22/05",
+            };
+
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
+            var selectQuery2 = "time:2016/09/01/22/05";
+
+            var addScript = _parser.Parse(addQuery).Script;
+            var selectScript1 = _parser.Parse(selectQuery1).Script;
+            var selectScript2 = _parser.Parse(selectQuery2).Script;
+
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(addScript);
+            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            lastSequence = await processor.Process(selectScript1);
+            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+            lastSequence = await processor.Process(selectScript2);
+            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
+
+            // Assert.
+            Assert.NotNull(addResult);
+            Assert.NotNull(firstResult);
+            Assert.NotNull(secondResult);
+            Assert.Equal(addResult.Id, firstResult.Id);
+            Assert.Equal(addResult.Id, secondResult.Id);
+        }
+
+        [Fact]
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSS_Path()
+        {
+            // Arrange.
+            var logicalContext = await _testContext.CreateLogicalContext(true);
+
+            var addQueries = new[]
+            {
+                "time:2016/09/01/22/05/23",
+            };
+
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery1 = "/Time/2016/09/01/22/05/23/000";
             var selectQuery2 = "time:2016/09/01/22/05/23";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -300,20 +296,19 @@
         }
 
         [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_HHMMSS_Path_Absolute()
+        public async Task ScriptProcessor_RootedPath_Time_Select_YYYYMMDDHHMMSSMMM_Path()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9, 1);
 
             var addQueries = new[]
             {
-                "time:2016/09/01+=/22/05/23",
+                "time:2016/09/01/22/05/23/123",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
+            var selectQuery1 = "/Time/2016/09/01/22/05/23/123";
+            var selectQuery2 = "time:2016/09/01/22/05/23/123";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript1 = _parser.Parse(selectQuery1).Script;
@@ -342,219 +337,5 @@
             Assert.Equal(addResult.Id, secondResult.Id);
         }
 
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_HHMMSS_Path_Relative()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9, 1);
-
-            var addQueries = new[]
-            {
-                "time:2016/09/01+=22/05/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_MMSS_Path_Absolute()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22);
-
-            var addQueries = new[]
-            {
-                "time:2016/09/01/22+=/05/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_MMSS_Path_Relative()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22);
-
-            var addQueries = new[]
-            {
-                "time:2016/09/01/22+=05/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_SS_Path_Absolute()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22, 5);
-
-            var addQueries = new[]
-            {
-                "time:2016/09/01/22/05+=/23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
-
-        [Fact]
-        public async Task ScriptProcessor_RootedPath_Time_Create_SS_Path_Relative()
-        {
-            // Arrange.
-            var logicalContext = await _testContext.CreateLogicalContext(true);
-            await _testContext.AddTime(logicalContext, 2016, 9, 1, 22, 5);
-
-            var addQueries = new[]
-            {
-                "time:2016/09/01/22/05+=23",
-            };
-
-            var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05/23";
-            var selectQuery2 = "time:2016/09/01/22/05/23";
-
-            var addScript = _parser.Parse(addQuery).Script;
-            var selectScript1 = _parser.Parse(selectQuery1).Script;
-            var selectScript2 = _parser.Parse(selectQuery2).Script;
-
-            var scope = new ScriptScope();
-            var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
-                .Use(scope)
-                .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
-
-            // Act.
-            var lastSequence = await processor.Process(addScript);
-            var addResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript1);
-            var firstResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-            lastSequence = await processor.Process(selectScript2);
-            var secondResult = await lastSequence.Output.Cast<INode>().SingleOrDefaultAsync();
-
-            // Assert.
-            Assert.NotNull(addResult);
-            Assert.NotNull(firstResult);
-            Assert.NotNull(secondResult);
-            Assert.Equal(addResult.Id, firstResult.Id);
-            Assert.Equal(addResult.Id, secondResult.Id);
-        }
     }
 }
