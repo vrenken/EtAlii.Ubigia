@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
-    internal interface INonRootedPathSubjectProcessor : ISubjectProcessor
+    public interface INonRootedPathSubjectProcessor : ISubjectProcessor
     {
     }
 }
