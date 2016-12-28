@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal interface ISubjectProcessor
+    public interface ISubjectProcessor
     {
         void Process(Subject subject, ExecutionScope scope, IObserver<object> output);
     }
