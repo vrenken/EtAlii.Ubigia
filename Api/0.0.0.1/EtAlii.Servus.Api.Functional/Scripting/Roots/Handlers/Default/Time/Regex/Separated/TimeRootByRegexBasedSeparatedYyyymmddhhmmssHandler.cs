@@ -32,13 +32,13 @@ namespace EtAlii.Servus.Api.Functional
 
             var parts = new PathSubjectPart[]
                 {
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"), 
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(year.ToString("D4")),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(month.ToString("D2")),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(day.ToString("D2")),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(hour.ToString("D2")),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(minute.ToString("D2")),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(second.ToString("D2")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:HH}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:mm}"),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:ss}"),
                     new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
                 }
                 .Concat(rest)

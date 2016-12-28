@@ -29,7 +29,7 @@ namespace EtAlii.Servus.Api.Functional
             var parts = new PathSubjectPart[] 
                 {
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(year.ToString("D4")),
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
                     new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // month
                     new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // day
                     new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // hour
