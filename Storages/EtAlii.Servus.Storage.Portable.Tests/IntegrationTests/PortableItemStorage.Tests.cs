@@ -41,7 +41,7 @@
 
             // Assert.
             var delta = DateTime.Now - now;
-            Assert.True(delta < TimeSpan.FromSeconds(40)); // PV: Was originally 20 but we increased it due to parallel test taking longer.
+            Assert.True(delta < TimeSpan.FromSeconds(60), $"delta: {delta}"); // PV: Was originally 20 but we increased it due to parallel test taking longer.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
