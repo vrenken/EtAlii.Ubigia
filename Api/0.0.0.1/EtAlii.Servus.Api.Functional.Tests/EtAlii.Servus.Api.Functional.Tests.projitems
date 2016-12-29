@@ -62,11 +62,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.Regex.Separated.DoubleQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.Regex.Combined.NoQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.Regex.Separated.NoQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.FormattedString.SingleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.FormattedString.DoubleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.String.NoQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.String.SingleQuotes.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.String.DoubleQuotes.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Time.Path.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.Function.Id.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\ScriptProcessor.RootedPath.Function.Id.Tests.cs" />
