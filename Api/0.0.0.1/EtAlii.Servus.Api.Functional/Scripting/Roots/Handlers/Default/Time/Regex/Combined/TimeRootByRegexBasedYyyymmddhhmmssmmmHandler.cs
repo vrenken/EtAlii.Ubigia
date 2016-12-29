@@ -14,7 +14,7 @@ namespace EtAlii.Servus.Api.Functional
         {
             _timePreparer = timePreparer;
 
-            _template = new PathSubjectPart[] { new RegexPathSubjectPart(@"\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}\d3") };
+            _template = new PathSubjectPart[] { new RegexPathSubjectPart(@"\d{4}\d{2}\d{2}\d{2}\d{2}\d{2}\d{3}") };
         }
 
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
