@@ -64,17 +64,17 @@
         }
 
         [Fact]
-        public async Task ScriptProcessor_RootedPath_Advanced_Create_By_AbsolutePath_And_Query_By_Root()
+        public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_First_By_Root()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
-                "/Time+=/2016/09/01/22/05",
+                "Time:2016/09/01/22/05",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05";
+            var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
             var selectQuery2 = "Time:2016/09/01/22/05";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -105,17 +105,17 @@
         }
 
         [Fact]
-        public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_By_AbsolutePath()
+        public async Task ScriptProcessor_RootedPath_Advanced_Create_By_Root_And_Query_First_By_AbsolutePath()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
             var addQueries = new[]
             {
-                "Time:+=2016/09/01/22/05",
+                "Time:2016/09/01/22/05",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery1 = "/Time/2016/09/01/22/05";
+            var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
             var selectQuery2 = "Time:2016/09/01/22/05";
 
             var addScript = _parser.Parse(addQuery).Script;
