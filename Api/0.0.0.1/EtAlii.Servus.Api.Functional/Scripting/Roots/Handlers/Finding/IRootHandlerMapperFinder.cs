@@ -2,6 +2,6 @@
 {
     internal interface IRootHandlerMapperFinder
     {
-        IRootHandlerMapper Find(RootedPathSubject rootedPathSubject);
+        IRootHandlerMapper Find(string root);
     }
 }

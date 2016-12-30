@@ -11,13 +11,12 @@ namespace EtAlii.Servus.Api.Functional
             _rootHandlerMappersProvider = rootHandlerMappersProvider;
         }
 
-        public IRootHandlerMapper Find(RootedPathSubject rootedPathSubject)
+        public IRootHandlerMapper Find(string root)
         {
-            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => System.String.Equals(rhp.Name, rootedPathSubject.Root, System.StringComparison.OrdinalIgnoreCase));
+            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => System.String.Equals(rhp.Name, root, System.StringComparison.OrdinalIgnoreCase));
             if (rootHandlerMapper == null)
             {
-                var message = System.String.Format("No root handler found with name '{0}'", rootedPathSubject.Root);
-                throw new ScriptParserException(message);
+                throw new ScriptParserException($"No root handler found with name '{root}'");
             }
             return rootHandlerMapper;
         }

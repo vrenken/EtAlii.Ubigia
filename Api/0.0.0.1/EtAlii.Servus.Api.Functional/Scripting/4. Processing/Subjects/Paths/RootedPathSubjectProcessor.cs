@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
     using System;
-    using System.Diagnostics;
     using System.Linq;
 
     internal class RootedPathSubjectProcessor : IRootedPathSubjectProcessor
@@ -22,12 +21,10 @@
 
         public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
-            Debug.Assert(subject is RootedPathSubject, $"The {nameof(RootedPathSubjectProcessor)} can only process {nameof(RootedPathSubject)}s");
-           
             var rootedPathSubject = (RootedPathSubject) subject;
 
             // Find root handler mapper.
-            var rootHandlerMapper = _rootHandlerMapperFinder.Find(rootedPathSubject);
+            var rootHandlerMapper = _rootHandlerMapperFinder.Find(rootedPathSubject.Root);
             if (rootHandlerMapper == null)
             {
                 throw new InvalidOperationException("No matching root handler mapper found.");
