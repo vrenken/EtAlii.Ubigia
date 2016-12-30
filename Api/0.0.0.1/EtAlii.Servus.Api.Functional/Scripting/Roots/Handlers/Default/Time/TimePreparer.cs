@@ -27,7 +27,7 @@ namespace EtAlii.Servus.Api.Functional
 
             var leftInput = Observable.Create<object>(leftInputObserver =>
             {
-                context.AbsolutePathSubjectProcessor.Process(pathToAddTo, scope, leftInputObserver);
+                context.Converter.Convert(pathToAddTo, scope, leftInputObserver);
 
                 return Disposable.Empty;
             }).ToHotObservable();

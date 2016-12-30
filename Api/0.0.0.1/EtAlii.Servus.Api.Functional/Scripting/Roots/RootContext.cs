@@ -6,16 +6,12 @@ namespace EtAlii.Servus.Api.Functional
 
         public IAddByNameToRelativePathProcessor AddByNameToRelativePathProcessor { get; }
 
-        public IAbsolutePathSubjectProcessor AbsolutePathSubjectProcessor { get; }
-
         internal RootContext(
             IPathSubjectForOutputConverter converter,
-            IAddByNameToRelativePathProcessor addByNameToRelativePathProcessor,
-            IAbsolutePathSubjectProcessor absolutePathSubjectProcessor)
+            IAddByNameToRelativePathProcessor addByNameToRelativePathProcessor)
         {
             Converter = converter;
             AddByNameToRelativePathProcessor = addByNameToRelativePathProcessor;
-            AbsolutePathSubjectProcessor = absolutePathSubjectProcessor;
         }
     }
 }
