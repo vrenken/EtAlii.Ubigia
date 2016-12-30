@@ -51,16 +51,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue1 : 'Test1', StringValue2 : 'Test2' }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue1 : 'Test1', StringValue2 : 'Test2' }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -96,16 +96,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : 12 }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : 12 }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -140,16 +140,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : true }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : true }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -184,16 +184,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : false }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : false }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -228,16 +228,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : FALSE }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : FALSE }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -273,16 +273,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : False }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : False }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -317,16 +317,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -359,16 +359,16 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : 12 }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : 12 }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -403,17 +403,17 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test2', IntValue : 13 }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
+            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test2', IntValue : 13 }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript1 = _parser.Parse(updateQuery1).Script;
@@ -457,17 +457,17 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test2', IntValue : '13', BoolValue : true  }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
+            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test2', IntValue : '13', BoolValue : true  }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript1 = _parser.Parse(updateQuery1).Script;
@@ -514,17 +514,17 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test2', IntValue : , BoolValue : true  }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
+            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test2', IntValue : , BoolValue : true  }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript1 = _parser.Parse(updateQuery1).Script;
@@ -571,17 +571,17 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : , IntValue : }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
+            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : , IntValue : }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript1 = _parser.Parse(updateQuery1).Script;
@@ -626,17 +626,17 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Time/2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Time/2014/09/06/16/33 <= {{ }}");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
+            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ }}");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript1 = _parser.Parse(updateQuery1).Script;
