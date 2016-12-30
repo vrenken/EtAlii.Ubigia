@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using EtAlii.Servus.Api.Diagnostics.Tests;
     using EtAlii.Servus.Api.Logical;
-    using EtAlii.Servus.Api.Logical.Tests;
     using EtAlii.Servus.Api.Tests;
     using EtAlii.Servus.Tests;
     using EtAlii.xTechnology.Diagnostics;

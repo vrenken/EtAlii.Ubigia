@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Servus.Infrastructure.Hosting.Tests
 {
-    using EtAlii.Servus.Infrastructure;
     using EtAlii.Servus.Infrastructure.Fabric;
     using EtAlii.Servus.Infrastructure.Functional;
     using EtAlii.Servus.Infrastructure.Logical;
