@@ -107,8 +107,9 @@
     <Compile Include="Scripting\Processing\Subjects\Paths\Conversion\__ProfilingPathSubjectForPathRemoveOperationConverter.cs" />
     <Compile Include="Scripting\Processing\Subjects\Paths\Conversion\__ProfilingPathSubjectForVariableAddOperationConverter.cs" />
     <Compile Include="Scripting\Processing\Subjects\Paths\Conversion\__ProfilingPathSubjectForVariableAssignmentOperationConverter.cs" />
+    <Compile Include="Scripting\Processing\Subjects\Paths\ProfilingAbsolutePathSubjectProcessor.cs" />
     <Compile Include="Scripting\Processing\Subjects\Paths\ProfilingPathProcessor.cs" />
-    <Compile Include="Scripting\Processing\Subjects\Paths\ProfilingNonRootedPathSubjectProcessor.cs" />
+    <Compile Include="Scripting\Processing\Subjects\Paths\ProfilingRelativePathSubjectProcessor.cs" />
     <Compile Include="Scripting\Processing\Subjects\Paths\ProfilingPathSubjectToGraphPathConverter.cs" />
     <Compile Include="Scripting\Processing\Subjects\ProfilingEntriesToDynamicNodesConverter.cs" />
     <Compile Include="Scripting\Processing\Subjects\__ProfilingSubjectsProcessor.cs" />

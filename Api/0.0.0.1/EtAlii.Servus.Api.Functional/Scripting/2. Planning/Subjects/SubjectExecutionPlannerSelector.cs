@@ -7,7 +7,8 @@
         private readonly ISelector<Subject, ISubjectExecutionPlanner> _selector;
 
         public SubjectExecutionPlannerSelector(
-            INonRootedPathSubjectExecutionPlanner nonRootedPathSubjectExecutionPlanner,
+            IAbsolutePathSubjectExecutionPlanner absolutePathSubjectExecutionPlanner,
+            IRelativePathSubjectExecutionPlanner relativePathSubjectExecutionPlanner,
             IRootedPathSubjectExecutionPlanner rootedPathSubjectExecutionPlanner,
             IConstantSubjectExecutionPlanner constantSubjectExecutionPlanner,
             IVariableSubjectExecutionPlanner variableSubjectExecutionPlanner,
@@ -16,8 +17,9 @@
             IRootDefinitionSubjectExecutionPlanner rootDefinitionSubjectExecutionPlanner)
         {
             _selector = new Selector<Subject, ISubjectExecutionPlanner>()
-                .Register(subject => subject is NonRootedPathSubject, nonRootedPathSubjectExecutionPlanner)
+                .Register(subject => subject is AbsolutePathSubject, absolutePathSubjectExecutionPlanner)
                 .Register(subject => subject is RootedPathSubject, rootedPathSubjectExecutionPlanner)
+                .Register(subject => subject is RelativePathSubject, relativePathSubjectExecutionPlanner)
                 .Register(subject => subject is ConstantSubject, constantSubjectExecutionPlanner)
                 .Register(subject => subject is VariableSubject, variableSubjectExecutionPlanner)
                 .Register(subject => subject is FunctionSubject, functionSubjectExecutionPlanner)

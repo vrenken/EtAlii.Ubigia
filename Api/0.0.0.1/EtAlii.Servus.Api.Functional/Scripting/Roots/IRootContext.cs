@@ -4,6 +4,6 @@ namespace EtAlii.Servus.Api.Functional
     {
         IPathSubjectForOutputConverter Converter { get; }
         IAddByNameToRelativePathProcessor AddByNameToRelativePathProcessor { get; }
-        INonRootedPathSubjectProcessor NonRootedPathSubjectProcessor { get; }
+        IAbsolutePathSubjectProcessor AbsolutePathSubjectProcessor { get; }
     }
 }

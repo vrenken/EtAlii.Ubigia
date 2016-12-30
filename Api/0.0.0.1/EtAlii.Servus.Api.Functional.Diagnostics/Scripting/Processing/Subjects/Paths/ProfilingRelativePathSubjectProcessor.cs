@@ -3,12 +3,12 @@ namespace EtAlii.Servus.Api.Diagnostics.Profiling
     using System;
     using EtAlii.Servus.Api.Functional;
 
-    internal class ProfilingNonRootedPathSubjectProcessor : INonRootedPathSubjectProcessor
+    internal class ProfilingRelativePathSubjectProcessor : IRelativePathSubjectProcessor
     {
-        private readonly INonRootedPathSubjectProcessor _decoree;
+        private readonly IRelativePathSubjectProcessor _decoree;
         private readonly IProfiler _profiler;
-        public ProfilingNonRootedPathSubjectProcessor(
-            INonRootedPathSubjectProcessor decoree,
+        public ProfilingRelativePathSubjectProcessor(
+            IRelativePathSubjectProcessor decoree,
             IProfiler profiler)
         {
             _decoree = decoree;

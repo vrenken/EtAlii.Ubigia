@@ -12,7 +12,8 @@
 
         public void Register(Container container)
         {
-            container.Register<INonRootedPathSubjectProcessor, NonRootedPathSubjectProcessor>();
+            container.Register<IAbsolutePathSubjectProcessor, AbsolutePathSubjectProcessor>();
+            container.Register<IRelativePathSubjectProcessor, RelativePathSubjectProcessor>();
             container.Register<IRootedPathSubjectProcessor, RootedPathSubjectProcessor>();
             container.Register<IConstantSubjectsProcessor, ConstantSubjectsProcessor>();
             container.Register<IVariableSubjectProcessor, VariableSubjectProcessor>();
