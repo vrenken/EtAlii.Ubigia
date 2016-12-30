@@ -29,11 +29,11 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var addResult = await _testContext.LogicalTestContext.AddYearMonth(logicalContext);
-            var monthPath = addResult.Path;
-            var monthEntry = addResult.Entry;
-            await _testContext.LogicalTestContext.AddDays(logicalContext, monthEntry, 1);
-            var path = String.Format("{0}/", monthPath);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
+            var countryPath = addResult.Path;
+            var countryEntry = addResult.Entry;
+            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 1);
+            var path = $"{countryPath}/";
             var configuration = new DataContextConfiguration()
                                 .Use(logicalContext)
                                 .Use(_testContext.Diagnostics);
@@ -44,7 +44,7 @@
             var single = items.Cast<NamedObject>().ToArray();
 
             // Assert.
-            Assert.Equal("01", single[0].Type);
+            Assert.Equal("Overijssel_01", single[0].Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -52,11 +52,11 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var addResult = await _testContext.LogicalTestContext.AddYearMonth(logicalContext);
-            var monthPath = addResult.Path;
-            var monthEntry = addResult.Entry;
-            await _testContext.LogicalTestContext.AddDays(logicalContext, monthEntry, 2);
-            var path = String.Format("{0}/", monthPath);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
+            var countryPath = addResult.Path;
+            var countryEntry = addResult.Entry;
+            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
+            var path = $"{countryPath}/";
             var configuration = new DataContextConfiguration()
                 .Use(_testContext.Diagnostics)
                 .Use(logicalContext);
@@ -67,8 +67,8 @@
             var single = items.Cast<NamedObject>().ToArray();
 
             // Assert.
-            Assert.Equal("01", single[0].Type);
-            Assert.Equal("02", single[1].Type);
+            Assert.Equal("Overijssel_01", single[0].Type);
+            Assert.Equal("Overijssel_02", single[1].Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -76,11 +76,11 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var addResult = await _testContext.LogicalTestContext.AddYearMonth(logicalContext);
-            var monthPath = addResult.Path;
-            var monthEntry = addResult.Entry;
-            await _testContext.LogicalTestContext.AddDays(logicalContext, monthEntry, 2);
-            var path = String.Format("{0}/", monthPath);
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
+            var countryPath = addResult.Path;
+            var countryEntry = addResult.Entry;
+            await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
+            var path = $"{countryPath}/";
             var configuration = new DataContextConfiguration()
                 .Use(_testContext.Diagnostics)
                 .Use(logicalContext);
@@ -91,8 +91,8 @@
             dynamic single = items.ToArray();
 
             // Assert.
-            Assert.Equal("01", single[0].ToString());
-            Assert.Equal("02", single[1].ToString());
+            Assert.Equal("Overijssel_01", single[0].ToString());
+            Assert.Equal("Overijssel_02", single[1].ToString());
         }
     }
 }

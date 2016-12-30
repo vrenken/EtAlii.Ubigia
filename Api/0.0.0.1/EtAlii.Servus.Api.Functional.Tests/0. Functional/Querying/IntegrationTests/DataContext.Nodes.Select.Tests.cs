@@ -17,8 +17,8 @@
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private IDataContext _context;
-        private string _monthPath;
-        private IEditableEntry _monthEntry;
+        private string _countryPath;
+        private IEditableEntry _countryEntry;
         private readonly LogicalUnitTestContext _testContext;
 
         public DataContext_Nodes_Select_Tests(LogicalUnitTestContext testContext)
@@ -34,9 +34,9 @@
                     .Use(_diagnostics)
                     .Use(_logicalContext);
                 _context = new DataContextFactory().Create(configuration);
-                var addResult = await _testContext.LogicalTestContext.AddYearMonth(_logicalContext);
-                _monthPath = addResult.Path;
-                _monthEntry = addResult.Entry;
+                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+                _countryPath = addResult.Path;
+                _countryEntry = addResult.Entry;
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -49,8 +49,8 @@
             {
                 var start = Environment.TickCount;
 
-                _monthEntry = null;
-                _monthPath = null;
+                _countryEntry = null;
+                _countryPath = null;
                 _context.Dispose();
                 _context = null;
                 _logicalContext.Dispose();
@@ -78,38 +78,38 @@
         public async Task Linq_Nodes_Select_Cast_Single_With_Single_Item()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, 1);
-            var path = String.Format("{0}/", _monthPath);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             var single = items.Cast<NamedObject>().Single();
 
             // Assert.
-            Assert.Equal("01", single.Type);
+            Assert.Equal("Overijssel_01", single.Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Linq_Nodes_Select_Cast_With_Single_Item()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, 1);
-            var path = String.Format("{0}/", _monthPath);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             dynamic single = items.Single();
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Linq_Nodes_Select_Any_With_Multiple_Items()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, 2);
-            var path = String.Format("{0}/", _monthPath);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 2);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
@@ -123,7 +123,7 @@
         public void Linq_Nodes_Select_Any_With_Multiple_Items_Fail()
         {
             // Arrange.
-            var path = String.Format("{0}/", _monthPath);
+            var path = String.Format("{0}/", _countryPath);
             var items = _context.Nodes.Select(path);
 
             // Act.
@@ -137,8 +137,8 @@
         public async Task Linq_Nodes_Select_Any_With_Single_Item()
         {
             // Arrange.
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, 1);
-            var path = String.Format("{0}/01", _monthPath);
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, 1);
+            var path = $"{_countryPath}/Overijssel_01";
             var items = _context.Nodes.Select(path);
 
             // Act.
@@ -152,15 +152,11 @@
         public void Linq_Nodes_Select_Any_With_Single_Item_Fail()
         {
             // Arrange.
-            var path = String.Format("{0}/01", _monthPath);
+            var path = $"{_countryPath}/Overijssel_01";
             var items = _context.Nodes.Select(path);
-            var any = false;
 
             // Act.
-            var act = new Action(() =>
-            {
-                any = items.Any();
-            });
+            var any = items.Any();
 
             // Assert.
             Assert.False(any);
@@ -170,32 +166,32 @@
         public async Task Linq_Nodes_Select_Count_With_Single_Item()
         {
             // Arrange.
-            const int days = 1;
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, days);
-            var path = String.Format("{0}/", _monthPath);
+            const int regions = 1;
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             var count = items.Count();
 
             // Assert.
-            Assert.Equal(days, count);
+            Assert.Equal(regions, count);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Linq_Nodes_Select_Count_With_Multiple_Items_2()
         {
             // Arrange.
-            const int days = 2;
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, days);
-            var path = String.Format("{0}/", _monthPath);
+            const int regions = 2;
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             var count = items.Count();
 
             // Assert.
-            Assert.Equal(days, count);
+            Assert.Equal(regions, count);
         }
 
 
@@ -203,57 +199,57 @@
         public async Task Linq_Nodes_Select_Count_With_Multiple_Items_5()
         {
             // Arrange.
-            const int days = 5;
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, days);
-            var path = String.Format("{0}/", _monthPath);
+            const int regions = 5;
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             var count = items.Count();
 
             // Assert.
-            Assert.Equal(days, count);
+            Assert.Equal(regions, count);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Linq_Nodes_Select_Count_With_Multiple_Items_20()
         {
             // Arrange.
-            const int days = 20;
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, days);
-            var path = String.Format("{0}/", _monthPath);
+            const int regions = 20;
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             var count = items.Count();
 
             // Assert.
-            Assert.Equal(days, count);
+            Assert.Equal(regions, count);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Linq_Nodes_Select_Count_With_Multiple_Items_50()
         {
             // Arrange.
-            const int days = 50;
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, days);
-            var path = String.Format("{0}/", _monthPath);
+            const int regions = 50;
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.
             var count = items.Count();
 
             // Assert.
-            Assert.Equal(days, count);
+            Assert.Equal(regions, count);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Linq_Nodes_Select_Count_With_Multiple_Items_50_Multiple_requests_20()
         {
             // Arrange.
-            const int days = 50;
-            await _testContext.LogicalTestContext.AddDays(_logicalContext, _monthEntry, days);
-            var path = String.Format("{0}/", _monthPath);
+            const int regions = 50;
+            await _testContext.LogicalTestContext.AddRegions(_logicalContext, _countryEntry, regions);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
             const int iterations = 20;
             var counts = new int[iterations];
@@ -267,7 +263,7 @@
             // Assert.
             for (int i = 0; i < iterations; i++)
             {
-                Assert.Equal(days, counts[i]);
+                Assert.Equal(regions, counts[i]);
             }
         }
 
@@ -279,7 +275,7 @@
             var locationsRoot = await _logicalContext.Roots.Get("Locations");
             var locations = await _logicalContext.Nodes.Select(GraphPath.Create(locationsRoot.Identifier), executionScope);
             await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)locations, "Europe", "NL", "Overijssel");
-            var path = String.Format("/Locations/{0}/{1}/{2}", "Europe", "NL", "Overijssel");
+            var path = $"/Locations/Europe/NL/Overijssel";
             var items = _context.Nodes.Select(path);
 
             // Act.

@@ -17,7 +17,7 @@
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private IDataContext _context;
-        private string _monthPath;
+        private string _countryPath;
         private readonly LogicalUnitTestContext _testContext;
 
         public DataContext_Nodes_Add_Add_Tests(LogicalUnitTestContext testContext)
@@ -33,8 +33,8 @@
                     .Use(_diagnostics)
                     .Use(_logicalContext);
                 _context = new DataContextFactory().Create(configuration);
-                var addResult = await _testContext.LogicalTestContext.AddYearMonth(_logicalContext);
-                _monthPath = addResult.Path;
+                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+                _countryPath = addResult.Path;
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -47,7 +47,7 @@
             {
                 var start = Environment.TickCount;
 
-                _monthPath = null;
+                _countryPath = null;
                 _context.Dispose();
                 _context = null;
                 _logicalContext.Dispose();
@@ -63,26 +63,26 @@
         public void Linq_Nodes_Select_Add_At()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            dynamic single = items.Add("01").At(DateTime.Now).Single();
+            dynamic single = items.Add("Overijssel_01").At(DateTime.Now).Single();
 
             // Assert.
-            Assert.Equal("01", single.Label);
+            Assert.Equal("Overijssel_01", single.Label);
         }
 
         [Fact(Skip = "Not working yet"), Trait("Category", TestAssembly.Category)]
         public void Linq_Nodes_Select_Add_At_Cast()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            var single = items.Add("01").At(DateTime.Now).Cast<NamedObject>().Single();
+            var single = items.Add("Overijssel_01").At(DateTime.Now).Cast<NamedObject>().Single();
 
             // Assert.
-            Assert.Equal("01", single.Type);
+            Assert.Equal("Overijssel_01", single.Type);
         }
     }
 }

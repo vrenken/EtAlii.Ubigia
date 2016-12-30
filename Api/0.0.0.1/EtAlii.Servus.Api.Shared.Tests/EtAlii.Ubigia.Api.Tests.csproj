@@ -106,6 +106,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="1. Logical\ILogicalTestContext.cs" />
+    <Compile Include="1. Logical\_Model\LocationAddResult.cs" />
     <Compile Include="2. Fabric\Base36\UnitTests\Base36Convert.Guid.Tests.cs" />
     <Compile Include="2. Fabric\Base36\UnitTests\Base36Convert.UInt64.Tests.cs" />
     <Compile Include="2. Fabric\Base36\UnitTests\Base36Convert.Bytes.Tests.cs" />
