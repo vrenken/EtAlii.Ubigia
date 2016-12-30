@@ -22,7 +22,8 @@ namespace EtAlii.Servus.Api.Diagnostics.Profiling
             //container.RegisterDecorator(typeof(ISubjectsProcessor2), typeof(ProfilingSubjectsProcessor));
             //container.RegisterDecorator(typeof(ICommentProcessor2), typeof(ProfilingCommentProcessor));
 
-            container.RegisterDecorator(typeof(INonRootedPathSubjectProcessor), typeof(ProfilingNonRootedPathSubjectProcessor));
+            container.RegisterDecorator(typeof(IAbsolutePathSubjectProcessor), typeof(ProfilingAbsolutePathSubjectProcessor));
+            container.RegisterDecorator(typeof(IRelativePathSubjectProcessor), typeof(ProfilingRelativePathSubjectProcessor));
             container.RegisterDecorator(typeof(IPathSubjectToGraphPathConverter), typeof(ProfilingPathSubjectToGraphPathConverter));
             container.RegisterDecorator(typeof(IPathProcessor), typeof(ProfilingPathProcessor));
 

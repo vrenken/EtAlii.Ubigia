@@ -2,13 +2,13 @@ namespace EtAlii.Servus.Api.Functional
 {
     using System;
 
-    internal class NonRootedPathSubjectExecutionPlan : SubjectExecutionPlanBase
+    internal class RelativePathSubjectExecutionPlan : SubjectExecutionPlanBase
     {
-        private readonly INonRootedPathSubjectProcessor _processor;
+        private readonly IRelativePathSubjectProcessor _processor;
 
-        public NonRootedPathSubjectExecutionPlan(
-            NonRootedPathSubject subject,
-            INonRootedPathSubjectProcessor processor)
+        public RelativePathSubjectExecutionPlan(
+            RelativePathSubject subject,
+            IRelativePathSubjectProcessor processor)
             :base (subject)
         {
             _processor = processor;
@@ -16,7 +16,7 @@ namespace EtAlii.Servus.Api.Functional
 
         protected override Type GetOutputType()
         {
-            return typeof (NonRootedPathSubject);
+            return typeof (RelativePathSubject);
         }
 
         protected override void Execute(ExecutionScope scope, IObserver<object> output)

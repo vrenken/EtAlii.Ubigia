@@ -113,6 +113,11 @@
     <Compile Include="Scripting\1. Parsing\Subjects\Paths\__IRelativePathSubjectParser.cs" />
     <Compile Include="Scripting\1. Parsing\Subjects\Paths\__IAbsolutePathSubjectParser.cs" />
     <Compile Include="Scripting\1. Parsing\Subjects\Paths\__AbsolutePathSubjectParser.cs" />
+    <Compile Include="Scripting\2. Planning\Subjects\Paths\IAbsolutePathSubjectExecutionPlanner.cs" />
+    <Compile Include="Scripting\2. Planning\Subjects\Paths\AbsolutePathSubjectExecutionPlanner.cs" />
+    <Compile Include="Scripting\2. Planning\_Model\Subjects\RelativePathSubjectExecutionPlan.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\IAbsolutePathSubjectProcessor.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\RelativePathSubjectProcessor.cs" />
     <Compile Include="Scripting\Functions\Handlers\Validation\IFunctionHandlerValidator.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameWildcardFirstNameHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameFirstNameWildcardHandler.cs" />
@@ -154,7 +159,7 @@
     <Compile Include="Scripting\2. Planning\_Model\Subjects\RootedPathSubjectExecutionPlan.cs" />
     <Compile Include="Scripting\2. Planning\_Model\Subjects\RootDefinitionSubjectExecutionPlan.cs" />
     <Compile Include="Scripting\2. Planning\_Model\Subjects\RootSubjectExecutionPlan.cs" />
-    <Compile Include="Scripting\2. Planning\_Model\Subjects\NonRootedPathSubjectExecutionPlan.cs" />
+    <Compile Include="Scripting\2. Planning\_Model\Subjects\AbsolutePathSubjectExecutionPlan.cs" />
     <Compile Include="Scripting\2. Planning\_Model\Subjects\SubjectExecutionPlan.None.cs" />
     <Compile Include="Scripting\2. Planning\_Model\Subjects\SubjectExecutionPlanBase.cs" />
     <Compile Include="Scripting\2. Planning\_Model\Subjects\SubjectOperatorExecutionPlan.cs" />
@@ -340,8 +345,8 @@
     <Compile Include="Scripting\2. Planning\Subjects\Functions\IFunctionSubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\Subjects\ISubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\Subjects\ISubjectExecutionPlannerSelector.cs" />
-    <Compile Include="Scripting\2. Planning\Subjects\Paths\INonRootedPathSubjectExecutionPlanner.cs" />
-    <Compile Include="Scripting\2. Planning\Subjects\Paths\NonRootedPathSubjectExecutionPlanner.cs" />
+    <Compile Include="Scripting\2. Planning\Subjects\Paths\IRelativePathSubjectExecutionPlanner.cs" />
+    <Compile Include="Scripting\2. Planning\Subjects\Paths\RelativePathSubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\Subjects\Roots\IRootDefinitionSubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\Subjects\Roots\IRootSubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\Subjects\Roots\RootDefinitionSubjectExecutionPlanner.cs" />
@@ -521,8 +526,8 @@
     <Compile Include="Scripting\4. Processing\Subjects\Paths\Converters\PathSubjectToObject\IPathSubjectConverter.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\Converters\PathSubjectToObject\ToOutput\IPathSubjectForOutputConverter.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\Converters\PathSubjectToObject\ToOutput\PathSubjectForOutputConverter.cs" />
-    <Compile Include="Scripting\4. Processing\Subjects\Paths\INonRootedPathSubjectProcessor.cs" />
-    <Compile Include="Scripting\4. Processing\Subjects\Paths\NonRootedPathSubjectProcessor.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\IRelativePathSubjectProcessor.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\AbsolutePathSubjectProcessor.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\IPathProcessor.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\IPathRelationParserBuilder.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\PathProcessor.cs" />

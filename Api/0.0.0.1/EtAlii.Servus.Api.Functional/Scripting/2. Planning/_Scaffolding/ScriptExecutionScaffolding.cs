@@ -11,7 +11,8 @@
 
             container.Register<ICommentExecutionPlanner, CommentExecutionPlanner>();
             container.Register<ISubjectExecutionPlannerSelector, SubjectExecutionPlannerSelector>();
-            container.Register<INonRootedPathSubjectExecutionPlanner, NonRootedPathSubjectExecutionPlanner>();
+            container.Register<IAbsolutePathSubjectExecutionPlanner, AbsolutePathSubjectExecutionPlanner>();
+            container.Register<IRelativePathSubjectExecutionPlanner, RelativePathSubjectExecutionPlanner>();
             container.Register<IRootedPathSubjectExecutionPlanner, RootedPathSubjectExecutionPlanner>();
             container.Register<IFunctionSubjectExecutionPlanner, FunctionSubjectExecutionPlanner>();
             container.Register<IConstantSubjectExecutionPlanner, ConstantSubjectExecutionPlanner>();
