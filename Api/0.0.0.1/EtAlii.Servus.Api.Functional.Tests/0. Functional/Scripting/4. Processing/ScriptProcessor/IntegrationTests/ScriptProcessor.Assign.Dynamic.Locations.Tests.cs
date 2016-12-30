@@ -12,14 +12,14 @@
     using TestAssembly = EtAlii.Servus.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_Assign_Dynamic_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessor_Assign_Dynamic_Locations_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_Assign_Dynamic_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessor_Assign_Dynamic_Locations_IntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 
@@ -51,11 +51,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             dynamic data = new
@@ -65,8 +65,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= $data");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -104,11 +104,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time+=/2014",
-                "/Time/2014+=/09",
-                "/Time/2014/09+=/06",
-                "/Time/2014/09/06+=/16",
-                "<= /Time/2014/09/06/16+=/33"
+                "/Locations+=/Europe",
+                "/Locations/Europe+=/NL",
+                "/Locations/Europe/NL+=/Overijssel",
+                "/Locations/Europe/NL/Overijssel+=/Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             dynamic data = new
@@ -116,8 +116,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= $data");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -151,11 +151,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             dynamic data = new
@@ -165,8 +165,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= $data");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -203,11 +203,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Local);
@@ -220,8 +220,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= $data");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -259,11 +259,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Utc);
@@ -276,8 +276,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= $data");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -315,11 +315,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Time += /2014",
-                "/Time/2014 += /09",
-                "/Time/2014/09 += /06",
-                "/Time/2014/09/06 += /16",
-                "<= /Time/2014/09/06/16 += /33"
+                "/Locations += /Europe",
+                "/Locations/Europe += /NL",
+                "/Locations/Europe/NL += /Overijssel",
+                "/Locations/Europe/NL/Overijssel += /Enschede",
+                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Unspecified);
@@ -332,8 +332,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Time/2014/09/06/16/33 <= $data");
-            var selectQuery = "/Time/2014/09/06/16/33";
+            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data");
+            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
