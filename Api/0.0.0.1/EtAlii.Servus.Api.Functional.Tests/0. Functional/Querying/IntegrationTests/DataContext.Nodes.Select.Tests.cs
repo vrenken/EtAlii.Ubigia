@@ -276,14 +276,10 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var timeRoot = await _logicalContext.Roots.Get("Time");
-            var time = await _logicalContext.Nodes.Select(GraphPath.Create(timeRoot.Identifier), executionScope);
-            var now = DateTime.Now;
-            var year = now.ToString("yyyy");
-            var month = now.ToString("MM");
-            var day = now.ToString("dd");
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)time, year, month, day);
-            var path = String.Format("/Time/{0}/{1}/{2}", year, month, day);
+            var locationsRoot = await _logicalContext.Roots.Get("Locations");
+            var locations = await _logicalContext.Nodes.Select(GraphPath.Create(locationsRoot.Identifier), executionScope);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)locations, "Europe", "NL", "Overijssel");
+            var path = String.Format("/Locations/{0}/{1}/{2}", "Europe", "NL", "Overijssel");
             var items = _context.Nodes.Select(path);
 
             // Act.
