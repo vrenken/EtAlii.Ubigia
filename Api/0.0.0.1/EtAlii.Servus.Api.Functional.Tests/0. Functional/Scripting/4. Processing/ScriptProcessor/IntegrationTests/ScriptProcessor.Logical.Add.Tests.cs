@@ -47,11 +47,11 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_Logical_Time_Add()
+        public async Task ScriptProcessor_Logical_Location_Add()
         {
             // Arrange.
-            var timePath = await _testContext.LogicalTestContext.AddYearMonthDayHourMinute(_logicalContext);
-            var selectQuery = String.Format("<= {0}", timePath);
+            var locationPath = await _testContext.LogicalTestContext.AddContinentCountryRegionCityLocation(_logicalContext);
+            var selectQuery = $"<= {locationPath}";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -62,20 +62,20 @@
 
             // Act.
             var lastSequence = await processor.Process(selectScript);
-            dynamic minuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic locationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(minuteEntry);
-            Assert.NotEqual(Identifier.Empty, ((INode)minuteEntry).Id);
-            Assert.Equal(selectQuery.Split(new char[] { '/' }).Last(), minuteEntry.ToString());
+            Assert.NotNull(locationEntry);
+            Assert.NotEqual(Identifier.Empty, ((INode)locationEntry).Id);
+            Assert.Equal(selectQuery.Split(new char[] { '/' }).Last(), locationEntry.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_Logical_Get_Time()
         {
             // Arrange.
-            var timePath = await _testContext.LogicalTestContext.AddYearMonthDayHourMinute(_logicalContext);
-            var selectQuery = String.Format("<= {0}", timePath);
+            var locationPath = await _testContext.LogicalTestContext.AddContinentCountryRegionCityLocation(_logicalContext);
+            var selectQuery = $"<= {locationPath}";
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -86,12 +86,12 @@
 
             // Act.
             var lastSequence = await processor.Process(selectScript);
-            dynamic minuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic locationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(minuteEntry);
-            Assert.NotEqual(Identifier.Empty, ((INode)minuteEntry).Id);
-            Assert.Equal(selectQuery.Split(new char[] { '/' }).Last(), minuteEntry.ToString());
+            Assert.NotNull(locationEntry);
+            Assert.NotEqual(Identifier.Empty, ((INode)locationEntry).Id);
+            Assert.Equal(selectQuery.Split(new char[] { '/' }).Last(), locationEntry.ToString());
         }
 
 
@@ -99,13 +99,13 @@
         public async Task ScriptProcessor_Logical_Time_Add_With_Variable()
         {
             // Arrange.
-            var timePath = await _testContext.LogicalTestContext.AddYearMonthDayHourMinute(_logicalContext);
-            var selectQuery = String.Format("<= {0}", timePath);
+            var locationPath = await _testContext.LogicalTestContext.AddContinentCountryRegionCityLocation(_logicalContext);
+            var selectQuery = $"<= {locationPath}";
             var selectQueryParts = selectQuery.Split(new char[] {'/'}); 
             var variable = selectQueryParts[3];
             selectQueryParts[3] = "$variable";
             selectQuery = String.Join("/", selectQueryParts);
-            selectQuery = String.Format("$variable <= \"{0}\"\r\n", variable) + selectQuery; 
+            selectQuery = $"$variable <= \"{variable}\"\r\n{selectQuery}"; 
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -116,12 +116,12 @@
 
             // Act.
             var lastSequence = await processor.Process(selectScript);
-            dynamic minuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic locationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(minuteEntry);
-            Assert.NotEqual(Identifier.Empty, ((INode)minuteEntry).Id);
-            Assert.Equal(selectQuery.Split(new char[] { '/' }).Last(), minuteEntry.ToString());
+            Assert.NotNull(locationEntry);
+            Assert.NotEqual(Identifier.Empty, ((INode)locationEntry).Id);
+            Assert.Equal(selectQuery.Split(new char[] { '/' }).Last(), locationEntry.ToString());
         }
 
 

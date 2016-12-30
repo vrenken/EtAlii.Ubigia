@@ -17,7 +17,7 @@
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private IDataContext _context;
-        private string _monthPath;
+        private string _countryPath;
         private readonly LogicalUnitTestContext _testContext;
 
         public DataContext_Nodes_Save_Tests(LogicalUnitTestContext testContext)
@@ -33,8 +33,8 @@
                     .Use(_diagnostics)
                     .Use(_logicalContext);
                 _context = new DataContextFactory().Create(configuration);
-                var addResult = await _testContext.LogicalTestContext.AddYearMonth(_logicalContext);
-                _monthPath = addResult.Path;
+                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+                _countryPath = addResult.Path;
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -47,7 +47,7 @@
             {
                 var start = Environment.TickCount;
 
-                _monthPath = null;
+                _countryPath = null;
                 _context.Dispose();
                 _context = null;
                 _logicalContext.Dispose();
@@ -63,9 +63,9 @@
         public void Linq_Nodes_Select_Add_Single_Save_Check_IsModified()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
             var value = new Random().Next();
-            var single = items.Add("01").Cast<NamedObject>().Single();
+            var single = items.Add("Overijssel_01").Cast<NamedObject>().Single();
 
             // Act.
             single.Value = value;
@@ -82,9 +82,9 @@
         public void Linq_Nodes_Select_Add_Single_Save_Check_Id()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
             var value = new Random().Next();
-            var single = items.Add("01").Cast<NamedObject>().Single();
+            var single = items.Add("Overijssel_01").Cast<NamedObject>().Single();
             var originalId = ((INode)single).Id;
 
             // Act.

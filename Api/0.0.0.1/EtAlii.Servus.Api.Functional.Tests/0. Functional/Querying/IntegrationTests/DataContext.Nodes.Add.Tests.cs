@@ -17,7 +17,7 @@
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private IDataContext _context;
-        private string _monthPath;
+        private string _countryPath;
         private readonly LogicalUnitTestContext _testContext;
 
         public DataContext_Nodes_Add_Tests(LogicalUnitTestContext testContext)
@@ -44,8 +44,8 @@
                     .Use(_diagnostics)
                     .Use(_logicalContext);
                 _context = new DataContextFactory().Create(configuration);
-                var addResult = await _testContext.LogicalTestContext.AddYearMonth(_logicalContext);
-                _monthPath = addResult.Path;
+                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+                _countryPath = addResult.Path;
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -58,7 +58,7 @@
             {
                 var start = Environment.TickCount;
 
-                _monthPath = null;
+                _countryPath = null;
                 _context.Dispose();
                 _context = null;
                 _logicalContext.Dispose();
@@ -74,26 +74,26 @@
         public void Linq_Nodes_Select_Add_Cast_Single()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            var single = items.Add("01").Cast<NamedObject>().Single();
+            var single = items.Add("Overijssel_01").Cast<NamedObject>().Single();
 
             // Assert.
-            Assert.Equal("01", single.Type);
+            Assert.Equal("Overijssel_01", single.Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Linq_Nodes_Select_Add_Single()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            dynamic single = items.Add("01").Single();
+            dynamic single = items.Add("Overijssel_01").Single();
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -104,19 +104,19 @@
             
             var delta = start;
 
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
-            dynamic single = items.Add("01").Single();
+            dynamic single = items.Add("Overijssel_01").Single();
 
             Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
             Assert.True(3000 > TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
@@ -128,19 +128,19 @@
 
             var delta = start;
 
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
-            dynamic single = items.Add("01").Single();
+            dynamic single = items.Add("Overijssel_01").Single();
 
             Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
             Assert.True(3000 > TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
@@ -152,19 +152,19 @@
 
             var delta = start;
 
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
-            dynamic single = items.Add("01").Single();
+            dynamic single = items.Add("Overijssel_01").Single();
 
             Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
             Assert.True(3000 > TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
@@ -175,13 +175,13 @@
 
             // Arrange.
             var scope = new ExecutionScope(false);
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            dynamic single = items.Add("01").Single();
+            dynamic single = items.Add("Overijssel_01").Single();
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
@@ -191,19 +191,19 @@
             // Arrange.
             start = Environment.TickCount;
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var addResult = await _testContext.LogicalTestContext.AddYearMonth(_logicalContext);
-            _monthPath = addResult.Path;
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            _countryPath = addResult.Path;
             var configuration = new DataContextConfiguration()
                 .Use(_diagnostics)
                 .Use(_logicalContext);
             _context = new DataContextFactory().Create(configuration);
-            items = _context.Nodes.Select(_monthPath);
+            items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            single = items.Add("01").Single();
+            single = items.Add("Overijssel_01").Single();
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
             duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
@@ -213,19 +213,19 @@
             // Arrange.
             start = Environment.TickCount;
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            addResult = await _testContext.LogicalTestContext.AddYearMonth(_logicalContext);
-            _monthPath = addResult.Path;
+            addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            _countryPath = addResult.Path;
             configuration = new DataContextConfiguration()
                 .Use(_diagnostics)
                 .Use(_logicalContext);
             _context = new DataContextFactory().Create(configuration);
-            items = _context.Nodes.Select(_monthPath);
+            items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            single = items.Add("01").Single();
+            single = items.Add("Overijssel_01").Single();
 
             // Assert.
-            Assert.Equal("01", single.ToString());
+            Assert.Equal("Overijssel_01", single.ToString());
             duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
         }
@@ -234,10 +234,10 @@
         public void Linq_Nodes_Select_Add_Single_Invalid_Invalid_Character()
         {
             // Arrange.
-            var items = _context.Nodes.Select(_monthPath);
+            var items = _context.Nodes.Select(_countryPath);
 
             // Act.
-            var act = new Action(() => items.Add("\"01").Single());
+            var act = new Action(() => items.Add("\"Overijssel_01").Single());
 
             // Assert.
             ExceptionAssert.Throws<NodeQueryingException>(act);

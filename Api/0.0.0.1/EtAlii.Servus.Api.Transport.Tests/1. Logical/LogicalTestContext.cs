@@ -21,51 +21,49 @@ namespace EtAlii.Servus.Api.Logical.Tests
             return new LogicalContextFactory().Create(configuration);
         }
 
-        public async Task<TimeAddResult> AddYearMonth(ILogicalContext context)
+        public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)
         {
             var scope = new ExecutionScope(false);
             // Root.
-            // Time.
+            // Locations.
             // [LINK]
             // yyyy
             // [LINK]
             // mm
 
-            var timeRoot = await context.Roots.Get("Time");
-            var now = DateTime.Now;
-            string year = now.ToString("yyyy");
-            string month = now.ToString("MM");
+            var locationsRoot = await context.Roots.Get("Locations");
+            var continent = "Europe";
+            var country = "NL";
 
-            var yearEntry = await context.Nodes.Add(timeRoot.Identifier, year, scope);
-            var monthEntry = (IEditableEntry)await context.Nodes.Add(yearEntry.Id, month, scope);
-            var path = String.Format("/Time/{0}/{1}", year, month);
-            return new TimeAddResult(path, monthEntry);
+            var continentEntry = await context.Nodes.Add(locationsRoot.Identifier, continent, scope);
+            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
+            var path = $"/Locations/{continent}/{country}";
+            return new LocationAddResult(path, countryEntry);
         }
-        public async Task<string> AddYearMonthDayHourMinute(ILogicalContext context)
+        public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
         {
-            var timeRoot = await context.Roots.Get("Time");
-            var now = DateTime.Now;
-            string year = now.ToString("yyyy");
-            string month = now.ToString("MM");
-            string day = now.ToString("dd");
-            string hour = now.ToString("HH");
-            string minute = now.ToString("mm");
+            var timeRoot = await context.Roots.Get("Locations");
+            string continent = "Europe";
+            string country = "NL";
+            string region = "Overijssel";
+            string city = "Enschede";
+            string location = "Helmerhoek";
 
             var scope = new ExecutionScope(false);
 
-            var yearEntry = await context.Nodes.Add(timeRoot.Identifier, year, scope);
-            var monthEntry = (IEditableEntry)await context.Nodes.Add(yearEntry.Id, month, scope);
-            var dayEntry = (IEditableEntry)await context.Nodes.Add(monthEntry.Id, day, scope);
-            var hourEntry = (IEditableEntry)await context.Nodes.Add(dayEntry.Id, hour, scope);
-            var minuteEntry = (IEditableEntry)await context.Nodes.Add(hourEntry.Id, minute, scope);
-            return String.Format("/Time/{0}/{1}/{2}/{3}/{4}", year, month, day, hour, minute);
+            var continentEntry = await context.Nodes.Add(timeRoot.Identifier, continent, scope);
+            var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
+            var regionEntry = (IEditableEntry)await context.Nodes.Add(countryEntry.Id, region, scope);
+            var cityEntry = (IEditableEntry)await context.Nodes.Add(regionEntry.Id, city, scope);
+            var locationEntry = (IEditableEntry)await context.Nodes.Add(cityEntry.Id, location, scope);
+            return $"/Locations/{continent}/{country}/{region}/{city}/{location}";
         }
 
-        public async Task AddDays(ILogicalContext context, IEditableEntry monthEntry, int days)
+        public async Task AddRegions(ILogicalContext context, IEditableEntry countryEntry, int regions)
         {
-            for (int i = 1; i <= days; i++)
+            for (int i = 1; i <= regions; i++)
             {
-                await CreateHierarchy(context, monthEntry, String.Format("{0:00}", i));
+                await CreateHierarchy(context, countryEntry, $"Overijssel_{i:00}");
             }
         }
 
