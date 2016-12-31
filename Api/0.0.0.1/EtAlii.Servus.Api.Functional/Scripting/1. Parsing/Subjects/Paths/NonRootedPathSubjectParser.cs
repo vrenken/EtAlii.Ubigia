@@ -35,13 +35,20 @@ namespace EtAlii.Servus.Api.Functional
 
             // A relative path with the length of 1 should not be parsed as a path but as a string constant.
             Subject result;
-            if (parts.Length == 1 && parts[0] is ConstantPathSubjectPart)
+            var lengthIsOne = parts.Length == 1;
+            if (lengthIsOne && parts[0] is ConstantPathSubjectPart)
             {
-                result = new StringConstantSubject(((ConstantPathSubjectPart) parts[0]).Name);
+                result = new StringConstantSubject(((ConstantPathSubjectPart)parts[0]).Name);
+            }
+            else if (lengthIsOne && parts[0] is VariablePathSubjectPart)
+            {
+                result = new VariableSubject(((VariablePathSubjectPart)parts[0]).Name);
             }
             else
             {
-                result = parts[0] is IsParentOfPathSubjectPart ? (NonRootedPathSubject)new AbsolutePathSubject(parts) : (NonRootedPathSubject)new RelativePathSubject(parts);
+                result = parts[0] is IsParentOfPathSubjectPart 
+                    ? (NonRootedPathSubject)new AbsolutePathSubject(parts) 
+                    : (NonRootedPathSubject)new RelativePathSubject(parts);
             }
             return result;
         }
