@@ -17,7 +17,6 @@ namespace EtAlii.Servus.Api.Functional
         private readonly IProcessingContext _context;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly LpsParser _nonRootedParser;
-        //private readonly LpsParser _rootedParser;
         private readonly INodeValidator _nodeValidator;
         private readonly ISelector<object, Func<object, string, Subject>> _converterSelector;
         private readonly ISelector<Subject,ISubjectParser> _parserSelector;
@@ -25,7 +24,6 @@ namespace EtAlii.Servus.Api.Functional
         public VariablePathSubjectPartToGraphPathPartsConverter(
             IProcessingContext context,
             INonRootedPathSubjectParser nonRootedPathSubjectParser,
-            //IRootedPathSubjectParser rootedPathSubjectParser,
             INodeValidator nodeValidator, 
             IConstantSubjectsParser constantSubjectsParser)
         {
@@ -33,10 +31,7 @@ namespace EtAlii.Servus.Api.Functional
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _nonRootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
 
-            //_rootedPathSubjectParser = rootedPathSubjectParser;
             _nodeValidator = nodeValidator;
-
-            //_rootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
 
             _converterSelector = new Selector<object, Func<object, string, Subject>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPathSubject((string)variable, variableName))
