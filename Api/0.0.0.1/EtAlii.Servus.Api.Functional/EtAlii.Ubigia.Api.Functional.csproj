@@ -119,10 +119,14 @@
     <Compile Include="Scripting\4. Processing\Subjects\Paths\IAbsolutePathSubjectProcessor.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\RelativePathSubjectProcessor.cs" />
     <Compile Include="Scripting\Functions\Handlers\Validation\IFunctionHandlerValidator.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Default\Locations\LocationsRootByEmptyHandler.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Default\Locations\LocationsRootHandlerMapper.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameWildcardFirstNameHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameFirstNameWildcardHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonByLastNameHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonRootByEmptyHandler.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Default\Providers\ProvidersRootByEmptyHandler.cs" />
+    <Compile Include="Scripting\Roots\Handlers\Default\Providers\ProvidersRootHandlerMapper.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Time\Path\TimeRootByPathBasedYyyymmddhhmmssmmmHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Time\Regex\Combined\TimeRootByRegexBasedYyyymmddhhmmssmmmHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Time\Regex\Separated\TimeRootByRegexBasedSeparatedYyyymmddhhmmssmmmHandler.cs" />

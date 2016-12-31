@@ -11,7 +11,9 @@ namespace EtAlii.Servus.Api.Functional
             return new IRootHandlerMapper[]
             {
                 new TimeRootHandlerMapper(),
-                new PersonRootHandlerMapper(), 
+                new PersonRootHandlerMapper(),
+                new ProvidersRootHandlerMapper(),
+                new LocationsRootHandlerMapper(),
                 //new ObjectHandlerMapper(),
                 //new StringHandlerMapper(),
             };
