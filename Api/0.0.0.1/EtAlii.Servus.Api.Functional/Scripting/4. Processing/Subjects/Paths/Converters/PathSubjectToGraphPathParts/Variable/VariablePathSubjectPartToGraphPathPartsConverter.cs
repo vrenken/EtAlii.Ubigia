@@ -16,9 +16,6 @@ namespace EtAlii.Servus.Api.Functional
         private const string Id = "VariablePathSubjectPart";
         private readonly IProcessingContext _context;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
-        //private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
-        private readonly Lazy<IPathProcessor> _pathProcessor;
-        private readonly Lazy<IPathSubjectToGraphPathConverter> _pathSubjectToGraphPathConverter;
         private readonly LpsParser _nonRootedParser;
         //private readonly LpsParser _rootedParser;
         private readonly INodeValidator _nodeValidator;
@@ -34,12 +31,11 @@ namespace EtAlii.Servus.Api.Functional
         {
             _context = context;
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
+            _nonRootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
+
             //_rootedPathSubjectParser = rootedPathSubjectParser;
-            _pathProcessor = new Lazy<IPathProcessor>(() => context.PathProcessor);
-            _pathSubjectToGraphPathConverter = new Lazy<IPathSubjectToGraphPathConverter>(() => context.PathSubjectToGraphPathConverter);
             _nodeValidator = nodeValidator;
 
-            _nonRootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
             //_rootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
 
             _converterSelector = new Selector<object, Func<object, string, Subject>>()
@@ -64,14 +60,12 @@ namespace EtAlii.Servus.Api.Functional
             ScopeVariable variable;
             if (!_context.Scope.Variables.TryGetValue(variableName, out variable))
             {
-                var message = String.Format("Variable {0} not set", variableName);
-                throw new ScriptProcessingException(message);
+                throw new ScriptProcessingException($"Variable {variableName} not set");
             }
 
             if (variable == null)
             {
-                var message = String.Format("Variable {0} not assigned", variableName);
-                throw new ScriptProcessingException(message);
+                throw new ScriptProcessingException($"Variable {variableName} not assigned");
             }
 
             // TODO: At this moment we only allow single items to be used as path variables.
@@ -104,7 +98,7 @@ namespace EtAlii.Servus.Api.Functional
 
         private async Task<GraphPath> ConvertAsStaticPath(PathSubject pathSubject, ExecutionScope scope)
         {
-            var result = (await _pathSubjectToGraphPathConverter.Value.Convert(pathSubject, scope))
+            var result = (await _context.PathSubjectToGraphPathConverter.Convert(pathSubject, scope))
                 .ToArray();
 
             // A static path cannot have GraphRootStartNodes.
@@ -124,7 +118,7 @@ namespace EtAlii.Servus.Api.Functional
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                await _pathProcessor.Value.Process(pathSubject, scope, outputObserver);
+                await _context.PathProcessor.Process(pathSubject, scope, outputObserver);
 
                 return Disposable.Empty;
             });
@@ -158,8 +152,7 @@ namespace EtAlii.Servus.Api.Functional
         {
             if (!_nonRootedPathSubjectParser.CanParse(childNode))
             {
-                string message = String.Format("Unable to parse variable for path (variable: {0}, value: {1})", variableName, value);
-                throw new ScriptParserException(message);
+                throw new ScriptParserException($"Unable to parse variable for path (variable: {variableName}, value: {value})");
             }
             var pathSubject = _nonRootedPathSubjectParser.Parse(childNode);
 
@@ -167,8 +160,7 @@ namespace EtAlii.Servus.Api.Functional
             var parser = _parserSelector.Select(pathSubject);
             if (!parser.CanValidate(pathSubject))
             {
-                string message = String.Format("Unable to validate path in variable (variable: {0}, path: {1})", variableName, pathSubject.ToString());
-                throw new ScriptParserException(message);
+                throw new ScriptParserException($"Unable to validate path in variable (variable: {variableName}, path: {pathSubject})");
             }
             return pathSubject;
         }
