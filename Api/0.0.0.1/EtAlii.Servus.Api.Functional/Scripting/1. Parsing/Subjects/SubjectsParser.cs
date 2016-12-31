@@ -30,11 +30,11 @@ namespace EtAlii.Servus.Api.Functional
             {
                 rootSubjectParser,
                 functionSubjectParser,
-                variableSubjectParser,
                 constantSubjectsParser,
                 rootDefinitionSubjectParser,
                 rootedPathSubjectParser,
                 nonRootedPathSubjectParser,
+                variableSubjectParser,
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
