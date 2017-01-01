@@ -8,6 +8,9 @@ namespace EtAlii.Servus.Api.Functional
     {
         public void Register(Container container)
         {
+            container.Register<IVariablePathSubjectPartToPathConverter, VariablePathSubjectPartToPathConverter>();
+            container.Register<IPathVariableExpander, PathVariableExpander>();
+
             container.Register<IPathSubjectPartToGraphPathPartConverterSelector, PathSubjectPartToGraphPathPartConverterSelector>();
             container.Register<IConstantPathSubjectPartToGraphPathPartsConverter, ConstantPathSubjectPartToGraphPathPartsConverter>();
             container.Register<IWildcardPathSubjectPartToGraphPathPartsConverter, WildcardPathSubjectPartToGraphPathPartsConverter>();

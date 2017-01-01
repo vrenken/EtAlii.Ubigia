@@ -1,47 +1,32 @@
 ﻿namespace EtAlii.Servus.Api.Functional
 {
     using System;
-    using System.Linq;
 
     internal class RootedPathSubjectProcessor : IRootedPathSubjectProcessor
     {
-        private readonly IRootContext _rootContext;
-        private readonly IRootHandlerMapperFinder _rootHandlerMapperFinder;
-        private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
+        private readonly IRootPathProcessor _rootPathProcessor;
+        private readonly IPathVariableExpander _pathVariableExpander;
+        private readonly IProcessingContext _processingContext;
 
         public RootedPathSubjectProcessor(
-            IRootContext rootContext,
-            IRootHandlerMapperFinder rootHandlerMapperFinder, 
-            IRootHandlerPathMatcher rootHandlerPathMatcher)
+            IRootPathProcessor rootPathProcessor, 
+            IPathVariableExpander pathVariableExpander, 
+            IProcessingContext processingContext)
         {
-            _rootContext = rootContext;
-            _rootHandlerMapperFinder = rootHandlerMapperFinder;
-            _rootHandlerPathMatcher = rootHandlerPathMatcher;
+            _rootPathProcessor = rootPathProcessor;
+            _pathVariableExpander = pathVariableExpander;
+            _processingContext = processingContext;
         }
 
         public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
-            var rootedPathSubject = (RootedPathSubject) subject;
+            var pathSubject = (RootedPathSubject) subject;
 
-            // Find root handler mapper.
-            var rootHandlerMapper = _rootHandlerMapperFinder.Find(rootedPathSubject.Root);
-            if (rootHandlerMapper == null)
-            {
-                throw new InvalidOperationException("No matching root handler mapper found.");
-            }
-            // Find the matching root handler.
-            var scriptScope = new ScriptScope();
-            var match = rootHandlerMapper.AllowedRootHandlers
-                .Select(rh => _rootHandlerPathMatcher.Match(scriptScope, rh, rootedPathSubject.Parts))
-                .FirstOrDefault(m => m != MatchResult.NoMatch);
-            if (match == null)
-            {
-                throw new InvalidOperationException("No matching root handler found.");
-            }
+            // Let's expand all possible variables within the path.
+            var parts = _pathVariableExpander.Expand(pathSubject.Parts);
 
-            // And process...
-            var rootHandler = match.RootHandler;
-            rootHandler.Process(_rootContext, match.Match, match.Rest, scope, output);
+            // And handover the root and following path for root path processing.
+            _rootPathProcessor.Process(pathSubject.Root, parts, scope, output, _processingContext.Scope);
         }
     }
 }

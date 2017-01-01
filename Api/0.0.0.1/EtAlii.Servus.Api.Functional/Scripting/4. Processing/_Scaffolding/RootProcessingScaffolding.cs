@@ -12,6 +12,7 @@
         public void Register(Container container)
         {
             container.Register<IRootContext, RootContext>();
+            container.Register<IRootPathProcessor, RootPathProcessor>();
             container.Register<IRootHandlerMapperFinder, RootHandlerMapperFinder>();
             container.Register<IRootHandlerFinder, RootHandlerFinder>();
 
