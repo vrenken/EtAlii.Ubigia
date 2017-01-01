@@ -126,20 +126,21 @@
         //}
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_1()
+        public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_1_Absolute_1()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
+
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "Time:+=/{0:yyyy}",
-                "$var1 <= Time",
-                "$var2 <= {0:yyyy}",
+                $"Locations:+=/{continent}",
+                "$var1 <= Locations",
+                $"$var2 <= {continent}",
                 "/$var1/$var2"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
+            var query = String.Join("\r\n", queries);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -155,25 +156,161 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(string.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_1_Absolute_2()
+        {
+            // Arrange.
+            var continent = "Europe";
+
+            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var queries = new[]
+            {
+                $"Locations:+=/{continent}",
+                "$var1 <= /Locations",
+                $"$var2 <= {continent}",
+                "$var1/$var2"
+            };
+
+            var query = String.Join("\r\n", queries);
+            var script = _parser.Parse(query).Script;
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(script);
+            var result = await lastSequence.Output.ToArray();
+
+            // Assert.
+            Assert.NotNull(result);
+            Assert.IsAssignableFrom<IEnumerable<object>>(result);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+        }
+
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_1_Rooted()
+        {
+            // Arrange.
+            var continent = "Europe";
+
+            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var queries = new[]
+            {
+                $"Locations:+=/{continent}",
+                "$var1 <= Locations:",
+                $"$var2 <= {continent}",
+                "$var1/$var2"
+            };
+
+            var query = String.Join("\r\n", queries);
+            var script = _parser.Parse(query).Script;
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(script);
+            var result = await lastSequence.Output.ToArray();
+
+            // Assert.
+            Assert.NotNull(result);
+            Assert.IsAssignableFrom<IEnumerable<object>>(result);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_2_Absolute_1()
+        {
+            // Arrange.
+            var continent = "Europe";
+
+            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var queries = new[]
+            {
+                $"Locations:+=/{continent}",
+                "$var1 <= \"Locations\"",
+                $"$var2 <= \"{continent}\"",
+                "/$var1/$var2"
+            };
+
+            var script = _parser.Parse(queries).Script;
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(script);
+            var result = await lastSequence.Output.ToArray();
+
+            // Assert.
+            Assert.NotNull(result);
+            Assert.IsAssignableFrom<IEnumerable<object>>(result);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
+        }
+
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_2_Absolute_2()
+        {
+            // Arrange.
+            var continent = "Europe";
+
+            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var queries = new[]
+            {
+                $"Locations:+=/{continent}",
+                "$var1 <= /\"Locations\"",
+                $"$var2 <= \"{continent}\"",
+                "$var1/$var2"
+            };
+
+            var script = _parser.Parse(queries).Script;
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(script);
+            var result = await lastSequence.Output.ToArray();
+
+            // Assert.
+            Assert.NotNull(result);
+            Assert.IsAssignableFrom<IEnumerable<object>>(result);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_2()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
+
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "Time:+=/{0:yyyy}",
-                "$var1 <= \"Time\"",
-                "$var2 <= \"{0:yyyy}\"",
+                $"Locations:+=/{continent}",
+                "$var1 <= \"Locations\"",
+                $"$var2 <= \"{continent}\"",
                 "/$var1/$var2"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -188,25 +325,24 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(string.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_Spaced()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "Time: += /{0:yyyy}",
-                "$var1 <= \"Time\"",
-                "$var2 <= \"{0:yyyy}\"",
+                $"Locations: += {continent}",
+                "$var1 <= \"Locations\"",
+                $"$var2 <= \"{continent}\"",
                 "/$var1/$var2"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -221,7 +357,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(string.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

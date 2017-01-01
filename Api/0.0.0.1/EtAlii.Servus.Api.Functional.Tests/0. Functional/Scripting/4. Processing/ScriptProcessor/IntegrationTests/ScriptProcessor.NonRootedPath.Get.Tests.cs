@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using EtAlii.Servus.Api.Diagnostics.Tests;
     using EtAlii.Servus.Api.Logical;
-    using EtAlii.Servus.Api.Logical.Tests;
     using EtAlii.Servus.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -129,18 +128,17 @@
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_1()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "$var1 <= Time",
-                "$var2 <= {0:yyyy}",
+                $"/Locations+={continent}",
+                "$var1 <= Locations",
+                $"$var2 <= {continent}",
                 "/$var1/$var2"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -155,25 +153,24 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(string.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_2()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "$var1 <= \"Time\"",
-                "$var2 <= \"{0:yyyy}\"",
+                $"/Locations+={continent}",
+                "$var1 <= \"Locations\"",
+                $"$var2 <= \"{continent}\"",
                 "/$var1/$var2"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -188,25 +185,24 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(string.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByVariables_Spaced()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "/Time += /{0:yyyy}",
-                "$var1 <= \"Time\"",
-                "$var2 <= \"{0:yyyy}\"",
+                $"/Locations += {continent}",
+                "$var1 <= \"Locations\"",
+                $"$var2 <= \"{continent}\"",
                 "/$var1/$var2"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -221,24 +217,23 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(string.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByCompositeVariable()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "$var1 <= \"Time/{0:yyyy}\"",
+                $"/Locations+={continent}",
+                $"$var1 <= \"Locations/{continent}\"",
                 "/$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -253,24 +248,23 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(String.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItemByCompositeVariable_Spaced()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "/Time += /{0:yyyy}",
-                "$var1 <= \"Time/{0:yyyy}\"",
+                $"/Locations += {continent}",
+                $"$var1 <= \"Locations/{continent}\"",
                 "/$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
-            var script = _parser.Parse(query).Script;
+            var script = _parser.Parse(queries).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
                 .Use(_diagnostics)
@@ -285,7 +279,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
-            Assert.Equal(String.Format("{0:yyyy}", now), result.Cast<INode>().Single().Type);
+            Assert.Equal(continent, result.Cast<INode>().Single().Type);
         }
     }
 }
