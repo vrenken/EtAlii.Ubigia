@@ -116,8 +116,12 @@
     <Compile Include="Scripting\2. Planning\Subjects\Paths\IAbsolutePathSubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\Subjects\Paths\AbsolutePathSubjectExecutionPlanner.cs" />
     <Compile Include="Scripting\2. Planning\_Model\Subjects\RelativePathSubjectExecutionPlan.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\Converters\VariablePathSubjectPartToPath\IVariablePathSubjectPartToPathConverter.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\Converters\VariablePathSubjectPartToPath\VariablePathSubjectPartToPathConverter.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\IAbsolutePathSubjectProcessor.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\RelativePathSubjectProcessor.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\IPathVariableExpander.cs" />
+    <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\PathVariableExpander.cs" />
     <Compile Include="Scripting\Functions\Handlers\Validation\IFunctionHandlerValidator.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Locations\LocationsRootByEmptyHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Locations\LocationsRootHandlerMapper.cs" />
@@ -565,6 +569,7 @@
     <Compile Include="Scripting\Roots\Handlers\Default\Time\Path\TimeRootByPathBasedYyyymmddhhmmssHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Person\PersonRootHandlerMapper.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Time\TimeRootHandlerMapper.cs" />
+    <Compile Include="Scripting\Roots\Handlers\IRootPathProcessor.cs" />
     <Compile Include="Scripting\Roots\Handlers\IRootHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\IPathSubjectPartContentGetter.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\IRootHandlerPathMatcher.cs" />
@@ -598,6 +603,7 @@
     <Compile Include="Scripting\Roots\Handlers\Matching\_Model\MatchResult.Comparison.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\_Model\MatchParameters.cs" />
     <Compile Include="Scripting\Roots\Handlers\Matching\_Model\MatchResult.cs" />
+    <Compile Include="Scripting\Roots\Handlers\RootPathProcessor.cs" />
     <Compile Include="Scripting\Roots\Handlers\Validation\IRootHandlerMapperValidator.cs" />
     <Compile Include="Scripting\Roots\Handlers\Validation\RootHandlerMapperValidator.cs" />
     <Compile Include="Scripting\Roots\Handlers\RootHandlerMappersProvider.cs" />
