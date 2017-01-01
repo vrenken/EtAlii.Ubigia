@@ -19,7 +19,7 @@ namespace EtAlii.Servus.Api.Functional
         public void AddAddItem(string path)
         {
             var previousVariableName = _variableAssignments.Keys.Last();
-            var addItem = String.Format("${0} += /{1}", previousVariableName, path);
+            var addItem = String.Format("${0} += {1}", previousVariableName, path);
 
             var variableName = CreateVariableName(_variableAssignments.Count);
             _variableAssignments.Add(variableName, addItem);
