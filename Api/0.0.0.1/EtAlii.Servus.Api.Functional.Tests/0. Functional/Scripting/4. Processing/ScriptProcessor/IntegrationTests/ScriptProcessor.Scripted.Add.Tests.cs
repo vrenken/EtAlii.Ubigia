@@ -48,16 +48,17 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_Scripted_Add_Simple()
         {
+            var continent = "Europe";
+
             // Arrange.
-            var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "<= /Time/{0:yyyy}"
+                $"/Locations+=/{continent}",
+                $"<= /Locations/{continent}"
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}", now);
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery = $"<= /Locations/{continent}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -70,33 +71,38 @@
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            dynamic firstYearEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic firstContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript);
-            dynamic secondYearEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic secondContinentEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(firstYearEntry);
-            Assert.NotNull(secondYearEntry);
-            Assert.Equal(((INode)firstYearEntry).Id, ((INode)secondYearEntry).Id);
-            Assert.Equal(String.Format("{0:yyyy}", now), firstYearEntry.ToString());
+            Assert.NotNull(firstContinentEntry);
+            Assert.NotNull(secondContinentEntry);
+            Assert.Equal(((INode)firstContinentEntry).Id, ((INode)secondContinentEntry).Id);
+            Assert.Equal(continent, firstContinentEntry.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_Scripted_Add_1()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
+            var country = "NL";
+            var region = "Overijssel";
+            var city = "Enschede";
+            var location = "Helmerhoek";
+
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "/Time/{0:yyyy}+=/{0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+=/{0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+=/{0:HH}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+=/{0:mm}"
+                $"/Locations+=/{continent}",
+                $"/Locations/{continent}+=/{country}",
+                $"/Locations/{continent}/{country}+=/{region}",
+                $"/Locations/{continent}/{country}/{region}+=/{city}",
+                $"<= /Locations/{continent}/{country}/{region}/{city}+=/{location}"
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery = $"<= /Locations/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -109,14 +115,14 @@
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.NotNull(firstLocationEntry);
+            Assert.NotNull(secondLocationEntry);
+            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -241,14 +247,19 @@
         public async Task ScriptProcessor_Scripted_Add_At_Once_1()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
+            var country = "NL";
+            var region = "Overijssel";
+            var city = "Enschede";
+            var location = "Helmerhoek";
+
             var addQueries = new[]
             {
-                "<= /Time+=/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}"
+                $"<= /Locations+=/{continent}/{country}/{region}/{city}/{location}"
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery = $"<= /Locations/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -261,14 +272,14 @@
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.NotNull(firstLocationEntry);
+            Assert.NotNull(secondLocationEntry);
+            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -380,18 +391,23 @@
         public async Task ScriptProcessor_Scripted_Add_Spaced_1()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
+            var country = "NL";
+            var region = "Overijssel";
+            var city = "Enschede";
+            var location = "Helmerhoek";
+
             var addQueries = new[]
             {
-                "/Time +=/{0:yyyy}",
-                "/Time/{0:yyyy} +=/{0:MM}",
-                "/Time/{0:yyyy}/{0:MM} +=/{0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd} +=/{0:HH}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH} +=/{0:mm}",
+                $"/Locations +=/{continent}",
+                $"/Locations/{continent} +=/{country}",
+                $"/Locations/{continent}/{country} +=/{region}",
+                $"/Locations/{continent}/{country}/{region} +=/{city}",
+                $"<= /Locations/{continent}/{country}/{region}/{city} +=/{location}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery = $"/Locations/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -404,32 +420,37 @@
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.NotNull(firstLocationEntry);
+            Assert.NotNull(secondLocationEntry);
+            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_Scripted_Add_Spaced_2()
         {
             // Arrange.
-            var now = DateTime.Now;
+            var continent = "Europe";
+            var country = "NL";
+            var region = "Overijssel";
+            var city = "Enschede";
+            var location = "Helmerhoek";
+
             var addQueries = new[]
             {
-                "/Time+= /{0:yyyy}",
-                "/Time/{0:yyyy}+= /{0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+= /{0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+= /{0:HH}",
-                "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+= /{0:mm}"
+                $"/Locations+= /{continent}",
+                $"/Locations/{continent}+= /{country}",
+                $"/Locations/{continent}/{country}+= /{region}",
+                $"/Locations/{continent}/{country}/{region}+= /{city}",
+                $"<= /Locations/{continent}/{country}/{region}/{city}+= /{location}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery = $"/Locations/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -442,14 +463,14 @@
 
             // Act.
             var lastSequence = await processor.Process(addScript);
-            dynamic firstMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic firstLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
             lastSequence = await processor.Process(selectScript);
-            dynamic secondMinuteEntry = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic secondLocationEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.NotNull(firstMinuteEntry);
-            Assert.NotNull(secondMinuteEntry);
-            Assert.Equal(((INode)firstMinuteEntry).Id, ((INode)secondMinuteEntry).Id);
+            Assert.NotNull(firstLocationEntry);
+            Assert.NotNull(secondLocationEntry);
+            Assert.Equal(((INode)firstLocationEntry).Id, ((INode)secondLocationEntry).Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

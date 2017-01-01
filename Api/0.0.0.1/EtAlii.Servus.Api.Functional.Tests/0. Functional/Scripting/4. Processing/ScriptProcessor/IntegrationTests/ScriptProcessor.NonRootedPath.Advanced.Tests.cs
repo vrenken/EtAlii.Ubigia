@@ -121,7 +121,7 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var select1Query = "/Person/Doe/Jane";
-            var select2Query = "$person <= /Person/Doe\r\n/$person/Jane";
+            var select2Query = "$person <= /Person/Doe\r\n$person/Jane";
 
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
@@ -162,7 +162,7 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var select1Query = "/Person/Doe/";
-            var select2Query = "$person <= /Person/Doe\r\n/$person/";
+            var select2Query = "$person <= /Person/Doe\r\n$person/";
 
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
@@ -209,7 +209,7 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var select1Query = "/Person/Doe/";
-            var select2Query = "$person <= /Person\r\n/$person/Doe/";
+            var select2Query = "$person <= /Person\r\n$person/Doe/";
 
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
@@ -255,7 +255,7 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var select1Query = "/Person/Doe/";
-            var select2Query = "$person <= /Person\r\n<= id() <= /$person/Doe/";
+            var select2Query = "$person <= /Person\r\n<= id() <= $person/Doe/";
 
             var addScript = _parser.Parse(addQuery).Script;
             var select1Script = _parser.Parse(select1Query).Script;
