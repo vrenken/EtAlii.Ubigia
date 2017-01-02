@@ -1,7 +1,7 @@
-﻿using EtAlii.Servus.Client.Windows.Shared;
+﻿using EtAlii.Ubigia.Client.Windows.Shared;
 using System.Windows;
 
-namespace EtAlii.Servus.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
 {
     public class TaskbarIconService : IApplicationService
     {

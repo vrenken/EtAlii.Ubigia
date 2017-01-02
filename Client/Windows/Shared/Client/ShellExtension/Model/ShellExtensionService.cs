@@ -1,10 +1,10 @@
-﻿using EtAlii.Servus.Client.Windows.Shared;
+﻿using EtAlii.Ubigia.Client.Windows.Shared;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 
-namespace EtAlii.Servus.Client.Windows
+namespace EtAlii.Ubigia.Client.Windows
 {
     public class ShellExtensionService : IApplicationService
     {
@@ -22,8 +22,8 @@ namespace EtAlii.Servus.Client.Windows
             var globalSettings = App.Current.Container.GetInstance<GlobalSettings>();
             globalSettings.Storage.CollectionChanged -= OnStoragesChanged;
 
-            EtAlii.Servus.Client.Windows.Shared.ShellExtension.Unregister();
-            EtAlii.Servus.Client.Windows.Shared.ShellExtension.ReloadWindowsExplorers();
+            EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Unregister();
+            EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.ReloadWindowsExplorers();
         }
         
         void OnStoragesChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -78,15 +78,15 @@ namespace EtAlii.Servus.Client.Windows
                 var hasObsoleteStorages = Registrations.GetObsolete(globalSettings).Length > 0;
                 shouldUpdate = hasMissingStorages || hasObsoleteStorages;
             }
-            if (shouldUpdate || !EtAlii.Servus.Client.Windows.Shared.ShellExtension.IsRegistered)
+            if (shouldUpdate || !EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.IsRegistered)
             {
-                EtAlii.Servus.Client.Windows.Shared.ShellExtension.Unregister();
+                EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Unregister();
 
                 if(globalSettings.Storage.Count > 0)
                 {
-                    EtAlii.Servus.Client.Windows.Shared.ShellExtension.Register();
+                    EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Register();
                 }
-                EtAlii.Servus.Client.Windows.Shared.ShellExtension.ReloadWindowsExplorers();
+                EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.ReloadWindowsExplorers();
             }
         }
     }

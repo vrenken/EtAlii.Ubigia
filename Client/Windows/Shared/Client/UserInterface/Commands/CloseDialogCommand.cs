@@ -1,8 +1,8 @@
-﻿using EtAlii.Servus.Client.Windows.Shared;
+﻿using EtAlii.Ubigia.Client.Windows.Shared;
 using System.Windows;
 using System.Windows.Input;
 
-namespace EtAlii.Servus.Client.Windows.UserInterface
+namespace EtAlii.Ubigia.Client.Windows.UserInterface
 {
     /// <summary>
     /// Shows the change storage dialog.

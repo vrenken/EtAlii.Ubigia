@@ -1,10 +1,10 @@
-﻿using EtAlii.Servus.Client.Windows.Shared;
+﻿using EtAlii.Ubigia.Client.Windows.Shared;
 using System;
 using System.Windows;
 
-namespace EtAlii.Servus.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
 {
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Windows;
 
     public class ExitApplicationCommand : CommandBase<ExitApplicationCommand>
     {

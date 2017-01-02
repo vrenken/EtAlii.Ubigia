@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace EtAlii.Servus.Client.Windows.Shared
+namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public static class Registrations
     {

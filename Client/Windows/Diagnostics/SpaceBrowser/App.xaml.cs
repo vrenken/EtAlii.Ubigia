@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Diagnostics.Profiling;
-    using EtAlii.Servus.Api.Transport;
-    using EtAlii.Servus.Api.Transport.SignalR;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.xTechnology.Diagnostics;
 
     /// <summary>
@@ -34,7 +34,7 @@
             var password = e.Args.Length > 2 ? e.Args[2] : String.Empty;
             var space = e.Args.Length > 3 ? e.Args[3] : String.Empty;
 
-            var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Servus.SpaceBrowser");
+            var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
 
             IProfilingDataConnection connection;
             var factory = new DataConnectionFactory();

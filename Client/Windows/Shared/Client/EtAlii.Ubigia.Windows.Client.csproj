@@ -8,7 +8,7 @@
     <ProjectGuid>{067F42D4-4734-4EFF-9730-87A0110BDBB4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Servus.Client.Windows</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Client.Windows</RootNamespace>
     <AssemblyName>Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -215,7 +215,7 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Servus.Windows\EtAlii.Ubigia.Windows.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
       <Name>EtAlii.Ubigia.Windows</Name>
     </ProjectReference>

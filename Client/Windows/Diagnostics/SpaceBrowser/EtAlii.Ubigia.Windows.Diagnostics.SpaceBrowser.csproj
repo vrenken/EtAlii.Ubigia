@@ -7,7 +7,7 @@
     <ProjectGuid>{1424ACC2-0C1B-4DB9-839E-0657DEA101FA}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Servus.Windows.Diagnostics.SpaceBrowser</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</RootNamespace>
     <AssemblyName>SpaceBrowser</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -637,11 +637,11 @@
       <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
       <Name>EtAlii.xTechnology</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\EtAlii.Servus.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj">
+    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj">
       <Project>{90b9ab5d-4d86-4870-b832-be86c55b017b}</Project>
       <Name>EtAlii.Ubigia.Windows.Mvvm</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\EtAlii.Servus.Windows\EtAlii.Ubigia.Windows.csproj">
+    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
       <Name>EtAlii.Ubigia.Windows</Name>
     </ProjectReference>

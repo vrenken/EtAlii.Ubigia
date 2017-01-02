@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.xTechnology.Workflow;
     using System;
     using System.CodeDom.Compiler;
     using System.Linq;
     using System.Windows.Shapes;
-    using EtAlii.Servus.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional;
     using Xceed.Wpf.DataGrid;
 
     public class ParseScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ParseScriptUnitOfwork>

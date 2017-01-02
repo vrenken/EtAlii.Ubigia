@@ -7,8 +7,8 @@
     <ProjectGuid>{E4E719ED-9DAC-4D49-84A3-6FEF8957A352}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Servus.Client.Windows</RootNamespace>
-    <AssemblyName>EtAlii.Servus.Windows.Shared</AssemblyName>
+    <RootNamespace>EtAlii.Ubigia.Client.Windows</RootNamespace>
+    <AssemblyName>EtAlii.Ubigia.Windows.Shared</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
@@ -43,7 +43,7 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Servus.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Ubigia.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=2.1.2.3, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
@@ -102,11 +102,11 @@
       <SubType>Designer</SubType>
     </Content>
     <None Include="packages.config" />
-    <None Include="Servus.pfx" />
+    <None Include="Ubigia.pfx" />
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Servus.Windows\EtAlii.Ubigia.Windows.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
       <Name>EtAlii.Ubigia.Windows</Name>
     </ProjectReference>

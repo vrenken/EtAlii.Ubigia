@@ -1,5 +1,5 @@
 ﻿using EtAlii.xTechnology.Workflow;
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
 
     public class ApplyLayoutingToGraphCommandHandler : CommandHandlerBase<ApplyLayoutingToGraphCommand>

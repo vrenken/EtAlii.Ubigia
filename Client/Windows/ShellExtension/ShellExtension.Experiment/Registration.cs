@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Servus.Client.Windows
+﻿namespace EtAlii.Ubigia.Client.Windows
 {
-    using EtAlii.Servus.Client.Windows.Shared;
+    using EtAlii.Ubigia.Client.Windows.Shared;
     using LogicNP.EZNamespaceExtensions;
     using System;
     using System.Diagnostics;
@@ -27,9 +27,9 @@
         public static void Main()
         {
             string fullAssemblyFileName = Assembly.GetExecutingAssembly().Location.Replace("/", "\\");
-            EtAlii.Servus.Client.Windows.Shared.ShellExtension.FileName = Path.GetFileName(fullAssemblyFileName);
+            EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.FileName = Path.GetFileName(fullAssemblyFileName);
 
-            EtAlii.Servus.Client.Windows.Shared.ShellExtension.Register();
+            EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Register();
 
             Process.Start(@"c:\windows\explorer.exe");
 

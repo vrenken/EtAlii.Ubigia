@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Choose>
+    <When Condition="'$(SolutionName)' == 'EtAlii.Ubigia'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+          <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+          <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Transport</Name>
+        </ProjectReference>
+
+        <!--<ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
+          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
+        </ProjectReference>-->
+        <ProjectReference Include="..\..\..\Frameworks\HashLib\HashLib\HashLib.csproj">
+          <Project>{3FB9F87C-92E9-45CC-9CF8-C388728A3F31}</Project>
+          <Name>Project Reference\HashLib</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
+          <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Storage</Name>
+        </ProjectReference>
+      </ItemGroup>
+    </When>
+	</Choose>
+</Project>

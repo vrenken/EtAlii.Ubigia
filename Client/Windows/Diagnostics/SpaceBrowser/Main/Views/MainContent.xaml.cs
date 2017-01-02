@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Text;
     using System.Windows.Controls;
-    using EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Properties;
+    using EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties;
     using Xceed.Wpf.AvalonDock.Layout;
     using Xceed.Wpf.AvalonDock.Layout.Serialization;
 

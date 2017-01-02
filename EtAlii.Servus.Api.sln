@@ -11,33 +11,33 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.0.0", "1.0.0.0", "{8E73
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.0.0.2", "0.0.0.2", "{8B0F090D-C70E-40C3-AD43-5E2C7FF187B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Management.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Management.Tests\EtAlii.Servus.Api.Management.Tests.csproj", "{C6D05D23-DC2C-4FE4-8F11-5A4BD6D7C3D2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Management.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Management.Tests\EtAlii.Ubigia.Api.Management.Tests.csproj", "{C6D05D23-DC2C-4FE4-8F11-5A4BD6D7C3D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Shared.Tests\EtAlii.Servus.Api.Tests.csproj", "{8327AA1C-2367-4942-946F-94E35CC31C4B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Shared.Tests\EtAlii.Ubigia.Api.Tests.csproj", "{8327AA1C-2367-4942-946F-94E35CC31C4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api", "Api\0.0.0.1\EtAlii.Servus.Api\EtAlii.Servus.Api.csproj", "{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api", "Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj", "{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CCFA6623-0584-4C5A-9975-EEA8AB22558E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.SignalR", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.SignalR\EtAlii.Servus.Api.Transport.SignalR.csproj", "{64723C77-5242-4671-A0BB-984DEEB79DBF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj", "{64723C77-5242-4671-A0BB-984DEEB79DBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.WebApi", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.WebApi\EtAlii.Servus.Api.Transport.WebApi.csproj", "{AE581332-D0B8-4481-BA67-71D11BFB056E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj", "{AE581332-D0B8-4481-BA67-71D11BFB056E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Functional.Win32", "Api\0.0.0.1\EtAlii.Servus.Api.Data.Win32\EtAlii.Servus.Api.Functional.Win32.csproj", "{6E034575-6221-4F00-9FB6-2C02BDA5937B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Win32", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj", "{6E034575-6221-4F00-9FB6-2C02BDA5937B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Functional.Win32.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Data.Win32.Tests\EtAlii.Servus.Api.Functional.Win32.Tests.csproj", "{1704C757-6B9C-486A-8155-62250033A2C3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Win32.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32.Tests\EtAlii.Ubigia.Api.Functional.Win32.Tests.csproj", "{1704C757-6B9C-486A-8155-62250033A2C3}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Servus.Api.Transport.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.Tests\EtAlii.Servus.Api.Transport.Tests.shproj", "{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.shproj", "{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.SignalR.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.SignalR.Tests\EtAlii.Servus.Api.Transport.SignalR.Tests.csproj", "{D9C5FA06-40A1-468F-A299-0C31304D1478}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj", "{D9C5FA06-40A1-468F-A299-0C31304D1478}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.WebApi.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.WebApi.Tests\EtAlii.Servus.Api.Transport.WebApi.Tests.csproj", "{47A68414-4D71-4A8C-9F8E-3BC54DD497E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.WebApi.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.Tests\EtAlii.Ubigia.Api.Transport.WebApi.Tests.csproj", "{47A68414-4D71-4A8C-9F8E-3BC54DD497E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Diagnostics.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Diagnostics.Tests\EtAlii.Servus.Api.Diagnostics.Tests.csproj", "{7488A1E4-B8A1-4BEE-9E9E-91FD1C5BD956}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Diagnostics.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics.Tests\EtAlii.Ubigia.Api.Diagnostics.Tests.csproj", "{7488A1E4-B8A1-4BEE-9E9E-91FD1C5BD956}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Servus.Api.Functional.Tests", "Api\0.0.0.1\EtAlii.Servus.Api.Functional.Tests\EtAlii.Servus.Api.Functional.Tests.shproj", "{428597BB-50E3-4596-BC50-BF5A6D2F71CA}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.shproj", "{428597BB-50E3-4596-BC50-BF5A6D2F71CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Diagnostics", "Api\0.0.0.1\EtAlii.Servus.Api.Diagnostics\EtAlii.Servus.Api.Diagnostics.csproj", "{842533CC-82A3-4AA1-A373-6089E13F5ECB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj", "{842533CC-82A3-4AA1-A373-6089E13F5ECB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Functional", "1. Functional", "{1F3EE77A-64BA-4962-9EE5-4410F8D66532}"
 EndProject
@@ -55,39 +55,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{7E68AEB5
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{903904E2-8C8B-4FE0-923C-61C0D452F6C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Functional", "Api\0.0.0.1\EtAlii.Servus.Api.Functional\EtAlii.Servus.Api.Functional.csproj", "{29D6C7C1-38D6-49C0-931A-A70AB08635C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj", "{29D6C7C1-38D6-49C0-931A-A70AB08635C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Functional.Diagnostics", "Api\0.0.0.1\EtAlii.Servus.Api.Functional.Diagnostics\EtAlii.Servus.Api.Functional.Diagnostics.csproj", "{5F7B884E-7E42-4A32-ADB3-E8CBB3FD5B31}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj", "{5F7B884E-7E42-4A32-ADB3-E8CBB3FD5B31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport", "Api\0.0.0.1\EtAlii.Servus.Api.Transport\EtAlii.Servus.Api.Transport.csproj", "{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj", "{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.Management", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.Management\EtAlii.Servus.Api.Transport.Management.csproj", "{9947E053-7C54-450D-A1D1-D399A29FEA4A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj", "{9947E053-7C54-450D-A1D1-D399A29FEA4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.Management.Diagnostics", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.Management.Diagnostics\EtAlii.Servus.Api.Transport.Management.Diagnostics.csproj", "{F9A4EB81-611C-453E-8B71-27099E54E982}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj", "{F9A4EB81-611C-453E-8B71-27099E54E982}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.Management.SignalR", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.Management.SignalR\EtAlii.Servus.Api.Transport.Management.SignalR.csproj", "{690C236C-FA31-4911-BABC-EB370849E4E8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj", "{690C236C-FA31-4911-BABC-EB370849E4E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.Management.WebApi", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.Management.WebApi\EtAlii.Servus.Api.Transport.Management.WebApi.csproj", "{4CF1773B-6516-484F-A0CD-D75593693644}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj", "{4CF1773B-6516-484F-A0CD-D75593693644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Transport.Diagnostics", "Api\0.0.0.1\EtAlii.Servus.Api.Transport.Diagnostics\EtAlii.Servus.Api.Transport.Diagnostics.csproj", "{AFD2BF70-5F38-4F91-90E2-6321C8E6F746}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj", "{AFD2BF70-5F38-4F91-90E2-6321C8E6F746}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Fabric", "Api\0.0.0.1\EtAlii.Servus.Api.Fabric\EtAlii.Servus.Api.Fabric.csproj", "{16596297-5E14-4CA4-A77C-70FA35D2B9BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Fabric", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj", "{16596297-5E14-4CA4-A77C-70FA35D2B9BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Fabric.Diagnostics", "Api\0.0.0.1\EtAlii.Servus.Api.Fabric.Diagnostics\EtAlii.Servus.Api.Fabric.Diagnostics.csproj", "{ACF559EF-3661-430C-9C4A-C379EFE7CDD6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Fabric.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj", "{ACF559EF-3661-430C-9C4A-C379EFE7CDD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Fabric.Management", "Api\0.0.0.1\EtAlii.Servus.Api.Fabric.Management\EtAlii.Servus.Api.Fabric.Management.csproj", "{39F1AA26-BE51-4744-AA8D-16113DD76E70}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Fabric.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj", "{39F1AA26-BE51-4744-AA8D-16113DD76E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Logical", "Api\0.0.0.1\EtAlii.Servus.Api.Logical\EtAlii.Servus.Api.Logical.csproj", "{CAEAB577-9DAB-43FA-A185-C81C7CB1B507}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Logical", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj", "{CAEAB577-9DAB-43FA-A185-C81C7CB1B507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Api.Logical.Diagnostics", "Api\0.0.0.1\EtAlii.Servus.Api.Logical.Diagnostics\EtAlii.Servus.Api.Logical.Diagnostics.csproj", "{8C4D3AFB-67D3-4865-98BB-93E84B42E147}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Logical.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj", "{8C4D3AFB-67D3-4865-98BB-93E84B42E147}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Api\0.0.0.1\EtAlii.Servus.Api.Functional.Tests\EtAlii.Servus.Api.Functional.Tests.projitems*{1704c757-6b9c-486a-8155-62250033a2c3}*SharedItemsImports = 4
-		Api\0.0.0.1\EtAlii.Servus.Api.Functional.Tests\EtAlii.Servus.Api.Functional.Tests.projitems*{428597bb-50e3-4596-bc50-bf5a6d2f71ca}*SharedItemsImports = 13
-		Api\0.0.0.1\EtAlii.Servus.Api.Transport.Tests\EtAlii.Servus.Api.Transport.Tests.projitems*{43519cad-f917-4cf3-b9cb-2f84bbcaf2e0}*SharedItemsImports = 13
-		Api\0.0.0.1\EtAlii.Servus.Api.Transport.Tests\EtAlii.Servus.Api.Transport.Tests.projitems*{47a68414-4d71-4a8c-9f8e-3bc54dd497e4}*SharedItemsImports = 4
-		Api\0.0.0.1\EtAlii.Servus.Api.Transport.Tests\EtAlii.Servus.Api.Transport.Tests.projitems*{d9c5fa06-40a1-468f-a299-0c31304d1478}*SharedItemsImports = 4
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{1704c757-6b9c-486a-8155-62250033a2c3}*SharedItemsImports = 4
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{428597bb-50e3-4596-bc50-bf5a6d2f71ca}*SharedItemsImports = 13
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{43519cad-f917-4cf3-b9cb-2f84bbcaf2e0}*SharedItemsImports = 13
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{47a68414-4d71-4a8c-9f8e-3bc54dd497e4}*SharedItemsImports = 4
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{d9c5fa06-40a1-468f-a299-0c31304d1478}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -1076,123 +1076,123 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://vrenken.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Api\\0.0.0.1\\EtAlii.Servus.Api\\EtAlii.Servus.Api.csproj
-		SccProjectTopLevelParentUniqueName1 = EtAlii.Servus.Api.sln
-		SccProjectName1 = Api/0.0.0.1/EtAlii.Servus.Api
-		SccLocalPath1 = Api\\0.0.0.1\\EtAlii.Servus.Api
-		SccProjectUniqueName2 = Api\\0.0.0.1\\EtAlii.Servus.Api.Shared.Tests\\EtAlii.Servus.Api.Tests.csproj
-		SccProjectTopLevelParentUniqueName2 = EtAlii.Servus.Api.sln
-		SccProjectName2 = Api/0.0.0.1/EtAlii.Servus.Api.Shared.Tests
-		SccLocalPath2 = Api\\0.0.0.1\\EtAlii.Servus.Api.Shared.Tests
-		SccProjectUniqueName3 = Api\\0.0.0.1\\EtAlii.Servus.Api.Management.Tests\\EtAlii.Servus.Api.Management.Tests.csproj
-		SccProjectTopLevelParentUniqueName3 = EtAlii.Servus.Api.sln
-		SccProjectName3 = Api/0.0.0.1/EtAlii.Servus.Api.Management.Tests
-		SccLocalPath3 = Api\\0.0.0.1\\EtAlii.Servus.Api.Management.Tests
-		SccProjectUniqueName4 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.SignalR\\EtAlii.Servus.Api.Transport.SignalR.csproj
-		SccProjectTopLevelParentUniqueName4 = EtAlii.Servus.Api.sln
-		SccProjectName4 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.SignalR
-		SccLocalPath4 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.SignalR
-		SccProjectUniqueName5 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.WebApi\\EtAlii.Servus.Api.Transport.WebApi.csproj
-		SccProjectTopLevelParentUniqueName5 = EtAlii.Servus.Api.sln
-		SccProjectName5 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.WebApi
-		SccLocalPath5 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.WebApi
-		SccProjectUniqueName6 = Api\\0.0.0.1\\EtAlii.Servus.Api.Data.Win32\\EtAlii.Servus.Api.Functional.Win32.csproj
-		SccProjectTopLevelParentUniqueName6 = EtAlii.Servus.Api.sln
-		SccProjectName6 = Api/0.0.0.1/EtAlii.Servus.Api.Data.Win32
-		SccLocalPath6 = Api\\0.0.0.1\\EtAlii.Servus.Api.Data.Win32
-		SccProjectUniqueName7 = Api\\0.0.0.1\\EtAlii.Servus.Api.Data.Win32.Tests\\EtAlii.Servus.Api.Functional.Win32.Tests.csproj
-		SccProjectTopLevelParentUniqueName7 = EtAlii.Servus.Api.sln
-		SccProjectName7 = Api/0.0.0.1/EtAlii.Servus.Api.Data.Win32.Tests
-		SccLocalPath7 = Api\\0.0.0.1\\EtAlii.Servus.Api.Data.Win32.Tests
-		SccProjectUniqueName8 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Tests\\EtAlii.Servus.Api.Transport.Tests.shproj
-		SccProjectTopLevelParentUniqueName8 = EtAlii.Servus.Api.sln
-		SccProjectName8 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Tests
-		SccLocalPath8 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Tests
-		SccProjectUniqueName9 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Tests\\EtAlii.Servus.Api.Transport.Tests.projitems
-		SccProjectTopLevelParentUniqueName9 = EtAlii.Servus.Api.sln
-		SccProjectName9 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Tests
-		SccLocalPath9 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Tests
-		SccProjectUniqueName10 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.SignalR.Tests\\EtAlii.Servus.Api.Transport.SignalR.Tests.csproj
-		SccProjectTopLevelParentUniqueName10 = EtAlii.Servus.Api.sln
-		SccProjectName10 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.SignalR.Tests
-		SccLocalPath10 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.SignalR.Tests
-		SccProjectUniqueName11 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.WebApi.Tests\\EtAlii.Servus.Api.Transport.WebApi.Tests.csproj
-		SccProjectTopLevelParentUniqueName11 = EtAlii.Servus.Api.sln
-		SccProjectName11 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.WebApi.Tests
-		SccLocalPath11 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.WebApi.Tests
-		SccProjectUniqueName12 = Api\\0.0.0.1\\EtAlii.Servus.Api.Diagnostics.Tests\\EtAlii.Servus.Api.Diagnostics.Tests.csproj
-		SccProjectTopLevelParentUniqueName12 = EtAlii.Servus.Api.sln
-		SccProjectName12 = Api/0.0.0.1/EtAlii.Servus.Api.Diagnostics.Tests
-		SccLocalPath12 = Api\\0.0.0.1\\EtAlii.Servus.Api.Diagnostics.Tests
-		SccProjectUniqueName13 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional.Tests\\EtAlii.Servus.Api.Functional.Tests.shproj
-		SccProjectTopLevelParentUniqueName13 = EtAlii.Servus.Api.sln
-		SccProjectName13 = Api/0.0.0.1/EtAlii.Servus.Api.Functional.Tests
-		SccLocalPath13 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional.Tests
-		SccProjectUniqueName14 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional.Tests\\EtAlii.Servus.Api.Functional.Tests.projitems
-		SccProjectTopLevelParentUniqueName14 = EtAlii.Servus.Api.sln
-		SccProjectName14 = Api/0.0.0.1/EtAlii.Servus.Api.Functional.Tests
-		SccLocalPath14 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional.Tests
-		SccProjectUniqueName15 = Api\\0.0.0.1\\EtAlii.Servus.Api.Diagnostics\\EtAlii.Servus.Api.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName15 = EtAlii.Servus.Api.sln
-		SccProjectName15 = Api/0.0.0.1/EtAlii.Servus.Api.Diagnostics
-		SccLocalPath15 = Api\\0.0.0.1\\EtAlii.Servus.Api.Diagnostics
-		SccProjectUniqueName16 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional\\EtAlii.Servus.Api.Functional.csproj
-		SccProjectTopLevelParentUniqueName16 = EtAlii.Servus.Api.sln
-		SccProjectName16 = Api/0.0.0.1/EtAlii.Servus.Api.Functional
-		SccLocalPath16 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional
-		SccProjectUniqueName17 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional.Diagnostics\\EtAlii.Servus.Api.Functional.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName17 = EtAlii.Servus.Api.sln
-		SccProjectName17 = Api/0.0.0.1/EtAlii.Servus.Api.Functional.Diagnostics
-		SccLocalPath17 = Api\\0.0.0.1\\EtAlii.Servus.Api.Functional.Diagnostics
-		SccProjectUniqueName18 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport\\EtAlii.Servus.Api.Transport.csproj
-		SccProjectTopLevelParentUniqueName18 = EtAlii.Servus.Api.sln
-		SccProjectName18 = Api/0.0.0.1/EtAlii.Servus.Api.Transport
-		SccLocalPath18 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport
-		SccProjectUniqueName19 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management\\EtAlii.Servus.Api.Transport.Management.csproj
-		SccProjectTopLevelParentUniqueName19 = EtAlii.Servus.Api.sln
-		SccProjectName19 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Management
-		SccLocalPath19 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management
-		SccProjectUniqueName20 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management.Diagnostics\\EtAlii.Servus.Api.Transport.Management.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName20 = EtAlii.Servus.Api.sln
-		SccProjectName20 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Management.Diagnostics
-		SccLocalPath20 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management.Diagnostics
-		SccProjectUniqueName21 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management.SignalR\\EtAlii.Servus.Api.Transport.Management.SignalR.csproj
-		SccProjectTopLevelParentUniqueName21 = EtAlii.Servus.Api.sln
-		SccProjectName21 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Management.SignalR
-		SccLocalPath21 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management.SignalR
-		SccProjectUniqueName22 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management.WebApi\\EtAlii.Servus.Api.Transport.Management.WebApi.csproj
-		SccProjectTopLevelParentUniqueName22 = EtAlii.Servus.Api.sln
-		SccProjectName22 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Management.WebApi
-		SccLocalPath22 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Management.WebApi
-		SccProjectUniqueName23 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Diagnostics\\EtAlii.Servus.Api.Transport.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName23 = EtAlii.Servus.Api.sln
-		SccProjectName23 = Api/0.0.0.1/EtAlii.Servus.Api.Transport.Diagnostics
-		SccLocalPath23 = Api\\0.0.0.1\\EtAlii.Servus.Api.Transport.Diagnostics
-		SccProjectUniqueName24 = Api\\0.0.0.1\\EtAlii.Servus.Api.Fabric\\EtAlii.Servus.Api.Fabric.csproj
-		SccProjectTopLevelParentUniqueName24 = EtAlii.Servus.Api.sln
-		SccProjectName24 = Api/0.0.0.1/EtAlii.Servus.Api.Fabric
-		SccLocalPath24 = Api\\0.0.0.1\\EtAlii.Servus.Api.Fabric
-		SccProjectUniqueName25 = Api\\0.0.0.1\\EtAlii.Servus.Api.Fabric.Diagnostics\\EtAlii.Servus.Api.Fabric.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName25 = EtAlii.Servus.Api.sln
-		SccProjectName25 = Api/0.0.0.1/EtAlii.Servus.Api.Fabric.Diagnostics
-		SccLocalPath25 = Api\\0.0.0.1\\EtAlii.Servus.Api.Fabric.Diagnostics
-		SccProjectUniqueName26 = Api\\0.0.0.1\\EtAlii.Servus.Api.Fabric.Management\\EtAlii.Servus.Api.Fabric.Management.csproj
-		SccProjectTopLevelParentUniqueName26 = EtAlii.Servus.Api.sln
-		SccProjectName26 = Api/0.0.0.1/EtAlii.Servus.Api.Fabric.Management
-		SccLocalPath26 = Api\\0.0.0.1\\EtAlii.Servus.Api.Fabric.Management
-		SccProjectUniqueName27 = Api\\0.0.0.1\\EtAlii.Servus.Api.Logical\\EtAlii.Servus.Api.Logical.csproj
-		SccProjectTopLevelParentUniqueName27 = EtAlii.Servus.Api.sln
-		SccProjectName27 = Api/0.0.0.1/EtAlii.Servus.Api.Logical
-		SccLocalPath27 = Api\\0.0.0.1\\EtAlii.Servus.Api.Logical
-		SccProjectUniqueName28 = Api\\0.0.0.1\\EtAlii.Servus.Api.Logical.Diagnostics\\EtAlii.Servus.Api.Logical.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName28 = EtAlii.Servus.Api.sln
-		SccProjectName28 = Api/0.0.0.1/EtAlii.Servus.Api.Logical.Diagnostics
-		SccLocalPath28 = Api\\0.0.0.1\\EtAlii.Servus.Api.Logical.Diagnostics
+		SccProjectUniqueName1 = Api\\0.0.0.1\\EtAlii.Ubigia.Api\\EtAlii.Ubigia.Api.csproj
+		SccProjectTopLevelParentUniqueName1 = EtAlii.Ubigia.Api.sln
+		SccProjectName1 = Api/0.0.0.1/EtAlii.Ubigia.Api
+		SccLocalPath1 = Api\\0.0.0.1\\EtAlii.Ubigia.Api
+		SccProjectUniqueName2 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Shared.Tests\\EtAlii.Ubigia.Api.Tests.csproj
+		SccProjectTopLevelParentUniqueName2 = EtAlii.Ubigia.Api.sln
+		SccProjectName2 = Api/0.0.0.1/EtAlii.Ubigia.Api.Shared.Tests
+		SccLocalPath2 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Shared.Tests
+		SccProjectUniqueName3 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Management.Tests\\EtAlii.Ubigia.Api.Management.Tests.csproj
+		SccProjectTopLevelParentUniqueName3 = EtAlii.Ubigia.Api.sln
+		SccProjectName3 = Api/0.0.0.1/EtAlii.Ubigia.Api.Management.Tests
+		SccLocalPath3 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Management.Tests
+		SccProjectUniqueName4 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.SignalR\\EtAlii.Ubigia.Api.Transport.SignalR.csproj
+		SccProjectTopLevelParentUniqueName4 = EtAlii.Ubigia.Api.sln
+		SccProjectName4 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.SignalR
+		SccLocalPath4 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.SignalR
+		SccProjectUniqueName5 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.WebApi\\EtAlii.Ubigia.Api.Transport.WebApi.csproj
+		SccProjectTopLevelParentUniqueName5 = EtAlii.Ubigia.Api.sln
+		SccProjectName5 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.WebApi
+		SccLocalPath5 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.WebApi
+		SccProjectUniqueName6 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Data.Win32\\EtAlii.Ubigia.Api.Functional.Win32.csproj
+		SccProjectTopLevelParentUniqueName6 = EtAlii.Ubigia.Api.sln
+		SccProjectName6 = Api/0.0.0.1/EtAlii.Ubigia.Api.Data.Win32
+		SccLocalPath6 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Data.Win32
+		SccProjectUniqueName7 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Data.Win32.Tests\\EtAlii.Ubigia.Api.Functional.Win32.Tests.csproj
+		SccProjectTopLevelParentUniqueName7 = EtAlii.Ubigia.Api.sln
+		SccProjectName7 = Api/0.0.0.1/EtAlii.Ubigia.Api.Data.Win32.Tests
+		SccLocalPath7 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Data.Win32.Tests
+		SccProjectUniqueName8 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Tests\\EtAlii.Ubigia.Api.Transport.Tests.shproj
+		SccProjectTopLevelParentUniqueName8 = EtAlii.Ubigia.Api.sln
+		SccProjectName8 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Tests
+		SccLocalPath8 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Tests
+		SccProjectUniqueName9 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Tests\\EtAlii.Ubigia.Api.Transport.Tests.projitems
+		SccProjectTopLevelParentUniqueName9 = EtAlii.Ubigia.Api.sln
+		SccProjectName9 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Tests
+		SccLocalPath9 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Tests
+		SccProjectUniqueName10 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.SignalR.Tests\\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj
+		SccProjectTopLevelParentUniqueName10 = EtAlii.Ubigia.Api.sln
+		SccProjectName10 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.SignalR.Tests
+		SccLocalPath10 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.SignalR.Tests
+		SccProjectUniqueName11 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.WebApi.Tests\\EtAlii.Ubigia.Api.Transport.WebApi.Tests.csproj
+		SccProjectTopLevelParentUniqueName11 = EtAlii.Ubigia.Api.sln
+		SccProjectName11 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.WebApi.Tests
+		SccLocalPath11 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.WebApi.Tests
+		SccProjectUniqueName12 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Diagnostics.Tests\\EtAlii.Ubigia.Api.Diagnostics.Tests.csproj
+		SccProjectTopLevelParentUniqueName12 = EtAlii.Ubigia.Api.sln
+		SccProjectName12 = Api/0.0.0.1/EtAlii.Ubigia.Api.Diagnostics.Tests
+		SccLocalPath12 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Diagnostics.Tests
+		SccProjectUniqueName13 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional.Tests\\EtAlii.Ubigia.Api.Functional.Tests.shproj
+		SccProjectTopLevelParentUniqueName13 = EtAlii.Ubigia.Api.sln
+		SccProjectName13 = Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Tests
+		SccLocalPath13 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional.Tests
+		SccProjectUniqueName14 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional.Tests\\EtAlii.Ubigia.Api.Functional.Tests.projitems
+		SccProjectTopLevelParentUniqueName14 = EtAlii.Ubigia.Api.sln
+		SccProjectName14 = Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Tests
+		SccLocalPath14 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional.Tests
+		SccProjectUniqueName15 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Diagnostics\\EtAlii.Ubigia.Api.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName15 = EtAlii.Ubigia.Api.sln
+		SccProjectName15 = Api/0.0.0.1/EtAlii.Ubigia.Api.Diagnostics
+		SccLocalPath15 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Diagnostics
+		SccProjectUniqueName16 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional\\EtAlii.Ubigia.Api.Functional.csproj
+		SccProjectTopLevelParentUniqueName16 = EtAlii.Ubigia.Api.sln
+		SccProjectName16 = Api/0.0.0.1/EtAlii.Ubigia.Api.Functional
+		SccLocalPath16 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional
+		SccProjectUniqueName17 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional.Diagnostics\\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName17 = EtAlii.Ubigia.Api.sln
+		SccProjectName17 = Api/0.0.0.1/EtAlii.Ubigia.Api.Functional.Diagnostics
+		SccLocalPath17 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Functional.Diagnostics
+		SccProjectUniqueName18 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport\\EtAlii.Ubigia.Api.Transport.csproj
+		SccProjectTopLevelParentUniqueName18 = EtAlii.Ubigia.Api.sln
+		SccProjectName18 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport
+		SccLocalPath18 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport
+		SccProjectUniqueName19 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management\\EtAlii.Ubigia.Api.Transport.Management.csproj
+		SccProjectTopLevelParentUniqueName19 = EtAlii.Ubigia.Api.sln
+		SccProjectName19 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Management
+		SccLocalPath19 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management
+		SccProjectUniqueName20 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName20 = EtAlii.Ubigia.Api.sln
+		SccProjectName20 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Management.Diagnostics
+		SccLocalPath20 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management.Diagnostics
+		SccProjectUniqueName21 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management.SignalR\\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj
+		SccProjectTopLevelParentUniqueName21 = EtAlii.Ubigia.Api.sln
+		SccProjectName21 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Management.SignalR
+		SccLocalPath21 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management.SignalR
+		SccProjectUniqueName22 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management.WebApi\\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj
+		SccProjectTopLevelParentUniqueName22 = EtAlii.Ubigia.Api.sln
+		SccProjectName22 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Management.WebApi
+		SccLocalPath22 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Management.WebApi
+		SccProjectUniqueName23 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Diagnostics\\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName23 = EtAlii.Ubigia.Api.sln
+		SccProjectName23 = Api/0.0.0.1/EtAlii.Ubigia.Api.Transport.Diagnostics
+		SccLocalPath23 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Transport.Diagnostics
+		SccProjectUniqueName24 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Fabric\\EtAlii.Ubigia.Api.Fabric.csproj
+		SccProjectTopLevelParentUniqueName24 = EtAlii.Ubigia.Api.sln
+		SccProjectName24 = Api/0.0.0.1/EtAlii.Ubigia.Api.Fabric
+		SccLocalPath24 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Fabric
+		SccProjectUniqueName25 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Fabric.Diagnostics\\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName25 = EtAlii.Ubigia.Api.sln
+		SccProjectName25 = Api/0.0.0.1/EtAlii.Ubigia.Api.Fabric.Diagnostics
+		SccLocalPath25 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Fabric.Diagnostics
+		SccProjectUniqueName26 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Fabric.Management\\EtAlii.Ubigia.Api.Fabric.Management.csproj
+		SccProjectTopLevelParentUniqueName26 = EtAlii.Ubigia.Api.sln
+		SccProjectName26 = Api/0.0.0.1/EtAlii.Ubigia.Api.Fabric.Management
+		SccLocalPath26 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Fabric.Management
+		SccProjectUniqueName27 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Logical\\EtAlii.Ubigia.Api.Logical.csproj
+		SccProjectTopLevelParentUniqueName27 = EtAlii.Ubigia.Api.sln
+		SccProjectName27 = Api/0.0.0.1/EtAlii.Ubigia.Api.Logical
+		SccLocalPath27 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Logical
+		SccProjectUniqueName28 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Logical.Diagnostics\\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName28 = EtAlii.Ubigia.Api.sln
+		SccProjectName28 = Api/0.0.0.1/EtAlii.Ubigia.Api.Logical.Diagnostics
+		SccLocalPath28 = Api\\0.0.0.1\\EtAlii.Ubigia.Api.Logical.Diagnostics
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = EtAlii.Servus.vsmdi
+		CategoryFile = EtAlii.Ubigia.vsmdi
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
-		Project = ".\Analysis\EtAlii.Servus.ndproj"
+		Project = ".\Analysis\EtAlii.Ubigia.ndproj"
 	EndGlobalSection
 EndGlobal

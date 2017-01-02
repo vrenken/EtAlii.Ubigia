@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Choose>
+    <When Condition="'$(SolutionName)' == 'EtAlii.Ubigia'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+          <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+          <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Functional</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
+          <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Logical</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+          <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Transport</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
+          <Project>{16596297-5e14-4ca4-a77c-70fa35d2b9be}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Fabric</Name>
+        </ProjectReference>
+
+        
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
+          <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Diagnostics</Name>
+        </ProjectReference>
+
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj">
+          <Project>{39f1aa26-be51-4744-aa8d-16113dd76e70}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Fabric.Management</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
+          <Project>{9947e053-7c54-450d-a1d1-d399a29fea4a}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Transport.Management</Name>
+        </ProjectReference>
+        <!--<ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj">
+          <Project>{690c236c-fa31-4911-babc-eb370849e4e8}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api.Transport.Management.SignalR</Name>
+        </ProjectReference>-->
+
+        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\EtAlii.xTechnology.Logging.Gibraltar.NET45.csproj">
+          <Project>{6a880a75-43a2-4f3c-8316-74df20050fde}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
+          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+          <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.MicroContainer</Name>
+        </ProjectReference>
+      </ItemGroup>
+    </When>
+  </Choose>
+</Project>

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.ComponentModel;
@@ -38,7 +38,7 @@
                                 .ObserveOnDispatcher()
                                 .Subscribe(e => _unitOfWorkProcessor.Process(new CompileCodeUnitOfwork(this)));
 
-            Code = _queryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Textual.Code.Templates.SimpleCode.cs")).Single();
+            Code = _queryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Code.Templates.SimpleCode.cs")).Single();
         }
 
         protected override void Execute(object obj)

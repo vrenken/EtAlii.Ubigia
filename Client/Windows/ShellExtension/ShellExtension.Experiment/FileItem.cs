@@ -3,7 +3,7 @@ using System;
 using System.Drawing;
 using System.IO;
 
-namespace EtAlii.Servus.Client.Windows
+namespace EtAlii.Ubigia.Client.Windows
 {
     public class FileItem : NSEItem
     {

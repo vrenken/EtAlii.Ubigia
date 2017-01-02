@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows.Shared
+﻿namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
@@ -71,13 +71,13 @@
         private ILogger GetLogger()
         {
             var factory = Container.GetInstance<ILogFactory>();
-            return factory.Create("EtAlii", "EtAlii.Servus.Client.Windows");
+            return factory.Create("EtAlii", "EtAlii.Ubigia.Client.Windows");
         }
 
         private IProfiler GetProfiler()
         {
             var factory = Container.GetInstance<IProfilerFactory>();
-            return factory.Create("EtAlii", "EtAlii.Servus.Client.Windows");
+            return factory.Create("EtAlii", "EtAlii.Ubigia.Client.Windows");
         }
     }
 }

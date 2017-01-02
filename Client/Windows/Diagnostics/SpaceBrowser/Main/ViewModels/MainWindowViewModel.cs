@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Servus.Client.Windows.Shared;
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Client.Windows.Shared;
+    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
     public class MainWindowViewModel : BindableBase

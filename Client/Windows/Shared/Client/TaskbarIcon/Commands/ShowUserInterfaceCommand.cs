@@ -1,8 +1,8 @@
-﻿using EtAlii.Servus.Client.Windows.Shared;
-using EtAlii.Servus.Client.Windows.UserInterface;
+﻿using EtAlii.Ubigia.Client.Windows.Shared;
+using EtAlii.Ubigia.Client.Windows.UserInterface;
 using System.Windows.Input;
 
-namespace EtAlii.Servus.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
 {
     /// <summary>
     /// Shows some part of the user interface.

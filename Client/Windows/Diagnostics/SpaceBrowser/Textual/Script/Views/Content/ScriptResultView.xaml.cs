@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
 {
     using System.Collections;
     using System.Windows;
     using System.Windows.Controls;
-    using EtAlii.Servus.Client.Windows.Diagnostics;
+    using EtAlii.Ubigia.Client.Windows.Diagnostics;
     using Syncfusion.Data;
     using Syncfusion.UI.Xaml.Grid;
 

@@ -14,37 +14,37 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{5518661E-3E5C-4D61-862B-7E5F01122ECF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.WindowsService", "Infrastructure\Hosts\WindowsService\EtAlii.Servus.Hosting.WindowsService.csproj", "{E07B01FE-8EE7-4C77-9388-26EB2CAAE209}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.WindowsService", "Infrastructure\Hosts\WindowsService\EtAlii.Ubigia.Hosting.WindowsService.csproj", "{E07B01FE-8EE7-4C77-9388-26EB2CAAE209}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.WindowsService.Console", "Infrastructure\Hosts\WindowsService.Test\EtAlii.Servus.Hosting.WindowsService.Console.csproj", "{6226CEBC-9799-476E-9232-32C92F0B766E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.WindowsService.Console", "Infrastructure\Hosts\WindowsService.Test\EtAlii.Ubigia.Hosting.WindowsService.Console.csproj", "{6226CEBC-9799-476E-9232-32C92F0B766E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.Website", "Infrastructure\Hosts\Website\EtAlii.Servus.Hosting.Website.csproj", "{520FD0B0-484D-4531-8013-CBCCB43B06C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.Website", "Infrastructure\Hosts\Website\EtAlii.Ubigia.Hosting.Website.csproj", "{520FD0B0-484D-4531-8013-CBCCB43B06C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.Tests", "Hosting\EtAlii.Servus.Hosting.Test\EtAlii.Servus.Hosting.Tests.csproj", "{49228937-7ED7-4524-8BEA-98B33EAE49A1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.Tests", "Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Hosting.Tests.csproj", "{49228937-7ED7-4524-8BEA-98B33EAE49A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Infrastructure", "Infrastructure\EtAlii.Servus.Infrastructure\EtAlii.Servus.Infrastructure.csproj", "{66F50771-FBE2-42B7-B673-CBDB32498BEC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure", "Infrastructure\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj", "{66F50771-FBE2-42B7-B673-CBDB32498BEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Infrastructure.Tests", "Infrastructure\EtAlii.Servus.Infrastructure.Tests\EtAlii.Servus.Infrastructure.Tests.csproj", "{238096ED-9BC0-4427-8C21-9C62E24BB1C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Tests\EtAlii.Ubigia.Infrastructure.Tests.csproj", "{238096ED-9BC0-4427-8C21-9C62E24BB1C7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{F19F9F48-9A25-44E4-A84D-D9CA958E93E9}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{49340CF0-CC2A-4FB0-AE63-C78AD0F57073}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Hosting.InMemory", "Providers\Hosts\EtAlii.Servus.Providers.Hosts.InMemory\EtAlii.Servus.Providers.Hosting.InMemory.csproj", "{C5436A89-9982-4408-87B1-40DB1593721B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Hosting.InMemory", "Providers\Hosts\EtAlii.Ubigia.Providers.Hosts.InMemory\EtAlii.Ubigia.Providers.Hosting.InMemory.csproj", "{C5436A89-9982-4408-87B1-40DB1593721B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Hosting.WindowsService", "Providers\Hosts\EtAlii.Servus.Providers.Hosts.WindowsService\EtAlii.Servus.Providers.Hosting.WindowsService.csproj", "{BD42B6E5-D659-4E3C-8636-F0E2779EF6B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Hosting.WindowsService", "Providers\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService\EtAlii.Ubigia.Providers.Hosting.WindowsService.csproj", "{BD42B6E5-D659-4E3C-8636-F0E2779EF6B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Hosting.WindowsService.Console", "Providers\Hosts\EtAlii.Servus.Providers.Hosts.WindowsService.Tests\EtAlii.Servus.Providers.Hosting.WindowsService.Console.csproj", "{BD678695-A0A8-4600-8EE9-BEC4D5C71DAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Hosting.WindowsService.Console", "Providers\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests\EtAlii.Ubigia.Providers.Hosting.WindowsService.Console.csproj", "{BD678695-A0A8-4600-8EE9-BEC4D5C71DAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Time", "Providers\EtAlii.Servus.Providers.Time\EtAlii.Servus.Providers.Time.csproj", "{F33427F9-F7C5-4BDC-AD6A-9561FEF54BC6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Time", "Providers\EtAlii.Ubigia.Providers.Time\EtAlii.Ubigia.Providers.Time.csproj", "{F33427F9-F7C5-4BDC-AD6A-9561FEF54BC6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Facebook", "Providers\EtAlii.Servus.Providers.Facebook\EtAlii.Servus.Providers.Facebook.csproj", "{7C858D5D-157E-4F88-8901-FC6A8E165697}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Facebook", "Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Providers.Facebook.csproj", "{7C858D5D-157E-4F88-8901-FC6A8E165697}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Mail", "Providers\EtAlii.Servus.Providers.Mail\EtAlii.Servus.Providers.Mail.csproj", "{DC1F413E-E2B4-44E7-97D7-A13C86E2B552}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Mail", "Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Providers.Mail.csproj", "{DC1F413E-E2B4-44E7-97D7-A13C86E2B552}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Twitter", "Providers\EtAlii.Servus.Providers.Twitter\EtAlii.Servus.Providers.Twitter.csproj", "{CF92B846-2C8E-4F21-9DFF-1C17498AF930}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Twitter", "Providers\EtAlii.Ubigia.Providers.Twitter\EtAlii.Ubigia.Providers.Twitter.csproj", "{CF92B846-2C8E-4F21-9DFF-1C17498AF930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers", "Providers\EtAlii.Servus.Providers.Shared\EtAlii.Servus.Providers.csproj", "{E1587085-865C-4EAD-A5A5-DCDA0D448DB6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers", "Providers\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Providers.csproj", "{E1587085-865C-4EAD-A5A5-DCDA0D448DB6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{6591F2A4-C41D-46E9-9AA0-CCB138FF4724}"
 EndProject
@@ -296,21 +296,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tooling", "Tooling", "{18C3
 		Resources\Images\Icons\Metro\Tooling\Yoga-03.png = Resources\Images\Icons\Metro\Tooling\Yoga-03.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.WindowsService.TrayIcon", "Infrastructure\Hosts\WindowsService.TrayIcon\EtAlii.Servus.Hosting.WindowsService.TrayIcon.csproj", "{C1B77360-2C75-47DA-AB35-E7773F24010B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.WindowsService.TrayIcon", "Infrastructure\Hosts\WindowsService.TrayIcon\EtAlii.Ubigia.Hosting.WindowsService.TrayIcon.csproj", "{C1B77360-2C75-47DA-AB35-E7773F24010B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Hosting.WindowsService.TrayIcon", "Providers\Hosts\EtAlii.Servus.Providers.Hosts.WindowsService.TrayIcon\EtAlii.Servus.Providers.Hosting.WindowsService.TrayIcon.csproj", "{8BFE758E-6A15-4FEA-8E72-399D1256E6BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Hosting.WindowsService.TrayIcon", "Providers\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.TrayIcon\EtAlii.Ubigia.Providers.Hosting.WindowsService.TrayIcon.csproj", "{8BFE758E-6A15-4FEA-8E72-399D1256E6BF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C9F061AC-9618-4A5C-96E9-569FAEE99503}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{47801A27-6239-4B4D-8377-B864C2EF23B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting", "Hosting\EtAlii.Servus.Hosting\EtAlii.Servus.Hosting.csproj", "{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting", "Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Hosting.csproj", "{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Providers.Hosting", "Providers\Hosts\EtAlii.Servus.Providers.Hosting\EtAlii.Servus.Providers.Hosting.csproj", "{83032001-2868-4653-B94E-6C668EA05929}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Providers.Hosting", "Providers\Hosts\EtAlii.Ubigia.Providers.Hosting\EtAlii.Ubigia.Providers.Hosting.csproj", "{83032001-2868-4653-B94E-6C668EA05929}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.Local", "Hosting\EtAlii.Servus.Hosting.Local\EtAlii.Servus.Hosting.Local.csproj", "{D06E5031-F8A9-4CCE-8722-6CC760BA6041}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.Local", "Hosting\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Hosting.Local.csproj", "{D06E5031-F8A9-4CCE-8722-6CC760BA6041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Hosting.Local.Tests", "Infrastructure\Tests\EtAlii.Servus.Hosting.Local.Tests\EtAlii.Servus.Hosting.Local.Tests.csproj", "{C47AAE22-60A5-4BDD-850F-3A488F788A39}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Hosting.Local.Tests", "Infrastructure\Tests\EtAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Hosting.Local.Tests.csproj", "{C47AAE22-60A5-4BDD-850F-3A488F788A39}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -318,86 +318,86 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://vrenken.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Providers\\EtAlii.Servus.Providers.Time\\EtAlii.Servus.Providers.Time.csproj
-		SccProjectTopLevelParentUniqueName1 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName1 = Providers/EtAlii.Servus.Providers.Time
-		SccLocalPath1 = Providers\\EtAlii.Servus.Providers.Time
-		SccProjectUniqueName2 = Providers\\EtAlii.Servus.Providers.Facebook\\EtAlii.Servus.Providers.Facebook.csproj
-		SccProjectTopLevelParentUniqueName2 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName2 = Providers/EtAlii.Servus.Providers.Facebook
-		SccLocalPath2 = Providers\\EtAlii.Servus.Providers.Facebook
-		SccProjectUniqueName3 = Providers\\EtAlii.Servus.Providers.Mail\\EtAlii.Servus.Providers.Mail.csproj
-		SccProjectTopLevelParentUniqueName3 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName3 = Providers/EtAlii.Servus.Providers.Mail
-		SccLocalPath3 = Providers\\EtAlii.Servus.Providers.Mail
-		SccProjectUniqueName4 = Providers\\EtAlii.Servus.Providers.Twitter\\EtAlii.Servus.Providers.Twitter.csproj
-		SccProjectTopLevelParentUniqueName4 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName4 = Providers/EtAlii.Servus.Providers.Twitter
-		SccLocalPath4 = Providers\\EtAlii.Servus.Providers.Twitter
-		SccProjectUniqueName5 = Infrastructure\\Hosts\\WindowsService.TrayIcon\\EtAlii.Servus.Hosting.WindowsService.TrayIcon.csproj
-		SccProjectTopLevelParentUniqueName5 = EtAlii.Servus.Infrastructure.sln
+		SccProjectUniqueName1 = Providers\\EtAlii.Ubigia.Providers.Time\\EtAlii.Ubigia.Providers.Time.csproj
+		SccProjectTopLevelParentUniqueName1 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName1 = Providers/EtAlii.Ubigia.Providers.Time
+		SccLocalPath1 = Providers\\EtAlii.Ubigia.Providers.Time
+		SccProjectUniqueName2 = Providers\\EtAlii.Ubigia.Providers.Facebook\\EtAlii.Ubigia.Providers.Facebook.csproj
+		SccProjectTopLevelParentUniqueName2 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName2 = Providers/EtAlii.Ubigia.Providers.Facebook
+		SccLocalPath2 = Providers\\EtAlii.Ubigia.Providers.Facebook
+		SccProjectUniqueName3 = Providers\\EtAlii.Ubigia.Providers.Mail\\EtAlii.Ubigia.Providers.Mail.csproj
+		SccProjectTopLevelParentUniqueName3 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName3 = Providers/EtAlii.Ubigia.Providers.Mail
+		SccLocalPath3 = Providers\\EtAlii.Ubigia.Providers.Mail
+		SccProjectUniqueName4 = Providers\\EtAlii.Ubigia.Providers.Twitter\\EtAlii.Ubigia.Providers.Twitter.csproj
+		SccProjectTopLevelParentUniqueName4 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName4 = Providers/EtAlii.Ubigia.Providers.Twitter
+		SccLocalPath4 = Providers\\EtAlii.Ubigia.Providers.Twitter
+		SccProjectUniqueName5 = Infrastructure\\Hosts\\WindowsService.TrayIcon\\EtAlii.Ubigia.Hosting.WindowsService.TrayIcon.csproj
+		SccProjectTopLevelParentUniqueName5 = EtAlii.Ubigia.Infrastructure.sln
 		SccProjectName5 = Infrastructure/Hosts/WindowsService.TrayIcon
 		SccLocalPath5 = Infrastructure\\Hosts\\WindowsService.TrayIcon
-		SccProjectUniqueName6 = Infrastructure\\Hosts\\WindowsService\\EtAlii.Servus.Hosting.WindowsService.csproj
-		SccProjectTopLevelParentUniqueName6 = EtAlii.Servus.Infrastructure.sln
+		SccProjectUniqueName6 = Infrastructure\\Hosts\\WindowsService\\EtAlii.Ubigia.Hosting.WindowsService.csproj
+		SccProjectTopLevelParentUniqueName6 = EtAlii.Ubigia.Infrastructure.sln
 		SccProjectName6 = Infrastructure/Hosts/WindowsService
 		SccLocalPath6 = Infrastructure\\Hosts\\WindowsService
-		SccProjectUniqueName7 = Infrastructure\\Hosts\\Website\\EtAlii.Servus.Hosting.Website.csproj
-		SccProjectTopLevelParentUniqueName7 = EtAlii.Servus.Infrastructure.sln
+		SccProjectUniqueName7 = Infrastructure\\Hosts\\Website\\EtAlii.Ubigia.Hosting.Website.csproj
+		SccProjectTopLevelParentUniqueName7 = EtAlii.Ubigia.Infrastructure.sln
 		SccProjectName7 = Infrastructure/Hosts/Website
 		SccLocalPath7 = Infrastructure\\Hosts\\Website
-		SccProjectUniqueName8 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.InMemory\\EtAlii.Servus.Providers.Hosting.InMemory.csproj
-		SccProjectTopLevelParentUniqueName8 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName8 = Providers/Hosts/EtAlii.Servus.Providers.Hosts.InMemory
-		SccLocalPath8 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.InMemory
-		SccProjectUniqueName9 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.WindowsService\\EtAlii.Servus.Providers.Hosting.WindowsService.csproj
-		SccProjectTopLevelParentUniqueName9 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName9 = Providers/Hosts/EtAlii.Servus.Providers.Hosts.WindowsService
-		SccLocalPath9 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.WindowsService
-		SccProjectUniqueName10 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.WindowsService.TrayIcon\\EtAlii.Servus.Providers.Hosting.WindowsService.TrayIcon.csproj
-		SccProjectTopLevelParentUniqueName10 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName10 = Providers/Hosts/EtAlii.Servus.Providers.Hosts.WindowsService.TrayIcon
-		SccLocalPath10 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.WindowsService.TrayIcon
-		SccProjectUniqueName11 = Infrastructure\\Hosts\\WindowsService.Test\\EtAlii.Servus.Hosting.WindowsService.Console.csproj
-		SccProjectTopLevelParentUniqueName11 = EtAlii.Servus.Infrastructure.sln
+		SccProjectUniqueName8 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.InMemory\\EtAlii.Ubigia.Providers.Hosting.InMemory.csproj
+		SccProjectTopLevelParentUniqueName8 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName8 = Providers/Hosts/EtAlii.Ubigia.Providers.Hosts.InMemory
+		SccLocalPath8 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.InMemory
+		SccProjectUniqueName9 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.WindowsService\\EtAlii.Ubigia.Providers.Hosting.WindowsService.csproj
+		SccProjectTopLevelParentUniqueName9 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName9 = Providers/Hosts/EtAlii.Ubigia.Providers.Hosts.WindowsService
+		SccLocalPath9 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.WindowsService
+		SccProjectUniqueName10 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.WindowsService.TrayIcon\\EtAlii.Ubigia.Providers.Hosting.WindowsService.TrayIcon.csproj
+		SccProjectTopLevelParentUniqueName10 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName10 = Providers/Hosts/EtAlii.Ubigia.Providers.Hosts.WindowsService.TrayIcon
+		SccLocalPath10 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.WindowsService.TrayIcon
+		SccProjectUniqueName11 = Infrastructure\\Hosts\\WindowsService.Test\\EtAlii.Ubigia.Hosting.WindowsService.Console.csproj
+		SccProjectTopLevelParentUniqueName11 = EtAlii.Ubigia.Infrastructure.sln
 		SccProjectName11 = Infrastructure/Hosts/WindowsService.Test
 		SccLocalPath11 = Infrastructure\\Hosts\\WindowsService.Test
-		SccProjectUniqueName12 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.WindowsService.Tests\\EtAlii.Servus.Providers.Hosting.WindowsService.Console.csproj
-		SccProjectTopLevelParentUniqueName12 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName12 = Providers/Hosts/EtAlii.Servus.Providers.Hosts.WindowsService.Tests
-		SccLocalPath12 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosts.WindowsService.Tests
-		SccProjectUniqueName13 = Hosting\\EtAlii.Servus.Hosting\\EtAlii.Servus.Hosting.csproj
-		SccProjectTopLevelParentUniqueName13 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName13 = Infrastructure/Hosts/EtAlii.Servus.Hosting
-		SccLocalPath13 = Infrastructure\\Hosts\\EtAlii.Servus.Hosting
-		SccProjectUniqueName14 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosting\\EtAlii.Servus.Providers.Hosting.csproj
-		SccProjectTopLevelParentUniqueName14 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName14 = Providers/Hosts/EtAlii.Servus.Providers.Hosting
-		SccLocalPath14 = Providers\\Hosts\\EtAlii.Servus.Providers.Hosting
-		SccProjectUniqueName15 = Infrastructure\\EtAlii.Servus.Infrastructure\\EtAlii.Servus.Infrastructure.csproj
-		SccProjectTopLevelParentUniqueName15 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName15 = Infrastructure/EtAlii.Servus.Infrastructure
-		SccLocalPath15 = Infrastructure\\EtAlii.Servus.Infrastructure
-		SccProjectUniqueName16 = Infrastructure\\EtAlii.Servus.Infrastructure.Tests\\EtAlii.Servus.Infrastructure.Tests.csproj
-		SccProjectTopLevelParentUniqueName16 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName16 = Infrastructure/EtAlii.Servus.Infrastructure.Tests
-		SccLocalPath16 = Infrastructure\\EtAlii.Servus.Infrastructure.Tests
-		SccProjectUniqueName17 = Hosting\\EtAlii.Servus.Hosting.Test\\EtAlii.Servus.Hosting.Tests.csproj
-		SccProjectTopLevelParentUniqueName17 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName17 = Hosting/EtAlii.Servus.Hosting.Test
-		SccLocalPath17 = Hosting\\EtAlii.Servus.Hosting.Test
-		SccProjectUniqueName18 = Hosting\\EtAlii.Servus.Hosting.Local\\EtAlii.Servus.Hosting.Local.csproj
-		SccProjectTopLevelParentUniqueName18 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName18 = Infrastructure/Hosts/EtAlii.Servus.Hosting.Local
-		SccLocalPath18 = Infrastructure\\Hosts\\EtAlii.Servus.Hosting.Local
-		SccProjectUniqueName19 = Infrastructure\\Tests\\EtAlii.Servus.Hosting.Local.Tests\\EtAlii.Servus.Hosting.Local.Tests.csproj
-		SccProjectTopLevelParentUniqueName19 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName19 = Infrastructure/Tests/EtAlii.Servus.Hosting.Local.Tests
-		SccLocalPath19 = Infrastructure\\Tests\\EtAlii.Servus.Hosting.Local.Tests
-		SccProjectUniqueName20 = Providers\\EtAlii.Servus.Providers.Shared\\EtAlii.Servus.Providers.csproj
-		SccProjectTopLevelParentUniqueName20 = EtAlii.Servus.Infrastructure.sln
-		SccProjectName20 = Providers/EtAlii.Servus.Providers.Shared
-		SccLocalPath20 = Providers\\EtAlii.Servus.Providers.Shared
+		SccProjectUniqueName12 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests\\EtAlii.Ubigia.Providers.Hosting.WindowsService.Console.csproj
+		SccProjectTopLevelParentUniqueName12 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName12 = Providers/Hosts/EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests
+		SccLocalPath12 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests
+		SccProjectUniqueName13 = Hosting\\EtAlii.Ubigia.Hosting\\EtAlii.Ubigia.Hosting.csproj
+		SccProjectTopLevelParentUniqueName13 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName13 = Infrastructure/Hosts/EtAlii.Ubigia.Hosting
+		SccLocalPath13 = Infrastructure\\Hosts\\EtAlii.Ubigia.Hosting
+		SccProjectUniqueName14 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosting\\EtAlii.Ubigia.Providers.Hosting.csproj
+		SccProjectTopLevelParentUniqueName14 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName14 = Providers/Hosts/EtAlii.Ubigia.Providers.Hosting
+		SccLocalPath14 = Providers\\Hosts\\EtAlii.Ubigia.Providers.Hosting
+		SccProjectUniqueName15 = Infrastructure\\EtAlii.Ubigia.Infrastructure\\EtAlii.Ubigia.Infrastructure.csproj
+		SccProjectTopLevelParentUniqueName15 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName15 = Infrastructure/EtAlii.Ubigia.Infrastructure
+		SccLocalPath15 = Infrastructure\\EtAlii.Ubigia.Infrastructure
+		SccProjectUniqueName16 = Infrastructure\\EtAlii.Ubigia.Infrastructure.Tests\\EtAlii.Ubigia.Infrastructure.Tests.csproj
+		SccProjectTopLevelParentUniqueName16 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName16 = Infrastructure/EtAlii.Ubigia.Infrastructure.Tests
+		SccLocalPath16 = Infrastructure\\EtAlii.Ubigia.Infrastructure.Tests
+		SccProjectUniqueName17 = Hosting\\EtAlii.Ubigia.Hosting.Test\\EtAlii.Ubigia.Hosting.Tests.csproj
+		SccProjectTopLevelParentUniqueName17 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName17 = Hosting/EtAlii.Ubigia.Hosting.Test
+		SccLocalPath17 = Hosting\\EtAlii.Ubigia.Hosting.Test
+		SccProjectUniqueName18 = Hosting\\EtAlii.Ubigia.Hosting.Local\\EtAlii.Ubigia.Hosting.Local.csproj
+		SccProjectTopLevelParentUniqueName18 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName18 = Infrastructure/Hosts/EtAlii.Ubigia.Hosting.Local
+		SccLocalPath18 = Infrastructure\\Hosts\\EtAlii.Ubigia.Hosting.Local
+		SccProjectUniqueName19 = Infrastructure\\Tests\\EtAlii.Ubigia.Hosting.Local.Tests\\EtAlii.Ubigia.Hosting.Local.Tests.csproj
+		SccProjectTopLevelParentUniqueName19 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName19 = Infrastructure/Tests/EtAlii.Ubigia.Hosting.Local.Tests
+		SccLocalPath19 = Infrastructure\\Tests\\EtAlii.Ubigia.Hosting.Local.Tests
+		SccProjectUniqueName20 = Providers\\EtAlii.Ubigia.Providers.Shared\\EtAlii.Ubigia.Providers.csproj
+		SccProjectTopLevelParentUniqueName20 = EtAlii.Ubigia.Infrastructure.sln
+		SccProjectName20 = Providers/EtAlii.Ubigia.Providers.Shared
+		SccLocalPath20 = Providers\\EtAlii.Ubigia.Providers.Shared
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -959,9 +959,9 @@ Global
 		{C47AAE22-60A5-4BDD-850F-3A488F788A39} = {47801A27-6239-4B4D-8377-B864C2EF23B9}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = EtAlii.Servus.vsmdi
+		CategoryFile = EtAlii.Ubigia.vsmdi
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
-		Project = ".\Analysis\EtAlii.Servus.ndproj"
+		Project = ".\Analysis\EtAlii.Ubigia.ndproj"
 	EndGlobalSection
 EndGlobal

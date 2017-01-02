@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Servus.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
 {
     /// <summary>
     /// Shows the about info tab.

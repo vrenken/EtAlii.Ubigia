@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.Linq;
-    using EtAlii.Servus.Api.Diagnostics.Profiling;
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.Workflow;
     using Syncfusion.UI.Xaml.Charts;

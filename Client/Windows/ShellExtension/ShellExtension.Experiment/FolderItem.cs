@@ -1,4 +1,4 @@
-using EtAlii.Servus.Client.Windows.Shared;
+using EtAlii.Ubigia.Client.Windows.Shared;
 using LogicNP.EZNamespaceExtensions;
 using System;
 using System.Collections;
@@ -7,7 +7,7 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace EtAlii.Servus.Client.Windows
+namespace EtAlii.Ubigia.Client.Windows
 {
 
 	// Represents the root folder of the namespace extension.

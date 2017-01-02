@@ -1,13 +1,13 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Fabric;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Mvvm;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Windows;
 
     public class RootsViewModel : BindableBase
     {

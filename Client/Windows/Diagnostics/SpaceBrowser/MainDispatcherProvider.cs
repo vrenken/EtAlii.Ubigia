@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Threading;
     using System.Windows.Threading;
-    using EtAlii.Servus.Client.Windows.Shared;
+    using EtAlii.Ubigia.Client.Windows.Shared;
 
     public class MainDispatcherInvoker
     {

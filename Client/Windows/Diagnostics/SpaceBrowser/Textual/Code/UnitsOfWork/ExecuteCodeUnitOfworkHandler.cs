@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.xTechnology.Workflow;
     using System.Reactive.Concurrency;

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Markup;
-using EtAlii.Servus.Windows;
+using EtAlii.Ubigia.Windows;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -35,5 +35,5 @@ using EtAlii.Servus.Windows;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: XmlnsDefinition("http://schemas.servus.etalii.net/shared", "EtAlii.Servus.Client.Windows.Shared")]
-//[assembly: XmlnsDefinition("http://schemas.servus.etalii.net/shared", "EtAlii.Servus.Client.Windows")]
+[assembly: XmlnsDefinition("http://schemas.ubigia.etalii.net/shared", "EtAlii.Ubigia.Client.Windows.Shared")]
+//[assembly: XmlnsDefinition("http://schemas.ubigia.etalii.net/shared", "EtAlii.Ubigia.Client.Windows")]

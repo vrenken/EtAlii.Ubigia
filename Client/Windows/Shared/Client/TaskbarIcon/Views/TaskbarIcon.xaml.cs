@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Servus.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
 {
     /// <summary>
     /// Interaction logic for TaskbarIcon.xaml

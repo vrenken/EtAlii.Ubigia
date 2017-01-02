@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using Fluent;
     using System;
-    using Settings = EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Properties.Settings;
+    using Settings = EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties.Settings;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml

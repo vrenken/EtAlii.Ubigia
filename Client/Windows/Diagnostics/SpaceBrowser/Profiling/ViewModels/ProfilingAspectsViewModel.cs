@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Collections.Generic;
@@ -7,9 +7,9 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Reactive.Linq;
-    using EtAlii.Servus.Api.Diagnostics.Profiling;
-    using EtAlii.Servus.Api.Functional;
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.Workflow;
     using ICommand = System.Windows.Input.ICommand;
