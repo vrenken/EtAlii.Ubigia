@@ -1,8 +1,8 @@
 ﻿
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Fabric;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
     using System.Linq;
 

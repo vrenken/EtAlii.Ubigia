@@ -18,31 +18,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PowerShell", "PowerShell", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ShellExtension", "ShellExtension", "{1CCC0BB6-F186-4B39-AA1D-EB6CFA6B38FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.ShellExtension", "Client\Windows\ShellExtension\ShellExtension\EtAlii.Servus.ShellExtension.csproj", "{3F498635-614C-4B1F-8B10-44AC098A3411}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.ShellExtension", "Client\Windows\ShellExtension\ShellExtension\EtAlii.Ubigia.ShellExtension.csproj", "{3F498635-614C-4B1F-8B10-44AC098A3411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.ShellExtension.Experiment", "Client\Windows\ShellExtension\ShellExtension.Experiment\EtAlii.Servus.ShellExtension.Experiment.csproj", "{AA412A14-F497-4875-B76A-14217089A9EA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.ShellExtension.Experiment", "Client\Windows\ShellExtension\ShellExtension.Experiment\EtAlii.Ubigia.ShellExtension.Experiment.csproj", "{AA412A14-F497-4875-B76A-14217089A9EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Windows.Settings", "Client\Windows\Shared\Settings\EtAlii.Servus.Windows.Settings.csproj", "{3C9AE863-B5C1-47DB-BEFA-F165C1A3FBC7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.Settings", "Client\Windows\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj", "{3C9AE863-B5C1-47DB-BEFA-F165C1A3FBC7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Windows.Client", "Client\Windows\Shared\Client\EtAlii.Servus.Windows.Client.csproj", "{067F42D4-4734-4EFF-9730-87A0110BDBB4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.Client", "Client\Windows\Shared\Client\EtAlii.Ubigia.Windows.Client.csproj", "{067F42D4-4734-4EFF-9730-87A0110BDBB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Windows.Shared", "Client\Windows\Shared\Shared\EtAlii.Servus.Windows.Shared.csproj", "{E4E719ED-9DAC-4D49-84A3-6FEF8957A352}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.Shared", "Client\Windows\Shared\Shared\EtAlii.Ubigia.Windows.Shared.csproj", "{E4E719ED-9DAC-4D49-84A3-6FEF8957A352}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.PowerShell", "Client\Windows\Console\EtAlii.Servus.PowerShell\EtAlii.Servus.PowerShell.csproj", "{DB6018A5-605B-4198-BA31-71A303E44FE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.PowerShell", "Client\Windows\Console\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj", "{DB6018A5-605B-4198-BA31-71A303E44FE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.PowerShell.Tests", "Client\Windows\Console\EtAlii.Servus.PowerShell.Test\EtAlii.Servus.PowerShell.Tests.csproj", "{3EC97DA8-B0D8-40CB-9011-4342FC828C91}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.PowerShell.Tests", "Client\Windows\Console\EtAlii.Ubigia.PowerShell.Test\EtAlii.Ubigia.PowerShell.Tests.csproj", "{3EC97DA8-B0D8-40CB-9011-4342FC828C91}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.PowerShell.Diagnostics", "Client\Windows\Console\EtAlii.Servus.PowerShell.Analysis\EtAlii.Servus.PowerShell.Diagnostics.csproj", "{FB737C59-DD32-47A2-B3C0-2DD7CD4BC778}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.PowerShell.Diagnostics", "Client\Windows\Console\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj", "{FB737C59-DD32-47A2-B3C0-2DD7CD4BC778}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Diagnostics", "Diagnostics", "{D060BEF0-8346-49CC-9A3D-BBA21B7AABEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Windows.Diagnostics.SpaceBrowser", "Client\Windows\Diagnostics\SpaceBrowser\EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.csproj", "{1424ACC2-0C1B-4DB9-839E-0657DEA101FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser", "Client\Windows\Diagnostics\SpaceBrowser\EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.csproj", "{1424ACC2-0C1B-4DB9-839E-0657DEA101FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apple", "Apple", "{E4D2EBA2-0915-4894-B5C6-C67E64B5ABEF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Linux", "Linux", "{D810FB24-BA3A-4FC3-B961-05732CC3BDAF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Windows.Diagnostics.StorageBrowser", "Client\Windows\Diagnostics\EtAlii.Servus.Diagnostics.StorageBrowser\EtAlii.Servus.Windows.Diagnostics.StorageBrowser.csproj", "{BD1ACDEE-CAE1-490D-BACB-4B868EB529AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser", "Client\Windows\Diagnostics\EtAlii.Ubigia.Diagnostics.StorageBrowser\EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser.csproj", "{BD1ACDEE-CAE1-490D-BACB-4B868EB529AF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{F691A51D-5C5C-45E6-BABE-432075BA5A33}"
 EndProject
@@ -296,7 +296,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tooling", "Tooling", "{18C3
 		Resources\Images\Icons\Metro\Tooling\Yoga-03.png = Resources\Images\Icons\Metro\Tooling\Yoga-03.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Windows.Mvvm", "Client\Windows\Shared\EtAlii.Servus.Windows.Mvvm\EtAlii.Servus.Windows.Mvvm.csproj", "{90B9AB5D-4D86-4870-B832-BE86C55B017B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows.Mvvm", "Client\Windows\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj", "{90B9AB5D-4D86-4870-B832-BE86C55B017B}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -304,50 +304,50 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://vrenken.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Client\\Windows\\Console\\EtAlii.Servus.PowerShell\\EtAlii.Servus.PowerShell.csproj
-		SccProjectTopLevelParentUniqueName1 = EtAlii.Servus.Client.sln
-		SccProjectName1 = Client/Windows/Console/EtAlii.Servus.PowerShell
-		SccLocalPath1 = Client\\Windows\\Console\\EtAlii.Servus.PowerShell
-		SccProjectUniqueName2 = Client\\Windows\\ShellExtension\\ShellExtension\\EtAlii.Servus.ShellExtension.csproj
-		SccProjectTopLevelParentUniqueName2 = EtAlii.Servus.Client.sln
+		SccProjectUniqueName1 = Client\\Windows\\Console\\EtAlii.Ubigia.PowerShell\\EtAlii.Ubigia.PowerShell.csproj
+		SccProjectTopLevelParentUniqueName1 = EtAlii.Ubigia.Client.sln
+		SccProjectName1 = Client/Windows/Console/EtAlii.Ubigia.PowerShell
+		SccLocalPath1 = Client\\Windows\\Console\\EtAlii.Ubigia.PowerShell
+		SccProjectUniqueName2 = Client\\Windows\\ShellExtension\\ShellExtension\\EtAlii.Ubigia.ShellExtension.csproj
+		SccProjectTopLevelParentUniqueName2 = EtAlii.Ubigia.Client.sln
 		SccProjectName2 = Client/Windows/ShellExtension/ShellExtension
 		SccLocalPath2 = Client\\Windows\\ShellExtension\\ShellExtension
-		SccProjectUniqueName3 = Client\\Windows\\ShellExtension\\ShellExtension.Experiment\\EtAlii.Servus.ShellExtension.Experiment.csproj
-		SccProjectTopLevelParentUniqueName3 = EtAlii.Servus.Client.sln
+		SccProjectUniqueName3 = Client\\Windows\\ShellExtension\\ShellExtension.Experiment\\EtAlii.Ubigia.ShellExtension.Experiment.csproj
+		SccProjectTopLevelParentUniqueName3 = EtAlii.Ubigia.Client.sln
 		SccProjectName3 = Client/Windows/ShellExtension/ShellExtension.Experiment
 		SccLocalPath3 = Client\\Windows\\ShellExtension\\ShellExtension.Experiment
-		SccProjectUniqueName4 = Client\\Windows\\Console\\EtAlii.Servus.PowerShell.Analysis\\EtAlii.Servus.PowerShell.Diagnostics.csproj
-		SccProjectTopLevelParentUniqueName4 = EtAlii.Servus.Client.sln
-		SccProjectName4 = Client/Windows/Console/EtAlii.Servus.PowerShell.Analysis
-		SccLocalPath4 = Client\\Windows\\Console\\EtAlii.Servus.PowerShell.Analysis
-		SccProjectUniqueName5 = Client\\Windows\\Console\\EtAlii.Servus.PowerShell.Test\\EtAlii.Servus.PowerShell.Tests.csproj
-		SccProjectTopLevelParentUniqueName5 = EtAlii.Servus.Client.sln
-		SccProjectName5 = Client/Windows/Console/EtAlii.Servus.PowerShell.Test
-		SccLocalPath5 = Client\\Windows\\Console\\EtAlii.Servus.PowerShell.Test
-		SccProjectUniqueName6 = Client\\Windows\\Shared\\Shared\\EtAlii.Servus.Windows.Shared.csproj
-		SccProjectTopLevelParentUniqueName6 = EtAlii.Servus.Client.sln
+		SccProjectUniqueName4 = Client\\Windows\\Console\\EtAlii.Ubigia.PowerShell.Analysis\\EtAlii.Ubigia.PowerShell.Diagnostics.csproj
+		SccProjectTopLevelParentUniqueName4 = EtAlii.Ubigia.Client.sln
+		SccProjectName4 = Client/Windows/Console/EtAlii.Ubigia.PowerShell.Analysis
+		SccLocalPath4 = Client\\Windows\\Console\\EtAlii.Ubigia.PowerShell.Analysis
+		SccProjectUniqueName5 = Client\\Windows\\Console\\EtAlii.Ubigia.PowerShell.Test\\EtAlii.Ubigia.PowerShell.Tests.csproj
+		SccProjectTopLevelParentUniqueName5 = EtAlii.Ubigia.Client.sln
+		SccProjectName5 = Client/Windows/Console/EtAlii.Ubigia.PowerShell.Test
+		SccLocalPath5 = Client\\Windows\\Console\\EtAlii.Ubigia.PowerShell.Test
+		SccProjectUniqueName6 = Client\\Windows\\Shared\\Shared\\EtAlii.Ubigia.Windows.Shared.csproj
+		SccProjectTopLevelParentUniqueName6 = EtAlii.Ubigia.Client.sln
 		SccProjectName6 = Client/Windows/Shared/Shared
 		SccLocalPath6 = Client\\Windows\\Shared\\Shared
-		SccProjectUniqueName7 = Client\\Windows\\Shared\\Settings\\EtAlii.Servus.Windows.Settings.csproj
-		SccProjectTopLevelParentUniqueName7 = EtAlii.Servus.Client.sln
+		SccProjectUniqueName7 = Client\\Windows\\Shared\\Settings\\EtAlii.Ubigia.Windows.Settings.csproj
+		SccProjectTopLevelParentUniqueName7 = EtAlii.Ubigia.Client.sln
 		SccProjectName7 = Client/Windows/Shared/Settings
 		SccLocalPath7 = Client\\Windows\\Shared\\Settings
-		SccProjectUniqueName8 = Client\\Windows\\Shared\\Client\\EtAlii.Servus.Windows.Client.csproj
-		SccProjectTopLevelParentUniqueName8 = EtAlii.Servus.Client.sln
+		SccProjectUniqueName8 = Client\\Windows\\Shared\\Client\\EtAlii.Ubigia.Windows.Client.csproj
+		SccProjectTopLevelParentUniqueName8 = EtAlii.Ubigia.Client.sln
 		SccProjectName8 = Client/Windows/Shared/Client
 		SccLocalPath8 = Client\\Windows\\Shared\\Client
-		SccProjectUniqueName9 = Client\\Windows\\Diagnostics\\SpaceBrowser\\EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.csproj
-		SccProjectTopLevelParentUniqueName9 = EtAlii.Servus.Client.sln
+		SccProjectUniqueName9 = Client\\Windows\\Diagnostics\\SpaceBrowser\\EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.csproj
+		SccProjectTopLevelParentUniqueName9 = EtAlii.Ubigia.Client.sln
 		SccProjectName9 = Client/Windows/Diagnostics/SpaceBrowser
 		SccLocalPath9 = Client\\Windows\\Diagnostics\\SpaceBrowser
-		SccProjectUniqueName10 = Client\\Windows\\Diagnostics\\EtAlii.Servus.Diagnostics.StorageBrowser\\EtAlii.Servus.Windows.Diagnostics.StorageBrowser.csproj
-		SccProjectTopLevelParentUniqueName10 = EtAlii.Servus.Client.sln
-		SccProjectName10 = Client/Windows/Diagnostics/EtAlii.Servus.Diagnostics.StorageBrowser
-		SccLocalPath10 = Client\\Windows\\Diagnostics\\EtAlii.Servus.Diagnostics.StorageBrowser
-		SccProjectUniqueName11 = Client\\Windows\\Shared\\EtAlii.Servus.Windows.Mvvm\\EtAlii.Servus.Windows.Mvvm.csproj
-		SccProjectTopLevelParentUniqueName11 = EtAlii.Servus.Client.sln
-		SccProjectName11 = Client/Windows/Shared/EtAlii.Servus.Windows.Mvvm
-		SccLocalPath11 = Client\\Windows\\Shared\\EtAlii.Servus.Windows.Mvvm
+		SccProjectUniqueName10 = Client\\Windows\\Diagnostics\\EtAlii.Ubigia.Diagnostics.StorageBrowser\\EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser.csproj
+		SccProjectTopLevelParentUniqueName10 = EtAlii.Ubigia.Client.sln
+		SccProjectName10 = Client/Windows/Diagnostics/EtAlii.Ubigia.Diagnostics.StorageBrowser
+		SccLocalPath10 = Client\\Windows\\Diagnostics\\EtAlii.Ubigia.Diagnostics.StorageBrowser
+		SccProjectUniqueName11 = Client\\Windows\\Shared\\EtAlii.Ubigia.Windows.Mvvm\\EtAlii.Ubigia.Windows.Mvvm.csproj
+		SccProjectTopLevelParentUniqueName11 = EtAlii.Ubigia.Client.sln
+		SccProjectName11 = Client/Windows/Shared/EtAlii.Ubigia.Windows.Mvvm
+		SccLocalPath11 = Client\\Windows\\Shared\\EtAlii.Ubigia.Windows.Mvvm
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -676,9 +676,9 @@ Global
 		{90B9AB5D-4D86-4870-B832-BE86C55B017B} = {6750AB8B-B637-4887-9970-6E5DF7694B64}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = EtAlii.Servus.vsmdi
+		CategoryFile = EtAlii.Ubigia.vsmdi
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
-		Project = ".\Analysis\EtAlii.Servus.ndproj"
+		Project = ".\Analysis\EtAlii.Ubigia.ndproj"
 	EndGlobalSection
 EndGlobal

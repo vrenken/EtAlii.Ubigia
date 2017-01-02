@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
-    using EtAlii.Servus.Client.Windows.Diagnostics;
+    using EtAlii.Ubigia.Client.Windows.Diagnostics;
 
     public partial class ResultsView : UserControl
     {

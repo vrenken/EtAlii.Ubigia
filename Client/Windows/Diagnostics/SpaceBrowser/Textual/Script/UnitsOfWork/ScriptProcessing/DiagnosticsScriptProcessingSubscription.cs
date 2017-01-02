@@ -1,8 +1,8 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Servus.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional;
 
     public class DiagnosticsScriptProcessingSubscription : IDiagnosticsScriptProcessingSubscription
     {

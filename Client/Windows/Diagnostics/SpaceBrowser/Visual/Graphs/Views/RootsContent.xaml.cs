@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     /// <summary>
     /// Interaction logic for RootsContent.xaml

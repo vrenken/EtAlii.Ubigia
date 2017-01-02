@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace EtAlii.Servus.Client.Windows.UserInterface
+namespace EtAlii.Ubigia.Client.Windows.UserInterface
 {
     /// <summary>
     /// Interaction logic for StorageOutlookSettingsControl.xaml

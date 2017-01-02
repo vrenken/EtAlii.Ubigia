@@ -1,6 +1,6 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using EtAlii.Servus.Client.Windows.Diagnostics.Views;
+    using EtAlii.Ubigia.Client.Windows.Diagnostics.Views;
     using SimpleInjector;
 
     public class GraphScaffolding

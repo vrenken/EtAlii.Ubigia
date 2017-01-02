@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows.Shared
+﻿namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public static class IpcMessage
     {

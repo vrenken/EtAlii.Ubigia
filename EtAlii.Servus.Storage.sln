@@ -12,27 +12,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{595657
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Storage", "Storage", "{555DAB7A-2249-47E3-9C6B-39E7775A73DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage", "Storages\EtAlii.Servus.Storage.Shared\EtAlii.Servus.Storage.csproj", "{37398998-BAFC-4BDC-92E5-B8D851B1A1C7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage", "Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj", "{37398998-BAFC-4BDC-92E5-B8D851B1A1C7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Tests", "Storages\EtAlii.Servus.Storage.Shared.Tests\EtAlii.Servus.Storage.Tests.csproj", "{4A10D0A5-73A9-410A-9E5D-297A2EDCE933}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Tests", "Storages\EtAlii.Ubigia.Storage.Shared.Tests\EtAlii.Ubigia.Storage.Tests.csproj", "{4A10D0A5-73A9-410A-9E5D-297A2EDCE933}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Ntfs", "Storages\EtAlii.Servus.Storage.Ntfs\EtAlii.Servus.Storage.Ntfs.csproj", "{55499B3D-27C3-4B36-8C5C-2CBE90A135AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Ntfs", "Storages\EtAlii.Ubigia.Storage.Ntfs\EtAlii.Ubigia.Storage.Ntfs.csproj", "{55499B3D-27C3-4B36-8C5C-2CBE90A135AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Ntfs.Tests", "Storages\EtAlii.Servus.Storage.Ntfs.Tests\EtAlii.Servus.Storage.Ntfs.Tests.csproj", "{AAD21C95-3E30-459B-9A89-EB298EAE0531}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Ntfs.Tests", "Storages\EtAlii.Ubigia.Storage.Ntfs.Tests\EtAlii.Ubigia.Storage.Ntfs.Tests.csproj", "{AAD21C95-3E30-459B-9A89-EB298EAE0531}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Azure", "Storages\EtAlii.Servus.Storage.Azure\EtAlii.Servus.Storage.Azure.csproj", "{D37DC4BA-8640-44A9-A254-B7AF015306EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Azure", "Storages\EtAlii.Ubigia.Storage.Azure\EtAlii.Ubigia.Storage.Azure.csproj", "{D37DC4BA-8640-44A9-A254-B7AF015306EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Azure.Tests", "Storages\EtAlii.Servus.Storage.Azure.Tests\EtAlii.Servus.Storage.Azure.Tests.csproj", "{474E8018-AFA6-4464-9E75-0C200592A7A0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Azure.Tests", "Storages\EtAlii.Ubigia.Storage.Azure.Tests\EtAlii.Ubigia.Storage.Azure.Tests.csproj", "{474E8018-AFA6-4464-9E75-0C200592A7A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.InMemory", "Storages\EtAlii.Servus.Storage.InMemory\EtAlii.Servus.Storage.InMemory.csproj", "{3B797CA2-3143-46E2-82A2-4E8D52DE43E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.InMemory", "Storages\EtAlii.Ubigia.Storage.InMemory\EtAlii.Ubigia.Storage.InMemory.csproj", "{3B797CA2-3143-46E2-82A2-4E8D52DE43E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.InMemory.Tests", "Storages\EtAlii.Servus.Storage.InMemory.Tests\EtAlii.Servus.Storage.InMemory.Tests.csproj", "{D2A3E377-1D35-4F5B-8029-7647F470EEAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.InMemory.Tests", "Storages\EtAlii.Ubigia.Storage.InMemory.Tests\EtAlii.Ubigia.Storage.InMemory.Tests.csproj", "{D2A3E377-1D35-4F5B-8029-7647F470EEAF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0BE1F1EA-642D-4E29-81A8-92100A256F7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Portable", "Storages\EtAlii.Servus.Storage.Portable\EtAlii.Servus.Storage.Portable.csproj", "{042F4DD3-F420-4F00-8C79-0B37CD6CF533}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Portable", "Storages\EtAlii.Ubigia.Storage.Portable\EtAlii.Ubigia.Storage.Portable.csproj", "{042F4DD3-F420-4F00-8C79-0B37CD6CF533}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Servus.Storage.Portable.Tests", "Storages\EtAlii.Servus.Storage.Portable.Tests\EtAlii.Servus.Storage.Portable.Tests.csproj", "{853030CB-F128-474F-8FBD-D1E66B127A1D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Storage.Portable.Tests", "Storages\EtAlii.Ubigia.Storage.Portable.Tests\EtAlii.Ubigia.Storage.Portable.Tests.csproj", "{853030CB-F128-474F-8FBD-D1E66B127A1D}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
@@ -40,46 +40,46 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://vrenken.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Storages\\EtAlii.Servus.Storage.Ntfs\\EtAlii.Servus.Storage.Ntfs.csproj
-		SccProjectTopLevelParentUniqueName1 = EtAlii.Servus.Storage.sln
-		SccProjectName1 = Storages/EtAlii.Servus.Storage.Ntfs
-		SccLocalPath1 = Storages\\EtAlii.Servus.Storage.Ntfs
-		SccProjectUniqueName2 = Storages\\EtAlii.Servus.Storage.Ntfs.Tests\\EtAlii.Servus.Storage.Ntfs.Tests.csproj
-		SccProjectTopLevelParentUniqueName2 = EtAlii.Servus.Storage.sln
-		SccProjectName2 = Storages/EtAlii.Servus.Storage.Ntfs.Tests
-		SccLocalPath2 = Storages\\EtAlii.Servus.Storage.Ntfs.Tests
-		SccProjectUniqueName3 = Storages\\EtAlii.Servus.Storage.Azure\\EtAlii.Servus.Storage.Azure.csproj
-		SccProjectTopLevelParentUniqueName3 = EtAlii.Servus.Storage.sln
-		SccProjectName3 = Storages/EtAlii.Servus.Storage.Azure
-		SccLocalPath3 = Storages\\EtAlii.Servus.Storage.Azure
-		SccProjectUniqueName4 = Storages\\EtAlii.Servus.Storage.Azure.Tests\\EtAlii.Servus.Storage.Azure.Tests.csproj
-		SccProjectTopLevelParentUniqueName4 = EtAlii.Servus.Storage.sln
-		SccProjectName4 = Storages/EtAlii.Servus.Storage.Azure.Tests
-		SccLocalPath4 = Storages\\EtAlii.Servus.Storage.Azure.Tests
-		SccProjectUniqueName5 = Storages\\EtAlii.Servus.Storage.InMemory\\EtAlii.Servus.Storage.InMemory.csproj
-		SccProjectTopLevelParentUniqueName5 = EtAlii.Servus.Storage.sln
-		SccProjectName5 = Storages/EtAlii.Servus.Storage.InMemory
-		SccLocalPath5 = Storages\\EtAlii.Servus.Storage.InMemory
-		SccProjectUniqueName6 = Storages\\EtAlii.Servus.Storage.InMemory.Tests\\EtAlii.Servus.Storage.InMemory.Tests.csproj
-		SccProjectTopLevelParentUniqueName6 = EtAlii.Servus.Storage.sln
-		SccProjectName6 = Storages/EtAlii.Servus.Storage.InMemory.Tests
-		SccLocalPath6 = Storages\\EtAlii.Servus.Storage.InMemory.Tests
-		SccProjectUniqueName7 = Storages\\EtAlii.Servus.Storage.Shared\\EtAlii.Servus.Storage.csproj
-		SccProjectTopLevelParentUniqueName7 = EtAlii.Servus.Storage.sln
-		SccProjectName7 = Storages/EtAlii.Servus.Storage.Shared
-		SccLocalPath7 = Storages\\EtAlii.Servus.Storage.Shared
-		SccProjectUniqueName8 = Storages\\EtAlii.Servus.Storage.Shared.Tests\\EtAlii.Servus.Storage.Tests.csproj
-		SccProjectTopLevelParentUniqueName8 = EtAlii.Servus.Storage.sln
-		SccProjectName8 = Storages/EtAlii.Servus.Storage.Shared.Tests
-		SccLocalPath8 = Storages\\EtAlii.Servus.Storage.Shared.Tests
-		SccProjectUniqueName9 = Storages\\EtAlii.Servus.Storage.Portable\\EtAlii.Servus.Storage.Portable.csproj
-		SccProjectTopLevelParentUniqueName9 = EtAlii.Servus.Storage.sln
-		SccProjectName9 = Storages/EtAlii.Servus.Storage.Portable
-		SccLocalPath9 = Storages\\EtAlii.Servus.Storage.Portable
-		SccProjectUniqueName10 = Storages\\EtAlii.Servus.Storage.Portable.Tests\\EtAlii.Servus.Storage.Portable.Tests.csproj
-		SccProjectTopLevelParentUniqueName10 = EtAlii.Servus.Storage.sln
-		SccProjectName10 = Storages/EtAlii.Servus.Storage.Portable.Tests
-		SccLocalPath10 = Storages\\EtAlii.Servus.Storage.Portable.Tests
+		SccProjectUniqueName1 = Storages\\EtAlii.Ubigia.Storage.Ntfs\\EtAlii.Ubigia.Storage.Ntfs.csproj
+		SccProjectTopLevelParentUniqueName1 = EtAlii.Ubigia.Storage.sln
+		SccProjectName1 = Storages/EtAlii.Ubigia.Storage.Ntfs
+		SccLocalPath1 = Storages\\EtAlii.Ubigia.Storage.Ntfs
+		SccProjectUniqueName2 = Storages\\EtAlii.Ubigia.Storage.Ntfs.Tests\\EtAlii.Ubigia.Storage.Ntfs.Tests.csproj
+		SccProjectTopLevelParentUniqueName2 = EtAlii.Ubigia.Storage.sln
+		SccProjectName2 = Storages/EtAlii.Ubigia.Storage.Ntfs.Tests
+		SccLocalPath2 = Storages\\EtAlii.Ubigia.Storage.Ntfs.Tests
+		SccProjectUniqueName3 = Storages\\EtAlii.Ubigia.Storage.Azure\\EtAlii.Ubigia.Storage.Azure.csproj
+		SccProjectTopLevelParentUniqueName3 = EtAlii.Ubigia.Storage.sln
+		SccProjectName3 = Storages/EtAlii.Ubigia.Storage.Azure
+		SccLocalPath3 = Storages\\EtAlii.Ubigia.Storage.Azure
+		SccProjectUniqueName4 = Storages\\EtAlii.Ubigia.Storage.Azure.Tests\\EtAlii.Ubigia.Storage.Azure.Tests.csproj
+		SccProjectTopLevelParentUniqueName4 = EtAlii.Ubigia.Storage.sln
+		SccProjectName4 = Storages/EtAlii.Ubigia.Storage.Azure.Tests
+		SccLocalPath4 = Storages\\EtAlii.Ubigia.Storage.Azure.Tests
+		SccProjectUniqueName5 = Storages\\EtAlii.Ubigia.Storage.InMemory\\EtAlii.Ubigia.Storage.InMemory.csproj
+		SccProjectTopLevelParentUniqueName5 = EtAlii.Ubigia.Storage.sln
+		SccProjectName5 = Storages/EtAlii.Ubigia.Storage.InMemory
+		SccLocalPath5 = Storages\\EtAlii.Ubigia.Storage.InMemory
+		SccProjectUniqueName6 = Storages\\EtAlii.Ubigia.Storage.InMemory.Tests\\EtAlii.Ubigia.Storage.InMemory.Tests.csproj
+		SccProjectTopLevelParentUniqueName6 = EtAlii.Ubigia.Storage.sln
+		SccProjectName6 = Storages/EtAlii.Ubigia.Storage.InMemory.Tests
+		SccLocalPath6 = Storages\\EtAlii.Ubigia.Storage.InMemory.Tests
+		SccProjectUniqueName7 = Storages\\EtAlii.Ubigia.Storage.Shared\\EtAlii.Ubigia.Storage.csproj
+		SccProjectTopLevelParentUniqueName7 = EtAlii.Ubigia.Storage.sln
+		SccProjectName7 = Storages/EtAlii.Ubigia.Storage.Shared
+		SccLocalPath7 = Storages\\EtAlii.Ubigia.Storage.Shared
+		SccProjectUniqueName8 = Storages\\EtAlii.Ubigia.Storage.Shared.Tests\\EtAlii.Ubigia.Storage.Tests.csproj
+		SccProjectTopLevelParentUniqueName8 = EtAlii.Ubigia.Storage.sln
+		SccProjectName8 = Storages/EtAlii.Ubigia.Storage.Shared.Tests
+		SccLocalPath8 = Storages\\EtAlii.Ubigia.Storage.Shared.Tests
+		SccProjectUniqueName9 = Storages\\EtAlii.Ubigia.Storage.Portable\\EtAlii.Ubigia.Storage.Portable.csproj
+		SccProjectTopLevelParentUniqueName9 = EtAlii.Ubigia.Storage.sln
+		SccProjectName9 = Storages/EtAlii.Ubigia.Storage.Portable
+		SccLocalPath9 = Storages\\EtAlii.Ubigia.Storage.Portable
+		SccProjectUniqueName10 = Storages\\EtAlii.Ubigia.Storage.Portable.Tests\\EtAlii.Ubigia.Storage.Portable.Tests.csproj
+		SccProjectTopLevelParentUniqueName10 = EtAlii.Ubigia.Storage.sln
+		SccProjectName10 = Storages/EtAlii.Ubigia.Storage.Portable.Tests
+		SccLocalPath10 = Storages\\EtAlii.Ubigia.Storage.Portable.Tests
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -372,9 +372,9 @@ Global
 		{853030CB-F128-474F-8FBD-D1E66B127A1D} = {0BE1F1EA-642D-4E29-81A8-92100A256F7E}
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = EtAlii.Servus.vsmdi
+		CategoryFile = EtAlii.Ubigia.vsmdi
 	EndGlobalSection
 	GlobalSection(NDepend) = preSolution
-		Project = ".\Analysis\EtAlii.Servus.ndproj"
+		Project = ".\Analysis\EtAlii.Ubigia.ndproj"
 	EndGlobalSection
 EndGlobal

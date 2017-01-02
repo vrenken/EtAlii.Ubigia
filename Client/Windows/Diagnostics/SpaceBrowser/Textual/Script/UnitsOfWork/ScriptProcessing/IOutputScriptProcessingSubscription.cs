@@ -1,4 +1,4 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     public interface IOutputScriptProcessingSubscription : IScriptProcessingSubscription
     {

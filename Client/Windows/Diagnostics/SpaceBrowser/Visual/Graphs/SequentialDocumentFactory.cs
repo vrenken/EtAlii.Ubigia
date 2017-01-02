@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Fabric;
-    using EtAlii.Servus.Api.Functional;
-    using EtAlii.Servus.Api.Logical;
-    using EtAlii.Servus.Api.Transport;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using SimpleInjector;

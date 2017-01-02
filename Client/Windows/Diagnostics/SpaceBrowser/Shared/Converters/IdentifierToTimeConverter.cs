@@ -1,4 +1,4 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Collections;
@@ -6,7 +6,7 @@ namespace EtAlii.Servus.Client.Windows.Diagnostics
     using System.Linq;
     using System.Windows;
     using System.Windows.Data;
-    using EtAlii.Servus.Api;
+    using EtAlii.Ubigia.Api;
 
     public class IdentifierToTimeConverter : IValueConverter
     {

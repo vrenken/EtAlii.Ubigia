@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Choose>
+    <When Condition="'$(SolutionName)' == 'EtAlii.Ubigia'">
+      <ItemGroup>
+        <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+          <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Api</Name>
+        </ProjectReference>
+
+        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
+          <Project>{a4fc7d78-36b0-475e-8a38-b27d2518f368}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Diagnostics</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
+          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\EtAlii.xTechnology.Logging.Gibraltar.NET45.csproj">
+          <Project>{6A880A75-43A2-4F3C-8316-74DF20050FDE}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45</Name>
+        </ProjectReference>
+
+        <ProjectReference Include="..\..\..\..\Frameworks\HashLib\HashLib\HashLib.csproj">
+          <Project>{3FB9F87C-92E9-45CC-9CF8-C388728A3F31}</Project>
+          <Name>Project Reference\HashLib</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
+          <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Storage</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\..\Storages\EtAlii.Ubigia.Storage.Ntfs\EtAlii.Ubigia.Storage.Ntfs.csproj">
+          <Project>{55499b3d-27c3-4b36-8c5c-2cbe90a135af}</Project>
+          <Name>Project Reference\EtAlii.Ubigia.Storage.Ntfs</Name>
+        </ProjectReference>
+        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Mvvm\EtAlii.xTechnology.Mvvm.csproj">
+          <Project>{E8C74F17-0E63-44DA-9CDD-B7A8BACF9753}</Project>
+          <Name>Project Reference\EtAlii.xTechnology.Mvvm</Name>
+        </ProjectReference>
+        <!--<ProjectReference Include="..\..\..\..\Frameworks\Hardcodet.Wpf.Taskbar\Hardcodet.Wpf.Taskbar\Hardcodet.Wpf.Taskbar.csproj">
+          <Project>{7ac63864-7638-41c4-969c-d3197ef2bed9}</Project>
+          <Name>Project Reference\Hardcodet.Wpf.TaskbarNotification</Name>
+        </ProjectReference>-->
+      </ItemGroup>
+
+    </When>
+	</Choose>
+</Project>

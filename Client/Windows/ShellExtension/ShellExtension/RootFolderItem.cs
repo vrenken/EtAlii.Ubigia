@@ -1,4 +1,4 @@
-using EtAlii.Servus.Client.Windows.Shared;
+using EtAlii.Ubigia.Client.Windows.Shared;
 using LogicNP.EZNamespaceExtensions;
 using System;
 using System.Collections;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
-namespace EtAlii.Servus.Client.Windows.ShellExtension
+namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 {
     [Guid(Identifiers.RootFolderItemString)]
     public class RootFolderItem : FolderItem 

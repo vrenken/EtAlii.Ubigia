@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EtAlii.Servus.Client.Windows
+namespace EtAlii.Ubigia.Client.Windows
 {
     public class StorageSettings : BindableSettingsBase
     {

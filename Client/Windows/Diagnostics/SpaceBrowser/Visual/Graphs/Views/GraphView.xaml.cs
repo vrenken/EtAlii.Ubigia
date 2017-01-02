@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
 {
     public partial class GraphView : GraphViewBase
     {

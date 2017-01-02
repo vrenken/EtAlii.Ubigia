@@ -1,0 +1,89 @@
+﻿<f:RibbonWindow  
+    x:Class="EtAlii.Ubigia.Diagnostics.FolderSync.EditFolderWindow"
+    x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:u="clr-namespace:EtAlii.Ubigia.Diagnostics.FolderSync"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:f="clr-namespace:Fluent;assembly=Fluent"
+    FlowDirection="LeftToRight"
+    Title="Sync settings" 
+    Height="200" Width="400" 
+    WindowStartupLocation="CenterOwner">
+
+    <f:RibbonWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Fluent;Component/Themes/office2013/generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="{x:Static f:MetroColors.ThemeColorKey}">#359900</Color>
+        </ResourceDictionary>
+    </f:RibbonWindow.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+        <f:Ribbon
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            CanQuickAccessLocationChanging="False"
+            CanCustomizeRibbon="False"
+            CanCustomizeQuickAccessToolBar="False"
+            Grid.Row="0" 
+            IsCollapsed="True" IsAutomaticCollapseEnabled="False" IsMinimized="True" ShowQuickAccessToolBarAboveRibbon="False">
+        </f:Ribbon>
+
+        <Label Grid.Row="1" Grid.Column="0" Content="Local folder:" />
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LocalFolder, UpdateSourceTrigger=PropertyChanged}" x:Name="LocalFolderTextBox" />
+        <Button 
+            Grid.Row="1"
+            Grid.Column="2"
+            Content="..." 
+            Margin="0,10,10,10"
+            Width="30"
+            Height="{Binding ElementName=LocalFolderTextBox, Path=ActualHeight}"
+            Command="{Binding Path=SelectFolderCommand}"
+            CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Content="Remote name:" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RemoteName, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Grid Grid.Row="3" ColumnSpan="3" HorizontalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button 
+                Grid.Column="0"
+                Content="Remove" 
+                Width="100"
+                Command="{Binding Path=RemoveFolderCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            <Button 
+                Grid.Column="2"
+                Width="100"
+                Content="Ok" 
+                Command="{Binding Path=SaveChangesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+            <Button 
+                Grid.Column="3"
+                Width="100"
+                Content="Cancel" 
+                Command="{Binding Path=CancelChangesCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+        </Grid>
+    </Grid>
+</f:RibbonWindow>

@@ -1,0 +1,23 @@
+namespace EtAlii.Ubigia.Provisioning.Hosting
+{
+    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.xTechnology.Diagnostics;
+
+    public static class IHostConfigurationDiagnosticsExtension
+    {
+        public static IHostConfiguration Use(this IHostConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        {
+            var extensions = new IHostExtension[]
+            {
+                new DiagnosticsProviderHostExtension(diagnostics), 
+            };
+            return configuration
+                .Use(extensions)
+                .Use((IDataConnectionConfiguration c) => c.Use(diagnostics))
+                .Use((IManagementConnectionConfiguration c) => c.Use(diagnostics))
+                .Use((IDataContextConfiguration c) => c.Use(diagnostics));
+        }
+    }
+}

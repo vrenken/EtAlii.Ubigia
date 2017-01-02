@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{842533CC-82A3-4AA1-A373-6089E13F5ECB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EtAlii.Ubigia.Api.Diagnostics</RootNamespace>
+    <AssemblyName>EtAlii.Ubigia.Api.Diagnostics</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <!-- Non-conditional project references -->
+  <!-- Normal project references -->
+  <Import Project="Properties\ProjectReferences.Targets" />
+  <!-- Output based assembly references -->
+  <Import Project="Properties\AssemblyReferences.Targets" />
+  <ItemGroup>
+    <Compile Include="DiagnosticsScaffolding.cs" />
+    <Compile Include="4. Network\LoggingDataConnection.cs" />
+    <Compile Include="4. Network\ProfilingDataConnection.cs" />
+    <Compile Include="Profiling\ILatestProfileResultFinder.cs" />
+    <Compile Include="Profiling\InvalidProfilingOperationException.cs" />
+    <Compile Include="Profiling\IParentProfileResultFinder.cs" />
+    <Compile Include="Profiling\LatestProfileResultFinder.cs" />
+    <Compile Include="Profiling\ParentProfileResultFinder.cs" />
+    <Compile Include="Profiling\IProfilingResultStack.cs" />
+    <Compile Include="Profiling\IProfilingContext.cs" />
+    <Compile Include="Profiling\ProfilingResultStack.cs" />
+    <Compile Include="Profiling\_Model\ProfilerIdentifier.Comparison.cs" />
+    <Compile Include="Profiling\_Model\ProfilingAspect.cs" />
+    <Compile Include="Profiling\_Model\Profilers.Transport.cs" />
+    <Compile Include="Profiling\_Model\Profilers.Fabric.cs" />
+    <Compile Include="Profiling\_Model\Profilers.Logical.cs" />
+    <Compile Include="Profiling\_Model\Profilers.Functional.cs" />
+    <Compile Include="Profiling\_Model\ProfilingAspects.cs" />
+    <Compile Include="Profiling\ProfileComposer.cs" />
+    <Compile Include="Profiling\IProfileComposer.cs" />
+    <Compile Include="Profiling\ProfilingLayer.cs" />
+    <Compile Include="Profiling\_Model\ProfilingProperty.cs" />
+    <Compile Include="Profiling\IProfiler.cs" />
+    <Compile Include="Profiling\Profiler.cs" />
+    <Compile Include="Profiling\_Model\ProfilingResult.cs" />
+    <Compile Include="Profiling\_Model\TransportProfilers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="4. Network\DiagnosticsDataConnectionExtension.cs" />
+    <Compile Include="4. Network\IDataConnectionConfiguration.Diagnostics.cs" />
+    <Compile Include="4. Network\_Scaffolding\DataConnectionDebuggingScaffolding.cs" />
+    <Compile Include="4. Network\_Scaffolding\DataConnectionLoggingScaffolding.cs" />
+    <Compile Include="4. Network\_Scaffolding\DataConnectionProfilingScaffolding.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\AssemblyReferences.Targets">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\ProjectReferences.Targets">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Core.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Interfaces.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-Linq.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Rx-PlatformServices.2.2.5\lib\portable-net45+winrt45+wp8+wpa81\System.Reactive.PlatformServices.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
+      <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
+      <Name>EtAlii.Ubigia.Api.Logical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
+      <Project>{9947e053-7c54-450d-a1d1-d399a29fea4a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

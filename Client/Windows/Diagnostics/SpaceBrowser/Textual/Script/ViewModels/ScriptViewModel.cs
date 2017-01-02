@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Linq;
     using System.Reactive.Linq;
-    using EtAlii.Servus.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Workflow;
 
     public class ScriptViewModel : TextualViewModelBase, IScriptViewModel
@@ -55,7 +55,7 @@
                                 .ObserveOnDispatcher()
                                 .Subscribe(e => _unitOfWorkProcessor.Process(new ParseScriptUnitOfwork(this)));
 
-            Code = _queryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs")).Single();
+            Code = _queryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs")).Single();
         }
 
         protected override void Execute(object obj)

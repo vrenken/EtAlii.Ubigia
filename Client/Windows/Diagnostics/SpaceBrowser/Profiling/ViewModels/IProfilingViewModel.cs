@@ -1,8 +1,8 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
-    using EtAlii.Servus.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
 
     public interface IProfilingViewModel : IDocumentViewModel
     {

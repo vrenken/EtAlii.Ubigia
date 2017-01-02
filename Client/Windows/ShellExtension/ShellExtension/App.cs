@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace EtAlii.Servus.Client.Windows.ShellExtension
+namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 {
-    public class App : EtAlii.Servus.Client.Windows.Shared.App
+    public class App : EtAlii.Ubigia.Client.Windows.Shared.App
     {
         public static new App Current { get { return _current.Value; } }
         private static Lazy<App> _current = new Lazy<App>(GetApp);

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows
+﻿namespace EtAlii.Ubigia.Client.Windows
 {
     using EtAlii.xTechnology.Mvvm;
     using Microsoft.Win32;

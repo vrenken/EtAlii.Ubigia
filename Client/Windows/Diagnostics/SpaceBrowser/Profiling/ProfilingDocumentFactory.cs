@@ -1,17 +1,17 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Diagnostics.Profiling;
-    using EtAlii.Servus.Api.Fabric;
-    using EtAlii.Servus.Api.Functional;
-    using EtAlii.Servus.Api.Logical;
-    using EtAlii.Servus.Api.Transport;
-    using EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Views;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using SimpleInjector;
-    using ProfilingDataConnection = EtAlii.Servus.Api.Diagnostics.Profiling.ProfilingDataConnection;
+    using ProfilingDataConnection = EtAlii.Ubigia.Api.Diagnostics.Profiling.ProfilingDataConnection;
 
     public class ProfilingDocumentFactory : IDocumentFactory
     {

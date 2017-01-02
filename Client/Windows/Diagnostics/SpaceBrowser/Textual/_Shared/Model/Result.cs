@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using EtAlii.Servus.Api;
+    using EtAlii.Ubigia.Api;
 
     public class Result 
     {

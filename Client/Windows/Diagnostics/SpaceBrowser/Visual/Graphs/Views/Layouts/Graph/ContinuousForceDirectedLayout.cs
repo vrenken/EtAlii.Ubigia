@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics.Views
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics.Views
 {
     using Northwoods.GoXam;
     using Northwoods.GoXam.Layout;

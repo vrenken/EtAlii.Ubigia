@@ -1,0 +1,828 @@
+﻿namespace EtAlii.Servus.Api.Transport.Tests
+{
+    using System;
+    using System.IO;
+    using EtAlii.Servus.Api.Tests;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Newtonsoft.Json;
+
+    [TestClass]
+    public class PropertyDictionaryJSonConverter_ReadJSon_Tests
+    {
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Empty()
+        {
+            // Arrange.
+            var json = "[]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(0, result.Count);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_String()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":1,\"v\":\"World\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("World", result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int16()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":6,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Int16)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int16_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":6,\"v\":32767}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Int16.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int16_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":6,\"v\":-32768}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Int16.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int32()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":7,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Int32)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int32_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":7,\"v\":2147483647}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Int32.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int32_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":7,\"v\":-2147483648}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Int32.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int64()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":8,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Int64)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int64_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":8,\"v\":9223372036854775807}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Int64.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Int64_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":8,\"v\":-9223372036854775808}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Int64.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt16()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":9,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((UInt16)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt16_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":9,\"v\":65535}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(UInt16.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt16_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":9,\"v\":0}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(UInt16.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt32()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":10,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((UInt32)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt32_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":10,\"v\":4294967295}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(UInt32.MaxValue, result["Hello"]);
+        }
+
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt32_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":10,\"v\":0}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(UInt32.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt64()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":11,\"v\":\"0gQAAAAAAAA=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((UInt64)1234, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt64_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":11,\"v\":\"//////////8=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(UInt64.MaxValue, result["Hello"]);
+        }
+
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_UInt64_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":11,\"v\":\"AAAAAAAAAAA=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(UInt64.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_None()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":0}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(null, result["Hello"]);
+        }
+
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Char()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":2,\"v\":\"a\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual('a', result["Hello"]);
+        }
+
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Char_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":2,\"v\":\"" + (char)0xFFFF + "\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Char.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Char_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":2,\"v\":\"\\u0000\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Char.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Boolean_True()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":3,\"v\":true}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(true, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Boolean_False()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":3,\"v\":false}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(false, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_SByte()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":4,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((SByte)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_SByte_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":4,\"v\":127}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(SByte.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_SByte_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":4,\"v\":-128}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(SByte.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Byte()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":5,\"v\":123}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Byte)123, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Byte_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":5,\"v\":255}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Byte.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Byte_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":5,\"v\":0}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Byte.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Single()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":12,\"v\":123.456}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Single)123.456, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Single_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":12,\"v\":3.40282347E+38}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Single.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Single_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":12,\"v\":-3.40282347E+38}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Single.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Double()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":13,\"v\":123.456}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Double)123.456, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Double_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":13,\"v\":1.7976931348623157E+308}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Double.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Double_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":13,\"v\":-1.7976931348623157E+308}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Double.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Decimal()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":14,\"v\":\"123.456\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual((Decimal)123.456, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Decimal_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":14,\"v\":\"79228162514264337593543950335\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Decimal.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Decimal_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":14,\"v\":\"-79228162514264337593543950335\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Decimal.MinValue, result["Hello"]);
+        }
+
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Local()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":15,\"v\":\"ANkhy36o0og=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Local), result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Utc()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":15,\"v\":\"AKmqjo+o0kg=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Utc), result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Unspecified()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":15,\"v\":\"AKmqjo+o0gg=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Unspecified), result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":15,\"v\":\"/z839HUoyis=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(DateTime.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":15,\"v\":\"AAAAAAAAAAA=\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(DateTime.MinValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_TimeSpan()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":16,\"v\":\"00:00:10\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(TimeSpan.FromSeconds(10), result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_TimeSpan_Max()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":16,\"v\":\"10675199.02:48:05.4775807\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(TimeSpan.MaxValue, result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_TimeSpan_Min()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":16,\"v\":\"-10675199.02:48:05.4775808\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(TimeSpan.MinValue, result["Hello"]);
+        }
+
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Guid()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":17,\"v\":\"3ad36a1f-8ed6-42aa-be7b-877f17b4db05\"}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(Guid.Parse("3AD36A1F-8ED6-42AA-BE7B-877F17B4DB05"), result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Version()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":18,\"v\":{\"Major\":1,\"Minor\":2,\"Build\":3,\"Revision\":4,\"MinorRevision\":4}}]";
+
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(new Version(1, 2, 3, 4), result["Hello"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Complex_01()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"Hello\",\"t\":1,\"v\":\"World\"},{\"k\":\"Int32\",\"t\":7,\"v\":1234},{\"k\":\"Boolean\",\"t\":3,\"v\":true},{\"k\":\"Null\",\"t\":0},{\"k\":\"Int16\",\"t\":6,\"v\":1234}]";
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(5, result.Count);
+            Assert.AreEqual("World", result["Hello"]);
+            Assert.AreEqual((Int32)1234, result["Int32"]);
+            Assert.AreEqual(true, result["Boolean"]);
+            Assert.AreEqual(null, result["Null"]);
+            Assert.AreEqual((Int16)1234, result["Int16"]);
+        }
+
+        [TestMethod, TestCategory(TestAssembly.Category)]
+        public void PropertyDictionaryJSonConverter_ReadJson_Complex_02()
+        {
+            // Arrange.
+            var json = "[{\"k\":\"f53e71ce-68e5-48a2-a024-5ba9ad169128\",\"t\":7,\"v\":1175335310},{\"k\":\"b2432705-ffa6-45b9-badd-85a2cfa1c3d5\",\"t\":17,\"v\":\"97e331c0-6187-4c7d-89bf-706b75d70b7e\"},{\"k\":\"c60fd11b-df87-47bb-8705-8ef8f6c8bad3\",\"t\":1,\"v\":\"353f24a2-8a2c-4177-8a0e-9dbb54ad25d4\"},{\"k\":\"1d860afc-f17c-4467-a78f-93dcaa8570af\",\"t\":10,\"v\":906672726},{\"k\":\"5b6d8234-7ff3-4758-baf0-059f36e758e7\",\"t\":3,\"v\":false},{\"k\":\"4b7479ec-98b8-4aae-b153-70543b7a2013\",\"t\":8,\"v\":13853218},{\"k\":\"3dc57f86-55bc-47fa-817a-8e6a4ab5b9f6\",\"t\":13,\"v\":0.31335299849200665},{\"k\":\"1fc013a0-afd3-4f0b-9a04-937f3ff962e0\",\"t\":12,\"v\":0.830620944}]";
+            // Act.
+            var result = ReadJson(json);
+
+            // Assert.
+            Assert.IsNotNull(result);
+            Assert.AreEqual(8, result.Count);
+            Assert.AreEqual(1175335310, result["f53e71ce-68e5-48a2-a024-5ba9ad169128"]);
+        }
+
+        private PropertyDictionary ReadJson(string json)
+        {
+            var serializer = (Serializer)new SerializerFactory().Create();
+            var converter = new PropertyDictionaryJSonConverter();
+
+            using (var textReader = new StringReader(json))
+            {
+                using (var jsonReader = new JsonTextReader(textReader))
+                {
+                    return (PropertyDictionary)converter.ReadJson(jsonReader, typeof(PropertyDictionary), null, serializer);
+                }
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
-namespace EtAlii.Servus.Client.Windows
+namespace EtAlii.Ubigia.Client.Windows
 {
     public class GlobalSettings : BindableSettingsBase
     {

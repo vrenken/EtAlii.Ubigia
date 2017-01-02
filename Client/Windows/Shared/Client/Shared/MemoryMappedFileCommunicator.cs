@@ -19,7 +19,7 @@ using System.ComponentModel;
 using System.IO.MemoryMappedFiles;
 using System.Threading;
 
-namespace EtAlii.Servus.Client.Windows.Shared
+namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public class MemoryMappedFileCommunicator : IDisposable
     {

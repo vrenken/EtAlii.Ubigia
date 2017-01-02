@@ -1,11 +1,11 @@
-using EtAlii.Servus.Client.Windows.Shared;
+using EtAlii.Ubigia.Client.Windows.Shared;
 using LogicNP.EZNamespaceExtensions;
 using System;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 
-namespace EtAlii.Servus.Client.Windows.ShellExtension
+namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 {
     [Guid(Identifiers.FileItemString)]
     public class FileItem2 : NSEItem

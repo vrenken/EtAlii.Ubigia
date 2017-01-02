@@ -1,10 +1,10 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
     using System.Windows.Input;
-    using EtAlii.Servus.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional;
 
     public interface IScriptViewModel : IDocumentViewModel
     {

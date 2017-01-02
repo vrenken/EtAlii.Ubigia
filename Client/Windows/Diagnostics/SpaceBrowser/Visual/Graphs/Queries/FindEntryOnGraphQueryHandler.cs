@@ -1,9 +1,9 @@
 ﻿
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections.Generic;
     using System.Linq;
-    using EtAlii.Servus.Api;
+    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Workflow;
 
     public class FindEntryOnGraphQueryHandler : QueryHandlerBase<FindEntryOnGraphQuery, IReadOnlyEntry>

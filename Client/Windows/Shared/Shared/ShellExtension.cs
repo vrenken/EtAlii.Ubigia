@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace EtAlii.Servus.Client.Windows.Shared
+namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public static class ShellExtension
     {

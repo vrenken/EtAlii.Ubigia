@@ -16,7 +16,7 @@
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
     <DelaySign>false</DelaySign>
     <OutputType>Library</OutputType>
-    <RootNamespace>EtAlii.Servus.Client.Windows.ShellExtension</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Client.Windows.ShellExtension</RootNamespace>
     <StartupObject />
     <FileUpgradeFlags>
     </FileUpgradeFlags>

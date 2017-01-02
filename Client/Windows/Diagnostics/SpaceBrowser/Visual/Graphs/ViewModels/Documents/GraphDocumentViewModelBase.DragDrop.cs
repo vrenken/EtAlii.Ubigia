@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections;
     using System.Windows;
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Windows.Mvvm;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using Northwoods.GoXam.Model;
 
     public partial class GraphDocumentViewModelBase : GraphLinksModel<EntryNode, Identifier, string, EntryLink>, IGraphDocumentViewModel, IDragDropHandler

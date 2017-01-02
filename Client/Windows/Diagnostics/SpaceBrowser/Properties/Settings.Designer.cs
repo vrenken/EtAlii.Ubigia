@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace EtAlii.Servus.Windows.Diagnostics.SpaceBrowser.Properties {
+namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

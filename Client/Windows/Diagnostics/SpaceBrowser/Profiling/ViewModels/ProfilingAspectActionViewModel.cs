@@ -1,8 +1,8 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Windows.Input;
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
     public class ProfilingAspectActionViewModel : BindableBase, IProfilingAspectViewModel

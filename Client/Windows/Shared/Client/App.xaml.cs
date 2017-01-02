@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Servus.Client.Windows
+﻿namespace EtAlii.Ubigia.Client.Windows
 {
-    using EtAlii.Servus.Client.Windows.Shared;
-    using EtAlii.Servus.Client.Windows.TaskbarIcon;
-    using EtAlii.Servus.Client.Windows.UserInterface;
+    using EtAlii.Ubigia.Client.Windows.Shared;
+    using EtAlii.Ubigia.Client.Windows.TaskbarIcon;
+    using EtAlii.Ubigia.Client.Windows.UserInterface;
     using SimpleInjector;
     using System.Diagnostics;
     using System.Reflection;
@@ -11,7 +11,7 @@
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : EtAlii.Servus.Client.Windows.Shared.App
+    public partial class App : EtAlii.Ubigia.Client.Windows.Shared.App
     {
         public static new App Current { get { return System.Windows.Application.Current as App; } }
 

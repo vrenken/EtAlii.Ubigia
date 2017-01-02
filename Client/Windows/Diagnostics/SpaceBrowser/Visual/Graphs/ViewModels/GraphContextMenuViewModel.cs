@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Servus.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Fabric;
-    using EtAlii.Servus.Client.Windows.Shared;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.Workflow;
     using System.Linq;
-    using EtAlii.Servus.Windows;
+    using EtAlii.Ubigia.Windows;
     using ICommand = System.Windows.Input.ICommand;
 
     public class GraphContextMenuViewModel : BindableBase

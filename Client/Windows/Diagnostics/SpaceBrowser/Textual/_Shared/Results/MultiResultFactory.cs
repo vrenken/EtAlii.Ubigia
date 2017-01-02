@@ -1,10 +1,10 @@
-namespace EtAlii.Servus.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Collections;
     using System.Collections.Generic;
-    using EtAlii.Servus.Api;
-    using EtAlii.Servus.Api.Functional;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Structure;
 
     public class MultiResultFactory : IMultiResultFactory
