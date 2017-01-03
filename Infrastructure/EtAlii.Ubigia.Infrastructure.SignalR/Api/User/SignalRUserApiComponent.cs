@@ -10,8 +10,7 @@
     {
         private readonly IDependencyResolver _signalRDependencyResolver;
 
-        public SignalRUserApiComponent(
-            IDependencyResolver signalRDependencyResolver)
+        public SignalRUserApiComponent(IDependencyResolver signalRDependencyResolver)
         {
             _signalRDependencyResolver = signalRDependencyResolver;
         }

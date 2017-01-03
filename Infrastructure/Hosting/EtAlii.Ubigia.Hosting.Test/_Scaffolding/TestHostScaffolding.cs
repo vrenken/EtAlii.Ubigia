@@ -2,18 +2,16 @@
 {
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Tests;
-    using SimpleInjector;
-    using IScaffolding = EtAlii.Ubigia.Infrastructure.Hosting.IScaffolding;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TestHostScaffolding : IScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<IAddressFactory, AddressFactory>(Lifestyle.Singleton);
-            container.Register<IInfrastructureClient>(() => CreateTestInfrastructureClient(container), Lifestyle.Singleton);
+            container.Register<IAddressFactory, AddressFactory>();
+            container.Register<IInfrastructureClient>(() => CreateTestInfrastructureClient(container));
         }
 
         private IInfrastructureClient CreateTestInfrastructureClient(Container container)

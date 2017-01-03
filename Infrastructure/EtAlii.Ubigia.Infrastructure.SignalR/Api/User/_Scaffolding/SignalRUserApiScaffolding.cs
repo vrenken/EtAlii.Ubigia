@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNet.SignalR;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class SignalRUserApiScaffolding : IScaffolding
     {
@@ -15,19 +15,22 @@
 
         public void Register(Container container)
         {
-            container.Register<AuthenticationHub>(Lifestyle.Singleton);
-            container.Register<EntryHub>(Lifestyle.Singleton);
-            container.Register<ContentHub>(Lifestyle.Singleton);
-            container.Register<ContentDefinitionHub>(Lifestyle.Singleton);
-            container.Register<PropertiesHub>(Lifestyle.Singleton);
-            container.Register<RootHub>(Lifestyle.Singleton);
+            _signalRDependencyResolver.Register(typeof(AuthenticationHub), () => new AuthenticationHub(container.GetInstance<ISignalRAuthenticationVerifier>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>(), container.GetInstance<IStorageRepository>()));
+            _signalRDependencyResolver.Register(typeof(EntryHub), () => new EntryHub(container.GetInstance<IEntryRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(ContentHub), () => new ContentHub(container.GetInstance<IContentRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(ContentDefinitionHub), () => new ContentDefinitionHub(container.GetInstance<IContentDefinitionRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(PropertiesHub), () => new PropertiesHub(container.GetInstance<IPropertiesRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(RootHub), () => new RootHub(container.GetInstance<IRootRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
 
-            _signalRDependencyResolver.Register(typeof(AuthenticationHub), container.GetInstance<AuthenticationHub>);
-            _signalRDependencyResolver.Register(typeof(EntryHub), container.GetInstance<EntryHub>);
-            _signalRDependencyResolver.Register(typeof(ContentHub), container.GetInstance<ContentHub>);
-            _signalRDependencyResolver.Register(typeof(ContentDefinitionHub), container.GetInstance<ContentDefinitionHub>);
-            _signalRDependencyResolver.Register(typeof(PropertiesHub), container.GetInstance<PropertiesHub>);
-            _signalRDependencyResolver.Register(typeof(RootHub), container.GetInstance<RootHub>);
+            _signalRDependencyResolver.Register(typeof(IEntryRepository), container.GetInstance<IEntryRepository>);
+            _signalRDependencyResolver.Register(typeof(IContentRepository), container.GetInstance<IContentRepository>);
+            _signalRDependencyResolver.Register(typeof(IContentDefinitionRepository), container.GetInstance<IContentDefinitionRepository>);
+            _signalRDependencyResolver.Register(typeof(IPropertiesRepository), container.GetInstance<IPropertiesRepository>);
+            _signalRDependencyResolver.Register(typeof(IRootRepository), container.GetInstance<IRootRepository>);
+
+            // IStorageRepository (already registered)
+            _signalRDependencyResolver.Register(typeof(ISignalRAuthenticationVerifier), container.GetInstance<ISignalRAuthenticationVerifier>);
+            _signalRDependencyResolver.Register(typeof(ISignalRAuthenticationTokenVerifier), container.GetInstance< ISignalRAuthenticationTokenVerifier>);
         }
     }
 }

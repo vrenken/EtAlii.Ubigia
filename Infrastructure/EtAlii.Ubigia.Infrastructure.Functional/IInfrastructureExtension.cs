@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public interface IInfrastructureExtension
     {

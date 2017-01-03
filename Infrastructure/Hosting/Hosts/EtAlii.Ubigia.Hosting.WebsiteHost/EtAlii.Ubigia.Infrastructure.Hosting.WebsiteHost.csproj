@@ -179,6 +179,10 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj">
       <Project>{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Fabric</Name>
@@ -194,6 +198,10 @@
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj">
       <Project>{9e74d294-1af0-4df1-ae62-aaf97c89d342}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
+      <Project>{d10b55fe-5603-43a9-b25f-e2c290c6a830}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
       <Project>{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}</Project>

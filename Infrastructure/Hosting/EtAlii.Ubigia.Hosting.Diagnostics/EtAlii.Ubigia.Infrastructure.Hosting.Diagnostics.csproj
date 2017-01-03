@@ -42,10 +42,6 @@
       <HintPath>..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -74,6 +70,10 @@
     <Compile Include="_Scaffolding\HostProfilingScaffolding.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{c62eb0ee-70d0-463d-a08b-f7787a2e1b2a}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>

@@ -1,8 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using SimpleInjector;
     using EtAlii.xTechnology.Diagnostics;
-    using IScaffolding = EtAlii.Ubigia.Infrastructure.Hosting.IScaffolding;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TestHostExtension : IHostExtension
     {

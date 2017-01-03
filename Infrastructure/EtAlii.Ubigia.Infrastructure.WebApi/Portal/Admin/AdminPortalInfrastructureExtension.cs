@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class AdminPortalInfrastructureExtension : IInfrastructureExtension
     {

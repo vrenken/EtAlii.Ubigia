@@ -4,7 +4,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class InfrastructureConfiguration : IInfrastructureConfiguration
     {
@@ -26,8 +26,8 @@
         public string Password { get { return _password; } }
         private string _password;
 
-        public Type[] ComponentManagerTypes { get { return _componentManagerTypes; } }
-        private Type[] _componentManagerTypes;
+        public Func<Container, object>[] ComponentManagerFactories { get { return _componentManagerFactories; } }
+        private Func<Container, object>[] _componentManagerFactories;
 
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get { return _systemConnectionCreationProxy; } }
         private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
@@ -38,7 +38,7 @@
         {
             _extensions = new IInfrastructureExtension[0];
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
-            _componentManagerTypes = new Type[0];
+            _componentManagerFactories = new Func<Container, object>[0];
         }
 
         public IInfrastructure GetInfrastructure(Container container)
@@ -60,15 +60,15 @@
             return this;
         }
 
-        public IInfrastructureConfiguration Use(Type componentManagerType)
+        public IInfrastructureConfiguration Use(Func<Container, object> componentManagerFactory)
         {
-            if (componentManagerType == null)
+            if (componentManagerFactory == null)
             {
-                throw new ArgumentException(nameof(componentManagerType));
+                throw new ArgumentException(nameof(componentManagerFactory));
             }
 
-            _componentManagerTypes = _componentManagerTypes
-                .Concat(new [] { componentManagerType })
+            _componentManagerFactories = _componentManagerFactories
+                .Concat(new [] { componentManagerFactory })
                 .Distinct()
                 .ToArray();
             return this;
@@ -122,7 +122,7 @@
 
             _getInfrastructure = container =>
             {
-                container.Register<IInfrastructure, TInfrastructure>(Lifestyle.Singleton);
+                container.Register<IInfrastructure, TInfrastructure>();
                 return container.GetInstance<IInfrastructure>();
             };
 

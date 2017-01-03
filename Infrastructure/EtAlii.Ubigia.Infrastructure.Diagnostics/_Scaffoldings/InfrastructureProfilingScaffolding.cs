@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
-    using SimpleInjector.Extensions;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class InfrastructureProfilingScaffolding : IScaffolding
     {
@@ -18,16 +16,16 @@
 
         public void Register(Container container)
         {
-            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory(), Lifestyle.Singleton);
-            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()), Lifestyle.Singleton);
+            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory());
+            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
 
             if (_diagnostics.EnableProfiling) // profiling is enabled
             {
-                container.RegisterDecorator(typeof(IEntryRepository), typeof(ProfilingEntryRepositoryDecorator), Lifestyle.Singleton);
-                container.RegisterDecorator(typeof(IIdentifierRepository), typeof(ProfilingIdentifierRepositoryDecorator), Lifestyle.Singleton);
-                container.RegisterDecorator(typeof(IStorageRepository), typeof(ProfilingStorageRepositoryDecorator), Lifestyle.Singleton);
-                container.RegisterDecorator(typeof(IAccountRepository), typeof(ProfilingAccountRepositoryDecorator), Lifestyle.Singleton);
-                container.RegisterDecorator(typeof(ISpaceRepository), typeof(ProfilingSpaceRepositoryDecorator), Lifestyle.Singleton);
+                container.RegisterDecorator(typeof(IEntryRepository), typeof(ProfilingEntryRepositoryDecorator));
+                container.RegisterDecorator(typeof(IIdentifierRepository), typeof(ProfilingIdentifierRepositoryDecorator));
+                container.RegisterDecorator(typeof(IStorageRepository), typeof(ProfilingStorageRepositoryDecorator));
+                container.RegisterDecorator(typeof(IAccountRepository), typeof(ProfilingAccountRepositoryDecorator));
+                container.RegisterDecorator(typeof(ISpaceRepository), typeof(ProfilingSpaceRepositoryDecorator));
             }
         }
     }

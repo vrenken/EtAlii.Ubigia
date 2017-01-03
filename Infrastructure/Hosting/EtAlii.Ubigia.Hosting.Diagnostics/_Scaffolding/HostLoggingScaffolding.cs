@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class HostLoggingScaffolding : IScaffolding
     {
@@ -15,8 +15,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
 
         public void Register(Container container)
         {
-            container.Register<ILogFactory>(() => _diagnostics.CreateLogFactory(), Lifestyle.Singleton);
-            container.Register<ILogger>(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()), Lifestyle.Singleton);
+            container.Register<ILogFactory>(() => _diagnostics.CreateLogFactory());
+            container.Register<ILogger>(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
             if (_diagnostics.EnableLogging) // logging is enabled
             {
             }

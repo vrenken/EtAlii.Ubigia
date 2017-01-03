@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Infrastructure.WebApi;
     using Owin;
 
-
     public partial class SignalRComponentManager : ISignalRComponentManager
     {
         private readonly IComponent[] _components;
@@ -20,8 +19,9 @@
             };
         }
 
-        public void Start(IAppBuilder application)
+        public void Start(object iAppBuilder)
         {
+            var application = (IAppBuilder)iAppBuilder;
             foreach (var component in _components)
             {
                 component.Start(application);

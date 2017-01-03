@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNet.SignalR;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class SignalRAdminApiScaffolding : IScaffolding
     {
@@ -15,13 +15,13 @@
 
         public void Register(Container container)
         {
-            container.Register<StorageHub>(Lifestyle.Singleton);
-            container.Register<SpaceHub>(Lifestyle.Singleton);
-            container.Register<AccountHub>(Lifestyle.Singleton);
+            _signalRDependencyResolver.Register(typeof(StorageHub), () => new StorageHub(container.GetInstance<IStorageRepository>()));
+            _signalRDependencyResolver.Register(typeof(SpaceHub), () => new SpaceHub(container.GetInstance<ISpaceRepository>()));
+            _signalRDependencyResolver.Register(typeof(AccountHub), () => new AccountHub(container.GetInstance<IAccountRepository>()));
 
-            _signalRDependencyResolver.Register(typeof(StorageHub), container.GetInstance<StorageHub>);
-            _signalRDependencyResolver.Register(typeof(SpaceHub), container.GetInstance<SpaceHub>);
-            _signalRDependencyResolver.Register(typeof(AccountHub), container.GetInstance<AccountHub>);
+            _signalRDependencyResolver.Register(typeof(IStorageRepository), container.GetInstance<IStorageRepository>);
+            _signalRDependencyResolver.Register(typeof(IAccountRepository), container.GetInstance<IAccountRepository>);
+            _signalRDependencyResolver.Register(typeof(ISpaceRepository), container.GetInstance<ISpaceRepository>);
         }
     }
 }

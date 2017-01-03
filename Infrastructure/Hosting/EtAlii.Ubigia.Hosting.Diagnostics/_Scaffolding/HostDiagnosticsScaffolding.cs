@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class HostDiagnosticsScaffolding : IScaffolding
     {
@@ -15,7 +14,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IDiagnosticsConfiguration>(() => _diagnostics, Lifestyle.Singleton);
+            container.Register<IDiagnosticsConfiguration>(() => _diagnostics);
         }
     }
 }

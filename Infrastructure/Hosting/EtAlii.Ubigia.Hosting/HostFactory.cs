@@ -2,8 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using SimpleInjector;
-
+    using EtAlii.xTechnology.MicroContainer;
 
     public class HostFactory : IHostFactory
     {
@@ -23,7 +22,6 @@
             }
 
             var container = new Container();
-            container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
             var scaffoldings = new List<IScaffolding>(new IScaffolding[]
             {

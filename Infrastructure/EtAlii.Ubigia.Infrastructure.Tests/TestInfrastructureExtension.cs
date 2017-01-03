@@ -5,32 +5,28 @@ namespace EtAlii.Ubigia.Infrastructure.Tests
     using EtAlii.Ubigia.Infrastructure.WebApi;
     using EtAlii.xTechnology.Diagnostics;
     using Microsoft.AspNet.SignalR;
-    using SimpleInjector;
-    using Newtonsoft.Json;
-    using System;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TestInfrastructureExtension : IInfrastructureExtension
     {
         private readonly IDiagnosticsConfiguration _diagnostics;
+        private readonly IDependencyResolver _signalRDependencyResolver;
 
-        internal TestInfrastructureExtension(IDiagnosticsConfiguration diagnostics)
+        internal TestInfrastructureExtension(IDiagnosticsConfiguration diagnostics, IDependencyResolver signalRDependencyResolver)
         {
             _diagnostics = diagnostics;
+            _signalRDependencyResolver = signalRDependencyResolver;
         }
 
         public void Initialize(Container container)
         {
-            var signalRDependencyResolver = new DefaultDependencyResolver();
-
             var scaffoldings = new IScaffolding[]
             {
-                new SignalRApiScaffolding(signalRDependencyResolver),
-                new SignalRUserApiScaffolding(signalRDependencyResolver),
-                new SignalRAdminApiScaffolding(signalRDependencyResolver),
+                new SignalRApiScaffolding(_signalRDependencyResolver),
+                new SignalRUserApiScaffolding(_signalRDependencyResolver),
+                new SignalRAdminApiScaffolding(_signalRDependencyResolver),
 
                 new WebApiApiScaffolding<TestAuthenticationIdentityProvider>(),
-                new WebApiUserApiScaffolding(),
-                new WebApiAdminApiScaffolding(),
             };
 
             foreach (var scaffolding in scaffoldings)

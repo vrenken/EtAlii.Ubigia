@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class WebApiInfrastructure : InfrastructureBase
     {
@@ -47,8 +47,8 @@
 
             base.Start();
 
-            _componentManagers = Configuration.ComponentManagerTypes
-                .Select(componentManagerType => _container.GetInstance(componentManagerType))
+            _componentManagers = Configuration.ComponentManagerFactories
+                .Select(componentManagerFactory => componentManagerFactory(_container))
                 .Cast<IComponentManager>()
                 .ToArray();
 

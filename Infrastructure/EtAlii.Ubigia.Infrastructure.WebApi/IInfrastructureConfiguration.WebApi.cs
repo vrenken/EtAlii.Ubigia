@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure
             };
             return configuration
                 .Use(extensions)
-                .Use(typeof(IWebApiComponentManager))
+                .Use(new WebApiComponentManagerFactory().Create)
                 .Use<WebApiInfrastructure>();
         }
     }

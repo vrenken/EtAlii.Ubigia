@@ -1,27 +1,25 @@
 namespace EtAlii.Ubigia.Infrastructure.SignalR
 {
-    using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNet.SignalR;
-    using Newtonsoft.Json;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class SignalRInfrastructureExtension : IInfrastructureExtension
     {
+        private readonly IDependencyResolver _signalRDependencyResolver;
 
-        internal SignalRInfrastructureExtension()
+        internal SignalRInfrastructureExtension(IDependencyResolver signalRDependencyResolver)
         {
+            _signalRDependencyResolver = signalRDependencyResolver;
         }
 
         public void Initialize(Container container)
         {
-            var signalRDependencyResolver = new DefaultDependencyResolver();
-
             var scaffoldings = new IScaffolding[]
             {
-                new SignalRApiScaffolding(signalRDependencyResolver),
-                new SignalRUserApiScaffolding(signalRDependencyResolver),
-                new SignalRAdminApiScaffolding(signalRDependencyResolver),
+                new SignalRApiScaffolding(_signalRDependencyResolver),
+                new SignalRUserApiScaffolding(_signalRDependencyResolver),
+                new SignalRAdminApiScaffolding(_signalRDependencyResolver),
             };
 
             foreach (var scaffolding in scaffoldings)

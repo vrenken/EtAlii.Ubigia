@@ -5,10 +5,9 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
     using EtAlii.xTechnology.Logging;
     using Microsoft.Owin.Testing;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TestInfrastructure : IInfrastructure// WebApiInfrastructure
     {
@@ -99,8 +98,8 @@
 
             _logger.Info("Starting test infrastructure hosting");
 
-            _componentManagers = _configuration.ComponentManagerTypes
-                .Select(componentManagerType => _container.GetInstance(componentManagerType))
+            _componentManagers = _configuration.ComponentManagerFactories
+                .Select(componentManagerFactory => componentManagerFactory(_container))
                 .Cast<IComponentManager>()
                 .ToArray();
 

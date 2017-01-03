@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class InfrastructureScaffolding : IScaffolding
     {
@@ -15,9 +15,9 @@
 
         public void Register(Container container)
         {
-            container.Register<IInfrastructureConfiguration>(() => _configuration, Lifestyle.Singleton);
-            container.Register<ILogicalContext>(() => _configuration.Logical, Lifestyle.Singleton);
-            container.Register<ISystemConnectionCreationProxy>(() => _configuration.SystemConnectionCreationProxy, Lifestyle.Singleton);
+            container.Register<IInfrastructureConfiguration>(() => _configuration);
+            container.Register<ILogicalContext>(() => _configuration.Logical);
+            container.Register<ISystemConnectionCreationProxy>(() => _configuration.SystemConnectionCreationProxy);
         }
     }
 }

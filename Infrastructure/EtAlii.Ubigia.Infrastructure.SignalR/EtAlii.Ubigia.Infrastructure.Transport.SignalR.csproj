@@ -40,7 +40,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="IInfrastructureConfiguration.SignalR.cs" />
-    <Compile Include="ISignalRComponentManager.cs" />
+    <Compile Include="Components\SignalRComponentManagerFactory.cs" />
+    <Compile Include="Components\ISignalRComponentManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Api\Admin\Accounts\AccountHub.cs" />
     <Compile Include="Api\Admin\ISignalRAdminApiComponent.cs" />
@@ -68,7 +69,7 @@
     <Compile Include="Api\User\_Scaffolding\SignalRUserApiScaffolding.cs" />
     <Compile Include="Api\_Scaffolding\SignalRApiScaffolding.cs" />
     <Compile Include="SignalRInfrastructureExtension.cs" />
-    <Compile Include="SignalRComponentManager.cs" />
+    <Compile Include="Components\SignalRComponentManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -96,10 +97,6 @@
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
@@ -121,9 +118,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Properties\ProjectReferences.Targets" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
@@ -131,6 +134,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj">
       <Project>{0aa11597-8a46-4261-9d62-f0073a4f9f2a}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Logical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
+      <Project>{d10b55fe-5603-43a9-b25f-e2c290c6a830}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.WebApi.csproj">
       <Project>{7c020a57-0746-46e3-8f98-39c76fa37a3b}</Project>

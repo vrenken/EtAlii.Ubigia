@@ -1,11 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
 {
-    using System.Net.Http.Formatting;
-    using System.Web.Http;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using SimpleInjector;
-    using SimpleInjector.Integration.WebApi;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class WebApiApiScaffolding<TAuthenticationIdentityProvider> : IScaffolding
             where TAuthenticationIdentityProvider : class, IAuthenticationIdentityProvider
@@ -23,33 +18,19 @@
 
         public void Register(Container container)
         {
-            container.Register<IAuthenticationIdentityProvider, TAuthenticationIdentityProvider>(Lifestyle.Singleton);
-            container.Register<IAuthenticationVerifier, AuthenticationVerifier>(Lifestyle.Singleton);
-            container.Register<IAuthenticationTokenVerifier, AuthenticationTokenVerifier>(Lifestyle.Singleton);
-            container.Register<IAuthenticationTokenConverter, AuthenticationTokenConverter>(Lifestyle.Singleton);
+            container.Register<IAuthenticationIdentityProvider, TAuthenticationIdentityProvider>();
+            container.Register<IAuthenticationVerifier, AuthenticationVerifier>();
+            container.Register<IAuthenticationTokenVerifier, AuthenticationTokenVerifier>();
+            container.Register<IAuthenticationTokenConverter, AuthenticationTokenConverter>();
 
             if (_applicationManager != null)
             {
-                container.Register<IApplicationManager>(() => _applicationManager, Lifestyle.Singleton);
+                container.Register<IApplicationManager>(() => _applicationManager);
             }
             else
             {
-                container.Register<IApplicationManager, DefaultApplicationManager>(Lifestyle.Singleton);
+                container.Register<IApplicationManager, DefaultApplicationManager>();
             }
-
-            container.Register<MediaTypeFormatter, PayloadMediaTypeFormatter>(Lifestyle.Singleton);
-
-            container.Register<IWebApiComponentManager, WebApiComponentManager>(Lifestyle.Transient);
-
-            container.Register<HttpConfiguration>(() => CreateRegisterHttpConfiguration(container), Lifestyle.Transient);
         }
-
-        private HttpConfiguration CreateRegisterHttpConfiguration(Container container)
-        {
-            var httpConfiguration = new HttpConfiguration
-            {
-                DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container)
-            };
-            return httpConfiguration;
-        }
-    }}
+    }
+}

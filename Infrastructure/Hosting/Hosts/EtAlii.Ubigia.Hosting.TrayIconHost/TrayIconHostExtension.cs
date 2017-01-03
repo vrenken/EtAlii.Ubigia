@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using SimpleInjector;
-    using EtAlii.Ubigia.Infrastructure;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TrayIconHostExtension : IHostExtension
     {

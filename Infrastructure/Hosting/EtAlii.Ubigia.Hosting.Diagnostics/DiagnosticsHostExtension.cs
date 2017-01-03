@@ -1,8 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsHostExtension : IHostExtension
     {

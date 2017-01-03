@@ -2,8 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsInfrastructureExtension : IInfrastructureExtension
     {

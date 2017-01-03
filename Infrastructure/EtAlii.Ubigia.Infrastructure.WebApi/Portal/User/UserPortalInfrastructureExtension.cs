@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class UserPortalInfrastructureExtension : IInfrastructureExtension
     {
