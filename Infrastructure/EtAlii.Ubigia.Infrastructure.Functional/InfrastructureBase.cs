@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using SimpleInjector;
 
     public abstract class InfrastructureBase : IInfrastructure
     {
