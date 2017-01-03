@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class WebApiDiagnosticsInfrastructureExtension : IInfrastructureExtension
     {

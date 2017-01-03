@@ -1,9 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
 {
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
-    using Container = SimpleInjector.Container;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class WebApiProfilingScaffolding : IScaffolding
     {
@@ -18,7 +16,7 @@
         {
             if (_diagnostics.EnableProfiling)
             {
-                container.RegisterDecorator(typeof(IWebApiComponentManager), typeof(ProfilingWebApiComponentManager), Lifestyle.Singleton);
+                container.RegisterDecorator(typeof(IWebApiComponentManager), typeof(ProfilingWebApiComponentManager));
             }
         }
     }

@@ -50,10 +50,6 @@
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -95,6 +91,10 @@
     <Compile Include="_Scaffolding\WebApiProfilingScaffolding.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj">
       <Project>{6367ad1a-35ef-4777-9a33-1fb80cf5963b}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Diagnostics</Name>
@@ -107,6 +107,10 @@
       <Project>{0aa11597-8a46-4261-9d62-f0073a4f9f2a}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Logical</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
+      <Project>{d10b55fe-5603-43a9-b25f-e2c290c6a830}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.WebApi.csproj">
       <Project>{7c020a57-0746-46e3-8f98-39c76fa37a3b}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi</Name>
@@ -118,7 +122,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\AssemblyReferences.Targets" />
     <None Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>

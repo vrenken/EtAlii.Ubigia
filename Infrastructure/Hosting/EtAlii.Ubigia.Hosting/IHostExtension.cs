@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public interface IHostExtension
     {

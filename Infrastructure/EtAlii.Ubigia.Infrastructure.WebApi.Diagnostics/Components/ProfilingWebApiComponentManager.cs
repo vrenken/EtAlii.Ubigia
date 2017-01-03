@@ -26,10 +26,11 @@
             //profiler.Register(_stopCountCounter, SamplingType.IncrementalCount, "Count", "Number of times the ComponentManager is stopped", "The number of times the Stop method has executed");
         }
 
-        public void Start(IAppBuilder application)
+        public void Start(object iAppBuilder)
         {
+            var application = (IAppBuilder)iAppBuilder;
             var start = Environment.TickCount;
-            _componentManager.Start(application);
+            _componentManager.Start(iAppBuilder);
             //_profiler.WriteSample(_startDurationCounter, Environment.TickCount - start);
             //_profiler.WriteSample(_startCountCounter, 1d);
         }

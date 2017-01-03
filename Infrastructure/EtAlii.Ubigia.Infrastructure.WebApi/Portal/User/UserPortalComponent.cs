@@ -19,7 +19,6 @@
                 //RequestPath = new PathString("/User"),
                 StaticFileOptions = { ServeUnknownFileTypes = true }
             });
-
         }
 
         public void Stop()

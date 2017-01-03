@@ -2,10 +2,9 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class HostConfiguration : IHostConfiguration
     {
@@ -31,7 +30,7 @@
 
             _getHost = container =>
             {
-                container.Register<IHost, DefaultHost>(Lifestyle.Singleton);
+                container.Register<IHost, DefaultHost>();
                 return container.GetInstance<IHost>();
             };
         }
@@ -83,7 +82,7 @@
 
             _getHost = container =>
             {
-                container.Register<IHost, THost>(Lifestyle.Singleton);
+                container.Register<IHost, THost>();
                 return container.GetInstance<IHost>();
             };
 

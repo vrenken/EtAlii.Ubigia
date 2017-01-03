@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class InfrastructureFactory : IInfrastructureFactory
     {
@@ -32,7 +32,7 @@
                 throw new NotSupportedException("A SystemConnectionCreationProxy is required to construct a Infrastructure instance");
             }
 
-            var container = new Container();
+            var container = new Container(true); // TODO: Injecting the container itself should not be done.
             //container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.FullName); };
             
 

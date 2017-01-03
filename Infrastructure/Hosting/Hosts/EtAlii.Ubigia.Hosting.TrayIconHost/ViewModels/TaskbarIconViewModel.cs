@@ -9,7 +9,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Infrastructure.Hosting.Properties;
 
-    internal class TaskbarIconViewModel : BindableBase
+    internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
         private ITrayIconHost _host;
 

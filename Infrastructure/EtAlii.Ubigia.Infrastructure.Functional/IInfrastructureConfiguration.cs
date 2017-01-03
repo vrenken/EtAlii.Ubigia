@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public interface IInfrastructureConfiguration
     {
@@ -18,13 +18,13 @@
 
         IInfrastructureExtension[] Extensions { get; }
 
-        Type[] ComponentManagerTypes { get; }
+        Func<Container, object>[] ComponentManagerFactories { get; }
         IInfrastructureConfiguration Use(string name, string address, string account, string password);
 
         IInfrastructureConfiguration Use(IInfrastructureExtension[] extensions);
         IInfrastructureConfiguration Use(ILogicalContext logical);
 
-        IInfrastructureConfiguration Use(Type componentManagerType);
+        IInfrastructureConfiguration Use(Func<Container, object> componentManagerFactory);
 
         IInfrastructure GetInfrastructure(Container container);
 

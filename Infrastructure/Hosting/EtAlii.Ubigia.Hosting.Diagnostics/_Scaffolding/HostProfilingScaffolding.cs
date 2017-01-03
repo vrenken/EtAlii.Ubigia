@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class HostProfilingScaffolding : IScaffolding
     {
@@ -16,8 +15,8 @@
 
         public void Register(Container container)
         {
-            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory(), Lifestyle.Singleton);
-            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()), Lifestyle.Singleton);
+            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory());
+            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
             
             if (_diagnostics.EnableProfiling) // profiling is enabled
             {

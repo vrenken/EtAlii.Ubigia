@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure
 {
     using System;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class DiagnosticsScaffolding : IScaffolding
     {
@@ -27,7 +25,7 @@
             {
                 throw new InvalidOperationException();
             }
-            container.Register<IDiagnosticsConfiguration>(() => _diagnostics, Lifestyle.Singleton);
+            container.Register<IDiagnosticsConfiguration>(() => _diagnostics);
         }
     }
 }

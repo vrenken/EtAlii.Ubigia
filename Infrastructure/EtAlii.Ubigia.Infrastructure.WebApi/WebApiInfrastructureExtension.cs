@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.WebApi
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class WebApiInfrastructureExtension : IInfrastructureExtension
     {
@@ -17,8 +17,6 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi
             var scaffoldings = new IScaffolding[]
             {
                 new WebApiApiScaffolding<DefaultAuthenticationIdentityProvider>(_applicationManager),
-                new WebApiUserApiScaffolding(),
-                new WebApiAdminApiScaffolding(),
 
                 //new WebApiProfilingScaffolding(diagnostics),
                 //new WebApiLoggingScaffolding(diagnostics),

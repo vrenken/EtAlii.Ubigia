@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
 {
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal partial class AdminPortalScaffolding : IScaffolding
     {
@@ -16,7 +15,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IAdminPortalComponent, AdminPortalComponent>(Lifestyle.Transient);
+            //container.Register<IAdminPortalComponent, AdminPortalComponent>(Lifestyle.Transient);
 
             // TODO: This should be a system connection provider and not a system connection.
             container.Register<ISystemConnection>(() =>
@@ -28,7 +27,7 @@
                     .Use(infrastructure);
                 var connection = new SystemConnectionFactory().Create(configuration);
                 return connection;
-            }, Lifestyle.Singleton);
+            });
 
             RegisterForMicrosoftGraph(container);
             RegisterForGoogle(container);

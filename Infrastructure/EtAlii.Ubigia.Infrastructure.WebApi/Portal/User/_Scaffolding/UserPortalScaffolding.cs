@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
 {
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal partial class UserPortalScaffolding : IScaffolding
     {
@@ -15,7 +14,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IUserPortalComponent, UserPortalComponent>(Lifestyle.Transient);
+            //container.Register<IUserPortalComponent, UserPortalComponent>(Lifestyle.Transient);
 
             //container.Register<ISystemConnection>(() =>
             //{

@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Net;
     using System.Web.Http;
+    using Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin;
     using EtAlii.Ubigia.Infrastructure.WebApi.Portal.User;
     using Owin;
@@ -16,26 +17,28 @@
         private HttpListener _httpListener;
 
         public WebApiComponentManager(
-            HttpConfiguration httpConfiguration, 
+            HttpConfiguration httpConfiguration,
             IUserPortalComponent userPortalComponent,
-            IWebApiUserApiComponent webApiUserApiComponent,
-            IAdminPortalComponent adminPortalComponent, 
-            IWebApiAdminApiComponent webApiAdminApiComponent)
+            //IWebApiUserApiComponent webApiUserApiComponent,
+            IAdminPortalComponent adminPortalComponent//,
+            //IWebApiAdminApiComponent webApiAdminApiComponent
+            )
         {
             _httpConfiguration = httpConfiguration;
 
             _components = new IComponent[]
             {
                 userPortalComponent,
-                webApiUserApiComponent,
+                //webApiUserApiComponent,
 
                 adminPortalComponent,
-                webApiAdminApiComponent,
+                //webApiAdminApiComponent,
             };
         }
 
-        public void Start(IAppBuilder application)
+        public void Start(object iAppBuilder)
         {
+            var application = (IAppBuilder)iAppBuilder;
             var httpListenerName = typeof (HttpListener).FullName;
             if (application.Properties.ContainsKey(httpListenerName))
             {
@@ -46,6 +49,22 @@
             {
                 component.Start(application);
             }
+
+            //_logger.Info("Starting WebAPI services");
+
+            _httpConfiguration.MapHttpAttributeRoutes();
+            _httpConfiguration.Formatters.Add(new PayloadMediaTypeFormatter());
+
+            //if (_diagnostics.EnableLogging)
+            //{
+            //    _httpConfiguration.EnableSystemDiagnosticsTracing();
+            //}
+
+            application.UseWebApi(_httpConfiguration);
+
+            _httpConfiguration.EnsureInitialized();
+
+            //_logger.Info("Started WebAPI services");
         }
 
         public void Stop()

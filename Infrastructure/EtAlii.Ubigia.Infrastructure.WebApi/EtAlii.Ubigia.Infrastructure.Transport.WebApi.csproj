@@ -72,18 +72,6 @@
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SimpleInjector.Extensions.ExecutionContextScoping, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.Extensions.ExecutionContextScoping.3.1.3\lib\net45\SimpleInjector.Extensions.ExecutionContextScoping.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SimpleInjector.Integration.WebApi, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SimpleInjector.Integration.WebApi.3.1.3\lib\net45\SimpleInjector.Integration.WebApi.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration">
       <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\System.Configuration.dll</HintPath>
@@ -210,10 +198,11 @@
     <Compile Include="..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\Settings\User\_Model\UserSettings.cs">
       <Link>Portal\User\Settings\Microsoft\Graph\Settings\_Model\UserSettings.cs</Link>
     </Compile>
-    <Compile Include="IWebApiComponentManager.cs" />
-    <Compile Include="Api\Admin\IWebApiAdminApiComponent.cs" />
-    <Compile Include="Api\Admin\WebApiAdminApiComponent.cs" />
-    <Compile Include="Api\Admin\_Scaffolding\WebApiAdminApiScaffolding.cs" />
+    <Compile Include="MicroContainerDependencyResolver.cs" />
+    <Compile Include="Components\IWebApiComponentManager.cs" />
+    <Compile Include="Api\Admin\__IWebApiAdminApiComponent.cs" />
+    <Compile Include="Api\Admin\__WebApiAdminApiComponent.cs" />
+    <Compile Include="Api\Admin\_Scaffolding\__WebApiAdminApiScaffolding.cs" />
     <Compile Include="Api\_Scaffolding\WebApiApiScaffolding.cs" />
     <Compile Include="CacheWebApiAttribute.cs" />
     <Compile Include="Portal\Admin\Accounts\Account.Controller.cs" />
@@ -258,11 +247,11 @@
     <Compile Include="Api\User\Authentication\Verification\IAuthenticationVerifier.cs" />
     <Compile Include="Api\User\Authentication\RequiresAuthenticationAttribute.cs" />
     <Compile Include="Api\User\Content\RequiresAuthenticationTokenAttribute.cs" />
-    <Compile Include="Api\User\WebApiUserApiComponent.cs" />
-    <Compile Include="WebApiComponentManager.cs" />
-    <Compile Include="Api\User\IWebApiUserApiComponent.cs" />
+    <Compile Include="Api\User\__WebApiUserApiComponent.cs" />
+    <Compile Include="Components\WebApiComponentManagerFactory.cs" />
+    <Compile Include="Components\WebApiComponentManager.cs" />
+    <Compile Include="Api\User\__IWebApiUserApiComponent.cs" />
     <Compile Include="Components\IComponent.cs" />
-    <Compile Include="Components\IComponentManager.cs" />
     <Compile Include="Api\User\ContentDefinition\ContentDefinitionController.cs" />
     <Compile Include="Api\User\Content\ContentController.cs" />
     <Compile Include="WebApiInfrastructureExtension.cs" />
@@ -295,7 +284,7 @@
     <Compile Include="Portal\User\_Scaffolding\UserPortalScaffolding.GooglePeopleApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiInfrastructure.cs" />
-    <Compile Include="Api\User\_Scaffolding\WebApiUserApiScaffolding.cs" />
+    <Compile Include="Api\User\_Scaffolding\_WebApiUserApiScaffolding.cs" />
     <Compile Include="Portal\User\IInfrastructureConfiguration.UserPortal.cs" />
     <Compile Include="Portal\User\UserPortalInfrastructureExtension.cs" />
     <Compile Include="Portal\User\UserPortalComponent.cs" />
@@ -305,6 +294,14 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
+      <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
+      <Name>EtAlii.xTechnology</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
@@ -342,7 +339,9 @@
     <EmbeddedResource Include="Portal\Admin\Storages\Storages.Controller.js" />
     <EmbeddedResource Include="Portal\Admin\Home\Home.Controller.js" />
     <EmbeddedResource Include="Portal\Admin\Home\Home.html" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Portal\Admin\Shared\ThirdParty\AngularJS_1_4_8\angular-animate.min.js.map" />
     <None Include="Portal\Admin\Shared\ThirdParty\AngularJS_1_4_8\angular-aria.min.js.map" />
     <None Include="Portal\Admin\Shared\ThirdParty\AngularJS_1_4_8\angular-cookies.min.js.map" />

@@ -1,22 +1,21 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.Ubigia.Infrastructure;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TrayIconHostScaffolding : IScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<TaskbarIconViewModel, TaskbarIconViewModel>(Lifestyle.Singleton);
-            container.Register<ITaskbarIcon, TaskbarIcon>(Lifestyle.Singleton);
+            container.Register<ITaskbarIconViewModel, TaskbarIconViewModel>();
+            container.Register<ITaskbarIcon, TaskbarIcon>();
             container.RegisterInitializer<ITaskbarIcon>(taskbarIcon =>
             {
-                taskbarIcon.DataContext = container.GetInstance<TaskbarIconViewModel>();
+                taskbarIcon.DataContext = container.GetInstance<ITaskbarIconViewModel>();
             });
 
             container.RegisterInitializer<IHost>(host =>
             {
-                container.GetInstance<TaskbarIconViewModel>().Initialize((ITrayIconHost)host);
+                container.GetInstance<ITaskbarIconViewModel>().Initialize((ITrayIconHost)host);
             });
         }
     }

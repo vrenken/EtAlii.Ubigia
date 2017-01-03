@@ -1,11 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
 {
-    using System.ComponentModel;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
-    using SimpleInjector.Extensions;
-    using Container = SimpleInjector.Container;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class WebApiLoggingScaffolding : IScaffolding
     {
@@ -20,8 +16,8 @@
         {
             if (_diagnostics.EnableLogging)
             {
-                container.RegisterDecorator(typeof(IAuthenticationVerifier), typeof(LoggingAuthenticationVerifier), Lifestyle.Singleton);
-                container.RegisterDecorator(typeof(IAuthenticationTokenVerifier), typeof(LoggingAuthenticationTokenVerifier), Lifestyle.Singleton);
+                container.RegisterDecorator(typeof(IAuthenticationVerifier), typeof(LoggingAuthenticationVerifier));
+                container.RegisterDecorator(typeof(IAuthenticationTokenVerifier), typeof(LoggingAuthenticationTokenVerifier));
             }
         }
     }

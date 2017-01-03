@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
-    using SimpleInjector.Extensions;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class InfrastructureDebuggingScaffolding : IScaffolding
     {
@@ -19,7 +17,7 @@
         {
             if (_diagnostics.EnableDebugging) // diagnostics is enabled
             {
-                container.RegisterDecorator(typeof(IEntryRepository), typeof(DebuggingEntryRepositoryDecorator), Lifestyle.Singleton);
+                container.RegisterDecorator(typeof(IEntryRepository), typeof(DebuggingEntryRepositoryDecorator));
             }
         }
     }

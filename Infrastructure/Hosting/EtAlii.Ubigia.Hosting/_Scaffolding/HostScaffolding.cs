@@ -1,10 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class HostScaffolding : IScaffolding
     {
@@ -20,12 +19,12 @@
         {
             //var storage = _storageFactory.Create(_diagnostics);
             //var infrastructure = _infrastructureFactory.Create(storage, _diagnostics);
-            container.Register<IStorage>(() => _hostConfiguration.Storage, Lifestyle.Singleton);
-            container.Register<IInfrastructure>(() => _hostConfiguration.Infrastructure, Lifestyle.Singleton);
-            container.Register<IHostConfiguration>(() => _hostConfiguration, Lifestyle.Singleton);
+            container.Register<IStorage>(() => _hostConfiguration.Storage);
+            container.Register<IInfrastructure>(() => _hostConfiguration.Infrastructure);
+            container.Register<IHostConfiguration>(() => _hostConfiguration);
 
             //container.Register<ISerializer, Serializer>(Lifestyle.Singleton);
-            container.Register<ISerializer>(() => new SerializerFactory().Create(), Lifestyle.Singleton);
+            container.Register<ISerializer>(() => new SerializerFactory().Create());
         }
     }
 }
