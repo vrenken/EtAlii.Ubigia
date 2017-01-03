@@ -23,7 +23,7 @@
 
         private string _authenticationToken;
         private readonly string _hostIdentifier;
-        private readonly MediaTypeFormatter _formatter;
+        private readonly PayloadMediaTypeFormatter _formatter;
 
         public DefaultInfrastructureClient(IHttpClientFactory httpClientFactory)
         {
