@@ -14,16 +14,25 @@
 
         public MicroContainerDependencyResolver(Container container)
         {
+            var storageRepository = container.GetInstance<IStorageRepository>();
+            var accountRepository = container.GetInstance<IAccountRepository>();
+            var spaceRepository = container.GetInstance<ISpaceRepository>();
+            var entryRepository = container.GetInstance<IEntryRepository>();
+            var contentRepository = container.GetInstance<IContentRepository>();
+            var contentDefinitionRepository = container.GetInstance<IContentDefinitionRepository>();
+            var propertiesRepository = container.GetInstance<IPropertiesRepository>();
+            var rootRepository = container.GetInstance<IRootRepository>();
+
             _resolverSelector = new Selector<Type, Func<Type, object>>()
                 .Register(type => type == typeof(AuthenticateController), type => new AuthenticateController())
-                .Register(type => type == typeof(StorageController), type => new StorageController(container.GetInstance<IStorageRepository>()))
-                .Register(type => type == typeof(AccountController), type => new AccountController(container.GetInstance<IAccountRepository>()))
-                .Register(type => type == typeof(SpaceController), type => new SpaceController(container.GetInstance<ISpaceRepository>()))
-                .Register(type => type == typeof(EntryController), type => new EntryController(container.GetInstance<IEntryRepository>()))
-                .Register(type => type == typeof(ContentController), type => new ContentController(container.GetInstance<IContentRepository>()))
-                .Register(type => type == typeof(ContentDefinitionController), type => new ContentDefinitionController(container.GetInstance<IContentDefinitionRepository>()))
-                .Register(type => type == typeof(PropertiesController), type => new PropertiesController(container.GetInstance<IPropertiesRepository>()))
-                .Register(type => type == typeof(RootController), type => new RootController(container.GetInstance<IRootRepository>()))
+                .Register(type => type == typeof(StorageController), type => new StorageController(storageRepository))
+                .Register(type => type == typeof(AccountController), type => new AccountController(accountRepository))
+                .Register(type => type == typeof(SpaceController), type => new SpaceController(spaceRepository))
+                .Register(type => type == typeof(EntryController), type => new EntryController(entryRepository))
+                .Register(type => type == typeof(ContentController), type => new ContentController(contentRepository))
+                .Register(type => type == typeof(ContentDefinitionController), type => new ContentDefinitionController(contentDefinitionRepository))
+                .Register(type => type == typeof(PropertiesController), type => new PropertiesController(propertiesRepository))
+                .Register(type => type == typeof(RootController), type => new RootController(rootRepository))
                 // Additional registrations.
                 .Register(type => type == typeof(IdentifierBinder), type => new IdentifierBinder())
                 .Register(type => type == typeof(IdentifiersBinder), type => new IdentifiersBinder())
