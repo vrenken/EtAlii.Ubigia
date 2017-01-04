@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public static class IInfrastructureConfigurationAdminPortalExtension
+    public static class InfrastructureConfigurationAdminPortalExtension
     {
         public static IInfrastructureConfiguration UseWebApiAdminPortal(this IInfrastructureConfiguration configuration)
         {

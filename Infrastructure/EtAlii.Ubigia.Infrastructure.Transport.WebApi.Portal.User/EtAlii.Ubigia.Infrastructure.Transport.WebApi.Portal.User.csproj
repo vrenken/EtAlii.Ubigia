@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Home\Home.Controller.cs" />
-    <Compile Include="IInfrastructureConfiguration.UserPortal.cs" />
+    <Compile Include="InfrastructureConfiguration.UserPortal.cs" />
     <Compile Include="IUserPortalComponent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Google\PeopleApi\GooglePeopleApi.Controller.cs" />
