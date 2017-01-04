@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Infrastructure.Tests
             return configuration
                 .Use(extensions)
                 .Use(_webApiFactory.Create)
-                .Use(container => _signalRFactory.Create(signalRDependencyResolver))
+                .Use((container, components) => _signalRFactory.Create(signalRDependencyResolver, components))
                 .Use<TestInfrastructure>();
         }
     }

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;

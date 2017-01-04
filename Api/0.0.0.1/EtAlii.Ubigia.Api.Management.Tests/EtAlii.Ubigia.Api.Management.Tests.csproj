@@ -161,6 +161,14 @@
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj">
+      <Project>{dc7092f3-a8b0-47f8-9946-43969bdda9ca}</Project>
+      <Name>EtAlii.Ubigia.Provisioning.Google</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj">
+      <Project>{d0f4dd6b-eaaa-4ad8-888d-1f5106757ddf}</Project>
+      <Name>EtAlii.Ubigia.Provisioning.Microsoft.Graph</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
       <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
       <Name>EtAlii.Ubigia.Api.Functional</Name>

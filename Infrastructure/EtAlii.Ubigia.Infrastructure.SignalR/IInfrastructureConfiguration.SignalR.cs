@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure
             };
             return configuration
                 .Use(extensions)
-                .Use(container => new SignalRComponentManagerFactory().Create(signalRDependencyResolver));
+                .Use((container, components) => new SignalRComponentManagerFactory().Create(signalRDependencyResolver, components));
         }
     }
 }

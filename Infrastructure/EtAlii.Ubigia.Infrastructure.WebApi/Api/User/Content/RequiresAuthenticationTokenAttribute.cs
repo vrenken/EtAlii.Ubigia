@@ -4,7 +4,7 @@
     using System.Web.Http.Controllers;
     using System.Web.Http.Filters;
 
-    internal class RequiresAuthenticationTokenAttribute : ActionFilterAttribute
+    public class RequiresAuthenticationTokenAttribute : ActionFilterAttribute
     {
         private readonly string _requiredRole;
         private IAuthenticationTokenVerifier _verifier;

@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.SignalR
 
     public class SignalRComponentManagerFactory
     {
-        public ISignalRComponentManager Create(IDependencyResolver dependencyResolver)
+        public ISignalRComponentManager Create(IDependencyResolver dependencyResolver, object[] components)
         {
             var container = new Container();
             container.Register<ISignalRComponentManager, SignalRComponentManager>();

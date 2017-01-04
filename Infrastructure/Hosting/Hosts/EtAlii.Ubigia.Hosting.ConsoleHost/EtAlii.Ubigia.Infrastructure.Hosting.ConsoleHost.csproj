@@ -164,6 +164,22 @@
       <Project>{9e74d294-1af0-4df1-ae62-aaf97c89d342}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport.SignalR</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin.csproj">
+      <Project>{19ba706c-99d1-4b9f-b69c-0fc2c566659c}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User.csproj">
+      <Project>{31311bea-1612-45f5-ae98-6ba4cae3ab1b}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin.csproj">
+      <Project>{c4cb9d89-90fd-4f75-ad6f-73c33652e2f8}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User.csproj">
+      <Project>{23d517b8-018c-4889-a9f7-9f7934e0560e}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
       <Project>{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Hosting</Name>

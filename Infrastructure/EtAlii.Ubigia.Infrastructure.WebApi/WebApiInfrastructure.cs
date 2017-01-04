@@ -48,7 +48,7 @@
             base.Start();
 
             _componentManagers = Configuration.ComponentManagerFactories
-                .Select(componentManagerFactory => componentManagerFactory(_container))
+                .Select(componentManagerFactory => componentManagerFactory(_container, Configuration.Components))
                 .Cast<IComponentManager>()
                 .ToArray();
 

@@ -63,8 +63,8 @@
                 // between the host/infrastructure and the unit tests.
                 //.UseTestInfrastructure(infrastructureDiagnostics)
                 .UseWebApi(diagnostics)
-                .UseWebApiAdminPortal()
-                .UseWebApiUserPortal()
+                //.UseWebApiAdminPortal()
+                //.UseWebApiUserPortal()
                 .UseSignalR()
                 .Use(logicalContext);
             var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
