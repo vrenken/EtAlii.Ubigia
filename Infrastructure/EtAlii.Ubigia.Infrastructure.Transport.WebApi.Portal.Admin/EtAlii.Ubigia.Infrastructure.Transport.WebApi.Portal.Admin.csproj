@@ -133,7 +133,7 @@
     <Compile Include="AdminPortalInfrastructureExtension.cs" />
     <Compile Include="Home\Home.Controller.cs" />
     <Compile Include="IAdminPortalComponent.cs" />
-    <Compile Include="IInfrastructureConfiguration.AdminPortal.cs" />
+    <Compile Include="InfrastructureConfiguration.AdminPortal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Google\PeopleApi\GooglePeopleApi.Controller.cs" />
     <Compile Include="Settings\Microsoft\Graph\MicrosoftGraph.Controller.cs" />
