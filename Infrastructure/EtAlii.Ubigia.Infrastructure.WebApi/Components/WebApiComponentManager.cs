@@ -5,8 +5,6 @@
     using System.Net;
     using System.Web.Http;
     using Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.User;
     using Owin;
 
     public partial class WebApiComponentManager : IWebApiComponentManager
@@ -16,24 +14,18 @@
 
         private HttpListener _httpListener;
 
-        public WebApiComponentManager(
-            HttpConfiguration httpConfiguration,
-            IUserPortalComponent userPortalComponent,
-            //IWebApiUserApiComponent webApiUserApiComponent,
-            IAdminPortalComponent adminPortalComponent//,
-            //IWebApiAdminApiComponent webApiAdminApiComponent
-            )
+        public WebApiComponentManager(HttpConfiguration httpConfiguration, IComponent[] components)
         {
             _httpConfiguration = httpConfiguration;
 
-            _components = new IComponent[]
-            {
-                userPortalComponent,
-                //webApiUserApiComponent,
+            _components = components;//new IComponent[]
+            //{
+            //    userPortalComponent,
+            //    //webApiUserApiComponent,
 
-                adminPortalComponent,
-                //webApiAdminApiComponent,
-            };
+            //    adminPortalComponent,
+            //    //webApiAdminApiComponent,
+            //};
         }
 
         public void Start(object iAppBuilder)

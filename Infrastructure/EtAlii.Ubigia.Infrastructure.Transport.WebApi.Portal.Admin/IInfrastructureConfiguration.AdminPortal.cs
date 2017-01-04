@@ -11,7 +11,8 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
                 new AdminPortalInfrastructureExtension(configuration),  
             };
             return configuration
-                .Use(extensions);
+                .Use(extensions)
+                .UseComponents(new AdminPortalComponent());
                 //.Use<WebApiInfrastructure>();
         }
     }

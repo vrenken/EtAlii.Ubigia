@@ -11,7 +11,8 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
                 new UserPortalInfrastructureExtension(configuration) 
             };
             return configuration
-                .Use(extensions);
+                .Use(extensions)
+                .UseComponents(new UserPortalComponent());
         }
     }
 }

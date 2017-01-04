@@ -26,8 +26,11 @@
         public string Password { get { return _password; } }
         private string _password;
 
-        public Func<Container, object>[] ComponentManagerFactories { get { return _componentManagerFactories; } }
-        private Func<Container, object>[] _componentManagerFactories;
+        public Func<Container, object[], object>[] ComponentManagerFactories { get { return _componentManagerFactories; } }
+        private Func<Container, object[], object>[] _componentManagerFactories;
+
+        public object[] Components { get { return _components; } }
+        private object[] _components;
 
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get { return _systemConnectionCreationProxy; } }
         private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
@@ -38,7 +41,8 @@
         {
             _extensions = new IInfrastructureExtension[0];
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
-            _componentManagerFactories = new Func<Container, object>[0];
+            _componentManagerFactories = new Func<Container, object[], object>[0];
+            _components = new object[0];
         }
 
         public IInfrastructure GetInfrastructure(Container container)
@@ -60,7 +64,7 @@
             return this;
         }
 
-        public IInfrastructureConfiguration Use(Func<Container, object> componentManagerFactory)
+        public IInfrastructureConfiguration Use(Func<Container, object[], object> componentManagerFactory)
         {
             if (componentManagerFactory == null)
             {
@@ -68,7 +72,21 @@
             }
 
             _componentManagerFactories = _componentManagerFactories
-                .Concat(new [] { componentManagerFactory })
+                .Concat(new[] { componentManagerFactory })
+                .Distinct()
+                .ToArray();
+            return this;
+        }
+
+        public IInfrastructureConfiguration UseComponents(object component)
+        {
+            if (component == null)
+            {
+                throw new ArgumentException(nameof(component));
+            }
+
+            _components = _components
+                .Concat(new[] { component })
                 .Distinct()
                 .ToArray();
             return this;

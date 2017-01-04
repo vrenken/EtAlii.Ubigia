@@ -159,6 +159,30 @@
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin.csproj">
+      <Project>{19ba706c-99d1-4b9f-b69c-0fc2c566659c}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User.csproj">
+      <Project>{31311bea-1612-45f5-ae98-6ba4cae3ab1b}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin.csproj">
+      <Project>{c4cb9d89-90fd-4f75-ad6f-73c33652e2f8}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User.csproj">
+      <Project>{23d517b8-018c-4889-a9f7-9f7934e0560e}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj">
+      <Project>{dc7092f3-a8b0-47f8-9946-43969bdda9ca}</Project>
+      <Name>EtAlii.Ubigia.Provisioning.Google</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj">
+      <Project>{d0f4dd6b-eaaa-4ad8-888d-1f5106757ddf}</Project>
+      <Name>EtAlii.Ubigia.Provisioning.Microsoft.Graph</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
       <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
       <Name>EtAlii.Ubigia.Api.Diagnostics</Name>
