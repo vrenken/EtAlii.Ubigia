@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Win32.Tests
 {
     using System;
-    using EtAlii.xTechnology.Logging;
     using System.Linq;
     using System.Reflection;
 
