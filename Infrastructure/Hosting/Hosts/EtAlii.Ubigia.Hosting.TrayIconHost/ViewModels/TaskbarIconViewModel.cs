@@ -54,8 +54,14 @@
             _storageBrowserCommand = new RelayCommand(o => StartStorageBrowser());
             _spaceBrowserCommand = new RelayCommand(o => StartSpaceBrowser());
 
-            _openAdminPortalCommand = new RelayCommand(o => Process.Start(new ProcessStartInfo(_host.Infrastructure.Configuration.Address + "/Admin") { UseShellExecute = true }));
-            _openUserPortalCommand = new RelayCommand(o => Process.Start(new ProcessStartInfo(_host.Infrastructure.Configuration.Address + "/User") { UseShellExecute = true }));
+            _openAdminPortalCommand = new RelayCommand(o => BrowseTo("/Admin"));
+            _openUserPortalCommand = new RelayCommand(o => BrowseTo("/"));
+        }
+
+        private void BrowseTo(string relativeAddress)
+        {
+            var hostAddress = _host.Infrastructure.Configuration.Address.Replace("+", "localhost");
+            Process.Start(new ProcessStartInfo(hostAddress + relativeAddress) {UseShellExecute = true});
         }
 
         public void Initialize(ITrayIconHost host)
