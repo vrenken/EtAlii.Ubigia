@@ -1,7 +1,6 @@
-namespace EtAlii.Ubigia.Infrastructure
+namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.SignalR;
     using Microsoft.AspNet.SignalR;
 
     public static class IInfrastructureConfigurationSignalRExtension
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Infrastructure
             };
             return configuration
                 .Use(extensions)
-                .Use((container, components) => new SignalRComponentManagerFactory().Create(signalRDependencyResolver, components));
+                .Use((container, componentFactories) => new SignalRComponentManagerFactory().Create(signalRDependencyResolver, componentFactories));
         }
     }
 }

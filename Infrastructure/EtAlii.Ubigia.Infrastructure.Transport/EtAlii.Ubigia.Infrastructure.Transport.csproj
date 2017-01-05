@@ -132,6 +132,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\IAuthenticationTokenConverter.cs" />
+    <Compile Include="Authentication\_Model\AuthenticationToken.cs" />
     <Compile Include="IComponentManager.cs" />
     <Compile Include="ISystemSpaceConnection.cs" />
     <Compile Include="ISystemStorageConnection.cs" />

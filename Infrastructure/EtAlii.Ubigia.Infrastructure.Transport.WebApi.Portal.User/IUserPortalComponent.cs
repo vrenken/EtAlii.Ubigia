@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
 {
-    public interface IUserPortalComponent : IComponent
+    public interface IUserPortalComponent : IWebApiComponent
     {
     }
 }

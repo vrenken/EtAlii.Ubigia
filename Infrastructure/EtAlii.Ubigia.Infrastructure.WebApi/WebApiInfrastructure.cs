@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -48,7 +48,7 @@
             base.Start();
 
             _componentManagers = Configuration.ComponentManagerFactories
-                .Select(componentManagerFactory => componentManagerFactory(_container, Configuration.Components))
+                .Select(componentManagerFactory => componentManagerFactory(_container, Configuration.ComponentFactories))
                 .Cast<IComponentManager>()
                 .ToArray();
 

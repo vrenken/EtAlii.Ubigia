@@ -1,8 +1,8 @@
 namespace EtAlii.Ubigia.Infrastructure.Tests
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.SignalR;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi;
     using EtAlii.xTechnology.Diagnostics;
     using Microsoft.AspNet.SignalR;
     using EtAlii.xTechnology.MicroContainer;

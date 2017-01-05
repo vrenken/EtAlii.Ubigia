@@ -1,7 +1,5 @@
-namespace EtAlii.Ubigia.Infrastructure.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
-    using EtAlii.Ubigia.Infrastructure.WebApi;
-
     public interface ISignalRAdminApiComponent : IComponent
     {
     }

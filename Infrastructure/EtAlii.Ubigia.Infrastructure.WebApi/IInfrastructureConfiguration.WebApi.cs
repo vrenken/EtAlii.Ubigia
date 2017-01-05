@@ -1,7 +1,6 @@
-namespace EtAlii.Ubigia.Infrastructure
+namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
 
     public static class IInfrastructureConfigurationWebApiExtension
     {

@@ -26,11 +26,11 @@
         public string Password { get { return _password; } }
         private string _password;
 
-        public Func<Container, object[], object>[] ComponentManagerFactories { get { return _componentManagerFactories; } }
-        private Func<Container, object[], object>[] _componentManagerFactories;
+        public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get { return _componentManagerFactories; } }
+        private Func<Container, Func<Container, object>[], object>[] _componentManagerFactories;
 
-        public object[] Components { get { return _components; } }
-        private object[] _components;
+        public Func<Container, object>[] ComponentFactories { get { return _componentFactories; } }
+        private Func<Container, object>[] _componentFactories;
 
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get { return _systemConnectionCreationProxy; } }
         private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
@@ -41,8 +41,8 @@
         {
             _extensions = new IInfrastructureExtension[0];
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
-            _componentManagerFactories = new Func<Container, object[], object>[0];
-            _components = new object[0];
+            _componentManagerFactories = new Func<Container, Func<Container, object>[], object>[0];
+            _componentFactories = new Func<Container, object>[0];
         }
 
         public IInfrastructure GetInfrastructure(Container container)
@@ -64,7 +64,7 @@
             return this;
         }
 
-        public IInfrastructureConfiguration Use(Func<Container, object[], object> componentManagerFactory)
+        public IInfrastructureConfiguration Use(Func<Container, Func<Container, object>[], object> componentManagerFactory)
         {
             if (componentManagerFactory == null)
             {
@@ -78,17 +78,20 @@
             return this;
         }
 
-        public IInfrastructureConfiguration UseComponents(object component)
+        public IInfrastructureConfiguration Use<TComponentInterface, TComponent>()
+            where TComponent: class, TComponentInterface
         {
-            if (component == null)
-            {
-                throw new ArgumentException(nameof(component));
-            }
-
-            _components = _components
-                .Concat(new[] { component })
+            _componentFactories = _componentFactories
+                .Concat(new[] {
+                    new Func<Container, object>((container) =>
+                    {
+                        container.Register<TComponentInterface, TComponent>();
+                        return container.GetInstance<TComponentInterface>();
+                    })
+                })
                 .Distinct()
                 .ToArray();
+
             return this;
         }
 

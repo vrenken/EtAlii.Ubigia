@@ -1,7 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.SignalR
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
     using System.Linq;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
     using Owin;
 
     public partial class SignalRComponentManager : ISignalRComponentManager

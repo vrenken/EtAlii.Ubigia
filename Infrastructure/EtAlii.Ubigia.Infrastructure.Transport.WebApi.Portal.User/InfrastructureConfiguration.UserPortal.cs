@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
+namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
             };
             return configuration
                 .Use(extensions)
-                .UseComponents(new UserPortalComponent());
+                .Use<IUserPortalComponent, UserPortalComponent>();
         }
     }
 }

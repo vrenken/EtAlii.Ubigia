@@ -4,8 +4,10 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Tests;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.User;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.InMemory;
     using EtAlii.xTechnology.Diagnostics;
@@ -38,7 +40,9 @@
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
                 .UseTestInfrastructure(diagnostics)
+                .UseWebApiAdminApi()
                 .UseWebApiAdminPortal()
+                .UseWebApiUserApi()
                 .UseWebApiUserPortal()
                 .Use(diagnostics)
                 .Use(logicalContext);

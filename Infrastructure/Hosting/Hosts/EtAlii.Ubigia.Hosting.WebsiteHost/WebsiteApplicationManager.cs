@@ -1,11 +1,7 @@
-﻿using EtAlii.Ubigia.Infrastructure.Hosting;
-using Microsoft.Owin;
-
-[assembly: OwinStartup(typeof(Startup))]
-
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.Ubigia.Infrastructure.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi;
     using global::Owin;
 
     public class WebsiteApplicationManager : IApplicationManager

@@ -1,5 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
 {
+    using System;
     using Microsoft.Owin.FileSystems;
     using Microsoft.Owin.StaticFiles;
     using Owin;
@@ -24,6 +25,12 @@
         public void Stop()
         {
             //throw new System.NotImplementedException();
+        }
+
+        public bool TryGetService(Type serviceType, out object serviceInstance)
+        {
+            serviceInstance = null;
+            return false;
         }
     }
 }

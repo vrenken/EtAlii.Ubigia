@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.SignalR
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
     using EtAlii.Ubigia.Api.Transport;
     using Microsoft.AspNet.SignalR;

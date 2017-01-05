@@ -1,11 +1,12 @@
-namespace EtAlii.Ubigia.Infrastructure.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
+    using System;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.AspNet.SignalR;
 
     public class SignalRComponentManagerFactory
     {
-        public ISignalRComponentManager Create(IDependencyResolver dependencyResolver, object[] components)
+        public ISignalRComponentManager Create(IDependencyResolver dependencyResolver, Func<Container, object>[] components)
         {
             var container = new Container();
             container.Register<ISignalRComponentManager, SignalRComponentManager>();

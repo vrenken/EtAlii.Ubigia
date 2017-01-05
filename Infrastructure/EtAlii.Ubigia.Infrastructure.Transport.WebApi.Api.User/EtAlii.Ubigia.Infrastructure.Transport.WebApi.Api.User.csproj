@@ -126,7 +126,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContentDefinition\ContentDefinitionController.cs" />
+    <Compile Include="Content\ContentController.cs" />
+    <Compile Include="Content\RequiresAuthenticationTokenAttribute.cs" />
+    <Compile Include="Entries\EntryController.cs" />
+    <Compile Include="Entries\EntryController.Get.cs" />
+    <Compile Include="Entries\EntryController.Post.cs" />
+    <Compile Include="Entries\EntryController.Put.cs" />
+    <Compile Include="InfrastructureConfiguration.UserApi.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties_\PropertiesController.cs" />
+    <Compile Include="Roots\RootController.cs" />
+    <Compile Include="UserApiInfrastructureExtension.cs" />
+    <Compile Include="IUserApiComponent.cs" />
+    <Compile Include="UserApiComponent.cs" />
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
@@ -183,7 +196,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="_Scaffolding\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

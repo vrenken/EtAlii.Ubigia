@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
+namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin
 {
     using System.Net.Http;
     using System.Web.Http.Controllers;
