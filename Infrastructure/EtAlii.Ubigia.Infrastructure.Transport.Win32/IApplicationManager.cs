@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     public interface IApplicationManager
     {

@@ -130,7 +130,9 @@
     <Compile Include="Authentication\AuthenticationTokenConverter.cs" />
     <Compile Include="Authentication\AuthenticationTokenConverter.Extension.cs" />
     <Compile Include="Components\IComponent.cs" />
+    <Compile Include="IApplicationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Win32Infrastructure.cs" />
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
