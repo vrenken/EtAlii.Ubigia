@@ -203,6 +203,10 @@
       <Project>{23d517b8-018c-4889-a9f7-9f7934e0560e}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Win32.csproj">
+      <Project>{32a87373-0be2-4061-9649-a739792cb0ee}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Win32</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
       <Project>{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Hosting</Name>
