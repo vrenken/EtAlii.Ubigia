@@ -1,18 +1,17 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class WebApiInfrastructure : InfrastructureBase
+    public class Win32Infrastructure : InfrastructureBase
     {
         private readonly Container _container;
         private IComponentManager[] _componentManagers;
         private readonly IApplicationManager _applicationManager;
 
-        public WebApiInfrastructure(
+        public Win32Infrastructure(
             IApplicationManager applicationManager,
             Container container,
             IInfrastructureConfiguration configuration,
