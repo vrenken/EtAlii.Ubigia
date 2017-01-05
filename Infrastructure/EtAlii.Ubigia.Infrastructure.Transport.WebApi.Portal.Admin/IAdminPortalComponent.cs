@@ -1,6 +1,6 @@
-namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
+namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin
 {
-    public interface IAdminPortalComponent : IComponent
+    public interface IAdminPortalComponent : IWebApiComponent
     {
     }
 }

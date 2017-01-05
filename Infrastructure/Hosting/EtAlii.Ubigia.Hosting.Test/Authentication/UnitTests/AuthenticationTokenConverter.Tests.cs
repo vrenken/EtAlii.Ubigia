@@ -5,7 +5,7 @@
     using Newtonsoft.Json;
     using System;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport;
 
     
     public class AuthenticationTokenConverter_Tests

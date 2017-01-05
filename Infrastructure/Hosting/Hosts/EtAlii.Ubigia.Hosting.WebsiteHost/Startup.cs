@@ -11,9 +11,12 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.User;
+    using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User;
     using EtAlii.xTechnology.Diagnostics;
     using global::Owin;
 
@@ -48,7 +51,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
                 .UseWebApi(diagnostics, applicationManager) // TODO: Web API usage should also be configured in the configuration section.
+                .UseWebApiAdminApi()
                 .UseWebApiAdminPortal()
+                .UseWebApiUserApi()
                 .UseWebApiUserPortal()
                 .UseSignalR()
                 .Use(logicalContext);

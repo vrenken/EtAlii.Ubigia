@@ -12,9 +12,10 @@
     using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin;
-    using EtAlii.Ubigia.Infrastructure.WebApi.Portal.User;
+    using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.InMemory;
     using EtAlii.xTechnology.Diagnostics;
@@ -63,8 +64,8 @@
                 // between the host/infrastructure and the unit tests.
                 //.UseTestInfrastructure(infrastructureDiagnostics)
                 .UseWebApi(diagnostics)
-                //.UseWebApiAdminPortal()
-                //.UseWebApiUserPortal()
+                .UseWebApiAdminApi()
+                .UseWebApiUserApi()
                 .UseSignalR()
                 .Use(logicalContext);
             var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);

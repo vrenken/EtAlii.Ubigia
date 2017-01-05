@@ -3,7 +3,6 @@
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
     using System;
-    using EtAlii.Ubigia.Infrastructure.WebApi;
 
     
     public class Aes_Test

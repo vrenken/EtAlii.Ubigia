@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.User
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;

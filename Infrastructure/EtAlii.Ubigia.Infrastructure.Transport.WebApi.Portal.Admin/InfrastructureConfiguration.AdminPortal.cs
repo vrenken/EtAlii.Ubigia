@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
+namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.WebApi.Portal.Admin
             };
             return configuration
                 .Use(extensions)
-                .UseComponents(new AdminPortalComponent());
+                .Use<IAdminPortalComponent, AdminPortalComponent>();
                 //.Use<WebApiInfrastructure>();
         }
     }

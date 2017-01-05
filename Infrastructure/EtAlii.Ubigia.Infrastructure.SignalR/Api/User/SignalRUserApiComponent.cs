@@ -1,5 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.SignalR
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
+    using System;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using Microsoft.AspNet.SignalR;
     using Microsoft.Owin.Cors;
@@ -41,6 +42,12 @@
         public void Stop()
         {
             //throw new System.NotImplementedException();
+        }
+
+        public bool TryGetService(Type serviceType, out object serviceInstance)
+        {
+            serviceInstance = null;
+            return false;
         }
     }
 }

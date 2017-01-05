@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;

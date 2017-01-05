@@ -777,6 +777,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User.csproj", "{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Win32", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Win32.csproj", "{32A87373-0BE2-4061-9649-A739792CB0EE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{1704c757-6b9c-486a-8155-62250033a2c3}*SharedItemsImports = 4
@@ -5484,6 +5486,56 @@ Global
 		{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B}.Trial|x64.Build.0 = Release|Any CPU
 		{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B}.Trial|x86.ActiveCfg = Release|Any CPU
 		{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B}.Trial|x86.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|ARM.Build.0 = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|Compact.ActiveCfg = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|Compact.Build.0 = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|x64.Build.0 = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Debug|x86.Build.0 = Debug|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|Any CPU.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|Any CPU.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|ARM.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|ARM.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|Compact.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|Compact.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|x64.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|x64.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|x86.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.MailSystem Dev|x86.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|ARM.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|Compact.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|Compact.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|x64.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|x64.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|x86.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Release|x86.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|Any CPU.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|Any CPU.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|ARM.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|ARM.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|Compact.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|Compact.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|x64.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|x64.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|x86.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Retail|x86.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|Any CPU.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|Any CPU.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|ARM.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|ARM.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|Compact.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|Compact.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|x64.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|x64.Build.0 = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|x86.ActiveCfg = Release|Any CPU
+		{32A87373-0BE2-4061-9649-A739792CB0EE}.Trial|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -5650,9 +5702,10 @@ Global
 		{23D517B8-018C-4889-A9F7-9F7934E0560E} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
 		{19BA706C-99D1-4B9F-B69C-0FC2C566659C} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
 		{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
+		{32A87373-0BE2-4061-9649-A739792CB0EE} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
 	EndGlobalSection
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 116
+		SccNumberOfProjects = 117
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://vrenken.visualstudio.com/defaultcollection
 		SccLocalPath0 = .
@@ -6116,5 +6169,9 @@ Global
 		SccProjectTopLevelParentUniqueName115 = EtAlii.Ubigia.sln
 		SccProjectName115 = Infrastructure/EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User
 		SccLocalPath115 = Infrastructure\\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User
+		SccProjectUniqueName116 = Infrastructure\\EtAlii.Ubigia.Infrastructure.Transport.Win32\\EtAlii.Ubigia.Infrastructure.Transport.Win32.csproj
+		SccProjectTopLevelParentUniqueName116 = EtAlii.Ubigia.sln
+		SccProjectName116 = Infrastructure/EtAlii.Ubigia.Infrastructure.Transport.Win32
+		SccLocalPath116 = Infrastructure\\EtAlii.Ubigia.Infrastructure.Transport.Win32
 	EndGlobalSection
 EndGlobal

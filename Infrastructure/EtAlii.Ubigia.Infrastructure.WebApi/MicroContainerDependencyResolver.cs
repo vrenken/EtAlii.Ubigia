@@ -1,38 +1,22 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http.Dependencies;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Structure;
 
     public class MicroContainerDependencyResolver : IDependencyResolver
     {
+        private readonly IWebApiComponent[] _components;
         private readonly ISelector<Type, Func<Type, object>> _resolverSelector;
 
-        public MicroContainerDependencyResolver(Container container)
+        public MicroContainerDependencyResolver(Container container, IWebApiComponent[] components)
         {
-            var storageRepository = container.GetInstance<IStorageRepository>();
-            var accountRepository = container.GetInstance<IAccountRepository>();
-            var spaceRepository = container.GetInstance<ISpaceRepository>();
-            var entryRepository = container.GetInstance<IEntryRepository>();
-            var contentRepository = container.GetInstance<IContentRepository>();
-            var contentDefinitionRepository = container.GetInstance<IContentDefinitionRepository>();
-            var propertiesRepository = container.GetInstance<IPropertiesRepository>();
-            var rootRepository = container.GetInstance<IRootRepository>();
-
+            _components = components;
             _resolverSelector = new Selector<Type, Func<Type, object>>()
                 .Register(type => type == typeof(AuthenticateController), type => new AuthenticateController())
-                .Register(type => type == typeof(StorageController), type => new StorageController(storageRepository))
-                .Register(type => type == typeof(AccountController), type => new AccountController(accountRepository))
-                .Register(type => type == typeof(SpaceController), type => new SpaceController(spaceRepository))
-                .Register(type => type == typeof(EntryController), type => new EntryController(entryRepository))
-                .Register(type => type == typeof(ContentController), type => new ContentController(contentRepository))
-                .Register(type => type == typeof(ContentDefinitionController), type => new ContentDefinitionController(contentDefinitionRepository))
-                .Register(type => type == typeof(PropertiesController), type => new PropertiesController(propertiesRepository))
-                .Register(type => type == typeof(RootController), type => new RootController(rootRepository))
                 // Additional registrations.
                 .Register(type => type == typeof(IdentifierBinder), type => new IdentifierBinder())
                 .Register(type => type == typeof(IdentifiersBinder), type => new IdentifiersBinder())
@@ -47,6 +31,17 @@
 
         public object GetService(Type serviceType)
         {
+            // First check if any of the components is aware of a service.
+            foreach (var component in _components)
+            {
+                object serviceInstance;
+                if (component.TryGetService(serviceType, out serviceInstance))
+                {
+                    return serviceInstance;
+                }
+            }
+
+            // Nope, probably basic classes. Let's handle them ourselves.
             var resolver = _resolverSelector.Select(serviceType);
             return resolver(serviceType);
         }

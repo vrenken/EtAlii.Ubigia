@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
 {
     using System;
     using System.Net;

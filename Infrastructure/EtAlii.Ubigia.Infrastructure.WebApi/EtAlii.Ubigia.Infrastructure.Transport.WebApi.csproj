@@ -7,8 +7,8 @@
     <ProjectGuid>{7C020A57-0746-46E3-8F98-39C76FA37A3B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.WebApi</RootNamespace>
-    <AssemblyName>EtAlii.Ubigia.Infrastructure.WebApi</AssemblyName>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.WebApi</RootNamespace>
+    <AssemblyName>EtAlii.Ubigia.Infrastructure.Transport.WebApi</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -126,54 +126,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\AuthenticateController.cs" />
+    <Compile Include="Authentication\RequiresAuthenticationAttribute.cs" />
+    <Compile Include="Authentication\RequiresAuthenticationTokenAttribute.cs" />
+    <Compile Include="Authentication\Verification\AuthenticationTokenVerifier.cs" />
+    <Compile Include="Authentication\Verification\AuthenticationVerifier.cs" />
+    <Compile Include="Authentication\Verification\DefaultAuthenticationIdentityProvider.cs" />
+    <Compile Include="Authentication\Verification\IAuthenticationIdentityProvider.cs" />
+    <Compile Include="Authentication\Verification\IAuthenticationTokenVerifier.cs" />
+    <Compile Include="Authentication\Verification\IAuthenticationVerifier.cs" />
+    <Compile Include="IdentifierBinder.cs" />
+    <Compile Include="IdentifiersBinder.cs" />
     <Compile Include="MicroContainerDependencyResolver.cs" />
     <Compile Include="Components\IWebApiComponentManager.cs" />
-    <Compile Include="Api\Admin\__IWebApiAdminApiComponent.cs" />
-    <Compile Include="Api\Admin\__WebApiAdminApiComponent.cs" />
-    <Compile Include="Api\Admin\_Scaffolding\__WebApiAdminApiScaffolding.cs" />
-    <Compile Include="Api\_Scaffolding\WebApiApiScaffolding.cs" />
+    <Compile Include="_Scaffolding\WebApiApiScaffolding.cs" />
     <Compile Include="CacheWebApiAttribute.cs" />
-    <Compile Include="Authentication\Aes.cs" />
-    <Compile Include="Api\User\Authentication\AuthenticateController.cs" />
     <Compile Include="Authentication\AuthenticationIdentity.cs" />
-    <Compile Include="Authentication\AuthenticationToken.cs" />
-    <Compile Include="Authentication\AuthenticationTokenConverter.cs" />
-    <Compile Include="Api\User\Authentication\Verification\AuthenticationTokenVerifier.cs" />
-    <Compile Include="Api\User\Authentication\Verification\AuthenticationVerifier.cs" />
-    <Compile Include="Api\User\Authentication\Verification\DefaultAuthenticationIdentityProvider.cs" />
     <Compile Include="Authentication\HttpsAttribute.cs" />
-    <Compile Include="Api\User\Authentication\Verification\IAuthenticationIdentityProvider.cs" />
-    <Compile Include="Authentication\IAuthenticationTokenConverter.cs" />
-    <Compile Include="Api\User\Authentication\Verification\IAuthenticationTokenVerifier.cs" />
-    <Compile Include="Api\User\Authentication\Verification\IAuthenticationVerifier.cs" />
-    <Compile Include="Api\User\Authentication\RequiresAuthenticationAttribute.cs" />
-    <Compile Include="Api\User\Content\RequiresAuthenticationTokenAttribute.cs" />
-    <Compile Include="Api\User\__WebApiUserApiComponent.cs" />
     <Compile Include="Components\WebApiComponentManagerFactory.cs" />
     <Compile Include="Components\WebApiComponentManager.cs" />
-    <Compile Include="Api\User\__IWebApiUserApiComponent.cs" />
-    <Compile Include="Components\IComponent.cs" />
-    <Compile Include="Api\User\ContentDefinition\ContentDefinitionController.cs" />
-    <Compile Include="Api\User\Content\ContentController.cs" />
+    <Compile Include="Components\IWebApiComponent.cs" />
     <Compile Include="WebApiInfrastructureExtension.cs" />
-    <Compile Include="Api\User\Entries\EntryController.cs" />
-    <Compile Include="Api\User\Entries\EntryController.Get.cs" />
-    <Compile Include="Api\User\Entries\EntryController.Post.cs" />
-    <Compile Include="Api\User\Entries\EntryController.Put.cs" />
     <Compile Include="IInfrastructureConfiguration.WebApi.cs" />
-    <Compile Include="Api\User\Properties\PropertiesController.cs" />
-    <Compile Include="Api\User\Roots\RootController.cs" />
     <Compile Include="DefaultApplicationManager.cs" />
     <Compile Include="IApplicationManager.cs" />
-    <Compile Include="Api\User\IdentifierBinder.cs" />
-    <Compile Include="Api\User\IdentifiersBinder.cs" />
     <Compile Include="InfrastructureConfigurationSection.cs" />
-    <Compile Include="Api\Admin\Accounts\AccountController.cs" />
-    <Compile Include="Api\Admin\Spaces\SpaceController.cs" />
-    <Compile Include="Api\Admin\Storages\StorageController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiInfrastructure.cs" />
-    <Compile Include="Api\User\_Scaffolding\_WebApiUserApiScaffolding.cs" />
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
@@ -192,6 +171,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj">
       <Project>{0AA11597-8A46-4261-9D62-F0073A4F9F2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Logical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Win32.csproj">
+      <Project>{32a87373-0be2-4061-9649-a739792cb0ee}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Win32</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
       <Project>{D10B55FE-5603-43A9-B25F-E2C290C6A830}</Project>
@@ -227,9 +210,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Portal\Admin\" />
-    <Folder Include="Portal\User\" />
-    <Folder Include="_Scaffolding\" />
+    <Folder Include="Api\Admin\" />
+    <Folder Include="Api\User\" />
+    <Folder Include="Api\_Scaffolding\" />
+    <Folder Include="Authentication\Authentication\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

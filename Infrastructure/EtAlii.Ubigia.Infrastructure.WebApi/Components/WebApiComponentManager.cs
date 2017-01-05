@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
 {
     using System.Diagnostics;
     using System.Linq;
@@ -10,22 +10,14 @@
     public partial class WebApiComponentManager : IWebApiComponentManager
     {
         private readonly HttpConfiguration _httpConfiguration;
-        private readonly IComponent[] _components;
+        private readonly IWebApiComponent[] _components;
 
         private HttpListener _httpListener;
 
-        public WebApiComponentManager(HttpConfiguration httpConfiguration, IComponent[] components)
+        public WebApiComponentManager(HttpConfiguration httpConfiguration, IWebApiComponent[] components)
         {
             _httpConfiguration = httpConfiguration;
-
-            _components = components;//new IComponent[]
-            //{
-            //    userPortalComponent,
-            //    //webApiUserApiComponent,
-
-            //    adminPortalComponent,
-            //    //webApiAdminApiComponent,
-            //};
+            _components = components;
         }
 
         public void Start(object iAppBuilder)

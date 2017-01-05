@@ -1,10 +1,7 @@
-namespace EtAlii.Ubigia.Infrastructure.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
 {
-    using System;
-    using System.Diagnostics;
     using System.IO;
     using System.Reflection;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Microsoft.AspNet.SignalR.Hubs;
     using Microsoft.AspNet.SignalR.Json;

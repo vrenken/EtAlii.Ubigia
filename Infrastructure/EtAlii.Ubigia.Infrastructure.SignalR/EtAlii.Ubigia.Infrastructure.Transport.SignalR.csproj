@@ -135,6 +135,10 @@
       <Project>{0aa11597-8a46-4261-9d62-f0073a4f9f2a}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Logical</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Win32.csproj">
+      <Project>{32a87373-0be2-4061-9649-a739792cb0ee}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Win32</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
       <Project>{d10b55fe-5603-43a9-b25f-e2c290c6a830}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport</Name>

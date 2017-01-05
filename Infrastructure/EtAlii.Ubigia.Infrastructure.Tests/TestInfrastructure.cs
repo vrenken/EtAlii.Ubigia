@@ -99,7 +99,7 @@
             _logger.Info("Starting test infrastructure hosting");
 
             _componentManagers = _configuration.ComponentManagerFactories
-                .Select(componentManagerFactory => componentManagerFactory(_container, _configuration.Components))
+                .Select(componentManagerFactory => componentManagerFactory(_container, _configuration.ComponentFactories))
                 .Cast<IComponentManager>()
                 .ToArray();
 
