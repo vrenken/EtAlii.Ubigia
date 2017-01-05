@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
+namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
             return configuration
                 .Use(extensions)
                 .Use(new WebApiComponentManagerFactory().Create)
-                .Use<Win32Infrastructure>();
+                .Use<OwinInfrastructure>();
         }
     }
 }

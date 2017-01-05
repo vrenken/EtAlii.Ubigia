@@ -1,6 +1,7 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User
 {
     using System;
+    using global::Owin;
     using Microsoft.Owin.FileSystems;
     using Microsoft.Owin.StaticFiles;
     using Owin;
@@ -16,7 +17,7 @@
             application.UseFileServer(new FileServerOptions
             {
                 DefaultFilesOptions = { DefaultFileNames = new[] { "Default.html" } },
-                FileSystem = new EmbeddedResourceFileSystem("EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User"),
+                FileSystem = new EmbeddedResourceFileSystem("EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User"),
                 //RequestPath = new PathString("/User"),
                 StaticFileOptions = { ServeUnknownFileTypes = true }
             });

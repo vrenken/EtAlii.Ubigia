@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin
 {
     using System;
     using System.Collections.Generic;

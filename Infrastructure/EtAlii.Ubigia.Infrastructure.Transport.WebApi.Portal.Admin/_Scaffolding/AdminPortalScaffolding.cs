@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;

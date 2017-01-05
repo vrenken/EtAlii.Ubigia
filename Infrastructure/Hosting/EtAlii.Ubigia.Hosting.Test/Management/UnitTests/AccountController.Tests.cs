@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
 {
-    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using Xunit;
 
     

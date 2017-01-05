@@ -162,9 +162,9 @@
       <Project>{0AA11597-8A46-4261-9D62-F0073A4F9F2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Logical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.SignalR.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj">
       <Project>{9e74d294-1af0-4df1-ae62-aaf97c89d342}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.SignalR</Name>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
       <Project>{D10B55FE-5603-43A9-B25F-E2C290C6A830}</Project>
@@ -178,17 +178,17 @@
       <Project>{6367ad1a-35ef-4777-9a33-1fb80cf5963b}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Diagnostics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Diagnostics.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj">
       <Project>{cf80d9f9-def0-4b81-9fff-7dc4b641b71c}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Diagnostics</Name>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj">
       <Project>{66F50771-FBE2-42B7-B673-CBDB32498BEC}</Project>
       <Name>EtAlii.Ubigia.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.WebApi.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj">
       <Project>{7c020a57-0746-46e3-8f98-39c76fa37a3b}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi</Name>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
   <!-- Normal project references -->

@@ -7,8 +7,8 @@
     <ProjectGuid>{32A87373-0BE2-4061-9649-A739792CB0EE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Win32</RootNamespace>
-    <AssemblyName>EtAlii.Ubigia.Infrastructure.Transport.Win32</AssemblyName>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Owin</RootNamespace>
+    <AssemblyName>EtAlii.Ubigia.Infrastructure.Transport.Owin</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -132,7 +132,7 @@
     <Compile Include="Components\IComponent.cs" />
     <Compile Include="IApplicationManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Win32Infrastructure.cs" />
+    <Compile Include="OwinInfrastructure.cs" />
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>

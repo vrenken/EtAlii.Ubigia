@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 {
     using System;
     using EtAlii.Ubigia.Api.Transport.SignalR;
+    using global::Owin;
     using Microsoft.AspNet.SignalR;
     using Microsoft.Owin.Cors;
-    using Owin;
 
 
     public partial class SignalRUserApiComponent : ISignalRUserApiComponent

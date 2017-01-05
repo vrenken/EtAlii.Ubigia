@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
-    using System.Collections.Generic;
     using Owin;
 
     public interface IComponent

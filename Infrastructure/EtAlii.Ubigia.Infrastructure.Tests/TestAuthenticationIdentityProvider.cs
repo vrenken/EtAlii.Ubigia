@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http.Controllers;
-    using EtAlii.Ubigia.Infrastructure.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi;
 
     internal class TestAuthenticationIdentityProvider : IAuthenticationIdentityProvider
     {

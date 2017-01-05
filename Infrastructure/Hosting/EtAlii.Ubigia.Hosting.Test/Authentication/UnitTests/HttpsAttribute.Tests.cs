@@ -9,7 +9,7 @@
     using System.Web.Http;
     using System.Web.Http.Controllers;
     using System.Web.Http.Routing;
-    using EtAlii.Ubigia.Infrastructure.Transport.WebApi;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi;
 
     
     public class HttpsAttribute_Tests

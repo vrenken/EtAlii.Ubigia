@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User
 {
     using System.Net.Http;
     using System.Web.Http;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin;
 
     [RoutePrefix(RelativeUri.User.GooglePeopleApiSetting), CacheWebApi(-1)]
     public class GooglePeopleApiUserController : UserControllerBase

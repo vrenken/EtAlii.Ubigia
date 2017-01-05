@@ -169,6 +169,18 @@
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj">
+      <Project>{9e74d294-1af0-4df1-ae62-aaf97c89d342}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Owin.csproj">
+      <Project>{32a87373-0be2-4061-9649-a739792cb0ee}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
+      <Project>{d10b55fe-5603-43a9-b25f-e2c290c6a830}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
       <Project>{16596297-5e14-4ca4-a77c-70fa35d2b9be}</Project>
       <Name>EtAlii.Ubigia.Api.Fabric</Name>
