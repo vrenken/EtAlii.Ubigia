@@ -1,10 +1,11 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
 {
     using System.Diagnostics;
     using System.Linq;
     using System.Net;
     using System.Web.Http;
     using Api.Transport.WebApi;
+    using global::Owin;
     using Owin;
 
     public partial class WebApiComponentManager : IWebApiComponentManager

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
 {
-    using EtAlii.Ubigia.Infrastructure.Transport.SignalR;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
     using Xunit;
 
     

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
+namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User
 {
     using System.Linq;
     using System.Net;

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User
 {
     using System;
     using System.Net;

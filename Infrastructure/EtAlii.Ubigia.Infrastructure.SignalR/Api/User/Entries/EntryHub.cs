@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;

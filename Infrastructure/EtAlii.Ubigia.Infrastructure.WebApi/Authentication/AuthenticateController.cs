@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
 {
     using System.Web.Http;
     using EtAlii.Ubigia.Api.Transport.WebApi;

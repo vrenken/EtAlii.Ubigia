@@ -1,9 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Structure;
+    using global::Owin;
     using Owin;
 
     public partial class AdminApiComponent : IAdminApiComponent

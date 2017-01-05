@@ -5,13 +5,13 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class Win32Infrastructure : InfrastructureBase
+    public class OwinInfrastructure : InfrastructureBase
     {
         private readonly Container _container;
         private IComponentManager[] _componentManagers;
         private readonly IApplicationManager _applicationManager;
 
-        public Win32Infrastructure(
+        public OwinInfrastructure(
             IApplicationManager applicationManager,
             Container container,
             IInfrastructureConfiguration configuration,

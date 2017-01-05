@@ -1,6 +1,7 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 {
     using System.Linq;
+    using global::Owin;
     using Owin;
 
     public partial class SignalRComponentManager : ISignalRComponentManager

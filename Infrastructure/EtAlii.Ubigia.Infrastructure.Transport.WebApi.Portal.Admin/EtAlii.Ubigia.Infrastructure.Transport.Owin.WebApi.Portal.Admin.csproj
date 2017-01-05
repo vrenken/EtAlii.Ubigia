@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{23D517B8-018C-4889-A9F7-9F7934E0560E}</ProjectGuid>
+    <ProjectGuid>{C4CB9D89-90FD-4F75-AD6F-73C33652E2F8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User</RootNamespace>
-    <AssemblyName>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User</AssemblyName>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin</RootNamespace>
+    <AssemblyName>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -126,38 +126,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accounts\Account.Controller.cs" />
+    <Compile Include="Accounts\Accounts.Controller.cs" />
+    <Compile Include="AdminControllerBase.cs" />
+    <Compile Include="AdminPortalComponent.cs" />
+    <Compile Include="AdminPortalInfrastructureExtension.cs" />
     <Compile Include="Home\Home.Controller.cs" />
-    <Compile Include="InfrastructureConfiguration.UserPortal.cs" />
-    <Compile Include="IUserPortalComponent.cs" />
+    <Compile Include="IAdminPortalComponent.cs" />
+    <Compile Include="InfrastructureConfiguration.AdminPortal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings\Google\PeopleApi\GooglePeopleApi.Controller.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\Converters\GoogleMailAddressConverter.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\Converters\GoogleNameConverter.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\Converters\IGoogleMailAddressConverter.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\Converters\IGoogleNameConverter.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\GoogleAuthenticationTokenProvider.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\GoogleIdentityProvider.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\IGoogleAuthenticationTokenProvider.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\IGoogleIdentityProvider.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\ISystemSettingsGetHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\IUserSettingsDeleteHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\IUserSettingsGetHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\IUserSettingsPostHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\SystemSettingsGetHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\UserSettingsDeleteHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\UserSettingsGetHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\Helpers\UserSettingsPostHandler.cs" />
-    <Compile Include="Settings\Google\PeopleApi\_Model\GoogleAuthenticationToken.cs" />
-    <Compile Include="Settings\Google\PeopleApi\_Model\GoogleIdentity.cs" />
-    <Compile Include="Settings\Google\PeopleApi\_Model\GoogleMailAddress.cs" />
-    <Compile Include="Settings\Google\PeopleApi\_Model\GoogleName.cs" />
     <Compile Include="Settings\Microsoft\Graph\MicrosoftGraph.Controller.cs" />
-    <Compile Include="UserControllerBase.cs" />
-    <Compile Include="UserPortalComponent.cs" />
-    <Compile Include="UserPortalInfrastructureExtension.cs" />
-    <Compile Include="_Scaffolding\UserPortalScaffolding.cs" />
-    <Compile Include="_Scaffolding\UserPortalScaffolding.GooglePeopleApi.cs" />
-    <Compile Include="_Scaffolding\UserPortalScaffolding.MicrosoftGraph.cs" />
+    <Compile Include="Storages\Storages.Controller.cs" />
+    <Compile Include="_Scaffolding\AdminPortalScaffolding.cs" />
+    <Compile Include="_Scaffolding\AdminPortalScaffolding.GooglePeopleApi.cs" />
+    <Compile Include="_Scaffolding\AdminPortalScaffolding.MicrosoftGraph.cs" />
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
@@ -185,17 +168,13 @@
       <Project>{0AA11597-8A46-4261-9D62-F0073A4F9F2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Logical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Win32.csproj">
-      <Project>{32a87373-0be2-4061-9649-a739792cb0ee}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.Win32</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj">
       <Project>{D10B55FE-5603-43A9-B25F-E2C290C6A830}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.WebApi.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj">
       <Project>{7c020a57-0746-46e3-8f98-39c76fa37a3b}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi</Name>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
       <Project>{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}</Project>
@@ -211,6 +190,12 @@
   <!-- Output based assembly references -->
   <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
+    <EmbeddedResource Include="TopBar\TopBar.html" />
+    <EmbeddedResource Include="TopBar\TopBar.Directive.js" />
+    <EmbeddedResource Include="Storages\Storages.html" />
+    <EmbeddedResource Include="Storages\Storages.Controller.js" />
+    <EmbeddedResource Include="Spaces\Spaces.html" />
+    <EmbeddedResource Include="Spaces\Spaces.Controller.js" />
     <EmbeddedResource Include="Shared\ThirdParty\Toastr\toastr.min.js" />
     <EmbeddedResource Include="Shared\ThirdParty\Toastr\toastr.min.css" />
     <EmbeddedResource Include="Shared\ThirdParty\JQuery_2_1_4\jquery-2.1.4.min.js" />
@@ -255,24 +240,16 @@
     <EmbeddedResource Include="Shared\ThirdParty\AngularJS_1_4_8\angular.js" />
     <EmbeddedResource Include="Shared\ThirdParty\AngularJS_1_4_8\angular.min.js" />
     <None Include="Shared\ThirdParty\AngularJS_1_4_8\version.txt" />
-    <EmbeddedResource Include="Settings\Google\PeopleApi\Authorization.html" />
-    <EmbeddedResource Include="Settings\Google\PeopleApi\GooglePeopleApi.Controller.js" />
-    <EmbeddedResource Include="Settings\Google\PeopleApi\GooglePeopleApi.html" />
-    <EmbeddedResource Include="Settings\Microsoft\Graph\MicrosoftGraph.Controller.js" />
-    <EmbeddedResource Include="Settings\Microsoft\Graph\MicrosoftGraph.html" />
-    <EmbeddedResource Include="Services\AuthenticationService.js" />
-    <EmbeddedResource Include="Services\DataService.js" />
-    <EmbeddedResource Include="Services\NotificationService.js" />
-    <EmbeddedResource Include="Login\Login.Controller.js" />
-    <EmbeddedResource Include="Login\Login.html" />
-    <EmbeddedResource Include="Home\Home.Controller.js" />
-    <EmbeddedResource Include="Home\Home.html" />
-    <Content Include="Settings\Microsoft\Graph\Scribbles.js" />
-    <Content Include="Shared\ThirdParty\Angular_Validator_1_2_8\angular-validator.js" />
-    <Content Include="Shared\ThirdParty\Angular_Validator_1_2_8\demo\app.js" />
-    <Content Include="Shared\ThirdParty\Angular_Validator_1_2_8\demo\index.html" />
-    <Content Include="Shared\ThirdParty\Angular_Validator_1_2_8\Gruntfile.js" />
-    <Content Include="Shared\ThirdParty\Angular_Validator_1_2_8\karma.conf.js" />
+    <EmbeddedResource Include="Default.App.js" />
+    <EmbeddedResource Include="Default.Config.js" />
+    <EmbeddedResource Include="Default.Constants.js" />
+    <EmbeddedResource Include="Default.Controller.js" />
+    <EmbeddedResource Include="Default.html" />
+    <EmbeddedResource Include="Shared\ThirdParty\Angular_Validator_1_2_8\angular-validator.js" />
+    <None Include="Shared\ThirdParty\Angular_Validator_1_2_8\demo\app.js" />
+    <None Include="Shared\ThirdParty\Angular_Validator_1_2_8\demo\index.html" />
+    <None Include="Shared\ThirdParty\Angular_Validator_1_2_8\Gruntfile.js" />
+    <None Include="Shared\ThirdParty\Angular_Validator_1_2_8\karma.conf.js" />
     <EmbeddedResource Include="Shared\ThirdParty\Angular_Validator_1_2_8\angular-validator.min.js" />
     <None Include="Shared\ThirdParty\AngularJS_1_4_8\angular-animate.min.js.map" />
     <None Include="Shared\ThirdParty\AngularJS_1_4_8\angular-aria.min.js.map" />
@@ -292,18 +269,25 @@
     <EmbeddedResource Include="Shared\ThirdParty\Angular_Base64_2_0_1\angular-base64.js" />
     <EmbeddedResource Include="Shared\Scripts\Modules\Common.UI.js" />
     <EmbeddedResource Include="Shared\Scripts\Modules\Common.Core.js" />
-    <EmbeddedResource Include="Shared\Images\Gears.png" />
     <EmbeddedResource Include="Shared\Css\site.css" />
-    <EmbeddedResource Include="TopBar\TopBar.html" />
-    <EmbeddedResource Include="TopBar\TopBar.Directive.js" />
+    <EmbeddedResource Include="Settings\Microsoft\Graph\MicrosoftGraph.html" />
+    <EmbeddedResource Include="Settings\Microsoft\Graph\MicrosoftGraph.Controller.js" />
+    <EmbeddedResource Include="Settings\Google\PeopleApi\GooglePeopleApi.html" />
+    <EmbeddedResource Include="Settings\Google\PeopleApi\GooglePeopleApi.Controller.js" />
+    <EmbeddedResource Include="Services\NotificationService.js" />
+    <EmbeddedResource Include="Services\DataService.js" />
+    <EmbeddedResource Include="Services\AuthenticationService.js" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <EmbeddedResource Include="Default.html" />
-    <EmbeddedResource Include="Default.Controller.js" />
-    <EmbeddedResource Include="Default.Constants.js" />
-    <EmbeddedResource Include="Default.Config.js" />
-    <EmbeddedResource Include="Default.App.js" />
+    <EmbeddedResource Include="Accounts\Account.Controller.js" />
+    <EmbeddedResource Include="Accounts\Account.html" />
+    <EmbeddedResource Include="Accounts\Accounts.Controller.js" />
+    <EmbeddedResource Include="Accounts\Accounts.html" />
+    <EmbeddedResource Include="Home\Home.Controller.js" />
+    <EmbeddedResource Include="Home\Home.html" />
+    <EmbeddedResource Include="Login\Login.Controller.js" />
+    <EmbeddedResource Include="Login\Login.html" />
     <Content Include="Properties\AssemblyReferences.Targets">
       <SubType>Designer</SubType>
     </Content>
@@ -366,7 +350,9 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Shared\Images\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

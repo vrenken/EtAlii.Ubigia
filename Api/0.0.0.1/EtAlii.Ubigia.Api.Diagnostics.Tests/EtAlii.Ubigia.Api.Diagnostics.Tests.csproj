@@ -150,9 +150,9 @@
     <Compile Include="TransportTestContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.WebApi.csproj">
+    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj">
       <Project>{7c020a57-0746-46e3-8f98-39c76fa37a3b}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi</Name>
+      <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
       <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>

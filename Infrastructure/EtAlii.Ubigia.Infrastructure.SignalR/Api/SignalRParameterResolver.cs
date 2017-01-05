@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Transport.SignalR
+namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 {
     using System.IO;
     using System.Reflection;
