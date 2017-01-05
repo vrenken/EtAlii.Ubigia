@@ -43,7 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
       <Private>True</Private>
@@ -87,7 +86,6 @@
       <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
       <Private>True</Private>
@@ -159,49 +157,13 @@
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin.csproj">
-      <Project>{19ba706c-99d1-4b9f-b69c-0fc2c566659c}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User.csproj">
-      <Project>{31311bea-1612-45f5-ae98-6ba4cae3ab1b}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin.csproj">
-      <Project>{c4cb9d89-90fd-4f75-ad6f-73c33652e2f8}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User.csproj">
-      <Project>{23d517b8-018c-4889-a9f7-9f7934e0560e}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj">
-      <Project>{dc7092f3-a8b0-47f8-9946-43969bdda9ca}</Project>
-      <Name>EtAlii.Ubigia.Provisioning.Google</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj">
-      <Project>{d0f4dd6b-eaaa-4ad8-888d-1f5106757ddf}</Project>
-      <Name>EtAlii.Ubigia.Provisioning.Microsoft.Graph</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
       <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
       <Name>EtAlii.Ubigia.Api.Diagnostics</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj">
-      <Project>{acf559ef-3661-430c-9c4a-c379efe7cdd6}</Project>
-      <Name>EtAlii.Ubigia.Api.Fabric.Diagnostics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj">
-      <Project>{39f1aa26-be51-4744-aa8d-16113dd76e70}</Project>
-      <Name>EtAlii.Ubigia.Api.Fabric.Management</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
       <Project>{16596297-5e14-4ca4-a77c-70fa35d2b9be}</Project>
       <Name>EtAlii.Ubigia.Api.Fabric</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj">
-      <Project>{5f7b884e-7e42-4a32-adb3-e8cbb3fd5b31}</Project>
-      <Name>EtAlii.Ubigia.Api.Functional.Diagnostics</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
       <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
@@ -218,10 +180,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Shared.Tests\EtAlii.Ubigia.Api.Tests.csproj">
       <Project>{8327aa1c-2367-4942-946f-94e35cc31c4b}</Project>
       <Name>EtAlii.Ubigia.Api.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj">
-      <Project>{afd2bf70-5f38-4f91-90e2-6321c8e6f746}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport.Diagnostics</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj">
       <Project>{f9a4eb81-611c-453e-8b71-27099e54e982}</Project>
