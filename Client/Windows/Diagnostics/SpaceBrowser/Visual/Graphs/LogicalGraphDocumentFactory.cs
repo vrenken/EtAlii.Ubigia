@@ -10,7 +10,7 @@
     using EtAlii.xTechnology.Logging;
     using SimpleInjector;
 
-    public class GraphDocumentFactory : IDocumentFactory
+    public class LogicalGraphDocumentFactory : ILogicalGraphDocumentFactory
     {
         public IDocumentViewModel Create(
             IDataContext dataContext,

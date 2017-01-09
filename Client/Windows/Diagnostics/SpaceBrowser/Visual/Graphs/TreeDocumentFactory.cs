@@ -10,7 +10,7 @@
     using EtAlii.xTechnology.Logging;
     using SimpleInjector;
 
-    public class TreeDocumentFactory : IDocumentFactory
+    public class TreeDocumentFactory : ITreeDocumentFactory
     {
         public IDocumentViewModel Create(
             IDataContext dataContext,

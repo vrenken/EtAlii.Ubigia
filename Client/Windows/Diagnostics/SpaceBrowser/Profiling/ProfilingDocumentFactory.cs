@@ -13,7 +13,7 @@
     using SimpleInjector;
     using ProfilingDataConnection = EtAlii.Ubigia.Api.Diagnostics.Profiling.ProfilingDataConnection;
 
-    public class ProfilingDocumentFactory : IDocumentFactory
+    public class ProfilingDocumentFactory : IProfilingDocumentFactory
     {
         public IDocumentViewModel Create(
             IDataContext dataContext,
