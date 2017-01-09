@@ -20,7 +20,7 @@
         private readonly ILogger _logger;
         private readonly ILogFactory _logFactory;
         private readonly IDiagnosticsConfiguration _diagnostics;
-        private readonly IJournal _journal;
+        private readonly IJournalViewModel _journal;
         private IMainWindowViewModel _mainWindowViewModel;
 
         public string Icon { get { return _icon; } set { _icon = value; } }
@@ -52,7 +52,7 @@
             ILogger logger,
             ILogFactory logFactory,
             IDiagnosticsConfiguration diagnostics,
-            IJournal journal)
+            IJournalViewModel journal)
         {
             _dataContext = dataContext;
             _logicalContext = logicalContext;

@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Mvvm;
 
-    public class JournalViewModel : BindableBase, IJournal
+    public class JournalViewModel : BindableBase, IJournalViewModel
     {
         public ObservableCollection<JournalItem> Items { get { return _items; } }
         private readonly ObservableCollection<JournalItem> _items;

@@ -18,6 +18,6 @@
             IDiagnosticsConfiguration diagnostics, 
             ILogger logger, 
             ILogFactory logFactory, 
-            IJournal journal);
+            IJournalViewModel journal);
     }
 }

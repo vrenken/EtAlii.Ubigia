@@ -9,7 +9,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Windows;
 
-    public class RootsViewModel : BindableBase
+    public class RootsViewModel : BindableBase, IRootsViewModel
     {
         public IEnumerable<Root> AvailableRoots { get { return _availableRoots; } set { SetProperty(ref _availableRoots, value); } }
         private IEnumerable<Root> _availableRoots;

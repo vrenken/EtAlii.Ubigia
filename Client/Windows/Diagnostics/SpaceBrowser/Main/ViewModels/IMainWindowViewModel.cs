@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public interface IMainWindowViewModel : INotifyPropertyChanged
     {
-        RootsViewModel RootsViewModel { get; }
+        IRootsViewModel RootsViewModel { get; }
         JournalViewModel JournalViewModel { get; }
         ObservableCollection<IDocumentViewModel> Documents { get; }
         ICommand CloseCommand { get; set; }

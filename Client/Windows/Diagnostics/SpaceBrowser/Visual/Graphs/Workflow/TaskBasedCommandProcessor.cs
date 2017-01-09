@@ -12,7 +12,7 @@
     {
         private readonly Container _container;
         private readonly ILogger _logger;
-        private readonly IJournal _journal;
+        private readonly IJournalViewModel _journal;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
         private readonly ConcurrentQueue<Tuple<ICommand, ICommandHandler>> _queue;
         private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
@@ -23,7 +23,7 @@
         public TaskBasedCommandProcessor(
             Container container,
             ILogger logger,
-            IJournal journal,
+            IJournalViewModel journal,
             IMainDispatcherInvoker mainDispatcherInvoker)
             : base(container)
         {

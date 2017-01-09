@@ -22,8 +22,8 @@
             IDataConnection connection,
             IDiagnosticsConfiguration diagnostics, 
             ILogger logger, 
-            ILogFactory logFactory, 
-            IJournal journal)
+            ILogFactory logFactory,
+            IJournalViewModel journal)
         {
             var container = new Container();
             container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };

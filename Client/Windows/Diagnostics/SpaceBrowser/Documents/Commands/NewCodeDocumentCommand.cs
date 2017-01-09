@@ -17,8 +17,8 @@
             IDataConnection connection, 
             ILogger logger, 
             ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics, 
-            IJournal journal) 
+            IDiagnosticsConfiguration diagnostics,
+            IJournalViewModel journal) 
             : base(dataContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal)
         {
             DocumentFactory = factory;

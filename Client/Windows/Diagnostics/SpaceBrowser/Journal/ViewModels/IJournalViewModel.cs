@@ -1,9 +1,9 @@
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System.Collections.ObjectModel;
     using System.ComponentModel;
 
-    public interface IJournal : INotifyPropertyChanged
+    public interface IJournalViewModel : INotifyPropertyChanged
     {
         ObservableCollection<JournalItem> Items { get; }
         int Size { get; set; }
