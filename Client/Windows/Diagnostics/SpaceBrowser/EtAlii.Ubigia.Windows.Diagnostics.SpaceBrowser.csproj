@@ -271,10 +271,12 @@
     <Compile Include="Textual\Code\ViewModels\ICodeButtonsViewModel.cs" />
     <Compile Include="Textual\Script\ICodeDocumentFactory.cs" />
     <Compile Include="Textual\Script\IScriptDocumentFactory.cs" />
+    <Compile Include="Textual\Script\UnitsOfWork\ScriptParsing\IParseScriptUnitOfworkHandler.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\DiagnosticsScriptProcessingSubscription.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\ErrorWriter.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IOutputScriptProcessingSubscription.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IDiagnosticsScriptProcessingSubscription.cs" />
+    <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IProcessScriptUnitOfworkHandler.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IStatusWriter.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IScriptProcessingSubscription.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IErrorWriter.cs" />
@@ -342,12 +344,17 @@
     <Compile Include="Textual\Code\Views\CodeEditor.cs" />
     <Compile Include="Documents\Services\DocumentViewModelProvider.cs" />
     <Compile Include="Textual\_Shared\ViewModels\TextualViewModelBase.cs" />
+    <Compile Include="Visual\Graphs\Commands\IAddEntryToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Commands\IApplyLayoutingToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Commands\IRemoveEntriesFromGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\IFunctionalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\ILogicalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\ISequentialDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\ITemporalDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\ITreeDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\FunctionalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\Models\Configuration\IGraphConfiguration.cs" />
+    <Compile Include="Visual\Graphs\Queries\IFindEntriesOnGraphQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\DiagnosticsScaffolding.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\GraphScaffolding.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\StructureScaffolding.cs" />
@@ -364,7 +371,10 @@
     <Compile Include="Visual\Graphs\Queries\FindEntryOnGraphQuery.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQuery.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\Documents\ISequentialDocumentViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\GraphContextMenuViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\IGraphButtonsViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\IGraphContextMenuViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\IRootsViewModel.cs" />
     <Compile Include="Visual\Graphs\Views\GraphContextMenu.xaml.cs">
       <DependentUpon>GraphContextMenu.xaml</DependentUpon>
@@ -459,6 +469,10 @@
     <Compile Include="Main\Views\TimeFilterContent.xaml.cs">
       <DependentUpon>TimeFilterContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Visual\Graphs\Workflow\Processing\IAddEntryRelationsToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Workflow\Processing\IDiscoverEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Workflow\Processing\IProcessEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Workflow\Processing\IRetrieveEntryCommandHandler.cs" />
     <Compile Include="Visual\Graphs\Workflow\TaskBasedCommandProcessor.cs" />
     <Compile Include="Visual\Graphs\Workflow\Processing\DiscoverEntryCommand.cs" />
     <Compile Include="Visual\Graphs\Commands\AddEntryToGraphCommand.cs" />

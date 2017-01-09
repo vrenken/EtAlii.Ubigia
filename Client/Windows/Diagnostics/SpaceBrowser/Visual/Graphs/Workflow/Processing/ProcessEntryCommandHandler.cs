@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Workflow;
 
-    public class ProcessEntryCommandHandler : CommandHandlerBase<ProcessEntryCommand>
+    public class ProcessEntryCommandHandler : CommandHandlerBase<ProcessEntryCommand>, IProcessEntryCommandHandler
     {
         private readonly IFabricContext _fabric;
         private readonly ICommandProcessor _commandProcessor;

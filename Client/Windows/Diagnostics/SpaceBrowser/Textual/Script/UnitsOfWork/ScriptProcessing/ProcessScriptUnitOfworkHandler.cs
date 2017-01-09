@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Workflow;
 
-    public class ProcessScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ProcessScriptUnitOfwork>
+    public class ProcessScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ProcessScriptUnitOfwork>, IProcessScriptUnitOfworkHandler
     {
         private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
         private readonly IDataContext _dataContext;

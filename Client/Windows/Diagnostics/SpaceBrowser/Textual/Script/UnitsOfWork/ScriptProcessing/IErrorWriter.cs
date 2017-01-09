@@ -5,6 +5,6 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public interface IErrorWriter
     {
-        void Write(ScriptViewModel viewModel, Exception e, List<TextualError> errors);
+        void Write(IScriptViewModel viewModel, Exception e, List<TextualError> errors);
     }
 }

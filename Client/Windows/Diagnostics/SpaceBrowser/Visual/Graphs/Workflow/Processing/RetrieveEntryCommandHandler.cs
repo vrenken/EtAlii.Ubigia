@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
 
-    public class RetrieveEntryCommandHandler : CommandHandlerBase<RetrieveEntryCommand>
+    public class RetrieveEntryCommandHandler : CommandHandlerBase<RetrieveEntryCommand>, IRetrieveEntryCommandHandler
     {
         private readonly IFabricContext _fabric;
         private readonly ICommandProcessor _commandProcessor;

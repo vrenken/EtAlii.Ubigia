@@ -6,19 +6,19 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class DiscoverEntryCommandHandler : CommandHandlerBase<DiscoverEntryCommand>
+    public class DiscoverEntryCommandHandler : CommandHandlerBase<DiscoverEntryCommand>, IDiscoverEntryCommandHandler
     {
         private readonly IFabricContext _fabric;
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
         private readonly ICommandProcessor _commandProcessor;
-        private readonly GraphConfiguration _configuration;
+        private readonly IGraphConfiguration _configuration;
 
         public DiscoverEntryCommandHandler(
             IFabricContext fabric,
             ICommandProcessor commandProcessor,
             IDocumentViewModelProvider documentViewModelProvider,
-            GraphConfiguration configuration)
+            IGraphConfiguration configuration)
         {
             _configuration = configuration;
             _fabric = fabric;

@@ -8,6 +8,8 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public interface IScriptViewModel : IDocumentViewModel
     {
+        ObservableCollection<string> ExecutionStatus { get; }
+        IScriptScope Scope { get; }
         ScriptButtonsViewModel Buttons { get; }
         string Code { get; set; }
         Script Script { get; set; }
@@ -25,9 +27,5 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
         ICommand StopCommand { get; }
         event System.Action CodeChanged;
 
-        /// <summary>
-        /// Multicast event for property change notifications.
-        /// </summary>
-        event PropertyChangedEventHandler PropertyChanged;
     }
 }

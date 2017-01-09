@@ -22,14 +22,14 @@
         private readonly ICommand _selectEntryCommand;
         private readonly ICommand _discoverEntryCommand;
 
-        public GraphConfiguration Configuration { get { return _configuration; } }
-        private readonly GraphConfiguration _configuration;
+        public IGraphConfiguration Configuration { get { return _configuration; } }
+        private readonly IGraphConfiguration _configuration;
 
-        public GraphButtonsViewModel Buttons { get { return _buttons; } }
-        private readonly GraphButtonsViewModel _buttons;
+        public IGraphButtonsViewModel Buttons { get { return _buttons; } }
+        private readonly IGraphButtonsViewModel _buttons;
 
-        public GraphContextMenuViewModel ContextMenu { get { return _contextMenu; } }
-        private readonly GraphContextMenuViewModel _contextMenu;
+        public IGraphContextMenuViewModel ContextMenu { get { return _contextMenu; } }
+        private readonly IGraphContextMenuViewModel _contextMenu;
 
         public string Title 
         {
@@ -43,9 +43,9 @@
         public GraphDocumentViewModelBase(
             IFabricContext fabric,
             ICommandProcessor commandProcessor,
-            GraphConfiguration configuration,
-            GraphButtonsViewModel buttons,
-            GraphContextMenuViewModel contextMenu)
+            IGraphConfiguration configuration,
+            IGraphButtonsViewModel buttons,
+            IGraphContextMenuViewModel contextMenu)
         {
             _fabric = fabric;
             _commandProcessor = commandProcessor;

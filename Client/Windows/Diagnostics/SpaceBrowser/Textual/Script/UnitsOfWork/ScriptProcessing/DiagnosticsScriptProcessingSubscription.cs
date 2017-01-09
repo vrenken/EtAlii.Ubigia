@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             _statusWriter = statusWriter;
         }
 
-        public void Subscribe(IObservable<SequenceProcessingResult> results, ScriptViewModel viewModel, List<TextualError> errors, DateTime start)
+        public void Subscribe(IObservable<SequenceProcessingResult> results, IScriptViewModel viewModel, List<TextualError> errors, DateTime start)
         {
             results
                 //.ObserveOn(NewThreadScheduler.Default)

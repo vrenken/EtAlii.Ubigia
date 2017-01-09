@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Functional;
     using Xceed.Wpf.DataGrid;
 
-    public class ParseScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ParseScriptUnitOfwork>
+    public class ParseScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ParseScriptUnitOfwork>, IParseScriptUnitOfworkHandler
     {
         private readonly IDataContext _dataContext;
 

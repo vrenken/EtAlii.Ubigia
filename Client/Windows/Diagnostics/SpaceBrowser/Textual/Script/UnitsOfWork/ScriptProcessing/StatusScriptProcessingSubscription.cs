@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             _errorWriter = errorWriter;
         }
 
-        public void Subscribe(IObservable<SequenceProcessingResult> results, ScriptViewModel viewModel,
+        public void Subscribe(IObservable<SequenceProcessingResult> results, IScriptViewModel viewModel,
             List<TextualError> errors, DateTime start)
         {
             // We want to show all errors and all results.

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using EtAlii.xTechnology.Workflow;
     using System;
 
-    public class AddEntryToGraphCommand : CommandBase<AddEntryToGraphCommandHandler>
+    public class AddEntryToGraphCommand : CommandBase<IAddEntryToGraphCommandHandler>
     {
         public IReadOnlyEntry Entry { get; private set; }
         public ProcessReason ProcessReason { get; private set; }

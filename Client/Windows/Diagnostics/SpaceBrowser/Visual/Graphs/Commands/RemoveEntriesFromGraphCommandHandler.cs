@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System.Linq;
     using System.Windows.Threading;
 
-    public class RemoveEntriesFromGraphCommandHandler : CommandHandlerBase<RemoveEntriesFromGraphCommand>
+    public class RemoveEntriesFromGraphCommandHandler : CommandHandlerBase<RemoveEntriesFromGraphCommand>, IRemoveEntriesFromGraphCommandHandler
     {
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
         public RemoveEntriesFromGraphCommandHandler(
             IDocumentViewModelProvider documentViewModelProvider,
-            GraphConfiguration configuration,
+            IGraphConfiguration configuration,
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _documentViewModelProvider = documentViewModelProvider;

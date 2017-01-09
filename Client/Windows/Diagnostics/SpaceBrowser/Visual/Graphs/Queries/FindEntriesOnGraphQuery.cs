@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System.Linq;
     using System.Collections.Generic;
 
-    public class FindEntriesOnGraphQuery : QueryBase<FindEntriesOnGraphQueryHandler, IReadOnlyEntry>
+    public class FindEntriesOnGraphQuery : QueryBase<IFindEntriesOnGraphQueryHandler, IReadOnlyEntry>
     {
         public IEnumerable<Identifier> Identifiers { get; private set; }
 

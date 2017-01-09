@@ -34,9 +34,9 @@
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
-            container.Register<SequentialDocumentViewModel>(Lifestyle.Singleton);
+            container.Register<ISequentialDocumentViewModel, SequentialDocumentViewModel>(Lifestyle.Singleton);
 
-            var documentViewModel = container.GetInstance<SequentialDocumentViewModel>();
+            var documentViewModel = container.GetInstance<ISequentialDocumentViewModel>();
             var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;

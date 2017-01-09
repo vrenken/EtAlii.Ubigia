@@ -43,7 +43,7 @@
 
         private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue is ScriptViewModel)
+            if (e.NewValue is IScriptViewModel)
             {
                 ((ResultsView) d).DataContext = e.NewValue;
             }

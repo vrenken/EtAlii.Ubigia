@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             _dispatcherInvoker = dispatcherInvoker;
         }
 
-        public void Write(ScriptViewModel viewModel, string message)
+        public void Write(IScriptViewModel viewModel, string message)
         {
             _dispatcherInvoker.SafeInvoke(() => viewModel.ExecutionStatus.Add(message));
 

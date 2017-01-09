@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using EtAlii.xTechnology.Workflow;
     using System;
 
-    public class ProcessEntryCommand : CommandBase<ProcessEntryCommandHandler>
+    public class ProcessEntryCommand : CommandBase<IProcessEntryCommandHandler>
     {
         public IReadOnlyEntry Entry { get; private set; }
         public ProcessReason ProcessReason { get; private set; }
