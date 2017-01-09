@@ -100,8 +100,7 @@
             {
                 if (_profilingResultStack.Peek() != profile)
                 {
-                    Debug.WriteLine("Profiling results should not be trusted");
-                    //throw new InvalidOperationException("Ending a profile action can only be done using the previous profiling result");
+                    throw new InvalidOperationException("Ending a profile action can only be done using the previous profiling result");
                 }
                 profile.Stop();
                 _profilingResultStack.Pop();
