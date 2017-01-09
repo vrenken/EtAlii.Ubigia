@@ -24,7 +24,7 @@
             DocumentFactory = factory;
             Header = "Functional graph";
             Icon = @"\Images\Icons\Nodes.png";
-            TitleFormat = "Graph view {0}";
+            TitleFormat = "Functional graph view {0}";
             InfoLine = "Create a document that shows a information stored in a space using a functional graph";
             InfoTip1 = "Usefull for current state analysis";
             InfoTip2 = "Does not show temporal information";

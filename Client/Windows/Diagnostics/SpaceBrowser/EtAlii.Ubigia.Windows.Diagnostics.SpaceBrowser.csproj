@@ -348,22 +348,24 @@
     <Compile Include="Visual\Graphs\Commands\IAddEntryToGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\Commands\IApplyLayoutingToGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\Commands\IRemoveEntriesFromGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\IFunctionalGraphDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\ILogicalGraphDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\ISequentialDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\ITemporalDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\ITreeDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\FunctionalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\Functional\IFunctionalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\Logical\ILogicalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\Logical\ViewModels\LogicalGraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\Logical\ViewModels\ILogicalGraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Sequential\ISequentialDocumentFactory.cs" />
+    <Compile Include="Visual\Temporal\ITemporalDocumentFactory.cs" />
+    <Compile Include="Visual\Tree\ITreeDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\Functional\FunctionalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Models\Configuration\IGraphConfiguration.cs" />
     <Compile Include="Visual\Graphs\Queries\IFindEntriesOnGraphQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\DiagnosticsScaffolding.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\GraphScaffolding.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\StructureScaffolding.cs" />
-    <Compile Include="Visual\Graphs\TemporalDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\SequentialDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\TreeDocumentFactory.cs" />
+    <Compile Include="Visual\Temporal\TemporalDocumentFactory.cs" />
+    <Compile Include="Visual\Sequential\SequentialDocumentFactory.cs" />
+    <Compile Include="Visual\Tree\TreeDocumentFactory.cs" />
     <Compile Include="Documents\IDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\LogicalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\Logical\LogicalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Queries\FindEntriesOnGraphQuery.cs" />
     <Compile Include="Visual\Graphs\Queries\FindEntriesOnGraphQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationQuery.cs" />
@@ -372,9 +374,11 @@
     <Compile Include="Visual\Graphs\Queries\FindEntryOnGraphQuery.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQuery.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\ISequentialDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\ITemporalDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\ITreeDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\Functional\ViewModels\IFunctionalGraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Sequential\ViewModels\ISequentialDocumentViewModel.cs" />
+    <Compile Include="Visual\Temporal\ViewModels\ITemporalDocumentViewModel.cs" />
+    <Compile Include="Visual\Tree\ViewModels\ITreeDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\Functional\ViewModels\FunctionalGraphDocumentViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\GraphContextMenuViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\IGraphButtonsViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\IGraphContextMenuViewModel.cs" />
@@ -409,13 +413,13 @@
     <Compile Include="Visual\Graphs\ViewModels\GraphButtonsViewModel.cs" />
     <Compile Include="Documents\ViewModels\IDocumentViewModel.cs" />
     <Compile Include="Textual\Script\ViewModels\ScriptViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\TemporalDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\SequentialDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\GraphDocumentViewModelBase.DragDrop.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\TreeDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\IGraphDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\GraphDocumentViewModelBase.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\GraphDocumentViewModelBase.INotifyPropertyChanged.cs" />
+    <Compile Include="Visual\Temporal\ViewModels\TemporalDocumentViewModel.cs" />
+    <Compile Include="Visual\Sequential\ViewModels\SequentialDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModelBase.DragDrop.cs" />
+    <Compile Include="Visual\Tree\ViewModels\TreeDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\IGraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModelBase.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModelBase.INotifyPropertyChanged.cs" />
     <Compile Include="Textual\Script\Views\ScriptView.xaml.cs">
       <DependentUpon>ScriptView.xaml</DependentUpon>
     </Compile>
@@ -428,7 +432,7 @@
     <Compile Include="Visual\Graphs\Views\Layouts\Graph\ContinuousForceDirectedLayout.cs" />
     <Compile Include="Visual\Graphs\Views\Layouts\Graph\ContinuousLayoutManager.cs" />
     <Compile Include="Visual\Graphs\ViewModels\Tools\ClickSelectingTool.cs" />
-    <Compile Include="Visual\Graphs\Views\TreeView.xaml.cs">
+    <Compile Include="Visual\Tree\Views\TreeView.xaml.cs">
       <DependentUpon>TreeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Visual\Graphs\Views\GraphViewBase.cs" />
@@ -579,7 +583,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\TreeView.xaml">
+    <Page Include="Visual\Tree\Views\TreeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -640,7 +644,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Visual\Graphs\ViewModels\RootsViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Documents\GraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModel.cs" />
     <Compile Include="Main\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Main\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -735,12 +739,38 @@
     <Folder Include="Shared\Controls\" />
     <Folder Include="Shared\ViewModels\" />
     <Folder Include="Shared\Views\" />
+    <Folder Include="Visual\Graphs\Functional\Commands\" />
+    <Folder Include="Visual\Graphs\Functional\Models\" />
+    <Folder Include="Visual\Graphs\Functional\Queries\" />
+    <Folder Include="Visual\Graphs\Functional\Scaffolding\" />
+    <Folder Include="Visual\Graphs\Functional\UnitsOfWork\" />
+    <Folder Include="Visual\Graphs\Logical\Commands\" />
+    <Folder Include="Visual\Graphs\Logical\Models\" />
+    <Folder Include="Visual\Graphs\Logical\Queries\" />
+    <Folder Include="Visual\Graphs\Logical\Scaffolding\" />
+    <Folder Include="Visual\Graphs\Logical\UnitsOfWork\" />
     <Folder Include="Visual\Graphs\UnitsOfWork\" />
+    <Folder Include="Visual\Graphs\ViewModels\Documents\" />
     <Folder Include="Visual\Graphs\ViewModels\Tools\Tree\" />
     <Folder Include="Visual\Graphs\Workflow\Discovery\" />
     <Folder Include="Visual\Graphs\Workflow\EntrySelection\" />
     <Folder Include="Visual\Graphs\Workflow\Maintenance\" />
     <Folder Include="Visual\Graphs\Workflow\NewEntries\" />
+    <Folder Include="Visual\Sequential\Commands\" />
+    <Folder Include="Visual\Sequential\Models\" />
+    <Folder Include="Visual\Sequential\Queries\" />
+    <Folder Include="Visual\Sequential\Scaffolding\" />
+    <Folder Include="Visual\Sequential\UnitsOfWork\" />
+    <Folder Include="Visual\Temporal\Commands\" />
+    <Folder Include="Visual\Temporal\Models\" />
+    <Folder Include="Visual\Temporal\Queries\" />
+    <Folder Include="Visual\Temporal\Scaffolding\" />
+    <Folder Include="Visual\Temporal\UnitsOfWork\" />
+    <Folder Include="Visual\Tree\Commands\" />
+    <Folder Include="Visual\Tree\Models\" />
+    <Folder Include="Visual\Tree\Queries\" />
+    <Folder Include="Visual\Tree\Scaffolding\" />
+    <Folder Include="Visual\Tree\UnitsOfWork\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="..\..\..\..\Resources\Images\Icons\Metro\Tooling\*.*">

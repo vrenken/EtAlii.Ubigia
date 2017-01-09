@@ -31,12 +31,12 @@
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
-            container.Register<GraphDocumentViewModel>(Lifestyle.Singleton);
+            container.Register<IFunctionalGraphDocumentViewModel, FunctionalGraphDocumentViewModel>(Lifestyle.Singleton);
 
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
-            var documentViewModel = container.GetInstance<GraphDocumentViewModel>();
+            var documentViewModel = container.GetInstance<IFunctionalGraphDocumentViewModel>();
             var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;
