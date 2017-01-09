@@ -34,9 +34,9 @@
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
-            container.Register<TreeDocumentViewModel>(Lifestyle.Singleton);
+            container.Register<ITreeDocumentViewModel, TreeDocumentViewModel>(Lifestyle.Singleton);
 
-            var documentViewModel = container.GetInstance<TreeDocumentViewModel>();
+            var documentViewModel = container.GetInstance<ITreeDocumentViewModel>();
             var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;

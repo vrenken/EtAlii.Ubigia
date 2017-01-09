@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     {
         ObservableCollection<string> ExecutionStatus { get; }
         IScriptScope Scope { get; }
-        ScriptButtonsViewModel Buttons { get; }
+        IScriptButtonsViewModel Buttons { get; }
         string Code { get; set; }
         Script Script { get; set; }
 

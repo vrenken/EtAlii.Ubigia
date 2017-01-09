@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Mvvm;
 
-    public class ScriptButtonsViewModel : BindableBase
+    public class ScriptButtonsViewModel : BindableBase, IScriptButtonsViewModel
     {
     }
 }

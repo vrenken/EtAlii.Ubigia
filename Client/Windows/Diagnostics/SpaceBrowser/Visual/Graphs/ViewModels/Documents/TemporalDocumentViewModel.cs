@@ -3,9 +3,9 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
 
-    public class TemporalViewModel : GraphDocumentViewModelBase
+    public class TemporalDocumentViewModel : GraphDocumentViewModelBase, ITemporalDocumentViewModel
     {
-        public TemporalViewModel(
+        public TemporalDocumentViewModel(
             IFabricContext fabric,
             ICommandProcessor commandProcessor,
             IGraphConfiguration configuration,

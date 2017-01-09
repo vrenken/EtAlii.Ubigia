@@ -284,6 +284,7 @@
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\OutputScriptProcessingSubscription.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\StatusScriptProcessingSubscription.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\StatusWriter.cs" />
+    <Compile Include="Textual\Script\ViewModels\IScriptButtonsViewModel.cs" />
     <Compile Include="Textual\Script\Views\Content\ScriptResultView.xaml.cs">
       <DependentUpon>ScriptResultView.xaml</DependentUpon>
     </Compile>
@@ -372,6 +373,8 @@
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQuery.cs" />
     <Compile Include="Visual\Graphs\ViewModels\Documents\ISequentialDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\Documents\ITemporalDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\Documents\ITreeDocumentViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\GraphContextMenuViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\IGraphButtonsViewModel.cs" />
     <Compile Include="Visual\Graphs\ViewModels\IGraphContextMenuViewModel.cs" />

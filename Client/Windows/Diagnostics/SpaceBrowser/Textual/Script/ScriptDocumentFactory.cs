@@ -34,7 +34,7 @@
             container.Register<IScriptViewModel, ScriptViewModel>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
 
-            container.Register<ScriptButtonsViewModel>(Lifestyle.Singleton);
+            container.Register<IScriptButtonsViewModel, ScriptButtonsViewModel>(Lifestyle.Singleton);
 
             container.Register<IParseScriptUnitOfworkHandler, ParseScriptUnitOfworkHandler>(Lifestyle.Singleton);
             container.Register<IProcessScriptUnitOfworkHandler, ProcessScriptUnitOfworkHandler>(Lifestyle.Singleton);
