@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
         public RootsViewModel RootsViewModel { get { return _rootsViewModel; } }
         private readonly RootsViewModel _rootsViewModel;

@@ -7,7 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Tests;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;

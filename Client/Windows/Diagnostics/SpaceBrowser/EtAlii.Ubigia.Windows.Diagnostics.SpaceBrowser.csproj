@@ -225,6 +225,7 @@
     <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
     <Compile Include="Journal\ViewModels\IJournal.cs" />
+    <Compile Include="Main\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Main\Views\OpenBackstageTabItem.xaml.cs">
       <DependentUpon>OpenBackstageTabItem.xaml</DependentUpon>
     </Compile>
