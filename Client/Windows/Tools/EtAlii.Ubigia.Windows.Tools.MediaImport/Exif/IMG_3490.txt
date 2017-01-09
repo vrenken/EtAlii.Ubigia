@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+
+<rdf:Description rdf:about='C:/Users/vrenk/OneDrive/Afbeeldingen/2016/Burgers&#39; Zoo [17-9]/Tanja - Oude camera/IMG_3490.JPG'
+  xmlns:et='http://ns.exiftool.ca/1.0/' et:toolkit='Image::ExifTool 10.38'
+  xmlns:ExifTool='http://ns.exiftool.ca/ExifTool/1.0/'
+  xmlns:System='http://ns.exiftool.ca/File/System/1.0/'
+  xmlns:File='http://ns.exiftool.ca/File/1.0/'
+  xmlns:IFD0='http://ns.exiftool.ca/EXIF/IFD0/1.0/'
+  xmlns:ExifIFD='http://ns.exiftool.ca/EXIF/ExifIFD/1.0/'
+  xmlns:Canon='http://ns.exiftool.ca/MakerNotes/Canon/1.0/'
+  xmlns:CanonCustom='http://ns.exiftool.ca/MakerNotes/CanonCustom/1.0/'
+  xmlns:InteropIFD='http://ns.exiftool.ca/EXIF/InteropIFD/1.0/'
+  xmlns:IFD1='http://ns.exiftool.ca/EXIF/IFD1/1.0/'
+  xmlns:XMP-xmp='http://ns.exiftool.ca/XMP/XMP-xmp/1.0/'
+  xmlns:Composite='http://ns.exiftool.ca/Composite/1.0/'>
+ <ExifTool:ExifToolVersion>10.38</ExifTool:ExifToolVersion>
+ <System:FileName>IMG_3490.JPG</System:FileName>
+ <System:Directory>C:/Users/vrenk/OneDrive/Afbeeldingen/2016/Burgers&#39; Zoo [17-9]/Tanja - Oude camera</System:Directory>
+ <System:FileSize>2.2 MB</System:FileSize>
+ <System:FileModifyDate>2016:09:17 10:32:28+02:00</System:FileModifyDate>
+ <System:FileAccessDate>2016:12:15 09:00:52+01:00</System:FileAccessDate>
+ <System:FileCreateDate>2016:12:15 09:00:13+01:00</System:FileCreateDate>
+ <System:FilePermissions>rw-rw-rw-</System:FilePermissions>
+ <File:FileType>JPEG</File:FileType>
+ <File:FileTypeExtension>jpg</File:FileTypeExtension>
+ <File:MIMEType>image/jpeg</File:MIMEType>
+ <File:ExifByteOrder>Little-endian (Intel, II)</File:ExifByteOrder>
+ <File:ImageWidth>4272</File:ImageWidth>
+ <File:ImageHeight>2848</File:ImageHeight>
+ <File:EncodingProcess>Baseline DCT, Huffman coding</File:EncodingProcess>
+ <File:BitsPerSample>8</File:BitsPerSample>
+ <File:ColorComponents>3</File:ColorComponents>
+ <File:YCbCrSubSampling>YCbCr4:2:2 (2 1)</File:YCbCrSubSampling>
+ <IFD0:Make>Canon</IFD0:Make>
+ <IFD0:Model>Canon EOS 1100D</IFD0:Model>
+ <IFD0:Orientation>Horizontal (normal)</IFD0:Orientation>
+ <IFD0:XResolution>72</IFD0:XResolution>
+ <IFD0:YResolution>72</IFD0:YResolution>
+ <IFD0:ResolutionUnit>inches</IFD0:ResolutionUnit>
+ <IFD0:ModifyDate>2016:09:17 10:32:27</IFD0:ModifyDate>
+ <IFD0:Artist></IFD0:Artist>
+ <IFD0:YCbCrPositioning>Co-sited</IFD0:YCbCrPositioning>
+ <IFD0:Copyright></IFD0:Copyright>
+ <ExifIFD:ExposureTime>1/200</ExifIFD:ExposureTime>
+ <ExifIFD:FNumber>5.0</ExifIFD:FNumber>
+ <ExifIFD:ExposureProgram>Program AE</ExifIFD:ExposureProgram>
+ <ExifIFD:ISO>1250</ExifIFD:ISO>
+ <ExifIFD:SensitivityType>Recommended Exposure Index</ExifIFD:SensitivityType>
+ <ExifIFD:RecommendedExposureIndex>1250</ExifIFD:RecommendedExposureIndex>
+ <ExifIFD:ExifVersion>0230</ExifIFD:ExifVersion>
+ <ExifIFD:DateTimeOriginal>2016:09:17 10:32:27</ExifIFD:DateTimeOriginal>
+ <ExifIFD:CreateDate>2016:09:17 10:32:27</ExifIFD:CreateDate>
+ <ExifIFD:ComponentsConfiguration>Y, Cb, Cr, -</ExifIFD:ComponentsConfiguration>
+ <ExifIFD:ShutterSpeedValue>1/197</ExifIFD:ShutterSpeedValue>
+ <ExifIFD:ApertureValue>5.0</ExifIFD:ApertureValue>
+ <ExifIFD:ExposureCompensation>0</ExifIFD:ExposureCompensation>
+ <ExifIFD:MeteringMode>Multi-segment</ExifIFD:MeteringMode>
+ <ExifIFD:Flash>Off, Did not fire</ExifIFD:Flash>
+ <ExifIFD:FocalLength>130.0 mm</ExifIFD:FocalLength>
+ <ExifIFD:UserComment></ExifIFD:UserComment>
+ <ExifIFD:SubSecTime>40</ExifIFD:SubSecTime>
+ <ExifIFD:SubSecTimeOriginal>40</ExifIFD:SubSecTimeOriginal>
+ <ExifIFD:SubSecTimeDigitized>40</ExifIFD:SubSecTimeDigitized>
+ <ExifIFD:FlashpixVersion>0100</ExifIFD:FlashpixVersion>
+ <ExifIFD:ColorSpace>sRGB</ExifIFD:ColorSpace>
+ <ExifIFD:ExifImageWidth>4272</ExifIFD:ExifImageWidth>
+ <ExifIFD:ExifImageHeight>2848</ExifIFD:ExifImageHeight>
+ <ExifIFD:FocalPlaneXResolution>4720.441989</ExifIFD:FocalPlaneXResolution>
+ <ExifIFD:FocalPlaneYResolution>4786.554622</ExifIFD:FocalPlaneYResolution>
+ <ExifIFD:FocalPlaneResolutionUnit>inches</ExifIFD:FocalPlaneResolutionUnit>
+ <ExifIFD:CustomRendered>Normal</ExifIFD:CustomRendered>
+ <ExifIFD:ExposureMode>Auto</ExifIFD:ExposureMode>
+ <ExifIFD:WhiteBalance>Auto</ExifIFD:WhiteBalance>
+ <ExifIFD:SceneCaptureType>Standard</ExifIFD:SceneCaptureType>
+ <ExifIFD:OwnerName></ExifIFD:OwnerName>
+ <ExifIFD:SerialNumber>163063053782</ExifIFD:SerialNumber>
+ <ExifIFD:LensInfo>75-300mm f/?</ExifIFD:LensInfo>
+ <ExifIFD:LensModel>EF75-300mm f/4-5.6</ExifIFD:LensModel>
+ <ExifIFD:LensSerialNumber>0000000000</ExifIFD:LensSerialNumber>
+ <Canon:MacroMode>Normal</Canon:MacroMode>
+ <Canon:SelfTimer>Off</Canon:SelfTimer>
+ <Canon:Quality>Normal</Canon:Quality>
+ <Canon:CanonFlashMode>Off</Canon:CanonFlashMode>
+ <Canon:ContinuousDrive>Single</Canon:ContinuousDrive>
+ <Canon:FocusMode>AI Focus AF</Canon:FocusMode>
+ <Canon:RecordMode>JPEG</Canon:RecordMode>
+ <Canon:CanonImageSize>Large</Canon:CanonImageSize>
+ <Canon:EasyMode>Full auto</Canon:EasyMode>
+ <Canon:DigitalZoom>None</Canon:DigitalZoom>
+ <Canon:Contrast>Normal</Canon:Contrast>
+ <Canon:Saturation>Normal</Canon:Saturation>
+ <Canon:CameraISO>Auto</Canon:CameraISO>
+ <Canon:MeteringMode>Evaluative</Canon:MeteringMode>
+ <Canon:FocusRange>Not Known</Canon:FocusRange>
+ <Canon:CanonExposureMode>Easy</Canon:CanonExposureMode>
+ <Canon:LensType>Canon EF 75-300mm f/4-5.6</Canon:LensType>
+ <Canon:MaxFocalLength>300 mm</Canon:MaxFocalLength>
+ <Canon:MinFocalLength>75 mm</Canon:MinFocalLength>
+ <Canon:FocalUnits>1/mm</Canon:FocalUnits>
+ <Canon:MaxAperture>4.5</Canon:MaxAperture>
+ <Canon:MinAperture>35</Canon:MinAperture>
+ <Canon:FlashActivity>0</Canon:FlashActivity>
+ <Canon:FlashBits>(none)</Canon:FlashBits>
+ <Canon:ZoomSourceWidth>0</Canon:ZoomSourceWidth>
+ <Canon:ZoomTargetWidth>0</Canon:ZoomTargetWidth>
+ <Canon:ManualFlashOutput>n/a</Canon:ManualFlashOutput>
+ <Canon:ColorTone>Normal</Canon:ColorTone>
+ <Canon:FocalLength>130 mm</Canon:FocalLength>
+ <Canon:FocalPlaneXUnknown>8902</Canon:FocalPlaneXUnknown>
+ <Canon:FocalPlaneYUnknown>19690</Canon:FocalPlaneYUnknown>
+ <Canon:CanonFlashInfo>0 0 0 0</Canon:CanonFlashInfo>
+ <Canon:AutoISO>100</Canon:AutoISO>
+ <Canon:BaseISO>1234</Canon:BaseISO>
+ <Canon:MeasuredEV>8.63</Canon:MeasuredEV>
+ <Canon:TargetAperture>5</Canon:TargetAperture>
+ <Canon:TargetExposureTime>1/203</Canon:TargetExposureTime>
+ <Canon:ExposureCompensation>0</Canon:ExposureCompensation>
+ <Canon:WhiteBalance>Auto</Canon:WhiteBalance>
+ <Canon:SlowShutter>None</Canon:SlowShutter>
+ <Canon:SequenceNumber>0</Canon:SequenceNumber>
+ <Canon:OpticalZoomCode>n/a</Canon:OpticalZoomCode>
+ <Canon:CameraTemperature>23 C</Canon:CameraTemperature>
+ <Canon:FlashGuideNumber>0</Canon:FlashGuideNumber>
+ <Canon:FlashExposureComp>0</Canon:FlashExposureComp>
+ <Canon:AutoExposureBracketing>Off</Canon:AutoExposureBracketing>
+ <Canon:AEBBracketValue>0</Canon:AEBBracketValue>
+ <Canon:ControlMode>Camera Local Control</Canon:ControlMode>
+ <Canon:FNumber>4.8</Canon:FNumber>
+ <Canon:ExposureTime>1/215</Canon:ExposureTime>
+ <Canon:MeasuredEV2>8.75</Canon:MeasuredEV2>
+ <Canon:BulbDuration>0</Canon:BulbDuration>
+ <Canon:CameraType>EOS High-end</Canon:CameraType>
+ <Canon:NDFilter>n/a</Canon:NDFilter>
+ <Canon:CanonImageType>Canon EOS 1100D</Canon:CanonImageType>
+ <Canon:CanonFirmwareVersion>Firmware Version 1.0.5</Canon:CanonFirmwareVersion>
+ <Canon:OwnerName></Canon:OwnerName>
+ <Canon:FNumber>4.8</Canon:FNumber>
+ <Canon:ExposureTime>1/197</Canon:ExposureTime>
+ <Canon:ISO>1234</Canon:ISO>
+ <Canon:HighlightTonePriority>Off</Canon:HighlightTonePriority>
+ <Canon:FlashMeteringMode>Off</Canon:FlashMeteringMode>
+ <Canon:CameraTemperature>23 C</Canon:CameraTemperature>
+ <Canon:FocalLength>130 mm</Canon:FocalLength>
+ <Canon:CameraOrientation>Horizontal (normal)</Canon:CameraOrientation>
+ <Canon:FocusDistanceUpper>0 m</Canon:FocusDistanceUpper>
+ <Canon:FocusDistanceLower>0 m</Canon:FocusDistanceLower>
+ <Canon:WhiteBalance>Auto</Canon:WhiteBalance>
+ <Canon:ColorTemperature>5200</Canon:ColorTemperature>
+ <Canon:PictureStyle>Standard</Canon:PictureStyle>
+ <Canon:LensType>Canon EF 75-300mm f/4-5.6</Canon:LensType>
+ <Canon:MinFocalLength>75 mm</Canon:MinFocalLength>
+ <Canon:MaxFocalLength>300 mm</Canon:MaxFocalLength>
+ <Canon:FirmwareVersion>1.0.5</Canon:FirmwareVersion>
+ <Canon:FileIndex>3490</Canon:FileIndex>
+ <Canon:DirectoryIndex>102</Canon:DirectoryIndex>
+ <Canon:ContrastStandard>0</Canon:ContrastStandard>
+ <Canon:SharpnessStandard>3</Canon:SharpnessStandard>
+ <Canon:SaturationStandard>0</Canon:SaturationStandard>
+ <Canon:ColorToneStandard>0</Canon:ColorToneStandard>
+ <Canon:FilterEffectStandard>n/a</Canon:FilterEffectStandard>
+ <Canon:ToningEffectStandard>n/a</Canon:ToningEffectStandard>
+ <Canon:ContrastPortrait>0</Canon:ContrastPortrait>
+ <Canon:SharpnessPortrait>2</Canon:SharpnessPortrait>
+ <Canon:SaturationPortrait>0</Canon:SaturationPortrait>
+ <Canon:ColorTonePortrait>0</Canon:ColorTonePortrait>
+ <Canon:FilterEffectPortrait>n/a</Canon:FilterEffectPortrait>
+ <Canon:ToningEffectPortrait>n/a</Canon:ToningEffectPortrait>
+ <Canon:ContrastLandscape>0</Canon:ContrastLandscape>
+ <Canon:SharpnessLandscape>4</Canon:SharpnessLandscape>
+ <Canon:SaturationLandscape>0</Canon:SaturationLandscape>
+ <Canon:ColorToneLandscape>0</Canon:ColorToneLandscape>
+ <Canon:FilterEffectLandscape>n/a</Canon:FilterEffectLandscape>
+ <Canon:ToningEffectLandscape>n/a</Canon:ToningEffectLandscape>
+ <Canon:ContrastNeutral>0</Canon:ContrastNeutral>
+ <Canon:SharpnessNeutral>0</Canon:SharpnessNeutral>
+ <Canon:SaturationNeutral>0</Canon:SaturationNeutral>
+ <Canon:ColorToneNeutral>0</Canon:ColorToneNeutral>
+ <Canon:FilterEffectNeutral>n/a</Canon:FilterEffectNeutral>
+ <Canon:ToningEffectNeutral>n/a</Canon:ToningEffectNeutral>
+ <Canon:ContrastFaithful>0</Canon:ContrastFaithful>
+ <Canon:SharpnessFaithful>0</Canon:SharpnessFaithful>
+ <Canon:SaturationFaithful>0</Canon:SaturationFaithful>
+ <Canon:ColorToneFaithful>0</Canon:ColorToneFaithful>
+ <Canon:FilterEffectFaithful>n/a</Canon:FilterEffectFaithful>
+ <Canon:ToningEffectFaithful>n/a</Canon:ToningEffectFaithful>
+ <Canon:ContrastMonochrome>0</Canon:ContrastMonochrome>
+ <Canon:SharpnessMonochrome>3</Canon:SharpnessMonochrome>
+ <Canon:SaturationMonochrome>n/a</Canon:SaturationMonochrome>
+ <Canon:ColorToneMonochrome>n/a</Canon:ColorToneMonochrome>
+ <Canon:FilterEffectMonochrome>None</Canon:FilterEffectMonochrome>
+ <Canon:ToningEffectMonochrome>None</Canon:ToningEffectMonochrome>
+ <Canon:ContrastAuto>0</Canon:ContrastAuto>
+ <Canon:SharpnessAuto>3</Canon:SharpnessAuto>
+ <Canon:SaturationAuto>0</Canon:SaturationAuto>
+ <Canon:ColorToneAuto>0</Canon:ColorToneAuto>
+ <Canon:FilterEffectAuto>n/a</Canon:FilterEffectAuto>
+ <Canon:ToningEffectAuto>n/a</Canon:ToningEffectAuto>
+ <Canon:ContrastUserDef1>0</Canon:ContrastUserDef1>
+ <Canon:SharpnessUserDef1>3</Canon:SharpnessUserDef1>
+ <Canon:SaturationUserDef1>0</Canon:SaturationUserDef1>
+ <Canon:ColorToneUserDef1>0</Canon:ColorToneUserDef1>
+ <Canon:FilterEffectUserDef1>None</Canon:FilterEffectUserDef1>
+ <Canon:ToningEffectUserDef1>None</Canon:ToningEffectUserDef1>
+ <Canon:ContrastUserDef2>0</Canon:ContrastUserDef2>
+ <Canon:SharpnessUserDef2>3</Canon:SharpnessUserDef2>
+ <Canon:SaturationUserDef2>0</Canon:SaturationUserDef2>
+ <Canon:ColorToneUserDef2>0</Canon:ColorToneUserDef2>
+ <Canon:FilterEffectUserDef2>None</Canon:FilterEffectUserDef2>
+ <Canon:ToningEffectUserDef2>None</Canon:ToningEffectUserDef2>
+ <Canon:ContrastUserDef3>0</Canon:ContrastUserDef3>
+ <Canon:SharpnessUserDef3>3</Canon:SharpnessUserDef3>
+ <Canon:SaturationUserDef3>0</Canon:SaturationUserDef3>
+ <Canon:ColorToneUserDef3>0</Canon:ColorToneUserDef3>
+ <Canon:FilterEffectUserDef3>None</Canon:FilterEffectUserDef3>
+ <Canon:ToningEffectUserDef3>None</Canon:ToningEffectUserDef3>
+ <Canon:UserDef1PictureStyle>Standard</Canon:UserDef1PictureStyle>
+ <Canon:UserDef2PictureStyle>Standard</Canon:UserDef2PictureStyle>
+ <Canon:UserDef3PictureStyle>Standard</Canon:UserDef3PictureStyle>
+ <Canon:CanonModelID>EOS Rebel T3 / 1100D / Kiss X50</Canon:CanonModelID>
+ <Canon:ThumbnailImageValidArea>0 159 7 112</Canon:ThumbnailImageValidArea>
+ <Canon:Canon_0x0019>1</Canon:Canon_0x0019>
+ <Canon:AFInfoSize>96</Canon:AFInfoSize>
+ <Canon:AFAreaMode>Auto</Canon:AFAreaMode>
+ <Canon:NumAFPoints>9</Canon:NumAFPoints>
+ <Canon:ValidAFPoints>9</Canon:ValidAFPoints>
+ <Canon:CanonImageWidth>4272</Canon:CanonImageWidth>
+ <Canon:CanonImageHeight>2848</Canon:CanonImageHeight>
+ <Canon:AFImageWidth>4272</Canon:AFImageWidth>
+ <Canon:AFImageHeight>2848</Canon:AFImageHeight>
+ <Canon:AFAreaWidths>106 106 106 149 183 149 106 106 106</Canon:AFAreaWidths>
+ <Canon:AFAreaHeights>148 148 148 102 190 102 148 148 148</Canon:AFAreaHeights>
+ <Canon:AFAreaXPositions>-1123 -674 -674 0 0 0 674 674 1123</Canon:AFAreaXPositions>
+ <Canon:AFAreaYPositions>0 333 -333 626 0 -626 333 -333 0</Canon:AFAreaYPositions>
+ <Canon:AFPointsInFocus>4,6,7,8</Canon:AFPointsInFocus>
+ <Canon:AFPointsSelected>0,1,2,3,4,5,6,7,8</Canon:AFPointsSelected>
+ <Canon:OriginalDecisionDataOffset>0</Canon:OriginalDecisionDataOffset>
+ <Canon:BracketMode>Off</Canon:BracketMode>
+ <Canon:BracketValue>0</Canon:BracketValue>
+ <Canon:BracketShotNumber>0</Canon:BracketShotNumber>
+ <Canon:RawJpgSize>Large</Canon:RawJpgSize>
+ <Canon:LongExposureNoiseReduction2>Off</Canon:LongExposureNoiseReduction2>
+ <Canon:WBBracketMode>Off</Canon:WBBracketMode>
+ <Canon:WBBracketValueAB>0</Canon:WBBracketValueAB>
+ <Canon:WBBracketValueGM>0</Canon:WBBracketValueGM>
+ <Canon:LiveViewShooting>Off</Canon:LiveViewShooting>
+ <Canon:FlashExposureLock>Off</Canon:FlashExposureLock>
+ <Canon:LensModel>EF75-300mm f/4-5.6</Canon:LensModel>
+ <Canon:InternalSerialNumber>YB0837970</Canon:InternalSerialNumber>
+ <Canon:DustRemovalData>(Binary data 1024 bytes, use -b option to extract)</Canon:DustRemovalData>
+ <Canon:CropLeftMargin>0</Canon:CropLeftMargin>
+ <Canon:CropRightMargin>0</Canon:CropRightMargin>
+ <Canon:CropTopMargin>0</Canon:CropTopMargin>
+ <Canon:CropBottomMargin>0</Canon:CropBottomMargin>
+ <Canon:AspectRatio>3:2</Canon:AspectRatio>
+ <Canon:CroppedImageWidth>4272</Canon:CroppedImageWidth>
+ <Canon:CroppedImageHeight>2848</Canon:CroppedImageHeight>
+ <Canon:CroppedImageLeft>0</Canon:CroppedImageLeft>
+ <Canon:CroppedImageTop>0</Canon:CroppedImageTop>
+ <Canon:ToneCurve>Standard</Canon:ToneCurve>
+ <Canon:Sharpness>3</Canon:Sharpness>
+ <Canon:SharpnessFrequency>n/a</Canon:SharpnessFrequency>
+ <Canon:SensorRedLevel>0</Canon:SensorRedLevel>
+ <Canon:SensorBlueLevel>0</Canon:SensorBlueLevel>
+ <Canon:WhiteBalanceRed>0</Canon:WhiteBalanceRed>
+ <Canon:WhiteBalanceBlue>0</Canon:WhiteBalanceBlue>
+ <Canon:ColorTemperature>5200</Canon:ColorTemperature>
+ <Canon:PictureStyle>Standard</Canon:PictureStyle>
+ <Canon:DigitalGain>0</Canon:DigitalGain>
+ <Canon:WBShiftAB>0</Canon:WBShiftAB>
+ <Canon:WBShiftGM>0</Canon:WBShiftGM>
+ <Canon:MeasuredRGGB>535 1024 1024 588</Canon:MeasuredRGGB>
+ <Canon:ColorSpace>sRGB</Canon:ColorSpace>
+ <Canon:VRDOffset>0</Canon:VRDOffset>
+ <Canon:SensorWidth>4352</Canon:SensorWidth>
+ <Canon:SensorHeight>2874</Canon:SensorHeight>
+ <Canon:SensorLeftBorder>72</Canon:SensorLeftBorder>
+ <Canon:SensorTopBorder>23</Canon:SensorTopBorder>
+ <Canon:SensorRightBorder>4343</Canon:SensorRightBorder>
+ <Canon:SensorBottomBorder>2870</Canon:SensorBottomBorder>
+ <Canon:BlackMaskLeftBorder>0</Canon:BlackMaskLeftBorder>
+ <Canon:BlackMaskTopBorder>0</Canon:BlackMaskTopBorder>
+ <Canon:BlackMaskRightBorder>0</Canon:BlackMaskRightBorder>
+ <Canon:BlackMaskBottomBorder>0</Canon:BlackMaskBottomBorder>
+ <Canon:ColorDataVersion>9 (60D/1100D)</Canon:ColorDataVersion>
+ <Canon:WB_RGGBLevelsAsShot>2024 1024 1024 1840</Canon:WB_RGGBLevelsAsShot>
+ <Canon:ColorTempAsShot>4039</Canon:ColorTempAsShot>
+ <Canon:WB_RGGBLevelsAuto>2024 1024 1024 1840</Canon:WB_RGGBLevelsAuto>
+ <Canon:ColorTempAuto>4039</Canon:ColorTempAuto>
+ <Canon:WB_RGGBLevelsMeasured>2022 1023 1024 1838</Canon:WB_RGGBLevelsMeasured>
+ <Canon:ColorTempMeasured>4039</Canon:ColorTempMeasured>
+ <Canon:WB_RGGBLevelsUnknown>0 0 0 0</Canon:WB_RGGBLevelsUnknown>
+ <Canon:ColorTempUnknown>0</Canon:ColorTempUnknown>
+ <Canon:WB_RGGBLevelsDaylight>2356 1024 1024 1485</Canon:WB_RGGBLevelsDaylight>
+ <Canon:ColorTempDaylight>5200</Canon:ColorTempDaylight>
+ <Canon:WB_RGGBLevelsShade>2759 1024 1024 1262</Canon:WB_RGGBLevelsShade>
+ <Canon:ColorTempShade>7000</Canon:ColorTempShade>
+ <Canon:WB_RGGBLevelsCloudy>2551 1024 1024 1360</Canon:WB_RGGBLevelsCloudy>
+ <Canon:ColorTempCloudy>6000</Canon:ColorTempCloudy>
+ <Canon:WB_RGGBLevelsTungsten>1641 1024 1024 2284</Canon:WB_RGGBLevelsTungsten>
+ <Canon:ColorTempTungsten>3200</Canon:ColorTempTungsten>
+ <Canon:WB_RGGBLevelsFluorescent>2036 1024 1024 2136</Canon:WB_RGGBLevelsFluorescent>
+ <Canon:ColorTempFluorescent>3732</Canon:ColorTempFluorescent>
+ <Canon:WB_RGGBLevelsKelvin>2356 1024 1024 1485</Canon:WB_RGGBLevelsKelvin>
+ <Canon:ColorTempKelvin>5200</Canon:ColorTempKelvin>
+ <Canon:WB_RGGBLevelsFlash>2635 1024 1024 1353</Canon:WB_RGGBLevelsFlash>
+ <Canon:ColorTempFlash>6231</Canon:ColorTempFlash>
+ <Canon:WB_RGGBLevelsUnknown2>2356 1024 1024 1485</Canon:WB_RGGBLevelsUnknown2>
+ <Canon:ColorTempUnknown2>5200</Canon:ColorTempUnknown2>
+ <Canon:WB_RGGBLevelsUnknown3>2356 1024 1024 1485</Canon:WB_RGGBLevelsUnknown3>
+ <Canon:ColorTempUnknown3>5200</Canon:ColorTempUnknown3>
+ <Canon:WB_RGGBLevelsUnknown4>2356 1024 1024 1485</Canon:WB_RGGBLevelsUnknown4>
+ <Canon:ColorTempUnknown4>5200</Canon:ColorTempUnknown4>
+ <Canon:WB_RGGBLevelsUnknown5>2356 1024 1024 1485</Canon:WB_RGGBLevelsUnknown5>
+ <Canon:ColorTempUnknown5>5200</Canon:ColorTempUnknown5>
+ <Canon:WB_RGGBLevelsUnknown6>2356 1024 1024 1485</Canon:WB_RGGBLevelsUnknown6>
+ <Canon:ColorTempUnknown6>5200</Canon:ColorTempUnknown6>
+ <Canon:WB_RGGBLevelsUnknown7>1067 1024 1024 1030</Canon:WB_RGGBLevelsUnknown7>
+ <Canon:ColorTempUnknown7>3926</Canon:ColorTempUnknown7>
+ <Canon:WB_RGGBLevelsUnknown8>1067 1024 1024 1030</Canon:WB_RGGBLevelsUnknown8>
+ <Canon:ColorTempUnknown8>3926</Canon:ColorTempUnknown8>
+ <Canon:WB_RGGBLevelsUnknown9>1067 1024 1024 1030</Canon:WB_RGGBLevelsUnknown9>
+ <Canon:ColorTempUnknown9>3926</Canon:ColorTempUnknown9>
+ <Canon:WB_RGGBLevelsUnknown10>1067 1024 1024 1030</Canon:WB_RGGBLevelsUnknown10>
+ <Canon:ColorTempUnknown10>3926</Canon:ColorTempUnknown10>
+ <Canon:WB_RGGBLevelsUnknown11>1067 1024 1024 1030</Canon:WB_RGGBLevelsUnknown11>
+ <Canon:ColorTempUnknown11>3926</Canon:ColorTempUnknown11>
+ <Canon:CameraColorCalibration01>-447  299 1041 (10900K)</Canon:CameraColorCalibration01>
+ <Canon:CameraColorCalibration02>-430  306 1015 (10000K)</Canon:CameraColorCalibration02>
+ <Canon:CameraColorCalibration03>-351  344  912 (8300K)</Canon:CameraColorCalibration03>
+ <Canon:CameraColorCalibration04>-283  380  831 (7000K)</Canon:CameraColorCalibration04>
+ <Canon:CameraColorCalibration05>-227  411  771 (6000K)</Canon:CameraColorCalibration05>
+ <Canon:CameraColorCalibration06>-199  426  740 (5600K)</Canon:CameraColorCalibration06>
+ <Canon:CameraColorCalibration07>-167  445  706 (5200K)</Canon:CameraColorCalibration07>
+ <Canon:CameraColorCalibration08>-118  470  653 (4700K)</Canon:CameraColorCalibration08>
+ <Canon:CameraColorCalibration09> -58  508  597 (4200K)</Canon:CameraColorCalibration09>
+ <Canon:CameraColorCalibration10>   2  550  547 (3800K)</Canon:CameraColorCalibration10>
+ <Canon:CameraColorCalibration11>  56  589  504 (3500K)</Canon:CameraColorCalibration11>
+ <Canon:CameraColorCalibration12> 118  639  459 (3200K)</Canon:CameraColorCalibration12>
+ <Canon:CameraColorCalibration13> 170  680  419 (3000K)</Canon:CameraColorCalibration13>
+ <Canon:CameraColorCalibration14> 215  729  397 (2800K)</Canon:CameraColorCalibration14>
+ <Canon:CameraColorCalibration15> 330  859  337 (2400K)</Canon:CameraColorCalibration15>
+ <Canon:AverageBlackLevel>2047 2047 2047 2047</Canon:AverageBlackLevel>
+ <Canon:RawMeasuredRGGB>120074 236228 229240 132059</Canon:RawMeasuredRGGB>
+ <Canon:PerChannelBlackLevel>2047 2047 2047 2048</Canon:PerChannelBlackLevel>
+ <Canon:SpecularWhiteLevel>11222</Canon:SpecularWhiteLevel>
+ <Canon:LinearityUpperMargin>10000</Canon:LinearityUpperMargin>
+ <Canon:PictureStyleUserDef>Standard; Standard; Standard</Canon:PictureStyleUserDef>
+ <Canon:PictureStylePC>None; None; None</Canon:PictureStylePC>
+ <Canon:CustomPictureStyleFileName></Canon:CustomPictureStyleFileName>
+ <Canon:Canon_0x4011 rdf:datatype='http://www.w3.org/2001/XMLSchema#base64Binary'>
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAFsuLi5d
+</Canon:Canon_0x4011>
+ <Canon:Canon_0x4012></Canon:Canon_0x4012>
+ <Canon:VignettingCorrVersion>0</Canon:VignettingCorrVersion>
+ <Canon:PeripheralLighting>Off</Canon:PeripheralLighting>
+ <Canon:ChromaticAberrationCorr>Off</Canon:ChromaticAberrationCorr>
+ <Canon:ChromaticAberrationCorr>Off</Canon:ChromaticAberrationCorr>
+ <Canon:PeripheralLightingValue>0</Canon:PeripheralLightingValue>
+ <Canon:OriginalImageWidth>4272</Canon:OriginalImageWidth>
+ <Canon:OriginalImageHeight>2848</Canon:OriginalImageHeight>
+ <Canon:PeripheralLightingSetting>Off</Canon:PeripheralLightingSetting>
+ <Canon:Canon_0x4017>198403 1426063393</Canon:Canon_0x4017>
+ <Canon:PeripheralIlluminationCorr>Off</Canon:PeripheralIlluminationCorr>
+ <Canon:AutoLightingOptimizer>Standard</Canon:AutoLightingOptimizer>
+ <Canon:AmbienceSelection>Standard</Canon:AmbienceSelection>
+ <CanonCustom:ExposureLevelIncrements>1/3 Stop</CanonCustom:ExposureLevelIncrements>
+ <CanonCustom:FlashSyncSpeedAv>Auto</CanonCustom:FlashSyncSpeedAv>
+ <CanonCustom:LongExposureNoiseReduction>Off</CanonCustom:LongExposureNoiseReduction>
+ <CanonCustom:HighISONoiseReduction>Standard</CanonCustom:HighISONoiseReduction>
+ <CanonCustom:HighlightTonePriority>Disable</CanonCustom:HighlightTonePriority>
+ <CanonCustom:AFAssistBeam>Emits</CanonCustom:AFAssistBeam>
+ <CanonCustom:Shutter-AELock>AF/AE lock</CanonCustom:Shutter-AELock>
+ <CanonCustom:SetButtonWhenShooting>Normal (disabled)</CanonCustom:SetButtonWhenShooting>
+ <CanonCustom:FlashButtonFunction>Raise built-in flash</CanonCustom:FlashButtonFunction>
+ <CanonCustom:LCDDisplayAtPowerOn>Display</CanonCustom:LCDDisplayAtPowerOn>
+ <InteropIFD:InteropIndex>R98 - DCF basic file (sRGB)</InteropIFD:InteropIndex>
+ <InteropIFD:InteropVersion>0100</InteropIFD:InteropVersion>
+ <IFD1:Compression>JPEG (old-style)</IFD1:Compression>
+ <IFD1:XResolution>72</IFD1:XResolution>
+ <IFD1:YResolution>72</IFD1:YResolution>
+ <IFD1:ResolutionUnit>inches</IFD1:ResolutionUnit>
+ <IFD1:ThumbnailOffset>9052</IFD1:ThumbnailOffset>
+ <IFD1:ThumbnailLength>14896</IFD1:ThumbnailLength>
+ <IFD1:ThumbnailImage>(Binary data 14896 bytes, use -b option to extract)</IFD1:ThumbnailImage>
+ <XMP-xmp:Rating>0</XMP-xmp:Rating>
+ <Composite:Aperture>5.0</Composite:Aperture>
+ <Composite:DriveMode>Single-frame Shooting</Composite:DriveMode>
+ <Composite:FileNumber>102-3490</Composite:FileNumber>
+ <Composite:ISO>1234</Composite:ISO>
+ <Composite:ImageSize>4272x2848</Composite:ImageSize>
+ <Composite:Lens>75.0 - 300.0 mm</Composite:Lens>
+ <Composite:LensID>Canon EF 75-300mm f/4-5.6</Composite:LensID>
+ <Composite:Megapixels>12.2</Composite:Megapixels>
+ <Composite:ScaleFactor35efl>1.6</Composite:ScaleFactor35efl>
+ <Composite:ShootingMode>Full auto</Composite:ShootingMode>
+ <Composite:ShutterSpeed>1/200</Composite:ShutterSpeed>
+ <Composite:SubSecCreateDate>2016:09:17 10:32:27.40</Composite:SubSecCreateDate>
+ <Composite:SubSecDateTimeOriginal>2016:09:17 10:32:27.40</Composite:SubSecDateTimeOriginal>
+ <Composite:SubSecModifyDate>2016:09:17 10:32:27.40</Composite:SubSecModifyDate>
+ <Composite:WB_RGGBLevels>2024 1024 1024 1840</Composite:WB_RGGBLevels>
+ <Composite:BlueBalance>1.796875</Composite:BlueBalance>
+ <Composite:CircleOfConfusion>0.019 mm</Composite:CircleOfConfusion>
+ <Composite:DOF>inf (0.00 m - inf)</Composite:DOF>
+ <Composite:FOV>10.1 deg</Composite:FOV>
+ <Composite:FocalLength35efl>130.0 mm (35 mm equivalent: 204.5 mm)</Composite:FocalLength35efl>
+ <Composite:HyperfocalDistance>176.92 m</Composite:HyperfocalDistance>
+ <Composite:Lens35efl>75.0 - 300.0 mm (35 mm equivalent: 118.0 - 471.8 mm)</Composite:Lens35efl>
+ <Composite:LightValue>8.6</Composite:LightValue>
+ <Composite:RedBalance>1.976563</Composite:RedBalance>
+</rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,156 @@
+﻿<f:RibbonWindow 
+    x:Class="EtAlii.Ubigia.Windows.Tools.MediaImport.ConfigurationWindow"
+    x:ClassModifier="internal"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:u="clr-namespace:EtAlii.Ubigia.Windows.Tools.MediaImport"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:f="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:shared="clr-namespace:EtAlii.Ubigia.Windows;assembly=EtAlii.Ubigia.Windows"
+    ResizeMode="NoResize"
+    FlowDirection="LeftToRight"
+    Title="Ubigia - MediaImport" 
+    Height="350" Width="640" 
+    WindowStartupLocation="CenterScreen"
+    Icon="/EtAlii.Ubigia.Windows.Tools.MediaImport;component/Icon-Logo-Black.ico">
+
+    <f:RibbonWindow.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Fluent;Component/Themes/office2013/generic.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Color x:Key="{x:Static f:MetroColors.ThemeColorKey}">#359900</Color>
+        </ResourceDictionary>
+    </f:RibbonWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <f:Ribbon
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Top"
+            CanQuickAccessLocationChanging="False"
+            CanCustomizeRibbon="False"
+            CanCustomizeQuickAccessToolBar="False"
+            Grid.Row="0" 
+            IsCollapsed="True" IsAutomaticCollapseEnabled="False" IsMinimized="True" ShowQuickAccessToolBarAboveRibbon="False">
+        </f:Ribbon>
+
+
+        <TabControl Grid.Row="1">
+            <TabItem>
+                <TabItem.Header>
+                    <Label Style="{StaticResource TabItemHeaderLabelStyle}" Content="SPACE" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Content="Server:" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Connection.Storage.Address}" IsReadOnly="True" />
+                    <Label Grid.Row="1" Grid.Column="0" Content="Account:" />
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Connection.Account.Name}" IsReadOnly="True" />
+                    <Label Grid.Row="2" Grid.Column="0" Content="Space:" />
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Connection.Space.Name}" IsReadOnly="True" />
+                    <Button 
+                    Grid.Row="3" 
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Content="Select" 
+                    Command="{Binding Path=SelectSpaceCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Style="{StaticResource TabItemHeaderLabelStyle}" Content="FOLDERS" />
+                </TabItem.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListBox 
+                    Grid.Row="0"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                    HorizontalContentAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    ItemsSource="{Binding Manager.Monitors, Mode=OneWay}"
+                    SelectedItem="{Binding SelectedFolderMonitor, Mode=OneWayToSource}">
+                        <ListBox.Resources>
+                            <u:ShortPathConverter x:Key="ShortPathConverter"/>
+                            <shared:BooleanToVisibilityConverter 
+                            x:Key="RunningBooleanToVisibilityConverter" 
+                            True="Visible" 
+                            False="Collapsed" />
+                            <shared:BooleanToVisibilityConverter 
+                            x:Key="HaltedBooleanToVisibilityConverter" 
+                            True="Collapsed" 
+                            False="Visible" />
+                        </ListBox.Resources>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="350" />
+                                        <ColumnDefinition Width="170" />
+                                        <ColumnDefinition Width="80" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label 
+                                    Grid.Column="0" Content="{Binding Configuration.LocalFolder, Converter={StaticResource ShortPathConverter}, ConverterParameter=50}" 
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
+                                    FontWeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=FontWeight}"/>
+                                    <Label 
+                                    Grid.Column="1" Content="{Binding Configuration.RemoteName}" 
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
+                                    FontWeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=FontWeight}"/>
+                                    <Label 
+                                    Grid.Column="2" Content="Running"
+                                    Visibility="{Binding IsRunning, Converter={StaticResource RunningBooleanToVisibilityConverter}}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
+                                    FontWeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=FontWeight}"/>
+                                    <Label 
+                                    Grid.Column="2" Content="Halted" 
+                                    Visibility="{Binding IsRunning, Converter={StaticResource HaltedBooleanToVisibilityConverter}}"
+                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
+                                    FontWeight="{Binding RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}, Path=FontWeight}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel
+                    Orientation="Horizontal"
+                    Grid.Row="1" 
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom">
+                        <Button 
+                    Content="Add" 
+                    Command="{Binding Path=AddFolderCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                        <Button 
+                    Content="Edit" 
+                    Command="{Binding Path=EditFolderCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"/>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+            <TabItem>
+                <TabItem.Header>
+                    <Label Style="{StaticResource TabItemHeaderLabelStyle}" Content="SETTINGS" />
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
+
+    </Grid>
+</f:RibbonWindow>
