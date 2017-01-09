@@ -11,8 +11,8 @@
         private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
         private readonly IQueryProcessor _queryProcessor;
 
-        public CodeButtonsViewModel Buttons { get { return _buttons; } }
-        private readonly CodeButtonsViewModel _buttons;
+        public ICodeButtonsViewModel Buttons { get { return _buttons; } }
+        private readonly ICodeButtonsViewModel _buttons;
 
         public string Code { get { return _code; } set { SetProperty(ref _code, value); } }
         private string _code;
@@ -23,9 +23,9 @@
         public CodeViewModel(
             IUnitOfWorkProcessor unitOfWorkProcessor,
             IQueryProcessor queryProcessor,
-            CodeButtonsViewModel buttons,
-            CodeCompiler codeCompiler,
-            CodeCompilerResultsParser codeCompilerResultsParser)
+            ICodeButtonsViewModel buttons,
+            ICodeCompiler codeCompiler,
+            ICodeCompilerResultsParser codeCompilerResultsParser)
         {
             _queryProcessor = queryProcessor;
             _unitOfWorkProcessor = unitOfWorkProcessor;

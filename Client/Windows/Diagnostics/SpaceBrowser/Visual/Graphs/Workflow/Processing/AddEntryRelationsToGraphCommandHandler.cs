@@ -9,13 +9,13 @@
 
     public class AddEntryRelationsToGraphCommandHandler : CommandHandlerBase<AddEntryRelationsToGraphCommand>
     {
-        private readonly DocumentViewModelProvider _documentViewModelProvider;
+        private readonly IDocumentViewModelProvider _documentViewModelProvider;
 
         private readonly IFabricContext _fabric;
 
         public AddEntryRelationsToGraphCommandHandler(
-            IFabricContext fabric, 
-            DocumentViewModelProvider documentViewModelProvider)
+            IFabricContext fabric,
+            IDocumentViewModelProvider documentViewModelProvider)
         {
             _fabric = fabric;
             _documentViewModelProvider = documentViewModelProvider;

@@ -6,7 +6,7 @@
     using System.CodeDom.Compiler;
     using System.Reflection;
 
-    public class CodeCompiler
+    public class CodeCompiler : ICodeCompiler
     {
         public CompilerResults Compile(params string[] sources)
         {

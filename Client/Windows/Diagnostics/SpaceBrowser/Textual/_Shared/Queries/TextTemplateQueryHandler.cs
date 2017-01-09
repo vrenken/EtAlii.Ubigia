@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System.Reflection;
     using System.IO;
 
-    public class TextTemplateQueryHandler : QueryHandlerBase<TextTemplateQuery, string>
+    public class TextTemplateQueryHandler : QueryHandlerBase<TextTemplateQuery, string>, ITextTemplateQueryHandler
     {
         public TextTemplateQueryHandler()  
         {

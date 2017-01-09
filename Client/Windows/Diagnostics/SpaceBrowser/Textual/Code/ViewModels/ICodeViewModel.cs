@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public interface ICodeViewModel : IDocumentViewModel
     {
-        CodeButtonsViewModel Buttons { get; }
+        ICodeButtonsViewModel Buttons { get; }
         string Code { get; set; }
         IEnumerable<TextualError> Errors { get; set; }
         bool CanExecute { get; set; }

@@ -40,7 +40,7 @@
             container.Register<IProfilingDataConnection>(() => (IProfilingDataConnection)connection, Lifestyle.Singleton);
 
             //container.Register<IProfilingView, ProfilingView>(Lifestyle.Singleton);
-            container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
+            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
 
             container.Register<IProfileComposer>(() => 
             new ProfileComposer(
@@ -51,7 +51,7 @@
                 ), Lifestyle.Singleton);
 
             var documentViewModel = container.GetInstance<IProfilingViewModel>();
-            var documentViewModelService = container.GetInstance<DocumentViewModelProvider>();
+            var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;
         }

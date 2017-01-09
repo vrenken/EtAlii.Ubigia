@@ -4,7 +4,7 @@
     using System.Reactive.Concurrency;
     using System.Threading.Tasks;
 
-    public class ExecuteCodeUnitOfworkHandler : UnitOfWorkHandlerBase<ExecuteCodeUnitOfwork>
+    public class ExecuteCodeUnitOfworkHandler : UnitOfWorkHandlerBase<ExecuteCodeUnitOfwork>, IExecuteCodeUnitOfworkHandler
     {
         private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
 

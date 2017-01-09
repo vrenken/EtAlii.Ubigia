@@ -29,7 +29,7 @@
             new StructureScaffolding().Register(container);
             new GraphScaffolding().Register(container);
 
-            container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
+            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
             container.Register<GraphDocumentViewModel>(Lifestyle.Singleton);
 
@@ -37,7 +37,7 @@
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
             var documentViewModel = container.GetInstance<GraphDocumentViewModel>();
-            var documentViewModelService = container.GetInstance<DocumentViewModelProvider>();
+            var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;
         }

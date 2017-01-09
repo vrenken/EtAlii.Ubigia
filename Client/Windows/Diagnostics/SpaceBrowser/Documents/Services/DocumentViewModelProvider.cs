@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    public class DocumentViewModelProvider
+    public class DocumentViewModelProvider : IDocumentViewModelProvider
     {
         private IDocumentViewModel _viewModel;
 

@@ -9,11 +9,11 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     public class FindEntriesOnGraphQueryHandler : QueryHandlerBase<FindEntriesOnGraphQuery, IReadOnlyEntry>
     {
         private IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
-        private readonly DocumentViewModelProvider _documentViewModelProvider;
+        private readonly IDocumentViewModelProvider _documentViewModelProvider;
 
 
         public FindEntriesOnGraphQueryHandler(
-            DocumentViewModelProvider documentViewModelProvider)  
+            IDocumentViewModelProvider documentViewModelProvider)  
         {
             _documentViewModelProvider = documentViewModelProvider;
         }

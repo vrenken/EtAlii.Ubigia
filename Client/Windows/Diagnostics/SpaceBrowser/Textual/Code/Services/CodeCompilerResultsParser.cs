@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class CodeCompilerResultsParser
+    public class CodeCompilerResultsParser : ICodeCompilerResultsParser
     {
         public IEnumerable<TextualError> Parse(CompilerResults results)
         {

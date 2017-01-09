@@ -31,19 +31,19 @@
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
-            container.Register<CodeViewModel>(Lifestyle.Singleton);
+            container.Register<ICodeViewModel, CodeViewModel>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
 
-            container.Register<CodeButtonsViewModel>(Lifestyle.Singleton);
+            container.Register<ICodeButtonsViewModel, CodeButtonsViewModel>(Lifestyle.Singleton);
 
-            container.Register<CompileCodeUnitOfworkHandler>(Lifestyle.Singleton);
-            container.Register<ExecuteCodeUnitOfworkHandler>(Lifestyle.Singleton);
-            container.Register<CodeCompiler>(Lifestyle.Singleton);
-            container.Register<CodeCompilerResultsParser>(Lifestyle.Singleton);
+            container.Register<ICompileCodeUnitOfworkHandler, CompileCodeUnitOfworkHandler>(Lifestyle.Singleton);
+            container.Register<IExecuteCodeUnitOfworkHandler, ExecuteCodeUnitOfworkHandler>(Lifestyle.Singleton);
+            container.Register<ICodeCompiler, CodeCompiler>(Lifestyle.Singleton);
+            container.Register<ICodeCompilerResultsParser, CodeCompilerResultsParser>(Lifestyle.Singleton);
 
-            container.Register<TextTemplateQueryHandler>(Lifestyle.Singleton);
+            container.Register<ITextTemplateQueryHandler, TextTemplateQueryHandler>(Lifestyle.Singleton);
 
-            return container.GetInstance<CodeViewModel>();
+            return container.GetInstance<ICodeViewModel>();
         }
     }
 }
