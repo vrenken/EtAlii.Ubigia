@@ -32,12 +32,12 @@
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
-            container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
+            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
             container.Register<TreeDocumentViewModel>(Lifestyle.Singleton);
 
             var documentViewModel = container.GetInstance<TreeDocumentViewModel>();
-            var documentViewModelService = container.GetInstance<DocumentViewModelProvider>();
+            var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;
         }

@@ -10,14 +10,14 @@
     {
         private readonly IFabricContext _fabric;
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
-        private readonly DocumentViewModelProvider _documentViewModelProvider;
+        private readonly IDocumentViewModelProvider _documentViewModelProvider;
         private readonly ICommandProcessor _commandProcessor;
         private readonly GraphConfiguration _configuration;
 
         public DiscoverEntryCommandHandler(
             IFabricContext fabric,
             ICommandProcessor commandProcessor,
-            DocumentViewModelProvider documentViewModelProvider,
+            IDocumentViewModelProvider documentViewModelProvider,
             GraphConfiguration configuration)
         {
             _configuration = configuration;

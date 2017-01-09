@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Mvvm;
 
-    public class CodeButtonsViewModel : BindableBase
+    public class CodeButtonsViewModel : BindableBase, ICodeButtonsViewModel
     {
     }
 }

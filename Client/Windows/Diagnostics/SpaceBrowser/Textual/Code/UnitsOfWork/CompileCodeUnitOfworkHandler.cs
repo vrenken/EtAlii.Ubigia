@@ -5,17 +5,17 @@
     using System.CodeDom.Compiler;
     using System.Linq;
 
-    public class CompileCodeUnitOfworkHandler : UnitOfWorkHandlerBase<CompileCodeUnitOfwork>
+    public class CompileCodeUnitOfworkHandler : UnitOfWorkHandlerBase<CompileCodeUnitOfwork>, ICompileCodeUnitOfworkHandler
     {
-        private readonly CodeCompiler _codeCompiler;
+        private readonly ICodeCompiler _codeCompiler;
         private CompilerResults _compilerResults;
-        private readonly CodeCompilerResultsParser _codeCompilerResultsParser;
+        private readonly ICodeCompilerResultsParser _codeCompilerResultsParser;
 
         private readonly object _lockObject = new object();
 
         public CompileCodeUnitOfworkHandler(
-            CodeCompiler codeCompiler,
-            CodeCompilerResultsParser codeCompilerResultsParser)
+            ICodeCompiler codeCompiler,
+            ICodeCompilerResultsParser codeCompilerResultsParser)
         {
             _codeCompiler = codeCompiler;
             _codeCompilerResultsParser = codeCompilerResultsParser;

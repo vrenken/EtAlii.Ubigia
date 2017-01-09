@@ -224,6 +224,7 @@
     <Compile Include="Documents\Commands\NewLogicalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
+    <Compile Include="Documents\Services\IDocumentViewModelProvider.cs" />
     <Compile Include="IMainDispatcherInvoker.cs" />
     <Compile Include="Journal\ViewModels\__IJournal.cs" />
     <Compile Include="Journal\ViewModels\IJournalViewModel.cs" />
@@ -263,6 +264,11 @@
     <Compile Include="Profiling\Views\Ribbon\ProfilingActionsRibbonGroupBox.xaml.cs">
       <DependentUpon>ProfilingActionsRibbonGroupBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Textual\Code\Services\ICodeCompiler.cs" />
+    <Compile Include="Textual\Code\Services\ICodeCompilerResultsParser.cs" />
+    <Compile Include="Textual\Code\UnitsOfWork\ICompileCodeUnitOfworkHandler.cs" />
+    <Compile Include="Textual\Code\UnitsOfWork\IExecuteCodeUnitOfworkHandler.cs" />
+    <Compile Include="Textual\Code\ViewModels\ICodeButtonsViewModel.cs" />
     <Compile Include="Textual\Script\ICodeDocumentFactory.cs" />
     <Compile Include="Textual\Script\IScriptDocumentFactory.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\DiagnosticsScriptProcessingSubscription.cs" />
@@ -292,6 +298,7 @@
     <Compile Include="Textual\_Shared\Model\ResultSet.cs" />
     <Compile Include="Textual\_Shared\Model\_ResultSetCollection.cs" />
     <Compile Include="Textual\_Shared\Model\_ResultSet.cs" />
+    <Compile Include="Textual\_Shared\Queries\ITextTemplateQueryHandler.cs" />
     <Compile Include="Textual\_Shared\Results\IMultiResultFactory.cs" />
     <Compile Include="Textual\_Shared\Results\IResultFactory.cs" />
     <Compile Include="Textual\_Shared\Results\MultiResultFactory.cs" />

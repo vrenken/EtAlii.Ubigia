@@ -45,7 +45,7 @@
             container.Register<IDiagnosticsScriptProcessingSubscription, DiagnosticsScriptProcessingSubscription>(Lifestyle.Singleton);
 
 
-            container.Register<TextTemplateQueryHandler>(Lifestyle.Singleton);
+            container.Register<ITextTemplateQueryHandler, TextTemplateQueryHandler>(Lifestyle.Singleton);
 
             container.Register<IResultFactory, ResultFactory>(Lifestyle.Singleton);
             container.Register<IMultiResultFactory, MultiResultFactory>(Lifestyle.Singleton);
