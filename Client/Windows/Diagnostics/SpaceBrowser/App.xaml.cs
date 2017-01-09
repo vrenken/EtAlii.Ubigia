@@ -16,7 +16,7 @@
     {
         public static new App Current { get { return Application.Current as App; } }
 
-        public new MainWindow MainWindow { get { return base.MainWindow as MainWindow; } set { base.MainWindow = value; } }
+        public new IMainWindow MainWindow { get { return base.MainWindow as IMainWindow; } set { base.MainWindow = value as Window; } }
 
         public App()
         {

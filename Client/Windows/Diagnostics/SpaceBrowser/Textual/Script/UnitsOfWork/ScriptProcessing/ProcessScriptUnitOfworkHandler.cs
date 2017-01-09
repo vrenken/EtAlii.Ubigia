@@ -12,7 +12,7 @@
     {
         private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
         private readonly IDataContext _dataContext;
-        private readonly MainDispatcherInvoker _dispatcherInvoker;
+        private readonly IMainDispatcherInvoker _dispatcherInvoker;
         private readonly IStatusScriptProcessingSubscription _statusScriptProcessingSubscription;
         private readonly IOutputScriptProcessingSubscription _outputScriptProcessingSubscription;
         private readonly IDiagnosticsScriptProcessingSubscription _diagnosticsScriptProcessingSubscription;
@@ -21,8 +21,8 @@
         public ProcessScriptUnitOfworkHandler(
             IUnitOfWorkProcessor unitOfWorkProcessor, 
             IDataContext dataContext,
-            IMultiResultFactory resultFactory, 
-            MainDispatcherInvoker dispatcherInvoker, 
+            IMultiResultFactory resultFactory,
+            IMainDispatcherInvoker dispatcherInvoker, 
             IStatusScriptProcessingSubscription statusScriptProcessingSubscription, 
             IDiagnosticsScriptProcessingSubscription diagnosticsScriptProcessingSubscription, 
             IOutputScriptProcessingSubscription outputScriptProcessingSubscription) 

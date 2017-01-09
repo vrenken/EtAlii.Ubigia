@@ -10,7 +10,7 @@
     {
         private readonly IFabricContext _fabric;
         private readonly GraphConfiguration _configuration;
-        private readonly MainDispatcherInvoker _mainDispatcherInvoker;
+        private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly DocumentViewModelProvider _documentViewModelProvider;
 
@@ -20,7 +20,7 @@
             IFabricContext fabric, 
             DocumentViewModelProvider documentViewModelProvider,
             GraphConfiguration configuration,
-            MainDispatcherInvoker mainDispatcherInvoker)
+            IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _fabric = fabric;
             _documentViewModelProvider = documentViewModelProvider;

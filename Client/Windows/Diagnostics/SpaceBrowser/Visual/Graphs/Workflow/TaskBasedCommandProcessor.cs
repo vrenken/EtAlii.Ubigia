@@ -13,7 +13,7 @@
         private readonly Container _container;
         private readonly ILogger _logger;
         private readonly IJournal _journal;
-        private readonly MainDispatcherInvoker _mainDispatcherInvoker;
+        private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
         private readonly ConcurrentQueue<Tuple<ICommand, ICommandHandler>> _queue;
         private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
         private readonly ManualResetEvent _stoppedEvent = new ManualResetEvent(false);
@@ -24,7 +24,7 @@
             Container container,
             ILogger logger,
             IJournal journal,
-            MainDispatcherInvoker mainDispatcherInvoker)
+            IMainDispatcherInvoker mainDispatcherInvoker)
             : base(container)
         {
             _logger = logger;

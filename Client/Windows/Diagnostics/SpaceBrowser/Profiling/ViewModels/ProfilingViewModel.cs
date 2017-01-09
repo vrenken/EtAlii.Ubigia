@@ -25,7 +25,7 @@
         private readonly IProfilingAspectsViewModel _aspects;
 
         private readonly IProfileComposer _profileComposer;
-        private readonly MainDispatcherInvoker _dispatcher;
+        private readonly IMainDispatcherInvoker _dispatcher;
         private ObservableCollection<ProfilingResult> _items;
 
         public System.Windows.Input.ICommand ClearCommand { get { return _clearCommand; } }
@@ -41,7 +41,7 @@
             IUnitOfWorkProcessor unitOfWorkProcessor,
             IQueryProcessor queryProcessor, 
             IProfileComposer profileComposer,
-            MainDispatcherInvoker dispatcher,
+            IMainDispatcherInvoker dispatcher,
             IProfilingAspectsViewModel aspects
             )
         {

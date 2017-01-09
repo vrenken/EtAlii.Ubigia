@@ -224,8 +224,10 @@
     <Compile Include="Documents\Commands\NewLogicalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
+    <Compile Include="IMainDispatcherInvoker.cs" />
     <Compile Include="Journal\ViewModels\IJournal.cs" />
     <Compile Include="Main\ViewModels\IMainWindowViewModel.cs" />
+    <Compile Include="Main\Views\IMainWindow.cs" />
     <Compile Include="Main\Views\OpenBackstageTabItem.xaml.cs">
       <DependentUpon>OpenBackstageTabItem.xaml</DependentUpon>
     </Compile>
