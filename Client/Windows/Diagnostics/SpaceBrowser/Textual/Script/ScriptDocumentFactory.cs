@@ -10,7 +10,7 @@
     using EtAlii.xTechnology.Logging;
     using SimpleInjector;
 
-    public class ScriptDocumentFactory : IDocumentFactory
+    public class ScriptDocumentFactory : IScriptDocumentFactory
     {
         public IDocumentViewModel Create(
             IDataContext dataContext,

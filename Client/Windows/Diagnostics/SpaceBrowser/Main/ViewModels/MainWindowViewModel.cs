@@ -22,11 +22,11 @@
         public ICommand CloseCommand { get { return _closeCommand; } set { SetProperty(ref _closeCommand, value); } }
         private ICommand _closeCommand;
 
-        public NewDocumentCommand[] NewBlankDocumentCommands { get { return _newBlankDocumentCommands; } set { SetProperty(ref _newBlankDocumentCommands, value); } }
-        private NewDocumentCommand[] _newBlankDocumentCommands;
+        public INewDocumentCommand[] NewBlankDocumentCommands { get { return _newBlankDocumentCommands; } }
+        private readonly INewDocumentCommand[] _newBlankDocumentCommands;
 
-        public NewDocumentCommand[] NewDocumentFromTemplateCommands { get { return _newDocumentFromTemplateCommands; } set { SetProperty(ref _newDocumentFromTemplateCommands, value); } }
-        private NewDocumentCommand[] _newDocumentFromTemplateCommands;
+        public INewDocumentCommand[] NewDocumentFromTemplateCommands { get { return _newDocumentFromTemplateCommands; } set { SetProperty(ref _newDocumentFromTemplateCommands, value); } }
+        private INewDocumentCommand[] _newDocumentFromTemplateCommands;
 
         public ICommand[] OpenDocumentFromFileCommands { get { return _openDocumentFromFileCommands; } set { SetProperty(ref _openDocumentFromFileCommands, value); } }
         private ICommand[] _openDocumentFromFileCommands;
@@ -36,10 +36,35 @@
 
         public MainWindowViewModel(
             RootsViewModel rootsViewModel,
-            JournalViewModel journalViewModel)
+            JournalViewModel journalViewModel,
+            INewFunctionalGraphDocumentCommand newFunctionalGraphDocumentCommand,
+            INewLogicalGraphDocumentCommand newLogicalGraphDocumentCommand,
+            INewTreeDocumentCommand newTreeDocumentCommand,
+            INewSequentialDocumentCommand newSequentialDocumentCommand,
+            INewTemporalDocumentCommand newTemporalDocumentCommand,
+            INewScriptDocumentCommand newScriptDocumentCommand,
+            INewCodeDocumentCommand newCodeDocumentCommand,
+            INewProfilingDocumentCommand newProfilingDocumentCommand)
         {
             _rootsViewModel = rootsViewModel;
             _journalViewModel = journalViewModel;
+
+            _newBlankDocumentCommands = new INewDocumentCommand[]
+            {
+                newFunctionalGraphDocumentCommand,
+                newLogicalGraphDocumentCommand,
+                newTreeDocumentCommand,
+                newSequentialDocumentCommand,
+                newTemporalDocumentCommand,
+                newScriptDocumentCommand,
+                newCodeDocumentCommand,
+                newProfilingDocumentCommand
+            };
+
+            foreach (var command in _newBlankDocumentCommands)
+            {
+                command.Initialize(this);
+            }
 
             this.PropertyChanged += OnPropertyChanged;
 

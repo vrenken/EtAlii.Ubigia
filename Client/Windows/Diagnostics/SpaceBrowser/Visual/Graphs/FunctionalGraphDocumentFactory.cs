@@ -10,7 +10,7 @@
     using EtAlii.xTechnology.Logging;
     using SimpleInjector;
 
-    public class SequentialDocumentFactory : ISequentialDocumentFactory
+    public class FunctionalGraphDocumentFactory : IFunctionalGraphDocumentFactory
     {
         public IDocumentViewModel Create(
             IDataContext dataContext,
@@ -29,14 +29,14 @@
             new StructureScaffolding().Register(container);
             new GraphScaffolding().Register(container);
 
+            container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
+            container.Register<IJournal>(() => journal, Lifestyle.Singleton);
+            container.Register<GraphDocumentViewModel>(Lifestyle.Singleton);
+
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
-            container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
-            container.Register<IJournal>(() => journal, Lifestyle.Singleton);
-            container.Register<SequentialDocumentViewModel>(Lifestyle.Singleton);
-
-            var documentViewModel = container.GetInstance<SequentialDocumentViewModel>();
+            var documentViewModel = container.GetInstance<GraphDocumentViewModel>();
             var documentViewModelService = container.GetInstance<DocumentViewModelProvider>();
             documentViewModelService.SetInstance(documentViewModel);
             return documentViewModel;

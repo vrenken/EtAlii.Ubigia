@@ -11,7 +11,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
 
-    public class NewDocumentCommand : ICommand
+    public class NewDocumentCommandBase : INewDocumentCommand
     {
         private readonly IFabricContext _fabricContext;
         private readonly IDataConnection _connection;
@@ -21,7 +21,7 @@
         private readonly ILogFactory _logFactory;
         private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly IJournal _journal;
-        private readonly MainWindowViewModel _mainWindowViewModel;
+        private MainWindowViewModel _mainWindowViewModel;
 
         public string Icon { get { return _icon; } set { _icon = value; } }
         private string _icon = "";
@@ -41,10 +41,10 @@
         public string TitleFormat { get { return _titleFormat; } set { _titleFormat = value; } }
         private string _titleFormat = "No name {0}";
 
-        public IDocumentFactory DocumentFactory { get { return _documentFactory; } set { _documentFactory = value; } }
+        public IDocumentFactory DocumentFactory { get { return _documentFactory; } protected set { _documentFactory = value; } }
         private IDocumentFactory _documentFactory;
 
-        public NewDocumentCommand(
+        public NewDocumentCommandBase(
             IDataContext dataContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
@@ -52,8 +52,7 @@
             ILogger logger,
             ILogFactory logFactory,
             IDiagnosticsConfiguration diagnostics,
-            IJournal journal,
-            MainWindowViewModel mainWindowViewModel)
+            IJournal journal)
         {
             _dataContext = dataContext;
             _logicalContext = logicalContext;
@@ -63,9 +62,12 @@
             _logFactory = logFactory;
             _diagnostics = diagnostics;
             _journal = journal;
-            _mainWindowViewModel = mainWindowViewModel;
         }
 
+        public void Initialize(MainWindowViewModel mainWindowViewModel)
+        {
+            _mainWindowViewModel = mainWindowViewModel;
+        }
         public bool CanExecute(object parameter)
         {
             return true;

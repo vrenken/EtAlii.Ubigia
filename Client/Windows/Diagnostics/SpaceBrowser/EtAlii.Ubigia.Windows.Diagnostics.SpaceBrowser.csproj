@@ -207,6 +207,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Documents\Commands\INewSequentialDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewTemporalDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewCodeDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewScriptDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewProfilingDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewTreeDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewLogicalGraphDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewFunctionalGraphDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewSequentialDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewTemporalDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewCodeDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewScriptDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewProfilingDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewTreeDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewLogicalGraphDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
+    <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
     <Compile Include="Journal\ViewModels\IJournal.cs" />
     <Compile Include="Main\Views\OpenBackstageTabItem.xaml.cs">
       <DependentUpon>OpenBackstageTabItem.xaml</DependentUpon>
@@ -217,6 +234,7 @@
     <Compile Include="Main\Views\DocumentDataTemplateContent.xaml.cs">
       <DependentUpon>DocumentDataTemplateContent.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Profiling\IProfilingDocumentFactory.cs" />
     <Compile Include="Profiling\ViewModels\ProfilingAspectActionViewModel.cs" />
     <Compile Include="Profiling\ViewModels\IProfilingAspectViewModel.cs" />
     <Compile Include="Profiling\ViewModels\ProfilingAspectViewModel.cs" />
@@ -240,6 +258,8 @@
     <Compile Include="Profiling\Views\Ribbon\ProfilingActionsRibbonGroupBox.xaml.cs">
       <DependentUpon>ProfilingActionsRibbonGroupBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Textual\Script\ICodeDocumentFactory.cs" />
+    <Compile Include="Textual\Script\IScriptDocumentFactory.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\DiagnosticsScriptProcessingSubscription.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\ErrorWriter.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\IOutputScriptProcessingSubscription.cs" />
@@ -310,6 +330,12 @@
     <Compile Include="Textual\Code\Views\CodeEditor.cs" />
     <Compile Include="Documents\Services\DocumentViewModelProvider.cs" />
     <Compile Include="Textual\_Shared\ViewModels\TextualViewModelBase.cs" />
+    <Compile Include="Visual\Graphs\IFunctionalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\ILogicalGraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\ISequentialDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\ITemporalDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\ITreeDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\FunctionalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\DiagnosticsScaffolding.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\GraphScaffolding.cs" />
     <Compile Include="Visual\Graphs\Scaffolding\StructureScaffolding.cs" />
@@ -317,7 +343,7 @@
     <Compile Include="Visual\Graphs\SequentialDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\TreeDocumentFactory.cs" />
     <Compile Include="Documents\IDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\GraphDocumentFactory.cs" />
+    <Compile Include="Visual\Graphs\LogicalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Queries\FindEntriesOnGraphQuery.cs" />
     <Compile Include="Visual\Graphs\Queries\FindEntriesOnGraphQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationQuery.cs" />
