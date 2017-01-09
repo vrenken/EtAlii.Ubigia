@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 {
     using System;
+    using System.Diagnostics;
     using System.Linq;
 
     public class Profiler : IProfiler
@@ -99,7 +100,8 @@
             {
                 if (_profilingResultStack.Peek() != profile)
                 {
-                    throw new InvalidOperationException("Ending a profile action can only be done using the previous profiling result");
+                    Debug.WriteLine("Profiling results should not be trusted");
+                    //throw new InvalidOperationException("Ending a profile action can only be done using the previous profiling result");
                 }
                 profile.Stop();
                 _profilingResultStack.Pop();
