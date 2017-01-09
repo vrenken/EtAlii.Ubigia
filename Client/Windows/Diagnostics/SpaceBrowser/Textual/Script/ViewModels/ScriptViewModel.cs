@@ -13,8 +13,8 @@
         private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
         private readonly IQueryProcessor _queryProcessor;
 
-        public ScriptButtonsViewModel Buttons { get { return _buttons; } }
-        private readonly ScriptButtonsViewModel _buttons;
+        public IScriptButtonsViewModel Buttons { get { return _buttons; } }
+        private readonly IScriptButtonsViewModel _buttons;
 
         public string Code { get { return _code; } set { SetProperty(ref _code, value); } }
         private string _code;
@@ -40,7 +40,7 @@
         public ScriptViewModel(
             IUnitOfWorkProcessor unitOfWorkProcessor,
             IQueryProcessor queryProcessor,
-            ScriptButtonsViewModel buttons)
+            IScriptButtonsViewModel buttons)
         {
             _queryProcessor = queryProcessor;
             _unitOfWorkProcessor = unitOfWorkProcessor;

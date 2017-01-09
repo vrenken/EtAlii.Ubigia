@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
 
-    public class TreeDocumentViewModel : GraphDocumentViewModelBase
+    public class TreeDocumentViewModel : GraphDocumentViewModelBase, ITreeDocumentViewModel
     {
         public TreeDocumentViewModel(
             IFabricContext fabric,
