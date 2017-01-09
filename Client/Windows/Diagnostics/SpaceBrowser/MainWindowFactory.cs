@@ -85,6 +85,7 @@
             var dataContextConfiguration = new DataContextConfiguration()
                                 .Use(diagnostics)
                                 .Use(logicalContext)
+                                .Use(new SpaceBrowserFunctionHandlersProvider())
                                 .UseWin32();
             var dataContext = new DataContextFactory().CreateForProfiling(dataContextConfiguration);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
