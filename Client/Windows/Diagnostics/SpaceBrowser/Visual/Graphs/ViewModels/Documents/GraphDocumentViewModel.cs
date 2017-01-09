@@ -7,10 +7,10 @@
     {
         public GraphDocumentViewModel(
             IFabricContext fabric,
-            ICommandProcessor commandProcessor, 
-            GraphConfiguration configuration,
-            GraphButtonsViewModel buttons,
-            GraphContextMenuViewModel contextMenu)
+            ICommandProcessor commandProcessor,
+            IGraphConfiguration configuration,
+            IGraphButtonsViewModel buttons,
+            IGraphContextMenuViewModel contextMenu)
             : base(fabric, commandProcessor, configuration, buttons, contextMenu)
         {
         }

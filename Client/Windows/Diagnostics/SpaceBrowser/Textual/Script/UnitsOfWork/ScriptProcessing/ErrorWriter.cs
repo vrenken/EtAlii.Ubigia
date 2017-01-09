@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             _statusWriter = statusWriter;
         }
 
-        public void Write(ScriptViewModel viewModel, Exception e, List<TextualError> errors)
+        public void Write(IScriptViewModel viewModel, Exception e, List<TextualError> errors)
         {
             _statusWriter.Write(viewModel, $"Execution failed: {e.Message}");
             errors.Add(new TextualError { Text = e.Message, Line = 0, Column = 0 });

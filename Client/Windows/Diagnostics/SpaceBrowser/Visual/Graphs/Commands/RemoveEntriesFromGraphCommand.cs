@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System;
     using System.Collections.Generic;
 
-    public class RemoveEntriesFromGraphCommand : CommandBase<RemoveEntriesFromGraphCommandHandler>
+    public class RemoveEntriesFromGraphCommand : CommandBase<IRemoveEntriesFromGraphCommandHandler>
     {
         public IEnumerable<Identifier> Identifiers { get; private set; }
         public ProcessReason ProcessReason { get; private set; }

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using EtAlii.xTechnology.Workflow;
     using System;
 
-    public class RetrieveEntryCommand : CommandBase<RetrieveEntryCommandHandler>
+    public class RetrieveEntryCommand : CommandBase<IRetrieveEntryCommandHandler>
     {
         public Identifier Identifier { get; private set; }
         public ProcessReason ProcessReason { get; private set; }

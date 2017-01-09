@@ -7,7 +7,7 @@
     using System.Windows.Threading;
 
 
-    public class AddEntryRelationsToGraphCommandHandler : CommandHandlerBase<AddEntryRelationsToGraphCommand>
+    public class AddEntryRelationsToGraphCommandHandler : CommandHandlerBase<AddEntryRelationsToGraphCommand>, IAddEntryRelationsToGraphCommandHandler
     {
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
 

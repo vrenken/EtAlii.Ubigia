@@ -6,7 +6,7 @@
 
     public interface IGraphDocumentViewModel : IDocumentViewModel
     {
-        GraphConfiguration Configuration { get; }
+        IGraphConfiguration Configuration { get; }
 
         EntryNode FindNodeByKey(Identifier identifier);
         

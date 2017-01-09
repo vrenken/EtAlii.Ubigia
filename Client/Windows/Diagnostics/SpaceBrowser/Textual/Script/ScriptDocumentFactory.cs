@@ -31,13 +31,13 @@
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
-            container.Register<ScriptViewModel>(Lifestyle.Singleton);
+            container.Register<IScriptViewModel, ScriptViewModel>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
 
             container.Register<ScriptButtonsViewModel>(Lifestyle.Singleton);
 
-            container.Register<ParseScriptUnitOfworkHandler>(Lifestyle.Singleton);
-            container.Register<ProcessScriptUnitOfworkHandler>(Lifestyle.Singleton);
+            container.Register<IParseScriptUnitOfworkHandler, ParseScriptUnitOfworkHandler>(Lifestyle.Singleton);
+            container.Register<IProcessScriptUnitOfworkHandler, ProcessScriptUnitOfworkHandler>(Lifestyle.Singleton);
             container.Register<IErrorWriter, ErrorWriter>(Lifestyle.Singleton);
             container.Register<IStatusWriter, StatusWriter>(Lifestyle.Singleton);
             container.Register<IOutputScriptProcessingSubscription, OutputScriptProcessingSubscription>(Lifestyle.Singleton);
@@ -50,7 +50,7 @@
             container.Register<IResultFactory, ResultFactory>(Lifestyle.Singleton);
             container.Register<IMultiResultFactory, MultiResultFactory>(Lifestyle.Singleton);
 
-            return container.GetInstance<ScriptViewModel>();
+            return container.GetInstance<IScriptViewModel>();
         }
     }
 }

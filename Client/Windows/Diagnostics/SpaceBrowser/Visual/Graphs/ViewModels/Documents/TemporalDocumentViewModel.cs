@@ -8,9 +8,9 @@
         public TemporalViewModel(
             IFabricContext fabric,
             ICommandProcessor commandProcessor,
-            GraphConfiguration configuration,
-            GraphButtonsViewModel buttons,
-            GraphContextMenuViewModel contextMenu)
+            IGraphConfiguration configuration,
+            IGraphButtonsViewModel buttons,
+            IGraphContextMenuViewModel contextMenu)
             : base(fabric, commandProcessor, configuration, buttons, contextMenu)
         {
         }

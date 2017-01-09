@@ -8,7 +8,7 @@
     using EtAlii.xTechnology.Workflow;
     using ICommand = System.Windows.Input.ICommand;
 
-    public class GraphButtonsViewModel : BindableBase
+    public class GraphButtonsViewModel : BindableBase, IGraphButtonsViewModel
     {
         private readonly IFabricContext _fabric;
 

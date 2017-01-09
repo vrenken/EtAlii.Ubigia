@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.xTechnology.Workflow;
 
-    public class AddEntryRelationsToGraphCommand : CommandBase<AddEntryRelationsToGraphCommandHandler>
+    public class AddEntryRelationsToGraphCommand : CommandBase<IAddEntryRelationsToGraphCommandHandler>
     {
         public ProcessReason ProcessReason { get; private set; }
 

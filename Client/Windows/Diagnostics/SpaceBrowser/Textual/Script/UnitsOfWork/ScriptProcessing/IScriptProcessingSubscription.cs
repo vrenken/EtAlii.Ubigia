@@ -8,7 +8,7 @@
 
     public interface IScriptProcessingSubscription
     {
-        void Subscribe(IObservable<SequenceProcessingResult> results, ScriptViewModel viewModel, List<TextualError> errors, DateTime start);
+        void Subscribe(IObservable<SequenceProcessingResult> results, IScriptViewModel viewModel, List<TextualError> errors, DateTime start);
 
     }
 }

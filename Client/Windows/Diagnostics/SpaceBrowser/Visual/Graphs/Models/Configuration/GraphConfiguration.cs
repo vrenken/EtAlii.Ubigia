@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.xTechnology.Mvvm;
 
-    public class GraphConfiguration : BindableBase
+    public class GraphConfiguration : BindableBase, IGraphConfiguration
     {
         public bool AddNewEntries { get { return _addNewEntries; } set { SetProperty(ref _addNewEntries, value); } }
         private bool _addNewEntries;

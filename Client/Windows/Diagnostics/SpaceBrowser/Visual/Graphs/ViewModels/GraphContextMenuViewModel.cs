@@ -9,7 +9,7 @@
     using EtAlii.Ubigia.Windows;
     using ICommand = System.Windows.Input.ICommand;
 
-    public class GraphContextMenuViewModel : BindableBase
+    public class GraphContextMenuViewModel : BindableBase, IGraphContextMenuViewModel
     {
         public ICommand HideChildrenCommand { get { return _hideChildrenCommand; } }
         private readonly ICommand _hideChildrenCommand;

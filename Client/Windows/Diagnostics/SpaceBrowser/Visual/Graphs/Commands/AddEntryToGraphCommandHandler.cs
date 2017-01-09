@@ -6,10 +6,10 @@
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    public class AddEntryToGraphCommandHandler : CommandHandlerBase<AddEntryToGraphCommand>
+    public class AddEntryToGraphCommandHandler : CommandHandlerBase<AddEntryToGraphCommand>, IAddEntryToGraphCommandHandler
     {
         private readonly IFabricContext _fabric;
-        private readonly GraphConfiguration _configuration;
+        private readonly IGraphConfiguration _configuration;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
@@ -19,7 +19,7 @@
         public AddEntryToGraphCommandHandler(
             IFabricContext fabric,
             IDocumentViewModelProvider documentViewModelProvider,
-            GraphConfiguration configuration,
+            IGraphConfiguration configuration,
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _fabric = fabric;
