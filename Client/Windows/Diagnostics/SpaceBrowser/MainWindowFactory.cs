@@ -13,15 +13,15 @@
 
     public class MainWindowFactory
     {
-        public MainWindow Create(IProfilingDataConnection connection, IDiagnosticsConfiguration diagnostics)
+        public IMainWindow Create(IProfilingDataConnection connection, IDiagnosticsConfiguration diagnostics)
         {
             var container = new Container();
             container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
-            container.Register<MainDispatcherInvoker>(Lifestyle.Singleton);
+            container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>(Lifestyle.Singleton);
 
             container.Register<IMainWindowViewModel, MainWindowViewModel>(Lifestyle.Singleton);
-            container.Register<MainWindow, MainWindow>(Lifestyle.Singleton);
+            container.Register<IMainWindow, MainWindow>(Lifestyle.Singleton);
 
             RegisterDiagnostics(container, diagnostics);
             RegisterContext(container, connection, diagnostics);
@@ -54,7 +54,7 @@
             container.Register<IProfilingDocumentFactory, ProfilingDocumentFactory>(Lifestyle.Singleton);
             container.Register<INewProfilingDocumentCommand, NewProfilingDocumentCommand>(Lifestyle.Singleton);
 
-            var window = container.GetInstance<MainWindow>();
+            var window = container.GetInstance<IMainWindow>();
             var viewModel = container.GetInstance<IMainWindowViewModel>();
             //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container);
             window.DataContext = viewModel;

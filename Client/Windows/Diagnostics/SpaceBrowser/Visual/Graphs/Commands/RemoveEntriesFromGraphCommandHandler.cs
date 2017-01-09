@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     {
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly DocumentViewModelProvider _documentViewModelProvider;
-        private readonly MainDispatcherInvoker _mainDispatcherInvoker;
+        private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 
         private readonly object _lockObject = new object();
 
         public RemoveEntriesFromGraphCommandHandler(
             DocumentViewModelProvider documentViewModelProvider,
             GraphConfiguration configuration,
-            MainDispatcherInvoker mainDispatcherInvoker)
+            IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _documentViewModelProvider = documentViewModelProvider;
             _mainDispatcherInvoker = mainDispatcherInvoker;

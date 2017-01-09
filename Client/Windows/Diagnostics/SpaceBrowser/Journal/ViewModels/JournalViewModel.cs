@@ -16,13 +16,13 @@
 
         protected IFabricContext Fabric { get { return _fabric; } }
         private readonly IFabricContext _fabric;
-        private readonly MainDispatcherInvoker _mainDispatcherInvoker;
+        private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 
         private int _currentId = 0;
 
         public JournalViewModel(
             IFabricContext fabric,
-            MainDispatcherInvoker mainDispatcherInvoker)
+            IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _items = new ObservableCollection<JournalItem>();
             _fabric = fabric;

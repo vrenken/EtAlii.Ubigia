@@ -2,9 +2,9 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     public class StatusWriter : IStatusWriter
     {
-        private readonly MainDispatcherInvoker _dispatcherInvoker;
+        private readonly IMainDispatcherInvoker _dispatcherInvoker;
 
-        public StatusWriter(MainDispatcherInvoker dispatcherInvoker)
+        public StatusWriter(IMainDispatcherInvoker dispatcherInvoker)
         {
             _dispatcherInvoker = dispatcherInvoker;
         }

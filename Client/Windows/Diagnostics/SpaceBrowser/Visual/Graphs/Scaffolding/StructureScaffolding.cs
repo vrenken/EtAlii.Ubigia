@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             container.Register<ICommandProcessor, TaskBasedCommandProcessor>(Lifestyle.Singleton);
             container.Register<IQueryProcessor, QueryProcessor>(Lifestyle.Singleton);
             container.Register<IUnitOfWorkProcessor, UnitOfWorkProcessor>(Lifestyle.Singleton);
-            container.Register<MainDispatcherInvoker>(Lifestyle.Singleton);
+            container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>(Lifestyle.Singleton);
         }
     }
 }

@@ -7,7 +7,7 @@
 
     public static class IObservableToObservableCollectionExtension
     {
-        public static ObservableCollection<T> ToObservableCollection<T>(this IObservable<T> observable, MainDispatcherInvoker dispatcherInvoker)
+        public static ObservableCollection<T> ToObservableCollection<T>(this IObservable<T> observable, IMainDispatcherInvoker dispatcherInvoker)
         {
             var result = new ObservableCollection<T>();
 
