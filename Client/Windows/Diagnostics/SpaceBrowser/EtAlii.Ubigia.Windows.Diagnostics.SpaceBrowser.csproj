@@ -225,7 +225,8 @@
     <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
     <Compile Include="IMainDispatcherInvoker.cs" />
-    <Compile Include="Journal\ViewModels\IJournal.cs" />
+    <Compile Include="Journal\ViewModels\__IJournal.cs" />
+    <Compile Include="Journal\ViewModels\IJournalViewModel.cs" />
     <Compile Include="Main\ViewModels\IMainWindowViewModel.cs" />
     <Compile Include="Main\Views\IMainWindow.cs" />
     <Compile Include="Main\Views\OpenBackstageTabItem.xaml.cs">
@@ -356,6 +357,7 @@
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQueryHandler.cs" />
     <Compile Include="Visual\Graphs\Queries\TraverseRelationsQuery.cs" />
     <Compile Include="Visual\Graphs\ViewModels\GraphContextMenuViewModel.cs" />
+    <Compile Include="Visual\Graphs\ViewModels\IRootsViewModel.cs" />
     <Compile Include="Visual\Graphs\Views\GraphContextMenu.xaml.cs">
       <DependentUpon>GraphContextMenu.xaml</DependentUpon>
     </Compile>

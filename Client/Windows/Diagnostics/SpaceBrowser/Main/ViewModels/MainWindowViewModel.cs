@@ -10,8 +10,8 @@
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
-        public RootsViewModel RootsViewModel { get { return _rootsViewModel; } }
-        private readonly RootsViewModel _rootsViewModel;
+        public IRootsViewModel RootsViewModel { get { return _rootsViewModel; } }
+        private readonly IRootsViewModel _rootsViewModel;
 
         public JournalViewModel JournalViewModel { get { return _journalViewModel; } }
         private readonly JournalViewModel _journalViewModel;
@@ -35,7 +35,7 @@
         private ICommand[] _openDocumentFromSpaceCommands;
 
         public MainWindowViewModel(
-            RootsViewModel rootsViewModel,
+            IRootsViewModel rootsViewModel,
             JournalViewModel journalViewModel,
             INewFunctionalGraphDocumentCommand newFunctionalGraphDocumentCommand,
             INewLogicalGraphDocumentCommand newLogicalGraphDocumentCommand,

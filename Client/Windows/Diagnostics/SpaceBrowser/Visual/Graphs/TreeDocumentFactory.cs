@@ -19,8 +19,8 @@
             IDataConnection connection,
             IDiagnosticsConfiguration diagnostics, 
             ILogger logger, 
-            ILogFactory logFactory, 
-            IJournal journal)
+            ILogFactory logFactory,
+            IJournalViewModel journal)
         {
             var container = new Container();
             container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
@@ -33,7 +33,7 @@
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
 
             container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
-            container.Register<IJournal>(() => journal, Lifestyle.Singleton);
+            container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
             container.Register<TreeDocumentViewModel>(Lifestyle.Singleton);
 
             var documentViewModel = container.GetInstance<TreeDocumentViewModel>();

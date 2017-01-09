@@ -20,7 +20,7 @@
             IDiagnosticsConfiguration diagnostics,
             ILogger logger,
             ILogFactory logFactory,
-            IJournal journal)
+            IJournalViewModel journal)
         {
             var container = new Container();
             container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
@@ -30,7 +30,7 @@
             new GraphScaffolding().Register(container);
 
             container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
-            container.Register<IJournal>(() => journal, Lifestyle.Singleton);
+            container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
             container.Register<GraphDocumentViewModel>(Lifestyle.Singleton);
 
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
