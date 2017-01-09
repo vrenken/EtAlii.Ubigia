@@ -13,8 +13,8 @@
         public IRootsViewModel RootsViewModel { get { return _rootsViewModel; } }
         private readonly IRootsViewModel _rootsViewModel;
 
-        public JournalViewModel JournalViewModel { get { return _journalViewModel; } }
-        private readonly JournalViewModel _journalViewModel;
+        public IJournalViewModel JournalViewModel { get { return _journalViewModel; } }
+        private readonly IJournalViewModel _journalViewModel;
 
         public ObservableCollection<IDocumentViewModel> Documents { get { return _documents; } }
         private readonly ObservableCollection<IDocumentViewModel> _documents = new ObservableCollection<IDocumentViewModel>();
@@ -36,7 +36,7 @@
 
         public MainWindowViewModel(
             IRootsViewModel rootsViewModel,
-            JournalViewModel journalViewModel,
+            IJournalViewModel journalViewModel,
             INewFunctionalGraphDocumentCommand newFunctionalGraphDocumentCommand,
             INewLogicalGraphDocumentCommand newLogicalGraphDocumentCommand,
             INewTreeDocumentCommand newTreeDocumentCommand,

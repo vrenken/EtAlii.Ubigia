@@ -250,6 +250,7 @@
     <Compile Include="Profiling\ViewModels\IProfilingViewModel.cs" />
     <Compile Include="Profiling\ViewModels\ProfilingAspectsViewModel.cs" />
     <Compile Include="Profiling\ViewModels\ProfilingViewModel.cs" />
+    <Compile Include="Profiling\Views\IProfilingView.cs" />
     <Compile Include="Profiling\Views\ProfilingView.xaml.cs">
       <DependentUpon>ProfilingView.xaml</DependentUpon>
     </Compile>
