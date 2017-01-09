@@ -68,6 +68,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Temporal.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.TraversingWildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Wildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Media.Path.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Assign.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Unassign.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Advanced.Tests.cs" />
