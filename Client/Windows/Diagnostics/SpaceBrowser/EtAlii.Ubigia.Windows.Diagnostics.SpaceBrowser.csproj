@@ -225,6 +225,8 @@
     <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
     <Compile Include="Documents\Services\IDocumentViewModelProvider.cs" />
+    <Compile Include="Functions\SpaceBrowserFunctionHandlersProvider.cs" />
+    <Compile Include="Functions\ViewFunctionHandler.cs" />
     <Compile Include="IMainDispatcherInvoker.cs" />
     <Compile Include="Journal\ViewModels\__IJournal.cs" />
     <Compile Include="Journal\ViewModels\IJournalViewModel.cs" />
@@ -345,9 +347,9 @@
     <Compile Include="Textual\Code\Views\CodeEditor.cs" />
     <Compile Include="Documents\Services\DocumentViewModelProvider.cs" />
     <Compile Include="Textual\_Shared\ViewModels\TextualViewModelBase.cs" />
-    <Compile Include="Visual\Graphs\Commands\IAddEntryToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Commands\IApplyLayoutingToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Commands\IRemoveEntriesFromGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\IAddEntryToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\IApplyLayoutingToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\IRemoveEntriesFromGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\Functional\IFunctionalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Logical\ILogicalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Logical\ViewModels\LogicalGraphDocumentViewModel.cs" />
@@ -356,43 +358,42 @@
     <Compile Include="Visual\Temporal\ITemporalDocumentFactory.cs" />
     <Compile Include="Visual\Tree\ITreeDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Functional\FunctionalGraphDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\Models\Configuration\IGraphConfiguration.cs" />
-    <Compile Include="Visual\Graphs\Queries\IFindEntriesOnGraphQueryHandler.cs" />
-    <Compile Include="Visual\Graphs\Scaffolding\DiagnosticsScaffolding.cs" />
-    <Compile Include="Visual\Graphs\Scaffolding\GraphScaffolding.cs" />
-    <Compile Include="Visual\Graphs\Scaffolding\StructureScaffolding.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Models\Configuration\IGraphConfiguration.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\IFindEntriesOnGraphQueryHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Scaffolding\DiagnosticsScaffolding.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Scaffolding\GraphScaffolding.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Scaffolding\StructureScaffolding.cs" />
     <Compile Include="Visual\Temporal\TemporalDocumentFactory.cs" />
     <Compile Include="Visual\Sequential\SequentialDocumentFactory.cs" />
     <Compile Include="Visual\Tree\TreeDocumentFactory.cs" />
     <Compile Include="Documents\IDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Logical\LogicalGraphDocumentFactory.cs" />
-    <Compile Include="Visual\Graphs\Queries\FindEntriesOnGraphQuery.cs" />
-    <Compile Include="Visual\Graphs\Queries\FindEntriesOnGraphQueryHandler.cs" />
-    <Compile Include="Visual\Graphs\Queries\TraverseRelationQuery.cs" />
-    <Compile Include="Visual\Graphs\Queries\FindEntryOnGraphQueryHandler.cs" />
-    <Compile Include="Visual\Graphs\Queries\TraverseRelationQueryHandler.cs" />
-    <Compile Include="Visual\Graphs\Queries\FindEntryOnGraphQuery.cs" />
-    <Compile Include="Visual\Graphs\Queries\TraverseRelationsQueryHandler.cs" />
-    <Compile Include="Visual\Graphs\Queries\TraverseRelationsQuery.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\FindEntriesOnGraphQuery.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\FindEntriesOnGraphQueryHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\TraverseRelationQuery.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\FindEntryOnGraphQueryHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\TraverseRelationQueryHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\FindEntryOnGraphQuery.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\TraverseRelationsQueryHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\TraverseRelationsQuery.cs" />
     <Compile Include="Visual\Graphs\Functional\ViewModels\IFunctionalGraphDocumentViewModel.cs" />
     <Compile Include="Visual\Sequential\ViewModels\ISequentialDocumentViewModel.cs" />
     <Compile Include="Visual\Temporal\ViewModels\ITemporalDocumentViewModel.cs" />
     <Compile Include="Visual\Tree\ViewModels\ITreeDocumentViewModel.cs" />
     <Compile Include="Visual\Graphs\Functional\ViewModels\FunctionalGraphDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\GraphContextMenuViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\IGraphButtonsViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\IGraphContextMenuViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\IRootsViewModel.cs" />
-    <Compile Include="Visual\Graphs\Views\GraphContextMenu.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\GraphContextMenuViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\IGraphButtonsViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\IGraphContextMenuViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\IRootsViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Views\GraphContextMenu.xaml.cs">
       <DependentUpon>GraphContextMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\Ribbon\RelationsRibbonGroupBox.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\Ribbon\RelationsRibbonGroupBox.xaml.cs">
       <DependentUpon>RelationsRibbonGroupBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Commands\RemoveEntriesFromGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Commands\RemoveEntriesFromGraphCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\RemoveEntriesFromGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\RemoveEntriesFromGraphCommand.cs" />
     <EmbeddedResource Include="Textual\Script\Templates\SimpleScript.cs" />
-    <Compile Include="Textual\Script\Services\ScriptProcessor.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptParsing\ParseScriptUnitOfwork.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptParsing\ParseScriptUnitOfworkHandler.cs" />
     <Compile Include="Textual\Script\UnitsOfWork\ScriptProcessing\ProcessScriptUnitOfwork.cs" />
@@ -403,47 +404,47 @@
       <DependentUpon>QueryMaintenanceRibbonGroupBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Shared\Converters\EqualsConverter.cs" />
-    <Compile Include="Visual\Graphs\Models\Configuration\GraphConfiguration.cs" />
-    <Compile Include="Visual\Graphs\Models\EntryLink.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Models\Configuration\GraphConfiguration.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Models\EntryLink.cs" />
     <Compile Include="Shared\Models\Queues\BlockingCollection.Extensions.cs" />
     <Compile Include="Journal\Models\JournalItem.cs" />
     <Compile Include="Shared\Models\Queues\TaskAwareObservable.cs" />
     <Compile Include="Shared\Models\Queues\Throttle.cs" />
-    <Compile Include="Visual\Graphs\Models\EntryNode.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\GraphButtonsViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Models\EntryNode.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\GraphButtonsViewModel.cs" />
     <Compile Include="Documents\ViewModels\IDocumentViewModel.cs" />
     <Compile Include="Textual\Script\ViewModels\ScriptViewModel.cs" />
     <Compile Include="Visual\Temporal\ViewModels\TemporalDocumentViewModel.cs" />
     <Compile Include="Visual\Sequential\ViewModels\SequentialDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModelBase.DragDrop.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\GraphDocumentViewModelBase.DragDrop.cs" />
     <Compile Include="Visual\Tree\ViewModels\TreeDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\IGraphDocumentViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModelBase.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModelBase.INotifyPropertyChanged.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\IGraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\GraphDocumentViewModelBase.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\GraphDocumentViewModelBase.INotifyPropertyChanged.cs" />
     <Compile Include="Textual\Script\Views\ScriptView.xaml.cs">
       <DependentUpon>ScriptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\Layouts\Tree\TreeLayout.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Views\Layouts\Tree\TreeLayout.cs" />
     <Compile Include="Journal\ViewModels\JournalViewModel.cs" />
     <Compile Include="Documents\Views\DocumentContent.xaml.cs">
       <DependentUpon>DocumentContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\ViewModels\Tools\Graph\ContinuousDraggingTool.cs" />
-    <Compile Include="Visual\Graphs\Views\Layouts\Graph\ContinuousForceDirectedLayout.cs" />
-    <Compile Include="Visual\Graphs\Views\Layouts\Graph\ContinuousLayoutManager.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\Tools\ClickSelectingTool.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\Tools\Graph\ContinuousDraggingTool.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Views\Layouts\Graph\ContinuousForceDirectedLayout.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Views\Layouts\Graph\ContinuousLayoutManager.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\Tools\ClickSelectingTool.cs" />
     <Compile Include="Visual\Tree\Views\TreeView.xaml.cs">
       <DependentUpon>TreeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\GraphViewBase.cs" />
-    <Compile Include="Visual\Graphs\Views\GraphViewBase.Watermark.cs" />
-    <Compile Include="Visual\Graphs\Views\GraphView.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\GraphViewBase.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Views\GraphViewBase.Watermark.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Views\GraphView.xaml.cs">
       <DependentUpon>GraphView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\Views\MainContent.xaml.cs">
       <DependentUpon>MainContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\Ribbon\ActionsRibbonGroupBox.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\Ribbon\ActionsRibbonGroupBox.xaml.cs">
       <DependentUpon>ActionsRibbonGroupBox.xaml</DependentUpon>
     </Compile>
     <Compile Include="Textual\Script\Views\Ribbon\ExecuteRibbonGroupBox.xaml.cs">
@@ -458,16 +459,16 @@
     <Compile Include="Textual\Script\Views\Ribbon\EditRibbonGroupBox.xaml.cs">
       <DependentUpon>EditRibbonGroupBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\Ribbon\MaintenanceRibbonGroupBox.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\Ribbon\MaintenanceRibbonGroupBox.xaml.cs">
       <DependentUpon>MaintenanceRibbonGroupBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\Ribbon\EntrySelectionRibbonGroupBox.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\Ribbon\EntrySelectionRibbonGroupBox.xaml.cs">
       <DependentUpon>EntrySelectionRibbonGroupBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\Ribbon\NewEntriesRibbonGroupBox.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\Ribbon\NewEntriesRibbonGroupBox.xaml.cs">
       <DependentUpon>NewEntriesRibbonGroupBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Views\RootsContent.xaml.cs">
+    <Compile Include="Visual\Graphs\_Shared\Views\RootsContent.xaml.cs">
       <DependentUpon>RootsContent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Journal\Views\JournalContent.xaml.cs">
@@ -476,25 +477,25 @@
     <Compile Include="Main\Views\TimeFilterContent.xaml.cs">
       <DependentUpon>TimeFilterContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\Workflow\Processing\IAddEntryRelationsToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\IDiscoverEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\IProcessEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\IRetrieveEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\TaskBasedCommandProcessor.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\DiscoverEntryCommand.cs" />
-    <Compile Include="Visual\Graphs\Commands\AddEntryToGraphCommand.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\DiscoverEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Commands\AddEntryToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Commands\ApplyLayoutingToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Commands\ApplyLayoutingToGraphCommand.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\AddEntryRelationsToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\AddEntryRelationsToGraphCommand.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\ProcessHandlerBase.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\ProcessEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\RetrieveEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\ProcessReason.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\ProcessEntryCommand.cs" />
-    <Compile Include="Visual\Graphs\Workflow\Processing\RetrieveEntryCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IAddEntryRelationsToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IDiscoverEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IProcessEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IRetrieveEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\TaskBasedCommandProcessor.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\DiscoverEntryCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\AddEntryToGraphCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\DiscoverEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\AddEntryToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\ApplyLayoutingToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Commands\ApplyLayoutingToGraphCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\AddEntryRelationsToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\AddEntryRelationsToGraphCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessHandlerBase.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\RetrieveEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessReason.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessEntryCommand.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\RetrieveEntryCommand.cs" />
     <Page Include="Main\Views\OpenBackstageTabItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -559,11 +560,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\GraphContextMenu.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\GraphContextMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\Ribbon\RelationsRibbonGroupBox.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\Ribbon\RelationsRibbonGroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -587,7 +588,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\GraphView.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\GraphView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -595,7 +596,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Visual\Graphs\Views\Ribbon\ActionsRibbonGroupBox.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\Ribbon\ActionsRibbonGroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -615,19 +616,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\Ribbon\MaintenanceRibbonGroupBox.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\Ribbon\MaintenanceRibbonGroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\Ribbon\EntrySelectionRibbonGroupBox.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\Ribbon\EntrySelectionRibbonGroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\Ribbon\NewEntriesRibbonGroupBox.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\Ribbon\NewEntriesRibbonGroupBox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Visual\Graphs\Views\RootsContent.xaml">
+    <Page Include="Visual\Graphs\_Shared\Views\RootsContent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -643,8 +644,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Visual\Graphs\ViewModels\RootsViewModel.cs" />
-    <Compile Include="Visual\Graphs\ViewModels\GraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\RootsViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\ViewModels\GraphDocumentViewModel.cs" />
     <Compile Include="Main\ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Main\Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -749,13 +750,13 @@
     <Folder Include="Visual\Graphs\Logical\Queries\" />
     <Folder Include="Visual\Graphs\Logical\Scaffolding\" />
     <Folder Include="Visual\Graphs\Logical\UnitsOfWork\" />
-    <Folder Include="Visual\Graphs\UnitsOfWork\" />
-    <Folder Include="Visual\Graphs\ViewModels\Documents\" />
-    <Folder Include="Visual\Graphs\ViewModels\Tools\Tree\" />
-    <Folder Include="Visual\Graphs\Workflow\Discovery\" />
-    <Folder Include="Visual\Graphs\Workflow\EntrySelection\" />
-    <Folder Include="Visual\Graphs\Workflow\Maintenance\" />
-    <Folder Include="Visual\Graphs\Workflow\NewEntries\" />
+    <Folder Include="Visual\Graphs\_Shared\UnitsOfWork\" />
+    <Folder Include="Visual\Graphs\_Shared\ViewModels\Documents\" />
+    <Folder Include="Visual\Graphs\_Shared\ViewModels\Tools\Tree\" />
+    <Folder Include="Visual\Graphs\_Shared\Workflow\Discovery\" />
+    <Folder Include="Visual\Graphs\_Shared\Workflow\EntrySelection\" />
+    <Folder Include="Visual\Graphs\_Shared\Workflow\Maintenance\" />
+    <Folder Include="Visual\Graphs\_Shared\Workflow\NewEntries\" />
     <Folder Include="Visual\Sequential\Commands\" />
     <Folder Include="Visual\Sequential\Models\" />
     <Folder Include="Visual\Sequential\Queries\" />
