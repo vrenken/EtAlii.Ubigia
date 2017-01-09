@@ -20,7 +20,7 @@
 
             container.Register<MainDispatcherInvoker>(Lifestyle.Singleton);
 
-            container.Register<MainWindowViewModel, MainWindowViewModel>(Lifestyle.Singleton);
+            container.Register<IMainWindowViewModel, MainWindowViewModel>(Lifestyle.Singleton);
             container.Register<MainWindow, MainWindow>(Lifestyle.Singleton);
 
             RegisterDiagnostics(container, diagnostics);
@@ -55,7 +55,7 @@
             container.Register<INewProfilingDocumentCommand, NewProfilingDocumentCommand>(Lifestyle.Singleton);
 
             var window = container.GetInstance<MainWindow>();
-            var viewModel = container.GetInstance<MainWindowViewModel>();
+            var viewModel = container.GetInstance<IMainWindowViewModel>();
             //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container);
             window.DataContext = viewModel;
             return window;

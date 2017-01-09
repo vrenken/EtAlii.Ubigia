@@ -21,7 +21,7 @@
         private readonly ILogFactory _logFactory;
         private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly IJournal _journal;
-        private MainWindowViewModel _mainWindowViewModel;
+        private IMainWindowViewModel _mainWindowViewModel;
 
         public string Icon { get { return _icon; } set { _icon = value; } }
         private string _icon = "";
@@ -64,7 +64,7 @@
             _journal = journal;
         }
 
-        public void Initialize(MainWindowViewModel mainWindowViewModel)
+        public void Initialize(IMainWindowViewModel mainWindowViewModel)
         {
             _mainWindowViewModel = mainWindowViewModel;
         }

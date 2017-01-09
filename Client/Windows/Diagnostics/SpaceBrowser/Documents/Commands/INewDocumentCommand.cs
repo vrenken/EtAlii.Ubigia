@@ -12,6 +12,6 @@
         string TitleFormat { get; }
         IDocumentFactory DocumentFactory { get; }
 
-        void Initialize(MainWindowViewModel mainWindowViewModel);
+        void Initialize(IMainWindowViewModel mainWindowViewModel);
     }
 }

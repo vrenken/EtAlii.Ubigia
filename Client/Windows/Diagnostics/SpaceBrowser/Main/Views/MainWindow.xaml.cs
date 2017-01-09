@@ -9,9 +9,9 @@
     /// </summary>
     public partial class MainWindow : RibbonWindow
     {
-        public new MainWindowViewModel DataContext
+        public new IMainWindowViewModel DataContext
         {
-            get { return base.DataContext as MainWindowViewModel; }
+            get { return base.DataContext as IMainWindowViewModel; }
             set { base.DataContext = value; }
         }
 
