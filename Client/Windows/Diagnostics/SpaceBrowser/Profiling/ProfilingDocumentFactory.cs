@@ -39,10 +39,10 @@
             container.Register<IProfilingFabricContext>(() => (IProfilingFabricContext)fabricContext, Lifestyle.Singleton);
             container.Register<IProfilingDataConnection>(() => (IProfilingDataConnection)connection, Lifestyle.Singleton);
 
-            container.Register<ProfilingView>(Lifestyle.Singleton);
+            //container.Register<IProfilingView, ProfilingView>(Lifestyle.Singleton);
             container.Register<DocumentViewModelProvider>(Lifestyle.Singleton);
 
-            container.Register< IProfileComposer>(() => 
+            container.Register<IProfileComposer>(() => 
             new ProfileComposer(
                 ((IProfilingDataContext)dataContext).Profiler,
                 ((IProfilingLogicalContext)logicalContext).Profiler,

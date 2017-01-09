@@ -27,7 +27,6 @@
             RegisterContext(container, connection, diagnostics);
 
             container.Register<IRootsViewModel, RootsViewModel>(Lifestyle.Singleton);
-            container.Register<JournalViewModel>(Lifestyle.Singleton);
             container.Register<IJournalViewModel, JournalViewModel>(Lifestyle.Singleton);
 
             container.Register<IFunctionalGraphDocumentFactory, FunctionalGraphDocumentFactory>(Lifestyle.Singleton);

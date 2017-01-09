@@ -7,7 +7,7 @@
     using System.Windows.Input;
     using Syncfusion.Windows.Controls.Grid;
 
-    public partial class ProfilingView : UserControl
+    public partial class ProfilingView : UserControl//, IProfilingView
     {
         public bool AutoExpandNodes
         {
