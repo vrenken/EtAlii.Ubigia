@@ -49,7 +49,7 @@
         {
             if (extensions == null)
             {
-                throw new ArgumentException("extensions");
+                throw new ArgumentException(nameof(extensions));
             }
 
             _extensions = extensions
