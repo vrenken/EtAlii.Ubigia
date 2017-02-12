@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.xTechnology.Workflow
 {
-    using SimpleInjector;
-
     public abstract class QueryBase<TQueryHandler, TResult> : IQuery<TResult>
         where TQueryHandler : class, IQueryHandler<TResult>
     {

@@ -1,5 +1,4 @@
-﻿using SimpleInjector;
-namespace EtAlii.xTechnology.Workflow
+﻿namespace EtAlii.xTechnology.Workflow
 {
     public abstract class UnitOfWorkBase<TUnitOfWorkHandler> : IUnitOfWork
         where TUnitOfWorkHandler : class, IUnitOfWorkHandler
