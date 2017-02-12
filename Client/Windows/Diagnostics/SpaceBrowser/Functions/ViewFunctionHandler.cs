@@ -1,16 +1,26 @@
 namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
+    using System.Linq;
+    using System.Reactive.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
 
-    public class ViewFunctionHandler : IFunctionHandler
+    public class ViewFunctionHandler : FunctionHandlerBase, IViewFunctionHandler
     {
+        private readonly IDocumentsProvider _documentsProvider;
+        private readonly IRetrieveEntryCommandHandler _retrieveEntryCommandHandler;
+
         public ParameterSet[] ParameterSets { get; }
         public string Name { get; }
 
-        public ViewFunctionHandler()
+        public ViewFunctionHandler(
+            IDocumentsProvider documentsProvider, 
+            IRetrieveEntryCommandHandler retrieveEntryCommandHandler)
         {
+            _documentsProvider = documentsProvider;
+            _retrieveEntryCommandHandler = retrieveEntryCommandHandler;
+
             ParameterSets = new[]
             {
                 new ParameterSet(true, new Parameter("view", typeof(string))),
@@ -38,7 +48,16 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                    var name = argumentSet.Arguments[0] as string;
+                    var document = _documentsProvider.Documents.SingleOrDefault(d => d.Title == name);
+                    if (document == null)
+                    {
+                        throw new ScriptProcessingException($"No view found with name: '{name}'");
+                    }
+                    else
+                    {
+                        ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                    }
                 }
                 else
                 {
@@ -50,19 +69,26 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
         private void ProcessByInput(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output)
         {
+            var name = argumentSet.Arguments[0] as string;
+            var document = _documentsProvider.Documents.SingleOrDefault(d => d.Title == name);
+            var graphDocumentViewModel = document as IGraphDocumentViewModel;
+
             input.Subscribe(
                 onError: (e) => output.OnError(e),
                 onCompleted: () => output.OnCompleted(),
                 onNext: o =>
                 {
-                    //var converter = _toIdentifierConverterSelector.Select(o);
-                    //var results = converter(context, o, scope);
-                    //foreach (var result in results.ToEnumerable())
-                    //{
-                    //    output.OnNext(result);
-                    //}
+                    if (graphDocumentViewModel != null)
+                    {
+                        var converter = ToIdentifierConverterSelector.Select(o);
+                        var results = converter(context, o, scope);
+                        foreach (var result in results.ToEnumerable())
+                        {
+                            graphDocumentViewModel.CommandProcessor.Process(new RetrieveEntryCommand(result, ProcessReason.Retrieved), _retrieveEntryCommandHandler);
+                        }
+                    }
+                    output.OnNext(o);
                 });
         }
-
     }
 }
