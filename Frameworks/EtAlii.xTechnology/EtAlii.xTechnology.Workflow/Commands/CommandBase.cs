@@ -1,12 +1,6 @@
-﻿using SimpleInjector;
-namespace EtAlii.xTechnology.Workflow
+﻿namespace EtAlii.xTechnology.Workflow
 {
-    public abstract class CommandBase<TCommandHandler> : ICommand
-        where TCommandHandler : class, ICommandHandler
+    public abstract class CommandBase : ICommand
     {
-        ICommandHandler ICommand.GetHandler(Container container)
-        {
-            return container.GetInstance<TCommandHandler>();
-        }
     }
 }
