@@ -122,6 +122,7 @@
     <Compile Include="Scripting\4. Processing\Subjects\Paths\RelativePathSubjectProcessor.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\IPathVariableExpander.cs" />
     <Compile Include="Scripting\4. Processing\Subjects\Paths\_Helpers\PathVariableExpander.cs" />
+    <Compile Include="Scripting\Functions\Handlers\Default\FunctionHandlerBase.cs" />
     <Compile Include="Scripting\Functions\Handlers\Validation\IFunctionHandlerValidator.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Locations\LocationsRootByEmptyHandler.cs" />
     <Compile Include="Scripting\Roots\Handlers\Default\Locations\LocationsRootHandlerMapper.cs" />

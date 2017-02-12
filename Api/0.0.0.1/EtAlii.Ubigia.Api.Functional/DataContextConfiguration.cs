@@ -35,7 +35,7 @@
 
         public IDataContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
         {
-            _functionHandlersProvider = functionHandlersProvider;
+            _functionHandlersProvider = new FunctionHandlersProvider(functionHandlersProvider.FunctionHandlers, _functionHandlersProvider.FunctionHandlers);
             return this;
         }
 
