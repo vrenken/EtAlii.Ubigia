@@ -10,9 +10,9 @@ namespace EtAlii.xTechnology.Workflow
             _container = container;
         }
 
-        public void Process(IUnitOfWork unitOfWork)
+        public void Process(IUnitOfWork unitOfWork, IUnitOfWorkHandler handler)
         {
-            var handler = unitOfWork.GetHandler(_container);
+            //var handler = unitOfWork.GetHandler(_container);
             handler.Handle(unitOfWork);
         }
     }

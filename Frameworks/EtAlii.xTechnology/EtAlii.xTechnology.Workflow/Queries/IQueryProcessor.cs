@@ -4,6 +4,6 @@
 
     public interface IQueryProcessor
     {
-        IQueryable<TResult> Process<TResult>(IQuery<TResult> query);
+        IQueryable<TResult> Process<TResult>(IQuery<TResult> query, IQueryHandler<TResult> handler);
     }
 }
