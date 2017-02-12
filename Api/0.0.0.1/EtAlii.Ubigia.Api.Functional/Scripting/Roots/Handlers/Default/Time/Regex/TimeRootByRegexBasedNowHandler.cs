@@ -21,9 +21,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
             _timePreparer.Prepare(context, scope, time);
 
-            var parts = new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"), new IsParentOfPathSubjectPart() }
-                .Concat(new PathSubjectPart[]
+            var parts = new PathSubjectPart[]
                 {
+                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:mm}"),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:ss}"),
                     new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:fff}"),
-                })
+                }
                 .Concat(rest)
                 .ToArray();
             var path = new AbsolutePathSubject(parts);
