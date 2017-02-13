@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
     using System;
     using System.IO;
     using System.Linq;
@@ -26,7 +26,7 @@
         protected App()
         {
             Container = new Container();
-            Container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
+            //Container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
             Directory.CreateDirectory(App.ShellExtensionsDirectory);
         }
@@ -40,33 +40,33 @@
 
             var typesToExclude = new Type[]
             {
-                typeof(GlobalSettings),
+                typeof(IGlobalSettings),
                 typeof(StorageSettings),
                 typeof(ILogger),
             };
 
-            RegisterKnownTypesInAssembly(Assembly.GetExecutingAssembly(), typesToInclude, typesToExclude);
+            //RegisterKnownTypesInAssembly(Assembly.GetExecutingAssembly(), typesToInclude, typesToExclude);
 
-            Container.Register<GlobalSettings, GlobalSettings>(Lifestyle.Singleton);
-            Container.Register<ILogFactory, DisabledLogFactory>(Lifestyle.Singleton);
-            Container.Register<ILogger>(GetLogger, Lifestyle.Singleton);
-            Container.Register<IProfilerFactory, DisabledProfilerFactory>(Lifestyle.Singleton);
-            Container.Register<IProfiler>(GetProfiler, Lifestyle.Singleton);
+            Container.Register<IGlobalSettings, GlobalSettings>();
+            Container.Register<ILogFactory, DisabledLogFactory>();
+            Container.Register<ILogger>(GetLogger);
+            Container.Register<IProfilerFactory, DisabledProfilerFactory>();
+            Container.Register<IProfiler>(GetProfiler);
         }
 
-        protected void RegisterKnownTypesInAssembly(Assembly assembly, Type[] typesToInclude, Type[] typesToExclude)
-        {
-            var typesToRegister = assembly.GetTypes()
-                                          .Where(type => type.IsClass && !type.IsAbstract)
-                                          .Where(type => !typesToExclude.Contains(type))
-                                          .Where(type => !typesToExclude.Any(customRegisteredType => customRegisteredType.IsAssignableFrom(type)))
-                                          .Where(type => typesToInclude.Any(type.IsSubclassOf));
+        //protected void RegisterKnownTypesInAssembly(Assembly assembly, Type[] typesToInclude, Type[] typesToExclude)
+        //{
+        //    var typesToRegister = assembly.GetTypes()
+        //                                  .Where(type => type.IsClass && !type.IsAbstract)
+        //                                  .Where(type => !typesToExclude.Contains(type))
+        //                                  .Where(type => !typesToExclude.Any(customRegisteredType => customRegisteredType.IsAssignableFrom(type)))
+        //                                  .Where(type => typesToInclude.Any(type.IsSubclassOf));
 
-            foreach (var typeToRegister in typesToRegister)
-            {
-                Container.Register(typeToRegister);
-            }
-        }
+        //    foreach (var typeToRegister in typesToRegister)
+        //    {
+        //        Container.Register(typeToRegister);
+        //    }
+        //}
 
         private ILogger GetLogger()
         {

@@ -3,7 +3,6 @@
     using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.Ubigia.Client.Windows.TaskbarIcon;
     using EtAlii.Ubigia.Client.Windows.UserInterface;
-    using SimpleInjector;
     using System.Diagnostics;
     using System.Reflection;
     using System.Windows;
@@ -16,6 +15,8 @@
         public static new App Current { get { return System.Windows.Application.Current as App; } }
 
         public new MainWindow MainWindow { get { return base.MainWindow as MainWindow; } set { base.MainWindow = value; } }
+
+        private IApplicationService[] _services;
 
         public static bool AlreadyRunning
         {
@@ -54,7 +55,7 @@
             else
             {
                 RegisterKnownTypes();
-                Container.Verify();
+                //Container.Verify();
 
                 StartServices();
             }
@@ -67,8 +68,12 @@
 
         private void StartServices()
         {
-            var services = Container.GetAllInstances<IApplicationService>();
-            foreach (var service in services)
+            _services = new IApplicationService[]
+            {
+                Container.GetInstance<IShellExtensionService>(),
+                Container.GetInstance<ITaskbarIconService>()
+            };
+            foreach (var service in _services)
             {
                 service.Start();
             }
@@ -76,11 +81,12 @@
 
         private void StopServices()
         {
-            var services = Container.GetAllInstances<IApplicationService>();
-            foreach (var service in services)
+            foreach (var service in _services)
             {
                 service.Stop();
             }
+
+            _services = null;
         }
 
         protected override void RegisterKnownTypes()
@@ -91,9 +97,9 @@
             Container.RegisterInitializer<StorageWindow>(window => window.DataContext = Container.GetInstance<StorageSettingsViewModel>());
             Container.RegisterInitializer<TaskbarIcon.TaskbarIcon>(window => window.DataContext = Container.GetInstance<TaskbarIconViewModel>());
 
-            Container.Register<ShellExtensionService, ShellExtensionService>(Lifestyle.Singleton);
-            Container.Register<TaskbarIconService, TaskbarIconService>(Lifestyle.Singleton);
-            Container.RegisterCollection<IApplicationService>(new [] { typeof(ShellExtensionService), typeof(TaskbarIconService) });
+            Container.Register<IShellExtensionService, ShellExtensionService>();
+            Container.Register<ITaskbarIconService, TaskbarIconService>();
+            //Container.RegisterCollection<IApplicationService>(new [] { typeof(ShellExtensionService), typeof(TaskbarIconService) });
         }
     }
 }

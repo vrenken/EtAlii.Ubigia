@@ -6,20 +6,20 @@ using System.Linq;
 
 namespace EtAlii.Ubigia.Client.Windows
 {
-    public class ShellExtensionService : IApplicationService
+    public class ShellExtensionService : IShellExtensionService
     {
         public void Start()
         {
             UpdateShellExtension(true);
 
-            var globalSettings = App.Current.Container.GetInstance<GlobalSettings>();
+            var globalSettings = App.Current.Container.GetInstance<IGlobalSettings>();
             StartMonitoringStorages(globalSettings.Storage);
             globalSettings.Storage.CollectionChanged += OnStoragesChanged;
         }
 
         public void Stop()
         {
-            var globalSettings = App.Current.Container.GetInstance<GlobalSettings>();
+            var globalSettings = App.Current.Container.GetInstance<IGlobalSettings>();
             globalSettings.Storage.CollectionChanged -= OnStoragesChanged;
 
             EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Unregister();
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Client.Windows
 
         private void UpdateShellExtension(bool onlyTriggerOnChangedStorages = false)
         {
-            var globalSettings = App.Current.Container.GetInstance<GlobalSettings>();
+            var globalSettings = App.Current.Container.GetInstance<IGlobalSettings>();
 
             var shouldUpdate = true;
             if (onlyTriggerOnChangedStorages)

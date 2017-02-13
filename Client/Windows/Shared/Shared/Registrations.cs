@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public static class Registrations
     {
-        public static string[] GetObsolete(GlobalSettings globalSettings)
+        public static string[] GetObsolete(IGlobalSettings globalSettings)
         {
             var obsoleteAssemblies = new List<string>();
 
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
             return obsoleteAssemblies.ToArray();
         }
 
-        public static Guid[] GetMissing(GlobalSettings globalSettings)
+        public static Guid[] GetMissing(IGlobalSettings globalSettings)
         {
             var missingAssemblies = new List<Guid>();
 
@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
             return File.Exists(fileName);
         }
 
-        private static bool AssemblyHasStorageSettings(string fileName, GlobalSettings globalSettings)
+        private static bool AssemblyHasStorageSettings(string fileName, IGlobalSettings globalSettings)
         {
             var fileNameWithoutExtension = Path.GetFileNameWithoutExtension(fileName);
             var id = new Guid(fileNameWithoutExtension);

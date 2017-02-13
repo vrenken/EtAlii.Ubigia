@@ -4,7 +4,7 @@ using System.Collections.Specialized;
 
 namespace EtAlii.Ubigia.Client.Windows
 {
-    public class GlobalSettings : BindableSettingsBase
+    public class GlobalSettings : BindableSettingsBase, IGlobalSettings
     {
         public bool StartAutomatically { get { return GetValue(ref _startAutomatically, true); } set { SetProperty(ref _startAutomatically, value); } }
         private Nullable<bool> _startAutomatically;

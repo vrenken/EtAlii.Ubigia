@@ -6,7 +6,7 @@
     using System.Windows.Input;
     using System.Windows.Markup;
     using System.Windows.Media;
-    using Container = SimpleInjector.Container;
+    using Container = EtAlii.xTechnology.MicroContainer.Container;
 
     /// <summary>
   /// Basic implementation of the <see cref="ICommand"/>
