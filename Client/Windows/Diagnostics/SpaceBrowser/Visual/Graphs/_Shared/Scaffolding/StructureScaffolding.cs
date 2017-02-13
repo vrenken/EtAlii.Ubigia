@@ -1,12 +1,12 @@
 namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class StructureScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>(Lifestyle.Singleton);
+            container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>();
         }
     }
 }

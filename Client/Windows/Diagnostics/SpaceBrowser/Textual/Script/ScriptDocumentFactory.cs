@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class ScriptDocumentFactory : IScriptDocumentFactory
     {
@@ -24,38 +24,37 @@
             IGraphContextFactory graphContextFactory)
         {
             var container = new Container();
-            container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
             new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
             new StructureScaffolding().Register(container);
 
-            container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
-            container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
+            container.Register<IFabricContext>(() => fabricContext);
+            container.Register<IDataContext>(() => dataContext);
             container.Register<IGraphContext>(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
                 return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
-            }, Lifestyle.Singleton);
+            });
 
-            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
-            container.Register<IScriptViewModel, ScriptViewModel>(Lifestyle.Singleton);
-            container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
+            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
+            container.Register<IScriptViewModel, ScriptViewModel>();
+            container.Register<IJournalViewModel>(() => journal);
 
-            container.Register<IScriptButtonsViewModel, ScriptButtonsViewModel>(Lifestyle.Singleton);
+            container.Register<IScriptButtonsViewModel, ScriptButtonsViewModel>();
 
-            container.Register<IParseScriptUnitOfworkHandler, ParseScriptUnitOfworkHandler>(Lifestyle.Singleton);
-            container.Register<IProcessScriptUnitOfworkHandler, ProcessScriptUnitOfworkHandler>(Lifestyle.Singleton);
-            container.Register<IErrorWriter, ErrorWriter>(Lifestyle.Singleton);
-            container.Register<IStatusWriter, StatusWriter>(Lifestyle.Singleton);
-            container.Register<IOutputScriptProcessingSubscription, OutputScriptProcessingSubscription>(Lifestyle.Singleton);
-            container.Register<IStatusScriptProcessingSubscription, StatusScriptProcessingSubscription>(Lifestyle.Singleton);
-            container.Register<IDiagnosticsScriptProcessingSubscription, DiagnosticsScriptProcessingSubscription>(Lifestyle.Singleton);
+            container.Register<IParseScriptUnitOfworkHandler, ParseScriptUnitOfworkHandler>();
+            container.Register<IProcessScriptUnitOfworkHandler, ProcessScriptUnitOfworkHandler>();
+            container.Register<IErrorWriter, ErrorWriter>();
+            container.Register<IStatusWriter, StatusWriter>();
+            container.Register<IOutputScriptProcessingSubscription, OutputScriptProcessingSubscription>();
+            container.Register<IStatusScriptProcessingSubscription, StatusScriptProcessingSubscription>();
+            container.Register<IDiagnosticsScriptProcessingSubscription, DiagnosticsScriptProcessingSubscription>();
 
 
-            container.Register<ITextTemplateQueryHandler, TextTemplateQueryHandler>(Lifestyle.Singleton);
+            container.Register<ITextTemplateQueryHandler, TextTemplateQueryHandler>();
 
-            container.Register<IResultFactory, ResultFactory>(Lifestyle.Singleton);
-            container.Register<IMultiResultFactory, MultiResultFactory>(Lifestyle.Singleton);
+            container.Register<IResultFactory, ResultFactory>();
+            container.Register<IMultiResultFactory, MultiResultFactory>();
 
             var documentViewModel = container.GetInstance<IScriptViewModel>();
             var documentViewModelProvider = container.GetInstance<IDocumentViewModelProvider>();

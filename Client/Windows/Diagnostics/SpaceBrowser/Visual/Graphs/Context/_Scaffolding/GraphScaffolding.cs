@@ -1,32 +1,32 @@
 namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.xTechnology.Workflow;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class GraphScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<IGraphConfiguration, GraphConfiguration>(Lifestyle.Singleton);
+            container.Register<IGraphConfiguration, GraphConfiguration>();
 
-            container.Register<IGraphContext, GraphContext>(Lifestyle.Singleton);
+            container.Register<IGraphContext, GraphContext>();
 
-            container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>(Lifestyle.Singleton);
+            container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>();
 
-            container.Register<ICommandProcessor, TaskBasedCommandProcessor>(Lifestyle.Singleton);
-            container.Register<IQueryProcessor, QueryProcessor>(Lifestyle.Singleton);
-            container.Register<IUnitOfWorkProcessor, UnitOfWorkProcessor>(Lifestyle.Singleton);
+            container.Register<ICommandProcessor, TaskBasedCommandProcessor>();
+            container.Register<IQueryProcessor, QueryProcessor>();
+            container.Register<IUnitOfWorkProcessor, UnitOfWorkProcessor>();
 
-            container.Register<IAddEntryToGraphCommandHandler, AddEntryToGraphCommandHandler>(Lifestyle.Singleton);
-            container.Register<IRetrieveEntryCommandHandler, RetrieveEntryCommandHandler>(Lifestyle.Singleton);
-            container.Register<IProcessEntryCommandHandler, ProcessEntryCommandHandler>(Lifestyle.Singleton);
-            container.Register<IDiscoverEntryCommandHandler, DiscoverEntryCommandHandler>(Lifestyle.Singleton);
-            container.Register<IAddEntryRelationsToGraphCommandHandler, AddEntryRelationsToGraphCommandHandler>(Lifestyle.Singleton);
-            container.Register<IApplyLayoutingToGraphCommandHandler, ApplyLayoutingToGraphCommandHandler>(Lifestyle.Singleton);
-            container.Register<IRemoveEntriesFromGraphCommandHandler, RemoveEntriesFromGraphCommandHandler>(Lifestyle.Singleton);
-            container.Register<IFindEntriesOnGraphQueryHandler, FindEntriesOnGraphQueryHandler>(Lifestyle.Singleton);
-            container.Register<IFindEntryOnGraphQueryHandler, FindEntryOnGraphQueryHandler>(Lifestyle.Singleton);
-            container.Register<ITraverseRelationsQueryHandler, TraverseRelationsQueryHandler>(Lifestyle.Singleton);
+            container.Register<IAddEntryToGraphCommandHandler, AddEntryToGraphCommandHandler>();
+            container.Register<IRetrieveEntryCommandHandler, RetrieveEntryCommandHandler>();
+            container.Register<IProcessEntryCommandHandler, ProcessEntryCommandHandler>();
+            container.Register<IDiscoverEntryCommandHandler, DiscoverEntryCommandHandler>();
+            container.Register<IAddEntryRelationsToGraphCommandHandler, AddEntryRelationsToGraphCommandHandler>();
+            container.Register<IApplyLayoutingToGraphCommandHandler, ApplyLayoutingToGraphCommandHandler>();
+            container.Register<IRemoveEntriesFromGraphCommandHandler, RemoveEntriesFromGraphCommandHandler>();
+            container.Register<IFindEntriesOnGraphQueryHandler, FindEntriesOnGraphQueryHandler>();
+            container.Register<IFindEntryOnGraphQueryHandler, FindEntryOnGraphQueryHandler>();
+            container.Register<ITraverseRelationsQueryHandler, TraverseRelationsQueryHandler>();
         }
 
         public void Initialize(Container container)

@@ -77,10 +77,6 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="PresentationFramework.Luna" />
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Syncfusion.Data.WPF, Version=14.4460.0.20, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Syncfusion.Data.WPF46.14.4.0.20\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
       <Private>True</Private>
@@ -704,6 +700,10 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
       <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
       <Name>EtAlii.xTechnology</Name>

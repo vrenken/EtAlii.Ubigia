@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class FunctionalGraphDocumentFactory : IFunctionalGraphDocumentFactory
     {
@@ -24,24 +24,23 @@
             IGraphContextFactory graphContextFactory)
         {
             var container = new Container();
-            container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
             new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
             new StructureScaffolding().Register(container);
 
-            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
-            container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
-            container.Register<IFunctionalGraphDocumentViewModel, FunctionalGraphDocumentViewModel>(Lifestyle.Singleton);
-            container.Register<IGraphButtonsViewModel, GraphButtonsViewModel>(Lifestyle.Singleton);
-            container.Register<IGraphContextMenuViewModel, GraphContextMenuViewModel>(Lifestyle.Singleton);
+            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
+            container.Register<IJournalViewModel>(() => journal);
+            container.Register<IFunctionalGraphDocumentViewModel, FunctionalGraphDocumentViewModel>();
+            container.Register<IGraphButtonsViewModel, GraphButtonsViewModel>();
+            container.Register<IGraphContextMenuViewModel, GraphContextMenuViewModel>();
 
-            container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
-            container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
+            container.Register<IFabricContext>(() => fabricContext);
+            container.Register<IDataContext>(() => dataContext);
             container.Register<IGraphContext>(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
                 return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
-            }, Lifestyle.Singleton);
+            });
 
             var documentViewModel = container.GetInstance<IFunctionalGraphDocumentViewModel>();
             var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
