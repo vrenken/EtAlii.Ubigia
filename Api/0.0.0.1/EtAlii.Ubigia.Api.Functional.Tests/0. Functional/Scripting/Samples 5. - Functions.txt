@@ -19,4 +19,9 @@ $person <= /Person/
 <= format("{item} {parent}") <= $person
 <= format("{item} [{branch}]") <= $person # add additional characters.
 
-<= view("Graph view 2") <= /Person/*/*/Emails/.IsPrimary=true # Output the nodes into the specified Space browser view.
+# Output the nodes into the specified Space browser view:
+<= view("Graph view 2") <= /Person/*/*/Emails/.IsPrimary=true 
+
+# Output the nodes into the specified Space browser view, but include the path 
+<= view("Graph view 2") <= include(\*\*) <= /Person/*/*/Emails/.IsPrimary=true 
+
