@@ -1,12 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics.Views
 {
     using System.Windows;
-    using EtAlii.xTechnology.Workflow;
 
     public class ClickSelectingTool : Northwoods.GoXam.Tool.ClickSelectingTool
     {
-        public ICommandProcessor CommandProcessor { get { return (ICommandProcessor)GetValue(CommandProcessorProperty); } set { SetValue(CommandProcessorProperty, value); } }
-        public static readonly DependencyProperty CommandProcessorProperty = DependencyProperty.Register("CommandProcessor", typeof(ICommandProcessor), typeof(ClickSelectingTool), new PropertyMetadata());
+        public IGraphContext GraphContext { get { return (IGraphContext)GetValue(GraphContextProperty); } set { SetValue(GraphContextProperty, value); } }
+        public static readonly DependencyProperty GraphContextProperty = DependencyProperty.Register("GraphContext", typeof(IGraphContext), typeof(ClickSelectingTool), new PropertyMetadata());
 
         public ClickSelectingTool()
         {
@@ -21,7 +20,7 @@
                 var node = this.Diagram.SelectedNode.Data as EntryNode;
       //          if(_entryInspectedConfiguration.AutoAdd)
                 {
-                    CommandProcessor.Process(new DiscoverEntryCommand(node.Entry, ProcessReason.Discovered, 1));
+                    GraphContext.CommandProcessor.Process(new DiscoverEntryCommand(node.Entry, ProcessReason.Discovered, 1), GraphContext.DiscoverEntryCommandHandler);
                 }
             }
         } 

@@ -11,18 +11,18 @@
         private readonly IFabricContext _fabric;
         protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
-        private readonly ICommandProcessor _commandProcessor;
         private readonly IGraphConfiguration _configuration;
+        private readonly IGraphContext _graphContext;
 
         public DiscoverEntryCommandHandler(
             IFabricContext fabric,
-            ICommandProcessor commandProcessor,
             IDocumentViewModelProvider documentViewModelProvider,
-            IGraphConfiguration configuration)
+            IGraphConfiguration configuration, 
+            IGraphContext graphContext)
         {
             _configuration = configuration;
+            _graphContext = graphContext;
             _fabric = fabric;
-            _commandProcessor = commandProcessor;
             _documentViewModelProvider = documentViewModelProvider;
         }
 
@@ -31,7 +31,11 @@
             if (command.Depth > 0)
             {
                 var processReason = command.ProcessReason;
-                _commandProcessor.Process(new AddEntryToGraphCommand(command.Entry, processReason));
+
+                var graphDocumentViewModel = _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>();
+
+                var addEntryToGraphCommand = new AddEntryToGraphCommand(command.Entry, processReason, graphDocumentViewModel);
+                _graphContext.CommandProcessor.Process(addEntryToGraphCommand, _graphContext.AddEntryToGraphCommandHandler);
 
                 var entry = command.Entry;
                 var depth = command.Depth - 1;
@@ -81,7 +85,7 @@
                 });
                 task.Wait();
 
-                _commandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, depth));
+                _graphContext.CommandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, depth), _graphContext.DiscoverEntryCommandHandler);
             }
         }
     }

@@ -3,7 +3,7 @@
     using EtAlii.xTechnology.Workflow;
 
 
-    public class ApplyLayoutingToGraphCommand : CommandBase<IApplyLayoutingToGraphCommandHandler>
+    public class ApplyLayoutingToGraphCommand : CommandBase
     {
         public IGraphDocumentViewModel ViewModel { get { return _viewModel; } }
         private readonly IGraphDocumentViewModel _viewModel;

@@ -1,13 +1,11 @@
-﻿
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
     using System;
     using System.Collections.Generic;
 
-    public class RemoveEntriesFromGraphCommand : CommandBase<IRemoveEntriesFromGraphCommandHandler>
+    public class RemoveEntriesFromGraphCommand : CommandBase
     {
         public IEnumerable<Identifier> Identifiers { get; private set; }
         public ProcessReason ProcessReason { get; private set; }

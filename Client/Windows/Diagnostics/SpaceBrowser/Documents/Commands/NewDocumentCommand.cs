@@ -21,6 +21,8 @@
         private readonly ILogFactory _logFactory;
         private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly IJournalViewModel _journal;
+        private readonly IGraphContextFactory _graphContextFactory;
+
         private IMainWindowViewModel _mainWindowViewModel;
 
         public string Icon { get { return _icon; } set { _icon = value; } }
@@ -52,7 +54,8 @@
             ILogger logger,
             ILogFactory logFactory,
             IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal)
+            IJournalViewModel journal, 
+            IGraphContextFactory graphContextFactory)
         {
             _dataContext = dataContext;
             _logicalContext = logicalContext;
@@ -62,6 +65,7 @@
             _logFactory = logFactory;
             _diagnostics = diagnostics;
             _journal = journal;
+            _graphContextFactory = graphContextFactory;
         }
 
         public void Initialize(IMainWindowViewModel mainWindowViewModel)
@@ -79,7 +83,7 @@
         {
             var title = DetermineTitle();
 
-            var documentViewModel = DocumentFactory.Create(_dataContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal);
+            var documentViewModel = DocumentFactory.Create(_dataContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal, _graphContextFactory);
             documentViewModel.Title = title;
             _mainWindowViewModel.Documents.Add(documentViewModel);
         }

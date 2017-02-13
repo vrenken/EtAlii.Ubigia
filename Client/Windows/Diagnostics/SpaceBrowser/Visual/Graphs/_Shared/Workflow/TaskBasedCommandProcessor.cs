@@ -6,14 +6,11 @@
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Workflow;
-    using SimpleInjector;
 
     public class TaskBasedCommandProcessor : CommandProcessor, IDisposable
     {
-        private readonly Container _container;
         private readonly ILogger _logger;
         private readonly IJournalViewModel _journal;
-        private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
         private readonly ConcurrentQueue<Tuple<ICommand, ICommandHandler>> _queue;
         private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
         private readonly ManualResetEvent _stoppedEvent = new ManualResetEvent(false);
@@ -21,16 +18,11 @@
         private readonly WaitHandle[] _events;
 
         public TaskBasedCommandProcessor(
-            Container container,
             ILogger logger,
-            IJournalViewModel journal,
-            IMainDispatcherInvoker mainDispatcherInvoker)
-            : base(container)
+            IJournalViewModel journal)
         {
             _logger = logger;
-            _container = container;
             _journal = journal;
-            _mainDispatcherInvoker = mainDispatcherInvoker;
             _queue = new ConcurrentQueue<Tuple<ICommand, ICommandHandler>>();
 
             _events = new WaitHandle[]
@@ -75,13 +67,6 @@
             _journal.AddItem("Queued", command.ToString());
             _logger.Verbose("Queued command: {0}", command);
             _enqueuedEvent.Set();
-        }
-
-        protected override ICommandHandler GetCommandHandler(Container container, ICommand command)
-        {
-            ICommandHandler handler = null;
-            handler = command.GetHandler(_container);
-            return handler;
         }
 
         #region Disposal

@@ -10,10 +10,9 @@
 
     public class ScriptViewModel : TextualViewModelBase, IScriptViewModel
     {
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
-        private readonly IQueryProcessor _queryProcessor;
 
         public IScriptButtonsViewModel Buttons { get { return _buttons; } }
+        private readonly IGraphContext _graphContext;
         private readonly IScriptButtonsViewModel _buttons;
 
         public string Code { get { return _code; } set { SetProperty(ref _code, value); } }
@@ -37,14 +36,23 @@
         public event Action CodeChanged = delegate { };
         private IDisposable _scriptChangedSubscription;
 
+        private readonly ITextTemplateQueryHandler _textTemplateQueryHandler;
+        private readonly IParseScriptUnitOfworkHandler _parseScriptUnitOfworkHandler;
+        private readonly IProcessScriptUnitOfworkHandler _processScriptUnitOfworkHandler;
+
+
         public ScriptViewModel(
-            IUnitOfWorkProcessor unitOfWorkProcessor,
-            IQueryProcessor queryProcessor,
-            IScriptButtonsViewModel buttons)
+            IGraphContext graphContext,
+            IScriptButtonsViewModel buttons, 
+            ITextTemplateQueryHandler textTemplateQueryHandler, 
+            IParseScriptUnitOfworkHandler parseScriptUnitOfworkHandler, 
+            IProcessScriptUnitOfworkHandler processScriptUnitOfworkHandler)
         {
-            _queryProcessor = queryProcessor;
-            _unitOfWorkProcessor = unitOfWorkProcessor;
+            _graphContext = graphContext;
             _buttons = buttons;
+            _textTemplateQueryHandler = textTemplateQueryHandler;
+            _parseScriptUnitOfworkHandler = parseScriptUnitOfworkHandler;
+            _processScriptUnitOfworkHandler = processScriptUnitOfworkHandler;
 
             PropertyChanged += OnPropertyChanged;
 
@@ -53,14 +61,14 @@
             _scriptChangedSubscription = Observable.FromEvent((handler) => CodeChanged += handler, (handler) => CodeChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
                                 .ObserveOnDispatcher()
-                                .Subscribe(e => _unitOfWorkProcessor.Process(new ParseScriptUnitOfwork(this)));
+                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new ParseScriptUnitOfwork(this), _parseScriptUnitOfworkHandler));
 
-            Code = _queryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs")).Single();
+            Code = _graphContext.QueryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs"), _textTemplateQueryHandler).Single();
         }
 
         protected override void Execute(object obj)
         {
-            _unitOfWorkProcessor.Process(new ProcessScriptUnitOfwork(this));
+            _graphContext.UnitOfWorkProcessor.Process(new ProcessScriptUnitOfwork(this), _processScriptUnitOfworkHandler);
         }
 
         protected override void Pause(object obj)

@@ -9,17 +9,14 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     public class ViewFunctionHandler : FunctionHandlerBase, IViewFunctionHandler
     {
         private readonly IDocumentsProvider _documentsProvider;
-        private readonly IRetrieveEntryCommandHandler _retrieveEntryCommandHandler;
 
         public ParameterSet[] ParameterSets { get; }
         public string Name { get; }
 
         public ViewFunctionHandler(
-            IDocumentsProvider documentsProvider, 
-            IRetrieveEntryCommandHandler retrieveEntryCommandHandler)
+            IDocumentsProvider documentsProvider)
         {
             _documentsProvider = documentsProvider;
-            _retrieveEntryCommandHandler = retrieveEntryCommandHandler;
 
             ParameterSets = new[]
             {
@@ -84,7 +81,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
                         var results = converter(context, o, scope);
                         foreach (var result in results.ToEnumerable())
                         {
-                            graphDocumentViewModel.CommandProcessor.Process(new RetrieveEntryCommand(result, ProcessReason.Retrieved), _retrieveEntryCommandHandler);
+                            graphDocumentViewModel.GraphContext.CommandProcessor.Process(new RetrieveEntryCommand(result, ProcessReason.Retrieved), graphDocumentViewModel.GraphContext.RetrieveEntryCommandHandler);
                         }
                     }
                     output.OnNext(o);

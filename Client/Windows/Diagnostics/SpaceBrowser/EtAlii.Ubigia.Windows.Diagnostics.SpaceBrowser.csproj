@@ -224,7 +224,11 @@
     <Compile Include="Documents\Commands\NewLogicalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\NewFunctionalGraphDocumentCommand.cs" />
     <Compile Include="Documents\Commands\INewDocumentCommand.cs" />
+    <Compile Include="Documents\DocumentsProvider.cs" />
+    <Compile Include="Documents\IDocumentsProvider.cs" />
     <Compile Include="Documents\Services\IDocumentViewModelProvider.cs" />
+    <Compile Include="Functions\ISpaceBrowserFunctionHandlersProvider.cs" />
+    <Compile Include="Functions\IViewFunctionHandler.cs" />
     <Compile Include="Functions\SpaceBrowserFunctionHandlersProvider.cs" />
     <Compile Include="Functions\ViewFunctionHandler.cs" />
     <Compile Include="IMainDispatcherInvoker.cs" />
@@ -347,6 +351,10 @@
     <Compile Include="Textual\Code\Views\CodeEditor.cs" />
     <Compile Include="Documents\Services\DocumentViewModelProvider.cs" />
     <Compile Include="Textual\_Shared\ViewModels\TextualViewModelBase.cs" />
+    <Compile Include="Visual\Graphs\Context\GraphContext.cs" />
+    <Compile Include="Visual\Graphs\Context\GraphContextFactory.cs" />
+    <Compile Include="Visual\Graphs\Context\IGraphContextFactory.cs" />
+    <Compile Include="Visual\Graphs\Context\IGraphContext.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\IAddEntryToGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\IApplyLayoutingToGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\IRemoveEntriesFromGraphCommandHandler.cs" />
@@ -354,6 +362,8 @@
     <Compile Include="Visual\Graphs\Logical\ILogicalGraphDocumentFactory.cs" />
     <Compile Include="Visual\Graphs\Logical\ViewModels\LogicalGraphDocumentViewModel.cs" />
     <Compile Include="Visual\Graphs\Logical\ViewModels\ILogicalGraphDocumentViewModel.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\IFindEntryOnGraphQueryHandler.cs" />
+    <Compile Include="Visual\Graphs\_Shared\Queries\ITraverseRelationsQueryHandler.cs" />
     <Compile Include="Visual\Sequential\ISequentialDocumentFactory.cs" />
     <Compile Include="Visual\Temporal\ITemporalDocumentFactory.cs" />
     <Compile Include="Visual\Tree\ITreeDocumentFactory.cs" />
@@ -361,7 +371,7 @@
     <Compile Include="Visual\Graphs\_Shared\Models\Configuration\IGraphConfiguration.cs" />
     <Compile Include="Visual\Graphs\_Shared\Queries\IFindEntriesOnGraphQueryHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Scaffolding\DiagnosticsScaffolding.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Scaffolding\GraphScaffolding.cs" />
+    <Compile Include="Visual\Graphs\Context\_Scaffolding\GraphScaffolding.cs" />
     <Compile Include="Visual\Graphs\_Shared\Scaffolding\StructureScaffolding.cs" />
     <Compile Include="Visual\Temporal\TemporalDocumentFactory.cs" />
     <Compile Include="Visual\Sequential\SequentialDocumentFactory.cs" />
@@ -477,25 +487,25 @@
     <Compile Include="Main\Views\TimeFilterContent.xaml.cs">
       <DependentUpon>TimeFilterContent.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IAddEntryRelationsToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IDiscoverEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IProcessEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\IRetrieveEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\IAddEntryRelationsToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\IDiscoverEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\IProcessEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\IRetrieveEntryCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Workflow\TaskBasedCommandProcessor.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\DiscoverEntryCommand.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\DiscoverEntryCommand.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\AddEntryToGraphCommand.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\DiscoverEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\DiscoverEntryCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\AddEntryToGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\ApplyLayoutingToGraphCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Commands\ApplyLayoutingToGraphCommand.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\AddEntryRelationsToGraphCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\AddEntryRelationsToGraphCommand.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\AddEntryRelationsToGraphCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\AddEntryRelationsToGraphCommand.cs" />
     <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessHandlerBase.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessEntryCommandHandler.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\RetrieveEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\ProcessEntryCommandHandler.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\RetrieveEntryCommandHandler.cs" />
     <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessReason.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\ProcessEntryCommand.cs" />
-    <Compile Include="Visual\Graphs\_Shared\Workflow\Processing\RetrieveEntryCommand.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\ProcessEntryCommand.cs" />
+    <Compile Include="Visual\Graphs\Logical\Processing\RetrieveEntryCommand.cs" />
     <Page Include="Main\Views\OpenBackstageTabItem.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

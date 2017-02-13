@@ -1,12 +1,10 @@
-﻿
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
     using System;
 
-    public class RetrieveEntryCommand : CommandBase<IRetrieveEntryCommandHandler>
+    public class RetrieveEntryCommand : CommandBase
     {
         public Identifier Identifier { get; private set; }
         public ProcessReason ProcessReason { get; private set; }

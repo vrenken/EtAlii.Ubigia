@@ -2,20 +2,21 @@
 namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
     using System;
 
-    public class AddEntryToGraphCommand : CommandBase<IAddEntryToGraphCommandHandler>
+    public class AddEntryToGraphCommand : CommandBase
     {
-        public IReadOnlyEntry Entry { get; private set; }
-        public ProcessReason ProcessReason { get; private set; }
-        public int Time { get; private set; }
+        public IReadOnlyEntry Entry { get; }
+        public ProcessReason ProcessReason { get; }
+        public IGraphDocumentViewModel GraphDocumentViewModel { get; }
+        public int Time { get; }
 
-        public AddEntryToGraphCommand(IReadOnlyEntry entry, ProcessReason processReason)
+        public AddEntryToGraphCommand(IReadOnlyEntry entry, ProcessReason processReason, IGraphDocumentViewModel graphDocumentViewModel)
         {
             Entry = entry;
             ProcessReason = processReason;
+            GraphDocumentViewModel = graphDocumentViewModel;
             Time = Environment.TickCount;
         }
 

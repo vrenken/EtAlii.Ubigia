@@ -3,9 +3,7 @@
     using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.Ubigia.Windows;
-    using EtAlii.xTechnology.Workflow;
     using Northwoods.GoXam.Model;
     using ICommand = System.Windows.Input.ICommand;
 
@@ -16,20 +14,19 @@
         protected IFabricContext Fabric { get { return _fabric; } }
         private readonly IFabricContext _fabric;
 
-        public ICommandProcessor CommandProcessor { get { return _commandProcessor; } }
-        private readonly ICommandProcessor _commandProcessor;
-
         private readonly ICommand _selectEntryCommand;
         private readonly ICommand _discoverEntryCommand;
 
-        public IGraphConfiguration Configuration { get { return _configuration; } }
-        private readonly IGraphConfiguration _configuration;
+        public IGraphConfiguration Configuration { get { return _graphContext.Configuration; } }
 
         public IGraphButtonsViewModel Buttons { get { return _buttons; } }
         private readonly IGraphButtonsViewModel _buttons;
 
         public IGraphContextMenuViewModel ContextMenu { get { return _contextMenu; } }
         private readonly IGraphContextMenuViewModel _contextMenu;
+
+        public IGraphContext GraphContext => _graphContext;
+        private readonly IGraphContext _graphContext;
 
         public string Title 
         {
@@ -42,16 +39,14 @@
 
         public GraphDocumentViewModelBase(
             IFabricContext fabric,
-            ICommandProcessor commandProcessor,
-            IGraphConfiguration configuration,
             IGraphButtonsViewModel buttons,
-            IGraphContextMenuViewModel contextMenu)
+            IGraphContextMenuViewModel contextMenu, 
+            IGraphContext graphContext)
         {
             _fabric = fabric;
-            _commandProcessor = commandProcessor;
-            _configuration = configuration;
             _buttons = buttons;
             _contextMenu = contextMenu;
+            _graphContext = graphContext;
 
             //_commandQueue.Register<RetrieveEntryCommand, RetrieveEntryCommandHandler>();
             //_commandQueue.Register<ProcessEntryCommand, ProcessEntryCommandHandler>();
@@ -74,28 +69,16 @@
         //{
         //}
 
-        private void OnEntryStored(Identifier id)
-        {
-            if (Configuration.AddNewEntries)
-            {
-                _commandProcessor.Process(new RetrieveEntryCommand(id, ProcessReason.Retrieved));
-            }
-            if (Configuration.ExpandNewEntries)
-            {
-            }
-        }
-        
-        private void SelectEntry(object parameter)
+        protected virtual void OnEntryStored(Identifier id)
         {
         }
 
-        private void DiscoverEntry(object parameter)
+        protected virtual void SelectEntry(object parameter)
         {
-            var entry = parameter as Entry;
-            if (entry != null)
-            {
-                _commandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3));
-            }
+        }
+
+        protected virtual void DiscoverEntry(object parameter)
+        {
         }
 
         internal void Clear()

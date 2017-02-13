@@ -46,7 +46,8 @@
         mvvm:DragDropBehaviour.DragDropHandler="{Binding}"  
         mvvm:DragDropBehaviour.IsDragSource="False">
         <go:Diagram.ClickSelectingTool>
-            <local:ClickSelectingTool CommandProcessor="{Binding CommandProcessor}" />
+            <local:ClickSelectingTool 
+                GraphContext="{Binding GraphContext}" />
         </go:Diagram.ClickSelectingTool>
         <go:Diagram.LinkTemplateDictionary>
             <go:DataTemplateDictionary>

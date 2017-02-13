@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System;
     using System.Collections.Generic;
 
-    public class TraverseRelationsQuery : QueryBase<TraverseRelationsQueryHandler, Identifier>
+    public class TraverseRelationsQuery : QueryBase<ITraverseRelationsQueryHandler, Identifier>
     {
         public IReadOnlyEntry Entry { get; private set; }
         public Func<IReadOnlyEntry, IEnumerable<Relation>> Selector { get; private set; }

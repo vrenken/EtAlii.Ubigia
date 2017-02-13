@@ -2,7 +2,6 @@
 namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
     using System;
     using System.Linq;
@@ -10,11 +9,12 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class TraverseRelationQueryHandler : QueryHandlerBase<TraverseRelationQuery, Identifier>
     {
-        private readonly IQueryProcessor _queryProcessor;
+        private readonly IGraphContext _graphContext;
 
-        public TraverseRelationQueryHandler(IQueryProcessor queryProcessor)  
+        public TraverseRelationQueryHandler(
+            IGraphContext graphContext)
         {
-            _queryProcessor = queryProcessor;
+            _graphContext = graphContext;
         }
 
         protected override IQueryable<Identifier> Handle(TraverseRelationQuery query)
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
                         var id = stack.Pop();
                         result.Add(id);
 
-                        var relatedEntry = _queryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(id)).FirstOrDefault();
+                        var relatedEntry = _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(id), _graphContext.FindEntryOnGraphQueryHandler).FirstOrDefault();
                         if (relatedEntry != null)
                         {
                             var relatedRelation = selector(relatedEntry);
