@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class DiagnosticsScaffolding : IScaffolding
     {
@@ -16,16 +16,16 @@
 
         public void Register(Container container)
         {
-            container.Register<IDiagnosticsConfiguration>(() => _diagnostics, Lifestyle.Singleton);
+            container.Register<IDiagnosticsConfiguration>(() => _diagnostics);
 
-            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory(), Lifestyle.Singleton);
-            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()), Lifestyle.Singleton);
+            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory());
+            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
             if (_diagnostics.EnableProfiling) // profiling is enabled
             {
             }
 
-            container.Register<ILogFactory>(() => _diagnostics.CreateLogFactory(), Lifestyle.Singleton);
-            container.Register<ILogger>(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()), Lifestyle.Singleton);
+            container.Register<ILogFactory>(() => _diagnostics.CreateLogFactory());
+            container.Register<ILogger>(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
             if (_diagnostics.EnableLogging) // logging is enabled
             {
             }

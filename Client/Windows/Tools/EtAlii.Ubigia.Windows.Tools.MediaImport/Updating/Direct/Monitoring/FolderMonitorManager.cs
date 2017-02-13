@@ -10,14 +10,14 @@
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
-    using Container = SimpleInjector.Container;
+    using Container = EtAlii.xTechnology.MicroContainer.Container;
 
-    internal class FolderMonitorManager : BindableBase
+    internal class FolderMonitorManager : BindableBase, IFolderMonitorManager
     {
         private readonly Container _container;
         private readonly ILogger _logger;
 
-        private readonly ObservableCollection<FolderSyncConfiguration> _folderSyncConfigurations;
+        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         public ObservableCollection<IFolderMonitor> Monitors { get { return _monitors; } }
         private readonly ObservableCollection<IFolderMonitor> _monitors = new ObservableCollection<IFolderMonitor>();
@@ -45,7 +45,7 @@
 
         public FolderMonitorManager(
             Container container,
-            ObservableCollection<FolderSyncConfiguration> folderSyncConfigurations,
+            IObservableFolderSyncConfigurationCollection folderSyncConfigurations,
             ILogger logger)
         {
             _container = container;
@@ -70,7 +70,7 @@
                     {
                         foreach (var item in e.NewItems)
                         {
-                            StartMonitor((FolderMonitor) item);
+                            StartMonitor((IFolderMonitor) item);
                         }
                     }
                     break;
@@ -79,7 +79,7 @@
                     {
                         foreach (var item in e.OldItems)
                         {
-                            StopMonitor((FolderMonitor) item);
+                            StopMonitor((IFolderMonitor) item);
                         }
                     }
                     break;

@@ -1,22 +1,22 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class ItemCheckScaffolding : IScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<IItemChecker, ItemChecker>(Lifestyle.Transient);
-            container.Register<IItemUpdater, ItemUpdater>(Lifestyle.Transient);
+            container.Register<IItemChecker, ItemChecker>();
+            container.Register<IItemUpdater, ItemUpdater>();
 
-            container.Register<ItemCreatedHandler>(Lifestyle.Transient);
-            container.Register<ItemDestroyedHandler>(Lifestyle.Transient);
-            container.Register<ItemChangedHandler>(Lifestyle.Transient);
-            container.Register<ItemRenameHandler>(Lifestyle.Transient);
-            container.Register<DirectoryHelper>(Lifestyle.Transient);
-            container.Register<StringEscaper>(Lifestyle.Transient);
-            container.Register<FolderUpdater>(Lifestyle.Transient);
-            container.Register<LocalPathSplitter>(Lifestyle.Transient);
+            container.Register<IItemCreatedHandler, ItemCreatedHandler>();
+            container.Register<IItemDestroyedHandler, ItemDestroyedHandler>();
+            container.Register<IItemChangedHandler, ItemChangedHandler>();
+            container.Register<IItemRenameHandler, ItemRenameHandler>();
+            container.Register<IDirectoryHelper, DirectoryHelper>();
+            container.Register<IStringEscaper, StringEscaper>();
+            container.Register<IFolderUpdater, FolderUpdater>();
+            container.Register<ILocalPathSplitter, LocalPathSplitter>();
         }
     }
 }

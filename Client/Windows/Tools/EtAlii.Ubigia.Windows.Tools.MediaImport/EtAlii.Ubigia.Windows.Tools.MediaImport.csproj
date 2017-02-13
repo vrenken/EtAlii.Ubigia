@@ -48,6 +48,10 @@
   </PropertyGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj">
       <Project>{90b9ab5d-4d86-4870-b832-be86c55b017b}</Project>
       <Name>EtAlii.Ubigia.Windows.Mvvm</Name>
@@ -72,10 +76,6 @@
     </Reference>
     <Reference Include="Fluent, Version=4.0.3.394, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Fluent.Ribbon.4.0.3.394\lib\net45\Fluent.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -135,11 +135,20 @@
     <Compile Include="Configuration\ViewModels\ConfigurationViewModel.Space.cs" />
     <Compile Include="Configuration\ViewModels\ConfigurationViewModel.Folders.cs" />
     <Compile Include="Configuration\ViewModels\ConfigurationViewModel.cs" />
+    <Compile Include="Configuration\ViewModels\IConfigurationViewModel.cs" />
+    <Compile Include="Configuration\ViewModels\IEditFolderViewModel.cs" />
     <Compile Include="Configuration\Views\EditFolderWindow.xaml.cs">
       <DependentUpon>EditFolderWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Checking\ItemChecker.cs" />
     <Compile Include="Checking\_Model\ItemCheckAction.cs" />
+    <Compile Include="Configuration\Views\IConfigurationWindow.cs" />
+    <Compile Include="Configuration\Views\IEditFolderWindow.cs" />
+    <Compile Include="Configuration\_Model\ObservableFolderSyncConfigurationCollection.cs" />
+    <Compile Include="Configuration\_Model\IObservableFolderSyncConfigurationCollection.cs" />
+    <Compile Include="TaskbarIcon\ITaskbarIconHost.cs" />
+    <Compile Include="TaskbarIcon\ViewModels\ITaskbarIconViewModel.cs" />
+    <Compile Include="TaskbarIcon\Views\ITaskbarIcon.cs" />
     <Compile Include="TaskbarIcon\_Scaffolding\DataContextScaffolding.cs" />
     <Compile Include="TaskbarIcon\_Scaffolding\ConfigurationScaffolding.cs" />
     <Compile Include="TaskbarIcon\_Scaffolding\ItemCheckScaffolding.cs" />
@@ -147,6 +156,14 @@
     <Compile Include="TaskbarIcon\_Scaffolding\TaskbarIconScaffolding.cs" />
     <Compile Include="IScaffolding.cs" />
     <Compile Include="TaskbarIcon\_Scaffolding\DiagnosticsScaffolding.cs" />
+    <Compile Include="Updating\Direct\Handlers\IItemChangedHandler.cs" />
+    <Compile Include="Updating\Direct\Handlers\IItemCreatedHandler.cs" />
+    <Compile Include="Updating\Direct\Handlers\IItemDestroyedHandler.cs" />
+    <Compile Include="Updating\Direct\Handlers\IItemRenameHandler.cs" />
+    <Compile Include="Updating\Direct\Monitoring\IFolderMonitorManager.cs" />
+    <Compile Include="Updating\IDirectoryHelper.cs" />
+    <Compile Include="Updating\ILocalPathSplitter.cs" />
+    <Compile Include="Updating\IStringEscaper.cs" />
     <Compile Include="Updating\LocalPathSplitter.cs" />
     <Compile Include="Updating\Direct\Monitoring\FolderMonitorManager.cs" />
     <Compile Include="Configuration\_Model\FolderSyncConfiguration.cs" />
@@ -160,6 +177,7 @@
       <DependentUpon>TaskbarIcon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Updating\Periodical\FolderUpdater.cs" />
+    <Compile Include="Updating\Periodical\IFolderUpdater.cs" />
     <Compile Include="Updating\StringEscaper.cs" />
     <Compile Include="Updating\Direct\Handlers\ItemChangedHandler.cs" />
     <Compile Include="Updating\Direct\Handlers\ItemDestroyedHandler.cs" />

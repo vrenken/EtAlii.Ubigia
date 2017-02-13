@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class DataContextScaffolding : IScaffolding
     {
@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
         {
             // This should actually not be needed anymore because the datacontext should be the sole entry point for an application.
             // However, I have no good idea on how to redesign it that way. All other solutions have disadvantages as well.  
-            container.Register<IDataConnection>(() => _connection, Lifestyle.Singleton);
+            container.Register<IDataConnection>(() => _connection);
 
             container.Register<IDataContext>(() =>
             {
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
                                     .Use(logicalContext)
                                     .UseWin32();
                 return new DataContextFactory().Create(dataContextConfiguration);
-            }, Lifestyle.Singleton);
+            });
         }
     }
 }

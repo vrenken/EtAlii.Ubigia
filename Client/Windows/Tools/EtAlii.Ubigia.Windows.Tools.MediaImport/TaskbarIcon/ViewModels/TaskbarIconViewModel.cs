@@ -9,12 +9,12 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.Ubigia.Windows;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
-    internal class TaskbarIconViewModel : BindableBase
+    internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
         private readonly Container _container;
-        private readonly FolderMonitorManager _folderMonitorManager;
+        private readonly IFolderMonitorManager _folderMonitorManager;
 
         public string ToolTipText { get { return _toolTipText; } set { SetProperty(ref _toolTipText, value); } }
         private string _toolTipText;
@@ -43,7 +43,7 @@
         public string IconToShow { get { return _iconToShow; } set { SetProperty(ref _iconToShow, value); } }
         private string _iconToShow = TaskbarIconResource.Stopped;
 
-        public TaskbarIconViewModel(Container container, FolderMonitorManager folderMonitorManager)
+        public TaskbarIconViewModel(Container container, IFolderMonitorManager folderMonitorManager)
         {
             _container = container;
             _folderMonitorManager = folderMonitorManager;
@@ -100,7 +100,7 @@
 
         private void ShowConfiguration(object obj)
         {
-            var window = _container.GetInstance<ConfigurationWindow>();
+            var window = _container.GetInstance<IConfigurationWindow>();
             window.Show();
         }
 

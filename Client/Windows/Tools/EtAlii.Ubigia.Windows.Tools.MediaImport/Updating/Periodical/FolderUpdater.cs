@@ -10,16 +10,16 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Logging;
 
-    internal class FolderUpdater
+    internal class FolderUpdater : IFolderUpdater
     {
         private readonly ILogger _logger;
         private readonly IDataContext _context;
-        private readonly StringEscaper _stringEscaper;
+        private readonly IStringEscaper _stringEscaper;
 
         public FolderUpdater(
             IDataContext context,
-            ILogger logger, 
-            StringEscaper stringEscaper)
+            ILogger logger,
+            IStringEscaper stringEscaper)
         {
             _logger = logger;
             _stringEscaper = stringEscaper;

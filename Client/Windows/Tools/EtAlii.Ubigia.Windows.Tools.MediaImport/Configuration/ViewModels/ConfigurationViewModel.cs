@@ -4,16 +4,16 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
-    internal partial class ConfigurationViewModel : BindableBase
+    internal partial class ConfigurationViewModel : BindableBase, IConfigurationViewModel
     {
         private readonly Container _container;
 
         public ConfigurationViewModel(
             Container container,
-            ObservableCollection<FolderSyncConfiguration> folderSyncConfigurations,
-            FolderMonitorManager manager, 
+            IObservableFolderSyncConfigurationCollection folderSyncConfigurations,
+            IFolderMonitorManager manager, 
             IDataConnection connection)
         {
             _container = container;

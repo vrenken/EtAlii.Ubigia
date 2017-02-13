@@ -2,7 +2,7 @@
 {
     using Fluent;
 
-    internal partial class EditFolderWindow : RibbonWindow
+    internal partial class EditFolderWindow : RibbonWindow, IEditFolderWindow
     {
         public EditFolderWindow()
         {

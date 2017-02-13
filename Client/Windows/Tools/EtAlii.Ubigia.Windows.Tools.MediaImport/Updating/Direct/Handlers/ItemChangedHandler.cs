@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 
-    internal class ItemChangedHandler : IItemUpdateHandler
+    internal class ItemChangedHandler : IItemChangedHandler
     {
         private readonly ILogger _logger;
         private readonly IDataContext _context;

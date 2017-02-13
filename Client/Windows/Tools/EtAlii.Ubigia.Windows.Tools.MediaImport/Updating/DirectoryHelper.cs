@@ -2,7 +2,7 @@
 {
     using System.IO;
 
-    internal class DirectoryHelper
+    internal class DirectoryHelper : IDirectoryHelper
     {
         public bool IsDirectory(string item)
         {
