@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class PowerShellClientFactory
     {
@@ -16,9 +16,9 @@
             where T : class, IPowerShellClient
         {
             var container = new Container();
-            container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
+            //container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
-            container.Register<IPowerShellClient, T>(Lifestyle.Singleton);
+            container.Register<IPowerShellClient, T>();
             RegisterStructure(container, infrastructureClient);
 
             return container.GetInstance<IPowerShellClient>();
@@ -28,21 +28,21 @@
         {
             if(infrastructureClient != null)
             {
-                container.Register<IInfrastructureClient>(() => infrastructureClient, Lifestyle.Singleton);
+                container.Register<IInfrastructureClient>(() => infrastructureClient);
             }
             else
             {
-                container.Register<ISerializer>(() => new SerializerFactory().Create(), Lifestyle.Singleton);
-                container.Register<IInfrastructureClient, DefaultInfrastructureClient>(Lifestyle.Singleton);
-                container.Register<IHttpClientFactory, DefaultHttpClientFactory>(Lifestyle.Singleton);
+                container.Register<ISerializer>(() => new SerializerFactory().Create());
+                container.Register<IInfrastructureClient, DefaultInfrastructureClient>();
+                container.Register<IHttpClientFactory, DefaultHttpClientFactory>();
             }
 
-            container.Register<IAddressFactory, AddressFactory>(Lifestyle.Singleton);
-            container.Register<IStorageResolver, StorageResolver>(Lifestyle.Singleton);
-            container.Register<IAccountResolver, AccountResolver>(Lifestyle.Singleton);
-            container.Register<ISpaceResolver, SpaceResolver>(Lifestyle.Singleton);
-            container.Register<IRootResolver, RootResolver>(Lifestyle.Singleton);
-            container.Register<IEntryResolver, EntryResolver>(Lifestyle.Singleton);
+            container.Register<IAddressFactory, AddressFactory>();
+            container.Register<IStorageResolver, StorageResolver>();
+            container.Register<IAccountResolver, AccountResolver>();
+            container.Register<ISpaceResolver, SpaceResolver>();
+            container.Register<IRootResolver, RootResolver>();
+            container.Register<IEntryResolver, EntryResolver>();
         }
     }
 }
