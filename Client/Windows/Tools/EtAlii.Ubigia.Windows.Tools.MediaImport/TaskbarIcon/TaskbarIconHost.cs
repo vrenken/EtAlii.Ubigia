@@ -3,16 +3,16 @@
     using System.Threading.Tasks;
     using System.Windows;
 
-    internal class TaskbarIconHost
+    internal class TaskbarIconHost : ITaskbarIconHost
     {
-        public TaskbarIcon TaskbarIcon { get { return _taskbarIcon; } }
-        private readonly TaskbarIcon _taskbarIcon;
-        private readonly FolderMonitorManager _folderMonitorManager;
+        public ITaskbarIcon TaskbarIcon { get { return _taskbarIcon; } }
+        private readonly ITaskbarIcon _taskbarIcon;
+        private readonly IFolderMonitorManager _folderMonitorManager;
 
         public TaskbarIconHost(
-            TaskbarIcon taskbarIcon,
-            TaskbarIconViewModel taskbarIconViewModel,
-            FolderMonitorManager folderMonitorManager)
+            ITaskbarIcon taskbarIcon,
+            ITaskbarIconViewModel taskbarIconViewModel,
+            IFolderMonitorManager folderMonitorManager)
             : base()
         {
             _taskbarIcon = taskbarIcon;

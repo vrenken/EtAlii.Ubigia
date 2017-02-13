@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public interface IScaffolding
     {

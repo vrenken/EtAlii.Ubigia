@@ -3,14 +3,14 @@
     using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class TaskbarIconHostFactory
     {
-        public TaskbarIconHost Create(
+        public ITaskbarIconHost Create(
             IDiagnosticsConfiguration diagnostics, 
             IDataConnection connection,
-            ObservableCollection<FolderSyncConfiguration> folderSyncConfigurations)
+            IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
         {
             var container = new Container();
 
@@ -29,7 +29,9 @@
                 scaffolding.Register(container);
             }
 
-            return container.GetInstance<TaskbarIconHost>();
+            container.Register<ITaskbarIconHost, TaskbarIconHost>();
+
+            return container.GetInstance<ITaskbarIconHost>();
         }
     }
 }

@@ -1,18 +1,18 @@
 namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class ConfigurationScaffolding : IScaffolding
     {
         public void Register(Container container)
         {
-            container.Register<ConfigurationViewModel>(Lifestyle.Transient);
-            container.Register<ConfigurationWindow>(Lifestyle.Transient);
-            container.RegisterInitializer<ConfigurationWindow>(window => window.DataContext = container.GetInstance<ConfigurationViewModel>());
+            container.Register<IConfigurationViewModel, ConfigurationViewModel>();
+            container.Register<IConfigurationWindow, ConfigurationWindow>();
+            container.RegisterInitializer<IConfigurationWindow>(window => window.DataContext = container.GetInstance<IConfigurationViewModel>());
 
-            container.Register<EditFolderViewModel>(Lifestyle.Transient);
-            container.Register<EditFolderWindow>(Lifestyle.Transient);
-            container.RegisterInitializer<EditFolderWindow>(window => window.DataContext = container.GetInstance<EditFolderViewModel>());
+            container.Register<IEditFolderViewModel, EditFolderViewModel>();
+            container.Register<IEditFolderWindow, EditFolderWindow>();
+            container.RegisterInitializer<IEditFolderWindow>(window => window.DataContext = container.GetInstance<IEditFolderViewModel>());
         }
     }
 }

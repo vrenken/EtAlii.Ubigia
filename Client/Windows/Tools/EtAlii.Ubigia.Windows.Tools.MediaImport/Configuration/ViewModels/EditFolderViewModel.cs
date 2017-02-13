@@ -13,10 +13,10 @@
     using EtAlii.xTechnology.Mvvm;
     using MessageBox = System.Windows.Forms.MessageBox;
 
-    internal partial class EditFolderViewModel : BindableBase
+    internal partial class EditFolderViewModel : BindableBase, IEditFolderViewModel
     {
         private IDataConnection _connection;
-        private readonly ObservableCollection<FolderSyncConfiguration> _folderSyncConfigurations;
+        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         public ICommand SaveChangesCommand { get { return _saveChangesCommand; } }
         private readonly ICommand _saveChangesCommand;
@@ -30,8 +30,8 @@
         public ICommand SelectFolderCommand { get { return _selectFolderCommand; } }
         private readonly ICommand _selectFolderCommand;
 
-        public FolderMonitor OriginalFolderMonitor { get { return _originalFolderMonitor; } set { SetProperty(ref _originalFolderMonitor, value); } }
-        private FolderMonitor _originalFolderMonitor;
+        public IFolderMonitor OriginalFolderMonitor { get { return _originalFolderMonitor; } set { SetProperty(ref _originalFolderMonitor, value); } }
+        private IFolderMonitor _originalFolderMonitor;
 
         public string LocalFolder { get { return _localFolder; } set { SetProperty(ref _localFolder, value); } }
         private string _localFolder;
@@ -39,7 +39,7 @@
         public string RemoteName { get { return _remoteName; } set { SetProperty(ref _remoteName, value); } }
         private string _remoteName;
 
-        public EditFolderViewModel(IDataConnection connection, ObservableCollection<FolderSyncConfiguration> folderSyncConfigurations)
+        public EditFolderViewModel(IDataConnection connection, IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
         {
             _connection = connection;
             _folderSyncConfigurations = folderSyncConfigurations;

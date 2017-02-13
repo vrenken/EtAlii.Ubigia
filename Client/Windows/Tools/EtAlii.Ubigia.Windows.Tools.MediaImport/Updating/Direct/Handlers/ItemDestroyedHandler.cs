@@ -6,16 +6,16 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
-    internal class ItemDestroyedHandler : IItemUpdateHandler
+    internal class ItemDestroyedHandler : IItemDestroyedHandler
     {
         private readonly IDataContext _context;
-        private readonly StringEscaper _stringEscaper;
-        private readonly LocalPathSplitter _localPathSplitter;
+        private readonly IStringEscaper _stringEscaper;
+        private readonly ILocalPathSplitter _localPathSplitter;
 
         public ItemDestroyedHandler(
-            IDataContext context, 
-            StringEscaper stringEscaper, 
-            LocalPathSplitter localPathSplitter)
+            IDataContext context,
+            IStringEscaper stringEscaper, 
+            ILocalPathSplitter localPathSplitter)
         {
             _context = context;
             _stringEscaper = stringEscaper;

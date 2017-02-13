@@ -4,7 +4,7 @@
     using System.IO;
     using System.Linq;
 
-    internal class LocalPathSplitter
+    internal class LocalPathSplitter : ILocalPathSplitter
     {
         public void Split(string localStart, string path, out string last, out string[] rest)
         {

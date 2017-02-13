@@ -22,10 +22,10 @@
         private string _localStart;
 
         public ItemUpdater(
-            ItemCreatedHandler itemCreatedHandler,
-            ItemDestroyedHandler itemDestroyedHandler,
-            ItemChangedHandler itemChangedHandler,
-            ItemRenameHandler itemRenameHandler)
+            IItemCreatedHandler itemCreatedHandler,
+            IItemDestroyedHandler itemDestroyedHandler,
+            IItemChangedHandler itemChangedHandler,
+            IItemRenameHandler itemRenameHandler)
         {
             PropertyChanged += OnPropertyChanged;
 

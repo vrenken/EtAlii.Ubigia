@@ -16,19 +16,19 @@
         public ICommand EditFolderCommand { get { return _editFolderCommand; } }
         private readonly ICommand _editFolderCommand;
 
-        public FolderMonitorManager Manager { get { return _manager; } }
-        private readonly FolderMonitorManager _manager;
+        public IFolderMonitorManager Manager { get { return _manager; } }
+        private readonly IFolderMonitorManager _manager;
 
-        public FolderMonitor SelectedFolderMonitor { get { return _selectedFolderMonitor; } set { SetProperty(ref _selectedFolderMonitor, value); } }
-        private FolderMonitor _selectedFolderMonitor;
+        public IFolderMonitor SelectedFolderMonitor { get { return _selectedFolderMonitor; } set { SetProperty(ref _selectedFolderMonitor, value); } }
+        private IFolderMonitor _selectedFolderMonitor;
 
-        public ObservableCollection<FolderSyncConfiguration> FolderSyncConfigurations { get { return _folderSyncConfigurations; } }
-        private ObservableCollection<FolderSyncConfiguration> _folderSyncConfigurations;
+        public IObservableFolderSyncConfigurationCollection FolderSyncConfigurations { get { return _folderSyncConfigurations; } }
+        private IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         private void OnAddFolder(object obj)
         {
             var parentWindow = (RibbonWindow)obj;
-            var window = _container.GetInstance<EditFolderWindow>();
+            var window = _container.GetInstance<IEditFolderWindow>();
             window.Owner = parentWindow;
             window.ShowDialog();
         }
@@ -41,9 +41,9 @@
         private void OnEditFolder(object obj)
         {
             var parentWindow = (RibbonWindow)obj;
-            var window = _container.GetInstance<EditFolderWindow>();
+            var window = _container.GetInstance<IEditFolderWindow>();
             window.Owner = parentWindow;
-            ((EditFolderViewModel) window.DataContext).OriginalFolderMonitor = SelectedFolderMonitor;
+            ((IEditFolderViewModel) window.DataContext).OriginalFolderMonitor = SelectedFolderMonitor;
             window.ShowDialog();
         }
 

@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class TaskbarIconScaffolding : IScaffolding
     {
@@ -12,9 +12,9 @@
 
         public void Register(Container container)
         {
-            container.Register<TaskbarIconViewModel, TaskbarIconViewModel>(Lifestyle.Singleton);
-            container.Register<TaskbarIcon, TaskbarIcon>(Lifestyle.Singleton);
-            container.RegisterInitializer<TaskbarIcon>(taskbarIcon => taskbarIcon.DataContext = container.GetInstance<TaskbarIconViewModel>());
+            container.Register<ITaskbarIconViewModel, TaskbarIconViewModel>();
+            container.Register<ITaskbarIcon, TaskbarIcon>();
+            container.RegisterInitializer<ITaskbarIcon>(taskbarIcon => taskbarIcon.DataContext = container.GetInstance<ITaskbarIconViewModel>());
         }
     }
 }

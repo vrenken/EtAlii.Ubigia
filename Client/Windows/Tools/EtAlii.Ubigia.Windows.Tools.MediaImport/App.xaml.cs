@@ -16,7 +16,7 @@
     /// </summary>
     public partial class App : Application
     {
-        private TaskbarIconHost _host;
+        private ITaskbarIconHost _host;
 
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
@@ -54,9 +54,9 @@
             return diagnostics;
         }
 
-        private ObservableCollection<FolderSyncConfiguration> CreateFolderSyncConfigurations()
+        private IObservableFolderSyncConfigurationCollection CreateFolderSyncConfigurations()
         {
-            var folderSyncConfigurations = new ObservableCollection<FolderSyncConfiguration>();
+            var folderSyncConfigurations = new ObservableFolderSyncConfigurationCollection();
 
             foreach (var folder in Settings.Default.Folders)
             {

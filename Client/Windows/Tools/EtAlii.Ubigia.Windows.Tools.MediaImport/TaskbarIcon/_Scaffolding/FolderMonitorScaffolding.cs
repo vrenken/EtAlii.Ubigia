@@ -1,24 +1,21 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System.Collections.ObjectModel;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class FolderMonitorScaffolding : IScaffolding
     {
-        private readonly ObservableCollection<FolderSyncConfiguration> _folderSyncConfigurations;
+        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
-        public FolderMonitorScaffolding(ObservableCollection<FolderSyncConfiguration> folderSyncConfigurations)
+        public FolderMonitorScaffolding(IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
         {
             _folderSyncConfigurations = folderSyncConfigurations;
         }
 
         public void Register(Container container)
         {
-            container.Register<ObservableCollection<FolderSyncConfiguration>>(() => _folderSyncConfigurations, Lifestyle.Singleton);
-            container.Register<IFolderMonitor, FolderMonitor>(Lifestyle.Transient);
-            container.Register<FolderMonitorManager>(Lifestyle.Singleton);
+            container.Register<IObservableFolderSyncConfigurationCollection>(() => _folderSyncConfigurations);
+            container.Register<IFolderMonitor, FolderMonitor>();
+            container.Register<IFolderMonitorManager, FolderMonitorManager>();
         }
     }
 }

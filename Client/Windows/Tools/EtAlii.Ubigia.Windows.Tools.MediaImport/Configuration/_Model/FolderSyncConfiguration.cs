@@ -10,9 +10,9 @@
 
     public class FolderSyncConfiguration : BindableBase
     {
-        private readonly ObservableCollection<FolderSyncConfiguration> _folderSyncConfigurations;
+        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
-        public FolderSyncConfiguration(ObservableCollection<FolderSyncConfiguration> folderSyncConfigurations)
+        public FolderSyncConfiguration(IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
         {
             _folderSyncConfigurations = folderSyncConfigurations;
         }

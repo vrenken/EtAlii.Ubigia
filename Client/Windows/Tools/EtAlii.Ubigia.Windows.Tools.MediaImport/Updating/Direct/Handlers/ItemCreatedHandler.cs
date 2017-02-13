@@ -7,20 +7,20 @@
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 
-    internal class ItemCreatedHandler : IItemUpdateHandler
+    internal class ItemCreatedHandler : IItemCreatedHandler
     {
         private readonly ILogger _logger;
-        private readonly DirectoryHelper _directoryHelper;
+        private readonly IDirectoryHelper _directoryHelper;
         private readonly IDataContext _context;
-        private readonly StringEscaper _stringEscaper;
-        private readonly LocalPathSplitter _localPathSplitter;
+        private readonly IStringEscaper _stringEscaper;
+        private readonly ILocalPathSplitter _localPathSplitter;
 
         public ItemCreatedHandler(
             IDataContext context, 
             ILogger logger,
-            DirectoryHelper directoryHelper, 
-            StringEscaper stringEscaper, 
-            LocalPathSplitter localPathSplitter)
+            IDirectoryHelper directoryHelper,
+            IStringEscaper stringEscaper,
+            ILocalPathSplitter localPathSplitter)
         {
             _context = context;
             _logger = logger;
