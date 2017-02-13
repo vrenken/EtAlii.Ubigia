@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Client.Windows.UserInterface
             {
                 var window = parameter as StorageWindow;
                 var viewModel = window.DataContext;
-                var globalSettings = Container.GetInstance<GlobalSettings>();
+                var globalSettings = Container.GetInstance<IGlobalSettings>();
                 globalSettings.Storage.Remove(viewModel.StorageSettings);
                 window.Close();
             }

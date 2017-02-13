@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
         {
             var app = new App();
             app.RegisterKnownTypes();
-            app.Container.Verify();
+            //app.Container.Verify();
             return app;
         }
 

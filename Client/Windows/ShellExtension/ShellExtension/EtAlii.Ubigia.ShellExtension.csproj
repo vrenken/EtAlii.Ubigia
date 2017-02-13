@@ -97,10 +97,6 @@
       <HintPath>Prerequisites\LogicNP.EZNamespaceExtensions.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework" />
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
@@ -185,6 +181,10 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
       <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
       <Name>EtAlii.Ubigia.Windows.Settings</Name>

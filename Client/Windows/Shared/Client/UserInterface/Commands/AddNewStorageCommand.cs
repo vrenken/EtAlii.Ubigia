@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Client.Windows.UserInterface
             var result = storageWindow.ShowDialog();
             if (result == true)
             {
-                var globalSettings = Container.GetInstance<GlobalSettings>();
+                var globalSettings = Container.GetInstance<IGlobalSettings>();
                 globalSettings.Storage.Add(storageSettings);
             }
             else

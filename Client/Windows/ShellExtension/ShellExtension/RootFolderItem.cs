@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
             var guidAttribute = type.GetCustomAttribute<GuidAttribute>();
             var id = new Guid(guidAttribute.Value);
 
-            var globalSettings = App.Current.Container.GetInstance<GlobalSettings>();
+            var globalSettings = App.Current.Container.GetInstance<IGlobalSettings>();
             return globalSettings.Storage.Where(storageSettings => storageSettings.Id == id)
                                          .SingleOrDefault();
         }

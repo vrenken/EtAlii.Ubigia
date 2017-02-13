@@ -48,7 +48,7 @@
         {
             try
             {
-                var globalSettings = App.Current.Container.GetInstance<GlobalSettings>();
+                var globalSettings = App.Current.Container.GetInstance<IGlobalSettings>();
 
                 var obsoleteRegistrations = Registrations.GetObsolete(globalSettings);
                 //var obsoleteRegistrations = GetAllRegistrations(globalSettings);
@@ -119,7 +119,7 @@
             return shellExtensionTypes.ToArray();
         }
 
-        private static string[] GetAllRegistrations(GlobalSettings globalSettings)
+        private static string[] GetAllRegistrations(IGlobalSettings globalSettings)
         {
             var assemblies = Directory.GetFiles(App.ShellExtensionsDirectory, "*.dll");
             return assemblies.ToArray();
