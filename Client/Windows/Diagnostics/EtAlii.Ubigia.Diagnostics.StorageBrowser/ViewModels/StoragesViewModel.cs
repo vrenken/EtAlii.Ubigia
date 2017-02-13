@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
 
-    public class StoragesViewModel : BindableBase
+    public class StoragesViewModel : BindableBase, IStoragesViewModel
     {
         public IEnumerable<Storage> AvailableStorages { get { return _availableStorages; } private set { SetProperty(ref _availableStorages, value); } }
         private IEnumerable<Storage> _availableStorages;

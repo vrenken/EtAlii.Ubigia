@@ -11,7 +11,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using Space = EtAlii.Ubigia.Api.Space;
 
-    public class SpacesViewModel : BindableBase
+    public class SpacesViewModel : BindableBase, ISpacesViewModel
     {
         public IEnumerable<Space> AvailableSpaces { get { return _availableSpaces; } private set { SetProperty(ref _availableSpaces, value); } }
         private IEnumerable<Space> _availableSpaces;

@@ -15,7 +15,7 @@
     /// </summary>
     public partial class App : System.Windows.Application
     {
-        public new MainWindow MainWindow { get { return base.MainWindow as MainWindow; } set { base.MainWindow = value; } }
+        public new IMainWindow MainWindow { get { return base.MainWindow as IMainWindow; } set { base.MainWindow = (Window)value; } }
 
         public App()
         {

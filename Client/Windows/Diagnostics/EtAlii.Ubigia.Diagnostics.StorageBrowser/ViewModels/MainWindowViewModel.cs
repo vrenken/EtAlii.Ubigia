@@ -4,19 +4,19 @@
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
 
-    public class MainWindowViewModel : BindableBase
+    public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
-        public StoragesViewModel Storages { get { return _storages; } }
-        private readonly StoragesViewModel _storages;
+        public IStoragesViewModel Storages { get { return _storages; } }
+        private readonly IStoragesViewModel _storages;
 
-        public AccountsViewModel Accounts { get { return _accounts; } }
-        private readonly AccountsViewModel _accounts;
+        public IAccountsViewModel Accounts { get { return _accounts; } }
+        private readonly IAccountsViewModel _accounts;
 
-        public SpacesViewModel Spaces { get { return _spaces; } }
-        private readonly SpacesViewModel _spaces;
+        public ISpacesViewModel Spaces { get { return _spaces; } }
+        private readonly ISpacesViewModel _spaces;
 
-        public RolesViewModel Roles { get { return _roles; } }
-        private readonly RolesViewModel _roles;
+        public IRolesViewModel Roles { get { return _roles; } }
+        private readonly IRolesViewModel _roles;
 
         protected IManagementConnection Connection { get { return _connection; } }
         private readonly IManagementConnection _connection;
@@ -25,10 +25,10 @@
 
         public MainWindowViewModel(
             IManagementConnection connection, 
-            StoragesViewModel storagesViewModel, 
-            AccountsViewModel accountsViewModel, 
-            SpacesViewModel spacesViewModel, 
-            RolesViewModel rolesViewModel,
+            IStoragesViewModel storagesViewModel,
+            IAccountsViewModel accountsViewModel, 
+            ISpacesViewModel spacesViewModel, 
+            IRolesViewModel rolesViewModel,
             ILogger logger)
         {
             _logger = logger;   
