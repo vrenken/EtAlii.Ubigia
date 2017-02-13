@@ -69,10 +69,6 @@
     </Reference>
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
-    <Reference Include="SimpleInjector, Version=3.1.3.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\SimpleInjector.3.1.3\lib\net45\SimpleInjector.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -159,10 +155,16 @@
     <Compile Include="MainWindowFactory.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="ViewModels\AccountsViewModel.cs" />
+    <Compile Include="ViewModels\IAccountsViewModel.cs" />
+    <Compile Include="ViewModels\IMainWindowViewModel.cs" />
+    <Compile Include="ViewModels\IRolesViewModel.cs" />
+    <Compile Include="ViewModels\ISpacesViewModel.cs" />
+    <Compile Include="ViewModels\IStoragesViewModel.cs" />
     <Compile Include="ViewModels\RolesViewModel.cs" />
     <Compile Include="ViewModels\SpacesViewModel.cs" />
     <Compile Include="ViewModels\StoragesViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="Views\IMainWindow.cs" />
     <Compile Include="Views\MainContent.xaml.cs">
       <DependentUpon>MainContent.xaml</DependentUpon>
     </Compile>
@@ -210,6 +212,10 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
+      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
+      <Name>EtAlii.xTechnology.MicroContainer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj">
       <Project>{937cdade-dc16-4218-bd58-c2873d2b250c}</Project>
       <Name>EtAlii.Ubigia.Windows.Management</Name>

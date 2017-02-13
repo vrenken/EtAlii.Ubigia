@@ -11,7 +11,7 @@
     using System.Windows.Input;
     using Space = EtAlii.Ubigia.Api.Space;
 
-    public class RolesViewModel : BindableBase
+    public class RolesViewModel : BindableBase, IRolesViewModel
     {
         public IEnumerable<Role> AvailableRoles { get { return _availableRoles; } private set { SetProperty(ref _availableRoles, value); } }
         private IEnumerable<Role> _availableRoles;

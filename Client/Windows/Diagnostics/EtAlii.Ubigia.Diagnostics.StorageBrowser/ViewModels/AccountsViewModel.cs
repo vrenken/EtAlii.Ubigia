@@ -10,7 +10,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport;
 
-    public class AccountsViewModel : BindableBase
+    public class AccountsViewModel : BindableBase, IAccountsViewModel
     {
         public IEnumerable<Account> AvailableAccounts { get { return _availableAccounts; } private set { SetProperty(ref _availableAccounts, value); } }
         private IEnumerable<Account> _availableAccounts;
