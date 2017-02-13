@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
 
     public class GraphContextFactory : IGraphContextFactory
     {
@@ -14,10 +14,10 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
         {
             var container = new Container();
 
-            container.Register<ILogger>(() => logger, Lifestyle.Singleton);
-            container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
-            container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
-            container.Register<IDocumentViewModelProvider>(() => documentViewModelProvider, Lifestyle.Singleton);
+            container.Register<ILogger>(() => logger);
+            container.Register<IJournalViewModel>(() => journal);
+            container.Register<IFabricContext>(() => fabricContext);
+            container.Register<IDocumentViewModelProvider>(() => documentViewModelProvider);
             
 
             var graphScaffolding = new GraphScaffolding();

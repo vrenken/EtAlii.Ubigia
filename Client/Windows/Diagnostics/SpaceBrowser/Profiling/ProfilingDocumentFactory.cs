@@ -10,7 +10,7 @@
     using EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using SimpleInjector;
+    using EtAlii.xTechnology.MicroContainer;
     using ProfilingDataConnection = EtAlii.Ubigia.Api.Diagnostics.Profiling.ProfilingDataConnection;
 
     public class ProfilingDocumentFactory : IProfilingDocumentFactory
@@ -27,26 +27,25 @@
             IGraphContextFactory graphContextFactory)
         {
             var container = new Container();
-            container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
             new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
             new StructureScaffolding().Register(container);
 
-            container.Register<IProfilingViewModel, ProfilingViewModel>(Lifestyle.Singleton);
-            container.Register<IProfilingAspectsViewModel, ProfilingAspectsViewModel>(Lifestyle.Singleton);
+            container.Register<IProfilingViewModel, ProfilingViewModel>();
+            container.Register<IProfilingAspectsViewModel, ProfilingAspectsViewModel>();
 
-            container.Register<IProfilingDataContext>(() => (IProfilingDataContext)dataContext, Lifestyle.Singleton);
-            container.Register<IProfilingLogicalContext>(() => (IProfilingLogicalContext)logicalContext, Lifestyle.Singleton);
-            container.Register<IProfilingFabricContext>(() => (IProfilingFabricContext)fabricContext, Lifestyle.Singleton);
-            container.Register<IProfilingDataConnection>(() => (IProfilingDataConnection)connection, Lifestyle.Singleton);
+            container.Register<IProfilingDataContext>(() => (IProfilingDataContext)dataContext);
+            container.Register<IProfilingLogicalContext>(() => (IProfilingLogicalContext)logicalContext);
+            container.Register<IProfilingFabricContext>(() => (IProfilingFabricContext)fabricContext);
+            container.Register<IProfilingDataConnection>(() => (IProfilingDataConnection)connection);
             container.Register<IGraphContext>(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
                 return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
-            }, Lifestyle.Singleton);
+            });
 
-            //container.Register<IProfilingView, ProfilingView>(Lifestyle.Singleton);
-            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
+            //container.Register<IProfilingView, ProfilingView>();
+            container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
 
             container.Register<IProfileComposer>(() => 
             new ProfileComposer(
@@ -54,7 +53,7 @@
                 ((IProfilingLogicalContext)logicalContext).Profiler,
                 ((IProfilingFabricContext)fabricContext).Profiler,
                 ((IProfilingDataConnection)connection).Profiler
-                ), Lifestyle.Singleton);
+                ));
 
             var documentViewModel = container.GetInstance<IProfilingViewModel>();
             var documentViewModelProvider = container.GetInstance<IDocumentViewModelProvider>();
