@@ -19,7 +19,11 @@
             var identifierType = typeof(Identifier);
             var identifier = (Identifier)dropObject.GetData(identifierType);
 
-            _commandProcessor.Process(new RetrieveEntryCommand(identifier, ProcessReason.Retrieved));
+            OnDrop(identifier);
+        }
+
+        protected virtual void OnDrop(Identifier identifier)
+        {
         }
     }
 }

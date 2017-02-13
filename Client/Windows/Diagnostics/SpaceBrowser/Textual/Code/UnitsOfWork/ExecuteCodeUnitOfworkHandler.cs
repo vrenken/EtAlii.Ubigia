@@ -6,19 +6,22 @@
 
     public class ExecuteCodeUnitOfworkHandler : UnitOfWorkHandlerBase<ExecuteCodeUnitOfwork>, IExecuteCodeUnitOfworkHandler
     {
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
+        private readonly IGraphContext _graphContext;
+        private readonly ICompileCodeUnitOfworkHandler _compileCodeUnitOfworkHandler;
 
         public ExecuteCodeUnitOfworkHandler(
-            IUnitOfWorkProcessor unitOfWorkProcessor)
+            ICompileCodeUnitOfworkHandler compileCodeUnitOfworkHandler, 
+            IGraphContext graphContext)
         {
-            _unitOfWorkProcessor = unitOfWorkProcessor;
+            _compileCodeUnitOfworkHandler = compileCodeUnitOfworkHandler;
+            _graphContext = graphContext;
         }
 
         protected override void Handle(ExecuteCodeUnitOfwork unitOfWork)
         {
             var viewModel = unitOfWork.CodeViewModel;
 
-            _unitOfWorkProcessor.Process(new CompileCodeUnitOfwork(viewModel));
+            _graphContext.UnitOfWorkProcessor.Process(new CompileCodeUnitOfwork(viewModel), _compileCodeUnitOfworkHandler);
 
             if (viewModel.CanExecute)
             {

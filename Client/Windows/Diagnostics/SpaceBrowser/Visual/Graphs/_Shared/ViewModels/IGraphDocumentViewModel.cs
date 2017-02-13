@@ -2,11 +2,12 @@
 {
     using EtAlii.Ubigia.Api;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Fabric;
 
     public interface IGraphDocumentViewModel : IDocumentViewModel
     {
         IGraphConfiguration Configuration { get; }
+
+        IGraphContext GraphContext { get; }
 
         EntryNode FindNodeByKey(Identifier identifier);
         

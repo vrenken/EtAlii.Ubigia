@@ -8,10 +8,9 @@
 
     public class CodeViewModel : TextualViewModelBase, ICodeViewModel
     {
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
-        private readonly IQueryProcessor _queryProcessor;
 
         public ICodeButtonsViewModel Buttons { get { return _buttons; } }
+        private readonly IGraphContext _graphContext;
         private readonly ICodeButtonsViewModel _buttons;
 
         public string Code { get { return _code; } set { SetProperty(ref _code, value); } }
@@ -20,30 +19,38 @@
         public event Action CodeChanged = delegate { };
         private IDisposable _codeChangedSubscription;
 
+        private readonly ITextTemplateQueryHandler _textTemplateQueryHandler;
+        private readonly ICompileCodeUnitOfworkHandler _compileCodeUnitOfworkHandler;
+        private readonly IExecuteCodeUnitOfworkHandler _executeCodeUnitOfworkHandler;
+
         public CodeViewModel(
-            IUnitOfWorkProcessor unitOfWorkProcessor,
-            IQueryProcessor queryProcessor,
+            IGraphContext graphContext,
             ICodeButtonsViewModel buttons,
             ICodeCompiler codeCompiler,
-            ICodeCompilerResultsParser codeCompilerResultsParser)
+            ICodeCompilerResultsParser codeCompilerResultsParser, 
+            ITextTemplateQueryHandler textTemplateQueryHandler, 
+            ICompileCodeUnitOfworkHandler compileCodeUnitOfworkHandler, 
+            IExecuteCodeUnitOfworkHandler executeCodeUnitOfworkHandler)
         {
-            _queryProcessor = queryProcessor;
-            _unitOfWorkProcessor = unitOfWorkProcessor;
+            _graphContext = graphContext;
             _buttons = buttons;
+            _textTemplateQueryHandler = textTemplateQueryHandler;
+            _compileCodeUnitOfworkHandler = compileCodeUnitOfworkHandler;
+            _executeCodeUnitOfworkHandler = executeCodeUnitOfworkHandler;
 
             PropertyChanged += OnPropertyChanged;
 
             _codeChangedSubscription = Observable.FromEvent((handler) => CodeChanged += handler, (handler) => CodeChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
                                 .ObserveOnDispatcher()
-                                .Subscribe(e => _unitOfWorkProcessor.Process(new CompileCodeUnitOfwork(this)));
+                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new CompileCodeUnitOfwork(this), _compileCodeUnitOfworkHandler));
 
-            Code = _queryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Code.Templates.SimpleCode.cs")).Single();
+            Code = _graphContext.QueryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Code.Templates.SimpleCode.cs"), _textTemplateQueryHandler).Single();
         }
 
         protected override void Execute(object obj)
         {
-            _unitOfWorkProcessor.Process(new ExecuteCodeUnitOfwork(this));
+            _graphContext.UnitOfWorkProcessor.Process(new ExecuteCodeUnitOfwork(this), _executeCodeUnitOfworkHandler);
         }
 
         protected override void Pause(object obj)

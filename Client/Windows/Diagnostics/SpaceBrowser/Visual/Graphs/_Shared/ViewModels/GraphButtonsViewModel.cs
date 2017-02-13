@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
-    using EtAlii.xTechnology.Workflow;
     using ICommand = System.Windows.Input.ICommand;
 
     public class GraphButtonsViewModel : BindableBase, IGraphButtonsViewModel
@@ -21,14 +20,14 @@
         public ICommand ClearGraphCommand { get { return _clearGraphCommand; } }
         private readonly ICommand _clearGraphCommand;
 
-        private readonly ICommandProcessor _commandProcessor;
+        private readonly IGraphContext _graphContext;
 
         public GraphButtonsViewModel(
             IFabricContext fabric,
-            ICommandProcessor commandProcessor)  
+            IGraphContext graphContext)  
         {
             _fabric = fabric;
-            _commandProcessor = commandProcessor;
+            _graphContext = graphContext;
 
             _discoverFromHeadCommand = new RelayCommand(DiscoverFromHead, CanDiscoverFromHead);
             _discoverFromTailCommand = new RelayCommand(DiscoverFromTail, CanDiscoverFromTail);
@@ -53,7 +52,7 @@
                 });
                 task.Wait();
 
-                _commandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3));
+                _graphContext.CommandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3), _graphContext.DiscoverEntryCommandHandler);
             }
         }
 
@@ -75,7 +74,7 @@
                 });
                 task.Wait();
 
-                _commandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3));
+                _graphContext.CommandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3), _graphContext.DiscoverEntryCommandHandler);
             }
         }
 

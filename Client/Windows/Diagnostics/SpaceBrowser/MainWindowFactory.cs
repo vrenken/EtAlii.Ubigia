@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
@@ -20,6 +19,7 @@
 
             container.Register<IMainDispatcherInvoker, MainDispatcherInvoker>(Lifestyle.Singleton);
 
+            container.Register<IDocumentsProvider, DocumentsProvider>(Lifestyle.Singleton);
             container.Register<IMainWindowViewModel, MainWindowViewModel>(Lifestyle.Singleton);
             container.Register<IMainWindow, MainWindow>(Lifestyle.Singleton);
 
@@ -53,6 +53,8 @@
             container.Register<IProfilingDocumentFactory, ProfilingDocumentFactory>(Lifestyle.Singleton);
             container.Register<INewProfilingDocumentCommand, NewProfilingDocumentCommand>(Lifestyle.Singleton);
 
+            container.Register<IGraphContextFactory, GraphContextFactory>(Lifestyle.Singleton);
+
             var window = container.GetInstance<IMainWindow>();
             var viewModel = container.GetInstance<IMainWindowViewModel>();
             //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container);
@@ -74,22 +76,30 @@
             container.Register<IProfilingFabricContext>(() => fabricContext, Lifestyle.Singleton);
 
             // The logical context.
-            var logicalContextConfiguration = new LogicalContextConfiguration()
-                .Use(fabricContext)
-                .Use(diagnostics);
-            var logicalContext = new LogicalContextFactory().CreateForProfiling(logicalContextConfiguration);
-            container.Register<ILogicalContext>(() => logicalContext, Lifestyle.Singleton);
-            container.Register<IProfilingLogicalContext>(() => logicalContext, Lifestyle.Singleton);
+            container.Register<ILogicalContext>(() =>
+            {
+                var logicalContextConfiguration = new LogicalContextConfiguration()
+                    .Use(fabricContext)
+                    .Use(diagnostics);
+                return new LogicalContextFactory().CreateForProfiling(logicalContextConfiguration);
+            }, Lifestyle.Singleton);
+            container.Register<IProfilingLogicalContext>(() => (IProfilingLogicalContext)container.GetInstance<ILogicalContext>(), Lifestyle.Singleton);
 
-            // And finally, the functional context.
-            var dataContextConfiguration = new DataContextConfiguration()
-                                .Use(diagnostics)
-                                .Use(logicalContext)
-                                .Use(new SpaceBrowserFunctionHandlersProvider())
-                                .UseWin32();
-            var dataContext = new DataContextFactory().CreateForProfiling(dataContextConfiguration);
-            container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
-            container.Register<IProfilingDataContext>(() => dataContext, Lifestyle.Singleton);
+            // Function handling
+            container.Register<ISpaceBrowserFunctionHandlersProvider, SpaceBrowserFunctionHandlersProvider>(Lifestyle.Singleton);
+            container.Register<IViewFunctionHandler, ViewFunctionHandler>(Lifestyle.Singleton);
+
+            container.Register<IDataContext>(() =>
+            {
+                // And finally, the functional context.
+                var dataContextConfiguration = new DataContextConfiguration()
+                                    .Use(diagnostics)
+                                    .Use(container.GetInstance<ILogicalContext>())
+                                    .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
+                                    .UseWin32();
+                return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
+            }, Lifestyle.Singleton);
+            container.Register<IProfilingDataContext>(() => (IProfilingDataContext)container.GetInstance<IDataContext>(), Lifestyle.Singleton);
         }
 
         private void RegisterDiagnostics(Container container, IDiagnosticsConfiguration diagnostics)

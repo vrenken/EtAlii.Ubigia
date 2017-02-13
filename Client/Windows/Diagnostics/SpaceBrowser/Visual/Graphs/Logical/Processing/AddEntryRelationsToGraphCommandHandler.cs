@@ -1,10 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Workflow;
-    using System.Windows.Threading;
 
 
     public class AddEntryRelationsToGraphCommandHandler : CommandHandlerBase<AddEntryRelationsToGraphCommand>, IAddEntryRelationsToGraphCommandHandler

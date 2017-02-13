@@ -63,7 +63,8 @@
         NodeTemplate="{StaticResource treeNodeTemplate}"
         LinkTemplate="{StaticResource treeLinkTemplate}">
         <go:Diagram.ClickSelectingTool>
-            <local:ClickSelectingTool CommandProcessor="{Binding CommandProcessor}" />
+            <local:ClickSelectingTool 
+                GraphContext="{Binding GraphContext}"/>
         </go:Diagram.ClickSelectingTool>
 
 

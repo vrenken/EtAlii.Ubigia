@@ -2,10 +2,9 @@
 namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
 
-    public class FindEntryOnGraphQuery : QueryBase<FindEntryOnGraphQueryHandler, IReadOnlyEntry>
+    public class FindEntryOnGraphQuery : QueryBase<IFindEntryOnGraphQueryHandler, IReadOnlyEntry>
     {
         public Identifier Identifier { get; private set; }
 

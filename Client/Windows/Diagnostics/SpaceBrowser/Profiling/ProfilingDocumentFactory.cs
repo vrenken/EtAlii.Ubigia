@@ -23,7 +23,8 @@
             IDiagnosticsConfiguration diagnostics, 
             ILogger logger, 
             ILogFactory logFactory,
-            IJournalViewModel journal)
+            IJournalViewModel journal,
+            IGraphContextFactory graphContextFactory)
         {
             var container = new Container();
             container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
@@ -38,6 +39,11 @@
             container.Register<IProfilingLogicalContext>(() => (IProfilingLogicalContext)logicalContext, Lifestyle.Singleton);
             container.Register<IProfilingFabricContext>(() => (IProfilingFabricContext)fabricContext, Lifestyle.Singleton);
             container.Register<IProfilingDataConnection>(() => (IProfilingDataConnection)connection, Lifestyle.Singleton);
+            container.Register<IGraphContext>(() =>
+            {
+                var dvmp = container.GetInstance<IDocumentViewModelProvider>();
+                return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
+            }, Lifestyle.Singleton);
 
             //container.Register<IProfilingView, ProfilingView>(Lifestyle.Singleton);
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
@@ -51,8 +57,8 @@
                 ), Lifestyle.Singleton);
 
             var documentViewModel = container.GetInstance<IProfilingViewModel>();
-            var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
-            documentViewModelService.SetInstance(documentViewModel);
+            var documentViewModelProvider = container.GetInstance<IDocumentViewModelProvider>();
+            documentViewModelProvider.SetInstance(documentViewModel);
             return documentViewModel;
         }
     }

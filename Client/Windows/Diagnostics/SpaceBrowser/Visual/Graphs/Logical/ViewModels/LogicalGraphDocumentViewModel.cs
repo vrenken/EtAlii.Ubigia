@@ -1,18 +1,46 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.Workflow;
 
     public class LogicalGraphDocumentViewModel : GraphDocumentViewModelBase, ILogicalGraphDocumentViewModel
     {
         public LogicalGraphDocumentViewModel(
             IFabricContext fabric,
-            ICommandProcessor commandProcessor,
-            IGraphConfiguration configuration,
             IGraphButtonsViewModel buttons,
-            IGraphContextMenuViewModel contextMenu)
-            : base(fabric, commandProcessor, configuration, buttons, contextMenu)
+            IGraphContextMenuViewModel contextMenu, 
+            IGraphContext graphContext)
+            : base(fabric, buttons, contextMenu, graphContext)
         {
+        }
+
+        protected override void OnDrop(Identifier identifier)
+        {
+            GraphContext.CommandProcessor.Process(new RetrieveEntryCommand(identifier, ProcessReason.Retrieved), GraphContext.RetrieveEntryCommandHandler);
+        }
+
+        protected override void OnEntryStored(Identifier id)
+        {
+            if (Configuration.AddNewEntries)
+            {
+                GraphContext.CommandProcessor.Process(new RetrieveEntryCommand(id, ProcessReason.Retrieved), GraphContext.RetrieveEntryCommandHandler);
+            }
+            if (Configuration.ExpandNewEntries)
+            {
+            }
+        }
+
+        protected override void SelectEntry(object parameter)
+        {
+        }
+
+        protected override void DiscoverEntry(object parameter)
+        {
+            var entry = parameter as Entry;
+            if (entry != null)
+            {
+                GraphContext.CommandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3), GraphContext.DiscoverEntryCommandHandler);
+            }
         }
     }
 }

@@ -11,19 +11,19 @@
         private readonly IFabricContext _fabric;
         private readonly IGraphConfiguration _configuration;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
-        protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
-        private readonly IDocumentViewModelProvider _documentViewModelProvider;
+        //protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
+        //private readonly IDocumentViewModelProvider _documentViewModelProvider;
 
         private readonly object _lockObject = new object();
 
         public AddEntryToGraphCommandHandler(
             IFabricContext fabric,
-            IDocumentViewModelProvider documentViewModelProvider,
+            //IDocumentViewModelProvider documentViewModelProvider,
             IGraphConfiguration configuration,
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _fabric = fabric;
-            _documentViewModelProvider = documentViewModelProvider;
+            //_documentViewModelProvider = documentViewModelProvider;
             _configuration = configuration;
             _mainDispatcherInvoker = mainDispatcherInvoker;
         }
@@ -35,51 +35,51 @@
                 var entry = command.Entry;
                 var identifier = entry.Id;
 
-                AddNode(identifier);
+                AddNode(identifier, command);
 
                 if (_configuration.ShowHierarchical)
                 {
-                    AddFromRelation(identifier, entry.Parent, EntryRelation.Parent);
-                    AddFromRelations(identifier, entry.Children, EntryRelation.Child);
+                    AddFromRelation(identifier, entry.Parent, EntryRelation.Parent, command);
+                    AddFromRelations(identifier, entry.Children, EntryRelation.Child, command);
                 }
                 if (_configuration.ShowSequential)
                 {
-                    AddFromRelation(identifier, entry.Previous, EntryRelation.Previous);
-                    AddFromRelation(identifier, entry.Next, EntryRelation.Next);
+                    AddFromRelation(identifier, entry.Previous, EntryRelation.Previous, command);
+                    AddFromRelation(identifier, entry.Next, EntryRelation.Next, command);
                 }
                 if (_configuration.ShowTemporal)
                 {
-                    AddFromRelation(identifier, entry.Downdate, EntryRelation.Downdate);
-                    AddFromRelations(identifier, entry.Updates, EntryRelation.Update);
+                    AddFromRelation(identifier, entry.Downdate, EntryRelation.Downdate, command);
+                    AddFromRelations(identifier, entry.Updates, EntryRelation.Update, command);
                 }
             });
         }
 
-        private void AddFromRelation(Identifier entryIdentifier, Relation relation, EntryRelation entryRelation)
+        private void AddFromRelation(Identifier entryIdentifier, Relation relation, EntryRelation entryRelation, AddEntryToGraphCommand command)
         {
             if (relation != Relation.None)
             {
-                AddNode(relation.Id);
-                AddRelation(entryIdentifier, relation.Id, entryRelation);
+                AddNode(relation.Id, command);
+                AddRelation(entryIdentifier, relation.Id, entryRelation, command);
             }
         }
 
-        private void AddFromRelations(Identifier entryIdentifier, IEnumerable<Relation> relations, EntryRelation entryRelation)
+        private void AddFromRelations(Identifier entryIdentifier, IEnumerable<Relation> relations, EntryRelation entryRelation, AddEntryToGraphCommand command)
         {
             foreach (var relation in relations)
             {
-                AddNode(relation.Id);
-                AddRelation(entryIdentifier, relation.Id, entryRelation);
+                AddNode(relation.Id, command);
+                AddRelation(entryIdentifier, relation.Id, entryRelation, command);
             }
         }
 
-        private void AddNode(Identifier identifier)
+        private void AddNode(Identifier identifier, AddEntryToGraphCommand command)
         {
-            if (GraphViewModel.FindNodeByKey(identifier) == null)
+            if (command.GraphDocumentViewModel.FindNodeByKey(identifier) == null)
             {
                 lock (_lockObject)
                 {
-                    GraphViewModel.StartTransaction("NodeAdd");
+                    command.GraphDocumentViewModel.StartTransaction("NodeAdd");
 
                     IReadOnlyEntry result = null;
                     var task = Task.Run(async () =>
@@ -90,29 +90,29 @@
 
                     var entry = result;
                     var entryNode = new EntryNode(entry);
-                    GraphViewModel.AddNode(entryNode);
-                    GraphViewModel.DoNodeAdded(entryNode);
-                    GraphViewModel.CommitTransaction("NodeAdd");
+                    command.GraphDocumentViewModel.AddNode(entryNode);
+                    command.GraphDocumentViewModel.DoNodeAdded(entryNode);
+                    command.GraphDocumentViewModel.CommitTransaction("NodeAdd");
                 }
             }
         }
 
-        private void AddRelation(Identifier from, Identifier to, EntryRelation entryRelation)
+        private void AddRelation(Identifier from, Identifier to, EntryRelation entryRelation, AddEntryToGraphCommand command)
         {
-            var fromNode = GraphViewModel.FindNodeByKey(from);
-            var toNode = GraphViewModel.FindNodeByKey(to);
+            var fromNode = command.GraphDocumentViewModel.FindNodeByKey(from);
+            var toNode = command.GraphDocumentViewModel.FindNodeByKey(to);
 
-            var hasLink = GraphViewModel.IsLinked(fromNode, null, toNode, null);
-            hasLink |= GraphViewModel.IsLinked(toNode, null, fromNode, null);
+            var hasLink = command.GraphDocumentViewModel.IsLinked(fromNode, null, toNode, null);
+            hasLink |= command.GraphDocumentViewModel.IsLinked(toNode, null, fromNode, null);
             if (!hasLink)
             {
                 lock (_lockObject)
                 {
-                    GraphViewModel.StartTransaction("LinkAdd");
+                    command.GraphDocumentViewModel.StartTransaction("LinkAdd");
                     var entryLink = new EntryLink { From = fromNode.Key, To = toNode.Key, Category = entryRelation.ToString() };
-                    GraphViewModel.AddLink(entryLink);
-                    GraphViewModel.DoLinkAdded(entryLink);
-                    GraphViewModel.CommitTransaction("LinkAdd");
+                    command.GraphDocumentViewModel.AddLink(entryLink);
+                    command.GraphDocumentViewModel.DoLinkAdded(entryLink);
+                    command.GraphDocumentViewModel.CommitTransaction("LinkAdd");
                 }
             }
         }

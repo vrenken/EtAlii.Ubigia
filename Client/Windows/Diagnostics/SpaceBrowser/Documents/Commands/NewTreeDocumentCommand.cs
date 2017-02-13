@@ -18,8 +18,9 @@
             ILogger logger, 
             ILogFactory logFactory, 
             IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal) 
-            : base(dataContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal)
+            IJournalViewModel journal,
+            IGraphContextFactory graphContextFactory) 
+            : base(dataContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
         {
             DocumentFactory = factory;
             Header = "Hierarchical";

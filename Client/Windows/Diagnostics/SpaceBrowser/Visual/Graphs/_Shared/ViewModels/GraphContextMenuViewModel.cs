@@ -1,10 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.xTechnology.Mvvm;
-    using EtAlii.xTechnology.Workflow;
     using System.Linq;
     using EtAlii.Ubigia.Windows;
     using ICommand = System.Windows.Input.ICommand;
@@ -47,18 +44,12 @@
         public ICommand ShowUpdatesCommand { get { return _showUpdatesCommand; } }
         private readonly ICommand _showUpdatesCommand;
 
-        private readonly ICommandProcessor _commandProcessor;
-        private readonly IQueryProcessor _queryProcessor;
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
+        private readonly IGraphContext _graphContext;
 
         public GraphContextMenuViewModel(
-            ICommandProcessor commandProcessor,
-            IQueryProcessor queryProcessor,
-            IUnitOfWorkProcessor unitOfWorkProcessor)  
+            IGraphContext graphContext)  
         {
-            _commandProcessor = commandProcessor;
-            _queryProcessor = queryProcessor;
-            _unitOfWorkProcessor = unitOfWorkProcessor;
+            _graphContext = graphContext;
 
             _hideChildrenCommand = new RelayCommand(HideChildren, CanHideChildren);
             _showChildrenCommand = new RelayCommand(ShowChildren, CanShowChildren);
@@ -92,13 +83,13 @@
         private void HideUpdates(object obj)
         {
             var entry = (IReadOnlyEntry)obj;
-            var ids = _queryProcessor.Process<Identifier>(new TraverseRelationsQuery(entry, e => e.Updates));
-            _commandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected));
+            var ids = _graphContext.QueryProcessor.Process<Identifier>(new TraverseRelationsQuery(entry, e => e.Updates), _graphContext.TraverseRelationsQueryHandler);
+            _graphContext.CommandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected), _graphContext.RemoveEntriesFromGraphCommandHandler);
         }
 
         private bool CanHideUpdates(object obj)
         {
-            return _queryProcessor.Process<IReadOnlyEntry>(new FindEntriesOnGraphQuery(((IReadOnlyEntry)obj).Updates)).Any();
+            return _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntriesOnGraphQuery(((IReadOnlyEntry)obj).Updates), _graphContext.FindEntriesOnGraphQueryHandler).Any();
         }
 
         private void ShowDowndates(object obj)
@@ -113,13 +104,13 @@
         private void HideDowndates(object obj)
         {
             var entry = (IReadOnlyEntry)obj;
-            var ids = _queryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Downdate));
-            _commandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected));
+            var ids = _graphContext.QueryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Downdate), _graphContext.TraverseRelationsQueryHandler);
+            _graphContext.CommandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected), _graphContext.RemoveEntriesFromGraphCommandHandler);
         }
 
         private bool CanHideDowndates(object obj)
         {
-            return _queryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Downdate)).Any();
+            return _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Downdate), _graphContext.FindEntryOnGraphQueryHandler).Any();
         }
 
         private void ShowNext(object obj)
@@ -134,13 +125,13 @@
         private void HideNext(object obj)
         {
             var entry = (IReadOnlyEntry)obj;
-            var ids = _queryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Next));
-            _commandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected));
+            var ids = _graphContext.QueryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Next), _graphContext.TraverseRelationsQueryHandler);
+            _graphContext.CommandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected), _graphContext.RemoveEntriesFromGraphCommandHandler);
         }
 
         private bool CanHideNext(object obj)
         {
-            return _queryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Next)).Any();
+            return _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Next), _graphContext.FindEntryOnGraphQueryHandler).Any();
         }
 
         private void ShowPrevious(object obj)
@@ -155,13 +146,13 @@
         private void HidePrevious(object obj)
         {
             var entry = (IReadOnlyEntry)obj;
-            var ids = _queryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Previous));
-            _commandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected));
+            var ids = _graphContext.QueryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Previous), _graphContext.TraverseRelationsQueryHandler);
+            _graphContext.CommandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected), _graphContext.RemoveEntriesFromGraphCommandHandler);
         }
 
         private bool CanHidePrevious(object obj)
         {
-            return _queryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Previous)).Any();
+            return _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Previous), _graphContext.FindEntryOnGraphQueryHandler).Any();
         }
 
         private void ShowParent(object obj)
@@ -176,13 +167,13 @@
         private void HideParent(object obj)
         {
             var entry = (IReadOnlyEntry)obj;
-            var ids = _queryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Parent));
-            _commandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected));
+            var ids = _graphContext.QueryProcessor.Process<Identifier>(new TraverseRelationQuery(entry, e => e.Parent), _graphContext.TraverseRelationsQueryHandler);
+            _graphContext.CommandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected), _graphContext.RemoveEntriesFromGraphCommandHandler);
         }
 
         private bool CanHideParent(object obj)
         {
-            return _queryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Parent)).Any();
+            return _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(((IReadOnlyEntry)obj).Parent), _graphContext.FindEntryOnGraphQueryHandler).Any();
         }
 
         private void ShowChildren(object obj)
@@ -197,13 +188,13 @@
         private void HideChildren(object obj)
         {
             var entry = (IReadOnlyEntry)obj;
-            var ids = _queryProcessor.Process<Identifier>(new TraverseRelationsQuery(entry, e => e.Children));
-            _commandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected));
+            var ids = _graphContext.QueryProcessor.Process<Identifier>(new TraverseRelationsQuery(entry, e => e.Children), _graphContext.TraverseRelationsQueryHandler);
+            _graphContext.CommandProcessor.Process(new RemoveEntriesFromGraphCommand(ids, ProcessReason.Selected), _graphContext.RemoveEntriesFromGraphCommandHandler);
         }
 
         private bool CanHideChildren(object obj)
         {
-            return _queryProcessor.Process<IReadOnlyEntry>(new FindEntriesOnGraphQuery(((IReadOnlyEntry)obj).Children)).Any();
+            return _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntriesOnGraphQuery(((IReadOnlyEntry)obj).Children), _graphContext.FindEntriesOnGraphQueryHandler).Any();
         }
     }
 }

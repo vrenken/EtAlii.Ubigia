@@ -4,20 +4,19 @@
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
         public IRootsViewModel RootsViewModel { get { return _rootsViewModel; } }
+        private readonly IDocumentsProvider _documentsProvider;
         private readonly IRootsViewModel _rootsViewModel;
 
         public IJournalViewModel JournalViewModel { get { return _journalViewModel; } }
         private readonly IJournalViewModel _journalViewModel;
 
-        public ObservableCollection<IDocumentViewModel> Documents { get { return _documents; } }
-        private readonly ObservableCollection<IDocumentViewModel> _documents = new ObservableCollection<IDocumentViewModel>();
+        public ObservableCollection<IDocumentViewModel> Documents { get { return _documentsProvider.Documents; } }
 
         public ICommand CloseCommand { get { return _closeCommand; } set { SetProperty(ref _closeCommand, value); } }
         private ICommand _closeCommand;
@@ -35,6 +34,7 @@
         private ICommand[] _openDocumentFromSpaceCommands;
 
         public MainWindowViewModel(
+            IDocumentsProvider documentsProvider,
             IRootsViewModel rootsViewModel,
             IJournalViewModel journalViewModel,
             INewFunctionalGraphDocumentCommand newFunctionalGraphDocumentCommand,
@@ -46,6 +46,7 @@
             INewCodeDocumentCommand newCodeDocumentCommand,
             INewProfilingDocumentCommand newProfilingDocumentCommand)
         {
+            _documentsProvider = documentsProvider;
             _rootsViewModel = rootsViewModel;
             _journalViewModel = journalViewModel;
 

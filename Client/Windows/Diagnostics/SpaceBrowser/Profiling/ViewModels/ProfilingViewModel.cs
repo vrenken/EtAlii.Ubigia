@@ -6,8 +6,6 @@
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
-    using EtAlii.xTechnology.Workflow;
-    using Syncfusion.UI.Xaml.Charts;
     using ICommand = System.Windows.Input.ICommand;
 
     public class ProfilingViewModel : BindableBase, IProfilingViewModel
@@ -15,15 +13,13 @@
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         private string _title;
 
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
-        private readonly IQueryProcessor _queryProcessor;
-
         public ReadOnlyObservableCollection<ProfilingResult> Results { get { return _results; } }
         private ReadOnlyObservableCollection<ProfilingResult> _results;
 
         public IProfilingAspectsViewModel Aspects {get {return _aspects; } }
         private readonly IProfilingAspectsViewModel _aspects;
 
+        private readonly IGraphContext _graphContext;
         private readonly IProfileComposer _profileComposer;
         private readonly IMainDispatcherInvoker _dispatcher;
         private ObservableCollection<ProfilingResult> _items;
@@ -38,18 +34,16 @@
         //private readonly ScriptButtonsViewModel _buttons;
 
         public ProfilingViewModel(
-            IUnitOfWorkProcessor unitOfWorkProcessor,
-            IQueryProcessor queryProcessor, 
+            IGraphContext graphContext,
             IProfileComposer profileComposer,
             IMainDispatcherInvoker dispatcher,
             IProfilingAspectsViewModel aspects
             )
         {
-            _queryProcessor = queryProcessor;
+            _graphContext = graphContext;
             _profileComposer = profileComposer;
             _dispatcher = dispatcher;
             _aspects = aspects;
-            _unitOfWorkProcessor = unitOfWorkProcessor;
 
             _items = new ObservableCollection<ProfilingResult>();
             _results = new ReadOnlyObservableCollection<ProfilingResult>(_items);

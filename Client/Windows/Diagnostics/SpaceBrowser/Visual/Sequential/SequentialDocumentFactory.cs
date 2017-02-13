@@ -20,25 +20,33 @@
             IDiagnosticsConfiguration diagnostics,
             ILogger logger,
             ILogFactory logFactory,
-            IJournalViewModel journal)
+            IJournalViewModel journal,
+            IGraphContextFactory graphContextFactory)
         {
             var container = new Container();
             container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
             new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
             new StructureScaffolding().Register(container);
-            new GraphScaffolding().Register(container);
 
             container.Register<IFabricContext>(() => fabricContext, Lifestyle.Singleton);
             container.Register<IDataContext>(() => dataContext, Lifestyle.Singleton);
+            container.Register<IGraphContext>(() =>
+            {
+                var dvmp = container.GetInstance<IDocumentViewModelProvider>();
+                return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
+            }, Lifestyle.Singleton);
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>(Lifestyle.Singleton);
             container.Register<IJournalViewModel>(() => journal, Lifestyle.Singleton);
             container.Register<ISequentialDocumentViewModel, SequentialDocumentViewModel>(Lifestyle.Singleton);
+            container.Register<IGraphButtonsViewModel, GraphButtonsViewModel>(Lifestyle.Singleton);
+            container.Register<IGraphContextMenuViewModel, GraphContextMenuViewModel>(Lifestyle.Singleton);
 
             var documentViewModel = container.GetInstance<ISequentialDocumentViewModel>();
-            var documentViewModelService = container.GetInstance<IDocumentViewModelProvider>();
-            documentViewModelService.SetInstance(documentViewModel);
+            var documentViewModelProvider = container.GetInstance<IDocumentViewModelProvider>();
+            documentViewModelProvider.SetInstance(documentViewModel);
+
             return documentViewModel;
         }
     }

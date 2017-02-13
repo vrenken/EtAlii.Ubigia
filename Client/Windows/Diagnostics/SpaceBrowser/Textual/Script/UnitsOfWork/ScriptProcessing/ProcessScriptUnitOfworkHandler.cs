@@ -3,43 +3,43 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Workflow;
 
     public class ProcessScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ProcessScriptUnitOfwork>, IProcessScriptUnitOfworkHandler
     {
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
+        private readonly IGraphContext _graphContext;
         private readonly IDataContext _dataContext;
         private readonly IMainDispatcherInvoker _dispatcherInvoker;
         private readonly IStatusScriptProcessingSubscription _statusScriptProcessingSubscription;
         private readonly IOutputScriptProcessingSubscription _outputScriptProcessingSubscription;
         private readonly IDiagnosticsScriptProcessingSubscription _diagnosticsScriptProcessingSubscription;
-
+        private readonly IParseScriptUnitOfworkHandler _parseScriptUnitOfworkHandler;
 
         public ProcessScriptUnitOfworkHandler(
-            IUnitOfWorkProcessor unitOfWorkProcessor, 
             IDataContext dataContext,
             IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusScriptProcessingSubscription statusScriptProcessingSubscription, 
             IDiagnosticsScriptProcessingSubscription diagnosticsScriptProcessingSubscription, 
-            IOutputScriptProcessingSubscription outputScriptProcessingSubscription) 
+            IOutputScriptProcessingSubscription outputScriptProcessingSubscription, 
+            IParseScriptUnitOfworkHandler parseScriptUnitOfworkHandler, IGraphContext graphContext) 
         {
-            _unitOfWorkProcessor = unitOfWorkProcessor;
             _dataContext = dataContext;
             _dispatcherInvoker = dispatcherInvoker;
             _statusScriptProcessingSubscription = statusScriptProcessingSubscription;
             _diagnosticsScriptProcessingSubscription = diagnosticsScriptProcessingSubscription;
             _outputScriptProcessingSubscription = outputScriptProcessingSubscription;
+            _parseScriptUnitOfworkHandler = parseScriptUnitOfworkHandler;
+            _graphContext = graphContext;
         }
 
         protected override void Handle(ProcessScriptUnitOfwork unitOfWork)
         {
             var viewModel = unitOfWork.ScriptViewModel;
 
-            _unitOfWorkProcessor.Process(new ParseScriptUnitOfwork(viewModel));
+            _graphContext.UnitOfWorkProcessor.Process(new ParseScriptUnitOfwork(viewModel), _parseScriptUnitOfworkHandler);
 
             if (viewModel.CanExecute)
             {

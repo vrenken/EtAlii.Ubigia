@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Workflow;
 
-    public class FindEntryOnGraphQueryHandler : QueryHandlerBase<FindEntryOnGraphQuery, IReadOnlyEntry>
+    public class FindEntryOnGraphQueryHandler : QueryHandlerBase<FindEntryOnGraphQuery, IReadOnlyEntry>, IFindEntryOnGraphQueryHandler
     {
         private IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
