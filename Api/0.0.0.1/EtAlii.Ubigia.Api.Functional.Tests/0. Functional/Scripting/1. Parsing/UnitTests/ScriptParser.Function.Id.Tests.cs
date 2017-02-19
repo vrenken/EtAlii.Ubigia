@@ -237,6 +237,71 @@
         }
 
 
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void ScriptParser_Function_Id_Path_04()
+        {
+            // Arrange.
+            const string query = "id(time:now)";
 
+            // Act.
+            var result = _parser.Parse(query);
+
+            // Assert.
+            var script = result.Script;
+            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.True(script.Sequences.Count() == 1);
+            var sequence = script.Sequences.First();
+            var part = sequence.Parts.Skip(1).First() as FunctionSubject;
+            Assert.NotNull(part);
+            Assert.Equal("id", part.Name);
+            Assert.Equal(1, part.Arguments.Length);
+            Assert.IsType<RootedPathFunctionSubjectArgument>(part.Arguments[0]);
+            Assert.Equal("now", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void ScriptParser_Function_Id_Path_05()
+        {
+            // Arrange.
+            const string query = "id(time:\"2016-02-19\")";
+
+            // Act.
+            var result = _parser.Parse(query);
+
+            // Assert.
+            var script = result.Script;
+            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.True(script.Sequences.Count() == 1);
+            var sequence = script.Sequences.First();
+            var part = sequence.Parts.Skip(1).First() as FunctionSubject;
+            Assert.NotNull(part);
+            Assert.Equal("id", part.Name);
+            Assert.Equal(1, part.Arguments.Length);
+            Assert.IsType<RootedPathFunctionSubjectArgument>(part.Arguments[0]);
+            Assert.Equal("2016-02-19", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
+        }
+
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void ScriptParser_Function_Id_Path_06()
+        {
+            // Arrange.
+            const string query = "id(time:'2016-02-19')";
+
+            // Act.
+            var result = _parser.Parse(query);
+
+            // Assert.
+            var script = result.Script;
+            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            Assert.True(script.Sequences.Count() == 1);
+            var sequence = script.Sequences.First();
+            var part = sequence.Parts.Skip(1).First() as FunctionSubject;
+            Assert.NotNull(part);
+            Assert.Equal("id", part.Name);
+            Assert.Equal(1, part.Arguments.Length);
+            Assert.IsType<RootedPathFunctionSubjectArgument>(part.Arguments[0]);
+            Assert.Equal("2016-02-19", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
+        }
     }
 }
