@@ -25,3 +25,6 @@ $person <= /Person/
 # Output the nodes into the specified Space browser view, but include the path 
 <= view("Graph view 2") <= include(\*\*) <= /Person/*/*/Emails/.IsPrimary=true 
 
+# Add multiple closely related nodes to the output.
+<= include(\\02/*) <= time:"2017-02-20 20:06:02.123"
+<= include(\\02/*) <= /time/"2017-02-20 20:06:02.123"
