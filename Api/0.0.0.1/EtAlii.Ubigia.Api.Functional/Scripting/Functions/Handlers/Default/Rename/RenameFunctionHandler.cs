@@ -124,7 +124,6 @@ namespace EtAlii.Ubigia.Api.Functional
                         var results = converter(context, o, scope);
                         foreach (var result in results.ToEnumerable())
                         {
-
                             var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
                             output.OnNext(renamedItem);
                         }
