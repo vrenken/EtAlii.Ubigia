@@ -15,7 +15,7 @@
         {
             _context = context;
 
-            this.Register(o => o is IEnumerable<INode>, (o, s, output) => Convert(((IEnumerable<INode>)o).Cast<IInternalNode>(), s, output))
+            Register(o => o is IEnumerable<INode>, (o, s, output) => Convert(((IEnumerable<INode>)o).Cast<IInternalNode>(), s, output))
                 .Register(o => o is INode[], (o, s, output) => Convert(((INode[])o).Cast<IInternalNode>(), s, output))
                 .Register(o => o is INode, (o, s, output) => output.OnNext(o))
                 .Register(o => o is IEnumerable<IReadOnlyEntry>, (o, s, output) => Convert<IReadOnlyEntry>(o, output))

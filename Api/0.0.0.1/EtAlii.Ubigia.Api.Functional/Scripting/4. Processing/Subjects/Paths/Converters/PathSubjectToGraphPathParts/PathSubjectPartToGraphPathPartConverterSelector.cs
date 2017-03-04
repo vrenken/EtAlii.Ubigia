@@ -16,7 +16,7 @@
             ITraversingWildcardPathSubjectPartToGraphPathPartsConverter traversingWildcardPathSubjectPartToGraphPathPartsConverter,
             IConditionalPathSubjectPartToGraphPathPartsConverter conditionalPathSubjectPartToGraphPathPartsConverter)
         {
-            this.Register(part => part is ConstantPathSubjectPart, constantPathSubjectPartToGraphPathPartsConverter)
+            Register(part => part is ConstantPathSubjectPart, constantPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is IdentifierPathSubjectPart, identifierPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is VariablePathSubjectPart, variablePathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is IsParentOfPathSubjectPart, isParentOfPathSubjectPartToGraphPathPartsConverter)

@@ -52,7 +52,7 @@ namespace Moppet.Lapa
 		/// <returns>Clone with a new ID.</returns>
 		public TDerived Id(string id)
 		{
-			return Id(id: id, wrap: this.m_wrapNode);
+			return Id(id: id, wrap: m_wrapNode);
 		}
 
 		/// <summary>
@@ -81,7 +81,7 @@ namespace Moppet.Lapa
 		/// <returns>Clone with a new ID.</returns>
 		public TDerived Rename(string newId)
 		{
-			return Rename(newId: newId, wrap: this.m_wrapNode);
+			return Rename(newId: newId, wrap: m_wrapNode);
 		}
 
 		/// <summary>
@@ -108,8 +108,8 @@ namespace Moppet.Lapa
 		public virtual TDerived Copy()
 		{
 			TDerived c = new TDerived();
-			c.m_identifier = this.Identifier;
-			c.m_wrapNode   = this.WrapNode;
+			c.m_identifier = Identifier;
+			c.m_wrapNode   = WrapNode;
 			return c;
 		}
 
@@ -196,7 +196,7 @@ namespace Moppet.Lapa
 					throw new NullReferenceException("The 'Parser' property has not been initialized.");
 			}
 			LpBaseParser<TResult, TDerived> c = base.Copy();
-			c.m_parser = this.m_parser;
+			c.m_parser = m_parser;
 			return (TDerived)c;
 		}
 	}

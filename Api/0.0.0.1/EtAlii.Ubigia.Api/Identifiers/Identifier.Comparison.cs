@@ -20,12 +20,12 @@
             //}
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((Identifier)obj);
+            return Equals((Identifier)obj);
         }
 
         public bool Equals(Identifier id)
@@ -113,11 +113,11 @@
 
         public override int GetHashCode()
         {
-            return this.Storage.GetHashCode() ^
-                   ShiftAndWrap(this.Account.GetHashCode(), 2) ^
-                   ShiftAndWrap(this.Space.GetHashCode(), 4) ^
-                   ShiftAndWrap(this.Period.GetHashCode(), 6) ^
-                   ShiftAndWrap(this.Moment.GetHashCode(), 8);
+            return Storage.GetHashCode() ^
+                   ShiftAndWrap(Account.GetHashCode(), 2) ^
+                   ShiftAndWrap(Space.GetHashCode(), 4) ^
+                   ShiftAndWrap(Period.GetHashCode(), 6) ^
+                   ShiftAndWrap(Moment.GetHashCode(), 8);
         } 
 
         private int ShiftAndWrap(int value, int positions)

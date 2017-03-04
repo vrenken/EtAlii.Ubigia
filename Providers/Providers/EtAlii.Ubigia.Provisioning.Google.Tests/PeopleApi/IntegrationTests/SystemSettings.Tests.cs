@@ -19,7 +19,7 @@
 
         public SystemSettings_Tests(ProvisioningUnitTestContext testContext)
         {
-            this._testContext = testContext;
+            _testContext = testContext;
         }
 
         [Fact]

@@ -19,12 +19,12 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((ContentDefinition)obj);
+            return Equals((ContentDefinition)obj);
         }
 
         public bool Equals(ContentDefinition contentDefinition)
@@ -92,9 +92,9 @@
 
         public override int GetHashCode()
         {
-            return this.Size.GetHashCode() ^
-                   ShiftAndWrap(this.Checksum.GetHashCode(), 2) ^
-                   ShiftAndWrap(this.Parts.Count.GetHashCode(), 4);
+            return Size.GetHashCode() ^
+                   ShiftAndWrap(Checksum.GetHashCode(), 2) ^
+                   ShiftAndWrap(Parts.Count.GetHashCode(), 4);
         } 
 
         private int ShiftAndWrap(int value, int positions)

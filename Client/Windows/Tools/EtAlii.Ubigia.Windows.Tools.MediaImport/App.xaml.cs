@@ -40,7 +40,7 @@
             }
             else
             {
-                this.Shutdown();
+                Shutdown();
             }
         }
 

@@ -12,15 +12,15 @@
         private readonly ProfilingResult _parent;
         private readonly bool _showInResults;
 
-        public string Action => this.Get<string>(ProfilingProperty.Action);
-        public string ProfilerName => this.Get<string>(ProfilingProperty.ProfilerName);
-        public ProfilingLayer Layer => this.Get<ProfilingLayer>(ProfilingProperty.Layer);
+        public string Action => Get<string>(ProfilingProperty.Action);
+        public string ProfilerName => Get<string>(ProfilingProperty.ProfilerName);
+        public ProfilingLayer Layer => Get<ProfilingLayer>(ProfilingProperty.Layer);
 
-        public DateTime Started => this.Get<DateTime>(ProfilingProperty.Started);
-        public DateTime Stopped => this.Get<DateTime>(ProfilingProperty.Stopped);
-        public double DurationTotal => this.Get<double>(ProfilingProperty.DurationTotal);
-        public double DurationOfSelf => this.Get<double>(ProfilingProperty.DurationOfSelf);
-        public double DurationOfChildren => this.Get<double>(ProfilingProperty.DurationOfChildren);
+        public DateTime Started => Get<DateTime>(ProfilingProperty.Started);
+        public DateTime Stopped => Get<DateTime>(ProfilingProperty.Stopped);
+        public double DurationTotal => Get<double>(ProfilingProperty.DurationTotal);
+        public double DurationOfSelf => Get<double>(ProfilingProperty.DurationOfSelf);
+        public double DurationOfChildren => Get<double>(ProfilingProperty.DurationOfChildren);
 
         private readonly PropertyDictionary _properties = new PropertyDictionary();
 

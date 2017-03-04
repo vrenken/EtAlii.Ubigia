@@ -8,7 +8,7 @@
             IRemoveByNameFromAbsolutePathProcessor removeByNameFromAbsolutePathProcessor,
             IRemoveByNameFromRelativePathProcessor removeByNameFromRelativePathProcessor)
         {
-            this.Register(p => (p.LeftSubject is EmptySubject), removeByNameFromAbsolutePathProcessor)
+            Register(p => (p.LeftSubject is EmptySubject), removeByNameFromAbsolutePathProcessor)
                 .Register(p => (p.LeftSubject is EmptySubject) == false, removeByNameFromRelativePathProcessor);
         }
     }

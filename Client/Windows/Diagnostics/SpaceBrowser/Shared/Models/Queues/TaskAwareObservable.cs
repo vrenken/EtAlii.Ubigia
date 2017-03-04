@@ -15,7 +15,7 @@
         {
             this.task = task;
             this.subject = subject;
-            this.taskCancellationTokenSource = tokenSource;
+            taskCancellationTokenSource = tokenSource;
         }
 
         public IDisposable Subscribe(IObserver<T> observer)

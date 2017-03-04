@@ -8,7 +8,7 @@
             IStringConstantSubjectProcessor stringConstantSubjectProcessor,
             IObjectConstantSubjectProcessor objectConstantSubjectProcessor)
         {
-            this.Register(subject => subject is StringConstantSubject, stringConstantSubjectProcessor)
+            Register(subject => subject is StringConstantSubject, stringConstantSubjectProcessor)
                 .Register(subject => subject is ObjectConstantSubject, objectConstantSubjectProcessor);
         }
     }

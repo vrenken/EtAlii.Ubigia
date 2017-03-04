@@ -16,7 +16,7 @@
         public Ribbon()
         {
             InitializeComponent();
-            this.DataContext = null;
+            DataContext = null;
         }
 
         private static void OnLastFocusedDocumentChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)

@@ -20,12 +20,12 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((DynamicNode)obj);
+            return Equals((DynamicNode)obj);
         }
 
         public bool Equals(DynamicNode node)
@@ -43,7 +43,7 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != node.GetType())
+            if (GetType() != node.GetType())
             {
                 return false;
             }
@@ -51,7 +51,7 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (this._entry.Id != ((IInternalNode)node).Entry.Id)
+            if (_entry.Id != ((IInternalNode)node).Entry.Id)
             {
                 return false;
             }
@@ -84,7 +84,7 @@
 
         public override int GetHashCode()
         {
-            return this._entry.Id.GetHashCode();
+            return _entry.Id.GetHashCode();
         }
 
         #endregion Hashing

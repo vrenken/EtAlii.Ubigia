@@ -15,12 +15,12 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await this.Connect((IStorageConnection<IWebApiStorageTransport>)storageConnection);
+            await Connect((IStorageConnection<IWebApiStorageTransport>)storageConnection);
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await this.Connect((IStorageConnection<IWebApiStorageTransport>)storageConnection);
+            await Connect((IStorageConnection<IWebApiStorageTransport>)storageConnection);
         }
 
         public virtual async Task Connect(IStorageConnection<IWebApiStorageTransport> storageConnection)

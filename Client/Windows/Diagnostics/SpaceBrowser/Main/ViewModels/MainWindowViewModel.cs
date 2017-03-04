@@ -67,7 +67,7 @@
                 command.Initialize(this);
             }
 
-            this.PropertyChanged += OnPropertyChanged;
+            PropertyChanged += OnPropertyChanged;
 
             _closeCommand = new RelayCommand(ExecuteClose, CanClose);
         }

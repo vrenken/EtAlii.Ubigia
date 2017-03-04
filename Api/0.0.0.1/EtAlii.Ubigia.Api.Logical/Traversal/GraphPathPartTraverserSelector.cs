@@ -20,7 +20,7 @@
             ITraversingGraphPathWildcardTraverser traversingGraphPathWildcardTraverser,
             IGraphPathConditionalTraverser graphPathConditionalTraverser)
         {
-            this.Register(part => part is GraphNode, graphPathNodeTraverser)
+            Register(part => part is GraphNode, graphPathNodeTraverser)
                 .Register(part => part is GraphIdentifiersStartNode, graphPathIdentifiersStartNodeTraverser)
                 .Register(part => part is GraphRootStartNode, graphPathRootStartNodeTraverser)
                 .Register(part => part == GraphRelation.Child, graphPathChildRelationTraverser)

@@ -29,7 +29,7 @@
 
         public Storage GetLocalStorage()
         {
-            var authenticationToken = this.Context.Headers.Get("Authentication-Token");
+            var authenticationToken = Context.Headers.Get("Authentication-Token");
             _authenticationTokenVerifier.Verify(authenticationToken, null);
 
             return _storageRepository.GetLocal();

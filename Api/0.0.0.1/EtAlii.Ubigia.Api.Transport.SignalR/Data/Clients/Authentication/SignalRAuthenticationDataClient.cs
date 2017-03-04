@@ -13,7 +13,7 @@
             IHubProxyMethodInvoker invoker)
         {
             _invoker = invoker;
-            _hostIdentifier = this.CreateHostIdentifier();
+            _hostIdentifier = CreateHostIdentifier();
 
         }
 

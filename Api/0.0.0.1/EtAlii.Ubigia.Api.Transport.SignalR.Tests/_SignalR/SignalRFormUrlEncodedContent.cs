@@ -19,7 +19,7 @@
         public SignalRFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection)
             : base(FormUrlEncodedContent.GetContentByteArray(nameValueCollection))
         {
-            this.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
+            Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
         }
 
         private static byte[] GetContentByteArray(IEnumerable<KeyValuePair<string, string>> nameValueCollection)

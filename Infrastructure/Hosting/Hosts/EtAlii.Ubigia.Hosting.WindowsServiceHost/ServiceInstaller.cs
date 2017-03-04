@@ -91,8 +91,8 @@
                 }
             };
 
-            this.Installers.Add(serviceProcessInstaller);
-            this.Installers.Add(serviceInstaller);
+            Installers.Add(serviceProcessInstaller);
+            Installers.Add(serviceInstaller);
         }
 
         private static TransactedInstaller GetInstaller(IServiceLogic service)

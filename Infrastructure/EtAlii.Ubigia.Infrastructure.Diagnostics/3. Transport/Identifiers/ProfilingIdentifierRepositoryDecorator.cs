@@ -16,7 +16,7 @@
 
         public ProfilingIdentifierRepositoryDecorator(IIdentifierRepository identifierRepository, IProfiler profiler)
         {
-            this._repository = identifierRepository;
+            _repository = identifierRepository;
             _profiler = profiler;
 
             profiler.Register(_getTailCounter, SamplingType.RawCount, "Milliseconds", "Get tail identifier", "The time it takes for the GetTail method to execute");

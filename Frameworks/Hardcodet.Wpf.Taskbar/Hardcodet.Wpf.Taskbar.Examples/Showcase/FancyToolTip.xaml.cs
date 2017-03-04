@@ -35,7 +35,7 @@ namespace Samples
 
 		public FancyToolTip()
 		{
-			this.InitializeComponent();
+            InitializeComponent();
 		}
 
 	}

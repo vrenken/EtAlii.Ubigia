@@ -6,7 +6,7 @@
 
         public Item(string name)
         {
-            this.Name = name;
+            Name = name;
         }
     }
 }

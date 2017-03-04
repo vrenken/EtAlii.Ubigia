@@ -17,7 +17,7 @@
             IDowndateRootHandlerPathPartMatcher downdateRootHandlerPathPartMatcher,
             IIdentifierRootHandlerPathPartMatcher identifierRootHandlerPathPartMatcher)
         {
-            this.Register(part => part is TypedPathSubjectPart, typedRootHandlerPathPartMatcher)
+            Register(part => part is TypedPathSubjectPart, typedRootHandlerPathPartMatcher)
                 .Register(part => part is RegexPathSubjectPart, regexRootHandlerPathPartMatcher)
                 .Register(part => part is ConstantPathSubjectPart, constantRootHandlerPathPartMatcher)
                 .Register(part => part is IsParentOfPathSubjectPart, isParentOfRootHandlerPathPartMatcher)

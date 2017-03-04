@@ -55,7 +55,7 @@
             switch (e.PropertyName)
             {
                 case "Configuration":
-                    _itemChecker.Configuration = this.Configuration;
+                    _itemChecker.Configuration = Configuration;
                     break;
             }
         }

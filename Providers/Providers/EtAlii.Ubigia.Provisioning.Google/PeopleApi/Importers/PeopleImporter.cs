@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _configurationSpaceGetter = configurationSpaceGetter;
             _spaceUpdater = spaceUpdater;
 
-            this.Interval = TimeSpan.FromMinutes(1);
+            Interval = TimeSpan.FromMinutes(1);
         }
 
         protected override void Run()

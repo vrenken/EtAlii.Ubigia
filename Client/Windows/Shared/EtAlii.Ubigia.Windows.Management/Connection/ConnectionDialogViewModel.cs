@@ -55,7 +55,7 @@
             _testCommand = new RelayCommand(Test, CanTest);
             _cancelCommand = new RelayCommand(Cancel, CanCancel);
 
-            this.PropertyChanged += OnPropertyChanged;
+            PropertyChanged += OnPropertyChanged;
         }
 
         private void SetDefaults(string defaultAddress, string defaultAccount, string defaultPassword, string password)

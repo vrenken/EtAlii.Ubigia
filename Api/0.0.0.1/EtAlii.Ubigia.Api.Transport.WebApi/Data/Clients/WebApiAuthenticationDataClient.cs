@@ -12,12 +12,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await this.Connect((IWebApiSpaceConnection) spaceConnection);
+            await Connect((IWebApiSpaceConnection) spaceConnection);
         }
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await this.Disconnect((IWebApiSpaceConnection) spaceConnection);
+            await Disconnect((IWebApiSpaceConnection) spaceConnection);
         }
 
         private async Task Connect(IWebApiSpaceConnection connection)

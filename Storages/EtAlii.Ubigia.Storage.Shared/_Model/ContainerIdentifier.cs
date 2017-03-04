@@ -23,7 +23,7 @@
         {
             if(this == ContainerIdentifier.Empty || _paths.Length == 0)
             {
-                return String.Format("{0}.Empty", this.GetType().Name);
+                return String.Format("{0}.Empty", GetType().Name);
             }
             else
             {

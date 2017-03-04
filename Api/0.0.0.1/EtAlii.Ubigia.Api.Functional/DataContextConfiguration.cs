@@ -69,7 +69,7 @@
                 .Use(fabricContext);
             var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-            return this.Use(logicalContext);
+            return Use(logicalContext);
         }
     }
 }

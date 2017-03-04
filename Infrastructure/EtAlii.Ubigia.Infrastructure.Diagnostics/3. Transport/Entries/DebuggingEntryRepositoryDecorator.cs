@@ -14,7 +14,7 @@
 
         public DebuggingEntryRepositoryDecorator(IEntryRepository entryRepository)
         {
-            this._repository = entryRepository;
+            _repository = entryRepository;
         }
 
         public IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None)

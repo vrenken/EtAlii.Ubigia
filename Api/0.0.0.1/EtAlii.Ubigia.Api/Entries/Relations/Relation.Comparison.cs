@@ -20,12 +20,12 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((Relation)obj);
+            return Equals((Relation)obj);
         }
 
         public bool Equals(Relation relation)
@@ -43,7 +43,7 @@
             }
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != relation.GetType())
+            if (GetType() != relation.GetType())
             {
                 return false;
             }
@@ -88,8 +88,8 @@
 
         public override int GetHashCode()
         {
-            return this.Id.GetHashCode() ^
-                   ShiftAndWrap(this.Moment.GetHashCode(), 2);
+            return Id.GetHashCode() ^
+                   ShiftAndWrap(Moment.GetHashCode(), 2);
         } 
 
         private int ShiftAndWrap(int value, int positions)

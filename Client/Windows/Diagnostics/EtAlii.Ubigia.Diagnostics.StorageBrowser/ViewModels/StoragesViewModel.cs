@@ -55,10 +55,10 @@
 
         private bool CanAddStorage(object sender)
         {
-            var result = this.SelectedStorage == null;
-            result &= !String.IsNullOrWhiteSpace(this.StorageName);
-            result &= !String.IsNullOrWhiteSpace(this.StorageAddress);
-            result &= Uri.IsWellFormedUriString(this.StorageAddress, UriKind.RelativeOrAbsolute);
+            var result = SelectedStorage == null;
+            result &= !String.IsNullOrWhiteSpace(StorageName);
+            result &= !String.IsNullOrWhiteSpace(StorageAddress);
+            result &= Uri.IsWellFormedUriString(StorageAddress, UriKind.RelativeOrAbsolute);
             return result;
         }
 
@@ -70,7 +70,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await _connection.Storages.Add(this.StorageName, this.StorageAddress);
+                    await _connection.Storages.Add(StorageName, StorageAddress);
                 });
                 task.Wait();
             }
@@ -83,13 +83,13 @@
 
         private bool CanSaveStorage(object sender)
         {
-            var result = this.SelectedStorage != null;
-            result &= !String.IsNullOrWhiteSpace(this.StorageName);
-            result &= !String.IsNullOrWhiteSpace(this.StorageAddress);
-            result &= Uri.IsWellFormedUriString(this.StorageAddress, UriKind.RelativeOrAbsolute);
-            if (this.SelectedStorage != null)
+            var result = SelectedStorage != null;
+            result &= !String.IsNullOrWhiteSpace(StorageName);
+            result &= !String.IsNullOrWhiteSpace(StorageAddress);
+            result &= Uri.IsWellFormedUriString(StorageAddress, UriKind.RelativeOrAbsolute);
+            if (SelectedStorage != null)
             {
-                result &= this.SelectedStorage.Name != this.StorageName || this.SelectedStorage.Address != this.StorageAddress;
+                result &= SelectedStorage.Name != StorageName || SelectedStorage.Address != StorageAddress;
             }
             return result;
         }
@@ -115,9 +115,9 @@
 
         private bool CanDeleteStorage(object sender)
         {
-            var result = this.SelectedStorage != null;
-            result &= !String.IsNullOrWhiteSpace(this.StorageName);
-            result &= !String.IsNullOrWhiteSpace(this.StorageAddress);
+            var result = SelectedStorage != null;
+            result &= !String.IsNullOrWhiteSpace(StorageName);
+            result &= !String.IsNullOrWhiteSpace(StorageAddress);
             return result;
         }
 
@@ -129,7 +129,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await _connection.Storages.Remove(this.SelectedStorage.Id);
+                    await _connection.Storages.Remove(SelectedStorage.Id);
                 });
                 task.Wait();
             }
@@ -142,9 +142,9 @@
 
         private bool CanClearStorage(object sender)
         {
-            var result = this.SelectedStorage != null;
-            result |= !String.IsNullOrWhiteSpace(this.StorageName);
-            result |= !String.IsNullOrWhiteSpace(this.StorageAddress);
+            var result = SelectedStorage != null;
+            result |= !String.IsNullOrWhiteSpace(StorageName);
+            result |= !String.IsNullOrWhiteSpace(StorageAddress);
             return result;
         }
 
