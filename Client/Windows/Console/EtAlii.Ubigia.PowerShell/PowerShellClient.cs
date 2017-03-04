@@ -15,28 +15,28 @@
         public static IPowerShellClient Current { get { return GetCurrentClient(); } set { _current = value; } }
         private static IPowerShellClient _current;
 
-        public IStorageResolver StorageResolver { get { return _storageResolver; } }
+        public IStorageResolver StorageResolver => _storageResolver;
         private readonly IStorageResolver _storageResolver;
 
-        public IEntryResolver EntryResolver { get { return _entryResolver; } }
+        public IEntryResolver EntryResolver => _entryResolver;
         private readonly IEntryResolver _entryResolver;
 
-        public ISpaceResolver SpaceResolver { get { return _spaceResolver; } }
+        public ISpaceResolver SpaceResolver => _spaceResolver;
         private readonly ISpaceResolver _spaceResolver;
 
-        public IAccountResolver AccountResolver { get { return _accountResolver; } }
+        public IAccountResolver AccountResolver => _accountResolver;
         private readonly IAccountResolver _accountResolver;
 
-        public IRootResolver RootResolver { get { return _rootResolver; } }
+        public IRootResolver RootResolver => _rootResolver;
         private readonly IRootResolver _rootResolver;
 
-        public IManagementConnection ManagementConnection { get { return _managementConnection; } }
+        public IManagementConnection ManagementConnection => _managementConnection;
         private IManagementConnection _managementConnection;
 
         public IFabricContext Fabric { get { return _fabric; } set { _fabric = value; } }
         private IFabricContext _fabric;
 
-        public IInfrastructureClient Client { get { return _client; } }
+        public IInfrastructureClient Client => _client;
         private readonly IInfrastructureClient _client;
 
         public PowerShellClient(

@@ -9,19 +9,13 @@
         public IEnumerable<Relation> Indexes { get { return _indexes.SelectMany(component => component.Relations); } }
         private readonly IndexesComponentCollection _indexes;
 
-        public Relation Indexed { get { return _indexed.Relation; } }
+        public Relation Indexed => _indexed.Relation;
         private IndexedComponent _indexed;
 
 
-        IndexesComponentCollection IEditableEntry.Indexes
-        {
-            get { return _indexes; }
-        }
+        IndexesComponentCollection IEditableEntry.Indexes => _indexes;
 
-        IndexesComponentCollection IComponentEditableEntry.IndexesComponent
-        {
-            get { return _indexes; }
-        }
+        IndexesComponentCollection IComponentEditableEntry.IndexesComponent => _indexes;
 
         Relation IEditableEntry.Indexed
         {

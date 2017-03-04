@@ -7,17 +7,17 @@
     {
         private readonly IInfrastructure _decoree;
 
-        public IInfrastructureConfiguration Configuration { get { return _decoree.Configuration; } }
-        public IStorageRepository Storages { get { return _decoree.Storages; } }
-        public ISpaceRepository Spaces { get { return _decoree.Spaces; } }
-        public IIdentifierRepository Identifiers { get { return _decoree.Identifiers; } }
-        public IEntryRepository Entries { get { return _decoree.Entries; } }
-        public IPropertiesRepository Properties { get { return _decoree.Properties; } }
-        public IRootRepository Roots { get { return _decoree.Roots; } }
+        public IInfrastructureConfiguration Configuration => _decoree.Configuration;
+        public IStorageRepository Storages => _decoree.Storages;
+        public ISpaceRepository Spaces => _decoree.Spaces;
+        public IIdentifierRepository Identifiers => _decoree.Identifiers;
+        public IEntryRepository Entries => _decoree.Entries;
+        public IPropertiesRepository Properties => _decoree.Properties;
+        public IRootRepository Roots => _decoree.Roots;
         //public IRootInitializer RootInitializer { get { return _decoree.RootInitializer; } }
-        public IAccountRepository Accounts { get { return _decoree.Accounts; } }
-        public IContentRepository Content { get { return _decoree.Content; } }
-        public IContentDefinitionRepository ContentDefinition { get { return _decoree.ContentDefinition; } }
+        public IAccountRepository Accounts => _decoree.Accounts;
+        public IContentRepository Content => _decoree.Content;
+        public IContentDefinitionRepository ContentDefinition => _decoree.ContentDefinition;
 
         private readonly ILogger _logger;
 

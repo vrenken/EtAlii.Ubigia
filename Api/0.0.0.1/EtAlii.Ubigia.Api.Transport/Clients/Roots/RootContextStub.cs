@@ -4,10 +4,10 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public class RootContextStub : IRootContext
     {
-        public IRootNotificationClient Notifications { get { return _notifications; } }
+        public IRootNotificationClient Notifications => _notifications;
         private readonly IRootNotificationClient _notifications;
 
-        public IRootDataClient Data { get { return _data; } }
+        public IRootDataClient Data => _data;
         private readonly IRootDataClient _data;
 
         public RootContextStub()

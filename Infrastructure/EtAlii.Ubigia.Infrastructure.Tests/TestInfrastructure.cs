@@ -11,37 +11,37 @@
 
     public class TestInfrastructure : IInfrastructure// WebApiInfrastructure
     {
-        public IInfrastructureConfiguration Configuration { get { return _configuration; } }
+        public IInfrastructureConfiguration Configuration => _configuration;
         private readonly IInfrastructureConfiguration _configuration;
 
-        public ISpaceRepository Spaces { get { return _spaces; } }
+        public ISpaceRepository Spaces => _spaces;
         private readonly ISpaceRepository _spaces;
 
-        public IIdentifierRepository Identifiers { get { return _identifiers; } }
+        public IIdentifierRepository Identifiers => _identifiers;
         private readonly IIdentifierRepository _identifiers;
 
-        public IEntryRepository Entries { get { return _entries; } }
+        public IEntryRepository Entries => _entries;
         private readonly IEntryRepository _entries;
 
-        public IRootRepository Roots { get { return _roots; } }
+        public IRootRepository Roots => _roots;
         private readonly IRootRepository _roots;
 
-        public IAccountRepository Accounts { get { return _accounts; } }
+        public IAccountRepository Accounts => _accounts;
         private readonly IAccountRepository _accounts;
 
-        public IContentRepository Content { get { return _content; } }
+        public IContentRepository Content => _content;
         private readonly IContentRepository _content;
 
-        public IContentDefinitionRepository ContentDefinition { get { return _contentDefinition; } }
+        public IContentDefinitionRepository ContentDefinition => _contentDefinition;
         private readonly IContentDefinitionRepository _contentDefinition;
 
-        public IPropertiesRepository Properties { get { return _properties; } }
+        public IPropertiesRepository Properties => _properties;
         private readonly IPropertiesRepository _properties;
 
-        public IStorageRepository Storages { get { return _storages; } }
+        public IStorageRepository Storages => _storages;
         private readonly IStorageRepository _storages;
 
-        public TestServer Server { get { return _server; } }
+        public TestServer Server => _server;
         private TestServer _server;
 
         private readonly Container _container;

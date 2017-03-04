@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class RemoveEntriesFromGraphCommandHandler : CommandHandlerBase<RemoveEntriesFromGraphCommand>, IRemoveEntriesFromGraphCommandHandler
     {
-        protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
+        protected IGraphDocumentViewModel GraphViewModel => _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>();
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 

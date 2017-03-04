@@ -13,10 +13,10 @@
         public UInt64 Size { get; set; }
         public UInt64 Checksum { get; set; }
 
-        public IList<ContentDefinitionPart> Parts { get { return _parts; } }
+        public IList<ContentDefinitionPart> Parts => _parts;
 
         private readonly IList<ContentDefinitionPart> _parts = new List<ContentDefinitionPart>();
-        IEnumerable<IReadOnlyContentDefinitionPart> IReadOnlyContentDefinition.Parts { get { return this.Parts.Cast<IReadOnlyContentDefinitionPart>(); } }
+        IEnumerable<IReadOnlyContentDefinitionPart> IReadOnlyContentDefinition.Parts => this.Parts.Cast<IReadOnlyContentDefinitionPart>();
 
         public static readonly IReadOnlyContentDefinition Empty = new ContentDefinition
         {
@@ -24,6 +24,6 @@
             Size = 0,
         };
 
-        protected internal override string Name { get { return ContentDefinitionName; } }
+        protected internal override string Name => ContentDefinitionName;
     }
 }

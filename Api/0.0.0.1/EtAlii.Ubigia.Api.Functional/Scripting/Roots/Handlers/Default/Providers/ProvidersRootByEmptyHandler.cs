@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class ProvidersRootByEmptyHandler : IRootHandler
     {
 
-        public PathSubjectPart[] Template { get { return _template; } }
+        public PathSubjectPart[] Template => _template;
         private readonly PathSubjectPart[] _template;
 
         public ProvidersRootByEmptyHandler()

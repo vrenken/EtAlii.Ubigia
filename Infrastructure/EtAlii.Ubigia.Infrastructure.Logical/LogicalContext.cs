@@ -4,31 +4,31 @@
 
     public class LogicalContext : ILogicalContext
     {
-        public ILogicalStorageSet Storages { get { return _storages; } }
+        public ILogicalStorageSet Storages => _storages;
         private ILogicalStorageSet _storages;
 
-        public ILogicalSpaceSet Spaces { get { return _spaces; } }
+        public ILogicalSpaceSet Spaces => _spaces;
         private ILogicalSpaceSet _spaces;
 
-        public ILogicalAccountSet Accounts { get { return _accounts; } }
+        public ILogicalAccountSet Accounts => _accounts;
         private ILogicalAccountSet _accounts;
 
-        public ILogicalRootSet Roots { get { return _roots; } }
+        public ILogicalRootSet Roots => _roots;
         private ILogicalRootSet _roots;
 
-        public ILogicalEntrySet Entries { get { return _entries; } }
+        public ILogicalEntrySet Entries => _entries;
         private ILogicalEntrySet _entries;
 
-        public ILogicalContentSet Content { get { return _content; } }
+        public ILogicalContentSet Content => _content;
         private ILogicalContentSet _content;
 
-        public ILogicalContentDefinitionSet ContentDefinition { get { return _contentDefinition; } }
+        public ILogicalContentDefinitionSet ContentDefinition => _contentDefinition;
         private ILogicalContentDefinitionSet _contentDefinition;
 
-        public ILogicalPropertiesSet Properties { get { return _properties; } }
+        public ILogicalPropertiesSet Properties => _properties;
         private ILogicalPropertiesSet _properties;
 
-        public ILogicalIdentifierSet Identifiers { get { return _identifiers; } }
+        public ILogicalIdentifierSet Identifiers => _identifiers;
         private ILogicalIdentifierSet _identifiers;
 
         private readonly IFabricContext _fabricContext;

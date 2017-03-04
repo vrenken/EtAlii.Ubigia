@@ -567,12 +567,6 @@ namespace HashLib.Hash32
             }
         }
 
-        public int? KeyLength
-        {
-            get
-            {
-                return 4;
-            }
-        }
+        public int? KeyLength => 4;
     }
 }

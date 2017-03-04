@@ -6,7 +6,7 @@
 
     public class ResultSet : INotifyPropertyChanged
     {
-        public string Id { get { return _id; } }
+        public string Id => _id;
         private readonly string _id;
 
         public int Count { get { return _count; } private set { SetProperty(ref _count, value); } }
@@ -15,7 +15,7 @@
         public bool ShowCount { get { return _showCount; } private set { SetProperty(ref _showCount, value); } }
         private bool _showCount;
 
-        public ObservableCollection<Result> Results { get { return _results; } }
+        public ObservableCollection<Result> Results => _results;
         private readonly ObservableCollection<Result> _results;
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -4,7 +4,7 @@
 
     public class StorageSettingsViewModel : BindableBase
     {
-        public IGlobalSettings GlobalSettings { get { return _globalSettings; } }
+        public IGlobalSettings GlobalSettings => _globalSettings;
         private readonly IGlobalSettings _globalSettings;
 
         public StorageSettings StorageSettings { get { return _storageSettings; } set { SetProperty(ref _storageSettings, value); } }

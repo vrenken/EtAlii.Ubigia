@@ -6,9 +6,6 @@ namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
     /// </summary>
     public class ShowAboutCommand : ShowTabItemCommand<ShowAboutCommand>
     {
-        public override System.Windows.Controls.TabItem TabItemToActivate
-        {
-            get { return App.Current.MainWindow.AboutTabItem; }
-        }
+        public override System.Windows.Controls.TabItem TabItemToActivate => App.Current.MainWindow.AboutTabItem;
     }
 }

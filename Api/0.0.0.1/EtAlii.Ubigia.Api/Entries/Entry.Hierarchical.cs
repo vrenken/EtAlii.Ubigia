@@ -6,22 +6,16 @@
 
     public sealed partial class Entry
     {
-        public Relation Parent { get { return _parent.Relation; } }
+        public Relation Parent => _parent.Relation;
         private ParentComponent _parent;
 
         public IEnumerable<Relation> Children { get { return _children.SelectMany(component => component.Relations); } }
         private readonly ChildrenComponentCollection _children;
 
 
-        ChildrenComponentCollection IEditableEntry.Children
-        {
-            get { return _children; }
-        }
+        ChildrenComponentCollection IEditableEntry.Children => _children;
 
-        ChildrenComponentCollection IComponentEditableEntry.ChildrenComponent
-        {
-            get { return _children; }
-        }
+        ChildrenComponentCollection IComponentEditableEntry.ChildrenComponent => _children;
 
         Relation IEditableEntry.Parent
         {

@@ -4,19 +4,19 @@
 
     internal class DataContext : IDataContext
     {
-        public INodeSet Nodes { get { return _nodes; } }
+        public INodeSet Nodes => _nodes;
         private readonly INodeSet _nodes;
 
-        public IScriptsSet Scripts { get { return _scripts; } }
+        public IScriptsSet Scripts => _scripts;
         private readonly IScriptsSet _scripts;
 
-        public IChangeTracker ChangeTracker { get { return _changeTracker; } }
+        public IChangeTracker ChangeTracker => _changeTracker;
         private readonly IChangeTracker _changeTracker;
 
-        public IIndexSet Indexes { get { return _indexes; } }
+        public IIndexSet Indexes => _indexes;
         private readonly IIndexSet _indexes;
 
-        public IDataContextConfiguration Configuration { get { return _configuration; } }
+        public IDataContextConfiguration Configuration => _configuration;
         private readonly IDataContextConfiguration _configuration;
 
         internal DataContext(

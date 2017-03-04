@@ -10,21 +10,21 @@
 
     public class HostConfiguration : IHostConfiguration
     {
-        public IHostExtension[] Extensions { get { return _extensions; } }
+        public IHostExtension[] Extensions => _extensions;
         private IHostExtension[] _extensions;
 
-        public IProviderConfiguration[] ProviderConfigurations { get { return _providerConfigurations;  } }
+        public IProviderConfiguration[] ProviderConfigurations => _providerConfigurations;
         private IProviderConfiguration[] _providerConfigurations;
 
         //public IStorage Storage { get { return _storage; } }
         //private IStorage _storage;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
 
-        public string Account { get { return _account; } }
+        public string Account => _account;
         private string _account;
-        public string Password { get { return _password; } }
+        public string Password => _password;
         private string _password;
 
         private Action<IManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;

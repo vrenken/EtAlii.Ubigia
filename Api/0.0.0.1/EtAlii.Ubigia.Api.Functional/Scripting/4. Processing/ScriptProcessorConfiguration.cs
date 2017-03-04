@@ -6,22 +6,22 @@
 
     internal class ScriptProcessorConfiguration : IScriptProcessorConfiguration
     {
-        public IScriptScope ScriptScope { get { return _scriptScope; } }
+        public IScriptScope ScriptScope => _scriptScope;
         private IScriptScope _scriptScope;
 
-        public ILogicalContext LogicalContext { get { return _logicalContext; } }
+        public ILogicalContext LogicalContext => _logicalContext;
         private ILogicalContext _logicalContext;
 
-        public IScriptProcessorExtension[] Extensions { get { return _extensions; } }
+        public IScriptProcessorExtension[] Extensions => _extensions;
         private IScriptProcessorExtension[] _extensions;
 
-        public bool CachingEnabled { get { return _cachingEnabled; } }
+        public bool CachingEnabled => _cachingEnabled;
         private bool _cachingEnabled;
 
-        public IRootHandlerMappersProvider RootHandlerMappersProvider { get { return _rootHandlerMappersProvider; } }
+        public IRootHandlerMappersProvider RootHandlerMappersProvider => _rootHandlerMappersProvider;
         private IRootHandlerMappersProvider _rootHandlerMappersProvider;
 
-        public IFunctionHandlersProvider FunctionHandlersProvider { get { return _functionHandlersProvider; } }
+        public IFunctionHandlersProvider FunctionHandlersProvider => _functionHandlersProvider;
         private IFunctionHandlersProvider _functionHandlersProvider;
 
         public ScriptProcessorConfiguration()

@@ -2,10 +2,10 @@
 {
     public class Email
     {
-        public string Address {  get { return _address; } }
+        public string Address => _address;
         private readonly string _address;
 
-        public Person Person { get { return _person; } }
+        public Person Person => _person;
         private readonly Person _person;
 
         public Email(string address, Person person)

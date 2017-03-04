@@ -8,13 +8,13 @@
 
     public class HostConfiguration : IHostConfiguration
     {
-        public IHostExtension[] Extensions { get { return _extensions; } }
+        public IHostExtension[] Extensions => _extensions;
         private IHostExtension[] _extensions;
 
-        public IStorage Storage { get { return _storage; } }
+        public IStorage Storage => _storage;
         private IStorage _storage;
 
-        public IInfrastructure Infrastructure { get { return _infrastructure; } }
+        public IInfrastructure Infrastructure => _infrastructure;
         private IInfrastructure _infrastructure;
 
         private Func<Container, IHost> _getHost; 

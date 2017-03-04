@@ -15,10 +15,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {
-        public IHostTestContext Context
-        {
-            get { return _context; }
-        }
+        public IHostTestContext Context => _context;
         private IHostTestContext _context;
 
         private readonly IHostTestContextFactory _testHostFactory;

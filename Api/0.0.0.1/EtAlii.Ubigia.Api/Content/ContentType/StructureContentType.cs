@@ -4,7 +4,7 @@
     {
         private const string _structureContentTypeId = "Structure";
 
-        public ContentType Hierarchy { get { return _hierarchy; } }
+        public ContentType Hierarchy => _hierarchy;
         private readonly ContentType _hierarchy = new ContentType(_structureContentTypeId, "Hierarchy");
 
         internal StructureContentType()

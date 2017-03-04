@@ -4,7 +4,7 @@
 
     public sealed partial class Entry
     {
-        public string Type { get { return _type.Type; } }
+        public string Type => _type.Type;
         private TypeComponent _type;
 
         string IEditableEntry.Type

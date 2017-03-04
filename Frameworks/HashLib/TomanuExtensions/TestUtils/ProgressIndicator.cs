@@ -26,13 +26,7 @@ namespace TomanuExtensions.TestUtils
             m_form.CreatedEvent.Close();
         }
 
-        public bool IsDisposed
-        {
-            get
-            {
-                return m_form.IsDisposed;
-            }
-        }
+        public bool IsDisposed => m_form.IsDisposed;
 
         private T Invoke<T>(Func<T> a_delegate)
         {

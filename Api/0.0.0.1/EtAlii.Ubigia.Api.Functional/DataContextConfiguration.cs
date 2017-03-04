@@ -8,16 +8,16 @@
 
     public class DataContextConfiguration : IDataContextConfiguration
     {
-        public ILogicalContext LogicalContext { get { return _logicalContext; } }
+        public ILogicalContext LogicalContext => _logicalContext;
         private ILogicalContext _logicalContext;
 
-        public IDataContextExtension[] Extensions { get { return _extensions; } }
+        public IDataContextExtension[] Extensions => _extensions;
         private IDataContextExtension[] _extensions;
 
-        public IFunctionHandlersProvider FunctionHandlersProvider { get { return _functionHandlersProvider; } }
+        public IFunctionHandlersProvider FunctionHandlersProvider => _functionHandlersProvider;
         private IFunctionHandlersProvider _functionHandlersProvider;
 
-        public IRootHandlerMappersProvider RootHandlerMappersProvider { get { return _rootHandlerMappersProvider; } }
+        public IRootHandlerMappersProvider RootHandlerMappersProvider => _rootHandlerMappersProvider;
         private IRootHandlerMappersProvider _rootHandlerMappersProvider;
 
         public DataContextConfiguration()

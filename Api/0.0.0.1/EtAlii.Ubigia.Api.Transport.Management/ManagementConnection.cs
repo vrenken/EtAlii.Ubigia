@@ -6,17 +6,17 @@
 
     internal class ManagementConnection : IManagementConnection
     {
-        public bool IsConnected { get { return _connection?.IsConnected ?? false;  } }
+        public bool IsConnected => _connection?.IsConnected ?? false;
 
-        public Storage Storage { get { return _connection?.Storage; } }
+        public Storage Storage => _connection?.Storage;
 
-        public IStorageContext Storages { get { return _connection?.Storages; } }
+        public IStorageContext Storages => _connection?.Storages;
 
-        public IAccountContext Accounts { get { return _connection?.Accounts; } }
+        public IAccountContext Accounts => _connection?.Accounts;
 
-        public ISpaceContext Spaces { get { return _connection?.Spaces; } }
+        public ISpaceContext Spaces => _connection?.Spaces;
 
-        public IManagementConnectionConfiguration Configuration { get { return _configuration; } }
+        public IManagementConnectionConfiguration Configuration => _configuration;
         private readonly IManagementConnectionConfiguration _configuration;
 
         private IStorageConnection _connection;

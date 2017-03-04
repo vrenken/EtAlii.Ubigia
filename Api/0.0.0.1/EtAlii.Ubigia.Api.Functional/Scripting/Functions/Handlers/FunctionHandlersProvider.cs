@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class FunctionHandlersProvider : IFunctionHandlersProvider
     {
-        public IFunctionHandler[] FunctionHandlers { get { return _functionHandlers; } }
+        public IFunctionHandler[] FunctionHandlers => _functionHandlers;
         private readonly IFunctionHandler[] _functionHandlers;
 
         public static readonly IFunctionHandlersProvider Empty = new FunctionHandlersProvider(new IFunctionHandler[] {});

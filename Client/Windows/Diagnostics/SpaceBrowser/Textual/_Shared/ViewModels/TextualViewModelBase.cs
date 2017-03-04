@@ -21,16 +21,16 @@
         public bool CanStop { get { return _canStop; } set { SetProperty(ref _canStop, value); } }
         private bool _canStop = false;
 
-        public ICommand ClearCommand { get { return _clearCommand; } }
+        public ICommand ClearCommand => _clearCommand;
         private readonly ICommand _clearCommand;
 
-        public ICommand ExecuteCommand { get { return _executeCommand; } }
+        public ICommand ExecuteCommand => _executeCommand;
         private readonly ICommand _executeCommand;
 
-        public ICommand PauseCommand { get { return _pauseCommand; } }
+        public ICommand PauseCommand => _pauseCommand;
         private readonly ICommand _pauseCommand;
 
-        public ICommand StopCommand { get { return _stopCommand; } }
+        public ICommand StopCommand => _stopCommand;
         private readonly ICommand _stopCommand;
 
         public TextualViewModelBase()

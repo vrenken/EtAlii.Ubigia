@@ -14,19 +14,19 @@
         public IEnumerable<Storage> AvailableStorages { get { return _availableStorages; } private set { SetProperty(ref _availableStorages, value); } }
         private IEnumerable<Storage> _availableStorages;
 
-        protected IManagementConnection Connection { get { return _connection; } }
+        protected IManagementConnection Connection => _connection;
         private readonly IManagementConnection _connection;
 
-        public ICommand AddCommand { get { return _addCommand; } }
+        public ICommand AddCommand => _addCommand;
         private readonly ICommand _addCommand;
 
-        public ICommand SaveCommand { get { return _saveCommand; } }
+        public ICommand SaveCommand => _saveCommand;
         private readonly ICommand _saveCommand;
 
-        public ICommand DeleteCommand { get { return _deleteCommand; } }
+        public ICommand DeleteCommand => _deleteCommand;
         private readonly ICommand _deleteCommand;
 
-        public ICommand ClearCommand { get { return _clearCommand; } }
+        public ICommand ClearCommand => _clearCommand;
         private readonly ICommand _clearCommand;
 
         public Storage SelectedStorage { get { return _selectedStorage; } set { SetProperty(ref _selectedStorage, value); } }

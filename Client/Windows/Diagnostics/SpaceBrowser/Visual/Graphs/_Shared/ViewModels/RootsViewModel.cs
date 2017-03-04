@@ -18,10 +18,10 @@
         private Root _selectedRoot;
 
 
-        protected IFabricContext Fabric { get { return _fabric; } }
+        protected IFabricContext Fabric => _fabric;
         private readonly IFabricContext _fabric;
 
-        public ICommand BeginEntryDragCommand { get { return _beginEntryDragCommand; } }
+        public ICommand BeginEntryDragCommand => _beginEntryDragCommand;
         private readonly ICommand _beginEntryDragCommand;
 
         public RootsViewModel(IFabricContext fabric)

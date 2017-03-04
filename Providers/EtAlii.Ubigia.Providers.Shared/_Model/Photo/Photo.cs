@@ -4,7 +4,7 @@
 
     public class Photo
     {
-        public List<Person> Persons { get { return _persons; } }
+        public List<Person> Persons => _persons;
         private readonly List<Person> _persons;
 
         public Photo()

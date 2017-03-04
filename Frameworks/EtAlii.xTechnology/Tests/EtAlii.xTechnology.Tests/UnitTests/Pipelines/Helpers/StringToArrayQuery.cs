@@ -9,6 +9,6 @@ namespace EtAlii.xTechnology.Tests
         {
         }
 
-        public string String { get { return ((IParams<string>)this).Parameter; } }
+        public string String => ((IParams<string>)this).Parameter;
     }
 }

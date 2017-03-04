@@ -9,13 +9,13 @@
         //public ILogicalContextExtension[] Extensions { get { return _extensions; } }
         //private ILogicalContextExtension[] _extensions;
 
-        public IFabricContext Fabric { get { return _fabric; } }
+        public IFabricContext Fabric => _fabric;
         private IFabricContext _fabric;
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private string _name;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
 
         public LogicalContextConfiguration()

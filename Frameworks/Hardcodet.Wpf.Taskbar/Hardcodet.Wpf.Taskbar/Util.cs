@@ -48,12 +48,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
     /// <summary>
     /// Checks whether the application is currently in design mode.
     /// </summary>
-    public static bool IsDesignMode
-    {
-      get { return isDesignMode; }
-    }
+    public static bool IsDesignMode => isDesignMode;
 
-    #endregion
+      #endregion
 
     #region construction
 

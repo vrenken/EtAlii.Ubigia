@@ -6,22 +6,22 @@
 
     public class ManagementConnectionConfiguration : IManagementConnectionConfiguration
     {
-        public IManagementConnectionExtension[] Extensions { get { return _extensions; } }
+        public IManagementConnectionExtension[] Extensions => _extensions;
         private IManagementConnectionExtension[] _extensions;
 
-        public IStorageTransportProvider TransportProvider { get { return _transportProvider; } }
+        public IStorageTransportProvider TransportProvider => _transportProvider;
         private IStorageTransportProvider _transportProvider;
 
-        public Func<IManagementConnection> FactoryExtension { get {return _factoryExtension;} }
+        public Func<IManagementConnection> FactoryExtension => _factoryExtension;
         private Func<IManagementConnection> _factoryExtension;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
 
-        public string AccountName { get { return _accountName; } }
+        public string AccountName => _accountName;
         private string _accountName;
 
-        public string Password { get { return _password; } }
+        public string Password => _password;
         private string _password;
 
         public ManagementConnectionConfiguration()

@@ -8,40 +8,40 @@
 
     public class GraphContextMenuViewModel : BindableBase, IGraphContextMenuViewModel
     {
-        public ICommand HideChildrenCommand { get { return _hideChildrenCommand; } }
+        public ICommand HideChildrenCommand => _hideChildrenCommand;
         private readonly ICommand _hideChildrenCommand;
 
-        public ICommand ShowChildrenCommand { get { return _showChildrenCommand; } }
+        public ICommand ShowChildrenCommand => _showChildrenCommand;
         private readonly ICommand _showChildrenCommand;
 
-        public ICommand HideParentCommand { get { return _hideParentCommand; } }
+        public ICommand HideParentCommand => _hideParentCommand;
         private readonly ICommand _hideParentCommand;
 
-        public ICommand ShowParentCommand { get { return _showParentCommand; } }
+        public ICommand ShowParentCommand => _showParentCommand;
         private readonly ICommand _showParentCommand;
 
-        public ICommand HidePreviousCommand { get { return _hidePreviousCommand; } }
+        public ICommand HidePreviousCommand => _hidePreviousCommand;
         private readonly ICommand _hidePreviousCommand;
 
-        public ICommand ShowPreviousCommand { get { return _showPreviousCommand; } }
+        public ICommand ShowPreviousCommand => _showPreviousCommand;
         private readonly ICommand _showPreviousCommand;
 
-        public ICommand HideNextCommand { get { return _hideNextCommand; } }
+        public ICommand HideNextCommand => _hideNextCommand;
         private readonly ICommand _hideNextCommand;
 
-        public ICommand ShowNextCommand { get { return _showNextCommand; } }
+        public ICommand ShowNextCommand => _showNextCommand;
         private readonly ICommand _showNextCommand;
 
-        public ICommand HideDowndatesCommand { get { return _hideDowndatesCommand; } }
+        public ICommand HideDowndatesCommand => _hideDowndatesCommand;
         private readonly ICommand _hideDowndatesCommand;
 
-        public ICommand ShowDowndatesCommand { get { return _showDowndatesCommand; } }
+        public ICommand ShowDowndatesCommand => _showDowndatesCommand;
         private readonly ICommand _showDowndatesCommand;
 
-        public ICommand HideUpdatesCommand { get { return _hideUpdatesCommand; } }
+        public ICommand HideUpdatesCommand => _hideUpdatesCommand;
         private readonly ICommand _hideUpdatesCommand;
 
-        public ICommand ShowUpdatesCommand { get { return _showUpdatesCommand; } }
+        public ICommand ShowUpdatesCommand => _showUpdatesCommand;
         private readonly ICommand _showUpdatesCommand;
 
         private readonly IGraphContext _graphContext;

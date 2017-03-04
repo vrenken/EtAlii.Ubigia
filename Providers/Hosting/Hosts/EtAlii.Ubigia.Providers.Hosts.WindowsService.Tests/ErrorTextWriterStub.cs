@@ -9,9 +9,6 @@
         {
         }
 
-        public override System.Text.Encoding Encoding
-        {
-            get { return System.Text.Encoding.Unicode; }
-        }
+        public override System.Text.Encoding Encoding => System.Text.Encoding.Unicode;
     }
 }

@@ -8,23 +8,23 @@
 
     public class ProfilingResult : DynamicObject, INotifyPropertyChanged
     {
-        public ProfilingResult Parent { get { return _parent; } }
+        public ProfilingResult Parent => _parent;
         private readonly ProfilingResult _parent;
         private readonly bool _showInResults;
 
-        public string Action { get { return this.Get<string>(ProfilingProperty.Action); } }
-        public string ProfilerName { get { return this.Get<string>(ProfilingProperty.ProfilerName); } }
-        public ProfilingLayer Layer { get { return this.Get<ProfilingLayer>(ProfilingProperty.Layer); } }
+        public string Action => this.Get<string>(ProfilingProperty.Action);
+        public string ProfilerName => this.Get<string>(ProfilingProperty.ProfilerName);
+        public ProfilingLayer Layer => this.Get<ProfilingLayer>(ProfilingProperty.Layer);
 
-        public DateTime Started { get { return this.Get<DateTime>(ProfilingProperty.Started); } }
-        public DateTime Stopped { get { return this.Get<DateTime>(ProfilingProperty.Stopped); } }
-        public double DurationTotal { get { return this.Get<double>(ProfilingProperty.DurationTotal); } }
-        public double DurationOfSelf { get { return this.Get<double>(ProfilingProperty.DurationOfSelf); } }
-        public double DurationOfChildren { get { return this.Get<double>(ProfilingProperty.DurationOfChildren); } }
+        public DateTime Started => this.Get<DateTime>(ProfilingProperty.Started);
+        public DateTime Stopped => this.Get<DateTime>(ProfilingProperty.Stopped);
+        public double DurationTotal => this.Get<double>(ProfilingProperty.DurationTotal);
+        public double DurationOfSelf => this.Get<double>(ProfilingProperty.DurationOfSelf);
+        public double DurationOfChildren => this.Get<double>(ProfilingProperty.DurationOfChildren);
 
         private readonly PropertyDictionary _properties = new PropertyDictionary();
 
-        public ReadOnlyObservableCollection<ProfilingResult> Children { get { return _children; } }
+        public ReadOnlyObservableCollection<ProfilingResult> Children => _children;
         private readonly ReadOnlyObservableCollection<ProfilingResult> _children;
 
         private readonly ObservableCollection<ProfilingResult> _items; 

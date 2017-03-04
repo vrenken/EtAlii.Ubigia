@@ -120,12 +120,6 @@ namespace HashLib.Hash64
             }
         }
 
-        public int? KeyLength
-        {
-            get
-            {
-                return 4;
-            }
-        }
+        public int? KeyLength => 4;
     }
 }

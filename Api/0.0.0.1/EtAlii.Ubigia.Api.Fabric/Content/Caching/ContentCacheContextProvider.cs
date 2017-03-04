@@ -2,7 +2,7 @@
 {
     internal class ContentCacheContextProvider : IContentCacheContextProvider
     {
-        public IContentContext Context {get { return _context; }}
+        public IContentContext Context => _context;
         private readonly IContentContext _context;
 
         public ContentCacheContextProvider(IContentContext context)

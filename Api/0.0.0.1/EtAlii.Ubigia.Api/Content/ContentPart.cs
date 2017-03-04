@@ -12,6 +12,6 @@
             Data = new byte[]{},
         };
 
-        protected internal override string Name { get { return Content.ContentName; } }
+        protected internal override string Name => Content.ContentName;
     }
 }

@@ -8,10 +8,10 @@
     [JsonObject(MemberSerialization.Fields)]
     public partial struct Relation : IEquatable<Relation>
     {
-        public Identifier Id { get { return _id; } }
+        public Identifier Id => _id;
         private Identifier _id;
 
-        public UInt64 Moment { get { return _moment; } }
+        public UInt64 Moment => _moment;
         private UInt64 _moment;
 
         public override string ToString()

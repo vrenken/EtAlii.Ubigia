@@ -4,14 +4,16 @@
 
     public class AccountTemplate
     {
-        public static AccountTemplate[] All { get { return _all.Value; } }
+        public static AccountTemplate[] All => _all.Value;
+
         private static readonly Lazy<AccountTemplate[]> _all = new Lazy<AccountTemplate[]>(() => new [] {
             User,
             System,
             Administrator
         });
 
-        public static AccountTemplate User { get { return _user; } }
+        public static AccountTemplate User => _user;
+
         private static readonly AccountTemplate _user = new AccountTemplate
         (
             name: AccountName.User, 
@@ -19,7 +21,8 @@
             spacesToCreate: new []{ SpaceTemplate.Configuration, SpaceTemplate.Data }
         );
 
-        public static AccountTemplate System { get { return _system; } }
+        public static AccountTemplate System => _system;
+
         private static readonly AccountTemplate _system = new AccountTemplate
         (
             name: AccountName.System,
@@ -27,7 +30,8 @@
             spacesToCreate: new [] { SpaceTemplate.System, SpaceTemplate.Metrics }
         );
 
-        public static AccountTemplate Administrator { get { return _administrator; } }
+        public static AccountTemplate Administrator => _administrator;
+
         private static readonly AccountTemplate _administrator = new AccountTemplate
         (
             name: AccountName.Administrator,
@@ -36,12 +40,12 @@
         );
 
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
-        public string[] RolesToAssign { get { return _rolesToAssign; } }
+        public string[] RolesToAssign => _rolesToAssign;
         private readonly string[] _rolesToAssign;
 
-        public SpaceTemplate[] SpacesToCreate { get { return _spacesToCreate; } }
+        public SpaceTemplate[] SpacesToCreate => _spacesToCreate;
         private readonly SpaceTemplate[] _spacesToCreate;
 
         private AccountTemplate(

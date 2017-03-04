@@ -5,9 +5,9 @@
 
     public class NodeTrackingReference
     {
-        public bool IsAlive { get { return _nodeReference.IsAlive; } }
+        public bool IsAlive => _nodeReference.IsAlive;
 
-        public INode Node { get { return _nodeReference.Target as INode; } }
+        public INode Node => _nodeReference.Target as INode;
 
         private readonly WeakReference _nodeReference;
 

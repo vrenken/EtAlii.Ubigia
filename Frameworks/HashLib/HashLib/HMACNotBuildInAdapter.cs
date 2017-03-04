@@ -85,20 +85,8 @@ namespace HashLib
             m_hash.TransformBytes(a_data, a_index, a_length);
         }
 
-        public override string Name
-        {
-            get
-            {
-                return String.Format("{0}({1})", GetType().Name, m_hash.GetType().Name);
-            }
-        }
+        public override string Name => String.Format("{0}({1})", GetType().Name, m_hash.GetType().Name);
 
-        public int? KeyLength
-        {
-            get
-            {
-                return null;
-            }
-        }
+        public int? KeyLength => null;
     }
 }

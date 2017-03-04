@@ -6,7 +6,7 @@
 
     internal class ScriptParserConfiguration : IScriptParserConfiguration
     {
-        public IScriptParserExtension[] Extensions { get { return _extensions; } }
+        public IScriptParserExtension[] Extensions => _extensions;
         private IScriptParserExtension[] _extensions;
 
         private ILogicalContextConfiguration _parentConfiguration;

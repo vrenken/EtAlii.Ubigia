@@ -11,7 +11,8 @@
         /// <summary>
         /// The recent value of the variables used in the script.
         /// </summary>
-        public Dictionary<string, ScopeVariable> Variables { get { return _variables; } }
+        public Dictionary<string, ScopeVariable> Variables => _variables;
+
         private readonly Dictionary<string, ScopeVariable> _variables;
 
         /// <summary>

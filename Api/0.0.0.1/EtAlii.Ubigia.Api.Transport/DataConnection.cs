@@ -4,23 +4,23 @@
 
     internal class DataConnection : IDataConnection
     {
-        public Storage Storage { get { return _connection?.Storage; } }
+        public Storage Storage => _connection?.Storage;
 
-        public Space Space { get { return _connection?.Space; } }
-        public Account Account { get { return _connection?.Account; } }
+        public Space Space => _connection?.Space;
+        public Account Account => _connection?.Account;
 
-        public IRootContext Roots { get { return _connection?.Roots; } }
+        public IRootContext Roots => _connection?.Roots;
 
-        public IEntryContext Entries { get { return _connection?.Entries; } }
+        public IEntryContext Entries => _connection?.Entries;
 
-        public IContentContext Content { get { return _connection?.Content; } }
+        public IContentContext Content => _connection?.Content;
 
-        public IPropertyContext Properties { get { return _connection?.Properties; } }
+        public IPropertyContext Properties => _connection?.Properties;
 
-        public IDataConnectionConfiguration Configuration { get { return _configuration; } }
+        public IDataConnectionConfiguration Configuration => _configuration;
         private readonly IDataConnectionConfiguration _configuration;
 
-        public bool IsConnected { get { return _connection?.IsConnected ?? false; } }
+        public bool IsConnected => _connection?.IsConnected ?? false;
 
         private ISpaceConnection _connection;
 

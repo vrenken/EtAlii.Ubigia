@@ -4,7 +4,7 @@
 
     public class ComposeContext : IComposeContext
     {
-        public IFabricContext Fabric { get { return _fabric; } }
+        public IFabricContext Fabric => _fabric;
         private readonly IFabricContext _fabric;
 
         public ComposeContext(IFabricContext fabric)

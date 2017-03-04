@@ -19,7 +19,7 @@
 
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
-        public ObservableCollection<IFolderMonitor> Monitors { get { return _monitors; } }
+        public ObservableCollection<IFolderMonitor> Monitors => _monitors;
         private readonly ObservableCollection<IFolderMonitor> _monitors = new ObservableCollection<IFolderMonitor>();
 
         public bool AllMonitorsAreRunning

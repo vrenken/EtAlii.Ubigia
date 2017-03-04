@@ -4,7 +4,7 @@
 
     public partial struct ContainerIdentifier
     {
-        public string[] Paths { get { return _paths; } }
+        public string[] Paths => _paths;
         private readonly string[] _paths;
 
         public static readonly ContainerIdentifier Empty = new ContainerIdentifier(new string[]{});

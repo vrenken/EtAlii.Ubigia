@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Client.Windows
         public string ConsoleTarget { get { return GetValue(ref _consoleTarget, null); } set { SetProperty(ref _consoleTarget, value); } }
         private string _consoleTarget;
 
-        public ObservableCollection<StorageSettings> Storage { get { return _storage; } }
+        public ObservableCollection<StorageSettings> Storage => _storage;
         private readonly ObservableCollection<StorageSettings> _storage = new ObservableCollection<StorageSettings>();
 
         public GlobalSettings()

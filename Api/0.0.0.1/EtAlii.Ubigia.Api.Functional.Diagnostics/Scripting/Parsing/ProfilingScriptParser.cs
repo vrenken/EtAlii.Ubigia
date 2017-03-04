@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     internal class ProfilingScriptParser : IProfilingScriptParser
     {
-        public IProfiler Profiler { get { return _profiler; } }
+        public IProfiler Profiler => _profiler;
         private readonly IProfiler _profiler;
 
         private readonly IScriptParser _decoree;

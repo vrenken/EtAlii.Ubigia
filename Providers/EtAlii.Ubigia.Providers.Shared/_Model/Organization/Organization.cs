@@ -2,7 +2,7 @@
 {
     public class Organization
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
         public Organization(string name)

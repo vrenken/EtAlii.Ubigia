@@ -13,7 +13,7 @@
             _decoree = decoree;
         }
 
-        public string FileNameFormat { get {return _decoree.FileNameFormat; } }
+        public string FileNameFormat => _decoree.FileNameFormat;
 
         public void Serialize<T>(string fileName, T item)
             where T : class

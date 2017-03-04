@@ -6,10 +6,10 @@
 
     public class StorageConfiguration : IStorageConfiguration
     {
-        public IStorageExtension[] Extensions { get { return _extensions; } }
+        public IStorageExtension[] Extensions => _extensions;
         private IStorageExtension[] _extensions;
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private string _name;
 
 

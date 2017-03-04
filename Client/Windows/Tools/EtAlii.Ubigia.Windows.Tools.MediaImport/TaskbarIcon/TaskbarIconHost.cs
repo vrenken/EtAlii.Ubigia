@@ -5,7 +5,7 @@
 
     internal class TaskbarIconHost : ITaskbarIconHost
     {
-        public ITaskbarIcon TaskbarIcon { get { return _taskbarIcon; } }
+        public ITaskbarIcon TaskbarIcon => _taskbarIcon;
         private readonly ITaskbarIcon _taskbarIcon;
         private readonly IFolderMonitorManager _folderMonitorManager;
 

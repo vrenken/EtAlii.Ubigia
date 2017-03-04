@@ -4,7 +4,7 @@
 
     public class FacebookProvider : IProvider
     {
-        public IProviderConfiguration Configuration { get { return _configuration; } }
+        public IProviderConfiguration Configuration => _configuration;
         private readonly IProviderConfiguration _configuration;
 
         public FacebookProvider(IProviderConfiguration configuration)

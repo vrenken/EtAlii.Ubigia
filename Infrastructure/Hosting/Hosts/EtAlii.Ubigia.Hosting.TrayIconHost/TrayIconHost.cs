@@ -17,7 +17,7 @@
         public bool HasError { get { return _hasError; } set { SetProperty(ref _hasError, value); } }
         private bool _hasError;
 
-        public ITaskbarIcon TaskbarIcon { get { return _taskbarIcon; } }
+        public ITaskbarIcon TaskbarIcon => _taskbarIcon;
         private readonly ITaskbarIcon _taskbarIcon;
 
         //private readonly ILogger _logger;

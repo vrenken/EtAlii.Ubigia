@@ -7,14 +7,14 @@
     public class FabricContextConfiguration : IFabricContextConfiguration
     {
 
-        public IDataConnection Connection { get { return _connection; } }
+        public IDataConnection Connection => _connection;
         private IDataConnection _connection;
 
-        public bool TraversalCachingEnabled { get { return _traversalCachingEnabled; } }
+        public bool TraversalCachingEnabled => _traversalCachingEnabled;
         private bool _traversalCachingEnabled;
 
 
-        public IFabricContextExtension[] Extensions { get { return _extensions; } }
+        public IFabricContextExtension[] Extensions => _extensions;
         private IFabricContextExtension[] _extensions;
 
         public FabricContextConfiguration()

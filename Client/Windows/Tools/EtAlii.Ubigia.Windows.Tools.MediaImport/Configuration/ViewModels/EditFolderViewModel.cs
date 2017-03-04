@@ -18,16 +18,16 @@
         private IDataConnection _connection;
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
-        public ICommand SaveChangesCommand { get { return _saveChangesCommand; } }
+        public ICommand SaveChangesCommand => _saveChangesCommand;
         private readonly ICommand _saveChangesCommand;
         
-        public ICommand CancelChangesCommand { get { return _cancelChangesCommand; } }
+        public ICommand CancelChangesCommand => _cancelChangesCommand;
         private readonly ICommand _cancelChangesCommand;
         
-        public ICommand RemoveFolderCommand {get { return _removeFolderCommand; } }
+        public ICommand RemoveFolderCommand => _removeFolderCommand;
         private readonly ICommand _removeFolderCommand;
 
-        public ICommand SelectFolderCommand { get { return _selectFolderCommand; } }
+        public ICommand SelectFolderCommand => _selectFolderCommand;
         private readonly ICommand _selectFolderCommand;
 
         public IFolderMonitor OriginalFolderMonitor { get { return _originalFolderMonitor; } set { SetProperty(ref _originalFolderMonitor, value); } }

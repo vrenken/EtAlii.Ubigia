@@ -2,9 +2,9 @@
 {
     internal class InvalidTestRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
 
-        public IRootHandler[] AllowedRootHandlers { get { return _allowedRootHandlers; } }
+        public IRootHandler[] AllowedRootHandlers => _allowedRootHandlers;
         private readonly IRootHandler[] _allowedRootHandlers;
 
         private readonly string _name;

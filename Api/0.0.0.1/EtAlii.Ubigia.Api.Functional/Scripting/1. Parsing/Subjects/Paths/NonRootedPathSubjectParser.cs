@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class NonRootedPathSubjectParser : INonRootedPathSubjectParser
     {
         public const string Id = "NonRootedPathSubject";
-        public LpsParser Parser { get { return _parser; } }
+        public LpsParser Parser => _parser;
         private readonly LpsParser _parser;
         private readonly INodeValidator _nodeValidator;
         private readonly IPathSubjectPartsParser _pathSubjectPartsParser;

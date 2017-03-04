@@ -6,14 +6,14 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
     {
         private readonly ILogicalContext _decoree;
 
-        public IProfiler Profiler { get { return _profiler; } }
+        public IProfiler Profiler => _profiler;
         private readonly IProfiler _profiler;
 
-        public ILogicalContextConfiguration Configuration { get { return _decoree.Configuration; } }
-        public ILogicalNodeSet Nodes { get { return _decoree.Nodes; } }
-        public ILogicalRootSet Roots { get { return _decoree.Roots; } }
-        public IContentManager Content { get { return _decoree.Content; } }
-        public IPropertiesManager Properties { get { return _decoree.Properties; } }
+        public ILogicalContextConfiguration Configuration => _decoree.Configuration;
+        public ILogicalNodeSet Nodes => _decoree.Nodes;
+        public ILogicalRootSet Roots => _decoree.Roots;
+        public IContentManager Content => _decoree.Content;
+        public IPropertiesManager Properties => _decoree.Properties;
 
         public ProfilingLogicalContext(ILogicalContext decoree, IProfiler profiler)
         {

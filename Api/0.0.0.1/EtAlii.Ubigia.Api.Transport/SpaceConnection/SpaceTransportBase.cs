@@ -5,7 +5,7 @@
 
     public abstract class SpaceTransportBase : ISpaceTransport
     {
-        public bool IsConnected { get { return _isConnected; } }
+        public bool IsConnected => _isConnected;
         private bool _isConnected;
 
         public virtual void Initialize(ISpaceConnection spaceConnection, string address)

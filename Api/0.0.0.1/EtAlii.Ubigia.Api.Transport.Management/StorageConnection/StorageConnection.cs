@@ -10,22 +10,22 @@
         public Storage Storage { get { return _storage; } private set { _storage = value; } }
         private Storage _storage;
 
-        public TTransport Transport { get { return _transport; } }
+        public TTransport Transport => _transport;
         private readonly TTransport _transport;
 
-        public IStorageContext Storages { get { return _storages; } }
+        public IStorageContext Storages => _storages;
         private IStorageContext _storages;
 
-        public IAccountContext Accounts { get { return _accounts; } }
+        public IAccountContext Accounts => _accounts;
         private IAccountContext _accounts;
         private readonly IAuthenticationContext _authentication;
 
-        public ISpaceContext Spaces { get { return _spaces; } }
+        public ISpaceContext Spaces => _spaces;
         private ISpaceContext _spaces;
 
-        public bool IsConnected { get { return _storage != null; } }
+        public bool IsConnected => _storage != null;
 
-        public IStorageConnectionConfiguration Configuration {get { return _configuration; } }
+        public IStorageConnectionConfiguration Configuration => _configuration;
         private readonly IStorageConnectionConfiguration _configuration;
 
         protected StorageConnection(

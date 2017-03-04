@@ -4,10 +4,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class Parameter
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
-        public Type Type { get { return _type; } }
+        public Type Type => _type;
         private readonly Type _type;
 
         public Parameter(string name, Type type)

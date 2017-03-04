@@ -13,10 +13,10 @@
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         private string _title;
 
-        public ReadOnlyObservableCollection<ProfilingResult> Results { get { return _results; } }
+        public ReadOnlyObservableCollection<ProfilingResult> Results => _results;
         private ReadOnlyObservableCollection<ProfilingResult> _results;
 
-        public IProfilingAspectsViewModel Aspects {get {return _aspects; } }
+        public IProfilingAspectsViewModel Aspects => _aspects;
         private readonly IProfilingAspectsViewModel _aspects;
 
         private readonly IGraphContext _graphContext;
@@ -24,7 +24,7 @@
         private readonly IMainDispatcherInvoker _dispatcher;
         private ObservableCollection<ProfilingResult> _items;
 
-        public System.Windows.Input.ICommand ClearCommand { get { return _clearCommand; } }
+        public System.Windows.Input.ICommand ClearCommand => _clearCommand;
         private readonly ICommand _clearCommand;
 
         public bool AutoExpandNodes { get { return _autoExpandNodes; } set { base.SetProperty(ref _autoExpandNodes, value); } }

@@ -74,12 +74,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
     /// <see cref="TrayPopup"/>.
     /// </summary>
     [Category(CategoryName)]
-    public Popup TrayPopupResolved
-    {
-      get { return (Popup)GetValue(TrayPopupResolvedProperty); }
-    }
+    public Popup TrayPopupResolved => (Popup)GetValue(TrayPopupResolvedProperty);
 
-    /// <summary>
+      /// <summary>
     /// Provides a secure method for setting the TrayPopupResolved property.  
     /// This dependency property indicates ....
     /// </summary>
@@ -117,12 +114,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
     [Category(CategoryName)]
     [Browsable(true)]
     [Bindable(true)] 
-    public ToolTip TrayToolTipResolved
-    {
-      get { return (ToolTip)GetValue(TrayToolTipResolvedProperty); }
-    }
+    public ToolTip TrayToolTipResolved => (ToolTip)GetValue(TrayToolTipResolvedProperty);
 
-    /// <summary>
+      /// <summary>
     /// Provides a secure method for setting the <see cref="TrayToolTipResolved"/>
     /// property.  
     /// </summary>
@@ -152,12 +146,9 @@ namespace Hardcodet.Wpf.TaskbarNotification
     /// A custom popup that is being displayed in the tray area in order
     /// to display messages to the user.
     /// </summary>
-    public Popup CustomBalloon
-    {
-      get { return (Popup)GetValue(CustomBalloonProperty); }
-    }
+    public Popup CustomBalloon => (Popup)GetValue(CustomBalloonProperty);
 
-    /// <summary>
+      /// <summary>
     /// Provides a secure method for setting the <see cref="CustomBalloon"/> property.  
     /// </summary>
     /// <param name="value">The new value for the property.</param>

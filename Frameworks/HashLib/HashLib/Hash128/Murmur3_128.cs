@@ -313,12 +313,6 @@ namespace HashLib.Hash128
             }
         }
 
-        public int? KeyLength
-        {
-            get
-            {
-                return 4;
-            }
-        }
+        public int? KeyLength => 4;
     }
 }

@@ -2,10 +2,10 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     public class FunctionContext : IFunctionContext
     {
-        IPathProcessor IFunctionContext.PathProcessor { get { return _pathProcessor; } }
+        IPathProcessor IFunctionContext.PathProcessor => _pathProcessor;
         private readonly IPathProcessor _pathProcessor;
 
-        IToIdentifierConverter IFunctionContext.ToIdentifierConverter { get { return _toIdentifierConverter; } }
+        IToIdentifierConverter IFunctionContext.ToIdentifierConverter => _toIdentifierConverter;
         private readonly IToIdentifierConverter _toIdentifierConverter;
 
         internal FunctionContext(

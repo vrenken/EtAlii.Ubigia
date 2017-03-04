@@ -6,19 +6,19 @@
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
-        public IStoragesViewModel Storages { get { return _storages; } }
+        public IStoragesViewModel Storages => _storages;
         private readonly IStoragesViewModel _storages;
 
-        public IAccountsViewModel Accounts { get { return _accounts; } }
+        public IAccountsViewModel Accounts => _accounts;
         private readonly IAccountsViewModel _accounts;
 
-        public ISpacesViewModel Spaces { get { return _spaces; } }
+        public ISpacesViewModel Spaces => _spaces;
         private readonly ISpacesViewModel _spaces;
 
-        public IRolesViewModel Roles { get { return _roles; } }
+        public IRolesViewModel Roles => _roles;
         private readonly IRolesViewModel _roles;
 
-        protected IManagementConnection Connection { get { return _connection; } }
+        protected IManagementConnection Connection => _connection;
         private readonly IManagementConnection _connection;
 
         private readonly ILogger _logger;

@@ -4,21 +4,21 @@
 
     public class Result 
     {
-        public string Id { get { return _id; } }
+        public string Id => _id;
         private readonly string _id;
 
-        public string Label { get { return _label; } }
+        public string Label => _label;
         private readonly string _label;
 
-        public string PropertiesAsString { get { return _properties?.ToString(); } }
+        public string PropertiesAsString => _properties?.ToString();
 
-        public IPropertyDictionary Properties { get { return _properties; } }
+        public IPropertyDictionary Properties => _properties;
         private readonly IPropertyDictionary _properties;
 
-        public object Data { get { return _data; } }
+        public object Data => _data;
         private readonly object _data;
 
-        public object Group { get { return _group; } }
+        public object Group => _group;
         private readonly object _group;
 
         public Result(

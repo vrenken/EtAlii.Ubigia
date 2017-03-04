@@ -125,13 +125,7 @@ namespace TomanuExtensions.Utils
             m_writer.WriteStartElement(a_prefix, a_local_name, a_ns);
         }
 
-        public override WriteState WriteState
-        {
-            get
-            {
-                return m_writer.WriteState;
-            }
-        }
+        public override WriteState WriteState => m_writer.WriteState;
 
         public override void WriteString(string a_text)
         {
@@ -163,28 +157,10 @@ namespace TomanuExtensions.Utils
             return m_writer.ToString();
         }
 
-        public override string XmlLang
-        {
-            get
-            {
-                return m_writer.XmlLang;
-            }
-        }
+        public override string XmlLang => m_writer.XmlLang;
 
-        public override XmlSpace XmlSpace
-        {
-            get
-            {
-                return m_writer.XmlSpace;
-            }
-        }
+        public override XmlSpace XmlSpace => m_writer.XmlSpace;
 
-        public override XmlWriterSettings Settings
-        {
-            get
-            {
-                return m_writer.Settings;
-            }
-        }
+        public override XmlWriterSettings Settings => m_writer.Settings;
     }
 }

@@ -2,10 +2,10 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class LocationsRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
-        public IRootHandler[] AllowedRootHandlers { get { return _allowedRootHandlers; } }
+        public IRootHandler[] AllowedRootHandlers => _allowedRootHandlers;
         private readonly IRootHandler[] _allowedRootHandlers;
 
         public LocationsRootHandlerMapper()

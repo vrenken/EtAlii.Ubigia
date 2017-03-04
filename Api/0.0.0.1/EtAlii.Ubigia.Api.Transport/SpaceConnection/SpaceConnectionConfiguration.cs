@@ -5,19 +5,19 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public class SpaceConnectionConfiguration : ISpaceConnectionConfiguration
     {
-        public ISpaceTransport Transport { get {return _transport;} }
+        public ISpaceTransport Transport => _transport;
         private ISpaceTransport _transport;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
-        public string AccountName { get { return _accountName; } }
+        public string AccountName => _accountName;
         private string _accountName;
-        public string Password { get { return _password; } }
+        public string Password => _password;
         private string _password;
-        public string Space { get { return _space; } }
+        public string Space => _space;
         private string _space;
 
-        public ISpaceConnectionExtension[] Extensions { get { return _extensions; } }
+        public ISpaceConnectionExtension[] Extensions => _extensions;
         private ISpaceConnectionExtension[] _extensions;
 
         public SpaceConnectionConfiguration()

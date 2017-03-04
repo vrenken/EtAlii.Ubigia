@@ -6,7 +6,7 @@
 
     internal class PathProcessor : IPathProcessor
     {
-        public IProcessingContext Context { get { return _context; } }
+        public IProcessingContext Context => _context;
         private readonly IProcessingContext _context;
 
         private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;

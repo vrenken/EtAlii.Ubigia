@@ -7,7 +7,7 @@
         private readonly ISystemSettingsProvider _systemSettingsProvider;
         private readonly IImporter[] _importers;
 
-        public IProviderConfiguration Configuration { get { return _configuration; } }
+        public IProviderConfiguration Configuration => _configuration;
         private readonly IProviderConfiguration _configuration;
 
         public MicrosoftGraphProvider(

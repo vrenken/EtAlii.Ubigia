@@ -8,7 +8,7 @@
         //public IFabricContextExtension[] Extensions { get { return _extensions; } }
         //private IFabricContextExtension[] _extensions;
 
-        public IStorage Storage { get { return _storage; } }
+        public IStorage Storage => _storage;
         private IStorage _storage;
 
         public FabricContextConfiguration()

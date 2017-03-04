@@ -5,22 +5,22 @@
 
     public class FabricContext : IFabricContext
     {
-        public IFabricContextConfiguration Configuration { get { return _configuration; } }
+        public IFabricContextConfiguration Configuration => _configuration;
         private readonly IFabricContextConfiguration _configuration;
 
-        public IDataConnection Connection { get { return _connection; } }
+        public IDataConnection Connection => _connection;
         private readonly IDataConnection _connection;
 
-        public IRootContext Roots { get { return _roots; } }
+        public IRootContext Roots => _roots;
         private readonly IRootContext _roots;
 
-        public IEntryContext Entries { get { return _entries; } }
+        public IEntryContext Entries => _entries;
         private readonly IEntryContext _entries;
 
-        public IContentContext Content { get { return _content; } }
+        public IContentContext Content => _content;
         private readonly IContentContext _content;
 
-        public IPropertyContext Properties { get { return _properties; } }
+        public IPropertyContext Properties => _properties;
         private readonly IPropertyContext _properties;
 
         public FabricContext(

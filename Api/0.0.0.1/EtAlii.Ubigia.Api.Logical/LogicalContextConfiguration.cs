@@ -6,13 +6,13 @@
 
     public class LogicalContextConfiguration : ILogicalContextConfiguration
     {
-        public IFabricContext Fabric { get { return _fabric; } }
+        public IFabricContext Fabric => _fabric;
         private IFabricContext _fabric;
 
-        public ILogicalContextExtension[] Extensions { get { return _extensions; } }
+        public ILogicalContextExtension[] Extensions => _extensions;
         private ILogicalContextExtension[] _extensions;
 
-        public bool CachingEnabled { get { return _cachingEnabled; } }
+        public bool CachingEnabled => _cachingEnabled;
         private bool _cachingEnabled;
 
 

@@ -9,15 +9,15 @@
 
         // TODO: There should be no properties on the Node base class.
 
-        Identifier INode.Id { get { return _entry.Id; } }
-        string INode.Type { get { return _entry.Type; } }
+        Identifier INode.Id => _entry.Id;
+        string INode.Type => _entry.Type;
 
         private IReadOnlyEntry _entry;
 
         //public Identifier Schema { get { return _schema; } private set { SetProperty(ref _schema, value); } }
         //private Identifier _schema;
 
-        bool INode.IsModified { get { return _isModified; } }
+        bool INode.IsModified => _isModified;
         private bool _isModified;
 
         internal DynamicNode(IReadOnlyEntry entry, PropertyDictionary properties)
@@ -31,7 +31,8 @@
             _entry = entry;
         }
 
-        IReadOnlyEntry IInternalNode.Entry { get { return _entry; } }// set { _entry = value;} }
+        IReadOnlyEntry IInternalNode.Entry => _entry;
+// set { _entry = value;} }
 
         //void IInternalNode.ClearIsModified()
         //{

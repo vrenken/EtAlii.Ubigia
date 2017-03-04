@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
     [Guid(Identifiers.RootFolderItemString)]
     public class RootFolderItem : FolderItem 
 	{
-        protected StorageSettings StorageSettings { get { return _storageSettings.Value; } }
-        private Lazy<StorageSettings> _storageSettings;
+        protected StorageSettings StorageSettings => _storageSettings.Value;
+	    private Lazy<StorageSettings> _storageSettings;
 
         public RootFolderItem()
             : base()

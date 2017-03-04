@@ -2,13 +2,13 @@
 {
     public class TraversalContext : ITraversalContext
     {
-        public ITraversalContextEntrySet Entries { get { return _entries; } }
+        public ITraversalContextEntrySet Entries => _entries;
         private readonly ITraversalContextEntrySet _entries;
 
-        public ITraversalContextRootSet Roots { get { return _roots; } }
+        public ITraversalContextRootSet Roots => _roots;
         private readonly ITraversalContextRootSet _roots;
 
-        public ITraversalContextPropertySet Properties { get{return _properties; } }
+        public ITraversalContextPropertySet Properties => _properties;
         private readonly ITraversalContextPropertySet _properties;
          
         public TraversalContext(

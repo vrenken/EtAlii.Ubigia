@@ -17,24 +17,15 @@
 
         private string _toolTipText;
 
-        public ICommand ExitApplicationCommand
-        {
-            get { return _exitApplicationCommand; }
-        }
+        public ICommand ExitApplicationCommand => _exitApplicationCommand;
 
         private readonly ICommand _exitApplicationCommand;
 
-        public ICommand StartServiceCommand
-        {
-            get { return _startServiceCommand; }
-        }
+        public ICommand StartServiceCommand => _startServiceCommand;
 
         private readonly ICommand _startServiceCommand;
 
-        public ICommand StopServiceCommand
-        {
-            get { return _stopServiceCommand; }
-        }
+        public ICommand StopServiceCommand => _stopServiceCommand;
 
         private readonly ICommand _stopServiceCommand;
 

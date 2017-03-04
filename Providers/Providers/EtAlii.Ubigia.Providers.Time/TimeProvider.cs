@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Provisioning.Time
 
     public class TimeProvider : IProvider
     {
-        public IProviderConfiguration Configuration { get { return _configuration; } }
+        public IProviderConfiguration Configuration => _configuration;
         private readonly IProviderConfiguration _configuration;
 
         private readonly ITimeImporter _timeImporter;

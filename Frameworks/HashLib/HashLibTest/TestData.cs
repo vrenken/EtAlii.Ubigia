@@ -191,13 +191,7 @@ namespace HashLibTest
             return (byte[])m_keys[a_index].Clone();
         }
 
-        public int Count
-        {
-            get
-            {
-                return m_hashes.Count;
-            }
-        }
+        public int Count => m_hashes.Count;
 
         public int GetRepeat(int a_index)
         {

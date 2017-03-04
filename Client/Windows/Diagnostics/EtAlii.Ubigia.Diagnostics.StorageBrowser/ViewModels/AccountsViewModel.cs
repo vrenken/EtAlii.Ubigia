@@ -15,19 +15,19 @@
         public IEnumerable<Account> AvailableAccounts { get { return _availableAccounts; } private set { SetProperty(ref _availableAccounts, value); } }
         private IEnumerable<Account> _availableAccounts;
 
-        protected IManagementConnection Connection { get { return _connection; } }
+        protected IManagementConnection Connection => _connection;
         private readonly IManagementConnection _connection;
 
-        public ICommand AddCommand { get { return _addCommand; } }
+        public ICommand AddCommand => _addCommand;
         private readonly ICommand _addCommand;
 
-        public ICommand SaveCommand { get { return _saveCommand; } }
+        public ICommand SaveCommand => _saveCommand;
         private readonly ICommand _saveCommand;
 
-        public ICommand DeleteCommand { get { return _deleteCommand; } }
+        public ICommand DeleteCommand => _deleteCommand;
         private readonly ICommand _deleteCommand;
 
-        public ICommand ClearCommand { get { return _clearCommand; } }
+        public ICommand ClearCommand => _clearCommand;
         private readonly ICommand _clearCommand;
 
         public Account SelectedAccount { get { return _selectedAccount; } set { SetProperty(ref _selectedAccount, value); } }
@@ -42,7 +42,7 @@
         private string _accountPassword;
         public const string AccountPasswordProperty = "AccountPassword";
 
-        public AccountTemplate[] AvailableAccountTemplates { get { return AccountTemplate.All; } }
+        public AccountTemplate[] AvailableAccountTemplates => AccountTemplate.All;
 
         public AccountTemplate SelectedAccountTemplate { get { return _selectedAccountTemplate; } set { SetProperty(ref _selectedAccountTemplate, value); } }
         private AccountTemplate _selectedAccountTemplate;

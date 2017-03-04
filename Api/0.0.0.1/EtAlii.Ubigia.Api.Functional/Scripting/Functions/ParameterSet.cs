@@ -5,13 +5,13 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class ParameterSet
     {
-        public Parameter[] Parameters { get { return _parameters; } }
+        public Parameter[] Parameters => _parameters;
         private readonly Parameter[] _parameters;
 
-        public TypeInfo[] ParameterTypeInfos { get { return _parameterTypeInfos; } }
+        public TypeInfo[] ParameterTypeInfos => _parameterTypeInfos;
         private readonly TypeInfo[] _parameterTypeInfos;
 
-        public bool RequiresInput { get { return _requiresInput; } }
+        public bool RequiresInput => _requiresInput;
         private readonly bool _requiresInput;
 
         public ParameterSet(bool requiresInput, params Parameter[] parameters)

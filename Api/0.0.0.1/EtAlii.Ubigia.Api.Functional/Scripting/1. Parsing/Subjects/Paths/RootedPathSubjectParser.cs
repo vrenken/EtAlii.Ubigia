@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class RootedPathSubjectParser : IRootedPathSubjectParser
     {
         public const string Id = "RootedPathSubject";
-        public LpsParser Parser { get { return _parser; } }
+        public LpsParser Parser => _parser;
         private readonly LpsParser _parser;
 
         private readonly INodeValidator _nodeValidator;

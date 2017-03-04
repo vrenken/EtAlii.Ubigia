@@ -27,15 +27,9 @@ namespace EtAlii.xTechnology.Threading
                 _index = index;
             }
 
-            object IEnumerator.Current
-            {
-                get { return _current; }
-            }
+            object IEnumerator.Current => _current;
 
-            KeyValuePair<long, T> IEnumerator<KeyValuePair<long, T>>.Current
-            {
-                get { return _current; }
-            }
+            KeyValuePair<long, T> IEnumerator<KeyValuePair<long, T>>.Current => _current;
 
             void IEnumerator.Reset()
             {

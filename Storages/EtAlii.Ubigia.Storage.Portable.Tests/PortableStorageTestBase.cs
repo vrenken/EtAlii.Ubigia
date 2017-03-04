@@ -11,10 +11,10 @@
     
     public abstract class PortableStorageTestBase : IDisposable
     {
-        protected IStorage Storage { get { return _storage; } }
+        protected IStorage Storage => _storage;
         private IStorage _storage;
 
-        protected IFolder StorageFolder {get { return _storageFolder; }}
+        protected IFolder StorageFolder => _storageFolder;
         private IFolder _storageFolder;
 
         private string _rootFolder;

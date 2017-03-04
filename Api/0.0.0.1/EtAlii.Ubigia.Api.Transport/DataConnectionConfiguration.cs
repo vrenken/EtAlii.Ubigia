@@ -5,25 +5,25 @@
 
     public class DataConnectionConfiguration : IDataConnectionConfiguration
     {
-        public IDataConnectionExtension[] Extensions { get { return _extensions; } }
+        public IDataConnectionExtension[] Extensions => _extensions;
         private IDataConnectionExtension[] _extensions;
 
-        public ITransportProvider TransportProvider { get { return _transportProvider; } }
+        public ITransportProvider TransportProvider => _transportProvider;
         private ITransportProvider _transportProvider;
 
-        public Func<IDataConnection> FactoryExtension { get { return _factoryExtension;} }
+        public Func<IDataConnection> FactoryExtension => _factoryExtension;
         private Func<IDataConnection> _factoryExtension;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
 
-        public string AccountName { get { return _accountName; } }
+        public string AccountName => _accountName;
         private string _accountName;
 
-        public string Password { get { return _password; } }
+        public string Password => _password;
         private string _password;
 
-        public string Space { get { return _space; } }
+        public string Space => _space;
         private string _space;
 
         public DataConnectionConfiguration()

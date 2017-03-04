@@ -59,10 +59,7 @@
             {
             }
 
-            public override string ActionName
-            {
-                get { return "ActionName"; }
-            }
+            public override string ActionName => "ActionName";
 
             public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)
             {
@@ -74,10 +71,7 @@
                 return new Collection<HttpParameterDescriptor>();
             }
 
-            public override Type ReturnType
-            {
-                get { return typeof(string); }
-            }
+            public override Type ReturnType => typeof(string);
         }
     }
 }

@@ -4,13 +4,13 @@
     {
         private const string _imageContentTypeId = "Image";
 
-        public ContentType PortableNetworkGraphics { get { return _portableNetworkGraphics; } }
+        public ContentType PortableNetworkGraphics => _portableNetworkGraphics;
         private readonly ContentType _portableNetworkGraphics = new ContentType(_imageContentTypeId, "Png");
 
-        public ContentType Gif { get { return _gif; } }
+        public ContentType Gif => _gif;
         private readonly ContentType _gif = new ContentType(_imageContentTypeId, "Gif");
 
-        public ContentType Jpeg { get { return _jpeg; } }
+        public ContentType Jpeg => _jpeg;
         private readonly ContentType _jpeg = new ContentType(_imageContentTypeId, "Jpeg");
 
         internal ImageContentType()

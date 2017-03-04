@@ -16,15 +16,9 @@ namespace EtAlii.Ubigia.Provisioning
             return ((ProviderElement)element).Type;
         }
 
-        public override System.Configuration.ConfigurationElementCollectionType CollectionType
-        {
-            get { return System.Configuration.ConfigurationElementCollectionType.BasicMap; }
-        }
+        public override System.Configuration.ConfigurationElementCollectionType CollectionType => System.Configuration.ConfigurationElementCollectionType.BasicMap;
 
-        protected override string ElementName
-        {
-            get { return "add"; }
-        }
+        protected override string ElementName => "add";
 
         protected override bool IsElementName(string elementName)
         {
@@ -44,10 +38,7 @@ namespace EtAlii.Ubigia.Provisioning
             }
         }
 
-        new public ProviderElement this[string providerType]
-        {
-            get { return (ProviderElement)BaseGet(providerType); }
-        }
+        new public ProviderElement this[string providerType] => (ProviderElement)BaseGet(providerType);
 
         public bool ContainsKey(string key)
         {

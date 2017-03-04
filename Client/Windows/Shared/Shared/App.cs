@@ -13,13 +13,13 @@
         public const string StorageNaming = "Space";
         public const string StoragesNaming = "Spaces";
 
-        public static string CurrentDirectory { get { return _currentDirectory.Value; } }
+        public static string CurrentDirectory => _currentDirectory.Value;
         private static readonly Lazy<string> _currentDirectory = new Lazy<string>(Directory.GetCurrentDirectory);
 
-        public static string ShellExtensionsDirectory { get { return _shellExtensionsDirectory.Value; } }
+        public static string ShellExtensionsDirectory => _shellExtensionsDirectory.Value;
         private static readonly Lazy<string> _shellExtensionsDirectory = new Lazy<string>(() => Path.Combine(CurrentDirectory, "ShellExtensions"));
 
-        public static new App Current { get { return System.Windows.Application.Current as App; } }
+        public static new App Current => System.Windows.Application.Current as App;
 
         public readonly Container Container;
 

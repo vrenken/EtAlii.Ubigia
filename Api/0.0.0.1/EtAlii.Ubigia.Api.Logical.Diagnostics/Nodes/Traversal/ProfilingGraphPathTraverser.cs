@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
     {
         private readonly IGraphPathTraverser _decoree;
 
-        public IProfiler Profiler { get { return _profiler; } }
+        public IProfiler Profiler => _profiler;
         private readonly IProfiler _profiler;
 
         public ProfilingGraphPathTraverser(IGraphPathTraverser decoree, IProfiler profiler)

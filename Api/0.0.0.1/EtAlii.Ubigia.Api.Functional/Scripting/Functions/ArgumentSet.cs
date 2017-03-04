@@ -6,10 +6,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class ArgumentSet
     {
-        public object[] Arguments { get { return _arguments; } }
+        public object[] Arguments => _arguments;
         private readonly object[] _arguments;
 
-        public TypeInfo[] ArgumentTypeInfos { get { return _argumentTypeInfos; } }
+        public TypeInfo[] ArgumentTypeInfos => _argumentTypeInfos;
         private readonly TypeInfo[] _argumentTypeInfos;
 
         public ArgumentSet(params object[] arguments)

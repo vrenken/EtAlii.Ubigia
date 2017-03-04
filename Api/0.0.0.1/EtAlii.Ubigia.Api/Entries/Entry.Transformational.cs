@@ -6,7 +6,7 @@
 
     public sealed partial class Entry
     {
-        public Relation Downdate { get { return _downdate.Relation; } }
+        public Relation Downdate => _downdate.Relation;
         private DowndateComponent _downdate;
 
         public IEnumerable<Relation> Updates { get { return _updates.SelectMany(components => components.Relations); } }
@@ -34,14 +34,8 @@
             set { _downdate = value; }
         }
 
-        UpdatesComponentCollection IEditableEntry.Updates
-        {
-            get { return _updates; }
-        }
+        UpdatesComponentCollection IEditableEntry.Updates => _updates;
 
-        UpdatesComponentCollection IComponentEditableEntry.UpdatesComponent
-        {
-            get { return _updates; }
-        }
+        UpdatesComponentCollection IComponentEditableEntry.UpdatesComponent => _updates;
     }
 }

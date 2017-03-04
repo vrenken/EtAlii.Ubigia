@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     public class ProfileComposer : IProfileComposer
     {
-        public ReadOnlyObservableCollection<ProfilingResult> Results { get { return _results; } }
+        public ReadOnlyObservableCollection<ProfilingResult> Results => _results;
 
         private readonly ReadOnlyObservableCollection<ProfilingResult> _results;
 

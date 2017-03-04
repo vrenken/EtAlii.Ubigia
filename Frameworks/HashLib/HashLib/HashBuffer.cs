@@ -87,37 +87,13 @@ namespace HashLib
             return IsFull;
         }
 
-        public bool IsEmpty
-        {
-            get
-            {
-                return m_pos == 0;
-            }
-        }
+        public bool IsEmpty => m_pos == 0;
 
-        public int Pos
-        {
-            get
-            {
-                return m_pos;
-            }
-        }
+        public int Pos => m_pos;
 
-        public int Length
-        {
-            get
-            {
-                return m_data.Length;
-            }
-        }
+        public int Length => m_data.Length;
 
-        public bool IsFull
-        {
-            get
-            {
-                return (m_pos == m_data.Length);
-            }
-        }
+        public bool IsFull => (m_pos == m_data.Length);
 
         public override string ToString()
         {

@@ -4,7 +4,7 @@
 
     public class TaskbarIconService : ITaskbarIconService
     {
-        public Hardcodet.Wpf.TaskbarNotification.TaskbarIcon TaskbarIcon { get { return _taskbarIcon; } }
+        public Hardcodet.Wpf.TaskbarNotification.TaskbarIcon TaskbarIcon => _taskbarIcon;
         private readonly Hardcodet.Wpf.TaskbarNotification.TaskbarIcon _taskbarIcon;
 
         public TaskbarIconService(TaskbarIcon taskbarIcon)

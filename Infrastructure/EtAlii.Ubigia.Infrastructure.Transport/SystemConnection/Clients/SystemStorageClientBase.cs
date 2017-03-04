@@ -5,7 +5,7 @@
 
     internal abstract class SystemStorageClientBase
     {
-        protected IStorageConnection Connection { get { return _connection; } }
+        protected IStorageConnection Connection => _connection;
         private IStorageConnection _connection;
 
         public virtual async Task Connect(IStorageConnection storageConnection)

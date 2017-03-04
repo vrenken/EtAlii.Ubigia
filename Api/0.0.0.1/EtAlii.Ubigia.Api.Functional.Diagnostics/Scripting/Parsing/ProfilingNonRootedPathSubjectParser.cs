@@ -16,10 +16,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
             _profiler = profiler.Create(ProfilingAspects.Functional.ScriptPathSubjectParser);
         }
 
-        public LpsParser Parser
-        {
-            get { return _decoree.Parser; }
-        }
+        public LpsParser Parser => _decoree.Parser;
 
         public Subject Parse(LpNode node)
         {

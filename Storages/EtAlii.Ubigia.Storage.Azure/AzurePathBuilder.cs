@@ -5,7 +5,7 @@
 
     public class AzurePathBuilder : IPathBuilder
     {
-        public string BaseFolder { get { return _baseFolder; } }
+        public string BaseFolder => _baseFolder;
         private readonly string _baseFolder;
 
         private readonly IStorageSerializer _serializer;

@@ -8,10 +8,10 @@
 
     public class ProviderContext : IProviderContext
     {
-        public IDataContext SystemDataContext { get { return _systemDataContext; } }
+        public IDataContext SystemDataContext => _systemDataContext;
         private readonly IDataContext _systemDataContext;
 
-        public IManagementConnection ManagementConnection { get { return _managementConnection; } }
+        public IManagementConnection ManagementConnection => _managementConnection;
         private readonly IManagementConnection _managementConnection;
 
         private readonly IProviderConfiguration _configuration;

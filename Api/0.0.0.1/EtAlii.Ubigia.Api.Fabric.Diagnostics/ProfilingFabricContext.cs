@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
     public class ProfilingFabricContext : IProfilingFabricContext
     {
         private readonly IFabricContext _decoree;
-        public IFabricContextConfiguration Configuration { get { return _decoree.Configuration; } }
-        public IDataConnection Connection { get { return _decoree.Connection; } }
-        public IRootContext Roots { get { return _decoree.Roots; } }
-        public IEntryContext Entries { get { return _decoree.Entries; } }
-        public IContentContext Content { get { return _decoree.Content; } }
-        public IPropertyContext Properties { get { return _decoree.Properties; } }
+        public IFabricContextConfiguration Configuration => _decoree.Configuration;
+        public IDataConnection Connection => _decoree.Connection;
+        public IRootContext Roots => _decoree.Roots;
+        public IEntryContext Entries => _decoree.Entries;
+        public IContentContext Content => _decoree.Content;
+        public IPropertyContext Properties => _decoree.Properties;
 
-        public IProfiler Profiler { get { return _profiler; } }
+        public IProfiler Profiler => _profiler;
         private readonly IProfiler _profiler;
 
         public ProfilingFabricContext(

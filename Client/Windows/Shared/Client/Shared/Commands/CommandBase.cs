@@ -21,8 +21,8 @@
     /// </summary>
     private static T command;
 
-    protected Container Container { get { return _container; } }
-    private readonly Container _container;
+    protected Container Container => _container;
+      private readonly Container _container;
 
     protected CommandBase()
     {
@@ -73,18 +73,12 @@
     }
 
 
-    public static bool IsDesignMode
-    {
-      get
-      {
-        return (bool)
-          DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement))
-              .Metadata.DefaultValue;
-      }
-    }
+    public static bool IsDesignMode => (bool)
+        DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement))
+            .Metadata.DefaultValue;
 
 
-    /// <summary>
+      /// <summary>
     /// Resolves the window that owns the TaskbarIcon class.
     /// </summary>
     /// <param name="commandParameter"></param>

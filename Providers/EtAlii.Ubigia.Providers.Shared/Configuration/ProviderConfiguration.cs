@@ -9,18 +9,18 @@
 
     public class ProviderConfiguration : IProviderConfiguration
     {
-        public IDataContext SystemDataContext { get { return _systemDataContext; } }
+        public IDataContext SystemDataContext => _systemDataContext;
         private IDataContext _systemDataContext;
 
-        public IManagementConnection ManagementConnection { get { return _managementConnection; } }
+        public IManagementConnection ManagementConnection => _managementConnection;
         private IManagementConnection _managementConnection;
 
-        public IProviderExtension[] Extensions { get { return _extensions; } }
+        public IProviderExtension[] Extensions => _extensions;
         private IProviderExtension[] _extensions;
-        public IProviderFactory Factory { get { return _factory; } }
+        public IProviderFactory Factory => _factory;
         private IProviderFactory _factory;
 
-        public ILogFactory LogFactory { get { return _logFactory; } }
+        public ILogFactory LogFactory => _logFactory;
         private ILogFactory _logFactory;
         private Func<IDataConnection, IDataContext> _dataContextFactory;
 

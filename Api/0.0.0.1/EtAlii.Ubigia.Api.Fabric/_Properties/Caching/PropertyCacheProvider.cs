@@ -4,7 +4,7 @@
 
     internal class PropertyCacheProvider : IPropertyCacheProvider
     {
-        public IDictionary<Identifier, PropertyDictionary> Cache { get { return _cache; } }
+        public IDictionary<Identifier, PropertyDictionary> Cache => _cache;
         private readonly IDictionary<Identifier, PropertyDictionary> _cache;
 
         public PropertyCacheProvider()

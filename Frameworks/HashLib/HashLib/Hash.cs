@@ -22,29 +22,11 @@ namespace HashLib
             m_hash_size = a_hash_size;
         }
 
-        public virtual string Name
-        {
-            get
-            {
-                return GetType().Name;
-            }
-        }
+        public virtual string Name => GetType().Name;
 
-        public virtual int BlockSize
-        {
-            get
-            {
-                return m_block_size;
-            }
-        }
+        public virtual int BlockSize => m_block_size;
 
-        public virtual int HashSize
-        {
-            get
-            {
-                return m_hash_size;
-            }
-        }
+        public virtual int HashSize => m_hash_size;
 
         public virtual HashResult ComputeObject(object a_data)
         {

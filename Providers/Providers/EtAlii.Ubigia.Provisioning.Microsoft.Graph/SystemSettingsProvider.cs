@@ -2,7 +2,7 @@
 {
     public class SystemSettingsProvider : ISystemSettingsProvider
     {
-        public SystemSettings SystemSettings { get { return _systemSettings; } }
+        public SystemSettings SystemSettings => _systemSettings;
         private SystemSettings _systemSettings;
 
         private readonly IProviderContext _context;

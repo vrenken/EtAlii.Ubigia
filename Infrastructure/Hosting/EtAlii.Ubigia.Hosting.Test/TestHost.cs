@@ -8,19 +8,19 @@
 
     public class TestHost : IHost
     {
-        public IInfrastructureClient Client { get { return _client; } }
+        public IInfrastructureClient Client => _client;
         private readonly IInfrastructureClient _client;
 
-        public IInfrastructure Infrastructure { get { return _infrastructure; } }
+        public IInfrastructure Infrastructure => _infrastructure;
         private readonly IInfrastructure _infrastructure;
 
-        public IAddressFactory AddressFactory { get { return _addressFactory; } }
+        public IAddressFactory AddressFactory => _addressFactory;
         private readonly IAddressFactory _addressFactory;
 
-        public IStorage Storage { get { return _storage; } }
+        public IStorage Storage => _storage;
         private readonly IStorage _storage;
 
-        public IHostConfiguration Configuration { get { return _configuration; } }
+        public IHostConfiguration Configuration => _configuration;
         private readonly IHostConfiguration _configuration;
 
         public TestHost(

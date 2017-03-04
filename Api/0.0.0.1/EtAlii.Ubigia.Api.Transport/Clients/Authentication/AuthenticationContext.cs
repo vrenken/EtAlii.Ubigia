@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public class AuthenticationContext : IAuthenticationContext
     {
-        public IAuthenticationDataClient Data { get { return _data; } }
+        public IAuthenticationDataClient Data => _data;
         private readonly IAuthenticationDataClient _data;
 
         public AuthenticationContext(IAuthenticationDataClient data)
