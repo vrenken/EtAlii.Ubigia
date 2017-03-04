@@ -84,14 +84,10 @@ namespace Hardcodet.Wpf.TaskbarNotification
     /// on the OS. Windows Vista or higher is required in order to
     /// support this feature.
     /// </summary>
-    public bool SupportsCustomToolTips
-    {
-      get { return messageSink.Version == NotifyIconVersion.Vista; }
-    }
+    public bool SupportsCustomToolTips => messageSink.Version == NotifyIconVersion.Vista;
 
 
-
-    /// <summary>
+      /// <summary>
     /// Checks whether a non-tooltip popup is currently opened.
     /// </summary>
     private bool IsPopupOpen

@@ -17,8 +17,8 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
             _profiler = profiler.Create(ProfilingAspects.Functional.ScriptSequenceParser);
         }
 
-        public string Id { get { return _decoree.Id; } }
-        public LpsParser Parser { get { return _decoree.Parser; } }
+        public string Id => _decoree.Id;
+        public LpsParser Parser => _decoree.Parser;
 
         public Sequence Parse(string text)
         {

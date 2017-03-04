@@ -8,31 +8,31 @@
 
     public class InfrastructureConfiguration : IInfrastructureConfiguration
     {
-        public IInfrastructureExtension[] Extensions { get { return _extensions; } }
+        public IInfrastructureExtension[] Extensions => _extensions;
         private IInfrastructureExtension[] _extensions;
 
-        public ILogicalContext Logical { get { return _logical; } }
+        public ILogicalContext Logical => _logical;
         private ILogicalContext _logical;
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private string _name;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
 
-        public string Account { get { return _account; } }
+        public string Account => _account;
         private string _account;
 
-        public string Password { get { return _password; } }
+        public string Password => _password;
         private string _password;
 
-        public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get { return _componentManagerFactories; } }
+        public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories => _componentManagerFactories;
         private Func<Container, Func<Container, object>[], object>[] _componentManagerFactories;
 
-        public Func<Container, object>[] ComponentFactories { get { return _componentFactories; } }
+        public Func<Container, object>[] ComponentFactories => _componentFactories;
         private Func<Container, object>[] _componentFactories;
 
-        public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get { return _systemConnectionCreationProxy; } }
+        public ISystemConnectionCreationProxy SystemConnectionCreationProxy => _systemConnectionCreationProxy;
         private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
 
         private Func<Container, IInfrastructure> _getInfrastructure;

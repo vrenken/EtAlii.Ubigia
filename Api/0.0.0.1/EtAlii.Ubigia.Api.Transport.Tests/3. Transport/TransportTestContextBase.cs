@@ -7,10 +7,7 @@
 
     public abstract class TransportTestContextBase : ITransportTestContext
     {
-        public IHostTestContext Context
-        {
-            get { return _context; }
-        }
+        public IHostTestContext Context => _context;
         private IHostTestContext _context;
 
         private readonly IHostTestContextFactory _testHostFactory;

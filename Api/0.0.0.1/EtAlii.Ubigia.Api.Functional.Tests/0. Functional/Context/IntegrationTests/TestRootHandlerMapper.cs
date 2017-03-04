@@ -2,7 +2,7 @@
 {
     internal class TestRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
         public IRootHandler[] AllowedRootHandlers { get; }

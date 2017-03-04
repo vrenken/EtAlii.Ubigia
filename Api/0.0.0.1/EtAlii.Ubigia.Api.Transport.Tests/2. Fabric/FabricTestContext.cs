@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
     public class FabricTestContext : IFabricTestContext
     {
-        public ITransportTestContext Transport { get { return _transport; } }
+        public ITransportTestContext Transport => _transport;
         private readonly ITransportTestContext _transport;
 
         public FabricTestContext(ITransportTestContext transport)

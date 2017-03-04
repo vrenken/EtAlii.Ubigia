@@ -5,7 +5,7 @@
 
     public class ExecutionScope
     {
-        public Cache Cache { get { return _cache; } }
+        public Cache Cache => _cache;
         private readonly Cache _cache;
 
         private readonly Dictionary<string, Regex> _regexes;

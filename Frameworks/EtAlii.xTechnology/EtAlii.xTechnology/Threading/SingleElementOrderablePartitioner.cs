@@ -55,9 +55,6 @@ namespace EtAlii.xTechnology.Threading
         }
 
         // Must be set to true if GetDynamicPartitions() is supported.
-        public override bool SupportsDynamicPartitions
-        {
-            get { return true; }
-        }
+        public override bool SupportsDynamicPartitions => true;
     }
 }

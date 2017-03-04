@@ -4,10 +4,10 @@
 
     public sealed partial class Entry
     {
-        public Relation Previous { get { return _previous.Relation; } }
+        public Relation Previous => _previous.Relation;
         private PreviousComponent _previous;
 
-        public Relation Next { get { return _next.Relation; } }
+        public Relation Next => _next.Relation;
         private NextComponent _next;
 
         Relation IEditableEntry.Previous

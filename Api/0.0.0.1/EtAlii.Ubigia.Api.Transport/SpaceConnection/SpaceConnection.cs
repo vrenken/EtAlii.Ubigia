@@ -15,27 +15,27 @@
         public Account Account { get { return _account; } private set { _account = value; } }
         private Account _account;
 
-        public TTransport Transport { get { return _transport; } }
+        public TTransport Transport => _transport;
         private readonly TTransport _transport;
 
-        public bool IsConnected { get { return _storage != null && _space != null; } }
+        public bool IsConnected => _storage != null && _space != null;
 
-        public ISpaceConnectionConfiguration Configuration {get { return _configuration; } }
+        public ISpaceConnectionConfiguration Configuration => _configuration;
         private readonly ISpaceConnectionConfiguration _configuration;
 
-        public IRootContext Roots { get { return _roots; } }
+        public IRootContext Roots => _roots;
         private readonly IRootContext _roots;
 
-        public IEntryContext Entries { get { return _entries; } }
+        public IEntryContext Entries => _entries;
         private readonly IEntryContext _entries;
 
-        public IContentContext Content { get { return _content; } }
+        public IContentContext Content => _content;
         private readonly IContentContext _content;
 
-        public IPropertyContext Properties { get { return _properties; } }
+        public IPropertyContext Properties => _properties;
         private readonly IPropertyContext _properties;
 
-        public IAuthenticationContext Authentication { get { return _authentication; } }
+        public IAuthenticationContext Authentication => _authentication;
         private readonly IAuthenticationContext _authentication;
 
         protected SpaceConnection(

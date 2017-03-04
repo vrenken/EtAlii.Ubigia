@@ -6,13 +6,7 @@
     {
         public bool HasChanges { get; private set; }
 
-        public IEnumerable<NodeTrackingReference> Entries
-        {
-            get
-            {
-                return _entries;
-            }
-        }
+        public IEnumerable<NodeTrackingReference> Entries => _entries;
         private readonly List<NodeTrackingReference> _entries;
 
         public ChangeTracker()

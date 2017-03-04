@@ -9,7 +9,7 @@
     public class CodeViewModel : TextualViewModelBase, ICodeViewModel
     {
 
-        public ICodeButtonsViewModel Buttons { get { return _buttons; } }
+        public ICodeButtonsViewModel Buttons => _buttons;
         private readonly IGraphContext _graphContext;
         private readonly ICodeButtonsViewModel _buttons;
 

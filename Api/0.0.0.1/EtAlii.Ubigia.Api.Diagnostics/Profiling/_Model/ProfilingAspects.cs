@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     public static partial class ProfilingAspects
     {
-        public static ProfilingAspect[] All { get { return _all.Value; } }
+        public static ProfilingAspect[] All => _all.Value;
         private static readonly Lazy<ProfilingAspect[]> _all;
 
         static ProfilingAspects()

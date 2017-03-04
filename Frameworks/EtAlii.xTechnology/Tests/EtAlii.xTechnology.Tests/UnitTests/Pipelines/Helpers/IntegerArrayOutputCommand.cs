@@ -9,6 +9,6 @@ namespace EtAlii.xTechnology.Tests
         {
         }
 
-        public int[] Integers { get { return ((IParams<int[]>)this).Parameter; } }
+        public int[] Integers => ((IParams<int[]>)this).Parameter;
     }
 }

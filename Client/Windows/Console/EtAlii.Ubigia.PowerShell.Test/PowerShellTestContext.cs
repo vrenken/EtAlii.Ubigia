@@ -23,10 +23,10 @@
 
     public class PowerShellTestContext
     {
-        protected PowerShell PowerShell { get { return _powerShell; } }
+        protected PowerShell PowerShell => _powerShell;
         private PowerShell _powerShell;
 
-        public HostTestContext<PowerShellHost> Context { get { return _context; } }
+        public HostTestContext<PowerShellHost> Context => _context;
         private HostTestContext<PowerShellHost> _context;
 
         public PowerShellTestContext()

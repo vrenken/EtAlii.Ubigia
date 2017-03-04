@@ -5,18 +5,18 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     public class ProfilingDataConnection : IProfilingDataConnection 
     {
-        public IProfiler Profiler { get { return _profiler; } }
+        public IProfiler Profiler => _profiler;
         private readonly IProfiler _profiler;
 
-        public Storage Storage { get { return _decoree.Storage; } }
-        public Account Account { get { return _decoree.Account; } }
-        public Space Space { get { return _decoree.Space; } }
-        public IEntryContext Entries { get { return _decoree.Entries; } }
-        public IRootContext Roots { get { return _decoree.Roots; } }
-        public IContentContext Content { get { return _decoree.Content; } }
-        public IPropertyContext Properties { get { return _decoree.Properties; } }
-        public bool IsConnected { get { return _decoree.IsConnected; } }
-        public IDataConnectionConfiguration Configuration { get { return _decoree.Configuration; } }
+        public Storage Storage => _decoree.Storage;
+        public Account Account => _decoree.Account;
+        public Space Space => _decoree.Space;
+        public IEntryContext Entries => _decoree.Entries;
+        public IRootContext Roots => _decoree.Roots;
+        public IContentContext Content => _decoree.Content;
+        public IPropertyContext Properties => _decoree.Properties;
+        public bool IsConnected => _decoree.IsConnected;
+        public IDataConnectionConfiguration Configuration => _decoree.Configuration;
 
         private readonly IDataConnection _decoree;
 

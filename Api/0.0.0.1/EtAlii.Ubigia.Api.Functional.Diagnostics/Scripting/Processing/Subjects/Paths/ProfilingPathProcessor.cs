@@ -9,7 +9,8 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
         private readonly IPathProcessor _decoree;
         private readonly IProfiler _profiler;
 
-        public IProcessingContext Context { get { return _decoree.Context; } }
+        public IProcessingContext Context => _decoree.Context;
+
         public ProfilingPathProcessor(
             IPathProcessor decoree,
             IProfiler profiler)

@@ -4,19 +4,19 @@
     {
         private const string _timeContentTypeId = "Time";
 
-        public ContentType Year { get { return _year; } }
+        public ContentType Year => _year;
         private readonly ContentType _year = new ContentType(_timeContentTypeId, "Year");
 
-        public ContentType Month { get { return _month; } }
+        public ContentType Month => _month;
         private readonly ContentType _month = new ContentType(_timeContentTypeId, "Month");
 
-        public ContentType Day { get { return _day; } }
+        public ContentType Day => _day;
         private readonly ContentType _day = new ContentType(_timeContentTypeId, "Day");
 
-        public ContentType Hour { get { return _hour; } }
+        public ContentType Hour => _hour;
         private readonly ContentType _hour = new ContentType(_timeContentTypeId, "Hour");
 
-        public ContentType Minute { get { return _minute; } }
+        public ContentType Minute => _minute;
         private readonly ContentType _minute = new ContentType(_timeContentTypeId, "Minute");
 
         internal TimeContentType()

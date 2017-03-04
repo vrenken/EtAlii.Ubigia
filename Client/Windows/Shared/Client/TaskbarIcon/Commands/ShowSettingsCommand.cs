@@ -6,9 +6,6 @@ namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
     /// </summary>
     public class ShowSettingsCommand : ShowTabItemCommand<ShowSettingsCommand>
     {
-        public override System.Windows.Controls.TabItem TabItemToActivate
-        {
-            get { return App.Current.MainWindow.SettingsTabItem; }
-        }
+        public override System.Windows.Controls.TabItem TabItemToActivate => App.Current.MainWindow.SettingsTabItem;
     }
 }

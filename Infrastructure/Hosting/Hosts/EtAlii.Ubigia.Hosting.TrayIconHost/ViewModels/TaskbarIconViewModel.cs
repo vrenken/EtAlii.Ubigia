@@ -16,25 +16,25 @@
         public string ToolTipText { get { return _toolTipText; } private set { SetProperty(ref _toolTipText, value); } }
         private string _toolTipText;
 
-        public ICommand ExitApplicationCommand { get { return _exitApplicationCommand; } }
+        public ICommand ExitApplicationCommand => _exitApplicationCommand;
         private readonly ICommand _exitApplicationCommand;
 
-        public ICommand StartServiceCommand { get { return _startServiceCommand; } }
+        public ICommand StartServiceCommand => _startServiceCommand;
         private readonly ICommand _startServiceCommand;
 
-        public ICommand StopServiceCommand { get { return _stopServiceCommand; } }
+        public ICommand StopServiceCommand => _stopServiceCommand;
         private readonly ICommand _stopServiceCommand;
 
-        public ICommand StorageBrowserCommand { get { return _storageBrowserCommand; } }
+        public ICommand StorageBrowserCommand => _storageBrowserCommand;
         private readonly ICommand _storageBrowserCommand;
 
-        public ICommand SpaceBrowserCommand { get { return _spaceBrowserCommand; } }
+        public ICommand SpaceBrowserCommand => _spaceBrowserCommand;
         private readonly ICommand _spaceBrowserCommand;
 
-        public ICommand OpenAdminPortalCommand { get { return _openAdminPortalCommand; } }
+        public ICommand OpenAdminPortalCommand => _openAdminPortalCommand;
         private readonly ICommand _openAdminPortalCommand;
 
-        public ICommand OpenUserPortalCommand { get { return _openUserPortalCommand; } }
+        public ICommand OpenUserPortalCommand => _openUserPortalCommand;
         private readonly ICommand _openUserPortalCommand;
 
         public bool CanStartService { get { return _canStartService; } set { SetProperty(ref _canStartService, value); } }

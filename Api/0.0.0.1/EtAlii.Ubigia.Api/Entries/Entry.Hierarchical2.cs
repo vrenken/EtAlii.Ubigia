@@ -6,22 +6,16 @@
 
     public sealed partial class Entry
     {
-        public Relation Parent2 { get { return _parent2.Relation; } }
+        public Relation Parent2 => _parent2.Relation;
         private Parent2Component _parent2;
 
         public IEnumerable<Relation> Children2 { get { return _children2.SelectMany(component => component.Relations); } }
         private readonly Children2ComponentCollection _children2;
 
 
-        Children2ComponentCollection IEditableEntry.Children2
-        {
-            get { return _children2; }
-        }
+        Children2ComponentCollection IEditableEntry.Children2 => _children2;
 
-        Children2ComponentCollection IComponentEditableEntry.Children2Component
-        {
-            get { return _children2; }
-        }
+        Children2ComponentCollection IComponentEditableEntry.Children2Component => _children2;
 
         Relation IEditableEntry.Parent2
         {

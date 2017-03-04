@@ -58,14 +58,8 @@
             return new GraphPath(list.ToArray());
         }
 
-        public GraphPathPart this[int index]
-        {
-            get { return _parts[index]; }
-        }
+        public GraphPathPart this[int index] => _parts[index];
 
-        public int Length
-        {
-            get { return _parts.Length; }
-        }
+        public int Length => _parts.Length;
     }
 }

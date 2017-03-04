@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
     public class SignalRTransportProvider : ITransportProvider
     {
-        public IHttpClient HttpClient { get { return _httpClient; } }
+        public IHttpClient HttpClient => _httpClient;
         private readonly IHttpClient _httpClient;
 
         private string _authenticationToken;

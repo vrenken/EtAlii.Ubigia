@@ -21,16 +21,16 @@
         private readonly IProfilingFabricContext _fabricContext;
         private readonly IProfilingDataConnection _connection;
 
-        public IProfilingAspectViewModel[] Functional { get { return _functional; } }
+        public IProfilingAspectViewModel[] Functional => _functional;
         private readonly IProfilingAspectViewModel[] _functional;
 
-        public IProfilingAspectViewModel[] Logical { get { return _logical; } }
+        public IProfilingAspectViewModel[] Logical => _logical;
         private readonly IProfilingAspectViewModel[] _logical;
 
-        public IProfilingAspectViewModel[] Fabric { get { return _fabric; } }
+        public IProfilingAspectViewModel[] Fabric => _fabric;
         private readonly IProfilingAspectViewModel[] _fabric;
 
-        public IProfilingAspectViewModel[] Transport { get { return _transport; } }
+        public IProfilingAspectViewModel[] Transport => _transport;
         private readonly IProfilingAspectViewModel[] _transport;
 
         public ProfilingAspectsViewModel(

@@ -13,29 +13,11 @@
         private static readonly Task<bool> _trueTask = MakeTask<bool>(true);
         private static readonly Task<bool> _falseTask = MakeTask<bool>(false);
 
-        public static Task Empty
-        {
-            get
-            {
-                return _emptyTask;
-            }
-        }
+        public static Task Empty => _emptyTask;
 
-        public static Task<bool> True
-        {
-            get
-            {
-                return _trueTask;
-            }
-        }
+        public static Task<bool> True => _trueTask;
 
-        public static Task<bool> False
-        {
-            get
-            {
-                return _falseTask;
-            }
-        }
+        public static Task<bool> False => _falseTask;
 
         private static Task<T> MakeTask<T>(T value)
         {

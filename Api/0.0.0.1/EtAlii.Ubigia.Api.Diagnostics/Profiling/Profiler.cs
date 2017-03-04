@@ -6,13 +6,13 @@
 
     public class Profiler : IProfiler
     {
-        public IProfiler Parent { get {return _parentProfiler; } }
+        public IProfiler Parent => _parentProfiler;
         private readonly Profiler _parentProfiler;
 
-        public IProfiler Previous { get { return _previousProfiler; } }
+        public IProfiler Previous => _previousProfiler;
         private Profiler _previousProfiler;
 
-        public IProfilingResultStack ResultStack { get { return _profilingResultStack; } }
+        public IProfilingResultStack ResultStack => _profilingResultStack;
         private readonly IProfilingResultStack _profilingResultStack;
 
         private IParentProfileResultFinder _parentProfileResultFinder;
@@ -36,7 +36,7 @@
 
         public event Action AspectsChanged;
 
-        public ProfilingAspect Aspect { get { return _aspect; } }
+        public ProfilingAspect Aspect => _aspect;
         private readonly ProfilingAspect _aspect;
 
         public IProfiler Create(ProfilingAspect aspect)

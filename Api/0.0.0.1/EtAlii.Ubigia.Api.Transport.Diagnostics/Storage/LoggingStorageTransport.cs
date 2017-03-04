@@ -8,7 +8,7 @@
 
     public class LoggingStorageTransport : IStorageTransport
     {
-        public bool IsConnected { get { return _transport.IsConnected; } }
+        public bool IsConnected => _transport.IsConnected;
 
         private readonly IStorageTransport _transport;
         private readonly ILogger _logger;

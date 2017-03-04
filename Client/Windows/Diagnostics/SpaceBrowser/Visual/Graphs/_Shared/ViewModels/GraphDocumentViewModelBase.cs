@@ -11,18 +11,18 @@
     {
         #region Properties
 
-        protected IFabricContext Fabric { get { return _fabric; } }
+        protected IFabricContext Fabric => _fabric;
         private readonly IFabricContext _fabric;
 
         private readonly ICommand _selectEntryCommand;
         private readonly ICommand _discoverEntryCommand;
 
-        public IGraphConfiguration Configuration { get { return _graphContext.Configuration; } }
+        public IGraphConfiguration Configuration => _graphContext.Configuration;
 
-        public IGraphButtonsViewModel Buttons { get { return _buttons; } }
+        public IGraphButtonsViewModel Buttons => _buttons;
         private readonly IGraphButtonsViewModel _buttons;
 
-        public IGraphContextMenuViewModel ContextMenu { get { return _contextMenu; } }
+        public IGraphContextMenuViewModel ContextMenu => _contextMenu;
         private readonly IGraphContextMenuViewModel _contextMenu;
 
         public IGraphContext GraphContext => _graphContext;

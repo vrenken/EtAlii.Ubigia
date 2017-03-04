@@ -79,12 +79,9 @@ namespace Moppet.Lapa
 		/// </summary>
         /// <param name="relativeIndex">Index characters [0; Length).</param>
 		/// <returns>Символ.</returns>
-		public char this[int relativeIndex]
-		{
-			get { return Source[Index + relativeIndex]; }
-		}
-		
-		/// <summary>
+		public char this[int relativeIndex] => Source[Index + relativeIndex];
+
+	    /// <summary>
         /// The operator of bringing the line to the object.
 		/// </summary>
         /// <param name="text">Строка.</param>

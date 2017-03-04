@@ -6,7 +6,7 @@
 
     internal abstract class WebApiClientBase
     {
-        protected IWebApiStorageConnection Connection { get { return _connection; } }
+        protected IWebApiStorageConnection Connection => _connection;
         private IWebApiStorageConnection _connection;
 
         protected WebApiClientBase()

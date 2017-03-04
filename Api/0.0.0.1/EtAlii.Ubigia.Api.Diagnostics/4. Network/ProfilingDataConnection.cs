@@ -19,17 +19,17 @@
         private static int _currentClosing;
         private static int _totalClosed;
 
-        public Storage Storage { get { return _decoree.Storage; } }
-        public Account Account { get { return _decoree.Account; } }
-        public Space Space { get { return _decoree.Space; } }
+        public Storage Storage => _decoree.Storage;
+        public Account Account => _decoree.Account;
+        public Space Space => _decoree.Space;
 
-        public IRootContext Roots { get { return _decoree.Roots; } }
-        public IEntryContext Entries { get { return _decoree.Entries; } }
-        public IContentContext Content { get { return _decoree.Content; } }
-        public IPropertyContext Properties { get { return _decoree.Properties; } }
+        public IRootContext Roots => _decoree.Roots;
+        public IEntryContext Entries => _decoree.Entries;
+        public IContentContext Content => _decoree.Content;
+        public IPropertyContext Properties => _decoree.Properties;
 
-        public bool IsConnected { get { return _decoree.IsConnected; } }
-        public IDataConnectionConfiguration Configuration { get { return _decoree.Configuration; } }
+        public bool IsConnected => _decoree.IsConnected;
+        public IDataConnectionConfiguration Configuration => _decoree.Configuration;
 
         internal ProfilingDataConnection(
             IDataConnection decoree,

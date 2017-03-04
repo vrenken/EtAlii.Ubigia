@@ -171,9 +171,9 @@ namespace Moppet.Lapa
 		/// <summary>
         /// True if the node is a successful matching the text.
 		/// </summary>
-		public bool Success { get { return Match.Length >= 0; } }
-		
-		/// <summary>
+		public bool Success => Match.Length >= 0;
+
+	    /// <summary>
         /// Returns a block of text that represents the node. 
         /// If non-empty block of text, then the text is considered to be parsed (analyzed).
         /// </summary>

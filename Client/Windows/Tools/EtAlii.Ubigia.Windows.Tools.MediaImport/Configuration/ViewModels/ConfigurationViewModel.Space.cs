@@ -11,10 +11,10 @@
 
     internal partial class ConfigurationViewModel : BindableBase
     {
-        public ICommand SelectSpaceCommand { get { return _selectSpaceCommand; } }
+        public ICommand SelectSpaceCommand => _selectSpaceCommand;
         private readonly ICommand _selectSpaceCommand;
 
-        public IDataConnection Connection { get { return _connection; } }
+        public IDataConnection Connection => _connection;
         private readonly IDataConnection _connection;
 
         private bool CanSelectSpace(object obj)

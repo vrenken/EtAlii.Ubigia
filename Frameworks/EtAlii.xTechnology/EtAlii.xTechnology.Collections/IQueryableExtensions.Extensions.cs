@@ -65,14 +65,10 @@ namespace EtAlii.xTechnology.Collections
         {
             private int _depth;
             private T _item;
-            public int Depth
-            {
-                get { return _depth; }
-            }
-            public T Item
-            {
-                get { return _item; }
-            }
+            public int Depth => _depth;
+
+            public T Item => _item;
+
             public Recursion(int depth, T item)
             {
                 _depth = depth;

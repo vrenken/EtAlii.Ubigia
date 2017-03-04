@@ -8,13 +8,13 @@
 
     public class JournalViewModel : BindableBase, IJournalViewModel
     {
-        public ObservableCollection<JournalItem> Items { get { return _items; } }
+        public ObservableCollection<JournalItem> Items => _items;
         private readonly ObservableCollection<JournalItem> _items;
 
         public int Size { get { return _size; } set { SetProperty(ref _size, value); } }
         private int _size = 300;
 
-        protected IFabricContext Fabric { get { return _fabric; } }
+        protected IFabricContext Fabric => _fabric;
         private readonly IFabricContext _fabric;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 

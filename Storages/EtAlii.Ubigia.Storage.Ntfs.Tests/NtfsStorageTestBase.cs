@@ -9,7 +9,7 @@
     
     public abstract class NtfsStorageTestBase : IDisposable
     {
-        protected IStorage Storage { get { return _storage; } }
+        protected IStorage Storage => _storage;
         private IStorage _storage;
 
         private readonly string _rootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";

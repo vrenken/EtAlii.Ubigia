@@ -5,7 +5,7 @@
 
     public class NtfsPathBuilder : IPathBuilder
     {
-        public string BaseFolder { get { return _baseFolder; } }
+        public string BaseFolder => _baseFolder;
         private string _baseFolder;
 
         private readonly IStorageConfiguration _configuration;

@@ -7,13 +7,7 @@
     public class ProviderConfigurationsSection : ConfigurationSection, IProviderConfigurationsSection
     {
         [ConfigurationProperty("", IsDefaultCollection  = true)]
-        public ProviderCollection Providers
-        {
-            get
-            {
-                return (ProviderCollection) base[""];
-            }
-        }
+        public ProviderCollection Providers => (ProviderCollection) base[""];
 
         public IProviderConfiguration[] ToProviderConfigurations()
         {

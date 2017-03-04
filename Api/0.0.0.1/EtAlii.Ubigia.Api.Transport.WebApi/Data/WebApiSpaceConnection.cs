@@ -4,10 +4,10 @@ namespace EtAlii.Ubigia.Api.Transport.WebApi
 
     internal class WebApiSpaceConnection : SpaceConnection<WebApiSpaceTransport>, IWebApiSpaceConnection
     {
-        public IInfrastructureClient Client { get { return _client; } }
+        public IInfrastructureClient Client => _client;
         private readonly IInfrastructureClient _client;
 
-        public IAddressFactory AddressFactory { get { return _addressFactory; } }
+        public IAddressFactory AddressFactory => _addressFactory;
         private readonly IAddressFactory _addressFactory;
 
         public WebApiSpaceConnection(

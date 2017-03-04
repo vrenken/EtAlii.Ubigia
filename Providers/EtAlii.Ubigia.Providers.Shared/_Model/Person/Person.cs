@@ -4,13 +4,13 @@
 
     public class Person
     {
-        public int Number { get { return _number; } }
+        public int Number => _number;
         private readonly int _number;
 
-        public List<Email> Emails { get { return _emails; } }
+        public List<Email> Emails => _emails;
         private readonly List<Email> _emails;
 
-        public List<Phone> Phones { get { return _phones; } }
+        public List<Phone> Phones => _phones;
         private readonly List<Phone> _phones;
 
         public Person(int number)

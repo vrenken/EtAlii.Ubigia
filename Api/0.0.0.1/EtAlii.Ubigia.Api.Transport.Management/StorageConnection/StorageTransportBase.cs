@@ -6,7 +6,7 @@
 
     public abstract class StorageTransportBase : IStorageTransport
     {
-        public bool IsConnected { get { return _isConnected; } }
+        public bool IsConnected => _isConnected;
         private bool _isConnected;
 
         public virtual void Initialize(IStorageConnection storageConnection, string address)

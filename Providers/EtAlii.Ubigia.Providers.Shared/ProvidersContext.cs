@@ -7,13 +7,13 @@
 
     public class ProvidersContext : IProvidersContext
     {
-        public IDataContext SystemDataContext { get { return _systemDataContext; } }
+        public IDataContext SystemDataContext => _systemDataContext;
         private readonly IDataContext _systemDataContext;
 
-        public IManagementConnection ManagementConnection { get { return _managementConnection; } }
+        public IManagementConnection ManagementConnection => _managementConnection;
         private readonly IManagementConnection _managementConnection;
 
-        public IProviderConfiguration[] ProviderConfigurations { get { return _providerConfigurations; } }
+        public IProviderConfiguration[] ProviderConfigurations => _providerConfigurations;
         private IProviderConfiguration[] _providerConfigurations;
         private Func<IDataConnection, IDataContext> _dataContextFactory;
 

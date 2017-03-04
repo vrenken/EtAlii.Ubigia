@@ -8,7 +8,7 @@
     
     public abstract class InMemoryStorageTestBase : IDisposable
     {
-        protected InMemoryStorage Storage { get { return _storage; } }
+        protected InMemoryStorage Storage => _storage;
         private InMemoryStorage _storage;
 
         public InMemoryStorageTestBase()

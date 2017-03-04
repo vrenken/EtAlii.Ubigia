@@ -4,7 +4,8 @@
 
     public class SpaceTemplate
     {
-        public static SpaceTemplate[] All { get { return _all.Value; } }
+        public static SpaceTemplate[] All => _all.Value;
+
         private static readonly Lazy<SpaceTemplate[]> _all = new Lazy<SpaceTemplate[]>(() => new[] {
             Data,
             System,
@@ -12,7 +13,8 @@
             Metrics
         });
 
-        public static SpaceTemplate Data { get { return _data; } }
+        public static SpaceTemplate Data => _data;
+
         private static readonly SpaceTemplate _data = new SpaceTemplate
         (
             name: SpaceName.Data,
@@ -33,7 +35,8 @@
             setupScript: new[] { "" }
         );
 
-        public static SpaceTemplate System { get { return _system; } }
+        public static SpaceTemplate System => _system;
+
         private static readonly SpaceTemplate _system = new SpaceTemplate
         (
             name: SpaceName.System,
@@ -51,7 +54,8 @@
             setupScript: new [] { "" }
         );
 
-        public static SpaceTemplate Configuration { get { return _configuration; } }
+        public static SpaceTemplate Configuration => _configuration;
+
         private static readonly SpaceTemplate _configuration = new SpaceTemplate
         (
             name: SpaceName.Configuration,
@@ -66,7 +70,8 @@
             setupScript: new [] { "" }
         );
 
-        public static SpaceTemplate Metrics { get { return _metrics; } }
+        public static SpaceTemplate Metrics => _metrics;
+
         private static readonly SpaceTemplate _metrics = new SpaceTemplate
         (
             name: SpaceName.Metrics,
@@ -84,15 +89,15 @@
         );
 
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
-        public string[] RequiredRoles { get { return _requiredRoles; } }
+        public string[] RequiredRoles => _requiredRoles;
         private readonly string[] _requiredRoles;
 
-        public string[] RootsToCreate { get { return _rootsToCreate; } }
+        public string[] RootsToCreate => _rootsToCreate;
         private readonly string[] _rootsToCreate;
 
-        public string[] SetupScript { get { return _setupScript; } }
+        public string[] SetupScript => _setupScript;
         private readonly string[] _setupScript;
 
         private SpaceTemplate(

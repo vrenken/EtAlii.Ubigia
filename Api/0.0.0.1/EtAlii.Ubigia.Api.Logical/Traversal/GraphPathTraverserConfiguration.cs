@@ -6,10 +6,10 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public class GraphPathTraverserConfiguration : IGraphPathTraverserConfiguration
     {
-        public IFabricContext FabricContext { get { return _fabricContext; } }
+        public IFabricContext FabricContext => _fabricContext;
         private IFabricContext _fabricContext;
 
-        public IGraphPathTraverserExtension[] Extensions { get { return _extensions; } }
+        public IGraphPathTraverserExtension[] Extensions => _extensions;
         private IGraphPathTraverserExtension[] _extensions;
         
 

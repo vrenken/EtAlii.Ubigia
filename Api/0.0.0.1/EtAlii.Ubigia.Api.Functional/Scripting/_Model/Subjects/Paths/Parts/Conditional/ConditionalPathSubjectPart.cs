@@ -5,7 +5,7 @@
 
     public class ConditionalPathSubjectPart : PathSubjectPart
     {
-        public Condition[] Conditions { get { return _conditions; } }
+        public Condition[] Conditions => _conditions;
         private readonly Condition[] _conditions; 
 
         public ConditionalPathSubjectPart(Condition[] conditions)

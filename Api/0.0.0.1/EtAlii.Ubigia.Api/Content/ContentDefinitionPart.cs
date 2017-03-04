@@ -16,6 +16,6 @@
             Size = 0,
         };
 
-        protected internal override string Name { get { return ContentDefinition.ContentDefinitionName; } }
+        protected internal override string Name => ContentDefinition.ContentDefinitionName;
     }
 }

@@ -11,7 +11,7 @@
         private readonly IInternalPropertiesSerializer _propertiesSerializer;
         private readonly IFolder _storage;
 
-        public string FileNameFormat { get { return _fileNameFormat; } }
+        public string FileNameFormat => _fileNameFormat;
         private const string _fileNameFormat = "{0}.bson";
 
         public PortableStorageSerializer(

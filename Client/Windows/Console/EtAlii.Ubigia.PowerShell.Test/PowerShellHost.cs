@@ -10,13 +10,13 @@
 
     public class PowerShellHost : IHost
     {
-        public IHostConfiguration Configuration { get { return _configuration; } }
+        public IHostConfiguration Configuration => _configuration;
         private readonly IHostConfiguration _configuration;
 
-        public IInfrastructure Infrastructure { get { return _infrastructure; } }
+        public IInfrastructure Infrastructure => _infrastructure;
         private readonly IInfrastructure _infrastructure;
 
-        public IStorage Storage { get { return _storage; } }
+        public IStorage Storage => _storage;
         private IStorage _storage;
 
         private readonly ILogger _logger;

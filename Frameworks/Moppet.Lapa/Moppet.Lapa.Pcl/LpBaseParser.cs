@@ -37,15 +37,15 @@ namespace Moppet.Lapa
 		/// <summary>
 		/// Truth is, if you want to wrap the node (the result returned by the parser), if it has a non-zero identifier.
 		/// </summary>
-		public bool WrapNode { get { return m_wrapNode; } }
+		public bool WrapNode => m_wrapNode;
 
-		/// <summary>
+	    /// <summary>
 		/// Identifier.
 		/// </summary>
-		public string Identifier { get { return m_identifier; } }
+		public string Identifier => m_identifier;
 
 
-		/// <summary>
+	    /// <summary>
 		/// Creates a copy of the parser with a new identifier.
 		/// </summary>
 		/// <param name="id">ID.</param>

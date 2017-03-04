@@ -10,10 +10,10 @@
 
     public class SignalRStorageTransport : StorageTransportBase, ISignalRStorageTransport
     {
-        public HubConnection HubConnection { get { return _hubConnection; } }
+        public HubConnection HubConnection => _hubConnection;
         private HubConnection _hubConnection;
 
-        public IHttpClient HttpClient { get { return _httpClient; } }
+        public IHttpClient HttpClient => _httpClient;
         private readonly IHttpClient _httpClient;
 
         public string AuthenticationToken { get { return _authenticationTokenGetter(); } set { _authenticationTokenSetter(value); } }

@@ -9,7 +9,7 @@
         private readonly IImporter[] _importers;
         private readonly IUpdater[] _updaters;
 
-        public IProviderConfiguration Configuration { get { return _configuration; } }
+        public IProviderConfiguration Configuration => _configuration;
         private readonly IProviderConfiguration _configuration;
 
         public GoogleProvider(

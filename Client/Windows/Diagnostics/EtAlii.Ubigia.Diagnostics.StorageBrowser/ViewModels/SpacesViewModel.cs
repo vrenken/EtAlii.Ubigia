@@ -16,19 +16,19 @@
         public IEnumerable<Space> AvailableSpaces { get { return _availableSpaces; } private set { SetProperty(ref _availableSpaces, value); } }
         private IEnumerable<Space> _availableSpaces;
 
-        protected IManagementConnection Connection { get { return _connection; } }
+        protected IManagementConnection Connection => _connection;
         private readonly IManagementConnection _connection;
 
-        public ICommand AddCommand { get { return _addCommand; } }
+        public ICommand AddCommand => _addCommand;
         private readonly ICommand _addCommand;
 
-        public ICommand SaveCommand { get { return _saveCommand; } }
+        public ICommand SaveCommand => _saveCommand;
         private readonly ICommand _saveCommand;
 
-        public ICommand DeleteCommand { get { return _deleteCommand; } }
+        public ICommand DeleteCommand => _deleteCommand;
         private readonly ICommand _deleteCommand;
 
-        public ICommand ClearCommand { get { return _clearCommand; } }
+        public ICommand ClearCommand => _clearCommand;
         private readonly ICommand _clearCommand;
 
         public Space SelectedSpace { get { return _selectedSpace; } set { SetProperty(ref _selectedSpace, value); } }
@@ -43,7 +43,7 @@
         private string _spaceName;
         public const string SpaceNameProperty = "SpaceName";
 
-        public SpaceTemplate[] AvailableSpaceTemplates { get { return SpaceTemplate.All; } }
+        public SpaceTemplate[] AvailableSpaceTemplates => SpaceTemplate.All;
 
         public SpaceTemplate SelectedSpaceTemplate { get { return _selectedSpaceTemplate; } set { SetProperty(ref _selectedSpaceTemplate, value); } }
         private SpaceTemplate _selectedSpaceTemplate;

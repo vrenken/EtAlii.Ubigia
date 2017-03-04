@@ -5,7 +5,7 @@
     public class SubjectOperatorExecutionPlan : ISubjectExecutionPlan 
     {
         private readonly IOperatorExecutionPlan _operatorExecutionPlan;
-        public Type OutputType { get { return _operatorExecutionPlan.OutputType; } }
+        public Type OutputType => _operatorExecutionPlan.OutputType;
         public Subject Subject { get; private set; }
 
         public SubjectOperatorExecutionPlan(IOperatorExecutionPlan operatorExecutionPlan)

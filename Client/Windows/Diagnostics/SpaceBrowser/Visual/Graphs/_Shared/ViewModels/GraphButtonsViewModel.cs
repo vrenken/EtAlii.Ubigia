@@ -11,13 +11,13 @@
     {
         private readonly IFabricContext _fabric;
 
-        public ICommand DiscoverFromHeadCommand { get { return _discoverFromHeadCommand; } }
+        public ICommand DiscoverFromHeadCommand => _discoverFromHeadCommand;
         private readonly ICommand _discoverFromHeadCommand;
 
-        public ICommand DiscoverFromTailCommand { get { return _discoverFromTailCommand; } }
+        public ICommand DiscoverFromTailCommand => _discoverFromTailCommand;
         private readonly ICommand _discoverFromTailCommand;
         
-        public ICommand ClearGraphCommand { get { return _clearGraphCommand; } }
+        public ICommand ClearGraphCommand => _clearGraphCommand;
         private readonly ICommand _clearGraphCommand;
 
         private readonly IGraphContext _graphContext;

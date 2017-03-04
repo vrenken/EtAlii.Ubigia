@@ -7,7 +7,7 @@
 
     public class LoggingSpaceTransport : ISpaceTransport
     {
-        public bool IsConnected { get { return _transport.IsConnected; } }
+        public bool IsConnected => _transport.IsConnected;
 
         private readonly ISpaceTransport _transport;
         private readonly ILogger _logger;

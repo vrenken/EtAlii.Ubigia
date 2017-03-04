@@ -9,19 +9,19 @@
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
-        public IRootsViewModel RootsViewModel { get { return _rootsViewModel; } }
+        public IRootsViewModel RootsViewModel => _rootsViewModel;
         private readonly IDocumentsProvider _documentsProvider;
         private readonly IRootsViewModel _rootsViewModel;
 
-        public IJournalViewModel JournalViewModel { get { return _journalViewModel; } }
+        public IJournalViewModel JournalViewModel => _journalViewModel;
         private readonly IJournalViewModel _journalViewModel;
 
-        public ObservableCollection<IDocumentViewModel> Documents { get { return _documentsProvider.Documents; } }
+        public ObservableCollection<IDocumentViewModel> Documents => _documentsProvider.Documents;
 
         public ICommand CloseCommand { get { return _closeCommand; } set { SetProperty(ref _closeCommand, value); } }
         private ICommand _closeCommand;
 
-        public INewDocumentCommand[] NewBlankDocumentCommands { get { return _newBlankDocumentCommands; } }
+        public INewDocumentCommand[] NewBlankDocumentCommands => _newBlankDocumentCommands;
         private readonly INewDocumentCommand[] _newBlankDocumentCommands;
 
         public INewDocumentCommand[] NewDocumentFromTemplateCommands { get { return _newDocumentFromTemplateCommands; } set { SetProperty(ref _newDocumentFromTemplateCommands, value); } }

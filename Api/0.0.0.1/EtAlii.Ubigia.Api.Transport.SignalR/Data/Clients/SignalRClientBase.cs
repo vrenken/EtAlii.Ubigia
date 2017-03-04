@@ -4,7 +4,7 @@
 
     public abstract class SignalRClientBase
     {
-        protected ISpaceConnection<ISignalRSpaceTransport> Connection { get { return _connection; } }
+        protected ISpaceConnection<ISignalRSpaceTransport> Connection => _connection;
         private ISpaceConnection<ISignalRSpaceTransport> _connection;
 
         protected SignalRClientBase()

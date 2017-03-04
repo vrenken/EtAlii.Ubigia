@@ -17,7 +17,7 @@
 
         private class OldWindow : IWin32Window
         {
-            IntPtr IWin32Window.Handle { get { return _handle; } }
+            IntPtr IWin32Window.Handle => _handle;
             private readonly IntPtr _handle;
 
             public OldWindow(IntPtr handle)

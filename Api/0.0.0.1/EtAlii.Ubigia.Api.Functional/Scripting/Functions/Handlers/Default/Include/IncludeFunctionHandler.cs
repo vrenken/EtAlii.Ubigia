@@ -8,10 +8,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class IncludeFunctionHandler : FunctionHandlerBase, IFunctionHandler
     {
-        public ParameterSet[] ParameterSets { get { return _parameterSets; } }
+        public ParameterSet[] ParameterSets => _parameterSets;
         private readonly ParameterSet[] _parameterSets;
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
         public IncludeFunctionHandler()

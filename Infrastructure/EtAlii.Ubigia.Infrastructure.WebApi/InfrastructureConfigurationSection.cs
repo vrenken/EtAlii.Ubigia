@@ -21,22 +21,10 @@
         }
 
         [ConfigurationProperty("account", IsRequired = true)]
-        public string Account
-        {
-            get
-            {
-                return this["account"] as string;
-            }
-        }
+        public string Account => this["account"] as string;
 
         [ConfigurationProperty("address", IsRequired = true)]
-        public string Address
-        {
-            get
-            {
-                return this["address"] as string;
-            }
-        }
+        public string Address => this["address"] as string;
 
         public IInfrastructureConfiguration ToInfrastructureConfiguration()
         {

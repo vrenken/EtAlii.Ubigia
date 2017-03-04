@@ -222,12 +222,6 @@ namespace HashLib.Hash64
             }
         }
 
-        public int? KeyLength
-        {
-            get
-            {
-                return 16;
-            }
-        }
+        public int? KeyLength => 16;
     }
 }

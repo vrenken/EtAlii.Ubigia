@@ -12,13 +12,13 @@
 
         private string _address;
 
-        public Storage Storage { get { return _connection.Storage; } }
-        public bool IsConnected { get { return _connection.IsConnected; } }
-        public IStorageTransport Transport { get { return ((dynamic)_connection).Transport; } }
-        public IStorageContext Storages { get { return _connection?.Storages; } }
-        public IAccountContext Accounts { get { return _connection?.Accounts; } }
-        public ISpaceContext Spaces { get { return _connection?.Spaces; } }
-        public IStorageConnectionConfiguration Configuration { get { return _connection.Configuration; } }
+        public Storage Storage => _connection.Storage;
+        public bool IsConnected => _connection.IsConnected;
+        public IStorageTransport Transport => ((dynamic)_connection).Transport;
+        public IStorageContext Storages => _connection?.Storages;
+        public IAccountContext Accounts => _connection?.Accounts;
+        public ISpaceContext Spaces => _connection?.Spaces;
+        public IStorageConnectionConfiguration Configuration => _connection.Configuration;
 
         public LoggingStorageConnection(
             IStorageConnection connection,

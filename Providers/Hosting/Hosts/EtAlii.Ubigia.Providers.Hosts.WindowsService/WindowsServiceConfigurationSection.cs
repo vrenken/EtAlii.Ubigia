@@ -5,9 +5,6 @@
     public class WindowsServiceConfigurationSection : ConfigurationSection
     {
         [ConfigurationProperty("name", IsRequired = true)]
-        public string Name
-        {
-            get { return this["name"] as string; }
-        }
+        public string Name => this["name"] as string;
     }
 }

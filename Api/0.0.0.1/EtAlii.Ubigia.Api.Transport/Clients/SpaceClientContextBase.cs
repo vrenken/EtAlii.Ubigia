@@ -6,10 +6,10 @@ namespace EtAlii.Ubigia.Api.Transport
         where TDataClient: ISpaceTransportClient
         where TNotificationClient: ISpaceTransportClient
     {
-        public TNotificationClient Notifications { get { return _notifications; } }
+        public TNotificationClient Notifications => _notifications;
         private readonly TNotificationClient _notifications;
 
-        public TDataClient Data { get { return _data; } }
+        public TDataClient Data => _data;
         private readonly TDataClient _data;
 
         public SpaceClientContextBase(

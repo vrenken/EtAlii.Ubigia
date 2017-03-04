@@ -2,7 +2,7 @@
 {
     public class Command<TParam> : ICommand<TParam>
     {
-        TParam IParams<TParam>.Parameter { get { return _parameter; } }
+        TParam IParams<TParam>.Parameter => _parameter;
         private readonly TParam _parameter;
 
         public Command(TParam parameter)

@@ -11,18 +11,18 @@
 
         private string _address;
 
-        public Account Account { get { return _connection.Account; } }
-        public Space Space { get { return _connection.Space; } }
-        public Storage Storage { get { return _connection.Storage; } }
-        public bool IsConnected { get { return _connection.IsConnected; } }
-        public ISpaceTransport Transport { get { return ((dynamic)_connection).Transport; } }
-        public ISpaceConnectionConfiguration Configuration { get { return _connection.Configuration; } }
+        public Account Account => _connection.Account;
+        public Space Space => _connection.Space;
+        public Storage Storage => _connection.Storage;
+        public bool IsConnected => _connection.IsConnected;
+        public ISpaceTransport Transport => ((dynamic)_connection).Transport;
+        public ISpaceConnectionConfiguration Configuration => _connection.Configuration;
 
-        public IAuthenticationContext Authentication { get { return _connection.Authentication; } }
-        public IEntryContext Entries { get { return _connection.Entries; } }
-        public IRootContext Roots { get { return _connection.Roots; } }
-        public IContentContext Content { get { return _connection.Content; } }
-        public IPropertyContext Properties { get { return _connection.Properties; } }
+        public IAuthenticationContext Authentication => _connection.Authentication;
+        public IEntryContext Entries => _connection.Entries;
+        public IRootContext Roots => _connection.Roots;
+        public IContentContext Content => _connection.Content;
+        public IPropertyContext Properties => _connection.Properties;
 
         public LoggingSpaceConnection(
             ISpaceConnection connection,

@@ -9,7 +9,7 @@
         protected ISubjectExecutionPlan Left { get; private set; }
         protected ISubjectExecutionPlan Right { get; private set; }
 
-        public Type OutputType { get { return _outputType.Value; } }
+        public Type OutputType => _outputType.Value;
         private readonly Lazy<Type> _outputType;
 
         protected abstract Type GetOutputType();

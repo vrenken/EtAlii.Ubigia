@@ -10,13 +10,13 @@
         private readonly IManagementConnection _decoree;
         private readonly ILogger _logger;
 
-        public Storage Storage { get { return _decoree.Storage; } }
-        public IStorageContext Storages { get { return _decoree.Storages; } }
-        public IAccountContext Accounts { get { return _decoree.Accounts; } }
-        public ISpaceContext Spaces { get { return _decoree.Spaces; } }
+        public Storage Storage => _decoree.Storage;
+        public IStorageContext Storages => _decoree.Storages;
+        public IAccountContext Accounts => _decoree.Accounts;
+        public ISpaceContext Spaces => _decoree.Spaces;
 
-        public bool IsConnected { get { return _decoree.IsConnected; } }
-        public IManagementConnectionConfiguration Configuration{ get { return _decoree.Configuration; } }
+        public bool IsConnected => _decoree.IsConnected;
+        public IManagementConnectionConfiguration Configuration => _decoree.Configuration;
 
         public LoggingManagementConnection(
             IManagementConnection decoree,

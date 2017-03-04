@@ -5,11 +5,11 @@
 
     internal class SequenceParser : ISequenceParser
     {
-        public string Id { get { return _id; } }
+        public string Id => _id;
         private readonly string _id = "Sequence";
         private readonly ISequencePartsParser _sequencePartsParser;
 
-        public LpsParser Parser { get { return _parser; } }
+        public LpsParser Parser => _parser;
         private readonly LpsParser _parser;
         
         private readonly INodeValidator _nodeValidator;

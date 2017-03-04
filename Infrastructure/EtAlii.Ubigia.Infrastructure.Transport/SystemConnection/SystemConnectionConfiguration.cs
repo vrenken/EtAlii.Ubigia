@@ -8,16 +8,16 @@
 
     public class SystemConnectionConfiguration : ISystemConnectionConfiguration
     {
-        public ISystemConnectionExtension[] Extensions { get { return _extensions; } }
+        public ISystemConnectionExtension[] Extensions => _extensions;
         private ISystemConnectionExtension[] _extensions;
 
-        public IStorageTransportProvider TransportProvider { get { return _transportProvider; } }
+        public IStorageTransportProvider TransportProvider => _transportProvider;
         private IStorageTransportProvider _transportProvider;
 
-        public Func<ISystemConnection> FactoryExtension { get { return _factoryExtension; } }
+        public Func<ISystemConnection> FactoryExtension => _factoryExtension;
         private Func<ISystemConnection> _factoryExtension;
 
-        public IInfrastructure Infrastructure { get { return _infrastructure; } }
+        public IInfrastructure Infrastructure => _infrastructure;
         private IInfrastructure _infrastructure;
         
 

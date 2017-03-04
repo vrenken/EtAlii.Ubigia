@@ -2,19 +2,19 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     internal class LogicalContext : ILogicalContext
     {
-        public ILogicalContextConfiguration Configuration { get { return _configuration; } }
+        public ILogicalContextConfiguration Configuration => _configuration;
         private readonly ILogicalContextConfiguration _configuration;
 
-        public ILogicalNodeSet Nodes { get { return _nodes; } }
+        public ILogicalNodeSet Nodes => _nodes;
         private readonly ILogicalNodeSet _nodes;
 
-        public ILogicalRootSet Roots { get { return _roots; } }
+        public ILogicalRootSet Roots => _roots;
         private readonly ILogicalRootSet _roots;
 
-        public IContentManager Content { get { return _content; } }
+        public IContentManager Content => _content;
         private readonly IContentManager _content;
 
-        public IPropertiesManager Properties { get { return _properties; } }
+        public IPropertiesManager Properties => _properties;
         private readonly IPropertiesManager _properties;
 
         public LogicalContext(

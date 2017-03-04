@@ -12,13 +12,13 @@
         private const string _descriptionFormat = "Information exchange to and from the Ubigia storage '{0}'";
         
 
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
-        public string DisplayName { get { return _displayName; } }
+        public string DisplayName => _displayName;
         private readonly string _displayName;
 
-        public string Description { get { return _description; } }
+        public string Description => _description;
         private readonly string _description;
         
         private readonly IProviderHost _host;

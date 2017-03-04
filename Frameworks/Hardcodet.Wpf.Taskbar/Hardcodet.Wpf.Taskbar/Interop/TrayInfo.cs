@@ -78,13 +78,10 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
 
     private APPBARDATA m_data;
 
-    public ScreenEdge Edge
-    {
-      get { return (ScreenEdge) m_data.uEdge; }
-    }
+    public ScreenEdge Edge => (ScreenEdge) m_data.uEdge;
 
 
-    public Rectangle WorkArea
+      public Rectangle WorkArea
     {
       get
       {

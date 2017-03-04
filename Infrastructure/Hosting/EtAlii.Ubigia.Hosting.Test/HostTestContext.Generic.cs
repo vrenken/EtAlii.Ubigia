@@ -9,8 +9,8 @@
         where THost : class, IHost
     {
         public THost Host { get; private set; }
-        public string SystemAccountName { get { return Host?.Infrastructure.Configuration.Account; } }
-        public string SystemAccountPassword { get { return Host?.Infrastructure.Configuration.Password; } }
+        public string SystemAccountName => Host?.Infrastructure.Configuration.Account;
+        public string SystemAccountPassword => Host?.Infrastructure.Configuration.Password;
 
         public void Start(IHost host)
         {

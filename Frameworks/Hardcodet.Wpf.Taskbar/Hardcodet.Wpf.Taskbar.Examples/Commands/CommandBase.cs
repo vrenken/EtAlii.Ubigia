@@ -66,16 +66,10 @@ namespace Samples.Commands
         }
 
 
-        public static bool IsDesignMode
-        {
-            get
-            {
-                return (bool)
-                    DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty,
-                        typeof (FrameworkElement))
-                        .Metadata.DefaultValue;
-            }
-        }
+        public static bool IsDesignMode => (bool)
+            DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty,
+                    typeof (FrameworkElement))
+                .Metadata.DefaultValue;
 
 
         /// <summary>

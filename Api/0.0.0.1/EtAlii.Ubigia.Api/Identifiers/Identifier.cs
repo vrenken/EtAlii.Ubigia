@@ -9,22 +9,22 @@
     [JsonObject(MemberSerialization.Fields)]
     public partial struct Identifier : IEditableIdentifier
     {
-        public Guid Storage { get { return _storage; } }
+        public Guid Storage => _storage;
         private Guid _storage;
 
-        public Guid Account { get { return _account; } }
+        public Guid Account => _account;
         private Guid _account;
 
-        public Guid Space { get { return _space; } }
+        public Guid Space => _space;
         private Guid _space;
 
-        public UInt64 Era { get { return _era; } }
+        public UInt64 Era => _era;
         private UInt64 _era;
 
-        public UInt64 Period { get { return _period; } }
+        public UInt64 Period => _period;
         private UInt64 _period;
 
-        public UInt64 Moment { get { return _moment; } }
+        public UInt64 Moment => _moment;
         private UInt64 _moment;
 
         public static readonly Identifier Empty = new Identifier

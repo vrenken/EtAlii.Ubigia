@@ -6,13 +6,13 @@
 
     public abstract class HostBase : IHost
     {
-        public IHostConfiguration Configuration { get { return _configuration; } }
+        public IHostConfiguration Configuration => _configuration;
         private readonly IHostConfiguration _configuration;
 
-        public IInfrastructure Infrastructure { get { return _infrastructure; } }
+        public IInfrastructure Infrastructure => _infrastructure;
         private readonly IInfrastructure _infrastructure;
 
-        public IStorage Storage { get { return _storage; } }
+        public IStorage Storage => _storage;
         private readonly IStorage _storage;
 
         protected HostBase(IHostConfiguration configuration, IInfrastructure infrastructure, IStorage storage)

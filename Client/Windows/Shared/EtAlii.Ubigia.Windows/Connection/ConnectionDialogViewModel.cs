@@ -30,13 +30,13 @@
         public bool RememberPassword { get { return _rememberPassword; } set { SetProperty(ref _rememberPassword, value); } }
         private bool _rememberPassword;
 
-        public ICommand SaveAndCloseCommand { get { return _saveAndCloseCommand; } }
+        public ICommand SaveAndCloseCommand => _saveAndCloseCommand;
         private readonly ICommand _saveAndCloseCommand;
 
-        public ICommand TestCommand { get { return _testCommand; } }
+        public ICommand TestCommand => _testCommand;
         private readonly ICommand _testCommand;
 
-        public ICommand CancelCommand { get { return _cancelCommand; } }
+        public ICommand CancelCommand => _cancelCommand;
         private readonly ICommand _cancelCommand;
  
         public readonly string ConfigurationFileName = "Connection.config";

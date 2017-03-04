@@ -9,7 +9,7 @@
     public class DiscoverEntryCommandHandler : CommandHandlerBase<DiscoverEntryCommand>, IDiscoverEntryCommandHandler
     {
         private readonly IFabricContext _fabric;
-        protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
+        protected IGraphDocumentViewModel GraphViewModel => _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>();
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
         private readonly IGraphConfiguration _configuration;
         private readonly IGraphContext _graphContext;

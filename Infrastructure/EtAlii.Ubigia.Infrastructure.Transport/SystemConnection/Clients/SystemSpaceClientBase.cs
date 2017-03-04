@@ -5,7 +5,7 @@
 
     internal abstract class SystemSpaceClientBase
     {
-        protected ISpaceConnection Connection { get { return _connection; } }
+        protected ISpaceConnection Connection => _connection;
         private ISpaceConnection _connection;
 
         public virtual async Task Connect(ISpaceConnection spaceConnection)

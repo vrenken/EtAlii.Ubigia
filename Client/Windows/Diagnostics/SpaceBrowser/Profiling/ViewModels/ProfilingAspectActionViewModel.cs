@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
         private string _group;
         public bool IsActive { get; set; }
 
-        public ICommand InvokeActionCommand { get { return _invokeActionCommand; } }
+        public ICommand InvokeActionCommand => _invokeActionCommand;
         private readonly ICommand _invokeActionCommand;
 
         public ProfilingAspectActionViewModel(

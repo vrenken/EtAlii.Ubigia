@@ -4,10 +4,10 @@
 
     public class FirstName
     {
-        public string Name { get { return _name; } }
+        public string Name => _name;
         private readonly string _name;
 
-        public List<Person> Persons { get { return _persons; } }
+        public List<Person> Persons => _persons;
         private readonly List<Person> _persons;
 
         public FirstName(string name)

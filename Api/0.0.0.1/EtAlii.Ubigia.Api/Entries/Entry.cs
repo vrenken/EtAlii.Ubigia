@@ -54,7 +54,7 @@
             _previous = new PreviousComponent { Relation = previous };
         }
 
-        public Identifier Id { get { return _id.Id; } }
+        public Identifier Id => _id.Id;
         private IdentifierComponent _id;
 
         Identifier IEditableEntry.Id

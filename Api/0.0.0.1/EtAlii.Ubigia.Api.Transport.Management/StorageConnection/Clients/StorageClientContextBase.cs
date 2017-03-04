@@ -7,13 +7,13 @@ namespace EtAlii.Ubigia.Api.Management
         where TDataClient: IStorageTransportClient
         where TNotificationClient: IStorageTransportClient
     {
-        public TNotificationClient Notifications { get { return _notifications; } }
+        public TNotificationClient Notifications => _notifications;
         private readonly TNotificationClient _notifications;
 
-        public TDataClient Data { get { return _data; } }
+        public TDataClient Data => _data;
         private readonly TDataClient _data;
 
-        protected IStorageConnection Connection { get { return _connection; } }
+        protected IStorageConnection Connection => _connection;
         private IStorageConnection _connection;
 
         public StorageClientContextBase(

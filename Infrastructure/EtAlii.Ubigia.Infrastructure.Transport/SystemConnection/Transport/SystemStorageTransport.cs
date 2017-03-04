@@ -6,7 +6,7 @@
 
     public class SystemStorageTransport : ISystemStorageTransport
     {
-        public bool IsConnected { get { return _isConnected; } }
+        public bool IsConnected => _isConnected;
         private bool _isConnected;
 
         private readonly IInfrastructure _infrastructure;

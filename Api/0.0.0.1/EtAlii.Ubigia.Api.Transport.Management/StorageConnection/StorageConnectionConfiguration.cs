@@ -6,19 +6,19 @@ namespace EtAlii.Ubigia.Api.Management
 
     public class StorageConnectionConfiguration : IStorageConnectionConfiguration
     {
-        public IStorageTransport Transport { get { return _transport; } }
+        public IStorageTransport Transport => _transport;
         private IStorageTransport _transport;
 
-        public string Address { get { return _address; } }
+        public string Address => _address;
         private string _address;
 
-        public string AccountName { get { return _accountName; } }
+        public string AccountName => _accountName;
         private string _accountName;
 
-        public string Password { get { return _password; } }
+        public string Password => _password;
         private string _password;
 
-        public IStorageConnectionExtension[] Extensions { get { return _extensions; } }
+        public IStorageConnectionExtension[] Extensions => _extensions;
         private IStorageConnectionExtension[] _extensions;
 
         public StorageConnectionConfiguration()

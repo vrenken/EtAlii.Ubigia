@@ -4,10 +4,10 @@
 
     public class EntryContextStub : IEntryContext
     {
-        public IEntryNotificationClient Notifications { get { return _notifications; } }
+        public IEntryNotificationClient Notifications => _notifications;
         private readonly IEntryNotificationClient _notifications;
 
-        public IEntryDataClient Data { get { return _data; } }
+        public IEntryDataClient Data => _data;
         private readonly IEntryDataClient _data;
 
         public EntryContextStub()

@@ -4,10 +4,10 @@ namespace EtAlii.Ubigia.Api.Transport
 
     internal class ContentContextStub : IContentContext
     {
-        public IContentNotificationClient Notifications { get { return _notifications; } }
+        public IContentNotificationClient Notifications => _notifications;
         private readonly IContentNotificationClient _notifications;
 
-        public IContentDataClient Data { get { return _data; } }
+        public IContentDataClient Data => _data;
         private readonly IContentDataClient _data;
 
         public ContentContextStub()
