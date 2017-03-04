@@ -24,7 +24,7 @@
 
         public ProfilingAccountRepositoryDecorator(IAccountRepository accountRepository, IProfiler profiler)
         {
-            this._repository = accountRepository;
+            _repository = accountRepository;
             _profiler = profiler;
 
             profiler.Register(_getByNameNoPasswordCounter, SamplingType.RawCount, "Milliseconds", "Get entry by name without using a password", "The time it takes for the Get (by name) method to execute without a password given");

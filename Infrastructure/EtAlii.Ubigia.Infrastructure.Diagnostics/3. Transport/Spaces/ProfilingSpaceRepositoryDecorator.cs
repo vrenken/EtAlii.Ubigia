@@ -23,7 +23,7 @@
 
         public ProfilingSpaceRepositoryDecorator(ISpaceRepository spaceRepository, IProfiler profiler)
         {
-            this._repository = spaceRepository;
+            _repository = spaceRepository;
             _profiler = profiler;
 
             profiler.Register(_getAllCounter, SamplingType.RawCount, "Milliseconds", "Get all spaces", "The time it takes for the GetAll method to execute");

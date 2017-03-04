@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
             IMoreThanPredicateFactory moreThanPredicateFactory, 
             IMoreThanOrEqualPredicateFactory moreThanOrEqualPredicateFactory)
         {
-            this.Register(c => c == ConditionType.Equal, equalPredicateFactory)
+            Register(c => c == ConditionType.Equal, equalPredicateFactory)
                 .Register(c => c == ConditionType.NotEqual, notEqualPredicateFactory)
                 .Register(c => c == ConditionType.LessThan, lessThanPredicateFactory)
                 .Register(c => c == ConditionType.LessThanOrEqual, lessThanOrEqualPredicateFactory)

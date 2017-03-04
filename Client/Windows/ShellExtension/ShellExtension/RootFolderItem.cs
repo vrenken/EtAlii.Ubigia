@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 
         private StorageSettings GetStorageSetting()
         {
-            var type = this.GetType();
+            var type = GetType();
             var guidAttribute = type.GetCustomAttribute<GuidAttribute>();
             var id = new Guid(guidAttribute.Value);
 

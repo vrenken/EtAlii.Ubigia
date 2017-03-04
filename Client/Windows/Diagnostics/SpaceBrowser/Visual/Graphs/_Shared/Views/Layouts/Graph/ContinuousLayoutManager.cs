@@ -15,7 +15,7 @@
         // only create it when there are Nodes or Links added or removed
         protected override void PerformLayout()
         {
-            var diagram = this.Diagram;
+            var diagram = Diagram;
             if (diagram == null) return;
             var layout = diagram.Layout as ContinuousForceDirectedLayout;
             if (layout != null)
@@ -24,7 +24,7 @@
                 if (!layout.ValidLayout)
                 {
                     // make sure there's no animation interfering with ContinuousForceDirectedLayout
-                    this.Animated = false;
+                    Animated = false;
                     // don't set Wait cursor during drag
                     diagram.Cursor = null;
                     // the ForceDirectedNetwork needs to be cleared whenever a Node or Link is added or removed
@@ -45,9 +45,9 @@
                         }
                     }
                     // don't need to re-collect the appropriate Nodes and Links to pass to DoLayout
-                    this.IsLayingOut = true;
+                    IsLayingOut = true;
                     layout.DoLayout(null, null);
-                    this.IsLayingOut = false;
+                    IsLayingOut = false;
                     layout.ValidLayout = true;
                     // DoLayout normally discards the Network; keep it for next time
                     layout.Network = net;
@@ -66,11 +66,11 @@
         // and remove any cached ForceDirectedNetwork
         public override void InvalidateLayout(Part p, LayoutChange change)
         {
-            if (this.IsLayingOut) return;
-            if (this.SkipsInvalidate) return;
-            if (this.Diagram == null) return;
+            if (IsLayingOut) return;
+            if (SkipsInvalidate) return;
+            if (Diagram == null) return;
             if (p == null || p.Layer == null || p.Layer.IsTemporary) return;
-            var layout = this.Diagram.Layout as ContinuousForceDirectedLayout;
+            var layout = Diagram.Layout as ContinuousForceDirectedLayout;
             if (layout != null &&
                 (change == LayoutChange.NodeAdded || change == LayoutChange.NodeRemoved ||
                  change == LayoutChange.LinkAdded || change == LayoutChange.LinkRemoved))

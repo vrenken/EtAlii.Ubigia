@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
         public void Write(string message)
         {
             var data = System.Text.Encoding.UTF8.GetBytes(message);
-            this.Write(data);
+            Write(data);
         }
 
         public void Write(byte[] data)

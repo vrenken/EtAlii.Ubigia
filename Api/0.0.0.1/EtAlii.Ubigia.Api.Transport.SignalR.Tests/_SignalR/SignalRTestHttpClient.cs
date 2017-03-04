@@ -27,12 +27,12 @@
         /// <param name="connection">Connection</param>
         public void Initialize(IConnection connection)
         {
-            this._connection = connection;
-            this._longRunningClient = new HttpClient(_createMessageHandler(this._connection))
+            _connection = connection;
+            _longRunningClient = new HttpClient(_createMessageHandler(_connection))
             {
                 Timeout = TimeSpan.FromMilliseconds(-1.0)
             };
-            this._shortRunningClient = new HttpClient(_createMessageHandler(this._connection))
+            _shortRunningClient = new HttpClient(_createMessageHandler(_connection))
             {
                 Timeout = TimeSpan.FromMilliseconds(-1.0)
             };
@@ -61,7 +61,7 @@
                 responseDisposer.Dispose();
             });
             prepareRequest((IRequest)requestMessageWrapper);
-            return SignalRTaskAsyncHelper.Then<HttpResponseMessage, IResponse>(this.GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
+            return SignalRTaskAsyncHelper.Then<HttpResponseMessage, IResponse>(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
             {
                 if (!responseMessage.IsSuccessStatusCode)
                 {
@@ -100,7 +100,7 @@
                 responseDisposer.Dispose();
             });
             prepareRequest((IRequest)requestMessageWrapper);
-            return SignalRTaskAsyncHelper.Then<HttpResponseMessage, IResponse>(this.GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
+            return SignalRTaskAsyncHelper.Then<HttpResponseMessage, IResponse>(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
             {
                 if (!responseMessage.IsSuccessStatusCode)
                 {
@@ -121,9 +121,9 @@
         {
             if (!isLongRunning)
             {
-                return this._shortRunningClient;
+                return _shortRunningClient;
             }
-            return this._longRunningClient;
+            return _longRunningClient;
         }
     }
 }

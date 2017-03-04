@@ -41,7 +41,7 @@
         {
             if(this == Empty)
             {
-                return String.Format("{0}.Empty", this.GetType().Name);
+                return String.Format("{0}.Empty", GetType().Name);
             }
             else
             {

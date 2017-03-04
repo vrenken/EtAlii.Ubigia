@@ -139,15 +139,15 @@
             {
                 return false;
             }
-            if (this.Count != other.Count)
+            if (Count != other.Count)
             {
                 return false;
             }
-            if (this.Keys.Except(other.Keys).Any())
+            if (Keys.Except(other.Keys).Any())
             {
                 return false;
             }
-            if (other.Keys.Except(this.Keys).Any())
+            if (other.Keys.Except(Keys).Any())
             {
                 return false;
             }

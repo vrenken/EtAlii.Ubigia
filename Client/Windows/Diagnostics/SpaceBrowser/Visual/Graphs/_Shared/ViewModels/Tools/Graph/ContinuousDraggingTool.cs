@@ -10,18 +10,18 @@
         public override void DoMouseMove()
         {
             base.DoMouseMove();
-            if (this.Active)
+            if (Active)
             {
-                var cfdlayout = this.Diagram.Layout as ContinuousForceDirectedLayout;
+                var cfdlayout = Diagram.Layout as ContinuousForceDirectedLayout;
                 if (cfdlayout != null)
                 {
-                    LayoutManager mgr = this.Diagram.LayoutManager;
+                    LayoutManager mgr = Diagram.LayoutManager;
                     int olditer = cfdlayout.MaxIterations;
                     // limit the number of iterations during dragging
-                    int numnodes = this.Diagram.PartManager.NodesCount;
+                    int numnodes = Diagram.PartManager.NodesCount;
                     cfdlayout.MaxIterations = Math.Max(1, (int)Math.Ceiling(10000.0 / (numnodes * numnodes)));
                     // perform the layout right now
-                    this.Diagram.LayoutManager.LayoutDiagram(LayoutInitial.InvalidateAll, true);
+                    Diagram.LayoutManager.LayoutDiagram(LayoutInitial.InvalidateAll, true);
                     cfdlayout.MaxIterations = olditer;
                 }
             }

@@ -27,7 +27,7 @@
             //    gridTreeControl.Model.
             //}
             _expandAllAtTheEndSubscription = Observable
-                .FromEventPattern<GridTreeCreatingNodeEventArgs>(this.gridTreeControl, "CreatingTreeNode")
+                .FromEventPattern<GridTreeCreatingNodeEventArgs>(gridTreeControl, "CreatingTreeNode")
                 .Throttle(TimeSpan.FromSeconds(2))
                 .ObserveOnDispatcher()
                 .Subscribe(e =>
@@ -46,7 +46,7 @@
                 });
 
             _expandAlwaysSubscription = Observable
-                .FromEventPattern<GridTreeCreatingNodeEventArgs>(this.gridTreeControl, "CreatingTreeNode")
+                .FromEventPattern<GridTreeCreatingNodeEventArgs>(gridTreeControl, "CreatingTreeNode")
                 .ObserveOnDispatcher()
                 .Subscribe(e =>
                 {

@@ -36,7 +36,7 @@
                 using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
                 {
                     storage = (T)GetValue<T>(ref defaultValue, propertyName, registryKey);
-                    this.SetValue(registryKey, storage, propertyName);
+                    SetValue(registryKey, storage, propertyName);
                 }
             }
             return storage;
@@ -50,7 +50,7 @@
                 using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
                 {
                     storage = (T)GetValue<T>(ref defaultValue, propertyName, registryKey);
-                    this.SetValue(registryKey, storage.Value, propertyName);
+                    SetValue(registryKey, storage.Value, propertyName);
                 }
             }
             return storage.Value;
@@ -119,7 +119,7 @@
         {
             using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
             {
-                this.SetValue(registryKey, newValue, propertyName);
+                SetValue(registryKey, newValue, propertyName);
             }
             base.NotifyPropertyChanged(sender, oldValue, newValue, propertyName);
         }

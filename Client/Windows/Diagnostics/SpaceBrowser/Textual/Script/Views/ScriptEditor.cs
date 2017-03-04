@@ -49,7 +49,7 @@
         private void OnDocumentTextChanged(object sender, EventArgs e)
         {
             _updateDocumentFromCode = false;
-            this.Code = this.Document.Text;
+            Code = Document.Text;
             _updateDocumentFromCode = true;
         }
     }

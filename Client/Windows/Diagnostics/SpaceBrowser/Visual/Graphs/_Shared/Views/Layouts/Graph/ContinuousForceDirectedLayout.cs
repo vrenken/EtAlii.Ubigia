@@ -22,7 +22,7 @@
         // don't position "fixed" nodes
         protected override void LayoutNodes()
         {
-            foreach (ForceDirectedVertex vertex in this.Network.Vertexes)
+            foreach (ForceDirectedVertex vertex in Network.Vertexes)
             {
                 if (!IsFixed(vertex)) vertex.CommitPosition();
             }

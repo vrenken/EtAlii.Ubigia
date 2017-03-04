@@ -19,12 +19,12 @@
             //}
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((MatchResult)obj);
+            return Equals((MatchResult)obj);
         }
 
         public bool Equals(MatchResult match)
@@ -112,16 +112,16 @@
         {
             int result = 0;
 
-            for (int i = 0; i < this.Match.Length; i++)
+            for (int i = 0; i < Match.Length; i++)
             {
-                var pathSubjectPart = this.Match[i];
+                var pathSubjectPart = Match[i];
                 var power = 2 ^ i;
                 result ^= ShiftAndWrap(pathSubjectPart.GetHashCode(), power);
             }
 
-            for (int i = 0; i < this.Match.Length; i++)
+            for (int i = 0; i < Match.Length; i++)
             {
-                var pathSubjectPart = this.Rest[i];
+                var pathSubjectPart = Rest[i];
                 var power = 2 ^ i;
                 result ^= ShiftAndWrap(pathSubjectPart.GetHashCode(), power);
             }

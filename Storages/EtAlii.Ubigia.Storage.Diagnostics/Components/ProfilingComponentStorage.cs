@@ -20,7 +20,7 @@
             IComponentStorage storage, 
             IProfiler profiler)
         {
-            this._storage = storage;
+            _storage = storage;
             _profiler = profiler;
 
             profiler.Register(_getNextContainerCounter, SamplingType.RawCount, "Milliseconds", "Get next container", "The time it takes for the GetNextContainer method to execute");

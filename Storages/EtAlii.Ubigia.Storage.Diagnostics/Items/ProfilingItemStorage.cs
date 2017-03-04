@@ -18,7 +18,7 @@
             IItemStorage storage, 
             IProfiler profiler)
         {
-            this._storage = storage;
+            _storage = storage;
             _profiler = profiler;
 
             profiler.Register(_storeCounter, SamplingType.RawCount, "Milliseconds", "Store item", "The time it takes for the Store method to execute");

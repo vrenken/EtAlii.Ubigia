@@ -12,12 +12,12 @@
 
         internal Script(Sequence sequences)
         {
-            this.Sequences = new Sequence[] { sequences };
+            Sequences = new Sequence[] { sequences };
         }
 
         internal Script(IEnumerable<Sequence> sequences)
         {
-            this.Sequences = sequences;
+            Sequences = sequences;
         }
 
         public override string ToString()

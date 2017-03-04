@@ -9,7 +9,7 @@
 
         internal Sequence(SequencePart[] parts)
         {
-            this.Parts = parts;
+            Parts = parts;
         }
 
         public override string ToString()

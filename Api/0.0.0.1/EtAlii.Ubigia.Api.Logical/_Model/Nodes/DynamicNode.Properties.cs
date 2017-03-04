@@ -62,7 +62,7 @@
 
             var oldValue = storage;
             storage = newValue;
-            this.NotifyPropertyChanged(this, storage, newValue, propertyName);
+            NotifyPropertyChanged(this, storage, newValue, propertyName);
 
             MarkAsModified();
 
@@ -73,7 +73,7 @@
         {
             var wasModified = _isModified;
             _isModified = true;
-            this.NotifyPropertyChanged(this, _isModified, _isModified, "IsModified");
+            NotifyPropertyChanged(this, _isModified, _isModified, "IsModified");
         }
 
         /// <summary>
@@ -84,7 +84,7 @@
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
-            var eventHandler = this.PropertyChanged;
+            var eventHandler = PropertyChanged;
             if (eventHandler != null)
             {
                 var e = new PropertyChangedEventArgs(propertyName);

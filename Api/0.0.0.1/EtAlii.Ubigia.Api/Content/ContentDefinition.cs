@@ -16,7 +16,7 @@
         public IList<ContentDefinitionPart> Parts => _parts;
 
         private readonly IList<ContentDefinitionPart> _parts = new List<ContentDefinitionPart>();
-        IEnumerable<IReadOnlyContentDefinitionPart> IReadOnlyContentDefinition.Parts => this.Parts.Cast<IReadOnlyContentDefinitionPart>();
+        IEnumerable<IReadOnlyContentDefinitionPart> IReadOnlyContentDefinition.Parts => Parts.Cast<IReadOnlyContentDefinitionPart>();
 
         public static readonly IReadOnlyContentDefinition Empty = new ContentDefinition
         {

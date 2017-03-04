@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
             IDynamicObjectToIdentifierAssigner dynamicObjectToIdentifierAssigner,
             INodeToIdentifierAssigner nodeToIdentifierAssigner)
         {
-            this.Register(o => o is IInternalNode, nodeToIdentifierAssigner)
+            Register(o => o is IInternalNode, nodeToIdentifierAssigner)
                 .Register(o => o is IPropertyDictionary, propertiesToIdentifierAssigner)
                 .Register(o => IsDynamicObject(o), dynamicObjectToIdentifierAssigner);
         }

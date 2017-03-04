@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 		public FolderItem2(string parentFolder, string name)
 		{
             FullPath = Path.Combine(parentFolder, name);
-            this.Name = name;
+            Name = name;
 		}
 
 		// The GetDisplayNameEx method is called to retrieve different types of 
@@ -301,18 +301,18 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 		{
 			if(e.AssumeChildExists)
 			{
-                return new FileItem2(this.FullPath, e.DisplayName);
+                return new FileItem2(FullPath, e.DisplayName);
 			}
 			else
 			{
 				// Return only if file truly exists
-                if (File.Exists(Path.Combine(this.FullPath, e.DisplayName)))
+                if (File.Exists(Path.Combine(FullPath, e.DisplayName)))
 				{
-                    return new FileItem2(this.FullPath, e.DisplayName);
+                    return new FileItem2(FullPath, e.DisplayName);
 				}
-                else if (Directory.Exists(Path.Combine(this._fullPath, e.DisplayName)))
+                else if (Directory.Exists(Path.Combine(_fullPath, e.DisplayName)))
 				{
-                    return new FolderItem2(this.FullPath, e.DisplayName);
+                    return new FolderItem2(FullPath, e.DisplayName);
 				}
 			}
 			return null;
@@ -467,7 +467,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 					}
 				}
 			}
-			this.RefreshView();
+            RefreshView();
 		}
 
 
@@ -568,7 +568,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 							e.Data.PerformedDropEffect= e.Effect;
 							if(e.Data.PreferredDropEffect==DragDropEffects.Move)
 								e.Data.PasteSucceded = e.Effect;
-							this.RefreshView();
+                        RefreshView();
 						}
 					}
 			}

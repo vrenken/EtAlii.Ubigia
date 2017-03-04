@@ -195,7 +195,7 @@ namespace Moppet.Lapa
 		public override bool Equals(object obj)
 		{
 			LpText t = (LpText)obj;
-			return this.Index == t.Index && this.Length == t.Length && object.ReferenceEquals(this.Source, t.Source);
+			return Index == t.Index && Length == t.Length && object.ReferenceEquals(Source, t.Source);
 		}
 
 		/// <summary>

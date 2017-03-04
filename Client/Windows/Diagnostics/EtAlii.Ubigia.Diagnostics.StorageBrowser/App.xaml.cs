@@ -75,7 +75,7 @@
             }
             else
             {
-                this.Shutdown();
+                Shutdown();
             }
         }
 

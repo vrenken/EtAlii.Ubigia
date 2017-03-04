@@ -63,8 +63,8 @@ namespace Moppet.Lapa
 		public override LpsChain Copy()
 		{
 			var c = base.Copy();
-			c.m_parsers = new List<LpsParser>(this.m_parsers.Count + 1);
-			c.m_parsers.AddRange(this.m_parsers);
+			c.m_parsers = new List<LpsParser>(m_parsers.Count + 1);
+			c.m_parsers.AddRange(m_parsers);
 			return c;
 		}
 
@@ -305,7 +305,7 @@ namespace Moppet.Lapa
 		/// <returns>Optimized parser.</returns>
 		public LpsParser Maybe()
 		{
-			return this.ToParser().Maybe();
+			return ToParser().Maybe();
 		}
 
 

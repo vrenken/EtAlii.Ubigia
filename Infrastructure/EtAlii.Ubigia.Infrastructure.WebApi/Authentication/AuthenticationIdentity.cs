@@ -7,7 +7,7 @@
         public AuthenticationIdentity(string name, string password)
             : base(name, "Basic")
         {
-            this.Password = password;
+            Password = password;
         }
 
         /// <summary>

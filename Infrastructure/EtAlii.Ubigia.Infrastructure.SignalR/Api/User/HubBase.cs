@@ -14,7 +14,7 @@
 
         public override Task OnConnected()
         {
-            var authenticationToken = this.Context.Headers.Get("Authentication-Token");
+            var authenticationToken = Context.Headers.Get("Authentication-Token");
             _authenticationTokenVerifier.Verify(authenticationToken, null);
 
             return base.OnConnected();
@@ -22,7 +22,7 @@
 
         public override Task OnReconnected()
         {
-            var authenticationToken = this.Context.Headers.Get("Authentication-Token");
+            var authenticationToken = Context.Headers.Get("Authentication-Token");
             _authenticationTokenVerifier.Verify(authenticationToken, null);
 
             return base.OnReconnected();

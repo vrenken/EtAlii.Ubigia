@@ -333,18 +333,18 @@ namespace EtAlii.Ubigia.Client.Windows
 		{
 			if(e.AssumeChildExists)
 			{
-				return new FileItem(this.fullPath, e.DisplayName);
+				return new FileItem(fullPath, e.DisplayName);
 			}
 			else
 			{
 				// Return only if file truly exists
-				if(File.Exists(Path.Combine(this.fullPath,e.DisplayName)))
+				if(File.Exists(Path.Combine(fullPath, e.DisplayName)))
 				{
-					return new FileItem(this.fullPath, e.DisplayName);
+					return new FileItem(fullPath, e.DisplayName);
 				}
-				else if (Directory.Exists(Path.Combine(this.fullPath, e.DisplayName)))
+				else if (Directory.Exists(Path.Combine(fullPath, e.DisplayName)))
 				{
-					return new FolderItem(this.fullPath, e.DisplayName);
+					return new FolderItem(fullPath, e.DisplayName);
 				}
 			}
 			return null;
@@ -495,7 +495,7 @@ namespace EtAlii.Ubigia.Client.Windows
 					}
 				}
 			}
-			this.RefreshView();
+            RefreshView();
 		}
 
 
@@ -596,7 +596,7 @@ namespace EtAlii.Ubigia.Client.Windows
 							e.Data.PerformedDropEffect= e.Effect;
 							if(e.Data.PreferredDropEffect==DragDropEffects.Move)
 								e.Data.PasteSucceded = e.Effect;
-							this.RefreshView();
+                        RefreshView();
 						}
 					}
 			}

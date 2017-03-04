@@ -20,12 +20,12 @@
             //}
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((ContainerIdentifier)obj);
+            return Equals((ContainerIdentifier)obj);
         }
 
         public bool Equals(ContainerIdentifier id)
@@ -98,9 +98,9 @@
         {
             int result = 0;
 
-            for (int i = 0; i < this.Paths.Length; i++)
+            for (int i = 0; i < Paths.Length; i++)
             {
-                var path = this.Paths[i];
+                var path = Paths[i];
                 var power = 2 ^ i; 
                 result ^= ShiftAndWrap(path.GetHashCode(), power);
             }

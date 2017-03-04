@@ -19,7 +19,7 @@
 
         public ProfilingEntryRepositoryDecorator(IEntryRepository entryRepository, IProfiler profiler)
         {
-            this._repository = entryRepository;
+            _repository = entryRepository;
             _profiler = profiler;
 
             profiler.Register(_getByIdCounter, SamplingType.RawCount, "Milliseconds", "Get entry by id", "The time it takes for the Get method to execute");

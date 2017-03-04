@@ -21,12 +21,12 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
             //}
 
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != obj.GetType())
+            if (GetType() != obj.GetType())
             {
                 return false;
             }
 
-            return this.Equals((ProfilingAspect)obj);
+            return Equals((ProfilingAspect)obj);
         }
 
         public bool Equals(ProfilingAspect id)
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
-            if (this.GetType() != id.GetType())
+            if (GetType() != id.GetType())
             {
                 return false;
             }
@@ -92,8 +92,8 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
         public override int GetHashCode()
         {
-            return this._layer.GetHashCode() ^
-                   ShiftAndWrap(this._id.GetHashCode(), 2);
+            return _layer.GetHashCode() ^
+                   ShiftAndWrap(_id.GetHashCode(), 2);
         }
 
         private int ShiftAndWrap(int value, int positions)

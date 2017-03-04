@@ -28,7 +28,7 @@
 
             var oldValue = storage;
             storage = newValue;
-            this.NotifyPropertyChanged(this, storage, newValue, propertyName);
+            NotifyPropertyChanged(this, storage, newValue, propertyName);
 
             return true;
         }
@@ -41,7 +41,7 @@
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
-            var eventHandler = this.PropertyChanged;
+            var eventHandler = PropertyChanged;
             if (eventHandler != null)
             {
                 eventHandler(this, new PropertyChangedEventArgs(propertyName));

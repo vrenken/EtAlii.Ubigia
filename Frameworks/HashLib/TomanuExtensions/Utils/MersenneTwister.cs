@@ -98,17 +98,17 @@ namespace TomanuExtensions.Utils
 
         public virtual uint NextUInt()
         {
-            return this.GenerateUInt();
+            return GenerateUInt();
         }
 
         public virtual uint NextUInt(uint maxValue)
         {
-            return (uint)(this.GenerateUInt() / ((double)uint.MaxValue / maxValue));
+            return (uint)(GenerateUInt() / ((double)uint.MaxValue / maxValue));
         }
 
         public virtual ushort NextUShort(ushort maxValue)
         {
-            return (ushort)(this.GenerateUInt() / ((double)ushort.MaxValue / maxValue));
+            return (ushort)(GenerateUInt() / ((double)ushort.MaxValue / maxValue));
         }
 
         public virtual ushort NextUShort(int maxValue)
@@ -118,26 +118,26 @@ namespace TomanuExtensions.Utils
             if (maxValue <= 0)
                 throw new ArgumentOutOfRangeException();
 
-            return (ushort)(this.GenerateUInt() / ((double)ushort.MaxValue / maxValue));
+            return (ushort)(GenerateUInt() / ((double)ushort.MaxValue / maxValue));
         }
 
         public virtual uint NextUInt(uint minValue, uint maxValue) /* throws ArgumentOutOfRangeException */
         {
             Debug.Assert(minValue < maxValue);
 
-            return (uint)(this.GenerateUInt() / ((double)uint.MaxValue / (maxValue - minValue)) + minValue);
+            return (uint)(GenerateUInt() / ((double)uint.MaxValue / (maxValue - minValue)) + minValue);
         }
 
         public override int Next()
         {
-            return this.Next(int.MaxValue);
+            return Next(int.MaxValue);
         }
 
         public override int Next(int maxValue) /* throws ArgumentOutOfRangeException */
         {
             Debug.Assert(maxValue > 0);
 
-            return (int)(this.NextDouble() * maxValue);
+            return (int)(NextDouble() * maxValue);
         }
 
         public override int Next(int minValue, int maxValue)
@@ -150,7 +150,7 @@ namespace TomanuExtensions.Utils
             }
             else
             {
-                return this.Next(maxValue - minValue) + minValue;
+                return Next(maxValue - minValue) + minValue;
             }
         }
 
@@ -159,17 +159,17 @@ namespace TomanuExtensions.Utils
             int bufLen = buffer.Length;
 
             for (int idx = 0; idx < bufLen; ++idx)
-                buffer[idx] = (byte)this.Next(256);
+                buffer[idx] = (byte)Next(256);
         }
 
         public override double NextDouble()
         {
-            return (double)this.GenerateUInt() / ((ulong)uint.MaxValue + 1);
+            return (double)GenerateUInt() / ((ulong)uint.MaxValue + 1);
         }
 
         public float NextFloat()
         {
-            return (float)this.GenerateUInt() / ((ulong)uint.MaxValue + 1);
+            return (float)GenerateUInt() / ((ulong)uint.MaxValue + 1);
         }
 
         public byte NextByte()

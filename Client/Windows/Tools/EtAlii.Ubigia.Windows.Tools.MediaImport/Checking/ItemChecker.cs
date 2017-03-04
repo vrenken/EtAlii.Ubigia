@@ -43,7 +43,7 @@
             switch (e.PropertyName)
             {
                 case "Configuration":
-                    _itemUpdater.Configuration = this.Configuration;
+                    _itemUpdater.Configuration = Configuration;
                     break;
             }
         }

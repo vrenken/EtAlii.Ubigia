@@ -17,7 +17,7 @@
 
         public UserSettings_Tests(ProvisioningUnitTestContext testContext)
         {
-            this._testContext = testContext;
+            _testContext = testContext;
         }
 
 
