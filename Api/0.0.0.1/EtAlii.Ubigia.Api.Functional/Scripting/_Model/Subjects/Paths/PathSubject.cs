@@ -5,7 +5,7 @@
 
     public abstract class PathSubject : Subject
     {
-        public PathSubjectPart[] Parts { get; private set; }
+        public PathSubjectPart[] Parts { get; }
 
         protected PathSubject(PathSubjectPart part)
         {

@@ -4,7 +4,7 @@
 
     public class IdentifierPathSubjectPart : PathSubjectPart
     {
-        public Identifier Identifier { get; private set; }
+        public Identifier Identifier { get; }
 
         public IdentifierPathSubjectPart(Identifier identifier)
         {

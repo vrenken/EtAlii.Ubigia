@@ -5,7 +5,7 @@
 
     public class Sequence
     {
-        public SequencePart[] Parts { get; private set; }
+        public SequencePart[] Parts { get; }
 
         internal Sequence(SequencePart[] parts)
         {

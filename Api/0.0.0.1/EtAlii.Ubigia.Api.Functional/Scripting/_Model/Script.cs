@@ -8,7 +8,7 @@
     /// </summary>
     public class Script
     {
-        public IEnumerable<Sequence> Sequences { get; private set; }
+        public IEnumerable<Sequence> Sequences { get; }
 
         internal Script(Sequence sequences)
         {

@@ -5,7 +5,7 @@
     [DebuggerDisplay("{Root}")]
     public class GraphRootStartNode : GraphPathPart
     {
-        public string Root { get; private set; }
+        public string Root { get; }
 
         public GraphRootStartNode(string root)
         {

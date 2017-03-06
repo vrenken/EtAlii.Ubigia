@@ -5,7 +5,7 @@
 
     public class NonRootedPathFunctionSubjectArgument : FunctionSubjectArgument
     {
-        public NonRootedPathSubject Subject { get; private set; }
+        public NonRootedPathSubject Subject { get; }
 
         public NonRootedPathFunctionSubjectArgument(NonRootedPathSubject subject)
         {

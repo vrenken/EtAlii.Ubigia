@@ -4,7 +4,7 @@
 
     public class VariablePathSubjectPart : PathSubjectPart
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public VariablePathSubjectPart(string name)
         {

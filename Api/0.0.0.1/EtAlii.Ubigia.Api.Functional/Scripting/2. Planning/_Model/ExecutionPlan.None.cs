@@ -9,7 +9,7 @@
 
         private class EmptyExecutionPlan : IExecutionPlan
         {
-            public Type OutputType { get; private set; }
+            public Type OutputType { get; }
 
             public EmptyExecutionPlan()
             {

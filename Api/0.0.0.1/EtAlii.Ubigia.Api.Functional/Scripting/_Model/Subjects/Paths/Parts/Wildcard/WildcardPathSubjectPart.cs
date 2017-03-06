@@ -2,7 +2,7 @@
 {
     public class WildcardPathSubjectPart : PathSubjectPart
     {
-        public string Pattern { get; private set; }
+        public string Pattern { get; }
 
         public WildcardPathSubjectPart(string pattern)
         {

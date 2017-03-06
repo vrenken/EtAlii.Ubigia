@@ -5,9 +5,9 @@
 
     internal class FunctionSubject : Subject
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
-        public FunctionSubjectArgument[] Arguments { get; private set; }
+        public FunctionSubjectArgument[] Arguments { get; }
 
         public bool ShouldAcceptInput { get; set; }
 

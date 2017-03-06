@@ -6,7 +6,7 @@
     {
         private readonly Comment _comment;
 
-        public Type OutputType { get; private set; }
+        public Type OutputType { get; }
 
         public CommentExecutionPlan(Comment comment)
         {

@@ -5,7 +5,7 @@
 
     public class RootedPathSubject : PathSubject
     {
-        public string Root { get; private set; }
+        public string Root { get; }
 
         public RootedPathSubject(string root, PathSubjectPart part) 
             : base(part)
