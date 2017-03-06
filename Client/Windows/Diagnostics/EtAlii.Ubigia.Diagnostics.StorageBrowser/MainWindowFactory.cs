@@ -2,7 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;

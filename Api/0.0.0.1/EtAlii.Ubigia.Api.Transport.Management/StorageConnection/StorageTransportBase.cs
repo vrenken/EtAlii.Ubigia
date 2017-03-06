@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Management
+﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;

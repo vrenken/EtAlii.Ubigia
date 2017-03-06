@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 

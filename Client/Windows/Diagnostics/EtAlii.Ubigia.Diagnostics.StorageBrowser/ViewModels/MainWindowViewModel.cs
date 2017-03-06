@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
 

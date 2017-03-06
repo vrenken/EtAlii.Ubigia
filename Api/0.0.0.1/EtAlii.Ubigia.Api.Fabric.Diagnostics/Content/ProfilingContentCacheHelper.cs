@@ -1,6 +1,6 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
-    using System;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
 
     internal class ProfilingContentCacheHelper : IContentCacheHelper

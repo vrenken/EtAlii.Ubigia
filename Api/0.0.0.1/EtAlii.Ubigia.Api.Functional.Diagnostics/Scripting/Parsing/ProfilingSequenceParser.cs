@@ -1,6 +1,6 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Parsing
 {
-    using System;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
     using Moppet.Lapa;
 

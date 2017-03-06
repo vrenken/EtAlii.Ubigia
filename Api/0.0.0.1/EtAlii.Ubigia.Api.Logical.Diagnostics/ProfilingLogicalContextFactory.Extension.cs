@@ -1,6 +1,5 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
 
     public static class ProfilingLogicalContextFactoryExtension

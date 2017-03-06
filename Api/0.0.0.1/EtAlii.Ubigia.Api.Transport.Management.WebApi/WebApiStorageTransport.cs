@@ -1,7 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Management.WebApi
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 {
+    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.xTechnology.MicroContainer;
-    using Transport;
+
     public class WebApiStorageTransport : StorageTransportBase, IWebApiStorageTransport
     {
         private readonly IInfrastructureClient _infrastructureClient;

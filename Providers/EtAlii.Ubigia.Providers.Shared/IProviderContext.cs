@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Transport.Management;
 
     public interface IProviderContext
     {

@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;

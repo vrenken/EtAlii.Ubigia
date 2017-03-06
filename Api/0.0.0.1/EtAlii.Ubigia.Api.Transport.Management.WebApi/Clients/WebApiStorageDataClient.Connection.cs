@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Management.WebApi
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 {
     using EtAlii.Ubigia.Api.Transport;
 

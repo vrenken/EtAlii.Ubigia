@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Spaces
 {
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.PowerShell.Accounts;
     using System;
     using System.Linq;
@@ -8,6 +7,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Space, DefaultParameterSetName = "bySpaceName")]
     public class Add_Space : AccountTargetingCmdlet, IAccountInfoProvider

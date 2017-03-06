@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
 

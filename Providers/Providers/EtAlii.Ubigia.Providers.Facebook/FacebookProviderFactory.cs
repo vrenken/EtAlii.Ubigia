@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Facebook
 {
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Transport.Management;
 
     public class FacebookProviderFactory : IProviderFactory
     {

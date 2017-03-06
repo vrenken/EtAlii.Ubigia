@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Transport.Management;
 
     public static class ManagementConnectionConfigurationExtension
     {

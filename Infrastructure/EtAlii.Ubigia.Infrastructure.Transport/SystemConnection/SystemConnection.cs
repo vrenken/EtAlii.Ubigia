@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Management;
 
     internal class SystemConnection : ISystemConnection
     {

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Parsing
 {
     using System;
     using EtAlii.xTechnology.Logging;

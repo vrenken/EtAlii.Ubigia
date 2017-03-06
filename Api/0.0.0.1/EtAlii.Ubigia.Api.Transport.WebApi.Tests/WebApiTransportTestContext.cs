@@ -1,8 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Diagnostics;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+    using EtAlii.Ubigia.Api.Transport.Management.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Tests;

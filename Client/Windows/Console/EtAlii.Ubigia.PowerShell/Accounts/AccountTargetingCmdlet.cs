@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Accounts
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.PowerShell.Storages;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     public class AccountTargetingCmdlet : StorageTargetingCmdlet, IAccountInfoProvider
     {

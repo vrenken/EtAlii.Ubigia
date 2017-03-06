@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Parsing;
     using EtAlii.Ubigia.Api.Tests;
     using Xunit;
 

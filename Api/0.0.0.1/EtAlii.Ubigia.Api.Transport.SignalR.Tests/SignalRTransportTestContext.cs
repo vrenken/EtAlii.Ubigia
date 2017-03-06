@@ -1,10 +1,13 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Management;
-    using EtAlii.Ubigia.Api.Management.SignalR;
+    using EtAlii.Ubigia.Api.Diagnostics;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+    using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
+    using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Tests;
 

@@ -1,6 +1,5 @@
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
