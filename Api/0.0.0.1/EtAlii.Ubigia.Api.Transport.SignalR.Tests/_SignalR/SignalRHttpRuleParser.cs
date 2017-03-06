@@ -4,7 +4,7 @@
     using System.Globalization;
     using System.Text;
     using HttpRuleParser = SignalRHttpRuleParser;
-    using HttpParseResult = SignalRHttpParseResult;
+    using HttpParseResult = EtAlii.Ubigia.Api.Transport.SignalR.Tests.SignalRHttpParseResult;
 
     internal static class SignalRHttpRuleParser
     {

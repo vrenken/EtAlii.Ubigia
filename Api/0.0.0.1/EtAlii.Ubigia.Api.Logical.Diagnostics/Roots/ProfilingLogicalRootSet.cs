@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System;
     using System.Collections.Generic;

@@ -5,6 +5,7 @@
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.SignalR.Tests;
     using Microsoft.AspNet.SignalR.Client;
     using Microsoft.AspNet.SignalR.Client.Http;
 

@@ -2,8 +2,9 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Api.Transport.Management.WebApi;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     public class PowerShellClient : IPowerShellClient

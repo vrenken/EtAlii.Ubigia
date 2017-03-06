@@ -1,6 +1,6 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Logical;
 
     public class ProfilingGraphPathTraverserFactory : IGraphPathTraverserFactory

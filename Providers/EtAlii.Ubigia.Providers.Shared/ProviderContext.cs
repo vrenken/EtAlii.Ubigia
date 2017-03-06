@@ -3,8 +3,8 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Management;
 
     public class ProviderContext : IProviderContext
     {

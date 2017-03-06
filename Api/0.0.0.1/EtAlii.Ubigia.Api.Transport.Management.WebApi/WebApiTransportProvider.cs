@@ -1,7 +1,6 @@
-namespace EtAlii.Ubigia.Api.Transport.WebApi
+namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 {
-    using EtAlii.Ubigia.Api.Management;
-    using EtAlii.Ubigia.Api.Management.WebApi;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     public class WebApiStorageTransportProvider : IStorageTransportProvider
     {

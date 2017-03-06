@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Management.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
     using System;
     using System.Threading.Tasks;

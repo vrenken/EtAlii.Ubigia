@@ -1,7 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
 
     public class ProfilingScriptSet : IScriptsSet

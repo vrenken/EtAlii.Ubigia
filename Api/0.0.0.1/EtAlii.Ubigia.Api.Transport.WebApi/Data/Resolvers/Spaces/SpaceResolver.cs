@@ -1,11 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Management
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     public class SpaceResolver : ISpaceResolver
     {

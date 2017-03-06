@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Storages
 {
-    using EtAlii.Ubigia.Api.Management;
     using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using Storage = EtAlii.Ubigia.Api.Storage;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Storages, DefaultParameterSetName = "byStorage")]

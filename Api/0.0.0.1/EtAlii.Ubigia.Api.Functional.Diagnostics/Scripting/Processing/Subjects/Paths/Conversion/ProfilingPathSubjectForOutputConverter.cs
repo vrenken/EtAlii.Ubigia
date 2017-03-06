@@ -1,7 +1,7 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Processing
 {
     using System;
-    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
 
     internal class ProfilingPathSubjectForOutputConverter : IPathSubjectForOutputConverter

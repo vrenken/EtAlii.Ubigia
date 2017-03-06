@@ -4,6 +4,7 @@
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Tests;
+    using EtAlii.Ubigia.Api.Functional.Win32;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Helpers.Win32.Tests;

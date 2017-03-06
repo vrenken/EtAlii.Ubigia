@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Logical
+namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
 

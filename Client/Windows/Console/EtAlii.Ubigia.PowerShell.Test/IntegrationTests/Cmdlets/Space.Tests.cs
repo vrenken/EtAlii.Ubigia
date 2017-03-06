@@ -7,7 +7,6 @@
     using Xunit;
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Management;
     using TestAssembly = EtAlii.Ubigia.PowerShell.Tests.TestAssembly;
 
     

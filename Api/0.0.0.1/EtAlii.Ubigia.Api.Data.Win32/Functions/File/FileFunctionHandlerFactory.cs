@@ -1,6 +1,5 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Win32
 {
-    using System;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class FileFunctionHandlerFactory

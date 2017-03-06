@@ -1,7 +1,7 @@
-namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;
     using IContentContext = EtAlii.Ubigia.Api.Fabric.IContentContext;
     using IEntryContext = EtAlii.Ubigia.Api.Fabric.IEntryContext;

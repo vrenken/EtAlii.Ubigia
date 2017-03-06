@@ -1,5 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Management
+﻿namespace EtAlii.Ubigia.Api.Fabric.Management
 {
+    using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ManagementFabricContextFactory

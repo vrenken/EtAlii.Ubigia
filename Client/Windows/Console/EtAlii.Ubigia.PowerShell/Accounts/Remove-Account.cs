@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Accounts
 {
-    using EtAlii.Ubigia.Api.Management;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Account, DefaultParameterSetName = "byStorage", SupportsShouldProcess = true)]
     public class Remove_Account : AccountTargetingCmdlet, IAccountInfoProvider

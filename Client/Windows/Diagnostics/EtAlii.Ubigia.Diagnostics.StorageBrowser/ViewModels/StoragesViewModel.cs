@@ -1,13 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using EtAlii.Ubigia.Api.Transport.Management;
 
     public class StoragesViewModel : BindableBase, IStoragesViewModel
     {

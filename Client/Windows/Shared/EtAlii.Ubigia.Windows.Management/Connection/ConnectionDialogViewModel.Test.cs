@@ -3,8 +3,8 @@
     using System;
     using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Ubigia.Api.Management;
-    using EtAlii.Ubigia.Api.Management.SignalR;
+    using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.xTechnology.Mvvm;
 
     internal partial class ConnectionDialogViewModel : BindableBase

@@ -2,8 +2,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Management;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public interface IProvisioningTestContext

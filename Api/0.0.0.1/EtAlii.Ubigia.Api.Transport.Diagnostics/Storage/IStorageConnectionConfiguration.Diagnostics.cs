@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Management
+namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;

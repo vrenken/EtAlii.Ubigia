@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 {
     using System;
     using System.Threading;
-    using Disposer = SignalRDisposer;
 
     /// <summary>
     /// Helper class to manage disposing a resource at an arbirtary time

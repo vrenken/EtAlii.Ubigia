@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Management
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
     public interface IEntryInfoProvider
     {

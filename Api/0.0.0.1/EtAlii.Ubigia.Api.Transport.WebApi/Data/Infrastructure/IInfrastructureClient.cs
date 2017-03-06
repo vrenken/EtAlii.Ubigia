@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
     using System.Net;
     using System.Threading.Tasks;

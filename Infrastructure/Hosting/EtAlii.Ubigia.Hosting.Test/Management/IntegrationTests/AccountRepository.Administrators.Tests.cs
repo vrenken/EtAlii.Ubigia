@@ -5,9 +5,8 @@
     using Xunit;
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Management;
 
-    
+
     public class AccountRepository_Administrators_Tests : IClassFixture<HostUnitTestContext>
     {
         private readonly HostUnitTestContext _testContext;

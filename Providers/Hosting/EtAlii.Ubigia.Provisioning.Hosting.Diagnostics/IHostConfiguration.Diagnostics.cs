@@ -1,8 +1,11 @@
 namespace EtAlii.Ubigia.Provisioning.Hosting
 {
+    using EtAlii.Ubigia.Api.Diagnostics;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Management;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
 
     public static class IHostConfigurationDiagnosticsExtension

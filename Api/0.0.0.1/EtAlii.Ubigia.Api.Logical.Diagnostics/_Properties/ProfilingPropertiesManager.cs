@@ -1,6 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
+﻿namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Logical;
 
     public class ProfilingPropertiesManager : IPropertiesManager

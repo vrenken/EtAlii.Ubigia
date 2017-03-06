@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia.Api.Functional.Win32
 {
     using System;
     using EtAlii.Ubigia.Api.Logical;

@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Management
+﻿namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public sealed class AccountDataClientStub : IAccountDataClient 
     {

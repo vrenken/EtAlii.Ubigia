@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport
+﻿namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
     using System;
     using System.Collections.Generic;
