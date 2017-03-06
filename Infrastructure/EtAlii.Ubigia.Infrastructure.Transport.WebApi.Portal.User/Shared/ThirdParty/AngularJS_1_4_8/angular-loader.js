@@ -53,6 +53,7 @@ function minErr(module, ErrorConstructor) {
         shiftedIndex = index + SKIP_INDEXES;
 
       if (shiftedIndex < templateArgs.length) {
+// ReSharper disable once UndeclaredGlobalVariableUsing
         return toDebugString(templateArgs[shiftedIndex]);
       }
 
@@ -64,6 +65,7 @@ function minErr(module, ErrorConstructor) {
 
     for (i = SKIP_INDEXES, paramPrefix = '?'; i < templateArgs.length; i++, paramPrefix = '&') {
       message += paramPrefix + 'p' + (i - SKIP_INDEXES) + '=' +
+// ReSharper disable once UndeclaredGlobalVariableUsing
         encodeURIComponent(toDebugString(templateArgs[i]));
     }
 
