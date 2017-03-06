@@ -6,9 +6,9 @@
 
     public class DiscoverEntryCommand : CommandBase
     {
-        public IReadOnlyEntry Entry { get; private set; }
-        public ProcessReason ProcessReason { get; private set; }
-        public int Depth { get; private set; }
+        public IReadOnlyEntry Entry { get; }
+        public ProcessReason ProcessReason { get; }
+        public int Depth { get; }
 
 
         public DiscoverEntryCommand(IReadOnlyEntry entry, ProcessReason processReason, int depth)

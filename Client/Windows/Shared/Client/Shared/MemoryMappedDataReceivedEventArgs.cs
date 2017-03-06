@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public class MemoryMappedDataReceivedEventArgs : EventArgs
     {
-        public byte[] Data { get; private set; }
+        public byte[] Data { get; }
 
         internal MemoryMappedDataReceivedEventArgs(byte[] data, long length)
         {

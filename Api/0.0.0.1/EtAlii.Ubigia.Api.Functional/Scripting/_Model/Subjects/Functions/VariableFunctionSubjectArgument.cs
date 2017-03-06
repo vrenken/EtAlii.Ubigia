@@ -4,7 +4,7 @@
 
     public class VariableFunctionSubjectArgument : FunctionSubjectArgument
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public VariableFunctionSubjectArgument(string name)
         {

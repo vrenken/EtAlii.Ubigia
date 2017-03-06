@@ -6,7 +6,7 @@
     {
         private readonly IOperatorExecutionPlan _operatorExecutionPlan;
         public Type OutputType => _operatorExecutionPlan.OutputType;
-        public Subject Subject { get; private set; }
+        public Subject Subject { get; }
 
         public SubjectOperatorExecutionPlan(IOperatorExecutionPlan operatorExecutionPlan)
         {

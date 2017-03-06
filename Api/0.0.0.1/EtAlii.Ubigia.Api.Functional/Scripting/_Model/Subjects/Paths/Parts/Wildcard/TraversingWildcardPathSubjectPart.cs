@@ -2,7 +2,7 @@
 {
     public class TraversingWildcardPathSubjectPart : PathSubjectPart
     {
-        public int Limit { get; private set; }
+        public int Limit { get; }
 
         public TraversingWildcardPathSubjectPart(int limit)
         {

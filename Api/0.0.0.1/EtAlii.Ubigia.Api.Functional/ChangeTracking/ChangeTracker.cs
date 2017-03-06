@@ -4,7 +4,7 @@
 
     public class ChangeTracker : IChangeTracker
     {
-        public bool HasChanges { get; private set; }
+        public bool HasChanges { get; }
 
         public IEnumerable<NodeTrackingReference> Entries => _entries;
         private readonly List<NodeTrackingReference> _entries;

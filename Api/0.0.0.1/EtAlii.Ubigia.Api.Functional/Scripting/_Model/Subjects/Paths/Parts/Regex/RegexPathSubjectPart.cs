@@ -2,7 +2,7 @@
 {
     public class RegexPathSubjectPart : PathSubjectPart
     {
-        public string Regex { get; private set; }
+        public string Regex { get; }
 
         public RegexPathSubjectPart(string regex)
         {

@@ -4,9 +4,9 @@
 
     public class Condition
     {
-        public string Property { get; private set; }
-        public ConditionType Type { get; private set; }
-        public object Value { get; private set; }
+        public string Property { get; }
+        public ConditionType Type { get; }
+        public object Value { get; }
 
         public Condition(string property, ConditionType type, object value)
         {

@@ -7,7 +7,7 @@
     [DebuggerDisplay("{Description}")]
     public class GraphCondition : GraphPathPart
     {
-        public string Description { get; private set; }
+        public string Description { get; }
         public Predicate<PropertyDictionary> Predicate { get; private set; }
 
         public GraphCondition(Predicate<PropertyDictionary> predicate, string description)

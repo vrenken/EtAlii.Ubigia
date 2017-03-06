@@ -2,7 +2,7 @@
 {
     public class ConstantPathSubjectPart : PathSubjectPart
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public ConstantPathSubjectPart(string name)
         {

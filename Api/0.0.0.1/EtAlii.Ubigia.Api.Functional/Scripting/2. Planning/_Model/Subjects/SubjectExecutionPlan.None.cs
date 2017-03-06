@@ -9,8 +9,8 @@
 
         private class EmptySubjectExecutionPlan : ISubjectExecutionPlan
         {
-            public Type OutputType { get; private set; }
-            public Subject Subject { get; private set; }
+            public Type OutputType { get; }
+            public Subject Subject { get; }
 
             public EmptySubjectExecutionPlan()
             {

@@ -6,8 +6,8 @@
 
     public abstract class OperatorExecutionPlanBase : IOperatorExecutionPlan
     {
-        protected ISubjectExecutionPlan Left { get; private set; }
-        protected ISubjectExecutionPlan Right { get; private set; }
+        protected ISubjectExecutionPlan Left { get; }
+        protected ISubjectExecutionPlan Right { get; }
 
         public Type OutputType => _outputType.Value;
         private readonly Lazy<Type> _outputType;

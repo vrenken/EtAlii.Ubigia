@@ -6,8 +6,8 @@
 
     public class RetrieveEntryCommand : CommandBase
     {
-        public Identifier Identifier { get; private set; }
-        public ProcessReason ProcessReason { get; private set; }
+        public Identifier Identifier { get; }
+        public ProcessReason ProcessReason { get; }
 
         public RetrieveEntryCommand(Identifier identifier, ProcessReason processReason)
         {

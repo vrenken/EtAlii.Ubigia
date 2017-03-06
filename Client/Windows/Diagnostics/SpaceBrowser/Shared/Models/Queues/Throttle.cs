@@ -39,12 +39,12 @@
         /// <summary>
         /// Number of occurrences allowed per unit of time.
         /// </summary>
-        public int Occurrences { get; private set; }
+        public int Occurrences { get; }
 
         /// <summary>
         /// The length of the time unit, in milliseconds.
         /// </summary>
-        public int TimeUnitMilliseconds { get; private set; }
+        public int TimeUnitMilliseconds { get; }
 
         /// <summary>
         /// Initializes a <see cref="RateGate"/> with a rate of <paramref name="occurrences"/> 

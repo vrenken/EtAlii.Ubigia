@@ -4,7 +4,7 @@
 
     public class ConstantFunctionSubjectArgument : FunctionSubjectArgument
     {
-        public string Value { get; private set; }
+        public string Value { get; }
 
         public ConstantFunctionSubjectArgument(string value)
         {
