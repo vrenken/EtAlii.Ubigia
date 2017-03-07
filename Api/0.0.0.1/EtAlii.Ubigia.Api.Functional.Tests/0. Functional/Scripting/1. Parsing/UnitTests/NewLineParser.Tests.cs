@@ -7,7 +7,7 @@
     using Xunit;
 
 
-    public class NewLineParser_Tests
+    public class NewLineParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NewLineParser_Create()

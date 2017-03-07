@@ -19,7 +19,7 @@
         private IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathFunctionInclude(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathFunctionIncludeTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 

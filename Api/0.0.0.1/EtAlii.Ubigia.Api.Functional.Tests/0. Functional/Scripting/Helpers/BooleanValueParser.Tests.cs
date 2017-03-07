@@ -9,11 +9,11 @@
     using Xunit;
 
     
-    public partial class BooleanValueParser_Tests : IDisposable
+    public partial class BooleanValueParserTests : IDisposable
     {
         private IBooleanValueParser _parser;
 
-        public BooleanValueParser_Tests()
+        public BooleanValueParserTests()
         {
             var nodeValidator = new NodeValidator();
             var nodeFinder = new NodeFinder();

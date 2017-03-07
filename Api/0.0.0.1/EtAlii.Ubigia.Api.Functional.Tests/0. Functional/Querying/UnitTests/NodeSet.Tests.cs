@@ -4,7 +4,7 @@
     using Xunit;
 
 
-    public class NodeSet_Tests
+    public class NodeSetTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NodeSet_New()

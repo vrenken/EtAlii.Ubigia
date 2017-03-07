@@ -5,11 +5,11 @@
     using System.IO;
 
     
-    public class Win32ContentManager_Tests : IDisposable
+    public class Win32ContentManagerTests : IDisposable
     {
         private string _testImageFileName;
 
-        public Win32ContentManager_Tests()
+        public Win32ContentManagerTests()
         {
             // Getting Temp file name to use
             _testImageFileName = Win32TestHelper.CreateTemporaryFileName();

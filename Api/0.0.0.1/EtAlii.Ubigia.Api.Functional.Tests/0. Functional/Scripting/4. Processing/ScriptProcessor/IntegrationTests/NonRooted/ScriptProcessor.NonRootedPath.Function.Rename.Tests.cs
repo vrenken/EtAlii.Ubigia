@@ -13,13 +13,13 @@
 
 
     
-    public partial class ScriptProcessor_NonRootedPath_Function_Rename : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public partial class ScriptProcessorNonRootedPathFunctionRename : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_NonRootedPath_Function_Rename(LogicalUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathFunctionRename(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 

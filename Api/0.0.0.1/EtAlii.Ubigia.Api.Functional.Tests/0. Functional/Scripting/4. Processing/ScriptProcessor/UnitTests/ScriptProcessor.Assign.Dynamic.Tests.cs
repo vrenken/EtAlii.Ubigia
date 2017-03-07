@@ -7,12 +7,12 @@
     
 
     
-    public class ScriptProcessor_Assign_Dynamic_UnitTests : IDisposable
+    public class ScriptProcessorAssignDynamicUnitTests : IDisposable
     {
         private IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
 
-        public ScriptProcessor_Assign_Dynamic_UnitTests()
+        public ScriptProcessorAssignDynamicUnitTests()
         {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

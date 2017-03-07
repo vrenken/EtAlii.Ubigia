@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.Ubigia.Api.Tests;
     
 
-    public partial class ScriptParser_Tests
+    public partial class ScriptParserTests
     {
     }
 }

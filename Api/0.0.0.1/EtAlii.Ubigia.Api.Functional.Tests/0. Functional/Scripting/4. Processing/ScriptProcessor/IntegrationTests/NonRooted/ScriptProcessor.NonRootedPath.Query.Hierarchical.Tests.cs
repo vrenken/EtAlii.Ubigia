@@ -14,14 +14,14 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_NonRootedPath_Query_Hierarchical_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorNonRootedPathQueryHierarchicalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_NonRootedPath_Query_Hierarchical_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathQueryHierarchicalIntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

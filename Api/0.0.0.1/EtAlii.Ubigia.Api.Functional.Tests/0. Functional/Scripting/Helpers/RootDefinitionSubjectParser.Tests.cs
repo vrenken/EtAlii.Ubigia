@@ -9,11 +9,11 @@
     using Xunit;
 
     
-    public partial class RootDefinitionSubjectParser_Tests : IDisposable
+    public partial class RootDefinitionSubjectParserTests : IDisposable
     {
         private IRootDefinitionSubjectParser _parser;
 
-        public RootDefinitionSubjectParser_Tests()
+        public RootDefinitionSubjectParserTests()
         {
             var nodeValidator = new NodeValidator();
             var nodeFinder = new NodeFinder();

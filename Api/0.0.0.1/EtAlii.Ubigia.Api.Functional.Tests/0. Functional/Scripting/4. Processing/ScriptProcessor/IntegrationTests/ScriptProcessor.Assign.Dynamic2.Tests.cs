@@ -13,14 +13,14 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_Assign_Dynamic2_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorAssignDynamic2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_Assign_Dynamic2_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorAssignDynamic2IntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 

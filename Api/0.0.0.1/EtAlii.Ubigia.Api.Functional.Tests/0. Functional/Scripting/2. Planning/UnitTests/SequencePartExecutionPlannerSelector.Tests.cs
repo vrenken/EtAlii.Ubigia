@@ -10,11 +10,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public class SequenceExecutionPlanner_Tests : IDisposable
+    public class SequenceExecutionPlannerTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public SequenceExecutionPlanner_Tests()
+        public SequenceExecutionPlannerTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

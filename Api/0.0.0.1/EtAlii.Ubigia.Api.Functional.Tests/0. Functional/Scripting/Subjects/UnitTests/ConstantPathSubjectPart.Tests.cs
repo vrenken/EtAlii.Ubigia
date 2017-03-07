@@ -6,11 +6,11 @@
     using Xunit;
 
 
-    public class ConstantPathSubjectPart_Tests : IDisposable
+    public class ConstantPathSubjectPartTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public ConstantPathSubjectPart_Tests()
+        public ConstantPathSubjectPartTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

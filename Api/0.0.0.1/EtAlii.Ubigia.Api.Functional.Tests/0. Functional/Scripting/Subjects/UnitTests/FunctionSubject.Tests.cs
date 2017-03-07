@@ -4,7 +4,7 @@
     using Xunit;
 
 
-    public class FunctionSubject_Tests
+    public class FunctionSubjectTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void FunctionSubject_Create()

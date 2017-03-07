@@ -7,11 +7,11 @@
 
 
     
-    public partial class FloatValueParser_Tests : IDisposable
+    public partial class FloatValueParserTests : IDisposable
     {
         private IFloatValueParser _parser;
 
-        public FloatValueParser_Tests()
+        public FloatValueParserTests()
         {
             var nodeValidator = new NodeValidator();
             _parser = new FloatValueParser(nodeValidator);

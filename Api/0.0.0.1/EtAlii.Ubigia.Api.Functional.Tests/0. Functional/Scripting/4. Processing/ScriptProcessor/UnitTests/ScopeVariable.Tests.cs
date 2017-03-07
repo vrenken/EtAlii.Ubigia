@@ -9,7 +9,7 @@
 
 
     
-    public class ScopeVariable_Tests
+    public class ScopeVariableTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScopeVariable_New()

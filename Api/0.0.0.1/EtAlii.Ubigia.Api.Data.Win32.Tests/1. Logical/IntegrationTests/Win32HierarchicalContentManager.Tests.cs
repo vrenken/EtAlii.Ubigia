@@ -13,25 +13,25 @@
     using Xunit;
 
 
-    public class Win32HierarchicalContentManager_Tests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class Win32HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
-        private readonly string _testFolder_Simple;
+        private readonly string _testFolderSimple;
         private readonly LogicalUnitTestContext _testContext;
 
-        public Win32HierarchicalContentManager_Tests(LogicalUnitTestContext testContext)
+        public Win32HierarchicalContentManagerTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 
             // Getting Temp folder names to use
-            _testFolder_Simple = Win32TestHelper.CreateTemporaryFolderName();
-            Win32TestHelper.SaveTestFolder(_testFolder_Simple, 3, 3, 3, 0.2f, 1.2f);
+            _testFolderSimple = Win32TestHelper.CreateTemporaryFolderName();
+            Win32TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
         }
 
         public void Dispose()
         {
-            if (Directory.Exists(_testFolder_Simple))
+            if (Directory.Exists(_testFolderSimple))
             {
-                Directory.Delete(_testFolder_Simple, true);
+                Directory.Delete(_testFolderSimple, true);
             }
         }
 
@@ -83,7 +83,7 @@
             var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
 
             // Act.
-            hierarchicalContentManager.Upload(_testFolder_Simple, entry.Id);
+            hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
 
             // Assert.
         }
@@ -100,14 +100,14 @@
             var contentManager = logicalContext.Content;
             var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
             var retrievedFolderPath = Win32TestHelper.CreateTemporaryFolderName();
-            hierarchicalContentManager.Upload(_testFolder_Simple, entry.Id);
+            hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
 
             // Act.
             hierarchicalContentManager.Download(retrievedFolderPath, entry.Id);
 
             //// Assert.
             Assert.True(File.Exists(retrievedFolderPath));
-            AssertData.FilesAreEqual(_testFolder_Simple, retrievedFolderPath);
+            AssertData.FilesAreEqual(_testFolderSimple, retrievedFolderPath);
 
             // Assure.
             if (Directory.Exists(retrievedFolderPath))

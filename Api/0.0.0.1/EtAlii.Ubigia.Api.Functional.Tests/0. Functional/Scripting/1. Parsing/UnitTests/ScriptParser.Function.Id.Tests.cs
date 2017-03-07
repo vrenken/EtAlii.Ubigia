@@ -7,11 +7,11 @@
     using Xunit;
 
 
-    public partial class ScriptParser_Function_Id_Tests : IDisposable
+    public partial class ScriptParserFunctionIdTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public ScriptParser_Function_Id_Tests()
+        public ScriptParserFunctionIdTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

@@ -7,7 +7,7 @@
     using Xunit;
 
 
-    public class TypedPathSubjectPartParser_Tests
+    public class TypedPathSubjectPartParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void TypedPathSubjectPartParser_Create()

@@ -12,7 +12,7 @@
     using Xunit;
 
 
-    public partial class DataContext_Nodes_Add_Tests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public partial class DataContextNodesAddTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
@@ -20,7 +20,7 @@
         private string _countryPath;
         private readonly LogicalUnitTestContext _testContext;
 
-        public DataContext_Nodes_Add_Tests(LogicalUnitTestContext testContext)
+        public DataContextNodesAddTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 

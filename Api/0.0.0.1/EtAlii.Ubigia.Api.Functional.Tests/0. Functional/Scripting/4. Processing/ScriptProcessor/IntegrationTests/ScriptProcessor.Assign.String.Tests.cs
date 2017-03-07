@@ -13,14 +13,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_Assign_String_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_Assign_String_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorAssignStringIntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 

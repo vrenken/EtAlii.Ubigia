@@ -9,7 +9,7 @@
 
 
     
-    public partial class ScriptParser_RootedPath_Tests : IDisposable
+    public partial class ScriptParserRootedPathTests : IDisposable
     {
         private IScriptParser _parser;
         
@@ -39,7 +39,7 @@
              'ä','ë','ö','ü','á','é','ó','ú','â','ê','ô','û'
         };
 
-        public ScriptParser_RootedPath_Tests()
+        public ScriptParserRootedPathTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

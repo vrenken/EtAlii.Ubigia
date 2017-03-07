@@ -8,11 +8,11 @@
 
 
     
-    public class ScriptParser_Function_Tests : IDisposable
+    public class ScriptParserFunctionTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public ScriptParser_Function_Tests()
+        public ScriptParserFunctionTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

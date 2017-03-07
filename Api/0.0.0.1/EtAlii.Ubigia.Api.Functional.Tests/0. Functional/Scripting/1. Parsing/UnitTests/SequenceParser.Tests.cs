@@ -11,11 +11,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class SequenceParser_Tests : IDisposable
+    public partial class SequenceParserTests : IDisposable
     {
         private ISequenceParser _parser;
 
-        public SequenceParser_Tests()
+        public SequenceParserTests()
         {
             var container = new Container();
 

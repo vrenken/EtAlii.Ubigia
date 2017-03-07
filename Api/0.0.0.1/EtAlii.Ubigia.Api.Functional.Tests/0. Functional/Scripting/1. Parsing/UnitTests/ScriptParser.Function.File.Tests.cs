@@ -6,11 +6,11 @@
     using Xunit;
 
 
-    public partial class ScriptParser_Function_File_Tests : IDisposable
+    public partial class ScriptParserFunctionFileTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public ScriptParser_Function_File_Tests()
+        public ScriptParserFunctionFileTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

@@ -14,7 +14,7 @@
     using Xunit;
 
     
-    public class Win32ContentManager_Tests : IClassFixture<Win32LogicalUnitTestContext>, IDisposable
+    public class Win32ContentManagerTests : IClassFixture<Win32LogicalUnitTestContext>, IDisposable
     {
 
         private readonly Win32LogicalUnitTestContext _testContext;
@@ -36,7 +36,7 @@
         //}
         //private TestContext _testContext;
 
-        public Win32ContentManager_Tests(Win32LogicalUnitTestContext testContext)
+        public Win32ContentManagerTests(Win32LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 
@@ -102,7 +102,7 @@
             var contentManager = logicalContext.Content;
 
             // Act.
-            await contentManager.Upload(_testContext.TestFile_2M_Image, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
 
             // Assert.
         }
@@ -120,7 +120,7 @@
             // Act.
 
             var startTicks = Environment.TickCount;
-            await contentManager.Upload(_testContext.TestFile_2M_Image, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
             var endTicks = Environment.TickCount;
 
             // Assert.
@@ -140,7 +140,7 @@
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Upload(_testContext.TestFile_10M_Raw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
             var endTicks = Environment.TickCount;
 
             // Assert.
@@ -160,7 +160,7 @@
 
             // Act.
             var startTicks = Environment.TickCount;
-            await contentManager.Upload(_testContext.TestFile_100M_Raw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id);
             var endTicks = Environment.TickCount;
 
             // Assert.
@@ -178,14 +178,14 @@
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile_2M_Image, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
 
             // Act.
             await contentManager.Download(retrievedFilePath, entry.Id);
 
             //// Assert.
             Assert.True(File.Exists(retrievedFilePath));
-            AssertData.FilesAreEqual(_testContext.TestFile_2M_Image, retrievedFilePath);
+            AssertData.FilesAreEqual(_testContext.TestFile2MImage, retrievedFilePath);
 
             // Assure.
             if (File.Exists(retrievedFilePath))
@@ -204,14 +204,14 @@
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile_10M_Raw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
 
             // Act.
             await contentManager.Download(retrievedFilePath, entry.Id);
 
             //// Assert.
             Assert.True(File.Exists(retrievedFilePath));
-            AssertData.FilesAreEqual(_testContext.TestFile_10M_Raw, retrievedFilePath);
+            AssertData.FilesAreEqual(_testContext.TestFile10MRaw, retrievedFilePath);
 
             // Assure.
             if (File.Exists(retrievedFilePath))
@@ -230,7 +230,7 @@
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile_2M_Image, entry.Id);
+            await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
 
             // Act.
             var startTicks = Environment.TickCount;
@@ -259,7 +259,7 @@
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile_10M_Raw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
 
             // Act.
             var startTicks = Environment.TickCount;
@@ -288,7 +288,7 @@
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
             var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
-            await contentManager.Upload(_testContext.TestFile_100M_Raw, entry.Id);
+            await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id);
 
             // Act.
             var startTicks = Environment.TickCount;

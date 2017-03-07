@@ -10,11 +10,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class SequenceParser_Paths_TraversingWildcard_Tests : IDisposable
+    public partial class SequenceParserPathsTraversingWildcardTests : IDisposable
     {
         private ISequenceParser _parser;
 
-        public SequenceParser_Paths_TraversingWildcard_Tests()
+        public SequenceParserPathsTraversingWildcardTests()
         {
             var container = new Container();
 

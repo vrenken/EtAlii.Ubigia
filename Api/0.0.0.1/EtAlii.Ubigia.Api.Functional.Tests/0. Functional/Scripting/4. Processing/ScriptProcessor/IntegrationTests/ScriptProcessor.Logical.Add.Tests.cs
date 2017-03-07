@@ -15,14 +15,14 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_Logical_Add_Tests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorLogicalAddTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_Logical_Add_Tests(LogicalUnitTestContext testContext)
+        public ScriptProcessorLogicalAddTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

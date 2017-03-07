@@ -7,7 +7,7 @@
     using Xunit;
 
 
-    public partial class ScriptParser_NonRootedPath_Tests
+    public partial class ScriptParserNonRootedPathTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_NonRootedPath_Parse_Path()

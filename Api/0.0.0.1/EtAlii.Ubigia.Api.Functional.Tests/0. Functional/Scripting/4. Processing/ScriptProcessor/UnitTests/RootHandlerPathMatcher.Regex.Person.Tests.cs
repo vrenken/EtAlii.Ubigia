@@ -4,7 +4,7 @@
     using Xunit;
 
 
-    public partial class RootHandlerPathMatcher_Tests
+    public partial class RootHandlerPathMatcherTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void RootHandlerPathMatcher_Regex_FirstNameLastName_01()

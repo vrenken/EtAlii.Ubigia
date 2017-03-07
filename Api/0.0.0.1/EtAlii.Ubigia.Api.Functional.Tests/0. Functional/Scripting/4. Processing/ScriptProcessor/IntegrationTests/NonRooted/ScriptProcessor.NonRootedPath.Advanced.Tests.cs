@@ -13,13 +13,13 @@
 
 
     
-    public class ScriptProcessor_NonRootedPath_Advanced_Tests : IDisposable
+    public class ScriptProcessorNonRootedPathAdvancedTests : IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessor_NonRootedPath_Advanced_Tests()
+        public ScriptProcessorNonRootedPathAdvancedTests()
         {
             var task = Task.Run(async () =>
             {

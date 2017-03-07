@@ -9,11 +9,11 @@
     using Xunit;
 
 
-    public partial class TypeValueParser_Tests : IDisposable
+    public partial class TypeValueParserTests : IDisposable
     {
         private ITypeValueParser _parser;
 
-        public TypeValueParser_Tests()
+        public TypeValueParserTests()
         {
             var nodeValidator = new NodeValidator();
             var nodeFinder = new NodeFinder();

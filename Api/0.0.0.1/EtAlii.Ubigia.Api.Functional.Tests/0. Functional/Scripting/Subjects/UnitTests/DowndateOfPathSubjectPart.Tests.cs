@@ -6,11 +6,11 @@
     using Xunit;
 
 
-    public class DowndateOfPathSubjectPart_Tests : IDisposable
+    public class DowndateOfPathSubjectPartTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public DowndateOfPathSubjectPart_Tests()
+        public DowndateOfPathSubjectPartTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
