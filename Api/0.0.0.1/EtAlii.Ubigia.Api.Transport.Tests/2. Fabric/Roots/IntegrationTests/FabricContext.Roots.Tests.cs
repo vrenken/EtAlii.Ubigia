@@ -12,12 +12,12 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public sealed class FabricContext_Roots_Tests : IClassFixture<TransportUnitTestContext>, IDisposable
+    public sealed class FabricContextRootsTests : IClassFixture<TransportUnitTestContext>, IDisposable
     {
         private IFabricContext _fabric;
         private readonly TransportUnitTestContext _testContext;
 
-        public FabricContext_Roots_Tests(TransportUnitTestContext testContext)
+        public FabricContextRootsTests(TransportUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

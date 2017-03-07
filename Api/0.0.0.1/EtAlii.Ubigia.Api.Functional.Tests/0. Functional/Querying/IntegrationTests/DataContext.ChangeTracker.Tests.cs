@@ -12,9 +12,10 @@
             // Arrange.
 
             // Act.
-            new ChangeTracker();
+            var changeTracker = new ChangeTracker();
 
             // Assert.
+            Assert.NotNull(changeTracker);
         }
     }
 }

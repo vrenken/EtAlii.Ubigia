@@ -10,7 +10,7 @@
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public partial class GraphComposer_IntegrationTests
+    public partial class GraphComposerIntegrationTests
     {
 
         [Fact]

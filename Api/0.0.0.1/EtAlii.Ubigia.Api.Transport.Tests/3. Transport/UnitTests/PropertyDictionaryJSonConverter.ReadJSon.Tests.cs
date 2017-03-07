@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
 
     
-    public class PropertyDictionaryJSonConverter_ReadJSon_Tests
+    public class PropertyDictionaryJSonConverterReadJSonTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyDictionaryJSonConverter_ReadJson_Empty()

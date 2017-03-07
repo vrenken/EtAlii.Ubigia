@@ -8,12 +8,12 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class FabricContext_Content_Tests : IClassFixture<TransportUnitTestContext>, IDisposable
+    public class FabricContextContentTests : IClassFixture<TransportUnitTestContext>, IDisposable
     {
         private IFabricContext _fabric;
         private readonly TransportUnitTestContext _testContext;
 
-        public FabricContext_Content_Tests(TransportUnitTestContext testContext)
+        public FabricContextContentTests(TransportUnitTestContext testContext)
         {
             _testContext = testContext;
 

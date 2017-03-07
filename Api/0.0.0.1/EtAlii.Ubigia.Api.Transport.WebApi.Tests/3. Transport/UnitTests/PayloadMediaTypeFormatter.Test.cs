@@ -5,7 +5,7 @@
     using Xunit;
 
     
-    public class PayloadMediaTypeFormatter_Tests
+    public class PayloadMediaTypeFormatterTests
     {
         [Fact]
         public void PayloadMediaTypeFormatter_Create()

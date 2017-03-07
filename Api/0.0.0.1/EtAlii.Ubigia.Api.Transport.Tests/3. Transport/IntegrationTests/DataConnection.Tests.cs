@@ -7,11 +7,11 @@
     using Xunit;
 
     
-    public class DataConnection_Tests : IClassFixture<TransportUnitTestContext>, IDisposable
+    public class DataConnectionTests : IClassFixture<TransportUnitTestContext>, IDisposable
     {
         private readonly TransportUnitTestContext _testContext;
 
-        public DataConnection_Tests(TransportUnitTestContext testContext)
+        public DataConnectionTests(TransportUnitTestContext testContext)
         {
             _testContext = testContext;
         }

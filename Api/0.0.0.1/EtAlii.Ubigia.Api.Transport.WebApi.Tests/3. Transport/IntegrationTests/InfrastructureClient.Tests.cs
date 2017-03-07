@@ -9,9 +9,9 @@
     using Xunit;
 
     
-    public class InfrastructureClient_IntegrationTests
+    public class InfrastructureClientIntegrationTests
     {
-        private const string Url = "http://api.openkeyval.org/";
+        private const string _url = "http://api.openkeyval.org/";
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post()
@@ -26,7 +26,7 @@
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
-            await client.Post(Url + identifier, testMessage);
+            await client.Post(_url + identifier, testMessage);
         }
 
         [Fact(Skip="Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -67,7 +67,7 @@
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
-            await client.Post(Url + identifier, testMessage);
+            await client.Post(_url + identifier, testMessage);
 
             //var result = infrastructureClient.Get<TestMessage>(_url + identifier);
             //Assert.NotNull(result);

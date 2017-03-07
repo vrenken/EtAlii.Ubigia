@@ -15,11 +15,11 @@
     using Xunit;
 
     
-    public class GraphPathTraverser_MultipleConnections_Tests : IClassFixture<FabricUnitTestContext>
+    public class GraphPathTraverserMultipleConnectionsTests : IClassFixture<FabricUnitTestContext>
     {
         private readonly FabricUnitTestContext _testContext;
 
-        public GraphPathTraverser_MultipleConnections_Tests(FabricUnitTestContext testContext)
+        public GraphPathTraverserMultipleConnectionsTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
         }

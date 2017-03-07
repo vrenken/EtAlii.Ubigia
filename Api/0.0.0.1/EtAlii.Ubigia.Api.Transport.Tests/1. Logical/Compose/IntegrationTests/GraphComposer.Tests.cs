@@ -9,11 +9,11 @@
     using Xunit;
 
     
-    public partial class GraphComposer_IntegrationTests : IClassFixture<FabricUnitTestContext>
+    public partial class GraphComposerIntegrationTests : IClassFixture<FabricUnitTestContext>
     {
         private readonly FabricUnitTestContext _testContext;
 
-        public GraphComposer_IntegrationTests(FabricUnitTestContext testContext)
+        public GraphComposerIntegrationTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
         }

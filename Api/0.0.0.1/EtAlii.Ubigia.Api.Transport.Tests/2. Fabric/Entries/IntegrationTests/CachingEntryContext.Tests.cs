@@ -6,7 +6,7 @@
     using Xunit;
 
     
-    public class CachingEntryContext_Tests
+    public class CachingEntryContextTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void CachingEntryContext_Create()
