@@ -5,7 +5,7 @@
     using Xunit;
 
 
-    public partial class ScriptParser_Tests
+    public partial class ScriptParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_VariableStringAssignment()

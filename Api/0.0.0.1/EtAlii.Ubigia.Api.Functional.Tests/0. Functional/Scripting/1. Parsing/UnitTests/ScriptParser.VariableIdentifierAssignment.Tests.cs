@@ -6,7 +6,7 @@
     using Xunit;
 
 
-    public partial class ScriptParser_Tests
+    public partial class ScriptParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_VariableIdentifierAssignment_With_Variable_Separated()

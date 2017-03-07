@@ -9,11 +9,11 @@
     using Xunit;
 
 
-    public class DataContextFactory_RootHandlers_Tests : IClassFixture<LogicalUnitTestContext>
+    public class DataContextFactoryRootHandlersTests : IClassFixture<LogicalUnitTestContext>
     {
         private readonly LogicalUnitTestContext _testContext;
 
-        public DataContextFactory_RootHandlers_Tests(LogicalUnitTestContext testContext)
+        public DataContextFactoryRootHandlersTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }

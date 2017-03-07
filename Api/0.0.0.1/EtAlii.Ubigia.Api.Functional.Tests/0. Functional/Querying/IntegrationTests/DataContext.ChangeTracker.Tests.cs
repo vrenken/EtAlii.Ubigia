@@ -4,7 +4,7 @@
     using Xunit;
 
 
-    public class DataContext_ChangeTracker_Tests
+    public class DataContextChangeTrackerTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ChangeTracker_New()

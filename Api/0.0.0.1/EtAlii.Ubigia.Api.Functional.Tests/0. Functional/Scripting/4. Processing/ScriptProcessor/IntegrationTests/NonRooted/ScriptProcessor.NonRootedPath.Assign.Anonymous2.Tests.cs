@@ -13,7 +13,7 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_NonRootedPath_Assign_Anonymous2_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -21,7 +21,7 @@
 
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_NonRootedPath_Assign_Anonymous2_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorNonRootedPathAssignAnonymous2IntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 

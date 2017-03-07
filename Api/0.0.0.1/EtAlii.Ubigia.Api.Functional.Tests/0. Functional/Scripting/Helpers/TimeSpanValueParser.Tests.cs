@@ -10,11 +10,11 @@
     using Xunit;
 
     
-    public partial class TimeSpanValueParser_Tests : IDisposable
+    public partial class TimeSpanValueParserTests : IDisposable
     {
         private ITimeSpanValueParser _parser;
 
-        public TimeSpanValueParser_Tests()
+        public TimeSpanValueParserTests()
         {
             var nodeValidator = new NodeValidator();
             var nodeFinder = new NodeFinder();

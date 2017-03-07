@@ -6,11 +6,11 @@
     using Xunit;
 
 
-    public class IsParentOfPathSubjectPart_Tests : IDisposable
+    public class IsParentOfPathSubjectPartTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public IsParentOfPathSubjectPart_Tests()
+        public IsParentOfPathSubjectPartTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

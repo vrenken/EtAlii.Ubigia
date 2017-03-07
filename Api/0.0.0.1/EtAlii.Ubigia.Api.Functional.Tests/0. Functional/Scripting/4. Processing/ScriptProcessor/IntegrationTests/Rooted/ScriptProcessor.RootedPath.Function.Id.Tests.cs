@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         private IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathFunctionId(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathFunctionIdTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(() =>

@@ -19,7 +19,7 @@
         private IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessorRootedPathFunctionRename(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathFunctionRenameTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(() =>

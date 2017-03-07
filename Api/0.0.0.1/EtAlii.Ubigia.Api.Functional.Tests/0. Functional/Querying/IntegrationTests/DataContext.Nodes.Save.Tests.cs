@@ -13,7 +13,7 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public partial class DataContext_Nodes_Save_Tests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public partial class DataContextNodesSaveTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
@@ -21,7 +21,7 @@
         private string _countryPath;
         private readonly LogicalUnitTestContext _testContext;
 
-        public DataContext_Nodes_Save_Tests(LogicalUnitTestContext testContext)
+        public DataContextNodesSaveTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

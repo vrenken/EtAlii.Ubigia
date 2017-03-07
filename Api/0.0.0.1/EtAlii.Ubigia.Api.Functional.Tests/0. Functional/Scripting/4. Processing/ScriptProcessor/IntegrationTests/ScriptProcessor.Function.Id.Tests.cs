@@ -13,13 +13,13 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_Function_Id_IntegrationTests : IDisposable
+    public class ScriptProcessorFunctionIdIntegrationTests : IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessor_Function_Id_IntegrationTests()
+        public ScriptProcessorFunctionIdIntegrationTests()
         {
             var task = Task.Run(async () =>
             {

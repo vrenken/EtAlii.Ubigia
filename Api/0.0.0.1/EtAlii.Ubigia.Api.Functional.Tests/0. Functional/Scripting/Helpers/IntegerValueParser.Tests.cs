@@ -8,11 +8,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class IntegerValueParser_Tests : IDisposable
+    public partial class IntegerValueParserTests : IDisposable
     {
         private IIntegerValueParser _parser;
 
-        public IntegerValueParser_Tests()
+        public IntegerValueParserTests()
         {
             var nodeValidator = new NodeValidator();
 

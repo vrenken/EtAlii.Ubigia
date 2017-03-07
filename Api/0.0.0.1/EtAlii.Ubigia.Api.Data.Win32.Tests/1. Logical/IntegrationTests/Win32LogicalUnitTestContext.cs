@@ -9,9 +9,9 @@
 
     public class Win32LogicalUnitTestContext : IDisposable
     {
-        public string TestFile_2M_Image;
-        public string TestFile_10M_Raw;
-        public string TestFile_100M_Raw;
+        public string TestFile2MImage;
+        public string TestFile10MRaw;
+        public string TestFile100MRaw;
 
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
@@ -22,13 +22,13 @@
                 LogicalTestContext = new LogicalTestContextFactory().Create();
 
                 // Getting Temp file names to use
-                TestFile_2M_Image = Win32TestHelper.CreateTemporaryFileName();
-                TestFile_10M_Raw = Win32TestHelper.CreateTemporaryFileName();
-                TestFile_100M_Raw = Win32TestHelper.CreateTemporaryFileName();
+                TestFile2MImage = Win32TestHelper.CreateTemporaryFileName();
+                TestFile10MRaw = Win32TestHelper.CreateTemporaryFileName();
+                TestFile100MRaw = Win32TestHelper.CreateTemporaryFileName();
 
-                Win32TestHelper.SaveResourceTestImage(TestFile_2M_Image);
-                Win32TestHelper.SaveTestFile(TestFile_10M_Raw, 10);
-                Win32TestHelper.SaveTestFile(TestFile_100M_Raw, 100);
+                Win32TestHelper.SaveResourceTestImage(TestFile2MImage);
+                Win32TestHelper.SaveTestFile(TestFile10MRaw, 10);
+                Win32TestHelper.SaveTestFile(TestFile100MRaw, 100);
             });
             task.Wait();
         }
@@ -37,19 +37,19 @@
         {
             var task = Task.Run(() =>
             {
-                if (File.Exists(TestFile_2M_Image))
+                if (File.Exists(TestFile2MImage))
                 {
-                    File.Delete(TestFile_2M_Image);
+                    File.Delete(TestFile2MImage);
                 }
 
-                if (File.Exists(TestFile_10M_Raw))
+                if (File.Exists(TestFile10MRaw))
                 {
-                    File.Delete(TestFile_10M_Raw);
+                    File.Delete(TestFile10MRaw);
                 }
 
-                if (File.Exists(TestFile_100M_Raw))
+                if (File.Exists(TestFile100MRaw))
                 {
-                    File.Delete(TestFile_100M_Raw);
+                    File.Delete(TestFile100MRaw);
                 }
                 LogicalTestContext = null;
             });

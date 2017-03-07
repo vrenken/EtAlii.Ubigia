@@ -7,7 +7,7 @@
     using Xunit;
 
 
-    public class RegexPathSubjectPartParser_Tests
+    public class RegexPathSubjectPartParserTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void RegexPathSubjectPartParser_Create()

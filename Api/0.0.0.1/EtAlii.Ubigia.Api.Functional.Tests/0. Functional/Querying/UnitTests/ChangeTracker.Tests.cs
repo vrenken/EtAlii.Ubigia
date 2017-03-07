@@ -4,7 +4,7 @@
     using Xunit;
 
 
-    public class ChangeTracker_Tests
+    public class ChangeTrackerTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ChangeTracker_New()

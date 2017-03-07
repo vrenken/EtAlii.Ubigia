@@ -6,11 +6,11 @@
     using Xunit;
 
 
-    public class VariablePathSubjectPart_Tests : IDisposable
+    public class VariablePathSubjectPartTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public VariablePathSubjectPart_Tests()
+        public VariablePathSubjectPartTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()

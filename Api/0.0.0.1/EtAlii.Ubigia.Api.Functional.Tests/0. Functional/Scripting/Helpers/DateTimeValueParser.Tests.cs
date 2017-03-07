@@ -10,11 +10,11 @@
     using Xunit;
 
     
-    public partial class DateTimeValueParser_Tests : IDisposable
+    public partial class DateTimeValueParserTests : IDisposable
     {
         private IDateTimeValueParser _parser;
 
-        public DateTimeValueParser_Tests()
+        public DateTimeValueParserTests()
         {
             var nodeValidator = new NodeValidator();
             _parser = new DateTimeValueParser(nodeValidator);

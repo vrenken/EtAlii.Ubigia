@@ -10,12 +10,12 @@
 
 
     
-    public class ScriptProcessor_Assign_String_UnitTests : IDisposable
+    public class ScriptProcessorAssignStringUnitTests : IDisposable
     {
         private IScriptParser _parser;
         private readonly IDiagnosticsConfiguration _diagnostics;
 
-        public ScriptProcessor_Assign_String_UnitTests()
+        public ScriptProcessorAssignStringUnitTests()
         {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
