@@ -12,13 +12,13 @@
 
 
     
-    public class ScriptProcessor_RootedPath_Time_Path_Tests : IDisposable
+    public class ScriptProcessorRootedPathTimePathTests : IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Time_Path_Tests()
+        public ScriptProcessorRootedPathTimePathTests()
         {
             var task = Task.Run(async () =>
             {

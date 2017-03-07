@@ -12,13 +12,13 @@
 
 
     
-    public class ScriptProcessor_RootedPath_Media_Path_Tests : IDisposable
+    public class ScriptProcessorRootedPathMediaPathTests : IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Media_Path_Tests()
+        public ScriptProcessorRootedPathMediaPathTests()
         {
             var task = Task.Run(async () =>
             {

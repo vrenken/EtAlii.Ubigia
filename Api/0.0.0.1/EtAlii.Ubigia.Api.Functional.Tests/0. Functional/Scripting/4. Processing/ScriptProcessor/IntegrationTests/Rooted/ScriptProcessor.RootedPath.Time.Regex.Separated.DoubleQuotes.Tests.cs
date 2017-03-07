@@ -12,13 +12,13 @@
 
 
     
-    public class ScriptProcessor_RootedPath_Time_Regex_Separated_DoubleQuotes_Tests : IDisposable
+    public class ScriptProcessorRootedPathTimeRegexSeparatedDoubleQuotesTests : IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Time_Regex_Separated_DoubleQuotes_Tests()
+        public ScriptProcessorRootedPathTimeRegexSeparatedDoubleQuotesTests()
         {
             var task = Task.Run(async () =>
             {

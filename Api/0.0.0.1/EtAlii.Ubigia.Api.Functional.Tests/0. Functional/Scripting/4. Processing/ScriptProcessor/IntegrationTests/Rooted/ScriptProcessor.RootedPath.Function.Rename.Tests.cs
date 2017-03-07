@@ -13,13 +13,13 @@
 
 
     
-    public partial class ScriptProcessor_RootedPath_Function_Rename : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public partial class ScriptProcessorRootedPathFunctionRenameTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Function_Rename(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathFunctionRename(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(() =>
