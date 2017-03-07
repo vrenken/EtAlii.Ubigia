@@ -1,4 +1,6 @@
-﻿namespace Moppet.Lapa
+﻿// ReSharper disable All
+
+namespace Moppet.Lapa
 {
     /// <summary>
     /// Нода и её статистика при меморизации.

@@ -65,35 +65,35 @@
             int index15 = 14;
             string str15 = "d MMM yyyy H:m:s";
             strArray[index15] = str15;
-            HttpRuleParser.dateFormats = strArray;
-            HttpRuleParser.DefaultHttpEncoding = Encoding.GetEncoding(28591);
-            HttpRuleParser.tokenChars = new bool[128];
+            dateFormats = strArray;
+            DefaultHttpEncoding = Encoding.GetEncoding(28591);
+            tokenChars = new bool[128];
             for (int index16 = 33; index16 < (int)sbyte.MaxValue; ++index16)
-                HttpRuleParser.tokenChars[index16] = true;
-            HttpRuleParser.tokenChars[40] = false;
-            HttpRuleParser.tokenChars[41] = false;
-            HttpRuleParser.tokenChars[60] = false;
-            HttpRuleParser.tokenChars[62] = false;
-            HttpRuleParser.tokenChars[64] = false;
-            HttpRuleParser.tokenChars[44] = false;
-            HttpRuleParser.tokenChars[59] = false;
-            HttpRuleParser.tokenChars[58] = false;
-            HttpRuleParser.tokenChars[92] = false;
-            HttpRuleParser.tokenChars[34] = false;
-            HttpRuleParser.tokenChars[47] = false;
-            HttpRuleParser.tokenChars[91] = false;
-            HttpRuleParser.tokenChars[93] = false;
-            HttpRuleParser.tokenChars[63] = false;
-            HttpRuleParser.tokenChars[61] = false;
-            HttpRuleParser.tokenChars[123] = false;
-            HttpRuleParser.tokenChars[125] = false;
+                tokenChars[index16] = true;
+            tokenChars[40] = false;
+            tokenChars[41] = false;
+            tokenChars[60] = false;
+            tokenChars[62] = false;
+            tokenChars[64] = false;
+            tokenChars[44] = false;
+            tokenChars[59] = false;
+            tokenChars[58] = false;
+            tokenChars[92] = false;
+            tokenChars[34] = false;
+            tokenChars[47] = false;
+            tokenChars[91] = false;
+            tokenChars[93] = false;
+            tokenChars[63] = false;
+            tokenChars[61] = false;
+            tokenChars[123] = false;
+            tokenChars[125] = false;
         }
 
         internal static bool IsTokenChar(char character)
         {
             if ((int)character > (int)sbyte.MaxValue)
                 return false;
-            return HttpRuleParser.tokenChars[(int)character];
+            return tokenChars[(int)character];
         }
 
         internal static int GetTokenLength(string input, int startIndex)
@@ -102,7 +102,7 @@
                 return 0;
             for (int index = startIndex; index < input.Length; ++index)
             {
-                if (!HttpRuleParser.IsTokenChar(input[index]))
+                if (!IsTokenChar(input[index]))
                     return index - startIndex;
             }
             return input.Length - startIndex;
@@ -141,7 +141,7 @@
 
         internal static bool ContainsInvalidNewLine(string value)
         {
-            return HttpRuleParser.ContainsInvalidNewLine(value, 0);
+            return ContainsInvalidNewLine(value, 0);
         }
 
         internal static bool ContainsInvalidNewLine(string value, int startIndex)
@@ -212,7 +212,7 @@
                     case ',':
                         goto label_7;
                     default:
-                        flag = flag && HttpRuleParser.IsTokenChar(character);
+                        flag = flag && IsTokenChar(character);
                         continue;
                 }
             }
@@ -221,7 +221,7 @@
             if (length == 0)
                 return 0;
             string host1 = input.Substring(startIndex, length);
-            if ((!allowToken || !flag) && !HttpRuleParser.IsValidHostName(host1))
+            if ((!allowToken || !flag) && !IsValidHostName(host1))
                 return 0;
             host = host1;
             return length;
@@ -230,13 +230,13 @@
         internal static HttpParseResult GetCommentLength(string input, int startIndex, out int length)
         {
             int nestedCount = 0;
-            return HttpRuleParser.GetExpressionLength(input, startIndex, '(', ')', true, ref nestedCount, out length);
+            return GetExpressionLength(input, startIndex, '(', ')', true, ref nestedCount, out length);
         }
 
         internal static HttpParseResult GetQuotedStringLength(string input, int startIndex, out int length)
         {
             int nestedCount = 0;
-            return HttpRuleParser.GetExpressionLength(input, startIndex, '"', '"', false, ref nestedCount, out length);
+            return GetExpressionLength(input, startIndex, '"', '"', false, ref nestedCount, out length);
         }
 
         internal static HttpParseResult GetQuotedPairLength(string input, int startIndex, out int length)
@@ -257,7 +257,7 @@
 
         internal static bool TryStringToDate(string input, out DateTimeOffset result)
         {
-            return DateTimeOffset.TryParseExact(input, HttpRuleParser.dateFormats, (IFormatProvider)DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result);
+            return DateTimeOffset.TryParseExact(input, dateFormats, (IFormatProvider)DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result);
         }
 
         private static HttpParseResult GetExpressionLength(string input, int startIndex, char openChar, char closeChar, bool supportsNesting, ref int nestedCount, out int length)
@@ -269,7 +269,7 @@
             while (startIndex1 < input.Length)
             {
                 int length1 = 0;
-                if (startIndex1 + 2 < input.Length && HttpRuleParser.GetQuotedPairLength(input, startIndex1, out length1) == HttpParseResult.Parsed)
+                if (startIndex1 + 2 < input.Length && GetQuotedPairLength(input, startIndex1, out length1) == HttpParseResult.Parsed)
                 {
                     startIndex1 += length1;
                 }
@@ -283,7 +283,7 @@
                             if (nestedCount > 5)
                                 return HttpParseResult.InvalidFormat;
                             int length2 = 0;
-                            switch (HttpRuleParser.GetExpressionLength(input, startIndex1, openChar, closeChar, supportsNesting, ref nestedCount, out length2))
+                            switch (GetExpressionLength(input, startIndex1, openChar, closeChar, supportsNesting, ref nestedCount, out length2))
                             {
                                 case HttpParseResult.Parsed:
                                     startIndex1 += length2;

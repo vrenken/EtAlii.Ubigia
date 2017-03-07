@@ -84,7 +84,7 @@ namespace TomanuExtensions.Utils
         /// Save object to xml.
         /// </summary>
         /// <param name="a_writer"></param>
-        internal protected abstract void WriteXml(XmlWriter a_writer);
+        protected internal abstract void WriteXml(XmlWriter a_writer);
 
         /// <summary>
         /// Compare objects through xml.

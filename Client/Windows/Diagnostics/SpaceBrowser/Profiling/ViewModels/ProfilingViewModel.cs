@@ -14,7 +14,7 @@
         private string _title;
 
         public ReadOnlyObservableCollection<ProfilingResult> Results => _results;
-        private ReadOnlyObservableCollection<ProfilingResult> _results;
+        private readonly ReadOnlyObservableCollection<ProfilingResult> _results;
 
         public IProfilingAspectsViewModel Aspects => _aspects;
         private readonly IProfilingAspectsViewModel _aspects;
@@ -22,7 +22,7 @@
         private readonly IGraphContext _graphContext;
         private readonly IProfileComposer _profileComposer;
         private readonly IMainDispatcherInvoker _dispatcher;
-        private ObservableCollection<ProfilingResult> _items;
+        private readonly ObservableCollection<ProfilingResult> _items;
 
         public System.Windows.Input.ICommand ClearCommand => _clearCommand;
         private readonly ICommand _clearCommand;

@@ -42,7 +42,7 @@
         {
             if (_watermark != null)
             {
-                var descriptor = DependencyPropertyDescriptor.FromProperty(UIElement.VisibilityProperty, typeof(UIElement));
+                var descriptor = DependencyPropertyDescriptor.FromProperty(VisibilityProperty, typeof(UIElement));
                 descriptor.RemoveValueChanged(_watermark, new EventHandler(_watermark_IsVisibleChanged));
             }
         }
@@ -51,7 +51,7 @@
         {
             if (_watermark != null)
             {
-                var descriptor = DependencyPropertyDescriptor.FromProperty(UIElement.VisibilityProperty, typeof(UIElement));
+                var descriptor = DependencyPropertyDescriptor.FromProperty(VisibilityProperty, typeof(UIElement));
                 descriptor.AddValueChanged(_watermark, new EventHandler(_watermark_IsVisibleChanged));
             }
         }
@@ -60,7 +60,7 @@
         {
             if (_watermark != null)
             {
-                var descriptor = DependencyPropertyDescriptor.FromProperty(UIElement.VisibilityProperty, typeof(UIElement));
+                var descriptor = DependencyPropertyDescriptor.FromProperty(VisibilityProperty, typeof(UIElement));
                 descriptor.SetValue(_watermark, Visibility.Collapsed);
             }
         }

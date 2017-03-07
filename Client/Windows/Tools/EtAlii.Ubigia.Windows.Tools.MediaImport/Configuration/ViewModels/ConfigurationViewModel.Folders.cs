@@ -23,7 +23,7 @@
         private IFolderMonitor _selectedFolderMonitor;
 
         public IObservableFolderSyncConfigurationCollection FolderSyncConfigurations => _folderSyncConfigurations;
-        private IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
+        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         private void OnAddFolder(object obj)
         {

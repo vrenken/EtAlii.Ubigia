@@ -30,7 +30,7 @@
         public bool Equals(MatchResult match)
         {
             // If parameter is null, return false. 
-            if (Object.ReferenceEquals(match, null))
+            if (ReferenceEquals(match, null))
             {
                 return false;
             }

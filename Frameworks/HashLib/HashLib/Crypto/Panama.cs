@@ -1,11 +1,13 @@
+// ReSharper disable All
+
 namespace HashLib.Crypto
 {
     internal class Panama : BlockHash, ICryptoNotBuildIn
     {
         private const int COLUMNS = 17;
 
-        private uint[] m_state = new uint[COLUMNS];
-        private uint[,] m_stages = new uint[32, 8];
+        private readonly uint[] m_state = new uint[COLUMNS];
+        private readonly uint[,] m_stages = new uint[32, 8];
         private int m_tap;
 
         public Panama()

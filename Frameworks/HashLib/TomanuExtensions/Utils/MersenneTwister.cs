@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Diagnostics;
 
 /* C# Version Copyright (C) 2001-2004 Akihilo Kramot (Takel).  */
@@ -34,11 +36,11 @@ namespace TomanuExtensions.Utils
 
         private static uint TEMPERING_SHIFT_L(uint y) { return (y >> 18); }
 
-        private uint[] mt = new uint[N]; /* the array for the state vector  */
+        private readonly uint[] mt = new uint[N]; /* the array for the state vector  */
 
         private short mti;
 
-        private static uint[] mag01 = { 0x0, MATRIX_A };
+        private static readonly uint[] mag01 = { 0x0, MATRIX_A };
 
         /* initializing the array with a NONZERO seed */
 

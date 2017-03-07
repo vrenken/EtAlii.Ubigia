@@ -7,20 +7,20 @@ namespace HashLib
 {
     public static class Hashes
     {
-        public readonly static ReadOnlyCollection<Type> All;
-        public readonly static ReadOnlyCollection<Type> AllUnique;
-        public readonly static ReadOnlyCollection<Type> Hash32;
-        public readonly static ReadOnlyCollection<Type> Hash64;
-        public readonly static ReadOnlyCollection<Type> Hash128;
-        public readonly static ReadOnlyCollection<Type> CryptoAll;
-        public readonly static ReadOnlyCollection<Type> CryptoNotBuildIn;
+        public static readonly ReadOnlyCollection<Type> All;
+        public static readonly ReadOnlyCollection<Type> AllUnique;
+        public static readonly ReadOnlyCollection<Type> Hash32;
+        public static readonly ReadOnlyCollection<Type> Hash64;
+        public static readonly ReadOnlyCollection<Type> Hash128;
+        public static readonly ReadOnlyCollection<Type> CryptoAll;
+        public static readonly ReadOnlyCollection<Type> CryptoNotBuildIn;
         //public readonly static ReadOnlyCollection<Type> CryptoBuildIn;
         //public readonly static ReadOnlyCollection<Type> HasHMACBuildIn;
 
-        public readonly static ReadOnlyCollection<Type> NonBlock;
-        public readonly static ReadOnlyCollection<Type> FastComputes;
-        public readonly static ReadOnlyCollection<Type> Checksums;
-        public readonly static ReadOnlyCollection<Type> WithKey;
+        public static readonly ReadOnlyCollection<Type> NonBlock;
+        public static readonly ReadOnlyCollection<Type> FastComputes;
+        public static readonly ReadOnlyCollection<Type> Checksums;
+        public static readonly ReadOnlyCollection<Type> WithKey;
 
         static Hashes()
         {

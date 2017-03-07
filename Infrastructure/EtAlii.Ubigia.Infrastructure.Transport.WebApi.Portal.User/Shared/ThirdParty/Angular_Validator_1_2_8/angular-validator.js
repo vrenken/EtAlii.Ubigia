@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 angular.module('angularValidator', []);
 
 angular.module('angularValidator').directive('angularValidator', ['$injector', '$parse',

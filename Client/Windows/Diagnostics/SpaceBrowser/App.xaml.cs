@@ -16,7 +16,7 @@
     /// </summary>
     public partial class App : Application
     {
-        public static new App Current => Application.Current as App;
+        public new static App Current => Application.Current as App;
 
         public new IMainWindow MainWindow { get { return base.MainWindow as IMainWindow; } set { base.MainWindow = value as Window; } }
 

@@ -17,7 +17,7 @@
         private readonly IInfrastructure _infrastructure;
 
         public IStorage Storage => _storage;
-        private IStorage _storage;
+        private readonly IStorage _storage;
 
         private readonly ILogger _logger;
 

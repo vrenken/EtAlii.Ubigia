@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Linq;
 using HashLib;
 using Xunit;
@@ -12,12 +14,12 @@ namespace HashLibTest
 {
     public class TestData
     {
-        private List<byte[]> m_hashes = new List<byte[]>();
-        private List<byte[]> m_datas = new List<byte[]>();
-        private List<int> m_repeats = new List<int>();
-        private IHash m_hash;
-        private List<byte[]> m_keys = new List<byte[]>();
-        private MersenneTwister m_random = new MersenneTwister(4563487);
+        private readonly List<byte[]> m_hashes = new List<byte[]>();
+        private readonly List<byte[]> m_datas = new List<byte[]>();
+        private readonly List<int> m_repeats = new List<int>();
+        private readonly IHash m_hash;
+        private readonly List<byte[]> m_keys = new List<byte[]>();
+        private readonly MersenneTwister m_random = new MersenneTwister(4563487);
 
         protected TestData(IHash a_hash, List<byte[]> a_keys)
         {

@@ -59,12 +59,12 @@
                 var expectedPart = expected.Parts.ElementAt(i);
                 var actualPart = actual.Parts.ElementAt(i);
 
-                AssertData.AreEqual(expectedPart, actualPart);
+                AreEqual(expectedPart, actualPart);
             }
 
             if (checkSummary)
             {
-                AssertData.AreEqual(expected.Summary, actual.Summary);
+                AreEqual(expected.Summary, actual.Summary);
             }
         }
 

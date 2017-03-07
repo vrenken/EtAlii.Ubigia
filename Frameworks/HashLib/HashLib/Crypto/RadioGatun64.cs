@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 using System;
 
 namespace HashLib.Crypto
@@ -9,8 +11,8 @@ namespace HashLib.Crypto
         private const int BELT_LENGTH = 13;
         private const int NUMBER_OF_BLANK_ITERATIONS = 16;
 
-        private ulong[] m_mill = new ulong[MILL_SIZE];
-        private ulong[][] m_belt;
+        private readonly ulong[] m_mill = new ulong[MILL_SIZE];
+        private readonly ulong[][] m_belt;
 
         public RadioGatun64()
             : base(32, 8 * BELT_WIDTH)

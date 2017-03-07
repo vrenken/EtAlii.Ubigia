@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -7,7 +9,7 @@ namespace TomanuExtensions.TestUtils
     public class ProgressIndicator
     {
         private Thread m_thread;
-        private ProgressForm m_form = new ProgressForm();
+        private readonly ProgressForm m_form = new ProgressForm();
 
         public ProgressIndicator(string a_title)
         {

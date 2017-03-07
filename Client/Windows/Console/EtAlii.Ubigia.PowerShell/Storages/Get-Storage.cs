@@ -25,7 +25,7 @@
 
             var task = Task.Run(async () =>
             {
-                storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current, false);
+                storage = await PowerShellClient.Current.StorageResolver.Get(this, Current, false);
             });
             task.Wait();
 

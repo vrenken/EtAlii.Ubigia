@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Provisioning
             }
         }
 
-        new public ProviderElement this[string providerType] => (ProviderElement)BaseGet(providerType);
+        public new ProviderElement this[string providerType] => (ProviderElement)BaseGet(providerType);
 
         public bool ContainsKey(string key)
         {

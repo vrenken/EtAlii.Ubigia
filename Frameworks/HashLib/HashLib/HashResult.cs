@@ -1,13 +1,16 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Diagnostics;
 using System.Linq;
+// ReSharper disable ArrangeStaticMemberQualifier
 
 namespace HashLib
 {
     [DebuggerDisplay("HashResult, Size: {m_hash.Length}, Hash: {ToString()}")]
     public class HashResult
     {
-        private byte[] m_hash;
+        private readonly byte[] m_hash;
 
         public HashResult(uint a_hash)
         {

@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 using System;
 
 namespace HashLib.Crypto.SHA3
@@ -38,7 +40,7 @@ namespace HashLib.Crypto.SHA3
     {
         private const int ROUNDS = 16;
         private readonly uint[] m_state = new uint[32];
-        private static uint[][] m_inits;
+        private static readonly uint[][] m_inits;
 
         static CubeHash()
         {

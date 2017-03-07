@@ -22,7 +22,7 @@
         //private readonly List<IReadOnlyEntry> _minuteEntries;
         //private readonly List<IReadOnlyEntry> _secondEntries;
         //private DateTime _lastTime;
-        private bool addEachTenSeconds = false;
+        private readonly bool addEachTenSeconds = false;
 
         public TimeImporter(ILogger logger, IProviderContext context)
         {

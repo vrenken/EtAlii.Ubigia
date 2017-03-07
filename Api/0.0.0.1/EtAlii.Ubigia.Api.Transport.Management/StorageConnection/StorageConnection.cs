@@ -14,14 +14,14 @@
         private readonly TTransport _transport;
 
         public IStorageContext Storages => _storages;
-        private IStorageContext _storages;
+        private readonly IStorageContext _storages;
 
         public IAccountContext Accounts => _accounts;
-        private IAccountContext _accounts;
+        private readonly IAccountContext _accounts;
         private readonly IAuthenticationContext _authentication;
 
         public ISpaceContext Spaces => _spaces;
-        private ISpaceContext _spaces;
+        private readonly ISpaceContext _spaces;
 
         public bool IsConnected => _storage != null;
 

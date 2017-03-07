@@ -1,11 +1,13 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Diagnostics;
 
 namespace HashLib
 {
     internal class HashBuffer 
     {
-        private byte[] m_data;
+        private readonly byte[] m_data;
         private int m_pos;
 
         public HashBuffer(int a_length)

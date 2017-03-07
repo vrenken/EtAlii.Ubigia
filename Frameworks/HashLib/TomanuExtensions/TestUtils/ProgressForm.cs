@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Linq;
 using System.Windows.Forms;
 using System.Threading;

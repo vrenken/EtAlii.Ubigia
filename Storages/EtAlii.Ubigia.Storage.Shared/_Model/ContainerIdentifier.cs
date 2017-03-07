@@ -21,7 +21,7 @@
 
         public override string ToString()
         {
-            if(this == ContainerIdentifier.Empty || _paths.Length == 0)
+            if(this == Empty || _paths.Length == 0)
             {
                 return String.Format("{0}.Empty", GetType().Name);
             }

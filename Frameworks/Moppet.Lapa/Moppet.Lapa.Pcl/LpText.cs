@@ -1,4 +1,6 @@
-﻿////////////////////////////////////////////////////////////////////////////////////////////////
+﻿// ReSharper disable All
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Copyright © Yaroslavov Alexander 2010
 //
@@ -135,7 +137,7 @@ namespace Moppet.Lapa
 		/// <summary>
         /// The empty structure.
 		/// </summary>
-		public readonly static LpText Empty = new LpText(null, 0, 0);
+		public static readonly LpText Empty = new LpText(null, 0, 0);
 
 
         #region Comparison operations substring substring

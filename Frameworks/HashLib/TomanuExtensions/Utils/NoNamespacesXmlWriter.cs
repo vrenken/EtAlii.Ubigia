@@ -1,10 +1,12 @@
-﻿using System.Xml;
+﻿// ReSharper disable All
+
+using System.Xml;
 
 namespace TomanuExtensions.Utils
 {
     public class NoNamespacesXmlWriter : XmlWriter
     {
-        private XmlWriter m_writer;
+        private readonly XmlWriter m_writer;
 
         public NoNamespacesXmlWriter(XmlWriter a_writer)
         {

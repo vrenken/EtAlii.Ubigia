@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 
 namespace TomanuExtensions
 {
@@ -8,7 +10,7 @@ namespace TomanuExtensions
         public const double SQRT2 = 1.4142135623730950488016887242097;
         public const double SQRT3 = 1.7320508075688772935274463415059;
 
-        private static int[][] s_pascal_triangle;
+        private static readonly int[][] s_pascal_triangle;
 
         static MathExtensions()
         {

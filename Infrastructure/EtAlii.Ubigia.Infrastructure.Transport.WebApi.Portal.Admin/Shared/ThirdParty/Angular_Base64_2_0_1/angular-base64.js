@@ -1,4 +1,6 @@
-(function() {
+// ReSharper disable All
+
+(function () {
     'use strict';
 
     /*

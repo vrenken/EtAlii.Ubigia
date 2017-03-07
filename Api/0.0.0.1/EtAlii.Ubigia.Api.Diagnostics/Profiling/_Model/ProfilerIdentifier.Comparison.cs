@@ -33,14 +33,14 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
         {
             // Cannot happen. 
             // If parameter is null, return false. 
-            if (Object.ReferenceEquals(id, null))
+            if (ReferenceEquals(id, null))
             {
                 return false;
             }
 
             // Cannot happen.
             // Optimization for a common success case. 
-            if (Object.ReferenceEquals(this, id))
+            if (ReferenceEquals(this, id))
             {
                 return true;
             }

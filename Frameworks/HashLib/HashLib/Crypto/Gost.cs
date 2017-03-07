@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 namespace HashLib.Crypto
 {
     internal class Gost : BlockHash, ICryptoNotBuildIn
@@ -42,8 +44,8 @@ namespace HashLib.Crypto
         }
         #endregion
 
-        private uint[] m_state = new uint[8];
-        private uint[] m_hash = new uint[8];
+        private readonly uint[] m_state = new uint[8];
+        private readonly uint[] m_hash = new uint[8];
 
         public Gost()
             : base(32, 32)
