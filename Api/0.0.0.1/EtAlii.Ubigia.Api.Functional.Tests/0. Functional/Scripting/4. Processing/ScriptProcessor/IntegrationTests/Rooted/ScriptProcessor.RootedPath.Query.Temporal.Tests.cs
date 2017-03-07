@@ -14,14 +14,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_RootedPath_Query_Temporal_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathQueryTemporalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Query_Temporal_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathQueryTemporalIntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

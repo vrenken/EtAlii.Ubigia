@@ -13,14 +13,14 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public class ScriptProcessor_RootedPath_Assign_Object_IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathAssignObjectIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private readonly LogicalUnitTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Assign_Object_IntegrationTests(LogicalUnitTestContext testContext)
+        public ScriptProcessorRootedPathAssignObjectIntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

@@ -12,13 +12,13 @@
 
 
     
-    public class ScriptProcessor_RootedPath_Time_Regex_Combined_NoQuotes_Tests : IDisposable
+    public class ScriptProcessorRootedPathTimeRegexCombinedNoQuotesTests : IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessor_RootedPath_Time_Regex_Combined_NoQuotes_Tests()
+        public ScriptProcessorRootedPathTimeRegexCombinedNoQuotesTests()
         {
             var task = Task.Run(async () =>
             {
