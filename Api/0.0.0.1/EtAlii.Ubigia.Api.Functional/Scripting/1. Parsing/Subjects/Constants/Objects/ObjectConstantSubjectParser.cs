@@ -15,7 +15,7 @@
         private readonly INodeFinder _nodeFinder;
         private readonly INewLineParser _newLineParser;
         private readonly IKeyValuePairParser _keyValuePairParser;
-        private const string TextId = "Text";
+        private const string _textId = "Text";
 
         public ObjectConstantSubjectParser(
             INodeValidator nodeValidator,

@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
-    using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    
     public class GraphPathComposer_UnitTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
-    using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    
     public class ComponentHelper_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

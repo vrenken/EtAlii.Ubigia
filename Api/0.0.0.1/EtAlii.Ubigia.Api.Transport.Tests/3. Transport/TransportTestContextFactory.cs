@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
+    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.xTechnology.MicroContainer;
 

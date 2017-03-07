@@ -1,8 +1,8 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Processing
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class IScriptProcessorConfigurationDiagnosticsExtension
+    public static class ScriptProcessorConfigurationDiagnosticsExtension
     {
         public static IScriptProcessorConfiguration Use(this IScriptProcessorConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {

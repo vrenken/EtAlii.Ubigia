@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
+    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.xTechnology.MicroContainer;
 

@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Helpers.Win32.Tests;
     using EtAlii.Ubigia.Api.Logical.Tests;
+    using EtAlii.Ubigia.Api.Tests;
 
     public class Win32LogicalUnitTestContext : IDisposable
     {

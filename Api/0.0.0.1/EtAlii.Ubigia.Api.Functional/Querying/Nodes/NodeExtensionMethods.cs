@@ -11,7 +11,7 @@
 
         static NodeExtensionMethod()
         {
-            var typeInfo = typeof(IQueryableNodeExtensions).GetTypeInfo();
+            var typeInfo = typeof(QueryableNodeExtensions).GetTypeInfo();
             Select = typeInfo.GetDeclaredMethod("Select");
             Add = typeInfo.GetDeclaredMethod("Add");
             Latest = typeInfo.GetDeclaredMethod("Latest");

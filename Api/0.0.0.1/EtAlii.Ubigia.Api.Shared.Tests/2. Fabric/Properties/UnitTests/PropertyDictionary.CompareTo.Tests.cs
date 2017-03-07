@@ -1,10 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
     using System;
-    using EtAlii.Ubigia.Api.Tests;
     using Xunit;
 
-    
     public class PropertyDictionary_CompareTo_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Processing
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;

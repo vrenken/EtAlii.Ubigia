@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Parsing;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     

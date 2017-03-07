@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Logical.Tests
+namespace EtAlii.Ubigia.Api.Tests
 {
     public class LocationAddResult
     {

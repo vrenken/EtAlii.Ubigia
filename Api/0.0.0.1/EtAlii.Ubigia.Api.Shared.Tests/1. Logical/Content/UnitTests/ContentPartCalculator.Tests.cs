@@ -1,11 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
     using System;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Tests;
     using Xunit;
 
-    
     public class ContentPartCalculator_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

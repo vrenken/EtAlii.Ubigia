@@ -23,7 +23,7 @@
         private const string _id = "Condition";
 
         private const string _propertyId = "Property";
-        private const string _ConditionId = "ConditionType";
+        private const string _conditionId = "ConditionType";
         private const string _valueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
@@ -63,7 +63,7 @@
                     (Lp.Char('!').Maybe() + Lp.Char('=')) |
                     (Lp.Char('>') + Lp.Char('=').Maybe()) |
                     (Lp.Char('<') + Lp.Char('=').Maybe()) 
-                ).Id(_ConditionId);
+                ).Id(_conditionId);
 
             _parser = new LpsParser(Id, true,
                 (
@@ -111,7 +111,7 @@
                 value = Determine(valueNode);
             }
 
-            var conditionNode = _nodeFinder.FindFirst(node, _ConditionId);
+            var conditionNode = _nodeFinder.FindFirst(node, _conditionId);
             var condition = conditionNode.Match.ToString();
 
             ConditionType conditionType;

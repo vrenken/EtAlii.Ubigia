@@ -12,8 +12,8 @@
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string RelationId = @"}";
-        private const string RelationDescription = @"UPDATES_OF";
+        private const string _relationId = @"}";
+        private const string _relationDescription = @"UPDATES_OF";
 
         public UpdatesOfPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -21,7 +21,7 @@
         {
             _nodeValidator = nodeValidator;
 
-            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
+            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
             _parser = new LpsParser(Id, true, relationParser);
         }
 

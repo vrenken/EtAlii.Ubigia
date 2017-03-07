@@ -3,8 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Parsing;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Processing;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Api.Tests;

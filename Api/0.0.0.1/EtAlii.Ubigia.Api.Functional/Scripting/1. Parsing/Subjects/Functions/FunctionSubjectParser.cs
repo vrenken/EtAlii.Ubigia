@@ -16,8 +16,8 @@
         private readonly IFunctionSubjectArgumentsParser _functionSubjectArgumentsParser;
         private readonly INodeFinder _nodeFinder;
 
-        private const string NameId = "Name";
-        private const string ParametersId = "Arguments";
+        private const string _nameId = "Name";
+        private const string _parametersId = "Arguments";
 
         public FunctionSubjectParser(
             INodeValidator nodeValidator,
@@ -33,12 +33,12 @@
             var nextParser = Lp.Char(',') + Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
 
             _parser = new LpsParser(Id, true,
-                Lp.LetterOrDigit().OneOrMore().Id(NameId) + 
+                Lp.LetterOrDigit().OneOrMore().Id(_nameId) + 
                 Lp.ZeroOrMore(' ') + 
                 (
                     (
                         Lp.Char('(') +
-                        firstParser.NextZeroOrMore(nextParser).Id(ParametersId) + 
+                        firstParser.NextZeroOrMore(nextParser).Id(_parametersId) + 
                         Lp.Char(')')
                     ) |
                     (
@@ -52,9 +52,9 @@
         public Subject Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, NameId).Match.ToString();
+            var text = _nodeFinder.FindFirst(node, _nameId).Match.ToString();
 
-            var parameterNodes = _nodeFinder.FindFirst(node, ParametersId);
+            var parameterNodes = _nodeFinder.FindFirst(node, _parametersId);
 
             var childNodes = parameterNodes == null
                 ? new LpNode[] { }
