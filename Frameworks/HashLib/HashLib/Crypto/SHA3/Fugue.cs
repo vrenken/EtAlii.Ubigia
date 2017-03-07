@@ -86,7 +86,7 @@ namespace HashLib.Crypto.SHA3
     internal abstract class Fugue256Base : FugueBase
     {
         #region Consts
-        protected readonly static ulong[] s_aes_style_table0 = 
+        protected static readonly ulong[] s_aes_style_table0 = 
         {
             0x6363973297326363, 0x7C7CEB6FEB6F7C7C, 0x7777C75EC75E7777, 0x7B7BF77AF77A7B7B, 
             0xF2F2E5E8E5E8F2F2, 0x6B6BB70AB70A6B6B, 0x6F6FA716A7166F6F, 0xC5C5396D396DC5C5, 
@@ -154,7 +154,7 @@ namespace HashLib.Crypto.SHA3
             0xB0B0F63DF63DB0B0, 0x54544BB74BB75454, 0xBBBBDA0CDA0CBBBB, 0x1616586258621616
         };
 
-        protected readonly static ulong[] s_aes_style_table1 = 
+        protected static readonly ulong[] s_aes_style_table1 = 
         {
             0x6397326332636397, 0x7CEB6F7C6F7C7CEB, 0x77C75E775E7777C7, 0x7BF77A7B7A7B7BF7, 
             0xF2E5E8F2E8F2F2E5, 0x6BB70A6B0A6B6BB7, 0x6FA7166F166F6FA7, 0xC5396DC56DC5C539, 
@@ -222,7 +222,7 @@ namespace HashLib.Crypto.SHA3
             0xB0F63DB03DB0B0F6, 0x544BB754B754544B, 0xBBDA0CBB0CBBBBDA, 0x1658621662161658
         };
 
-        protected readonly static ulong[] s_aes_style_table2 = 
+        protected static readonly ulong[] s_aes_style_table2 = 
         {
             0x9732636363639732, 0xEB6F7C7C7C7CEB6F, 0xC75E77777777C75E, 0xF77A7B7B7B7BF77A, 
             0xE5E8F2F2F2F2E5E8, 0xB70A6B6B6B6BB70A, 0xA7166F6F6F6FA716, 0x396DC5C5C5C5396D, 
@@ -290,7 +290,7 @@ namespace HashLib.Crypto.SHA3
             0xF63DB0B0B0B0F63D, 0x4BB7545454544BB7, 0xDA0CBBBBBBBBDA0C, 0x5862161616165862
         };
 
-        protected readonly static ulong[] s_aes_style_table3 = 
+        protected static readonly ulong[] s_aes_style_table3 = 
         {
             0x3263639763973263, 0x6F7C7CEB7CEB6F7C, 0x5E7777C777C75E77, 0x7A7B7BF77BF77A7B, 
             0xE8F2F2E5F2E5E8F2, 0x0A6B6BB76BB70A6B, 0x166F6FA76FA7166F, 0x6DC5C539C5396DC5, 
@@ -3056,7 +3056,7 @@ namespace HashLib.Crypto.SHA3
     internal class Fugue224 : Fugue256Base
     {
         #region Consts
-        private readonly static uint[] s_IV224 = 
+        private static readonly uint[] s_IV224 = 
             {
                 0x0D12C9F4, 0x57F78662, 0x1CE039EE, 0xCBE374E0, 
                 0x627C12A1, 0x15D2439A, 0x9A678DBD
@@ -3079,7 +3079,7 @@ namespace HashLib.Crypto.SHA3
     internal class Fugue256 : Fugue256Base
     {
         #region Consts
-        private readonly static uint[] s_IV256 = 
+        private static readonly uint[] s_IV256 = 
             {
                 0xDEBD52E9, 0x5F137166, 0x68F6D4E0, 0x94B5B0D2, 
                 0x1D626CF9, 0xDE29F9FB, 0x99E84991, 0x48C2F834
@@ -3102,7 +3102,7 @@ namespace HashLib.Crypto.SHA3
     internal abstract class Fugue512Base : FugueBase
     {
         #region Consts
-        protected readonly static uint[] s_aes_style_table0 = 
+        protected static readonly uint[] s_aes_style_table0 = 
         {
             0x97326363, 0xEB6F7C7C, 0xC75E7777, 0xF77A7B7B, 0xE5E8F2F2, 0xB70A6B6B, 0xA7166F6F, 0x396DC5C5, 
             0xC0903030, 0x04070101, 0x872E6767, 0xACD12B2B, 0xD5CCFEFE, 0x7113D7D7, 0x9A7CABAB, 0xC3597676, 
@@ -3138,7 +3138,7 @@ namespace HashLib.Crypto.SHA3
             0x1FDC4141, 0x52E29999, 0xB4C32D2D, 0x3C2D0F0F, 0xF63DB0B0, 0x4BB75454, 0xDA0CBBBB, 0x58621616
         };
 
-        protected readonly static uint[] s_aes_style_table1 = 
+        protected static readonly uint[] s_aes_style_table1 = 
         {
             0x32636397, 0x6F7C7CEB, 0x5E7777C7, 0x7A7B7BF7, 0xE8F2F2E5, 0x0A6B6BB7, 0x166F6FA7, 0x6DC5C539, 
             0x903030C0, 0x07010104, 0x2E676787, 0xD12B2BAC, 0xCCFEFED5, 0x13D7D771, 0x7CABAB9A, 0x597676C3, 
@@ -3174,7 +3174,7 @@ namespace HashLib.Crypto.SHA3
             0xDC41411F, 0xE2999952, 0xC32D2DB4, 0x2D0F0F3C, 0x3DB0B0F6, 0xB754544B, 0x0CBBBBDA, 0x62161658
         };
 
-        protected readonly static uint[] s_aes_style_table2 = 
+        protected static readonly uint[] s_aes_style_table2 = 
         {
             0x63639732, 0x7C7CEB6F, 0x7777C75E, 0x7B7BF77A, 0xF2F2E5E8, 0x6B6BB70A, 0x6F6FA716, 0xC5C5396D, 
             0x3030C090, 0x01010407, 0x6767872E, 0x2B2BACD1, 0xFEFED5CC, 0xD7D77113, 0xABAB9A7C, 0x7676C359, 
@@ -3210,7 +3210,7 @@ namespace HashLib.Crypto.SHA3
             0x41411FDC, 0x999952E2, 0x2D2DB4C3, 0x0F0F3C2D, 0xB0B0F63D, 0x54544BB7, 0xBBBBDA0C, 0x16165862
         };
 
-        protected readonly static uint[] s_aes_style_table3 = 
+        protected static readonly uint[] s_aes_style_table3 = 
         {
             0x63973263, 0x7CEB6F7C, 0x77C75E77, 0x7BF77A7B, 0xF2E5E8F2, 0x6BB70A6B, 0x6FA7166F, 0xC5396DC5, 
             0x30C09030, 0x01040701, 0x67872E67, 0x2BACD12B, 0xFED5CCFE, 0xD77113D7, 0xAB9A7CAB, 0x76C35976, 
@@ -3256,7 +3256,7 @@ namespace HashLib.Crypto.SHA3
     internal class Fugue384 : Fugue512Base
     {
         #region Consts
-        private readonly static uint[] s_IV384 = 
+        private static readonly uint[] s_IV384 = 
             {
                 0x0DEC61AA, 0x1F2E2531, 0xC7B41DA0, 0x85096000, 
                 0x4AF45E21, 0x9C5E1B74, 0x9A3E69FA, 0x40B03E47, 
@@ -5888,7 +5888,7 @@ namespace HashLib.Crypto.SHA3
     internal class Fugue512 : Fugue512Base
     {
         #region Consts
-        private readonly static uint[] s_IV512 = 
+        private static readonly uint[] s_IV512 = 
             {
                 0x7EA50788, 0x75AF16E6, 0xDBE4D3C5, 0x27B09AAC, 
                 0x17F115D9, 0x54CCEEB6, 0x0B02E806, 0xD1EF924A, 

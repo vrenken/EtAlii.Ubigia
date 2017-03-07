@@ -1,4 +1,6 @@
-﻿////////////////////////////////////////////////////////////////////////////////////////////////
+﻿// ReSharper disable All
+
+////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Copyright © Yaroslavov Alexander 2010
 //
@@ -18,9 +20,9 @@ namespace Moppet.Lapa
 	/// </summary>
 	public class LpBrackets
 	{
-		LpsParser m_openBracket;
-		LpsParser m_closeBracket;
-		LpsParser m_body;
+	    readonly LpsParser m_openBracket;
+	    readonly LpsParser m_closeBracket;
+	    readonly LpsParser m_body;
 
 		/// <summary>
 		/// Конструктор.

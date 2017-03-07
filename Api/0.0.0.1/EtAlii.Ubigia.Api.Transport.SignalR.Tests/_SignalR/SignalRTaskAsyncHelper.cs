@@ -63,13 +63,13 @@
             Task empty = Empty;
             Task task = Empty;
             for (int index = 0; index < tasks.Length; ++index)
-                task = TaskAsyncHelper.Then<object>(task, tasks[index], state[index]);
+                task = Then<object>(task, tasks[index], state[index]);
             return task;
         }
 
         public static TTask Catch<TTask>(this TTask task) where TTask : Task
         {
-            return TaskAsyncHelper.Catch<TTask>(task, (Action<AggregateException>)(ex => { }));
+            return Catch<TTask>(task, (Action<AggregateException>)(ex => { }));
         }
 
         public static TTask Catch<TTask>(this TTask task, Action<AggregateException, object> handler, object state) where TTask : Task
@@ -86,7 +86,7 @@
 
         private static void AttachFaultedContinuation<TTask>(TTask task, Action<AggregateException, object> handler, object state) where TTask : Task
         {
-            TaskAsyncHelper.ContinueWithPreservedCulture((Task)task, (Action<Task>)(innerTask => ExecuteOnFaulted(handler, state, innerTask.Exception)), TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
+            ContinueWithPreservedCulture((Task)task, (Action<Task>)(innerTask => ExecuteOnFaulted(handler, state, innerTask.Exception)), TaskContinuationOptions.OnlyOnFaulted | TaskContinuationOptions.ExecuteSynchronously);
         }
 
         private static void ExecuteOnFaulted(Action<AggregateException, object> handler, object state, AggregateException exception)
@@ -96,7 +96,7 @@
 
         public static TTask Catch<TTask>(this TTask task, Action<AggregateException> handler) where TTask : Task
         {
-            return TaskAsyncHelper.Catch<TTask>(task, (Action<AggregateException, object>)((ex, state) => ((Action<AggregateException>)state)(ex)), (object)handler);
+            return Catch<TTask>(task, (Action<AggregateException, object>)((ex, state) => ((Action<AggregateException>)state)(ex)), (object)handler);
         }
 
         public static Task ContinueWithNotComplete(this Task task, Action action)
@@ -118,7 +118,7 @@
                     }
                 default:
                     TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-                    TaskAsyncHelper.ContinueWithPreservedCulture(task, (Action<Task>)(t =>
+                    ContinueWithPreservedCulture(task, (Action<Task>)(t =>
                     {
                         if (!t.IsFaulted)
                         {
@@ -132,7 +132,7 @@
                         {
                             action();
                             if (t.IsFaulted)
-                                TaskAsyncHelper.TrySetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                                TrySetUnwrappedException<object>(tcs, (Exception)t.Exception);
                             else
                                 tcs.TrySetCanceled();
                         }
@@ -147,11 +147,11 @@
 
         public static void ContinueWithNotComplete(this Task task, TaskCompletionSource<object> tcs)
         {
-            TaskAsyncHelper.ContinueWithPreservedCulture(task, (Action<Task>)(t =>
+            ContinueWithPreservedCulture(task, (Action<Task>)(t =>
             {
                 if (t.IsFaulted)
                 {
-                    TaskAsyncHelper.SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                    SetUnwrappedException<object>(tcs, (Exception)t.Exception);
                 }
                 else
                 {
@@ -164,10 +164,10 @@
 
         public static Task ContinueWith(this Task task, TaskCompletionSource<object> tcs)
         {
-            TaskAsyncHelper.ContinueWithPreservedCulture(task, (Action<Task>)(t =>
+            ContinueWithPreservedCulture(task, (Action<Task>)(t =>
             {
                 if (t.IsFaulted)
-                    TaskAsyncHelper.TrySetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                    TrySetUnwrappedException<object>(tcs, (Exception)t.Exception);
                 else if (t.IsCanceled)
                     tcs.TrySetCanceled();
                 else
@@ -178,10 +178,10 @@
 
         public static void ContinueWith<T>(this Task<T> task, TaskCompletionSource<T> tcs)
         {
-            TaskAsyncHelper.ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
+            ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
             {
                 if (t.IsFaulted)
-                    TaskAsyncHelper.TrySetUnwrappedException<T>(tcs, (Exception)t.Exception);
+                    TrySetUnwrappedException<T>(tcs, (Exception)t.Exception);
                 else if (t.IsCanceled)
                     tcs.TrySetCanceled();
                 else
@@ -256,7 +256,7 @@
                 case TaskStatus.Faulted:
                     return task;
                 default:
-                    return TaskAsyncHelper.FastUnwrap(GenericDelegates<object, Task, T1, object>.ThenWithArgs(task, successor, arg1));
+                    return FastUnwrap(GenericDelegates<object, Task, T1, object>.ThenWithArgs(task, successor, arg1));
             }
         }
 
@@ -270,7 +270,7 @@
                 case TaskStatus.Faulted:
                     return task;
                 default:
-                    return TaskAsyncHelper.FastUnwrap(GenericDelegates<object, Task, T1, T2>.ThenWithArgs(task, successor, arg1, arg2));
+                    return FastUnwrap(GenericDelegates<object, Task, T1, T2>.ThenWithArgs(task, successor, arg1, arg2));
             }
         }
 
@@ -285,7 +285,7 @@
                 case TaskStatus.Faulted:
                     return FromError<TResult>((Exception)task.Exception);
                 default:
-                    return TaskAsyncHelper.FastUnwrap<TResult>(TaskRunners<T, Task<TResult>>.RunTask(task, (Func<Task<T>, Task<TResult>>)(t => successor(t.Result))));
+                    return FastUnwrap<TResult>(TaskRunners<T, Task<TResult>>.RunTask(task, (Func<Task<T>, Task<TResult>>)(t => successor(t.Result))));
             }
         }
 
@@ -329,7 +329,7 @@
                 case TaskStatus.Faulted:
                     return task;
                 default:
-                    return TaskAsyncHelper.FastUnwrap(TaskRunners<object, Task>.RunTask(task, successor));
+                    return FastUnwrap(TaskRunners<object, Task>.RunTask(task, successor));
             }
         }
 
@@ -344,7 +344,7 @@
                 case TaskStatus.Faulted:
                     return FromError<TResult>((Exception)task.Exception);
                 default:
-                    return TaskAsyncHelper.FastUnwrap<TResult>(TaskRunners<object, Task<TResult>>.RunTask(task, successor));
+                    return FastUnwrap<TResult>(TaskRunners<object, Task<TResult>>.RunTask(task, successor));
             }
         }
 
@@ -372,7 +372,7 @@
                 case TaskStatus.Faulted:
                     return (Task)task;
                 default:
-                    return TaskAsyncHelper.FastUnwrap(TaskRunners<TResult, Task>.RunTask(task, (Func<Task<TResult>, Task>)(t => successor(t.Result))));
+                    return FastUnwrap(TaskRunners<TResult, Task>.RunTask(task, (Func<Task<TResult>, Task>)(t => successor(t.Result))));
             }
         }
 
@@ -386,7 +386,7 @@
                 case TaskStatus.Faulted:
                     return task;
                 default:
-                    return TaskAsyncHelper.FastUnwrap<TResult>(GenericDelegates<TResult, Task<TResult>, T1, object>.ThenWithArgs(task, successor, arg1));
+                    return FastUnwrap<TResult>(GenericDelegates<TResult, Task<TResult>, T1, object>.ThenWithArgs(task, successor, arg1));
             }
         }
 
@@ -440,7 +440,7 @@
         {
             TaskCompletionSource<object> completionSource = new TaskCompletionSource<object>();
             Timer timer = new Timer(new TimerCallback(completionSource.SetResult), (object)null, timeOut, TimeSpan.FromMilliseconds(-1.0));
-            return TaskAsyncHelper.ContinueWithPreservedCulture<object>(completionSource.Task, (Action<Task<object>>)(_ => timer.Dispose()), TaskContinuationOptions.ExecuteSynchronously);
+            return ContinueWithPreservedCulture<object>(completionSource.Task, (Action<Task<object>>)(_ => timer.Dispose()), TaskContinuationOptions.ExecuteSynchronously);
         }
 
         public static Task FromMethod(Action func)
@@ -605,7 +605,7 @@
         internal static Task<T> FromError<T>(Exception e)
         {
             TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
-            TaskAsyncHelper.SetUnwrappedException<T>(tcs, e);
+            SetUnwrappedException<T>(tcs, e);
             return tcs.Task;
         }
 
@@ -708,26 +708,26 @@
 
         internal static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction)
         {
-            return TaskAsyncHelper.ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);
+            return ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);
         }
 
         internal static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction)
         {
-            return TaskAsyncHelper.ContinueWithPreservedCulture<T>(task, continuationAction, TaskContinuationOptions.None);
+            return ContinueWithPreservedCulture<T>(task, continuationAction, TaskContinuationOptions.None);
         }
 
         internal static Task<TResult> ContinueWithPreservedCulture<T, TResult>(this Task<T> task, Func<Task<T>, TResult> continuationAction)
         {
-            return TaskAsyncHelper.ContinueWithPreservedCulture<T, TResult>(task, continuationAction, TaskContinuationOptions.None);
+            return ContinueWithPreservedCulture<T, TResult>(task, continuationAction, TaskContinuationOptions.None);
         }
 
         private static Task RunTask(Task task, Action successor)
         {
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-            TaskAsyncHelper.ContinueWithPreservedCulture(task, (Action<Task>)(t =>
+            ContinueWithPreservedCulture(task, (Action<Task>)(t =>
             {
                 if (t.IsFaulted)
-                    TaskAsyncHelper.SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                    SetUnwrappedException<object>(tcs, (Exception)t.Exception);
                 else if (t.IsCanceled)
                 {
                     tcs.SetCanceled();
@@ -741,7 +741,7 @@
                     }
                     catch (Exception ex)
                     {
-                        TaskAsyncHelper.SetUnwrappedException<object>(tcs, ex);
+                        SetUnwrappedException<object>(tcs, ex);
                     }
                 }
             }));
@@ -751,7 +751,7 @@
         private static Task RunTaskSynchronously(Task task, Action<object> next, object state, bool onlyOnSuccess = true)
         {
             TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-            TaskAsyncHelper.ContinueWithPreservedCulture(task, (Action<Task>)(t =>
+            ContinueWithPreservedCulture(task, (Action<Task>)(t =>
             {
                 try
                 {
@@ -759,7 +759,7 @@
                     {
                         if (!onlyOnSuccess)
                             next(state);
-                        TaskAsyncHelper.SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException<object>(tcs, (Exception)t.Exception);
                     }
                     else if (t.IsCanceled)
                     {
@@ -775,7 +775,7 @@
                 }
                 catch (Exception ex)
                 {
-                    TaskAsyncHelper.SetUnwrappedException<object>(tcs, ex);
+                    SetUnwrappedException<object>(tcs, ex);
                 }
             }), TaskContinuationOptions.ExecuteSynchronously);
             return (Task)tcs.Task;
@@ -786,10 +786,10 @@
             internal static Task RunTask(Task<T> task, Action<T> successor)
             {
                 TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-                TaskAsyncHelper.ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
+                ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
                 {
                     if (t.IsFaulted)
-                        TaskAsyncHelper.SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException<object>(tcs, (Exception)t.Exception);
                     else if (t.IsCanceled)
                     {
                         tcs.SetCanceled();
@@ -803,7 +803,7 @@
                         }
                         catch (Exception ex)
                         {
-                            TaskAsyncHelper.SetUnwrappedException<object>(tcs, ex);
+                            SetUnwrappedException<object>(tcs, ex);
                         }
                     }
                 }));
@@ -813,10 +813,10 @@
             internal static Task<TResult> RunTask(Task task, Func<TResult> successor)
             {
                 TaskCompletionSource<TResult> tcs = new TaskCompletionSource<TResult>();
-                TaskAsyncHelper.ContinueWithPreservedCulture(task, (Action<Task>)(t =>
+                ContinueWithPreservedCulture(task, (Action<Task>)(t =>
                 {
                     if (t.IsFaulted)
-                        TaskAsyncHelper.SetUnwrappedException<TResult>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException<TResult>(tcs, (Exception)t.Exception);
                     else if (t.IsCanceled)
                     {
                         tcs.SetCanceled();
@@ -829,7 +829,7 @@
                         }
                         catch (Exception ex)
                         {
-                            TaskAsyncHelper.SetUnwrappedException<TResult>(tcs, ex);
+                            SetUnwrappedException<TResult>(tcs, ex);
                         }
                     }
                 }));
@@ -839,10 +839,10 @@
             internal static Task<TResult> RunTask(Task<T> task, Func<Task<T>, TResult> successor)
             {
                 TaskCompletionSource<TResult> tcs = new TaskCompletionSource<TResult>();
-                TaskAsyncHelper.ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
+                ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
                 {
                     if (task.IsFaulted)
-                        TaskAsyncHelper.SetUnwrappedException<TResult>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException<TResult>(tcs, (Exception)t.Exception);
                     else if (task.IsCanceled)
                     {
                         tcs.SetCanceled();
@@ -855,7 +855,7 @@
                         }
                         catch (Exception ex)
                         {
-                            TaskAsyncHelper.SetUnwrappedException<TResult>(tcs, ex);
+                            SetUnwrappedException<TResult>(tcs, ex);
                         }
                     }
                 }));
@@ -913,7 +913,7 @@
 
         private static class TaskCache<T>
         {
-            public static Task<T> Empty = MakeTask<T>(default(T));
+            public static readonly Task<T> Empty = MakeTask<T>(default(T));
         }
     }
 }

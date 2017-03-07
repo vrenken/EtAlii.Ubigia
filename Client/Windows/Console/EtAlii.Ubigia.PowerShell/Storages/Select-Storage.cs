@@ -24,7 +24,7 @@
         {
             PowerShellClient.Current.Client.AuthenticationToken = null;
 
-            StorageCmdlet.Current = null;
+            Current = null;
             AccountCmdlet.Current = null;
             SpaceCmdlet.Current = null;
             RootCmdlet.Current = null;
@@ -46,13 +46,13 @@
             }
             catch (Exception e)
             {
-                StorageCmdlet.Current = null;
+                Current = null;
                 ThrowTerminatingError(new ErrorRecord(e, ErrorId.AuthenticationFailed, ErrorCategory.AuthenticationError, Address));
             }
 
             WriteDebug(String.Format("Selecting storage [{0}]", storage != null ? storage.Name : "NONE"));
 
-            StorageCmdlet.Current = storage;
+            Current = storage;
             WriteObject(storage);
         }
     }

@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 {
     public class App : EtAlii.Ubigia.Client.Windows.Shared.App
     {
-        public static new App Current => _current.Value;
-        private static Lazy<App> _current = new Lazy<App>(GetApp);
+        public new static App Current => _current.Value;
+        private static readonly Lazy<App> _current = new Lazy<App>(GetApp);
 
         private App()
         {

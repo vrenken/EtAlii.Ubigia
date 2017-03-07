@@ -161,7 +161,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
             return Directory.Exists(FullPath);
 		}
 
-		static ShellColumn[] columns;
+		static readonly ShellColumn[] columns;
 
 		static FolderItem2()
 		{

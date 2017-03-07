@@ -30,7 +30,7 @@
         public Guid RootId { get; set; }
 
         public Root TargetRoot => _targetRoot;
-        private Root _targetRoot = null;
+        private readonly Root _targetRoot = null;
 
         #endregion Root related properties
 
@@ -43,7 +43,7 @@
         public Identifier PreviousId { get; set; }
 
         public Entry TargetPrevious => _targetPrevious;
-        private Entry _targetPrevious = null;
+        private readonly Entry _targetPrevious = null;
 
         #endregion Previous related properties
 
@@ -56,7 +56,7 @@
         public Identifier ParentId { get; set; }
 
         public Entry TargetParent => _targetParent;
-        private Entry _targetParent = null;
+        private readonly Entry _targetParent = null;
 
         #endregion Parent related properties
 
@@ -69,7 +69,7 @@
         public Identifier UpdateId { get; set; }
 
         public Entry TargetUpdate => _targetUpdate;
-        private Entry _targetUpdate = null;
+        private readonly Entry _targetUpdate = null;
 
         #endregion Update related properties
 

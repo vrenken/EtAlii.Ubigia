@@ -19,7 +19,7 @@
         public static string ShellExtensionsDirectory => _shellExtensionsDirectory.Value;
         private static readonly Lazy<string> _shellExtensionsDirectory = new Lazy<string>(() => Path.Combine(CurrentDirectory, "ShellExtensions"));
 
-        public static new App Current => System.Windows.Application.Current as App;
+        public new static App Current => System.Windows.Application.Current as App;
 
         public readonly Container Container;
 
@@ -28,7 +28,7 @@
             Container = new Container();
             //Container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
 
-            Directory.CreateDirectory(App.ShellExtensionsDirectory);
+            Directory.CreateDirectory(ShellExtensionsDirectory);
         }
 
         protected virtual void RegisterKnownTypes()

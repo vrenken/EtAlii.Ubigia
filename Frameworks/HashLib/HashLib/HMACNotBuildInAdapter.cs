@@ -1,13 +1,15 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Diagnostics;
 
 namespace HashLib
 {
     internal class HMACNotBuildInAdapter : Hash, IHMACNotBuildIn
     {
-        private byte[] m_opad;
-        private byte[] m_ipad;
-        private IHash m_hash;
+        private readonly byte[] m_opad;
+        private readonly byte[] m_ipad;
+        private readonly IHash m_hash;
         private byte[] m_key;
 
         public virtual byte[] Key

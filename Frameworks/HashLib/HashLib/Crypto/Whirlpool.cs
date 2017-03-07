@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 
 namespace HashLib.Crypto
 {
@@ -38,7 +40,7 @@ namespace HashLib.Crypto
         private static readonly ulong[] s_C6 = new ulong[256];
         private static readonly ulong[] s_C7 = new ulong[256];
 
-        private static ulong[] s_rc = new ulong[ROUNDS + 1];
+        private static readonly ulong[] s_rc = new ulong[ROUNDS + 1];
 
         static Whirlpool()
         {

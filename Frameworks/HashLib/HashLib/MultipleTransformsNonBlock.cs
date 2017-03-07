@@ -1,4 +1,6 @@
-﻿using System;
+﻿// ReSharper disable All
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -6,7 +8,7 @@ namespace HashLib
 {
     internal abstract class MultipleTransformNonBlock : Hash, INonBlockHash
     {
-        private List<ArraySegment<byte>> m_list = new List<ArraySegment<byte>>();
+        private readonly List<ArraySegment<byte>> m_list = new List<ArraySegment<byte>>();
 
         public MultipleTransformNonBlock(int a_hash_size, int a_block_size)
             : base(a_hash_size, a_block_size)

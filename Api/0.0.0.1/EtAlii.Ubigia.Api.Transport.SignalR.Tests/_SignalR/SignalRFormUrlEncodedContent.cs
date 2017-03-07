@@ -17,7 +17,7 @@
         /// </summary>
         /// <param name="nameValueCollection">A collection of name/value pairs.</param>
         public SignalRFormUrlEncodedContent(IEnumerable<KeyValuePair<string, string>> nameValueCollection)
-            : base(FormUrlEncodedContent.GetContentByteArray(nameValueCollection))
+            : base(GetContentByteArray(nameValueCollection))
         {
             Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
         }
@@ -35,9 +35,9 @@
                 {
                     stringBuilder.Append('&');
                 }
-                stringBuilder.Append(FormUrlEncodedContent.Encode(keyValuePair.Key));
+                stringBuilder.Append(Encode(keyValuePair.Key));
                 stringBuilder.Append('=');
-                stringBuilder.Append(FormUrlEncodedContent.Encode(keyValuePair.Value));
+                stringBuilder.Append(Encode(keyValuePair.Value));
             }
             return SignalRHttpRuleParser.DefaultHttpEncoding.GetBytes(stringBuilder.ToString());
         }

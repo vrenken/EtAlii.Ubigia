@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         public event Action<Exception> Error { add { _error += value; } remove { _error -= value; } }
         private Action<Exception> _error;
 
-        private static object _lockObject = new object();
+        private static readonly object _lockObject = new object();
 
         public AsyncProcess()
         {

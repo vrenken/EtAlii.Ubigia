@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
     public class RootFolderItem : FolderItem 
 	{
         protected StorageSettings StorageSettings => _storageSettings.Value;
-	    private Lazy<StorageSettings> _storageSettings;
+	    private readonly Lazy<StorageSettings> _storageSettings;
 
         public RootFolderItem()
             : base()

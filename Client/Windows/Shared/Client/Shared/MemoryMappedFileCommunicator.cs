@@ -56,13 +56,13 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
         #endregion
 
         private MemoryMappedViewAccessor view;
-        private AsyncOperation operation;
-        private SendOrPostCallback callback;
+        private readonly AsyncOperation operation;
+        private readonly SendOrPostCallback callback;
         private bool started;
         private bool disposed;
 
         private Thread writerThread;
-        private List<byte[]> dataToSend;
+        private readonly List<byte[]> dataToSend;
         private bool writerThreadRunning;
 
         public MemoryMappedFileCommunicator(string mapName, long capacity)

@@ -7,7 +7,7 @@
         public override bool Equals(object obj)
         {
             // If parameter is null, return false. 
-            if (Object.ReferenceEquals(obj, null))
+            if (ReferenceEquals(obj, null))
             {
                 return false;
             }

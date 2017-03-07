@@ -17,7 +17,7 @@
         protected IFolder StorageFolder => _storageFolder;
         private IFolder _storageFolder;
 
-        private string _rootFolder;
+        private readonly string _rootFolder;
         private static int _testIndex;
 
 

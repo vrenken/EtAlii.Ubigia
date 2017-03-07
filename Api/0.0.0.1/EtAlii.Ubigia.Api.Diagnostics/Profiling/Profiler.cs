@@ -15,7 +15,7 @@
         public IProfilingResultStack ResultStack => _profilingResultStack;
         private readonly IProfilingResultStack _profilingResultStack;
 
-        private IParentProfileResultFinder _parentProfileResultFinder;
+        private readonly IParentProfileResultFinder _parentProfileResultFinder;
 
         public event Action<ProfilingResult> ProfilingStarted;
         public event Action<ProfilingResult> ProfilingEnded;

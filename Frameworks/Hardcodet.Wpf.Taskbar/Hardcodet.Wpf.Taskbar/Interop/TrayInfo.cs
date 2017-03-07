@@ -1,4 +1,6 @@
-﻿// Some interop code taken from Mike Marshall's AnyForm
+﻿// ReSharper disable All
+
+// Some interop code taken from Mike Marshall's AnyForm
 
 using System;
 using System.Drawing;
@@ -148,20 +150,20 @@ namespace Hardcodet.Wpf.TaskbarNotification.Interop
     private struct APPBARDATA
     {
       public UInt32 cbSize;
-      public IntPtr hWnd;
-      public UInt32 uCallbackMessage;
-      public UInt32 uEdge;
-      public RECT rc;
-      public Int32 lParam;
+      public readonly IntPtr hWnd;
+      public readonly UInt32 uCallbackMessage;
+      public readonly UInt32 uEdge;
+      public readonly RECT rc;
+      public readonly Int32 lParam;
     }
 
     [StructLayout(LayoutKind.Sequential)]
     private struct RECT
     {
-      public Int32 left;
-      public Int32 top;
-      public Int32 right;
-      public Int32 bottom;
+      public readonly Int32 left;
+      public readonly Int32 top;
+      public readonly Int32 right;
+      public readonly Int32 bottom;
     }
 
   }

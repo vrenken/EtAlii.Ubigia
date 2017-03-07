@@ -5,7 +5,7 @@
 
     public class RootedPathFunctionSubjectArgument : FunctionSubjectArgument
     {
-        public RootedPathSubject Subject;
+        public readonly RootedPathSubject Subject;
 
         public RootedPathFunctionSubjectArgument(RootedPathSubject subject)
         {

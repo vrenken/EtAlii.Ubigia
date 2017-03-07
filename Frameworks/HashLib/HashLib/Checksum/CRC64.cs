@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿// ReSharper disable All
+
+using System.Diagnostics;
 
 namespace HashLib.Checksum
 {
@@ -26,11 +28,11 @@ namespace HashLib.Checksum
 
     internal class CRC64 : Hash, IChecksum, IBlockHash, IHash64
     {
-        private ulong[] m_crc_tab = new ulong[256];
+        private readonly ulong[] m_crc_tab = new ulong[256];
 
         private ulong m_hash;
-        private ulong m_initial_value;
-        private ulong m_final_xor;
+        private readonly ulong m_initial_value;
+        private readonly ulong m_final_xor;
 
         public CRC64(ulong a_polynomial, ulong a_initial_value = ulong.MaxValue, ulong a_final_xor = ulong.MaxValue)
             : base(8, 1)

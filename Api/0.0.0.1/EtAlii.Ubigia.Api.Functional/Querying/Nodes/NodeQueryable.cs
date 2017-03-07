@@ -7,8 +7,8 @@
     public class NodeQueryable<T> : Queryable<T>
         where T: INode
     {
-        public string StartPath { get; set; }
-        public Root StartRoot { get; set; }
+        public string StartPath { get; }
+        public Root StartRoot { get; }
         public Identifier StartIdentifier { get; set; }
 
         internal NodeQueryable(IQueryProvider queryProvider, string startPath)

@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 namespace HashLib.Crypto
 {
     internal class SHA0 : BlockHash, ICryptoNotBuildIn

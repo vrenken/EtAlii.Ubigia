@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿// ReSharper disable All
+
+using System.Diagnostics;
 
 namespace HashLib.Checksum
 {
@@ -44,11 +46,11 @@ namespace HashLib.Checksum
 
     internal class CRC32 : Hash, IChecksum, IBlockHash, IHash32
     {
-        private uint[] m_crc_tab = new uint[256];
+        private readonly uint[] m_crc_tab = new uint[256];
 
         private uint m_hash;
-        private uint m_initial_value;
-        private uint m_final_xor;
+        private readonly uint m_initial_value;
+        private readonly uint m_final_xor;
 
         public CRC32(uint a_polynomial, uint a_initial_value = uint.MaxValue, uint a_final_xor = uint.MaxValue)
             : base(4, 1)

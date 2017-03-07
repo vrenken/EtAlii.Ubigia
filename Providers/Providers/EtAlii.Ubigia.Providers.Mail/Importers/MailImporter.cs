@@ -15,9 +15,9 @@
         private readonly IDataContext _context;
 
         private Imap4Client _imap;
-        private string username = "vrenken.test@gmail.com";
-        private string password = "@2drinkglas";
-        private string server = "imap.gmail.com";
+        private readonly string username = "vrenken.test@gmail.com";
+        private readonly string password = "@2drinkglas";
+        private readonly string server = "imap.gmail.com";
         private int _lastMessageCount;
         private Mailbox _inbox;
         private Task _task;

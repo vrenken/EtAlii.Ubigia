@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 /*jslint node: true */
 'use strict';
 

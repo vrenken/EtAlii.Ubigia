@@ -46,7 +46,7 @@
         }
 
         [DllImport("wininet.dll")]
-        private extern static bool InternetGetConnectedState(out int description, int reservedValue);
+        private static extern bool InternetGetConnectedState(out int description, int reservedValue);
 
         //Creating a function that uses the API function...
         public static bool IsConnectedToInternet()

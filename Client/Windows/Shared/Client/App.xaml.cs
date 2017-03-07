@@ -12,7 +12,7 @@
     /// </summary>
     public partial class App : EtAlii.Ubigia.Client.Windows.Shared.App
     {
-        public static new App Current => System.Windows.Application.Current as App;
+        public new static App Current => System.Windows.Application.Current as App;
 
         public new MainWindow MainWindow { get { return base.MainWindow as MainWindow; } set { base.MainWindow = value; } }
 
@@ -50,7 +50,7 @@
         {
             if (AlreadyRunning)
             {
-                App.Current.Shutdown();
+                Current.Shutdown();
             }
             else
             {

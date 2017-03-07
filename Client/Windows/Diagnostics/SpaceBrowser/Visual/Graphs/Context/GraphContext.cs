@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
         private ITraverseRelationsQueryHandler _traverseRelationsQueryHandler;
 
         public ICommandProcessor CommandProcessor => _commandProcessor;
-        private ICommandProcessor _commandProcessor;
+        private readonly ICommandProcessor _commandProcessor;
 
         public IUnitOfWorkProcessor UnitOfWorkProcessor => _unitOfWorkProcessor;
         private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;

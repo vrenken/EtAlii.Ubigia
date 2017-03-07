@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 angular.module('angular-validator-demo', ['angularValidator']);
 
 

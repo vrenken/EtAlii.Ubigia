@@ -7,7 +7,7 @@
     
     public class Win32ContentManagerTests : IDisposable
     {
-        private string _testImageFileName;
+        private readonly string _testImageFileName;
 
         public Win32ContentManagerTests()
         {
