@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
     using System;
-    using Api.Tests;
+    using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    
     public class Base36Convert_Guid_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

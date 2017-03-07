@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly LpsParser _nonRootedParser;
         private readonly INodeValidator _nodeValidator;
-        private const string Id = "VariablePathSubjectPartToPathConverter";
+        private const string _id = "VariablePathSubjectPartToPathConverter";
         private readonly ISelector<Subject, ISubjectParser> _parserSelector;
 
         public VariablePathSubjectPartToPathConverter(
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _nodeValidator = nodeValidator;
-            _nonRootedParser = new LpsParser(Id, true, _nonRootedPathSubjectParser.Parser);
+            _nonRootedParser = new LpsParser(_id, true, _nonRootedPathSubjectParser.Parser);
 
             _converterSelector = new Selector<object, Func<object, string, PathSubjectPart[]>>()
                 .Register(variable => variable is string, (variable, variableName) => ToPath((string)variable, variableName))
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             // TODO: This class should also be able to cope with rooted paths.
             var node = _nonRootedParser.Do(value);
-            _nodeValidator.EnsureSuccess(node, Id, false);
+            _nodeValidator.EnsureSuccess(node, _id, false);
             var childNode = node.Children.Single();
 
             return ParsePath(value, variableName, childNode);

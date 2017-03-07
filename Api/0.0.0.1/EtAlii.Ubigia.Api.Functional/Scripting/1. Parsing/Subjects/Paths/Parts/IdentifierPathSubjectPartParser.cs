@@ -13,8 +13,8 @@
         private readonly LpsParser _parser;
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const char IdentifierSeparatorCharacter = '.';
-        private const string IdentifierId = "Identifier";
+        private const char _identifierSeparatorCharacter = '.';
+        private const string _identifierId = "Identifier";
 
         public IdentifierPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -24,7 +24,7 @@
             _nodeFinder = nodeFinder;
 
             var identifierParser = CreateIdentifierParser();
-            _parser = new LpsParser(Id, true, Lp.Char('&') + identifierParser.Id(IdentifierId));
+            _parser = new LpsParser(Id, true, Lp.Char('&') + identifierParser.Id(_identifierId));
         }
 
         private LpsParser CreateIdentifierParser()
@@ -32,7 +32,7 @@
             char[] hexDigits = new[] { 'a', 'b', 'c', 'd', 'e', 'f' };
             var hexChar = Lp.One(c => char.IsDigit(c) || hexDigits.Contains(char.ToLower(c)));
             var hexSeparator = Lp.Char('-');
-            var identifierSeparator = Lp.Char(IdentifierSeparatorCharacter);
+            var identifierSeparator = Lp.Char(_identifierSeparatorCharacter);
             var guid = (hexChar + hexChar + hexChar + hexChar + hexChar + hexChar + hexChar + hexChar + hexSeparator +
                         hexChar + hexChar + hexChar + hexChar + hexSeparator +
                         hexChar + hexChar + hexChar + hexChar + hexSeparator +
@@ -67,8 +67,8 @@
 
         private Identifier GetIdentifier(LpNode node)
         {
-            var identifierNode = _nodeFinder.FindFirst(node, IdentifierId);
-            var pieces = identifierNode.Match.ToString().Split(IdentifierSeparatorCharacter);
+            var identifierNode = _nodeFinder.FindFirst(node, _identifierId);
+            var pieces = identifierNode.Match.ToString().Split(_identifierSeparatorCharacter);
             var storage = Guid.Parse(pieces[0]);
             var account = Guid.Parse(pieces[1]);
             var space = Guid.Parse(pieces[2]);

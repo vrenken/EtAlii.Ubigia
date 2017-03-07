@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using EtAlii.Ubigia.Api.Fabric.Tests;
+    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.MicroContainer;
 
     public class LogicalTestContextFactory

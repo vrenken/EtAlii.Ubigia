@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
     using System;
     using System.Linq;
-    using Api.Tests;
+    using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    
     public class BitShift_Add_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

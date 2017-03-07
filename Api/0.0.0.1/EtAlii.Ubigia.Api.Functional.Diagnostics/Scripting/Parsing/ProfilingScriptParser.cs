@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting.Parsing
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using System.Linq;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;

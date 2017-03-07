@@ -13,8 +13,8 @@
         private readonly INodeValidator _nodeValidator;
         private readonly IPathRelationParserBuilder _pathRelationParserBuilder;
 
-        private const string RelationId = @"/";
-        private const string RelationDescription = @"IS_PARENT_OF";
+        private const string _relationId = @"/";
+        private const string _relationDescription = @"IS_PARENT_OF";
 
         public IsParentOfPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -23,7 +23,7 @@
             _nodeValidator = nodeValidator;
             _pathRelationParserBuilder = pathRelationParserBuilder;
 
-            var relationParser = _pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
+            var relationParser = _pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
             _parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser");
         }
 

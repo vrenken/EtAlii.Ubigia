@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;

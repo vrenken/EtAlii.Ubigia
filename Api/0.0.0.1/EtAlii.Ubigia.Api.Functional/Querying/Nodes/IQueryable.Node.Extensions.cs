@@ -5,7 +5,7 @@
     using System.Linq.Expressions;
     using EtAlii.Ubigia.Api.Logical;
 
-    public static class IQueryableNodeExtensions
+    public static class QueryableNodeExtensions
     {
         public static IQueryable<INode> Select(this IQueryable<INode> source, string path)
         {

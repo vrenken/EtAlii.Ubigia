@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Management.IntegrationTests
 {
+    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.SignalR.Tests;
     using EtAlii.Ubigia.Api.Transport.Tests;
 

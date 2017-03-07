@@ -18,8 +18,8 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeFinder _nodeFinder;
         private readonly ITypeValueParser _typeValueParser;
         private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
-        private const string TextId = "Text";
-        private const string PathId = "SchemaPath";
+        private const string _textId = "Text";
+        private const string _pathId = "SchemaPath";
 
         public RootDefinitionSubjectParser(
             INodeValidator nodeValidator,

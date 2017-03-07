@@ -1,6 +1,7 @@
-namespace EtAlii.Ubigia.Api.Logical.Tests
+namespace EtAlii.Ubigia.Api.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
 
     public interface ILogicalTestContext
     {

@@ -5,21 +5,21 @@
 
     internal static class LpDebuggerExtensions
     {
-        private static int indention = 0;
+        private static int _indention = 0;
         public static LpsParser Debug(this LpsParser parser, string debugId, bool showDetails = false)
         {
             return new LpsParser(text =>
             {
                 var spaces = "";
-                for (int i = 0; i < indention; i++)
+                for (int i = 0; i < _indention; i++)
                 {
                     spaces += "\t";
                 }
 
                 System.Diagnostics.Debug.WriteLine($"{spaces}+ {debugId} - Input: {text}");
-                indention += 1;
+                _indention += 1;
                 var result = parser.Do(text);
-                indention -= 1;
+                _indention -= 1;
                 var successText = result.Success ? "Success" : "Failure";
                 var detailsText = showDetails ? ":" : "";
                 System.Diagnostics.Debug.WriteLine($"{spaces}- {debugId} - {successText}{detailsText}");

@@ -1,9 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
+﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
-    using EtAlii.Ubigia.Api.Tests;
     using Xunit;
 
-    
     public class ContentType_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

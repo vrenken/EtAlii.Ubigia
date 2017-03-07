@@ -1,7 +1,8 @@
-namespace EtAlii.Ubigia.Api.Fabric.Tests
+namespace EtAlii.Ubigia.Api.Tests
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
 
     public interface IFabricTestContext
     {

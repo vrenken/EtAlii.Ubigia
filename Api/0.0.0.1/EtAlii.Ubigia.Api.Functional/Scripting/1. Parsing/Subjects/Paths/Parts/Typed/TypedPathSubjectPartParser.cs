@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private const string TextId = "Text";
+        private const string _textId = "Text";
         private readonly string[] _types;
 
         public TypedPathSubjectPartParser(
@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _parser = new LpsParser
                 (Id, true, 
                     Lp.One(c => c == '[') + //.Debug("Bracket-Open", true) + 
-                    Lp.Any(true, _types).Id(TextId) + //.Debug("Content", true) + 
+                    Lp.Any(true, _types).Id(_textId) + //.Debug("Content", true) + 
                     Lp.One(c => c == ']')//.Debug("Bracket-Close", true)
                 );//.Debug("TypedPathSubjectPartParser", true);
         }
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
+            var text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
             var formatter = TypedPathFormatter.FromString(text.ToUpper());
             return new TypedPathSubjectPart(formatter);
         }
