@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
 
     
-    public class PropertyDictionaryJSonConverter_WriteJSon_Tests
+    public class PropertyDictionaryJSonConverterWriteJSonTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyDictionaryJSonConverter_Create()

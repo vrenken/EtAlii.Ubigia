@@ -6,7 +6,7 @@
     using Newtonsoft.Json;
 
     
-    public class SerializerFactory_Tests
+    public class SerializerFactoryTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void SerializerFactory_New()

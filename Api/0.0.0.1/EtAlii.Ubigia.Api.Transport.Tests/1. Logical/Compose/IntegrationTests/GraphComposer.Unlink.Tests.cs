@@ -6,7 +6,7 @@
     using Xunit;
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
-    public partial class GraphComposer_IntegrationTests
+    public partial class GraphComposerIntegrationTests
     {
     }
 }

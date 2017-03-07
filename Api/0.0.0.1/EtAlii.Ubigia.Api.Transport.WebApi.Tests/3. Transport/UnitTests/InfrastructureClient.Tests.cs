@@ -6,9 +6,9 @@
     using Xunit;
 
     
-    public class InfrastructureClient_UnitTests : IDisposable
+    public class InfrastructureClientUnitTests : IDisposable
     {
-        public InfrastructureClient_UnitTests()
+        public InfrastructureClientUnitTests()
         {
             new DefaultInfrastructureClient(null).AuthenticationToken = null;
         }

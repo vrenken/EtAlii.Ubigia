@@ -16,12 +16,12 @@
     using Xunit;
 
     
-    public class GraphPathTraverser_SingleConnection_Tests : IClassFixture<FabricUnitTestContext>, IDisposable
+    public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IDisposable
     {
         private readonly FabricUnitTestContext _testContext;
         private IFabricContext _fabric;
 
-        public GraphPathTraverser_SingleConnection_Tests(FabricUnitTestContext testContext)
+        public GraphPathTraverserSingleConnectionTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
 

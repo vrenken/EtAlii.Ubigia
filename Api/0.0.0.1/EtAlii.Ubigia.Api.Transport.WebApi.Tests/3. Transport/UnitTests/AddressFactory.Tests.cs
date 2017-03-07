@@ -7,16 +7,16 @@
     using Xunit;
 
     
-    public class AddressFactory_Tests : IDisposable
+    public class AddressFactoryTests : IDisposable
     {
-        private const string BaseAddress = "http://localtesthost:1234";
+        private const string _baseAddress = "http://localtesthost:1234";
         private IAddressFactory _factory;
         private Storage _storage;
 
-        public AddressFactory_Tests()
+        public AddressFactoryTests()
         {
             _factory = new AddressFactory();
-            _storage = new Storage { Address = BaseAddress };
+            _storage = new Storage { Address = _baseAddress };
         }
 
         public void Dispose()
@@ -34,7 +34,7 @@
             var address = _factory.Create(_storage, "test");
 
             // Assert.
-            Assert.Equal(address, BaseAddress + "/test");
+            Assert.Equal(address, _baseAddress + "/test");
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -46,7 +46,7 @@
             var address = _factory.Create(_storage, "test", "firstkey", "firstvalue", "secondKey", "secondvalue");
 
             // Assert.
-            Assert.Equal(address, BaseAddress + "/test?firstkey=firstvalue&secondKey=secondvalue");
+            Assert.Equal(address, _baseAddress + "/test?firstkey=firstvalue&secondKey=secondvalue");
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -58,7 +58,7 @@
             var address = _factory.Create(_storage, "test", "firstkey", "first=value", "secondKey", "second&value");
 
             // Assert.
-            Assert.Equal(address, BaseAddress + "/test?firstkey=first%3Dvalue&secondKey=second%26value");
+            Assert.Equal(address, _baseAddress + "/test?firstkey=first%3Dvalue&secondKey=second%26value");
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -82,7 +82,7 @@
             var address = _factory.Create(_storage, null);
 
             // Assert.
-            Assert.Equal(address, BaseAddress + "/");
+            Assert.Equal(address, _baseAddress + "/");
         }
     }
 }

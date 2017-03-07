@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public partial class GraphComposer_IntegrationTests
+    public partial class GraphComposerIntegrationTests
     {
         [Fact(Skip = "Not working (yet)")]
         public async Task GraphComposer_Link()
