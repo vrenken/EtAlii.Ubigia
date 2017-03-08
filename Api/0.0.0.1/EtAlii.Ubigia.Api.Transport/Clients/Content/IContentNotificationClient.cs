@@ -8,7 +8,7 @@
         event Action<Identifier> Stored;
     }
 
-    public interface IContentNotificationClient<TTransport> : IContentNotificationClient, ISpaceTransportClient<TTransport>
+    public interface IContentNotificationClient<in TTransport> : IContentNotificationClient, ISpaceTransportClient<TTransport>
         where TTransport: ISpaceTransport
     {
     }

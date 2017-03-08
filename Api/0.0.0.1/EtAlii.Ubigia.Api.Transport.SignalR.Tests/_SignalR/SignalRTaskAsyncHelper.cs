@@ -13,7 +13,7 @@
         private static readonly Task<bool> _trueTask = MakeTask<bool>(true);
         private static readonly Task<bool> _falseTask = MakeTask<bool>(false);
 
-        public static Task Empty => _emptyTask;
+        private static Task Empty => _emptyTask;
 
         public static Task<bool> True => _trueTask;
 
@@ -72,7 +72,7 @@
             return Catch<TTask>(task, (Action<AggregateException>)(ex => { }));
         }
 
-        public static TTask Catch<TTask>(this TTask task, Action<AggregateException, object> handler, object state) where TTask : Task
+        private static TTask Catch<TTask>(this TTask task, Action<AggregateException, object> handler, object state) where TTask : Task
         {
             if ((object)task != null && task.Status != TaskStatus.RanToCompletion)
             {
@@ -94,7 +94,7 @@
             handler(exception, state);
         }
 
-        public static TTask Catch<TTask>(this TTask task, Action<AggregateException> handler) where TTask : Task
+        private static TTask Catch<TTask>(this TTask task, Action<AggregateException> handler) where TTask : Task
         {
             return Catch<TTask>(task, (Action<AggregateException, object>)((ex, state) => ((Action<AggregateException>)state)(ex)), (object)handler);
         }
@@ -246,7 +246,7 @@
             }
         }
 
-        public static Task Then<T1>(this Task task, Func<T1, Task> successor, T1 arg1)
+        private static Task Then<T1>(this Task task, Func<T1, Task> successor, T1 arg1)
         {
             switch (task.Status)
             {
@@ -426,12 +426,12 @@
             }
         }
 
-        public static Task FastUnwrap(this Task<Task> task)
+        private static Task FastUnwrap(this Task<Task> task)
         {
             return (task.Status == TaskStatus.RanToCompletion ? task.Result : (Task)null) ?? TaskExtensions.Unwrap(task);
         }
 
-        public static Task<T> FastUnwrap<T>(this Task<Task<T>> task)
+        private static Task<T> FastUnwrap<T>(this Task<Task<T>> task)
         {
             return (task.Status == TaskStatus.RanToCompletion ? task.Result : (Task<T>)null) ?? TaskExtensions.Unwrap<T>(task);
         }
@@ -443,7 +443,7 @@
             return ContinueWithPreservedCulture<object>(completionSource.Task, (Action<Task<object>>)(_ => timer.Dispose()), TaskContinuationOptions.ExecuteSynchronously);
         }
 
-        public static Task FromMethod(Action func)
+        private static Task FromMethod(Action func)
         {
             try
             {
@@ -456,7 +456,7 @@
             }
         }
 
-        public static Task FromMethod<T1>(Action<T1> func, T1 arg)
+        private static Task FromMethod<T1>(Action<T1> func, T1 arg)
         {
             try
             {
@@ -469,7 +469,7 @@
             }
         }
 
-        public static Task FromMethod<T1, T2>(Action<T1, T2> func, T1 arg1, T2 arg2)
+        private static Task FromMethod<T1, T2>(Action<T1, T2> func, T1 arg1, T2 arg2)
         {
             try
             {
@@ -482,7 +482,7 @@
             }
         }
 
-        public static Task FromMethod(Func<Task> func)
+        private static Task FromMethod(Func<Task> func)
         {
             try
             {
@@ -494,7 +494,7 @@
             }
         }
 
-        public static Task<TResult> FromMethod<TResult>(Func<Task<TResult>> func)
+        private static Task<TResult> FromMethod<TResult>(Func<Task<TResult>> func)
         {
             try
             {
@@ -506,7 +506,7 @@
             }
         }
 
-        public static Task<TResult> FromMethod<TResult>(Func<TResult> func)
+        private static Task<TResult> FromMethod<TResult>(Func<TResult> func)
         {
             try
             {
@@ -518,7 +518,7 @@
             }
         }
 
-        public static Task FromMethod<T1>(Func<T1, Task> func, T1 arg)
+        private static Task FromMethod<T1>(Func<T1, Task> func, T1 arg)
         {
             try
             {
@@ -530,7 +530,7 @@
             }
         }
 
-        public static Task FromMethod<T1, T2>(Func<T1, T2, Task> func, T1 arg1, T2 arg2)
+        private static Task FromMethod<T1, T2>(Func<T1, T2, Task> func, T1 arg1, T2 arg2)
         {
             try
             {
@@ -542,7 +542,7 @@
             }
         }
 
-        public static Task<TResult> FromMethod<T1, TResult>(Func<T1, Task<TResult>> func, T1 arg)
+        private static Task<TResult> FromMethod<T1, TResult>(Func<T1, Task<TResult>> func, T1 arg)
         {
             try
             {
@@ -554,7 +554,7 @@
             }
         }
 
-        public static Task<TResult> FromMethod<T1, TResult>(Func<T1, TResult> func, T1 arg)
+        private static Task<TResult> FromMethod<T1, TResult>(Func<T1, TResult> func, T1 arg)
         {
             try
             {
@@ -566,7 +566,7 @@
             }
         }
 
-        public static Task<TResult> FromMethod<T1, T2, TResult>(Func<T1, T2, Task<TResult>> func, T1 arg1, T2 arg2)
+        private static Task<TResult> FromMethod<T1, T2, TResult>(Func<T1, T2, Task<TResult>> func, T1 arg1, T2 arg2)
         {
             try
             {
@@ -578,7 +578,7 @@
             }
         }
 
-        public static Task<TResult> FromMethod<T1, T2, TResult>(Func<T1, T2, TResult> func, T1 arg1, T2 arg2)
+        private static Task<TResult> FromMethod<T1, T2, TResult>(Func<T1, T2, TResult> func, T1 arg1, T2 arg2)
         {
             try
             {
@@ -590,26 +590,26 @@
             }
         }
 
-        public static Task<T> FromResult<T>(T value)
+        private static Task<T> FromResult<T>(T value)
         {
             TaskCompletionSource<T> completionSource = new TaskCompletionSource<T>();
             completionSource.SetResult(value);
             return completionSource.Task;
         }
 
-        internal static Task FromError(Exception e)
+        private static Task FromError(Exception e)
         {
             return (Task)FromError<object>(e);
         }
 
-        internal static Task<T> FromError<T>(Exception e)
+        private static Task<T> FromError<T>(Exception e)
         {
             TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
             SetUnwrappedException<T>(tcs, e);
             return tcs.Task;
         }
 
-        internal static void SetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
+        private static void SetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
             AggregateException aggregateException = e as AggregateException;
             if (aggregateException != null)
@@ -618,7 +618,7 @@
                 tcs.SetException(e);
         }
 
-        internal static bool TrySetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
+        private static bool TrySetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
             AggregateException aggregateException = e as AggregateException;
             if (aggregateException != null)
@@ -640,7 +640,7 @@
             return completionSource.Task;
         }
 
-        internal static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction, TaskContinuationOptions continuationOptions)
+        private static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction, TaskContinuationOptions continuationOptions)
         {
             CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
             CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -662,7 +662,7 @@
             }), continuationOptions);
         }
 
-        internal static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction, TaskContinuationOptions continuationOptions)
+        private static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction, TaskContinuationOptions continuationOptions)
         {
             CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
             CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -684,7 +684,7 @@
             }), continuationOptions);
         }
 
-        internal static Task<TResult> ContinueWithPreservedCulture<T, TResult>(this Task<T> task, Func<Task<T>, TResult> continuationAction, TaskContinuationOptions continuationOptions)
+        private static Task<TResult> ContinueWithPreservedCulture<T, TResult>(this Task<T> task, Func<Task<T>, TResult> continuationAction, TaskContinuationOptions continuationOptions)
         {
             CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
             CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
@@ -706,12 +706,12 @@
             }), continuationOptions);
         }
 
-        internal static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction)
+        private static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction)
         {
             return ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);
         }
 
-        internal static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction)
+        private static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction)
         {
             return ContinueWithPreservedCulture<T>(task, continuationAction, TaskContinuationOptions.None);
         }

@@ -3,10 +3,10 @@
     using System.Diagnostics;
 
     [DebuggerStepThrough]
-    [DebuggerDisplay("{Pattern}")]
+    [DebuggerDisplay("{" + nameof(Pattern) + "}")]
     public class GraphWildcard : GraphPathPart
     {
-        public string Pattern { get; set; }
+        public readonly string Pattern;
 
         public GraphWildcard(string pattern)
         {

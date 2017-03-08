@@ -3,10 +3,10 @@
     using System.Diagnostics;
 
     [DebuggerStepThrough]
-    [DebuggerDisplay("{Limit}")]
+    [DebuggerDisplay("{" + nameof(Limit) + "}")]
     public class GraphTraversingWildcard : GraphPathPart
     {
-        public int Limit { get; set; }
+        public readonly int Limit;
 
         public GraphTraversingWildcard(int limit)
         {

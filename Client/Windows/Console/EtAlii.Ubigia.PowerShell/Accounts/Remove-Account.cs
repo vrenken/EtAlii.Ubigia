@@ -13,9 +13,9 @@
 
         protected override void ProcessRecord()
         {
-            var verboseDescription = String.Format("Account '{0}' has been removed.", TargetAccount.Name);
-            var verboseNegativeDescription = String.Format("Account '{0}' has not been removed.", TargetAccount.Name);
-            var verboseWarning = String.Format("Are you sure you want to remove account '{0}'?", TargetAccount.Name);
+            var verboseDescription = $"Account '{TargetAccount.Name}' has been removed.";
+            var verboseNegativeDescription = $"Account '{TargetAccount.Name}' has not been removed.";
+            var verboseWarning = $"Are you sure you want to remove account '{TargetAccount.Name}'?";
             var caption = "Remove account";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))
             {

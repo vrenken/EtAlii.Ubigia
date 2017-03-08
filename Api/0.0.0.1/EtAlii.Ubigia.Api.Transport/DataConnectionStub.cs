@@ -19,7 +19,7 @@
 
         public IPropertyContext Properties { get; }
 
-        public bool IsConnected { get; }
+        public bool IsConnected { get; } = false;
 
         public IDataConnectionConfiguration Configuration { get; }
 

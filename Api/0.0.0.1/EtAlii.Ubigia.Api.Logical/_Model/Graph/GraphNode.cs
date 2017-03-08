@@ -3,10 +3,10 @@
     using System.Diagnostics;
 
     [DebuggerStepThrough]
-    [DebuggerDisplay("{Name}")]
+    [DebuggerDisplay("{" + nameof(Name) + "}")]
     public class GraphNode : GraphPathPart
     {
-        public string Name { get; set; }
+        public readonly string Name;
 
         public GraphNode(string name)
         {

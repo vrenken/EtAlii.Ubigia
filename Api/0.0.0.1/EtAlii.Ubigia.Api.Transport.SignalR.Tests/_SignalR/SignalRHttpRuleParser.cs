@@ -89,7 +89,7 @@
             tokenChars[125] = false;
         }
 
-        internal static bool IsTokenChar(char character)
+        private static bool IsTokenChar(char character)
         {
             if ((int)character > (int)sbyte.MaxValue)
                 return false;
@@ -144,7 +144,7 @@
             return ContainsInvalidNewLine(value, 0);
         }
 
-        internal static bool ContainsInvalidNewLine(string value, int startIndex)
+        private static bool ContainsInvalidNewLine(string value, int startIndex)
         {
             for (int index1 = startIndex; index1 < value.Length; ++index1)
             {
@@ -239,7 +239,7 @@
             return GetExpressionLength(input, startIndex, '"', '"', false, ref nestedCount, out length);
         }
 
-        internal static HttpParseResult GetQuotedPairLength(string input, int startIndex, out int length)
+        private static HttpParseResult GetQuotedPairLength(string input, int startIndex, out int length)
         {
             length = 0;
             if ((int)input[startIndex] != 92)

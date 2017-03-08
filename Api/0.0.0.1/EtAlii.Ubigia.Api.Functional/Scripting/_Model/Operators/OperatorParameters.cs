@@ -4,12 +4,12 @@
 
     public class OperatorParameters
     {
-        public ExecutionScope Scope { get; set; }
-        public Subject LeftSubject { get; set; }
-        public Subject RightSubject { get; set; }
-        public IObservable<object> LeftInput { get; set; }
-        public IObservable<object> RightInput { get; set; }
-        public IObserver<object> Output { get; set; }
+        public ExecutionScope Scope { get; }
+        public Subject LeftSubject { get; }
+        public Subject RightSubject { get; }
+        public IObservable<object> LeftInput { get; }
+        public IObservable<object> RightInput { get; }
+        public IObserver<object> Output { get; }
 
         public OperatorParameters(
             ExecutionScope scope,

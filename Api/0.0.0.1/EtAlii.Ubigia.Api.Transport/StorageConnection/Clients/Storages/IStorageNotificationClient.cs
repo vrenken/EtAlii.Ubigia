@@ -4,7 +4,7 @@
     {
     }
 
-    public interface IStorageNotificationClient<TTransport> : IStorageNotificationClient, IStorageTransportClient<TTransport>
+    public interface IStorageNotificationClient<in TTransport> : IStorageNotificationClient, IStorageTransportClient<TTransport>
         where TTransport : IStorageTransport
     {
     }

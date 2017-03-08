@@ -2,19 +2,19 @@
 {
     using System.Diagnostics;
 
-    [DebuggerDisplay("{Name}")]
+    [DebuggerDisplay("{" + nameof(_name) + "}")]
     public sealed class GraphRelation : GraphPathPart
     {
-        public string Name { get; set; }
+        private readonly string _name;
 
         private GraphRelation(string name)
         {
-            Name = name;
+            _name = name;
         }
 
         public override string ToString()
         {
-            return Name;
+            return _name;
         }
 
         public static readonly GraphRelation Child = new GraphRelation("CHILD");

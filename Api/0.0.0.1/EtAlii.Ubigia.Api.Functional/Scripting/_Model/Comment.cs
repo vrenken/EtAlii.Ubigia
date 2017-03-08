@@ -4,16 +4,16 @@
 
     public class Comment : SequencePart
     {
-        public readonly string Text;
+        private readonly string _text;
 
         public Comment(string text)
         {
-            Text = text;
+            _text = text;
         }
 
         public override string ToString()
         {
-            return String.Format("#{0}", Text);
+            return $"#{_text}";
         }
     }
 }

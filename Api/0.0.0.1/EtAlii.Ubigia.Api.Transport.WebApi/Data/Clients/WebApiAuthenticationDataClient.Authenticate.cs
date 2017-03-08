@@ -46,12 +46,12 @@
             }
             else
             {
-                string message = String.Format("Unable to authenticate on the specified storage ({0})", webApiConnection.Configuration.Address);
+                var message = $"Unable to authenticate on the specified storage ({webApiConnection.Configuration.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
 
-        public static async Task<string> GetAuthenticationToken(IInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, string address)
+        private static async Task<string> GetAuthenticationToken(IInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, string address)
         {
             string authenticationToken;
             if (password == null && client.AuthenticationToken != null)

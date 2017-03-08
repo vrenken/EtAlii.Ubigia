@@ -5,7 +5,7 @@
     public class SequenceProcessingResult
     {
         public Sequence Sequence { get; private set; }
-        public ISequenceExecutionPlan ExecutionPlan { get; private set; }
+        private ISequenceExecutionPlan ExecutionPlan { get;  }
         public int Step { get; private set; }
         public int Total { get; private set; }
 
