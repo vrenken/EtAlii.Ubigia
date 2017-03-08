@@ -2,7 +2,7 @@
 {
     public class RootPathSubjectPart : PathSubjectPart
     {
-        public string Name { get; }
+        private string Name { get; }
 
         public RootPathSubjectPart(string name)
         {

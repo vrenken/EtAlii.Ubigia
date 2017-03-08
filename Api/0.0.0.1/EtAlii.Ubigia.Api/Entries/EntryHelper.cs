@@ -12,7 +12,7 @@
         /// <param name="component"></param>
         /// <param name="entry"></param>
         /// <param name="markAsStored"></param>
-        public static void Apply(IComponent component, IComponentEditableEntry entry, bool markAsStored)
+        private static void Apply(IComponent component, IComponentEditableEntry entry, bool markAsStored)
         {
             ((ComponentBase)component).Apply(entry, markAsStored);
         }

@@ -86,7 +86,7 @@
             }
         }
 
-        public static void SaveTestFile(string fileName, float megaBytesMin, float megaBytesMax)
+        private static void SaveTestFile(string fileName, float megaBytesMin, float megaBytesMax)
         {
             const int bytesInKiloByte = 1024;
             var data = new byte[bytesInKiloByte];

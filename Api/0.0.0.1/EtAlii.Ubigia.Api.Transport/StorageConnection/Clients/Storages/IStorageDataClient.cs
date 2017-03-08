@@ -14,7 +14,7 @@
         Task<IEnumerable<Storage>> GetAll();
     }
 
-    public interface IStorageDataClient<TTransport> : IStorageDataClient, IStorageTransportClient<TTransport>
+    public interface IStorageDataClient<in TTransport> : IStorageDataClient, IStorageTransportClient<TTransport>
         where TTransport : IStorageTransport
     {
     }

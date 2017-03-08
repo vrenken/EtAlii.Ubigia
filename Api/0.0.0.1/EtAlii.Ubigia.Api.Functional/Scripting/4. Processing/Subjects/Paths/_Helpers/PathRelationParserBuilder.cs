@@ -6,30 +6,30 @@
     internal class PathRelationParserBuilder : IPathRelationParserBuilder
     {
 
-        public readonly LpsParser LeftSource;
-        public readonly LpsParser RightTarget;
+        private readonly LpsParser _leftSource;
+        private readonly LpsParser _rightTarget;
 
-        public readonly LpsParser LeftTarget;
-        public readonly LpsParser RightSource;
+        private readonly LpsParser _leftTarget;
+        private readonly LpsParser _rightSource;
 
         public PathRelationParserBuilder()
         {
-            LeftSource = Lp.Term("-");
-            RightTarget = Lp.Term("->");
+            _leftSource = Lp.Term("-");
+            _rightTarget = Lp.Term("->");
 
-            LeftTarget = Lp.Term("<-");
-            RightSource = Lp.Term("-");
+            _leftTarget = Lp.Term("<-");
+            _rightSource = Lp.Term("-");
         }
 
         public LpsParser CreatePathRelationParser(string name, string symbol)
         {
-            var labeledName = String.Format(@"[:{0}]", name);
-            var labeledSymbol = String.Format(@"[{0}]", symbol);
+            var labeledName = $@"[:{name}]";
+            var labeledSymbol = $@"[{symbol}]";
 
             return new LpsParser(symbol, true)
             {
-                Parser = LeftSource + Lp.Term(labeledName) + RightTarget |
-                         LeftSource + Lp.Term(labeledSymbol) + RightTarget |
+                Parser = _leftSource + Lp.Term(labeledName) + _rightTarget |
+                         _leftSource + Lp.Term(labeledSymbol) + _rightTarget |
                          Lp.Term(symbol)
             };
         }

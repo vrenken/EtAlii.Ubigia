@@ -4,10 +4,10 @@
     using System.Diagnostics;
 
     [DebuggerStepThrough]
-    [DebuggerDisplay("{Description}")]
+    [DebuggerDisplay("{" + nameof(Description) + "}")]
     public class GraphCondition : GraphPathPart
     {
-        public string Description { get; }
+        private string Description { get; }
         public Predicate<PropertyDictionary> Predicate { get; private set; }
 
         public GraphCondition(Predicate<PropertyDictionary> predicate, string description)

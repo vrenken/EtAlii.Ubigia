@@ -2,12 +2,12 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class RecursiveRemoveResult
     {
-        public readonly Identifier ParentId;
+        private readonly Identifier _parentId;
         public readonly IEditableEntry NewEntry;
 
         public RecursiveRemoveResult(Identifier parentId, IEditableEntry newEntry)
         {
-            ParentId = parentId;
+            _parentId = parentId;
             NewEntry = newEntry;
         }
     }

@@ -6,16 +6,13 @@
     [JsonObject(MemberSerialization.Fields)]
     public class BlobSummary 
     {
-        public bool IsComplete { get { return _isComplete; } internal set { _isComplete = value; } }
-        private bool _isComplete;
+        public bool IsComplete { get; private set; }
 
-        public UInt64[] AvailableParts { get { return _availableParts; } internal set { _availableParts = value; } }
-        private UInt64[] _availableParts;
+        public UInt64[] AvailableParts { get; private set; }
 
-        public UInt64 TotalParts { get { return _totalParts; } internal set { _totalParts = value; } }
-        private UInt64 _totalParts;
+        public UInt64 TotalParts { get; private set; }
 
-        public BlobSummary()
+        private BlobSummary()
         {
         }
 

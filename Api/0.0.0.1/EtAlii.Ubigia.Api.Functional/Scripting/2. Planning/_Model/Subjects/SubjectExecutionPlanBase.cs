@@ -6,7 +6,7 @@
 
     public abstract class SubjectExecutionPlanBase : ISubjectExecutionPlan
     {
-        public Subject Subject { get; set; }
+        public Subject Subject { get; }
         public Type OutputType => _outputType.Value;
         private readonly Lazy<Type> _outputType;
 

@@ -4,7 +4,7 @@
 
     public class NodeQueryingException : Exception
     {
-        public ScriptParseResult ParseResult { get; private set; }
+        private ScriptParseResult ParseResult { get; }
 
         public NodeQueryingException(string message)
             : base(message)

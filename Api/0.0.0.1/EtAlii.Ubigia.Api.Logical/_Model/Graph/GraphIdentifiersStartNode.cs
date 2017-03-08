@@ -5,7 +5,7 @@
 
     public class GraphIdentifiersStartNode : GraphPathPart
     {
-        public IEnumerable<Identifier> Identifiers { get; set; }
+        public readonly IEnumerable<Identifier> Identifiers;
 
         public GraphIdentifiersStartNode(IEnumerable<Identifier> identifiers)
         {

@@ -60,7 +60,7 @@
         public string Type { get; }
         public string Regex { get; }
 
-        public TypedPathFormatter(string type, string regex)
+        private TypedPathFormatter(string type, string regex)
         {
             Type = type;
             Regex = regex;
