@@ -97,7 +97,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var parser = _parserSelector.Select(pathSubject);
             if (!parser.CanValidate(pathSubject))
             {
-                throw new ScriptParserException($"Unable to validate path in variable (variable: {variableName}, path: {pathSubject.ToString()})");
+                throw new ScriptParserException($"Unable to validate path in variable (variable: {variableName}, path: {pathSubject})");
             }
 
             var converter = _converterSelector.Select(pathSubject);

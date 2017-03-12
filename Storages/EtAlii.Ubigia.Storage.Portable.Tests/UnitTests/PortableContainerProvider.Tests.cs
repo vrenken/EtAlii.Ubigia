@@ -169,11 +169,11 @@
             var id = Guid.NewGuid().ToString();
 
             // Act.
-            var containerId = ContainerIdentifier.FromPaths(id.ToString());
+            var containerId = ContainerIdentifier.FromPaths(id);
 
             // Assert.
             Assert.NotNull(containerId);
-            Assert.Equal(id.ToString(), containerId.ToString());
+            Assert.Equal(id, containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -184,11 +184,11 @@
             var second = Guid.NewGuid().ToString();
 
             // Act.
-            var containerId = ContainerIdentifier.FromPaths(first.ToString(), second.ToString());
+            var containerId = ContainerIdentifier.FromPaths(first, second);
 
             // Assert.
             Assert.NotNull(containerId);
-            Assert.Equal(String.Join("\\", first.ToString(), second.ToString()), containerId.ToString());
+            Assert.Equal(String.Join("\\", first, second), containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -199,7 +199,7 @@
             var second = Guid.NewGuid().ToString();
 
             // Act.
-            var containerId = ContainerIdentifier.FromPaths(first.ToString(), second.ToString());
+            var containerId = ContainerIdentifier.FromPaths(first, second);
 
             // Assert.
             Assert.NotNull(containerId);
@@ -213,14 +213,14 @@
             // Arrange.
             var first = Guid.NewGuid().ToString();
             var second = Guid.NewGuid().ToString();
-            var containerId = ContainerIdentifier.FromPaths(first.ToString());
+            var containerId = ContainerIdentifier.FromPaths(first);
 
             // Act.
             containerId = ContainerIdentifier.Combine(containerId, second);
 
             // Assert.
             Assert.NotNull(containerId);
-            Assert.Equal(String.Join("\\", first.ToString(), second.ToString()), containerId.ToString());
+            Assert.Equal(String.Join("\\", first, second), containerId.ToString());
         }
 
 

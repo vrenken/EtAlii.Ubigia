@@ -29,7 +29,7 @@
 
             if (!LpDateTime.TryParseDateTime(node.Children.First(), ref result))
             {
-                throw new ScriptParserException("Cannot parse DateTime: " + node.Match.ToString());
+                throw new ScriptParserException("Cannot parse DateTime: " + node.Match);
             }
 
             return result;

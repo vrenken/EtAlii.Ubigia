@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
         public void Convert(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
         {
-            dynamic profile = _profiler.Begin("Converting path subject for output: " + pathSubject.ToString());
+            dynamic profile = _profiler.Begin("Converting path subject for output: " + pathSubject);
             profile.PathSubject = pathSubject;
 
             _decoree.Convert(pathSubject, scope, output);

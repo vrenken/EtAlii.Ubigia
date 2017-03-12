@@ -39,7 +39,7 @@
 
         public async Task<Root> Get(string rootName)
         {
-            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString(), UriParameter.RootName, rootName.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString(), UriParameter.RootName, rootName);
             var root = await Connection.Client.Get<Root>(address);
             return root;
         }

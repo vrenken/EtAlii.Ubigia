@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
         public async Task<GraphPath> Convert(PathSubject pathSubject, ExecutionScope scope)
         {
-            dynamic profile = _profiler.Begin("Converting to graph path: " + pathSubject.ToString());
+            dynamic profile = _profiler.Begin("Converting to graph path: " + pathSubject);
             profile.PathSubject = pathSubject;
 
             var result = await _decoree.Convert(pathSubject, scope);

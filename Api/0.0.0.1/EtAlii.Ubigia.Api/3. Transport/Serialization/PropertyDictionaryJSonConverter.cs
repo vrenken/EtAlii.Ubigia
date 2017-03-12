@@ -159,7 +159,7 @@
                 case TypeId.Version: return typeof(Version);
                 case TypeId.None: return null;
             }
-            throw new NotSupportedException("TypeId is not supported: " + typeid.ToString());
+            throw new NotSupportedException("TypeId is not supported: " + typeid);
         }
 
 
