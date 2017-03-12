@@ -129,7 +129,7 @@ namespace TomanuExtensions
 
             for (; ; )
             {
-                string result = (left + index.ToString()).Trim();
+                string result = (left + index).Trim();
 
                 if (a_names.Contains(result))
                 {

@@ -158,17 +158,17 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
             length = length / 1024;
             if (length < 1024)
             {
-                return length.ToString() + " KB";
+                return length + " KB";
             }
 
             length = length / 1024;
             if (length < 1024)
             {
-                return length.ToString() + " MB";
+                return length + " MB";
             }
 
             length = length / 1024;
-            return length.ToString() + " GB";
+            return length + " GB";
 
         }
 

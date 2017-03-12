@@ -18,7 +18,7 @@
 
         public override string ToString()
         {
-            return "Add (" + _parameter.ToString() + ")";
+            return "Add (" + _parameter + ")";
         }
 
         public override ResultOperatorBase Clone(CloneContext cloneContext)

@@ -40,7 +40,7 @@
             if (failedBecauseOfRest || failedBecauseOfSuccess || failedBecauseOfId)
             {
                 var format = "Unable to process {0}\nId={4}\nNode='{1}'\nRest='{2}'\nText='{3}'";
-                var message = String.Format(format, requiredId, node.ToString(), node.Rest.ToString(), node.Match.ToString(), node.Id);
+                var message = String.Format(format, requiredId, node, node.Rest, node.Match, node.Id);
 
                 throw new ScriptParserException(message);
             }

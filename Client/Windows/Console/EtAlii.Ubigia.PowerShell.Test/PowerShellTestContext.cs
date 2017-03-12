@@ -144,8 +144,8 @@
         {
             PowerShell.Commands.Clear();
             PowerShell.AddCommand("Add-Storage")
-                       .AddParameter("Name", String.Format("\"{0}\"", Guid.NewGuid().ToString()))
-                       .AddParameter("Address", String.Format("\"{0}\"", Guid.NewGuid().ToString()));
+                       .AddParameter("Name", String.Format("\"{0}\"", Guid.NewGuid()))
+                       .AddParameter("Address", String.Format("\"{0}\"", Guid.NewGuid()));
             var result = PowerShell.Invoke();
             return result;
         }

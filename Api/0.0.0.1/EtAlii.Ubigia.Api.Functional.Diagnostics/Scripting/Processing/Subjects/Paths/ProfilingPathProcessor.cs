@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
         public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
         {
-            dynamic profile = _profiler.Begin("Processing path subject: " + pathSubject.ToString());
+            dynamic profile = _profiler.Begin("Processing path subject: " + pathSubject);
             profile.PathSubject = pathSubject;
 
             await _decoree.Process(pathSubject, scope, output);
