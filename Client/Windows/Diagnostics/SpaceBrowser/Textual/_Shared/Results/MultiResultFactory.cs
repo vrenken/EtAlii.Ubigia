@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System.Collections;
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Structure;
 
     public class MultiResultFactory : IMultiResultFactory

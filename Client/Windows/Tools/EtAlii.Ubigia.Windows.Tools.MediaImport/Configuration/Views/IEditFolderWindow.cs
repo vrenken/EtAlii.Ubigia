@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.Windows;
-    using System.Windows.Forms.VisualStyles;
 
     internal interface IEditFolderWindow
     {

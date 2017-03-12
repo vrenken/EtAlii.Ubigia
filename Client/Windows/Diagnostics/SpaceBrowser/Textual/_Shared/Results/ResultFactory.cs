@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
 

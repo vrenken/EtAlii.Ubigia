@@ -12,7 +12,6 @@ using System;
 
 namespace Moppet.Lapa
 {
-    using System.Linq;
     using Moppet.Lapa.Parsers;
 
     /// <summary>

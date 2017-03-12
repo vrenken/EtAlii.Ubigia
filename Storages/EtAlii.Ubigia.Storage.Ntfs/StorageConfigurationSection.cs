@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Storage.Ntfs
 {
     using System.Configuration;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Storage;
 
     public class StorageConfigurationSection : ConfigurationSection, IStorageConfigurationSection

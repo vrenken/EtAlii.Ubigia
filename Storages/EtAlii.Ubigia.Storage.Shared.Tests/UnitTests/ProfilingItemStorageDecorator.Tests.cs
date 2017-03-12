@@ -1,9 +1,6 @@
 ﻿
 namespace EtAlii.Ubigia.Storage.Tests.UnitTests
 {
-    using Xunit;
-
-    
     public class ProfilingItemStorageDecorator_Tests
     {
         //[Fact]

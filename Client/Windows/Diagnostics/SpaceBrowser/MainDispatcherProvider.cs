@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
-    using System.Threading;
     using System.Windows.Threading;
     using EtAlii.Ubigia.Client.Windows.Shared;
 

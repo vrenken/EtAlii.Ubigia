@@ -6,7 +6,6 @@
     using EtAlii.Ubigia.Api.Diagnostics.Tests;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;

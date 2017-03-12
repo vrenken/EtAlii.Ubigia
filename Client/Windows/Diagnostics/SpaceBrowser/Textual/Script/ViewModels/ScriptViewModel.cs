@@ -6,7 +6,6 @@
     using System.Linq;
     using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.xTechnology.Workflow;
 
     public class ScriptViewModel : TextualViewModelBase, IScriptViewModel
     {

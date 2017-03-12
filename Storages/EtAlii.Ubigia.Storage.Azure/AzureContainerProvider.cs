@@ -2,7 +2,6 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
 
     public class AzureContainerProvider : IContainerProvider
     {

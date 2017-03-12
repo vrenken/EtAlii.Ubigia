@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using HashLib;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class DataScaffolding : IScaffolding

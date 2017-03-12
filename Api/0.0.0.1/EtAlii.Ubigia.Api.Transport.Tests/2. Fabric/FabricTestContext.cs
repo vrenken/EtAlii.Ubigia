@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Api.Transport.Tests;
 
     public class FabricTestContext : IFabricTestContext
     {

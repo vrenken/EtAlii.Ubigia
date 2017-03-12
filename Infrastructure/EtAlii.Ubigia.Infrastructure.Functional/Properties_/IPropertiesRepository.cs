@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using System;
-    using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
 
     public interface IPropertiesRepository

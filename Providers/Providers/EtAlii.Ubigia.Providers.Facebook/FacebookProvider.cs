@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Facebook
 {
-    using EtAlii.Ubigia.Api.Functional;
-
     public class FacebookProvider : IProvider
     {
         public IProviderConfiguration Configuration => _configuration;

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using Northwoods.GoXam.Model;
 
     // This class holds sufficient information for all nodes in this sample.

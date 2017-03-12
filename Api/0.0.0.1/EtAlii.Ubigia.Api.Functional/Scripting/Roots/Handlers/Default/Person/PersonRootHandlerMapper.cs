@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     internal class PersonRootHandlerMapper : IRootHandlerMapper
     {
         public string Name => _name;

@@ -1,13 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Time
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Provisioning;
     using EtAlii.xTechnology.Logging;
     using System;
-    using System.Collections.Generic;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class TimeImporter : ITimeImporter
     {

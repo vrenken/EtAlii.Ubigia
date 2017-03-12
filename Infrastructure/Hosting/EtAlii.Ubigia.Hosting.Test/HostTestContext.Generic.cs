@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Transport;
 
     public class HostTestContext<THost>

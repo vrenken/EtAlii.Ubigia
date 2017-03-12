@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
     using System.IO;
-    using EtAlii.Ubigia.Api;
 
     public interface IInternalItemSerializer
     {

@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Collections;
 
     public class DepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
     {

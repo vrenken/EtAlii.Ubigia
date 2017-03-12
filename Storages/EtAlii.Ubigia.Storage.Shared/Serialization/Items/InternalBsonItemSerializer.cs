@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
     using System.IO;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Newtonsoft.Json.Bson;
 

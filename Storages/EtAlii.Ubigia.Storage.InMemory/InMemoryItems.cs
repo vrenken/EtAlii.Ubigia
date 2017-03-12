@@ -2,8 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Collections.Generic;
-    using System.Diagnostics;
     using System.IO;
 
     public class InMemoryItems : IInMemoryItems

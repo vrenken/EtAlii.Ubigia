@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Google.Tests
 {
     using System;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
     using Xunit;
 

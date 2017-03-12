@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System.ComponentModel;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 

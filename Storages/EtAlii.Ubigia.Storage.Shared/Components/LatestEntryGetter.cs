@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Fabric;
 
     internal class LatestEntryGetter : ILatestEntryGetter
     {

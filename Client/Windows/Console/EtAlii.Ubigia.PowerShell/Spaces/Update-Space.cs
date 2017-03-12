@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Spaces
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.PowerShell.Accounts;
     using System;
     using System.Management.Automation;

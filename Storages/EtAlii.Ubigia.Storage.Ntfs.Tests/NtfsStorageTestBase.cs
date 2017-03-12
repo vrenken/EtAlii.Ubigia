@@ -4,9 +4,8 @@
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using Xunit;
 
-    
+
     public abstract class NtfsStorageTestBase : IDisposable
     {
         protected IStorage Storage => _storage;

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     public class SystemConnectionScaffolding : xTechnology.MicroContainer.IScaffolding

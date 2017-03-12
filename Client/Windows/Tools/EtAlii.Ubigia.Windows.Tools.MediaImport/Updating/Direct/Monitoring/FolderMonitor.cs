@@ -3,14 +3,7 @@
     using EtAlii.xTechnology.Mvvm;
     using System;
     using System.ComponentModel;
-    using System.Diagnostics;
     using System.IO;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using System.Windows;
-    using System.Windows.Input;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.xTechnology.Logging;
 
     internal class FolderMonitor : BindableBase, IFolderMonitor

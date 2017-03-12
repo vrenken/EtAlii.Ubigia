@@ -2,8 +2,6 @@
 
 namespace EtAlii.Ubigia.Provisioning.Time
 {
-    using EtAlii.Ubigia.Api.Functional;
-
     public class TimeProvider : IProvider
     {
         public IProviderConfiguration Configuration => _configuration;

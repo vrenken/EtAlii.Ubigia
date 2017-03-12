@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Tests.UnitTests
 {
-    using Xunit;
-
-    
     public sealed class ItemGetter_Tests
     {
         //[Fact]

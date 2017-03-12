@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Tests.IntegrationTests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Storage.Tests;
     using EtAlii.Ubigia.Tests;

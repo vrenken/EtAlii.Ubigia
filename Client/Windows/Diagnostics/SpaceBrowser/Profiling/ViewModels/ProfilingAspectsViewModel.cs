@@ -1,22 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
-    using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using System.Collections.Specialized;
-    using System.ComponentModel;
     using System.Linq;
-    using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
-    using EtAlii.xTechnology.Workflow;
-    using ICommand = System.Windows.Input.ICommand;
 
     public class ProfilingAspectsViewModel : BindableBase, IProfilingAspectsViewModel
     {

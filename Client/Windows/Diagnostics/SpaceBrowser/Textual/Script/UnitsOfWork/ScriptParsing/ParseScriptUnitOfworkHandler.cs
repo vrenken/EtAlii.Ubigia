@@ -2,11 +2,8 @@
 {
     using EtAlii.xTechnology.Workflow;
     using System;
-    using System.CodeDom.Compiler;
     using System.Linq;
-    using System.Windows.Shapes;
     using EtAlii.Ubigia.Api.Functional;
-    using Xceed.Wpf.DataGrid;
 
     public class ParseScriptUnitOfworkHandler : UnitOfWorkHandlerBase<ParseScriptUnitOfwork>, IParseScriptUnitOfworkHandler
     {

@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 {
-    using System;
-
     public static partial class ProfilingAspects
     {
         public static readonly LogicalProfilers Logical = new LogicalProfilers();

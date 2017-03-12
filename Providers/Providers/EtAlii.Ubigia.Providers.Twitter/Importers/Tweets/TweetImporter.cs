@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Twitter
 {
-    using EtAlii.Ubigia.Provisioning;
     using EtAlii.xTechnology.Logging;
     using System;
     using System.Reactive.Linq;

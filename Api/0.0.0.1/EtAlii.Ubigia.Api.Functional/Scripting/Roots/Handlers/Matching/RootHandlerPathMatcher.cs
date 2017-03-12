@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.xTechnology.Structure;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 

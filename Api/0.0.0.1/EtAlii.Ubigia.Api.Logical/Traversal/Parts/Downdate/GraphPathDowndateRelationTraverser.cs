@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
     using System;
 
     internal class GraphPathDowndateRelationTraverser : IGraphPathDowndateRelationTraverser

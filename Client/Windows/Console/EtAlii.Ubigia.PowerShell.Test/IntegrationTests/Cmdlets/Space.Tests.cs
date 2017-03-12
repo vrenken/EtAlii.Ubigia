@@ -2,14 +2,12 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.PowerShell.Tests;
     using Xunit;
     using System;
     using System.Collections.Generic;
-    using TestAssembly = EtAlii.Ubigia.PowerShell.Tests.TestAssembly;
 
-    
+
     public class Space_Test : IDisposable
     {
         private PowerShellTestContext _testContext;

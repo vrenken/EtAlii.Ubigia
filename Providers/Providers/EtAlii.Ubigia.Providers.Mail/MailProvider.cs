@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Mail
 {
-    using EtAlii.Ubigia.Api.Functional;
-
     public class MailProvider : IProvider
     {
         public IProviderConfiguration Configuration => _configuration;

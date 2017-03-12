@@ -1,10 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using EtAlii.xTechnology.Logging;
-
     public class TestAssembly
     {
         ///// 

@@ -5,7 +5,6 @@
     using System.Windows;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Diagnostics;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.SignalR;

@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-    using System.Linq;
-
     public class NonRootedPathFunctionSubjectArgument : FunctionSubjectArgument
     {
         public NonRootedPathSubject Subject { get; }

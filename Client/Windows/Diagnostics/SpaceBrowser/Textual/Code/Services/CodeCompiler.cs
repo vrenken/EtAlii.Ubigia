@@ -1,10 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using Microsoft.CSharp;
-    using System;
-    using System.Linq;
     using System.CodeDom.Compiler;
-    using System.Reflection;
 
     public class CodeCompiler : ICodeCompiler
     {

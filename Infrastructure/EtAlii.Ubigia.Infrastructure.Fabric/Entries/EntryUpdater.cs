@@ -3,7 +3,6 @@
     using System.Collections.Generic;
     using System.Linq;
     using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
 
     internal class EntryUpdater : IEntryUpdater
     {

@@ -1,12 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Helpers.Win32.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Fabric;
     using System;
     using System.IO;
     using System.Reflection;
-    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
     using Path = System.IO.Path;
 

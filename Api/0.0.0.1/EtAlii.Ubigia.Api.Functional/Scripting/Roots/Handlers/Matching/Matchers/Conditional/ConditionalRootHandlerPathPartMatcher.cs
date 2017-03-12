@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System.Collections.Generic;
-
     class ConditionalRootHandlerPathPartMatcher : IConditionalRootHandlerPathPartMatcher
     {
         public MatchResult[] Match(MatchParameters parameters)

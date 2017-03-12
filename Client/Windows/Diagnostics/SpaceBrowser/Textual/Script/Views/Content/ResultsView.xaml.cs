@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
 {
-    using System;
     using System.Collections;
-    using System.Collections.Generic;
     using System.Windows;
     using System.Windows.Controls;
     using EtAlii.Ubigia.Client.Windows.Diagnostics;

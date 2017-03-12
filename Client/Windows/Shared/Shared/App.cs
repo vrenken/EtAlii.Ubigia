@@ -5,8 +5,6 @@
     using EtAlii.xTechnology.MicroContainer;
     using System;
     using System.IO;
-    using System.Linq;
-    using System.Reflection;
 
     public abstract class App : System.Windows.Application
     {

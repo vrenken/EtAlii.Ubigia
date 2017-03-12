@@ -2,9 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
-    using System.Text.RegularExpressions;
     using System.Threading.Tasks;
 
     internal class TraversingGraphPathWildcardTraverser : ITraversingGraphPathWildcardTraverser

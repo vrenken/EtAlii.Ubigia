@@ -1,17 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
-    using System.Linq;
     using System.Windows;
     using System.Windows.Controls;
-    using System.Windows.Media;
     using EtAlii.Ubigia.Client.Windows.Diagnostics;
-    using Syncfusion.Windows.Shared;
-    using Syncfusion.Windows.Tools.Controls;
 
     public partial class ScriptExecutionView : UserControl
     {

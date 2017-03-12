@@ -2,7 +2,6 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.Ubigia.Storage;
 
     public class LogicalContextConfiguration : ILogicalContextConfiguration
     {

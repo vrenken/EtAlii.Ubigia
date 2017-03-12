@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using Moppet.Lapa;
 
     internal class TraversingWildcardPathSubjectPartParser : ITraversingWildcardPathSubjectPartParser

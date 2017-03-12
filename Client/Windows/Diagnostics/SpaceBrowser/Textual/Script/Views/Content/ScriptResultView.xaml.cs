@@ -4,7 +4,6 @@
     using System.Windows;
     using System.Windows.Controls;
     using EtAlii.Ubigia.Client.Windows.Diagnostics;
-    using Syncfusion.Data;
     using Syncfusion.UI.Xaml.Grid;
 
     public partial class ScriptResultView : UserControl

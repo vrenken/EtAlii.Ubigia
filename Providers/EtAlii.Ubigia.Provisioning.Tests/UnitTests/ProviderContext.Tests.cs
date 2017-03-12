@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
-    using System.Threading.Tasks;
     using Xunit;
 
     public class ProviderContext_Tests

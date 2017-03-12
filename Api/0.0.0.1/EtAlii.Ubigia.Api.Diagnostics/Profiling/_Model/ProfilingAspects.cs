@@ -1,9 +1,7 @@
 namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using EtAlii.xTechnology.Collections;
 
     public static partial class ProfilingAspects
     {

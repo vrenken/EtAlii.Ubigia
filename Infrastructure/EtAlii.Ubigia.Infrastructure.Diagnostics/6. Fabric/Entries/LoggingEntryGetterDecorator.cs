@@ -2,7 +2,6 @@
 {
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.xTechnology.Logging;
 
     internal class LoggingEntryGetterDecorator : IEntryGetter

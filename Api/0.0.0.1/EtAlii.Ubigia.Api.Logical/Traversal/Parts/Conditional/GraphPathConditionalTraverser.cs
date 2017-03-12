@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
     using System;
 
     internal class GraphPathConditionalTraverser : IGraphPathConditionalTraverser

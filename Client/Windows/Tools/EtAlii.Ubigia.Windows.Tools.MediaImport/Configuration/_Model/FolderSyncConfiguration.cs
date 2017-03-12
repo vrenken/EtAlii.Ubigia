@@ -1,10 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.Linq;
-    using System.Threading.Tasks;
-    using System.Windows;
     using EtAlii.Ubigia.Windows.Tools.MediaImport.Properties;
     using EtAlii.xTechnology.Mvvm;
 

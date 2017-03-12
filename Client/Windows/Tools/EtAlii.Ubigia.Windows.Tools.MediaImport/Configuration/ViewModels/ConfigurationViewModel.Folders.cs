@@ -1,10 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System.Collections.ObjectModel;
-    using System.Windows;
-    using System.Windows.Forms;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.xTechnology.Mvvm;
     using Fluent;
 

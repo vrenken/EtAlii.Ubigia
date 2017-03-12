@@ -2,8 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-    using System.Linq;
     using Moppet.Lapa;
 
     internal class RegexPathSubjectPartParser : IRegexPathSubjectPartParser

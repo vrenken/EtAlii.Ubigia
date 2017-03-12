@@ -7,7 +7,6 @@ using Microsoft.Owin;
 
 namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;

@@ -9,7 +9,6 @@
     using System.Threading.Tasks;
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using Space = EtAlii.Ubigia.Api.Space;
 
     public class RolesViewModel : BindableBase, IRolesViewModel
     {

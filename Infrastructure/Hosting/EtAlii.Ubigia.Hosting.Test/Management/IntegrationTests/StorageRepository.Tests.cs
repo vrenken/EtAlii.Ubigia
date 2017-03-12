@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests.IntegrationTests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     using System;
     using System.Linq;

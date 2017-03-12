@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
-    using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
