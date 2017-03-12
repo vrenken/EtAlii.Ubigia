@@ -9,10 +9,6 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class TextTemplateQueryHandler : QueryHandlerBase<TextTemplateQuery, string>, ITextTemplateQueryHandler
     {
-        public TextTemplateQueryHandler()  
-        {
-        }
-
         protected override IQueryable<string> Handle(TextTemplateQuery query)
         {
             var result = new List<string>();

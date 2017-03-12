@@ -21,10 +21,6 @@
         public Space TargetSpace { get { return _targetSpace; } private set { _targetSpace = value; } }
         private Space _targetSpace;
 
-        public SpaceTargetingCmdlet()
-        {
-        }
-
         protected override void BeginProcessing()
         {
             base.BeginProcessing();

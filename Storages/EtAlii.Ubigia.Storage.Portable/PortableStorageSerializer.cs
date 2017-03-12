@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api;
     using PCLStorage;
 
-    public partial class PortableStorageSerializer : IStorageSerializer
+    public class PortableStorageSerializer : IStorageSerializer
     {
         private readonly IInternalItemSerializer _itemSerializer;
         private readonly IInternalPropertiesSerializer _propertiesSerializer;

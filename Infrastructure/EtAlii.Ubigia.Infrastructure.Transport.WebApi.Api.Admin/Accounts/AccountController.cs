@@ -13,7 +13,7 @@
 
     [RequiresAuthenticationToken]
     [Route(RelativeUri.Data.Accounts)]
-    public partial class AccountController : ApiController
+    public class AccountController : ApiController
     {
         private readonly IAccountRepository _items;
 

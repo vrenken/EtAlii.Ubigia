@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class IntegerValueParserTests : IDisposable
+    public class IntegerValueParserTests : IDisposable
     {
         private IIntegerValueParser _parser;
 

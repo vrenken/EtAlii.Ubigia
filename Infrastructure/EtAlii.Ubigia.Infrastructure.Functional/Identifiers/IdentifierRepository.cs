@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
-    internal partial class IdentifierRepository : IIdentifierRepository
+    internal class IdentifierRepository : IIdentifierRepository
     {
         private readonly ILogicalContext _logicalContext;
 

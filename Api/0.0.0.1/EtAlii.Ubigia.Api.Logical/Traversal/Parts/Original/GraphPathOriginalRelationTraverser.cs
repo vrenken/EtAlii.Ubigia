@@ -6,11 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathOriginalRelationTraverser : IGraphPathOriginalRelationTraverser
     {
-        public GraphPathOriginalRelationTraverser()
-        {
-        }
-
-
         public void Configure(TraversalParameters parameters)
         {
             parameters.Input.Subscribe(

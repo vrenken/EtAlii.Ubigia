@@ -4,10 +4,6 @@
 
     public class AzureStorageExtension : IStorageExtension
     {
-        public AzureStorageExtension()
-        {
-        }
-
         public void Initialize(Container container)
         {
             var scaffoldings = new IScaffolding[]

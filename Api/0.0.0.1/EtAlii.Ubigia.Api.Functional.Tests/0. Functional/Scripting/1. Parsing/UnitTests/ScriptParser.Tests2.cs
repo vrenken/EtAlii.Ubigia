@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class ScriptParserTests2 : IDisposable
+    public class ScriptParserTests2 : IDisposable
     {
         private IScriptParser _parser;
 

@@ -2,10 +2,6 @@
 {
     internal class ConstantHelper : IConstantHelper
     {
-        public ConstantHelper()
-        {
-        }
-
         public bool IsValidConstantCharacter(char c)
         {
             return char.IsLetterOrDigit(c) || c == '_';

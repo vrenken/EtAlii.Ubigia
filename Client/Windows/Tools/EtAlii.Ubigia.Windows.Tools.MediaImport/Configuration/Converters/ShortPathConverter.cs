@@ -15,7 +15,7 @@
     using EtAlii.xTechnology.Mvvm;
     using Fluent;
 
-    internal partial class ShortPathConverter : IValueConverter
+    internal class ShortPathConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

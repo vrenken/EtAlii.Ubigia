@@ -4,11 +4,6 @@
 
     internal class StorageInitializer : IStorageInitializer
     {
-
-        public StorageInitializer()
-        {
-        }
-
         public void Initialize(Storage storage)
         {
         }

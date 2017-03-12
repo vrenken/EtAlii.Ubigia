@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
-    internal partial class GraphAdder : IGraphAdder
+    internal class GraphAdder : IGraphAdder
     {
         private readonly IComposeContext _context;
         private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;

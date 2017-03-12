@@ -4,10 +4,6 @@ namespace EtAlii.xTechnology.Tests
 
     internal class StringToArrayQueryHandler : IQueryHandler<StringToArrayQuery, string, string[]>
     {
-        public StringToArrayQueryHandler()
-        {
-        }
-
         public StringToArrayQuery Create(string parameter)
         {
             return new StringToArrayQuery(parameter);

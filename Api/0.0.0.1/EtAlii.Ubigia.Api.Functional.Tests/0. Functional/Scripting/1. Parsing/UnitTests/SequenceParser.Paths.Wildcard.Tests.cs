@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class SequenceParserPathsWildcardTests : IDisposable
+    public class SequenceParserPathsWildcardTests : IDisposable
     {
         private ISequenceParser _parser;
 

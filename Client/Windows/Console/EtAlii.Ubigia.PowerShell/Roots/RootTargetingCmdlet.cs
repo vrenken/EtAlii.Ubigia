@@ -22,10 +22,6 @@
         public Root TargetRoot { get { return _targetRoot; } private set { _targetRoot = value; } }
         private Root _targetRoot;
 
-        public RootTargetingCmdlet()
-        {
-        }
-
         protected override void BeginProcessing()
         {
             base.BeginProcessing();

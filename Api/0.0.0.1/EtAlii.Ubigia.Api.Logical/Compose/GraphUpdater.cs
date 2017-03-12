@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    internal partial class GraphUpdater : IGraphUpdater
+    internal class GraphUpdater : IGraphUpdater
     {
         private readonly IComposeContext _context;
 

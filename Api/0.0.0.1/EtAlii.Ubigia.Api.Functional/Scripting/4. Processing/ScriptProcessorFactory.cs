@@ -6,10 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class ScriptProcessorFactory : IScriptProcessorFactory
     {
-        public ScriptProcessorFactory()
-        {
-        }
-
         public IScriptProcessor Create(IScriptProcessorConfiguration configuration)
         {
             var container = new Container();

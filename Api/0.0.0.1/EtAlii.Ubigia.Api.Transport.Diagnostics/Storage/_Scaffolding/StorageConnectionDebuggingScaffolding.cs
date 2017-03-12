@@ -5,10 +5,6 @@
 
     internal class StorageConnectionDebuggingScaffolding : IScaffolding
     {
-        public StorageConnectionDebuggingScaffolding()
-        {
-        }
-
         public void Register(Container container)
         {
             var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();

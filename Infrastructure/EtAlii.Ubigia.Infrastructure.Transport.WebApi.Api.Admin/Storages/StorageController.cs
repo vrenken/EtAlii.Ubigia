@@ -11,7 +11,7 @@
 
     [RequiresAuthenticationToken]
     [Route(RelativeUri.Data.Storages)]
-    public partial class StorageController : ApiController
+    public class StorageController : ApiController
     {
         private readonly IStorageRepository _items;
 

@@ -4,10 +4,6 @@
 
     internal class SignalRSpaceClientsScaffolding : IScaffolding
     {
-        public SignalRSpaceClientsScaffolding()
-        {
-        }
-
         public void Register(Container container)
         {
             container.Register<ISpaceConnection, SignalRSpaceConnection>();

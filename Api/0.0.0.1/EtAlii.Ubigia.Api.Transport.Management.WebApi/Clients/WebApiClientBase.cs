@@ -9,10 +9,6 @@
         protected IWebApiStorageConnection Connection => _connection;
         private IWebApiStorageConnection _connection;
 
-        protected WebApiClientBase()
-        {
-        }
-
         public async Task Connect(IStorageConnection storageConnection)
         {
             await Connect((IStorageConnection<IWebApiStorageTransport>)storageConnection);

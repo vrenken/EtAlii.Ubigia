@@ -5,10 +5,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class HierarchicalRelationDuplicator : IHierarchicalRelationDuplicator
     {
-        public HierarchicalRelationDuplicator()
-        {
-        }
-
         public void Duplicate(IReadOnlyEntry source, IEditableEntry target)
         {
             Duplicate(source, target, Identifier.Empty);

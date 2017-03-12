@@ -54,11 +54,6 @@
 
         public class ImplementedHttpActionDescriptor : HttpActionDescriptor
         {
-            public ImplementedHttpActionDescriptor()
-                : base()
-            {
-            }
-
             public override string ActionName => "ActionName";
 
             public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)

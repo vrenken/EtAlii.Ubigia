@@ -13,7 +13,7 @@
 
 
     
-    public partial class ScriptProcessorNonRootedPathFunctionInclude : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorNonRootedPathFunctionInclude : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;

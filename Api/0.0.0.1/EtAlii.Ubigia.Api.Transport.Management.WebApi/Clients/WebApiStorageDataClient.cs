@@ -8,10 +8,6 @@
 
     internal sealed partial class WebApiStorageDataClient : WebApiClientBase, IStorageDataClient
     {
-        public WebApiStorageDataClient()
-        {
-        }
-
         public async Task<Storage> Add(string storageName, string storageAddress)
         {
             var addAddress = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Storages);

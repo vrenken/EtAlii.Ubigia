@@ -7,7 +7,7 @@
     using Microsoft.Owin.Cors;
 
 
-    public partial class SignalRAdminApiComponent : ISignalRAdminApiComponent
+    public class SignalRAdminApiComponent : ISignalRAdminApiComponent
     {
         private readonly IDependencyResolver _signalRDependencyResolver;
 

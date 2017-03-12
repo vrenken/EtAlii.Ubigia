@@ -2,7 +2,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines2
 {
     using System;
 
-    public partial class Pipeline<TPipelineIn> : 
+    public class Pipeline<TPipelineIn> : 
         IPipeline<TPipelineIn>, 
         IOperationRegistrationFactoryProvider<TPipelineIn>,
         IOperationChain<TPipelineIn, TPipelineIn>
@@ -41,7 +41,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines2
         }
     }
 
-    public partial class Pipeline<TPipelineIn, TPipelineOut> : 
+    public class Pipeline<TPipelineIn, TPipelineOut> : 
         IPipeline<TPipelineIn, TPipelineOut>, 
         IOperationRegistrationFactoryProvider<TPipelineIn, TPipelineOut>,
         IOperationChain<TPipelineOut, TPipelineIn, TPipelineIn>

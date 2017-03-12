@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNet.SignalR;
 
-    public partial class StorageHub : Hub
+    public class StorageHub : Hub
     {
         private readonly IStorageRepository _items;
 

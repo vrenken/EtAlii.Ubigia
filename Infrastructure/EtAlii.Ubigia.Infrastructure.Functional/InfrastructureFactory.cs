@@ -5,10 +5,6 @@
 
     public class InfrastructureFactory : IInfrastructureFactory
     {
-        public InfrastructureFactory()
-        {
-        }
-
         public IInfrastructure Create(IInfrastructureConfiguration configuration)
         {
             if (String.IsNullOrWhiteSpace(configuration.Name))

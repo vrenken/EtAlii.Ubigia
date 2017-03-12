@@ -7,7 +7,7 @@
     using global::Owin;
     using Owin;
 
-    public partial class AdminApiComponent : IAdminApiComponent
+    public class AdminApiComponent : IAdminApiComponent
     {
         private readonly ISelector<Type, Func<Type, object>> _resolverSelector;
 

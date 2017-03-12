@@ -8,10 +8,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathConditionalTraverser : IGraphPathConditionalTraverser
     {
-        public GraphPathConditionalTraverser()
-        {
-        }
-
         public void Configure(TraversalParameters parameters)
         {
             var predicate = ((GraphCondition)parameters.Part).Predicate;

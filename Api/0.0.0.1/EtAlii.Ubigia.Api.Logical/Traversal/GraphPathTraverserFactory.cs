@@ -4,10 +4,6 @@
 
     public class GraphPathTraverserFactory : IGraphPathTraverserFactory
     {
-        public GraphPathTraverserFactory()
-        {
-        }
-
         public IGraphPathTraverser Create(IGraphPathTraverserConfiguration configuration)
         {
             var container = new Container();

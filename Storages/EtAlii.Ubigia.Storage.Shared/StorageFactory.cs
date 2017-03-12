@@ -6,10 +6,6 @@
 
     public class StorageFactory : IStorageFactory
     {
-        public StorageFactory()
-        {
-        }
-
         public IStorage Create()
         {
             throw new NotSupportedException();

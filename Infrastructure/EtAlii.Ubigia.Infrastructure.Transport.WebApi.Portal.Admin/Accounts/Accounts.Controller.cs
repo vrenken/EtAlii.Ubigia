@@ -9,7 +9,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     [RoutePrefix(RelativeUri.Admin.AccountsAdministration), CacheWebApi(-1)]
-    public partial class AccountsAdminController : AdminControllerBase
+    public class AccountsAdminController : AdminControllerBase
     {
         private readonly IAccountRepository _accountRepository;
 

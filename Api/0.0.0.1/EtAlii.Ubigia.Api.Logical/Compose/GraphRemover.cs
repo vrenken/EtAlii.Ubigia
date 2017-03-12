@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
-    internal partial class GraphRemover : IGraphRemover
+    internal class GraphRemover : IGraphRemover
     {
         private readonly IComposeContext _context;
         private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;

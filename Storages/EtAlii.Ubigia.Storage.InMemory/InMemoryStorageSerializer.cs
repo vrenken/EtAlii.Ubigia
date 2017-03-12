@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
 
-    public partial class InMemoryStorageSerializer : IStorageSerializer
+    public class InMemoryStorageSerializer : IStorageSerializer
     {
         private readonly IInternalItemSerializer _itemSerializer;
         private readonly IInternalPropertiesSerializer _propertiesSerializer;

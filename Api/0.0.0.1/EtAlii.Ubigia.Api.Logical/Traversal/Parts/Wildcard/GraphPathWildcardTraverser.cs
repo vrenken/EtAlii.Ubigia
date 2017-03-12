@@ -7,11 +7,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathWildcardTraverser : IGraphPathWildcardTraverser
     {
-        public GraphPathWildcardTraverser()
-        {
-        }
-
-
         public void Configure(TraversalParameters parameters)
         {
             var pattern = ((GraphWildcard)parameters.Part).Pattern;

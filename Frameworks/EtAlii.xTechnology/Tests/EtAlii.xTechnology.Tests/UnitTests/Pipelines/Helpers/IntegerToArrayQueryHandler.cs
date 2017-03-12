@@ -4,10 +4,6 @@ namespace EtAlii.xTechnology.Tests
 
     internal class IntegerToArrayQueryHandler : IQueryHandler<IntegerToArrayQuery, int, int[]>
     {
-        public IntegerToArrayQueryHandler()
-        {
-        }
-
         public IntegerToArrayQuery Create(int parameter)
         {
             return new IntegerToArrayQuery(parameter);

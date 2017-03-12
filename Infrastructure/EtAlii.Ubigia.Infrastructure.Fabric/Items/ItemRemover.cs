@@ -7,10 +7,6 @@
 
     internal class ItemRemover : IItemRemover
     {
-        public ItemRemover()
-        {
-        }
-
         public void Remove<T>(IList<T> items, Guid itemId)
             where T : class, IIdentifiable
         {

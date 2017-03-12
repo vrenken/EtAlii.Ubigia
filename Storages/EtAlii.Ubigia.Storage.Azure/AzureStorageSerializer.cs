@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
 
-    public partial class AzureStorageSerializer : IStorageSerializer
+    public class AzureStorageSerializer : IStorageSerializer
     {
         private readonly IInternalItemSerializer _itemSerializer;
         private readonly IInternalPropertiesSerializer _propertiesSerializer;

@@ -8,10 +8,6 @@
 
     internal class WebApiAccountDataClient : WebApiClientBase, IAccountDataClient
     {
-        public WebApiAccountDataClient()
-        {
-        }
-
         public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Accounts, UriParameter.AccountTemplate, template.Name);

@@ -3,7 +3,7 @@
     using System.Threading.Tasks;
     using Microsoft.AspNet.SignalR.Client;
 
-    internal partial class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
+    internal class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
     {
         private IHubProxy _proxy;
         private readonly IHubProxyMethodInvoker _invoker;

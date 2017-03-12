@@ -7,7 +7,7 @@
     using Xunit;
 
 
-    public partial class ScriptParserFunctionIncludeTests : IDisposable
+    public class ScriptParserFunctionIncludeTests : IDisposable
     {
         private IScriptParser _parser;
 

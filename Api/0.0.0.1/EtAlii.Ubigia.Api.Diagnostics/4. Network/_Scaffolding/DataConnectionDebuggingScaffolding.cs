@@ -5,10 +5,6 @@
 
     internal class DataConnectionDebuggingScaffolding : IScaffolding
     {
-        public DataConnectionDebuggingScaffolding()
-        {
-        }
-
         public void Register(Container container)
         {
             var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();

@@ -11,11 +11,6 @@
         public IStorage Storage => _storage;
         private IStorage _storage;
 
-        public FabricContextConfiguration()
-        {
-            //_extensions = new IFabricContextExtension[0];
-        }
-
         //public IFabricContextConfiguration Use(IFabricContextExtension[] extensions)
         //{
         //    if (extensions == null)

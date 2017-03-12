@@ -8,10 +8,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathDowndateRelationTraverser : IGraphPathDowndateRelationTraverser
     {
-        public GraphPathDowndateRelationTraverser()
-        {
-        }
-
         public void Configure(TraversalParameters parameters)
         {
             parameters.Input.Subscribe(

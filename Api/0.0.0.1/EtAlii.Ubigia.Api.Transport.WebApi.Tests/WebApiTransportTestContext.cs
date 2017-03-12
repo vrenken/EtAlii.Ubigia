@@ -11,7 +11,7 @@
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Tests;
 
-    public partial class WebApiTransportTestContext : TransportTestContextBase
+    public class WebApiTransportTestContext : TransportTestContextBase
     {
         public WebApiTransportTestContext(IHostTestContextFactory testHostFactory) : base(testHostFactory)
         {

@@ -6,10 +6,6 @@
 
     internal class WebApiRootDataClient : WebApiClientBase, IRootDataClient<IWebApiSpaceTransport> 
     {
-        public WebApiRootDataClient()
-        {
-        }
-
         public async Task<Root> Add(string name)
         {
             var root = new Root

@@ -18,10 +18,6 @@
         public Entry TargetEntry { get { return _targetEntry; } private set { _targetEntry = value; } }
         private Entry _targetEntry;
 
-        public EntryTargetingCmdlet()
-        {
-        }
-
         protected override void BeginProcessing()
         {
             base.BeginProcessing();

@@ -4,8 +4,5 @@
 
     internal partial class WebApiContentDataClient : WebApiClientBase, IContentDataClient<IWebApiSpaceTransport>
     {
-        public WebApiContentDataClient()
-        {
-        }
     }
 }

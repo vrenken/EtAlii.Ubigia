@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    public partial class GraphUnlinker : IGraphUnlinker
+    public class GraphUnlinker : IGraphUnlinker
     {
         private readonly IComposeContext _context;
         private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;

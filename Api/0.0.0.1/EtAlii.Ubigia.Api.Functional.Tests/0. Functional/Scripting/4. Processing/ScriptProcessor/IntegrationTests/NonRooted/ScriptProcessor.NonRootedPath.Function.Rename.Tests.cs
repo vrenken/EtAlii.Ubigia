@@ -13,7 +13,7 @@
 
 
     
-    public partial class ScriptProcessorNonRootedPathFunctionRename : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorNonRootedPathFunctionRename : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;

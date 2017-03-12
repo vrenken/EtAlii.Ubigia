@@ -8,10 +8,6 @@ namespace EtAlii.Ubigia.Client.Windows.UserInterface
     /// </summary>
     public class ChangeStorageCommand : CommandBase<ChangeStorageCommand>
     {
-        public ChangeStorageCommand()
-        {
-        }
-
         public override void Execute(object parameter)
         {
             var window = App.Current.MainWindow;

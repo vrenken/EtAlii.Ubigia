@@ -6,10 +6,6 @@
 
     internal class SignalRStorageClientsScaffolding : IScaffolding
     {
-        public SignalRStorageClientsScaffolding()
-        {
-        }
-
         public void Register(Container container)
         {
             container.Register<IStorageConnection, SignalRStorageConnection>();

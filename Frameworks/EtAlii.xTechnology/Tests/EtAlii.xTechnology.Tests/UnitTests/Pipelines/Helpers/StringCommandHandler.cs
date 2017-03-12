@@ -4,10 +4,6 @@ namespace EtAlii.xTechnology.Tests
 
     internal class StringCommandHandler : ICommandHandler<StringCommand, string>
     {
-        public StringCommandHandler()
-        {
-        }
-
         public StringCommand Create(string parameter)
         {
             return new StringCommand(parameter);

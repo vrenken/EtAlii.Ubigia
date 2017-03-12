@@ -4,7 +4,7 @@
     using global::Owin;
     using Owin;
 
-    public partial class SignalRComponentManager : ISignalRComponentManager
+    public class SignalRComponentManager : ISignalRComponentManager
     {
         private readonly IComponent[] _components;
 
