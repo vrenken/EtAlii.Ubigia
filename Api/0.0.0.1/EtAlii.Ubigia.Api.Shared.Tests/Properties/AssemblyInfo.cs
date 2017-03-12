@@ -1,7 +1,6 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using EtAlii.Ubigia;
-using Xunit;
 
 //[assembly: CollectionBehavior(DisableTestParallelization = true)]
 

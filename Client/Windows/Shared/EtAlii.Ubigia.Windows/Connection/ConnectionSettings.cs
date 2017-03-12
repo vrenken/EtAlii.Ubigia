@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows
 {
     using System;
-    using System.Threading.Tasks;
-    using System.Windows;
 
     [Serializable]
     internal class ConnectionSettings

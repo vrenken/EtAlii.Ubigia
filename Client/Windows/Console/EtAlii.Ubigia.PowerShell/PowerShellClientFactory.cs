@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.PowerShell
 {
-    using System;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.xTechnology.MicroContainer;

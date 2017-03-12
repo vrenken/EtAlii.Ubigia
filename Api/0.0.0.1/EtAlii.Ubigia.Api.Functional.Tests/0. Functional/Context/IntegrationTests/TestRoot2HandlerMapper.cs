@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
-
     internal class TestRoot2HandlerMapper : IRootHandlerMapper
     {
         public string Name => _name;

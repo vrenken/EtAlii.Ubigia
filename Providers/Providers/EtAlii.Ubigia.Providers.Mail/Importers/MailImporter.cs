@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Mail
 {
     using ActiveUp.Net.Mail;
-    using EtAlii.Ubigia.Provisioning;
     using EtAlii.xTechnology.Logging;
     using System;
     using System.Linq;

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-    using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class SubjectParsingScaffolding : IScaffolding

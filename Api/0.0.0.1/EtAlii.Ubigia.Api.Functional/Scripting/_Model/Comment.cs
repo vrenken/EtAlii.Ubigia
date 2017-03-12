@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     public class Comment : SequencePart
     {
         private readonly string _text;

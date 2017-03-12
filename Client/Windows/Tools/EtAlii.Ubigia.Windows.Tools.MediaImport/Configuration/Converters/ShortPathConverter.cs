@@ -1,19 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System;
-    using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.Globalization;
     using System.Runtime.InteropServices;
     using System.Text;
-    using System.Windows;
     using System.Windows.Data;
-    using System.Windows.Input;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Client.Windows.Shared;
-    using EtAlii.xTechnology.Mvvm;
-    using Fluent;
 
     internal class ShortPathConverter : IValueConverter
     {

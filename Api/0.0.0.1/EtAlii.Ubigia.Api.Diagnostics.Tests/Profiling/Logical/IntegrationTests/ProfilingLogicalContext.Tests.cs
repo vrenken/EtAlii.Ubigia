@@ -2,9 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;

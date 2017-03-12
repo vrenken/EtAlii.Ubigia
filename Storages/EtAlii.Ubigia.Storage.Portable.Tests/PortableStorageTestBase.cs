@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using Xunit;
     using PCLStorage;
 
     

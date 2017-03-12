@@ -6,7 +6,6 @@
     using System.Web.Http;
     using Api.Transport.WebApi;
     using global::Owin;
-    using Owin;
 
     public class WebApiComponentManager : IWebApiComponentManager
     {

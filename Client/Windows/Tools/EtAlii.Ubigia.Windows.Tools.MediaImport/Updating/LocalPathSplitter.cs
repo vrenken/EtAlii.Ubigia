@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
 
     internal class LocalPathSplitter : ILocalPathSplitter

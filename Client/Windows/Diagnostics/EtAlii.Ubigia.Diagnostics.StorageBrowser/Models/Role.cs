@@ -1,12 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using System.Windows.Input;
 
     public class Role : BindableBase
     {

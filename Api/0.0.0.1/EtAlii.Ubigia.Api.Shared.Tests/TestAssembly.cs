@@ -1,12 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Tests
 {
-    using System;
-    using System.Linq;
-    using System.Reflection;
-    using EtAlii.xTechnology.Logging;
-    using Xunit;
-
-     //you have to label the class with this or it is never scanned for methods
+    //you have to label the class with this or it is never scanned for methods
     public class TestAssembly
     {
         ///// 

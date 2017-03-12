@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 

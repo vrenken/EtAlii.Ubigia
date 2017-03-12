@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Storage.Portable.Tests.IntegrationTests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Storage.Portable.Tests;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.Tests;

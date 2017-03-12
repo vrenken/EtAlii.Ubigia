@@ -2,8 +2,6 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using System;
     using System.Collections.Generic;
-    using System.Windows.Shapes;
-    using Xceed.Wpf.DataGrid;
 
     class ErrorWriter : IErrorWriter
     {

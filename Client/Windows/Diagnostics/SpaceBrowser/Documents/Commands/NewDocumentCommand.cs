@@ -2,8 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Windows.Input;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;

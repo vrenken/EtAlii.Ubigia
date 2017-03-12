@@ -7,11 +7,8 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Tests;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     

@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Collections;
-    using EtAlii.Ubigia.Api.Functional;
     using System;
 
     internal class GraphPathChildRelationTraverser : IGraphPathChildRelationTraverser

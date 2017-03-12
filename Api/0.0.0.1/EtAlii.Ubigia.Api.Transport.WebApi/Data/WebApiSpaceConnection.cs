@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-    using System.Threading.Tasks;
-
     internal class WebApiSpaceConnection : SpaceConnection<WebApiSpaceTransport>, IWebApiSpaceConnection
     {
         public IInfrastructureClient Client => _client;

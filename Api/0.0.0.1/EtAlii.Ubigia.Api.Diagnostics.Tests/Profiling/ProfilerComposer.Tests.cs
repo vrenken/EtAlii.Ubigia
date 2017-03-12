@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Diagnostics.Tests
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using Xunit;
 

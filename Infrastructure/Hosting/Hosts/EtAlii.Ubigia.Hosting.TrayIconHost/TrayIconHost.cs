@@ -5,7 +5,6 @@
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
 

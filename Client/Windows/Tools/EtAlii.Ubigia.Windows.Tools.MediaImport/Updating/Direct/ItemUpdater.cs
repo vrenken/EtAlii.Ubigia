@@ -1,14 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System;
-    using System.Collections.Concurrent;
     using System.ComponentModel;
-    using System.IO;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.Structure;
 

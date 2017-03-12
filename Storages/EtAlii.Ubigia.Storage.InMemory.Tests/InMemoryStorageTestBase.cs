@@ -3,9 +3,8 @@
     using System;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
-    using Xunit;
 
-    
+
     public abstract class InMemoryStorageTestBase : IDisposable
     {
         protected InMemoryStorage Storage => _storage;

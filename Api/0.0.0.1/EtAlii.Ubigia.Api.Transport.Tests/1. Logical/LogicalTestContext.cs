@@ -1,8 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical.Tests
 {
-    using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Tests;
 
     public class LogicalTestContext : ILogicalTestContext

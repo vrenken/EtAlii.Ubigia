@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Hosting
 {
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Logging;
     using System;

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using System;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Storage;
 
     public static class TestStorageConfiguration

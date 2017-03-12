@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using Xunit;
 

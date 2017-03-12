@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
     using System;
-    using EtAlii.Ubigia.Api.Fabric;
 
     internal class NextContainerIdentifierFromTimeAlgorithm : INextContainerIdentifierAlgorithm
     {

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.ComponentModel;
-    using System.Collections.ObjectModel;
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport;
 

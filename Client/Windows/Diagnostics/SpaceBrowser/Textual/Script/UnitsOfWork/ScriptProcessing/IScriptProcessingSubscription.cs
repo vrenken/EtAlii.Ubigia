@@ -2,9 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.xTechnology.Workflow;
 
     public interface IScriptProcessingSubscription
     {

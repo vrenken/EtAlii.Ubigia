@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Reactive.Linq;
-    using EtAlii.xTechnology.Workflow;
 
     public class CodeViewModel : TextualViewModelBase, ICodeViewModel
     {

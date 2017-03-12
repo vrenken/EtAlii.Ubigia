@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 

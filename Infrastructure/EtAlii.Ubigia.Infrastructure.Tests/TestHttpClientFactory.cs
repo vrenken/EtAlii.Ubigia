@@ -2,7 +2,6 @@
 {
     using System.Net;
     using System.Net.Http;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     public class TestHttpClientFactory : IHttpClientFactory

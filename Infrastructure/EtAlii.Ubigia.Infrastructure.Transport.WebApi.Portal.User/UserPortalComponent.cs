@@ -4,7 +4,6 @@
     using global::Owin;
     using Microsoft.Owin.FileSystems;
     using Microsoft.Owin.StaticFiles;
-    using Owin;
 
     public class UserPortalComponent : IUserPortalComponent
     {

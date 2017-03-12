@@ -1,13 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using EtAlii.xTechnology.Mvvm;
-    using System;
-    using System.Diagnostics;
-    using System.IO;
     using System.Text;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Client.Windows.Shared;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.MicroContainer;
 

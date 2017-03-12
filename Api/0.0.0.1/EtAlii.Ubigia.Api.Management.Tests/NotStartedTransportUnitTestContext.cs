@@ -1,10 +1,7 @@
 namespace EtAlii.Ubigia.Api.Management.IntegrationTests
 {
     using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.xTechnology.Diagnostics;
 
     public class NotStartedTransportUnitTestContext : IDisposable

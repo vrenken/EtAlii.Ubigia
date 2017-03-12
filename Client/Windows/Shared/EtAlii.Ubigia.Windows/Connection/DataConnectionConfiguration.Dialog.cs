@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.Ubigia.Windows;
 
     public static class DataConnectionConfigurationExtension

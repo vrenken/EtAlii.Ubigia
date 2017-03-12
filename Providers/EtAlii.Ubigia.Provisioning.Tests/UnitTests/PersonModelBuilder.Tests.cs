@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using System.Linq;
-    using System.Threading.Tasks;
     using Xunit;
 
     public class PersonModelBuilder_Tests

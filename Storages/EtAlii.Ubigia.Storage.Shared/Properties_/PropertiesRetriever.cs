@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
-    using System.Text.RegularExpressions;
     using EtAlii.Ubigia.Api;
 
     public class PropertiesRetriever : IPropertiesRetriever

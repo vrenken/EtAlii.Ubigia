@@ -5,7 +5,6 @@
     using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Structure;
     using global::Owin;
-    using Owin;
 
     public class AdminApiComponent : IAdminApiComponent
     {

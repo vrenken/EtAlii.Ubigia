@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
 

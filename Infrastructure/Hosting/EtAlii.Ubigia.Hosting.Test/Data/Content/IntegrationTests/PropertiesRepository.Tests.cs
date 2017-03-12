@@ -1,14 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Tests.IntegrationTests
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Storage.Tests;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
-    using System;
 
-    
+
     public sealed class PropertiesRepository_Tests : IClassFixture<HostUnitTestContext>
     {
         private readonly HostUnitTestContext _testContext;

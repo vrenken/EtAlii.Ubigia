@@ -2,7 +2,6 @@
 {
     using System.Linq;
     using global::Owin;
-    using Owin;
 
     public class SignalRComponentManager : ISignalRComponentManager
     {

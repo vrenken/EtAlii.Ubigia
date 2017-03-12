@@ -6,10 +6,8 @@
     using Xunit;
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using TestAssembly = EtAlii.Ubigia.PowerShell.Tests.TestAssembly;
 
-    
+
     public class Account_Test : IDisposable
     {
         private PowerShellTestContext _testContext;

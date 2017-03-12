@@ -1,5 +1,4 @@
-﻿using EtAlii.Ubigia.Client.Windows.Shared;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Markup;

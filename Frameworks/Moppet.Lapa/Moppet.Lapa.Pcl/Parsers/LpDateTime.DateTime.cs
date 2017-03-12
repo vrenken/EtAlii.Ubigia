@@ -12,8 +12,6 @@ using System;
 
 namespace Moppet.Lapa
 {
-    using System.Linq;
-
     /// <summary>
     /// The parser date and time.
     /// List format: http://msdn.microsoft.com/ru-ru/library/saw4x629.aspx.

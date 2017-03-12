@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
 {
-    using EtAlii.Ubigia.Api.Functional;
-
     public class MicrosoftGraphProvider : IProvider
     {
         private readonly ISystemSettingsProvider _systemSettingsProvider;

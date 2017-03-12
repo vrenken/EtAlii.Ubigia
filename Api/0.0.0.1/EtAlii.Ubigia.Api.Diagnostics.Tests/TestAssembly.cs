@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Diagnostics.Tests
 {
-    using System.Linq;
-    using System.Reflection;
-
     //you have to label the class with this or it is never scanned for methods
     public class TestAssembly
     {

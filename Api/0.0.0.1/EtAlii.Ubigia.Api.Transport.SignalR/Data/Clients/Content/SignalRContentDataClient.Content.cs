@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System;
     using System.Threading.Tasks;
 
     internal partial class SignalRContentDataClient

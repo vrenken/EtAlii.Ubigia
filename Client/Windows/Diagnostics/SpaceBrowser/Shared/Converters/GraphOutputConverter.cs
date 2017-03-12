@@ -2,14 +2,9 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
     using EtAlii.Ubigia.Api;
     using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Security.Permissions;
     using System.Text;
-    using System.Windows;
     using System.Windows.Data;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
 
     public class GraphOutputConverter : IValueConverter

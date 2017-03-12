@@ -1,15 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using System.Linq;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Tests;
-    
-    using Moppet.Lapa;
     using Xunit;
 
     
-    public class RootDefinitionSubjectParserTests : IDisposable
+    public partial class RootDefinitionSubjectParserTests : IDisposable
     {
         private IRootDefinitionSubjectParser _parser;
 

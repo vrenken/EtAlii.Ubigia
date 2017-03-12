@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
-    using System;
     using EtAlii.Ubigia.Api;
 
     public interface IPropertiesStorage

@@ -1,9 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure;
-    using EtAlii.Ubigia.Infrastructure.Transport;
 
     public class HostUnitTestContext : IDisposable
     {

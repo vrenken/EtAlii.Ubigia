@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;

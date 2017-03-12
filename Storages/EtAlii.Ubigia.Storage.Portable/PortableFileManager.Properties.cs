@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Storage.Portable
 {
-    using System;
-    using System.Linq;
     using EtAlii.Ubigia.Api;
     using PCLStorage;
 

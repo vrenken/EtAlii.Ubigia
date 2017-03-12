@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using System;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
@@ -11,11 +9,9 @@
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
-    using ProfilingDataConnection = EtAlii.Ubigia.Api.Transport.Diagnostics.ProfilingDataConnection;
 
     public class ProfilingDocumentFactory : IProfilingDocumentFactory
     {

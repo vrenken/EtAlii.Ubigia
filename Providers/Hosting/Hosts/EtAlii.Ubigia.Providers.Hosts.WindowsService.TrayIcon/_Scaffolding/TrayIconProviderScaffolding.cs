@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting
 {
-    using EtAlii.Ubigia.Provisioning;
     using EtAlii.xTechnology.MicroContainer;
 
     public class TrayIconProviderScaffolding : IScaffolding

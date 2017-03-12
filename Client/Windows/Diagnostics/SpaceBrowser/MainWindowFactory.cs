@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 {
-    using System;
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Functional;

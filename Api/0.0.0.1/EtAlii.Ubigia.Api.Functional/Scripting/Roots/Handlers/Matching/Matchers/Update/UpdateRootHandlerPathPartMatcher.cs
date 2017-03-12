@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System.Collections.Generic;
     using System.Linq;
 
     class UpdateRootHandlerPathPartMatcher : IUpdateRootHandlerPathPartMatcher

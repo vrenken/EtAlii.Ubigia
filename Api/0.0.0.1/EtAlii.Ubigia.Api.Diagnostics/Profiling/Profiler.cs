@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 {
     using System;
-    using System.Diagnostics;
     using System.Linq;
 
     public class Profiler : IProfiler

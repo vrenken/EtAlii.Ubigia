@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     public interface IRootHandlerMapper
     {
         string Name { get; }

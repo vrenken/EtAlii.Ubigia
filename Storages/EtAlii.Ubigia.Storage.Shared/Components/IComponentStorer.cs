@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Storage
 {
-    using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
 
     public interface IComponentStorer
