@@ -5,7 +5,7 @@
     using System.Web.Http;
     using EtAlii.xTechnology.MicroContainer;
 
-    public partial class WebApiComponentManagerFactory
+    public class WebApiComponentManagerFactory
     {
         public IWebApiComponentManager Create(Container container, Func<Container, object>[] componentFactories)
         {

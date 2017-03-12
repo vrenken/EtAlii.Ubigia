@@ -7,7 +7,7 @@
     using Microsoft.Owin.Cors;
 
 
-    public partial class SignalRUserApiComponent : ISignalRUserApiComponent
+    public class SignalRUserApiComponent : ISignalRUserApiComponent
     {
         private readonly IDependencyResolver _signalRDependencyResolver;
 

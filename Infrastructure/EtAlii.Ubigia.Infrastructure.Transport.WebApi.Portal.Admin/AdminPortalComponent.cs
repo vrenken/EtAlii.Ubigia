@@ -7,13 +7,8 @@
     using Microsoft.Owin.StaticFiles;
     using Owin;
 
-    public partial class AdminPortalComponent : IAdminPortalComponent
+    public class AdminPortalComponent : IAdminPortalComponent
     {
-
-        public AdminPortalComponent()
-        {
-        }
-
         public void Start(IAppBuilder application)
         {
             application.UseFileServer(new FileServerOptions

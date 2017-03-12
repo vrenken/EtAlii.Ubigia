@@ -12,7 +12,7 @@
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
-    public partial class DataContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class DataContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private readonly LogicalUnitTestContext _testContext;
 

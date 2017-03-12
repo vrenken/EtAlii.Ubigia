@@ -2,8 +2,5 @@
 {
     internal class SpaceAdder : ISpaceAdder
     {
-        public SpaceAdder()
-        {
-        }
     }
 }

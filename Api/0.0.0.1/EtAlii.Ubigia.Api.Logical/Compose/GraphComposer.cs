@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public partial class GraphComposer : IGraphComposer
+    public class GraphComposer : IGraphComposer
     {
         private readonly IGraphAdder _graphAdder;
         private readonly IGraphRemover _graphRemover;

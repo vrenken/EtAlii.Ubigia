@@ -9,7 +9,7 @@
     using Xunit;
 
 
-    public partial class TypeValueParserTests : IDisposable
+    public class TypeValueParserTests : IDisposable
     {
         private ITypeValueParser _parser;
 

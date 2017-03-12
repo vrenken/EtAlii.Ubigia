@@ -7,9 +7,6 @@
         protected IWebApiSpaceConnection Connection => _connection;
         private IWebApiSpaceConnection _connection;
 
-        protected WebApiClientBase()
-        {
-        }
         public async Task Connect(ISpaceConnection spaceConnection)
         {
             await Connect((ISpaceConnection<IWebApiSpaceTransport>)spaceConnection);

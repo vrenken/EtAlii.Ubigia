@@ -5,10 +5,6 @@
 
     internal class WebApiEntryDataClient : WebApiClientBase, IEntryDataClient<IWebApiSpaceTransport>
     {
-        public WebApiEntryDataClient()
-        {
-        }
-
         public async Task<IEditableEntry> Prepare()
         {
             var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Entry, UriParameter.SpaceId, Connection.Space.Id.ToString());

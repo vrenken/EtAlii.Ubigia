@@ -9,7 +9,7 @@
     using Xunit;
 
     
-    public partial class BooleanValueParserTests : IDisposable
+    public class BooleanValueParserTests : IDisposable
     {
         private IBooleanValueParser _parser;
 

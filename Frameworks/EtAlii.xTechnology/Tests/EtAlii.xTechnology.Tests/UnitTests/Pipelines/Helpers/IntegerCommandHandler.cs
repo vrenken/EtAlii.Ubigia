@@ -4,10 +4,6 @@ namespace EtAlii.xTechnology.Tests
 
     internal class IntegerCommandHandler : ICommandHandler<IntegerCommand, int>
     {
-        public IntegerCommandHandler()
-        {
-        }
-
         public IntegerCommand Create(int parameter)
         {
             return new IntegerCommand(parameter);

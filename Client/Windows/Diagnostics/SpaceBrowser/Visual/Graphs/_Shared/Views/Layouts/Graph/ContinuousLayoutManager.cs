@@ -7,10 +7,6 @@
     // implement various optimizations
     public class ContinuousLayoutManager : LayoutManager
     {
-        public ContinuousLayoutManager()
-        {
-        }
-
         // optimize the creation of the ForceDirectedNetwork:
         // only create it when there are Nodes or Links added or removed
         protected override void PerformLayout()

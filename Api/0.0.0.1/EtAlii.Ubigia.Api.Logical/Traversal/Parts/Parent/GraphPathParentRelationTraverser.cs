@@ -8,11 +8,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathParentRelationTraverser : IGraphPathParentRelationTraverser
     {
-        public GraphPathParentRelationTraverser()
-        {
-        }
-
-
         public void Configure(TraversalParameters parameters)
         {
             parameters.Input.Subscribe(

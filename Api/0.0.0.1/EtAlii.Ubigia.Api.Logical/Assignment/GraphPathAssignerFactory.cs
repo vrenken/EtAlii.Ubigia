@@ -5,10 +5,6 @@
 
     public class GraphPathAssignerFactory : IGraphPathAssignerFactory
     {
-        public GraphPathAssignerFactory()
-        {
-        }
-
         public IGraphPathAssigner Create(IFabricContext fabric)
         {
             var container = new Container();

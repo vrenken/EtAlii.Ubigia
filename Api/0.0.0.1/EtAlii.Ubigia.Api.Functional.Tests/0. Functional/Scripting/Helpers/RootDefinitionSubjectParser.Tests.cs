@@ -9,7 +9,7 @@
     using Xunit;
 
     
-    public partial class RootDefinitionSubjectParserTests : IDisposable
+    public class RootDefinitionSubjectParserTests : IDisposable
     {
         private IRootDefinitionSubjectParser _parser;
 

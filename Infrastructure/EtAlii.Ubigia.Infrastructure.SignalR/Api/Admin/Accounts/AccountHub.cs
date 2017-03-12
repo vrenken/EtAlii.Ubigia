@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNet.SignalR;
 
-    public partial class AccountHub : Hub
+    public class AccountHub : Hub
     {
         private readonly IAccountRepository _items;
 

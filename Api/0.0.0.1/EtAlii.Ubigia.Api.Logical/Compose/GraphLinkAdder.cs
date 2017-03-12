@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
-    internal partial class GraphLinkAdder : IGraphLinkAdder
+    internal class GraphLinkAdder : IGraphLinkAdder
     {
         private readonly IComposeContext _context;
         private readonly IGraphChildAdder _graphChildAdder;

@@ -13,7 +13,7 @@
     using EtAlii.xTechnology.Mvvm;
     using MessageBox = System.Windows.Forms.MessageBox;
 
-    internal partial class EditFolderViewModel : BindableBase, IEditFolderViewModel
+    internal class EditFolderViewModel : BindableBase, IEditFolderViewModel
     {
         private IDataConnection _connection;
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;

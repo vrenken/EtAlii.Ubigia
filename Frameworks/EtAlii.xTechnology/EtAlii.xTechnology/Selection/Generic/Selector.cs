@@ -3,7 +3,7 @@
     using System;
     using System.Diagnostics;
 
-    public partial class Selector<TCriteria, TOption> : ISelector<TCriteria, TOption>
+    public class Selector<TCriteria, TOption> : ISelector<TCriteria, TOption>
     {
         private ISelectorRegistration<TCriteria, TOption> _firstRegistration;
 
@@ -51,7 +51,7 @@
         }
     }
 
-    public partial class Selector2<TCriteria1, TCriteria2, TOption> : ISelector<TCriteria1, TCriteria2, TOption>
+    public class Selector2<TCriteria1, TCriteria2, TOption> : ISelector<TCriteria1, TCriteria2, TOption>
     {
         private ISelectorRegistration<TCriteria1, TCriteria2, TOption> _firstRegistration;
 
@@ -99,7 +99,7 @@
         }
     }
 
-    public partial class Selector2<TCriteria1, TCriteria2, TCriteria3, TOption> : ISelector<TCriteria1, TCriteria2, TCriteria3, TOption>
+    public class Selector2<TCriteria1, TCriteria2, TCriteria3, TOption> : ISelector<TCriteria1, TCriteria2, TCriteria3, TOption>
     {
         private ISelectorRegistration<TCriteria1, TCriteria2, TCriteria3, TOption> _firstRegistration;
 

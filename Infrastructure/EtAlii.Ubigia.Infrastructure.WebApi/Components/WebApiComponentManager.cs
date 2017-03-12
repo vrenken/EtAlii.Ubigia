@@ -8,7 +8,7 @@
     using global::Owin;
     using Owin;
 
-    public partial class WebApiComponentManager : IWebApiComponentManager
+    public class WebApiComponentManager : IWebApiComponentManager
     {
         private readonly HttpConfiguration _httpConfiguration;
         private readonly IWebApiComponent[] _components;

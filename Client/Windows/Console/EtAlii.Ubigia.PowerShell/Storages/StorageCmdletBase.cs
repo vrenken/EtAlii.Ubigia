@@ -2,8 +2,5 @@
 {
     public class StorageCmdletBase : CmdletBase
     {
-        public StorageCmdletBase()
-        {
-        }
     }
 }

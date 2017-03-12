@@ -6,10 +6,6 @@
     {
         private IWebApiSpaceConnection _connection;
 
-        public WebApiAuthenticationDataClient()
-        {
-        }
-
         public async Task Connect(ISpaceConnection spaceConnection)
         {
             await Connect((IWebApiSpaceConnection) spaceConnection);

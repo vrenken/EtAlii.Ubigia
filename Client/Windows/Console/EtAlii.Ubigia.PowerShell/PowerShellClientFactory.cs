@@ -7,10 +7,6 @@
 
     public class PowerShellClientFactory
     {
-        public PowerShellClientFactory()
-        {
-        }
-
         public IPowerShellClient Create<T>(IInfrastructureClient infrastructureClient = null)
             where T : class, IPowerShellClient
         {

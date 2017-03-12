@@ -11,10 +11,6 @@
         public event Action<Identifier> Prepared = delegate { };
         public event Action<Identifier> Stored = delegate { };
 
-        public EntryNotificationClientStub()
-        {
-        }
-
         public async Task Connect(ISpaceConnection spaceConnection)
         {
             await Task.Run(() => { });

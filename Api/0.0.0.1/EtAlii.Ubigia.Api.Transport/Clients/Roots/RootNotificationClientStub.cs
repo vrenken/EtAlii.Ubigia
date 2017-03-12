@@ -9,10 +9,6 @@
         public event Action<Guid> Changed = delegate { };
         public event Action<Guid> Removed = delegate { };
 
-        public RootNotificationClientStub()
-        {
-        }
-
         public async Task Connect(ISpaceConnection spaceConnection)
         {
             await Task.Run(() => { });

@@ -6,11 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathNodeTraverser : IGraphPathNodeTraverser
     {
-        public GraphPathNodeTraverser()
-        {
-        }
-
-
         public void Configure(TraversalParameters parameters)
         {
             var name = ((GraphNode)parameters.Part).Name;

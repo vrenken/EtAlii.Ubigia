@@ -7,10 +7,6 @@
         public IGraphContext GraphContext { get { return (IGraphContext)GetValue(GraphContextProperty); } set { SetValue(GraphContextProperty, value); } }
         public static readonly DependencyProperty GraphContextProperty = DependencyProperty.Register("GraphContext", typeof(IGraphContext), typeof(ClickSelectingTool), new PropertyMetadata());
 
-        public ClickSelectingTool()
-        {
-        }
-
         public override void DoMouseUp()
         {
             base.DoMouseUp();

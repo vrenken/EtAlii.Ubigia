@@ -7,7 +7,7 @@
 
 
     
-    public partial class FloatValueParserTests : IDisposable
+    public class FloatValueParserTests : IDisposable
     {
         private IFloatValueParser _parser;
 

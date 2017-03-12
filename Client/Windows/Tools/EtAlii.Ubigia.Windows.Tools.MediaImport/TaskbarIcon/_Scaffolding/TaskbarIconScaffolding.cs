@@ -6,10 +6,6 @@
 
     public class TaskbarIconScaffolding : IScaffolding
     {
-        public TaskbarIconScaffolding()
-        {
-        }
-
         public void Register(Container container)
         {
             container.Register<ITaskbarIconViewModel, TaskbarIconViewModel>();

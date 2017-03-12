@@ -4,7 +4,7 @@
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal partial class SubjectParsingScaffolding : IScaffolding
+    internal class SubjectParsingScaffolding : IScaffolding
     {
         public void Register(Container container)
         {

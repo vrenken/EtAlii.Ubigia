@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal partial class AddByNameToAbsolutePathProcessor : IAddByNameToAbsolutePathProcessor
+    internal class AddByNameToAbsolutePathProcessor : IAddByNameToAbsolutePathProcessor
     {
         private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
         private readonly IRecursiveAdder _recursiveAdder;

@@ -18,11 +18,6 @@
         public string Address => _address;
         private string _address;
 
-        public LogicalContextConfiguration()
-        {
-            //_extensions = new ILogicalContextExtension[0];
-        }
-
         //public ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
         //{
         //    if (extensions == null)

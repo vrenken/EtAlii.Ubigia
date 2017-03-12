@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
-    internal partial class GraphRenamer : IGraphRenamer
+    internal class GraphRenamer : IGraphRenamer
     {
         private readonly IComposeContext _context;
         private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;

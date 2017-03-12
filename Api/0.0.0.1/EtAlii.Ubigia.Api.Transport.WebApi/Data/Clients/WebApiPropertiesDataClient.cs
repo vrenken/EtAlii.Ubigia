@@ -4,10 +4,6 @@
 
     internal class WebApiPropertiesDataClient : WebApiClientBase, IPropertiesDataClient<IWebApiSpaceTransport>
     {
-        public WebApiPropertiesDataClient()
-        {
-        }
-
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
             var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Properties, UriParameter.EntryId, identifier.ToString());

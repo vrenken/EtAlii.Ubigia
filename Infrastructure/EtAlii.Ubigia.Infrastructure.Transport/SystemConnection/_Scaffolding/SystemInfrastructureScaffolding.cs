@@ -4,10 +4,6 @@
 
     internal class SystemInfrastructureScaffolding : IScaffolding
     {
-        public SystemInfrastructureScaffolding()
-        {
-        }
-
         public void Register(Container container)
         {
         }

@@ -7,7 +7,7 @@
     using Xunit;
 
     
-    public partial class LpDateTimeTests
+    public class LpDateTimeTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void LpDateTime_Parse_TimeSpan_00()

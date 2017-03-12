@@ -2,10 +2,6 @@
 {
     public class RemoveOperator : Operator
     {
-        public RemoveOperator()
-        {
-        }
-
         public override string ToString()
         {
             return " -= ";

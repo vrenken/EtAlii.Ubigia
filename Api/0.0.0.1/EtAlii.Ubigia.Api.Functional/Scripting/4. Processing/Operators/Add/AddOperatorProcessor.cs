@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    internal partial class AddOperatorProcessor : IAddOperatorProcessor
+    internal class AddOperatorProcessor : IAddOperatorProcessor
     {
         private readonly IAddOperatorSelector _selector;
 

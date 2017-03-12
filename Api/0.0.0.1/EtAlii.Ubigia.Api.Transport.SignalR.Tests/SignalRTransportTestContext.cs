@@ -11,7 +11,7 @@
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Tests;
 
-    public partial class SignalRTransportTestContext : TransportTestContextBase
+    public class SignalRTransportTestContext : TransportTestContextBase
     {
         public SignalRTransportTestContext(IHostTestContextFactory testHostFactory) : base(testHostFactory)
         {

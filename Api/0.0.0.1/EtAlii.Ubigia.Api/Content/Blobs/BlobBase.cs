@@ -16,9 +16,5 @@
 
         public UInt64 TotalParts { get { return _totalParts; } set { _totalParts = value; } }
         private UInt64 _totalParts;
-
-        protected BlobBase()
-        {
-        }
     }
 }

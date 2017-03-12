@@ -2,10 +2,6 @@
 {
     internal class SHA1 : SHA0
     {
-        public SHA1() 
-        {
-        }
-
         protected override void Expand(uint[] a_data)
         {
             for (int i = 16; i < 80; i++)

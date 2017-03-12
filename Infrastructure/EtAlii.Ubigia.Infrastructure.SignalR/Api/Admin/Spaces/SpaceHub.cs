@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNet.SignalR;
 
-    public partial class SpaceHub : Hub
+    public class SpaceHub : Hub
     {
         private readonly ISpaceRepository _items;
 

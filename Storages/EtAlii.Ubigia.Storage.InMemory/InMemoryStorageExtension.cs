@@ -4,10 +4,6 @@
 
     public class InMemoryStorageExtension : IStorageExtension
     {
-        public InMemoryStorageExtension()
-        {
-        }
-
         public void Initialize(Container container)
         {
             var scaffoldings = new IScaffolding[]

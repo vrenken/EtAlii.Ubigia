@@ -21,10 +21,6 @@
         public Account TargetAccount { get { return _targetAccount; } private set { _targetAccount = value; } }
         private Account _targetAccount;
 
-        public AccountTargetingCmdlet()
-        {
-        }
-
         protected override void BeginProcessing()
         {
             base.BeginProcessing();

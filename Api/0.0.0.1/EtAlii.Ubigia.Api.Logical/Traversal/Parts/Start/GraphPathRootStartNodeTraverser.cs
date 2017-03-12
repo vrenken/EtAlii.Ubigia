@@ -6,11 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathRootStartNodeTraverser : IGraphPathRootStartNodeTraverser
     {
-        public GraphPathRootStartNodeTraverser()
-        {
-        }
-
-
         public void Configure(TraversalParameters parameters)
         {
             var rootStartNode = (GraphRootStartNode)parameters.Part;

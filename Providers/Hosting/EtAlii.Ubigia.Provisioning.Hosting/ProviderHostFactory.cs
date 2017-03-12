@@ -5,10 +5,6 @@
     public class ProviderHostFactory<TProviderHost> : IProviderHostFactory
         where TProviderHost : class, IProviderHost
     {
-        public ProviderHostFactory()
-        {
-        }
-
         public IProviderHost Create(IHostConfiguration configuration)
         {
             var container = new Container();

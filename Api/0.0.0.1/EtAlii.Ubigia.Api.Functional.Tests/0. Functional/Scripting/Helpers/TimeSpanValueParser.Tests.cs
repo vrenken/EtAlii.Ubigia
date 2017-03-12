@@ -10,7 +10,7 @@
     using Xunit;
 
     
-    public partial class TimeSpanValueParserTests : IDisposable
+    public class TimeSpanValueParserTests : IDisposable
     {
         private ITimeSpanValueParser _parser;
 

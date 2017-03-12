@@ -6,10 +6,6 @@
     {
         //private readonly IPathSubjectForOutputConverter _converter;
 
-        public RootSubjectProcessor()
-        {
-        }
-         
         public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var rootSubject = (RootSubject)subject;

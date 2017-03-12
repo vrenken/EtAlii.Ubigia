@@ -6,10 +6,6 @@
 
     public class HostFactory : IHostFactory
     {
-        public HostFactory()
-        {
-        }
-
         public IHost Create(IHostConfiguration configuration)
         {
             if (configuration.Infrastructure == null)

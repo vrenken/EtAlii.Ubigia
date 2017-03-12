@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
     
-    public partial class SequenceParserPathsHierarchicalTests : IDisposable
+    public class SequenceParserPathsHierarchicalTests : IDisposable
     {
         private ISequenceParser _parser;
 

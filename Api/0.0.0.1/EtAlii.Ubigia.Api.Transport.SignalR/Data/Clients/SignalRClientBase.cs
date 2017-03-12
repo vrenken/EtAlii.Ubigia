@@ -7,9 +7,6 @@
         protected ISpaceConnection<ISignalRSpaceTransport> Connection => _connection;
         private ISpaceConnection<ISignalRSpaceTransport> _connection;
 
-        protected SignalRClientBase()
-        {
-        }
         public async Task Connect(ISpaceConnection spaceConnection)
         {
             await Connect((ISpaceConnection<ISignalRSpaceTransport>)spaceConnection);

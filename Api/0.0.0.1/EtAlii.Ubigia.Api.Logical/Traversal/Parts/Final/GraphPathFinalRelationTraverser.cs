@@ -7,11 +7,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathFinalRelationTraverser : IGraphPathFinalRelationTraverser
     {
-        public GraphPathFinalRelationTraverser()
-        {
-        }
-
-
         public void Configure(TraversalParameters parameters)
         {
             parameters.Input.Subscribe(

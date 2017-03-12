@@ -10,7 +10,7 @@
     using Xunit;
 
     
-    public partial class DateTimeValueParserTests : IDisposable
+    public class DateTimeValueParserTests : IDisposable
     {
         private IDateTimeValueParser _parser;
 

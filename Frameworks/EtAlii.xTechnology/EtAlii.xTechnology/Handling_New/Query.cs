@@ -2,9 +2,6 @@
 {
     public class Query : IQuery
     {
-        public Query()
-        {
-        }
     }
 
     public class Query<TParam> : IQuery<TParam>

@@ -8,10 +8,6 @@
 
     internal sealed class WebApiSpaceDataClient : WebApiClientBase, ISpaceDataClient
     {
-        public WebApiSpaceDataClient()
-        {
-        }
-
         public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
         {
             var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Spaces, UriParameter.SpaceTemplate, template.Name);

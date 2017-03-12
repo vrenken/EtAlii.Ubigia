@@ -22,10 +22,6 @@
     {
         private IAuthenticationVerifier _verifier;
 
-        public RequiresAuthenticationAttribute()
-        { 
-        }
-
         /// <summary>
         /// Override to Web API filter method to handle Basic Auth check
         /// </summary>

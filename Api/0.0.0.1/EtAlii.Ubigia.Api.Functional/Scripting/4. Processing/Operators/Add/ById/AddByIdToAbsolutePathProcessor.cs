@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    internal partial class AddByIdToAbsolutePathProcessor : IAddByIdToAbsolutePathProcessor
+    internal class AddByIdToAbsolutePathProcessor : IAddByIdToAbsolutePathProcessor
     {
         public void Process(OperatorParameters parameters)
         {

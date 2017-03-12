@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api;
     using Microsoft.Experimental.IO;
 
-    public partial class NtfsStorageSerializer : IStorageSerializer
+    public class NtfsStorageSerializer : IStorageSerializer
     {
         private readonly IInternalItemSerializer _itemSerializer;
         private readonly IInternalPropertiesSerializer _propertiesSerializer;

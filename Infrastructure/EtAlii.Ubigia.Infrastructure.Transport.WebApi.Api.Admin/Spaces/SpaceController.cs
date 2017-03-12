@@ -13,7 +13,7 @@
 
     [RequiresAuthenticationToken]
     [Route(RelativeUri.Data.Spaces)]
-    public partial class SpaceController : ApiController
+    public class SpaceController : ApiController
     {
         private readonly ISpaceRepository _items;
 
