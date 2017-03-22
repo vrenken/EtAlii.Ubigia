@@ -18,7 +18,7 @@
             //container.Register<IAdminPortalComponent, AdminPortalComponent>(Lifestyle.Transient);
 
             // TODO: This should be a system connection provider and not a system connection.
-            container.Register<ISystemConnection>(() =>
+            container.Register(() =>
             {
                 var infrastructure = _infrastructureConfiguration.GetInfrastructure(container);
 

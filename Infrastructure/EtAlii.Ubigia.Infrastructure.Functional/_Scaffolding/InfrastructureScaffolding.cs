@@ -15,9 +15,9 @@
 
         public void Register(Container container)
         {
-            container.Register<IInfrastructureConfiguration>(() => _configuration);
-            container.Register<ILogicalContext>(() => _configuration.Logical);
-            container.Register<ISystemConnectionCreationProxy>(() => _configuration.SystemConnectionCreationProxy);
+            container.Register(() => _configuration);
+            container.Register(() => _configuration.Logical);
+            container.Register(() => _configuration.SystemConnectionCreationProxy);
         }
     }
 }

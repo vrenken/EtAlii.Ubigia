@@ -24,7 +24,7 @@
 
         public async Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
-            return await Task.Run<IReadOnlyEntry>((Func<IReadOnlyEntry>)(() =>
+            return await Task.Run((Func<IReadOnlyEntry>)(() =>
             {
                 throw new NotImplementedException();
             }));

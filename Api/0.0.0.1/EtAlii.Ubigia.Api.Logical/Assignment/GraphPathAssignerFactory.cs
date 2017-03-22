@@ -9,7 +9,7 @@
         {
             var container = new Container();
 
-            container.Register<IFabricContext>(() => fabric);
+            container.Register(() => fabric);
             container.Register<IGraphPathAssigner, GraphPathAssigner>();
 
             container.Register<IToIdentifierAssignerSelector, ToIdentifierAssignerSelector>();

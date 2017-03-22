@@ -15,7 +15,7 @@
         public void Register(Container container)
         {
             container.Register<IFabricContext, FabricContext>();
-            container.Register<IStorage>(() => _storage);
+            container.Register(() => _storage);
         }
     }
 }

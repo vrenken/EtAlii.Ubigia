@@ -51,13 +51,13 @@
                 catch (Exception)
                 {
                     result = HttpStatusCode.Forbidden;
-                    actionContext.Response = actionContext.Request.CreateResponse<string>(HttpStatusCode.Forbidden, "Unauthorized account");
+                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account");
                 }
             }
             else
             {
                 result = HttpStatusCode.BadRequest;
-                actionContext.Response = actionContext.Request.CreateResponse<string>(HttpStatusCode.BadRequest, "Missing Authentication-Token");
+                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Authentication-Token");
             }
 
             return result;

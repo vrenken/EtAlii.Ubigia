@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Fabric
                 container.Register<IContentCacheProvider, ContentCacheProvider>();
                 container.Register<IContentCacheHelper, ContentCacheHelper>();
                 container.Register<IContentDefinitionCacheHelper, ContentDefinitionCacheHelper>();
-                container.Register<IContentCacheContextProvider>(() => CreateContentCacheContextProvider(container));
+                container.Register(() => CreateContentCacheContextProvider(container));
                 container.Register<IContentContext, CachingContentContext>();
             }
             else

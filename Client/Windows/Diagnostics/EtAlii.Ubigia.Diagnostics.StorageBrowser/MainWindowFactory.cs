@@ -16,7 +16,7 @@
             container.Register<IMainWindow, MainWindow>();
             container.RegisterInitializer<IMainWindow>(window => window.DataContext = container.GetInstance<IMainWindowViewModel>());
 
-            container.Register<IManagementConnection>(() => connection);
+            container.Register(() => connection);
             //container.RegisterInitializer<IManagementConnection>(connection => connection.Open(App.Current.Address, App.Current.Account, App.Current.Password));
 
             container.Register<IStoragesViewModel, StoragesViewModel>();
@@ -25,7 +25,7 @@
             container.Register<ISpacesViewModel, SpacesViewModel >();
 
             container.Register<ILogFactory, DisabledLogFactory>();
-            container.Register<ILogger>(() => container.GetInstance<ILogFactory>().Create("EtAlii", "EtAlii.Ubigia.Client.Windows.Diagnostics"));
+            container.Register(() => container.GetInstance<ILogFactory>().Create("EtAlii", "EtAlii.Ubigia.Client.Windows.Diagnostics"));
             
             return container.GetInstance<IMainWindow>();
         }

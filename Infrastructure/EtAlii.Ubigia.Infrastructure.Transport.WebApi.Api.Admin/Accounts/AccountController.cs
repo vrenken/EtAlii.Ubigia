@@ -31,7 +31,7 @@
             try
             {
                 var account = _items.Get(accountName);
-                response = Request.CreateResponse<Account>(HttpStatusCode.OK, account);
+                response = Request.CreateResponse(HttpStatusCode.OK, account);
             }
             catch (Exception ex)
             {
@@ -49,7 +49,7 @@
             try
             {
                 var items = _items.GetAll();
-                response = Request.CreateResponse<IEnumerable<Account>>(HttpStatusCode.OK, items);
+                response = Request.CreateResponse(HttpStatusCode.OK, items);
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@
             try
             {
                 var item = _items.Get(accountId);
-                response = Request.CreateResponse<Account>(HttpStatusCode.OK, item);
+                response = Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception ex)
             {
@@ -84,7 +84,7 @@
             {
                 var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
                 item = _items.Add(item, template);
-                response = Request.CreateResponse<Account>(HttpStatusCode.OK, item);
+                response = Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception ex)
             {

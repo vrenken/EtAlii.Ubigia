@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Logical
             return Task.Run(() =>
             {
                 var firstInput = Observable
-                    .Return<Identifier>(current)
+                    .Return(current)
                     .ToHotObservable();
                 var input = firstInput;
 

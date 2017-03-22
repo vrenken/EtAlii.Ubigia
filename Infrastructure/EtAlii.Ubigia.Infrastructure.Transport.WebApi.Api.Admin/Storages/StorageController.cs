@@ -47,7 +47,7 @@
             try
             {
                 var storage = _items.GetLocal();
-                response = Request.CreateResponse<Storage>(HttpStatusCode.OK, storage);
+                response = Request.CreateResponse(HttpStatusCode.OK, storage);
             }
             catch (Exception ex)
             {
@@ -63,7 +63,7 @@
             try
             {
                 var storage = _items.Get(storageName);
-                response = Request.CreateResponse<Storage>(HttpStatusCode.OK, storage);
+                response = Request.CreateResponse(HttpStatusCode.OK, storage);
             }
             catch (Exception ex)
             {
@@ -81,7 +81,7 @@
             try
             {
                 var items = _items.GetAll();
-                response = Request.CreateResponse<IEnumerable<Storage>>(HttpStatusCode.OK, items);
+                response = Request.CreateResponse(HttpStatusCode.OK, items);
             }
             catch (Exception ex)
             {
@@ -98,7 +98,7 @@
             try
             {
                 var item = _items.Get(storageId);
-                response = Request.CreateResponse<Storage>(HttpStatusCode.OK, item);
+                response = Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception ex)
             {
@@ -115,7 +115,7 @@
             try
             {
                 item = _items.Add(item);
-                response = Request.CreateResponse<Storage>(HttpStatusCode.OK, item);
+                response = Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception ex)
             {

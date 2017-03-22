@@ -28,7 +28,7 @@
             File file;
             var stream = _inMemoryItemsHelper.CreateFile(fileName, out file);
             {
-                _itemSerializer.Serialize<T>(stream, item);
+                _itemSerializer.Serialize(stream, item);
             }
             file.Content = stream.ToArray();
         }

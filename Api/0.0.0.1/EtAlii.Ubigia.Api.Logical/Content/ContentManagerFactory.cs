@@ -14,9 +14,9 @@
         {
             var container = new Container();
 
-            container.Register<IFabricContext>(() => fabric);
+            container.Register(() => fabric);
             container.Register<IContentManager, ContentManager>();
-            container.Register<IHash>(HashFactory.Checksum.CreateCRC64_ECMA);
+            container.Register(HashFactory.Checksum.CreateCRC64_ECMA);
             container.Register<IContentPartStoreCommandHandler, ContentPartStoreCommandHandler>();
             container.Register<IContentPartQueryHandler, ContentPartQueryHandler>();
             container.Register<IContentDefinitionQueryHandler, ContentDefinitionQueryHandler>();

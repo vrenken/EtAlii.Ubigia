@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             var container = new Container();
 
             container.Register<IFabricTestContext, FabricTestContext>();
-            container.Register<ITransportTestContext>(() => new TransportTestContext().Create());
+            container.Register(() => new TransportTestContext().Create());
 
             return container.GetInstance<IFabricTestContext>();
         }

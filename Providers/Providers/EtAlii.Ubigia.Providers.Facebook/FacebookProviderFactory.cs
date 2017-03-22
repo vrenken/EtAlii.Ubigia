@@ -9,9 +9,9 @@
         {
             var container = new xTechnology.MicroContainer.Container();
 
-            container.Register<IProviderConfiguration>(() => configuration);
-            container.Register<IDataContext>(() => configuration.SystemDataContext);
-            container.Register<IManagementConnection>(() => configuration.ManagementConnection);
+            container.Register(() => configuration);
+            container.Register(() => configuration.SystemDataContext);
+            container.Register(() => configuration.ManagementConnection);
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, FacebookProvider>();
 

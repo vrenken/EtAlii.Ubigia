@@ -14,9 +14,9 @@ namespace EtAlii.Ubigia.Provisioning.Google
         {
             var container = new Container();
 
-            container.Register<IProviderConfiguration>(() => configuration);
-            container.Register<IDataContext>(() => configuration.SystemDataContext);
-            container.Register<IManagementConnection>(() => configuration.ManagementConnection);
+            container.Register(() => configuration);
+            container.Register(() => configuration.SystemDataContext);
+            container.Register(() => configuration.ManagementConnection);
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, GoogleProvider>();
 
@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
 
             container.Register<IConfigurationSpaceGetter, ConfigurationSpaceGetter>();
 
-            container.Register<ILogger>(() => configuration.LogFactory.Create("Google.PeopleApi", "Provider"));
+            container.Register(() => configuration.LogFactory.Create("Google.PeopleApi", "Provider"));
 
             container.RegisterDecorator(typeof(IPeopleApiConfigurationSpaceUpdater), typeof(DebuggingPeopleApiConfigurationSpaceUpdater));
             container.RegisterDecorator(typeof(IUserSettingsUpdater), typeof(DebuggingUserSettingsUpdater));

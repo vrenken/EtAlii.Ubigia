@@ -9,9 +9,9 @@
 
     internal static class SignalRTaskAsyncHelper
     {
-        private static readonly Task _emptyTask = (Task)MakeTask<object>((object)null);
-        private static readonly Task<bool> _trueTask = MakeTask<bool>(true);
-        private static readonly Task<bool> _falseTask = MakeTask<bool>(false);
+        private static readonly Task _emptyTask = (Task)MakeTask((object)null);
+        private static readonly Task<bool> _trueTask = MakeTask(true);
+        private static readonly Task<bool> _falseTask = MakeTask(false);
 
         private static Task Empty => _emptyTask;
 
@@ -21,7 +21,7 @@
 
         private static Task<T> MakeTask<T>(T value)
         {
-            return FromResult<T>(value);
+            return FromResult(value);
         }
 
         public static Task OrEmpty(this Task task)
@@ -50,7 +50,7 @@
         {
             try
             {
-                return Task.Factory.FromAsync<T>(beginMethod, endMethod, state);
+                return Task.Factory.FromAsync(beginMethod, endMethod, state);
             }
             catch (Exception ex)
             {
@@ -63,13 +63,13 @@
             Task empty = Empty;
             Task task = Empty;
             for (int index = 0; index < tasks.Length; ++index)
-                task = Then<object>(task, tasks[index], state[index]);
+                task = Then(task, tasks[index], state[index]);
             return task;
         }
 
         public static TTask Catch<TTask>(this TTask task) where TTask : Task
         {
-            return Catch<TTask>(task, (Action<AggregateException>)(ex => { }));
+            return Catch(task, (Action<AggregateException>)(ex => { }));
         }
 
         private static TTask Catch<TTask>(this TTask task, Action<AggregateException, object> handler, object state) where TTask : Task
@@ -79,7 +79,7 @@
                 if (task.Status == TaskStatus.Faulted)
                     ExecuteOnFaulted(handler, state, task.Exception);
                 else
-                    AttachFaultedContinuation<TTask>(task, handler, state);
+                    AttachFaultedContinuation(task, handler, state);
             }
             return task;
         }
@@ -96,7 +96,7 @@
 
         private static TTask Catch<TTask>(this TTask task, Action<AggregateException> handler) where TTask : Task
         {
-            return Catch<TTask>(task, (Action<AggregateException, object>)((ex, state) => ((Action<AggregateException>)state)(ex)), (object)handler);
+            return Catch(task, (Action<AggregateException, object>)((ex, state) => ((Action<AggregateException>)state)(ex)), (object)handler);
         }
 
         public static Task ContinueWithNotComplete(this Task task, Action action)
@@ -132,7 +132,7 @@
                         {
                             action();
                             if (t.IsFaulted)
-                                TrySetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                                TrySetUnwrappedException(tcs, (Exception)t.Exception);
                             else
                                 tcs.TrySetCanceled();
                         }
@@ -151,7 +151,7 @@
             {
                 if (t.IsFaulted)
                 {
-                    SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                    SetUnwrappedException(tcs, (Exception)t.Exception);
                 }
                 else
                 {
@@ -167,7 +167,7 @@
             ContinueWithPreservedCulture(task, (Action<Task>)(t =>
             {
                 if (t.IsFaulted)
-                    TrySetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                    TrySetUnwrappedException(tcs, (Exception)t.Exception);
                 else if (t.IsCanceled)
                     tcs.TrySetCanceled();
                 else
@@ -178,10 +178,10 @@
 
         public static void ContinueWith<T>(this Task<T> task, TaskCompletionSource<T> tcs)
         {
-            ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
+            ContinueWithPreservedCulture(task, (Action<Task<T>>)(t =>
             {
                 if (t.IsFaulted)
-                    TrySetUnwrappedException<T>(tcs, (Exception)t.Exception);
+                    TrySetUnwrappedException(tcs, (Exception)t.Exception);
                 else if (t.IsCanceled)
                     tcs.TrySetCanceled();
                 else
@@ -208,7 +208,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<TResult>(successor);
+                    return FromMethod(successor);
                 case TaskStatus.Canceled:
                     return Canceled<TResult>();
                 case TaskStatus.Faulted:
@@ -223,7 +223,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T1>(successor, arg1);
+                    return FromMethod(successor, arg1);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return task;
@@ -237,7 +237,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T1, T2>(successor, arg1, arg2);
+                    return FromMethod(successor, arg1, arg2);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return task;
@@ -251,7 +251,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T1>(successor, arg1);
+                    return FromMethod(successor, arg1);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return task;
@@ -265,7 +265,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T1, T2>(successor, arg1, arg2);
+                    return FromMethod(successor, arg1, arg2);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return task;
@@ -279,13 +279,13 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T, TResult>(successor, task.Result);
+                    return FromMethod(successor, task.Result);
                 case TaskStatus.Canceled:
                     return Canceled<TResult>();
                 case TaskStatus.Faulted:
                     return FromError<TResult>((Exception)task.Exception);
                 default:
-                    return FastUnwrap<TResult>(TaskRunners<T, Task<TResult>>.RunTask(task, (Func<Task<T>, Task<TResult>>)(t => successor(t.Result))));
+                    return FastUnwrap(TaskRunners<T, Task<TResult>>.RunTask(task, (Func<Task<T>, Task<TResult>>)(t => successor(t.Result))));
             }
         }
 
@@ -294,7 +294,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T, TResult>(successor, task.Result);
+                    return FromMethod(successor, task.Result);
                 case TaskStatus.Canceled:
                     return Canceled<TResult>();
                 case TaskStatus.Faulted:
@@ -309,7 +309,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<T, T1, TResult>(successor, task.Result, arg1);
+                    return FromMethod(successor, task.Result, arg1);
                 case TaskStatus.Canceled:
                     return Canceled<TResult>();
                 case TaskStatus.Faulted:
@@ -338,13 +338,13 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<TResult>(successor);
+                    return FromMethod(successor);
                 case TaskStatus.Canceled:
                     return Canceled<TResult>();
                 case TaskStatus.Faulted:
                     return FromError<TResult>((Exception)task.Exception);
                 default:
-                    return FastUnwrap<TResult>(TaskRunners<object, Task<TResult>>.RunTask(task, successor));
+                    return FastUnwrap(TaskRunners<object, Task<TResult>>.RunTask(task, successor));
             }
         }
 
@@ -353,7 +353,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<TResult>(successor, task.Result);
+                    return FromMethod(successor, task.Result);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return (Task)task;
@@ -367,7 +367,7 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<TResult>(successor, task.Result);
+                    return FromMethod(successor, task.Result);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return (Task)task;
@@ -381,12 +381,12 @@
             switch (task.Status)
             {
                 case TaskStatus.RanToCompletion:
-                    return FromMethod<Task<TResult>, T1, TResult>(successor, task, arg1);
+                    return FromMethod(successor, task, arg1);
                 case TaskStatus.Canceled:
                 case TaskStatus.Faulted:
                     return task;
                 default:
-                    return FastUnwrap<TResult>(GenericDelegates<TResult, Task<TResult>, T1, object>.ThenWithArgs(task, successor, arg1));
+                    return FastUnwrap(GenericDelegates<TResult, Task<TResult>, T1, object>.ThenWithArgs(task, successor, arg1));
             }
         }
 
@@ -397,7 +397,7 @@
                 switch (task.Status)
                 {
                     case TaskStatus.RanToCompletion:
-                        return FromMethod<object>(next, state);
+                        return FromMethod(next, state);
                     case TaskStatus.Canceled:
                     case TaskStatus.Faulted:
                         next(state);
@@ -433,14 +433,14 @@
 
         private static Task<T> FastUnwrap<T>(this Task<Task<T>> task)
         {
-            return (task.Status == TaskStatus.RanToCompletion ? task.Result : (Task<T>)null) ?? TaskExtensions.Unwrap<T>(task);
+            return (task.Status == TaskStatus.RanToCompletion ? task.Result : (Task<T>)null) ?? TaskExtensions.Unwrap(task);
         }
 
         public static Task Delay(TimeSpan timeOut)
         {
             TaskCompletionSource<object> completionSource = new TaskCompletionSource<object>();
             Timer timer = new Timer(new TimerCallback(completionSource.SetResult), (object)null, timeOut, TimeSpan.FromMilliseconds(-1.0));
-            return ContinueWithPreservedCulture<object>(completionSource.Task, (Action<Task<object>>)(_ => timer.Dispose()), TaskContinuationOptions.ExecuteSynchronously);
+            return ContinueWithPreservedCulture(completionSource.Task, (Action<Task<object>>)(_ => timer.Dispose()), TaskContinuationOptions.ExecuteSynchronously);
         }
 
         private static Task FromMethod(Action func)
@@ -510,7 +510,7 @@
         {
             try
             {
-                return FromResult<TResult>(func());
+                return FromResult(func());
             }
             catch (Exception ex)
             {
@@ -558,7 +558,7 @@
         {
             try
             {
-                return FromResult<TResult>(func(arg));
+                return FromResult(func(arg));
             }
             catch (Exception ex)
             {
@@ -582,7 +582,7 @@
         {
             try
             {
-                return FromResult<TResult>(func(arg1, arg2));
+                return FromResult(func(arg1, arg2));
             }
             catch (Exception ex)
             {
@@ -605,7 +605,7 @@
         private static Task<T> FromError<T>(Exception e)
         {
             TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
-            SetUnwrappedException<T>(tcs, e);
+            SetUnwrappedException(tcs, e);
             return tcs.Task;
         }
 
@@ -688,7 +688,7 @@
         {
             CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
             CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
-            return (Task<TResult>)task.ContinueWith<TResult>((t =>
+            return (Task<TResult>)task.ContinueWith((t =>
             {
                 CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
                 CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
@@ -713,12 +713,12 @@
 
         private static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction)
         {
-            return ContinueWithPreservedCulture<T>(task, continuationAction, TaskContinuationOptions.None);
+            return ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);
         }
 
         internal static Task<TResult> ContinueWithPreservedCulture<T, TResult>(this Task<T> task, Func<Task<T>, TResult> continuationAction)
         {
-            return ContinueWithPreservedCulture<T, TResult>(task, continuationAction, TaskContinuationOptions.None);
+            return ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);
         }
 
         private static Task RunTask(Task task, Action successor)
@@ -727,7 +727,7 @@
             ContinueWithPreservedCulture(task, (Action<Task>)(t =>
             {
                 if (t.IsFaulted)
-                    SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                    SetUnwrappedException(tcs, (Exception)t.Exception);
                 else if (t.IsCanceled)
                 {
                     tcs.SetCanceled();
@@ -741,7 +741,7 @@
                     }
                     catch (Exception ex)
                     {
-                        SetUnwrappedException<object>(tcs, ex);
+                        SetUnwrappedException(tcs, ex);
                     }
                 }
             }));
@@ -759,7 +759,7 @@
                     {
                         if (!onlyOnSuccess)
                             next(state);
-                        SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException(tcs, (Exception)t.Exception);
                     }
                     else if (t.IsCanceled)
                     {
@@ -775,7 +775,7 @@
                 }
                 catch (Exception ex)
                 {
-                    SetUnwrappedException<object>(tcs, ex);
+                    SetUnwrappedException(tcs, ex);
                 }
             }), TaskContinuationOptions.ExecuteSynchronously);
             return (Task)tcs.Task;
@@ -786,10 +786,10 @@
             internal static Task RunTask(Task<T> task, Action<T> successor)
             {
                 TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
-                ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
+                ContinueWithPreservedCulture(task, (Action<Task<T>>)(t =>
                 {
                     if (t.IsFaulted)
-                        SetUnwrappedException<object>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException(tcs, (Exception)t.Exception);
                     else if (t.IsCanceled)
                     {
                         tcs.SetCanceled();
@@ -803,7 +803,7 @@
                         }
                         catch (Exception ex)
                         {
-                            SetUnwrappedException<object>(tcs, ex);
+                            SetUnwrappedException(tcs, ex);
                         }
                     }
                 }));
@@ -816,7 +816,7 @@
                 ContinueWithPreservedCulture(task, (Action<Task>)(t =>
                 {
                     if (t.IsFaulted)
-                        SetUnwrappedException<TResult>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException(tcs, (Exception)t.Exception);
                     else if (t.IsCanceled)
                     {
                         tcs.SetCanceled();
@@ -829,7 +829,7 @@
                         }
                         catch (Exception ex)
                         {
-                            SetUnwrappedException<TResult>(tcs, ex);
+                            SetUnwrappedException(tcs, ex);
                         }
                     }
                 }));
@@ -839,10 +839,10 @@
             internal static Task<TResult> RunTask(Task<T> task, Func<Task<T>, TResult> successor)
             {
                 TaskCompletionSource<TResult> tcs = new TaskCompletionSource<TResult>();
-                ContinueWithPreservedCulture<T>(task, (Action<Task<T>>)(t =>
+                ContinueWithPreservedCulture(task, (Action<Task<T>>)(t =>
                 {
                     if (task.IsFaulted)
-                        SetUnwrappedException<TResult>(tcs, (Exception)t.Exception);
+                        SetUnwrappedException(tcs, (Exception)t.Exception);
                     else if (task.IsCanceled)
                     {
                         tcs.SetCanceled();
@@ -855,7 +855,7 @@
                         }
                         catch (Exception ex)
                         {
-                            SetUnwrappedException<TResult>(tcs, ex);
+                            SetUnwrappedException(tcs, ex);
                         }
                     }
                 }));
@@ -913,7 +913,7 @@
 
         private static class TaskCache<T>
         {
-            public static readonly Task<T> Empty = MakeTask<T>(default(T));
+            public static readonly Task<T> Empty = MakeTask(default(T));
         }
     }
 }

@@ -109,7 +109,7 @@
                     authenticationTokenAsBytes = Aes.Encrypt(authenticationTokenAsBytes);
                     var authenticationTokenAsString = Convert.ToBase64String(authenticationTokenAsBytes);
 
-                    response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, authenticationTokenAsString);
+                    response = actionContext.Request.CreateResponse(HttpStatusCode.OK, authenticationTokenAsString);
                 }
                 else
                 {

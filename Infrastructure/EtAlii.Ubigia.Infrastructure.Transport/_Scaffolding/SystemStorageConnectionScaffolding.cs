@@ -13,7 +13,7 @@
 
         public void Register(Container container)
         {
-            container.Register<ISystemStorageTransport>(() => _transport);
+            container.Register(() => _transport);
         }
     }
 }

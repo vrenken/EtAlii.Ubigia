@@ -58,7 +58,7 @@
 
             public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)
             {
-                return Task.FromResult<object>(new object());
+                return Task.FromResult(new object());
             }
 
             public override Collection<HttpParameterDescriptor> GetParameters()

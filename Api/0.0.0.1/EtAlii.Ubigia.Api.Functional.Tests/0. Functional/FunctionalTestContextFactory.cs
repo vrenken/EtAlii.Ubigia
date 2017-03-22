@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var container = new Container();
 
             container.Register<IFunctionalTestContext, FunctionalTestContext>();
-            container.Register<ILogicalTestContext>(() => new LogicalTestContextFactory().Create());
-            container.Register<IDiagnosticsConfiguration>(() => TestDiagnostics.Create());
+            container.Register(() => new LogicalTestContextFactory().Create());
+            container.Register(() => TestDiagnostics.Create());
             return container.GetInstance<IFunctionalTestContext>();
         }
     }

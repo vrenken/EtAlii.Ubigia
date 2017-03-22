@@ -26,7 +26,7 @@
 
             if (_applicationManager != null)
             {
-                container.Register<IApplicationManager>(() => _applicationManager);
+                container.Register(() => _applicationManager);
             }
             else
             {

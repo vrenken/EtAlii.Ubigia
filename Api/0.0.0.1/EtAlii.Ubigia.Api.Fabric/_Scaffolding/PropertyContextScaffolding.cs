@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
                 container.Register<IPropertyCacheProvider, PropertyCacheProvider>();
                 container.Register<IPropertyCacheHelper, PropertyCacheHelper>();
-                container.Register<IPropertyCacheContextProvider>(() => CreatePropertyCacheContextProvider(container));
+                container.Register(() => CreatePropertyCacheContextProvider(container));
                 container.Register<IPropertyContext, CachingPropertyContext>();
             }
             else

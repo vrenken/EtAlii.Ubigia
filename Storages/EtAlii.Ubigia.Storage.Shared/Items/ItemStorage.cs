@@ -44,7 +44,7 @@
             {
                 var idName = id.ToString();
                 var fileName = _pathBuilder.GetFileName(idName, container);
-                _fileManager.SaveToFile<T>(fileName, item);
+                _fileManager.SaveToFile(fileName, item);
             }
             catch (Exception e)
             {

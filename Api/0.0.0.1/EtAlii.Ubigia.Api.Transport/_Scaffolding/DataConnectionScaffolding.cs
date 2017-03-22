@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public void Register(Container container)
         {
-            container.Register<IDataConnectionConfiguration>(() => _configuration);
+            container.Register(() => _configuration);
             container.Register<IDataConnection, DataConnection>();
         }
     }

@@ -122,17 +122,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public void Remove(Guid itemId)
         {
-            _fabric.Items.Remove<Storage>(Items, itemId);
+            _fabric.Items.Remove(Items, itemId);
         }
 
         public void Remove(Storage itemToRemove)
         {
-            _fabric.Items.Remove<Storage>(Items, itemToRemove);
+            _fabric.Items.Remove(Items, itemToRemove);
         }
 
         public Storage Update(Guid itemId, Storage updatedItem)
         {
-            return _fabric.Items.Update<Storage>(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
         }
     }
 }

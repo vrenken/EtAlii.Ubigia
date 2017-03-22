@@ -13,8 +13,8 @@
 
         public void Register(Container container)
         {
-            container.Register<ISpaceConnectionConfiguration>(() => _configuration);
-            container.Register<ISpaceTransport>(() => _configuration.Transport);
+            container.Register(() => _configuration);
+            container.Register(() => _configuration.Transport);
 
             container.Register<IAuthenticationContext, AuthenticationContext>();
             container.Register<IEntryContext, EntryContext>();

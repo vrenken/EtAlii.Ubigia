@@ -151,7 +151,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
 
                 // Sets length and write data. 
                 view.Write(writePosition + DATA_LENGTH_OFFSET, data.Length);
-                view.WriteArray<byte>(writePosition + DATA_OFFSET, data, 0, data.Length);
+                view.WriteArray(writePosition + DATA_OFFSET, data, 0, data.Length);
 
                 // Resets the flag used to signal that data has been read. 
                 view.Write(writePosition + READ_CONFIRM_OFFSET, false);
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
                     int availableBytes = view.ReadInt32(ReadPosition + DATA_LENGTH_OFFSET);
                     var bytes = new byte[availableBytes];
                     // Reads the byte array. 
-                    int read = view.ReadArray<byte>(ReadPosition + DATA_OFFSET, bytes, 0, availableBytes);
+                    int read = view.ReadArray(ReadPosition + DATA_OFFSET, bytes, 0, availableBytes);
 
                     // Sets the flag used to signal that there aren't available data anymore. 
                     view.Write(ReadPosition + DATA_AVAILABLE_OFFSET, false);

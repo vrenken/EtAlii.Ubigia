@@ -25,7 +25,7 @@
 
                 container.Register<IEntryCacheProvider, EntryCacheProvider>();
                 container.Register<IEntryCacheHelper, EntryCacheHelper>();
-                container.Register<IEntryCacheContextProvider>(() => CreateEntryCacheContextProvider(container));
+                container.Register(() => CreateEntryCacheContextProvider(container));
                 container.Register<IEntryContext, CachingEntryContext>();
             }
             else

@@ -18,7 +18,7 @@
                 AccountId = accountId,
             };
 
-            space = await Connection.Client.Post<Space>(address, space);
+            space = await Connection.Client.Post(address, space);
             return space;
         }
 

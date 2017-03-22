@@ -18,7 +18,7 @@
             container.Register<ISpaceConnection, SystemSpaceConnection>();
             container.Register<IStorageConnection, SystemStorageConnection>();
 
-            container.Register<IInfrastructure>(() => _infrastructure);
+            container.Register(() => _infrastructure);
 
             // Data clients.
             container.Register<IAuthenticationDataClient, SystemAuthenticationDataClient>();

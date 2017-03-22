@@ -107,17 +107,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public void Remove(Guid itemId)
         {
-            _fabric.Items.Remove<Account>(Items, itemId);
+            _fabric.Items.Remove(Items, itemId);
         }
 
         public void Remove(Account itemToRemove)
         {
-            _fabric.Items.Remove<Account>(Items, itemToRemove);
+            _fabric.Items.Remove(Items, itemToRemove);
         }
 
         public Account Update(Guid itemId, Account updatedItem)
         {
-            return _fabric.Items.Update<Account>(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
         }
     }
 }

@@ -15,8 +15,8 @@
 
         public void Register(Container container)
         {
-            container.Register<IDataContextConfiguration>(() => _configuration);
-            container.Register<ILogicalContext>(() => _configuration.LogicalContext);
+            container.Register(() => _configuration);
+            container.Register(() => _configuration.LogicalContext);
 
             container.Register<IDataContext, DataContext>();
             container.Register<IQueryParser, QueryParser>(QueryParser.CreateDefault);

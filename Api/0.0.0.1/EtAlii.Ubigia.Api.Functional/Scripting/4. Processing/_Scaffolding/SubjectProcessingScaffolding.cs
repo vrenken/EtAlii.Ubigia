@@ -26,7 +26,7 @@
             container.Register<IRootDefinitionSubjectProcessor, RootDefinitionSubjectProcessor>();
 
             container.Register<IFunctionHandlerFactory, FunctionHandlerFactory>();
-            container.Register<IFunctionHandlersProvider>(() => GetFunctionHandlersProvider(container));
+            container.Register(() => GetFunctionHandlersProvider(container));
         }
     }
 }

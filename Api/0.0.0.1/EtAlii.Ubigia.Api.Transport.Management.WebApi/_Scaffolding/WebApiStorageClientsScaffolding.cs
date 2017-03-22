@@ -32,12 +32,12 @@
 
             if (_infrastructureClient != null)
             {
-                container.Register<IInfrastructureClient>(() => _infrastructureClient);
+                container.Register(() => _infrastructureClient);
             }
             else
             {
                 container.Register<IInfrastructureClient, DefaultInfrastructureClient>();
-                container.Register<ISerializer>(() => new SerializerFactory().Create());
+                container.Register(() => new SerializerFactory().Create());
                 container.Register<IHttpClientFactory, DefaultHttpClientFactory>();
             }
 

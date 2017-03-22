@@ -93,7 +93,7 @@
 
         private void EnsureUniqueComponents(IEnumerable<Relation> allRelations, string name)
         {
-            var uniqueRelations = allRelations.Distinct<Relation>();
+            var uniqueRelations = allRelations.Distinct();
             if (allRelations.Count() != uniqueRelations.Count())
             {
                 var doubleRelations = allRelations.Except(uniqueRelations);

@@ -25,7 +25,7 @@
         {
             using (var stream = LongPathFile.Open(fileName, FileMode.CreateNew, FileAccess.Write))
             {
-                _itemSerializer.Serialize<T>(stream, item);
+                _itemSerializer.Serialize(stream, item);
             }
         }
 

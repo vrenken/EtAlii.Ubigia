@@ -17,9 +17,9 @@
 
         public void Register(Container container)
         {
-            container.Register<IDependencyResolver>(() => _signalRDependencyResolver);
+            container.Register(() => _signalRDependencyResolver);
             container.Register<IParameterResolver,SignalRParameterResolver>();
-            container.Register<ISerializer>(() => new SerializerFactory().Create());
+            container.Register(() => new SerializerFactory().Create());
 
             container.Register<ISignalRAuthenticationVerifier, SignalRAuthenticationVerifier>();
             container.Register<ISignalRAuthenticationTokenVerifier, SignalRAuthenticationTokenVerifier>();
