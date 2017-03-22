@@ -14,8 +14,8 @@
 
         public void Register(Container container)
         {
-            container.Register<IStorageTransport>(() => _configuration.Transport);
-            container.Register<IStorageConnectionConfiguration>(() => _configuration);
+            container.Register(() => _configuration.Transport);
+            container.Register(() => _configuration);
 
             container.Register<IAuthenticationContext, AuthenticationContext>();
             container.Register<IStorageContext, StorageContext>();

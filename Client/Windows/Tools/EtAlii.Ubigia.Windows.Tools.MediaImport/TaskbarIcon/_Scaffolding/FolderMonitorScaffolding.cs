@@ -13,7 +13,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IObservableFolderSyncConfigurationCollection>(() => _folderSyncConfigurations);
+            container.Register(() => _folderSyncConfigurations);
             container.Register<IFolderMonitor, FolderMonitor>();
             container.Register<IFolderMonitorManager, FolderMonitorManager>();
         }

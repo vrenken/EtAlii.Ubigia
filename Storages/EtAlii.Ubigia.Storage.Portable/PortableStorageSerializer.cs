@@ -44,7 +44,7 @@
 
             using (var stream = openFileTask.Result)
             {
-                _itemSerializer.Serialize<T>(stream, item);
+                _itemSerializer.Serialize(stream, item);
             }
         }
 

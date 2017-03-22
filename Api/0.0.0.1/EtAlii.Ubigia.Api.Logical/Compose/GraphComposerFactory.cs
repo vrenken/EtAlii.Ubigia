@@ -17,9 +17,9 @@
         {
             var container = new Container();
 
-            container.Register<IFabricContext>(() => fabric);
+            container.Register(() => fabric);
             container.Register<IGraphComposer, GraphComposer>();
-            container.Register<IGraphPathTraverserFactory>(() => _graphPathTraverserFactory);
+            container.Register(() => _graphPathTraverserFactory);
 
             // Helpers:
             container.Register<IHierarchicalRelationDuplicator, HierarchicalRelationDuplicator>();

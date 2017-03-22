@@ -62,7 +62,7 @@
                                 .ObserveOnDispatcher()
                                 .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new ParseScriptUnitOfwork(this), _parseScriptUnitOfworkHandler));
 
-            Code = _graphContext.QueryProcessor.Process<string>(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs"), _textTemplateQueryHandler).Single();
+            Code = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs"), _textTemplateQueryHandler).Single();
         }
 
         protected override void Execute(object obj)

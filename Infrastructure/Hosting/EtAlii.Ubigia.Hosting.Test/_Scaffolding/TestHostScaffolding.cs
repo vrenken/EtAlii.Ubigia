@@ -10,7 +10,7 @@
         public void Register(Container container)
         {
             container.Register<IAddressFactory, AddressFactory>();
-            container.Register<IInfrastructureClient>(() => CreateTestInfrastructureClient(container));
+            container.Register(() => CreateTestInfrastructureClient(container));
         }
 
         private IInfrastructureClient CreateTestInfrastructureClient(Container container)

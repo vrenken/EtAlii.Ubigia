@@ -14,8 +14,8 @@
 
         public void Register(Container container)
         {
-            container.Register<IStorageConfiguration>(() => _storageConfiguration);
-            container.Register<ISerializer>(() => new SerializerFactory().Create());
+            container.Register(() => _storageConfiguration);
+            container.Register(() => new SerializerFactory().Create());
         }
     }
 }

@@ -33,7 +33,7 @@
             container.Register<IIdentifierRootHandlerPathPartMatcher, IdentifierRootHandlerPathPartMatcher>();
 
             container.Register<IRootHandlerMapperFactory, RootHandlerMapperFactory>();
-            container.Register<IRootHandlerMappersProvider>(() => GetRootHandlerMappersProvider(container));
+            container.Register(() => GetRootHandlerMappersProvider(container));
 
         }
     }

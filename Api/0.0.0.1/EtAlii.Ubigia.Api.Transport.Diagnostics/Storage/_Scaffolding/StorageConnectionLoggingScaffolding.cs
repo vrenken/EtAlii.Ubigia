@@ -11,8 +11,8 @@
         {
             var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
 
-            container.Register<ILogFactory>(() => diagnostics.CreateLogFactory());
-            container.Register<ILogger>(() => diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
+            container.Register(() => diagnostics.CreateLogFactory());
+            container.Register(() => diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
 
             if (diagnostics.EnableLogging) // logging is enabled.
             {

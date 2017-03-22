@@ -97,17 +97,17 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public void Remove(Guid itemId)
         {
-            _fabric.Items.Remove<Space>(Items, itemId);
+            _fabric.Items.Remove(Items, itemId);
         }
 
         public void Remove(Space itemToRemove)
         {
-            _fabric.Items.Remove<Space>(Items, itemToRemove);
+            _fabric.Items.Remove(Items, itemToRemove);
         }
 
         public Space Update(Guid itemId, Space updatedItem)
         {
-            return _fabric.Items.Update<Space>(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
         }
     }
 }

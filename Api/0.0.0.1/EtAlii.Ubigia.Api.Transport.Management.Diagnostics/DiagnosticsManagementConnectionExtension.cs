@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
                 (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api.Management"),
                 (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api.Management"));
 
-            container.Register<IDiagnosticsConfiguration>(() => diagnostics);
+            container.Register(() => diagnostics);
 
             var scaffoldings = new IScaffolding[]
             {

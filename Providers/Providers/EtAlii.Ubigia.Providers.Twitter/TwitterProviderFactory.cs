@@ -9,13 +9,13 @@
         {
             var container = new xTechnology.MicroContainer.Container();
 
-            container.Register<IProviderConfiguration>(() => configuration);
-            container.Register<IDataContext>(() => configuration.SystemDataContext);
+            container.Register(() => configuration);
+            container.Register(() => configuration.SystemDataContext);
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, TwitterProvider>();
             container.Register<ITweetImporter, TweetImporter>();
 
-            container.Register<ILogger>(() => configuration.LogFactory.Create("Twitter", "Provider"));
+            container.Register(() => configuration.LogFactory.Create("Twitter", "Provider"));
 
             return container.GetInstance<IProvider>();
         }

@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var container = new Container();
 
             container.Register<ILogicalTestContext,LogicalTestContext>();
-            container.Register<IFabricTestContext>(() => new FabricTestContextFactory().Create());
+            container.Register(() => new FabricTestContextFactory().Create());
 
             return container.GetInstance<ILogicalTestContext>();
         }

@@ -11,9 +11,9 @@
         {
             var container = new Container();
 
-            container.Register<IProviderConfiguration>(() => configuration);
-            container.Register<IDataContext>(() => configuration.SystemDataContext);
-            container.Register<IManagementConnection>(() => configuration.ManagementConnection);
+            container.Register(() => configuration);
+            container.Register(() => configuration.SystemDataContext);
+            container.Register(() => configuration.ManagementConnection);
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, MicrosoftGraphProvider>();
 
@@ -29,7 +29,7 @@
             container.Register<IOneDriveImporter, OneDriveImporter>();
             container.Register<IOneNoteImporter, OneNoteImporter>();
 
-            container.Register<ILogger>(() => configuration.LogFactory.Create("Microsoft.Graph", "Provider"));
+            container.Register(() => configuration.LogFactory.Create("Microsoft.Graph", "Provider"));
 
             return container.GetInstance<IProvider>();
         }

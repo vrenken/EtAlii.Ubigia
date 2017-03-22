@@ -32,7 +32,7 @@
             try
             {
                 var spaces = _items.GetAll(accountId);
-                response = Request.CreateResponse<IEnumerable<Space>>(HttpStatusCode.OK, spaces);
+                response = Request.CreateResponse(HttpStatusCode.OK, spaces);
             }
             catch (Exception ex)
             {
@@ -48,7 +48,7 @@
             try
             {
                 var space = _items.Get(accountId, spaceName);
-                response = Request.CreateResponse<Space>(HttpStatusCode.OK, space);
+                response = Request.CreateResponse(HttpStatusCode.OK, space);
             }
             catch (Exception ex)
             {
@@ -65,7 +65,7 @@
             try
             {
                 var items = _items.GetAll();
-                response = Request.CreateResponse<IEnumerable<Space>>(HttpStatusCode.OK, items);
+                response = Request.CreateResponse(HttpStatusCode.OK, items);
             }
             catch (Exception ex)
             {
@@ -82,7 +82,7 @@
             try
             {
                 var item = _items.Get(spaceId);
-                response = Request.CreateResponse<Space>(HttpStatusCode.OK, item);
+                response = Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception ex)
             {
@@ -100,7 +100,7 @@
             {
                 var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
                 item = _items.Add(item, template);
-                response = Request.CreateResponse<Space>(HttpStatusCode.OK, item);
+                response = Request.CreateResponse(HttpStatusCode.OK, item);
             }
             catch (Exception ex)
             {

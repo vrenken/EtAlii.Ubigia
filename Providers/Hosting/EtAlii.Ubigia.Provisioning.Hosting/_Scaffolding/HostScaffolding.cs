@@ -22,9 +22,9 @@
         public void Register(Container container)
         {
             container.Register<IProviderHost, TProvider>();
-            container.Register<IHostConfiguration>(() => _configuration);
+            container.Register(() => _configuration);
 
-            container.Register<IManagementConnection>(() =>
+            container.Register(() =>
             {
                 var configuration = _configuration.CreateManagementConnectionConfiguration()
                 .Use(SignalRStorageTransportProvider.Create())
@@ -38,7 +38,7 @@
                 task.Wait();
                 return connection;
             });
-            container.Register<IDataContext>(() =>
+            container.Register(() =>
             {
                 var configuration = _configuration.CreateDataConnectionConfiguration()
                     .Use(SignalRTransportProvider.Create())

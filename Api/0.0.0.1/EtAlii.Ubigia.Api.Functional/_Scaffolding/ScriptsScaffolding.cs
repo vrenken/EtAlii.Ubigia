@@ -19,8 +19,8 @@
         {
             container.Register<IScriptProcessorFactory, ScriptProcessorFactory>();
             container.Register<IScriptParserFactory, ScriptParserFactory>();
-            container.Register<IFunctionHandlersProvider>(() => _functionHandlersProvider);
-            container.Register<IRootHandlerMappersProvider>(() => _rootHandlerMappersProvider);
+            container.Register(() => _functionHandlersProvider);
+            container.Register(() => _rootHandlerMappersProvider);
         }
     }
 }

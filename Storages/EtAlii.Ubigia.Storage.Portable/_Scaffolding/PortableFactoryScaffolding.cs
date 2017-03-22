@@ -14,7 +14,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IFolder>(() => _localStorage);
+            container.Register(() => _localStorage);
         }
     }
 }

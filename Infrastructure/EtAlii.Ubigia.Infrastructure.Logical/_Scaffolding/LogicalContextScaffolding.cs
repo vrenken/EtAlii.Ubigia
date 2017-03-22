@@ -29,8 +29,8 @@
                     container.GetInstance<ILogicalIdentifierSet>());
             });
 
-            container.Register<ILogicalContextConfiguration>(() => _configuration);
-            container.Register<IFabricContext>(() => _configuration.Fabric);
+            container.Register(() => _configuration);
+            container.Register(() => _configuration.Fabric);
 
             container.Register<ILogicalStorageSet, LogicalStorageSet>();
             container.Register<ILocalStorageGetter, LocalStorageGetter>();

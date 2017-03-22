@@ -19,12 +19,12 @@
         {
             //var storage = _storageFactory.Create(_diagnostics);
             //var infrastructure = _infrastructureFactory.Create(storage, _diagnostics);
-            container.Register<IStorage>(() => _hostConfiguration.Storage);
-            container.Register<IInfrastructure>(() => _hostConfiguration.Infrastructure);
-            container.Register<IHostConfiguration>(() => _hostConfiguration);
+            container.Register(() => _hostConfiguration.Storage);
+            container.Register(() => _hostConfiguration.Infrastructure);
+            container.Register(() => _hostConfiguration);
 
             //container.Register<ISerializer, Serializer>(Lifestyle.Singleton);
-            container.Register<ISerializer>(() => new SerializerFactory().Create());
+            container.Register(() => new SerializerFactory().Create());
         }
     }
 }

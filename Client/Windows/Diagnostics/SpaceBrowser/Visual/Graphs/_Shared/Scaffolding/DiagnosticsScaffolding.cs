@@ -8,9 +8,9 @@
     {
         public void Register(Container container, IDiagnosticsConfiguration diagnostics, ILogger logger, ILogFactory logFactory)
         {
-            container.Register<IDiagnosticsConfiguration>(() => diagnostics);
-            container.Register<ILogger>(() => logger);
-            container.Register<ILogFactory>(() => logFactory);
+            container.Register(() => diagnostics);
+            container.Register(() => logger);
+            container.Register(() => logFactory);
         }
     }
 }

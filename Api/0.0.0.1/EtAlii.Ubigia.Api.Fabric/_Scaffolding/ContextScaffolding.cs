@@ -17,7 +17,7 @@
             container.Register<IFabricContext, FabricContext>();
             container.Register<IFabricContextConfiguration, FabricContextConfiguration>();
 
-            container.Register<IDataConnection>(() => _connection);
+            container.Register(() => _connection);
         }
     }
 }

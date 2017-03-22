@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
         {
             var container = new Container();
             container.Register<ISignalRComponentManager, SignalRComponentManager>();
-            container.Register<IDependencyResolver>(() => dependencyResolver);
+            container.Register(() => dependencyResolver);
 
             container.Register<ISignalRUserApiComponent, SignalRUserApiComponent>();
             container.Register<ISignalRAdminApiComponent, SignalRAdminApiComponent>();

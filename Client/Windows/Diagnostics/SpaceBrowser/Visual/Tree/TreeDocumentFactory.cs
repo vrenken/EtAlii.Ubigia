@@ -26,16 +26,16 @@
             new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
             new StructureScaffolding().Register(container);
 
-            container.Register<IFabricContext>(() => fabricContext);
-            container.Register<IDataContext>(() => dataContext);
-            container.Register<IGraphContext>(() =>
+            container.Register(() => fabricContext);
+            container.Register(() => dataContext);
+            container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
                 return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
             });
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
-            container.Register<IJournalViewModel>(() => journal);
+            container.Register(() => journal);
             container.Register<ITreeDocumentViewModel, TreeDocumentViewModel>();
             container.Register<IGraphButtonsViewModel, GraphButtonsViewModel>();
             container.Register<IGraphContextMenuViewModel, GraphContextMenuViewModel>();

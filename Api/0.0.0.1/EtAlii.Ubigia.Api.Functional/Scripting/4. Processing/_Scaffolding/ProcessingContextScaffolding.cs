@@ -15,9 +15,9 @@
         public void Register(Container container)
         {
             container.Register<IProcessingContext, ProcessingContext>();
-            container.Register<ILogicalContext>(() => _configuration.LogicalContext);
-            container.Register<IScriptScope>(() => _configuration.ScriptScope);
-            container.Register<IScriptProcessorConfiguration>(() => _configuration);
+            container.Register(() => _configuration.LogicalContext);
+            container.Register(() => _configuration.ScriptScope);
+            container.Register(() => _configuration);
         }
     }
 }

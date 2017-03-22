@@ -21,7 +21,7 @@
                 (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"),
                 (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"));
 
-            container.Register<IDiagnosticsConfiguration>(() => diagnostics);
+            container.Register(() => diagnostics);
         }
     }
 }

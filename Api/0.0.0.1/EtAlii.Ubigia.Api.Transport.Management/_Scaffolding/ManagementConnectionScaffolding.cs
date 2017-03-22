@@ -13,7 +13,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IManagementConnectionConfiguration>(() => _configuration);
+            container.Register(() => _configuration);
             container.Register<IManagementConnection, ManagementConnection>();
         }
     }

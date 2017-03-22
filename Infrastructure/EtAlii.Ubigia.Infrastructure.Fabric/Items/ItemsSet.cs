@@ -27,25 +27,25 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         public T Add<T>(IList<T> items, T item) 
             where T : class, IIdentifiable
         {
-            return _itemAdder.Add<T>(items, item);
+            return _itemAdder.Add(items, item);
         }
 
         public T Add<T>(IList<T> items, Func<IList<T>, T, bool> cannAddFunction, T item) 
             where T : class, IIdentifiable
         {
-            return _itemAdder.Add<T>(items, cannAddFunction, item);
+            return _itemAdder.Add(items, cannAddFunction, item);
         }
 
         public IEnumerable<T> GetAll<T>(IList<T> items) 
             where T : class, IIdentifiable
         {
-            return _itemGetter.GetAll<T>(items);
+            return _itemGetter.GetAll(items);
         }
 
         public T Get<T>(IList<T> items, Guid id) 
             where T : class, IIdentifiable
         {
-            return _itemGetter.Get<T>(items, id);
+            return _itemGetter.Get(items, id);
         }
 
         public ObservableCollection<T> GetItems<T>(string folder) 
@@ -57,19 +57,19 @@ namespace EtAlii.Ubigia.Infrastructure.Fabric
         public void Remove<T>(IList<T> items, Guid itemId) 
             where T : class, IIdentifiable
         {
-            _itemRemover.Remove<T>(items, itemId);
+            _itemRemover.Remove(items, itemId);
         }
 
         public void Remove<T>(IList<T> items, T itemToRemove) 
             where T : class, IIdentifiable
         {
-            _itemRemover.Remove<T>(items, itemToRemove);
+            _itemRemover.Remove(items, itemToRemove);
         }
 
         public T Update<T>(IList<T> items, Func<T, T, T> updateFunction, string folder, Guid itemId, T updatedItem) 
             where T : class, IIdentifiable
         {
-            return _itemUpdater.Update<T>(items, updateFunction, folder, itemId, updatedItem);
+            return _itemUpdater.Update(items, updateFunction, folder, itemId, updatedItem);
         }
     }
 }

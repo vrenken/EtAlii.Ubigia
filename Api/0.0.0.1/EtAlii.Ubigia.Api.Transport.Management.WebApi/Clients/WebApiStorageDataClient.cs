@@ -18,7 +18,7 @@
                 Address = storageAddress,
             };
 
-            storage = await Connection.Client.Post<Storage>(addAddress, storage);
+            storage = await Connection.Client.Post(addAddress, storage);
             return storage;
         }
 

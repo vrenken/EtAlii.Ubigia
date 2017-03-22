@@ -23,9 +23,9 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
         {
             // This should actually not be needed anymore because the datacontext should be the sole entry point for an application.
             // However, I have no good idea on how to redesign it that way. All other solutions have disadvantages as well.  
-            container.Register<IDataConnection>(() => _connection);
+            container.Register(() => _connection);
 
-            container.Register<IDataContext>(() =>
+            container.Register(() =>
             {
                 var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
                 var fabricContextConfiguration = new FabricContextConfiguration()

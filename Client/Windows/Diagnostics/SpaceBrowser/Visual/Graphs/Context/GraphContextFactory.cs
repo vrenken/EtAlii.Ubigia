@@ -14,10 +14,10 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
         {
             var container = new Container();
 
-            container.Register<ILogger>(() => logger);
-            container.Register<IJournalViewModel>(() => journal);
-            container.Register<IFabricContext>(() => fabricContext);
-            container.Register<IDocumentViewModelProvider>(() => documentViewModelProvider);
+            container.Register(() => logger);
+            container.Register(() => journal);
+            container.Register(() => fabricContext);
+            container.Register(() => documentViewModelProvider);
             
 
             var graphScaffolding = new GraphScaffolding();

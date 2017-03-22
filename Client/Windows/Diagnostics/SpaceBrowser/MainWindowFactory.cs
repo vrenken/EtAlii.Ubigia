@@ -68,14 +68,14 @@
         {
             // We start with the connection.
             container.Register<IDataConnection>(() => connection);
-            container.Register<IProfilingDataConnection>(() => connection);
+            container.Register(() => connection);
 
             // Then the fabric context.
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             var fabricContext = new FabricContextFactory().CreateForProfiling(fabricContextConfiguration);
             container.Register<IFabricContext>(() => fabricContext);
-            container.Register<IProfilingFabricContext>(() => fabricContext);
+            container.Register(() => fabricContext);
 
             // The logical context.
             container.Register<ILogicalContext>(() =>
@@ -85,7 +85,7 @@
                     .Use(diagnostics);
                 return new LogicalContextFactory().CreateForProfiling(logicalContextConfiguration);
             });
-            container.Register<IProfilingLogicalContext>(() => (IProfilingLogicalContext)container.GetInstance<ILogicalContext>());
+            container.Register(() => (IProfilingLogicalContext)container.GetInstance<ILogicalContext>());
 
             // Function handling
             container.Register<ISpaceBrowserFunctionHandlersProvider, SpaceBrowserFunctionHandlersProvider>();
@@ -101,14 +101,14 @@
                                     .UseWin32();
                 return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
             });
-            container.Register<IProfilingDataContext>(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
+            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
         }
 
         private void RegisterDiagnostics(Container container, IDiagnosticsConfiguration diagnostics)
         {
-            container.Register<IDiagnosticsConfiguration>(() => diagnostics);
-            container.Register<ILogFactory>(() => container.GetInstance<IDiagnosticsConfiguration>().CreateLogFactory());
-            container.Register<ILogger>(() =>
+            container.Register(() => diagnostics);
+            container.Register(() => container.GetInstance<IDiagnosticsConfiguration>().CreateLogFactory());
+            container.Register(() =>
             {
                 var factory = container.GetInstance<ILogFactory>();
                 return container.GetInstance<IDiagnosticsConfiguration>().CreateLogger(factory);

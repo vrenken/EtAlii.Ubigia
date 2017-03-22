@@ -17,7 +17,7 @@
                 Password = accountPassword,
             };
 
-            account = await Connection.Client.Post<Account>(address, account);
+            account = await Connection.Client.Post(address, account);
             return account;
         }
 

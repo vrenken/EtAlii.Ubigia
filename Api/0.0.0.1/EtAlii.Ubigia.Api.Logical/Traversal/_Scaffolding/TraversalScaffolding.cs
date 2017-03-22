@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void Register(Container container)
         {
-            container.Register<IFabricContext>(() => _configuration.FabricContext);
+            container.Register(() => _configuration.FabricContext);
             container.Register<IGraphPathTraverser, GraphPathTraverser>();
             container.Register<IGraphPathPartTraverserSelector, GraphPathPartTraverserSelector>();
 

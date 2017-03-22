@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void Register(Container container)
         {
-            container.Register<IFabricContext>(() => _fabricContext);
+            container.Register(() => _fabricContext);
 
             container.Register<ITraversalContextEntrySet, TraversalContextEntrySet>();
             container.Register<ITraversalContextPropertySet, TraversalContextPropertySet>();

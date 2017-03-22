@@ -25,7 +25,7 @@
             {
                 throw new InvalidOperationException();
             }
-            container.Register<IDiagnosticsConfiguration>(() => _diagnostics);
+            container.Register(() => _diagnostics);
         }
     }
 }

@@ -62,7 +62,7 @@
                 responseDisposer.Dispose();
             });
             prepareRequest((IRequest)requestMessageWrapper);
-            return SignalRTaskAsyncHelper.Then<HttpResponseMessage, IResponse>(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
+            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
             {
                 if (!responseMessage.IsSuccessStatusCode)
                 {
@@ -101,7 +101,7 @@
                 responseDisposer.Dispose();
             });
             prepareRequest((IRequest)requestMessageWrapper);
-            return SignalRTaskAsyncHelper.Then<HttpResponseMessage, IResponse>(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
+            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
             {
                 if (!responseMessage.IsSuccessStatusCode)
                 {

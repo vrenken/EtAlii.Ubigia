@@ -47,9 +47,9 @@
 
             Container.Register<IGlobalSettings, GlobalSettings>();
             Container.Register<ILogFactory, DisabledLogFactory>();
-            Container.Register<ILogger>(GetLogger);
+            Container.Register(GetLogger);
             Container.Register<IProfilerFactory, DisabledProfilerFactory>();
-            Container.Register<IProfiler>(GetProfiler);
+            Container.Register(GetProfiler);
         }
 
         //protected void RegisterKnownTypesInAssembly(Assembly assembly, Type[] typesToInclude, Type[] typesToExclude)

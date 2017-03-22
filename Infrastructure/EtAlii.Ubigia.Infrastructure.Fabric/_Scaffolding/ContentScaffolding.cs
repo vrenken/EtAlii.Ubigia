@@ -13,7 +13,7 @@
             container.Register<IContentPartGetter, ContentPartGetter>();
             container.Register<IContentStorer, ContentStorer>();
             container.Register<IContentPartStorer, ContentPartStorer>();
-            container.Register<IHash>(HashFactory.Checksum.CreateCRC64_ECMA);
+            container.Register(HashFactory.Checksum.CreateCRC64_ECMA);
         }
     }
 }

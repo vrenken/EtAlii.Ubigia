@@ -63,7 +63,7 @@
             where T : class, IComponent
         {
             var startTicks = Environment.TickCount;
-            _storage.Store<T>(container, component);
+            _storage.Store(container, component);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(_storeCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }
@@ -72,7 +72,7 @@
             where T : class, IComponent
         {
             var startTicks = Environment.TickCount;
-            _storage.StoreAll<T>(container, components);
+            _storage.StoreAll(container, components);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(_storeCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }

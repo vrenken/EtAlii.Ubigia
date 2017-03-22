@@ -118,7 +118,7 @@
                 }
                 else
                 {
-                    _componentStorer.Store<T>(container, component);
+                    _componentStorer.Store(container, component);
                 }
             }
             catch (Exception e)

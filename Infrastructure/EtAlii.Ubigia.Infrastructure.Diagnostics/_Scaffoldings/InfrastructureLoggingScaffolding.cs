@@ -18,8 +18,8 @@
 
         public void Register(Container container)
         {
-            container.Register<ILogFactory>(() => _diagnostics.CreateLogFactory());
-            container.Register<ILogger>(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
+            container.Register(() => _diagnostics.CreateLogFactory());
+            container.Register(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
             if (_diagnostics.EnableLogging) // logging is enabled.
             {
                 container.RegisterDecorator(typeof(IInfrastructure), typeof(LoggingInfrastructureDecorator));

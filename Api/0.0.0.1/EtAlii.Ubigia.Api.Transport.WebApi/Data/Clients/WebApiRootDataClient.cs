@@ -14,7 +14,7 @@
             };
 
             var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString());
-            root = await Connection.Client.Post<Root>(address, root);
+            root = await Connection.Client.Post(address, root);
             return root;
         }
         

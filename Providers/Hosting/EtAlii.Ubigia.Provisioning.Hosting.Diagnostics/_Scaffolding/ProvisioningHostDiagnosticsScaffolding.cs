@@ -14,7 +14,7 @@
 
         public void Register(Container container)
         {
-            container.Register<IDiagnosticsConfiguration>(() => _diagnostics);
+            container.Register(() => _diagnostics);
         }
     }
 }

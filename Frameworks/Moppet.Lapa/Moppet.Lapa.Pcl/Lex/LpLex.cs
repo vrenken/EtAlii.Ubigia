@@ -574,7 +574,7 @@ namespace Moppet.Lapa
             /// <returns>Копия.</returns>
             public Expression<TDelegate> ReplaceArgs<TDelegate>(Expression<TDelegate> lambda, ParameterExpression oldParam, ParameterExpression newParam)
             {
-                return ReplaceArgs<TDelegate>(lambda, new List<ParameterExpression>() { oldParam }, new List<ParameterExpression>() { newParam });
+                return ReplaceArgs(lambda, new List<ParameterExpression>() { oldParam }, new List<ParameterExpression>() { newParam });
             }
 
             /// <summary>
@@ -590,7 +590,7 @@ namespace Moppet.Lapa
             {
                 m_lambdaArgsToSearch = argsToSearch;
                 m_lambdaArgsToReplace = argsToReplace;
-                var lambdaСopy = (Expression<TDelegate>)VisitLambda<TDelegate>(lambda);
+                var lambdaСopy = (Expression<TDelegate>)VisitLambda(lambda);
                 return lambdaСopy;
             }
 

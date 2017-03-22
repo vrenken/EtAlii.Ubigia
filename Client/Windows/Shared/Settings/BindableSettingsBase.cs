@@ -35,7 +35,7 @@
             {
                 using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
                 {
-                    storage = (T)GetValue<T>(ref defaultValue, propertyName, registryKey);
+                    storage = (T)GetValue(ref defaultValue, propertyName, registryKey);
                     SetValue(registryKey, storage, propertyName);
                 }
             }
@@ -49,7 +49,7 @@
             {
                 using (var registryKey = Registry.CurrentUser.CreateSubKey(_registryKey))
                 {
-                    storage = (T)GetValue<T>(ref defaultValue, propertyName, registryKey);
+                    storage = (T)GetValue(ref defaultValue, propertyName, registryKey);
                     SetValue(registryKey, storage.Value, propertyName);
                 }
             }

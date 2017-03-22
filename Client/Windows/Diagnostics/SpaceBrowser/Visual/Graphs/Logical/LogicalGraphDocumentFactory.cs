@@ -27,14 +27,14 @@
             new StructureScaffolding().Register(container);
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
-            container.Register<IJournalViewModel>(() => journal);
+            container.Register(() => journal);
             container.Register<ILogicalGraphDocumentViewModel, LogicalGraphDocumentViewModel>();
             container.Register<IGraphButtonsViewModel, GraphButtonsViewModel>();
             container.Register<IGraphContextMenuViewModel, GraphContextMenuViewModel>();
 
-            container.Register<IFabricContext>(() => fabricContext);
-            container.Register<IDataContext>(() => dataContext);
-            container.Register<IGraphContext>(() =>
+            container.Register(() => fabricContext);
+            container.Register(() => dataContext);
+            container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
                 return graphContextFactory.Create(logger, journal, fabricContext, dvmp);

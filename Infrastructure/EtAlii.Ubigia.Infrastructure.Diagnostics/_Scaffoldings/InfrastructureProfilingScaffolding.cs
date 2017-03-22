@@ -16,8 +16,8 @@
 
         public void Register(Container container)
         {
-            container.Register<IProfilerFactory>(() => _diagnostics.CreateProfilerFactory());
-            container.Register<IProfiler>(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
+            container.Register(() => _diagnostics.CreateProfilerFactory());
+            container.Register(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
 
             if (_diagnostics.EnableProfiling) // profiling is enabled
             {

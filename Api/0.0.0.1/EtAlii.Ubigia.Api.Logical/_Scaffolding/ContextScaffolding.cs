@@ -15,9 +15,9 @@ namespace EtAlii.Ubigia.Api.Logical
         public void Register(Container container)
         {
             container.Register<ILogicalContext, LogicalContext>();
-            container.Register<ILogicalContextConfiguration>(() => _configuration);
+            container.Register(() => _configuration);
 
-            container.Register<IFabricContext>(() => _configuration.Fabric);
+            container.Register(() => _configuration.Fabric);
             container.Register<ILogicalNodeSet, LogicalNodeSet>();
             container.Register<ILogicalRootSet, LogicalRootSet>();
 

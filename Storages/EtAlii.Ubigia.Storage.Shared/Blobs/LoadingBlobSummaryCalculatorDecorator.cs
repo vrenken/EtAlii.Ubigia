@@ -39,7 +39,7 @@
                 if (summary != null && summary.IsComplete)
                 {
                     // Ok, the blob is comlpete. Lets write the summary to disk so that all future access is as fast as possible.
-                    _fileManager.SaveToFile<BlobSummary>(path, summary);
+                    _fileManager.SaveToFile(path, summary);
                 }
             }
             return summary;

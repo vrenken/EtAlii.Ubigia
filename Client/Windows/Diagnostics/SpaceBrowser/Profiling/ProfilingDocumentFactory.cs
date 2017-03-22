@@ -34,11 +34,11 @@
             container.Register<IProfilingViewModel, ProfilingViewModel>();
             container.Register<IProfilingAspectsViewModel, ProfilingAspectsViewModel>();
 
-            container.Register<IProfilingDataContext>(() => (IProfilingDataContext)dataContext);
-            container.Register<IProfilingLogicalContext>(() => (IProfilingLogicalContext)logicalContext);
-            container.Register<IProfilingFabricContext>(() => (IProfilingFabricContext)fabricContext);
-            container.Register<IProfilingDataConnection>(() => (IProfilingDataConnection)connection);
-            container.Register<IGraphContext>(() =>
+            container.Register(() => (IProfilingDataContext)dataContext);
+            container.Register(() => (IProfilingLogicalContext)logicalContext);
+            container.Register(() => (IProfilingFabricContext)fabricContext);
+            container.Register(() => (IProfilingDataConnection)connection);
+            container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
                 return graphContextFactory.Create(logger, journal, fabricContext, dvmp);

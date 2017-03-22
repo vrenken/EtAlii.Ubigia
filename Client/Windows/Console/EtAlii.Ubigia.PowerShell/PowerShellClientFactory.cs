@@ -22,11 +22,11 @@
         {
             if(infrastructureClient != null)
             {
-                container.Register<IInfrastructureClient>(() => infrastructureClient);
+                container.Register(() => infrastructureClient);
             }
             else
             {
-                container.Register<ISerializer>(() => new SerializerFactory().Create());
+                container.Register(() => new SerializerFactory().Create());
                 container.Register<IInfrastructureClient, DefaultInfrastructureClient>();
                 container.Register<IHttpClientFactory, DefaultHttpClientFactory>();
             }

@@ -32,7 +32,7 @@
         public void Store<T>(T item, Guid id, ContainerIdentifier container) where T : class
         {
             var startTicks = Environment.TickCount;
-            _storage.Store<T>(item, id, container);
+            _storage.Store(item, id, container);
             var endTicks = Environment.TickCount;
             _profiler.WriteSample(_storeCounter, TimeSpan.FromTicks(endTicks - startTicks).TotalMilliseconds);
         }

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
         public void Initialize(Container container)
         {
-            container.Register<IProfiler>(() => _profiler);
+            container.Register(() => _profiler);
             //container.RegisterDecorator(typeof(IScriptProcessor), typeof(ProfilingScriptProcessor));
             //container.RegisterDecorator(typeof(ISequenceProcessor), typeof(ProfilingSequenceProcessor));
 

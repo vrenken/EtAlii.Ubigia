@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
                     {
                         result.Add(id);
 
-                        var relatedEntry = _graphContext.QueryProcessor.Process<IReadOnlyEntry>(new FindEntryOnGraphQuery(id), _graphContext.FindEntryOnGraphQueryHandler).FirstOrDefault();
+                        var relatedEntry = _graphContext.QueryProcessor.Process(new FindEntryOnGraphQuery(id), _graphContext.FindEntryOnGraphQueryHandler).FirstOrDefault();
                         if (relatedEntry != null)
                         {
                             var relatedRelations = selector(relatedEntry);
