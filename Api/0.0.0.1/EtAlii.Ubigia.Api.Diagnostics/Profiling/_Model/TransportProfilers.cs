@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
         public TransportProfilers()
         {
-            _all = new ProfilingAspect[]
+            _all = new[]
             {
                 _connection,
                 _entryDataClient

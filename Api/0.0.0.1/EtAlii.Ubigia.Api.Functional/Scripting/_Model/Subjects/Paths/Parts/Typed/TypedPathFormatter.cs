@@ -40,7 +40,7 @@
         }
 
         public static TypedPathFormatter[] All => _all.Value;
-        private static readonly Lazy<TypedPathFormatter[]> _all = new Lazy<TypedPathFormatter[]>(() => new TypedPathFormatter[]
+        private static readonly Lazy<TypedPathFormatter[]> _all = new Lazy<TypedPathFormatter[]>(() => new[]
         {
             Time.YearFormatter,
             Time.MonthFormatter,

@@ -49,7 +49,7 @@
             var updatesComponentCollection = new UpdatesComponentCollection();
             var identifier = Identifier.NewIdentifier(Guid.NewGuid(), Guid.NewGuid(), Guid.NewGuid());
             var relation = Relation.NewRelation(identifier);
-            var updatesComponent = new UpdatesComponent { Relations = new Relation[] { relation } };
+            var updatesComponent = new UpdatesComponent { Relations = new[] { relation } };
 
             // Act.
             updatesComponentCollection.Add(updatesComponent);

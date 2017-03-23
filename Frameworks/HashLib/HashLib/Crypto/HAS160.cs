@@ -3,17 +3,17 @@
     internal class HAS160 : BlockHash, ICryptoNotBuildIn
     {
         #region Consts
-        private static readonly int[] s_rot = new int[]
+        private static readonly int[] s_rot = new[]
         {
             5, 11,  7, 15,  6, 13,  8, 14,  7, 12,  9, 11,  8, 15,  6, 12,  9, 14,  5, 13
         };
 
-        private static readonly int[] s_tor = new int[] 
+        private static readonly int[] s_tor = new[] 
         {
             27, 21, 25, 17, 26, 19, 24, 18, 25, 20, 23, 21, 24, 17, 26, 20, 23, 18, 27, 19
         };
 
-        private static readonly int[] s_index = new int[]
+        private static readonly int[] s_index = new[]
         {
             18,  0,  1,  2,  3, 19,  4,  5, 6,  7, 16,  8,  9, 10, 11, 17, 12, 13, 14, 15,
             18,  3,  6,  9, 12, 19, 15,  2, 5,  8, 16, 11, 14,  1,  4, 17,  7, 10, 13,  0,

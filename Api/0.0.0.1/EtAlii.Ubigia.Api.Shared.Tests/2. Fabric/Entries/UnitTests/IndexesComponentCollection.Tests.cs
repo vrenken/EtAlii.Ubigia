@@ -29,7 +29,7 @@
             var identifier = TestIdentifier.Create();
 
             // Act.
-            collection.Add(new Relation[] { Relation.NewRelation(identifier) }, true);
+            collection.Add(new[] { Relation.NewRelation(identifier) }, true);
 
             // Assert.
         }
@@ -56,7 +56,7 @@
             var identifier = TestIdentifier.Create();
 
             // Act.
-            collection.Add(new Relation[] { Relation.NewRelation(identifier) }, true);
+            collection.Add(new[] { Relation.NewRelation(identifier) }, true);
 
             // Assert.
             Assert.NotNull(collection);
@@ -73,7 +73,7 @@
             var third = TestIdentifier.Create();
 
             // Act.
-            collection.Add(new Relation[]
+            collection.Add(new[]
             {
                 Relation.NewRelation(first),
                 Relation.NewRelation(second),
@@ -95,7 +95,7 @@
             var third = TestIdentifier.Create();
 
             // Act.
-            collection.Add(new Relation[]
+            collection.Add(new[]
             {
                 Relation.NewRelation(first),
                 Relation.NewRelation(third)

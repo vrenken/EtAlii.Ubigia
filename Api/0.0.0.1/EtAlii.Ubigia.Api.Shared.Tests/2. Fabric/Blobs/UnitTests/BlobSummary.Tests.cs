@@ -12,7 +12,7 @@
             var random = new Random();
             var blob = new ContentDefinition();
             var isComplete = true;
-            var availableParts = new ulong[] { (ulong)random.Next(0, int.MaxValue) };
+            var availableParts = new[] { (ulong)random.Next(0, int.MaxValue) };
 
             // Act.
             var summary = BlobSummary.Create(isComplete, blob, availableParts);
@@ -29,7 +29,7 @@
             var random = new Random();
             var parts = (ulong)random.Next(0, int.MaxValue);
             var isComplete = true;
-            var availableParts = new ulong[] { (ulong)random.Next(0, int.MaxValue) };
+            var availableParts = new[] { (ulong)random.Next(0, int.MaxValue) };
 
             // Act.
             var summary = BlobSummary.Create(isComplete, parts, availableParts);

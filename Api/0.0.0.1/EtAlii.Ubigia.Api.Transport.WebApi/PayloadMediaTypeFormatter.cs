@@ -71,7 +71,7 @@
             if (IsSimpleType(type) || type == typeof(byte[]))
             {
                 // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
-                var dictionaryType = OpenDictionaryType.MakeGenericType(new Type[] { typeof(string), type });
+                var dictionaryType = OpenDictionaryType.MakeGenericType(new[] { typeof(string), type });
                 var dictionary = base.ReadFromStream(dictionaryType, readStream, effectiveEncoding, formatterLogger) as IDictionary;
                 if (dictionary == null)
                 {

@@ -37,7 +37,7 @@ namespace Moppet.Lapa.Parsers
         public static LpsParser WebUrl(params string[] protocols)
         {
             if (protocols.Length == 0)
-                protocols = new string[] { "https", "http" };
+                protocols = new[] { "https", "http" };
 
             var protocol = Lp.Any(protocols).Id("Protocol");
             var hostPart = Lp.Name

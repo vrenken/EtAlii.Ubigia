@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         private readonly IPersonSetter _personSetter;
         private readonly TimeSpan _updateThreshold = TimeSpan.FromHours(1); 
 
-        private readonly string[] _contactScopes = new string[] { "https://www.googleapis.com/auth/contacts.readonly" };     // view your basic profile info.
+        private readonly string[] _contactScopes = new[] { "https://www.googleapis.com/auth/contacts.readonly" };     // view your basic profile info.
 
         public PeopleDataSpaceUpdater(
             IProviderContext context,

@@ -502,7 +502,7 @@ namespace HashLibTest
         public void TestConverters()
         {
             {
-                var chars = new char[] { '\x1234', '\xABCD' };
+                var chars = new[] { '\x1234', '\xABCD' };
                 var bytes = Converters.ConvertCharsToBytes(chars);
                 Assert.Equal(bytes.ToList(), 
                     Converters.ConvertHexStringToBytes("3412CDAB").ToList());
@@ -537,7 +537,7 @@ namespace HashLibTest
             }
 
             {
-                var ints = new int[] { 0x12345678, 0x7BCDEF45 };
+                var ints = new[] { 0x12345678, 0x7BCDEF45 };
                 var bytes = Converters.ConvertIntsToBytes(ints);
                 Assert.Equal(bytes.ToList(), 
                     Converters.ConvertHexStringToBytes("7856341245EFCD7B").ToList());
@@ -551,7 +551,7 @@ namespace HashLibTest
             }
 
             {
-                var longs = new long[] { 0x12345678ABCDEF45, 0x6756EEFFBC456783 };
+                var longs = new[] { 0x12345678ABCDEF45, 0x6756EEFFBC456783 };
                 var bytes = Converters.ConvertLongsToBytes(longs);
                 Assert.Equal(bytes.ToList(),
                     Converters.ConvertHexStringToBytes("12345678ABCDEF45").Reverse().Concat(
@@ -567,7 +567,7 @@ namespace HashLibTest
             }
 
             {
-                var doubles = new double[] { 56.678768, -34.4568768, 10e34, 10e-20, Double.NaN };
+                var doubles = new[] { 56.678768, -34.4568768, 10e34, 10e-20, Double.NaN };
                 var bytes = Converters.ConvertDoublesToBytes(doubles);
 
                 var b0 = BitConverter.GetBytes(doubles[0]);
@@ -581,7 +581,7 @@ namespace HashLibTest
             }
 
             {
-                var floats = new float[] { 56.678768f, -34.4568768f, 10e34f, 10e-20f, Single.NaN };
+                var floats = new[] { 56.678768f, -34.4568768f, 10e34f, 10e-20f, Single.NaN };
                 var bytes = Converters.ConvertFloatsToBytes(floats);
 
                 var b0 = BitConverter.GetBytes(floats[0]);

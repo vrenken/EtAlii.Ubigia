@@ -22,7 +22,7 @@
 
         public Storage GetLocal()
         {
-            var message = String.Format("Getting local storage");
+            var message = "Getting local storage";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -49,7 +49,7 @@
 
         public IEnumerable<Storage> GetAll()
         {
-            var message = String.Format("Getting all storages");
+            var message = "Getting all storages";
             _logger.Info(message);
             var start = Environment.TickCount;
 

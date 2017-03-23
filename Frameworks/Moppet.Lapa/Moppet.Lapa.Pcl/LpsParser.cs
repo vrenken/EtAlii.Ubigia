@@ -173,7 +173,7 @@ namespace Moppet.Lapa
 			return (text) =>
 			{
 				var result = parser.Do(text);
-				return result.Success ? new LpNode[] { result } : new LpNode[0];
+				return result.Success ? new[] { result } : new LpNode[0];
 			};
 		}
 
@@ -187,7 +187,7 @@ namespace Moppet.Lapa
 			return new LpmParser(parser.Identifier, (text) =>
 			{
 				var result = parser.Do(text);
-				return result.Success ? new LpNode[] { result } : new LpNode[0];
+				return result.Success ? new[] { result } : new LpNode[0];
 			});
 		}
 

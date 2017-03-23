@@ -32,7 +32,7 @@
 
         public async Task<IEditableEntry> Prepare()
         {
-            var message = String.Format("Preparing entry");
+            var message = "Preparing entry";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -88,7 +88,7 @@
 
         public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var message = String.Format("Getting multiple entries");
+            var message = "Getting multiple entries";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -102,7 +102,7 @@
 
         public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var message = String.Format("Getting related entries");
+            var message = "Getting related entries";
             _logger.Info(message);
             var start = Environment.TickCount;
 

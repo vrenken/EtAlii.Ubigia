@@ -34,7 +34,7 @@
 
         public GraphPath Weave_Original(GraphPath path)
         {
-            var pathParts = path.Select(p => new GraphPathPart[] { p, GraphRelation.Final })
+            var pathParts = path.Select(p => new[] { p, GraphRelation.Final })
                 .SelectMany(m => m)
                 .ToList();
 

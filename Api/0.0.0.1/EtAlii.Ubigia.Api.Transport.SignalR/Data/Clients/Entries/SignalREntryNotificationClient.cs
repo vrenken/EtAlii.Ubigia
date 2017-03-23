@@ -36,7 +36,7 @@
             await Task.Run(() =>
             {
                 _proxy = Connection.Transport.HubConnection.CreateHubProxy(_name);
-                _subscriptions = new IDisposable[]
+                _subscriptions = new[]
                 {
                     _proxy.On<Identifier>("prepared", OnPrepared),
                     _proxy.On<Identifier>("stored", OnStored),

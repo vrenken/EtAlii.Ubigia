@@ -9,7 +9,7 @@
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId)
         {
-            var paths = new string[] 
+            var paths = new[] 
             {
                 _entriesFolderName,
                 storageId.ToString(),
@@ -21,7 +21,7 @@
 
         public ContainerIdentifier ForEntry(Guid storageId, Guid accountId, Guid spaceId, ulong era, ulong period, ulong moment)
         {
-            var paths = new string[] 
+            var paths = new[] 
             {
                 _entriesFolderName,
                 storageId.ToString(),
@@ -36,7 +36,7 @@
 
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, ulong era, ulong period, ulong moment)
         {
-            var paths = new string[] 
+            var paths = new[] 
             {
                 _entriesFolderName,
                 storageId,
@@ -51,7 +51,7 @@
 
         public ContainerIdentifier ForEntry(string storageId, string accountId, string spaceId, string era, string period, string moment)
         {
-            var paths = new string[] 
+            var paths = new[] 
             {
                 _entriesFolderName,
                 storageId,
@@ -66,7 +66,7 @@
 
         public ContainerIdentifier ForRoots(Guid spaceId)
         {
-            var paths = new string[] 
+            var paths = new[] 
             {
                 "Roots",
                 spaceId.ToString()
@@ -77,7 +77,7 @@
 
         public ContainerIdentifier ForItems(string folder)
         {
-            var paths = new string[] 
+            var paths = new[] 
             {
                 folder
             };
@@ -90,7 +90,7 @@
             String[] paths;
             if (trimTime)
             {
-                paths = new string[] 
+                paths = new[] 
                 {
                     _entriesFolderName,
                     id.Storage.ToString(),
@@ -100,7 +100,7 @@
             }
             else
             {
-                paths = new string[] 
+                paths = new[] 
                 {
                     _entriesFolderName,
                     id.Storage.ToString(),

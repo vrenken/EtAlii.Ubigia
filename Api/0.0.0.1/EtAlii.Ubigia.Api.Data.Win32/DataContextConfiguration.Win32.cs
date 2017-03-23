@@ -4,7 +4,7 @@
     {
         public static IDataContextConfiguration UseWin32(this IDataContextConfiguration configuration)
         {
-            var functionHandlers = new IFunctionHandler[]
+            var functionHandlers = new[] 
             {
                 new FileFunctionHandlerFactory().Create(),
                 new FormatFunctionHandlerFactory().Create(),

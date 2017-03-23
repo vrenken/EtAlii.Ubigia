@@ -31,12 +31,12 @@
 
         protected virtual void RegisterKnownTypes()
         {
-            var typesToInclude = new Type[]
+            var typesToInclude = new[]
             {
                 typeof(BindableBase),
             };
 
-            var typesToExclude = new Type[]
+            var typesToExclude = new[]
             {
                 typeof(IGlobalSettings),
                 typeof(StorageSettings),

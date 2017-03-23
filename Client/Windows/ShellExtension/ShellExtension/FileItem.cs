@@ -37,18 +37,18 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 		public override int[] GetXPTaskPaneColumnIndices()
 		{
 			// Use all column values
-			return new int[] { 0,1,2,3 };
+			return new[] { 0,1,2,3 };
 		}
 
         public override int[] GetTileViewColumnIndices()
         {
 			// Use all column values
-			return new int[] { 1, 2, 3 };
+			return new[] { 1, 2, 3 };
         }
         public override int[] GetPreviewDetailsColumnIndices()
         {
 			// Use all column values
-			return new int[] { 0, 1, 2, 3 };
+			return new[] { 0, 1, 2, 3 };
         }	
 
 		// Called to get the thumbnail for the item

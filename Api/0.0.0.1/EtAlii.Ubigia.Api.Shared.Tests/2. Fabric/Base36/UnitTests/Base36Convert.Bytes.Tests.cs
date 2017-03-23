@@ -11,7 +11,7 @@
         public void Base36Convert_Bytes_ToString_0x00()
         {
             // Arrange.
-            var value = new byte[]{ (byte)0 };
+            var value = new[]{ (byte)0 };
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -24,7 +24,7 @@
         public void Base36Convert_Bytes_ToString_0x01()
         {
             // Arrange.
-            var value = new byte[] { (byte)1 };
+            var value = new[] { (byte)1 };
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -37,7 +37,7 @@
         public void Base36Convert_Bytes_ToString_0x10()
         {
             // Arrange.
-            var value = new byte[] { (byte)10 };
+            var value = new[] { (byte)10 };
 
             // Act.
             var result = Base36Convert.ToString(value);
@@ -50,7 +50,7 @@
         public void Base36Convert_Bytes_ToString_0x11()
         {
             // Arrange.
-            var value = new byte[] { (byte)11 };
+            var value = new[] { (byte)11 };
 
             // Act.
             var result = Base36Convert.ToString(value);

@@ -7,9 +7,9 @@
 
     public class IdentifierBinder : IModelBinder
     {
-        private readonly string[] _locationSplitCharacters = new string[] { IdentifierSplitter.Location };
-        private readonly string[] _timeSplitCharacters = new string[] { IdentifierSplitter.Time };
-        private readonly string[] _partSplitCharacters = new string[] { IdentifierSplitter.Part };
+        private readonly string[] _locationSplitCharacters = new[] { IdentifierSplitter.Location };
+        private readonly string[] _timeSplitCharacters = new[] { IdentifierSplitter.Time };
+        private readonly string[] _partSplitCharacters = new[] { IdentifierSplitter.Part };
 
         public bool BindModel(HttpActionContext actionContext,
                               ModelBindingContext bindingContext)

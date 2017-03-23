@@ -29,7 +29,7 @@
             //nodeTypeRegistry.Register(new MethodInfo[] { NodeSetMethod.SelectByPath }, typeof(SelectByPathSourceExpressionNode));
             //nodeTypeRegistry.Register(new MethodInfo[] { NodeSetMethod.SelectByRoot }, typeof(SelectByRootOperator));
             //nodeTypeRegistry.Register(new MethodInfo[] { NodeSetMethod.SelectByIdentifier }, typeof(SelectByIdentifierOperator));
-            nodeTypeRegistry.Register(new MethodInfo[] { NodeExtensionMethod.Add }, typeof(AddResultOperatorExpressionNode));
+            nodeTypeRegistry.Register(new[] { NodeExtensionMethod.Add }, typeof(AddResultOperatorExpressionNode));
 
             // Alternatively, use the CreateFromTypes factory method.
             // Use MethodNameBasedNodeTypeRegistry to register parsers by query operator name instead of MethodInfo.

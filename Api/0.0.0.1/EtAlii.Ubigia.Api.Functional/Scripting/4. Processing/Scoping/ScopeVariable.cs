@@ -32,7 +32,7 @@
                 IEnumerable enumerable = new object[] {};
                 if (value is string || (value is IEnumerable) == false)
                 {
-                    enumerable = new object[] { value };
+                    enumerable = new[] { value };
                 }
                 else
                 {

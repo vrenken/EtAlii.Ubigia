@@ -18,7 +18,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines2
         {
             if (_nextOperation != null)
             {
-                var message = String.Format("This pipeline has already been configured.");
+                var message = "This pipeline has already been configured.";
                 throw new InvalidOperationException(message);
             }
             _nextOperation = nextOperation;
@@ -28,7 +28,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines2
         {
             if (_nextOperation == null)
             {
-                var message = String.Format("This pipeline has not yet been configured.");
+                var message = "This pipeline has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
             _nextOperation(input);
@@ -57,7 +57,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines2
         {
             if (_nextOperation != null)
             {
-                var message = String.Format("This pipeline has already been configured.");
+                var message = "This pipeline has already been configured.";
                 throw new InvalidOperationException(message);
             }
             _nextOperation = nextOperation;
@@ -68,7 +68,7 @@ namespace EtAlii.xTechnology.Structure.Pipelines2
         {
             if (_nextOperation == null)
             {
-                var message = String.Format("This pipeline has not yet been configured.");
+                var message = "This pipeline has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
             return _nextOperation(input);

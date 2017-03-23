@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     {
                         var task = Task.Run(async () =>
                         {
-                            Identifier[] results = new Identifier[] { start };
+                            Identifier[] results = new[] { start };
                             Identifier[] previousResults;
 
                             do
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            Identifier[] result = new Identifier[] { start };
+            Identifier[] result = new[] { start };
             Identifier[] previousResult;
 
             do

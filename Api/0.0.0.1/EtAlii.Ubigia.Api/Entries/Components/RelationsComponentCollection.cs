@@ -16,7 +16,7 @@
 
         public void Add(Identifier id)
         {
-            base.Add(new TRelationsComponent { Relations = new Relation[] { Relation.NewRelation(id) } });
+            base.Add(new TRelationsComponent { Relations = new[] { Relation.NewRelation(id) } });
         }
 
         internal void Add(IEnumerable<Relation> relations, bool markAsStored)

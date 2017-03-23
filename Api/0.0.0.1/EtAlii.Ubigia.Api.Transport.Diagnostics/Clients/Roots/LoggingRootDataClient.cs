@@ -98,7 +98,7 @@
 
         public async Task<IEnumerable<Root>> GetAll()
         {
-            var message = String.Format("Getting all roots");
+            var message = "Getting all roots";
             _logger.Info(message);
             var start = Environment.TickCount;
 

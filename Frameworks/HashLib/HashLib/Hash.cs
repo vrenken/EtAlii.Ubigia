@@ -78,7 +78,7 @@ namespace HashLib
 
         public virtual HashResult ComputeByte(byte a_data)
         {
-            return ComputeBytes(new byte[] { a_data });
+            return ComputeBytes(new[] { a_data });
         }
 
         public virtual HashResult ComputeChar(char a_data)
@@ -240,7 +240,7 @@ namespace HashLib
 
         public void TransformByte(byte a_data)
         {
-            TransformBytes(new byte[] { a_data });
+            TransformBytes(new[] { a_data });
         }
 
         public void TransformChar(char a_data)

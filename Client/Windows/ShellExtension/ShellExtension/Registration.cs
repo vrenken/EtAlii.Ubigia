@@ -149,7 +149,7 @@
             var typeName = String.Format("{0}_{1}", rootFolderItemType.Name, displayName.Replace("-", ""));
             var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, rootFolderItemType);
             
-            var constructorParameters = new Type[] { typeof(string) };
+            var constructorParameters = new[] { typeof(string) };
 	        var guidClassConstructorInfo = typeof(GuidAttribute).GetConstructor(constructorParameters);
 
             var guidAttributeBuilder = new CustomAttributeBuilder(guidClassConstructorInfo, new object[] { shellExtensionId.ToString() });

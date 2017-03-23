@@ -8,10 +8,10 @@
 
     public class IdentifiersBinder : IModelBinder
     {
-        private readonly string[] _locationSplitCharacters = new string[] { IdentifierSplitter.Location };
-        private readonly string[] _timeSplitCharacters = new string[] { IdentifierSplitter.Time };
-        private readonly string[] _partSplitCharacters = new string[] { IdentifierSplitter.Part };
-        private readonly string[] _identifierSplitCharacters = new string[] { IdentifierSplitter.Separator };
+        private readonly string[] _locationSplitCharacters = new[] { IdentifierSplitter.Location };
+        private readonly string[] _timeSplitCharacters = new[] { IdentifierSplitter.Time };
+        private readonly string[] _partSplitCharacters = new[] { IdentifierSplitter.Part };
+        private readonly string[] _identifierSplitCharacters = new[] { IdentifierSplitter.Separator };
 
         public bool BindModel(HttpActionContext actionContext, ModelBindingContext bindingContext)
         {
