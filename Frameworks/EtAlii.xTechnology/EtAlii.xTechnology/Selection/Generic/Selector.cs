@@ -31,7 +31,7 @@
         {
             if (_firstRegistration == null)
             {
-                var message = String.Format("This selector has not yet been configured.");
+                var message = "This selector has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
 
@@ -43,7 +43,7 @@
         {
             if (_firstRegistration == null)
             {
-                var message = String.Format("This selector has not yet been configured.");
+                var message = "This selector has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
 
@@ -79,7 +79,7 @@
         {
             if (_firstRegistration == null)
             {
-                var message = String.Format("This selector has not yet been configured.");
+                var message = "This selector has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
 
@@ -91,7 +91,7 @@
         {
             if (_firstRegistration == null)
             {
-                var message = String.Format("This selector has not yet been configured.");
+                var message = "This selector has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
 
@@ -127,7 +127,7 @@
         {
             if (_firstRegistration == null)
             {
-                var message = String.Format("This selector has not yet been configured.");
+                var message = "This selector has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
 
@@ -139,7 +139,7 @@
         {
             if (_firstRegistration == null)
             {
-                var message = String.Format("This selector has not yet been configured.");
+                var message = "This selector has not yet been configured.";
                 throw new InvalidOperationException(message);
             }
 

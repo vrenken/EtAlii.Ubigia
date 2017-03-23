@@ -29,7 +29,7 @@
 
         public static ContentDefinition Create(byte[] data)
         {
-            return Create(new byte[][] { data });
+            return Create(new[] { data });
         }
 
         public static ContentDefinition Create(byte[][] datas)

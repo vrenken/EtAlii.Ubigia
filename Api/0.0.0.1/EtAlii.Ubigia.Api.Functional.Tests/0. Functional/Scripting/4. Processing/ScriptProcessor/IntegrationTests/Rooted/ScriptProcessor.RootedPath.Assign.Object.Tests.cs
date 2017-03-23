@@ -58,7 +58,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue1 : 'Test1', StringValue2 : 'Test2' }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue1 : \'Test1\', StringValue2 : \'Test2\' }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -103,7 +103,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : 12 }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -147,7 +147,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : true }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : true }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -191,7 +191,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : false }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : false }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -235,7 +235,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : FALSE }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : FALSE }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -280,7 +280,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', BoolValue : False }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : False }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -324,7 +324,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -366,7 +366,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : 12 }}");
+            var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -410,8 +410,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test2', IntValue : 13 }}");
+            var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test2\', IntValue : 13 }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -464,8 +464,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test2', IntValue : '13', BoolValue : true  }}");
+            var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test2\', IntValue : \'13\', BoolValue : true  }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -521,8 +521,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test2', IntValue : , BoolValue : true  }}");
+            var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test2\', IntValue : , BoolValue : true  }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -578,8 +578,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : , IntValue : }}");
+            var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : , IntValue : }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -633,8 +633,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= Time:2014/09/06/16/33 <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= Time:2014/09/06/16/33 <= {{ }}");
+            var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= Time:2014/09/06/16/33 <= { }";
             var selectQuery = "Time:2014/09/06/16/33";
 
             var addScript = _parser.Parse(addQuery).Script;

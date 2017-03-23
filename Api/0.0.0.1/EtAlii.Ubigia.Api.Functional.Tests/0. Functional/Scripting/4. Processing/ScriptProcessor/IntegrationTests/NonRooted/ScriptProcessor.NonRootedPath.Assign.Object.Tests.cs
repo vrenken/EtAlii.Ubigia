@@ -59,7 +59,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue1 : 'Test1', StringValue2 : 'Test2' }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue1 : \'Test1\', StringValue2 : \'Test2\' }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -104,7 +104,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : 12 }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -148,7 +148,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : true }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : true }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -192,7 +192,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : false }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : false }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -236,7 +236,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : FALSE }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : FALSE }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -281,7 +281,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', BoolValue : False }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : False }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -325,7 +325,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -367,7 +367,7 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : 12 }}");
+            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -411,8 +411,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test2', IntValue : 13 }}");
+            var updateQuery1 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test2\', IntValue : 13 }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -465,8 +465,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test2', IntValue : '13', BoolValue : true  }}");
+            var updateQuery1 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test2\', IntValue : \'13\', BoolValue : true  }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -522,8 +522,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test2', IntValue : , BoolValue : true  }}");
+            var updateQuery1 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test2\', IntValue : , BoolValue : true  }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -579,8 +579,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : , IntValue : }}");
+            var updateQuery1 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : , IntValue : }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -634,8 +634,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery1 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ StringValue : 'Test1', IntValue : '12' }}");
-            var updateQuery2 = String.Format("<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= {{ }}");
+            var updateQuery1 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
+            var updateQuery2 = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= { }";
             var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;

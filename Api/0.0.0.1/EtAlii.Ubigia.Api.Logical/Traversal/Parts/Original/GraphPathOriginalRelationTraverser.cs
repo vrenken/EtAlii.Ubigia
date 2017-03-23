@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             while (downDate != Relation.None);
 
-            return new Identifier[] { previousResult };
+            return new[] { previousResult };
         }
     }
 }

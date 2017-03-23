@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             var initializer = new GoogleAuthorizationCodeFlow.Initializer
             {
                 ClientSecrets = clientSecrets,
-                Scopes = new string[] { "https://www.googleapis.com/auth/plus.login" }
+                Scopes = new[] { "https://www.googleapis.com/auth/plus.login" }
             };
 
             using (var flow = new AuthorizationCodeFlow(initializer))

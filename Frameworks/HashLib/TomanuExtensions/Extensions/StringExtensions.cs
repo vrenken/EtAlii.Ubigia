@@ -112,7 +112,7 @@ namespace TomanuExtensions
             if (!a_names.Contains(a_pattern))
                 return a_pattern;
 
-            string[] ar = a_pattern.Split(new char[] { ' ' });
+            string[] ar = a_pattern.Split(new[] { ' ' });
 
             string left;
             uint index;

@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Logical
         
         public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> output)
         {
-            var previousResult = new Identifier[] { current };
+            var previousResult = new[] { current };
 
             for (int i = 0; i < graphPath.Length; i++)
             {

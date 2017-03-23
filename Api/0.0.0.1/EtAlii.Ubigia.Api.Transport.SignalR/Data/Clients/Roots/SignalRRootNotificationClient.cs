@@ -42,7 +42,7 @@
             await Task.Run(() =>
             {
                 _proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(_name);
-                _subscriptions = new IDisposable[]
+                _subscriptions = new[]
                 {
                     _proxy.On<Guid>("added", OnAdded),
                     _proxy.On<Guid>("changed", OnChanged),

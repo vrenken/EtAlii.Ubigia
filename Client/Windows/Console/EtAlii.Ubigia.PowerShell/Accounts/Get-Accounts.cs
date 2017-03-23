@@ -16,7 +16,7 @@
         {
             IEnumerable<Account> accounts = null;
 
-            WriteDebug(String.Format("Getting accounts"));
+            WriteDebug("Getting accounts");
 
             var task = Task.Run(async () =>
             {

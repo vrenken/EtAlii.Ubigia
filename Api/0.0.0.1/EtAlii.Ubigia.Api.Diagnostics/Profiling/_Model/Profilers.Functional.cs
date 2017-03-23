@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
         
         public FunctionalProfilers()
         {
-            _all = new ProfilingAspect[]
+            _all = new[]
             {
                 _context,
                 _scriptSet,

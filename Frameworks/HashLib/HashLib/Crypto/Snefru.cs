@@ -40,7 +40,7 @@ namespace HashLib.Crypto
 
         private static readonly int[] s_shifts = new int[4] { 16, 8, 16, 24 };
 
-        private static readonly uint[][] s_boxes = new uint[][] 
+        private static readonly uint[][] s_boxes = new[]
         {
             new uint[]
             {	

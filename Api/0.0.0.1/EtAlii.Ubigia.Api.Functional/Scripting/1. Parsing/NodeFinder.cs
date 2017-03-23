@@ -7,7 +7,7 @@
     {
         public LpNode FindFirst(LpNode node, string id)
         {
-            return FindFirst(new LpNode[] { node }, id);
+            return FindFirst(new[] { node }, id);
         }
 
         public LpNode FindFirst(IEnumerable<LpNode> nodes, string id)
@@ -37,7 +37,7 @@
 
         public IEnumerable<LpNode> FindAll(LpNode node, string id)
         {
-            return FindAll(new LpNode[] { node }, id);
+            return FindAll(new[] { node }, id);
         }
 
         public IEnumerable<LpNode> FindAll(IEnumerable<LpNode> nodes, string id)

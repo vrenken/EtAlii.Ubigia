@@ -181,25 +181,25 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
             colDateModifed.FormatIdentifier = new Guid("404A01DD-EFD0-42F3-B581-A409706FF0FE");
 			colDateModifed.PropertyIdentifier = 14;
 
-			columns = new ShellColumn[] { colName, colSize, colType, colDateModifed };
+			columns = new[] { colName, colSize, colType, colDateModifed };
 
 		}
 
 		public override int[] GetXPTaskPaneColumnIndices()
 		{
 			// Use all column values except 'Size'
-			return new int[] { 0,2,3 };
+			return new[] { 0,2,3 };
 		}
         public override int[] GetTileViewColumnIndices()
         {
 			// Use all column values except 'Size'
-			return new int[] { 2, 3 };
+			return new[] { 2, 3 };
         }
 
         public override int[] GetPreviewDetailsColumnIndices()
         {
 			// Use all column values except 'Size'
-			return new int[] { 0, 2, 3 };
+			return new[] { 0, 2, 3 };
         }
 
 		// The GetAttributes method is called to retrieve the attributes of the item 

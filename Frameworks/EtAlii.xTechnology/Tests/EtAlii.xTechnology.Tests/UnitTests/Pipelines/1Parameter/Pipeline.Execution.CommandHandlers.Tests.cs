@@ -23,7 +23,7 @@
             var result = pipeline.Process(3);
 
             // Assert.
-            var resultArray = result.Split(new string[] { ", " }, StringSplitOptions.None);
+            var resultArray = result.Split(new[] { ", " }, StringSplitOptions.None);
             Assert.Equal("0", resultArray[0]);
             Assert.Equal("1", resultArray[1]);
             Assert.Equal("2", resultArray[2]);

@@ -24,7 +24,7 @@
             {
                 _accountName = Guid.NewGuid().ToString();
                 _password = Guid.NewGuid().ToString();
-                _spaceNames = new string[]
+                _spaceNames = new[]
                 {
                     Guid.NewGuid().ToString(),
                     Guid.NewGuid().ToString()

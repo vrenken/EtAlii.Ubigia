@@ -43,7 +43,7 @@
             profiler.Register(_closingDurationCounter, SamplingType.RawCount, "Milliseconds", "Closing a connection", "The time it takes for the Close method to execute");
 
 
-            var values = new EventMetricValue[]
+            var values = new[]
             {
                 new EventMetricValue { ValueName = "Current opening", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current opening connections", Description = "The number of connections being opened at a specific moment"},
                 new EventMetricValue { ValueName = "Total opened", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total opened", Description = "The number of times the Open method has executed" },

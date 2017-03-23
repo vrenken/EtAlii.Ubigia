@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Fabric
 
     public partial class Base36Convert
     {
-        private static readonly bool[]  _36AsBits = new bool[] { true, false, false, true, false, false };  
+        private static readonly bool[]  _36AsBits = new[] { true, false, false, true, false, false };  
 
         //the "alphabet" for base-36 encoding is similar in theory to hexadecimal,
         //but uses all 26 English letters a-z instead of just a-f.

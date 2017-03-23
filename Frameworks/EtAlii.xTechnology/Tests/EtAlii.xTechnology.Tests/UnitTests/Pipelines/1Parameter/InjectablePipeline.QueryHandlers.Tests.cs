@@ -33,7 +33,7 @@
             var pipeline = new Pipeline<int, string[]>()
                 .StartWith(new IntegerToArrayQueryHandler())
                 .ContinueWith(new IntegerArrayToStringQueryHandler())
-                .EndWith(s => s.Split(new string[] {", "}, StringSplitOptions.None));
+                .EndWith(s => s.Split(new[] {", "}, StringSplitOptions.None));
 
             // Act.
             var result = pipeline.Process(3);

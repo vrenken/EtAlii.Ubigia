@@ -70,7 +70,7 @@
                 var task = Task.Run(async () =>
                 {
                     SelectedAccount.Roles = SelectedAccount.Roles
-                        .Union(new string[] {RoleName})
+                        .Union(new[] {RoleName})
                         .ToArray();
                     
                     await Connection.Accounts.Change(SelectedAccount);
@@ -103,8 +103,8 @@
                 var task = Task.Run(async () =>
                 {
                     SelectedAccount.Roles = SelectedAccount.Roles
-                        .Except(new string[] { SelectedRole.Name })
-                        .Union(new string[] { RoleName })
+                        .Except(new[] { SelectedRole.Name })
+                        .Union(new[] { RoleName })
                         .ToArray();
                     await Connection.Accounts.Change(SelectedAccount);
                 });
@@ -132,7 +132,7 @@
                 var task = Task.Run(async () =>
                 {
                     SelectedAccount.Roles = SelectedAccount.Roles
-                        .Except(new string[] { SelectedRole.Name })
+                        .Except(new[] { SelectedRole.Name })
                         .ToArray();
                     await Connection.Accounts.Change(SelectedAccount);
                 });

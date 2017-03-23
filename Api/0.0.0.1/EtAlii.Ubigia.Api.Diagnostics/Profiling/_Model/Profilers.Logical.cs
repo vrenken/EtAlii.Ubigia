@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
         public LogicalProfilers()
         {
-            _all = new ProfilingAspect[]
+            _all = new[]
             {
                 _context,
                 _nodeSet,

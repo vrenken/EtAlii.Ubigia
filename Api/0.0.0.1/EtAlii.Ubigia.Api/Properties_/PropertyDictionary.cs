@@ -10,7 +10,7 @@
         public bool Stored { get { return _stored; } internal set { _stored = value; } }
         private bool _stored;
 
-        private static readonly char[] TrimChars = new char[] {' ', '-'};
+        private static readonly char[] TrimChars = new[] {' ', '-'};
 
         private static readonly IEqualityComparer<object> _valueComparer = EqualityComparer<object>.Default;
 

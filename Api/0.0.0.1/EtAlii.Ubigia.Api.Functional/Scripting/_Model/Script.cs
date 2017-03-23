@@ -12,7 +12,7 @@
 
         internal Script(Sequence sequences)
         {
-            Sequences = new Sequence[] { sequences };
+            Sequences = new[] { sequences };
         }
 
         internal Script(IEnumerable<Sequence> sequences)

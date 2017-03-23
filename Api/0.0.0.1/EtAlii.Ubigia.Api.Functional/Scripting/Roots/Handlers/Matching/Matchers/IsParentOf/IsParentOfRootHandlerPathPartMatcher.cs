@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var match = parameters.PathRest.Take(1).ToArray();
             var rest = parameters.PathRest.Skip(1).ToArray();
-            return new MatchResult[] { new MatchResult(null, match, rest) };
+            return new[] { new MatchResult(null, match, rest) };
         }
 
         public bool CanMatch(MatchParameters parameters)

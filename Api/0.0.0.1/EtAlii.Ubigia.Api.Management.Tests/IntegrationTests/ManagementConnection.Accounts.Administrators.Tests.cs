@@ -391,7 +391,7 @@
             Assert.Equal(0, account.Roles.Length);
 
             // Act.
-            account.Roles = new string[] { "First", "Second", "Third" };
+            account.Roles = new[] { "First", "Second", "Third" };
             account = await connection.Accounts.Change(account);
 
             // Assert.
@@ -440,7 +440,7 @@
             Assert.Equal(0, account.Roles.Length);
 
             // Act.
-            account.Roles = new string[] { "First", "Second", "Third" };
+            account.Roles = new[] { "First", "Second", "Third" };
             account = await connection.Accounts.Change(account);
 
             // Assert.
@@ -462,7 +462,7 @@
             Assert.Equal("Third", account.Roles[2]);
 
             // Act.
-            account.Roles = new string[] { "First", "Second", };
+            account.Roles = new[] { "First", "Second", };
             account = await connection.Accounts.Change(account);
 
             // Assert.

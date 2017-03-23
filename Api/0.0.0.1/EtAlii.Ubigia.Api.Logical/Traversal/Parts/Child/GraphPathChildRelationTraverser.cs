@@ -115,7 +115,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 {
                     if (!list.Remove(entry.Downdate.Id))
                     {
-                        await Remove(list, new Relation[] { entry.Downdate }, context, scope);
+                        await Remove(list, new[] { entry.Downdate }, context, scope);
                     }
                 }
             }

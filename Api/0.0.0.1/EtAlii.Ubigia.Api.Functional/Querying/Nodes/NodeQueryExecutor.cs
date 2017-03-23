@@ -90,10 +90,10 @@
             switch (_nodeQueryModelVisitor.ResultOperator)
             {
                 case ResultOperator.Any:
-                    result = new T[] { (T)(object)output.Any() };
+                    result = new[] { (T)(object)output.Any() };
                     break;
                 case ResultOperator.Count:
-                    result = new T[] { (T)(object)output.Count() };
+                    result = new[] { (T)(object)output.Count() };
                     break;
                 case ResultOperator.Cast:
                     result = output.Cast<IInternalNode>().Select(node => (T)Activator.CreateInstance(typeof(T), node.Entry));

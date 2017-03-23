@@ -9,7 +9,7 @@ namespace HashLib
         public static byte[] ConvertToBytes(object a_in)
         {
             if (a_in is byte)
-                return new byte[] { (byte)a_in };
+                return new[] { (byte)a_in };
             else if (a_in is short)
                 return BitConverter.GetBytes((short)a_in);
             else if (a_in is ushort)
@@ -423,7 +423,7 @@ namespace HashLib
             {
                 Check(a_in, 1, 4);
 
-                string[] ar = BitConverter.ToString(a_in).ToUpper().Split(new char[] { '-' });
+                string[] ar = BitConverter.ToString(a_in).ToUpper().Split(new[] { '-' });
 
                 hex = "";
 

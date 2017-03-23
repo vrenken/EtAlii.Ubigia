@@ -40,7 +40,7 @@
         protected override void ProcessRecord()
         {
             IEnumerable<Storage> storages = null;
-            WriteDebug(String.Format("Getting storages"));
+            WriteDebug("Getting storages");
 
             var task = Task.Run(async () =>
             {

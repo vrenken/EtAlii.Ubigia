@@ -58,7 +58,7 @@
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
-            return new ChildrenComponent { Relations = new Relation[] { Relation.NewRelation(identifier) } };
+            return new ChildrenComponent { Relations = new[] { Relation.NewRelation(identifier) } };
         }
 
         public static ParentComponent CreateParentComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
@@ -89,7 +89,7 @@
         {
             var identifier = Identifier.NewIdentifier(storageId, accountId, spaceId);
             identifier = Identifier.NewIdentifier(identifier, era, period, moment);
-            return new UpdatesComponent { Relations = new Relation[] { Relation.NewRelation(identifier) } };
+            return new UpdatesComponent { Relations = new[] { Relation.NewRelation(identifier) } };
         }
 
         public static DowndateComponent CreateDowndateComponent(Guid storageId, Guid accountId, Guid spaceId, UInt64 era, UInt64 period, UInt64 moment)
@@ -126,7 +126,7 @@
             string[] paths;
             if (!String.IsNullOrEmpty(id))
             {
-                paths = new string[]
+                paths = new[]
                 {
                     id,
                     Guid.NewGuid().ToString(),
@@ -134,7 +134,7 @@
             }
             else
             {
-                paths = new string[]
+                paths = new[]
                 {
                     Guid.NewGuid().ToString(),
                 };
