@@ -2,20 +2,15 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     internal class LogicalContext : ILogicalContext
     {
-        public ILogicalContextConfiguration Configuration => _configuration;
-        private readonly ILogicalContextConfiguration _configuration;
+        public ILogicalContextConfiguration Configuration { get; }
 
-        public ILogicalNodeSet Nodes => _nodes;
-        private readonly ILogicalNodeSet _nodes;
+        public ILogicalNodeSet Nodes { get; }
 
-        public ILogicalRootSet Roots => _roots;
-        private readonly ILogicalRootSet _roots;
+        public ILogicalRootSet Roots { get; }
 
-        public IContentManager Content => _content;
-        private readonly IContentManager _content;
+        public IContentManager Content { get; }
 
-        public IPropertiesManager Properties => _properties;
-        private readonly IPropertiesManager _properties;
+        public IPropertiesManager Properties { get; }
 
         public LogicalContext(
             ILogicalContextConfiguration configuration,
@@ -24,11 +19,11 @@ namespace EtAlii.Ubigia.Api.Logical
             IContentManager content, 
             IPropertiesManager properties)
         {
-            _configuration = configuration;
-            _nodes = nodes;
-            _roots = roots;
-            _content = content;
-            _properties = properties;
+            Configuration = configuration;
+            Nodes = nodes;
+            Roots = roots;
+            Content = content;
+            Properties = properties;
         }
 
         public void Dispose()

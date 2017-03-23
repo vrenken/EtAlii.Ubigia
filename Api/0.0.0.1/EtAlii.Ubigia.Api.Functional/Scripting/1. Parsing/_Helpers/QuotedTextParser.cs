@@ -8,8 +8,7 @@
         private readonly INodeFinder _nodeFinder;
         private readonly IConstantHelper _constantHelper;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "QuotedText";
@@ -24,7 +23,7 @@
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _constantHelper = constantHelper;
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 (Lp.One(c => c == '\"') + Lp.ZeroOrMore(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).Id(_textId) + Lp.One(c => c == '\"')) |
                 (Lp.One(c => c == '\'') + Lp.ZeroOrMore(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).Id(_textId) + Lp.One(c => c == '\''))
             );

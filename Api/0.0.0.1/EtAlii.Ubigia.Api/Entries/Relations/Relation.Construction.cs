@@ -8,8 +8,8 @@
         {
             return new Relation
             {
-                _id = id,
-                _moment = (UInt64)DateTime.UtcNow.Ticks,
+                Id = id,
+                Moment = (UInt64)DateTime.UtcNow.Ticks,
             };
         }
     }

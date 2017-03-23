@@ -4,11 +4,9 @@
 
     internal class UpdatesOfPathSubjectPartParser : IUpdatesOfPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "UpdatesOfPathSubjectPart";
+        public string Id { get; } = "UpdatesOfPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
@@ -22,7 +20,7 @@
             _nodeValidator = nodeValidator;
 
             var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
-            _parser = new LpsParser(Id, true, relationParser);
+            Parser = new LpsParser(Id, true, relationParser);
         }
 
         public PathSubjectPart Parse(LpNode node)

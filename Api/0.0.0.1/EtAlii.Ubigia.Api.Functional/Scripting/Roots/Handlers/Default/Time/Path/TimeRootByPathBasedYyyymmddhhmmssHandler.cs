@@ -6,15 +6,15 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class TimeRootByPathBasedYyyymmddhhmmssHandler : IRootHandler
     {
 
-        public PathSubjectPart[] Template => _template;
-        private readonly PathSubjectPart[] _template;
+        public PathSubjectPart[] Template { get; }
+
         private readonly ITimePreparer _timePreparer;
 
         public TimeRootByPathBasedYyyymmddhhmmssHandler(ITimePreparer timePreparer)
         {
             _timePreparer = timePreparer;
 
-            _template = new PathSubjectPart[] {
+            Template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new IsParentOfPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new IsParentOfPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new IsParentOfPathSubjectPart(),

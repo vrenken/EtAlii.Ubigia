@@ -2,17 +2,15 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class PersonRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public IRootHandler[] AllowedRootHandlers => _allowedRootHandlers;
-        private readonly IRootHandler[] _allowedRootHandlers;
+        public IRootHandler[] AllowedRootHandlers { get; }
 
         public PersonRootHandlerMapper()
         {
-            _name = "person";
+            Name = "person";
 
-            _allowedRootHandlers = new IRootHandler[]
+            AllowedRootHandlers = new IRootHandler[]
             {
                 new PersonByLastNameFirstNameHandler(),
                 new PersonByLastNameFirstNameWildcardHandler(),

@@ -2,12 +2,11 @@
 {
     internal class ContentCacheContextProvider : IContentCacheContextProvider
     {
-        public IContentContext Context => _context;
-        private readonly IContentContext _context;
+        public IContentContext Context { get; }
 
         public ContentCacheContextProvider(IContentContext context)
         {
-            _context = context;
+            Context = context;
         }
     }
 }

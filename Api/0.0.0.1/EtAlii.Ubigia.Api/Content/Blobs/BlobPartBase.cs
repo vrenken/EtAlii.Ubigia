@@ -6,12 +6,10 @@
     [JsonObject(MemberSerialization.Fields)]
     public abstract class BlobPartBase : IBlobPart
     {
-        public bool Stored { get { return _stored; } internal set { _stored = value; } }
-        private bool _stored;
+        public bool Stored { get; internal set; }
 
         protected internal abstract string Name { get; }
 
-        public UInt64 Id { get { return _id; } set { _id = value; } }
-        private UInt64 _id;
+        public UInt64 Id { get; set; }
     }
 }

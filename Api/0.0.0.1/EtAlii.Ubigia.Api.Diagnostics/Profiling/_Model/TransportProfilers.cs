@@ -2,21 +2,18 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 {
     public class TransportProfilers
     {
-        public ProfilingAspect[] All => _all;
-        private readonly ProfilingAspect[] _all;
+        public ProfilingAspect[] All { get; }
 
-        public ProfilingAspect Connection => _connection;
-        private readonly ProfilingAspect _connection = new ProfilingAspect(ProfilingLayer.Transport, "Connection");
+        public ProfilingAspect Connection { get; } = new ProfilingAspect(ProfilingLayer.Transport, "Connection");
 
-        public ProfilingAspect EntryDataClient => _entryDataClient;
-        private readonly ProfilingAspect _entryDataClient = new ProfilingAspect(ProfilingLayer.Transport, "Entry data client");
+        public ProfilingAspect EntryDataClient { get; } = new ProfilingAspect(ProfilingLayer.Transport, "Entry data client");
 
         public TransportProfilers()
         {
-            _all = new[]
+            All = new[]
             {
-                _connection,
-                _entryDataClient
+                Connection,
+                EntryDataClient
             };
         }
     }

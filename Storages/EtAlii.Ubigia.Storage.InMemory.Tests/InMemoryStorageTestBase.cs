@@ -7,12 +7,11 @@
 
     public abstract class InMemoryStorageTestBase : IDisposable
     {
-        protected InMemoryStorage Storage => _storage;
-        private InMemoryStorage _storage;
+        protected InMemoryStorage Storage { get; private set; }
 
         public InMemoryStorageTestBase()
         {
-            _storage = CreateStorage();
+            Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
             if (Storage.FolderManager.Exists(folder))
@@ -23,7 +22,7 @@
 
         public void Dispose()
         {
-            _storage = null;
+            Storage = null;
         }
 
         private InMemoryStorage CreateStorage()

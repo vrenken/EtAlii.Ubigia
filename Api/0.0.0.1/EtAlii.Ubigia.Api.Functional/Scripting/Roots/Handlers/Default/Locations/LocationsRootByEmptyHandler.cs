@@ -6,12 +6,11 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class LocationsRootByEmptyHandler : IRootHandler
     {
 
-        public PathSubjectPart[] Template => _template;
-        private readonly PathSubjectPart[] _template;
+        public PathSubjectPart[] Template { get; }
 
         public LocationsRootByEmptyHandler()
         {
-            _template = new PathSubjectPart[0];
+            Template = new PathSubjectPart[0];
         }
 
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)

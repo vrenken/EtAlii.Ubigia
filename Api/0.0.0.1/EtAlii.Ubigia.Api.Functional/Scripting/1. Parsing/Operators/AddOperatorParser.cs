@@ -4,18 +4,16 @@
 
     internal class AddOperatorParser : IAddOperatorParser
     {
-        public string Id => _id;
-        private readonly string _id = "AddOperator";
+        public string Id { get; } = "AddOperator";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
         public AddOperatorParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            _parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("+=") + Lp.ZeroOrMore(' '));//.Debug("AddOperatorParser", true);
+            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("+=") + Lp.ZeroOrMore(' '));//.Debug("AddOperatorParser", true);
         }
 
         public bool CanParse(LpNode node)

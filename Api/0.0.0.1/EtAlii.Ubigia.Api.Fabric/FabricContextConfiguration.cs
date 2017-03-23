@@ -7,20 +7,17 @@
     public class FabricContextConfiguration : IFabricContextConfiguration
     {
 
-        public IDataConnection Connection => _connection;
-        private IDataConnection _connection;
+        public IDataConnection Connection { get; private set; }
 
-        public bool TraversalCachingEnabled => _traversalCachingEnabled;
-        private bool _traversalCachingEnabled;
+        public bool TraversalCachingEnabled { get; private set; }
 
 
-        public IFabricContextExtension[] Extensions => _extensions;
-        private IFabricContextExtension[] _extensions;
+        public IFabricContextExtension[] Extensions { get; private set; }
 
         public FabricContextConfiguration()
         {
-            _traversalCachingEnabled = true;
-            _extensions = new IFabricContextExtension[0];
+            TraversalCachingEnabled = true;
+            Extensions = new IFabricContextExtension[0];
         }
 
         public IFabricContextConfiguration Use(IDataConnection connection)
@@ -29,13 +26,13 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
-            _connection = connection;
+            Connection = connection;
             return this;
         }
 
         public IFabricContextConfiguration UseTraversalCaching(bool cachingEnabled)
         {
-            _traversalCachingEnabled = cachingEnabled;
+            TraversalCachingEnabled = cachingEnabled;
             return this;
         }
 
@@ -46,8 +43,8 @@
                 throw new ArgumentException("extensions");
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;

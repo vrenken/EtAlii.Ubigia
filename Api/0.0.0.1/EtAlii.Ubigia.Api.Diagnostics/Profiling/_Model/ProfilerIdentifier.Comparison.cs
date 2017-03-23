@@ -55,12 +55,12 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (id._layer != _layer)
+            if (id.Layer != Layer)
             {
                 return false;
             }
 
-            if (id._id != _id)
+            if (id.Id != Id)
             {
                 return false;
             }
@@ -92,8 +92,8 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
         public override int GetHashCode()
         {
-            return _layer.GetHashCode() ^
-                   ShiftAndWrap(_id.GetHashCode(), 2);
+            return Layer.GetHashCode() ^
+                   ShiftAndWrap(Id.GetHashCode(), 2);
         }
 
         private int ShiftAndWrap(int value, int positions)

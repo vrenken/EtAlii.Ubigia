@@ -6,30 +6,28 @@ namespace EtAlii.Ubigia.Api.Transport
         where TDataClient: ISpaceTransportClient
         where TNotificationClient: ISpaceTransportClient
     {
-        public TNotificationClient Notifications => _notifications;
-        private readonly TNotificationClient _notifications;
+        public TNotificationClient Notifications { get; }
 
-        public TDataClient Data => _data;
-        private readonly TDataClient _data;
+        public TDataClient Data { get; }
 
         public SpaceClientContextBase(
             TNotificationClient notifications,
             TDataClient data)
         {
-            _notifications = notifications;
-            _data = data;
+            Notifications = notifications;
+            Data = data;
         }
 
         public async Task Open(ISpaceConnection spaceConnection)
         {
-            await _data.Connect(spaceConnection);
-            await _notifications.Connect(spaceConnection);
+            await Data.Connect(spaceConnection);
+            await Notifications.Connect(spaceConnection);
         }
 
         public async Task Close(ISpaceConnection spaceConnection)
         {
-            await _notifications.Disconnect(spaceConnection);
-            await _data.Disconnect(spaceConnection);
+            await Notifications.Disconnect(spaceConnection);
+            await Data.Disconnect(spaceConnection);
         }
     }
 }

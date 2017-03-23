@@ -4,8 +4,7 @@ namespace EtAlii.Ubigia.Provisioning.Time
 {
     public class TimeProvider : IProvider
     {
-        public IProviderConfiguration Configuration => _configuration;
-        private readonly IProviderConfiguration _configuration;
+        public IProviderConfiguration Configuration { get; }
 
         private readonly ITimeImporter _timeImporter;
 
@@ -13,7 +12,7 @@ namespace EtAlii.Ubigia.Provisioning.Time
             IProviderConfiguration configuration, 
             ITimeImporter timeImporter)
         {
-            _configuration = configuration;
+            Configuration = configuration;
             _timeImporter = timeImporter;
         }
 

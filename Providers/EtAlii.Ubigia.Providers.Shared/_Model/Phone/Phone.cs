@@ -2,16 +2,14 @@
 {
     public class Phone
     {
-        public Person Person => _person;
-        private readonly Person _person;
+        public Person Person { get; }
 
-        public string Number => _number;
-        private readonly string _number;
+        public string Number { get; }
 
         public Phone(string number, Person person)
         {
-            _number = number;
-            _person = person;
+            Number = number;
+            Person = person;
         }
     }
 }

@@ -5,12 +5,10 @@
 
     internal class RootedPathFunctionSubjectArgumentParser : IRootedPathFunctionSubjectArgumentParser
     {
-        public string Id => _id;
-        private readonly string _id = "RootedPathFunctionSubjectArgument";
+        public string Id { get; } = "RootedPathFunctionSubjectArgument";
 
-        public LpsParser Parser => _parser;
+        public LpsParser Parser { get; }
 
-        private readonly LpsParser _parser;
         private readonly INodeValidator _nodeValidator;
         private readonly IConstantHelper _constantHelper;
         private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
@@ -23,7 +21,7 @@
             _nodeValidator = nodeValidator;
             _constantHelper = constantHelper;
             _pathSubjectPartsParser = pathSubjectPartsParser;
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                     Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c)).Id("root") +
                     Lp.Char(':') +
                     _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path")

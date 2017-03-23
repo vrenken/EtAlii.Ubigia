@@ -18,12 +18,11 @@
 
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
-        public ObservableCollection<IFolderMonitor> Monitors => _monitors;
-        private readonly ObservableCollection<IFolderMonitor> _monitors = new ObservableCollection<IFolderMonitor>();
+        public ObservableCollection<IFolderMonitor> Monitors { get; } = new ObservableCollection<IFolderMonitor>();
 
         public bool AllMonitorsAreRunning
         {
-            get { return _monitors.All(monitor => monitor.IsRunning); }
+            get { return Monitors.All(monitor => monitor.IsRunning); }
         }
 
         public bool IsRunning { get { return _isRunning; } set { SetProperty(ref _isRunning, value); } }
@@ -31,7 +30,7 @@
 
         public bool HasError
         {
-            get { return _monitors.All(monitor => monitor.HasError) || HasManagerError; }
+            get { return Monitors.All(monitor => monitor.HasError) || HasManagerError; }
         }
 
         public bool HasManagerError
@@ -57,7 +56,7 @@
                 AddMonitor(folderSyncConfiguration);
             }
             _folderSyncConfigurations.CollectionChanged += FolderSyncConfigurationsChanged;
-            _monitors.CollectionChanged += MonitorsChanged;
+            Monitors.CollectionChanged += MonitorsChanged;
         }
 
         private void MonitorsChanged(object sender, NotifyCollectionChangedEventArgs e)
@@ -108,13 +107,13 @@
         {
             var monitorToAdd = _container.GetInstance<IFolderMonitor>();
             monitorToAdd.Configuration = folderSyncConfiguration;
-            _monitors.Add(monitorToAdd);
+            Monitors.Add(monitorToAdd);
         }
 
         private void RemoveMonitor(FolderSyncConfiguration folderSyncConfiguration)
         {
-            var monitorToRemove = _monitors.Single(m => m.Configuration == folderSyncConfiguration);
-            _monitors.Remove(monitorToRemove);
+            var monitorToRemove = Monitors.Single(m => m.Configuration == folderSyncConfiguration);
+            Monitors.Remove(monitorToRemove);
         }
 
         
@@ -125,7 +124,7 @@
             {
                 _logger.Info("Starting MediaImport");
                 IsRunning = true;
-                foreach (var monitor in _monitors)
+                foreach (var monitor in Monitors)
                 {
                     StartMonitor(monitor);
                 }
@@ -155,7 +154,7 @@
             {
                 _logger.Info("Stopping MediaImport");
                 IsRunning = false;
-                foreach (var monitor in _monitors)
+                foreach (var monitor in Monitors)
                 {
                     StopMonitor(monitor);
                 }

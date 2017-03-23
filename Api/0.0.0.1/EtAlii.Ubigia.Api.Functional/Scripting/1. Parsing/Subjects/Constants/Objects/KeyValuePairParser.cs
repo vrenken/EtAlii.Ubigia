@@ -17,8 +17,7 @@
 
         private readonly INodeFinder _nodeFinder;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "KeyValuePair";
@@ -58,7 +57,7 @@
                     _integerValueParser.Parser
                 );
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 (
                     Lp.Name().Id(_keyId) |
                     _quotedTextParser.Parser.Wrap(_keyId)

@@ -15,20 +15,15 @@
         public IEnumerable<Account> AvailableAccounts { get { return _availableAccounts; } private set { SetProperty(ref _availableAccounts, value); } }
         private IEnumerable<Account> _availableAccounts;
 
-        protected IManagementConnection Connection => _connection;
-        private readonly IManagementConnection _connection;
+        protected IManagementConnection Connection { get; }
 
-        public ICommand AddCommand => _addCommand;
-        private readonly ICommand _addCommand;
+        public ICommand AddCommand { get; }
 
-        public ICommand SaveCommand => _saveCommand;
-        private readonly ICommand _saveCommand;
+        public ICommand SaveCommand { get; }
 
-        public ICommand DeleteCommand => _deleteCommand;
-        private readonly ICommand _deleteCommand;
+        public ICommand DeleteCommand { get; }
 
-        public ICommand ClearCommand => _clearCommand;
-        private readonly ICommand _clearCommand;
+        public ICommand ClearCommand { get; }
 
         public Account SelectedAccount { get { return _selectedAccount; } set { SetProperty(ref _selectedAccount, value); } }
         private Account _selectedAccount;
@@ -52,11 +47,11 @@
         public AccountsViewModel(IManagementConnection connection, ILogger logger)
         {
             _logger = logger;   
-            _connection = connection;
-            _addCommand = new RelayCommand(AddAccount, CanAddAccount);
-            _saveCommand = new RelayCommand(SaveAccount, CanSaveAccount);
-            _deleteCommand = new RelayCommand(DeleteAccount, CanDeleteAccount);
-            _clearCommand = new RelayCommand(ClearAccount, CanClearAccount);
+            Connection = connection;
+            AddCommand = new RelayCommand(AddAccount, CanAddAccount);
+            SaveCommand = new RelayCommand(SaveAccount, CanSaveAccount);
+            DeleteCommand = new RelayCommand(DeleteAccount, CanDeleteAccount);
+            ClearCommand = new RelayCommand(ClearAccount, CanClearAccount);
 
             ReloadAvailableAccounts();
         }
@@ -189,7 +184,7 @@
             IEnumerable<Account> accounts = null;
             var task = Task.Run(async () =>
             {
-                accounts = await _connection.Accounts.GetAll();
+                accounts = await Connection.Accounts.GetAll();
             });
             task.Wait();
 

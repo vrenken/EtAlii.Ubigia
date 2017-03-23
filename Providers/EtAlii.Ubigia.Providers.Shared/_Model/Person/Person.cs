@@ -4,20 +4,17 @@
 
     public class Person
     {
-        public int Number => _number;
-        private readonly int _number;
+        public int Number { get; }
 
-        public List<Email> Emails => _emails;
-        private readonly List<Email> _emails;
+        public List<Email> Emails { get; }
 
-        public List<Phone> Phones => _phones;
-        private readonly List<Phone> _phones;
+        public List<Phone> Phones { get; }
 
         public Person(int number)
         {
-            _number = number;
-            _emails = new List<Email>();
-            _phones = new List<Phone>();
+            Number = number;
+            Emails = new List<Email>();
+            Phones = new List<Phone>();
         }
     }
 }

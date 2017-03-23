@@ -4,12 +4,10 @@
 
     internal class VariableSubjectParser : IVariableSubjectParser
     {
-        public string Id => _id;
-        private readonly string _id = "VariableSubject";
+        public string Id { get; } = "VariableSubject";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
-        
+        public LpsParser Parser { get; }
+
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private const string _textId = "Text";
@@ -20,7 +18,7 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _parser = new LpsParser(Id, true, Lp.Char('$') + Lp.LetterOrDigit().OneOrMore().Id(_textId));
+            Parser = new LpsParser(Id, true, Lp.Char('$') + Lp.LetterOrDigit().OneOrMore().Id(_textId));
         }
 
         public Subject Parse(LpNode node)

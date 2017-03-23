@@ -5,11 +5,9 @@
 
     internal class PathSubjectPartsParser : IPathSubjectPartsParser
     {
-        public string Id => _id;
-        private readonly string _id = "PathSubjectsPart";
+        public string Id { get; } = "PathSubjectsPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IPathSubjectPartParser[] _parsers;
@@ -46,7 +44,7 @@
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            _parser = new LpsParser(Id, true, lpsParsers);//.Debug("PathSubjectParts", true);
+            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("PathSubjectParts", true);
         }
 
         public PathSubjectPart Parse(LpNode node)

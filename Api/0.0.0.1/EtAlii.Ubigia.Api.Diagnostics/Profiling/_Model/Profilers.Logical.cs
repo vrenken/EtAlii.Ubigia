@@ -7,41 +7,33 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     public class LogicalProfilers
     {
-        public ProfilingAspect[] All => _all;
-        private readonly ProfilingAspect[] _all;
+        public ProfilingAspect[] All { get; }
 
-        public ProfilingAspect Context => _context;
-        private readonly ProfilingAspect _context = new ProfilingAspect(ProfilingLayer.Logical, "Context");
+        public ProfilingAspect Context { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Context");
 
-        public ProfilingAspect NodeSet => _nodeSet;
-        private readonly ProfilingAspect _nodeSet = new ProfilingAspect(ProfilingLayer.Logical, "Node set");
+        public ProfilingAspect NodeSet { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Node set");
 
-        public ProfilingAspect TemporalWeaver => _temporalWeaver;
-        private readonly ProfilingAspect _temporalWeaver = new ProfilingAspect(ProfilingLayer.Logical, "Temporal weaver");
+        public ProfilingAspect TemporalWeaver { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Temporal weaver");
 
-        public ProfilingAspect Traversal => _traversal;
-        private readonly ProfilingAspect _traversal = new ProfilingAspect(ProfilingLayer.Logical, "Traversal");
+        public ProfilingAspect Traversal { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Traversal");
 
-        public ProfilingAspect Traversers => _traversers;
-        private readonly ProfilingAspect _traversers = new ProfilingAspect(ProfilingLayer.Logical, "Traversers");
+        public ProfilingAspect Traversers { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Traversers");
 
-        public ProfilingAspect Content => _content;
-        private readonly ProfilingAspect _content = new ProfilingAspect(ProfilingLayer.Logical, "Content");
+        public ProfilingAspect Content { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Content");
 
-        public ProfilingAspect Properties => _properties;
-        private readonly ProfilingAspect _properties = new ProfilingAspect(ProfilingLayer.Logical, "Properties");
+        public ProfilingAspect Properties { get; } = new ProfilingAspect(ProfilingLayer.Logical, "Properties");
 
         public LogicalProfilers()
         {
-            _all = new[]
+            All = new[]
             {
-                _context,
-                _nodeSet,
-                _temporalWeaver,
-                _traversal,
-                _traversers,
-                _content,
-                _properties
+                Context,
+                NodeSet,
+                TemporalWeaver,
+                Traversal,
+                Traversers,
+                Content,
+                Properties
             };
         }
     }

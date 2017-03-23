@@ -2,41 +2,29 @@
 {
     public class InMemoryStorage : IStorage
     {
-        public IStorageConfiguration Configuration => _configuration;
-        private readonly IStorageConfiguration _configuration;
+        public IStorageConfiguration Configuration { get; }
 
-        public IPathBuilder PathBuilder => _pathBuilder;
-        private readonly IPathBuilder _pathBuilder;
+        public IPathBuilder PathBuilder { get; }
 
-        public IImmutableFileManager FileManager => _fileManager;
-        private readonly IImmutableFileManager _fileManager;
+        public IImmutableFileManager FileManager { get; }
 
-        public IImmutableFolderManager FolderManager => _folderManager;
-        private readonly IImmutableFolderManager _folderManager;
+        public IImmutableFolderManager FolderManager { get; }
 
-        public IStorageSerializer StorageSerializer => _storageSerializer;
-        private readonly IStorageSerializer _storageSerializer;
+        public IStorageSerializer StorageSerializer { get; }
 
-        public IItemStorage Items => _items;
-        private readonly IItemStorage _items;
+        public IItemStorage Items { get; }
 
-        public IPropertiesStorage Properties => _properties;
-        private readonly IPropertiesStorage _properties;
+        public IPropertiesStorage Properties { get; }
 
-        public IComponentStorage Components => _components;
-        private readonly IComponentStorage _components;
+        public IComponentStorage Components { get; }
 
-        public IBlobStorage Blobs => _blobs;
-        private readonly IBlobStorage _blobs;
+        public IBlobStorage Blobs { get; }
 
-        public IInMemoryItems InMemoryItems => _inMemoryItems;
-        private readonly IInMemoryItems _inMemoryItems;
+        public IInMemoryItems InMemoryItems { get; }
 
-        public IInMemoryItemsHelper InMemoryItemsHelper => _inMemoryItemsHelper;
-        private readonly IInMemoryItemsHelper _inMemoryItemsHelper;
+        public IInMemoryItemsHelper InMemoryItemsHelper { get; }
 
-        public IContainerProvider ContainerProvider => _containerProvider;
-        private readonly IContainerProvider _containerProvider;
+        public IContainerProvider ContainerProvider { get; }
 
         public InMemoryStorage(
             IStorageConfiguration configuration,
@@ -52,18 +40,18 @@
             IContainerProvider containerProvider, 
             IPropertiesStorage properties)
         {
-            _configuration = configuration;
-            _pathBuilder = pathBuilder;
-            _fileManager = fileManager;
-            _folderManager = folderManager;
-            _storageSerializer = storageSerializer;
-            _items = items;
-            _components = components;
-            _blobs = blobs;
-            _inMemoryItems = inMemoryItems;
-            _containerProvider = containerProvider;
-            _properties = properties;
-            _inMemoryItemsHelper = inMemoryItemsHelper;
+            Configuration = configuration;
+            PathBuilder = pathBuilder;
+            FileManager = fileManager;
+            FolderManager = folderManager;
+            StorageSerializer = storageSerializer;
+            Items = items;
+            Components = components;
+            Blobs = blobs;
+            InMemoryItems = inMemoryItems;
+            ContainerProvider = containerProvider;
+            Properties = properties;
+            InMemoryItemsHelper = inMemoryItemsHelper;
         }
     }
 }

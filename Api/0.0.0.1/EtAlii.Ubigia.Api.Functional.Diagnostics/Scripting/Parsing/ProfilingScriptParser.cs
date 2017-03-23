@@ -6,8 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
     internal class ProfilingScriptParser : IProfilingScriptParser
     {
-        public IProfiler Profiler => _profiler;
-        private readonly IProfiler _profiler;
+        public IProfiler Profiler { get; }
 
         private readonly IScriptParser _decoree;
 
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             IProfiler profiler)
         {
             _decoree = decoree;
-            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
+            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptParser);
         }
 
         public ScriptParseResult Parse(string text)
@@ -29,9 +28,9 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             if (errorMessage != null)
             {
                 // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = _profiler.Begin("Error: " + errorMessage);
+                dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
                 exceptionProfile.Error = errorMessage;
-                _profiler.End(exceptionProfile);
+                Profiler.End(exceptionProfile);
             }
 
             return result;
@@ -47,9 +46,9 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             if (errorMessage != null)
             {
                 // Let's show an error message in the profiling view if we encountered an exception.
-                dynamic exceptionProfile = _profiler.Begin("Error: " + errorMessage);
+                dynamic exceptionProfile = Profiler.Begin("Error: " + errorMessage);
                 exceptionProfile.Error = errorMessage;
-                _profiler.End(exceptionProfile);
+                Profiler.End(exceptionProfile);
             }
 
             return result;

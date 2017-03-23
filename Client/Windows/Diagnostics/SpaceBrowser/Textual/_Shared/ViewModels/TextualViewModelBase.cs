@@ -20,24 +20,20 @@
         public bool CanStop { get { return _canStop; } set { SetProperty(ref _canStop, value); } }
         private bool _canStop = false;
 
-        public ICommand ClearCommand => _clearCommand;
-        private readonly ICommand _clearCommand;
+        public ICommand ClearCommand { get; }
 
-        public ICommand ExecuteCommand => _executeCommand;
-        private readonly ICommand _executeCommand;
+        public ICommand ExecuteCommand { get; }
 
-        public ICommand PauseCommand => _pauseCommand;
-        private readonly ICommand _pauseCommand;
+        public ICommand PauseCommand { get; }
 
-        public ICommand StopCommand => _stopCommand;
-        private readonly ICommand _stopCommand;
+        public ICommand StopCommand { get; }
 
         public TextualViewModelBase()
         {
-            _clearCommand = new RelayCommand(Clear, CanClear);
-            _executeCommand = new RelayCommand(Execute);
-            _stopCommand = new RelayCommand(Stop);
-            _pauseCommand = new RelayCommand(Pause);
+            ClearCommand = new RelayCommand(Clear, CanClear);
+            ExecuteCommand = new RelayCommand(Execute);
+            StopCommand = new RelayCommand(Stop);
+            PauseCommand = new RelayCommand(Pause);
         }
 
         protected virtual bool CanClear(object parameter)

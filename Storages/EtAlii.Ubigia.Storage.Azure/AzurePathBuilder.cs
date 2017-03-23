@@ -5,8 +5,7 @@
 
     public class AzurePathBuilder : IPathBuilder
     {
-        public string BaseFolder => _baseFolder;
-        private readonly string _baseFolder;
+        public string BaseFolder { get; }
 
         private readonly IStorageSerializer _serializer;
 
@@ -14,7 +13,7 @@
         {
             _serializer = serializer;
             var folder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            _baseFolder = Path.Combine(folder, "EtAlii", "Ubigia", configuration.Name);
+            BaseFolder = Path.Combine(folder, "EtAlii", "Ubigia", configuration.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)

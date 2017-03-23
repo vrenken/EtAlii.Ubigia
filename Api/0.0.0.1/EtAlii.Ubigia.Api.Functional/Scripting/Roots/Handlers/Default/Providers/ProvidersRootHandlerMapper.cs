@@ -2,17 +2,15 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class ProvidersRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public IRootHandler[] AllowedRootHandlers => _allowedRootHandlers;
-        private readonly IRootHandler[] _allowedRootHandlers;
+        public IRootHandler[] AllowedRootHandlers { get; }
 
         public ProvidersRootHandlerMapper()
         {
-            _name = "providers";
+            Name = "providers";
 
-           _allowedRootHandlers = new IRootHandler[]
+           AllowedRootHandlers = new IRootHandler[]
             {
                 new ProvidersRootByEmptyHandler(), // only root, no arguments, should be at the end.
             };

@@ -6,11 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RootDefinitionSubjectParser : IRootDefinitionSubjectParser
     {
-        public string Id => _id;
-        private readonly string _id = "RootDefinitionSubject";
+        public string Id { get; } = "RootDefinitionSubject";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -30,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _typeValueParser = typeValueParser;
             _pathSubjectPartsParser = pathSubjectPartsParser;
 
-            _parser = new LpsParser
+            Parser = new LpsParser
                 (
                     Id, true,
                     _typeValueParser.Parser + //.Debug("TypeValueParser", true) //+

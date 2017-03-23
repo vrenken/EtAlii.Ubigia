@@ -15,20 +15,15 @@
         public IEnumerable<Role> AvailableRoles { get { return _availableRoles; } private set { SetProperty(ref _availableRoles, value); } }
         private IEnumerable<Role> _availableRoles;
 
-        protected IManagementConnection Connection => _connection;
-        private readonly IManagementConnection _connection;
+        protected IManagementConnection Connection { get; }
 
-        public ICommand AddCommand => _addCommand;
-        private readonly ICommand _addCommand;
+        public ICommand AddCommand { get; }
 
-        public ICommand SaveCommand => _saveCommand;
-        private readonly ICommand _saveCommand;
+        public ICommand SaveCommand { get; }
 
-        public ICommand DeleteCommand => _deleteCommand;
-        private readonly ICommand _deleteCommand;
+        public ICommand DeleteCommand { get; }
 
-        public ICommand ClearCommand => _clearCommand;
-        private readonly ICommand _clearCommand;
+        public ICommand ClearCommand { get; }
 
         public Role SelectedRole { get { return _selectedRole; } set { SetProperty(ref _selectedRole, value); } }
         private Role _selectedRole;
@@ -46,11 +41,11 @@
         public RolesViewModel(IManagementConnection connection, ILogger logger)
         {
             _logger = logger;   
-            _connection = connection;
-            _addCommand = new RelayCommand(AddRole, CanAddRole);
-            _saveCommand = new RelayCommand(SaveRole, CanSaveRole);
-            _deleteCommand = new RelayCommand(DeleteRole, CanDeleteRole);
-            _clearCommand = new RelayCommand(ClearRole, CanClearRole);
+            Connection = connection;
+            AddCommand = new RelayCommand(AddRole, CanAddRole);
+            SaveCommand = new RelayCommand(SaveRole, CanSaveRole);
+            DeleteCommand = new RelayCommand(DeleteRole, CanDeleteRole);
+            ClearCommand = new RelayCommand(ClearRole, CanClearRole);
 
             ReloadAvailableRoles();
         }

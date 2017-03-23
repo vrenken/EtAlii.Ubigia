@@ -4,9 +4,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     public class ProfileComposer : IProfileComposer
     {
-        public ReadOnlyObservableCollection<ProfilingResult> Results => _results;
-
-        private readonly ReadOnlyObservableCollection<ProfilingResult> _results;
+        public ReadOnlyObservableCollection<ProfilingResult> Results { get; }
 
         private readonly ObservableCollection<ProfilingResult> _items;
 
@@ -15,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
         public ProfileComposer(params IProfiler[] profilers)
         {
             _items = new ObservableCollection<ProfilingResult>();
-            _results = new ReadOnlyObservableCollection<ProfilingResult>(_items);
+            Results = new ReadOnlyObservableCollection<ProfilingResult>(_items);
 
             _profilers = profilers;
 

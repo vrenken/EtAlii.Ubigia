@@ -7,32 +7,30 @@
 
     public class ProvidersContext : IProvidersContext
     {
-        public IDataContext SystemDataContext => _systemDataContext;
-        private readonly IDataContext _systemDataContext;
+        public IDataContext SystemDataContext { get; }
 
-        public IManagementConnection ManagementConnection => _managementConnection;
-        private readonly IManagementConnection _managementConnection;
+        public IManagementConnection ManagementConnection { get; }
 
-        public IProviderConfiguration[] ProviderConfigurations => _providerConfigurations;
-        private IProviderConfiguration[] _providerConfigurations;
+        public IProviderConfiguration[] ProviderConfigurations { get; private set; }
+
         private Func<IDataConnection, IDataContext> _dataContextFactory;
 
         public ProvidersContext(
             IDataContext systemDataContext,
             IManagementConnection managementConnection)
         {
-            _systemDataContext = systemDataContext;
-            _managementConnection = managementConnection;
+            SystemDataContext = systemDataContext;
+            ManagementConnection = managementConnection;
         }
 
         public void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IDataContext> dataContextFactory)
         {
-            if (_providerConfigurations != null || _dataContextFactory != null)
+            if (ProviderConfigurations != null || _dataContextFactory != null)
             {
                 throw new InvalidOperationException("ProviderContext has already been initialized");
             }
             _dataContextFactory = dataContextFactory;
-            _providerConfigurations = providerConfigurations;
+            ProviderConfigurations = providerConfigurations;
         }
 
 

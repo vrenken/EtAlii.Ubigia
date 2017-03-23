@@ -16,13 +16,13 @@
             IDataConnection connection)
         {
             _container = container;
-            _folderSyncConfigurations = folderSyncConfigurations;
-            _manager = manager;
-            _connection = connection;
+            FolderSyncConfigurations = folderSyncConfigurations;
+            Manager = manager;
+            Connection = connection;
 
-            _selectSpaceCommand = new RelayCommand(OnSelectSpace, CanSelectSpace);
-            _addFolderCommand = new RelayCommand(OnAddFolder, CanAddFolder);
-            _editFolderCommand = new RelayCommand(OnEditFolder, CanEditFolder);
+            SelectSpaceCommand = new RelayCommand(OnSelectSpace, CanSelectSpace);
+            AddFolderCommand = new RelayCommand(OnAddFolder, CanAddFolder);
+            EditFolderCommand = new RelayCommand(OnEditFolder, CanEditFolder);
         }
     }
 }

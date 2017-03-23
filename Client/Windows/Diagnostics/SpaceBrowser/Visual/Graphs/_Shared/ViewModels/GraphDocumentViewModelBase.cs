@@ -11,22 +11,18 @@
     {
         #region Properties
 
-        protected IFabricContext Fabric => _fabric;
-        private readonly IFabricContext _fabric;
+        protected IFabricContext Fabric { get; }
 
         private readonly ICommand _selectEntryCommand;
         private readonly ICommand _discoverEntryCommand;
 
-        public IGraphConfiguration Configuration => _graphContext.Configuration;
+        public IGraphConfiguration Configuration => GraphContext.Configuration;
 
-        public IGraphButtonsViewModel Buttons => _buttons;
-        private readonly IGraphButtonsViewModel _buttons;
+        public IGraphButtonsViewModel Buttons { get; }
 
-        public IGraphContextMenuViewModel ContextMenu => _contextMenu;
-        private readonly IGraphContextMenuViewModel _contextMenu;
+        public IGraphContextMenuViewModel ContextMenu { get; }
 
-        public IGraphContext GraphContext => _graphContext;
-        private readonly IGraphContext _graphContext;
+        public IGraphContext GraphContext { get; }
 
         public string Title 
         {
@@ -43,10 +39,10 @@
             IGraphContextMenuViewModel contextMenu, 
             IGraphContext graphContext)
         {
-            _fabric = fabric;
-            _buttons = buttons;
-            _contextMenu = contextMenu;
-            _graphContext = graphContext;
+            Fabric = fabric;
+            Buttons = buttons;
+            ContextMenu = contextMenu;
+            GraphContext = graphContext;
 
             //_commandQueue.Register<RetrieveEntryCommand, RetrieveEntryCommandHandler>();
             //_commandQueue.Register<ProcessEntryCommand, ProcessEntryCommandHandler>();
@@ -55,7 +51,7 @@
             //_commandQueue.Register<DiscoverEntryCommand, DiscoverEntryCommandHandler>(handler => handler.GraphViewModel = this);
 
             //_fabric.Entries.Prepared += OnEntryPrepared;
-            _fabric.Entries.Stored += OnEntryStored;
+            Fabric.Entries.Stored += OnEntryStored;
 
             _discoverEntryCommand = new RelayCommand(DiscoverEntry);
             _selectEntryCommand = new RelayCommand(SelectEntry);

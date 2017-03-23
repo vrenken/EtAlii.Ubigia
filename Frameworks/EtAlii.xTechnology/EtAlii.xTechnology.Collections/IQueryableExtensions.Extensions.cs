@@ -62,16 +62,14 @@ namespace EtAlii.xTechnology.Collections
         }
         private class Recursion<T> : IRecursion<T>
         {
-            private readonly int _depth;
-            private readonly T _item;
-            public int Depth => _depth;
+            public int Depth { get; }
 
-            public T Item => _item;
+            public T Item { get; }
 
             public Recursion(int depth, T item)
             {
-                _depth = depth;
-                _item = item;
+                Depth = depth;
+                Item = item;
             }
         } 
     }

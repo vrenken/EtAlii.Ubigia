@@ -5,8 +5,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
 {
     public static class ShellExtension
     {
-        public static string FileName { get { return _fileName; } set { _fileName = value; } } 
-        private static string _fileName = "ShellExtension.dll";
+        public static string FileName { get; set; } = "ShellExtension.dll";
 
         public static bool IsRegistered
         {

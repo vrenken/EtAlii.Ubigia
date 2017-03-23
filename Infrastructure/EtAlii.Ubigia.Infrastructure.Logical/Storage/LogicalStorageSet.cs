@@ -16,8 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private const string _folder = "Storages";
 
-        private ObservableCollection<Storage> Items => _items;
-        private ObservableCollection<Storage> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
+        private ObservableCollection<Storage> Items { get; set; }
 
         public event EventHandler<Storage> Initialized { add { _initialized += value; } remove { var initialized = _initialized; if (initialized != null) initialized -= value; } }
         private EventHandler<Storage> _initialized;
@@ -61,7 +60,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 _initialized?.Invoke(this, storage);
             }
 
-            _items = items;
+            Items = items;
         }
 
         public void Stop()

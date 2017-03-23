@@ -8,41 +8,32 @@
 
     public class InfrastructureConfiguration : IInfrastructureConfiguration
     {
-        public IInfrastructureExtension[] Extensions => _extensions;
-        private IInfrastructureExtension[] _extensions;
+        public IInfrastructureExtension[] Extensions { get; private set; }
 
-        public ILogicalContext Logical => _logical;
-        private ILogicalContext _logical;
+        public ILogicalContext Logical { get; private set; }
 
-        public string Name => _name;
-        private string _name;
+        public string Name { get; private set; }
 
-        public string Address => _address;
-        private string _address;
+        public string Address { get; private set; }
 
-        public string Account => _account;
-        private string _account;
+        public string Account { get; private set; }
 
-        public string Password => _password;
-        private string _password;
+        public string Password { get; private set; }
 
-        public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories => _componentManagerFactories;
-        private Func<Container, Func<Container, object>[], object>[] _componentManagerFactories;
+        public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; private set; }
 
-        public Func<Container, object>[] ComponentFactories => _componentFactories;
-        private Func<Container, object>[] _componentFactories;
+        public Func<Container, object>[] ComponentFactories { get; private set; }
 
-        public ISystemConnectionCreationProxy SystemConnectionCreationProxy => _systemConnectionCreationProxy;
-        private readonly ISystemConnectionCreationProxy _systemConnectionCreationProxy;
+        public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
 
         private Func<Container, IInfrastructure> _getInfrastructure;
 
         public InfrastructureConfiguration(ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
-            _extensions = new IInfrastructureExtension[0];
-            _systemConnectionCreationProxy = systemConnectionCreationProxy;
-            _componentManagerFactories = new Func<Container, Func<Container, object>[], object>[0];
-            _componentFactories = new Func<Container, object>[0];
+            Extensions = new IInfrastructureExtension[0];
+            SystemConnectionCreationProxy = systemConnectionCreationProxy;
+            ComponentManagerFactories = new Func<Container, Func<Container, object>[], object>[0];
+            ComponentFactories = new Func<Container, object>[0];
         }
 
         public IInfrastructure GetInfrastructure(Container container)
@@ -57,8 +48,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -71,7 +62,7 @@
                 throw new ArgumentException(nameof(componentManagerFactory));
             }
 
-            _componentManagerFactories = _componentManagerFactories
+            ComponentManagerFactories = ComponentManagerFactories
                 .Concat(new[] { componentManagerFactory })
                 .Distinct()
                 .ToArray();
@@ -81,7 +72,7 @@
         public IInfrastructureConfiguration Use<TComponentInterface, TComponent>()
             where TComponent: class, TComponentInterface
         {
-            _componentFactories = _componentFactories
+            ComponentFactories = ComponentFactories
                 .Concat(new[] {
                     new Func<Container, object>((container) =>
                     {
@@ -114,10 +105,10 @@
                 throw new ArgumentException(nameof(password));
             }
 
-            _name = name;
-            _address = address;
-            _account = account;
-            _password = password;
+            Name = name;
+            Address = address;
+            Account = account;
+            Password = password;
             return this;
         }
 
@@ -128,7 +119,7 @@
                 throw new ArgumentException(nameof(logical));
             }
 
-            _logical = logical;
+            Logical = logical;
 
             return this;
         }

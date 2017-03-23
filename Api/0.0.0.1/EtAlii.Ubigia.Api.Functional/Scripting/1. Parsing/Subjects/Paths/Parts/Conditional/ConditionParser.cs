@@ -16,8 +16,7 @@
 
         private readonly INodeFinder _nodeFinder;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "Condition";
@@ -65,7 +64,7 @@
                     (Lp.Char('<') + Lp.Char('=').Maybe()) 
                 ).Id(_conditionId);
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 (
                     Lp.Name().Id(_propertyId) |
                     Lp.Char('"') + Lp.Name().Id(_propertyId) + Lp.Char('"') |

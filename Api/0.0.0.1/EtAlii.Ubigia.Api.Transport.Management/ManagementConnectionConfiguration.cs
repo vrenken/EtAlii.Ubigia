@@ -6,27 +6,21 @@
 
     public class ManagementConnectionConfiguration : IManagementConnectionConfiguration
     {
-        public IManagementConnectionExtension[] Extensions => _extensions;
-        private IManagementConnectionExtension[] _extensions;
+        public IManagementConnectionExtension[] Extensions { get; private set; }
 
-        public IStorageTransportProvider TransportProvider => _transportProvider;
-        private IStorageTransportProvider _transportProvider;
+        public IStorageTransportProvider TransportProvider { get; private set; }
 
-        public Func<IManagementConnection> FactoryExtension => _factoryExtension;
-        private Func<IManagementConnection> _factoryExtension;
+        public Func<IManagementConnection> FactoryExtension { get; private set; }
 
-        public string Address => _address;
-        private string _address;
+        public string Address { get; private set; }
 
-        public string AccountName => _accountName;
-        private string _accountName;
+        public string AccountName { get; private set; }
 
-        public string Password => _password;
-        private string _password;
+        public string Password { get; private set; }
 
         public ManagementConnectionConfiguration()
         {
-            _extensions = new IManagementConnectionExtension[0];
+            Extensions = new IManagementConnectionExtension[0];
         }
 
         public IManagementConnectionConfiguration Use(IManagementConnectionExtension[] extensions)
@@ -36,8 +30,8 @@
                 throw new ArgumentException("extensions");
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -45,13 +39,13 @@
 
         public IManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension)
         {
-            _factoryExtension = factoryExtension;
+            FactoryExtension = factoryExtension;
             return this;
         }
 
         public IManagementConnectionConfiguration Use(IStorageTransportProvider transportProvider)
         {
-            if (_transportProvider != null)
+            if (TransportProvider != null)
             {
                 throw new ArgumentException("A TransportProvider has already been assigned to this ManagementConnectionConfiguration", nameof(transportProvider));
             }
@@ -60,7 +54,7 @@
                 throw new ArgumentNullException(nameof(transportProvider));
             }
 
-            _transportProvider = transportProvider;
+            TransportProvider = transportProvider;
 
             return this;
         }
@@ -71,12 +65,12 @@
             {
                 throw new ArgumentException(nameof(address));
             }
-            if (_address != null)
+            if (Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this ManagementConnectionConfiguration");
             }
 
-            _address = address;
+            Address = address;
             return this;
         }
 
@@ -86,7 +80,7 @@
             {
                 throw new ArgumentException(nameof(accountName));
             }
-            if (_accountName != null)
+            if (AccountName != null)
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this ManagementConnectionConfiguration");
             }
@@ -94,13 +88,13 @@
             //{
             //    throw new ArgumentException(nameof(password));
             //}
-            if (_password != null)
+            if (Password != null)
             {
                 throw new InvalidOperationException("A password has already been assigned to this ManagementConnectionConfiguration");
             }
 
-            _accountName = accountName;
-            _password = password;
+            AccountName = accountName;
+            Password = password;
             return this;
         }
     }

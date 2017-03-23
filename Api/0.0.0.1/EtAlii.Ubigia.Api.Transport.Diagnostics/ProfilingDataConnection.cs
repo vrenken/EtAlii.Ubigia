@@ -6,8 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     public class ProfilingDataConnection : IProfilingDataConnection 
     {
-        public IProfiler Profiler => _profiler;
-        private readonly IProfiler _profiler;
+        public IProfiler Profiler { get; }
 
         public Storage Storage => _decoree.Storage;
         public Account Account => _decoree.Account;
@@ -24,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
         public ProfilingDataConnection(IDataConnection decoree, IProfiler profiler)
         {
             _decoree = decoree;
-            _profiler = profiler;
+            Profiler = profiler;
         }
 
         public async Task Open()

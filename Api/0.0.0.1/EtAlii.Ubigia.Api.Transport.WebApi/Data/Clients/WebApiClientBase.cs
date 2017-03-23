@@ -4,8 +4,7 @@
 
     internal abstract class WebApiClientBase
     {
-        protected IWebApiSpaceConnection Connection => _connection;
-        private IWebApiSpaceConnection _connection;
+        protected IWebApiSpaceConnection Connection { get; private set; }
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
@@ -19,12 +18,12 @@
 
         public virtual async Task Connect(ISpaceConnection<IWebApiSpaceTransport> spaceConnection)
         {
-            await Task.Run(() => _connection = (IWebApiSpaceConnection)spaceConnection);
+            await Task.Run(() => Connection = (IWebApiSpaceConnection)spaceConnection);
         }
 
         public virtual async Task Disconnect(ISpaceConnection<IWebApiSpaceTransport> spaceConnection)
         {
-            await Task.Run(() => _connection = null);
+            await Task.Run(() => Connection = null);
         }
     }
 }

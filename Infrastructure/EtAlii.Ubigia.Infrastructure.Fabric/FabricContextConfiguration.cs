@@ -8,8 +8,7 @@
         //public IFabricContextExtension[] Extensions { get { return _extensions; } }
         //private IFabricContextExtension[] _extensions;
 
-        public IStorage Storage => _storage;
-        private IStorage _storage;
+        public IStorage Storage { get; private set; }
 
         //public IFabricContextConfiguration Use(IFabricContextExtension[] extensions)
         //{
@@ -32,7 +31,7 @@
                 throw new ArgumentException(nameof(storage));
             }
 
-            _storage = storage;
+            Storage = storage;
 
             return this;
         }

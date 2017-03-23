@@ -17,8 +17,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {
-        public IHostTestContext Context => _context;
-        private IHostTestContext _context;
+        public IHostTestContext Context { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
 
@@ -73,8 +72,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         {
             await Task.Run(() =>
             {
-                _context = _testHostFactory.Create();
-                _context.Start();
+                Context = _testHostFactory.Create();
+                Context.Start();
             });
         }
 
@@ -82,8 +81,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         {
             await Task.Run(() =>
             {
-                _context.Stop();
-                _context = null;
+                Context.Stop();
+                Context = null;
             });
         }
 

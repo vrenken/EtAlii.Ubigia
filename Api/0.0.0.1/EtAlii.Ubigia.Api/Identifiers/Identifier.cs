@@ -18,23 +18,20 @@
         public Guid Space => _space;
         private Guid _space;
 
-        public UInt64 Era => _era;
-        private UInt64 _era;
+        public UInt64 Era { get; private set; }
 
-        public UInt64 Period => _period;
-        private UInt64 _period;
+        public UInt64 Period { get; private set; }
 
-        public UInt64 Moment => _moment;
-        private UInt64 _moment;
+        public UInt64 Moment { get; private set; }
 
         public static readonly Identifier Empty = new Identifier
         {
             _storage = Guid.Empty,
             _account = Guid.Empty,
             _space = Guid.Empty,
-            _era = UInt64.MinValue,
-            _period = UInt64.MinValue,
-            _moment = UInt64.MinValue,
+            Era = UInt64.MinValue,
+            Period = UInt64.MinValue,
+            Moment = UInt64.MinValue,
         };
 
         public override string ToString()
@@ -64,9 +61,9 @@
         public string ToTimeString()
         {
             return String.Format("{0}{3}{1}{3}{2}",
-                            _era,
-                            _period,
-                            _moment,
+                            Era,
+                            Period,
+                            Moment,
                             IdentifierSplitter.Time);
         }
 
@@ -115,11 +112,11 @@
         {
             get
             {
-                return _era;
+                return Era;
             }
             set
             {
-                _era = value;
+                Era = value;
             }
         }
 
@@ -127,11 +124,11 @@
         {
             get
             {
-                return _period;
+                return Period;
             }
             set
             {
-                _period  = value;
+                Period  = value;
             }
         }
 
@@ -139,11 +136,11 @@
         {
             get
             {
-                return _moment;
+                return Moment;
             }
             set
             {
-                _moment = value;
+                Moment = value;
             }
         }
     }

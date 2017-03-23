@@ -4,12 +4,11 @@
 
     public class MainWindowViewModel : BindableBase
     {
-        public IGlobalSettings GlobalSettings => _globalSettings;
-        private readonly IGlobalSettings _globalSettings;
+        public IGlobalSettings GlobalSettings { get; }
 
         public MainWindowViewModel(IGlobalSettings globalSettings)
         {
-            _globalSettings = globalSettings;
+            GlobalSettings = globalSettings;
         }
     }
 }

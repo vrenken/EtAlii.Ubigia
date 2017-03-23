@@ -4,8 +4,7 @@
 
     public partial struct ContainerIdentifier
     {
-        public string[] Paths => _paths;
-        private readonly string[] _paths;
+        public string[] Paths { get; }
 
         public static readonly ContainerIdentifier Empty = new ContainerIdentifier(new string[]{});
 
@@ -21,13 +20,13 @@
 
         public override string ToString()
         {
-            if(this == Empty || _paths.Length == 0)
+            if(this == Empty || Paths.Length == 0)
             {
                 return String.Format("{0}.Empty", GetType().Name);
             }
             else
             {
-                return String.Join("\\", _paths);
+                return String.Join("\\", Paths);
             }
         }
     }

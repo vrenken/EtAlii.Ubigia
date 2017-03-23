@@ -23,26 +23,19 @@
 
         private IMainWindowViewModel _mainWindowViewModel;
 
-        public string Icon { get { return _icon; } set { _icon = value; } }
-        private string _icon = "";
+        public string Icon { get; set; } = "";
 
-        public string Header { get { return _header; } set { _header = value; } }
-        private string _header = "";
+        public string Header { get; set; } = "";
 
-        public string InfoLine { get { return _infoLine; } set { _infoLine = value; } }
-        private string _infoLine = "";
+        public string InfoLine { get; set; } = "";
 
-        public string InfoTip1 { get { return _infoTip1; } set { _infoTip1 = value; } }
-        private string _infoTip1 = "";
+        public string InfoTip1 { get; set; } = "";
 
-        public string InfoTip2 { get { return _infoTip2; } set { _infoTip2 = value; } }
-        private string _infoTip2 = "";
+        public string InfoTip2 { get; set; } = "";
 
-        public string TitleFormat { get { return _titleFormat; } set { _titleFormat = value; } }
-        private string _titleFormat = "No name {0}";
+        public string TitleFormat { get; set; } = "No name {0}";
 
-        public IDocumentFactory DocumentFactory { get { return _documentFactory; } protected set { _documentFactory = value; } }
-        private IDocumentFactory _documentFactory;
+        public IDocumentFactory DocumentFactory { get; protected set; }
 
         public NewDocumentCommandBase(
             IDataContext dataContext,
@@ -92,7 +85,7 @@
             var title = String.Empty;
             do
             {
-                title = String.Format(_titleFormat, ++i);
+                title = String.Format(TitleFormat, ++i);
             }
             while (_mainWindowViewModel.Documents.Any(g => g.Title == title));
             return title;

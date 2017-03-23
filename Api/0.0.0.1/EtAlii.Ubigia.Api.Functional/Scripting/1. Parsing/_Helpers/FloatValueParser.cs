@@ -8,8 +8,7 @@
     {
         private readonly INodeValidator _nodeValidator;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "FloatValue";
@@ -17,7 +16,7 @@
         public FloatValueParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            _parser = new LpsParser(Id, true, Lp.One(c => c == '-' || c == '+').Maybe() + Lp.OneOrMore(c => Char.IsDigit(c)) + Lp.One(c => c == '.') + Lp.OneOrMore(c => Char.IsDigit(c)));
+            Parser = new LpsParser(Id, true, Lp.One(c => c == '-' || c == '+').Maybe() + Lp.OneOrMore(c => Char.IsDigit(c)) + Lp.One(c => c == '.') + Lp.OneOrMore(c => Char.IsDigit(c)));
         }
 
 

@@ -4,16 +4,14 @@
 
     public class FirstName
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public List<Person> Persons => _persons;
-        private readonly List<Person> _persons;
+        public List<Person> Persons { get; }
 
         public FirstName(string name)
         {
-            _name = name;
-            _persons = new List<Person>();
+            Name = name;
+            Persons = new List<Person>();
         }
     }
 }

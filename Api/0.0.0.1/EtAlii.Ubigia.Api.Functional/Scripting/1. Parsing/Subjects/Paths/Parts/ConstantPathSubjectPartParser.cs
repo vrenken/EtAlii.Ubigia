@@ -7,11 +7,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class ConstantPathSubjectPartParser : IConstantPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "ConstantPathSubjectPart";
+        public string Id { get; } = "ConstantPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConstantHelper _constantHelper;
@@ -27,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _constantHelper = constantHelper;
             _nodeFinder = nodeFinder;
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 (Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_textId)) |
                 (Lp.One(c => c == '\"') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\"')) |
                 (Lp.One(c => c == '\'') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\'')) 

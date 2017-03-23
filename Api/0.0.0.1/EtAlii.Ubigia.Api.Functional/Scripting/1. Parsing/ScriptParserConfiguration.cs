@@ -6,14 +6,13 @@
 
     internal class ScriptParserConfiguration : IScriptParserConfiguration
     {
-        public IScriptParserExtension[] Extensions => _extensions;
-        private IScriptParserExtension[] _extensions;
+        public IScriptParserExtension[] Extensions { get; private set; }
 
         private ILogicalContextConfiguration _parentConfiguration;
 
         public ScriptParserConfiguration()
         {
-            _extensions = new IScriptParserExtension[0];
+            Extensions = new IScriptParserExtension[0];
         }
 
         public IScriptParserConfiguration Use(IScriptParserExtension[] extensions)
@@ -23,8 +22,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;

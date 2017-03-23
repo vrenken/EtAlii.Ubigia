@@ -14,20 +14,15 @@
         public IEnumerable<Storage> AvailableStorages { get { return _availableStorages; } private set { SetProperty(ref _availableStorages, value); } }
         private IEnumerable<Storage> _availableStorages;
 
-        protected IManagementConnection Connection => _connection;
-        private readonly IManagementConnection _connection;
+        protected IManagementConnection Connection { get; }
 
-        public ICommand AddCommand => _addCommand;
-        private readonly ICommand _addCommand;
+        public ICommand AddCommand { get; }
 
-        public ICommand SaveCommand => _saveCommand;
-        private readonly ICommand _saveCommand;
+        public ICommand SaveCommand { get; }
 
-        public ICommand DeleteCommand => _deleteCommand;
-        private readonly ICommand _deleteCommand;
+        public ICommand DeleteCommand { get; }
 
-        public ICommand ClearCommand => _clearCommand;
-        private readonly ICommand _clearCommand;
+        public ICommand ClearCommand { get; }
 
         public Storage SelectedStorage { get { return _selectedStorage; } set { SetProperty(ref _selectedStorage, value); } }
         private Storage _selectedStorage;
@@ -44,11 +39,11 @@
         public StoragesViewModel(IManagementConnection connection, ILogger logger)
         {
             _logger = logger;   
-            _connection = connection;
-            _addCommand = new RelayCommand(AddStorage, CanAddStorage);
-            _saveCommand = new RelayCommand(SaveStorage, CanSaveStorage);
-            _deleteCommand = new RelayCommand(DeleteStorage, CanDeleteStorage);
-            _clearCommand = new RelayCommand(ClearStorage, CanClearStorage);
+            Connection = connection;
+            AddCommand = new RelayCommand(AddStorage, CanAddStorage);
+            SaveCommand = new RelayCommand(SaveStorage, CanSaveStorage);
+            DeleteCommand = new RelayCommand(DeleteStorage, CanDeleteStorage);
+            ClearCommand = new RelayCommand(ClearStorage, CanClearStorage);
 
             ReloadAvailableStorages();
         }
@@ -70,7 +65,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await _connection.Storages.Add(StorageName, StorageAddress);
+                    await Connection.Storages.Add(StorageName, StorageAddress);
                 });
                 task.Wait();
             }
@@ -102,7 +97,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await _connection.Storages.Change(SelectedStorage.Id, StorageName, StorageAddress);
+                    await Connection.Storages.Change(SelectedStorage.Id, StorageName, StorageAddress);
                 });
                 task.Wait();
             }
@@ -129,7 +124,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    await _connection.Storages.Remove(SelectedStorage.Id);
+                    await Connection.Storages.Remove(SelectedStorage.Id);
                 });
                 task.Wait();
             }
@@ -173,7 +168,7 @@
             IEnumerable<Storage> storages = null;
             var task = Task.Run(async () =>
             {
-                storages = await _connection.Storages.GetAll();
+                storages = await Connection.Storages.GetAll();
             });
             task.Wait();
 

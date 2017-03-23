@@ -4,16 +4,14 @@
 
     public class TestFormatFunctionHandler : IFunctionHandler
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
         public TestFormatFunctionHandler()
         {
-            _name = "TestFormat";
-            _parameterSets = new[]
+            Name = "TestFormat";
+            ParameterSets = new[]
             {
                 new ParameterSet(false, new Parameter("value1", typeof(string))),
                 new ParameterSet(false, new Parameter("value1", typeof(string)), new Parameter("value2", typeof(string))),

@@ -4,11 +4,9 @@
 
     internal class IsParentOfPathSubjectPartParser : IIsParentOfPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "IsParentOfPathSubjectPart";
+        public string Id { get; } = "IsParentOfPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IPathRelationParserBuilder _pathRelationParserBuilder;
@@ -24,7 +22,7 @@
             _pathRelationParserBuilder = pathRelationParserBuilder;
 
             var relationParser = _pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
-            _parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser");
+            Parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser");
         }
 
         public PathSubjectPart Parse(LpNode node)

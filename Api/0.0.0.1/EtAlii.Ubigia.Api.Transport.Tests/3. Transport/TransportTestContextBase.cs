@@ -8,8 +8,7 @@
 
     public abstract class TransportTestContextBase : ITransportTestContext
     {
-        public IHostTestContext Context => _context;
-        private IHostTestContext _context;
+        public IHostTestContext Context { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
 
@@ -23,12 +22,12 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            return await CreateDataConnection(_context.Host.Infrastructure.Configuration.Address, accountName, password, spaceName, openOnCreation, true, null);
+            return await CreateDataConnection(Context.Host.Infrastructure.Configuration.Address, accountName, password, spaceName, openOnCreation, true, null);
         }
 
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {
-            return await CreateDataConnection(_context.Host.Infrastructure.Configuration.Address, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
+            return await CreateDataConnection(Context.Host.Infrastructure.Configuration.Address, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
         }
         public abstract Task<IDataConnection> CreateDataConnection(string address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
 
@@ -54,8 +53,8 @@
         {
             await Task.Run(() =>
             {
-                _context = _testHostFactory.Create();
-                _context.Start();
+                Context = _testHostFactory.Create();
+                Context.Start();
             });
         }
 
@@ -63,8 +62,8 @@
         {
             await Task.Run(() =>
             {
-                _context.Stop();
-                _context = null;
+                Context.Stop();
+                Context = null;
                 //SpaceName = null;
             });
         }

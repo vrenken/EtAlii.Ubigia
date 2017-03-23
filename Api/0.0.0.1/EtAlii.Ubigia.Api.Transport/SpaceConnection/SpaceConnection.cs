@@ -6,37 +6,27 @@
     public abstract class SpaceConnection<TTransport> : ISpaceConnection<TTransport>
         where TTransport : ISpaceTransport
     {
-        public Storage Storage { get { return _storage; } private set { _storage = value; } }
-        private Storage _storage;
+        public Storage Storage { get; private set; }
 
-        public Space Space { get { return _space; } private set { _space = value; } }
-        private Space _space;
+        public Space Space { get; private set; }
 
-        public Account Account { get { return _account; } private set { _account = value; } }
-        private Account _account;
+        public Account Account { get; private set; }
 
-        public TTransport Transport => _transport;
-        private readonly TTransport _transport;
+        public TTransport Transport { get; }
 
-        public bool IsConnected => _storage != null && _space != null;
+        public bool IsConnected => Storage != null && Space != null;
 
-        public ISpaceConnectionConfiguration Configuration => _configuration;
-        private readonly ISpaceConnectionConfiguration _configuration;
+        public ISpaceConnectionConfiguration Configuration { get; }
 
-        public IRootContext Roots => _roots;
-        private readonly IRootContext _roots;
+        public IRootContext Roots { get; }
 
-        public IEntryContext Entries => _entries;
-        private readonly IEntryContext _entries;
+        public IEntryContext Entries { get; }
 
-        public IContentContext Content => _content;
-        private readonly IContentContext _content;
+        public IContentContext Content { get; }
 
-        public IPropertyContext Properties => _properties;
-        private readonly IPropertyContext _properties;
+        public IPropertyContext Properties { get; }
 
-        public IAuthenticationContext Authentication => _authentication;
-        private readonly IAuthenticationContext _authentication;
+        public IAuthenticationContext Authentication { get; }
 
         protected SpaceConnection(
             ISpaceTransport transport,
@@ -47,13 +37,13 @@
             IPropertyContext properties, 
             IAuthenticationContext authentication)
         {
-            _transport = (TTransport)transport;
-            _configuration = configuration;
-            _roots = roots;
-            _entries = entries;
-            _content = content;
-            _properties = properties;
-            _authentication = authentication;
+            Transport = (TTransport)transport;
+            Configuration = configuration;
+            Roots = roots;
+            Entries = entries;
+            Content = content;
+            Properties = properties;
+            Authentication = authentication;
         }
 
         public async Task Close()
@@ -63,15 +53,15 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyClosed);
             }
 
-            await _content.Close(this);
-            await _properties.Close(this);
-            await _entries.Close(this);
-            await _roots.Close(this);
-            await _authentication.Close(this);
+            await Content.Close(this);
+            await Properties.Close(this);
+            await Entries.Close(this);
+            await Roots.Close(this);
+            await Authentication.Close(this);
 
-            await _transport.Stop(this);
-            _storage = null;
-            _space = null;
+            await Transport.Stop(this);
+            Storage = null;
+            Space = null;
         }
 
         public async Task Open()
@@ -81,22 +71,22 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await _authentication.Data.Authenticate(this);
+            await Authentication.Data.Authenticate(this);
 
-            _storage = await _authentication.Data.GetConnectedStorage(this);
+            Storage = await Authentication.Data.GetConnectedStorage(this);
 
-            _transport.Initialize(this, _configuration.Address);
+            Transport.Initialize(this, Configuration.Address);
 
-            await _authentication.Open(this);
-            await _roots.Open(this);
-            await _entries.Open(this);
-            await _properties.Open(this);
-            await _content.Open(this);
+            await Authentication.Open(this);
+            await Roots.Open(this);
+            await Entries.Open(this);
+            await Properties.Open(this);
+            await Content.Open(this);
 
-            await _transport.Start(this, _configuration.Address);
+            await Transport.Start(this, Configuration.Address);
 
-            _account = await _authentication.Data.GetAccount(this);
-            _space = await _authentication.Data.GetSpace(this);
+            Account = await Authentication.Data.GetAccount(this);
+            Space = await Authentication.Data.GetSpace(this);
         }
         
         #region Disposable
@@ -124,7 +114,7 @@
                             await Close();
                         });
                         task.Wait();
-                        _storage = null;
+                        Storage = null;
                     }
                 }
                 // Free your own state (unmanaged objects).

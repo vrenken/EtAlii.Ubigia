@@ -4,14 +4,13 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
     public class SignalRTransportProvider : ITransportProvider
     {
-        public IHttpClient HttpClient => _httpClient;
-        private readonly IHttpClient _httpClient;
+        public IHttpClient HttpClient { get; }
 
         private string _authenticationToken;
 
         private SignalRTransportProvider(IHttpClient httpClient) 
         {
-            _httpClient = httpClient;
+            HttpClient = httpClient;
         }
 
         public static SignalRTransportProvider Create()
@@ -27,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         public ISpaceTransport GetSpaceTransport()
         {
             return new SignalRSpaceTransport(
-                _httpClient, 
+                HttpClient, 
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }

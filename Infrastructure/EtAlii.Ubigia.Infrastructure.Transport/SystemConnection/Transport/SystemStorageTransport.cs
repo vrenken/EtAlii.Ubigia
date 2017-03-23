@@ -6,8 +6,7 @@
 
     public class SystemStorageTransport : ISystemStorageTransport
     {
-        public bool IsConnected => _isConnected;
-        private bool _isConnected;
+        public bool IsConnected { get; private set; }
 
         private readonly IInfrastructure _infrastructure;
 
@@ -26,17 +25,17 @@
 
         public async Task Start(IStorageConnection storageConnection)
         {
-            await Task.Run(() => _isConnected = true);
+            await Task.Run(() => IsConnected = true);
         }
 
         public async Task Start(IStorageConnection storageConnection, string address)
         {
-            await Task.Run(() => _isConnected = true);
+            await Task.Run(() => IsConnected = true);
         }
 
         public async Task Stop(IStorageConnection storageConnection)
         {
-            await Task.Run(() => _isConnected = false);
+            await Task.Run(() => IsConnected = false);
         }
 
         EtAlii.xTechnology.MicroContainer.IScaffolding[] IStorageTransport.CreateScaffolding()

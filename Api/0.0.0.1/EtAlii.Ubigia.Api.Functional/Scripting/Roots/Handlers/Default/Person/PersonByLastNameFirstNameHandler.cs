@@ -6,12 +6,11 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class PersonByLastNameFirstNameHandler : IRootHandler
     {
 
-        public PathSubjectPart[] Template => _template;
-        private readonly PathSubjectPart[] _template;
+        public PathSubjectPart[] Template { get; }
 
         public PersonByLastNameFirstNameHandler()
         {
-            _template = new PathSubjectPart[]
+            Template = new PathSubjectPart[]
             {
                 new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter), new IsParentOfPathSubjectPart(),
                 new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)

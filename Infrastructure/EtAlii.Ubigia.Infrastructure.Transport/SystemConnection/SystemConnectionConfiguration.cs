@@ -7,22 +7,18 @@
 
     public class SystemConnectionConfiguration : ISystemConnectionConfiguration
     {
-        public ISystemConnectionExtension[] Extensions => _extensions;
-        private ISystemConnectionExtension[] _extensions;
+        public ISystemConnectionExtension[] Extensions { get; private set; }
 
-        public IStorageTransportProvider TransportProvider => _transportProvider;
-        private IStorageTransportProvider _transportProvider;
+        public IStorageTransportProvider TransportProvider { get; private set; }
 
-        public Func<ISystemConnection> FactoryExtension => _factoryExtension;
-        private Func<ISystemConnection> _factoryExtension;
+        public Func<ISystemConnection> FactoryExtension { get; private set; }
 
-        public IInfrastructure Infrastructure => _infrastructure;
-        private IInfrastructure _infrastructure;
-        
+        public IInfrastructure Infrastructure { get; private set; }
+
 
         public SystemConnectionConfiguration()
         {
-            _extensions = new ISystemConnectionExtension[0];
+            Extensions = new ISystemConnectionExtension[0];
         }
 
         public ISystemConnectionConfiguration Use(ISystemConnectionExtension[] extensions)
@@ -32,8 +28,8 @@
                 throw new ArgumentException("extensions");
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -41,7 +37,7 @@
 
         public ISystemConnectionConfiguration Use(IStorageTransportProvider transportProvider)
         {
-            if (_transportProvider != null)
+            if (TransportProvider != null)
             {
                 throw new ArgumentException("A TransportProvider has already been assigned to this SystemConnectionConfiguration", nameof(transportProvider));
             }
@@ -50,20 +46,20 @@
                 throw new ArgumentNullException(nameof(transportProvider));
             }
 
-            _transportProvider = transportProvider;
+            TransportProvider = transportProvider;
 
             return this;
         }
 
         public ISystemConnectionConfiguration Use(Func<ISystemConnection> factoryExtension)
         {
-            _factoryExtension = factoryExtension;
+            FactoryExtension = factoryExtension;
             return this;
         }
 
         public ISystemConnectionConfiguration Use(IInfrastructure infrastructure)
         {
-            _infrastructure = infrastructure;
+            Infrastructure = infrastructure;
             return this;
         }
     }

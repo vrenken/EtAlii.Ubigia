@@ -11,9 +11,7 @@
         /// <summary>
         /// The recent value of the variables used in the script.
         /// </summary>
-        public Dictionary<string, ScopeVariable> Variables => _variables;
-
-        private readonly Dictionary<string, ScopeVariable> _variables;
+        public Dictionary<string, ScopeVariable> Variables { get; }
 
         /// <summary>
         /// Create a new ScriptScope instance. 
@@ -21,7 +19,7 @@
         /// </summary>
         public ScriptScope()
         {
-            _variables = new Dictionary<string, ScopeVariable>();
+            Variables = new Dictionary<string, ScopeVariable>();
         }
     }
 }

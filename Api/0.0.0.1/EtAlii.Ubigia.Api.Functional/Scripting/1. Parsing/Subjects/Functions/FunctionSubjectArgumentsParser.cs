@@ -5,11 +5,9 @@
 
     internal class FunctionSubjectArgumentsParser : IFunctionSubjectArgumentsParser
     {
-        public string Id => _id;
-        private readonly string _id = "FunctionSubjectArgument";
+        public string Id { get; } = "FunctionSubjectArgument";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IFunctionSubjectArgumentParser[] _parsers;
@@ -31,7 +29,7 @@
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | (parser.Parser));
 
-            _parser = new LpsParser(Id, true, lpsParsers);
+            Parser = new LpsParser(Id, true, lpsParsers);
         }
 
         public FunctionSubjectArgument Parse(LpNode node)

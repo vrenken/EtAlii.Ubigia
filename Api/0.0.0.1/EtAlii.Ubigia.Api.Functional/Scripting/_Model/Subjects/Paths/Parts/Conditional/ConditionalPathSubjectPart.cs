@@ -5,17 +5,16 @@
 
     public class ConditionalPathSubjectPart : PathSubjectPart
     {
-        public Condition[] Conditions => _conditions;
-        private readonly Condition[] _conditions; 
+        public Condition[] Conditions { get; }
 
         public ConditionalPathSubjectPart(Condition[] conditions)
         {
-            _conditions = conditions;
+            Conditions = conditions;
         }
 
         public override string ToString()
         {
-            return String.Join("&", _conditions.Select(c => c.ToString()));
+            return String.Join("&", Conditions.Select(c => c.ToString()));
         }
     }
 }

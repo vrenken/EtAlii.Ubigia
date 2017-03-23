@@ -10,38 +10,27 @@
 
     public class TestInfrastructure : IInfrastructure// WebApiInfrastructure
     {
-        public IInfrastructureConfiguration Configuration => _configuration;
-        private readonly IInfrastructureConfiguration _configuration;
+        public IInfrastructureConfiguration Configuration { get; }
 
-        public ISpaceRepository Spaces => _spaces;
-        private readonly ISpaceRepository _spaces;
+        public ISpaceRepository Spaces { get; }
 
-        public IIdentifierRepository Identifiers => _identifiers;
-        private readonly IIdentifierRepository _identifiers;
+        public IIdentifierRepository Identifiers { get; }
 
-        public IEntryRepository Entries => _entries;
-        private readonly IEntryRepository _entries;
+        public IEntryRepository Entries { get; }
 
-        public IRootRepository Roots => _roots;
-        private readonly IRootRepository _roots;
+        public IRootRepository Roots { get; }
 
-        public IAccountRepository Accounts => _accounts;
-        private readonly IAccountRepository _accounts;
+        public IAccountRepository Accounts { get; }
 
-        public IContentRepository Content => _content;
-        private readonly IContentRepository _content;
+        public IContentRepository Content { get; }
 
-        public IContentDefinitionRepository ContentDefinition => _contentDefinition;
-        private readonly IContentDefinitionRepository _contentDefinition;
+        public IContentDefinitionRepository ContentDefinition { get; }
 
-        public IPropertiesRepository Properties => _properties;
-        private readonly IPropertiesRepository _properties;
+        public IPropertiesRepository Properties { get; }
 
-        public IStorageRepository Storages => _storages;
-        private readonly IStorageRepository _storages;
+        public IStorageRepository Storages { get; }
 
-        public TestServer Server => _server;
-        private TestServer _server;
+        public TestServer Server { get; private set; }
 
         private readonly Container _container;
         private readonly ILogger _logger;
@@ -63,17 +52,17 @@
             ILogger logger,
             ILogicalContext logicalContext)
         {
-            _configuration = configuration;
-            _identifiers = identifiers;
-            _entries = entries;
-            _roots = roots;
-            _content = content;
-            _contentDefinition = contentDefinition;
-            _properties = properties;
+            Configuration = configuration;
+            Identifiers = identifiers;
+            Entries = entries;
+            Roots = roots;
+            Content = content;
+            ContentDefinition = contentDefinition;
+            Properties = properties;
 
-            _storages = storages;
-            _accounts = accounts;
-            _spaces = spaces;
+            Storages = storages;
+            Accounts = accounts;
+            Spaces = spaces;
 
             _container = container;
             _logger = logger;
@@ -85,7 +74,7 @@
             // This action is needed because the Logical layer needs a fully functional system connection to do 
             // the initialization of the storage and spaces.
             // The functional is the only one that can provide these kind of connections.
-            _configuration.SystemConnectionCreationProxy.Initialize(() =>
+            Configuration.SystemConnectionCreationProxy.Initialize(() =>
             {
                 var configuration = new SystemConnectionConfiguration()
                     .Use(SystemTransportProvider.Create(this))
@@ -97,12 +86,12 @@
 
             _logger.Info("Starting test infrastructure hosting");
 
-            _componentManagers = _configuration.ComponentManagerFactories
-                .Select(componentManagerFactory => componentManagerFactory(_container, _configuration.ComponentFactories))
+            _componentManagers = Configuration.ComponentManagerFactories
+                .Select(componentManagerFactory => componentManagerFactory(_container, Configuration.ComponentFactories))
                 .Cast<IComponentManager>()
                 .ToArray();
 
-            _server = TestServer.Create(applicationBuilder =>
+            Server = TestServer.Create(applicationBuilder =>
             {
                 foreach (var componentManager in _componentManagers)
                 {
@@ -117,8 +106,8 @@
         {
             _logger.Info("Stopping test infrastructure hosting");
 
-            _server.Dispose();
-            _server = null;
+            Server.Dispose();
+            Server = null;
 
             foreach (var componentManager in _componentManagers)
             {

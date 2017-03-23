@@ -5,30 +5,23 @@
 
     public class DataConnectionConfiguration : IDataConnectionConfiguration
     {
-        public IDataConnectionExtension[] Extensions => _extensions;
-        private IDataConnectionExtension[] _extensions;
+        public IDataConnectionExtension[] Extensions { get; private set; }
 
-        public ITransportProvider TransportProvider => _transportProvider;
-        private ITransportProvider _transportProvider;
+        public ITransportProvider TransportProvider { get; private set; }
 
-        public Func<IDataConnection> FactoryExtension => _factoryExtension;
-        private Func<IDataConnection> _factoryExtension;
+        public Func<IDataConnection> FactoryExtension { get; private set; }
 
-        public string Address => _address;
-        private string _address;
+        public string Address { get; private set; }
 
-        public string AccountName => _accountName;
-        private string _accountName;
+        public string AccountName { get; private set; }
 
-        public string Password => _password;
-        private string _password;
+        public string Password { get; private set; }
 
-        public string Space => _space;
-        private string _space;
+        public string Space { get; private set; }
 
         public DataConnectionConfiguration()
         {
-            _extensions = new IDataConnectionExtension[0];
+            Extensions = new IDataConnectionExtension[0];
         }
 
         public IDataConnectionConfiguration Use(IDataConnectionExtension[] extensions)
@@ -38,8 +31,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -47,13 +40,13 @@
 
         public IDataConnectionConfiguration Use(Func<IDataConnection> factoryExtension)
         {
-            _factoryExtension = factoryExtension;
+            FactoryExtension = factoryExtension;
             return this;
         }
 
         public IDataConnectionConfiguration Use(ITransportProvider transportProvider)
         {
-            if (_transportProvider != null)
+            if (TransportProvider != null)
             {
                 throw new ArgumentException("A TransportProvider has already been assigned to this DataConnectionConfiguration",
                     nameof(transportProvider));
@@ -63,7 +56,7 @@
                 throw new ArgumentNullException(nameof(transportProvider));
             }
 
-            _transportProvider = transportProvider;
+            TransportProvider = transportProvider;
 
             return this;
         }
@@ -74,12 +67,12 @@
             {
                 throw new ArgumentException(nameof(address));
             }
-            if (_address != null)
+            if (Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this DataConnectionConfiguration");
             }
 
-            _address = address;
+            Address = address;
             return this;
         }
 
@@ -89,7 +82,7 @@
             {
                 throw new ArgumentException(nameof(accountName));
             }
-            if (_accountName != null)
+            if (AccountName != null)
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this DataConnectionConfiguration");
             }
@@ -97,7 +90,7 @@
             //{
             //    throw new ArgumentException(nameof(password));
             //}
-            if (_password != null)
+            if (Password != null)
             {
                 throw new InvalidOperationException("A password has already been assigned to this DataConnectionConfiguration");
             }
@@ -105,14 +98,14 @@
             {
                 throw new ArgumentException(nameof(space));
             }
-            if (_space != null)
+            if (Space != null)
             {
                 throw new InvalidOperationException("A space has already been assigned to this DataConnectionConfiguration");
             }
 
-            _accountName = accountName;
-            _password = password;
-            _space = space;
+            AccountName = accountName;
+            Password = password;
+            Space = space;
             return this;
         }
     }

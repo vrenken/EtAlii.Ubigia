@@ -8,8 +8,7 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "BooleanValue";
@@ -22,7 +21,7 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 (Lp.One(c => Char.ToLower(c) == 't') + Lp.One(c => Char.ToLower(c) == 'r') + Lp.One(c => Char.ToLower(c) == 'u') + Lp.One(c => Char.ToLower(c) == 'e')).Id(_valueId) |
                 (Lp.One(c => Char.ToLower(c) == 'f') + Lp.One(c => Char.ToLower(c) == 'a') + Lp.One(c => Char.ToLower(c) == 'l') + Lp.One(c => Char.ToLower(c) == 's') + Lp.One(c => Char.ToLower(c) == 'e')).Id(_valueId)
             );

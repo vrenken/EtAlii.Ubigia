@@ -9,8 +9,7 @@
         {
         }
 
-        public string Type { get { return _type; } internal set { _type = value; } }
-        private string _type;
+        public string Type { get; internal set; }
 
         protected internal override string Name => _name;
         private const string _name = "Type";

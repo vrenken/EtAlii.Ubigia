@@ -13,19 +13,16 @@
         public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
         private string _title;
 
-        public ReadOnlyObservableCollection<ProfilingResult> Results => _results;
-        private readonly ReadOnlyObservableCollection<ProfilingResult> _results;
+        public ReadOnlyObservableCollection<ProfilingResult> Results { get; }
 
-        public IProfilingAspectsViewModel Aspects => _aspects;
-        private readonly IProfilingAspectsViewModel _aspects;
+        public IProfilingAspectsViewModel Aspects { get; }
 
         private readonly IGraphContext _graphContext;
         private readonly IProfileComposer _profileComposer;
         private readonly IMainDispatcherInvoker _dispatcher;
         private readonly ObservableCollection<ProfilingResult> _items;
 
-        public System.Windows.Input.ICommand ClearCommand => _clearCommand;
-        private readonly ICommand _clearCommand;
+        public System.Windows.Input.ICommand ClearCommand { get; }
 
         public bool AutoExpandNodes { get { return _autoExpandNodes; } set { base.SetProperty(ref _autoExpandNodes, value); } }
         private bool _autoExpandNodes;
@@ -43,15 +40,15 @@
             _graphContext = graphContext;
             _profileComposer = profileComposer;
             _dispatcher = dispatcher;
-            _aspects = aspects;
+            Aspects = aspects;
 
             _items = new ObservableCollection<ProfilingResult>();
-            _results = new ReadOnlyObservableCollection<ProfilingResult>(_items);
+            Results = new ReadOnlyObservableCollection<ProfilingResult>(_items);
 
             ((INotifyCollectionChanged)_profileComposer.Results).CollectionChanged += ResultsOnCollectionChanged;
 
             _autoExpandNodes = true;
-            _clearCommand = new RelayCommand(Clear, CanClear);
+            ClearCommand = new RelayCommand(Clear, CanClear);
         }
 
         private bool CanClear(object parameter)

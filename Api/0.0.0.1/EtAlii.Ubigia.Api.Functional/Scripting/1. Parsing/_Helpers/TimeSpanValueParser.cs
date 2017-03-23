@@ -8,8 +8,7 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "TimeSpanValue";
@@ -20,7 +19,7 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _parser = new LpsParser(Id, true, LpDateTime.TimeSpan());
+            Parser = new LpsParser(Id, true, LpDateTime.TimeSpan());
         }
 
 

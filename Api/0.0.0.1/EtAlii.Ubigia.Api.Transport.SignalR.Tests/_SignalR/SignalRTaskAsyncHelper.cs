@@ -9,15 +9,11 @@
 
     internal static class SignalRTaskAsyncHelper
     {
-        private static readonly Task _emptyTask = (Task)MakeTask((object)null);
-        private static readonly Task<bool> _trueTask = MakeTask(true);
-        private static readonly Task<bool> _falseTask = MakeTask(false);
+        private static Task Empty { get; } = (Task)MakeTask((object)null);
 
-        private static Task Empty => _emptyTask;
+        public static Task<bool> True { get; } = MakeTask(true);
 
-        public static Task<bool> True => _trueTask;
-
-        public static Task<bool> False => _falseTask;
+        public static Task<bool> False { get; } = MakeTask(false);
 
         private static Task<T> MakeTask<T>(T value)
         {

@@ -2,26 +2,19 @@
 {
     public class FabricContext : IFabricContext
     {
-        public IItemsSet Items => _items;
-        private readonly IItemsSet _items;
+        public IItemsSet Items { get; }
 
-        public IContentSet Content => _content;
-        private readonly IContentSet _content;
+        public IContentSet Content { get; }
 
-        public IContentDefinitionSet ContentDefinition => _contentDefinition;
-        private readonly IContentDefinitionSet _contentDefinition;
+        public IContentDefinitionSet ContentDefinition { get; }
 
-        public IEntrySet Entries => _entries;
-        private readonly IEntrySet _entries;
+        public IEntrySet Entries { get; }
 
-        public IRootSet Roots => _roots;
-        private readonly IRootSet _roots;
+        public IRootSet Roots { get; }
 
-        public IPropertiesSet Properties => _properties;
-        private readonly IPropertiesSet _properties;
+        public IPropertiesSet Properties { get; }
 
-        public IIdentifierSet Identifiers => _identifiers;
-        private readonly IIdentifierSet _identifiers;
+        public IIdentifierSet Identifiers { get; }
 
         public FabricContext(
             IItemsSet items, 
@@ -32,13 +25,13 @@
             IPropertiesSet properties, 
             IIdentifierSet identifiers)
         {
-            _items = items;
-            _content = content;
-            _contentDefinition = contentDefinition;
-            _roots = roots;
-            _properties = properties;
-            _identifiers = identifiers;
-            _entries = entries;
+            Items = items;
+            Content = content;
+            ContentDefinition = contentDefinition;
+            Roots = roots;
+            Properties = properties;
+            Identifiers = identifiers;
+            Entries = entries;
         }
 
         public void Start()

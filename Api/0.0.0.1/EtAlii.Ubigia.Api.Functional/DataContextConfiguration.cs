@@ -8,40 +8,36 @@
 
     public class DataContextConfiguration : IDataContextConfiguration
     {
-        public ILogicalContext LogicalContext => _logicalContext;
-        private ILogicalContext _logicalContext;
+        public ILogicalContext LogicalContext { get; private set; }
 
-        public IDataContextExtension[] Extensions => _extensions;
-        private IDataContextExtension[] _extensions;
+        public IDataContextExtension[] Extensions { get; private set; }
 
-        public IFunctionHandlersProvider FunctionHandlersProvider => _functionHandlersProvider;
-        private IFunctionHandlersProvider _functionHandlersProvider;
+        public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
-        public IRootHandlerMappersProvider RootHandlerMappersProvider => _rootHandlerMappersProvider;
-        private IRootHandlerMappersProvider _rootHandlerMappersProvider;
+        public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
         public DataContextConfiguration()
         {
-            _extensions = new IDataContextExtension[0];
-            _functionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
-            _rootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
+            Extensions = new IDataContextExtension[0];
+            FunctionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
+            RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
         }
 
         public IDataContextConfiguration Use(ILogicalContext logicalContext)
         {
-            _logicalContext = logicalContext;
+            LogicalContext = logicalContext;
             return this;
         }
 
         public IDataContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
         {
-            _functionHandlersProvider = new FunctionHandlersProvider(functionHandlersProvider.FunctionHandlers, _functionHandlersProvider.FunctionHandlers);
+            FunctionHandlersProvider = new FunctionHandlersProvider(functionHandlersProvider.FunctionHandlers, FunctionHandlersProvider.FunctionHandlers);
             return this;
         }
 
         public IDataContextConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
-            _rootHandlerMappersProvider = rootHandlerMappersProvider;
+            RootHandlerMappersProvider = rootHandlerMappersProvider;
             return this;
         }
 
@@ -52,8 +48,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;

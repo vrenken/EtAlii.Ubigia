@@ -5,8 +5,7 @@
 
     public class NtfsPathBuilder : IPathBuilder
     {
-        public string BaseFolder => _baseFolder;
-        private string _baseFolder;
+        public string BaseFolder { get; private set; }
 
         private readonly IStorageConfiguration _configuration;
         private readonly IStorageSerializer _serializer;
@@ -27,13 +26,13 @@
         public void Initialize(string baseFolder)
         {
             var folder = Environment.ExpandEnvironmentVariables(baseFolder);
-            _baseFolder = String.Join(_separatorString, folder, _configuration.Name);
+            BaseFolder = String.Join(_separatorString, folder, _configuration.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)
         {
             var relativePath = String.Join(_separatorString, container.Paths);
-            return Path.Combine(_baseFolder, relativePath);
+            return Path.Combine(BaseFolder, relativePath);
         }
 
         public string GetFileName(string fileId, ContainerIdentifier container)

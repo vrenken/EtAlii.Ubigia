@@ -6,8 +6,7 @@
 
     internal abstract class WebApiClientBase
     {
-        protected IWebApiStorageConnection Connection => _connection;
-        private IWebApiStorageConnection _connection;
+        protected IWebApiStorageConnection Connection { get; private set; }
 
         public async Task Connect(IStorageConnection storageConnection)
         {
@@ -21,12 +20,12 @@
 
         public virtual async Task Connect(IStorageConnection<IWebApiStorageTransport> storageConnection)
         {
-            await Task.Run(() => _connection = (IWebApiStorageConnection)storageConnection);
+            await Task.Run(() => Connection = (IWebApiStorageConnection)storageConnection);
         }
 
         public virtual async Task Disconnect(IStorageConnection<IWebApiStorageTransport> storageConnection)
         {
-            await Task.Run(() => _connection = null);
+            await Task.Run(() => Connection = null);
         }
     }
 }

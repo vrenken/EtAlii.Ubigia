@@ -21,12 +21,11 @@
     /// </summary>
     private static T command;
 
-    protected Container Container => _container;
-      private readonly Container _container;
+    protected Container Container { get; }
 
-    protected CommandBase()
+      protected CommandBase()
     {
-        _container = App.Current.Container;
+        Container = App.Current.Container;
     }
     /// <summary>
     /// Gets a shared command instance.

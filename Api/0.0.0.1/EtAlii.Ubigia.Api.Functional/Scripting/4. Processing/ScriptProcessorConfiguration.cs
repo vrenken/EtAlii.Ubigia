@@ -6,30 +6,24 @@
 
     internal class ScriptProcessorConfiguration : IScriptProcessorConfiguration
     {
-        public IScriptScope ScriptScope => _scriptScope;
-        private IScriptScope _scriptScope;
+        public IScriptScope ScriptScope { get; private set; }
 
-        public ILogicalContext LogicalContext => _logicalContext;
-        private ILogicalContext _logicalContext;
+        public ILogicalContext LogicalContext { get; private set; }
 
-        public IScriptProcessorExtension[] Extensions => _extensions;
-        private IScriptProcessorExtension[] _extensions;
+        public IScriptProcessorExtension[] Extensions { get; private set; }
 
-        public bool CachingEnabled => _cachingEnabled;
-        private bool _cachingEnabled;
+        public bool CachingEnabled { get; private set; }
 
-        public IRootHandlerMappersProvider RootHandlerMappersProvider => _rootHandlerMappersProvider;
-        private IRootHandlerMappersProvider _rootHandlerMappersProvider;
+        public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
-        public IFunctionHandlersProvider FunctionHandlersProvider => _functionHandlersProvider;
-        private IFunctionHandlersProvider _functionHandlersProvider;
+        public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
 
         public ScriptProcessorConfiguration()
         {
-            _cachingEnabled = true;
-            _extensions = new IScriptProcessorExtension[0];
-            _rootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
-            _functionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
+            CachingEnabled = true;
+            Extensions = new IScriptProcessorExtension[0];
+            RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
+            FunctionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
         }
 
 
@@ -40,7 +34,7 @@
                 throw new ArgumentException("scope");
             }
 
-            _scriptScope = scope;
+            ScriptScope = scope;
             return this;
         }
 
@@ -51,19 +45,19 @@
                 throw new ArgumentException("logicalContext");
             }
 
-            _logicalContext = logicalContext;
+            LogicalContext = logicalContext;
             return this;
         }
 
         public IScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
-            _rootHandlerMappersProvider = rootHandlerMappersProvider;
+            RootHandlerMappersProvider = rootHandlerMappersProvider;
             return this;
         }
 
         public IScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
         {
-            _functionHandlersProvider = functionHandlersProvider;
+            FunctionHandlersProvider = functionHandlersProvider;
             return this;
         }
 
@@ -74,8 +68,8 @@
                 throw new ArgumentException("extensions");
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -83,7 +77,7 @@
 
         public IScriptProcessorConfiguration UseCaching(bool cachingEnabled)
         {
-            _cachingEnabled = cachingEnabled;
+            CachingEnabled = cachingEnabled;
             return this;
         }
     }

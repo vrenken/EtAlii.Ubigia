@@ -4,21 +4,19 @@
 
     public abstract class ProviderHostBase : IProviderHost
     {
-        public IDataContext Data => _data;
-        private readonly IDataContext _data;
+        public IDataContext Data { get; }
 
         private readonly IProviderManager _providerManager;
 
-        public IHostConfiguration Configuration => _configuration;
-        private readonly IHostConfiguration _configuration;
+        public IHostConfiguration Configuration { get; }
 
         protected ProviderHostBase(
             IDataContext data,
             IHostConfiguration configuration, 
             IProviderManager providerManager)
         {
-            _data = data;
-            _configuration = configuration;
+            Data = data;
+            Configuration = configuration;
             _providerManager = providerManager;
         }
 

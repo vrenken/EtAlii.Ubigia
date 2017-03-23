@@ -16,17 +16,13 @@
         private readonly IProfilingFabricContext _fabricContext;
         private readonly IProfilingDataConnection _connection;
 
-        public IProfilingAspectViewModel[] Functional => _functional;
-        private readonly IProfilingAspectViewModel[] _functional;
+        public IProfilingAspectViewModel[] Functional { get; }
 
-        public IProfilingAspectViewModel[] Logical => _logical;
-        private readonly IProfilingAspectViewModel[] _logical;
+        public IProfilingAspectViewModel[] Logical { get; }
 
-        public IProfilingAspectViewModel[] Fabric => _fabric;
-        private readonly IProfilingAspectViewModel[] _fabric;
+        public IProfilingAspectViewModel[] Fabric { get; }
 
-        public IProfilingAspectViewModel[] Transport => _transport;
-        private readonly IProfilingAspectViewModel[] _transport;
+        public IProfilingAspectViewModel[] Transport { get; }
 
         public ProfilingAspectsViewModel(
             IProfilingDataContext dataContext,
@@ -39,15 +35,15 @@
             _fabricContext = fabricContext;
             _connection = connection;
 
-            _functional = Create(ProfilingAspects.Functional.All, _dataContext, () => _functional);
-            _logical = Create(ProfilingAspects.Logical.All, _logicalContext, () => _logical);
-            _fabric = Create(ProfilingAspects.Fabric.All, _fabricContext, () => _fabric);
-            _transport = Create(ProfilingAspects.Transport.All, _connection, () => _transport);
+            Functional = Create(ProfilingAspects.Functional.All, _dataContext, () => Functional);
+            Logical = Create(ProfilingAspects.Logical.All, _logicalContext, () => Logical);
+            Fabric = Create(ProfilingAspects.Fabric.All, _fabricContext, () => Fabric);
+            Transport = Create(ProfilingAspects.Transport.All, _connection, () => Transport);
 
-            Initializer(_functional);
-            Initializer(_logical);
-            Initializer(_fabric);
-            Initializer(_transport);
+            Initializer(Functional);
+            Initializer(Logical);
+            Initializer(Fabric);
+            Initializer(Transport);
         }
 
 

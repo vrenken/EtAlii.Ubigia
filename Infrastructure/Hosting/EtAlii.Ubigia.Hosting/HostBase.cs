@@ -5,20 +5,17 @@
 
     public abstract class HostBase : IHost
     {
-        public IHostConfiguration Configuration => _configuration;
-        private readonly IHostConfiguration _configuration;
+        public IHostConfiguration Configuration { get; }
 
-        public IInfrastructure Infrastructure => _infrastructure;
-        private readonly IInfrastructure _infrastructure;
+        public IInfrastructure Infrastructure { get; }
 
-        public IStorage Storage => _storage;
-        private readonly IStorage _storage;
+        public IStorage Storage { get; }
 
         protected HostBase(IHostConfiguration configuration, IInfrastructure infrastructure, IStorage storage)
         {
-            _configuration = configuration;
-            _infrastructure = infrastructure;
-            _storage = storage;
+            Configuration = configuration;
+            Infrastructure = infrastructure;
+            Storage = storage;
         }
 
         public abstract void Start();

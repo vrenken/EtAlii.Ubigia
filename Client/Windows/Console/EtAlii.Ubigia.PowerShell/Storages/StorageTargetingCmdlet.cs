@@ -17,8 +17,7 @@
         [Parameter(Mandatory = false, Position = 100, ParameterSetName = "byStorageId", HelpMessage = "The ID of the storage on which the action should be applied.")]
         public Guid StorageId { get; set; }
 
-        public Storage TargetStorage { get { return _targetStorage; } private set { _targetStorage = value; } }
-        private Storage _targetStorage;
+        public Storage TargetStorage { get; private set; }
 
         protected override void BeginProcessing()
         {

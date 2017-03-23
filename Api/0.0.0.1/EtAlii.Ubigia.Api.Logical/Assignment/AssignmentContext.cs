@@ -4,12 +4,11 @@
 
     public class AssignmentContext : IAssignmentContext
     {
-        public IFabricContext Fabric => _fabric;
-        private readonly IFabricContext _fabric;
+        public IFabricContext Fabric { get; }
 
         public AssignmentContext(IFabricContext fabric)
         {
-            _fabric = fabric;
+            Fabric = fabric;
         }
     }
 }

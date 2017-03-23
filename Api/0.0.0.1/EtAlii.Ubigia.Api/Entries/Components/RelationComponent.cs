@@ -9,9 +9,6 @@
         { 
         }
 
-        public Relation Relation { get { return _relation; } internal set { _relation = value; } }
-        private Relation _relation;
-
-
+        public Relation Relation { get; internal set; }
     }
 }

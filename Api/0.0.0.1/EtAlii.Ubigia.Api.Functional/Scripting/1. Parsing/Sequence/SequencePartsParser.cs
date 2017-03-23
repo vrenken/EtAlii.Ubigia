@@ -5,11 +5,9 @@
 
     internal class SequencePartsParser : ISequencePartsParser
     {
-        public string Id => _id;
-        private readonly string _id = "SequenceParts";
+        public string Id { get; } = "SequenceParts";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly ISequencePartParser[] _parsers;
@@ -30,7 +28,7 @@
             _nodeValidator = nodeValidator;
             
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            _parser = new LpsParser(Id, true, lpsParsers);
+            Parser = new LpsParser(Id, true, lpsParsers);
         }
 
         public SequencePart Parse(LpNode node)

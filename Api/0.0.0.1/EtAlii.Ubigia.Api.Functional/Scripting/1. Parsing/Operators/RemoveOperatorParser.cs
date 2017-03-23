@@ -4,18 +4,16 @@
 
     internal class RemoveOperatorParser : IRemoveOperatorParser
     {
-        public string Id => _id;
-        private readonly string _id = "RemoveOperator";
+        public string Id { get; } = "RemoveOperator";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
         public RemoveOperatorParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            _parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("-=") + Lp.ZeroOrMore(' '));
+            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("-=") + Lp.ZeroOrMore(' '));
         }
 
         public bool CanParse(LpNode node)

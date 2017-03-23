@@ -4,12 +4,11 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public class AuthenticationContextStub : IAuthenticationContext
     {
-        public IAuthenticationDataClient Data => _data;
-        private readonly IAuthenticationDataClient _data;
+        public IAuthenticationDataClient Data { get; }
 
         public AuthenticationContextStub()
         {
-            _data = new AuthenticationDataClientStub();
+            Data = new AuthenticationDataClientStub();
         }
 
         public async Task Open(ISpaceConnection spaceConnection)

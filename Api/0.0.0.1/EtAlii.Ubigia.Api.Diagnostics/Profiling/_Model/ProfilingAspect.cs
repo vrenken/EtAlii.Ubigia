@@ -4,21 +4,19 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     public partial class ProfilingAspect
     {
-        public ProfilingLayer Layer => _layer;
-        private readonly ProfilingLayer _layer;
+        public ProfilingLayer Layer { get; }
 
-        public string Id => _id;
-        private readonly string _id;
+        public string Id { get; }
 
         public ProfilingAspect(ProfilingLayer layer, string id)
         {
-            _layer = layer;
-            _id = id;
+            Layer = layer;
+            Id = id;
         }
 
         public override string ToString()
         {
-            return String.Format("{0} - {1}", _layer, _id);
+            return String.Format("{0} - {1}", Layer, Id);
         }
     }
 }

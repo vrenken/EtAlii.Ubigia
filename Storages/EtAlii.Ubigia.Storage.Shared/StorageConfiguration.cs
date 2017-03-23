@@ -6,11 +6,9 @@
 
     public class StorageConfiguration : IStorageConfiguration
     {
-        public IStorageExtension[] Extensions => _extensions;
-        private IStorageExtension[] _extensions;
+        public IStorageExtension[] Extensions { get; private set; }
 
-        public string Name => _name;
-        private string _name;
+        public string Name { get; private set; }
 
 
         private Func<Container, IStorage> _getStorage;
@@ -21,7 +19,7 @@
 
         public StorageConfiguration()
         {
-            _extensions = new IStorageExtension[0];
+            Extensions = new IStorageExtension[0];
         }
 
         public IStorageConfiguration Use(IStorageExtension[] extensions)
@@ -31,14 +29,14 @@
                 throw new ArgumentException("extensions");
             }
 
-            var alreadyRegistered = _extensions.FirstOrDefault(e => extensions.Any(e2 => e2.GetType() == e.GetType()));
+            var alreadyRegistered = Extensions.FirstOrDefault(e => extensions.Any(e2 => e2.GetType() == e.GetType()));
             if(alreadyRegistered != null)
             { 
                 throw new InvalidOperationException("Extension already registered: " + alreadyRegistered.GetType().Name);
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -46,7 +44,7 @@
 
         public IStorageConfiguration Use(string name)
         {
-            _name = name;
+            Name = name;
             _getStorage = container =>
             {
                 container.Register<IStorage, DefaultStorage>();

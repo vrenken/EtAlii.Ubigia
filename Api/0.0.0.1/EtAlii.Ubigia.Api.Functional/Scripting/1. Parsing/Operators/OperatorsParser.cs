@@ -5,11 +5,9 @@
 
     internal class OperatorsParser : IOperatorsParser
     {
-        public string Id => _id;
-        private readonly string _id = "Operators";
+        public string Id { get; } = "Operators";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IOperatorParser[] _parsers;
@@ -28,7 +26,7 @@
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            _parser = new LpsParser(Id, true, lpsParsers);//.Debug("OperatorsParser");
+            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("OperatorsParser");
         }
 
         public bool CanParse(LpNode node)

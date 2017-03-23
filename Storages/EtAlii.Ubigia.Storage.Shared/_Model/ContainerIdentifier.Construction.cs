@@ -4,7 +4,7 @@
     {
         private ContainerIdentifier(string[] paths)
         {
-            _paths = paths;
+            Paths = paths;
         }
 
         internal static ContainerIdentifier FromPaths(params string[] paths)

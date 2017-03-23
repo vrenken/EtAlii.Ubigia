@@ -6,8 +6,7 @@
 
     public class PortablePathBuilder : IPathBuilder
     {
-        public string BaseFolder => _baseFolder;
-        private readonly string _baseFolder;
+        public string BaseFolder { get; }
 
         private readonly IStorageSerializer _serializer;
 
@@ -15,14 +14,14 @@
         {
             _serializer = serializer;
             //_baseFolder = PortablePath.Combine(FileSystem.Current.LocalStorage.Path, "EtAlii", "Ubigia", configuration.Name);
-            _baseFolder = PortablePath.Combine("EtAlii", "Ubigia", configuration.Name);
+            BaseFolder = PortablePath.Combine("EtAlii", "Ubigia", configuration.Name);
             //_baseFolder = "E";//PortablePath.Combine("EtAlii", "Ubigia", configuration.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)
         {
             var relativePath = PortablePath.Combine(container.Paths);
-            return PortablePath.Combine(_baseFolder, relativePath);
+            return PortablePath.Combine(BaseFolder, relativePath);
         }
 
         public string GetFileName(string fileId, ContainerIdentifier container)

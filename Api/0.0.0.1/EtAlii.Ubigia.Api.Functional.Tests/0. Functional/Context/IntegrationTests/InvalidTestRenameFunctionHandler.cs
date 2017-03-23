@@ -4,16 +4,14 @@
 
     public class InvalidTestRenameFunctionHandler : IFunctionHandler
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
         public InvalidTestRenameFunctionHandler()
         {
-            _name = "TestRename";
-            _parameterSets = new[]
+            Name = "TestRename";
+            ParameterSets = new[]
             {
                 new ParameterSet(false, new Parameter("source", typeof(string)), new Parameter("destination", typeof(string))),
                 new ParameterSet(false, new Parameter("source", typeof(string)), new Parameter("destination", typeof(string))),

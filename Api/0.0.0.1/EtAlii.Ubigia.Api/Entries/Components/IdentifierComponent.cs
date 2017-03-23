@@ -9,8 +9,7 @@
         { 
         }
 
-        public Identifier Id { get { return _id; } internal set { _id = value; } }
-        private Identifier _id;
+        public Identifier Id { get; internal set; }
 
         protected internal override string Name => _name;
         private const string _name = "Identifier";

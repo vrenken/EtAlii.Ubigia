@@ -5,23 +5,17 @@
 
     public class FabricContext : IFabricContext
     {
-        public IFabricContextConfiguration Configuration => _configuration;
-        private readonly IFabricContextConfiguration _configuration;
+        public IFabricContextConfiguration Configuration { get; }
 
-        public IDataConnection Connection => _connection;
-        private readonly IDataConnection _connection;
+        public IDataConnection Connection { get; }
 
-        public IRootContext Roots => _roots;
-        private readonly IRootContext _roots;
+        public IRootContext Roots { get; }
 
-        public IEntryContext Entries => _entries;
-        private readonly IEntryContext _entries;
+        public IEntryContext Entries { get; }
 
-        public IContentContext Content => _content;
-        private readonly IContentContext _content;
+        public IContentContext Content { get; }
 
-        public IPropertyContext Properties => _properties;
-        private readonly IPropertyContext _properties;
+        public IPropertyContext Properties { get; }
 
         public FabricContext(
             IFabricContextConfiguration configuration,
@@ -31,12 +25,12 @@
             IDataConnection connection, 
             IPropertyContext properties)
         {
-            _configuration = configuration;
-            _entries = entries;
-            _roots = roots;
-            _content = content;
-            _connection = connection;
-            _properties = properties;
+            Configuration = configuration;
+            Entries = entries;
+            Roots = roots;
+            Content = content;
+            Connection = connection;
+            Properties = properties;
         }
 
         #region Disposable
@@ -57,7 +51,7 @@
                 if (disposing)
                 {
                     // Free other state (managed objects).
-                    _connection.Close();
+                    Connection.Close();
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.

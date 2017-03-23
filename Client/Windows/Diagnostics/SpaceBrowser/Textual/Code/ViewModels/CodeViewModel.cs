@@ -8,9 +8,9 @@
     public class CodeViewModel : TextualViewModelBase, ICodeViewModel
     {
 
-        public ICodeButtonsViewModel Buttons => _buttons;
+        public ICodeButtonsViewModel Buttons { get; }
+
         private readonly IGraphContext _graphContext;
-        private readonly ICodeButtonsViewModel _buttons;
 
         public string Code { get { return _code; } set { SetProperty(ref _code, value); } }
         private string _code;
@@ -32,7 +32,7 @@
             IExecuteCodeUnitOfworkHandler executeCodeUnitOfworkHandler)
         {
             _graphContext = graphContext;
-            _buttons = buttons;
+            Buttons = buttons;
             _textTemplateQueryHandler = textTemplateQueryHandler;
             _compileCodeUnitOfworkHandler = compileCodeUnitOfworkHandler;
             _executeCodeUnitOfworkHandler = executeCodeUnitOfworkHandler;

@@ -13,14 +13,12 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
     [Guid(Identifiers.FolderItemString)]
 	public class FolderItem2 : NSEFolder
 	{
-        public string FullPath { get { return _fullPath; } protected set { _fullPath = value; } }
-        private string _fullPath;
+        public string FullPath { get; protected set; }
 
 
-        public string Name { get { return _name; } protected set { _name = value; } }
-        private string _name;
+	    public string Name { get; protected set; }
 
-        protected FolderItem2()
+	    protected FolderItem2()
         {
             Name = string.Empty;
         }
@@ -310,7 +308,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 				{
                     return new FileItem2(FullPath, e.DisplayName);
 				}
-                else if (Directory.Exists(Path.Combine(_fullPath, e.DisplayName)))
+                else if (Directory.Exists(Path.Combine(FullPath, e.DisplayName)))
 				{
                     return new FolderItem2(FullPath, e.DisplayName);
 				}
@@ -346,7 +344,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 			// Add folders if asked for
 			if ((e.ChildrenType & ChildrenType.Folders) != 0)
 			{
-                string[] dirs = Directory.GetDirectories(_fullPath);
+                string[] dirs = Directory.GetDirectories(FullPath);
 				foreach (string s in dirs)
 				{
 					arr.Add(new FolderItem2(s));
@@ -380,7 +378,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 			// read the name
 			string s = reader.ReadString();
 			// make full path
-            string temp = Path.Combine(_fullPath, s);
+            string temp = Path.Combine(FullPath, s);
 
 			// if the corresponding file exists, return the item representing it
 			if (folder==0)
@@ -422,7 +420,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 			if (column.Index == 3) // date modified
 			{
                 DateTime dt1 = Directory.GetLastWriteTime(FullPath);
-                DateTime dt2 = Directory.GetLastWriteTime(dir2._fullPath);
+                DateTime dt2 = Directory.GetLastWriteTime(dir2.FullPath);
 
 				return dt1.CompareTo(dt2);
 			}
@@ -461,7 +459,7 @@ namespace EtAlii.Ubigia.Client.Windows.ShellExtension
 					else if (item is FolderItem2)
 					{
 						var c = item as FolderItem2;
-                        Directory.Delete(c._fullPath, true);
+                        Directory.Delete(c.FullPath, true);
 						// Remove from the Windows Explorer view
 						c.Delete();						
 					}

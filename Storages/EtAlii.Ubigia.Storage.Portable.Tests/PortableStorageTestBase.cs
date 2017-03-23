@@ -10,11 +10,9 @@
     
     public abstract class PortableStorageTestBase : IDisposable
     {
-        protected IStorage Storage => _storage;
-        private IStorage _storage;
+        protected IStorage Storage { get; private set; }
 
-        protected IFolder StorageFolder => _storageFolder;
-        private IFolder _storageFolder;
+        protected IFolder StorageFolder { get; private set; }
 
         private readonly string _rootFolder;
         private static int _testIndex;
@@ -32,10 +30,10 @@
             }
             Directory.CreateDirectory(_rootFolder);
 
-            _storageFolder = new FileSystemFolder(_rootFolder, false);
+            StorageFolder = new FileSystemFolder(_rootFolder, false);
             //_storageFolder = FileSystem.Current.LocalStorage;
 
-            _storage = CreateStorage();
+            Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
             if (Storage.FolderManager.Exists(folder))
@@ -46,8 +44,8 @@
 
         public void Dispose()
         {
-            _storageFolder = null;
-            _storage = null;
+            StorageFolder = null;
+            Storage = null;
 
             if (Directory.Exists(_rootFolder))
             {
@@ -71,7 +69,7 @@
             var configuration = new StorageConfiguration()
                 .Use(TestAssembly.StorageName)
                 .Use(diagnostics)
-                .UsePortableStorage(_storageFolder);
+                .UsePortableStorage(StorageFolder);
 
             return new StorageFactory().Create(configuration);
         }

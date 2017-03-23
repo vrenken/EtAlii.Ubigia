@@ -8,41 +8,29 @@
 
     public class GraphContextMenuViewModel : BindableBase, IGraphContextMenuViewModel
     {
-        public ICommand HideChildrenCommand => _hideChildrenCommand;
-        private readonly ICommand _hideChildrenCommand;
+        public ICommand HideChildrenCommand { get; }
 
-        public ICommand ShowChildrenCommand => _showChildrenCommand;
-        private readonly ICommand _showChildrenCommand;
+        public ICommand ShowChildrenCommand { get; }
 
-        public ICommand HideParentCommand => _hideParentCommand;
-        private readonly ICommand _hideParentCommand;
+        public ICommand HideParentCommand { get; }
 
-        public ICommand ShowParentCommand => _showParentCommand;
-        private readonly ICommand _showParentCommand;
+        public ICommand ShowParentCommand { get; }
 
-        public ICommand HidePreviousCommand => _hidePreviousCommand;
-        private readonly ICommand _hidePreviousCommand;
+        public ICommand HidePreviousCommand { get; }
 
-        public ICommand ShowPreviousCommand => _showPreviousCommand;
-        private readonly ICommand _showPreviousCommand;
+        public ICommand ShowPreviousCommand { get; }
 
-        public ICommand HideNextCommand => _hideNextCommand;
-        private readonly ICommand _hideNextCommand;
+        public ICommand HideNextCommand { get; }
 
-        public ICommand ShowNextCommand => _showNextCommand;
-        private readonly ICommand _showNextCommand;
+        public ICommand ShowNextCommand { get; }
 
-        public ICommand HideDowndatesCommand => _hideDowndatesCommand;
-        private readonly ICommand _hideDowndatesCommand;
+        public ICommand HideDowndatesCommand { get; }
 
-        public ICommand ShowDowndatesCommand => _showDowndatesCommand;
-        private readonly ICommand _showDowndatesCommand;
+        public ICommand ShowDowndatesCommand { get; }
 
-        public ICommand HideUpdatesCommand => _hideUpdatesCommand;
-        private readonly ICommand _hideUpdatesCommand;
+        public ICommand HideUpdatesCommand { get; }
 
-        public ICommand ShowUpdatesCommand => _showUpdatesCommand;
-        private readonly ICommand _showUpdatesCommand;
+        public ICommand ShowUpdatesCommand { get; }
 
         private readonly IGraphContext _graphContext;
 
@@ -51,23 +39,23 @@
         {
             _graphContext = graphContext;
 
-            _hideChildrenCommand = new RelayCommand(HideChildren, CanHideChildren);
-            _showChildrenCommand = new RelayCommand(ShowChildren, CanShowChildren);
+            HideChildrenCommand = new RelayCommand(HideChildren, CanHideChildren);
+            ShowChildrenCommand = new RelayCommand(ShowChildren, CanShowChildren);
 
-            _hideParentCommand = new RelayCommand(HideParent, CanHideParent);
-            _showParentCommand = new RelayCommand(ShowParent, CanShowParent);
+            HideParentCommand = new RelayCommand(HideParent, CanHideParent);
+            ShowParentCommand = new RelayCommand(ShowParent, CanShowParent);
 
-            _hidePreviousCommand = new RelayCommand(HidePrevious, CanHidePrevious);
-            _showPreviousCommand = new RelayCommand(ShowPrevious, CanShowPrevious);
+            HidePreviousCommand = new RelayCommand(HidePrevious, CanHidePrevious);
+            ShowPreviousCommand = new RelayCommand(ShowPrevious, CanShowPrevious);
 
-            _hideNextCommand = new RelayCommand(HideNext, CanHideNext);
-            _showNextCommand = new RelayCommand(ShowNext, CanShowNext);
+            HideNextCommand = new RelayCommand(HideNext, CanHideNext);
+            ShowNextCommand = new RelayCommand(ShowNext, CanShowNext);
 
-            _hideDowndatesCommand = new RelayCommand(HideDowndates, CanHideDowndates);
-            _showDowndatesCommand = new RelayCommand(ShowDowndates, CanShowDowndates);
+            HideDowndatesCommand = new RelayCommand(HideDowndates, CanHideDowndates);
+            ShowDowndatesCommand = new RelayCommand(ShowDowndates, CanShowDowndates);
 
-            _hideUpdatesCommand = new RelayCommand(HideUpdates, CanHideUpdates);
-            _showUpdatesCommand = new RelayCommand(ShowUpdates, CanShowUpdates);
+            HideUpdatesCommand = new RelayCommand(HideUpdates, CanHideUpdates);
+            ShowUpdatesCommand = new RelayCommand(ShowUpdates, CanShowUpdates);
         }
 
         private void ShowUpdates(object obj)

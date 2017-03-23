@@ -5,24 +5,21 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public class SpaceConnectionConfiguration : ISpaceConnectionConfiguration
     {
-        public ISpaceTransport Transport => _transport;
-        private ISpaceTransport _transport;
+        public ISpaceTransport Transport { get; private set; }
 
-        public string Address => _address;
-        private string _address;
-        public string AccountName => _accountName;
-        private string _accountName;
-        public string Password => _password;
-        private string _password;
-        public string Space => _space;
-        private string _space;
+        public string Address { get; private set; }
 
-        public ISpaceConnectionExtension[] Extensions => _extensions;
-        private ISpaceConnectionExtension[] _extensions;
+        public string AccountName { get; private set; }
+
+        public string Password { get; private set; }
+
+        public string Space { get; private set; }
+
+        public ISpaceConnectionExtension[] Extensions { get; private set; }
 
         public SpaceConnectionConfiguration()
         {
-            _extensions = new ISpaceConnectionExtension[0];
+            Extensions = new ISpaceConnectionExtension[0];
         }
 
         public ISpaceConnectionConfiguration Use(ISpaceConnectionExtension[] extensions)
@@ -32,8 +29,8 @@ namespace EtAlii.Ubigia.Api.Transport
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -45,12 +42,12 @@ namespace EtAlii.Ubigia.Api.Transport
             {
                 throw new ArgumentException(nameof(transport));
             }
-            if (_transport != null)
+            if (Transport != null)
             {
                 throw new InvalidOperationException("A Transport has already been assigned to this SpaceConnectionConfiguration");
             }
 
-            _transport = transport;
+            Transport = transport;
             return this;
         }
 
@@ -60,12 +57,12 @@ namespace EtAlii.Ubigia.Api.Transport
             {
                 throw new ArgumentException(nameof(address));
             }
-            if (_address != null)
+            if (Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this SpaceConnectionConfiguration");
             }
 
-            _address = address;
+            Address = address;
             return this;
         }
 
@@ -75,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Transport
             {
                 throw new ArgumentException(nameof(accountName));
             }
-            if (_accountName != null)
+            if (AccountName != null)
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this SpaceConnectionConfiguration");
             }
@@ -83,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Transport
             //{
             //    throw new ArgumentException(nameof(password));
             //}
-            if (_password != null)
+            if (Password != null)
             {
                 throw new InvalidOperationException("A password has already been assigned to this SpaceConnectionConfiguration");
             }
@@ -91,14 +88,14 @@ namespace EtAlii.Ubigia.Api.Transport
             {
                 throw new ArgumentException(nameof(space));
             }
-            if (_space != null)
+            if (Space != null)
             {
                 throw new InvalidOperationException("A space has already been assigned to this SpaceConnectionConfiguration");
             }
 
-            _accountName = accountName;
-            _password = password;
-            _space = space;
+            AccountName = accountName;
+            Password = password;
+            Space = space;
             return this;
         }
 

@@ -18,8 +18,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "bySpaceId", HelpMessage = "The ID of the space on which the action should be applied.")]
         public Guid SpaceId { get; set; }
 
-        public Space TargetSpace { get { return _targetSpace; } private set { _targetSpace = value; } }
-        private Space _targetSpace;
+        public Space TargetSpace { get; private set; }
 
         protected override void BeginProcessing()
         {

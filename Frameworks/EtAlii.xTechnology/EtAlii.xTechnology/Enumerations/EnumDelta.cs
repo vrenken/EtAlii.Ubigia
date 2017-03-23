@@ -5,26 +5,15 @@
 
     public class EnumDelta<T>
     {
-        private List<T> _added;
-        private List<T> _removed;
-
         public EnumDelta(IEnumerable<T> added, IEnumerable<T> removed)
         {
             Added = new List<T>(added);
             Removed = new List<T>(removed);
         }
 
-        public List<T> Added
-        {
-            get { return _added; }
-            private set { _added = value; }
-        }
+        public List<T> Added { get; private set; }
 
-        public List<T> Removed
-        {
-            get { return _removed; }
-            private set { _removed = value; }
-        }
+        public List<T> Removed { get; private set; }
 
         public override string ToString()
         {

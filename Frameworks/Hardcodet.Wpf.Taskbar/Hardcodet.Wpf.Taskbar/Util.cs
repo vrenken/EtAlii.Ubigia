@@ -43,12 +43,10 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
     #region IsDesignMode
 
-    private static readonly bool isDesignMode;
-
-    /// <summary>
+      /// <summary>
     /// Checks whether the application is currently in design mode.
     /// </summary>
-    public static bool IsDesignMode => isDesignMode;
+    public static bool IsDesignMode { get; }
 
       #endregion
 
@@ -56,7 +54,7 @@ namespace Hardcodet.Wpf.TaskbarNotification
 
     static Util()
     {
-      isDesignMode =
+      IsDesignMode =
           (bool)
           DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof (FrameworkElement))
               .Metadata.DefaultValue;

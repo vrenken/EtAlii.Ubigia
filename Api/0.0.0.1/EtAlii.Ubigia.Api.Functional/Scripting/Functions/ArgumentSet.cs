@@ -6,24 +6,22 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class ArgumentSet
     {
-        public object[] Arguments => _arguments;
-        private readonly object[] _arguments;
+        public object[] Arguments { get; }
 
-        public TypeInfo[] ArgumentTypeInfos => _argumentTypeInfos;
-        private readonly TypeInfo[] _argumentTypeInfos;
+        public TypeInfo[] ArgumentTypeInfos { get; }
 
         public ArgumentSet(params object[] arguments)
         {
-            _arguments = arguments;
+            Arguments = arguments;
 
-            _argumentTypeInfos = arguments
+            ArgumentTypeInfos = arguments
                 .Select(a => a != null ? a.GetType().GetTypeInfo() : null)
                 .ToArray();
         }
 
         public override string ToString()
         {
-            return String.Join(", ", _arguments.Select(a => a != null ? a.GetType().Name : "NULL"));
+            return String.Join(", ", Arguments.Select(a => a != null ? a.GetType().Name : "NULL"));
         }
     }
 }

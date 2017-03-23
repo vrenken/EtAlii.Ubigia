@@ -7,17 +7,16 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
     public class FabricTestContext : IFabricTestContext
     {
-        public ITransportTestContext Transport => _transport;
-        private readonly ITransportTestContext _transport;
+        public ITransportTestContext Transport { get; }
 
         public FabricTestContext(ITransportTestContext transport)
         {
-            _transport = transport;
+            Transport = transport;
         }
 
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
-            var connection = await _transport.CreateDataConnection(openOnCreation);
+            var connection = await Transport.CreateDataConnection(openOnCreation);
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             return new FabricContextFactory().Create(fabricContextConfiguration);
@@ -73,12 +72,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
         public async Task Start()
         {
-            await _transport.Start();
+            await Transport.Start();
         }
 
         public async Task Stop()
         {
-            await _transport.Stop();
+            await Transport.Stop();
         }
 
         #endregion start/stop

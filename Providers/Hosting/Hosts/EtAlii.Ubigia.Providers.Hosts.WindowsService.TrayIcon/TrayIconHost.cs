@@ -17,8 +17,7 @@
         public bool HasError { get { return _hasError; } set { SetProperty(ref _hasError, value); } }
         private bool _hasError;
 
-        public ITaskbarIcon TaskbarIcon => _taskbarIcon;
-        private readonly ITaskbarIcon _taskbarIcon;
+        public ITaskbarIcon TaskbarIcon { get; }
 
         private readonly ILogger _logger;
 
@@ -30,15 +29,15 @@
             ILogger logger)
             : base(data, configuration, providerManager)
         {
-            _taskbarIcon = taskbarIcon;
+            TaskbarIcon = taskbarIcon;
             _logger = logger;
         }
 
         public override void Start()
         {
-            _taskbarIcon.Dispatcher.Invoke(() =>
+            TaskbarIcon.Dispatcher.Invoke(() =>
             {
-                _taskbarIcon.Visibility = Visibility.Visible;
+                TaskbarIcon.Visibility = Visibility.Visible;
             });
             Task.Delay(500).ContinueWith((o) =>
             {

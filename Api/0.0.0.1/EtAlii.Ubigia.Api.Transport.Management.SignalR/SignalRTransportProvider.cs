@@ -6,14 +6,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 
     public class SignalRStorageTransportProvider : IStorageTransportProvider
     {
-        public IHttpClient HttpClient => _httpClient;
-        private readonly IHttpClient _httpClient;
-        
+        public IHttpClient HttpClient { get; }
+
         private string _authenticationToken;
 
         private SignalRStorageTransportProvider(IHttpClient httpClient)
         {
-            _httpClient = httpClient;
+            HttpClient = httpClient;
         }
 
         public static SignalRStorageTransportProvider Create()
@@ -29,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
         public ISpaceTransport GetSpaceTransport()
         {
             return new SignalRSpaceTransport(
-                _httpClient, 
+                HttpClient, 
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
@@ -37,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
         public IStorageTransport GetStorageTransport()
         {
             return new SignalRStorageTransport(
-                _httpClient, 
+                HttpClient, 
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }

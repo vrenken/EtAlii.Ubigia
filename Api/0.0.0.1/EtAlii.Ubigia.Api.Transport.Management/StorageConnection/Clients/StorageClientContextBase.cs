@@ -7,37 +7,34 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         where TDataClient: IStorageTransportClient
         where TNotificationClient: IStorageTransportClient
     {
-        public TNotificationClient Notifications => _notifications;
-        private readonly TNotificationClient _notifications;
+        public TNotificationClient Notifications { get; }
 
-        public TDataClient Data => _data;
-        private readonly TDataClient _data;
+        public TDataClient Data { get; }
 
-        protected IStorageConnection Connection => _connection;
-        private IStorageConnection _connection;
+        protected IStorageConnection Connection { get; private set; }
 
         public StorageClientContextBase(
             TNotificationClient notifications,
             TDataClient data)
         {
-            _notifications = notifications;
-            _data = data;
+            Notifications = notifications;
+            Data = data;
         }
 
         public async Task Open(IStorageConnection storageConnection)
         {
-            await _data.Connect(storageConnection);
-            await _notifications.Connect(storageConnection);
+            await Data.Connect(storageConnection);
+            await Notifications.Connect(storageConnection);
 
-            _connection = storageConnection;
+            Connection = storageConnection;
         }
 
         public async Task Close(IStorageConnection spaceConnection)
         {
-            await _notifications.Disconnect(spaceConnection);
-            await _data.Disconnect(spaceConnection);
+            await Notifications.Disconnect(spaceConnection);
+            await Data.Disconnect(spaceConnection);
 
-            _connection = null;
+            Connection = null;
         }
     }
 }

@@ -7,8 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
     {
         private readonly IDataContext _decoree;
 
-        public IProfiler Profiler => _profiler;
-        private readonly IProfiler _profiler;
+        public IProfiler Profiler { get; }
 
         public INodeSet Nodes => _decoree.Nodes;
         public IScriptsSet Scripts => _decoree.Scripts;
@@ -21,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
             IProfiler profiler)
         {
             _decoree = decoree;
-            _profiler = profiler;
+            Profiler = profiler;
         }
 
         public void Dispose()

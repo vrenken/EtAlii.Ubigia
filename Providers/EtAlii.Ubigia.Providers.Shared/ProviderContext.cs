@@ -8,11 +8,9 @@
 
     public class ProviderContext : IProviderContext
     {
-        public IDataContext SystemDataContext => _systemDataContext;
-        private readonly IDataContext _systemDataContext;
+        public IDataContext SystemDataContext { get; }
 
-        public IManagementConnection ManagementConnection => _managementConnection;
-        private readonly IManagementConnection _managementConnection;
+        public IManagementConnection ManagementConnection { get; }
 
         private readonly IProviderConfiguration _configuration;
 
@@ -21,8 +19,8 @@
             IManagementConnection managementConnection,
             IProviderConfiguration configuration)
         {
-            _systemDataContext = systemDataContext;
-            _managementConnection = managementConnection;
+            SystemDataContext = systemDataContext;
+            ManagementConnection = managementConnection;
             _configuration = configuration;
         }
 
@@ -31,7 +29,7 @@
             IDataConnection dataConnection = null;
             var task = Task.Run(async () =>
             {
-                dataConnection = await _managementConnection.OpenSpace(space);
+                dataConnection = await ManagementConnection.OpenSpace(space);
             });
             task.Wait();
             return _configuration.CreateDataContext(dataConnection);
@@ -42,7 +40,7 @@
             IDataConnection dataConnection = null;
             var task = Task.Run(async () =>
             {
-                dataConnection = await _managementConnection.OpenSpace(accountName, spaceName);
+                dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
             });
             task.Wait();
             return _configuration.CreateDataContext(dataConnection);

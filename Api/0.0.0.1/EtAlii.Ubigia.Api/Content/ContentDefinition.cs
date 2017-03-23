@@ -13,9 +13,8 @@
         public UInt64 Size { get; set; }
         public UInt64 Checksum { get; set; }
 
-        public IList<ContentDefinitionPart> Parts => _parts;
+        public IList<ContentDefinitionPart> Parts { get; } = new List<ContentDefinitionPart>();
 
-        private readonly IList<ContentDefinitionPart> _parts = new List<ContentDefinitionPart>();
         IEnumerable<IReadOnlyContentDefinitionPart> IReadOnlyContentDefinition.Parts => Parts.Cast<IReadOnlyContentDefinitionPart>();
 
         public static readonly IReadOnlyContentDefinition Empty = new ContentDefinition

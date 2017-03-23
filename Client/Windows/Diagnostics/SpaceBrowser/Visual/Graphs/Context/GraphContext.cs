@@ -4,37 +4,33 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class GraphContext : IGraphContext
     {
-        public IAddEntryToGraphCommandHandler AddEntryToGraphCommandHandler => _addEntryToGraphCommandHandler;
-        private IAddEntryToGraphCommandHandler _addEntryToGraphCommandHandler;
-        public IRetrieveEntryCommandHandler RetrieveEntryCommandHandler => _retrieveEntryCommandHandler;
-        private IRetrieveEntryCommandHandler _retrieveEntryCommandHandler;
-        public IProcessEntryCommandHandler ProcessEntryCommandHandler => _processEntryCommandHandler;
-        private IProcessEntryCommandHandler _processEntryCommandHandler;
-        public IDiscoverEntryCommandHandler DiscoverEntryCommandHandler => _discoverEntryCommandHandler;
-        private IDiscoverEntryCommandHandler _discoverEntryCommandHandler;
-        public IAddEntryRelationsToGraphCommandHandler AddEntryRelationsToGraphCommandHandler => _addEntryRelationsToGraphCommandHandler;
-        private IAddEntryRelationsToGraphCommandHandler _addEntryRelationsToGraphCommandHandler;
-        public IApplyLayoutingToGraphCommandHandler ApplyLayoutingToGraphCommandHandler => _applyLayoutingToGraphCommandHandler;
-        private IApplyLayoutingToGraphCommandHandler _applyLayoutingToGraphCommandHandler;
-        public IRemoveEntriesFromGraphCommandHandler RemoveEntriesFromGraphCommandHandler => _removeEntriesFromGraphCommandHandler;
-        private IRemoveEntriesFromGraphCommandHandler _removeEntriesFromGraphCommandHandler;
-        public IFindEntriesOnGraphQueryHandler FindEntriesOnGraphQueryHandler => _findEntriesOnGraphQueryHandler;
-        private IFindEntriesOnGraphQueryHandler _findEntriesOnGraphQueryHandler;
-        public IFindEntryOnGraphQueryHandler FindEntryOnGraphQueryHandler => _findEntryOnGraphQueryHandler;
-        private IFindEntryOnGraphQueryHandler _findEntryOnGraphQueryHandler;
-        public ITraverseRelationsQueryHandler TraverseRelationsQueryHandler => _traverseRelationsQueryHandler;
-        private ITraverseRelationsQueryHandler _traverseRelationsQueryHandler;
+        public IAddEntryToGraphCommandHandler AddEntryToGraphCommandHandler { get; private set; }
 
-        public ICommandProcessor CommandProcessor => _commandProcessor;
-        private readonly ICommandProcessor _commandProcessor;
+        public IRetrieveEntryCommandHandler RetrieveEntryCommandHandler { get; private set; }
 
-        public IUnitOfWorkProcessor UnitOfWorkProcessor => _unitOfWorkProcessor;
-        private readonly IUnitOfWorkProcessor _unitOfWorkProcessor;
-        public IQueryProcessor QueryProcessor => _queryProcessor;
-        private readonly IQueryProcessor _queryProcessor;
+        public IProcessEntryCommandHandler ProcessEntryCommandHandler { get; private set; }
 
-        public IGraphConfiguration Configuration => _configuration;
-        private readonly IGraphConfiguration _configuration;
+        public IDiscoverEntryCommandHandler DiscoverEntryCommandHandler { get; private set; }
+
+        public IAddEntryRelationsToGraphCommandHandler AddEntryRelationsToGraphCommandHandler { get; private set; }
+
+        public IApplyLayoutingToGraphCommandHandler ApplyLayoutingToGraphCommandHandler { get; private set; }
+
+        public IRemoveEntriesFromGraphCommandHandler RemoveEntriesFromGraphCommandHandler { get; private set; }
+
+        public IFindEntriesOnGraphQueryHandler FindEntriesOnGraphQueryHandler { get; private set; }
+
+        public IFindEntryOnGraphQueryHandler FindEntryOnGraphQueryHandler { get; private set; }
+
+        public ITraverseRelationsQueryHandler TraverseRelationsQueryHandler { get; private set; }
+
+        public ICommandProcessor CommandProcessor { get; }
+
+        public IUnitOfWorkProcessor UnitOfWorkProcessor { get; }
+
+        public IQueryProcessor QueryProcessor { get; }
+
+        public IGraphConfiguration Configuration { get; }
 
         public GraphContext(
             ICommandProcessor commandProcessor, 
@@ -42,10 +38,10 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             IQueryProcessor queryProcessor, 
             IGraphConfiguration configuration)
         {
-            _commandProcessor = commandProcessor;
-            _unitOfWorkProcessor = unitOfWorkProcessor;
-            _queryProcessor = queryProcessor;
-            _configuration = configuration;
+            CommandProcessor = commandProcessor;
+            UnitOfWorkProcessor = unitOfWorkProcessor;
+            QueryProcessor = queryProcessor;
+            Configuration = configuration;
         }
 
         public void Initialize(
@@ -60,16 +56,16 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             IFindEntryOnGraphQueryHandler findEntryOnGraphQueryHandler, 
             ITraverseRelationsQueryHandler traverseRelationsQueryHandler)
         {
-            _addEntryToGraphCommandHandler = addEntryToGraphCommandHandler;
-            _retrieveEntryCommandHandler = retrieveEntryCommandHandler;
-            _processEntryCommandHandler = processEntryCommandHandler;
-            _discoverEntryCommandHandler = discoverEntryCommandHandler;
-            _addEntryRelationsToGraphCommandHandler = addEntryRelationsToGraphCommandHandler;
-            _applyLayoutingToGraphCommandHandler = applyLayoutingToGraphCommandHandler;
-            _removeEntriesFromGraphCommandHandler = removeEntriesFromGraphCommandHandler;
-            _findEntriesOnGraphQueryHandler = findEntriesOnGraphQueryHandler;
-            _findEntryOnGraphQueryHandler = findEntryOnGraphQueryHandler;
-            _traverseRelationsQueryHandler = traverseRelationsQueryHandler;
+            AddEntryToGraphCommandHandler = addEntryToGraphCommandHandler;
+            RetrieveEntryCommandHandler = retrieveEntryCommandHandler;
+            ProcessEntryCommandHandler = processEntryCommandHandler;
+            DiscoverEntryCommandHandler = discoverEntryCommandHandler;
+            AddEntryRelationsToGraphCommandHandler = addEntryRelationsToGraphCommandHandler;
+            ApplyLayoutingToGraphCommandHandler = applyLayoutingToGraphCommandHandler;
+            RemoveEntriesFromGraphCommandHandler = removeEntriesFromGraphCommandHandler;
+            FindEntriesOnGraphQueryHandler = findEntriesOnGraphQueryHandler;
+            FindEntryOnGraphQueryHandler = findEntryOnGraphQueryHandler;
+            TraverseRelationsQueryHandler = traverseRelationsQueryHandler;
         }
     }
 }

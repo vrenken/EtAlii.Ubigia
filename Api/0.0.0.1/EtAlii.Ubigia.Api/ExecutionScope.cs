@@ -5,14 +5,13 @@
 
     public class ExecutionScope
     {
-        public Cache Cache => _cache;
-        private readonly Cache _cache;
+        public Cache Cache { get; }
 
         private readonly Dictionary<string, Regex> _regexes;
 
         public ExecutionScope(bool cacheEnabled)
         {
-            _cache = new Cache(cacheEnabled);
+            Cache = new Cache(cacheEnabled);
             _regexes = new Dictionary<string, Regex>();
         }
 

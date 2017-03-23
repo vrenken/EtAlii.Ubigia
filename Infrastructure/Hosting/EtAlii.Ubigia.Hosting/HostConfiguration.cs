@@ -8,14 +8,11 @@
 
     public class HostConfiguration : IHostConfiguration
     {
-        public IHostExtension[] Extensions => _extensions;
-        private IHostExtension[] _extensions;
+        public IHostExtension[] Extensions { get; private set; }
 
-        public IStorage Storage => _storage;
-        private IStorage _storage;
+        public IStorage Storage { get; private set; }
 
-        public IInfrastructure Infrastructure => _infrastructure;
-        private IInfrastructure _infrastructure;
+        public IInfrastructure Infrastructure { get; private set; }
 
         private Func<Container, IHost> _getHost; 
         public IHost GetHost(Container container)
@@ -26,7 +23,7 @@
 
         public HostConfiguration()
         {
-            _extensions = new IHostExtension[0];
+            Extensions = new IHostExtension[0];
 
             _getHost = container =>
             {
@@ -42,8 +39,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -56,7 +53,7 @@
                 throw new ArgumentException(nameof(storage));
             }
 
-            _storage = storage;
+            Storage = storage;
 
             return this;
         }
@@ -67,7 +64,7 @@
                 throw new ArgumentException(nameof(infrastructure));
             }
 
-            _infrastructure = infrastructure;
+            Infrastructure = infrastructure;
 
             return this;
         }

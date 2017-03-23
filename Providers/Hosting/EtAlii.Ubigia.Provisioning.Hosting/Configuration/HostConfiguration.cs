@@ -10,22 +10,18 @@
 
     public class HostConfiguration : IHostConfiguration
     {
-        public IHostExtension[] Extensions => _extensions;
-        private IHostExtension[] _extensions;
+        public IHostExtension[] Extensions { get; private set; }
 
-        public IProviderConfiguration[] ProviderConfigurations => _providerConfigurations;
-        private IProviderConfiguration[] _providerConfigurations;
+        public IProviderConfiguration[] ProviderConfigurations { get; private set; }
 
         //public IStorage Storage { get { return _storage; } }
         //private IStorage _storage;
 
-        public string Address => _address;
-        private string _address;
+        public string Address { get; private set; }
 
-        public string Account => _account;
-        private string _account;
-        public string Password => _password;
-        private string _password;
+        public string Account { get; private set; }
+
+        public string Password { get; private set; }
 
         private Action<IManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;
         private Action<IDataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions;
@@ -33,8 +29,8 @@
 
         public HostConfiguration()
         {
-            _extensions = new IHostExtension[0];
-            _providerConfigurations = new IProviderConfiguration[0];
+            Extensions = new IHostExtension[0];
+            ProviderConfigurations = new IProviderConfiguration[0];
             _dataConnectionConfigurationFactoryExtensions = new Action<IDataConnectionConfiguration>[0];
             _managementConnectionConfigurationFactoryExtensions = new Action<IManagementConnectionConfiguration>[0];
             _dataContextConfigurationFactoryExtensions = new Action<IDataContextConfiguration>[0];
@@ -47,8 +43,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -69,9 +65,9 @@
                 throw new ArgumentException(nameof(password));
             }
 
-            _address = address;
-            _account = account;
-            _password = password;
+            Address = address;
+            Account = account;
+            Password = password;
             return this;
         }
 
@@ -81,7 +77,7 @@
             {
                 throw new ArgumentException(nameof(providerConfigurations));
             }
-            _providerConfigurations = providerConfigurations;
+            ProviderConfigurations = providerConfigurations;
 
             return this;
         }

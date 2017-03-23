@@ -6,8 +6,7 @@
 
     public class SystemSpaceTransport : ISystemSpaceTransport
     {
-        public bool IsConnected => _isConnected;
-        private bool _isConnected;
+        public bool IsConnected { get; private set; }
 
         private readonly IInfrastructure _infrastructure;
 
@@ -22,17 +21,17 @@
 
         public async Task Start(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => _isConnected = true);
+            await Task.Run(() => IsConnected = true);
         }
 
         public async Task Start(ISpaceConnection spaceConnection, string address)
         {
-            await Task.Run(() => _isConnected = true);
+            await Task.Run(() => IsConnected = true);
         }
 
         public async Task Stop(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => _isConnected = false);
+            await Task.Run(() => IsConnected = false);
         }
 
         EtAlii.xTechnology.MicroContainer.IScaffolding[] ISpaceTransport.CreateScaffolding()

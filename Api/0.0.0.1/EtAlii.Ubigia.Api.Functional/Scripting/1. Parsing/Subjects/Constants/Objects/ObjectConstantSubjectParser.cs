@@ -5,11 +5,9 @@
 
     internal class ObjectConstantSubjectParser : IObjectConstantSubjectParser
     {
-        public string Id => _id;
-        private readonly string _id = "ObjectConstantSubject";
+        public string Id { get; } = "ObjectConstantSubject";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -32,7 +30,7 @@
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket");
 
             var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + _newLineParser.OptionalMultiple);//; //.Debug("Comma");
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 Lp.InBrackets(
                 start,
                 _newLineParser.OptionalMultiple +

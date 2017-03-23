@@ -16,14 +16,13 @@
 
         public ISpaceContext Spaces => _connection?.Spaces;
 
-        public IManagementConnectionConfiguration Configuration => _configuration;
-        private readonly IManagementConnectionConfiguration _configuration;
+        public IManagementConnectionConfiguration Configuration { get; }
 
         private IStorageConnection _connection;
 
         internal ManagementConnection(IManagementConnectionConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         public async Task<IDataConnection> OpenSpace(Guid accountId, Guid spaceId)
@@ -42,8 +41,8 @@
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
             var connectionConfiguration = new DataConnectionConfiguration()
-                .Use(_configuration.TransportProvider)
-                .Use(_configuration.Address)
+                .Use(Configuration.TransportProvider)
+                .Use(Configuration.Address)
                 .Use(accountName, spaceName, null);
             var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
             await dataConnection.Open();
@@ -58,9 +57,9 @@
             }
 
             var configuration = new StorageConnectionConfiguration()
-                .Use(_configuration.TransportProvider.GetStorageTransport())
-                .Use(_configuration.Address)
-                .Use(_configuration.AccountName, _configuration.Password);
+                .Use(Configuration.TransportProvider.GetStorageTransport())
+                .Use(Configuration.Address)
+                .Use(Configuration.AccountName, Configuration.Password);
             _connection = new StorageConnectionFactory().Create(configuration);
             await _connection.Open();
         }

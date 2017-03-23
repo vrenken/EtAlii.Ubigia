@@ -6,11 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RegexPathSubjectPartParser : IRegexPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "RegexPathSubjectPart";
+        public string Id { get; } = "RegexPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -29,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var startSingleQuote = Lp.Term("[\'");//.Debug("StartBracket");
             var endSingleQuote = Lp.Term("\']");//.Debug("EndBracket");
 
-            _parser = new LpsParser
+            Parser = new LpsParser
                 (Id, true,
                 Lp.InBrackets(startDoubleQuote, Lp.OneOrMore(c => c != '\"').Id(_textId, true), endDoubleQuote)
                     |

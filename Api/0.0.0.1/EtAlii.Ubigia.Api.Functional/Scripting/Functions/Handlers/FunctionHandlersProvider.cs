@@ -5,8 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class FunctionHandlersProvider : IFunctionHandlersProvider
     {
-        public IFunctionHandler[] FunctionHandlers => _functionHandlers;
-        private readonly IFunctionHandler[] _functionHandlers;
+        public IFunctionHandler[] FunctionHandlers { get; }
 
         public static readonly IFunctionHandlersProvider Empty = new FunctionHandlersProvider(new IFunctionHandler[] {});
 
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 throw new ArgumentException(nameof(functionHandlers));
             }
-            _functionHandlers = functionHandlers;
+            FunctionHandlers = functionHandlers;
         }
 
         public FunctionHandlersProvider(IFunctionHandler[] functionHandlers1, IFunctionHandler[] functionHandlers2)
@@ -29,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 throw new ArgumentException(nameof(functionHandlers2));
             }
-            _functionHandlers = functionHandlers1
+            FunctionHandlers = functionHandlers1
                 .Where(fh1 => functionHandlers2.All(fh2 => fh2.GetType() != fh1.GetType()))
                 .Concat(functionHandlers2)
                 .Distinct()

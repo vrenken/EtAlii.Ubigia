@@ -4,12 +4,11 @@
 
     public class ComposeContext : IComposeContext
     {
-        public IFabricContext Fabric => _fabric;
-        private readonly IFabricContext _fabric;
+        public IFabricContext Fabric { get; }
 
         public ComposeContext(IFabricContext fabric)
         {
-            _fabric = fabric;
+            Fabric = fabric;
         }
     }
 }
