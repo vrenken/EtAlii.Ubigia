@@ -16,26 +16,19 @@
         public string ToolTipText { get { return _toolTipText; } private set { SetProperty(ref _toolTipText, value); } }
         private string _toolTipText;
 
-        public ICommand ExitApplicationCommand => _exitApplicationCommand;
-        private readonly ICommand _exitApplicationCommand;
+        public ICommand ExitApplicationCommand { get; }
 
-        public ICommand StartServiceCommand => _startServiceCommand;
-        private readonly ICommand _startServiceCommand;
+        public ICommand StartServiceCommand { get; }
 
-        public ICommand StopServiceCommand => _stopServiceCommand;
-        private readonly ICommand _stopServiceCommand;
+        public ICommand StopServiceCommand { get; }
 
-        public ICommand StorageBrowserCommand => _storageBrowserCommand;
-        private readonly ICommand _storageBrowserCommand;
+        public ICommand StorageBrowserCommand { get; }
 
-        public ICommand SpaceBrowserCommand => _spaceBrowserCommand;
-        private readonly ICommand _spaceBrowserCommand;
+        public ICommand SpaceBrowserCommand { get; }
 
-        public ICommand OpenAdminPortalCommand => _openAdminPortalCommand;
-        private readonly ICommand _openAdminPortalCommand;
+        public ICommand OpenAdminPortalCommand { get; }
 
-        public ICommand OpenUserPortalCommand => _openUserPortalCommand;
-        private readonly ICommand _openUserPortalCommand;
+        public ICommand OpenUserPortalCommand { get; }
 
         public bool CanStartService { get { return _canStartService; } set { SetProperty(ref _canStartService, value); } }
         private bool _canStartService;
@@ -48,14 +41,14 @@
 
         public TaskbarIconViewModel()
         {
-            _stopServiceCommand = new RelayCommand(o => StopHost());
-            _startServiceCommand = new RelayCommand(o => StartHost());
-            _exitApplicationCommand = new RelayCommand(o => Shutdown());
-            _storageBrowserCommand = new RelayCommand(o => StartStorageBrowser());
-            _spaceBrowserCommand = new RelayCommand(o => StartSpaceBrowser());
+            StopServiceCommand = new RelayCommand(o => StopHost());
+            StartServiceCommand = new RelayCommand(o => StartHost());
+            ExitApplicationCommand = new RelayCommand(o => Shutdown());
+            StorageBrowserCommand = new RelayCommand(o => StartStorageBrowser());
+            SpaceBrowserCommand = new RelayCommand(o => StartSpaceBrowser());
 
-            _openAdminPortalCommand = new RelayCommand(o => BrowseTo("/Admin"));
-            _openUserPortalCommand = new RelayCommand(o => BrowseTo("/"));
+            OpenAdminPortalCommand = new RelayCommand(o => BrowseTo("/Admin"));
+            OpenUserPortalCommand = new RelayCommand(o => BrowseTo("/"));
         }
 
         private void BrowseTo(string relativeAddress)

@@ -24,8 +24,7 @@
         [Parameter(Mandatory = false, ParameterSetName = "byStorageId", HelpMessage = "The ID of the storage to which the new storage should be added.")]
         public Guid StorageId { get; set; }
 
-        protected Storage TargetStorage { get { return _targetStorage; } private set { _targetStorage = value; } }
-        private Storage _targetStorage;
+        protected Storage TargetStorage { get; private set; }
 
         protected override void BeginProcessing()
         {

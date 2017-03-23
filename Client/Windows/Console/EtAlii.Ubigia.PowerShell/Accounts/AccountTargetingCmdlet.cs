@@ -18,8 +18,7 @@
         [Parameter(Mandatory = false, Position = 90, ParameterSetName = "byAccountId", HelpMessage = "The ID of the account on which the action should be applied.")]
         public Guid AccountId { get; set; }
 
-        public Account TargetAccount { get { return _targetAccount; } private set { _targetAccount = value; } }
-        private Account _targetAccount;
+        public Account TargetAccount { get; private set; }
 
         protected override void BeginProcessing()
         {

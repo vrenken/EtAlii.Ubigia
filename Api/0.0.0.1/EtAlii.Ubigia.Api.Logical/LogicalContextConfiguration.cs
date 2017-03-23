@@ -6,31 +6,28 @@
 
     public class LogicalContextConfiguration : ILogicalContextConfiguration
     {
-        public IFabricContext Fabric => _fabric;
-        private IFabricContext _fabric;
+        public IFabricContext Fabric { get; private set; }
 
-        public ILogicalContextExtension[] Extensions => _extensions;
-        private ILogicalContextExtension[] _extensions;
+        public ILogicalContextExtension[] Extensions { get; private set; }
 
-        public bool CachingEnabled => _cachingEnabled;
-        private bool _cachingEnabled;
+        public bool CachingEnabled { get; private set; }
 
 
         public LogicalContextConfiguration()
         {
-            _cachingEnabled = true;
-            _extensions = new ILogicalContextExtension[0];
+            CachingEnabled = true;
+            Extensions = new ILogicalContextExtension[0];
         }
 
         public ILogicalContextConfiguration UseCaching(bool cachingEnabled)
         {
-            _cachingEnabled = cachingEnabled;
+            CachingEnabled = cachingEnabled;
             return this;
         }
 
         public ILogicalContextConfiguration Use(IFabricContext fabric)
         {
-            _fabric = fabric;
+            Fabric = fabric;
             return this;
         }
 
@@ -41,8 +38,8 @@
                 throw new ArgumentException("extensions");
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;

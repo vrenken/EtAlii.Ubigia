@@ -8,14 +8,11 @@
         //public ILogicalContextExtension[] Extensions { get { return _extensions; } }
         //private ILogicalContextExtension[] _extensions;
 
-        public IFabricContext Fabric => _fabric;
-        private IFabricContext _fabric;
+        public IFabricContext Fabric { get; private set; }
 
-        public string Name => _name;
-        private string _name;
+        public string Name { get; private set; }
 
-        public string Address => _address;
-        private string _address;
+        public string Address { get; private set; }
 
         //public ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
         //{
@@ -43,8 +40,8 @@
                 throw new ArgumentException(nameof(address));
             }
 
-            _name = name;
-            _address = address;
+            Name = name;
+            Address = address;
 
             return this;
         }
@@ -56,7 +53,7 @@
                 throw new ArgumentException(nameof(fabric));
             }
 
-            _fabric = fabric;
+            Fabric = fabric;
 
             return this;
         }

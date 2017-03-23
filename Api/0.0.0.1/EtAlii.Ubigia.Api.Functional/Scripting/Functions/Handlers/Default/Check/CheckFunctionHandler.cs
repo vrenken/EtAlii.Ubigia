@@ -4,22 +4,18 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class CheckFunctionHandler : IFunctionHandler
     {
-        public ParameterSet[] ParameterSets => _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
-        private readonly ParameterSet[] _parameterSets;
-
-        public string Name => _name;
-
-        private readonly string _name;
+        public string Name { get; }
 
         public CheckFunctionHandler()
         {
-            _parameterSets = new[]
+            ParameterSets = new[]
             {
                 new ParameterSet(true),
                 new ParameterSet(false, new Parameter("var", typeof (object))),
             };
-            _name = "Check";
+            Name = "Check";
         }
 
         public void Process(

@@ -2,12 +2,11 @@
 {
     public class FacebookProvider : IProvider
     {
-        public IProviderConfiguration Configuration => _configuration;
-        private readonly IProviderConfiguration _configuration;
+        public IProviderConfiguration Configuration { get; }
 
         public FacebookProvider(IProviderConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         public void Stop()

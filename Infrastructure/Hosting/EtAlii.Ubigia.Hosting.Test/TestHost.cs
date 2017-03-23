@@ -6,20 +6,15 @@
 
     public class TestHost : IHost
     {
-        public IInfrastructureClient Client => _client;
-        private readonly IInfrastructureClient _client;
+        public IInfrastructureClient Client { get; }
 
-        public IInfrastructure Infrastructure => _infrastructure;
-        private readonly IInfrastructure _infrastructure;
+        public IInfrastructure Infrastructure { get; }
 
-        public IAddressFactory AddressFactory => _addressFactory;
-        private readonly IAddressFactory _addressFactory;
+        public IAddressFactory AddressFactory { get; }
 
-        public IStorage Storage => _storage;
-        private readonly IStorage _storage;
+        public IStorage Storage { get; }
 
-        public IHostConfiguration Configuration => _configuration;
-        private readonly IHostConfiguration _configuration;
+        public IHostConfiguration Configuration { get; }
 
         public TestHost(
             IInfrastructureClient client, 
@@ -28,16 +23,16 @@
             IInfrastructure infrastructure,
             IHostConfiguration configuration)
         {
-            _client = client;
-            _addressFactory = addressFactory;
-            _storage = storage;
-            _infrastructure = infrastructure;
-            _configuration = configuration;
+            Client = client;
+            AddressFactory = addressFactory;
+            Storage = storage;
+            Infrastructure = infrastructure;
+            Configuration = configuration;
         }
 
         public virtual void Start()
         {
-            _infrastructure.Start();
+            Infrastructure.Start();
 
             var folder = Storage.PathBuilder.BaseFolder;
             if (Storage.FolderManager.Exists(folder))
@@ -48,7 +43,7 @@
 
         public virtual void Stop()
         {
-            _infrastructure.Stop();
+            Infrastructure.Stop();
         }
     }
 }

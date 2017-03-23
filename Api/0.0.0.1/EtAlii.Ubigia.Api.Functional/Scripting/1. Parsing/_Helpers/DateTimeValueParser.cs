@@ -8,8 +8,7 @@
     {
         private readonly INodeValidator _nodeValidator;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "DateTimeValue";
@@ -17,7 +16,7 @@
         public DateTimeValueParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            _parser = new LpsParser(Id, true, LpDateTime.DateTime());
+            Parser = new LpsParser(Id, true, LpDateTime.DateTime());
         }
 
 

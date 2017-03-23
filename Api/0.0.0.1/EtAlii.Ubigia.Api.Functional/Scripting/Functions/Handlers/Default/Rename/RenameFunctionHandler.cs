@@ -10,18 +10,16 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RenameFunctionHandler : IFunctionHandler
     {
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
         private readonly ISelector<object, Func<IFunctionContext, object, ExecutionScope, IObservable<Identifier>>> _toIdentifierConverterSelector;
         private readonly ISelector<int, object, object, Func<object, object, string>> _toNameConverterSelector;
 
         public RenameFunctionHandler()
         {
-            _parameterSets = new[]
+            ParameterSets = new[]
             {
                 new ParameterSet(true, new Parameter("name", typeof(string))),
                 new ParameterSet(true, new Parameter("name", typeof(IObservable<object>))),
@@ -32,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 new ParameterSet(false, new Parameter("var", typeof(PathSubject)), new Parameter("name", typeof(IObservable<object>))),
                 new ParameterSet(false, new Parameter("var", typeof(IObservable<object>)), new Parameter("name", typeof(IObservable<object>)))
             };
-            _name = "Rename";
+            Name = "Rename";
 
             _toIdentifierConverterSelector = new Selector<object, Func<IFunctionContext, object, ExecutionScope, IObservable<Identifier>>>()
                 .Register(i => i is PathSubject, (c, i, s) => ConvertPathToIds(c, (PathSubject)i, s))

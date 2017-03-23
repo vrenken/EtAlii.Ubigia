@@ -2,14 +2,13 @@
 {
     internal class TestRoot2HandlerMapper : IRootHandlerMapper
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
         public IRootHandler[] AllowedRootHandlers { get; }
 
         public TestRoot2HandlerMapper()
         {
-            _name = "TestRoot2";
+            Name = "TestRoot2";
             AllowedRootHandlers = new IRootHandler[0];
         }
     }

@@ -4,21 +4,18 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class NewLineParser : INewLineParser
     {
-        public LpsChain Required => _required;
-        private readonly LpsChain _required;
+        public LpsChain Required { get; }
 
-        public LpsChain Optional => _optional;
-        private readonly LpsChain _optional;
+        public LpsChain Optional { get; }
 
-        public LpsParser OptionalMultiple => _optionalMultiple;
-        private readonly LpsParser _optionalMultiple;
+        public LpsParser OptionalMultiple { get; }
 
         public NewLineParser()
         {
-            _required = Lp.ZeroOrMore(c => c == ' ') + Lp.OneOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ');
-            _optional = Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ');
+            Required = Lp.ZeroOrMore(c => c == ' ') + Lp.OneOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ');
+            Optional = Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ');
 
-            _optionalMultiple = Lp.ZeroOrMore(c => c == ' ' || c == '\n');
+            OptionalMultiple = Lp.ZeroOrMore(c => c == ' ' || c == '\n');
             //_optionalMultiple = (Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ')).ZeroOrMore().Maybe();
         }
     }

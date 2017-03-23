@@ -9,32 +9,29 @@
 
     public class ProviderConfiguration : IProviderConfiguration
     {
-        public IDataContext SystemDataContext => _systemDataContext;
-        private IDataContext _systemDataContext;
+        public IDataContext SystemDataContext { get; private set; }
 
-        public IManagementConnection ManagementConnection => _managementConnection;
-        private IManagementConnection _managementConnection;
+        public IManagementConnection ManagementConnection { get; private set; }
 
-        public IProviderExtension[] Extensions => _extensions;
-        private IProviderExtension[] _extensions;
-        public IProviderFactory Factory => _factory;
-        private IProviderFactory _factory;
+        public IProviderExtension[] Extensions { get; private set; }
 
-        public ILogFactory LogFactory => _logFactory;
-        private ILogFactory _logFactory;
+        public IProviderFactory Factory { get; private set; }
+
+        public ILogFactory LogFactory { get; private set; }
+
         private Func<IDataConnection, IDataContext> _dataContextFactory;
 
         public ProviderConfiguration()
         {
-            _extensions = new IProviderExtension[0];
+            Extensions = new IProviderExtension[0];
         }
 
         public ProviderConfiguration(IProviderConfiguration configuration)
             :this()
         {
-            _factory = configuration.Factory;
-            _extensions = configuration.Extensions;
-            _logFactory = configuration.LogFactory;
+            Factory = configuration.Factory;
+            Extensions = configuration.Extensions;
+            LogFactory = configuration.LogFactory;
         }
 
         public IProviderConfiguration Use(IProviderExtension[] extensions)
@@ -44,8 +41,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;
@@ -58,7 +55,7 @@
                 throw new ArgumentException(nameof(factory));
             }
 
-            _factory = factory;
+            Factory = factory;
 
             return this;
         }
@@ -70,7 +67,7 @@
                 throw new ArgumentException(nameof(managementConnection));
             }
 
-            _managementConnection = managementConnection;
+            ManagementConnection = managementConnection;
 
             return this;
         }
@@ -82,7 +79,7 @@
                 throw new ArgumentException(nameof(systemDataContext));
             }
 
-            _systemDataContext = systemDataContext;
+            SystemDataContext = systemDataContext;
 
             return this;
         }
@@ -94,7 +91,7 @@
                 throw new ArgumentException(nameof(logFactory));
             }
 
-            _logFactory = logFactory;
+            LogFactory = logFactory;
 
             return this;
         }

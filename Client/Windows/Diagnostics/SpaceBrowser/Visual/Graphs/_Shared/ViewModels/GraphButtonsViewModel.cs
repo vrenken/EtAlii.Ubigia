@@ -11,14 +11,11 @@
     {
         private readonly IFabricContext _fabric;
 
-        public ICommand DiscoverFromHeadCommand => _discoverFromHeadCommand;
-        private readonly ICommand _discoverFromHeadCommand;
+        public ICommand DiscoverFromHeadCommand { get; }
 
-        public ICommand DiscoverFromTailCommand => _discoverFromTailCommand;
-        private readonly ICommand _discoverFromTailCommand;
-        
-        public ICommand ClearGraphCommand => _clearGraphCommand;
-        private readonly ICommand _clearGraphCommand;
+        public ICommand DiscoverFromTailCommand { get; }
+
+        public ICommand ClearGraphCommand { get; }
 
         private readonly IGraphContext _graphContext;
 
@@ -29,9 +26,9 @@
             _fabric = fabric;
             _graphContext = graphContext;
 
-            _discoverFromHeadCommand = new RelayCommand(DiscoverFromHead, CanDiscoverFromHead);
-            _discoverFromTailCommand = new RelayCommand(DiscoverFromTail, CanDiscoverFromTail);
-            _clearGraphCommand = new RelayCommand(ClearGraph, CanClearGraph);
+            DiscoverFromHeadCommand = new RelayCommand(DiscoverFromHead, CanDiscoverFromHead);
+            DiscoverFromTailCommand = new RelayCommand(DiscoverFromTail, CanDiscoverFromTail);
+            ClearGraphCommand = new RelayCommand(ClearGraph, CanClearGraph);
         }
 
         private bool CanDiscoverFromHead(object parameter)

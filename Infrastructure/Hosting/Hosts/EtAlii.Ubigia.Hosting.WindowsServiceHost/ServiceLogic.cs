@@ -23,15 +23,12 @@
         
 
         // SERVINFSERV$SQLEXPRESS
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public string DisplayName => _displayName;
-        private readonly string _displayName;
+        public string DisplayName { get; }
 
-        public string Description => _description;
-        private readonly string _description;
-        
+        public string Description { get; }
+
         private readonly IHost _host;
 
         public ServiceLogic()
@@ -80,9 +77,9 @@
             _host = new HostFactory().Create(hostConfiguration);
 
             var infrastructureName = _host.Infrastructure.Configuration.Name;
-            _name = String.Format(_nameFormat, infrastructureName).Replace(" ","_");
-            _displayName = String.Format(_displayNameFormat, infrastructureName);
-            _description = String.Format(_descriptionFormat, infrastructureName);
+            Name = String.Format(_nameFormat, infrastructureName).Replace(" ","_");
+            DisplayName = String.Format(_displayNameFormat, infrastructureName);
+            Description = String.Format(_descriptionFormat, infrastructureName);
         }
 
         public void Start(IEnumerable<string> args)

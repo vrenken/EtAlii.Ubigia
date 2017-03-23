@@ -4,35 +4,25 @@
 
     public abstract class InfrastructureBase : IInfrastructure
     {
-        public IInfrastructureConfiguration Configuration => _configuration;
-        private readonly IInfrastructureConfiguration _configuration;
+        public IInfrastructureConfiguration Configuration { get; }
 
-        public ISpaceRepository Spaces => _spaces;
-        private readonly ISpaceRepository _spaces;
+        public ISpaceRepository Spaces { get; }
 
-        public IIdentifierRepository Identifiers => _identifiers;
-        private readonly IIdentifierRepository _identifiers;
+        public IIdentifierRepository Identifiers { get; }
 
-        public IEntryRepository Entries => _entries;
-        private readonly IEntryRepository _entries;
+        public IEntryRepository Entries { get; }
 
-        public IRootRepository Roots => _roots;
-        private readonly IRootRepository _roots;
+        public IRootRepository Roots { get; }
 
-        public IAccountRepository Accounts => _accounts;
-        private readonly IAccountRepository _accounts;
+        public IAccountRepository Accounts { get; }
 
-        public IContentRepository Content => _content;
-        private readonly IContentRepository _content;
+        public IContentRepository Content { get; }
 
-        public IContentDefinitionRepository ContentDefinition => _contentDefinition;
-        private readonly IContentDefinitionRepository _contentDefinition;
+        public IContentDefinitionRepository ContentDefinition { get; }
 
-        public IPropertiesRepository Properties => _properties;
-        private readonly IPropertiesRepository _properties;
+        public IPropertiesRepository Properties { get; }
 
-        public IStorageRepository Storages => _storages;
-        private readonly IStorageRepository _storages;
+        public IStorageRepository Storages { get; }
 
         private readonly ILogicalContext _logicalContext;
 
@@ -49,17 +39,17 @@
             IStorageRepository storages,
             ILogicalContext logicalContext)
         {
-            _configuration = configuration;
-            _identifiers = identifiers;
-            _entries = entries;
-            _roots = roots;
-            _content = content;
-            _contentDefinition = contentDefinition;
-            _properties = properties;
+            Configuration = configuration;
+            Identifiers = identifiers;
+            Entries = entries;
+            Roots = roots;
+            Content = content;
+            ContentDefinition = contentDefinition;
+            Properties = properties;
 
-            _spaces = spaces;
-            _accounts = accounts;
-            _storages = storages;
+            Spaces = spaces;
+            Accounts = accounts;
+            Storages = storages;
             _logicalContext = logicalContext;
         }
 

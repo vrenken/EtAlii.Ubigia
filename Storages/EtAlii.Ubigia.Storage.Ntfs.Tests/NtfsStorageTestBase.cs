@@ -8,14 +8,13 @@
 
     public abstract class NtfsStorageTestBase : IDisposable
     {
-        protected IStorage Storage => _storage;
-        private IStorage _storage;
+        protected IStorage Storage { get; private set; }
 
         private readonly string _rootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
 
         public NtfsStorageTestBase()
         {
-            _storage = CreateStorage();
+            Storage = CreateStorage();
 
             var folder = Storage.PathBuilder.BaseFolder;
             if (Storage.FolderManager.Exists(folder))
@@ -26,7 +25,7 @@
 
         public void Dispose()
         {
-            _storage = null;
+            Storage = null;
         }
 
         private IStorage CreateStorage()

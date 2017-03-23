@@ -11,7 +11,6 @@
         { 
         }
 
-        public IEnumerable<Relation> Relations { get { return _relations; } internal set { _relations = value; } }
-        private IEnumerable<Relation> _relations = new Relation[] { };
+        public IEnumerable<Relation> Relations { get; internal set; } = new Relation[] { };
     }
 }

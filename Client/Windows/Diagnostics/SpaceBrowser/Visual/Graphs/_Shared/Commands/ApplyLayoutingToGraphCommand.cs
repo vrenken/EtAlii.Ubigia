@@ -5,12 +5,11 @@
 
     public class ApplyLayoutingToGraphCommand : CommandBase
     {
-        public IGraphDocumentViewModel ViewModel => _viewModel;
-        private readonly IGraphDocumentViewModel _viewModel;
+        public IGraphDocumentViewModel ViewModel { get; }
 
         public ApplyLayoutingToGraphCommand(IGraphDocumentViewModel viewModel)
         {
-            _viewModel = viewModel;
+            ViewModel = viewModel;
         }
     }
 }

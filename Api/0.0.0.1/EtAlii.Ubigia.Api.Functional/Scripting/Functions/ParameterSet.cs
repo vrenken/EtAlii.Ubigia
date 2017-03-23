@@ -5,21 +5,18 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class ParameterSet
     {
-        public Parameter[] Parameters => _parameters;
-        private readonly Parameter[] _parameters;
+        public Parameter[] Parameters { get; }
 
-        public TypeInfo[] ParameterTypeInfos => _parameterTypeInfos;
-        private readonly TypeInfo[] _parameterTypeInfos;
+        public TypeInfo[] ParameterTypeInfos { get; }
 
-        public bool RequiresInput => _requiresInput;
-        private readonly bool _requiresInput;
+        public bool RequiresInput { get; }
 
         public ParameterSet(bool requiresInput, params Parameter[] parameters)
         {
-            _requiresInput = requiresInput;
-            _parameters = parameters;
+            RequiresInput = requiresInput;
+            Parameters = parameters;
 
-            _parameterTypeInfos = parameters
+            ParameterTypeInfos = parameters
                 .Select(p => p != null ? p.Type.GetTypeInfo() : null)
                 .ToArray();
         }

@@ -5,16 +5,14 @@
 
     public class FileFunctionHandler : IFunctionHandler
     {
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
         public FileFunctionHandler()
         {
-            _parameterSets = new ParameterSet[] {};
-            _name = "File";
+            ParameterSets = new ParameterSet[] {};
+            Name = "File";
         }
 
         public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)

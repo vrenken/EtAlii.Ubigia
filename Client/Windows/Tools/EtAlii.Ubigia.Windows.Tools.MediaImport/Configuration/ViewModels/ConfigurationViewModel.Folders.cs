@@ -6,20 +6,16 @@
 
     internal partial class ConfigurationViewModel : BindableBase
     {
-        public ICommand AddFolderCommand => _addFolderCommand;
-        private readonly ICommand _addFolderCommand;
+        public ICommand AddFolderCommand { get; }
 
-        public ICommand EditFolderCommand => _editFolderCommand;
-        private readonly ICommand _editFolderCommand;
+        public ICommand EditFolderCommand { get; }
 
-        public IFolderMonitorManager Manager => _manager;
-        private readonly IFolderMonitorManager _manager;
+        public IFolderMonitorManager Manager { get; }
 
         public IFolderMonitor SelectedFolderMonitor { get { return _selectedFolderMonitor; } set { SetProperty(ref _selectedFolderMonitor, value); } }
         private IFolderMonitor _selectedFolderMonitor;
 
-        public IObservableFolderSyncConfigurationCollection FolderSyncConfigurations => _folderSyncConfigurations;
-        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
+        public IObservableFolderSyncConfigurationCollection FolderSyncConfigurations { get; }
 
         private void OnAddFolder(object obj)
         {

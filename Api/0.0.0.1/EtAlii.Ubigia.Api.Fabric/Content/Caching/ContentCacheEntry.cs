@@ -12,12 +12,11 @@
 
         public IReadOnlyContent Content { get; set; }
 
-        public Dictionary<UInt64, IReadOnlyContentPart> ContentParts => _contentParts;
-        private readonly Dictionary<UInt64, IReadOnlyContentPart> _contentParts;
+        public Dictionary<UInt64, IReadOnlyContentPart> ContentParts { get; }
 
         public ContentCacheEntry()
         {
-            _contentParts = new Dictionary<ulong, IReadOnlyContentPart>();
+            ContentParts = new Dictionary<ulong, IReadOnlyContentPart>();
         }
     }
 }

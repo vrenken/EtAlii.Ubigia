@@ -4,22 +4,21 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public class AuthenticationContext : IAuthenticationContext
     {
-        public IAuthenticationDataClient Data => _data;
-        private readonly IAuthenticationDataClient _data;
+        public IAuthenticationDataClient Data { get; }
 
         public AuthenticationContext(IAuthenticationDataClient data)
         {
-            _data = data;
+            Data = data;
         }
 
         public async Task Open(ISpaceConnection spaceConnection)
         {
-            await _data.Connect(spaceConnection);
+            await Data.Connect(spaceConnection);
         }
 
         public async Task Close(ISpaceConnection spaceConnection)
         {
-            await _data.Disconnect(spaceConnection);
+            await Data.Disconnect(spaceConnection);
         }
 
     }

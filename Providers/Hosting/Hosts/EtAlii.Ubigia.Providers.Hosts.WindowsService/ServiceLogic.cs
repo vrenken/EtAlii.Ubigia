@@ -12,15 +12,12 @@
         private const string _descriptionFormat = "Information exchange to and from the Ubigia storage '{0}'";
         
 
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public string DisplayName => _displayName;
-        private readonly string _displayName;
+        public string DisplayName { get; }
 
-        public string Description => _description;
-        private readonly string _description;
-        
+        public string Description { get; }
+
         private readonly IProviderHost _host;
         private readonly string _hostName;
         private readonly string _hostAddress;
@@ -47,9 +44,9 @@
             var windowsServiceConfiguration = (WindowsServiceConfigurationSection)exeConfiguration.GetSection("ubigia/service");
             _hostName = windowsServiceConfiguration.Name;
             _hostAddress = hostConfiguration.Address;
-            _name = String.Format(_nameFormat, _hostName).Replace(" ", "_");
-            _displayName = String.Format(_displayNameFormat, _hostName);
-            _description = String.Format(_descriptionFormat, _hostName);
+            Name = String.Format(_nameFormat, _hostName).Replace(" ", "_");
+            DisplayName = String.Format(_displayNameFormat, _hostName);
+            Description = String.Format(_descriptionFormat, _hostName);
 
             // And instantiate the host.
             _host = new ProviderHostFactory<WindowsServiceHost>().Create(hostConfiguration);

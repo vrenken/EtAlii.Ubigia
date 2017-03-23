@@ -17,8 +17,7 @@
 
         public IPropertyContext Properties => _connection?.Properties;
 
-        public IDataConnectionConfiguration Configuration => _configuration;
-        private readonly IDataConnectionConfiguration _configuration;
+        public IDataConnectionConfiguration Configuration { get; }
 
         public bool IsConnected => _connection?.IsConnected ?? false;
 
@@ -26,7 +25,7 @@
 
         internal DataConnection(IDataConnectionConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         public async Task Open()
@@ -38,9 +37,9 @@
 
             //await _connection.Open(address, accountName, password);
             var configuration = new SpaceConnectionConfiguration()
-                .Use(_configuration.TransportProvider.GetSpaceTransport())
-                .Use(_configuration.Address)
-                .Use(_configuration.AccountName, _configuration.Space, _configuration.Password);
+                .Use(Configuration.TransportProvider.GetSpaceTransport())
+                .Use(Configuration.Address)
+                .Use(Configuration.AccountName, Configuration.Space, Configuration.Password);
             _connection = new SpaceConnectionFactory().Create(configuration);
             await _connection.Open();
             //await OpenSpace();

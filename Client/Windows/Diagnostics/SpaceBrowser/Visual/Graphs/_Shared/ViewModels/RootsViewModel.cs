@@ -18,16 +18,14 @@
         private Root _selectedRoot;
 
 
-        protected IFabricContext Fabric => _fabric;
-        private readonly IFabricContext _fabric;
+        protected IFabricContext Fabric { get; }
 
-        public ICommand BeginEntryDragCommand => _beginEntryDragCommand;
-        private readonly ICommand _beginEntryDragCommand;
+        public ICommand BeginEntryDragCommand { get; }
 
         public RootsViewModel(IFabricContext fabric)
         {
-            _fabric = fabric;
-            _beginEntryDragCommand = new RelayCommand(BeginEntryDrag, CanBeginEntryDrag);
+            Fabric = fabric;
+            BeginEntryDragCommand = new RelayCommand(BeginEntryDrag, CanBeginEntryDrag);
             ReloadAvailableRoots();
         }
 

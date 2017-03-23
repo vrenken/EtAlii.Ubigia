@@ -17,17 +17,11 @@
 
         private string _toolTipText;
 
-        public ICommand ExitApplicationCommand => _exitApplicationCommand;
+        public ICommand ExitApplicationCommand { get; }
 
-        private readonly ICommand _exitApplicationCommand;
+        public ICommand StartServiceCommand { get; }
 
-        public ICommand StartServiceCommand => _startServiceCommand;
-
-        private readonly ICommand _startServiceCommand;
-
-        public ICommand StopServiceCommand => _stopServiceCommand;
-
-        private readonly ICommand _stopServiceCommand;
+        public ICommand StopServiceCommand { get; }
 
         public bool CanStartService
         {
@@ -55,9 +49,9 @@
 
         public TaskbarIconViewModel()
         {
-            _stopServiceCommand = new RelayCommand(o => _providerHost.Stop());
-            _startServiceCommand = new RelayCommand(o => _providerHost.Start());
-            _exitApplicationCommand = new RelayCommand(o =>
+            StopServiceCommand = new RelayCommand(o => _providerHost.Stop());
+            StartServiceCommand = new RelayCommand(o => _providerHost.Start());
+            ExitApplicationCommand = new RelayCommand(o =>
             {
                 _providerHost.Stop();
                 Application.Current.Shutdown();

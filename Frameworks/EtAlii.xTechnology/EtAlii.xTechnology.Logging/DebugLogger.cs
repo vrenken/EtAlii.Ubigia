@@ -5,16 +5,11 @@ namespace EtAlii.xTechnology.Logging
 
     public class DebugLogger : ILogger
     {
-        public LogLevel Level
-        {
-            get { return _level; }
-            set { _level = value; }
-        }
-        private LogLevel _level = LogLevel.Info;
+        public LogLevel Level { get; set; } = LogLevel.Info;
 
         public void Verbose(string message)
         {
-            if (_level >= LogLevel.Verbose)
+            if (Level >= LogLevel.Verbose)
             {
                 Debug.WriteLine(message);
             }
@@ -22,7 +17,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Verbose(string message, params object[] args)
         {
-            if (_level >= LogLevel.Verbose)
+            if (Level >= LogLevel.Verbose)
             {
                 message = string.Format(message, args);
                 Debug.WriteLine(message);
@@ -31,7 +26,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Info(string message)
         {
-            if (_level >= LogLevel.Info)
+            if (Level >= LogLevel.Info)
             {
                 Debug.WriteLine(message);
             }
@@ -39,7 +34,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Info(string message, params object[] args)
         {
-            if (_level >= LogLevel.Info)
+            if (Level >= LogLevel.Info)
             {
                 message = string.Format(message, args);
                 Debug.WriteLine(message);
@@ -48,7 +43,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Warning(string message)
         {
-            if (_level >= LogLevel.Warning)
+            if (Level >= LogLevel.Warning)
             {
                 Debug.WriteLine(message);
             }
@@ -56,7 +51,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Warning(string message, params object[] args)
         {
-            if (_level >= LogLevel.Warning)
+            if (Level >= LogLevel.Warning)
             {
                 message = string.Format(message, args);
                 Debug.WriteLine(message);
@@ -65,7 +60,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Critical(string message, System.Exception e, params object[] args)
         {
-            if (_level >= LogLevel.Critical)
+            if (Level >= LogLevel.Critical)
             {
                 message = string.Format(message, args);
                 Debug.WriteLine(message);
@@ -74,7 +69,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Critical(string message, System.Exception e)
         {
-            if (_level >= LogLevel.Critical)
+            if (Level >= LogLevel.Critical)
             {
                 Debug.WriteLine(e.ToString());
             }

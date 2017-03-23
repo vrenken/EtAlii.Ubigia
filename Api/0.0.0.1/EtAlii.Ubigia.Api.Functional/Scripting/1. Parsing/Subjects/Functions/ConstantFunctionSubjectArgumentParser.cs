@@ -4,11 +4,9 @@
 
     internal class ConstantFunctionSubjectArgumentParser : IConstantFunctionSubjectArgumentParser
     {
-        public string Id => _id;
-        private readonly string _id = "ConstantFunctionSubjectArgument";
+        public string Id { get; } = "ConstantFunctionSubjectArgument";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConstantHelper _constantHelper;
@@ -24,7 +22,7 @@
             _constantHelper = constantHelper;
             _nodeFinder = nodeFinder;
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 //(Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(TextId)) |
                 (Lp.One(c => c == '\"') +
                  Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_textId) +

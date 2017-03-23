@@ -5,11 +5,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
 
     internal class WebApiStorageConnection : StorageConnection<WebApiStorageTransport>, IWebApiStorageConnection
     {
-        public IInfrastructureClient Client => _client;
-        private readonly IInfrastructureClient _client;
+        public IInfrastructureClient Client { get; }
 
-        public IAddressFactory AddressFactory => _addressFactory;
-        private readonly IAddressFactory _addressFactory;
+        public IAddressFactory AddressFactory { get; }
 
         public WebApiStorageConnection(
             IStorageTransport transport, 
@@ -22,8 +20,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
             IAuthenticationContext authentication) 
             : base(transport, configuration, storages, spaces, accounts, authentication)
         {
-            _addressFactory = addressFactory;
-            _client = client;
+            AddressFactory = addressFactory;
+            Client = client;
         }
     }
 }

@@ -15,26 +15,22 @@
         public string ToolTipText { get { return _toolTipText; } set { SetProperty(ref _toolTipText, value); } }
         private string _toolTipText;
 
-        public ICommand ExitApplicationCommand => _exitApplicationCommand;
-        private readonly ICommand _exitApplicationCommand;
+        public ICommand ExitApplicationCommand { get; }
 
         public bool CanShowConfiguration { get { return _canShowConfiguration; } set { SetProperty(ref _canShowConfiguration, value); } }
         private bool _canShowConfiguration;
 
-        public ICommand ShowConfigurationCommand => _showConfigurationCommand;
-        private readonly ICommand _showConfigurationCommand;
+        public ICommand ShowConfigurationCommand { get; }
 
         public bool CanShowStatus { get { return _canShowStatus; } set { SetProperty(ref _canShowStatus, value); } }
         private bool _canShowStatus;
 
-        public ICommand ShowStatusCommand => _showStatusCommand;
-        private readonly ICommand _showStatusCommand;
+        public ICommand ShowStatusCommand { get; }
 
         public bool CanShowAbout { get { return _canShowAbout; } set { SetProperty(ref _canShowAbout, value); } }
         private bool _canShowAbout;
 
-        public ICommand ShowAboutCommand => _showAboutCommand;
-        private readonly ICommand _showAboutCommand;
+        public ICommand ShowAboutCommand { get; }
 
         public string IconToShow { get { return _iconToShow; } set { SetProperty(ref _iconToShow, value); } }
         private string _iconToShow = TaskbarIconResource.Stopped;
@@ -52,14 +48,14 @@
             //sb.AppendFormat("Address: {0}", configuration.Address);
             ToolTipText = sb.ToString();
 
-            _exitApplicationCommand = new RelayCommand(o =>
+            ExitApplicationCommand = new RelayCommand(o =>
             {
                 _folderMonitorManager.Stop();
                 Application.Current.Shutdown();
             });
-            _showConfigurationCommand = new RelayCommand(ShowConfiguration);
-            _showStatusCommand = new RelayCommand(ShowStatus);
-            _showAboutCommand = new RelayCommand(ShowAbout);
+            ShowConfigurationCommand = new RelayCommand(ShowConfiguration);
+            ShowStatusCommand = new RelayCommand(ShowStatus);
+            ShowAboutCommand = new RelayCommand(ShowAbout);
         }
 
         void OnMonitorManagerPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)

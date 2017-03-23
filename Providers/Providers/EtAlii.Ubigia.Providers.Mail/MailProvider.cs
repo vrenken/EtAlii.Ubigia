@@ -2,12 +2,11 @@
 {
     public class MailProvider : IProvider
     {
-        public IProviderConfiguration Configuration => _configuration;
-        private readonly IProviderConfiguration _configuration;
+        public IProviderConfiguration Configuration { get; }
 
         public MailProvider(IProviderConfiguration configuration)
         {
-            _configuration = configuration;
+            Configuration = configuration;
         }
 
         public void Stop()

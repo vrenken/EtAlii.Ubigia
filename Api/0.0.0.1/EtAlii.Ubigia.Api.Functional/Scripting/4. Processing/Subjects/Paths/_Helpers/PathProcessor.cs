@@ -6,8 +6,7 @@
 
     internal class PathProcessor : IPathProcessor
     {
-        public IProcessingContext Context => _context;
-        private readonly IProcessingContext _context;
+        public IProcessingContext Context { get; }
 
         private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
 
@@ -15,7 +14,7 @@
             IProcessingContext context, 
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter)
         {
-            _context = context;
+            Context = context;
             _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
         }
 
@@ -41,7 +40,7 @@
 
             try
             {
-                _context.Logical.Nodes.SelectMany(graphPath, scope, output);
+                Context.Logical.Nodes.SelectMany(graphPath, scope, output);
             }
             catch (Exception e)
             {

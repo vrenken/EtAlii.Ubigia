@@ -6,11 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class StringConstantSubjectParser : IStringConstantSubjectParser
     {
-        public string Id => _id;
-        private readonly string _id = "StringConstantSubject";
+        public string Id { get; } = "StringConstantSubject";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
@@ -29,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _quotedTextParser = quotedTextParser;
             _constantHelper = constantHelper;
 
-            _parser = new LpsParser
+            Parser = new LpsParser
                 (
                     Id, true,
                     //Lp.Char('/').Not().Debug("Start", true) + 

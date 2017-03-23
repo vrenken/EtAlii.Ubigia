@@ -9,14 +9,11 @@
 
     public class PowerShellHost : IHost
     {
-        public IHostConfiguration Configuration => _configuration;
-        private readonly IHostConfiguration _configuration;
+        public IHostConfiguration Configuration { get; }
 
-        public IInfrastructure Infrastructure => _infrastructure;
-        private readonly IInfrastructure _infrastructure;
+        public IInfrastructure Infrastructure { get; }
 
-        public IStorage Storage => _storage;
-        private readonly IStorage _storage;
+        public IStorage Storage { get; }
 
         private readonly ILogger _logger;
 
@@ -26,9 +23,9 @@
             IStorage storage,
             ILogger logger)
         {
-            _configuration = configuration;
-            _infrastructure = infrastructure;
-            _storage = storage;
+            Configuration = configuration;
+            Infrastructure = infrastructure;
+            Storage = storage;
             _logger = logger;
         }
 
@@ -36,7 +33,7 @@
         {
             try
             {
-                _infrastructure.Start();
+                Infrastructure.Start();
             }
             catch (Exception e)
             {
@@ -50,7 +47,7 @@
         }
         public void Stop() 
         {
-            _infrastructure.Stop();
+            Infrastructure.Stop();
 
             // End logging.
             //Logger.EndSession(); // Disabled because of performance loss.

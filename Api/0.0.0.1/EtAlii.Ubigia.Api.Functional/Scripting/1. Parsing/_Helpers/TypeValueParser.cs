@@ -8,8 +8,7 @@
         private readonly INodeFinder _nodeFinder;
         private readonly IConstantHelper _constantHelper;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         public string Id => _id;
         private const string _id = "TypeValue";
@@ -25,7 +24,7 @@
             _nodeFinder = nodeFinder;
             _constantHelper = constantHelper;
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 new LpsParser(_valueId, true,
                     Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c)) +
                     (Lp.Char('.') + Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()

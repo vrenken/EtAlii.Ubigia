@@ -3,8 +3,7 @@
 
     public class SystemSettingsProvider : ISystemSettingsProvider
     {
-        public SystemSettings SystemSettings => _systemSettings;
-        private SystemSettings _systemSettings;
+        public SystemSettings SystemSettings { get; private set; }
 
         private readonly IProviderContext _context;
         private readonly ISystemSettingsGetter _getter;
@@ -20,7 +19,7 @@
 
         public void Update()
         {
-            _systemSettings = _getter.Get(_context.SystemDataContext);
+            SystemSettings = _getter.Get(_context.SystemDataContext);
         }
     }
 }

@@ -11,8 +11,7 @@
         public IProfiler Previous => _previousProfiler;
         private Profiler _previousProfiler;
 
-        public IProfilingResultStack ResultStack => _profilingResultStack;
-        private readonly IProfilingResultStack _profilingResultStack;
+        public IProfilingResultStack ResultStack { get; }
 
         private readonly IParentProfileResultFinder _parentProfileResultFinder;
 
@@ -35,17 +34,16 @@
 
         public event Action AspectsChanged;
 
-        public ProfilingAspect Aspect => _aspect;
-        private readonly ProfilingAspect _aspect;
+        public ProfilingAspect Aspect { get; }
 
         public IProfiler Create(ProfilingAspect aspect)
         {
-            return new Profiler(this, aspect, _profilingResultStack);
+            return new Profiler(this, aspect, ResultStack);
         }
 
         private Profiler(IProfiler parent, ProfilingAspect aspect, IProfilingResultStack profilingResultStack)
         {
-            _aspect = aspect;
+            Aspect = aspect;
             _parentProfiler = (Profiler)parent;
             if (_parentProfiler != null)
             {
@@ -55,7 +53,7 @@
                 ProfilingStarted += result => _parentProfiler.InvokeProfilingStarted(result);
                 ProfilingEnded += result => _parentProfiler.InvokeProfilingEnded(result);
             }
-            _profilingResultStack = profilingResultStack;
+            ResultStack = profilingResultStack;
             _parentProfileResultFinder = new ParentProfileResultFinder();
         }
 
@@ -76,13 +74,13 @@
 
         public ProfilingResult Begin(string action)
         {
-            var shouldPropagate = _aspects.Contains(_aspect);
+            var shouldPropagate = _aspects.Contains(Aspect);
             var parentProfile = _parentProfileResultFinder.Find(this);
-            var profile = new ProfilingResult(parentProfile, _aspect.Id, _aspect.Layer, action, shouldPropagate);
+            var profile = new ProfilingResult(parentProfile, Aspect.Id, Aspect.Layer, action, shouldPropagate);
 
             if (shouldPropagate)
             {
-                _profilingResultStack.Push(profile);
+                ResultStack.Push(profile);
                 profile.Start();
                 if (parentProfile == null)
                 {
@@ -94,15 +92,15 @@
 
         public void End(ProfilingResult profile)
         {
-            var shouldPropagate = _aspects.Contains(_aspect);
+            var shouldPropagate = _aspects.Contains(Aspect);
             if (shouldPropagate)
             {
-                if (_profilingResultStack.Peek() != profile)
+                if (ResultStack.Peek() != profile)
                 {
                     throw new InvalidOperationException("Ending a profile action can only be done using the previous profiling result");
                 }
                 profile.Stop();
-                _profilingResultStack.Pop();
+                ResultStack.Pop();
                 if (profile.Parent == null)
                 {
                     InvokeProfilingEnded(profile);

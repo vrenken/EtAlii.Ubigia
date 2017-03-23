@@ -4,24 +4,20 @@
 
     public class ScriptParserError
     {
-        public Exception Exception => _exception;
-        private readonly Exception _exception;
+        public Exception Exception { get; }
 
-        public string Message => _message;
-        private readonly string _message;
+        public string Message { get; }
 
-        public int Line => _line;
-        private readonly int _line;
+        public int Line { get; }
 
-        public int Column => _column;
-        private readonly int _column;
+        public int Column { get; }
 
         internal ScriptParserError(Exception exception, string message, int line, int column)
         {
-            _exception = exception;
-            _message = message;
-            _line = line;
-            _column = column;
+            Exception = exception;
+            Message = message;
+            Line = line;
+            Column = column;
         }
     }
 }

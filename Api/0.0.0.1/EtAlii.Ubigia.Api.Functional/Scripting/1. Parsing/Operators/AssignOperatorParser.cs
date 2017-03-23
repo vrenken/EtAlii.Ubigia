@@ -6,11 +6,9 @@
 
     internal class AssignOperatorParser : IAssignOperatorParser
     {
-        public string Id => _id;
-        private readonly string _id = "AssignOperator";
-        
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public string Id { get; } = "AssignOperator";
+
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly ISelector<SequencePart, SequencePart, Action> _validationSelector; 
@@ -18,7 +16,7 @@
         public AssignOperatorParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            _parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("<=") + Lp.ZeroOrMore(' '));
+            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("<=") + Lp.ZeroOrMore(' '));
 
             _validationSelector = new Selector2<SequencePart, SequencePart, Action>()
                 .Register((b, a) => b is PathSubject && a is PathSubject, () => { throw new ScriptParserException("The assign operator cannot assign a path to another path."); });

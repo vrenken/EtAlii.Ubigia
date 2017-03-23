@@ -5,8 +5,7 @@
         private readonly ISystemSettingsProvider _systemSettingsProvider;
         private readonly IImporter[] _importers;
 
-        public IProviderConfiguration Configuration => _configuration;
-        private readonly IProviderConfiguration _configuration;
+        public IProviderConfiguration Configuration { get; }
 
         public MicrosoftGraphProvider(
             IProviderConfiguration configuration, 
@@ -17,7 +16,7 @@
             IOneDriveImporter oneDriveImporter,
             IOneNoteImporter oneNoteImporter)
         {
-            _configuration = configuration;
+            Configuration = configuration;
             _systemSettingsProvider = systemSettingsProvider;
             _importers = new IImporter[]
             {

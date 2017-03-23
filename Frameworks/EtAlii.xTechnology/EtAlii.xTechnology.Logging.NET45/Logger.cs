@@ -18,8 +18,7 @@ namespace EtAlii.xTechnology.Logging
 
         private const int _framesToSkip = 1;
 
-        public LogLevel Level { get { return _level; } set { _level = value; } }
-        private LogLevel _level = LogLevel.Info;
+        public LogLevel Level { get; set; } = LogLevel.Info;
 
         internal Logger(string name, string category)
         {
@@ -66,7 +65,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Warning(string message)
         {
-            if (_level >= LogLevel.Warning)
+            if (Level >= LogLevel.Warning)
             {
                 Log.Write(LogMessageSeverity.Warning, _name, _framesToSkip, null, LogWriteMode.Queued, null, _category, null, message);
             }
@@ -74,7 +73,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Warning(string message, params object[] args)
         {
-            if (_level >= LogLevel.Warning)
+            if (Level >= LogLevel.Warning)
             {
                 Log.Write(LogMessageSeverity.Warning, _name, _framesToSkip, null, LogWriteMode.Queued, null, _category, null, message, args);
             }
@@ -82,7 +81,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Warning(string message, Exception e)
         {
-            if (_level >= LogLevel.Warning)
+            if (Level >= LogLevel.Warning)
             {
                 Log.Write(LogMessageSeverity.Warning, _name, _framesToSkip, e, LogWriteMode.Queued, null, _category, null, message);
             }
@@ -90,7 +89,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Warning(string message, Exception e, params object[] args)
         {
-            if (_level >= LogLevel.Warning)
+            if (Level >= LogLevel.Warning)
             {
                 Log.Write(LogMessageSeverity.Warning, _name, _framesToSkip, e, LogWriteMode.Queued, null, _category, null, message, args);
             }
@@ -98,7 +97,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Verbose(string message)
         {
-            if (_level >= LogLevel.Verbose)
+            if (Level >= LogLevel.Verbose)
             {
                 Log.Write(LogMessageSeverity.Verbose, _name, _framesToSkip, null, LogWriteMode.Queued, null, _category, null, message);
             }
@@ -106,7 +105,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Verbose(string message, params object[] args)
         {
-            if (_level >= LogLevel.Verbose)
+            if (Level >= LogLevel.Verbose)
             {
                 Log.Write(LogMessageSeverity.Verbose, _name, _framesToSkip, null, LogWriteMode.Queued, null, _category, null, message, args);
             }
@@ -114,7 +113,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Info(string message)
         {
-            if (_level >= LogLevel.Info)
+            if (Level >= LogLevel.Info)
             {
                 Log.Write(LogMessageSeverity.Information, _name, _framesToSkip, null, LogWriteMode.Queued, null, _category, null, message);
             }
@@ -122,7 +121,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Info(string message, params object[] args)
         {
-            if (_level >= LogLevel.Info)
+            if (Level >= LogLevel.Info)
             {
                 Log.Write(LogMessageSeverity.Information, _name, _framesToSkip, null, LogWriteMode.Queued, null, _category, null, message, args);
             }
@@ -130,7 +129,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Critical(string message, Exception e)
         {
-            if (_level >= LogLevel.Critical)
+            if (Level >= LogLevel.Critical)
             {
                 Log.Write(LogMessageSeverity.Critical, _name, _framesToSkip, e, LogWriteMode.Queued, null, _category, null, message);
             }
@@ -138,7 +137,7 @@ namespace EtAlii.xTechnology.Logging
 
         public void Critical(string message, Exception e, params object[] args)
         {
-            if (_level >= LogLevel.Critical)
+            if (Level >= LogLevel.Critical)
             {
                 Log.Write(LogMessageSeverity.Critical, _name, _framesToSkip, e, LogWriteMode.Queued, null, _category, null, message, args);
             }

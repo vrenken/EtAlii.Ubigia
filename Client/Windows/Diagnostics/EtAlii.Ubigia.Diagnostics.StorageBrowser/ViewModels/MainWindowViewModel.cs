@@ -6,20 +6,15 @@
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
-        public IStoragesViewModel Storages => _storages;
-        private readonly IStoragesViewModel _storages;
+        public IStoragesViewModel Storages { get; }
 
-        public IAccountsViewModel Accounts => _accounts;
-        private readonly IAccountsViewModel _accounts;
+        public IAccountsViewModel Accounts { get; }
 
-        public ISpacesViewModel Spaces => _spaces;
-        private readonly ISpacesViewModel _spaces;
+        public ISpacesViewModel Spaces { get; }
 
-        public IRolesViewModel Roles => _roles;
-        private readonly IRolesViewModel _roles;
+        public IRolesViewModel Roles { get; }
 
-        protected IManagementConnection Connection => _connection;
-        private readonly IManagementConnection _connection;
+        protected IManagementConnection Connection { get; }
 
         private readonly ILogger _logger;
 
@@ -32,11 +27,11 @@
             ILogger logger)
         {
             _logger = logger;   
-            _connection = connection;
-            _storages = storagesViewModel;
-            _accounts = accountsViewModel;
-            _spaces = spacesViewModel;
-            _roles = rolesViewModel;
+            Connection = connection;
+            Storages = storagesViewModel;
+            Accounts = accountsViewModel;
+            Spaces = spacesViewModel;
+            Roles = rolesViewModel;
 
             Accounts.PropertyChanged += OnAccountsPropertyChanged; 
         }

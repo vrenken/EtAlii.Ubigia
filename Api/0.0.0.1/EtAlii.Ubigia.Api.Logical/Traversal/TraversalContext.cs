@@ -2,23 +2,20 @@
 {
     public class TraversalContext : ITraversalContext
     {
-        public ITraversalContextEntrySet Entries => _entries;
-        private readonly ITraversalContextEntrySet _entries;
+        public ITraversalContextEntrySet Entries { get; }
 
-        public ITraversalContextRootSet Roots => _roots;
-        private readonly ITraversalContextRootSet _roots;
+        public ITraversalContextRootSet Roots { get; }
 
-        public ITraversalContextPropertySet Properties => _properties;
-        private readonly ITraversalContextPropertySet _properties;
-         
+        public ITraversalContextPropertySet Properties { get; }
+
         public TraversalContext(
             ITraversalContextEntrySet entries, 
             ITraversalContextRootSet roots,
             ITraversalContextPropertySet properties)
         {
-            _entries = entries;
-            _roots = roots;
-            _properties = properties;
+            Entries = entries;
+            Roots = roots;
+            Properties = properties;
         }
     }
 }

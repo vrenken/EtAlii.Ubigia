@@ -4,20 +4,15 @@
 
     internal class DataContext : IDataContext
     {
-        public INodeSet Nodes => _nodes;
-        private readonly INodeSet _nodes;
+        public INodeSet Nodes { get; }
 
-        public IScriptsSet Scripts => _scripts;
-        private readonly IScriptsSet _scripts;
+        public IScriptsSet Scripts { get; }
 
-        public IChangeTracker ChangeTracker => _changeTracker;
-        private readonly IChangeTracker _changeTracker;
+        public IChangeTracker ChangeTracker { get; }
 
-        public IIndexSet Indexes => _indexes;
-        private readonly IIndexSet _indexes;
+        public IIndexSet Indexes { get; }
 
-        public IDataContextConfiguration Configuration => _configuration;
-        private readonly IDataContextConfiguration _configuration;
+        public IDataContextConfiguration Configuration { get; }
 
         internal DataContext(
             IDataContextConfiguration configuration,
@@ -26,16 +21,16 @@
             IScriptsSet scripts,
             IChangeTracker changeTracker)
         {
-            _configuration = configuration;
-            _nodes = nodes;
-            _scripts = scripts;
-            _indexes = indexes;
-            _changeTracker = changeTracker;
+            Configuration = configuration;
+            Nodes = nodes;
+            Scripts = scripts;
+            Indexes = indexes;
+            ChangeTracker = changeTracker;
         }
 
         public void Dispose()
         {
-            _changeTracker.Dispose();
+            ChangeTracker.Dispose();
         }
 
         public void SaveChanges()

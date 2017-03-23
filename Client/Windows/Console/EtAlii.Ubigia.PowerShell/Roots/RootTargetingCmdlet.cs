@@ -19,8 +19,7 @@
         [Parameter(Mandatory = false, Position = 70, ParameterSetName = "byRootId", HelpMessage = "The ID of the root on which the action should be applied.")]
         public Guid RootId { get; set; }
 
-        public Root TargetRoot { get { return _targetRoot; } private set { _targetRoot = value; } }
-        private Root _targetRoot;
+        public Root TargetRoot { get; private set; }
 
         protected override void BeginProcessing()
         {

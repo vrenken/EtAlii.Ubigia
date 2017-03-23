@@ -5,33 +5,29 @@
 
     internal class ProcessingContext : IProcessingContext
     {
-        public IScriptScope Scope => _scope;
-        private readonly IScriptScope _scope;
+        public IScriptScope Scope { get; }
 
-        public ILogicalContext Logical => _logical;
-        private readonly ILogicalContext _logical;
+        public ILogicalContext Logical { get; }
 
-        public IPathSubjectToGraphPathConverter PathSubjectToGraphPathConverter => _pathSubjectToGraphPathConverter;
-        private IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
+        public IPathSubjectToGraphPathConverter PathSubjectToGraphPathConverter { get; private set; }
 
-        public IPathProcessor PathProcessor => _pathProcessor;
-        private IPathProcessor _pathProcessor;
+        public IPathProcessor PathProcessor { get; private set; }
 
         public ProcessingContext(IScriptScope scope, ILogicalContext logical)
         {
-            _scope = scope;
-            _logical = logical;
+            Scope = scope;
+            Logical = logical;
         }
 
         public void Initialize(IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter, IPathProcessor pathProcessor)
         {
-            if (_pathSubjectToGraphPathConverter != null || _pathProcessor != null)
+            if (PathSubjectToGraphPathConverter != null || PathProcessor != null)
             {
                 throw new NotSupportedException("The ProcessingContext can only be initialized once");
             }
 
-            _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
-            _pathProcessor = pathProcessor;
+            PathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
+            PathProcessor = pathProcessor;
         }
     }
 }

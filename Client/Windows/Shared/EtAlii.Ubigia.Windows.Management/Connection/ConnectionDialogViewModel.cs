@@ -28,15 +28,12 @@
         public bool RememberPassword { get { return _rememberPassword; } set { SetProperty(ref _rememberPassword, value); } }
         private bool _rememberPassword;
 
-        public ICommand SaveAndCloseCommand => _saveAndCloseCommand;
-        private readonly ICommand _saveAndCloseCommand;
+        public ICommand SaveAndCloseCommand { get; }
 
-        public ICommand TestCommand => _testCommand;
-        private readonly ICommand _testCommand;
+        public ICommand TestCommand { get; }
 
-        public ICommand CancelCommand => _cancelCommand;
-        private readonly ICommand _cancelCommand;
- 
+        public ICommand CancelCommand { get; }
+
         public readonly string ConfigurationFileName = "Connection.config";
 
         private readonly ConnectionSettingsPersister _connectionSettingsPersister;
@@ -51,9 +48,9 @@
 
             SetDefaults(defaultServer, defaultLogin, defaultPassword, password);
 
-            _saveAndCloseCommand = new RelayCommand(SaveAndClose, CanSaveAndClose);
-            _testCommand = new RelayCommand(Test, CanTest);
-            _cancelCommand = new RelayCommand(Cancel, CanCancel);
+            SaveAndCloseCommand = new RelayCommand(SaveAndClose, CanSaveAndClose);
+            TestCommand = new RelayCommand(Test, CanTest);
+            CancelCommand = new RelayCommand(Cancel, CanCancel);
 
             PropertyChanged += OnPropertyChanged;
         }

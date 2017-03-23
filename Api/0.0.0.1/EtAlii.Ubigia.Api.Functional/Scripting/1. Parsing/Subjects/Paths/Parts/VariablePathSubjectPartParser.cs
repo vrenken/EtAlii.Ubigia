@@ -4,11 +4,9 @@
 
     internal class VariablePathSubjectPartParser : IVariablePathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "VariablePathSubjectPart";
+        public string Id { get; } = "VariablePathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -20,7 +18,7 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _parser = new LpsParser(Id, true, Lp.Char('$') + Lp.LetterOrDigit().OneOrMore().Id(_textId));
+            Parser = new LpsParser(Id, true, Lp.Char('$') + Lp.LetterOrDigit().OneOrMore().Id(_textId));
         }
 
         public PathSubjectPart Parse(LpNode node)

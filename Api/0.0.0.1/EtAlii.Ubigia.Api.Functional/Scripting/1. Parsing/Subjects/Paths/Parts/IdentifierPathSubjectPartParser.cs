@@ -6,11 +6,10 @@
 
     internal class IdentifierPathSubjectPartParser : IIdentifierPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "IdentifierPathSubjectPart";
+        public string Id { get; } = "IdentifierPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
+
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private const char _identifierSeparatorCharacter = '.';
@@ -24,7 +23,7 @@
             _nodeFinder = nodeFinder;
 
             var identifierParser = CreateIdentifierParser();
-            _parser = new LpsParser(Id, true, Lp.Char('&') + identifierParser.Id(_identifierId));
+            Parser = new LpsParser(Id, true, Lp.Char('&') + identifierParser.Id(_identifierId));
         }
 
         private LpsParser CreateIdentifierParser()

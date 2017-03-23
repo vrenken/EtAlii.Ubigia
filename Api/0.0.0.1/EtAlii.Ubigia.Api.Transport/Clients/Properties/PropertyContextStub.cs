@@ -4,16 +4,14 @@ namespace EtAlii.Ubigia.Api.Transport
 
     internal class PropertyContextStub : IPropertyContext
     {
-        public IPropertiesNotificationClient Notifications => _notifications;
-        private readonly IPropertiesNotificationClient _notifications;
+        public IPropertiesNotificationClient Notifications { get; }
 
-        public IPropertiesDataClient Data => _data;
-        private readonly IPropertiesDataClient _data;
+        public IPropertiesDataClient Data { get; }
 
         public PropertyContextStub()
         {
-            _notifications = new PropertiesNotificationClientStub();
-            _data = new PropertiesDataClientStub();
+            Notifications = new PropertiesNotificationClientStub();
+            Data = new PropertiesDataClientStub();
         }
 
         public async Task Open(ISpaceConnection spaceConnection)

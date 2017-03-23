@@ -7,8 +7,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
     {
         private readonly ILogicalContext _decoree;
 
-        public IProfiler Profiler => _profiler;
-        private readonly IProfiler _profiler;
+        public IProfiler Profiler { get; }
 
         public ILogicalContextConfiguration Configuration => _decoree.Configuration;
         public ILogicalNodeSet Nodes => _decoree.Nodes;
@@ -19,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         public ProfilingLogicalContext(ILogicalContext decoree, IProfiler profiler)
         {
             _decoree = decoree;
-            _profiler = profiler;
+            Profiler = profiler;
         }
 
         public void Dispose()

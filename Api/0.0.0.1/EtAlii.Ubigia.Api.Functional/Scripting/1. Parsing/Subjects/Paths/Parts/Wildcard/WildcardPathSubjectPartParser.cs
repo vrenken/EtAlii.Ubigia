@@ -5,11 +5,9 @@
 
     internal class WildcardPathSubjectPartParser : IWildcardPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "WildcardPathSubjectPart";
+        public string Id { get; } = "WildcardPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConstantHelper _constantHelper;
@@ -38,7 +36,7 @@
                 (Lp.One(c => c == '\'') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 beforeTextParser + 
                 Lp.One(c => c == '*') +
                 afterTextParser 

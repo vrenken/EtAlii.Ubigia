@@ -8,8 +8,8 @@
 
     public class ProfilingResult : DynamicObject, INotifyPropertyChanged
     {
-        public ProfilingResult Parent => _parent;
-        private readonly ProfilingResult _parent;
+        public ProfilingResult Parent { get; }
+
         private readonly bool _showInResults;
 
         public string Action => Get<string>(ProfilingProperty.Action);
@@ -24,8 +24,7 @@
 
         private readonly PropertyDictionary _properties = new PropertyDictionary();
 
-        public ReadOnlyObservableCollection<ProfilingResult> Children => _children;
-        private readonly ReadOnlyObservableCollection<ProfilingResult> _children;
+        public ReadOnlyObservableCollection<ProfilingResult> Children { get; }
 
         private readonly ObservableCollection<ProfilingResult> _items; 
 
@@ -54,18 +53,18 @@
                 {
                     break;
                 }
-                parent = parent._parent;
+                parent = parent.Parent;
             }
 
-            _parent = parent;
+            Parent = parent;
 
             if(showInResults)
             { 
-                _parent?._items.Add(this);
+                Parent?._items.Add(this);
             }
 
             _items = new ObservableCollection<ProfilingResult>();
-            _children = new ReadOnlyObservableCollection<ProfilingResult>(_items);
+            Children = new ReadOnlyObservableCollection<ProfilingResult>(_items);
 
 
             Set(ProfilingProperty.ProfilerName, profilerName);
@@ -107,11 +106,11 @@
             double percentageOfSelf = 1 - percentageOfChildren;
             Set(ProfilingProperty.DurationOfChildren, percentageOfChildren);
             Set(ProfilingProperty.DurationOfSelf, percentageOfSelf);
-            if (_parent != null)
+            if (Parent != null)
             {
-                var durationOfParentChildren = _parent.Get<double>(ProfilingProperty.DurationOfChildren);
+                var durationOfParentChildren = Parent.Get<double>(ProfilingProperty.DurationOfChildren);
                 durationOfParentChildren += durationTotal;
-                _parent.Set(ProfilingProperty.DurationOfChildren, durationOfParentChildren);
+                Parent.Set(ProfilingProperty.DurationOfChildren, durationOfParentChildren);
             }
         }
 

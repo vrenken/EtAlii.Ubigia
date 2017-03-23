@@ -9,20 +9,18 @@
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
-        public IRootsViewModel RootsViewModel => _rootsViewModel;
-        private readonly IDocumentsProvider _documentsProvider;
-        private readonly IRootsViewModel _rootsViewModel;
+        public IRootsViewModel RootsViewModel { get; }
 
-        public IJournalViewModel JournalViewModel => _journalViewModel;
-        private readonly IJournalViewModel _journalViewModel;
+        private readonly IDocumentsProvider _documentsProvider;
+
+        public IJournalViewModel JournalViewModel { get; }
 
         public ObservableCollection<IDocumentViewModel> Documents => _documentsProvider.Documents;
 
         public ICommand CloseCommand { get { return _closeCommand; } set { SetProperty(ref _closeCommand, value); } }
         private ICommand _closeCommand;
 
-        public INewDocumentCommand[] NewBlankDocumentCommands => _newBlankDocumentCommands;
-        private readonly INewDocumentCommand[] _newBlankDocumentCommands;
+        public INewDocumentCommand[] NewBlankDocumentCommands { get; }
 
         public INewDocumentCommand[] NewDocumentFromTemplateCommands { get { return _newDocumentFromTemplateCommands; } set { SetProperty(ref _newDocumentFromTemplateCommands, value); } }
         private INewDocumentCommand[] _newDocumentFromTemplateCommands;
@@ -47,10 +45,10 @@
             INewProfilingDocumentCommand newProfilingDocumentCommand)
         {
             _documentsProvider = documentsProvider;
-            _rootsViewModel = rootsViewModel;
-            _journalViewModel = journalViewModel;
+            RootsViewModel = rootsViewModel;
+            JournalViewModel = journalViewModel;
 
-            _newBlankDocumentCommands = new INewDocumentCommand[]
+            NewBlankDocumentCommands = new INewDocumentCommand[]
             {
                 newFunctionalGraphDocumentCommand,
                 newLogicalGraphDocumentCommand,
@@ -62,7 +60,7 @@
                 newProfilingDocumentCommand
             };
 
-            foreach (var command in _newBlankDocumentCommands)
+            foreach (var command in NewBlankDocumentCommands)
             {
                 command.Initialize(this);
             }

@@ -5,11 +5,9 @@
 
     internal class ConditionalPathSubjectPartParser : IConditionalPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "ConditionalPathSubjectPart";
+        public string Id { get; } = "ConditionalPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConditionParser _conditionParser;
@@ -28,7 +26,7 @@
             _newLineParser = newLineParser;
 
             var separator = Lp.Char('&');//.Debug("Separator", true);
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 Lp.One(c => c == '.') + //.Debug("Point") + 
                 _newLineParser.OptionalMultiple + //.Debug("NL1") +  
                 Lp.List(_conditionParser.Parser, separator, _newLineParser.OptionalMultiple));

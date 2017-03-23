@@ -4,11 +4,9 @@
 
     internal class VariableFunctionSubjectArgumentParser : IVariableFunctionSubjectArgumentParser
     {
-        public string Id => _id;
-        private readonly string _id = "VariableFunctionSubjectArgument";
+        public string Id { get; } = "VariableFunctionSubjectArgument";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -20,7 +18,7 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _parser = new LpsParser(Id, true, Lp.Char('$') + Lp.LetterOrDigit().OneOrMore().Id(_textId));
+            Parser = new LpsParser(Id, true, Lp.Char('$') + Lp.LetterOrDigit().OneOrMore().Id(_textId));
         }
 
         public FunctionSubjectArgument Parse(LpNode node)

@@ -4,11 +4,9 @@
 
     internal class TraversingWildcardPathSubjectPartParser : ITraversingWildcardPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "TraversingWildcardPathSubjectPart";
+        public string Id { get; } = "TraversingWildcardPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -24,7 +22,7 @@
             _nodeFinder = nodeFinder;
             _integerValueParser = integerValueParser;
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 Lp.One(c => c == '*') +
 
                 new LpsParser(_limitTextId, true, _integerValueParser.Parser).Maybe() +

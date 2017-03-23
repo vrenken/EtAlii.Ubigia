@@ -14,13 +14,8 @@
         private const string PutErrorMessage = "Unable to PUT data on the client";
         private const string DeleteErrorMessage = "Unable to DELETE data on the client";
 
-        public string AuthenticationToken
-        {
-            get { return _authenticationToken; }
-            set { _authenticationToken = value; }
-        }
+        public string AuthenticationToken { get; set; }
 
-        private string _authenticationToken;
         private readonly string _hostIdentifier;
         private readonly PayloadMediaTypeFormatter _formatter;
 
@@ -37,7 +32,7 @@
 
         public async Task<TResult> Get<TResult>(string address, ICredentials credentials = null)
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, _authenticationToken))
+            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {
                 try
                 {
@@ -63,7 +58,7 @@
             where TValue : class
             where TResult : class
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, _authenticationToken))
+            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {
                 try
                 {
@@ -80,7 +75,7 @@
 
         public async Task Delete(string address, ICredentials credentials = null)
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, _authenticationToken))
+            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {
                 try
                 {
@@ -96,7 +91,7 @@
 
         public async Task<TValue> Put<TValue>(string address, TValue value, ICredentials credentials = null)
         {
-            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, _authenticationToken))
+            using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {
                 try
                 {

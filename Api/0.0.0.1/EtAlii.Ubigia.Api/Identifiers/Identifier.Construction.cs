@@ -11,9 +11,9 @@
                 _storage = storage,
                 _account = account,
                 _space = space,
-                _era = UInt64.MinValue,
-                _period = UInt64.MinValue,
-                _moment = UInt64.MinValue,
+                Era = UInt64.MinValue,
+                Period = UInt64.MinValue,
+                Moment = UInt64.MinValue,
             };
         }
 
@@ -54,9 +54,9 @@
                 _storage = id._storage,
                 _account = id._account,
                 _space = id._space,
-                _era = era,
-                _period = period,
-                _moment = moment,
+                Era = era,
+                Period = period,
+                Moment = moment,
             };
         }
 
@@ -67,9 +67,9 @@
                 _storage = storage,
                 _account = account,
                 _space = space,
-                _era = era,
-                _period = period,
-                _moment = moment,
+                Era = era,
+                Period = period,
+                Moment = moment,
             };
         }
     }

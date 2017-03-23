@@ -2,20 +2,17 @@
 {
     internal class InvalidTestRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name => _name;
+        public string Name { get; }
 
-        public IRootHandler[] AllowedRootHandlers => _allowedRootHandlers;
-        private readonly IRootHandler[] _allowedRootHandlers;
-
-        private readonly string _name;
+        public IRootHandler[] AllowedRootHandlers { get; }
 
         public InvalidTestRootHandlerMapper()
         {
-            _name = "TestRoot";
+            Name = "TestRoot";
 
             var timePreparer = new TimePreparer();
 
-            _allowedRootHandlers = new IRootHandler[]
+            AllowedRootHandlers = new IRootHandler[]
             {
                 new TimeRootByPathBasedYyyymmddhhmmssHandler(timePreparer),
                 new TimeRootByPathBasedYyyymmddhhmmssHandler(timePreparer),

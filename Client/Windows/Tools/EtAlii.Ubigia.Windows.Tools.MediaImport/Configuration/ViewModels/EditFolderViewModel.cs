@@ -17,17 +17,13 @@
         private IDataConnection _connection;
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
-        public ICommand SaveChangesCommand => _saveChangesCommand;
-        private readonly ICommand _saveChangesCommand;
-        
-        public ICommand CancelChangesCommand => _cancelChangesCommand;
-        private readonly ICommand _cancelChangesCommand;
-        
-        public ICommand RemoveFolderCommand => _removeFolderCommand;
-        private readonly ICommand _removeFolderCommand;
+        public ICommand SaveChangesCommand { get; }
 
-        public ICommand SelectFolderCommand => _selectFolderCommand;
-        private readonly ICommand _selectFolderCommand;
+        public ICommand CancelChangesCommand { get; }
+
+        public ICommand RemoveFolderCommand { get; }
+
+        public ICommand SelectFolderCommand { get; }
 
         public IFolderMonitor OriginalFolderMonitor { get { return _originalFolderMonitor; } set { SetProperty(ref _originalFolderMonitor, value); } }
         private IFolderMonitor _originalFolderMonitor;
@@ -43,11 +39,11 @@
             _connection = connection;
             _folderSyncConfigurations = folderSyncConfigurations;
 
-            _saveChangesCommand = new RelayCommand(OnSaveChanges, CanSaveChanges);
-            _cancelChangesCommand = new RelayCommand(OnCancelChanges, CanCancelChanges);
-            _removeFolderCommand = new RelayCommand(OnRemoveFolder, CanRemoveFolder);
+            SaveChangesCommand = new RelayCommand(OnSaveChanges, CanSaveChanges);
+            CancelChangesCommand = new RelayCommand(OnCancelChanges, CanCancelChanges);
+            RemoveFolderCommand = new RelayCommand(OnRemoveFolder, CanRemoveFolder);
 
-            _selectFolderCommand = new RelayCommand(OnSelectFolder, CanSelectFolder);
+            SelectFolderCommand = new RelayCommand(OnSelectFolder, CanSelectFolder);
             PropertyChanged += OnPropertyChanged;
         }
 

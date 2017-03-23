@@ -5,11 +5,9 @@
 
     internal class FunctionSubjectParser : IFunctionSubjectParser
     {
-        public string Id => _id;
-        private readonly string _id = "FunctionSubject";
+        public string Id { get; } = "FunctionSubject";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly IFunctionSubjectArgumentsParser _functionSubjectArgumentsParser;
@@ -31,7 +29,7 @@
             var firstParser = Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
             var nextParser = Lp.Char(',') + Lp.ZeroOrMore(' ') + _functionSubjectArgumentsParser.Parser + Lp.ZeroOrMore(' ');
 
-            _parser = new LpsParser(Id, true,
+            Parser = new LpsParser(Id, true,
                 Lp.LetterOrDigit().OneOrMore().Id(_nameId) + 
                 Lp.ZeroOrMore(' ') + 
                 (

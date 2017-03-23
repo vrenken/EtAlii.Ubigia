@@ -5,16 +5,14 @@
 
     public class FormatFunctionHandler : IFunctionHandler
     {
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
         public FormatFunctionHandler()
         {
-            _parameterSets = new ParameterSet[] {};
-            _name = "Format";
+            ParameterSets = new ParameterSet[] {};
+            Name = "Format";
         }
 
         public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)

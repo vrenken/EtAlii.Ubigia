@@ -4,17 +4,13 @@
 
     public class ManagementFabricContext : IManagementFabricContext
     {
-        public Storage Storage => _storage;
-        private readonly Storage _storage;
+        public Storage Storage { get; }
 
-        public IStorageContext Storages => _storages;
-        private readonly IStorageContext _storages;
+        public IStorageContext Storages { get; }
 
-        public IAccountContext Accounts => _accounts;
-        private readonly IAccountContext _accounts;
+        public IAccountContext Accounts { get; }
 
-        public ISpaceContext Spaces => _spaces;
-        private readonly ISpaceContext _spaces;
+        public ISpaceContext Spaces { get; }
 
         public ManagementFabricContext(
             Storage storage, 
@@ -22,10 +18,10 @@
             IAccountContext accounts, 
             ISpaceContext spaces)
         {
-            _storage = storage;
-            _storages = storages;
-            _accounts = accounts;
-            _spaces = spaces;
+            Storage = storage;
+            Storages = storages;
+            Accounts = accounts;
+            Spaces = spaces;
         }
     }
 }

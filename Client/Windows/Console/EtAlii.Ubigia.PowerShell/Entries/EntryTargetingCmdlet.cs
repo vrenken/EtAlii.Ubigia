@@ -15,8 +15,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byEntryId", HelpMessage = "The ID of the entry on which the action should be applied.")]
         public Identifier EntryId { get; set; }
 
-        public Entry TargetEntry { get { return _targetEntry; } private set { _targetEntry = value; } }
-        private Entry _targetEntry;
+        public Entry TargetEntry { get; private set; }
 
         protected override void BeginProcessing()
         {

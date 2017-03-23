@@ -10,9 +10,9 @@
     public class ScriptViewModel : TextualViewModelBase, IScriptViewModel
     {
 
-        public IScriptButtonsViewModel Buttons => _buttons;
+        public IScriptButtonsViewModel Buttons { get; }
+
         private readonly IGraphContext _graphContext;
-        private readonly IScriptButtonsViewModel _buttons;
 
         public string Code { get { return _code; } set { SetProperty(ref _code, value); } }
         private string _code;
@@ -29,8 +29,7 @@
         public ObservableCollection<Result> ScriptResults { get { return _scriptResults; } set { SetProperty(ref _scriptResults, value); } }
         private ObservableCollection<Result> _scriptResults;
 
-        public ObservableCollection<string> ExecutionStatus => _executionStatus;
-        private readonly ObservableCollection<string> _executionStatus = new ObservableCollection<string>();
+        public ObservableCollection<string> ExecutionStatus { get; } = new ObservableCollection<string>();
 
         public event Action CodeChanged = delegate { };
         private IDisposable _scriptChangedSubscription;
@@ -48,7 +47,7 @@
             IProcessScriptUnitOfworkHandler processScriptUnitOfworkHandler)
         {
             _graphContext = graphContext;
-            _buttons = buttons;
+            Buttons = buttons;
             _textTemplateQueryHandler = textTemplateQueryHandler;
             _parseScriptUnitOfworkHandler = parseScriptUnitOfworkHandler;
             _processScriptUnitOfworkHandler = processScriptUnitOfworkHandler;

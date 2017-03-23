@@ -8,14 +8,13 @@
 
     public class JournalViewModel : BindableBase, IJournalViewModel
     {
-        public ObservableCollection<JournalItem> Items => _items;
-        private readonly ObservableCollection<JournalItem> _items;
+        public ObservableCollection<JournalItem> Items { get; }
 
         public int Size { get { return _size; } set { SetProperty(ref _size, value); } }
         private int _size = 300;
 
-        protected IFabricContext Fabric => _fabric;
-        private readonly IFabricContext _fabric;
+        protected IFabricContext Fabric { get; }
+
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 
         private int _currentId = 0;
@@ -24,11 +23,11 @@
             IFabricContext fabric,
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
-            _items = new ObservableCollection<JournalItem>();
-            _fabric = fabric;
+            Items = new ObservableCollection<JournalItem>();
+            Fabric = fabric;
             _mainDispatcherInvoker = mainDispatcherInvoker;
-            _fabric.Entries.Prepared += OnEntryPrepared;
-            _fabric.Entries.Stored += OnEntryStored;
+            Fabric.Entries.Prepared += OnEntryPrepared;
+            Fabric.Entries.Stored += OnEntryStored;
         }
 
         private void OnEntryPrepared(Identifier identifier)

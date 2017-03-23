@@ -7,26 +7,21 @@
     public abstract class StorageConnection<TTransport> : IStorageConnection<TTransport>
         where TTransport : IStorageTransport
     {
-        public Storage Storage { get { return _storage; } private set { _storage = value; } }
-        private Storage _storage;
+        public Storage Storage { get; private set; }
 
-        public TTransport Transport => _transport;
-        private readonly TTransport _transport;
+        public TTransport Transport { get; }
 
-        public IStorageContext Storages => _storages;
-        private readonly IStorageContext _storages;
+        public IStorageContext Storages { get; }
 
-        public IAccountContext Accounts => _accounts;
-        private readonly IAccountContext _accounts;
+        public IAccountContext Accounts { get; }
+
         private readonly IAuthenticationContext _authentication;
 
-        public ISpaceContext Spaces => _spaces;
-        private readonly ISpaceContext _spaces;
+        public ISpaceContext Spaces { get; }
 
-        public bool IsConnected => _storage != null;
+        public bool IsConnected => Storage != null;
 
-        public IStorageConnectionConfiguration Configuration => _configuration;
-        private readonly IStorageConnectionConfiguration _configuration;
+        public IStorageConnectionConfiguration Configuration { get; }
 
         protected StorageConnection(
             IStorageTransport transport,
@@ -36,11 +31,11 @@
             IAccountContext accounts,
             IAuthenticationContext authentication)
         {
-            _transport = (TTransport)transport;
-            _configuration = configuration;
-            _storages = storages;
-            _spaces = spaces;
-            _accounts = accounts;
+            Transport = (TTransport)transport;
+            Configuration = configuration;
+            Storages = storages;
+            Spaces = spaces;
+            Accounts = accounts;
             _authentication = authentication;
         }
 
@@ -51,11 +46,11 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyClosed);
             }
 
-            await _accounts.Close(this);
-            await _storages.Close(this);
-            await _spaces.Close(this);
+            await Accounts.Close(this);
+            await Storages.Close(this);
+            await Spaces.Close(this);
 
-            await _transport.Stop(this);
+            await Transport.Stop(this);
             Storage = null;
         }
 
@@ -68,15 +63,15 @@
 
             await  _authentication.Data.Authenticate(this);
 
-            _storage = await _authentication.Data.GetConnectedStorage(this);
+            Storage = await _authentication.Data.GetConnectedStorage(this);
 
-            _transport.Initialize(this, _configuration.Address);
+            Transport.Initialize(this, Configuration.Address);
 
-            await _accounts.Open(this);
-            await _storages.Open(this);
-            await _spaces.Open(this);
+            await Accounts.Open(this);
+            await Storages.Open(this);
+            await Spaces.Open(this);
 
-            await _transport.Start(this, _configuration.Address);
+            await Transport.Start(this, Configuration.Address);
 
         }
 
@@ -105,7 +100,7 @@
                             await Close();
                         });
                         task.Wait();
-                        _storage = null;
+                        Storage = null;
                     }
                 }
                 // Free your own state (unmanaged objects).

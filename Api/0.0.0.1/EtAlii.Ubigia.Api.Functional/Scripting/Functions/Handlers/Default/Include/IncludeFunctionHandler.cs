@@ -8,20 +8,18 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class IncludeFunctionHandler : FunctionHandlerBase, IFunctionHandler
     {
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
         public IncludeFunctionHandler()
         {
-            _parameterSets = new[]
+            ParameterSets = new[]
             {
                 new ParameterSet(true, new Parameter("var", typeof(PathSubject))),
                 new ParameterSet(true, new Parameter("var", typeof(IObservable<object>))),
             };
-            _name = "Include";
+            Name = "Include";
         }
 
         public void Process(

@@ -16,8 +16,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
         private string _group;
         public bool IsActive { get; set; }
 
-        public ICommand InvokeActionCommand => _invokeActionCommand;
-        private readonly ICommand _invokeActionCommand;
+        public ICommand InvokeActionCommand { get; }
 
         public ProfilingAspectActionViewModel(
             string title, 
@@ -30,7 +29,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
             _title = title;
             _group = group;
 
-            _invokeActionCommand = new RelayCommand(InvokeAction, CanInvokeAction);
+            InvokeActionCommand = new RelayCommand(InvokeAction, CanInvokeAction);
         }
 
         private void InvokeAction(object obj)

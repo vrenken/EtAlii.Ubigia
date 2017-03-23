@@ -5,17 +5,16 @@
 
     internal abstract class SystemStorageClientBase
     {
-        protected IStorageConnection Connection => _connection;
-        private IStorageConnection _connection;
+        protected IStorageConnection Connection { get; private set; }
 
         public virtual async Task Connect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => _connection = storageConnection);
+            await Task.Run(() => Connection = storageConnection);
         }
 
         public virtual async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => _connection = null);
+            await Task.Run(() => Connection = null);
         }
     }
 }

@@ -10,9 +10,8 @@ namespace EtAlii.Ubigia.Client.Windows
         public string Name { get { return GetValue(ref _name, String.Format("Unnamed {0}", Settings.StorageNaming)); } set { SetProperty(ref _name, value); } }
         private string _name;
 
-        public Guid Id { get { return _id; } private set { _id = value; } }
-        private Guid _id;
-        
+        public Guid Id { get; private set; }
+
         public string Account { get { return GetValue(ref _account, null); } set { SetProperty(ref _account, value); } }
         private string _account;
 

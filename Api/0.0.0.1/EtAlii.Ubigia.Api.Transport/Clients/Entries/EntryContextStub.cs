@@ -4,16 +4,14 @@
 
     public class EntryContextStub : IEntryContext
     {
-        public IEntryNotificationClient Notifications => _notifications;
-        private readonly IEntryNotificationClient _notifications;
+        public IEntryNotificationClient Notifications { get; }
 
-        public IEntryDataClient Data => _data;
-        private readonly IEntryDataClient _data;
+        public IEntryDataClient Data { get; }
 
         public EntryContextStub()
         {
-            _notifications = new EntryNotificationClientStub();
-            _data = new EntryDataClientStub();
+            Notifications = new EntryNotificationClientStub();
+            Data = new EntryDataClientStub();
         }
 
         public async Task Open(ISpaceConnection spaceConnection)

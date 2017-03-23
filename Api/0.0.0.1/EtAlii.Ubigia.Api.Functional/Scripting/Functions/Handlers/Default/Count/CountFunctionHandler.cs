@@ -12,11 +12,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class CountFunctionHandler : IFunctionHandler
     {
-        public ParameterSet[] ParameterSets => _parameterSets;
-        private readonly ParameterSet[] _parameterSets;
+        public ParameterSet[] ParameterSets { get; }
 
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
         private readonly ISelector<object, Func<IFunctionContext, ExecutionScope, object, int>> _converterSelector;
 
@@ -28,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _identifierTypeInfo = typeof(Identifier).GetTypeInfo();
             _internalNodeTypeInfo = typeof(IInternalNode).GetTypeInfo();
 
-            _parameterSets = new[]
+            ParameterSets = new[]
             {
                 new ParameterSet(true),
                 new ParameterSet(false, new Parameter("var", typeof(PathSubject))),
@@ -36,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 new ParameterSet(false, new Parameter("var", typeof(IInternalNode))),
                 new ParameterSet(false, new Parameter("var", typeof(IObservable<object>))),
             };
-            _name = "Count";
+            Name = "Count";
 
             _converterSelector = new Selector<object, Func<IFunctionContext, ExecutionScope, object, int>>()
                 .Register(o => o is PathSubject, (context, scope, o) => CountPath(context, (PathSubject)o, scope))

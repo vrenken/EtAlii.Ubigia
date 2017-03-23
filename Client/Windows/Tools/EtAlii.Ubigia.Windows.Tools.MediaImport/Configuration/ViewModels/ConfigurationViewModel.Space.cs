@@ -11,11 +11,9 @@
 
     internal partial class ConfigurationViewModel : BindableBase
     {
-        public ICommand SelectSpaceCommand => _selectSpaceCommand;
-        private readonly ICommand _selectSpaceCommand;
+        public ICommand SelectSpaceCommand { get; }
 
-        public IDataConnection Connection => _connection;
-        private readonly IDataConnection _connection;
+        public IDataConnection Connection { get; }
 
         private bool CanSelectSpace(object obj)
         {
@@ -31,10 +29,10 @@
             var newConnection = new DataConnectionFactory().Create(connectionConfiguration);
             if (newConnection != null)
             {
-                if (_connection.Storage.Address != newConnection.Storage.Address ||
-                    _connection.Account.Name != newConnection.Account.Name ||
-                    _connection.Account.Password != newConnection.Account.Password ||
-                    _connection.Space.Name != newConnection.Space.Name)
+                if (Connection.Storage.Address != newConnection.Storage.Address ||
+                    Connection.Account.Name != newConnection.Account.Name ||
+                    Connection.Account.Password != newConnection.Account.Password ||
+                    Connection.Space.Name != newConnection.Space.Name)
                 {
                     var dr = MessageBox.Show(window,
                         "The changes will not take effect until the next time the program is started.\r\n\r\nDo you want to restart the program now?",

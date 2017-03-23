@@ -29,8 +29,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byRootId", HelpMessage = "The ID of the root that relates to the entry instance.")]
         public Guid RootId { get; set; }
 
-        public Root TargetRoot => _targetRoot;
-        private readonly Root _targetRoot = null;
+        public Root TargetRoot { get; } = null;
 
         #endregion Root related properties
 
@@ -42,8 +41,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byPreviousId", HelpMessage = "The ID of the previous entry that relates to the entry instance.")]
         public Identifier PreviousId { get; set; }
 
-        public Entry TargetPrevious => _targetPrevious;
-        private readonly Entry _targetPrevious = null;
+        public Entry TargetPrevious { get; } = null;
 
         #endregion Previous related properties
 
@@ -55,8 +53,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byParentId", HelpMessage = "The ID of the parent entry that relates to the entry instance.")]
         public Identifier ParentId { get; set; }
 
-        public Entry TargetParent => _targetParent;
-        private readonly Entry _targetParent = null;
+        public Entry TargetParent { get; } = null;
 
         #endregion Parent related properties
 
@@ -68,8 +65,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byUpdateId", HelpMessage = "The ID of the obsolete entry that relates to the entry instance.")]
         public Identifier UpdateId { get; set; }
 
-        public Entry TargetUpdate => _targetUpdate;
-        private readonly Entry _targetUpdate = null;
+        public Entry TargetUpdate { get; } = null;
 
         #endregion Update related properties
 

@@ -7,8 +7,7 @@
 
     public class PropertyDictionary : Dictionary<string, object>, IPropertyDictionary
     {
-        public bool Stored { get { return _stored; } internal set { _stored = value; } }
-        private bool _stored;
+        public bool Stored { get; internal set; }
 
         private static readonly char[] TrimChars = new[] {' ', '-'};
 

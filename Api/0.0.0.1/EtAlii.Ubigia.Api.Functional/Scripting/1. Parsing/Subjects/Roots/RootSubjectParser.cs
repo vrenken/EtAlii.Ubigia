@@ -6,11 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RootSubjectParser : IRootSubjectParser
     {
-        public string Id => _id;
-        private readonly string _id = "RootSubject";
+        public string Id { get; } = "RootSubject";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -26,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _nodeFinder = nodeFinder;
             _constantHelper = constantHelper;
 
-            _parser = new LpsParser(Id, true, Lp.Term("root:", true) +
+            Parser = new LpsParser(Id, true, Lp.Term("root:", true) +
                 (
                     (Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_textId)) |
                     (Lp.One(c => c == '\"') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\"')) |

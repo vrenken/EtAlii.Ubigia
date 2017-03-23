@@ -13,9 +13,7 @@
             Metrics
         });
 
-        public static SpaceTemplate Data => _data;
-
-        private static readonly SpaceTemplate _data = new SpaceTemplate
+        public static SpaceTemplate Data { get; } = new SpaceTemplate
         (
             name: SpaceName.Data,
             requiredRoles: new [] { Role.User },
@@ -35,9 +33,7 @@
             setupScript: new[] { "" }
         );
 
-        public static SpaceTemplate System => _system;
-
-        private static readonly SpaceTemplate _system = new SpaceTemplate
+        public static SpaceTemplate System { get; } = new SpaceTemplate
         (
             name: SpaceName.System,
             requiredRoles: new [] { Role.System, },
@@ -54,9 +50,7 @@
             setupScript: new [] { "" }
         );
 
-        public static SpaceTemplate Configuration => _configuration;
-
-        private static readonly SpaceTemplate _configuration = new SpaceTemplate
+        public static SpaceTemplate Configuration { get; } = new SpaceTemplate
         (
             name: SpaceName.Configuration,
             requiredRoles: new [] { Role.User },
@@ -70,9 +64,7 @@
             setupScript: new [] { "" }
         );
 
-        public static SpaceTemplate Metrics => _metrics;
-
-        private static readonly SpaceTemplate _metrics = new SpaceTemplate
+        public static SpaceTemplate Metrics { get; } = new SpaceTemplate
         (
             name: SpaceName.Metrics,
             requiredRoles: new [] {Role.User },
@@ -89,16 +81,13 @@
         );
 
 
-        public string Name => _name;
-        private readonly string _name;
-        public string[] RequiredRoles => _requiredRoles;
-        private readonly string[] _requiredRoles;
+        public string Name { get; }
 
-        public string[] RootsToCreate => _rootsToCreate;
-        private readonly string[] _rootsToCreate;
+        public string[] RequiredRoles { get; }
 
-        public string[] SetupScript => _setupScript;
-        private readonly string[] _setupScript;
+        public string[] RootsToCreate { get; }
+
+        public string[] SetupScript { get; }
 
         private SpaceTemplate(
             string name,
@@ -106,10 +95,10 @@
             string[] rootsToCreate, 
             string[] setupScript)
         {
-            _name = name;
-            _requiredRoles = requiredRoles;
-            _rootsToCreate = rootsToCreate;
-            _setupScript = setupScript;
+            Name = name;
+            RequiredRoles = requiredRoles;
+            RootsToCreate = rootsToCreate;
+            SetupScript = setupScript;
         }
     }
 }

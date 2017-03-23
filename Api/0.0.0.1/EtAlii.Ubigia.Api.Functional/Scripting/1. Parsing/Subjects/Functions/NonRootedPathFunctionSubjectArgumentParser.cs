@@ -5,12 +5,10 @@
 
     internal class NonRootedPathFunctionSubjectArgumentParser : INonRootedPathFunctionSubjectArgumentParser
     {
-        public string Id => _id;
-        private readonly string _id = "NonRootedPathFunctionSubjectArgument";
+        public string Id { get; } = "NonRootedPathFunctionSubjectArgument";
 
-        public LpsParser Parser => _parser;
+        public LpsParser Parser { get; }
 
-        private readonly LpsParser _parser;
         private readonly INodeValidator _nodeValidator;
         private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
 
@@ -20,7 +18,7 @@
         {
             _nodeValidator = nodeValidator;
             _pathSubjectPartsParser = pathSubjectPartsParser;
-            _parser = new LpsParser(Id, true, _pathSubjectPartsParser.Parser.OneOrMore());
+            Parser = new LpsParser(Id, true, _pathSubjectPartsParser.Parser.OneOrMore());
         }
 
         public FunctionSubjectArgument Parse(LpNode node)

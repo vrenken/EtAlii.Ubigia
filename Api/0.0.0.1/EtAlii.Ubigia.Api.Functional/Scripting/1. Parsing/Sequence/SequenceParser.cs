@@ -5,13 +5,12 @@
 
     internal class SequenceParser : ISequenceParser
     {
-        public string Id => _id;
-        private readonly string _id = "Sequence";
+        public string Id { get; } = "Sequence";
+
         private readonly ISequencePartsParser _sequencePartsParser;
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
-        
+        public LpsParser Parser { get; }
+
         private readonly INodeValidator _nodeValidator;
 
         public SequenceParser(
@@ -21,12 +20,12 @@
             _nodeValidator = nodeValidator;
             _sequencePartsParser = sequencePartsParser;
 
-            _parser = new LpsParser(Id, true, _sequencePartsParser.Parser.OneOrMore()); 
+            Parser = new LpsParser(Id, true, _sequencePartsParser.Parser.OneOrMore()); 
         }
 
         public Sequence Parse(string text)
         {
-            var node = _parser.Do(text);
+            var node = Parser.Do(text);
             _nodeValidator.EnsureSuccess(node, Id, false);
             var childNodes = node.Children ?? new LpNode[] { };
             var parts = childNodes

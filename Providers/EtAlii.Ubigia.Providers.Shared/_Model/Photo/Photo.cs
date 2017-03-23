@@ -4,12 +4,11 @@
 
     public class Photo
     {
-        public List<Person> Persons => _persons;
-        private readonly List<Person> _persons;
+        public List<Person> Persons { get; }
 
         public Photo()
         {
-            _persons = new List<Person>();
+            Persons = new List<Person>();
         }
     }
 }

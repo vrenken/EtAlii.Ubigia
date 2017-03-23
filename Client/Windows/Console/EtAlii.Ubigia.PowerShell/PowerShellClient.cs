@@ -15,29 +15,21 @@
         public static IPowerShellClient Current { get { return GetCurrentClient(); } set { _current = value; } }
         private static IPowerShellClient _current;
 
-        public IStorageResolver StorageResolver => _storageResolver;
-        private readonly IStorageResolver _storageResolver;
+        public IStorageResolver StorageResolver { get; }
 
-        public IEntryResolver EntryResolver => _entryResolver;
-        private readonly IEntryResolver _entryResolver;
+        public IEntryResolver EntryResolver { get; }
 
-        public ISpaceResolver SpaceResolver => _spaceResolver;
-        private readonly ISpaceResolver _spaceResolver;
+        public ISpaceResolver SpaceResolver { get; }
 
-        public IAccountResolver AccountResolver => _accountResolver;
-        private readonly IAccountResolver _accountResolver;
+        public IAccountResolver AccountResolver { get; }
 
-        public IRootResolver RootResolver => _rootResolver;
-        private readonly IRootResolver _rootResolver;
+        public IRootResolver RootResolver { get; }
 
-        public IManagementConnection ManagementConnection => _managementConnection;
-        private IManagementConnection _managementConnection;
+        public IManagementConnection ManagementConnection { get; private set; }
 
-        public IFabricContext Fabric { get { return _fabric; } set { _fabric = value; } }
-        private IFabricContext _fabric;
+        public IFabricContext Fabric { get; set; }
 
-        public IInfrastructureClient Client => _client;
-        private readonly IInfrastructureClient _client;
+        public IInfrastructureClient Client { get; }
 
         public PowerShellClient(
             IStorageResolver storageResolver,
@@ -47,13 +39,13 @@
             IRootResolver rootResolver,
             IInfrastructureClient infrastructureClient)
         {
-            _storageResolver = storageResolver;
-            _entryResolver = entryResolver;
-            _spaceResolver = spaceResolver;
-            _accountResolver = accountResolver;
-            _rootResolver = rootResolver;
+            StorageResolver = storageResolver;
+            EntryResolver = entryResolver;
+            SpaceResolver = spaceResolver;
+            AccountResolver = accountResolver;
+            RootResolver = rootResolver;
 
-            _client = infrastructureClient;
+            Client = infrastructureClient;
         }
 
         private static IPowerShellClient GetCurrentClient()
@@ -67,17 +59,17 @@
 
         public async Task OpenManagementConnection(string address, string accountName, string password)
         {
-            if (_managementConnection != null && _managementConnection.IsConnected)
+            if (ManagementConnection != null && ManagementConnection.IsConnected)
             {
-                await _managementConnection.Close();
+                await ManagementConnection.Close();
             }
 
             var configuration = new ManagementConnectionConfiguration()
-                .Use(WebApiStorageTransportProvider.Create(_client))
+                .Use(WebApiStorageTransportProvider.Create(Client))
                 .Use(address)
                 .Use(accountName, password);
-            _managementConnection = new ManagementConnectionFactory().Create(configuration);
-            await _managementConnection.Open();
+            ManagementConnection = new ManagementConnectionFactory().Create(configuration);
+            await ManagementConnection.Open();
         }
     }
 }

@@ -2,19 +2,17 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class TimeRootHandlerMapper : IRootHandlerMapper
     {
-        public string Name => _name;
-        private readonly string _name;
+        public string Name { get; }
 
-        public IRootHandler[] AllowedRootHandlers => _allowedRootHandlers;
-        private readonly IRootHandler[] _allowedRootHandlers;
+        public IRootHandler[] AllowedRootHandlers { get; }
 
         public TimeRootHandlerMapper()
         {
-            _name = "time";
+            Name = "time";
 
             var timePreparer = new TimePreparer();
 
-           _allowedRootHandlers = new IRootHandler[]
+           AllowedRootHandlers = new IRootHandler[]
             {
                 new TimeRootByPathBasedYyyymmddhhmmssmmmHandler(timePreparer), // 00: YYYY/MM/DD/HH/MM/SS/MMM
                 new TimeRootByPathBasedYyyymmddhhmmssHandler(timePreparer), // 01: YYYY/MM/DD/HH/MM/SS

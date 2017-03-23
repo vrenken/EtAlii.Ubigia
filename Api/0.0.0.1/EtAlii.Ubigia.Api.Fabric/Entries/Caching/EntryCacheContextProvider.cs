@@ -2,12 +2,11 @@
 {
     internal class EntryCacheContextProvider : IEntryCacheContextProvider
     {
-        public IEntryContext Context => _context;
-        private readonly IEntryContext _context;
+        public IEntryContext Context { get; }
 
         public EntryCacheContextProvider(IEntryContext context)
         {
-            _context = context;
+            Context = context;
         }
     }
 }

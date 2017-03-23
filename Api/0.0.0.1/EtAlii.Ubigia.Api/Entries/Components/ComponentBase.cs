@@ -5,8 +5,7 @@
     [JsonObject(MemberSerialization.Fields)]
     public abstract class ComponentBase : IComponent
     {
-        public bool Stored { get { return _stored; } internal set { _stored = value; } }
-        private bool _stored;
+        public bool Stored { get; internal set; }
 
         protected internal abstract string Name { get; }
 

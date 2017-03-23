@@ -6,21 +6,19 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public class GraphPathTraverserConfiguration : IGraphPathTraverserConfiguration
     {
-        public IFabricContext FabricContext => _fabricContext;
-        private IFabricContext _fabricContext;
+        public IFabricContext FabricContext { get; private set; }
 
-        public IGraphPathTraverserExtension[] Extensions => _extensions;
-        private IGraphPathTraverserExtension[] _extensions;
-        
+        public IGraphPathTraverserExtension[] Extensions { get; private set; }
+
 
         public GraphPathTraverserConfiguration()
         {
-            _extensions = new IGraphPathTraverserExtension[0];
+            Extensions = new IGraphPathTraverserExtension[0];
         }
 
         public IGraphPathTraverserConfiguration Use(IFabricContext fabricContext)
         {
-            _fabricContext = fabricContext;
+            FabricContext = fabricContext;
             return this;
         }
 
@@ -31,8 +29,8 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new ArgumentException("extensions");
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return this;

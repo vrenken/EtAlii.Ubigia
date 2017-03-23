@@ -16,20 +16,15 @@
         public IEnumerable<Space> AvailableSpaces { get { return _availableSpaces; } private set { SetProperty(ref _availableSpaces, value); } }
         private IEnumerable<Space> _availableSpaces;
 
-        protected IManagementConnection Connection => _connection;
-        private readonly IManagementConnection _connection;
+        protected IManagementConnection Connection { get; }
 
-        public ICommand AddCommand => _addCommand;
-        private readonly ICommand _addCommand;
+        public ICommand AddCommand { get; }
 
-        public ICommand SaveCommand => _saveCommand;
-        private readonly ICommand _saveCommand;
+        public ICommand SaveCommand { get; }
 
-        public ICommand DeleteCommand => _deleteCommand;
-        private readonly ICommand _deleteCommand;
+        public ICommand DeleteCommand { get; }
 
-        public ICommand ClearCommand => _clearCommand;
-        private readonly ICommand _clearCommand;
+        public ICommand ClearCommand { get; }
 
         public Space SelectedSpace { get { return _selectedSpace; } set { SetProperty(ref _selectedSpace, value); } }
         private Space _selectedSpace;
@@ -53,11 +48,11 @@
         public SpacesViewModel(IManagementConnection connection, ILogger logger)
         {
             _logger = logger;   
-            _connection = connection;
-            _addCommand = new RelayCommand(AddSpace, CanAddSpace);
-            _saveCommand = new RelayCommand(SaveSpace, CanSaveSpace);
-            _deleteCommand = new RelayCommand(DeleteSpace, CanDeleteSpace);
-            _clearCommand = new RelayCommand(ClearSpace, CanClearSpace);
+            Connection = connection;
+            AddCommand = new RelayCommand(AddSpace, CanAddSpace);
+            SaveCommand = new RelayCommand(SaveSpace, CanSaveSpace);
+            DeleteCommand = new RelayCommand(DeleteSpace, CanDeleteSpace);
+            ClearCommand = new RelayCommand(ClearSpace, CanClearSpace);
 
             ReloadAvailableSpaces();
         }

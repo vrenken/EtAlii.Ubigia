@@ -4,12 +4,11 @@
 
     internal class ContentCacheProvider : IContentCacheProvider
     {
-        public IDictionary<Identifier, ContentCacheEntry> Cache => _cache;
-        private readonly IDictionary<Identifier, ContentCacheEntry> _cache;
+        public IDictionary<Identifier, ContentCacheEntry> Cache { get; }
 
         public ContentCacheProvider()
         {
-            _cache = new Dictionary<Identifier, ContentCacheEntry>(100);
+            Cache = new Dictionary<Identifier, ContentCacheEntry>(100);
         }
     }
 }

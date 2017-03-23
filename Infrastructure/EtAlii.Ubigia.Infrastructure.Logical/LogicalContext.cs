@@ -4,32 +4,23 @@
 
     public class LogicalContext : ILogicalContext
     {
-        public ILogicalStorageSet Storages => _storages;
-        private ILogicalStorageSet _storages;
+        public ILogicalStorageSet Storages { get; private set; }
 
-        public ILogicalSpaceSet Spaces => _spaces;
-        private ILogicalSpaceSet _spaces;
+        public ILogicalSpaceSet Spaces { get; private set; }
 
-        public ILogicalAccountSet Accounts => _accounts;
-        private ILogicalAccountSet _accounts;
+        public ILogicalAccountSet Accounts { get; private set; }
 
-        public ILogicalRootSet Roots => _roots;
-        private ILogicalRootSet _roots;
+        public ILogicalRootSet Roots { get; private set; }
 
-        public ILogicalEntrySet Entries => _entries;
-        private ILogicalEntrySet _entries;
+        public ILogicalEntrySet Entries { get; private set; }
 
-        public ILogicalContentSet Content => _content;
-        private ILogicalContentSet _content;
+        public ILogicalContentSet Content { get; private set; }
 
-        public ILogicalContentDefinitionSet ContentDefinition => _contentDefinition;
-        private ILogicalContentDefinitionSet _contentDefinition;
+        public ILogicalContentDefinitionSet ContentDefinition { get; private set; }
 
-        public ILogicalPropertiesSet Properties => _properties;
-        private ILogicalPropertiesSet _properties;
+        public ILogicalPropertiesSet Properties { get; private set; }
 
-        public ILogicalIdentifierSet Identifiers => _identifiers;
-        private ILogicalIdentifierSet _identifiers;
+        public ILogicalIdentifierSet Identifiers { get; private set; }
 
         private readonly IFabricContext _fabricContext;
 
@@ -49,29 +40,29 @@
             ILogicalPropertiesSet properties,
             ILogicalIdentifierSet identifiers)
         {
-            _storages = storages;
-            _spaces = spaces;
-            _accounts = accounts;
-            _roots = roots;
-            _entries = entries;
-            _content = content;
-            _contentDefinition = contentDefinition;
-            _properties = properties;
-            _identifiers = identifiers;
+            Storages = storages;
+            Spaces = spaces;
+            Accounts = accounts;
+            Roots = roots;
+            Entries = entries;
+            Content = content;
+            ContentDefinition = contentDefinition;
+            Properties = properties;
+            Identifiers = identifiers;
         }
 
         public void Start()
         {
             _fabricContext.Start();
 
-            _storages.Start();
-            _roots.Start();
+            Storages.Start();
+            Roots.Start();
         }
 
         public void Stop()
         {
-            _roots.Stop();
-            _storages.Stop();
+            Roots.Stop();
+            Storages.Stop();
 
             _fabricContext.Stop();
         }

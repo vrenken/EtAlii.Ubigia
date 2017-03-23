@@ -5,8 +5,7 @@
 
     public class InMemoryPathBuilder : IPathBuilder
     {
-        public string BaseFolder => _baseFolder;
-        private readonly string _baseFolder;
+        public string BaseFolder { get; }
 
         private readonly char _separatorChar;
         private readonly string _separatorString;
@@ -19,13 +18,13 @@
             _separatorString = new string(_separatorChar, 1);
 
             _serializer = serializer;
-            _baseFolder = String.Join(_separatorString, "EtAlii");// @"\EtAlii", "Ubigia", configuration.Name);
+            BaseFolder = String.Join(_separatorString, "EtAlii");// @"\EtAlii", "Ubigia", configuration.Name);
         }
 
         public string GetFolder(ContainerIdentifier container)
         {
             var relativePath = String.Join(_separatorString, container.Paths);
-            return String.Join(_separatorString, _baseFolder, relativePath);
+            return String.Join(_separatorString, BaseFolder, relativePath);
         }
 
         public string GetFileName(string fileId, ContainerIdentifier container)

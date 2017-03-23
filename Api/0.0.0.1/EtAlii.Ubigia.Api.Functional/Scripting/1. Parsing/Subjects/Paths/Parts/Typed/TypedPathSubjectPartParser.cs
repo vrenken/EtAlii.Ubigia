@@ -6,11 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class TypedPathSubjectPartParser : ITypedPathSubjectPartParser
     {
-        public string Id => _id;
-        private readonly string _id = "TypedPathSubjectPart";
+        public string Id { get; } = "TypedPathSubjectPart";
 
-        public LpsParser Parser => _parser;
-        private readonly LpsParser _parser;
+        public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -31,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 "Year", "Month", "Day", "Hour", "Minute", "Second", "Millisecond",
             };
 
-            _parser = new LpsParser
+            Parser = new LpsParser
                 (Id, true, 
                     Lp.One(c => c == '[') + //.Debug("Bracket-Open", true) + 
                     Lp.Any(true, _types).Id(_textId) + //.Debug("Content", true) + 

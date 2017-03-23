@@ -2,20 +2,17 @@
 {
     public class ScriptParseResult
     {
-        public string Source => _source;
-        private readonly string _source;
+        public string Source { get; }
 
-        public Script Script => _script;
-        private readonly Script _script;
+        public Script Script { get; }
 
-        public ScriptParserError[] Errors => _errors;
-        private readonly ScriptParserError[] _errors;
+        public ScriptParserError[] Errors { get; }
 
         public ScriptParseResult(string source, Script script, ScriptParserError[] errors)
         {
-            _source = source;
-            _script = script;
-            _errors = errors;
+            Source = source;
+            Script = script;
+            Errors = errors;
         }
     }
 }

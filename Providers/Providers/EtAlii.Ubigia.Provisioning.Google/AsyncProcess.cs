@@ -12,8 +12,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
         private readonly WaitHandle[] _events;
 
-        protected TimeSpan Interval {get { return _interval; } set { _interval = value; } }
-        private TimeSpan _interval = TimeSpan.FromMinutes(1);
+        protected TimeSpan Interval { get; set; } = TimeSpan.FromMinutes(1);
 
         public event Action<Exception> Error { add { _error += value; } remove { _error -= value; } }
         private Action<Exception> _error;
@@ -65,7 +64,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                 }
 
                 // See if we need to iterate once more.
-                var eventId = WaitHandle.WaitAny(_events, _interval);
+                var eventId = WaitHandle.WaitAny(_events, Interval);
                 var evt = eventId < _events.Length && eventId >= 0 ? _events[eventId] : null;
                 if (evt == _stopEvent)
                 {

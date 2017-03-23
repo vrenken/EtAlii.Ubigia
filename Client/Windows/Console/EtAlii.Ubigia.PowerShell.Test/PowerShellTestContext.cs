@@ -22,15 +22,13 @@
 
     public class PowerShellTestContext
     {
-        private PowerShell PowerShell => _powerShell;
-        private PowerShell _powerShell;
+        private PowerShell PowerShell { get; set; }
 
-        public HostTestContext<PowerShellHost> Context => _context;
-        private HostTestContext<PowerShellHost> _context;
+        public HostTestContext<PowerShellHost> Context { get; private set; }
 
         public PowerShellTestContext()
         {
-            _context = new HostTestContext<PowerShellHost>();
+            Context = new HostTestContext<PowerShellHost>();
         }
 
         public void Start()
@@ -77,18 +75,18 @@
             var host = new HostFactory().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
-            _context.Start(host);
-            _powerShell = CreatePowerShell();
+            Context.Start(host);
+            PowerShell = CreatePowerShell();
 
             InvokeSelectStorage();
         }
 
         public void Stop()
         {
-            _powerShell.Dispose();
-            _powerShell = null;
-            _context.Stop();
-            _context = null;
+            PowerShell.Dispose();
+            PowerShell = null;
+            Context.Stop();
+            Context = null;
             PowerShellClient.Current = null;
         }
 
@@ -192,13 +190,13 @@
 
         public Collection<PSObject> InvokeSelectStorage()
         {
-            var configuration = _context.Host.Infrastructure.Configuration;
-            _powerShell.Commands.Clear();
-            _powerShell.AddCommand("Select-Storage")
+            var configuration = Context.Host.Infrastructure.Configuration;
+            PowerShell.Commands.Clear();
+            PowerShell.AddCommand("Select-Storage")
                        .AddArgument(configuration.Address)
                        .AddArgument(configuration.Account)
                        .AddArgument(configuration.Password);
-            return _powerShell.Invoke();
+            return PowerShell.Invoke();
         }
 
         #endregion Storages

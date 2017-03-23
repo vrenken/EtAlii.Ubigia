@@ -2,8 +2,7 @@
 {
     public class TwitterProvider : IProvider
     {
-        public IProviderConfiguration Configuration => _configuration;
-        private readonly IProviderConfiguration _configuration;
+        public IProviderConfiguration Configuration { get; }
 
         private readonly IImporter[] _importers;
 
@@ -11,7 +10,7 @@
             IProviderConfiguration configuration, 
             ITweetImporter tweetImporter)
         {
-            _configuration = configuration;
+            Configuration = configuration;
 
             _importers = new IImporter[]
             {

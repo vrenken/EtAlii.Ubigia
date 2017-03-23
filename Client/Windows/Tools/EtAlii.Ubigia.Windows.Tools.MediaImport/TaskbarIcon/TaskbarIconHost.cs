@@ -5,8 +5,8 @@
 
     internal class TaskbarIconHost : ITaskbarIconHost
     {
-        public ITaskbarIcon TaskbarIcon => _taskbarIcon;
-        private readonly ITaskbarIcon _taskbarIcon;
+        public ITaskbarIcon TaskbarIcon { get; }
+
         private readonly IFolderMonitorManager _folderMonitorManager;
 
         public TaskbarIconHost(
@@ -15,16 +15,16 @@
             IFolderMonitorManager folderMonitorManager)
             : base()
         {
-            _taskbarIcon = taskbarIcon;
+            TaskbarIcon = taskbarIcon;
             _folderMonitorManager = folderMonitorManager;
-            _taskbarIcon.DataContext = taskbarIconViewModel;
+            TaskbarIcon.DataContext = taskbarIconViewModel;
         }
 
         public void Start()
         {
-            _taskbarIcon.Dispatcher.Invoke(() =>
+            TaskbarIcon.Dispatcher.Invoke(() =>
             {
-                _taskbarIcon.Visibility = Visibility.Visible;
+                TaskbarIcon.Visibility = Visibility.Visible;
             });
             Task.Delay(500).ContinueWith((o) => _folderMonitorManager.Start());
         }

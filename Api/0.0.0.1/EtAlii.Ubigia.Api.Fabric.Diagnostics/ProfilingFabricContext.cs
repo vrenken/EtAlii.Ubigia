@@ -18,15 +18,14 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         public IContentContext Content => _decoree.Content;
         public IPropertyContext Properties => _decoree.Properties;
 
-        public IProfiler Profiler => _profiler;
-        private readonly IProfiler _profiler;
+        public IProfiler Profiler { get; }
 
         public ProfilingFabricContext(
             IFabricContext decoree,
             IProfiler profiler)
         {
             _decoree = decoree;
-            _profiler = profiler;
+            Profiler = profiler;
         }
 
         public void Dispose()

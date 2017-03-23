@@ -4,22 +4,17 @@
 
     public class Result 
     {
-        public string Id => _id;
-        private readonly string _id;
+        public string Id { get; }
 
-        public string Label => _label;
-        private readonly string _label;
+        public string Label { get; }
 
-        public string PropertiesAsString => _properties?.ToString();
+        public string PropertiesAsString => Properties?.ToString();
 
-        public IPropertyDictionary Properties => _properties;
-        private readonly IPropertyDictionary _properties;
+        public IPropertyDictionary Properties { get; }
 
-        public object Data => _data;
-        private readonly object _data;
+        public object Data { get; }
 
-        public object Group => _group;
-        private readonly object _group;
+        public object Group { get; }
 
         public Result(
             string id, 
@@ -27,11 +22,11 @@
             IPropertyDictionary properties,
             object group)
         {
-            _id = id;
-            _label = label;
-            _properties = properties;
-            _group = group;
-            _data = null;
+            Id = id;
+            Label = label;
+            Properties = properties;
+            Group = group;
+            Data = null;
         }
     }
 }
