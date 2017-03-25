@@ -18,6 +18,7 @@
             // Arrange.
 
             // Act.
+            // ReSharper disable once UnusedVariable
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Assert.
@@ -34,6 +35,7 @@
             var blobSummaryCalculator = new BlobSummaryCalculator(Storage.PathBuilder, Storage.FileManager);
 
             // Act.
+            // ReSharper disable once UnusedVariable
             var summary = blobSummaryCalculator.Calculate<Content>(containerId);
 
             // Assert.

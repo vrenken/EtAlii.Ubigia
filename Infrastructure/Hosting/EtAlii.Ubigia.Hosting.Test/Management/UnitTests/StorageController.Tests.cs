@@ -9,7 +9,13 @@
         [Fact]
         public void StorageController_Create()
         {
+            // Arrange.
+
+            // Act.
             var controller = new StorageController(null);
+
+            // Assert.
+            Assert.NotNull(controller);
         }
 
         //[Fact]

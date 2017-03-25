@@ -18,7 +18,8 @@
             var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
 
             // Act.
-            var storageSerializer = new NtfsStorageSerializer(itemSerializer, propertiesSerializer);
+            // ReSharper disable once UnusedVariable
+            var storageSerializer = new NtfsStorageSerializer(itemSerializer, propertiesSerializer); 
 
             // Assert.
         }

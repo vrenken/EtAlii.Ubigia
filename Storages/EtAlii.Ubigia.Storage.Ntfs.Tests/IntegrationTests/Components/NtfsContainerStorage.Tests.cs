@@ -19,6 +19,7 @@
         {
             // Arrange.
             var id = Guid.NewGuid().ToString();
+            // ReSharper disable once UnusedVariable
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier(id);
 
             // Act.
@@ -34,7 +35,6 @@
             var accountId = Guid.NewGuid();
             var spaceId = Guid.NewGuid();
             var entry = StorageTestHelper.CreateEntry(storageId, accountId, spaceId, 0, 0, 0);
-            var id = Guid.NewGuid().ToString();
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var entryComponent = new IdentifierComponent { Id = entry.Id };
 
@@ -52,7 +52,6 @@
             var accountId = Guid.NewGuid();
             var spaceId = Guid.NewGuid();
             var originalEntry = StorageTestHelper.CreateEntry(storageId, accountId, spaceId, 0, 0, 0);
-            var id = Guid.NewGuid().ToString();
             var containerId = StorageTestHelper.CreateSimpleContainerIdentifier();
             var entryComponent = new IdentifierComponent { Id = originalEntry.Id };
             Storage.Components.Store(containerId, entryComponent);

@@ -19,6 +19,7 @@
             var inMemoryItemsHelpers = new InMemoryItemsHelper(inMemoryItems);
 
             // Act.
+            // ReSharper disable once UnusedVariable
             var storageSerializer = new InMemoryStorageSerializer(itemSerializer, propertiesSerializer, inMemoryItemsHelpers);
 
             // Assert.

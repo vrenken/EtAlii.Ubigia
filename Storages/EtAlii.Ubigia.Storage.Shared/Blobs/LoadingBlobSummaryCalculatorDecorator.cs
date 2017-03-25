@@ -22,7 +22,7 @@
 
             var blobName = BlobHelper.GetName<T>();
             var blobContainer = ContainerIdentifier.Combine(container, blobName);
-            var folder = _pathBuilder.GetFolder(blobContainer);
+            var folder = _pathBuilder.GetFolder(blobContainer); // TODO: What does this line do? Or what should it do?
 
             var fileName = "Summary";
             var path = _pathBuilder.GetFileName(fileName, blobContainer);

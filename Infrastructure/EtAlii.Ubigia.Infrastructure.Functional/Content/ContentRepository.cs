@@ -55,6 +55,7 @@
                 if (contentParts.Any())
                 {
                     UInt64 totalParts = 0;
+                    // ReSharper disable once UnusedVariable
                     foreach (var contentPart in contentParts)
                     {
                         totalParts += 1;

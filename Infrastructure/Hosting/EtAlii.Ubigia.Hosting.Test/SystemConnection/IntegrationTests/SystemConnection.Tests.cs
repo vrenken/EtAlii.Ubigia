@@ -23,7 +23,13 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task SystemConnection_Create()
         {
+            // Arrange.
+
+            // Act.
             var connection = await _testContext.HostTestContext.CreateSystemConnection();
+
+            // Assert.
+            Assert.NotNull(connection);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

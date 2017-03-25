@@ -23,7 +23,7 @@
         {
             //var message = String.Format("Verifying authentication token");
             //_logger.Info(message);
-            var start = Environment.TickCount;
+            //var start = Environment.TickCount;
 
             var result = _verifier.Verify(actionContext, requiredRole);
 

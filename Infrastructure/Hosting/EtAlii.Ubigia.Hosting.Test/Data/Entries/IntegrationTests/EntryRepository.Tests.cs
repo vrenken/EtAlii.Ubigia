@@ -43,6 +43,7 @@
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Assert.
+            Assert.NotNull(entry);
             Assert.True(1500 > TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
@@ -57,6 +58,7 @@
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Assert.
+            Assert.NotNull(entry);
             Assert.True(1500 > TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
@@ -71,6 +73,7 @@
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
 
             // Assert.
+            Assert.NotNull(entry);
             Assert.True(1500 > TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
@@ -152,6 +155,7 @@
                 // Assert.
                 var loadedEntry = loadedEntries[i];
                 var createdEntry = createdEntries[i];
+                Assert.NotNull(createdEntry);
                 Assert.NotEqual(Relation.None, loadedEntry.Next);
                 Assert.Equal(createdEntries[i + 1].Id, loadedEntry.Next.Id);
             }
@@ -174,6 +178,7 @@
                 var createdEntry = createdEntries[i];
                 var loadedChildren = ((Entry)loadedEntry).Children;
                 var createdChildren = ((Entry)createdEntry).Children;
+                Assert.NotNull(createdChildren);
                 Assert.Equal(loadedChildren.First().Id, createdEntries[i + 1].Id);
             }
         }
@@ -195,6 +200,7 @@
                 var createdEntry = createdEntries[i];
                 var loadedChildren2 = ((Entry)loadedEntry).Children2;
                 var createdChildren2 = ((Entry)createdEntry).Children2;
+                Assert.NotNull(createdChildren2);
                 Assert.Equal(loadedChildren2.First().Id, createdEntries[i + 1].Id);
             }
         }

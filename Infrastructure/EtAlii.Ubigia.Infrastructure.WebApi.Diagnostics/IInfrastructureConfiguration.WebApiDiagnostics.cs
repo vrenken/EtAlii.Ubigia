@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
     {
         public static IInfrastructureConfiguration UseWebApi(this IInfrastructureConfiguration configuration, IDiagnosticsConfiguration diagnostics, IApplicationManager applicationManager = null)
         {
-            var extensions = new IInfrastructureExtension[]
+            var extensions = new IInfrastructureExtension[] // TODO: These extensions should be used, right?!
             {
                 new WebApiDiagnosticsInfrastructureExtension(diagnostics),
             };

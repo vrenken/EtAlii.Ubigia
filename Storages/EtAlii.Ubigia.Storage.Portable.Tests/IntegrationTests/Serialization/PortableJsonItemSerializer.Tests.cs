@@ -19,6 +19,7 @@
             var propertiesSerializer = new InternalJsonPropertiesSerializer(serializer);
 
             // Act.
+            // ReSharper disable once UnusedVariable
             var storageSerializer = new PortableStorageSerializer(itemSerializer, propertiesSerializer, StorageFolder);
 
             // Assert.
