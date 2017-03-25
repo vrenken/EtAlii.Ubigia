@@ -24,7 +24,7 @@
         {
             Account account = null;
 
-            WriteDebug(String.Format("Adding account [{0}]", AccountName));
+            WriteDebug($"Adding account [{AccountName}]");
             var task = Task.Run(async () =>
             {
                 var template = AccountTemplate.All.Single(t => t.Name == Template);

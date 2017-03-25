@@ -129,7 +129,7 @@
         private static void CreateShellExtensionAssembly(Guid shellExtensionId)
         {
             string displayName = shellExtensionId.ToString();
-            var assemblyFileName = String.Format("{0}.dll", shellExtensionId);
+            var assemblyFileName = $"{shellExtensionId}.dll";
 
             var assemblyName = new AssemblyName(displayName);
 
@@ -146,7 +146,7 @@
             var moduleBuilder = assemblyBuilder.DefineDynamicModule(assemblyName.Name, assemblyFileName);
 
             var rootFolderItemType = typeof(RootFolderItem);
-            var typeName = String.Format("{0}_{1}", rootFolderItemType.Name, displayName.Replace("-", ""));
+            var typeName = $"{rootFolderItemType.Name}_{displayName.Replace("-", "")}";
             var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, rootFolderItemType);
             
             var constructorParameters = new[] { typeof(string) };

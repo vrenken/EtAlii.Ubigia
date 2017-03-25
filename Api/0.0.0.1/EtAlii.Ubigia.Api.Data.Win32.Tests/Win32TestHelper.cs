@@ -60,7 +60,7 @@
 
             for (int file = 0; file < filesPerFolder; file++)
             {
-                var fileName = String.Format("{0}.bin",Guid.NewGuid());
+                var fileName = $"{Guid.NewGuid()}.bin";
                 fileName = Path.Combine(folderName, fileName);
                 SaveTestFile(fileName, fileMinSize, fileMaxSize);
             }

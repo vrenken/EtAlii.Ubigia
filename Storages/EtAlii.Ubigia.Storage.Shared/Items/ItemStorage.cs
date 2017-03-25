@@ -94,7 +94,7 @@
                                               .Select(fileName => _pathBuilder.GetFileNameWithoutExtension(fileName))
                                               .ToArray();
 
-                return fileNames.Select(fileName => Guid.Parse(fileName))
+                return fileNames.Select(Guid.Parse)
                                 .ToArray();
             }
             catch (Exception e)

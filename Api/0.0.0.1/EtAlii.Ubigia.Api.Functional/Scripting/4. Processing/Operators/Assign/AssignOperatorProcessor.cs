@@ -85,7 +85,8 @@
             {
                 var left = parameters.LeftSubject == null ? "NULL" : parameters.LeftSubject.ToString();
                 var right = parameters.RightSubject == null ? "NULL" : parameters.RightSubject.ToString();
-                var message = String.Format("No supported mapping found for the AssignOperatorProcessor to work with (left: {0}, right: {1})", left, right);
+                var message =
+                    $"No supported mapping found for the AssignOperatorProcessor to work with (left: {left}, right: {right})";
                 throw new ScriptProcessingException(message);
             }
             assigner.Assign(parameters);

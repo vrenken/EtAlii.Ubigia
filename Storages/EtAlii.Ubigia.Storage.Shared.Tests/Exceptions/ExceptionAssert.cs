@@ -22,7 +22,7 @@
             }
 
             Assert.False(typeof(T) == new Exception().GetType(), "Expected exception but no exception was thrown.");
-            throw new InvalidOperationException(string.Format("Expected exception of type {0} but no exception was thrown.", typeof(T)));
+            throw new InvalidOperationException($"Expected exception of type {typeof(T)} but no exception was thrown.");
         }
 
         #region Overloaded methods
@@ -115,7 +115,8 @@
                         Assert.Equal(ex.Message.ToUpper(), expectedMessage.ToUpper());//, "Expected exception message failed.");
                         break;
                     case ExceptionMessageCompareOptions.Contains:
-                        Assert.True(ex.Message.Contains(expectedMessage), string.Format("Expected exception message does not contain <{0}>.", expectedMessage));
+                        Assert.True(ex.Message.Contains(expectedMessage),
+                            $"Expected exception message does not contain <{expectedMessage}>.");
                         break;
                     default:
                         throw new ArgumentOutOfRangeException("options");

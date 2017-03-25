@@ -12,7 +12,7 @@
 
         private readonly string _rootFolder = @"c:\temp\" + Guid.NewGuid() + @"\";
 
-        public NtfsStorageTestBase()
+        protected NtfsStorageTestBase()
         {
             Storage = CreateStorage();
 

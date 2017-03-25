@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return String.Format("root:{0}", Name);
+            return $"root:{Name}";
         }
     }
 }

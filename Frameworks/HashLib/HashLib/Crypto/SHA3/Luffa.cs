@@ -50,7 +50,7 @@ namespace HashLib.Crypto.SHA3
         protected int m_result_blocks;
         protected int m_iv_length;
 
-        public LuffaBase(HashLib.HashSize a_hash_size)
+        protected LuffaBase(HashLib.HashSize a_hash_size)
             : base((int)a_hash_size, 32)
         {
         }
@@ -89,7 +89,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Luffa256Base : LuffaBase
     {
-        public Luffa256Base(HashLib.HashSize a_hash_size)
+        protected Luffa256Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size)
         {
             m_result_blocks = 3;

@@ -17,7 +17,8 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using storage '{0}' at {1} [{2}]", StorageCmdlet.Current.Name, StorageCmdlet.Current.Address, PowerShellClient.Current.Client.AuthenticationToken));
+            WriteDebug(
+                $"Using storage '{StorageCmdlet.Current.Name}' at {StorageCmdlet.Current.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
 
             if (Storage == null)
             {
@@ -33,7 +34,7 @@
             });
             task.Wait();
 
-            var verboseDescription = String.Format("Storage '{0}' has been updated.", Storage.Name);
+            var verboseDescription = $"Storage '{Storage.Name}' has been updated.";
             WriteVerbose(verboseDescription);
         } 
     }

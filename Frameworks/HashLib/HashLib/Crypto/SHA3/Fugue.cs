@@ -8,7 +8,7 @@ namespace HashLib.Crypto.SHA3
         protected int m_base;
         protected readonly uint[] m_state = new uint[36];
 
-        public FugueBase(HashSize a_hash_size, int a_block_size)
+        protected FugueBase(HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size, 4)
         {
             Initialize();

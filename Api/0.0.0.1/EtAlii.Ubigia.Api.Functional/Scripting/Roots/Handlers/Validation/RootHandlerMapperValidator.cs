@@ -35,13 +35,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (invalidNamedRootHandlerMappers.Any())
             {
-                var message = String.Format("{0} found with the same name: {1}",
-                    invalidNamedRootHandlerMappers.Multiple()
-                        ? "Multiple root handler mappers"
-                        : "One root handler mapper",
-                    invalidNamedRootHandlerMappers.Multiple()
-                        ? String.Join(", ", invalidNamedRootHandlerMappers.Select(c => c.Name))
-                        : invalidNamedRootHandlerMappers.Single().Name);
+                var message =
+                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with the same name: {(invalidNamedRootHandlerMappers.Multiple() ? String.Join(", ", invalidNamedRootHandlerMappers.Select(c => c.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
 
@@ -52,13 +47,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (invalidNamedRootHandlerMappers.Any())
             {
-                var message = String.Format("{0} found with invalid naming: {1}",
-                    invalidNamedRootHandlerMappers.Multiple()
-                        ? "Multiple root handler mappers"
-                        : "One root handler mapper",
-                    invalidNamedRootHandlerMappers.Multiple()
-                        ? String.Join(", ", invalidNamedRootHandlerMappers.Select(fh => fh.Name))
-                        : invalidNamedRootHandlerMappers.Single().Name);
+                var message =
+                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with invalid naming: {(invalidNamedRootHandlerMappers.Multiple() ? String.Join(", ", invalidNamedRootHandlerMappers.Select(fh => fh.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
         }
@@ -73,7 +63,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     var areEqual = Compare(first.Template, second.Template);
                     if (areEqual && second != first)
                     {
-                        var message = String.Format("A root handler mapper with multiple matching allowed paths was found: {0}", rootHandlerMapper.Name);
+                        var message =
+                            $"A root handler mapper with multiple matching allowed paths was found: {rootHandlerMapper.Name}";
                         throw new InvalidOperationException(message);
                     }
                 }

@@ -30,7 +30,7 @@
             });
             task.Wait();
 
-            var verboseDescription = String.Format("Space '{0}' has been updated.", Space.Name);
+            var verboseDescription = $"Space '{Space.Name}' has been updated.";
             WriteVerbose(verboseDescription);
         } 
     }

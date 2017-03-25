@@ -5224,7 +5224,7 @@ namespace HashLib.Crypto.SHA3
         protected int m_rounds;
         protected uint[] m_alpha;
 
-        public HamsiBase(HashSize a_hash_size, int a_block_size)
+        protected HamsiBase(HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             m_state = new uint[BlockSize * 2];
@@ -5314,7 +5314,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Hamsi256Base : HamsiBase
     {
-        public Hamsi256Base(HashSize a_hash_size)
+        protected Hamsi256Base(HashSize a_hash_size)
             : base(a_hash_size, 4)
         {
         }
@@ -5505,7 +5505,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Hamsi512Base : HamsiBase
     {
-        public Hamsi512Base(HashSize a_hash_size)
+        protected Hamsi512Base(HashSize a_hash_size)
             : base(a_hash_size, 8)
         {
         }

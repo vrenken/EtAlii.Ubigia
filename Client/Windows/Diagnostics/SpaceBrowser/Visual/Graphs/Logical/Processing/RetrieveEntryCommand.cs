@@ -17,7 +17,7 @@
 
         public override string ToString()
         {
-            return String.Format("{0} - Id: {1}, Reason: {2}", base.ToString(), Identifier.ToTimeString(), ProcessReason);
+            return $"{base.ToString()} - Id: {Identifier.ToTimeString()}, Reason: {ProcessReason}";
         }
 
     }

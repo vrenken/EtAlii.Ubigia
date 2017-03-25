@@ -38,7 +38,7 @@ namespace HashLib.Crypto.SHA3
     {
         private readonly ulong[] m_state = new ulong[25];
 
-        public Keccak(HashLib.HashSize a_hash_size)
+        protected Keccak(HashLib.HashSize a_hash_size)
             : base((int)a_hash_size, 200 - ((int)a_hash_size * 2))
         {
             Initialize();

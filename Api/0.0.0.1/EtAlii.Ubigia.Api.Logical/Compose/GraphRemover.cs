@@ -48,7 +48,7 @@
             result = linkAddResult.Item2;
             if (result == null)
             {
-                var message = String.Format("Unable to remove item: '{0}' (Not found)", child);
+                var message = $"Unable to remove item: '{child}' (Not found)";
                 throw new GraphComposeException(message);
             }
 
@@ -79,7 +79,7 @@
             result = linkAddResult.Item2;
             if (result == null)
             {
-                var message = String.Format("Unable to remove item: '{0}' (Not found)", child);
+                var message = $"Unable to remove item: '{child}' (Not found)";
                 throw new GraphComposeException(message);
             }
             var updateEntry = await _graphUpdater.Update(entry, scope);

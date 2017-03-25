@@ -66,7 +66,7 @@
             var retrievedContentDefinition = Storage.Blobs.Retrieve<ContentDefinition>(containerId);
 
             // Assert.
-            Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count());
+            Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count);
             for (int i = 0; i < contentDefinition.Parts.Count; i++)
             {
                 Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum);

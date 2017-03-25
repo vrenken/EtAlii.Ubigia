@@ -25,7 +25,7 @@
             var account = await _invoker.Invoke<Account>(_accountProxy, SignalRHub.Account, "GetByName", accountName);
             if (account == null)
             {
-                string message = String.Format("Unable to connect using the specified account ({0})", accountName);
+                string message = $"Unable to connect using the specified account ({accountName})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
             return account;

@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
 
         private static bool StorageSettingsHasAssembly(StorageSettings storageSettings)
         {
-            var fileName = String.Format("{0}.dll", storageSettings.Id);
+            var fileName = $"{storageSettings.Id}.dll";
             fileName = Path.Combine(App.ShellExtensionsDirectory, fileName);
             return File.Exists(fileName);
         }

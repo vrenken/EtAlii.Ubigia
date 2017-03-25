@@ -30,7 +30,7 @@
  
         public override string ToString()
         {
-            return String.Format("{0}({1})",Name, String.Join(",", Arguments.Select(parameter => parameter.ToString())));
+            return $"{Name}({String.Join(",", Arguments.Select(parameter => parameter.ToString()))})";
         }
     }
 }

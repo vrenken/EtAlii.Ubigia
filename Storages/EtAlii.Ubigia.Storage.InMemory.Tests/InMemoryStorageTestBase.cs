@@ -9,7 +9,7 @@
     {
         protected InMemoryStorage Storage { get; private set; }
 
-        public InMemoryStorageTestBase()
+        protected InMemoryStorageTestBase()
         {
             Storage = CreateStorage();
 

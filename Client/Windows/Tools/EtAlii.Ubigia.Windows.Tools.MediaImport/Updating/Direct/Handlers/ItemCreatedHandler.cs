@@ -39,7 +39,7 @@
 
             var remoteItem = _stringEscaper.Escape(last);
             var remotePath = rest.Any()
-                ? String.Format("/{0}", String.Join("/", _stringEscaper.Escape(rest))) 
+                ? $"/{String.Join("/", _stringEscaper.Escape(rest))}"
                 : String.Empty;
 
             var task = Task.Run(async () =>

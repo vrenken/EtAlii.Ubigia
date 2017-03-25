@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Client.Windows.UserInterface
             var window = App.Current.MainWindow;
 
             var storageSettings = new StorageSettings(Guid.NewGuid().ToString());
-            storageSettings.Name = String.Format("Unnamed {0}", App.StorageNaming);
+            storageSettings.Name = $"Unnamed {App.StorageNaming}";
 
             var storageWindow = Container.GetInstance<StorageWindow>();
             storageWindow.Owner = window;

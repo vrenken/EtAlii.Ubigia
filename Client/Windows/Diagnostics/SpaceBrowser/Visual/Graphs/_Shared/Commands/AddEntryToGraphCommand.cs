@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
         public override string ToString()
         {
-            return String.Format("{0} - Id: {1}, Reason: {2}, Time:{3}", base.GetType(), Entry.Id.ToTimeString(), ProcessReason, Time);
+            return $"{base.GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}, Time:{Time}";
         }
     }
 }

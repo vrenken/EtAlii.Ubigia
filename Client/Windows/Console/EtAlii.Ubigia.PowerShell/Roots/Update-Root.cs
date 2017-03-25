@@ -30,7 +30,7 @@
             });
             task.Wait();
 
-            var verboseDescription = String.Format("Root '{0}' has been updated.", Root.Name);
+            var verboseDescription = $"Root '{Root.Name}' has been updated.";
             WriteVerbose(verboseDescription);
         }
     }

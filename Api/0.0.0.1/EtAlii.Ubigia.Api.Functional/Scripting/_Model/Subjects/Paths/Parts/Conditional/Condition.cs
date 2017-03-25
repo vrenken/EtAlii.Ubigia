@@ -17,7 +17,7 @@
 
         public override string ToString()
         {
-            return String.Format("({0} {1} {2})", Property, Type, Value != null ? Value.ToString() : "<NULL>");
+            return $"({Property} {Type} {(Value != null ? Value.ToString() : "<NULL>")})";
         }
     }
 }

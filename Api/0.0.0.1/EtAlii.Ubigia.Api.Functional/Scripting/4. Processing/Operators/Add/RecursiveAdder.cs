@@ -35,7 +35,7 @@
             {
                 if (childrenWithSameName.Multiple())
                 {
-                    var message = String.Format("Found multiple children with the same name: {0}", part.Name);
+                    var message = $"Found multiple children with the same name: {part.Name}";
                     throw new ScriptProcessingException(message);
                 }
                 parentId = childWithSameName.Id;

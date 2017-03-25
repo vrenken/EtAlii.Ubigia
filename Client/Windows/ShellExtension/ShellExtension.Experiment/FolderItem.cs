@@ -68,7 +68,7 @@ namespace EtAlii.Ubigia.Client.Windows
             targetInfo.IconFile = Path.Combine(App.CurrentDirectory, "Client.exe");
             targetInfo.IconIndex = 0;
             targetInfo.NSEVisibility = NSEVisibility.CurrentUser;
-            targetInfo.InfoTip = String.Format("Browse {0}", name);
+            targetInfo.InfoTip = $"Browse {name}";
             return targetInfo;
         }
 

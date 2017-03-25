@@ -33,7 +33,8 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using storage '{0}' at {1} [{2}]", TargetStorage.Name, TargetStorage.Address, PowerShellClient.Current.Client.AuthenticationToken));
+            WriteDebug(
+                $"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
         }
 
         protected override void ProcessRecord()

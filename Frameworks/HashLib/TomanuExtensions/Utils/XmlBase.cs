@@ -11,7 +11,7 @@ namespace TomanuExtensions.Utils
         /// <summary>
         /// Constructor.
         /// </summary>
-        public XmlBase()
+        protected XmlBase()
         {
         }
 
@@ -19,7 +19,7 @@ namespace TomanuExtensions.Utils
         /// Constructor.
         /// </summary>
         /// <param name="a_source"></param>
-        public XmlBase(XmlBase a_source)
+        protected XmlBase(XmlBase a_source)
         {
             MemoryStream ms = new MemoryStream();
             a_source.Save(ms);
@@ -31,7 +31,7 @@ namespace TomanuExtensions.Utils
         /// Constructor.
         /// </summary>
         /// <param name="a_reader"></param>
-        public XmlBase(XmlReader a_reader)
+        protected XmlBase(XmlReader a_reader)
         {
             ReadXml(a_reader);
         }
@@ -52,7 +52,7 @@ namespace TomanuExtensions.Utils
         /// <param name="a_stream"></param>
         protected virtual void Load(Stream a_stream)
         {
-            XmlReaderExtensions.ReadXml(a_stream, (reader) => ReadXml(reader));
+            XmlReaderExtensions.ReadXml(a_stream, ReadXml);
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace TomanuExtensions.Utils
         /// <param name="a_stream"></param>
         public virtual void Save(Stream a_stream)
         {
-            XmlWriterExtensions.WriteXml(a_stream, (writer) => WriteXml(writer));
+            XmlWriterExtensions.WriteXml(a_stream, WriteXml);
         }
 
         /// <summary>

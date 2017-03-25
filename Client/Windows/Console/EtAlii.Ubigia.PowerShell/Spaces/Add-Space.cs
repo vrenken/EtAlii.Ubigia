@@ -23,7 +23,7 @@
         {
             Space space = null;
 
-            WriteDebug(String.Format("Adding space {0}", SpaceName));
+            WriteDebug($"Adding space {SpaceName}");
 
             var task = Task.Run(async () =>
             {

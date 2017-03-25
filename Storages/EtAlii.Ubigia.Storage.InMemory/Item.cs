@@ -4,7 +4,7 @@
     {
         public string Name { get; private set; }
 
-        public Item(string name)
+        protected Item(string name)
         {
             Name = name;
         }

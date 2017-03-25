@@ -36,13 +36,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (invalidNamedFunctionHandlers.Any())
             {
-                var message = String.Format("{0} found with the same name: {1}",
-                    invalidNamedFunctionHandlers.Multiple()
-                        ? "Multiple function handlers"
-                        : "One function handler",
-                    invalidNamedFunctionHandlers.Multiple()
-                        ? String.Join(", ", invalidNamedFunctionHandlers.Select(c => c.Name))
-                        : invalidNamedFunctionHandlers.Single().Name);
+                var message =
+                    $"{(invalidNamedFunctionHandlers.Multiple() ? "Multiple function handlers" : "One function handler")} found with the same name: {(invalidNamedFunctionHandlers.Multiple() ? String.Join(", ", invalidNamedFunctionHandlers.Select(c => c.Name)) : invalidNamedFunctionHandlers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
 
@@ -53,13 +48,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (invalidNamedFunctionHandlers.Any())
             {
-                var message = String.Format("{0} found with invalid naming: {1}",
-                    invalidNamedFunctionHandlers.Multiple()
-                        ? "Multiple function handlers"
-                        : "One function handler",
-                    invalidNamedFunctionHandlers.Multiple()
-                        ? String.Join(", ", invalidNamedFunctionHandlers.Select(fh => fh.Name))
-                        : invalidNamedFunctionHandlers.Single().Name);
+                var message =
+                    $"{(invalidNamedFunctionHandlers.Multiple() ? "Multiple function handlers" : "One function handler")} found with invalid naming: {(invalidNamedFunctionHandlers.Multiple() ? String.Join(", ", invalidNamedFunctionHandlers.Select(fh => fh.Name)) : invalidNamedFunctionHandlers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
         }
@@ -73,7 +63,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     var areEqual = Compare(first.Parameters, second.Parameters);
                     if (areEqual && second != first)
                     {
-                        var message = String.Format("A function handler with multiple matching parameter sets was found: {0}", functionHandler.Name);
+                        var message =
+                            $"A function handler with multiple matching parameter sets was found: {functionHandler.Name}";
                         throw new InvalidOperationException(message);
                     }
                 }

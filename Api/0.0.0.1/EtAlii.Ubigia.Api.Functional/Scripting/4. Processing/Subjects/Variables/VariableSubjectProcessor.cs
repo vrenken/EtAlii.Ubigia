@@ -19,9 +19,9 @@
             if (_context.Scope.Variables.TryGetValue(variableName, out variable))
             {
                 variable.Value.Subscribe(
-                    onError: (e) => output.OnError(e),
-                    onCompleted: () => output.OnCompleted(),
-                    onNext: (o) => output.OnNext(o));
+                    onError: output.OnError,
+                    onCompleted: output.OnCompleted,
+                    onNext: output.OnNext);
             }
             else
             {

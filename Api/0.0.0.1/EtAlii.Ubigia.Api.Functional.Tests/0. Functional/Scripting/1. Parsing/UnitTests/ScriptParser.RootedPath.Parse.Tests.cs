@@ -270,8 +270,8 @@
             // Act.
             var act = new Action<char>(c =>
             {
-                var symbol = String.Format("ThirdIs{0}Cool", c);
-                var query = String.Format("First:Second/{0}/Fourth", symbol);
+                var symbol = $"ThirdIs{c}Cool";
+                var query = $"First:Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
                 var count = script.Sequences.Count();
             });
@@ -291,8 +291,8 @@
             // Act.
             var act = new Action<char>(c =>
             {
-                var symbol = String.Format("\"ThirdIs{0}Cool\"", c);
-                var query = String.Format("First:Second/{0}/Fourth", symbol);
+                var symbol = $"\"ThirdIs{c}Cool\"";
+                var query = $"First:Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
                 var count = script.Sequences.Count();
             });
@@ -313,8 +313,8 @@
             // Act.
             var act = new Action<char>(c =>
             {
-                var symbol = String.Format("\"ThirdIs{0}Cool\"", c);
-                var query = String.Format("First:Second/{0}/Fourth", symbol);
+                var symbol = $"\"ThirdIs{c}Cool\"";
+                var query = $"First:Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
                 var count = script.Sequences.Count();
             });
@@ -336,8 +336,8 @@
             // Act.
             var act = new Func<char, ScriptParseResult>(c =>
             {
-                var symbol = String.Format("ThirdIsNot{0}Cool", c);
-                var query = String.Format("First:Second/{0}/Fourth", symbol);
+                var symbol = $"ThirdIsNot{c}Cool";
+                var query = $"First:Second/{symbol}/Fourth";
                 return _parser.Parse(query);
             });
 
@@ -357,8 +357,8 @@
             // Act.
             var act = new Func<char, ScriptParseResult>(c =>
             {
-                var symbol = String.Format("\"ThirdIsNot{0}Cool\"", c);
-                var query = String.Format("First:Second/{0}/Fourth", symbol);
+                var symbol = $"\"ThirdIsNot{c}Cool\"";
+                var query = $"First:Second/{symbol}/Fourth";
                 return _parser.Parse(query);
             });
 

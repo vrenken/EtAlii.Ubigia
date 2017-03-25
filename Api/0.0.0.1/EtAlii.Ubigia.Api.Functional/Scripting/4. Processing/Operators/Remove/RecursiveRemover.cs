@@ -38,7 +38,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (childrenWithSameName.Multiple())
                 {
-                    var message = String.Format("Found multiple children with the same name: {0}", part.Name);
+                    var message = $"Found multiple children with the same name: {part.Name}";
                     throw new ScriptProcessingException(message);
                 }
                 newEntry = (IEditableEntry)await _context.Logical.Nodes.Remove(parentId, part.Name, scope);

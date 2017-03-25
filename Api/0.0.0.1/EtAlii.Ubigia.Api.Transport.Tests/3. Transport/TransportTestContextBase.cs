@@ -12,7 +12,7 @@
 
         private readonly IHostTestContextFactory _testHostFactory;
 
-        public TransportTestContextBase(IHostTestContextFactory testHostFactory)
+        protected TransportTestContextBase(IHostTestContextFactory testHostFactory)
         {
             _testHostFactory = testHostFactory;
         }

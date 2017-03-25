@@ -41,13 +41,13 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
 
         public static void Register()
         {
-            string parameters = String.Format("-i {0}", FileName);
+            string parameters = $"-i {FileName}";
             Execute("RegisterExtensionDotNet40.exe", parameters);
         }
 
         public static void Unregister()
         {
-            string parameters = String.Format("-u {0}", FileName);
+            string parameters = $"-u {FileName}";
             Execute("RegisterExtensionDotNet40.exe", parameters);
         }
 

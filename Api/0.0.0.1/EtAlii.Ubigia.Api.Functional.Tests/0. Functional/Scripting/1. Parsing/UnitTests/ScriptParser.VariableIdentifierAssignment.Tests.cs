@@ -117,7 +117,7 @@
             const ulong era = ulong.MaxValue - 3;
             const ulong period = ulong.MaxValue - 6;
             const ulong moment = ulong.MaxValue - 9;
-            var query = String.Format("$var1 <= /&{0:N}.{1:N}.{2:N}.{3}.{4}.{5}", storage, account, space, era, period, moment);
+            var query = $"$var1 <= /&{storage:N}.{account:N}.{space:N}.{era}.{period}.{moment}";
             
             // Act.
             var script = _parser.Parse(query).Script;

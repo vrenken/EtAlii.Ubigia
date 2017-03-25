@@ -45,7 +45,8 @@ namespace EtAlii.xTechnology.Structure
                 }
                 else
                 {
-                    var message = String.Format("Unable to select option for criteria: {0}", criteria != null ? criteria.ToString() : "[NULL]");
+                    var message =
+                        $"Unable to select option for criteria: {(criteria != null ? criteria.ToString() : "[NULL]")}";
                     throw new InvalidOperationException(message);
                 }
             }
@@ -107,7 +108,8 @@ namespace EtAlii.xTechnology.Structure
                 }
                 else
                 {
-                    var message = String.Format("Unable to select option for criteria: {0}, {1}", criteria1 != null ? criteria1.ToString() : "[NULL]", criteria2 != null ? criteria2.ToString() : "[NULL]");
+                    var message =
+                        $"Unable to select option for criteria: {(criteria1 != null ? criteria1.ToString() : "[NULL]")}, {(criteria2 != null ? criteria2.ToString() : "[NULL]")}";
                     throw new InvalidOperationException(message);
                 }
             }
@@ -169,7 +171,8 @@ namespace EtAlii.xTechnology.Structure
                 }
                 else
                 {
-                    var message = String.Format("Unable to select option for criteria: {0}, {1}, {2}", criteria1 != null ? criteria1.ToString() : "[NULL]", criteria2 != null ? criteria2.ToString() : "[NULL]", criteria3 != null ? criteria3.ToString() : "[NULL]");
+                    var message =
+                        $"Unable to select option for criteria: {(criteria1 != null ? criteria1.ToString() : "[NULL]")}, {(criteria2 != null ? criteria2.ToString() : "[NULL]")}, {(criteria3 != null ? criteria3.ToString() : "[NULL]")}";
                     throw new InvalidOperationException(message);
                 }
             }

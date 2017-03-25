@@ -15,7 +15,7 @@
         {
             // Arrange.
             var fileName = "File";
-            var fullFileName = String.Format("{0}.Extension", fileName);
+            var fullFileName = $"{fileName}.Extension";
             
             // Act.
             var fileNameWithoutExtension = Storage.PathBuilder.GetFileNameWithoutExtension(fullFileName);

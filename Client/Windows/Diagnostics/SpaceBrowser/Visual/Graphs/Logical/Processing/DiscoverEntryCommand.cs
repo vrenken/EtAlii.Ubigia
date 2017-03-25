@@ -20,7 +20,7 @@
 
         public override string ToString()
         {
-            return String.Format("{0} - Id: {1}, Reason: {2}, Depth: {3}", GetType(), Entry.Id.ToTimeString(), ProcessReason, Depth);
+            return $"{GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}, Depth: {Depth}";
         }
     }
 }

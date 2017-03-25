@@ -16,7 +16,7 @@
             UInt64 period = 2;
             UInt64 moment = 3;
             var identifier = Identifier.Create(storage, account, space, era, period, moment);
-            var expectedResult = String.Format("{0}/{1} (1)", identifier.ToLocationString(), identifier.ToTimeString());
+            var expectedResult = $"{identifier.ToLocationString()}/{identifier.ToTimeString()} (1)";
             // Act.
             var result = Relation.NewRelation(identifier).ToString();
 

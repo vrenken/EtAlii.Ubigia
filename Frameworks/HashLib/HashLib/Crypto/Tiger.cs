@@ -213,7 +213,7 @@
         protected readonly ulong[] m_hash = new ulong[3];
         private readonly int m_rounds;
 
-        public Tiger(HashRounds a_rounds)
+        protected Tiger(HashRounds a_rounds)
             : base(24, 64)
         {
             m_rounds = (int)a_rounds;

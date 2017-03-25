@@ -99,8 +99,8 @@
         {
             var serviceAssembly = service.GetType().Assembly;
 
-            var commandLine = new[] { String.Format("/assemblypath={0}", serviceAssembly.Location) };
-            var logFile = string.Format("{0}.installlog", serviceAssembly.FullName);
+            var commandLine = new[] {$"/assemblypath={serviceAssembly.Location}"};
+            var logFile = $"{serviceAssembly.FullName}.installlog";
 
             var installContext = new InstallContext(logFile, commandLine);
             var transactedInstaller = new TransactedInstaller();

@@ -18,7 +18,7 @@
         private static int _testIndex;
 
 
-        public PortableStorageTestBase()
+        protected PortableStorageTestBase()
         {
             _rootFolder = @"c:\temp\" + _testIndex;
             _testIndex += 1;

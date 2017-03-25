@@ -183,7 +183,7 @@ namespace HashLib.Crypto.SHA3
         protected readonly ulong[] m_state = new ulong[32];
         protected bool m_last_block;
 
-        public EchoBase(HashSize a_hash_size, int a_block_size)
+        protected EchoBase(HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             Initialize();
@@ -239,7 +239,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Echo256Base : EchoBase
     {
-        public Echo256Base(HashSize a_hash_size)
+        protected Echo256Base(HashSize a_hash_size)
             : base(a_hash_size, 192)
         {
         }
@@ -663,7 +663,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Echo512Base : EchoBase
     {
-        public Echo512Base(HashSize a_hash_size)
+        protected Echo512Base(HashSize a_hash_size)
             : base(a_hash_size, 128)
         {
         }

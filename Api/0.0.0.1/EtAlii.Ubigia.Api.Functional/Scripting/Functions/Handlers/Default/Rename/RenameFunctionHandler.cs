@@ -88,8 +88,8 @@ namespace EtAlii.Ubigia.Api.Functional
                 throw new ScriptProcessingException("Unable to convert arguments for Rename function processing");
             }
             input.Subscribe(
-                onError: (e) => output.OnError(e),
-                onCompleted: () => output.OnCompleted(),
+                onError: output.OnError,
+                onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
                     var task = Task.Run(async () =>
@@ -112,8 +112,8 @@ namespace EtAlii.Ubigia.Api.Functional
             var newName = (string)(argumentSet.Arguments.Length == 2 ? argumentSet.Arguments[1] : argumentSet.Arguments[0]);
 
             input.Subscribe(
-                onError: (e) => output.OnError(e),
-                onCompleted: () => output.OnCompleted(),
+                onError: output.OnError,
+                onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
                     var task = Task.Run(async () =>

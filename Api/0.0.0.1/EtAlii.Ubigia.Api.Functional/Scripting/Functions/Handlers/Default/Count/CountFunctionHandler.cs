@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional
             int result = 0;
 
             input.Subscribe(
-                onError: (e) => output.OnError(e),
+                onError: output.OnError,
                 onCompleted: () =>
                 {
                     output.OnNext(result);

@@ -86,7 +86,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(3, result.Count());
+            Assert.Equal(3, result.Length);
             dynamic person1 = result.Skip(0).First();
             dynamic person2 = result.Skip(1).First();
             dynamic person3 = result.Skip(2).First();
@@ -136,7 +136,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(9, result.Count());
+            Assert.Equal(9, result.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -180,7 +180,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(12, result.Count());
+            Assert.Equal(12, result.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -225,7 +225,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(16, result.Count());
+            Assert.Equal(16, result.Length);
         }
     }
 }

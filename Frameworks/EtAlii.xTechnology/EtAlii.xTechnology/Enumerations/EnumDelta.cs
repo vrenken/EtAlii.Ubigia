@@ -17,7 +17,7 @@
 
         public override string ToString()
         {
-            return string.Format("Added: {0} - Removed: {1}", Added.ToCommaSeperatedList(), Removed.ToCommaSeperatedList());
+            return $"Added: {Added.ToCommaSeperatedList()} - Removed: {Removed.ToCommaSeperatedList()}";
         }
     }
 }

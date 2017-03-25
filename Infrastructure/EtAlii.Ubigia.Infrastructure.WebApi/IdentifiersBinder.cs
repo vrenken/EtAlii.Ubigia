@@ -40,7 +40,7 @@
 
             var identifiersAsStrings = rawValue.Split(_partSplitCharacters, StringSplitOptions.None);
 
-            bindingContext.Model = identifiersAsStrings.Select(identifierAsString => ToIdentifier(identifierAsString));
+            bindingContext.Model = identifiersAsStrings.Select(ToIdentifier);
             return true;
         }
 

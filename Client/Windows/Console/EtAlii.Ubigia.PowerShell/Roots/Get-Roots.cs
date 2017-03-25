@@ -16,7 +16,7 @@
         {
             IEnumerable<Root> roots = null;
 
-            WriteDebug(String.Format("Getting roots for [{0}]", TargetSpace.Name));
+            WriteDebug($"Getting roots for [{TargetSpace.Name}]");
 
             var task = Task.Run(async () =>
             {

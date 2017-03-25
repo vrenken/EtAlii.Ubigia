@@ -22,7 +22,7 @@
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
                     WriteVerbose(verboseDescription);
-                    WriteDebug(String.Format("Removing account [{0}]", TargetAccount.Name));
+                    WriteDebug($"Removing account [{TargetAccount.Name}]");
                     var task = Task.Run(async () =>
                     {
                         await PowerShellClient.Current.ManagementConnection.Accounts.Remove(TargetAccount.Id);

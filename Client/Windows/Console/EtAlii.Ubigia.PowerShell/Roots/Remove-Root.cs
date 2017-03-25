@@ -12,16 +12,16 @@
 
         protected override void ProcessRecord()
         {
-            var verboseDescription = String.Format("Root '{0}' has been removed.", TargetRoot.Name);
-            var verboseNegativeDescription = String.Format("Root '{0}' has not been removed.", TargetRoot.Name);
-            var verboseWarning = String.Format("Are you sure you want to remove root '{0}'?", TargetRoot.Name);
+            var verboseDescription = $"Root '{TargetRoot.Name}' has been removed.";
+            var verboseNegativeDescription = $"Root '{TargetRoot.Name}' has not been removed.";
+            var verboseWarning = $"Are you sure you want to remove root '{TargetRoot.Name}'?";
             var caption = "Remove root";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))
             {
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
                     WriteVerbose(verboseDescription);
-                    WriteDebug(String.Format("Removing root [{0}]", TargetRoot.Name));
+                    WriteDebug($"Removing root [{TargetRoot.Name}]");
                     var task = Task.Run(async () =>
                     {
                         await PowerShellClient.Current.Fabric.Roots.Remove(TargetRoot.Id);

@@ -37,7 +37,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Skein256Base : SkeinBase
     {
-        public Skein256Base(HashLib.HashSize a_hash_size)
+        protected Skein256Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size, 32)
         {
         }
@@ -612,7 +612,7 @@ namespace HashLib.Crypto.SHA3
     internal abstract class Skein512Base : SkeinBase
     {
 
-        public Skein512Base(HashLib.HashSize a_hash_size)
+        protected Skein512Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size, 64)
         {
         }
@@ -1765,7 +1765,7 @@ namespace HashLib.Crypto.SHA3
         protected ulong m_flags;
         protected readonly ulong[] m_state = new ulong[8];
 
-        public SkeinBase(HashLib.HashSize a_hash_size, int a_block_size)
+        protected SkeinBase(HashLib.HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             Initialize();

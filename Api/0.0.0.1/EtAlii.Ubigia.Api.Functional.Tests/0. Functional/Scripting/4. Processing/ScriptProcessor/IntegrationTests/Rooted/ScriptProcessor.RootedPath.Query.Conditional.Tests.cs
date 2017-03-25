@@ -87,7 +87,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(2, result.Count());
+            Assert.Equal(2, result.Length);
             dynamic first = result.First();
             dynamic second = result.Skip(1).First();
 
@@ -139,7 +139,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(4, result.Count());
+            Assert.Equal(4, result.Length);
             dynamic first = result.First();
             dynamic second = result.Skip(1).First();
             dynamic third = result.Skip(2).First();
@@ -193,7 +193,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(4, result.Count());
+            Assert.Equal(4, result.Length);
             dynamic first = result.First();
             dynamic second = result.Skip(1).First();
             dynamic third = result.Skip(2).First();
@@ -247,7 +247,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(2, result.Count());
+            Assert.Equal(2, result.Length);
             dynamic first = result.First();
             dynamic second = result.Skip(1).First();
 
@@ -300,7 +300,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(2, result.Count());
+            Assert.Equal(2, result.Length);
             dynamic first = result.First();
             dynamic second = result.Skip(1).First();
 

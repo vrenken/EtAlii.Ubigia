@@ -38,7 +38,7 @@ namespace HashLib.Crypto.SHA3
     {
         protected readonly uint[] m_state;
 
-        public SIMDBase(HashLib.HashSize a_hash_size, int a_block_size)
+        protected SIMDBase(HashLib.HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             m_state = new uint[BlockSize / 4];
@@ -237,7 +237,7 @@ namespace HashLib.Crypto.SHA3
 
         #endregion
 
-        public SIMD256Base(HashLib.HashSize a_hash_size)
+        protected SIMD256Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size, 64)
         {
         }
@@ -542,7 +542,7 @@ namespace HashLib.Crypto.SHA3
 
         #endregion
 
-        public SIMD512Base(HashLib.HashSize a_hash_size)
+        protected SIMD512Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size, 128)
         {
         }

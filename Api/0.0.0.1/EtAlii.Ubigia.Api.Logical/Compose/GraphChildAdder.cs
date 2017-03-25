@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var child = related.SingleOrDefault(e => e.Id == childId);
             if (child != null)
             {
-                var message = String.Format("Unable to add child '{0}' to entry: {1}", childId, location);
+                var message = $"Unable to add child '{childId}' to entry: {location}";
                 throw new GraphComposeException(message);
             }
             else
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (entry != null)
             {
-                var message = String.Format("Unable to add child '{0}' to entry: {1}", name, location);
+                var message = $"Unable to add child '{name}' to entry: {location}";
                 throw new GraphComposeException(message);
             }
             else

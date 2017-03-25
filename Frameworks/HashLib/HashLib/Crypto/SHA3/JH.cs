@@ -118,7 +118,7 @@ namespace HashLib.Crypto.SHA3
 
         protected readonly ulong[] m_state = new ulong[16];
 
-        public JHBase(HashSize a_hash_size) :
+        protected JHBase(HashSize a_hash_size) :
             base((int)a_hash_size, 128, 64)
         {
             Initialize();

@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 
         public override string ToString()
         {
-            return String.Format("{0} - {1}", Layer, Id);
+            return $"{Layer} - {Id}";
         }
     }
 }

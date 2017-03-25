@@ -219,7 +219,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(personsAfter);
-            Assert.Equal(3, personsAfter.Count());
+            Assert.Equal(3, personsAfter.Length);
         }
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Function_Id_Path_04()
@@ -254,7 +254,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(personsAfter);
-            Assert.Equal(3, personsAfter.Count());
+            Assert.Equal(3, personsAfter.Length);
         }
 
     }

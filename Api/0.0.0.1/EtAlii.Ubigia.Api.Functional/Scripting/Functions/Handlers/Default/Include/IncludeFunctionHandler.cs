@@ -111,8 +111,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
 
             input.Subscribe(
-                onError: (e) => output.OnError(e),
-                onCompleted: () => output.OnCompleted(),
+                onError: output.OnError,
+                onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
                     var converter = ToIdentifierConverterSelector.Select(o);

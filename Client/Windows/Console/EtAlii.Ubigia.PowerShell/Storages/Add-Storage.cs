@@ -38,14 +38,15 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using storage '{0}' at {1} [{2}]", TargetStorage.Name, TargetStorage.Address, PowerShellClient.Current.Client.AuthenticationToken));
+            WriteDebug(
+                $"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
         }
 
         protected override void ProcessRecord()
         {
             Storage storage = null;
 
-            WriteDebug(String.Format("Adding storage {0}", Name));
+            WriteDebug($"Adding storage {Name}");
 
             var task = Task.Run(async () =>
             {

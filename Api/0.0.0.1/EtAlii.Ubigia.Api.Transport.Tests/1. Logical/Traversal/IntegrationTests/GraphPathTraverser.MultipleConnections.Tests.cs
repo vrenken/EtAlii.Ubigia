@@ -75,7 +75,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Count());
+            Assert.Equal(1, result.Length);
             Assert.Equal(hierarchy[depth - 1], result.First().Type);
         }
 
@@ -116,7 +116,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Count());
+            Assert.Equal(1, result.Length);
             Assert.Equal(hierarchy[depth - 1], result.First().Type);
         }
 
@@ -163,7 +163,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Count());
+            Assert.Equal(0, result.Length);
         }
 
         [Fact]
@@ -204,7 +204,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Count());
+            Assert.Equal(0, result.Length);
         }
 
 
@@ -251,7 +251,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Count());
+            Assert.Equal(1, result.Length);
             Assert.Equal(hierarchy[depth - 2], result.First().Type);
         }
 
@@ -293,7 +293,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Count());
+            Assert.Equal(1, result.Length);
             Assert.Equal(hierarchy[depth - 2], result.First().Type);
         }
 
@@ -341,7 +341,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Count());
+            Assert.Equal(0, result.Length);
         }
 
         [Fact]
@@ -384,7 +384,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Count());
+            Assert.Equal(0, result.Length);
         }
     }
 }

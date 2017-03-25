@@ -61,7 +61,7 @@ namespace HashLibTest
  
             ProgressIndicator pi = new ProgressIndicator("Crypto +4GB Test");
 
-            pi.AddLine(String.Format("Configuration: {0} threads, CPU Load: {1}%", THREADS, TARGET_CPU_LOAD * 100));
+            pi.AddLine($"Configuration: {THREADS} threads, CPU Load: {TARGET_CPU_LOAD * 100}%");
 
             CancellationTokenSource src = new CancellationTokenSource();
             
@@ -123,8 +123,7 @@ namespace HashLibTest
             {
                 IHash hash = (IHash)Activator.CreateInstance(ht);
 
-                pi.AddLine(String.Format("{0} / {1} - {2} - {3}%", Hashes.CryptoAll.IndexOf(ht) + 1,
-                    Hashes.CryptoAll.Count, hash.Name, 0));
+                pi.AddLine($"{Hashes.CryptoAll.IndexOf(ht) + 1} / {Hashes.CryptoAll.Count} - {hash.Name} - {0}%");
 
                 TestData test_data = TestData.Load(hash);
 
@@ -159,8 +158,8 @@ namespace HashLibTest
 
                         if (DateTime.Now - progress > TimeSpan.FromSeconds(5))
                         {
-                            pi.AddLine(String.Format("{0} / {1} / {2} - {3} - {4}%", Hashes.CryptoAll.IndexOf(ht) + 1,
-                                test_data_index, Hashes.CryptoAll.Count, hash.Name, j * 100 / repeats));
+                            pi.AddLine(
+                                $"{Hashes.CryptoAll.IndexOf(ht) + 1} / {test_data_index} / {Hashes.CryptoAll.Count} - {hash.Name} - {j * 100 / repeats}%");
                             progress = DateTime.Now;
                         }
                     }
@@ -169,8 +168,8 @@ namespace HashLibTest
 
                     Assert.Equal(expected_result, Converters.ConvertBytesToHexString(result.GetBytes()));//, hash.ToString());
 
-                    pi.AddLine(String.Format("{0} / {1} / {2} - {3} - {4}", Hashes.CryptoAll.IndexOf(ht) + 1,
-                        test_data_index, Hashes.CryptoAll.Count, hash.Name, "OK"));
+                    pi.AddLine(
+                        $"{Hashes.CryptoAll.IndexOf(ht) + 1} / {test_data_index} / {Hashes.CryptoAll.Count} - {hash.Name} - {"OK"}");
                 }
             });
 

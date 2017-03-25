@@ -36,7 +36,7 @@
             var script = result.Script;
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
-            Assert.Equal(8, ((AbsolutePathSubject)sequence.Parts.ElementAt(1)).Parts.Count());
+            Assert.Equal(8, ((AbsolutePathSubject)sequence.Parts.ElementAt(1)).Parts.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -86,9 +86,9 @@
             var script = result.Script;
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var firstSequence = script.Sequences.ElementAt(0);
-            Assert.Equal(4, firstSequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Count());
+            Assert.Equal(4, firstSequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Length);
             var secondSequence = script.Sequences.ElementAt(1);
-            Assert.Equal(4, secondSequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Count());
+            Assert.Equal(4, secondSequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First().Parts.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
