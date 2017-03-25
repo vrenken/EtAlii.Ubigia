@@ -10,7 +10,7 @@ namespace HashLib
     {
         public static int BUFFER_SIZE = 64 * 1024;
 
-        public Hash(int a_hash_size, int a_block_size)
+        protected Hash(int a_hash_size, int a_block_size)
         {
             Debug.Assert((a_block_size > 0) || (a_block_size == -1));
             Debug.Assert(a_hash_size > 0);

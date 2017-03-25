@@ -17,7 +17,7 @@
         {
             IEnumerable<Space> spaces = null;
 
-            WriteDebug(String.Format("Getting spaces for [{0}]", TargetAccount.Name));
+            WriteDebug($"Getting spaces for [{TargetAccount.Name}]");
 
             var task = Task.Run(async () =>
             {

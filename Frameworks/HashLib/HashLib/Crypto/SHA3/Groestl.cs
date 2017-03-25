@@ -561,7 +561,7 @@ namespace HashLib.Crypto.SHA3
 
         protected readonly ulong[] m_state;
 
-        public GroestlBase(HashSize a_hash_size, int a_block_size)
+        protected GroestlBase(HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             m_state = new ulong[BlockSize / 8];
@@ -610,7 +610,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Groestl256Base : GroestlBase
     {
-        public Groestl256Base(HashSize a_hash_size)
+        protected Groestl256Base(HashSize a_hash_size)
             : base(a_hash_size, 64)
         {
         }
@@ -3518,7 +3518,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class Groestl512Base : GroestlBase
     {
-        public Groestl512Base(HashSize a_hash_size)
+        protected Groestl512Base(HashSize a_hash_size)
             : base(a_hash_size, 128)
         {
         }

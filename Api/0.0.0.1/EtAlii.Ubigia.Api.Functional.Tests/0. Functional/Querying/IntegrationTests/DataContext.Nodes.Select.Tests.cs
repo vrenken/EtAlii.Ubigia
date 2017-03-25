@@ -123,7 +123,7 @@
         public void Linq_Nodes_Select_Any_With_Multiple_Items_Fail()
         {
             // Arrange.
-            var path = String.Format("{0}/", _countryPath);
+            var path = $"{_countryPath}/";
             var items = _context.Nodes.Select(path);
 
             // Act.

@@ -74,7 +74,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(3, result.Count());
+            Assert.Equal(3, result.Length);
             dynamic person1 = result.Skip(0).First();
             dynamic person2 = result.Skip(1).First();
             dynamic person3 = result.Skip(2).First();

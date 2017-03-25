@@ -44,7 +44,7 @@
             // Arrange.
             var pipeline = new Pipeline<string, bool>()
             .StartWith(AddPrefix)
-            .ContinueWith(s => ToUppercase(s))
+            .ContinueWith(ToUppercase)
             .ContinueWith(s => s.Length)
             .EndWith(new SendToRemoteSystem());
             
@@ -80,7 +80,7 @@
                 .StartWith(s => s.ToUpper())
                 .ContinueWith(s2 => s2.ToCharArray())
                 .ContinueWith(c => String.Join("-", c))
-                .EndWith(s => Console.WriteLine(s));
+                .EndWith(Console.WriteLine);
 
             // Assert.
         }
@@ -122,7 +122,7 @@
                 .ContinueWith(s => s.ToUpper())
                 .ContinueWith(s2 => s2.ToCharArray())
                 .ContinueWith(c => String.Join("-", c))
-                .EndWith(s => Console.WriteLine(s));
+                .EndWith(Console.WriteLine);
 
             // Assert.
         }
@@ -144,7 +144,7 @@
                 .ContinueWith(firstPipeline)
                 .ContinueWith(s2 => s2.ToCharArray())
                 .ContinueWith(c => String.Join("-", c))
-                .EndWith(s => Console.WriteLine(s));
+                .EndWith(Console.WriteLine);
 
             // Assert.
         }

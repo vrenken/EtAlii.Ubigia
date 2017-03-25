@@ -135,7 +135,7 @@ namespace HashLib.Crypto.SHA3
         private readonly uint[] m_B = new uint[16];
         private readonly uint[] m_C = new uint[16];
 
-        public Shabal(HashLib.HashSize a_hash_size)
+        protected Shabal(HashLib.HashSize a_hash_size)
             : base((int)a_hash_size, 64)
         {
             Initialize();

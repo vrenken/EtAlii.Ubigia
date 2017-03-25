@@ -53,7 +53,7 @@
             _nodeValidator.EnsureSuccess(node, Id);
             var beforeText = GetMatch(node, _beforeTextId);
             var afterText = GetMatch(node, _afterTextId);
-            var pattern = String.Format("{0}*{1}", beforeText, afterText);
+            var pattern = $"{beforeText}*{afterText}";
             return new WildcardPathSubjectPart(pattern);
         }
 

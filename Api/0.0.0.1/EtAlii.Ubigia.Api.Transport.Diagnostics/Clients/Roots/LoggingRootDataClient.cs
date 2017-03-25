@@ -30,7 +30,7 @@
 
         public async Task<Root> Add(string name)
         {
-            var message = String.Format("Adding root (Name: {0})", name);
+            var message = $"Adding root (Name: {name})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -44,7 +44,7 @@
 
         public async Task Remove(Guid id)
         {
-            var message = String.Format("Removing root (Id: {0})", id);
+            var message = $"Removing root (Id: {id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -56,7 +56,7 @@
 
         public async Task<Root> Change(Guid rootId, string rootName)
         {
-            var message = String.Format("Changing root (Id: {0} Name: {1})", rootId, rootName);
+            var message = $"Changing root (Id: {rootId} Name: {rootName})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -70,7 +70,7 @@
 
         public async Task<Root> Get(string rootName)
         {
-            var message = String.Format("Getting root (Name: {0})", rootName);
+            var message = $"Getting root (Name: {rootName})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -84,7 +84,7 @@
 
         public async Task<Root> Get(Guid rootId)
         {
-            var message = String.Format("Getting root (Id: {0})", rootId);
+            var message = $"Getting root (Id: {rootId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 

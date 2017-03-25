@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Client.Windows
         public bool MountAsStorage { get { return GetValue(ref _mountAsStorage, true); } set { SetProperty(ref _mountAsStorage, value); } }
         private Nullable<bool> _mountAsStorage;
 
-        public string Name { get { return GetValue(ref _name, String.Format("Unnamed {0}", Settings.StorageNaming)); } set { SetProperty(ref _name, value); } }
+        public string Name { get { return GetValue(ref _name, $"Unnamed {Settings.StorageNaming}"); } set { SetProperty(ref _name, value); } }
         private string _name;
 
         public Guid Id { get; private set; }
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Client.Windows
         private Nullable<double> _usedCapacity;
 
         public StorageSettings(string id)
-            : base(String.Format("{0}\\{1}", Settings.StoragesNaming, id))
+            : base($"{Settings.StoragesNaming}\\{id}")
         {
             Id = new Guid(id);
         }

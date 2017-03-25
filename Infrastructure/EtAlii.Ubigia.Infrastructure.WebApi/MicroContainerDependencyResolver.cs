@@ -21,7 +21,7 @@
                 .Register(type => type == typeof(IdentifierBinder), type => new IdentifierBinder())
                 .Register(type => type == typeof(IdentifiersBinder), type => new IdentifiersBinder())
                 // And finally usage of the instances from the container.
-                .Register(type => type.Assembly == typeof(MicroContainerDependencyResolver).Assembly, type => container.GetInstance(type))
+                .Register(type => type.Assembly == typeof(MicroContainerDependencyResolver).Assembly, container.GetInstance)
                 .Register(type => true, type => null);
         }
 

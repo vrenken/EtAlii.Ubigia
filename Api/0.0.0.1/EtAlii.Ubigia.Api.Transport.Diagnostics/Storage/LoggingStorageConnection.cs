@@ -32,7 +32,7 @@
         {
             _address = _connection.Configuration.Address;
 
-            var message = String.Format("Opening storage connection (Address: {0}", _address);
+            var message = $"Opening storage connection (Address: {_address}";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -44,7 +44,7 @@
 
         public async Task Close()
         {
-            var message = String.Format("Closing storage connection (Address: {0}", _address);
+            var message = $"Closing storage connection (Address: {_address}";
             _logger.Info(message);
             var start = Environment.TickCount;
 

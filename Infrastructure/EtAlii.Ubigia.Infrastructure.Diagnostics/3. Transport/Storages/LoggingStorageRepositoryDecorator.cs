@@ -36,7 +36,7 @@
 
         public Storage Get(string name)
         {
-            var message = String.Format("Getting storage (Name: {0})", name);
+            var message = $"Getting storage (Name: {name})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -63,7 +63,7 @@
 
         public Storage Get(Guid storageId)
         {
-            var message = String.Format("Getting storage (Id: {0})", storageId);
+            var message = $"Getting storage (Id: {storageId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -77,7 +77,7 @@
 
         public Storage Add(Storage storage)
         {
-            var message = String.Format("Adding storage (Id: {0})", storage.Id);
+            var message = $"Adding storage (Id: {storage.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -91,7 +91,7 @@
 
         public void Remove(Guid storageId)
         {
-            var message = String.Format("Removing storage (Id: {0})", storageId);
+            var message = $"Removing storage (Id: {storageId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -103,7 +103,7 @@
 
         public void Remove(Storage storage)
         {
-            var message = String.Format("Removing storage (Id: {0})", storage.Id);
+            var message = $"Removing storage (Id: {storage.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -115,7 +115,7 @@
 
         public Storage Update(Guid storageId, Storage storage)
         {
-            var message = String.Format("Updating storage (Id: {0})", storageId);
+            var message = $"Updating storage (Id: {storageId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 

@@ -83,7 +83,7 @@
 
             if (respondWithChallenge)
             {
-                actionContext.Response.Headers.Add("WWW-Authenticate", string.Format("Basic realm=\"{0}\"", host));
+                actionContext.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{host}\"");
             }
         }
 

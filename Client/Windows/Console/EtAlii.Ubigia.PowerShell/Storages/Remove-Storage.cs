@@ -31,16 +31,16 @@
             });
             task.Wait();
 
-            var verboseDescription = String.Format("Storage '{0}' has been removed.", storage.Name);
-            var verboseNegativeDescription = String.Format("Storage '{0}' has not been removed.", storage.Name);
-            var verboseWarning = String.Format("Are you sure you want to remove storage '{0}'?", storage.Name);
+            var verboseDescription = $"Storage '{storage.Name}' has been removed.";
+            var verboseNegativeDescription = $"Storage '{storage.Name}' has not been removed.";
+            var verboseWarning = $"Are you sure you want to remove storage '{storage.Name}'?";
             var caption = "Remove storage";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))
             {
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
                     WriteVerbose(verboseDescription);
-                    WriteDebug(String.Format("Removing storage [{0}]", storage.Name));
+                    WriteDebug($"Removing storage [{storage.Name}]");
                     task = Task.Run(async () =>
                     {
                         await PowerShellClient.Current.ManagementConnection.Storages.Remove(storage.Id);

@@ -36,11 +36,12 @@
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            var message = String.Format("Opening data connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName);
+            var message = $"Opening data connection (Address: {address} Account: {accountName} Space: {spaceName})";
             _logger.Info(message);
             var start = Environment.TickCount;
             await _decoree.Open();
-            message = String.Format("Opened data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            message =
+                $"Opened data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
         }
 
@@ -50,11 +51,12 @@
             var accountName = _decoree.Configuration.AccountName;
             var spaceName = _decoree.Configuration.Space;
 
-            var message = String.Format("Closing data connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName);
+            var message = $"Closing data connection (Address: {address} Account: {accountName} Space: {spaceName})";
             _logger.Info(message);
             var start = Environment.TickCount;
             await _decoree.Close();
-            message = String.Format("Closed data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            message =
+                $"Closed data connection (Address: {address} Account: {accountName} Space: {spaceName} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
         }
     }

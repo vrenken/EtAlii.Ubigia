@@ -43,7 +43,8 @@
             switch (e.PropertyName)
             {
                 case "Configuration":
-                    _remoteStart = String.Format("\"{0}\"", String.Join("\"/\"", Configuration.RemoteName.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries)));
+                    _remoteStart =
+                        $"\"{String.Join("\"/\"", Configuration.RemoteName.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries))}\"";
                     _localStart = Configuration.LocalFolder;
                     break;
             }

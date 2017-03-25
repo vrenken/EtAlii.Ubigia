@@ -18,7 +18,7 @@
             }
             else
             {
-                string message = String.Format("Unable to authenticate on the specified storage ({0})", connection.Configuration.Address);
+                string message = $"Unable to authenticate on the specified storage ({connection.Configuration.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
@@ -33,7 +33,7 @@
             }
             else
             {
-                string message = String.Format("Unable to authenticate on the specified storage ({0})", connection.Configuration.Address);
+                string message = $"Unable to authenticate on the specified storage ({connection.Configuration.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }

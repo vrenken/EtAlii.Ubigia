@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.PowerShell.Spaces
                         .Use(connection);
                     PowerShellClient.Current.Fabric = new FabricContextFactory().Create(fabricContextConfiguration);
                     space = PowerShellClient.Current.Fabric.Connection.Space;
-                    WriteDebug(String.Format("Using space '{0}' at {1}", space.Name, TargetStorage.Address));
+                    WriteDebug($"Using space '{space.Name}' at {TargetStorage.Address}");
                 }
 
             }
@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.PowerShell.Spaces
                 ThrowTerminatingError(new ErrorRecord(e, ErrorId.AuthenticationFailed, ErrorCategory.AuthenticationError, TargetStorage.Address));
             }
 
-            WriteDebug(String.Format("Selecting space [{0}]", space != null ? space.Name : "NONE"));
+            WriteDebug($"Selecting space [{(space != null ? space.Name : "NONE")}]");
 
             StorageCmdlet.Current = TargetStorage;
             AccountCmdlet.Current = TargetAccount;

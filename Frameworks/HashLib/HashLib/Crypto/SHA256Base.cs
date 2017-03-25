@@ -20,7 +20,7 @@
 
         #endregion
 
-        public SHA256Base(int a_hash_size)
+        protected SHA256Base(int a_hash_size)
             : base(a_hash_size, 64)
         {
             Initialize();

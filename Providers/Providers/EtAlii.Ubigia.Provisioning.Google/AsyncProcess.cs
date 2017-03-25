@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         private static readonly object _lockObject = new object();
 
-        public AsyncProcess()
+        protected AsyncProcess()
         {
             _events = new WaitHandle[]
             {

@@ -34,7 +34,7 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoSpace, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using space [{0}]", TargetSpace != null ? TargetSpace.Name : "NONE"));
+            WriteDebug($"Using space [{(TargetSpace != null ? TargetSpace.Name : "NONE")}]");
         }
     }
 }

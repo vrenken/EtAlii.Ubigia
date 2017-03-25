@@ -22,7 +22,7 @@
         {
             if(this == Empty || Paths.Length == 0)
             {
-                return String.Format("{0}.Empty", GetType().Name);
+                return $"{GetType().Name}.Empty";
             }
             else
             {

@@ -59,7 +59,7 @@
             var pipeline = new Pipeline<int, string>()
                 .StartWith(new IntegerToArrayQueryHandler())
                 .ContinueWith(new IntegerArrayToIntQueryHandler())
-                .EndWith(i => String.Format("-{0}-", i));
+                .EndWith(i => $"-{i}-");
 
             // Act.
             var result = pipeline.Process(3);

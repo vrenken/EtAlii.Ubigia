@@ -12,7 +12,7 @@ namespace EtAlii.xTechnology.Tests
 
         public string Handle(IntegersToStringQuery query)
         {
-            return String.Format("{0}-{1}", query.Integer1, query.Integer2);
+            return $"{query.Integer1}-{query.Integer2}";
         }
     }
 }

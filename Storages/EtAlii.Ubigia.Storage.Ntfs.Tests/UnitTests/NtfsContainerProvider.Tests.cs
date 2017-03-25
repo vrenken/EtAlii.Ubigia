@@ -158,7 +158,7 @@
 
             // Assert.
             Assert.NotNull(containerId);
-            Assert.Equal(String.Format("{0}.Empty", typeof(ContainerIdentifier).Name), containerId.ToString());
+            Assert.Equal($"{typeof(ContainerIdentifier).Name}.Empty", containerId.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

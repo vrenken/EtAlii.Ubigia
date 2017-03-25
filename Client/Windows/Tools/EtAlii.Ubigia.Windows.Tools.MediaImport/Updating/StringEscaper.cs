@@ -8,7 +8,7 @@
     {
         public string Escape(string item)
         {
-            return String.Format("\"{0}\"", item);
+            return $"\"{item}\"";
         }
 
         public IEnumerable<string> Escape(IEnumerable<string> items)

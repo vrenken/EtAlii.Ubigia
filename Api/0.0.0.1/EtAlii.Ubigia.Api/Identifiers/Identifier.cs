@@ -38,7 +38,7 @@
         {
             if(this == Empty)
             {
-                return String.Format("{0}.Empty", GetType().Name);
+                return $"{GetType().Name}.Empty";
             }
             else
             {
@@ -69,7 +69,7 @@
 
         public string ToDotSeparatedString()
         {
-            return String.Format("{0}.{1}.{2}.{3}.{4}.{5}", Storage, Account, Space, Era, Period, Moment);
+            return $"{Storage}.{Account}.{Space}.{Era}.{Period}.{Moment}";
         }
 
         Guid IEditableIdentifier.Storage

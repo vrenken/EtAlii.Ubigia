@@ -44,7 +44,7 @@
             }
             catch (Exception e)
             {
-                var message = String.Format("Unable to process query path '{0}'", pathSubject);
+                var message = $"Unable to process query path '{pathSubject}'";
                 throw new ScriptProcessingException(message, e);
             }
         }

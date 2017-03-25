@@ -32,10 +32,12 @@
             var localStartParts = localStart.Split('\\');
 
             var localRelativeParts = localParts
-                .Skip(localStartParts.Count())
+                .Skip(localStartParts.Length)
                 .ToArray();
 
-            var remotePath = localRelativeParts.Any() ? String.Format("{0}/", String.Join("/", _stringEscaper.Escape(localRelativeParts))) : String.Empty;
+            var remotePath = localRelativeParts.Any() ?
+                $"{String.Join("/", _stringEscaper.Escape(localRelativeParts))}/"
+                : String.Empty;
 
             DynamicNode[] remoteItems = null;
             var task = Task.Run(async () =>

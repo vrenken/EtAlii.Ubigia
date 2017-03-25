@@ -31,7 +31,7 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoEntry, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using entry [{0}]", TargetEntry != null ? TargetEntry.Id.ToString() : "NONE"));
+            WriteDebug($"Using entry [{(TargetEntry != null ? TargetEntry.Id.ToString() : "NONE")}]");
         }
     }
 }

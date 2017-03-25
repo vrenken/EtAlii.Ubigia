@@ -38,7 +38,7 @@ namespace HashLib.Crypto.SHA3
     {
         protected bool m_nullt;
 
-        public BlakeBase(HashSize a_hash_size, int a_block_size)
+        protected BlakeBase(HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             Initialize();
@@ -69,7 +69,7 @@ namespace HashLib.Crypto.SHA3
 
         private readonly uint[] m_state = new uint[8];
 
-        public Blake256Base(HashSize a_hash_size)
+        protected Blake256Base(HashSize a_hash_size)
             : base(a_hash_size, 64)
         {
         }
@@ -1238,7 +1238,7 @@ namespace HashLib.Crypto.SHA3
 
         private readonly ulong[] m_state = new ulong[8];
 
-        public Blake512Base(HashSize a_hash_size)
+        protected Blake512Base(HashSize a_hash_size)
             : base(a_hash_size, 128)
         {
         }

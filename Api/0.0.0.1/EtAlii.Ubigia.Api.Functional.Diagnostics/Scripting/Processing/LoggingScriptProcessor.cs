@@ -26,7 +26,8 @@
 
             var result = _processor.Process(script);
 
-            message = String.Format("Processed script (Duration: {0}ms)", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            message =
+                $"Processed script (Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
             return result;

@@ -36,7 +36,7 @@ namespace HashLib.Crypto.SHA3
 
     internal abstract class BlueMidnightWishBase : BlockHash, ICryptoNotBuildIn
     {
-        public BlueMidnightWishBase(int a_block_size, HashSize a_hash_size)
+        protected BlueMidnightWishBase(int a_block_size, HashSize a_hash_size)
             : base((int)a_hash_size, a_block_size)
         {
         }
@@ -92,7 +92,7 @@ namespace HashLib.Crypto.SHA3
 
         private readonly uint[] m_state = new uint[32];
 
-        public BlueMidnightWish256Base(HashSize a_hash_size)
+        protected BlueMidnightWish256Base(HashSize a_hash_size)
             : base(64, a_hash_size)
         {
             Initialize();
@@ -874,7 +874,7 @@ namespace HashLib.Crypto.SHA3
 
         private readonly ulong[] m_state = new ulong[32];
 
-        public BlueMidnightWish512Base(HashSize a_hash_size)
+        protected BlueMidnightWish512Base(HashSize a_hash_size)
             : base(128, a_hash_size)
         {
             Initialize();

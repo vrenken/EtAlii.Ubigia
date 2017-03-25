@@ -41,7 +41,7 @@
                     await PowerShellClient.Current.OpenManagementConnection(Address, AccountName, Password);
                 });
                 task.Wait();
-                WriteDebug(String.Format("Using storage at {0} [{1}]", Address, PowerShellClient.Current.Client.AuthenticationToken));
+                WriteDebug($"Using storage at {Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
                 storage = PowerShellClient.Current.ManagementConnection.Storage;
             }
             catch (Exception e)
@@ -50,7 +50,7 @@
                 ThrowTerminatingError(new ErrorRecord(e, ErrorId.AuthenticationFailed, ErrorCategory.AuthenticationError, Address));
             }
 
-            WriteDebug(String.Format("Selecting storage [{0}]", storage != null ? storage.Name : "NONE"));
+            WriteDebug($"Selecting storage [{(storage != null ? storage.Name : "NONE")}]");
 
             Current = storage;
             WriteObject(storage);

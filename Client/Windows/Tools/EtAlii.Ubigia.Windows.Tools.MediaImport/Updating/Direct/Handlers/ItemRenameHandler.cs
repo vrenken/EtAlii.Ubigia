@@ -34,12 +34,12 @@
 
             var sourceRemoteItem = _stringEscaper.Escape(sourceLast);
             var sourceRemotePath = sourceRest.Any()
-                ? String.Format("/{0}", String.Join("/", _stringEscaper.Escape(sourceRest)))
+                ? $"/{String.Join("/", _stringEscaper.Escape(sourceRest))}"
                 : String.Empty;
 
             var targetRemoteItem = _stringEscaper.Escape(targetLast);
             var targetRemotePath = targetRest.Any()
-                ? String.Format("/{0}", String.Join("/", _stringEscaper.Escape(targetRest)))
+                ? $"/{String.Join("/", _stringEscaper.Escape(targetRest))}"
                 : String.Empty;
 
             // TODO: This is not a correct rename!

@@ -103,8 +103,8 @@
             // Assert.
             Assert.NotNull(personsBefore);
             Assert.NotNull(personsAfter);
-            Assert.Equal(3, personsBefore.Count());
-            Assert.Equal(3, personsAfter.Count());
+            Assert.Equal(3, personsBefore.Length);
+            Assert.Equal(3, personsAfter.Length);
         }
 
 
@@ -187,8 +187,8 @@
             // Assert.
             Assert.NotNull(firstResult);
             Assert.NotNull(secondResult);
-            Assert.Equal(3, firstResult.Count());
-            Assert.Equal(3, secondResult.Count());
+            Assert.Equal(3, firstResult.Length);
+            Assert.Equal(3, secondResult.Length);
             Assert.Equal(firstResult[0].Id, secondResult[0].Id);
             Assert.Equal(firstResult[1].Id, secondResult[1].Id);
             Assert.Equal(firstResult[2].Id, secondResult[2].Id);
@@ -234,8 +234,8 @@
             // Assert.
             Assert.NotNull(firstResult);
             Assert.NotNull(secondResult);
-            Assert.Equal(3, firstResult.Count());
-            Assert.Equal(3, secondResult.Count());
+            Assert.Equal(3, firstResult.Length);
+            Assert.Equal(3, secondResult.Length);
             Assert.Equal(firstResult[0].Id, secondResult[0].Id);
             Assert.Equal(firstResult[1].Id, secondResult[1].Id);
             Assert.Equal(firstResult[2].Id, secondResult[2].Id);
@@ -280,8 +280,8 @@
             // Assert.
             Assert.NotNull(firstResult);
             Assert.NotNull(secondResult);
-            Assert.Equal(3, firstResult.Count());//, "First result is not correct");
-            Assert.Equal(3, secondResult.Count());//, "Second result is not correct");
+            Assert.Equal(3, firstResult.Length);//, "First result is not correct");
+            Assert.Equal(3, secondResult.Length);//, "Second result is not correct");
             Assert.Equal(firstResult[0].Id, secondResult[0]);
             Assert.Equal(firstResult[1].Id, secondResult[1]);
             Assert.Equal(firstResult[2].Id, secondResult[2]);
@@ -322,7 +322,7 @@
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
-            Assert.Equal(5, result.Count());
+            Assert.Equal(5, result.Length);
             Assert.Equal("Jöhn", result.Skip(0).First().ToString());
             Assert.Equal("Jóhn", result.Skip(1).First().ToString());
             Assert.Equal("Jähn", result.Skip(2).First().ToString());

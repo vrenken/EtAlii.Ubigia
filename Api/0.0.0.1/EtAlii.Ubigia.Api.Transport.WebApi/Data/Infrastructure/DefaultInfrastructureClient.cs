@@ -120,11 +120,11 @@
                 switch (result.StatusCode)
                 {
                     case HttpStatusCode.BadRequest:
-                        message = String.Format("Unable to {0} data on the client: {1}", method, error);
+                        message = $"Unable to {method} data on the client: {error}";
                         e = new InvalidInfrastructureOperationException(message);
                         break;
                     case HttpStatusCode.Unauthorized:
-                        message = String.Format("Unauthorized to {0} data on the client: {1}", method, error);
+                        message = $"Unauthorized to {method} data on the client: {error}";
                         e = new UnauthorizedInfrastructureOperationException(message);
                         break;
                     default:

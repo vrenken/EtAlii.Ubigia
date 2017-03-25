@@ -30,7 +30,7 @@
             });
             task.Wait();
 
-            var verboseDescription = String.Format("Account '{0}' has been updated.", Account.Name);
+            var verboseDescription = $"Account '{Account.Name}' has been updated.";
             WriteVerbose(verboseDescription);
         }
     }

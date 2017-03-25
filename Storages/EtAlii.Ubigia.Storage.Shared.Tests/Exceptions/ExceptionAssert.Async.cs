@@ -26,7 +26,7 @@
             }
 
             Assert.False(typeof(T) == new Exception().GetType(), "Expected exception but no exception was thrown.");
-            throw new InvalidOperationException(string.Format("Expected exception of type {0} but no exception was thrown.", typeof(T)));
+            throw new InvalidOperationException($"Expected exception of type {typeof(T)} but no exception was thrown.");
         }
 
         #region Overloaded methods

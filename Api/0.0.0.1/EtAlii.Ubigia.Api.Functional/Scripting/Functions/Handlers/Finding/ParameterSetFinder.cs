@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (parameterSet == null)
             {
-                var message = String.Format("No function found with name '{0}' and parameters [{1}]", functionSubject.Name, argumentSet);
+                var message = $"No function found with name '{functionSubject.Name}' and parameters [{argumentSet}]";
                 throw new ScriptProcessingException(message);
             }
 
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .ToArray();
             if (!matchingParameterSets.Any())
             {
-                var message = String.Format("No function '{0}' found with {1} parameters", functionSubject.Name, parameterCount);
+                var message = $"No function '{functionSubject.Name}' found with {parameterCount} parameters";
                 throw new ScriptProcessingException(message);
             }
 
@@ -55,7 +55,8 @@ namespace EtAlii.Ubigia.Api.Functional
                 .ToArray();
             if (!matchingParameterSets.Any())
             {
-                var message = String.Format("No function '{0}' found with {1} parameters that also accepts input", functionSubject.Name, parameterCount);
+                var message =
+                    $"No function '{functionSubject.Name}' found with {parameterCount} parameters that also accepts input";
                 throw new ScriptProcessingException(message);
             }
 

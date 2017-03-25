@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
             Assert.IsType<VariableSubject>(sequence.Parts.ElementAt(0));
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
             Assert.IsType<StringConstantSubject>(sequence.Parts.ElementAt(2));
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 5);
+            Assert.True(sequence.Parts.Length == 5);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.ElementAt(0));
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
             Assert.IsType<VariableSubject>(sequence.Parts.ElementAt(2));
@@ -147,7 +147,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.ElementAt(0));
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
             Assert.IsType<VariableSubject>(sequence.Parts.ElementAt(2));
@@ -180,7 +180,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 5);
+            Assert.True(sequence.Parts.Length == 5);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.ElementAt(0));
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
             Assert.IsType<VariableSubject>(sequence.Parts.ElementAt(2));

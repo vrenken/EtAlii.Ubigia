@@ -235,7 +235,7 @@ namespace HashLib.Crypto.SHA3
             return Converters.ConvertUIntsToBytes(m_state, 0, HashSize / 4);
         }
 
-        public SHAvite3Base(HashLib.HashSize a_hash_size, int a_block_size)
+        protected SHAvite3Base(HashLib.HashSize a_hash_size, int a_block_size)
             : base((int)a_hash_size, a_block_size)
         {
             m_state = new uint[BlockSize / 4];
@@ -796,7 +796,7 @@ namespace HashLib.Crypto.SHA3
             }
         }
 
-        public SHAvite3_256Base(HashLib.HashSize a_hash_size)
+        protected SHAvite3_256Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size, 64)
         {
             Initialize();
@@ -2315,7 +2315,7 @@ namespace HashLib.Crypto.SHA3
             }
         }
 
-        public SHAvite3_512Base(HashLib.HashSize a_hash_size)
+        protected SHAvite3_512Base(HashLib.HashSize a_hash_size)
             : base(a_hash_size, 128)
         {
             Initialize();

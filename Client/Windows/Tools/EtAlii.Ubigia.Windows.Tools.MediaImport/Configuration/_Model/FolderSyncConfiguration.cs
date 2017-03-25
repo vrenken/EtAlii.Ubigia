@@ -38,7 +38,7 @@
         private void SerializeToSettings()
         {
             var foldersAsStrings = _folderSyncConfigurations
-                .Select(f => String.Format("{0}|{1}", f.LocalFolder, f.RemoteName))
+                .Select(f => $"{f.LocalFolder}|{f.RemoteName}")
                 .ToArray();
             Settings.Default.Folders.Clear();
             Settings.Default.Folders.AddRange(foldersAsStrings);

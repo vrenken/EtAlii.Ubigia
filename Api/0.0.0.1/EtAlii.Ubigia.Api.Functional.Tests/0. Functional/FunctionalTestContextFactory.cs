@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             container.Register<IFunctionalTestContext, FunctionalTestContext>();
             container.Register(() => new LogicalTestContextFactory().Create());
-            container.Register(() => TestDiagnostics.Create());
+            container.Register(TestDiagnostics.Create);
             return container.GetInstance<IFunctionalTestContext>();
         }
     }

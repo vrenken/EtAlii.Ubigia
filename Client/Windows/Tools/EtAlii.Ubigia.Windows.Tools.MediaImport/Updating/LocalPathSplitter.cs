@@ -10,10 +10,10 @@
             var localParts = path.Split('\\');
 
             var localRelativeParts = localParts
-                .Skip(localStartParts.Count())
+                .Skip(localStartParts.Length)
                 .ToArray();
 
-            var relativePartCount = localRelativeParts.Count();
+            var relativePartCount = localRelativeParts.Length;
 
             last = localRelativeParts.Last();
             rest = localRelativeParts

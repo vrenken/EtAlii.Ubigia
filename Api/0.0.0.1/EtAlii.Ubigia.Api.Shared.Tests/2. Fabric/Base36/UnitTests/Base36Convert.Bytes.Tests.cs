@@ -216,7 +216,8 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalMilliseconds < 50, String.Format("Calling Base36.ToString {0} took {1} seconds", iterations, TimeSpan.FromTicks(duration).TotalSeconds));
+            Assert.True(TimeSpan.FromTicks(duration).TotalMilliseconds < 50,
+                $"Calling Base36.ToString {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
             //for (int i = 0; i < iterations; i++)
             //{
@@ -254,7 +255,8 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 21f, String.Format("Calling Base36.ToString {0} took {1} seconds", iterations, TimeSpan.FromTicks(duration).TotalSeconds));
+            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 21f,
+                $"Calling Base36.ToString {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
             //for (int i = 0; i < iterations; i++)
             //{
@@ -302,7 +304,8 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 2, String.Format("Calling Base36.ToBytes {0} took {1} seconds", iterations, TimeSpan.FromTicks(duration).TotalSeconds));
+            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 2,
+                $"Calling Base36.ToBytes {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
             //for (int i = 0; i < iterations; i++)
             //{
@@ -343,7 +346,8 @@
             }
 
             // Assert.
-            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 35, String.Format("Calling Base36.ToBytes {0} took {1} seconds", iterations, TimeSpan.FromTicks(duration).TotalSeconds));
+            Assert.True(TimeSpan.FromTicks(duration).TotalSeconds < 35,
+                $"Calling Base36.ToBytes {iterations} took {TimeSpan.FromTicks(duration).TotalSeconds} seconds");
 
             //for (int i = 0; i < iterations; i++)
             //{

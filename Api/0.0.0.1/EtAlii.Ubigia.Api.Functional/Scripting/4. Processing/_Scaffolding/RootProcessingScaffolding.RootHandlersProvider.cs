@@ -24,7 +24,7 @@
                 .ToArray();
             if (doubles.Any())
             {
-                var message = String.Format("Double registered root handler mappers detected: {0}", String.Join(", ", doubles));
+                var message = $"Double registered root handler mappers detected: {String.Join(", ", doubles)}";
                 throw new ScriptParserException(message);
             }
 

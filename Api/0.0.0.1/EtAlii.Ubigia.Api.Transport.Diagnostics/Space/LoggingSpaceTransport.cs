@@ -26,7 +26,7 @@
         {
             _address = address;
 
-            var message = String.Format("Initializing transport (Address: {0})", _address);
+            var message = $"Initializing transport (Address: {_address})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -41,7 +41,7 @@
         {
             _address = address;
 
-            var message = String.Format("Starting transport (Address: {0})", _address);
+            var message = $"Starting transport (Address: {_address})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -54,7 +54,7 @@
 
         public async Task Stop(ISpaceConnection spaceConnection)
         {
-            var message = String.Format("Stopping transport (Address: {0})", _address);
+            var message = $"Stopping transport (Address: {_address})";
             _logger.Info(message);
             var start = Environment.TickCount;
 

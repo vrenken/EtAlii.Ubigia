@@ -12,16 +12,16 @@
 
         protected override void ProcessRecord()
         {
-            var verboseDescription = String.Format("Space '{0}' has been removed.", TargetSpace.Name);
-            var verboseNegativeDescription = String.Format("Space '{0}' has not been removed.", TargetSpace.Name);
-            var verboseWarning = String.Format("Are you sure you want to remove space '{0}'?", TargetSpace.Name);
+            var verboseDescription = $"Space '{TargetSpace.Name}' has been removed.";
+            var verboseNegativeDescription = $"Space '{TargetSpace.Name}' has not been removed.";
+            var verboseWarning = $"Are you sure you want to remove space '{TargetSpace.Name}'?";
             var caption = "Remove space";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))
             {
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
                     WriteVerbose(verboseDescription);
-                    WriteDebug(String.Format("Removing space [{0}]", TargetSpace.Name));
+                    WriteDebug($"Removing space [{TargetSpace.Name}]");
                     var task = Task.Run(async () =>
                     {
                         await PowerShellClient.Current.ManagementConnection.Spaces.Remove(TargetSpace.Id);

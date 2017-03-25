@@ -46,7 +46,7 @@
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            var message = String.Format("Changing entry (Id: {0})", entry.Id.ToTimeString());
+            var message = $"Changing entry (Id: {entry.Id.ToTimeString()})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -60,7 +60,7 @@
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var message = String.Format("Getting entry (Root: {0})", root.Name);
+            var message = $"Getting entry (Root: {root.Name})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -74,7 +74,7 @@
 
         public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            var message = String.Format("Getting entry (Id: {0})", entryIdentifier.ToTimeString());
+            var message = $"Getting entry (Id: {entryIdentifier.ToTimeString()})";
             _logger.Info(message);
             var start = Environment.TickCount;
 

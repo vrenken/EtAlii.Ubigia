@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Client.Windows.UserInterface
     {
         public override void Execute(object parameter)
         {
-            var caption = String.Format("{0} removal", App.StorageNaming);
+            var caption = $"{App.StorageNaming} removal";
             var question = String.Format("Are you sure to remove the {0}? This action cannot be undone an will result in the deletion of all data contained in the {0}.", App.StorageNaming);
 
             var result = MessageBox.Show(question, caption, MessageBoxButton.YesNo, MessageBoxImage.Warning);

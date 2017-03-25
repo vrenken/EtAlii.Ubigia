@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public void AddAddItem(string path)
         {
             var previousVariableName = _variableAssignments.Keys.Last();
-            var addItem = String.Format("${0} += {1}", previousVariableName, path);
+            var addItem = $"${previousVariableName} += {path}";
 
             var variableName = CreateVariableName(_variableAssignments.Count);
             _variableAssignments.Add(variableName, addItem);
@@ -30,11 +30,11 @@ namespace EtAlii.Ubigia.Api.Functional
             var variableAssignment = String.Empty;
             if (nodeQuery.StartRoot != null && nodeQuery.StartPath == null)
             {
-                variableAssignment = String.Format("/{0}", nodeQuery.StartRoot);
+                variableAssignment = $"/{nodeQuery.StartRoot}";
             }
             else if (nodeQuery.StartRoot != null && nodeQuery.StartPath != null)
             {
-                variableAssignment = String.Format("/{0}/{1}", nodeQuery.StartRoot, nodeQuery.StartPath.TrimStart('/'));
+                variableAssignment = $"/{nodeQuery.StartRoot}/{nodeQuery.StartPath.TrimStart('/')}";
             }
             else if (nodeQuery.StartRoot == null && nodeQuery.StartPath != null)
             {
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional
             }
             else if (nodeQuery.StartIdentifier != Identifier.Empty)
             {
-                variableAssignment = String.Format("/{0}", nodeQuery.StartIdentifier);
+                variableAssignment = $"/{nodeQuery.StartIdentifier}";
             }
 
             if(!_variableAssignments.ContainsValue(variableAssignment))
@@ -58,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private string CreateVariableName(int count)
         {
-            return String.Format("var{0}", count);
+            return $"var{count}";
         }
         public string GetScript()
         {
@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void AddUpdateItem(Identifier identifier, string updateVariableName)
         {
-            var selectItem = String.Format("/&{0} <= ${1}", identifier.ToDotSeparatedString(), updateVariableName);
+            var selectItem = $"/&{identifier.ToDotSeparatedString()} <= ${updateVariableName}";
 
             var variableName = CreateVariableName(_variableAssignments.Count);
             _variableAssignments.Add(variableName, selectItem);
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void AddGetItem(Identifier identifier)
         {
-            var selectItem = String.Format("/&{0}", identifier.ToDotSeparatedString());
+            var selectItem = $"/&{identifier.ToDotSeparatedString()}";
 
             var variableName = CreateVariableName(_variableAssignments.Count);
             _variableAssignments.Add(variableName, selectItem);

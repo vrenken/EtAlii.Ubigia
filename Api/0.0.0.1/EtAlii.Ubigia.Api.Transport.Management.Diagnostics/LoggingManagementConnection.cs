@@ -31,7 +31,7 @@
             var address = _decoree.Configuration.Address;
             var accountName = _decoree.Configuration.AccountName;
 
-            var message = String.Format("Opening management connection (Address: {0} Account: {1})", address, accountName);
+            var message = $"Opening management connection (Address: {address} Account: {accountName})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -45,7 +45,8 @@
         {
             var address = _decoree.Configuration.Address;
 
-            var message = String.Format("Opening management connection (Address: {0} Account: {1} Space: {2})", address, space.AccountId, space.Id);
+            var message =
+                $"Opening management connection (Address: {address} Account: {space.AccountId} Space: {space.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -61,7 +62,7 @@
         {
             var address = _decoree.Configuration.Address;
 
-            var message = String.Format("Opening management connection (Address: {0} Account: {1} Space: {2})", address, accountId, spaceId);
+            var message = $"Opening management connection (Address: {address} Account: {accountId} Space: {spaceId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -77,7 +78,8 @@
         {
             var address = _decoree.Configuration.Address;
 
-            var message = String.Format("Opening management connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName);
+            var message =
+                $"Opening management connection (Address: {address} Account: {accountName} Space: {spaceName})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -94,7 +96,7 @@
             var address = _decoree.Configuration.Address;
             var accountName = _decoree.Configuration.AccountName;
 
-            var message = String.Format("Closing management connection (Address: {0} Account: {1})", address, accountName);
+            var message = $"Closing management connection (Address: {address} Account: {accountName})";
             _logger.Info(message);
             var start = Environment.TickCount;
 

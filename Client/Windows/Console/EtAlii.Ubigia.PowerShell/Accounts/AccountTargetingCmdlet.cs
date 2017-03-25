@@ -34,7 +34,7 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoAccount, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using account [{0}]", TargetAccount.Name));
+            WriteDebug($"Using account [{TargetAccount.Name}]");
         }
     }
 }

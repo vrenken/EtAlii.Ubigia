@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var functionHandler = _functionHandlersProvider.FunctionHandlers.SingleOrDefault(fhc => String.Equals(fhc.Name, functionSubject.Name, StringComparison.OrdinalIgnoreCase));
             if (functionHandler == null)
             {
-                var message = String.Format("No function found with name '{0}'", functionSubject.Name);
+                var message = $"No function found with name '{functionSubject.Name}'";
                 throw new ScriptProcessingException(message);
             }
             return functionHandler;

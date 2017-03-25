@@ -191,7 +191,7 @@ namespace Moppet.Lapa
 			if (m_parser == null)
 			{
 				if (Identifier != null)
-					throw new NullReferenceException(string.Format("The parser named '{0}' has not been initialized completely.", Identifier));
+					throw new NullReferenceException($"The parser named '{Identifier}' has not been initialized completely.");
 				else
 					throw new NullReferenceException("The 'Parser' property has not been initialized.");
 			}

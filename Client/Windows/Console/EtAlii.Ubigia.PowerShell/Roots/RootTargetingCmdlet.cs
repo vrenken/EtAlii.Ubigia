@@ -35,7 +35,7 @@
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoRoot, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(String.Format("Using root [{0}]", TargetRoot != null ? TargetRoot.Name : "NONE"));
+            WriteDebug($"Using root [{(TargetRoot != null ? TargetRoot.Name : "NONE")}]");
         }
     }
 }

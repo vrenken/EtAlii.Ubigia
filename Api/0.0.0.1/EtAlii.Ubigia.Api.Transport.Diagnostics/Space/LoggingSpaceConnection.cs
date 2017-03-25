@@ -36,7 +36,7 @@
         {
             _address = _connection.Configuration.Address;
 
-            var message = String.Format("Opening space connection (Address: {0}", _address);
+            var message = $"Opening space connection (Address: {_address}";
             _logger.Info(message);
             var start = Environment.TickCount;
 
@@ -48,7 +48,7 @@
 
         public async Task Close()
         {
-            var message = String.Format("Closing space connection (Address: {0}", _address);
+            var message = $"Closing space connection (Address: {_address}";
             _logger.Info(message);
             var start = Environment.TickCount;
 

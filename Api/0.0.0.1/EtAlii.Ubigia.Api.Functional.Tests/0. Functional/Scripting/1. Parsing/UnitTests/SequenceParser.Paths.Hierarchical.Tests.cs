@@ -44,11 +44,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(2, pathSubject.Parts.Count());
+            Assert.Equal(2, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
         }
@@ -64,11 +64,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var variableSubject = sequence.Parts.ElementAt(0) as VariableSubject;
             Assert.NotNull(variableSubject);
@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.ElementAt(2) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -121,11 +121,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(2, pathSubject.Parts.Count());
+            Assert.Equal(2, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
         }
@@ -141,11 +141,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(7, pathSubject.Parts.Count());
+            Assert.Equal(7, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -166,11 +166,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -190,7 +190,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var variableSubject = sequence.Parts.ElementAt(0) as VariableSubject;
             Assert.NotNull(variableSubject);
@@ -200,7 +200,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.ElementAt(2) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -224,7 +224,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var variableSubject = sequence.Parts.ElementAt(0) as VariableSubject;
             Assert.NotNull(variableSubject);
@@ -234,7 +234,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.ElementAt(2) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -257,7 +257,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -266,7 +266,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var relativePathSubject = sequence.Parts.ElementAt(2) as RelativePathSubject;
             Assert.NotNull(relativePathSubject);
-            Assert.Equal(5, relativePathSubject.Parts.Count());
+            Assert.Equal(5, relativePathSubject.Parts.Length);
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(0));
             Assert.IsType<IsParentOfPathSubjectPart>(relativePathSubject.Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(2));
@@ -288,7 +288,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -297,7 +297,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var relativePathSubject = sequence.Parts.ElementAt(2) as RelativePathSubject;
             Assert.NotNull(relativePathSubject);
-            Assert.Equal(5, relativePathSubject.Parts.Count());
+            Assert.Equal(5, relativePathSubject.Parts.Length);
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(0));
             Assert.IsType<IsParentOfPathSubjectPart>(relativePathSubject.Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(2));
@@ -322,7 +322,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -331,7 +331,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var relativePathSubject = sequence.Parts.ElementAt(2) as RelativePathSubject;
             Assert.NotNull(relativePathSubject);
-            Assert.Equal(5, relativePathSubject.Parts.Count());
+            Assert.Equal(5, relativePathSubject.Parts.Length);
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(0));
             Assert.IsType<IsParentOfPathSubjectPart>(relativePathSubject.Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(2));
@@ -353,7 +353,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -362,7 +362,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var relativePathSubject = sequence.Parts.ElementAt(2) as RelativePathSubject;
             Assert.NotNull(relativePathSubject);
-            Assert.Equal(5, relativePathSubject.Parts.Count());
+            Assert.Equal(5, relativePathSubject.Parts.Length);
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(0));
             Assert.IsType<IsParentOfPathSubjectPart>(relativePathSubject.Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(2));
@@ -386,7 +386,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -395,7 +395,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var relativePathSubject = sequence.Parts.ElementAt(2) as RelativePathSubject;
             Assert.NotNull(relativePathSubject);
-            Assert.Equal(5, relativePathSubject.Parts.Count());
+            Assert.Equal(5, relativePathSubject.Parts.Length);
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(0));
             Assert.IsType<IsParentOfPathSubjectPart>(relativePathSubject.Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(2));
@@ -417,7 +417,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -426,7 +426,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var relativePathSubject = sequence.Parts.ElementAt(2) as RelativePathSubject;
             Assert.NotNull(relativePathSubject);
-            Assert.Equal(5, relativePathSubject.Parts.Count());
+            Assert.Equal(5, relativePathSubject.Parts.Length);
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(0));
             Assert.IsType<IsParentOfPathSubjectPart>(relativePathSubject.Parts.ElementAt(1));
             Assert.IsType<ConstantPathSubjectPart>(relativePathSubject.Parts.ElementAt(2));
@@ -448,7 +448,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -471,7 +471,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var pathSubject = sequence.Parts.ElementAt(0) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
@@ -494,11 +494,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(2, pathSubject.Parts.Count());
+            Assert.Equal(2, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
         }
@@ -514,11 +514,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(7, pathSubject.Parts.Count());
+            Assert.Equal(7, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -539,11 +539,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -563,7 +563,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var variableSubject = sequence.Parts.ElementAt(0) as VariableSubject;
             Assert.NotNull(variableSubject);
@@ -573,7 +573,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.ElementAt(2) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -597,7 +597,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 3);
+            Assert.True(sequence.Parts.Length == 3);
 
             var variableSubject = sequence.Parts.ElementAt(0) as VariableSubject;
             Assert.NotNull(variableSubject);
@@ -607,7 +607,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.ElementAt(2) as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(6, pathSubject.Parts.Count());
+            Assert.Equal(6, pathSubject.Parts.Length);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
@@ -697,7 +697,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.Skip(1).Single());
             var path = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().Single();
 
@@ -716,7 +716,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.Skip(1).Single());
             var path = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().Single();
 
@@ -735,7 +735,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.Skip(1).Single());
             var path = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().Single();
 
@@ -754,7 +754,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(sequence);
-            Assert.True(sequence.Parts.Count() == 2);
+            Assert.True(sequence.Parts.Length == 2);
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.Skip(1).Single());
             var path = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().Single();
 

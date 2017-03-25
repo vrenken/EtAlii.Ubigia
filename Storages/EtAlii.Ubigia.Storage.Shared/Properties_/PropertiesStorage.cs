@@ -28,7 +28,7 @@
             }
             catch (Exception e)
             {
-                var message = String.Format("Unable to store properties in the specified container ({0})", name);
+                var message = $"Unable to store properties in the specified container ({name})";
                 throw new StorageException(message, e);
             }
         }
@@ -42,7 +42,7 @@
             }
             catch (Exception e)
             {
-                var message = String.Format("Unable to retrieve properties from the specified container ({0})", name);
+                var message = $"Unable to retrieve properties from the specified container ({name})";
                 throw new StorageException(message, e);
             }
         }

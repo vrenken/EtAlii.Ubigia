@@ -56,8 +56,8 @@ namespace EtAlii.Ubigia.Api.Functional
                 throw new ScriptProcessingException("Unable to convert arguments for Id function processing");
             }
             input.Subscribe(
-                onError: (e) => output.OnError(e),
-                onCompleted: () => output.OnCompleted(),
+                onError: output.OnError,
+                onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
                     var converter = ToIdentifierConverterSelector.Select(o);
@@ -72,8 +72,8 @@ namespace EtAlii.Ubigia.Api.Functional
         private void ProcessByInput(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output)
         {
             input.Subscribe(
-                onError: (e) => output.OnError(e),
-                onCompleted: () => output.OnCompleted(),
+                onError: output.OnError,
+                onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
                     var converter = ToIdentifierConverterSelector.Select(o);
