@@ -38,6 +38,7 @@
             // And finally let's add the spaces that 
             foreach (var spaceToCreate in template.SpacesToCreate)
             {
+                // ReSharper disable once UnusedVariable
                 var space = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate);
             }
         }

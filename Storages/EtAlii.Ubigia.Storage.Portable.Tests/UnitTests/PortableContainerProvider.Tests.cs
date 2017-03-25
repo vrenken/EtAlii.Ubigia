@@ -256,7 +256,6 @@
         public void PortableContainerProvider_Comparison_With_Self()
         {
             // Arrange.
-            var containerProvider = new PortableContainerProvider();
             var id = TestIdentifier.Create();
             var first = _containerProvider.FromIdentifier(id);
             var second = first as object;

@@ -22,7 +22,7 @@
         {
             //var message = String.Format("Verifying authentication");
             //_logger.Info(message);
-            var start = Environment.TickCount;
+            //var start = Environment.TickCount;
 
             var result = _verifier.Verify(actionContext);
 

@@ -62,6 +62,7 @@
 
         private void AddRoot(Guid storageId, Guid accountId, Guid spaceId, string name, Identifier identifier)
         {
+            // ReSharper disable once UnusedVariable
             var root = _context.Roots.Add(spaceId, new Root { Name = name, Identifier = identifier });
         }
     }

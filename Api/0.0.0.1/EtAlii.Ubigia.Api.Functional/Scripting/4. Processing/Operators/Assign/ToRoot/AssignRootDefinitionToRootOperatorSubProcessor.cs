@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Assign(OperatorParameters parameters)
         {
-            var definition = parameters.RightInput
+            parameters.RightInput
                 .ToEnumerable()
                 .Cast<RootDefinitionSubject>()
                 .Single(); // We do not support multiple definitions

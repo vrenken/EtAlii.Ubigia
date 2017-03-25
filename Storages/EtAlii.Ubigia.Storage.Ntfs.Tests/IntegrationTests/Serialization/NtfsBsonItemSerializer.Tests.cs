@@ -18,6 +18,7 @@
             var propertiesSerializer = new InternalBsonPropertiesSerializer(serializer);
 
             // Act.
+            // ReSharper disable once UnusedVariable
             var storageSerializer = new NtfsStorageSerializer(itemSerializer, propertiesSerializer);
 
             // Assert.

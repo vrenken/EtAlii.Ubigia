@@ -23,7 +23,7 @@
         {
             var blobName = BlobPartHelper.GetName<T>();
             container = ContainerIdentifier.Combine(container, blobName);
-            var folder = _pathBuilder.GetFolder(container);
+            var folder = _pathBuilder.GetFolder(container); // TODO: What does this line do? Or what should it do?
 
             T blobPart = null;
 

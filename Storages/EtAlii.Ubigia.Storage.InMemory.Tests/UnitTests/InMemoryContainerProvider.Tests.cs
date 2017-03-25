@@ -255,7 +255,6 @@
         public void InMemoryContainerProvider_Comparison_With_Self()
         {
             // Arrange.
-            var containerProvider = new InMemoryContainerProvider();
             var id = TestIdentifier.Create();
             var first = _containerProvider.FromIdentifier(id);
             var second = first as object;

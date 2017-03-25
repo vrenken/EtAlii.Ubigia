@@ -9,7 +9,13 @@
         [Fact]
         public void SpaceController_Create()
         {
+            // Arrange.
+
+            // Act.
             var controller = new SpaceController(null);
+            
+            // Assert.
+            Assert.NotNull(controller);
         }
     }
 }

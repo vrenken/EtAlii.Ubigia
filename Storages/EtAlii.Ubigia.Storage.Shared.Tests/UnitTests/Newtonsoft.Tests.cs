@@ -219,6 +219,7 @@ namespace EtAlii.Ubigia.Storage.Tests.UnitTests
                 TypeNameHandling = TypeNameHandling.All,
                 TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
             };
+            // ReSharper disable once UnusedVariable
             var o = JObject.FromObject(dictionary, serializer);
 
             // Act.
@@ -249,6 +250,7 @@ namespace EtAlii.Ubigia.Storage.Tests.UnitTests
                 TypeNameHandling = TypeNameHandling.All,
                 TypeNameAssemblyFormat = FormatterAssemblyStyle.Full,
             };
+            // ReSharper disable once UnusedVariable
             var o = JObject.FromObject(dictionary, serializer);
 
             // Act.

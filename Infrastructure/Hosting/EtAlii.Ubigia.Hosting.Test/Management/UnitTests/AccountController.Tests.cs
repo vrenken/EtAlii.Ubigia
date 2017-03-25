@@ -9,7 +9,13 @@
         [Fact]
         public void AccountController_Create()
         {
+            // Arrange.
+
+            // Act.
             var controller = new AccountController(null);
+
+            // Assert.
+            Assert.NotNull(controller);
         }
     }
 }

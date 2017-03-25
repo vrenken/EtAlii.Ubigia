@@ -36,7 +36,7 @@
 
         private void Convert(IEnumerable<IInternalNode> nodes, ExecutionScope scope, IObserver<object> output)
         {
-            var task = Task.Run(async () =>
+            Task.Run(async () =>
             {
                 foreach (var node in nodes)
                 {

@@ -19,7 +19,6 @@
             var firstId = Guid.NewGuid();
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
-            var fourthId = Guid.NewGuid();
 
             var items = new List<IIdentifiable>(new IIdentifiable[] 
             { 
@@ -51,6 +50,7 @@
             // Act.
             var act = new Action(() =>
             {
+                // ReSharper disable once UnusedVariable
                 var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 
@@ -77,6 +77,7 @@
             // Act.
             var act = new Action(() =>
             {
+                // ReSharper disable once UnusedVariable
                 var item = itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" });
             });
 
@@ -92,7 +93,7 @@
             var firstId = Guid.NewGuid();
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
-            var fourthId = Guid.NewGuid();
+
             var items = new List<IIdentifiable>(new IIdentifiable[] 
             { 
                 new Space { Id = firstId },
@@ -103,6 +104,7 @@
             // Act.
             var act = new Action(() =>
             {
+                // ReSharper disable once UnusedVariable
                 var item = itemAdder.Add(items, null);
             });
 
@@ -118,7 +120,7 @@
             var firstId = Guid.NewGuid();
             var secondId = Guid.NewGuid();
             var thirdId = Guid.NewGuid();
-            var fourthId = Guid.NewGuid();
+
             var items = new ObservableCollection<IIdentifiable>(new IIdentifiable[] 
             { 
                 new Space { Id = firstId },
@@ -130,6 +132,7 @@
             // Act.
             var act = new Action(() =>
             {
+                // ReSharper disable once UnusedVariable
                 var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 

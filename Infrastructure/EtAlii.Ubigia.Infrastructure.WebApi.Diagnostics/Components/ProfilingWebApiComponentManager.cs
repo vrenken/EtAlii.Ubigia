@@ -28,8 +28,8 @@
 
         public void Start(object iAppBuilder)
         {
-            var application = (IAppBuilder)iAppBuilder;
-            var start = Environment.TickCount;
+            //var application = (IAppBuilder)iAppBuilder;
+            //var start = Environment.TickCount;
             _componentManager.Start(iAppBuilder);
             //_profiler.WriteSample(_startDurationCounter, Environment.TickCount - start);
             //_profiler.WriteSample(_startCountCounter, 1d);
@@ -37,7 +37,7 @@
 
         public void Stop()
         {
-            var start = Environment.TickCount;
+            //var start = Environment.TickCount;
             _componentManager.Stop();
             //_profiler.WriteSample(_stopDurationCounter, Environment.TickCount - start);
             //_profiler.WriteSample(_stopCountCounter, 1d);

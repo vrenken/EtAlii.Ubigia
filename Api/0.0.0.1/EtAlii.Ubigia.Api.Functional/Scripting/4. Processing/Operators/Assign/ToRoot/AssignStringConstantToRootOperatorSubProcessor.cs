@@ -17,6 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Assign(OperatorParameters parameters)
         {
+            // ReSharper disable once UnusedVariable
             var definition = parameters.RightInput
                 .ToEnumerable()
                 .Cast<string>()
