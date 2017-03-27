@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Ntfs.Tests
+﻿namespace EtAlii.Ubigia.Storage.Ntfs
 {
     using System;
     using EtAlii.Ubigia.Storage;

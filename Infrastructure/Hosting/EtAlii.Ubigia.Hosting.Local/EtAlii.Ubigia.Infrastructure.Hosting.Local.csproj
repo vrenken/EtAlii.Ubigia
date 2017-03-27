@@ -8,7 +8,7 @@
     <ProjectGuid>{D06E5031-F8A9-4CCE-8722-6CC760BA6041}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.Local</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Infrastructure.Hosting.Local</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

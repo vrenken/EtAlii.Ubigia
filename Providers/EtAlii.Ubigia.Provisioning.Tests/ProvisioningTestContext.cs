@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Provisioning.Tests
+namespace EtAlii.Ubigia.Provisioning
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-    using EtAlii.Ubigia.Infrastructure.Tests;
+    using EtAlii.Ubigia.Infrastructure;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {

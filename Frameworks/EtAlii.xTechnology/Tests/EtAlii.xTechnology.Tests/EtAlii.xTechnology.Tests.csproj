@@ -7,7 +7,7 @@
     <ProjectGuid>{A861D1B2-FC34-4156-BA79-00D111C6ED7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.xTechnology.Tests</RootNamespace>
+    <RootNamespace>EtAlii.xTechnology</RootNamespace>
     <AssemblyName>EtAlii.xTechnology.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Ntfs.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Storage.Ntfs.IntegrationTests
 {
     using System;
     using System.IO;

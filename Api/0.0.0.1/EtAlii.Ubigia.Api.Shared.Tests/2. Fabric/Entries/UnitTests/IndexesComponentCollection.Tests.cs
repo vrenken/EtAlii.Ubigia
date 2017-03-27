@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Tests.UnitTests
 {
+    using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;

@@ -1,10 +1,8 @@
-﻿namespace EtAlii.Ubigia.Storage.Portable.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Storage.Portable.IntegrationTests
 {
-    using EtAlii.Ubigia.Storage.Portable.Tests;
-    using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
     using System;
-    using TestAssembly = EtAlii.Ubigia.Storage.Portable.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Storage.Portable.TestAssembly;
 
     
     public class PortableFileManager_Tests : PortableStorageTestBase

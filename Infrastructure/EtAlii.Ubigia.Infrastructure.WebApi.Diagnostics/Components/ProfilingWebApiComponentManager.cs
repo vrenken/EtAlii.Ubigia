@@ -1,8 +1,5 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics
 {
-    using System;
-    using global::Owin;
-
     public class ProfilingWebApiComponentManager : IWebApiComponentManager
     {
         private readonly IWebApiComponentManager _componentManager;

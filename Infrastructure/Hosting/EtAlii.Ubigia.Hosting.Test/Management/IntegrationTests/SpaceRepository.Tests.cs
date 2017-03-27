@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
 {
     using Xunit;
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
-    using Infrastructure.Tests;
+    using EtAlii.Ubigia.Infrastructure;
 
     
     public sealed class SpaceRepository_Tests : IClassFixture<HostUnitTestContext>

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
     using global::Owin;
 
     public class WebsiteApplicationManager : IApplicationManager

@@ -7,7 +7,7 @@
     <ProjectGuid>{461879E8-97BF-4C67-8F8C-A992450DED42}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

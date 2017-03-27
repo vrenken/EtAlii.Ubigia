@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;

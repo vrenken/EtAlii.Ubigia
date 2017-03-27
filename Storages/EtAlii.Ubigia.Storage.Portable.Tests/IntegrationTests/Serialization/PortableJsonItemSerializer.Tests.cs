@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Storage.Portable.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Storage.Portable.IntegrationTests
 {
     using System;
     using System.IO;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Storage.Portable.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Storage.Portable.TestAssembly;
 
     
     public class PortableJsonItemSerializer_Tests : PortableStorageTestBase

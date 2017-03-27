@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
 {
     using System;
     using System.Linq;
@@ -6,9 +6,9 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Infrastructure.TestAssembly;
 
     
     public class SystemConnection_Tests : IClassFixture<HostUnitTestContext>

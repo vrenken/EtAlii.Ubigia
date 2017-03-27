@@ -1,13 +1,12 @@
-﻿namespace EtAlii.Ubigia.Storage.Portable.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Storage.Portable.IntegrationTests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Storage.Portable.Tests;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
     using System;
     using System.Linq;
-    using TestAssembly = EtAlii.Ubigia.Storage.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Storage.Portable.TestAssembly;
 
     
     public class BlobSummaryCalculator_Tests : PortableStorageTestBase

@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Provisioning.Tests
+namespace EtAlii.Ubigia.Provisioning
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;

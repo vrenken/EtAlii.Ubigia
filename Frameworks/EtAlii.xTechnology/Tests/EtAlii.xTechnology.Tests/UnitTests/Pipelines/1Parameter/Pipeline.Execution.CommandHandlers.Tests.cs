@@ -1,10 +1,9 @@
-﻿namespace EtAlii.xTechnology.Tests
+﻿namespace EtAlii.xTechnology.UnitTests
 {
     using System;
     using EtAlii.xTechnology.Structure.Pipelines2;
     using Xunit;
 
-    
     public class Pipeline_Execution_CommandHandlers_Tests
     {
         [Fact]

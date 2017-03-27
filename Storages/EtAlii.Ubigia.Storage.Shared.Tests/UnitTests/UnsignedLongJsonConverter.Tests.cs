@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Ubigia.Storage.Tests.UnitTests
+namespace EtAlii.Ubigia.Storage.UnitTests
 {
     using System;
     using System.IO;

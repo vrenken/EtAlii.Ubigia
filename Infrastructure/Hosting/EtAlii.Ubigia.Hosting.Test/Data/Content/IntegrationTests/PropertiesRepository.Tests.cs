@@ -1,6 +1,8 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure;
+    using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
 

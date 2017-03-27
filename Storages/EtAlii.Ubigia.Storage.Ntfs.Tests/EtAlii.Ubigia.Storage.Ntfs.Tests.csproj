@@ -7,7 +7,7 @@
     <ProjectGuid>{AAD21C95-3E30-459B-9A89-EB298EAE0531}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Storage.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Storage.Ntfs</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Storage.Ntfs.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

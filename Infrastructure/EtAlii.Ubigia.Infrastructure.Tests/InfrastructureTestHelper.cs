@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure
 {
     using System;
     using EtAlii.Ubigia.Api;

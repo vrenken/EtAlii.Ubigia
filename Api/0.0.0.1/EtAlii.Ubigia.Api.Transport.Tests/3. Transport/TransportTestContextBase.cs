@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
 
     public abstract class TransportTestContextBase : ITransportTestContext
     {

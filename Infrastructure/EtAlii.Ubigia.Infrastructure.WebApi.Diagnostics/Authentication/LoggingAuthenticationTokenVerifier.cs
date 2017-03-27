@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics
 {
-    using System;
     using System.Net;
     using System.Web.Http.Controllers;
+
     //using EtAlii.xTechnology.Logging;
 
     internal class LoggingAuthenticationTokenVerifier : IAuthenticationTokenVerifier

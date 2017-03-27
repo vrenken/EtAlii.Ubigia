@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Management.IntegrationTests
+﻿namespace EtAlii.Ubigia.Api.Management.Tests.IntegrationTests
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using Xunit;
-
 
     public class ManagementConnection_System_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {

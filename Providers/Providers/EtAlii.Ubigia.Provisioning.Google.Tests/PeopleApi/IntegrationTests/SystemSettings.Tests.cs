@@ -7,7 +7,6 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
-    using EtAlii.Ubigia.Provisioning.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 

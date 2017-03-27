@@ -1,14 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Management.IntegrationTests
+﻿namespace EtAlii.Ubigia.Api.Management.Tests.IntegrationTests
 {
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Tests;
-    
     using Xunit;
 
-    
     public class ManagementConnection_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {
         private readonly StartedTransportUnitTestContext _testContext;

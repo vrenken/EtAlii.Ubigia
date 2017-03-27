@@ -7,7 +7,7 @@
     <ProjectGuid>{8B88679A-50BC-4C1C-8A3E-B8E7DA67AF57}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Provisioning.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Provisioning</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Provisioning.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

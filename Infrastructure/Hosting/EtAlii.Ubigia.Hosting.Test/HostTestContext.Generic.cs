@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;

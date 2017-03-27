@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Portable.Tests
+﻿namespace EtAlii.Ubigia.Storage.Portable
 {
     using System;
     using System.IO;
@@ -66,7 +66,7 @@
                 CreateProfiler = CreateProfiler,
             };
 
-            var configuration = new StorageConfiguration()
+            var configuration = new EtAlii.Ubigia.Storage.StorageConfiguration()
                 .Use(TestAssembly.StorageName)
                 .Use(diagnostics)
                 .UsePortableStorage(StorageFolder);

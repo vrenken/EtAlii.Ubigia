@@ -1,4 +1,4 @@
-namespace EtAlii.xTechnology.Tests
+namespace EtAlii.xTechnology.UnitTests
 {
     using System.Linq;
     using EtAlii.xTechnology.Structure;

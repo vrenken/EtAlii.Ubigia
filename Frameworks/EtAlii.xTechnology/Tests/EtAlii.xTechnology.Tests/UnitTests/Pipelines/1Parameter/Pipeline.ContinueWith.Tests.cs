@@ -1,9 +1,8 @@
-﻿namespace EtAlii.xTechnology.Tests
+﻿namespace EtAlii.xTechnology.UnitTests
 {
-    using Xunit;
     using EtAlii.xTechnology.Structure.Pipelines2;
+    using Xunit;
 
-    
     public class Pipeline_ContinueWith_Tests
     {
         /// Delegate based ==================================================================================

@@ -5,6 +5,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Portable.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Storage.Portable.UnitTests
 {
     using System;
     using EtAlii.Ubigia.Api;
@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Storage.Portable;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Storage.Portable.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Storage.Portable.TestAssembly;
 
     
     public class PortableContainerProvider_Tests

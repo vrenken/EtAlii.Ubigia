@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Provisioning.Tests
+﻿namespace EtAlii.Ubigia.Provisioning
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProvisioningTestContextFactory

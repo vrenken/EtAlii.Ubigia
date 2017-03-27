@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
+namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;

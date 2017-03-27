@@ -8,8 +8,8 @@
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-    using EtAlii.Ubigia.Infrastructure.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure;
 
     public class SignalRTransportTestContext : TransportTestContextBase
     {
