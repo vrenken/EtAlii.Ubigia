@@ -7,7 +7,7 @@
     <ProjectGuid>{853030CB-F128-474F-8FBD-D1E66B127A1D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Storage.Portable.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Storage.Portable</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Storage.Portable.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

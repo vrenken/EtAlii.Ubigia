@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Storage.Ntfs.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Storage.Ntfs.UnitTests
 {
     using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Storage.Ntfs;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Storage.Ntfs.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Storage.Ntfs.TestAssembly;
 
     
     public class NtfsContainerProvider_Tests

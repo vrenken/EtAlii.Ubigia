@@ -3,8 +3,9 @@
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
     using System;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
 
-    
+
     public class Aes_Test
     {
         [Fact]

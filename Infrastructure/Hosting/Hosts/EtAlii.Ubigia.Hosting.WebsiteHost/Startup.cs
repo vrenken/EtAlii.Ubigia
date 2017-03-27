@@ -14,6 +14,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User;
     using EtAlii.xTechnology.Diagnostics;

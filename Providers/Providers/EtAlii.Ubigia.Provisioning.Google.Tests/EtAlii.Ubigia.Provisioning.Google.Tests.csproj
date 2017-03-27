@@ -7,7 +7,7 @@
     <ProjectGuid>{729F2054-26B0-4263-9D03-A4BF8B91A216}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Provisioning.Google.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Provisioning.Google</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Provisioning.Google.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Tests
+﻿namespace EtAlii.Ubigia.Storage
 {
     //you have to label the class with this or it is never scanned for methods
     public class TestAssembly

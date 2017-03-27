@@ -1,9 +1,8 @@
-﻿namespace EtAlii.xTechnology.Tests
+﻿namespace EtAlii.xTechnology.UnitTests
 {
-    using Xunit;
     using EtAlii.xTechnology.Structure;
+    using Xunit;
 
-    
     public class Selector_Tests
     {
         [Fact]

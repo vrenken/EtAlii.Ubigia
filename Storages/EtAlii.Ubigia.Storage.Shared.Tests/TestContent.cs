@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Tests
+﻿namespace EtAlii.Ubigia.Storage
 {
     using System;
     using System.Collections.Generic;

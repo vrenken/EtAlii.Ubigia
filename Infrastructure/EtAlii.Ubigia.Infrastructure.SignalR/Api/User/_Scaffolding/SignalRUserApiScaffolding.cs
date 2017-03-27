@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNet.SignalR;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.AspNet.SignalR;
 
     public class SignalRUserApiScaffolding : IScaffolding
     {

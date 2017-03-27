@@ -1,11 +1,12 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
     using System;
     using System.IO;
     using System.Linq;
+    using EtAlii.Ubigia.Infrastructure;
 
 
     public class EntryRepository_Tests : IClassFixture<HostUnitTestContext>

@@ -7,7 +7,7 @@
     <ProjectGuid>{238096ED-9BC0-4427-8C21-9C62E24BB1C7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Infrastructure.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

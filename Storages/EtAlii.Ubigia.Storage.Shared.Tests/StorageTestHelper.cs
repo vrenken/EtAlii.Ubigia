@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage.Tests
+﻿namespace EtAlii.Ubigia.Storage
 {
     using EtAlii.Ubigia.Api;
     using System;

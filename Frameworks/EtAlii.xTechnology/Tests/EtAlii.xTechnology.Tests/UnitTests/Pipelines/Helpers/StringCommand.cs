@@ -1,7 +1,7 @@
-using EtAlii.xTechnology.Structure;
-
-namespace EtAlii.xTechnology.Tests
+namespace EtAlii.xTechnology.UnitTests
 {
+    using EtAlii.xTechnology.Structure;
+
     internal class StringCommand : Command<string>
     {
         public StringCommand(string parameter) 

@@ -9,8 +9,6 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-
-
     
     public class ScriptProcessorRootedPathMediaPathTests : IDisposable
     {

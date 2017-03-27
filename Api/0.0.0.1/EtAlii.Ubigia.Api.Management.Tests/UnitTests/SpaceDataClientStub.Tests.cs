@@ -1,13 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Management.UnitTests
+﻿namespace EtAlii.Ubigia.Api.Management.Tests.UnitTests
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Management.Tests;
     using EtAlii.Ubigia.Api.Transport;
-    
     using Xunit;
 
-    
     public class SpaceDataClientStub_Tests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

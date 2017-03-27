@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Management.IntegrationTests
+namespace EtAlii.Ubigia.Api.Management.Tests
 {
     using System;
     using System.Threading.Tasks;

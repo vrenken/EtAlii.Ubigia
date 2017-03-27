@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
 {
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Transport;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Infrastructure.TestAssembly;
 
     
     public class SystemConnection_DataConnection_Tests : IClassFixture<HostUnitTestContext>, IDisposable

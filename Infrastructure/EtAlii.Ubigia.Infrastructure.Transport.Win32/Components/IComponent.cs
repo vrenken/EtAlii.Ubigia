@@ -1,6 +1,7 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin
 {
     using System;
+    using global::Owin;
     using Owin;
 
     public interface IComponent

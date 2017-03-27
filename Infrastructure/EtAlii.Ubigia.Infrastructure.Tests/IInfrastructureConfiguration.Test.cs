@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Tests
+namespace EtAlii.Ubigia.Infrastructure
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;

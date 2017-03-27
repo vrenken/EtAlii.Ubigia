@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Local
 {
     using EtAlii.Ubigia.Api;
 

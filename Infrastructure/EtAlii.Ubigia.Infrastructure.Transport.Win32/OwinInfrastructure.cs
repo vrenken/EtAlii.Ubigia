@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;

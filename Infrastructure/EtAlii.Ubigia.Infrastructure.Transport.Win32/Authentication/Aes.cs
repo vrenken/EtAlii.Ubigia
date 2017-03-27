@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin
 {
     using System.Security.Cryptography;
 

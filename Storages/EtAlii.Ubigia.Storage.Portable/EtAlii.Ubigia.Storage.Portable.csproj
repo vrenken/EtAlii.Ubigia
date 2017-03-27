@@ -54,7 +54,7 @@
     <Compile Include="PortableStorageExtension.cs" />
     <Compile Include="PortableContainerProvider.cs" />
     <Compile Include="PortableFileManager.Properties.cs" />
-    <Compile Include="StorageConfiguration.cs" />
+    <Compile Include="__StorageConfiguration.cs" />
     <Compile Include="PortableFileManager.cs" />
     <Compile Include="PortableFolderManager.cs" />
     <Compile Include="PortablePathBuilder.cs" />

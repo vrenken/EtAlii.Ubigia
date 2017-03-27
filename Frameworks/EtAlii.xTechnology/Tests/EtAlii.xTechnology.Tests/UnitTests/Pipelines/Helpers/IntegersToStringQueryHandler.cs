@@ -1,6 +1,5 @@
-namespace EtAlii.xTechnology.Tests
+namespace EtAlii.xTechnology.UnitTests
 {
-    using System;
     using EtAlii.xTechnology.Structure;
 
     public class IntegersToStringQueryHandler : IQueryHandler<IntegersToStringQuery, int, int, string>

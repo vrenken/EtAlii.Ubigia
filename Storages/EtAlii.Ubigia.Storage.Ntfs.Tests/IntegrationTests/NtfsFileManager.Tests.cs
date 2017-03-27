@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Storage.Ntfs.Tests.IntegrationTests
+﻿namespace EtAlii.Ubigia.Storage.Ntfs.IntegrationTests
 {
-    using EtAlii.Ubigia.Storage.Ntfs.Tests;
     using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
     using System;
-    using TestAssembly = EtAlii.Ubigia.Storage.Tests.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Storage.Ntfs.TestAssembly;
 
     
     public class NtfsFileManager_Tests : NtfsStorageTestBase

@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Tests;
+    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin;

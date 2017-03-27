@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Provisioning.Tests
+﻿namespace EtAlii.Ubigia.Provisioning.UnitTests
 {
     using System.Linq;
     using Xunit;

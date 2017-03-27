@@ -6,8 +6,9 @@
     using System;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
 
-    
+
     public class AuthenticationTokenConverter_Tests
     {
         [Fact]

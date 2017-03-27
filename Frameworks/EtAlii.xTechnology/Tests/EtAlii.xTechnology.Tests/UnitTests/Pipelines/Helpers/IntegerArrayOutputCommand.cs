@@ -1,7 +1,7 @@
-using EtAlii.xTechnology.Structure;
-
-namespace EtAlii.xTechnology.Tests
+namespace EtAlii.xTechnology.UnitTests
 {
+    using EtAlii.xTechnology.Structure;
+
     internal class IntegerArrayOutputCommand : Command<int[]>
     {
         public IntegerArrayOutputCommand(int[] parameter) 
