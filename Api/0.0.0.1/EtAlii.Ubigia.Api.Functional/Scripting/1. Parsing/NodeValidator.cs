@@ -33,7 +33,7 @@
 
         public void EnsureSuccess(LpNode node, string requiredId, bool restIsAllowed = true)
         {
-            var failedBecauseOfRest = restIsAllowed ? false : node.Rest.Length > 0;
+            var failedBecauseOfRest = !restIsAllowed && node.Rest.Length > 0;
             var failedBecauseOfSuccess = !node.Success;
             var failedBecauseOfId = node.Id != requiredId;
 

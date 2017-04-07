@@ -68,7 +68,7 @@
     /// </param>
     public virtual bool CanExecute(object parameter)
     {
-      return IsDesignMode ? false : true;
+      return !IsDesignMode;
     }
 
 
