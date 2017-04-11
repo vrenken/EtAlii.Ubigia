@@ -13,12 +13,12 @@
         /// <summary>
         /// The current value of the variable within the scope of the script.
         /// </summary>
-        public IObservable<object> Value { get; private set; }
+        public IObservable<object> Value { get; }
         
         /// <summary>
         /// The source of the variable. I.e. what script action created the value and assigned it to a variable?
         /// </summary>
-        public string Source { get; private set; }
+        public string Source { get; }
 
         public ScopeVariable(object value, string source)
         {

@@ -4,12 +4,12 @@
 
     public class SequenceProcessingResult
     {
-        public Sequence Sequence { get; private set; }
+        public Sequence Sequence { get; }
         private ISequenceExecutionPlan ExecutionPlan { get;  }
-        public int Step { get; private set; }
-        public int Total { get; private set; }
+        public int Step { get; }
+        public int Total { get; }
 
-        public IObservable<object> Output { get; private set; }
+        public IObservable<object> Output { get; }
 
         public SequenceProcessingResult(
             Sequence sequence,

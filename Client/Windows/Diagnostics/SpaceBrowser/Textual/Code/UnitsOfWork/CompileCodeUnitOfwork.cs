@@ -6,8 +6,8 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class CompileCodeUnitOfwork : UnitOfWorkBase<ICompileCodeUnitOfworkHandler>
     {
-        public ICodeViewModel CodeViewModel { get; private set; }
-        public int Time { get; private set; }
+        public ICodeViewModel CodeViewModel { get; }
+        public int Time { get; }
 
         public CompileCodeUnitOfwork(ICodeViewModel codeViewModel)
         {

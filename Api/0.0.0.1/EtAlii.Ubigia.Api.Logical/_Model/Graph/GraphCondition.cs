@@ -8,7 +8,7 @@
     public class GraphCondition : GraphPathPart
     {
         private string Description { get; }
-        public Predicate<PropertyDictionary> Predicate { get; private set; }
+        public Predicate<PropertyDictionary> Predicate { get; }
 
         public GraphCondition(Predicate<PropertyDictionary> predicate, string description)
         {

@@ -7,7 +7,7 @@
 
     public class RemoveEntriesFromGraphCommand : CommandBase
     {
-        public IEnumerable<Identifier> Identifiers { get; private set; }
+        public IEnumerable<Identifier> Identifiers { get; }
         public ProcessReason ProcessReason { get; }
         public int Time { get; set; }
 

@@ -6,8 +6,8 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class ParseScriptUnitOfwork : UnitOfWorkBase<IParseScriptUnitOfworkHandler>
     {
-        public IScriptViewModel ScriptViewModel { get; private set; }
-        public int Time { get; private set; }
+        public IScriptViewModel ScriptViewModel { get; }
+        public int Time { get; }
 
         public ParseScriptUnitOfwork(IScriptViewModel scriptViewModel)
         {

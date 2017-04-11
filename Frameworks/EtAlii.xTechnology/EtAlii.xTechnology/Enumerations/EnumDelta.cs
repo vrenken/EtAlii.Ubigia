@@ -11,9 +11,9 @@
             Removed = new List<T>(removed);
         }
 
-        public List<T> Added { get; private set; }
+        public List<T> Added { get; }
 
-        public List<T> Removed { get; private set; }
+        public List<T> Removed { get; }
 
         public override string ToString()
         {

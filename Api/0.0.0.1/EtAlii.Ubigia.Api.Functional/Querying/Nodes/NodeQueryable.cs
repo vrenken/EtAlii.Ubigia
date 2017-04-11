@@ -9,7 +9,7 @@
     {
         public string StartPath { get; }
         public Root StartRoot { get; }
-        public Identifier StartIdentifier { get; private set; }
+        public Identifier StartIdentifier { get; }
 
         internal NodeQueryable(IQueryProvider queryProvider, string startPath)
             : base(queryProvider)
