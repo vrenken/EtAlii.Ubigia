@@ -18,10 +18,10 @@ namespace EtAlii.Ubigia.Api.Logical
             Input = input;
         }
 
-        public GraphPathPart Part { get; private set; }
-        public ITraversalContext Context { get; private set; }
-        public ExecutionScope Scope { get; private set; }
-        public IObserver<Identifier> Output { get; private set; }
-        public IObservable<Identifier> Input { get; private set; }
+        public GraphPathPart Part { get; }
+        public ITraversalContext Context { get; }
+        public ExecutionScope Scope { get; }
+        public IObserver<Identifier> Output { get; }
+        public IObservable<Identifier> Input { get; }
     }
 }

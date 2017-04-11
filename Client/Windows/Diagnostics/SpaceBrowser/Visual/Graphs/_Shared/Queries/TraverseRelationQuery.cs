@@ -7,8 +7,8 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class TraverseRelationQuery : QueryBase<TraverseRelationQueryHandler, Identifier>
     {
-        public IReadOnlyEntry Entry { get; private set; }
-        public Func<IReadOnlyEntry, Relation> Selector { get; private set; }
+        public IReadOnlyEntry Entry { get; }
+        public Func<IReadOnlyEntry, Relation> Selector { get; }
 
         public TraverseRelationQuery(IReadOnlyEntry entry, Func<IReadOnlyEntry, Relation> selector)
         {

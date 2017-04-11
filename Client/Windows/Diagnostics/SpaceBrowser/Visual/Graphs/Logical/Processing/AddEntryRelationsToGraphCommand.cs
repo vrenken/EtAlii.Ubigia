@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class AddEntryRelationsToGraphCommand : CommandBase
     {
-        public ProcessReason ProcessReason { get; private set; }
+        public ProcessReason ProcessReason { get; }
 
         public AddEntryRelationsToGraphCommand(ProcessReason processReason)
         {

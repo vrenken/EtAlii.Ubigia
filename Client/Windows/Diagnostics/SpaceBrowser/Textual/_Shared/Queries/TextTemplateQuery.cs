@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class TextTemplateQuery : QueryBase<ITextTemplateQueryHandler, string>
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
         public TextTemplateQuery(string name)
         {

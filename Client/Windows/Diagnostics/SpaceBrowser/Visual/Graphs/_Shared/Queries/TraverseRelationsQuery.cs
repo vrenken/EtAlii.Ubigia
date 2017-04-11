@@ -8,8 +8,8 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class TraverseRelationsQuery : QueryBase<ITraverseRelationsQueryHandler, Identifier>
     {
-        public IReadOnlyEntry Entry { get; private set; }
-        public Func<IReadOnlyEntry, IEnumerable<Relation>> Selector { get; private set; }
+        public IReadOnlyEntry Entry { get; }
+        public Func<IReadOnlyEntry, IEnumerable<Relation>> Selector { get; }
 
         public TraverseRelationsQuery(IReadOnlyEntry entry, Func<IReadOnlyEntry, IEnumerable<Relation>> selector)
         {

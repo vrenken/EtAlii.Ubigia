@@ -8,7 +8,7 @@
         public object RightResult { get; set; }
         public object LeftResult { get; set; }
 
-        public TTarget Target { get; private set;}
+        public TTarget Target { get; }
 
         public ProcessParameters(TTarget target)
         {

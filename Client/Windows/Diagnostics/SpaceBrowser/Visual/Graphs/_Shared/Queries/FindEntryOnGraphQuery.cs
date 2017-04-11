@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class FindEntryOnGraphQuery : QueryBase<IFindEntryOnGraphQueryHandler, IReadOnlyEntry>
     {
-        public Identifier Identifier { get; private set; }
+        public Identifier Identifier { get; }
 
         public FindEntryOnGraphQuery(Identifier identifier)
         {

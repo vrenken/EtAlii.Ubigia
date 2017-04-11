@@ -2,7 +2,7 @@
 {
     public abstract class Item
     {
-        public string Name { get; private set; }
+        public string Name { get; }
 
         protected Item(string name)
         {

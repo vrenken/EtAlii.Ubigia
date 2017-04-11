@@ -6,8 +6,8 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
     public class ProcessScriptUnitOfwork : UnitOfWorkBase<IProcessScriptUnitOfworkHandler>
     {
-        public IScriptViewModel ScriptViewModel { get; private set; }
-        public int Time { get; private set; }
+        public IScriptViewModel ScriptViewModel { get; }
+        public int Time { get; }
 
         public ProcessScriptUnitOfwork(IScriptViewModel scriptViewModel)
         {

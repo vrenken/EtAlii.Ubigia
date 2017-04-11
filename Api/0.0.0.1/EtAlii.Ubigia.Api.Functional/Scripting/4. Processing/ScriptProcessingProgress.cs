@@ -2,9 +2,9 @@
 {
     public class ScriptProcessingProgress
     {
-        public Sequence Sequence { get; private set; }
-        public int Step { get; private set; }
-        public int Total { get; private set; }
+        public Sequence Sequence { get; }
+        public int Step { get; }
+        public int Total { get; }
 
         public ScriptProcessingProgress(Sequence sequence, int step, int total)
         {
