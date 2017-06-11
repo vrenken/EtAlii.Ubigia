@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Choose>
     <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
-      <ItemGroup>
+      <!--<ItemGroup>
         <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\bin\$(Configuration)\EtAlii.xTechnology.dll">
           <Name>Assembly Reference\EtAlii.xTechnology ($(Configuration))</Name>
         </Reference>
@@ -18,7 +18,7 @@
         <Reference Include="..\..\..\Frameworks\Moppet.Lapa\Moppet.Lapa.Pcl\bin\$(Configuration)\Moppet.Lapa.dll">
           <Name>Assembly Reference\Moppet.Lapa ($(Configuration))</Name>
         </Reference>
-      </ItemGroup>
+      </ItemGroup>-->
     </When>
   </Choose>
 </Project>
