@@ -105,12 +105,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections.csproj">
-      <Project>{18b62582-402a-4004-a9ef-861ebc1381aa}</Project>
-      <Name>EtAlii.xTechnology.Collections</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Selection\Commanding\" />
     <Folder Include="Selection\Querying\" />
   </ItemGroup>

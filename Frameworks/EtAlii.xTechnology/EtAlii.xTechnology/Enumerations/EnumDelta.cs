@@ -1,7 +1,8 @@
 ﻿namespace EtAlii.xTechnology.Enumerations
 {
-    using EtAlii.xTechnology.Collections;
     using System.Collections.Generic;
+    using System.Linq;
+    using System;
 
     public class EnumDelta<T>
     {
@@ -17,7 +18,15 @@
 
         public override string ToString()
         {
-            return $"Added: {Added.ToCommaSeperatedList()} - Removed: {Removed.ToCommaSeperatedList()}";
+            return $"Added: {ToCommaSeperatedList(Added)} - Removed: {ToCommaSeperatedList(Removed)}";
         }
+
+
+        private string ToCommaSeperatedList<T>(IEnumerable<T> enumerable)
+        {
+            var list = enumerable.Select(item => item.ToString());
+            return String.Join(", ", list);
+        }
+
     }
 }

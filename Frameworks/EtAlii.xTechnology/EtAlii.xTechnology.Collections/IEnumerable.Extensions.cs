@@ -25,12 +25,6 @@ namespace EtAlii.xTechnology.Collections
             }
         }
 
-        public static string ToCommaSeperatedList<T>(this IEnumerable<T> enumerable)
-        {
-            var list = enumerable.Select(item => item.ToString());
-            return String.Join(", ", list);
-        }
-
         /// <summary>
         /// Flattens the hierarchy and returns each element within the tree.
         /// </summary>
