@@ -69,10 +69,6 @@
     <Compile Include="_Scaffoldings\InfrastructureProfilingScaffolding.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
-      <Name>EtAlii.xTechnology.MicroContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj">
       <Project>{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Fabric</Name>
@@ -94,6 +90,12 @@
     <Folder Include="4. Functional\" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>

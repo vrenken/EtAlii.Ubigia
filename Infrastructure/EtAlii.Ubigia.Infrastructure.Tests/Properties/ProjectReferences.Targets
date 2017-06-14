@@ -18,15 +18,6 @@
           <Name>Project Reference\EtAlii.Ubigia.Api.Transport.WebApi</Name>
         </ProjectReference>
 
-        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
-          <Project>{a4fc7d78-36b0-475e-8a38-b27d2518f368}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Diagnostics</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
-          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
-        </ProjectReference>
-
         <ProjectReference Include="..\..\Storages\EtAlii.Ubigia.Storage.Shared.Tests\EtAlii.Ubigia.Storage.Tests.csproj">
           <Project>{4a10d0a5-73a9-410a-9e5d-297a2edce933}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Storage.Tests</Name>
@@ -34,10 +25,6 @@
         <ProjectReference Include="..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
           <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Storage</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-          <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.MicroContainer</Name>
         </ProjectReference>
       </ItemGroup>
     </When>

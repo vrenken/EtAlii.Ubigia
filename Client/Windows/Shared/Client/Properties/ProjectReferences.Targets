@@ -3,10 +3,6 @@
 	<Choose>
     <When Condition="'$(SolutionName)' == 'EtAlii.Ubigia'">
       <ItemGroup>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Mvvm\EtAlii.xTechnology.Mvvm.csproj">
-          <Project>{e8c74f17-0e63-44da-9cdd-b7a8bacf9753}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Mvvm</Name>
-        </ProjectReference>
       </ItemGroup>
     </When>
 	</Choose>

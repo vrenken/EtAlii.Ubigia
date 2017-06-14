@@ -143,10 +143,6 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
-    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
-      <Name>EtAlii.xTechnology.MicroContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
       <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
       <Name>EtAlii.xTechnology</Name>

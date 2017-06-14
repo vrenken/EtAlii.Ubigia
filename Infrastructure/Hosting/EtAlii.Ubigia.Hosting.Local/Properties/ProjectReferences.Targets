@@ -7,17 +7,9 @@
           <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Api</Name>
         </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
-          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
-        </ProjectReference>
         <ProjectReference Include="..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
           <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Storage</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-          <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.MicroContainer</Name>
         </ProjectReference>
       </ItemGroup>
     </When>

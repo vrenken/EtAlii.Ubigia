@@ -42,6 +42,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -127,10 +130,6 @@
     <Content Include="Prerequisites\System.Management.Automation.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-      <Project>{f7db2339-6e45-4b50-a53a-c968210ca049}</Project>
-      <Name>EtAlii.xTechnology.MicroContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
       <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
       <Name>EtAlii.Ubigia.Windows.Settings</Name>

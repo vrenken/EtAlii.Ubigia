@@ -48,18 +48,6 @@
           <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Api.Diagnostics</Name>
         </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
-          <Project>{a4fc7d78-36b0-475e-8a38-b27d2518f368}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Diagnostics</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
-          <Project>{6E00C591-D36F-43CE-A593-54F8AD183070}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\EtAlii.xTechnology.Logging.Gibraltar.NET45.csproj">
-          <Project>{6A880A75-43A2-4F3C-8316-74DF20050FDE}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45</Name>
-        </ProjectReference>
 
         <ProjectReference Include="..\..\..\Storages\EtAlii.Ubigia.Storage.Shared.Tests\EtAlii.Ubigia.Storage.Tests.csproj">
           <Project>{4a10d0a5-73a9-410a-9e5d-297a2edce933}</Project>
