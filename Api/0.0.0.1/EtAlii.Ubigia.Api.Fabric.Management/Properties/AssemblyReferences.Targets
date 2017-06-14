@@ -3,12 +3,6 @@
 	<Choose>
     <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
       <ItemGroup>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\bin\$(Configuration)\EtAlii.xTechnology.MicroContainer.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.MicroContainer ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\bin\$(Configuration)\EtAlii.xTechnology.Logging.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging ($(Configuration))</Name>
-        </Reference>
       </ItemGroup>
     </When>
 	</Choose>

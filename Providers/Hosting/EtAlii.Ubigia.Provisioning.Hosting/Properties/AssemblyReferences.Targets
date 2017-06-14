@@ -36,15 +36,6 @@
           <Name>Assembly Reference\EtAlii.Ubigia.Api.Transport.Management.SignalR</Name>
         </Reference>
 
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\bin\$(Configuration)\EtAlii.xTechnology.Logging.Gibraltar.NET45.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45 ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\bin\$(Configuration)\EtAlii.xTechnology.Logging.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\bin\$(Configuration)\EtAlii.xTechnology.MicroContainer.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.MicroContainer ($(Configuration))</Name>
-        </Reference>
       </ItemGroup>
     </When>
   </Choose>
