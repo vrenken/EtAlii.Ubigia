@@ -41,36 +41,11 @@
           <Name>Project Reference\EtAlii.Ubigia.Api.Logical.Diagnostics</Name>
         </ProjectReference>
 
-
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
-          <Project>{a4fc7d78-36b0-475e-8a38-b27d2518f368}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Diagnostics</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\EtAlii.xTechnology.Logging.Gibraltar.NET45.csproj">
-          <Project>{6a880a75-43a2-4f3c-8316-74df20050fde}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
-          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
-        </ProjectReference>
-
         <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj">
           <Project>{6E034575-6221-4F00-9FB6-2C02BDA5937B}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Api.Functional.Win32</Name>
         </ProjectReference>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
-          <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
-          <Name>Project Reference\EtAlii.xTechnology</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Mvvm\EtAlii.xTechnology.Mvvm.csproj">
-          <Project>{E8C74F17-0E63-44DA-9CDD-B7A8BACF9753}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Mvvm</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Workflow\EtAlii.xTechnology.Workflow.csproj">
-          <Project>{0223561e-92b9-46e9-9ed0-69718e749ce3}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Workflow</Name>
-        </ProjectReference>
+
         <ProjectReference Include="..\..\..\..\Frameworks\Hardcodet.Wpf.Taskbar\Hardcodet.Wpf.Taskbar\Hardcodet.Wpf.Taskbar.csproj">
           <Project>{7ac63864-7638-41c4-969c-d3197ef2bed9}</Project>
           <Name>Project Reference\Hardcodet.Wpf.TaskbarNotification</Name>

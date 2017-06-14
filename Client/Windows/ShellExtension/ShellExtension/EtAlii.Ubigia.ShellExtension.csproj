@@ -92,6 +92,12 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.xTechnology.MicroMvvm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroMvvm.1.0.0.0\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroMvvm.dll</HintPath>
+    </Reference>
     <Reference Include="LogicNP.EZNamespaceExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=183e52843b1db176">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Prerequisites\LogicNP.EZNamespaceExtensions.dll</HintPath>
@@ -181,10 +187,6 @@
   </ItemGroup>
   <!-- Non-conditional project references -->
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-      <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
-      <Name>EtAlii.xTechnology.MicroContainer</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
       <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
       <Name>EtAlii.Ubigia.Windows.Settings</Name>

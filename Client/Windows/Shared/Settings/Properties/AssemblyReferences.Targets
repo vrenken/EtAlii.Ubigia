@@ -3,9 +3,6 @@
 	<Choose>
     <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
       <ItemGroup>
-        <Reference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Mvvm\bin\$(Configuration)\EtAlii.xTechnology.Mvvm.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Mvvm ($(Configuration))</Name>
-        </Reference>
       </ItemGroup>
     </When>
 	</Choose>

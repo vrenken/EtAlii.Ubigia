@@ -32,15 +32,6 @@
         <Reference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics\bin\$(Configuration)\EtAlii.Ubigia.Api.Diagnostics.dll">
           <Name>Assembly Reference\EtAlii.Ubigia.Api.Diagnostics ($(Configuration))</Name>
         </Reference >
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\bin\$(Configuration)\EtAlii.xTechnology.Diagnostics.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Diagnostics ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\bin\$(Configuration)\EtAlii.xTechnology.Logging.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\bin\$(Configuration)\EtAlii.xTechnology.Logging.Gibraltar.NET45.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45 ($(Configuration))</Name>
-        </Reference>
 
         <Reference Include="..\..\..\Storages\EtAlii.Ubigia.Storage.Shared.Tests\bin\$(Configuration)\EtAlii.Ubigia.Storage.Tests.dll">
           <Name>Assembly Reference\EtAlii.Ubigia.Storage.Tests ($(Configuration))</Name>
