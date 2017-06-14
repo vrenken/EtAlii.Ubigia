@@ -4,16 +4,6 @@
     <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
       <ItemGroup>
 
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\bin\$(Configuration)\EtAlii.xTechnology.Diagnostics.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Diagnostics ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging.NET45\bin\$(Configuration)\EtAlii.xTechnology.Logging.Gibraltar.NET45.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging.Gibraltar.NET45 ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\bin\$(Configuration)\EtAlii.xTechnology.Logging.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Logging ($(Configuration))</Name>
-        </Reference>
-
         <Reference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure\bin\$(Configuration)\EtAlii.Ubigia.Infrastructure.dll">
           <Name>Assembly Reference\EtAlii.Ubigia.Infrastructure ($(Configuration))</Name>
         </Reference>
@@ -35,12 +25,7 @@
         <Reference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Tests\bin\$(Configuration)\EtAlii.Ubigia.Infrastructure.Tests.dll">
           <Name>Project Reference\EtAlii.Ubigia.Infrastructure.Tests ($(Configuration))</Name>
         </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\bin\$(Configuration)\EtAlii.xTechnology.MicroContainer.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.MicroContainer ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\Moppet.Lapa\Moppet.Lapa.Pcl\bin\$(Configuration)\Moppet.Lapa.dll">
-          <Name>Assembly Reference\Moppet.Lapa ($(Configuration))</Name>
-        </Reference>
+
       </ItemGroup>
     </When>
   </Choose>

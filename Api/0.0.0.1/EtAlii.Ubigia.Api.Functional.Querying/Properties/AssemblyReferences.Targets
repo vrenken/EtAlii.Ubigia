@@ -3,21 +3,6 @@
   <Choose>
     <When Condition="'$(SolutionName)' != 'EtAlii.Ubigia'">
       <ItemGroup>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\bin\$(Configuration)\EtAlii.xTechnology.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Collections\bin\$(Configuration)\EtAlii.xTechnology.Collections.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.Collections ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\bin\$(Configuration)\EtAlii.xTechnology.MicroContainer.dll">
-          <Name>Assembly Reference\EtAlii.xTechnology.MicroContainer ($(Configuration))</Name>
-        </Reference>
-        <Reference Include="..\..\..\Frameworks\HashLib\HashLib\bin\$(Configuration)\HashLib.dll">
-          <Name>Assembly Reference\HashLib ($(Configuration))</Name>
-        </Reference>
-        <!--<Reference Include="..\..\..\Frameworks\Moppet.Lapa\Moppet.Lapa.Pcl\bin\$(Configuration)\Moppet.Lapa.dll">
-          <Name>Assembly Reference\Moppet.Lapa ($(Configuration))</Name>
-        </Reference>-->
       </ItemGroup>
     </When>
   </Choose>

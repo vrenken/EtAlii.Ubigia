@@ -41,11 +41,6 @@
           <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
           <Name>Project Reference\EtAlii.Ubigia.Api.Diagnostics</Name>
         </ProjectReference>
-        <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-          <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.MicroContainer</Name>
-        </ProjectReference>
-
       </ItemGroup>
     </When>
   </Choose>

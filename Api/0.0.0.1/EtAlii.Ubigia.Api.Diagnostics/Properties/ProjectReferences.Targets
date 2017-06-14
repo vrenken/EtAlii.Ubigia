@@ -3,36 +3,6 @@
   <Choose>
     <When Condition="'$(SolutionName)' == 'EtAlii.Ubigia'">
       <ItemGroup>
-
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
-          <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
-          <Name>Project Reference\EtAlii.xTechnology</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Collections\EtAlii.xTechnology.Collections.csproj">
-          <Project>{18B62582-402A-4004-A9EF-861EBC1381AA}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Collections</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.MicroContainer\EtAlii.xTechnology.MicroContainer.csproj">
-          <Project>{F7DB2339-6E45-4B50-A53A-C968210CA049}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.MicroContainer</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Logging\EtAlii.xTechnology.Logging.csproj">
-          <Project>{6e00c591-d36f-43ce-a593-54f8ad183070}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Logging</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology.Diagnostics\EtAlii.xTechnology.Diagnostics.csproj">
-          <Project>{a4fc7d78-36b0-475e-8a38-b27d2518f368}</Project>
-          <Name>Project Reference\EtAlii.xTechnology.Diagnostics</Name>
-        </ProjectReference>
-        <ProjectReference Include="..\..\..\Frameworks\Moppet.Lapa\Moppet.Lapa.Pcl\Moppet.Lapa.csproj">
-          <Project>{507e6bfb-67b0-4a22-9583-8d5403bfecef}</Project>
-          <Name>Project Reference\Moppet.Lapa</Name>
-        </ProjectReference>
-
-        <!--<ProjectReference Include="..\..\..\Frameworks\HashLib\HashLib\HashLib.csproj">
-          <Project>{3FB9F87C-92E9-45CC-9CF8-C388728A3F31}</Project>
-          <Name>Project Reference\HashLib</Name>
-        </ProjectReference>-->
       </ItemGroup>
 
     </When>
