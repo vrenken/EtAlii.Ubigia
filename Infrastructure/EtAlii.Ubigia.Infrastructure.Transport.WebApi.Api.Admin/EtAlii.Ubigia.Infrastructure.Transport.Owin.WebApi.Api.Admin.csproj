@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.xTechnology, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EtAlii.xTechnology.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.dll</HintPath>
+    </Reference>
     <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
     </Reference>
@@ -149,10 +152,6 @@
     <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
       <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
       <Name>EtAlii.Ubigia.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
-      <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
-      <Name>EtAlii.xTechnology</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>

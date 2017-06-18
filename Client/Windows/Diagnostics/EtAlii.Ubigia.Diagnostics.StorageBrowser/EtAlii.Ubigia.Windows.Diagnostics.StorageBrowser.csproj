@@ -65,7 +65,7 @@
     </Reference>
     <Reference Include="EtAlii.Ubigia.Api.Transport.Management.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.dll</HintPath>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\obj\Debug\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.Ubigia.Api.Transport.Management.SignalR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
