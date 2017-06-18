@@ -81,8 +81,15 @@
     <Compile Include="_Scaffolding\HostScaffolding.cs" />
     <Compile Include="_Scaffolding\__IScaffolding.cs" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
+      <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
+      <Name>EtAlii.Ubigia.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
@@ -92,18 +99,8 @@
       <Name>EtAlii.Ubigia.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

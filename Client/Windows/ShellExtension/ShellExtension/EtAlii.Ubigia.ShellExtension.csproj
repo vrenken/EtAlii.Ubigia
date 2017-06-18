@@ -176,16 +176,12 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets" />
     <None Include="packages.config" />
     <None Include="Register-PreBuild.bat" />
     <None Include="ShellRegistration.snk" />
     <None Include="Register-PostBuild.bat" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
+
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
       <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
@@ -196,10 +192,6 @@
       <Name>EtAlii.Ubigia.Windows.Shared</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>"$(ProjectDir)Register-PreBuild.bat"</PreBuildEvent>

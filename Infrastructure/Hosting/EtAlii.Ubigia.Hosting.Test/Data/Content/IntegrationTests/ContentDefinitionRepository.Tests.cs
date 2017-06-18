@@ -2,14 +2,11 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Storage.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure;
-    using EtAlii.Ubigia.Storage;
-
 
     public sealed class ContentDefinitionRepository_Tests : IClassFixture<HostUnitTestContext>
     {

@@ -46,6 +46,9 @@
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
     </Reference>
+    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Experimental.IO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Microsoft.Experimental.IO.1.0.0.0\lib\NETFramework40\Microsoft.Experimental.IO.dll</HintPath>
       <Private>True</Private>
@@ -149,20 +152,21 @@
       <DependentUpon>TestScript.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="packages.config" />
     <None Include="TestScript.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TestScript.ps1</LastGenOutput>
     </None>
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj">
+      <Project>{ae581332-d0b8-4481-ba67-71d11bfb056e}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj">
       <Project>{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Fabric</Name>
@@ -215,15 +219,27 @@
       <Project>{7c020a57-0746-46e3-8f98-39c76fa37a3b}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj">
+      <Project>{49228937-7ed7-4524-8bea-98b33eae49a1}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Hosting.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
+      <Project>{08dff5f2-15af-416e-963e-5dddcd4c495c}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Hosting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Storages\EtAlii.Ubigia.Storage.InMemory\EtAlii.Ubigia.Storage.InMemory.csproj">
+      <Project>{3b797ca2-3143-46e2-82a2-4e8d52de43e4}</Project>
+      <Name>EtAlii.Ubigia.Storage.InMemory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
+      <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
+      <Name>EtAlii.Ubigia.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj">
       <Project>{db6018a5-605b-4198-ba31-71a303e44fe4}</Project>
       <Name>EtAlii.Ubigia.PowerShell</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

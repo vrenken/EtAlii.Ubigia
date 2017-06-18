@@ -162,8 +162,27 @@
     <Compile Include="_Scaffolding\UserPortalScaffolding.GooglePeopleApi.cs" />
     <Compile Include="_Scaffolding\UserPortalScaffolding.MicrosoftGraph.cs" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
+      <Project>{CAEAB577-9DAB-43FA-A185-C81C7CB1B507}</Project>
+      <Name>EtAlii.Ubigia.Api.Logical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj">
+      <Project>{ae581332-d0b8-4481-ba67-71d11bfb056e}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
       <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
       <Name>EtAlii.xTechnology</Name>
@@ -205,10 +224,6 @@
       <Name>EtAlii.Ubigia.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <EmbeddedResource Include="Shared\ThirdParty\Toastr\toastr.min.js" />
     <EmbeddedResource Include="Shared\ThirdParty\Toastr\toastr.min.css" />
@@ -303,9 +318,6 @@
     <EmbeddedResource Include="Default.Constants.js" />
     <EmbeddedResource Include="Default.Config.js" />
     <EmbeddedResource Include="Default.App.js" />
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="Shared\ThirdParty\Angular_Base64_2_0_1\bower.json" />
     <None Include="Shared\ThirdParty\Angular_Base64_2_0_1\LICENSE" />
     <None Include="Shared\ThirdParty\Angular_Base64_2_0_1\package.json" />
@@ -356,9 +368,6 @@
     <None Include="Shared\ThirdParty\Font_Awesome_4_5_0\scss\_rotated-flipped.scss" />
     <None Include="Shared\ThirdParty\Font_Awesome_4_5_0\scss\_stacked.scss" />
     <None Include="Shared\ThirdParty\Font_Awesome_4_5_0\scss\_variables.scss" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

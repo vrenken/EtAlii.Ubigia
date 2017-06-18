@@ -2,8 +2,7 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Storage;
-    using EtAlii.Ubigia.Storage.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 

@@ -141,17 +141,63 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
+      <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
+      <Name>EtAlii.Ubigia.Api.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj">
+      <Project>{f9a4eb81-611c-453e-8b71-27099e54e982}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj">
+      <Project>{690c236c-fa31-4911-babc-eb370849e4e8}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
+      <Project>{9947e053-7c54-450d-a1d1-d399a29fea4a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj">
+      <Project>{d9c5fa06-40a1-468f-a299-0c31304d1478}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.SignalR.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj">
+      <Project>{64723c77-5242-4671-a0bb-984deeb79dbf}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
+      <Project>{8dc6acbf-762b-47f1-93e9-d8eb292f48db}</Project>
+      <Name>EtAlii.Ubigia.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Tests\EtAlii.Ubigia.Infrastructure.Tests.csproj">
+      <Project>{238096ed-9bc0-4427-8c21-9c62e24bb1c7}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj">
+      <Project>{49228937-7ed7-4524-8bea-98b33eae49a1}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Hosting.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
+      <Project>{08dff5f2-15af-416e-963e-5dddcd4c495c}</Project>
+      <Name>EtAlii.Ubigia.Infrastructure.Hosting</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj">
       <Project>{e1587085-865c-4ead-a5a5-dcda0d448db6}</Project>
@@ -179,10 +225,6 @@
       </ItemGroup>
     </When>
   </Choose>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

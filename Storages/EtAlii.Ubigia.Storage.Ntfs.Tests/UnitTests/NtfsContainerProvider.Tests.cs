@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Storage.Ntfs;
-    using EtAlii.Ubigia.Storage.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using TestAssembly = EtAlii.Ubigia.Storage.Ntfs.TestAssembly;
 

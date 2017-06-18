@@ -2,8 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure;
-    using EtAlii.Ubigia.Storage;
-    using EtAlii.Ubigia.Storage.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
 

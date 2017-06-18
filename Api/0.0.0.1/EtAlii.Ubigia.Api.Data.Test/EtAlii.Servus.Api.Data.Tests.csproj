@@ -138,14 +138,8 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <!-- Non-conditional project references -->
+
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Management.Tests\EtAlii.Ubigia.Api.Management.Tests.csproj">
       <Project>{c6d05d23-dc2c-4fe4-8f11-5a4bd6d7c3d2}</Project>
@@ -160,10 +154,6 @@
       <Name>EtAlii.Ubigia.Api</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Folder Include="Physical\" />
   </ItemGroup>

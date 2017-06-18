@@ -2,7 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Storage.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     

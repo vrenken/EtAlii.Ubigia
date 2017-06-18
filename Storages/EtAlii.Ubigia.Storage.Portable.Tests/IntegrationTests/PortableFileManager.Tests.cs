@@ -2,6 +2,7 @@
 {
     using Xunit;
     using System;
+    using EtAlii.Ubigia.Tests;
     using TestAssembly = EtAlii.Ubigia.Storage.Portable.TestAssembly;
 
     
