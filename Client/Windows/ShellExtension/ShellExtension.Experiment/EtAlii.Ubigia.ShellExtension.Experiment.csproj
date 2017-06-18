@@ -120,10 +120,6 @@
       <Link>ShellRegistration.snk</Link>
     </None>
     <None Include="app.config" />
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets" />
     <None Include="packages.config" />
     <None Include="RegisterExtensionDotNet40.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -143,7 +139,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
-  <!-- Non-conditional project references -->
+
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\Shared\EtAlii.Ubigia.Windows.Shared.csproj">
       <Project>{e4e719ed-9dac-4d49-84a3-6fef8957a352}</Project>
@@ -154,10 +150,6 @@
       <Name>EtAlii.Ubigia.ShellExtension</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PreBuildEvent>REM if exist "$(TargetPath)" "$(ProjectDir)\RestartExplorer.exe"

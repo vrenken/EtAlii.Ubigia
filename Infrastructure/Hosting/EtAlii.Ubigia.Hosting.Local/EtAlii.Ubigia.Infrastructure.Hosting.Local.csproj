@@ -43,17 +43,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <!-- A reference to the entire .NET Framework is automatically included -->
-  <!-- Non-conditional project references -->
+
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj">
       <Project>{66F50771-FBE2-42B7-B673-CBDB32498BEC}</Project>
       <Name>EtAlii.Ubigia.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <None Include="Clients\Content\LocalContentNotificationClient.cs" />
     <None Include="Clients\Entries\LocalEntryNotificationClient.cs" />
@@ -71,10 +67,6 @@
     <None Include="ILocalDataConnection.cs" />
     <None Include="IDataConnection.Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets" />
     <None Include="packages.config" />
     <None Include="Transports\LocalNotificationTransport.cs" />
     <None Include="Transports\LocalDataTransport.cs" />

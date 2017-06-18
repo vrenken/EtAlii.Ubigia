@@ -72,22 +72,19 @@
     <Compile Include="AzureStorageSerializer.cs" />
     <Compile Include="_Scaffolding\AzureFactoryScaffolding.cs" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
       <Project>{37398998-BAFC-4BDC-92E5-B8D851B1A1C7}</Project>
       <Name>EtAlii.Ubigia.Storage</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets" />
-    <None Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

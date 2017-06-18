@@ -105,12 +105,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -133,10 +127,6 @@
       <Private>True</Private>
     </Reference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

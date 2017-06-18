@@ -172,7 +172,6 @@
     <Compile Include="1. Logical\UnitTests\Win32ContentManager.Tests.cs" />
     <Compile Include="Win32TestHelper.cs" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj">
       <Project>{d36b8b0f-c13b-44bc-926d-0dd7e7957f01}</Project>
@@ -206,12 +205,11 @@
       <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
       <Name>EtAlii.Ubigia.Api</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
+      <Project>{8dc6acbf-762b-47f1-93e9-d8eb292f48db}</Project>
+      <Name>EtAlii.Ubigia.Tests</Name>
+    </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
-  <Import Project="..\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems" Label="Shared" />
   <ItemGroup>
     <EmbeddedResource Include="TestImage_01.jpg" />
   </ItemGroup>
@@ -220,10 +218,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\AssemblyReferences.Targets" />
-    <None Include="Properties\ProjectReferences.Targets">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -250,6 +244,10 @@
       </ItemGroup>
     </When>
   </Choose>
+
+  <!-- Warning, below import is added manually to ensure that the unit test project will also include the corresponding shared source project -->
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems" Label="Shared" />
+
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
 {
-    using EtAlii.Ubigia.Storage.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin;

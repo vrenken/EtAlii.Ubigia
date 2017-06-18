@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Storage.Ntfs.IntegrationTests
 {
-    using EtAlii.Ubigia.Storage.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;

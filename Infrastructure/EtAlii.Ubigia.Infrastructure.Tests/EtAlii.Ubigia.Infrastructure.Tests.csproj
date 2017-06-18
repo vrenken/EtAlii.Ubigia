@@ -52,6 +52,9 @@
     <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
     </Reference>
+    <Reference Include="HashLib, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HashLib.2.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\HashLib.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
       <Private>True</Private>
@@ -154,8 +157,23 @@
     <Compile Include="Fabric\UnitTests\ItemGetter.Tests.cs" />
     <Compile Include="TestInfrastructureExtension.cs" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj">
+      <Project>{ae581332-d0b8-4481-ba67-71d11bfb056e}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.WebApi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
+      <Project>{8DC6ACBF-762B-47F1-93E9-D8EB292F48DB}</Project>
+      <Name>EtAlii.Ubigia.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj">
       <Project>{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Fabric</Name>
@@ -197,10 +215,6 @@
       <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
@@ -208,8 +222,6 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\AssemblyReferences.Targets" />
-    <None Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fabric\IntegrationTests\" />

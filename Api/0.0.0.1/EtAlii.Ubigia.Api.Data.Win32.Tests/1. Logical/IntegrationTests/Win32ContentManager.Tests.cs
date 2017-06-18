@@ -2,7 +2,6 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Helpers.Win32.Tests;
-    using EtAlii.Ubigia.Storage.Tests;
     using EtAlii.Ubigia.Tests;
     using System;
     using System.IO;

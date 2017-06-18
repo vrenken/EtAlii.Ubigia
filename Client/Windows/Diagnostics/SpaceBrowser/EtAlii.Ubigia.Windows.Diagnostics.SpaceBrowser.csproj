@@ -55,6 +55,46 @@
       <HintPath>..\..\..\..\packages\ControlzEx.2.1.4.13\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Fabric, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\bin\Debug\EtAlii.Ubigia.Api.Fabric.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Fabric.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Fabric.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Functional, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\bin\Debug\EtAlii.Ubigia.Api.Functional.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Functional.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Functional.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Functional.Win32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\bin\Debug\EtAlii.Ubigia.Api.Functional.Win32.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Logical, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\bin\Debug\EtAlii.Ubigia.Api.Logical.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Logical.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Logical.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Transport.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Transport.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Windows.Mvvm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\bin\Debug\EtAlii.Ubigia.Windows.Mvvm.dll</HintPath>
+    </Reference>
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
     </Reference>
@@ -692,12 +732,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -710,29 +744,24 @@
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Frameworks\EtAlii.xTechnology\EtAlii.xTechnology\EtAlii.xTechnology.csproj">
-      <Project>{A9B3597A-2608-4ACE-A0EA-FC354CADB743}</Project>
-      <Name>EtAlii.xTechnology</Name>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj">
+      <Project>{64723C77-5242-4671-A0BB-984DEEB79DBF}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.SignalR</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj">
-      <Project>{90b9ab5d-4d86-4870-b832-be86c55b017b}</Project>
-      <Name>EtAlii.Ubigia.Windows.Mvvm</Name>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
       <Name>EtAlii.Ubigia.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
-      <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
-      <Name>EtAlii.Ubigia.Windows.Settings</Name>
-    </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Resource Include="..\..\Shared\Shared\Icon-Logo.png">
       <Link>Icon-Logo.png</Link>

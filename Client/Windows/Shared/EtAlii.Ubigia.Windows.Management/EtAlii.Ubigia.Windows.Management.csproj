@@ -92,15 +92,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj">
+      <Project>{690c236c-fa31-4911-babc-eb370849e4e8}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
+      <Project>{9947e053-7c54-450d-a1d1-d399a29fea4a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
       <Name>EtAlii.Ubigia.Windows</Name>
@@ -112,10 +118,6 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

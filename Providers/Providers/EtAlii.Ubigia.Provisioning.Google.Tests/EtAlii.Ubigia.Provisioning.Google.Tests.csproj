@@ -128,12 +128,28 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
+      <Project>{9947E053-7C54-450D-A1D1-D399A29FEA4A}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
+      <Project>{8DC6ACBF-762B-47F1-93E9-D8EB292F48DB}</Project>
+      <Name>EtAlii.Ubigia.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj">
       <Project>{19ba706c-99d1-4b9f-b69c-0fc2c566659c}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin</Name>
@@ -184,10 +200,6 @@
       </ItemGroup>
     </When>
   </Choose>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

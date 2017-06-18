@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Storage.InMemory.Tests.IntegrationTests
 {
-    using EtAlii.Ubigia.Storage.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;
     using System.IO;

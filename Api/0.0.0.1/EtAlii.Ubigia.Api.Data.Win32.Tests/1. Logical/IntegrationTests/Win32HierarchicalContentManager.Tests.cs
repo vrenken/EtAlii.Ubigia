@@ -8,7 +8,6 @@
     using EtAlii.Ubigia.Api.Logical;
     using Helpers.Win32.Tests;
     using Ubigia.Tests;
-    using EtAlii.Ubigia.Storage.Tests;
     using Xunit;
 
 

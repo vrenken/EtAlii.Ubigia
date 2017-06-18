@@ -40,11 +40,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <!-- Non-conditional project references -->
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Compile Include="DiagnosticsScaffolding.cs" />
     <Compile Include="4. Network\LoggingDataConnection.cs" />
@@ -84,12 +79,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

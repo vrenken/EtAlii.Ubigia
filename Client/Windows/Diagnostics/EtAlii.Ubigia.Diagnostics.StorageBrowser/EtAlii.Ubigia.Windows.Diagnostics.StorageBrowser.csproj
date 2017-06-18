@@ -59,6 +59,22 @@
       <HintPath>..\..\..\..\packages\ControlzEx.2.1.4.13\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Transport.Management, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\bin\Debug\EtAlii.Ubigia.Api.Transport.Management.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Transport.Management.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Api.Transport.Management.SignalR, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\bin\Debug\EtAlii.Ubigia.Api.Transport.Management.SignalR.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Windows.Management, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Shared\EtAlii.Ubigia.Windows.Management\bin\Debug\EtAlii.Ubigia.Windows.Management.dll</HintPath>
+    </Reference>
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
     </Reference>
@@ -200,10 +216,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\ProjectReferences.Targets" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -219,25 +231,20 @@
   <ItemGroup>
     <Folder Include="Commands\" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
-    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj">
-      <Project>{937cdade-dc16-4218-bd58-c2873d2b250c}</Project>
-      <Name>EtAlii.Ubigia.Windows.Management</Name>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
       <Name>EtAlii.Ubigia.Windows</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
-      <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
-      <Name>EtAlii.Ubigia.Windows.Settings</Name>
-    </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Resource Include="..\..\Shared\Shared\Icon-Logo.png">
       <Link>Icon-Logo.png</Link>

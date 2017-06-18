@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Storage.UnitTests
     using System;
     using System.IO;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;

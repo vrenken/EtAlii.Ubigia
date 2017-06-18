@@ -226,22 +226,13 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
       <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
       <Name>EtAlii.Ubigia.Api</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

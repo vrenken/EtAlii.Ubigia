@@ -106,23 +106,10 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="Exceptions\ExceptionAssert.Observable.cs" />
-    <Compile Include="Exceptions\ExceptionAssert.Async.cs" />
     <Compile Include="TestAssembly.cs" />
-    <Compile Include="TestProperties.cs" />
-    <Compile Include="TestIdentifier.cs" />
-    <Compile Include="TestPackage.cs" />
     <Compile Include="UnitTests\Newtonsoft.Tests.cs" />
     <Compile Include="UnitTests\UnsignedLongJsonConverter.Tests.cs" />
     <Compile Include="UnitTests\SignedLongJsonConverter.Tests.cs" />
-    <Compile Include="AssertData.cs" />
-    <Compile Include="Exceptions\ExceptionAssert.cs" />
-    <Compile Include="Exceptions\Assertion.cs" />
-    <Compile Include="Exceptions\IAssertion.cs" />
-    <Compile Include="Exceptions\ExceptionMessageCompareOptions.cs" />
-    <Compile Include="Exceptions\ExceptionInheritanceOptions.cs" />
-    <Compile Include="TestContent.cs" />
-    <Compile Include="TestContentDefinition.cs" />
     <Compile Include="SimpleTestItem.cs" />
     <Compile Include="StorageTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,13 +121,16 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets" />
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
+      <Project>{8DC6ACBF-762B-47F1-93E9-D8EB292F48DB}</Project>
+      <Name>EtAlii.Ubigia.Tests</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Storage.Diagnostics\EtAlii.Ubigia.Storage.Diagnostics.csproj">
       <Project>{b2abb66e-de8f-47c2-864c-97dbbce96332}</Project>
       <Name>EtAlii.Ubigia.Storage.Diagnostics</Name>
@@ -154,10 +144,6 @@
       <Name>EtAlii.Ubigia.Storage</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Folder Include="IntegrationTests\" />
   </ItemGroup>

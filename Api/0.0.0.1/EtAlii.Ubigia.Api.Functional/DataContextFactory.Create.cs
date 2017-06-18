@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
-
+    
     public static class DataContextFactoryCreateDataContextExtension
     {
         public static IDataContext Create(this DataContextFactory factory, IDataConnection connection, bool useCaching = true)

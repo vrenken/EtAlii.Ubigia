@@ -86,22 +86,21 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets" />
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29D6C7C1-38D6-49C0-931A-A70AB08635C9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
+      <Project>{9947E053-7C54-450D-A1D1-D399A29FEA4A}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Management</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj">
       <Project>{e1587085-865c-4ead-a5a5-dcda0d448db6}</Project>
       <Name>EtAlii.Ubigia.Provisioning</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

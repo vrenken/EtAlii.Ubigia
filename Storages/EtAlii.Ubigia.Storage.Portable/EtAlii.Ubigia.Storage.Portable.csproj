@@ -46,8 +46,6 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
     <None Include="app.config" />
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets" />
-    <None Include="Properties\ProjectReferences.Targets" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IStorageConfiguration.Portable.cs" />
@@ -62,12 +60,11 @@
     <Compile Include="PortableStorageSerializer.cs" />
     <Compile Include="_Scaffolding\PortableFactoryScaffolding.cs" />
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
-    <!-- Non-conditional project references -->
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
       <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
       <Name>EtAlii.Ubigia.Storage</Name>

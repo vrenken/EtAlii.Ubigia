@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
 {
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     public class MicrosoftGraphProviderFactory : IProviderFactory

@@ -46,8 +46,47 @@
   <PropertyGroup>
     <ApplicationIcon>Icon-Logo-White-Shaded.ico</ApplicationIcon>
   </PropertyGroup>
-  <!-- Non-conditional project references -->
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj">
+      <Project>{d36b8b0f-c13b-44bc-926d-0dd7e7957f01}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional.Win32</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
+      <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
+      <Name>EtAlii.Ubigia.Api.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
+      <Project>{16596297-5e14-4ca4-a77c-70fa35d2b9be}</Project>
+      <Name>EtAlii.Ubigia.Api.Fabric</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj">
+      <Project>{5f7b884e-7e42-4a32-adb3-e8cbb3fd5b31}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj">
+      <Project>{8c4d3afb-67d3-4865-98bb-93e84b42e147}</Project>
+      <Name>EtAlii.Ubigia.Api.Logical.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
+      <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
+      <Name>EtAlii.Ubigia.Api.Logical</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj">
+      <Project>{64723c77-5242-4671-a0bb-984deeb79dbf}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.SignalR</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
+      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
+      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
+      <Name>EtAlii.Ubigia.Api</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj">
       <Project>{90b9ab5d-4d86-4870-b832-be86c55b017b}</Project>
       <Name>EtAlii.Ubigia.Windows.Mvvm</Name>
@@ -61,10 +100,6 @@
       <Name>EtAlii.Ubigia.Windows.Settings</Name>
     </ProjectReference>
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Reference Include="ControlzEx, Version=2.1.4.13, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\ControlzEx.2.1.4.13\lib\net45\ControlzEx.dll</HintPath>
@@ -85,6 +120,9 @@
     <Reference Include="Fluent, Version=4.0.3.394, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Fluent.Ribbon.4.0.3.394\lib\net45\Fluent.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Hardcodet.Wpf.Taskbar.1.0.4\lib\net461\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -246,12 +284,6 @@
     <Content Include="Exif\exiftool%28-k -a -u -g1 -w txt -X%29.exe" />
     <Resource Include="Exif\IMG_20161105_182442.txt" />
     <Resource Include="Exif\IMG_3490.txt" />
-    <Content Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

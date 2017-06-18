@@ -76,6 +76,10 @@
     <Compile Include="_Scaffolding\HostProfilingScaffolding.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
+      <Project>{37398998-BAFC-4BDC-92E5-B8D851B1A1C7}</Project>
+      <Name>EtAlii.Ubigia.Storage</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{c62eb0ee-70d0-463d-a08b-f7787a2e1b2a}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Functional</Name>
@@ -90,21 +94,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\ProjectReferences.Targets" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

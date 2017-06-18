@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Storage
+﻿namespace EtAlii.Ubigia.Tests
 {
     public class TestPackage<T>
     {

@@ -43,11 +43,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <!-- A reference to the entire .NET Framework is automatically included -->
-  <!-- Non-conditional project references -->
-  <!-- Normal project references -->
-  <Import Project="Properties\ProjectReferences.Targets" />
-  <!-- Output based assembly references -->
-  <Import Project="Properties\AssemblyReferences.Targets" />
   <ItemGroup>
     <Compile Include="2. Fabric\Base36\Base36Convert.Bytes.cs" />
     <Compile Include="2. Fabric\Base36\Base36Convert.Guid.cs" />
@@ -70,6 +65,7 @@
     <Compile Include="3. Transport\Serialization\UnsignedLongJSonConverter.cs" />
     <Compile Include="3. Transport\SpaceName.cs" />
     <Compile Include="3. Transport\SpaceTemplate.cs" />
+    <Compile Include="Constant.cs" />
     <Compile Include="IObservable.SubscribeWithNext.cs" />
     <Compile Include="AsyncHelpers.cs" />
     <Compile Include="IObservable.ToHotObservable.cs" />
@@ -159,12 +155,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-    <None Include="Properties\AssemblyReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\ProjectReferences.Targets">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
