@@ -10,7 +10,7 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
+    
 
     
     public class ScriptProcessorNonRootedPathQueryWildcardIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable

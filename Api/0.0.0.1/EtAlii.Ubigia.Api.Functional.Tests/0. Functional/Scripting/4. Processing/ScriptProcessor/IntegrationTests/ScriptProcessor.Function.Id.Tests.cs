@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
     public class ScriptProcessorFunctionIdIntegrationTests : IDisposable

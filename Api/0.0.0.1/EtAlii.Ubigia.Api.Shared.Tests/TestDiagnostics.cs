@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Tests
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
 
-    public static class TestDiagnostics
+    internal static class TestDiagnostics
     {
         public static IDiagnosticsConfiguration Create()
         {

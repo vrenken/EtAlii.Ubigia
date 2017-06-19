@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Diagnostics.Tests;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
+    
 
     
     public class DataContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>, IDisposable
