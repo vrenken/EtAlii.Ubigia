@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
+    
 
     
     public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable

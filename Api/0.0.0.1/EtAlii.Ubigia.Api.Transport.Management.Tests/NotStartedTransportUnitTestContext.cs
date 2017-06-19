@@ -1,0 +1,24 @@
+namespace EtAlii.Ubigia.Api.Transport.Management.Tests
+{
+    using System;
+    using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.xTechnology.Diagnostics;
+
+    public class NotStartedTransportUnitTestContext : IDisposable
+    {
+        public ITransportTestContext TransportTestContext { get; private set; }
+        public IDiagnosticsConfiguration Diagnostics { get; private set; }
+
+        public NotStartedTransportUnitTestContext()
+        {
+            Diagnostics = TestDiagnostics.Create();
+            TransportTestContext = new TransportTestContext().Create();
+        }
+
+        public void Dispose()
+        {
+            TransportTestContext = null;
+            Diagnostics = null;
+        }
+    }
+}

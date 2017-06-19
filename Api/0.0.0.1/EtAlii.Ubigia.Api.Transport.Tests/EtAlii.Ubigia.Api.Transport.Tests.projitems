@@ -16,39 +16,27 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Transport.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)0. Functional\Context\" />
-    <Folder Include="$(MSBuildThisFileDirectory)0. Functional\Planning\" />
-    <Folder Include="$(MSBuildThisFileDirectory)0. Functional\Querying\" />
-    <Folder Include="$(MSBuildThisFileDirectory)0. Functional\Scripting\" />
-    <Folder Include="$(MSBuildThisFileDirectory)2. Fabric\Properties\" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentClientStub.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentNotificationClientStub.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TransportUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DataConnection\IntegrationTests\DataConnection.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootDataClientStub.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootNotificationClientStub.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\SerializerFactory.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ITransportTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)_Model\TestMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)_Model\TestPackage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)_Model\TestStatus.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Compose\IntegrationTests\GraphComposer.Add.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Compose\IntegrationTests\GraphComposer.Link.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Compose\IntegrationTests\GraphComposer.Remove.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Compose\IntegrationTests\GraphComposer.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Compose\IntegrationTests\GraphComposer.Unlink.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\LogicalTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\LogicalTestContextFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\LogicalUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Traversal\IntegrationTests\GraphPathTraverser.MultipleConnections.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Logical\Traversal\IntegrationTests\GraphPathTraverser.SingleConnection.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Content\IntegrationTests\CachingContentContext.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Content\IntegrationTests\FabricContext.Content.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Content\IntegrationTests\FabricContext.ContentDefinition.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Content\IntegrationTests\FabricContext.Properties.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Entries\IntegrationTests\CachingEntryContext.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Entries\IntegrationTests\FabricContext.Entries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\FabricTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\FabricTestContextFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\FabricUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)2. Fabric\Roots\IntegrationTests\FabricContext.Roots.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\TransportUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\IntegrationTests\DataConnection.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\TransportTestContextBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\TransportTestContextFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\UnitTests\PropertyDictionaryJSonConverter.ReadJSon.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\UnitTests\PropertyDictionaryJSonConverter.WriteJSon.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)3. Transport\UnitTests\SerializerFactory.Tests.cs" />
+    <Folder Include="$(MSBuildThisFileDirectory)3. Transport\" />
+    <Folder Include="$(MSBuildThisFileDirectory)DataConnection\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Properties_\UnitTests\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Properties_\IntegrationTests\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Roots\" />
   </ItemGroup>
 </Project>

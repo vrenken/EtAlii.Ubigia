@@ -11,7 +11,7 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
+    
 
     
     public class ScriptProcessorNonRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IDisposable

@@ -11,7 +11,6 @@
     using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Api.Tests.TestAssembly;
 
     
     public class ScriptProcessorLogicalAddTests : IClassFixture<LogicalUnitTestContext>, IDisposable

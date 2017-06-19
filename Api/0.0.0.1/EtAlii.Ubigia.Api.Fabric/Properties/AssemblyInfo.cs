@@ -31,7 +31,7 @@ using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Diagnostics")]
 
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.SignalR.Tests")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.WebApi.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Tests")]
+//[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.SignalR.Tests")]
+//[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Transport.WebApi.Tests")]
 

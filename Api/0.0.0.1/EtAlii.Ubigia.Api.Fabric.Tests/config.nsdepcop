@@ -1,0 +1,48 @@
+﻿<NsDepCopConfig IsEnabled="True" CodeIssueKind="Error">
+  <Allowed From="*" To="." />
+  <Allowed From="*" To="System.*" />
+  <Allowed From="*" To="Microsoft.*" />
+  <Allowed From="*" To="Newtonsoft.*" />
+  <Allowed From="*" To="EtAlii.xTechnology.*" />
+
+  <Allowed From="EtAlii.Ubigia.Api.Tests" To="EtAlii.Ubigia.Api" />
+
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Storage.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Api" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Api.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Api.Transport" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Api.Transport.SignalR" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Api.Transport.WebApi" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Api.Management" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Infrastructure" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Infrastructure.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Hosting.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Transport.Tests" To="EtAlii.Ubigia.Tests" />
+  
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Storage.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Api" />
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Api.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Api.Transport" />
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Api.Transport.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Api.Fabric" />
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Storage.Tests" />  <!-- Should be removed -->
+  <Allowed From="EtAlii.Ubigia.Api.Fabric.Tests" To="EtAlii.Ubigia.Tests" />
+
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Storage.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Api" />
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Api.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Api.Logical" />
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Api.Fabric" /> <!-- Should be removed? -->
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Api.Fabric.Tests" /> <!-- Should be removed -->
+  <Allowed From="EtAlii.Ubigia.Api.Logical.Tests" To="EtAlii.Ubigia.Tests" />
+
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Storage.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Api" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Api.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Api.Functional" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Api.Logical" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Api.Logical.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="EtAlii.Ubigia.Tests" />
+  <Allowed From="EtAlii.Ubigia.Api.Functional.Tests" To="Moppet.Lapa" />
+
+</NsDepCopConfig>
