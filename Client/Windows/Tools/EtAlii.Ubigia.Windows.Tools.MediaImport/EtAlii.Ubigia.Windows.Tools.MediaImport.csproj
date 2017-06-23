@@ -75,6 +75,10 @@
       <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
       <Name>EtAlii.Ubigia.Api.Logical</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj">
+      <Project>{afd2bf70-5f38-4f91-90e2-6321c8e6f746}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj">
       <Project>{64723c77-5242-4671-a0bb-984deeb79dbf}</Project>
       <Name>EtAlii.Ubigia.Api.Transport.SignalR</Name>

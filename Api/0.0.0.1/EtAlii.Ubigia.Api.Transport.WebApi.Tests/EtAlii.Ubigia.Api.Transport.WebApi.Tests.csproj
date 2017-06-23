@@ -210,6 +210,10 @@
       <Project>{8327aa1c-2367-4942-946f-94e35cc31c4b}</Project>
       <Name>EtAlii.Ubigia.Api.Tests</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj">
+      <Project>{afd2bf70-5f38-4f91-90e2-6321c8e6f746}</Project>
+      <Name>EtAlii.Ubigia.Api.Transport.Diagnostics</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj">
       <Project>{f9a4eb81-611c-453e-8b71-27099e54e982}</Project>
       <Name>EtAlii.Ubigia.Api.Transport.Management.Diagnostics</Name>
