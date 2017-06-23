@@ -42,8 +42,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="DiagnosticsScaffolding.cs" />
-    <Compile Include="4. Network\LoggingDataConnection.cs" />
-    <Compile Include="4. Network\ProfilingDataConnection.cs" />
     <Compile Include="Profiling\ILatestProfileResultFinder.cs" />
     <Compile Include="Profiling\InvalidProfilingOperationException.cs" />
     <Compile Include="Profiling\IParentProfileResultFinder.cs" />
@@ -68,11 +66,6 @@
     <Compile Include="Profiling\_Model\ProfilingResult.cs" />
     <Compile Include="Profiling\_Model\TransportProfilers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="4. Network\DiagnosticsDataConnectionExtension.cs" />
-    <Compile Include="4. Network\IDataConnectionConfiguration.Diagnostics.cs" />
-    <Compile Include="4. Network\_Scaffolding\DataConnectionDebuggingScaffolding.cs" />
-    <Compile Include="4. Network\_Scaffolding\DataConnectionLoggingScaffolding.cs" />
-    <Compile Include="4. Network\_Scaffolding\DataConnectionProfilingScaffolding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -114,22 +107,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
-      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
-      <Name>EtAlii.Ubigia.Api.Functional</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
-      <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
-      <Name>EtAlii.Ubigia.Api.Logical</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj">
-      <Project>{9947e053-7c54-450d-a1d1-d399a29fea4a}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport.Management</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
-      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
       <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
       <Name>EtAlii.Ubigia.Api</Name>
