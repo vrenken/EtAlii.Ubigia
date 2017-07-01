@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.4\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.4\lib\net461\EtAlii.Ubigia.Tests.dll</HintPath>
+    </Reference>
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
     </Reference>
@@ -199,18 +205,6 @@
       <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
       <Name>EtAlii.Ubigia.Api.Logical</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Shared.Tests\EtAlii.Ubigia.Api.Tests.csproj">
-      <Project>{8327aa1c-2367-4942-946f-94e35cc31c4b}</Project>
-      <Name>EtAlii.Ubigia.Api.Tests</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
-      <Project>{2C3E669A-C0FF-4BB3-80DC-C02DB2D5069A}</Project>
-      <Name>EtAlii.Ubigia.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
-      <Project>{8DC6ACBF-762B-47F1-93E9-D8EB292F48DB}</Project>
-      <Name>EtAlii.Ubigia.Tests</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -223,6 +217,12 @@
     <Folder Include="Content\IntegrationTests\" />
     <Folder Include="Context\Diagnostics\UnitTests\" />
     <Folder Include="Context\IntegrationTests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="xunit.abstractions.dll" />
+    <Content Include="xunit.runner.reporters.net452.dll" />
+    <Content Include="xunit.runner.utility.net35.dll" />
+    <Content Include="xunit.runner.visualstudio.testadapter.dll" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
