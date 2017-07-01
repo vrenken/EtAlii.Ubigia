@@ -43,8 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.4\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    </Reference>
     <Reference Include="EtAlii.Ubigia.Infrastructure.Functional">
       <HintPath>..\..\..\Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.WebsiteHost\Bin\EtAlii.Ubigia.Infrastructure.Functional.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.4\lib\net461\EtAlii.Ubigia.Tests.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
@@ -105,10 +111,6 @@
     </Reference>
     <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -181,10 +183,6 @@
       <Project>{08dff5f2-15af-416e-963e-5dddcd4c495c}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Hosting</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Diagnostics\EtAlii.Ubigia.Api.Diagnostics.csproj">
-      <Project>{842533cc-82a3-4aa1-a373-6089e13f5ecb}</Project>
-      <Name>EtAlii.Ubigia.Api.Diagnostics</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
       <Project>{16596297-5e14-4ca4-a77c-70fa35d2b9be}</Project>
       <Name>EtAlii.Ubigia.Api.Fabric</Name>
@@ -200,10 +198,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
       <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
       <Name>EtAlii.Ubigia.Api.Logical</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Shared.Tests\EtAlii.Ubigia.Api.Tests.csproj">
-      <Project>{8327aa1c-2367-4942-946f-94e35cc31c4b}</Project>
-      <Name>EtAlii.Ubigia.Api.Tests</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj">
       <Project>{f9a4eb81-611c-453e-8b71-27099e54e982}</Project>
@@ -229,14 +223,12 @@
       <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
       <Name>EtAlii.Ubigia.Api.Transport</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
-      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
-      <Name>EtAlii.Ubigia.Api</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Tests\EtAlii.Ubigia.Tests.csproj">
-      <Project>{8dc6acbf-762b-47f1-93e9-d8eb292f48db}</Project>
-      <Name>EtAlii.Ubigia.Tests</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="xunit.abstractions.dll" />
+    <Content Include="xunit.runner.reporters.net452.dll" />
+    <Content Include="xunit.runner.utility.net35.dll" />
+    <Content Include="xunit.runner.visualstudio.testadapter.dll" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

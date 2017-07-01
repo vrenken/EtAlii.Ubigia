@@ -40,6 +40,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EtAlii.Ubigia.Api.1.0.4\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    </Reference>
     <Reference Include="EtAlii.xTechnology, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EtAlii.xTechnology.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.dll</HintPath>
     </Reference>
@@ -144,10 +147,6 @@
     <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
       <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
       <Name>EtAlii.Ubigia.Api.Transport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj">
-      <Project>{2c3e669a-c0ff-4bb3-80dc-c02db2d5069a}</Project>
-      <Name>EtAlii.Ubigia.Api</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj">
       <Project>{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}</Project>
