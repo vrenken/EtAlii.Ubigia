@@ -50,8 +50,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.4\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.9\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Storage, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.1.0.5\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Storage.InMemory, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.InMemory.1.0.5\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.InMemory.dll</HintPath>
+    </Reference>
+    <Reference Include="EtAlii.Ubigia.Storage.Ntfs, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.Ntfs.1.0.5\lib\net461\EtAlii.Ubigia.Storage.Ntfs.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
@@ -192,10 +201,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Storages\EtAlii.Ubigia.Storage.Shared\EtAlii.Ubigia.Storage.csproj">
-      <Project>{37398998-bafc-4bdc-92e5-b8d851b1a1c7}</Project>
-      <Name>EtAlii.Ubigia.Storage</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj">
       <Project>{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}</Project>
       <Name>EtAlii.Ubigia.Infrastructure.Fabric</Name>
