@@ -24,7 +24,7 @@
             container.Register(() => _hostConfiguration);
 
             //container.Register<ISerializer, Serializer>(Lifestyle.Singleton);
-            container.Register(() => new SerializerFactory().Create());
+            //container.Register(() => new SerializerFactory().Create());
         }
     }
 }
