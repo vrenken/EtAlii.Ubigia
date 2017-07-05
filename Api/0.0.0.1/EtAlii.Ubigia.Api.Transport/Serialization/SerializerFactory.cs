@@ -9,6 +9,8 @@
         {
             var serializer = new Serializer
             {
+                ContractResolver = new FieldBasedContractResolver(),
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
                 DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate,
                 TypeNameHandling = TypeNameHandling.None,
                 //DateFormatHandling = DateFormatHandling.IsoDateFormat,
