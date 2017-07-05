@@ -41,8 +41,8 @@
     <Reference Include="EtAlii.Ubigia.Api, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.9\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Storage, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Storage.1.0.5\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Storage, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Storage.1.0.6\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>

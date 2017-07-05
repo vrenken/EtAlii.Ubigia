@@ -232,12 +232,6 @@
     <Folder Include="Transport\IntegrationTests\" />
     <Folder Include="Transport\UnitTests\" />
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="xunit.abstractions.dll" />
-    <Content Include="xunit.runner.reporters.net452.dll" />
-    <Content Include="xunit.runner.utility.net35.dll" />
-    <Content Include="xunit.runner.visualstudio.testadapter.dll" />
-  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

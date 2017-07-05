@@ -79,8 +79,9 @@
     <Compile Include="Clients\Roots\RootDataClientStub.cs" />
     <Compile Include="Clients\Roots\RootNotificationClientStub.cs" />
     <Compile Include="Clients\SpaceClientContextBase.cs" />
-    <Compile Include="Serialization\DateTimeJSonConverter.cs" />
-    <Compile Include="Serialization\DecimalJSonConverter.cs" />
+    <Compile Include="Serialization\FieldBasedContractResolver.cs" />
+    <Compile Include="Serialization\ValueTypes\DateTimeJSonConverter.cs" />
+    <Compile Include="Serialization\ValueTypes\DecimalJSonConverter.cs" />
     <Compile Include="Serialization\ISerializer.cs" />
     <Compile Include="Serialization\PropertyDictionaryJSonConverter.cs" />
     <Compile Include="Serialization\PropertyDictionaryJSonConverter.ReadAsArray.cs" />
@@ -88,7 +89,7 @@
     <Compile Include="Serialization\Serializer.cs" />
     <Compile Include="Serialization\SerializerFactory.cs" />
     <Compile Include="Serialization\TypeId.cs" />
-    <Compile Include="Serialization\UnsignedLongJSonConverter.cs" />
+    <Compile Include="Serialization\ValueTypes\UnsignedLongJSonConverter.cs" />
     <Compile Include="StorageConnection\Clients\Accounts\AccountDataClientStub.cs" />
     <Compile Include="StorageConnection\Clients\Accounts\AccountNotificationClientStub.cs" />
     <Compile Include="StorageConnection\Clients\Spaces\SpaceDataClientStub.cs" />
