@@ -46,11 +46,11 @@
     <Reference Include="EtAlii.Ubigia.Api, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.9\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Storage, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.1.0.5\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Storage, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.1.0.6\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Storage.InMemory, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.InMemory.1.0.5\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.InMemory.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Storage.InMemory, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Storage.InMemory.1.0.6\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Storage.InMemory.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Tests.1.0.9\lib\net461\EtAlii.Ubigia.Tests.dll</HintPath>
@@ -174,7 +174,9 @@
       <DependentUpon>TestScript.tt</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="TestScript.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>TestScript.ps1</LastGenOutput>
