@@ -5,11 +5,11 @@
     internal class PropertyCacheStoreHandler : IPropertyCacheStoreHandler
     {
         private readonly IPropertyCacheProvider _cacheProvider;
-        private readonly IPropertyCacheContextProvider _contextProvider;
+        private readonly IPropertiesCacheContextProvider _contextProvider;
 
         public PropertyCacheStoreHandler(
             IPropertyCacheProvider cacheProvider, 
-            IPropertyCacheContextProvider contextProvider)
+            IPropertiesCacheContextProvider contextProvider)
         {
             _cacheProvider = cacheProvider;
             _contextProvider = contextProvider;

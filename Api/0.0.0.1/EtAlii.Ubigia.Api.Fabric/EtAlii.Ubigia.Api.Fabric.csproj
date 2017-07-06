@@ -104,10 +104,10 @@
     <Compile Include="_Properties\Caching\Handlers\IPropertyCacheStoreHandler.cs" />
     <Compile Include="_Properties\Caching\Handlers\PropertyCacheRetrieveHandler.cs" />
     <Compile Include="_Properties\Caching\Handlers\PropertyCacheStoreHandler.cs" />
-    <Compile Include="_Properties\Caching\IPropertyCacheContextProvider.cs" />
+    <Compile Include="_Properties\Caching\IPropertiesCacheContextProvider.cs" />
     <Compile Include="_Properties\Caching\IPropertyCacheHelper.cs" />
     <Compile Include="_Properties\Caching\IPropertyCacheProvider.cs" />
-    <Compile Include="_Properties\Caching\PropertyCacheContextProvider.cs" />
+    <Compile Include="_Properties\Caching\PropertiesCacheContextProvider.cs" />
     <Compile Include="_Properties\Caching\PropertyCacheHelper.cs" />
     <Compile Include="_Properties\Caching\PropertyCacheProvider.cs" />
     <Compile Include="_Properties\IPropertiesContext.cs" />

@@ -32,11 +32,11 @@ namespace EtAlii.Ubigia.Api.Fabric
             }
         }
 
-        private IPropertyCacheContextProvider CreatePropertyCacheContextProvider(Container container)
+        private IPropertiesCacheContextProvider CreatePropertyCacheContextProvider(Container container)
         {
             var connection = container.GetInstance<IDataConnection>();
             var context = new PropertiesContext(connection); // we need to instantiate the original ContentContext and use it in the PropertyCacheContextProvider.
-            return new PropertyCacheContextProvider(context);
+            return new PropertiesCacheContextProvider(context);
         }
     }
 }
