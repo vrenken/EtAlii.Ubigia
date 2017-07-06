@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics;
@@ -55,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
                 .UseWebApiAdminPortal()
                 .UseWebApiUserApi()
                 .UseWebApiUserPortal()
-                .UseSignalR()
+                .UseSignalRApi()
                 .Use(logicalContext);
             var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
 

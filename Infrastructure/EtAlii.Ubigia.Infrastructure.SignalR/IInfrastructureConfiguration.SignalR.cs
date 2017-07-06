@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 
     public static class IInfrastructureConfigurationSignalRExtension
     {
-        public static IInfrastructureConfiguration UseSignalR(this IInfrastructureConfiguration configuration)
+        public static IInfrastructureConfiguration UseSignalRApi(this IInfrastructureConfiguration configuration)
         {
             var signalRDependencyResolver = new DefaultDependencyResolver();
 

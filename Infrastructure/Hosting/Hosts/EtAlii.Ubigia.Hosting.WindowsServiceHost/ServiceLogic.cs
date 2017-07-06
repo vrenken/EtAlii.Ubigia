@@ -65,7 +65,7 @@
                 .UseWebApiAdminPortal()
                 .UseWebApiUserApi()
                 .UseWebApiUserPortal()
-                .UseSignalR()
+                .UseSignalRApi()
                 .Use(logicalContext);
             var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
 

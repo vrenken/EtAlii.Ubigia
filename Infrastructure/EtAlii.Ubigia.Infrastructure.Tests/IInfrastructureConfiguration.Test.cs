@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Infrastructure
         private static readonly SignalRComponentManagerFactory _signalRFactory = new SignalRComponentManagerFactory();
         private static readonly WebApiComponentManagerFactory _webApiFactory = new WebApiComponentManagerFactory();
 
-        public static IInfrastructureConfiguration UseTestInfrastructure(this IInfrastructureConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static IInfrastructureConfiguration UseSignalRTestApi(this IInfrastructureConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var signalRDependencyResolver = new DefaultDependencyResolver();
 
