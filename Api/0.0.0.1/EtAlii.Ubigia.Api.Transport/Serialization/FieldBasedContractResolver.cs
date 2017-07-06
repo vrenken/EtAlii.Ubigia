@@ -12,6 +12,12 @@
     {
         protected override IList<JsonProperty> CreateProperties(Type type, Newtonsoft.Json.MemberSerialization memberSerialization)
         {
+            if (type.GetTypeInfo().Assembly.FullName.StartsWith("Microsoft.AspNet.SignalR"))
+            {
+                // We should not touch how SignalR internal classes are serialized.
+                return base.CreateProperties(type, memberSerialization);
+            }
+
             var fields = new List<JsonProperty>();
             do
             {
