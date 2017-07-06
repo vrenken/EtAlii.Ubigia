@@ -7,10 +7,10 @@
     {
         private readonly IPropertyCacheRetrieveHandler _retrieveHandler;
         private readonly IPropertyCacheStoreHandler _storeHandler;
-        private readonly IPropertyCacheContextProvider _contextProvider;
+        private readonly IPropertiesCacheContextProvider _contextProvider;
 
         internal CachingPropertiesContext(
-            IPropertyCacheContextProvider contextProvider,
+            IPropertiesCacheContextProvider contextProvider,
             IPropertyCacheRetrieveHandler retrieveHandler,
             IPropertyCacheStoreHandler storeHandler)
         {
