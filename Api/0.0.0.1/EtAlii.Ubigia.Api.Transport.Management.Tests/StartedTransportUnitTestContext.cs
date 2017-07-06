@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
                 TransportTestContext = new TransportTestContext().Create();
                 await TransportTestContext.Start();
             });
-            task = task.ContinueWith(t => throw new InvalidOperationException("Unable to start the TransportUnitTest", t.Exception), TaskContinuationOptions.OnlyOnFaulted);
+            //task = task.ContinueWith(t => throw new InvalidOperationException("Unable to start the TransportUnitTest", t.Exception), TaskContinuationOptions.OnlyOnFaulted);
             task.Wait();
         }
 
