@@ -15,7 +15,7 @@
 
         public IContentContext Content => _connection?.Content;
 
-        public IPropertyContext Properties => _connection?.Properties;
+        public IPropertiesContext Properties => _connection?.Properties;
 
         public IDataConnectionConfiguration Configuration { get; }
 

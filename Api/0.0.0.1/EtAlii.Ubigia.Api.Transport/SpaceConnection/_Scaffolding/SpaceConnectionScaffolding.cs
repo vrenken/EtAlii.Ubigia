@@ -20,7 +20,7 @@
             container.Register<IEntryContext, EntryContext>();
             container.Register<IRootContext, RootContext>();
             container.Register<IContentContext, ContentContext>();
-            container.Register<IPropertyContext, PropertyContext>();
+            container.Register<IPropertiesContext, PropertiesContext>();
         }
     }
 }

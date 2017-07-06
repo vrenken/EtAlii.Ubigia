@@ -27,7 +27,7 @@
         public IRootContext Roots => _decoree.Roots;
         public IEntryContext Entries => _decoree.Entries;
         public IContentContext Content => _decoree.Content;
-        public IPropertyContext Properties => _decoree.Properties;
+        public IPropertiesContext Properties => _decoree.Properties;
 
         public bool IsConnected => _decoree.IsConnected;
         public IDataConnectionConfiguration Configuration => _decoree.Configuration;
