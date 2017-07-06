@@ -17,7 +17,7 @@
 
         public IContentContext Content { get; }
 
-        public IPropertyContext Properties { get; }
+        public IPropertiesContext Properties { get; }
 
         public bool IsConnected { get; } = false;
 
@@ -43,7 +43,7 @@
             Entries = new EntryContextStub();
             Roots = new RootContextStub();
             Content = new ContentContextStub();
-            Properties = new PropertyContextStub();
+            Properties = new PropertiesContextStub();
         }
     }
 }

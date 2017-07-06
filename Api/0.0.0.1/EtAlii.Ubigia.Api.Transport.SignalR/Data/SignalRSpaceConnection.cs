@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
             IRootContext roots, 
             IEntryContext entries, 
             IContentContext content, 
-            IPropertyContext properties, 
+            IPropertiesContext properties, 
             IAuthenticationContext authentication) 
             : base(transport, configuration, roots, entries, content, properties, authentication)
         {

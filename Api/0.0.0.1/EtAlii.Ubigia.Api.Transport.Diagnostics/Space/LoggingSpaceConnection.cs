@@ -22,7 +22,7 @@
         public IEntryContext Entries => _connection.Entries;
         public IRootContext Roots => _connection.Roots;
         public IContentContext Content => _connection.Content;
-        public IPropertyContext Properties => _connection.Properties;
+        public IPropertiesContext Properties => _connection.Properties;
 
         public LoggingSpaceConnection(
             ISpaceConnection connection,

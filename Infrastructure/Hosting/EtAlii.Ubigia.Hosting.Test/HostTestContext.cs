@@ -9,7 +9,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.InMemory;
-    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Diagnostics; 
     public sealed class HostTestContext : HostTestContext<TestHost>, IHostTestContext
     {
         public void Start()
