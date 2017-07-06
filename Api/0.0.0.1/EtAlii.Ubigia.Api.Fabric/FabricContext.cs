@@ -15,7 +15,7 @@
 
         public IContentContext Content { get; }
 
-        public IPropertyContext Properties { get; }
+        public IPropertiesContext Properties { get; }
 
         public FabricContext(
             IFabricContextConfiguration configuration,
@@ -23,7 +23,7 @@
             IRootContext roots,
             IContentContext content, 
             IDataConnection connection, 
-            IPropertyContext properties)
+            IPropertiesContext properties)
         {
             Configuration = configuration;
             Entries = entries;

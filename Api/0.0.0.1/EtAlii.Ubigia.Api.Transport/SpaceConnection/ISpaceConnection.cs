@@ -12,7 +12,7 @@
         IEntryContext Entries { get; }
         IRootContext Roots { get; }
         IContentContext Content { get; }
-        IPropertyContext Properties { get; }
+        IPropertiesContext Properties { get; }
 
 
     }

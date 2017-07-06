@@ -2,13 +2,13 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System.Threading.Tasks;
 
-    internal class PropertyContextStub : IPropertyContext
+    internal class PropertiesContextStub : IPropertiesContext
     {
         public IPropertiesNotificationClient Notifications { get; }
 
         public IPropertiesDataClient Data { get; }
 
-        public PropertyContextStub()
+        public PropertiesContextStub()
         {
             Notifications = new PropertiesNotificationClientStub();
             Data = new PropertiesDataClientStub();

@@ -2,6 +2,6 @@
 {
     public interface IPropertyCacheContextProvider
     {
-        IPropertyContext Context { get; }
+        IPropertiesContext Context { get; }
     }
 }

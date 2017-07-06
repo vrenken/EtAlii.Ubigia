@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
     using EtAlii.Ubigia.Api.Transport;
     using IContentContext = EtAlii.Ubigia.Api.Fabric.IContentContext;
     using IEntryContext = EtAlii.Ubigia.Api.Fabric.IEntryContext;
-    using IPropertyContext = EtAlii.Ubigia.Api.Fabric.IPropertyContext;
     using IRootContext = EtAlii.Ubigia.Api.Fabric.IRootContext;
 
     public class ProfilingFabricContext : IProfilingFabricContext
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         public IRootContext Roots => _decoree.Roots;
         public IEntryContext Entries => _decoree.Entries;
         public IContentContext Content => _decoree.Content;
-        public IPropertyContext Properties => _decoree.Properties;
+        public Fabric.IPropertiesContext Properties => _decoree.Properties;
 
         public IProfiler Profiler { get; }
 

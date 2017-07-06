@@ -99,7 +99,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roots\IRootContext.cs" />
     <Compile Include="Roots\RootContext.cs" />
-    <Compile Include="_Properties\Caching\CachingPropertyContext.cs" />
+    <Compile Include="_Properties\Caching\CachingPropertiesContext.cs" />
     <Compile Include="_Properties\Caching\Handlers\IPropertyCacheRetrieveHandler.cs" />
     <Compile Include="_Properties\Caching\Handlers\IPropertyCacheStoreHandler.cs" />
     <Compile Include="_Properties\Caching\Handlers\PropertyCacheRetrieveHandler.cs" />
@@ -110,8 +110,8 @@
     <Compile Include="_Properties\Caching\PropertyCacheContextProvider.cs" />
     <Compile Include="_Properties\Caching\PropertyCacheHelper.cs" />
     <Compile Include="_Properties\Caching\PropertyCacheProvider.cs" />
-    <Compile Include="_Properties\IPropertyContext.cs" />
-    <Compile Include="_Properties\PropertyContext.cs" />
+    <Compile Include="_Properties\IPropertiesContext.cs" />
+    <Compile Include="_Properties\PropertiesContext.cs" />
     <Compile Include="_Scaffolding\ContentContextScaffolding.cs" />
     <Compile Include="_Scaffolding\ContextScaffolding.cs" />
     <Compile Include="_Scaffolding\EntryContextScaffolding.cs" />

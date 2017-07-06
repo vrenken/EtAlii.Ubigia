@@ -2,9 +2,9 @@
 {
     internal class PropertyCacheContextProvider : IPropertyCacheContextProvider
     {
-        public IPropertyContext Context { get; }
+        public IPropertiesContext Context { get; }
 
-        public PropertyCacheContextProvider(IPropertyContext context)
+        public PropertyCacheContextProvider(IPropertiesContext context)
         {
             Context = context;
         }
