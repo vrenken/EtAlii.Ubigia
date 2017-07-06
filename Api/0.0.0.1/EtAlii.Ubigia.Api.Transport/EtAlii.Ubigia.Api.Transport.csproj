@@ -66,11 +66,11 @@
     <Compile Include="Clients\ISpaceTransportClient.cs" />
     <Compile Include="Clients\Properties\IPropertiesDataClient.cs" />
     <Compile Include="Clients\Properties\IPropertiesNotificationClient.cs" />
-    <Compile Include="Clients\Properties\IPropertyContext.cs" />
+    <Compile Include="Clients\Properties\IPropertiesContext.cs" />
     <Compile Include="Clients\Properties\PropertiesDataClientStub.cs" />
     <Compile Include="Clients\Properties\PropertiesNotificationClientStub.cs" />
-    <Compile Include="Clients\Properties\PropertyContext.cs" />
-    <Compile Include="Clients\Properties\PropertyContextStub.cs" />
+    <Compile Include="Clients\Properties\PropertiesContext.cs" />
+    <Compile Include="Clients\Properties\PropertiesContextStub.cs" />
     <Compile Include="Clients\Roots\IRootContext.cs" />
     <Compile Include="Clients\Roots\IRootDataClient.cs" />
     <Compile Include="Clients\Roots\IRootNotificationClient.cs" />

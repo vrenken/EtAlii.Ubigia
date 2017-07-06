@@ -24,7 +24,7 @@
 
         public IContentContext Content { get; }
 
-        public IPropertyContext Properties { get; }
+        public IPropertiesContext Properties { get; }
 
         public IAuthenticationContext Authentication { get; }
 
@@ -34,7 +34,7 @@
             IRootContext roots, 
             IEntryContext entries, 
             IContentContext content, 
-            IPropertyContext properties, 
+            IPropertiesContext properties, 
             IAuthenticationContext authentication)
         {
             Transport = (TTransport)transport;

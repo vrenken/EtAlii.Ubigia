@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    public interface IPropertyContext : ISpaceClientContext
+    public interface IPropertiesContext : ISpaceClientContext
     {
         IPropertiesNotificationClient Notifications { get; }
         IPropertiesDataClient Data { get; }

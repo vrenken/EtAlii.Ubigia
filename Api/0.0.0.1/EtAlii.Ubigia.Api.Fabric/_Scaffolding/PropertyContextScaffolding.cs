@@ -23,19 +23,19 @@ namespace EtAlii.Ubigia.Api.Fabric
                 container.Register<IPropertyCacheProvider, PropertyCacheProvider>();
                 container.Register<IPropertyCacheHelper, PropertyCacheHelper>();
                 container.Register(() => CreatePropertyCacheContextProvider(container));
-                container.Register<IPropertyContext, CachingPropertyContext>();
+                container.Register<IPropertiesContext, CachingPropertiesContext>();
             }
             else
             {
                 // Caching disabled.
-                container.Register<IPropertyContext, PropertyContext>();
+                container.Register<IPropertiesContext, PropertiesContext>();
             }
         }
 
         private IPropertyCacheContextProvider CreatePropertyCacheContextProvider(Container container)
         {
             var connection = container.GetInstance<IDataConnection>();
-            var context = new PropertyContext(connection); // we need to instantiate the original ContentContext and use it in the PropertyCacheContextProvider.
+            var context = new PropertiesContext(connection); // we need to instantiate the original ContentContext and use it in the PropertyCacheContextProvider.
             return new PropertyCacheContextProvider(context);
         }
     }
