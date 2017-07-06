@@ -764,13 +764,14 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = new Version(1,2,3,4);
+            properties["Hello"] = new Version(1, 2, 3, 4);
 
             // Act.
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":18,\"v\":{\"Major\":1,\"Minor\":2,\"Build\":3,\"Revision\":4,\"MinorRevision\":4}}]", result);
+            Assert.Equal("[{\"k\":\"Hello\",\"t\":18,\"v\":{\"Major\":1,\"Minor\":2,\"Build\":3,\"Revision\":4}}]", result);
+
         }
 
 
