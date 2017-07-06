@@ -564,6 +564,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Facebook", "Facebook", "{F98A1593-B4B3-455F-8FF4-CB633266105B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Transport", "2. Transport", "{3A638E29-D29C-44C9-B95E-C253B578F8E1}"
+	ProjectSection(SolutionItems) = preProject
+		Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\IHostConfiguration.TestHost.cs = Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\IHostConfiguration.TestHost.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Functional", "3. Functional", "{6E5AC0D8-5F90-4ED2-9075-C1E1396E6669}"
 EndProject
