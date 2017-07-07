@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -156,7 +156,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -178,7 +178,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -200,7 +200,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 
@@ -224,7 +224,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var act = processor.Process(parseResult.Script);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
             //Assert.Equal(1, parseResult.Errors.Length);
         }
 

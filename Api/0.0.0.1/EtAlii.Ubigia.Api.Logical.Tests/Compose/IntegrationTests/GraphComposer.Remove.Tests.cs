@@ -5,7 +5,6 @@
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Tests;
     using Xunit;

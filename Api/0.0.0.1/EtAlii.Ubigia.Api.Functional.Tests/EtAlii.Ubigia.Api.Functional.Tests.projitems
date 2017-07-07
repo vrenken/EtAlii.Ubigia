@@ -163,6 +163,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\Subjects\UnitTests\FunctionSubject.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\Subjects\UnitTests\IsParentOfPathSubjectPart.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\Subjects\UnitTests\VariablePathSubjectPart.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ObservableExceptionAssert.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestFunctionHandler.cs" />

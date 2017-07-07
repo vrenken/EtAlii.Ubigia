@@ -6,6 +6,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
+
     public class StatusScriptProcessingSubscription : IStatusScriptProcessingSubscription
     {
         private readonly IStatusWriter _statusWriter;

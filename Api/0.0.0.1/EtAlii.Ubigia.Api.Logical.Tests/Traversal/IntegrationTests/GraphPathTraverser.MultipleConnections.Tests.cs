@@ -7,7 +7,6 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric.Tests;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
 
