@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Reactive.Linq;
+    using EtAlii.Ubigia.Api.Logical;
 
     internal class RootedPathSubjectFunctionParameterConverter : IRootedPathSubjectFunctionParameterConverter
     {

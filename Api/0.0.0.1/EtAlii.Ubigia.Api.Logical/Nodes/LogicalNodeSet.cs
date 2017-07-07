@@ -6,7 +6,6 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class LogicalNodeSet : ILogicalNodeSet
     {

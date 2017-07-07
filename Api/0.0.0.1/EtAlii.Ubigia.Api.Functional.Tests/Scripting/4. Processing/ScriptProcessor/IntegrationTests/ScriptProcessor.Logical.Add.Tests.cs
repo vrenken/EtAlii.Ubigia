@@ -218,7 +218,7 @@
             var act = processor.Process(addScript);
 
             // Assert.
-            await ExceptionAssert.ThrowsObservable<ScriptProcessingException, SequenceProcessingResult>(act);
+            await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

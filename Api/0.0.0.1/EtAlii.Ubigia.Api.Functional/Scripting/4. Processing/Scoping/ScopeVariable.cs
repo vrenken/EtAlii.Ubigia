@@ -4,6 +4,7 @@
     using System.Collections;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
+    using EtAlii.Ubigia.Api.Logical;
 
     /// <summary>
     /// A ScopeVariable instance is used to cache the value of a variable in the scope of a script.

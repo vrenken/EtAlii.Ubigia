@@ -3,6 +3,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System;
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Logical;
 
     public class DiagnosticsScriptProcessingSubscription : IDiagnosticsScriptProcessingSubscription
     {

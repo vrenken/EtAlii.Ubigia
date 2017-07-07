@@ -5,6 +5,7 @@
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading;
+    using EtAlii.Ubigia.Api.Logical;
 
     internal class ScriptProcessor : IScriptProcessor
     {

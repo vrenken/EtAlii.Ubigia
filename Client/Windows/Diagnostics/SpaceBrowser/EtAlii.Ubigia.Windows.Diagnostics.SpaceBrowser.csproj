@@ -55,39 +55,11 @@
       <HintPath>..\..\..\..\packages\ControlzEx.2.1.4.13\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.9\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.10\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Diagnostics, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.Diagnostics.1.0.9\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Fabric, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\bin\Debug\EtAlii.Ubigia.Api.Fabric.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Fabric.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Fabric.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Functional, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\bin\Debug\EtAlii.Ubigia.Api.Functional.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Functional.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Functional.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Functional.Win32, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\bin\Debug\EtAlii.Ubigia.Api.Functional.Win32.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Logical, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\bin\Debug\EtAlii.Ubigia.Api.Logical.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api.Logical.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\bin\Debug\EtAlii.Ubigia.Api.Logical.Diagnostics.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Api.Diagnostics, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.Diagnostics.1.0.10\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.Diagnostics.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.Ubigia.Api.Transport.Diagnostics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -747,6 +719,34 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj">
+      <Project>{d36b8b0f-c13b-44bc-926d-0dd7e7957f01}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional.Win32</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj">
+      <Project>{acf559ef-3661-430c-9c4a-c379efe7cdd6}</Project>
+      <Name>EtAlii.Ubigia.Api.Fabric.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
+      <Project>{16596297-5E14-4CA4-A77C-70FA35D2B9BE}</Project>
+      <Name>EtAlii.Ubigia.Api.Fabric</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj">
+      <Project>{5f7b884e-7e42-4a32-adb3-e8cbb3fd5b31}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
+      <Project>{29D6C7C1-38D6-49C0-931A-A70AB08635C9}</Project>
+      <Name>EtAlii.Ubigia.Api.Functional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj">
+      <Project>{8c4d3afb-67d3-4865-98bb-93e84b42e147}</Project>
+      <Name>EtAlii.Ubigia.Api.Logical.Diagnostics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
+      <Project>{CAEAB577-9DAB-43FA-A185-C81C7CB1B507}</Project>
+      <Name>EtAlii.Ubigia.Api.Logical</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj">
       <Project>{64723C77-5242-4671-A0BB-984DEEB79DBF}</Project>
       <Name>EtAlii.Ubigia.Api.Transport.SignalR</Name>

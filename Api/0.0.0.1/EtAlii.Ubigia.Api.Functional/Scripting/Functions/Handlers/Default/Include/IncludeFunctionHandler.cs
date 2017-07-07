@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
 
     internal class IncludeFunctionHandler : FunctionHandlerBase, IFunctionHandler
     {

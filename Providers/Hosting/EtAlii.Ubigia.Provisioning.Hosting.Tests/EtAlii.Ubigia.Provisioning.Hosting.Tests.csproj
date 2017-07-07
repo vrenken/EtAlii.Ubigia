@@ -43,11 +43,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.9\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.10\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.9\lib\net461\EtAlii.Ubigia.Tests.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.10\lib\net461\EtAlii.Ubigia.Tests.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>

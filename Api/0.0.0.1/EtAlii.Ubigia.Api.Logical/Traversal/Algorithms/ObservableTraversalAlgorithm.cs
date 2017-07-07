@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Reactive.Linq;
     using System.Threading;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class ObservableTraversalAlgorithm : IBreadthFirstTraversalAlgorithm, IDepthFirstTraversalAlgorithm
     {

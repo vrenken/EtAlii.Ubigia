@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Reactive.Linq;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Functional;
 
     public class OutputScriptProcessingSubscription : IOutputScriptProcessingSubscription
