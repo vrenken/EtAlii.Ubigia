@@ -51,9 +51,8 @@
     <ApplicationIcon>..\..\Shared\Shared\Icon-Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ControlzEx, Version=2.1.4.13, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ControlzEx.2.1.4.13\lib\net45\ControlzEx.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="ControlzEx, Version=2.2.0.4, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\ControlzEx.2.2.0.4\lib\net45\ControlzEx.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.Ubigia.Api, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.10\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
@@ -103,49 +102,38 @@
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="PresentationFramework.Luna" />
-    <Reference Include="Syncfusion.Data.WPF, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Data.WPF46.15.1.0.33\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Data.WPF, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Data.WPF46.15.3.0.33\lib\net46\Syncfusion.Data.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Grid.Base46.15.1.0.33\lib\net46\Syncfusion.Grid.Base.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Grid.Base, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Grid.Base46.15.3.0.33\lib\net46\Syncfusion.Grid.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Grid.Wpf, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Grid.WPF46.15.1.0.33\lib\net46\Syncfusion.Grid.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Grid.Wpf, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Grid.WPF46.15.3.0.33\lib\net46\Syncfusion.Grid.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.GridCommon.Wpf, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.GridCommon.WPF46.15.1.0.33\lib\net46\Syncfusion.GridCommon.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.GridCommon.Wpf, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.GridCommon.WPF46.15.3.0.33\lib\net46\Syncfusion.GridCommon.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Linq.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Linq.Base46.15.1.0.33\lib\net46\Syncfusion.Linq.Base.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Linq.Base, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Linq.Base46.15.3.0.33\lib\net46\Syncfusion.Linq.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.PropertyGrid.Wpf, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.PropertyGrid.WPF46.15.1.0.33\lib\net46\Syncfusion.PropertyGrid.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.PropertyGrid.Wpf, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.PropertyGrid.WPF46.15.3.0.33\lib\net46\Syncfusion.PropertyGrid.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfChart.WPF, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.SfChart.WPF46.15.1.0.33\lib\net46\Syncfusion.SfChart.WPF.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.SfChart.WPF, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.SfChart.WPF46.15.3.0.33\lib\net46\Syncfusion.SfChart.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.SfGrid.WPF, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.SfGrid.WPF46.15.1.0.33\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.SfGrid.WPF, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.SfGrid.WPF46.15.3.0.33\lib\net46\Syncfusion.SfGrid.WPF.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Base, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Shared.Base46.15.1.0.33\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Shared.Base, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Shared.Base46.15.3.0.33\lib\net46\Syncfusion.Shared.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Shared.Wpf, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Shared.WPF46.15.1.0.33\lib\net46\Syncfusion.Shared.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Shared.Wpf, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Shared.WPF46.15.3.0.33\lib\net46\Syncfusion.Shared.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Syncfusion.Tools.Wpf, Version=15.1460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Syncfusion.Tools.WPF46.15.1.0.33\lib\net46\Syncfusion.Tools.Wpf.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Syncfusion.Tools.Wpf, Version=15.3460.0.33, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\Syncfusion.Tools.WPF46.15.3.0.33\lib\net46\Syncfusion.Tools.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -181,7 +169,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ControlzEx.2.1.4.13\lib\net45\System.Windows.Interactivity.dll</HintPath>
+      <HintPath>..\..\..\..\packages\ControlzEx.2.2.0.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml" />
