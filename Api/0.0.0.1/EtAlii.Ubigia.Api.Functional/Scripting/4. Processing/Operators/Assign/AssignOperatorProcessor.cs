@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using EtAlii.xTechnology.Structure;
 
     internal class AssignOperatorProcessor : IAssignOperatorProcessor

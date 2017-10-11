@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     internal class VariableSubject : Subject
     {
         public readonly string Name;

@@ -2,7 +2,6 @@
 {
     using System;
     using global::Owin;
-    using Owin;
 
     public interface IComponent
     {

@@ -2,7 +2,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 

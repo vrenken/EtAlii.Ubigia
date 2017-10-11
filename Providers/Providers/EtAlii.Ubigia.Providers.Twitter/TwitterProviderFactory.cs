@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Twitter
 {
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.xTechnology.Logging;
-
     public class TwitterProviderFactory : IProviderFactory
     {
         public IProvider Create(IProviderConfiguration configuration)

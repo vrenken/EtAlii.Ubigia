@@ -2,11 +2,9 @@
 {
     using System;
     using System.IO;
-    using EtAlii.Ubigia.Api.Tests;
     using Xunit;
-    using Newtonsoft.Json;
 
-    
+
     public class PropertyDictionaryJSonConverterWriteJSonTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

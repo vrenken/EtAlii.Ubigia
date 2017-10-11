@@ -2,10 +2,7 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google
 {
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
 
     public class GoogleProviderFactory : IProviderFactory

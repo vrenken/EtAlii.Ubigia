@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
-    using EtAlii.Ubigia.Api.Tests;
     using DataConnectionStub = EtAlii.Ubigia.Api.Transport.DataConnectionStub;
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;

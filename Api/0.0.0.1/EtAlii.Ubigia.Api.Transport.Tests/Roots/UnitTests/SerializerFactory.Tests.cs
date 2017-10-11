@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Tests;
     using Xunit;
     using Newtonsoft.Json;
 

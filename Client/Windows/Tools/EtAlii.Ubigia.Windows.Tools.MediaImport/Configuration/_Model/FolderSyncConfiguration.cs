@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Linq;
     using EtAlii.Ubigia.Windows.Tools.MediaImport.Properties;
     using EtAlii.xTechnology.Mvvm;

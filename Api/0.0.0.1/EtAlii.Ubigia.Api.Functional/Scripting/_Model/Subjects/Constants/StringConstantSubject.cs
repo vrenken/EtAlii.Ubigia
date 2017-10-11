@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     internal class StringConstantSubject : ConstantSubject
     {
         public readonly string Value;

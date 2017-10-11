@@ -2,7 +2,6 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Workflow;
-    using System;
 
     public class DiscoverEntryCommand : CommandBase
     {

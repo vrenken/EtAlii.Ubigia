@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 

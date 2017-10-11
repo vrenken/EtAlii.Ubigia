@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class InfrastructureScaffolding : IScaffolding

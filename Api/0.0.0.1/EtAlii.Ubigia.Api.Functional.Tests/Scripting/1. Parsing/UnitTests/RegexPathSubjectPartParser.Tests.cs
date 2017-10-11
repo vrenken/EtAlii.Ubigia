@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Tests;
-    
     using Moppet.Lapa;
     using Xunit;
 

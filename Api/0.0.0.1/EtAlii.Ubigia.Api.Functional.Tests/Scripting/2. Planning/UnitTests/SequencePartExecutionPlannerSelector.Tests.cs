@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
-    using EtAlii.Ubigia.Api.Tests;
     using Xunit;
 
 
