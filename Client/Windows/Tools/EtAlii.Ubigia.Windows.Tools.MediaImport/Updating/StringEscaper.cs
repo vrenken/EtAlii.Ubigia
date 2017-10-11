@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 

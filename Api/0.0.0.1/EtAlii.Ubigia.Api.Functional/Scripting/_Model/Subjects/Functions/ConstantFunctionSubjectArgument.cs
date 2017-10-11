@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     public class ConstantFunctionSubjectArgument : FunctionSubjectArgument
     {
         public string Value { get; }

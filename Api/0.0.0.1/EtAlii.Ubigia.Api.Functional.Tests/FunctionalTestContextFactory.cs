@@ -1,8 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     public class FunctionalTestContextFactory

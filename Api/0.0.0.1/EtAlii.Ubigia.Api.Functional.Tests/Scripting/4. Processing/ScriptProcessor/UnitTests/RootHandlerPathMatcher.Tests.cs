@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 

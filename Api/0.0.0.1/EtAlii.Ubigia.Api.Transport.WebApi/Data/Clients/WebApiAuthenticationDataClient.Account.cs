@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-    using System;
     using System.Threading.Tasks;
 
     public partial class WebApiAuthenticationDataClient : IAuthenticationDataClient

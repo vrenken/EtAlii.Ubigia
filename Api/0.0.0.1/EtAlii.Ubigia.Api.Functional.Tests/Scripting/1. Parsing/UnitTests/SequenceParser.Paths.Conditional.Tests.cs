@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 

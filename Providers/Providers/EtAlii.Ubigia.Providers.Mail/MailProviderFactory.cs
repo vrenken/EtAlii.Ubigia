@@ -1,9 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Mail
 {
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Logging;
-
     public class MailProviderFactory : IProviderFactory
     {
         public IProvider Create(IProviderConfiguration configuration)

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Roots
 {
     using EtAlii.Ubigia.PowerShell.Spaces;
-    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.Management.Automation;

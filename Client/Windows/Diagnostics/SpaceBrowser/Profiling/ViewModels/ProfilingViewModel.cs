@@ -6,7 +6,6 @@
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
-    using ICommand = System.Windows.Input.ICommand;
 
     public class ProfilingViewModel : BindableBase, IProfilingViewModel
     {

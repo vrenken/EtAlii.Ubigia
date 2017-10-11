@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     public class Condition
     {
         public string Property { get; }

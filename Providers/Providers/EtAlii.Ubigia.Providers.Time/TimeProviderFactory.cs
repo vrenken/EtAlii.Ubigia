@@ -1,9 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Time
 {
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Logging;
-
     public class TimeProviderFactory : IProviderFactory
     {
         public IProvider Create(IProviderConfiguration configuration)

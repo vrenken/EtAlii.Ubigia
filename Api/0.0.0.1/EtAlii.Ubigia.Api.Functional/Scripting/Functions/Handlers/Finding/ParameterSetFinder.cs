@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
 
     internal class ParameterSetFinder : IParameterSetFinder

@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ContextScaffolding : IScaffolding

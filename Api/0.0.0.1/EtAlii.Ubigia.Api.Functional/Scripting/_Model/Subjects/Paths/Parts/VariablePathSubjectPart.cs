@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     public class VariablePathSubjectPart : PathSubjectPart
     {
         public string Name { get; }

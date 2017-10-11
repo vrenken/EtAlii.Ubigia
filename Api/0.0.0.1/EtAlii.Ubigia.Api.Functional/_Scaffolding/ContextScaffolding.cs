@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
     using Remotion.Linq.Parsing.Structure;
 
