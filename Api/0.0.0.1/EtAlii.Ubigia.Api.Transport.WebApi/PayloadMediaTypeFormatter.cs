@@ -132,7 +132,7 @@
                 throw new ArgumentNullException("effectiveEncoding");
             }
 
-            var reader = new BsonReader(new BinaryReader(readStream, effectiveEncoding));
+            var reader = new BsonDataReader(new BinaryReader(readStream, effectiveEncoding));
 
             try
             {
@@ -215,7 +215,7 @@
                 throw new ArgumentNullException("effectiveEncoding");
             }
 
-            return new BsonWriter(new BinaryWriter(writeStream, effectiveEncoding));
+            return new BsonDataWriter(new BinaryWriter(writeStream, effectiveEncoding));
         }
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
