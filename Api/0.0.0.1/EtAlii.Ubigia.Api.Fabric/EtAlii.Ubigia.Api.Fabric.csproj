@@ -1,150 +1,27 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{16596297-5E14-4CA4-A77C-70FA35D2B9BE}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Api.Fabric</RootNamespace>
-    <AssemblyName>EtAlii.Ubigia.Api.Fabric</AssemblyName>
-    <DefaultLanguage>nl-NL</DefaultLanguage>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.1.0</Version>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <!-- A reference to the entire .NET Framework is automatically included -->
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
-      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport</Name>
-    </ProjectReference>
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.22" />
+    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.2" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="Content\Caching\CachingContentContext.cs" />
-    <Compile Include="Content\Caching\ContentCacheContextProvider.cs" />
-    <Compile Include="Content\Caching\ContentCacheEntry.cs" />
-    <Compile Include="Content\Caching\ContentCacheHelper.cs" />
-    <Compile Include="Content\Caching\ContentCacheProvider.cs" />
-    <Compile Include="Content\Caching\ContentDefinitionCacheHelper.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\ContentCacheRetrieveHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\ContentCacheRetrievePartHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\ContentCacheStoreHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\ContentCacheStorePartHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\IContentCacheRetrieveHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\IContentCacheRetrievePartHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\IContentCacheStoreHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Content\IContentCacheStorePartHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Definition\ContentCacheRetrieveDefinitionHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Definition\ContentCacheStoreDefinitionHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Definition\IContentCacheRetrieveDefinitionHandler.cs" />
-    <Compile Include="Content\Caching\Handlers\Definition\IContentCacheStoreDefinitionHandler.cs" />
-    <Compile Include="Content\Caching\IContentCacheContextProvider.cs" />
-    <Compile Include="Content\Caching\IContentCacheHelper.cs" />
-    <Compile Include="Content\Caching\IContentCacheProvider.cs" />
-    <Compile Include="Content\Caching\IContentDefinitionCacheHelper.cs" />
-    <Compile Include="Content\ContentContext.cs" />
-    <Compile Include="Content\IContentContext.cs" />
-    <Compile Include="Entries\Caching\CachingEntryContext.cs" />
-    <Compile Include="Entries\Caching\EntryCacheContextProvider.cs" />
-    <Compile Include="Entries\Caching\EntryCacheHelper.cs" />
-    <Compile Include="Entries\Caching\EntryCacheProvider.cs" />
-    <Compile Include="Entries\Caching\Handlers\EntryCacheChangeHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\EntryCacheGetHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\EntryCacheGetRelatedHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\EntryCacheReconnectOnStartupHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\EntryCacheStoreHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\IEntryCacheChangeHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\IEntryCacheGetHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\IEntryCacheGetRelatedHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\IEntryCacheReconnectOnStartupHandler.cs" />
-    <Compile Include="Entries\Caching\Handlers\IEntryCacheStoreHandler.cs" />
-    <Compile Include="Entries\Caching\IEntryCacheContextProvider.cs" />
-    <Compile Include="Entries\Caching\IEntryCacheHelper.cs" />
-    <Compile Include="Entries\Caching\IEntryCacheProvider.cs" />
-    <Compile Include="Entries\EntryContext.cs" />
-    <Compile Include="Entries\IEntryContext.cs" />
-    <Compile Include="FabricContext.cs" />
-    <Compile Include="FabricContextConfiguration.cs" />
-    <Compile Include="FabricContextFactory.cs" />
-    <Compile Include="IFabricContext.cs" />
-    <Compile Include="IFabricContextConfiguration.cs" />
-    <Compile Include="IFabricContextExtension.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Roots\IRootContext.cs" />
-    <Compile Include="Roots\RootContext.cs" />
-    <Compile Include="_Properties\Caching\CachingPropertiesContext.cs" />
-    <Compile Include="_Properties\Caching\Handlers\IPropertyCacheRetrieveHandler.cs" />
-    <Compile Include="_Properties\Caching\Handlers\IPropertyCacheStoreHandler.cs" />
-    <Compile Include="_Properties\Caching\Handlers\PropertyCacheRetrieveHandler.cs" />
-    <Compile Include="_Properties\Caching\Handlers\PropertyCacheStoreHandler.cs" />
-    <Compile Include="_Properties\Caching\IPropertiesCacheContextProvider.cs" />
-    <Compile Include="_Properties\Caching\IPropertyCacheHelper.cs" />
-    <Compile Include="_Properties\Caching\IPropertyCacheProvider.cs" />
-    <Compile Include="_Properties\Caching\PropertiesCacheContextProvider.cs" />
-    <Compile Include="_Properties\Caching\PropertyCacheHelper.cs" />
-    <Compile Include="_Properties\Caching\PropertyCacheProvider.cs" />
-    <Compile Include="_Properties\IPropertiesContext.cs" />
-    <Compile Include="_Properties\PropertiesContext.cs" />
-    <Compile Include="_Scaffolding\ContentContextScaffolding.cs" />
-    <Compile Include="_Scaffolding\ContextScaffolding.cs" />
-    <Compile Include="_Scaffolding\EntryContextScaffolding.cs" />
-    <Compile Include="_Scaffolding\PropertyContextScaffolding.cs" />
-    <Compile Include="_Scaffolding\RootContextScaffolding.cs" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Content\Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
