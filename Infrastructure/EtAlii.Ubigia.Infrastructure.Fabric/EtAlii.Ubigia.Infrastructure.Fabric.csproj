@@ -1,247 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Infrastructure.Fabric</RootNamespace>
-    <AssemblyName>EtAlii.Ubigia.Infrastructure.Fabric</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
-    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>4.0</OldToolsVersion>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <CodeContractsAssemblyMode>0</CodeContractsAssemblyMode>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>Unit test project</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <CodeContractsEnableRuntimeChecking>False</CodeContractsEnableRuntimeChecking>
-    <CodeContractsRuntimeOnlyPublicSurface>False</CodeContractsRuntimeOnlyPublicSurface>
-    <CodeContractsRuntimeThrowOnFailure>True</CodeContractsRuntimeThrowOnFailure>
-    <CodeContractsRuntimeCallSiteRequires>False</CodeContractsRuntimeCallSiteRequires>
-    <CodeContractsRuntimeSkipQuantifiers>False</CodeContractsRuntimeSkipQuantifiers>
-    <CodeContractsRunCodeAnalysis>False</CodeContractsRunCodeAnalysis>
-    <CodeContractsNonNullObligations>True</CodeContractsNonNullObligations>
-    <CodeContractsBoundsObligations>True</CodeContractsBoundsObligations>
-    <CodeContractsArithmeticObligations>True</CodeContractsArithmeticObligations>
-    <CodeContractsEnumObligations>True</CodeContractsEnumObligations>
-    <CodeContractsRedundantAssumptions>True</CodeContractsRedundantAssumptions>
-    <CodeContractsRedundantTests>True</CodeContractsRedundantTests>
-    <CodeContractsMissingPublicRequiresAsWarnings>True</CodeContractsMissingPublicRequiresAsWarnings>
-    <CodeContractsInferRequires>True</CodeContractsInferRequires>
-    <CodeContractsInferEnsures>False</CodeContractsInferEnsures>
-    <CodeContractsInferObjectInvariants>False</CodeContractsInferObjectInvariants>
-    <CodeContractsSuggestAssumptions>False</CodeContractsSuggestAssumptions>
-    <CodeContractsSuggestRequires>False</CodeContractsSuggestRequires>
-    <CodeContractsSuggestObjectInvariants>False</CodeContractsSuggestObjectInvariants>
-    <CodeContractsSuggestReadonly>True</CodeContractsSuggestReadonly>
-    <CodeContractsRunInBackground>True</CodeContractsRunInBackground>
-    <CodeContractsShowSquigglies>True</CodeContractsShowSquigglies>
-    <CodeContractsUseBaseLine>False</CodeContractsUseBaseLine>
-    <CodeContractsEmitXMLDocs>False</CodeContractsEmitXMLDocs>
-    <CodeContractsCustomRewriterAssembly />
-    <CodeContractsCustomRewriterClass />
-    <CodeContractsLibPaths />
-    <CodeContractsExtraRewriteOptions />
-    <CodeContractsExtraAnalysisOptions />
-    <CodeContractsSQLServerOption />
-    <CodeContractsBaseLineFile />
-    <CodeContractsCacheAnalysisResults>True</CodeContractsCacheAnalysisResults>
-    <CodeContractsFailBuildOnWarnings>False</CodeContractsFailBuildOnWarnings>
-    <CodeContractsBeingOptimisticOnExternal>True</CodeContractsBeingOptimisticOnExternal>
-    <CodeContractsRuntimeCheckingLevel>Full</CodeContractsRuntimeCheckingLevel>
-    <CodeContractsReferenceAssembly>%28none%29</CodeContractsReferenceAssembly>
-    <CodeContractsAnalysisWarningLevel>3</CodeContractsAnalysisWarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EtAlii.Ubigia.Api.1.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Storage, Version=1.0.10.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EtAlii.Ubigia.Storage.1.0.10\lib\portable45-net45+win8+wpa81\EtAlii.Ubigia.Storage.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
-    </Reference>
-    <Reference Include="HashLib, Version=2.1.0.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\HashLib.2.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\HashLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\portable-net45+win8+wp8+wpa81\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http.Extensions, Version=1.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Net.Http.2.2.29\lib\portable-net45+win8+wpa81\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml" />
+    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.22" />
+    <PackageReference Include="HashLib" Version="2.1.0.2" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="ContentDefinition\ContentDefinitionGetter.cs" />
-    <Compile Include="ContentDefinition\ContentDefinitionPartGetter.cs" />
-    <Compile Include="ContentDefinition\ContentDefinitionPartStorer.cs" />
-    <Compile Include="ContentDefinition\ContentDefinitionSet.cs" />
-    <Compile Include="ContentDefinition\ContentDefinitionStorer.cs" />
-    <Compile Include="ContentDefinition\IContentDefinitionGetter.cs" />
-    <Compile Include="ContentDefinition\IContentDefinitionPartGetter.cs" />
-    <Compile Include="ContentDefinition\IContentDefinitionPartStorer.cs" />
-    <Compile Include="ContentDefinition\IContentDefinitionSet.cs" />
-    <Compile Include="ContentDefinition\IContentDefinitionStorer.cs" />
-    <Compile Include="Content\ContentFabricException.cs" />
-    <Compile Include="Content\ContentGetter.cs" />
-    <Compile Include="Content\ContentPartGetter.cs" />
-    <Compile Include="Content\ContentPartStorer.cs" />
-    <Compile Include="Content\ContentSet.cs" />
-    <Compile Include="Content\ContentStorer.cs" />
-    <Compile Include="Content\IContentGetter.cs" />
-    <Compile Include="Content\IContentPartGetter.cs" />
-    <Compile Include="Content\IContentPartStorer.cs" />
-    <Compile Include="Content\IContentSet.cs" />
-    <Compile Include="Content\IContentStorer.cs" />
-    <Compile Include="Entries\EntryGetter.cs" />
-    <Compile Include="Entries\EntrySet.cs" />
-    <Compile Include="Entries\EntryStorer.cs" />
-    <Compile Include="Entries\EntryUpdater.cs" />
-    <Compile Include="Entries\IEntryGetter.cs" />
-    <Compile Include="Entries\IEntrySet.cs" />
-    <Compile Include="Entries\IEntryStorer.cs" />
-    <Compile Include="Entries\IEntryUpdater.cs" />
-    <Compile Include="FabricContext.cs" />
-    <Compile Include="FabricContextConfiguration.cs" />
-    <Compile Include="FabricContextFactory.cs" />
-    <Compile Include="Identifiers\IdentifierSet.cs" />
-    <Compile Include="Identifiers\IIdentifierSet.cs" />
-    <Compile Include="IFabricContext.cs" />
-    <Compile Include="IFabricContextConfiguration.cs" />
-    <Compile Include="IFabricContextFactory.cs" />
-    <Compile Include="Items\IItemAdder.cs" />
-    <Compile Include="Items\IItemGetter.cs" />
-    <Compile Include="Items\IItemRemover.cs" />
-    <Compile Include="Items\IItemsSet.cs" />
-    <Compile Include="Items\IItemUpdater.cs" />
-    <Compile Include="Items\ItemAdder.cs" />
-    <Compile Include="Items\ItemGetter.cs" />
-    <Compile Include="Items\ItemRemover.cs" />
-    <Compile Include="Items\ItemsSet.cs" />
-    <Compile Include="Items\ItemUpdater.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties_\IPropertiesGetter.cs" />
-    <Compile Include="Properties_\IPropertiesSet.cs" />
-    <Compile Include="Properties_\IPropertiesStorer.cs" />
-    <Compile Include="Properties_\PropertiesGetter.cs" />
-    <Compile Include="Properties_\PropertiesSet.cs" />
-    <Compile Include="Properties_\PropertiesStorer.cs" />
-    <Compile Include="Roots\IRootAdder.cs" />
-    <Compile Include="Roots\IRootGetter.cs" />
-    <Compile Include="Roots\IRootRemover.cs" />
-    <Compile Include="Roots\IRootSet.cs" />
-    <Compile Include="Roots\IRootUpdater.cs" />
-    <Compile Include="Roots\RootAdder.cs" />
-    <Compile Include="Roots\RootGetter.cs" />
-    <Compile Include="Roots\RootRemover.cs" />
-    <Compile Include="Roots\RootSet.cs" />
-    <Compile Include="Roots\RootUpdater.cs" />
-    <Compile Include="Spaces\ISpaceAdder.cs" />
-    <Compile Include="Spaces\SpaceAdder.cs" />
-    <Compile Include="Spaces\SpaceFabricException.cs" />
-    <Compile Include="_Scaffolding\ContentDefinitionScaffolding.cs" />
-    <Compile Include="_Scaffolding\ContentScaffolding.cs" />
-    <Compile Include="_Scaffolding\EntryScaffolding.cs" />
-    <Compile Include="_Scaffolding\FabricContextScaffolding.cs" />
-    <Compile Include="_Scaffolding\IdentifiersScaffolding.cs" />
-    <Compile Include="_Scaffolding\ItemsScaffolding.cs" />
-    <Compile Include="_Scaffolding\PropertiesScaffolding.cs" />
-    <Compile Include="_Scaffolding\RootsScaffolding.cs" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj">
-      <Project>{66F50771-FBE2-42B7-B673-CBDB32498BEC}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Storages\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
