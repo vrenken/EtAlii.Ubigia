@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Linq;
 
-    internal class FunctionHandlersProvider : IFunctionHandlersProvider
+    public class FunctionHandlersProvider : IFunctionHandlersProvider
     {
         public IFunctionHandler[] FunctionHandlers { get; }
 
