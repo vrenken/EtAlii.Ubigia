@@ -55,7 +55,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<InvalidOperationException>(act);
+            Assert.Throws<InvalidOperationException>(act);
         }
 
         [Fact]
@@ -82,7 +82,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<InvalidOperationException>(act);
+            Assert.Throws<InvalidOperationException>(act);
         }
 
         [Fact]
@@ -109,7 +109,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ArgumentNullException>(act);
+            Assert.Throws<ArgumentNullException>(act);
         }
 
         [Fact]
@@ -137,7 +137,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ApplicationException>(act);
+            Assert.Throws<ApplicationException>(act);
         }
     }
 }
