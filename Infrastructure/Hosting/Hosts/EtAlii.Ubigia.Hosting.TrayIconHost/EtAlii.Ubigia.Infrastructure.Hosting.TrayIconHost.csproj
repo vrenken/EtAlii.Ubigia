@@ -62,6 +62,12 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Page>
+    <None Remove="Icon-Logo-Black.ico" />
+    <None Remove="Icon-Logo-Red.ico" />
+    <None Remove="Icon-Logo-White-Shaded.ico" />
+    <EmbeddedResource Include="Icon-Logo-Black.ico" />
+    <EmbeddedResource Include="Icon-Logo-Red.ico" />
+    <EmbeddedResource Include="Icon-Logo-White-Shaded.ico" />
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
 
     <!-- Resources -->
