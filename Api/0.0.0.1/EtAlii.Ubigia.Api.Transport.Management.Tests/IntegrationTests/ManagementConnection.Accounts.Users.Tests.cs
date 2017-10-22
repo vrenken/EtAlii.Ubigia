@@ -239,7 +239,7 @@
             Assert.NotNull(account);
             Assert.Equal(name, account.Name);
             Assert.Equal(password, account.Password);
-            Assert.Equal(0, account.Roles.Length);
+            Assert.Empty(account.Roles);
 
             account.Roles = new[] { "First", "Second", "Third" };
             account = await connection.Accounts.Change(account);
@@ -273,7 +273,7 @@
 
             account = await connection.Accounts.Get(account.Id);
             Assert.NotNull(account);
-            Assert.Equal(0, account.Roles.Length);
+            Assert.Empty(account.Roles);
 
             account.Roles = new[] { "First", "Second", "Third" };
             account = await connection.Accounts.Change(account);
