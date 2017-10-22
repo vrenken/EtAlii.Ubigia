@@ -6,6 +6,7 @@
     using EtAlii.Ubigia.Api.Helpers.Win32.Tests;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Api.Tests;
+    using Ubigia.Tests;
 
     public class Win32LogicalUnitTestContext : IDisposable
     {
@@ -13,10 +14,15 @@
         public string TestFile10MRaw;
         public string TestFile100MRaw;
 
+        public FileComparer FileComparer { get; }
+        public FolderComparer FolderComparer { get; }
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
         public Win32LogicalUnitTestContext()
         {
+            FileComparer = new FileComparer();
+            FolderComparer = new FolderComparer(FileComparer);
+
             var task = Task.Run(() =>
             {
                 LogicalTestContext = new LogicalTestContextFactory().Create();

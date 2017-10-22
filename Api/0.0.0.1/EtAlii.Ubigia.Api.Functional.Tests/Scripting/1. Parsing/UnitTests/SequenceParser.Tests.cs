@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
 
         }
 
@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
 
         }
 
@@ -132,7 +132,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -165,7 +165,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

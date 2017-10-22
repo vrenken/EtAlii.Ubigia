@@ -83,7 +83,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<InvalidOperationException>(act);
+            Assert.Throws<InvalidOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -131,7 +131,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<InvalidOperationException>(act);
+            Assert.Throws<InvalidOperationException>(act);
         }
     }
 }

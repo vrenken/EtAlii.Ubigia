@@ -154,7 +154,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -174,7 +174,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
 
@@ -195,7 +195,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
 
@@ -216,7 +216,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ScriptParserException>(act);
+            Assert.Throws<ScriptParserException>(act);
         }
 
 
