@@ -19,7 +19,7 @@
             var tokenAsBytes = new byte[] {};
             using (var stream = new MemoryStream())
             {
-                using (var writer = new BsonWriter(stream))
+                using (var writer = new BsonDataWriter(stream))
                 {
                     _serializer.Serialize(writer, token);
                 }
@@ -33,7 +33,7 @@
             AuthenticationToken token;
             using (var stream = new MemoryStream(tokenAsBytes))
             {
-                using (var reader = new BsonReader(stream))
+                using (var reader = new BsonDataReader(stream))
                 {
                     token = _serializer.Deserialize<AuthenticationToken>(reader);
                 }
