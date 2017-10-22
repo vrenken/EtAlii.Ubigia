@@ -37,10 +37,10 @@
             string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act
-            var act = _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
+            var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -52,10 +52,10 @@
             string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act
-            var act = _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
+            var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
     }
 }

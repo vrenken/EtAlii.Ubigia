@@ -49,7 +49,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<JsonWriterException>(act);
+            Assert.Throws<JsonWriterException>(act);
         }
 
         [Fact]
@@ -66,7 +66,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ArgumentNullException>(act);
+            Assert.Throws<ArgumentNullException>(act);
         }
 
         [Fact]
@@ -97,7 +97,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<JsonReaderException>(act);
+            Assert.Throws<JsonReaderException>(act);
         }
     }
 }

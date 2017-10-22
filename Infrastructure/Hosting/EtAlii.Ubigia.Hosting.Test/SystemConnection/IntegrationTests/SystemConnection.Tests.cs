@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
 
     
     public class SystemConnection_Tests : IClassFixture<HostUnitTestContext>

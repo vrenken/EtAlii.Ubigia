@@ -68,17 +68,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\bin\Debug\EtAlii.Ubigia.Windows.Mvvm.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.2\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Diagnostics.dll</HintPath>
+    <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.3\lib\net461\EtAlii.xTechnology.Diagnostics.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.1\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroContainer.dll</HintPath>
+    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.2\lib\netstandard2.0\EtAlii.xTechnology.MicroContainer.dll</HintPath>
     </Reference>
     <Reference Include="EtAlii.xTechnology.MicroMvvm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroMvvm.1.0.0.0\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroMvvm.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.xTechnology.Structure, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Structure.1.0.3\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.Structure.dll</HintPath>
+    <Reference Include="EtAlii.xTechnology.Structure, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Structure.1.0.4\lib\netstandard2.0\EtAlii.xTechnology.Structure.dll</HintPath>
     </Reference>
     <Reference Include="Fluent, Version=4.0.3.394, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\Fluent.Ribbon.4.0.3.394\lib\net45\Fluent.dll</HintPath>
@@ -706,9 +706,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj">
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj">
       <Project>{d36b8b0f-c13b-44bc-926d-0dd7e7957f01}</Project>
-      <Name>EtAlii.Ubigia.Api.Functional.Win32</Name>
+      <Name>EtAlii.Ubigia.Api.Functional.NET47</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj">
       <Project>{acf559ef-3661-430c-9c4a-c379efe7cdd6}</Project>

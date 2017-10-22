@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>EtAlii.Ubigia.Provisioning.Google</RootNamespace>
     <AssemblyName>EtAlii.Ubigia.Provisioning.Google.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -47,11 +47,8 @@
     <Reference Include="EtAlii.Ubigia, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EtAlii.Ubigia.1.0.22\lib\netstandard2.0\EtAlii.Ubigia.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.25.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.25\lib\netstandard2.0\EtAlii.Ubigia.Tests.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.26.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.26\lib\netstandard2.0\EtAlii.Ubigia.Tests.dll</HintPath>
     </Reference>
     <Reference Include="HashLib, Version=2.1.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HashLib.2.1.0.2\lib\netstandard2.0\HashLib.dll</HintPath>

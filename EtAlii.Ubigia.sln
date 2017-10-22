@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.13
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{7C2871EF-E67E-4CD0-BF65-DA0E1C05C4EB}"
 EndProject
@@ -79,7 +79,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.0.0.0", "1.0.0.0", "{8E73
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.0.0.2", "0.0.0.2", "{8B0F090D-C70E-40C3-AD43-5E2C7FF187B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj", "{49228937-7ED7-4524-8BEA-98B33EAE49A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj", "{49228937-7ED7-4524-8BEA-98B33EAE49A1}"
 	ProjectSection(ProjectDependencies) = postProject
 		{7C020A57-0746-46E3-8F98-39C76FA37A3B} = {7C020A57-0746-46E3-8F98-39C76FA37A3B}
 		{66F50771-FBE2-42B7-B673-CBDB32498BEC} = {66F50771-FBE2-42B7-B673-CBDB32498BEC}
@@ -87,9 +87,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructur
 		{08DFF5F2-15AF-416E-963E-5DDDCD4C495C} = {08DFF5F2-15AF-416E-963E-5DDDCD4C495C}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure", "Infrastructure\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj", "{66F50771-FBE2-42B7-B673-CBDB32498BEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure", "Infrastructure\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj", "{66F50771-FBE2-42B7-B673-CBDB32498BEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Tests\EtAlii.Ubigia.Infrastructure.Tests.csproj", "{238096ED-9BC0-4427-8C21-9C62E24BB1C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Tests\EtAlii.Ubigia.Infrastructure.Tests.csproj", "{238096ED-9BC0-4427-8C21-9C62E24BB1C7}"
 	ProjectSection(ProjectDependencies) = postProject
 		{AE581332-D0B8-4481-BA67-71D11BFB056E} = {AE581332-D0B8-4481-BA67-71D11BFB056E}
 		{7C020A57-0746-46E3-8F98-39C76FA37A3B} = {7C020A57-0746-46E3-8F98-39C76FA37A3B}
@@ -127,24 +127,24 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost", "Providers\Hosting\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.csproj", "{BD678695-A0A8-4600-8EE9-BEC4D5C71DAE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Time", "Providers\Providers\EtAlii.Ubigia.Providers.Time\EtAlii.Ubigia.Provisioning.Time.csproj", "{F33427F9-F7C5-4BDC-AD6A-9561FEF54BC6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Time", "Providers\Providers\EtAlii.Ubigia.Providers.Time\EtAlii.Ubigia.Provisioning.Time.csproj", "{F33427F9-F7C5-4BDC-AD6A-9561FEF54BC6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E1587085-865C-4EAD-A5A5-DCDA0D448DB6} = {E1587085-865C-4EAD-A5A5-DCDA0D448DB6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Facebook", "Providers\Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Provisioning.Facebook.csproj", "{7C858D5D-157E-4F88-8901-FC6A8E165697}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Facebook", "Providers\Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Provisioning.Facebook.csproj", "{7C858D5D-157E-4F88-8901-FC6A8E165697}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E1587085-865C-4EAD-A5A5-DCDA0D448DB6} = {E1587085-865C-4EAD-A5A5-DCDA0D448DB6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Mail", "Providers\Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Provisioning.Mail.csproj", "{DC1F413E-E2B4-44E7-97D7-A13C86E2B552}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Mail", "Providers\Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Provisioning.Mail.csproj", "{DC1F413E-E2B4-44E7-97D7-A13C86E2B552}"
 	ProjectSection(ProjectDependencies) = postProject
 		{E1587085-865C-4EAD-A5A5-DCDA0D448DB6} = {E1587085-865C-4EAD-A5A5-DCDA0D448DB6}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Twitter", "Providers\Providers\EtAlii.Ubigia.Providers.Twitter\EtAlii.Ubigia.Provisioning.Twitter.csproj", "{CF92B846-2C8E-4F21-9DFF-1C17498AF930}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Twitter", "Providers\Providers\EtAlii.Ubigia.Providers.Twitter\EtAlii.Ubigia.Provisioning.Twitter.csproj", "{CF92B846-2C8E-4F21-9DFF-1C17498AF930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning", "Providers\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj", "{E1587085-865C-4EAD-A5A5-DCDA0D448DB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning", "Providers\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj", "{E1587085-865C-4EAD-A5A5-DCDA0D448DB6}"
 	ProjectSection(ProjectDependencies) = postProject
 		{39F1AA26-BE51-4744-AA8D-16113DD76E70} = {39F1AA26-BE51-4744-AA8D-16113DD76E70}
 		{9947E053-7C54-450D-A1D1-D399A29FEA4A} = {9947E053-7C54-450D-A1D1-D399A29FEA4A}
@@ -414,15 +414,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C9F061AC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{47801A27-6239-4B4D-8377-B864C2EF23B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Win32", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.Win32.csproj", "{D36B8B0F-C13B-44BC-926D-0DD7E7957F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.NET47", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj", "{D36B8B0F-C13B-44BC-926D-0DD7E7957F01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.Local.csproj", "{D06E5031-F8A9-4CCE-8722-6CC760BA6041}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.Local.csproj", "{D06E5031-F8A9-4CCE-8722-6CC760BA6041}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi", "Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj", "{7C020A57-0746-46E3-8F98-39C76FA37A3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi", "Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj", "{7C020A57-0746-46E3-8F98-39C76FA37A3B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Hosting", "1. Hosting", "{E715DBF2-CDBF-4521-908F-4806A66891E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests.csproj", "{C47AAE22-60A5-4BDD-850F-3A488F788A39}"
 EndProject
@@ -449,15 +449,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Windows", "Cl
 		{29D6C7C1-38D6-49C0-931A-A70AB08635C9} = {29D6C7C1-38D6-49C0-931A-A70AB08635C9}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Diagnostics", "Infrastructure\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj", "{6367AD1A-35EF-4777-9A33-1FB80CF5963B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Diagnostics", "Infrastructure\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj", "{6367AD1A-35EF-4777-9A33-1FB80CF5963B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Diagnostics", "Providers\EtAlii.Ubigia.Provisioning.Diagnostics\EtAlii.Ubigia.Provisioning.Diagnostics.csproj", "{749F3F1E-7728-41F2-84F4-72550C0C4917}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Diagnostics", "Providers\EtAlii.Ubigia.Provisioning.Diagnostics\EtAlii.Ubigia.Provisioning.Diagnostics.csproj", "{749F3F1E-7728-41F2-84F4-72550C0C4917}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics.csproj", "{461879E8-97BF-4C67-8F8C-A992450DED42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics.csproj", "{461879E8-97BF-4C67-8F8C-A992450DED42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics", "Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj", "{CF80D9F9-DEF0-4B81-9FFF-7DC4B641B71C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics", "Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj", "{CF80D9F9-DEF0-4B81-9FFF-7DC4B641B71C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Microsoft.Graph", "Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj", "{D0F4DD6B-EAAA-4AD8-888D-1F5106757DDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Microsoft.Graph", "Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj", "{D0F4DD6B-EAAA-4AD8-888D-1F5106757DDF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{38718901-8C9D-4BDC-A9CA-2035749DC84D}"
 EndProject
@@ -467,7 +467,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{EFAB3FBA-3E94-498C-8375-7B61DC1BB487}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Google", "Providers\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj", "{DC7092F3-A8B0-47F8-9946-43969BDDA9CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Google", "Providers\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj", "{DC7092F3-A8B0-47F8-9946-43969BDDA9CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C84D0F96-5A66-4C6C-B70B-FD4FFAF95FD3}"
 EndProject
@@ -493,19 +493,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Google.Tests", "Providers\Providers\EtAlii.Ubigia.Provisioning.Google.Tests\EtAlii.Ubigia.Provisioning.Google.Tests.csproj", "{729F2054-26B0-4263-9D03-A4BF8B91A216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Gis.GeoNames", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.GeoNames\EtAlii.Ubigia.Provisioning.Gis.GeoNames.csproj", "{07254E8C-4552-4150-82EE-982FB2AA3D6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Gis.GeoNames", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.GeoNames\EtAlii.Ubigia.Provisioning.Gis.GeoNames.csproj", "{07254E8C-4552-4150-82EE-982FB2AA3D6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap\EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap.csproj", "{5EDC19E2-4213-443D-8EF4-1CE57360081E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap\EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap.csproj", "{5EDC19E2-4213-443D-8EF4-1CE57360081E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Provisioning.Gis.Google", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.Google\EtAlii.Ubigia.Provisioning.Gis.Google.csproj", "{28D28A16-8EDC-41EC-81C3-F5B88D73BB58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Gis.Google", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.Google\EtAlii.Ubigia.Provisioning.Gis.Google.csproj", "{28D28A16-8EDC-41EC-81C3-F5B88D73BB58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj", "{64723C77-5242-4671-A0BB-984DEEB79DBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj", "{64723C77-5242-4671-A0BB-984DEEB79DBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj", "{AE581332-D0B8-4481-BA67-71D11BFB056E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj", "{AE581332-D0B8-4481-BA67-71D11BFB056E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR", "Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj", "{9E74D294-1AF0-4DF1-AE62-AAF97C89D342}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR", "Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj", "{9E74D294-1AF0-4DF1-AE62-AAF97C89D342}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj", "{D9C5FA06-40A1-468F-A299-0C31304D1478}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj", "{D9C5FA06-40A1-468F-A299-0C31304D1478}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.WebApi.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.Tests\EtAlii.Ubigia.Api.Transport.WebApi.Tests.csproj", "{47A68414-4D71-4A8C-9F8E-3BC54DD497E4}"
 EndProject
@@ -513,11 +513,11 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.shproj", "{428597BB-50E3-4596-BC50-BF5A6D2F71CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj", "{29D6C7C1-38D6-49C0-931A-A70AB08635C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj", "{29D6C7C1-38D6-49C0-931A-A70AB08635C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Logical", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj", "{CAEAB577-9DAB-43FA-A185-C81C7CB1B507}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Logical", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj", "{CAEAB577-9DAB-43FA-A185-C81C7CB1B507}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj", "{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj", "{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Functional", "1. Functional", "{DFC0B826-71B4-49A2-84BE-81B3C443D665}"
 EndProject
@@ -535,25 +535,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E2BA8783
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{4EFFAE29-4B50-4004-AAEB-A43D71265251}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj", "{5F7B884E-7E42-4A32-ADB3-E8CBB3FD5B31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj", "{5F7B884E-7E42-4A32-ADB3-E8CBB3FD5B31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Logical.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj", "{8C4D3AFB-67D3-4865-98BB-93E84B42E147}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Logical.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj", "{8C4D3AFB-67D3-4865-98BB-93E84B42E147}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Fabric.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj", "{ACF559EF-3661-430C-9C4A-C379EFE7CDD6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Fabric.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj", "{ACF559EF-3661-430C-9C4A-C379EFE7CDD6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj", "{AFD2BF70-5F38-4F91-90E2-6321C8E6F746}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj", "{AFD2BF70-5F38-4F91-90E2-6321C8E6F746}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Fabric", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj", "{16596297-5E14-4CA4-A77C-70FA35D2B9BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Fabric", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj", "{16596297-5E14-4CA4-A77C-70FA35D2B9BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj", "{9947E053-7C54-450D-A1D1-D399A29FEA4A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj", "{9947E053-7C54-450D-A1D1-D399A29FEA4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Fabric.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj", "{39F1AA26-BE51-4744-AA8D-16113DD76E70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Fabric.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj", "{39F1AA26-BE51-4744-AA8D-16113DD76E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj", "{4CF1773B-6516-484F-A0CD-D75593693644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj", "{4CF1773B-6516-484F-A0CD-D75593693644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj", "{690C236C-FA31-4911-BABC-EB370849E4E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj", "{690C236C-FA31-4911-BABC-EB370849E4E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj", "{F9A4EB81-611C-453E-8B71-27099E54E982}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj", "{F9A4EB81-611C-453E-8B71-27099E54E982}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Microsoft", "Microsoft", "{98D55443-AF41-482F-9006-2948B36C6102}"
 EndProject
@@ -564,9 +564,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Facebook", "Facebook", "{F98A1593-B4B3-455F-8FF4-CB633266105B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Transport", "2. Transport", "{3A638E29-D29C-44C9-B95E-C253B578F8E1}"
-	ProjectSection(SolutionItems) = preProject
-		Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\IHostConfiguration.TestHost.cs = Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\IHostConfiguration.TestHost.cs
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Functional", "3. Functional", "{6E5AC0D8-5F90-4ED2-9075-C1E1396E6669}"
 EndProject
@@ -574,27 +571,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Logical", "4. Logical", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Fabric", "5. Fabric", "{43627B3F-DAA0-4D5C-9E57-A7E28828C3E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj", "{D10B55FE-5603-43A9-B25F-E2C290C6A830}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj", "{D10B55FE-5603-43A9-B25F-E2C290C6A830}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Functional", "Infrastructure\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj", "{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Functional", "Infrastructure\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj", "{C62EB0EE-70D0-463D-A08B-F7787A2E1B2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Logical", "Infrastructure\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj", "{0AA11597-8A46-4261-9D62-F0073A4F9F2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Logical", "Infrastructure\EtAlii.Ubigia.Infrastructure.Logical\EtAlii.Ubigia.Infrastructure.Logical.csproj", "{0AA11597-8A46-4261-9D62-F0073A4F9F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Fabric", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj", "{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj", "{25BBFBF7-8599-4ADB-96CF-F909C724E1E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Scripting", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting\EtAlii.Ubigia.Api.Functional.Scripting.csproj", "{2A7FB0C3-2FCD-4177-B6D2-AC9355AFA7A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting\EtAlii.Ubigia.Api.Functional.Scripting.csproj", "{2A7FB0C3-2FCD-4177-B6D2-AC9355AFA7A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Querying", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj", "{CD22C4A2-997E-44FA-B070-81A72D5C79AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj", "{CD22C4A2-997E-44FA-B070-81A72D5C79AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj", "{C4CB9D89-90FD-4F75-AD6F-73C33652E2F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj", "{C4CB9D89-90FD-4F75-AD6F-73C33652E2F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj", "{23D517B8-018C-4889-A9F7-9F7934E0560E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj", "{23D517B8-018C-4889-A9F7-9F7934E0560E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj", "{19BA706C-99D1-4B9F-B69C-0FC2C566659C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj", "{19BA706C-99D1-4B9F-B69C-0FC2C566659C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj", "{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj", "{31311BEA-1612-45F5-AE98-6BA4CAE3AB1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Owin.csproj", "{32A87373-0BE2-4061-9649-A739792CB0EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Win32\EtAlii.Ubigia.Infrastructure.Transport.Owin.csproj", "{32A87373-0BE2-4061-9649-A739792CB0EE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{6210B76E-511A-437D-9F86-37B2C4D86ADE}"
 EndProject
@@ -609,6 +606,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests\EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests.csproj", "{40F79FC3-6DD4-41C6-92EA-B62392B77935}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport.Management.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.shproj", "{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj", "{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -4308,6 +4307,56 @@ Global
 		{40F79FC3-6DD4-41C6-92EA-B62392B77935}.Trial|x64.Build.0 = Release|Any CPU
 		{40F79FC3-6DD4-41C6-92EA-B62392B77935}.Trial|x86.ActiveCfg = Release|Any CPU
 		{40F79FC3-6DD4-41C6-92EA-B62392B77935}.Trial|x86.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|ARM.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|Compact.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|Compact.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|x64.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Debug|x86.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|Any CPU.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|ARM.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|ARM.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|Compact.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|Compact.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|x64.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|x64.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|x86.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.MailSystem Dev|x86.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|ARM.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|ARM.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|Compact.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|Compact.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|x64.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|x64.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|x86.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Release|x86.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|Any CPU.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|Any CPU.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|ARM.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|ARM.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|Compact.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|Compact.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|x64.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|x64.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|x86.ActiveCfg = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Retail|x86.Build.0 = Release|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|Any CPU.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|Any CPU.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|ARM.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|ARM.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|Compact.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|Compact.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x64.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x64.Build.0 = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x86.ActiveCfg = Debug|Any CPU
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4441,5 +4490,9 @@ Global
 		{C6D05D23-DC2C-4FE4-8F11-5A4BD6D7C3D2} = {4EFFAE29-4B50-4004-AAEB-A43D71265251}
 		{40F79FC3-6DD4-41C6-92EA-B62392B77935} = {4EFFAE29-4B50-4004-AAEB-A43D71265251}
 		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B} = {4EFFAE29-4B50-4004-AAEB-A43D71265251}
+		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8} = {89D67D89-DCB7-4E7C-8A67-D4AFE7207254}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
 	EndGlobalSection
 EndGlobal

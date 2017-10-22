@@ -54,10 +54,10 @@
             var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Data.Storages) + "?local";
 
             // Act.
-            var act = _hostTestContext.Host.Client.Get<Storage>(address);
+            var act = new Func<Task>(async () => await _hostTestContext.Host.Client.Get<Storage>(address));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -97,7 +97,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<InvalidInfrastructureOperationException>(act);
+            Assert.Throws<InvalidInfrastructureOperationException>(act);
         }
     }
 }
