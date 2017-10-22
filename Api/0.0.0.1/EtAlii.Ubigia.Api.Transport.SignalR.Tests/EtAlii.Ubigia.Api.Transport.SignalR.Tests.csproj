@@ -24,6 +24,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj" />
   </ItemGroup>
 

@@ -385,7 +385,7 @@
             Assert.NotNull(account);
             Assert.Equal(name, account.Name);
             Assert.Equal(password, account.Password);
-            Assert.Equal(0, account.Roles.Length);
+            Assert.Empty(account.Roles);
 
             // Act.
             account.Roles = new[] { "First", "Second", "Third" };
@@ -434,7 +434,7 @@
 
             // Assert.
             Assert.NotNull(account);
-            Assert.Equal(0, account.Roles.Length);
+            Assert.Empty(account.Roles);
 
             // Act.
             account.Roles = new[] { "First", "Second", "Third" };
