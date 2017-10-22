@@ -13,6 +13,7 @@
 
         public ByteArrayComparer ByteArrayComparer { get; }
         public ContentComparer ContentComparer { get; }
+        public PropertyDictionaryComparer PropertyDictionaryComparer { get; }
 
         public TestContentDefinitionFactory TestContentDefinitionFactory { get; }
         public TestContentFactory TestContentFactory { get; }
@@ -26,6 +27,7 @@
 
             ByteArrayComparer = new ByteArrayComparer();
             ContentComparer = new ContentComparer(ByteArrayComparer);
+            PropertyDictionaryComparer = new PropertyDictionaryComparer();
 
             var task = Task.Run(async () =>
             {

@@ -19,7 +19,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(0, result.Count);
+            Assert.Empty(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -33,7 +33,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal("World", result["Hello"]);
         }
 
@@ -48,7 +48,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Int16)123, result["Hello"]);
         }
 
@@ -63,7 +63,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Int16.MaxValue, result["Hello"]);
         }
 
@@ -78,7 +78,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Int16.MinValue, result["Hello"]);
         }
 
@@ -93,7 +93,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Int32)123, result["Hello"]);
         }
 
@@ -108,7 +108,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Int32.MaxValue, result["Hello"]);
         }
 
@@ -123,7 +123,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Int32.MinValue, result["Hello"]);
         }
 
@@ -138,7 +138,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Int64)123, result["Hello"]);
         }
 
@@ -153,7 +153,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Int64.MaxValue, result["Hello"]);
         }
 
@@ -168,7 +168,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Int64.MinValue, result["Hello"]);
         }
 
@@ -183,7 +183,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((UInt16)123, result["Hello"]);
         }
 
@@ -198,7 +198,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(UInt16.MaxValue, result["Hello"]);
         }
 
@@ -213,7 +213,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(UInt16.MinValue, result["Hello"]);
         }
 
@@ -228,7 +228,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((UInt32)123, result["Hello"]);
         }
 
@@ -243,7 +243,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(UInt32.MaxValue, result["Hello"]);
         }
 
@@ -259,7 +259,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(UInt32.MinValue, result["Hello"]);
         }
 
@@ -274,7 +274,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((UInt64)1234, result["Hello"]);
         }
 
@@ -289,7 +289,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(UInt64.MaxValue, result["Hello"]);
         }
 
@@ -305,7 +305,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(UInt64.MinValue, result["Hello"]);
         }
 
@@ -320,7 +320,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(null, result["Hello"]);
         }
 
@@ -336,7 +336,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal('a', result["Hello"]);
         }
 
@@ -352,7 +352,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Char.MaxValue, result["Hello"]);
         }
 
@@ -367,7 +367,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Char.MinValue, result["Hello"]);
         }
 
@@ -382,7 +382,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(true, result["Hello"]);
         }
 
@@ -397,7 +397,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(false, result["Hello"]);
         }
 
@@ -412,7 +412,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((SByte)123, result["Hello"]);
         }
 
@@ -427,7 +427,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(SByte.MaxValue, result["Hello"]);
         }
 
@@ -442,7 +442,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(SByte.MinValue, result["Hello"]);
         }
 
@@ -457,7 +457,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Byte)123, result["Hello"]);
         }
 
@@ -472,7 +472,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Byte.MaxValue, result["Hello"]);
         }
 
@@ -487,7 +487,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Byte.MinValue, result["Hello"]);
         }
 
@@ -502,7 +502,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Single)123.456, result["Hello"]);
         }
 
@@ -517,7 +517,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Single.MaxValue, result["Hello"]);
         }
 
@@ -532,7 +532,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Single.MinValue, result["Hello"]);
         }
 
@@ -547,7 +547,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Double)123.456, result["Hello"]);
         }
 
@@ -562,7 +562,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Double.MaxValue, result["Hello"]);
         }
 
@@ -577,7 +577,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Double.MinValue, result["Hello"]);
         }
 
@@ -592,7 +592,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal((Decimal)123.456, result["Hello"]);
         }
 
@@ -607,7 +607,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Decimal.MaxValue, result["Hello"]);
         }
 
@@ -622,7 +622,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Decimal.MinValue, result["Hello"]);
         }
 
@@ -638,7 +638,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Local), result["Hello"]);
         }
 
@@ -653,7 +653,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Utc), result["Hello"]);
         }
 
@@ -668,7 +668,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(new DateTime(2015, 8, 19, 12, 13, 14, DateTimeKind.Unspecified), result["Hello"]);
         }
 
@@ -683,7 +683,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(DateTime.MaxValue, result["Hello"]);
         }
 
@@ -698,7 +698,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(DateTime.MinValue, result["Hello"]);
         }
 
@@ -713,7 +713,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(TimeSpan.FromSeconds(10), result["Hello"]);
         }
 
@@ -728,7 +728,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(TimeSpan.MaxValue, result["Hello"]);
         }
 
@@ -743,7 +743,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(TimeSpan.MinValue, result["Hello"]);
         }
 
@@ -759,7 +759,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(Guid.Parse("3AD36A1F-8ED6-42AA-BE7B-877F17B4DB05"), result["Hello"]);
         }
 
@@ -774,7 +774,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Count);
+            Assert.Single(result);
             Assert.Equal(new Version(1, 2, 3, 4), result["Hello"]);
         }
 
