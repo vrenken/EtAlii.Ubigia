@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     
@@ -83,10 +82,10 @@
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
             // Act.
-            var act = client.Get<TestStatus>(null);
+            var act = new Func<Task>(async () => await client.Get<TestStatus>(null));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidOperationException>(act);
+            await Assert.ThrowsAsync<InvalidOperationException>(act);
         }
     }
 }

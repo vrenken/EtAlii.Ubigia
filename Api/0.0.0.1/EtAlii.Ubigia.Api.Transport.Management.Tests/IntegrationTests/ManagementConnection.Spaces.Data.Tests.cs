@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
     
     public class ManagementConnection_Spaces_Data_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
@@ -226,10 +225,10 @@
             var id = Guid.NewGuid();
 
             // Act.
-            var act = connection.Spaces.Remove(id);
+            var act = new Func<Task>(async () => await connection.Spaces.Remove(id));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
 
@@ -243,10 +242,10 @@
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var act = connection.Spaces.Change(id, name);
+            var act = new Func<Task>(async () => await connection.Spaces.Change(id, name));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -261,10 +260,10 @@
             Assert.NotNull(space);
 
             // Act.
-            var act = connection.Spaces.Add(account.Id, name, SpaceTemplate.Data);
+            var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
     }
 }

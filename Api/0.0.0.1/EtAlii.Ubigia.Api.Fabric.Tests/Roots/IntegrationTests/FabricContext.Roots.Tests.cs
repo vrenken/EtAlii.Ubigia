@@ -300,10 +300,10 @@
             var id = Guid.NewGuid();
 
             // Act.
-            var act = _fabric.Roots.Remove(id);
+            var act = new Func<Task>(async () => await _fabric.Roots.Remove(id));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -314,10 +314,10 @@
             var name = Guid.NewGuid().ToString();
 
             // Act.
-            var act = _fabric.Roots.Change(id, name);
+            var act = new Func<Task>(async () => await _fabric.Roots.Change(id, name));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -411,10 +411,10 @@
             Assert.NotNull(root);
 
             // Act.
-            var act = _fabric.Roots.Add(name);
+            var act = new Func<Task>(async () => await _fabric.Roots.Add(name));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
     }
 }

@@ -64,10 +64,10 @@
             var contentDefinitionPart = (ContentDefinitionPart)null;
 
             // Act.
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<ArgumentNullException>(act);
+            await Assert.ThrowsAsync<ArgumentNullException>(act);
         }
 
 
@@ -103,10 +103,10 @@
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -122,10 +122,10 @@
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -139,10 +139,10 @@
             var contentDefinitionPart = TestContentDefinition.CreatePart(0);
             //connection.Content.StoreDefinition(entry.Id, contentDefinition);
 
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -158,10 +158,10 @@
 
             // Act.
             //await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -176,10 +176,10 @@
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -194,10 +194,10 @@
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
-            var act = _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
+            var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<ArgumentNullException>(act);
+            await Assert.ThrowsAsync<ArgumentNullException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
