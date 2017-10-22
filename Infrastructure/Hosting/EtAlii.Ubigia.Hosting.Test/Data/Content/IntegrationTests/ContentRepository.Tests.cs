@@ -112,7 +112,7 @@
             var retrievedContentPart = _testContext.HostTestContext.Host.Infrastructure.Content.Get(entry.Id, 0);
 
             // Assert.
-            AssertData.AreEqual(contentPart, retrievedContentPart);
+            Assert.True(_testContext.ContentComparer.AreEqual(contentPart, retrievedContentPart));
         }
 
         [Fact]
@@ -164,7 +164,7 @@
             var retrievedContent = _testContext.HostTestContext.Host.Infrastructure.Content.Get(entry.Id);
 
             // Assert.
-            AssertData.AreEqual(content, retrievedContent, true);
+            Assert.True(_testContext.ContentComparer.AreEqual(content, retrievedContent, true));
         }
     }
 }

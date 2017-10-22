@@ -19,7 +19,7 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.26" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="xunit" Version="2.3.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
@@ -33,7 +33,6 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 
 </Project>

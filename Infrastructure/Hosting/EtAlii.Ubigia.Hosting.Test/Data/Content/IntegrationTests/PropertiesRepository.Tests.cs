@@ -43,9 +43,9 @@
             var retrievedProperties = _testContext.HostTestContext.Host.Infrastructure.Properties.Get(entry.Id);
 
             // Assert.
-            AssertData.AreEqual(properties, retrievedProperties);
-            Assert.Equal(true, retrievedProperties.Stored);
-            Assert.Equal(true, properties.Stored);
+            Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));
+            Assert.True(retrievedProperties.Stored);
+            Assert.True(properties.Stored);
         }
     }
 }

@@ -118,7 +118,7 @@
 
             // Assert.
             Assert.NotNull(personsAfter);
-            Assert.Equal(1, personsAfter.Length);
+            Assert.Single(personsAfter);
             Assert.Equal(3, personsAfter.Single());
         }
 
@@ -150,7 +150,7 @@
             var item = await lastSequence.Output.ToArray();
 
             // Assert.
-            Assert.Equal(1, item.Length);
+            Assert.Single(item);
             Assert.IsAssignableFrom<INode>(item[0]);
         }
     }

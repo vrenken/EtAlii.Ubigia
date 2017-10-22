@@ -118,7 +118,7 @@
 
             // Assert.
             Assert.NotNull(managementConnection);
-            Assert.Equal(true, managementConnection.IsConnected);
+            Assert.True(managementConnection.IsConnected);
         }
 
 
