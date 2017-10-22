@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.26" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="Microsoft.Owin.Testing" Version="3.1.0" />
     <PackageReference Include="xunit" Version="2.3.0" />

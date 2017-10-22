@@ -38,6 +38,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 
