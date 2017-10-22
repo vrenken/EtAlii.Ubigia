@@ -162,7 +162,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
 
         [Fact]
@@ -203,7 +203,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
 
 
@@ -340,7 +340,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
 
         [Fact]
@@ -383,7 +383,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
     }
 }

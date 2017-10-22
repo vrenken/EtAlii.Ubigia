@@ -8,6 +8,13 @@
     
     public class HierarchicalRelationDuplicator_UnitTests
     {
+        private readonly TestIdentifierFactory _testIdentifierFactory;
+
+        public HierarchicalRelationDuplicator_UnitTests()
+        {
+            _testIdentifierFactory = new TestIdentifierFactory();
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void HierarchicalRelationDuplicator_Create()
         {
@@ -25,14 +32,14 @@
             var count = 10;
 
             // Arrange.
-            var entryId = TestIdentifier.Create();
-            var previousEntryId = TestIdentifier.Create();
+            var entryId = _testIdentifierFactory.Create();
+            var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var testContent = "TestContent";
             var first = (IEditableEntry)new Entry(entryId, previousEntryRelation, testContent);
             for (int i = 0; i < count; i++)
             {
-                first.Children.Add(TestIdentifier.Create());
+                first.Children.Add(_testIdentifierFactory.Create());
             }
             var second = new Entry(entryId, previousEntryRelation, testContent);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();
@@ -42,7 +49,7 @@
 
             // Assert.
             Assert.Equal(count, second.Children.Count());
-            Assert.Equal(0, second.Children2.Count());
+            Assert.Empty(second.Children2);
 
             for (int i = 0; i < count; i++)
             {
@@ -57,14 +64,14 @@
             var count = 10;
 
             // Arrange.
-            var entryId = TestIdentifier.Create();
-            var previousEntryId = TestIdentifier.Create();
+            var entryId = _testIdentifierFactory.Create();
+            var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var testContent = "TestContent";
             var first = (IEditableEntry)new Entry(entryId, previousEntryRelation, testContent);
             for (int i = 0; i < count; i++)
             {
-                first.Children2.Add(TestIdentifier.Create());
+                first.Children2.Add(_testIdentifierFactory.Create());
             }
             var second = new Entry(entryId, previousEntryRelation, testContent);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();
@@ -73,7 +80,7 @@
             hierarchicalRelationDuplicator.Duplicate((IReadOnlyEntry)first, second);
 
             // Assert.
-            Assert.Equal(0, second.Children.Count());
+            Assert.Empty(second.Children);
             Assert.Equal(count, second.Children2.Count());
 
             for (int i = 0; i < count; i++)
@@ -89,15 +96,15 @@
             var count = 10;
 
             // Arrange.
-            var entryId = TestIdentifier.Create();
-            var previousEntryId = TestIdentifier.Create();
+            var entryId = _testIdentifierFactory.Create();
+            var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var testContent = "TestContent";
             var first = (IEditableEntry)new Entry(entryId, previousEntryRelation, testContent);
             var idToExclude = Identifier.Empty;
             for (int i = 0; i < count; i++)
             {
-                var identifier = TestIdentifier.Create();
+                var identifier = _testIdentifierFactory.Create();
                 if (i == count / 2)
                 {
                     idToExclude = identifier;
@@ -112,7 +119,7 @@
 
             // Assert.
             Assert.Equal(count - 1, second.Children.Count());
-            Assert.Equal(0, second.Children2.Count());
+            Assert.Empty(second.Children2);
             Assert.False(((IEditableEntry)second).Children.Contains(idToExclude));
             for (int i = 0; i < count - 1; i++)
             {
@@ -127,15 +134,15 @@
             var count = 10;
 
             // Arrange.
-            var entryId = TestIdentifier.Create();
-            var previousEntryId = TestIdentifier.Create();
+            var entryId = _testIdentifierFactory.Create();
+            var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var testContent = "TestContent";
             var first = (IEditableEntry)new Entry(entryId, previousEntryRelation, testContent);
             var idToExclude = Identifier.Empty;
             for (int i = 0; i < count; i++)
             {
-                var identifier = TestIdentifier.Create();
+                var identifier = _testIdentifierFactory.Create();
                 if (i == count / 2)
                 {
                     idToExclude = identifier;
@@ -148,7 +155,7 @@
             hierarchicalRelationDuplicator.Duplicate((IReadOnlyEntry)first, second, idToExclude);
 
             // Assert.
-            Assert.Equal(0, second.Children.Count());
+            Assert.Empty(second.Children);
             Assert.Equal(count - 1, second.Children2.Count());
             Assert.False(((IEditableEntry)second).Children2.Contains(idToExclude));
             for (int i = 0; i < count - 1; i++)
@@ -165,18 +172,18 @@
             var count = 10;
 
             // Arrange.
-            var entryId = TestIdentifier.Create();
-            var previousEntryId = TestIdentifier.Create();
+            var entryId = _testIdentifierFactory.Create();
+            var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
             var testContent = "TestContent";
             var first = (IEditableEntry)new Entry(entryId, previousEntryRelation, testContent);
             for (int i = 0; i < count; i++)
             {
-                first.Children.Add(TestIdentifier.Create());
+                first.Children.Add(_testIdentifierFactory.Create());
             }
             for (int i = 0; i < count; i++)
             {
-                first.Children2.Add(TestIdentifier.Create());
+                first.Children2.Add(_testIdentifierFactory.Create());
             }
             var second = new Entry(entryId, previousEntryRelation, testContent);
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();

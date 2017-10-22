@@ -19,11 +19,13 @@
         public TestContentFactory TestContentFactory { get; }
         public TestPropertiesFactory TestPropertiesFactory { get; }
 
+        public TestIdentifierFactory TestIdentifierFactory { get; }
         public TransportUnitTestContext()
         {
             TestContentDefinitionFactory = new TestContentDefinitionFactory();
             TestContentFactory = new TestContentFactory();
             TestPropertiesFactory = new TestPropertiesFactory();
+            TestIdentifierFactory = new TestIdentifierFactory();
 
             ByteArrayComparer = new ByteArrayComparer();
             ContentComparer = new ContentComparer(ByteArrayComparer);
