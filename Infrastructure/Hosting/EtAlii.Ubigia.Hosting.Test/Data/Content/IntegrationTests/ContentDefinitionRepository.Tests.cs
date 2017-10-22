@@ -23,7 +23,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
@@ -38,7 +38,7 @@
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
 
-            var contentDefinition = TestContentDefinition.Create(10);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             Assert.True(contentDefinition.Stored);
@@ -64,7 +64,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentDefinitionRepositoryException>(act);
+            Assert.Throws<ContentDefinitionRepositoryException>(act);
         }
 
         [Fact]
@@ -73,7 +73,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
             var act = new Action(() =>
@@ -82,7 +82,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentDefinitionRepositoryException>(act);
+            Assert.Throws<ContentDefinitionRepositoryException>(act);
         }
 
         [Fact]
@@ -91,7 +91,7 @@
             // Act.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Arrange.
@@ -107,9 +107,9 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var contentDefinition = TestContentDefinition.Create(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(0);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Act.
@@ -125,9 +125,9 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var contentDefinition = TestContentDefinition.Create(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(2);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
             
             // Act.
@@ -137,7 +137,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentDefinitionRepositoryException>(act);
+            Assert.Throws<ContentDefinitionRepositoryException>(act);
         }
 
         [Fact]
@@ -146,10 +146,10 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var contentDefinition = TestContentDefinition.Create(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
-            var contentDefinitionPartFirst = TestContentDefinition.CreatePart(0);
-            var contentDefinitionPartSecond = TestContentDefinition.CreatePart(0);
+            var contentDefinitionPartFirst = _testContext.TestContentDefinitionFactory.CreatePart(0);
+            var contentDefinitionPartSecond = _testContext.TestContentDefinitionFactory.CreatePart(0);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartFirst);
 
@@ -160,7 +160,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentDefinitionRepositoryException>(act);
+            Assert.Throws<ContentDefinitionRepositoryException>(act);
         }
     }
 }

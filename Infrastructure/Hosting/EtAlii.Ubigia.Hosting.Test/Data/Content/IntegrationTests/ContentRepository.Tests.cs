@@ -23,7 +23,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = TestContent.Create();
+            var content = _testContext.TestContentFactory.Create();
 
             // Act.
             _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
@@ -38,11 +38,11 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var data = TestContent.CreateData(100, 500);
-            var contentDefinition = TestContentDefinition.Create(data);
+            var data = _testContext.TestContentFactory.CreateData(100, 500);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
-            var content = TestContent.Create(1);
-            var contentPart = TestContent.CreatePart(data);
+            var content = _testContext.TestContentFactory.Create(1);
+            var contentPart = _testContext.TestContentFactory.CreatePart(data);
 
             // Act.
             _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
@@ -60,8 +60,8 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = TestContent.Create(3);
-            var contentPart = TestContent.CreatePart(6);
+            var content = _testContext.TestContentFactory.Create(3);
+            var contentPart = _testContext.TestContentFactory.CreatePart(6);
             _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
 
             // Act.
@@ -71,7 +71,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentRepositoryException>(act);
+            Assert.Throws<ContentRepositoryException>(act);
         }
 
         [Fact]
@@ -80,8 +80,8 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = TestContent.Create(1);
-            var contentPart = TestContent.CreatePart(0);
+            var content = _testContext.TestContentFactory.Create(1);
+            var contentPart = _testContext.TestContentFactory.CreatePart(0);
 
             // Act.
             var act = new Action(() =>
@@ -90,7 +90,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentRepositoryException>(act);
+            Assert.Throws<ContentRepositoryException>(act);
         }
 
         [Fact]
@@ -99,12 +99,12 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var data = TestContent.CreateData(100, 500);
-            var contentDefinition = TestContentDefinition.Create(data);
+            var data = _testContext.TestContentFactory.CreateData(100, 500);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
             _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
-            var content = TestContent.Create(1);
-            var contentPart = TestContent.CreatePart(data);
+            var content = _testContext.TestContentFactory.Create(1);
+            var contentPart = _testContext.TestContentFactory.CreatePart(data);
 
             // Act.
             _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
@@ -130,7 +130,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentRepositoryException>(act);
+            Assert.Throws<ContentRepositoryException>(act);
         }
 
         [Fact]
@@ -139,7 +139,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = TestContent.Create();
+            var content = _testContext.TestContentFactory.Create();
 
             // Act.
             var act = new Action(() =>
@@ -148,7 +148,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentRepositoryException>(act);
+            Assert.Throws<ContentRepositoryException>(act);
         }
 
         [Fact]
@@ -157,7 +157,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = TestContent.Create();
+            var content = _testContext.TestContentFactory.Create();
 
             // Act.
             _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);

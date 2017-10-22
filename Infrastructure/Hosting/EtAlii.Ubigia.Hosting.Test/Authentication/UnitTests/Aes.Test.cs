@@ -3,6 +3,7 @@
     using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;
+    using System.Collections.Generic;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin;
 
 
@@ -14,7 +15,7 @@
             var originalBytes = CreateBytes(64);
             var encryptedBytes = Aes.Encrypt(originalBytes);
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
-            AssertData.AreEqual(originalBytes, decryptedBytes);
+            Assert.Equal(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
         }
 
         [Fact]
@@ -23,7 +24,7 @@
             var originalBytes = CreateBytes(1024 * 1024);
             var encryptedBytes = Aes.Encrypt(originalBytes);
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
-            AssertData.AreEqual(originalBytes, decryptedBytes);
+            Assert.Equal(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
         }
 
         [Fact]
@@ -36,7 +37,7 @@
             var decryptedByte = decryptedBytes[2];
             decryptedBytes[2] = (byte)(decryptedByte == 0 ? decryptedByte + 1 : decryptedByte - 1);
 
-            AssertData.AreNotEqual(originalBytes, decryptedBytes);
+            Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
         }
 
         [Fact]
@@ -50,7 +51,7 @@
 
             var decryptedBytes = Aes.Decrypt(encryptedBytes);
 
-            AssertData.AreNotEqual(originalBytes, encryptedBytes);
+            Assert.NotEqual(originalBytes, decryptedBytes, EqualityComparer<Byte>.Default);
         }
 
         private byte[] CreateBytes(int length)

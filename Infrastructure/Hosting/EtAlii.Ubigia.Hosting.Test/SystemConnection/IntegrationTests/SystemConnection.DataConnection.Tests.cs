@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Transport;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.TestAssembly;
+    using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
 
     
     public class SystemConnection_DataConnection_Tests : IClassFixture<HostUnitTestContext>, IDisposable

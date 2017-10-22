@@ -21,7 +21,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var properties = TestProperties.Create();
+            var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
             _testContext.HostTestContext.Host.Infrastructure.Properties.Store(entry.Id, properties);
@@ -36,7 +36,7 @@
             // Arrange.
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
             var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var properties = TestProperties.CreateComplete();
+            var properties = _testContext.TestPropertiesFactory.CreateComplete();
             _testContext.HostTestContext.Host.Infrastructure.Properties.Store(entry.Id, properties);
 
             // Act.
