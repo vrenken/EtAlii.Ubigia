@@ -43,7 +43,7 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var content = TestContent.Create();
+            var content = _testContext.TestContentFactory.Create();
 
             // Act.
             await _fabric.Content.Store(entry.Id, content);
@@ -60,11 +60,11 @@
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
 
-            var datas = TestContent.CreateData(100, 500, 3);
-            var contentDefinition = TestContentDefinition.Create(datas);
+            var datas = _testContext.TestContentFactory.CreateData(100, 500, 3);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(datas);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
-            var content = TestContent.Create(3);
-            var contentParts = TestContent.CreateParts(datas);
+            var content = _testContext.TestContentFactory.Create(3);
+            var contentParts = _testContext.TestContentFactory.CreateParts(datas);
 
             // Act.
             await _fabric.Content.Store(entry.Id, content);
@@ -87,13 +87,13 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var datas = TestContent.CreateData(100, 500, 3);
-            var contentdefinition = TestContentDefinition.Create(datas);
+            var datas = _testContext.TestContentFactory.CreateData(100, 500, 3);
+            var contentdefinition = _testContext.TestContentDefinitionFactory.Create(datas);
             await _fabric.Content.StoreDefinition(entry.Id, contentdefinition);
-            var content = TestContent.Create(3);
-            var contentPartFirst = TestContent.CreatePart(datas[0], 0);
-            var contentPartSecond = TestContent.CreatePart(datas[1], 1);
-            var contentPartThird = TestContent.CreatePart(datas[2], 2);
+            var content = _testContext.TestContentFactory.Create(3);
+            var contentPartFirst = _testContext.TestContentFactory.CreatePart(datas[0], 0);
+            var contentPartSecond = _testContext.TestContentFactory.CreatePart(datas[1], 1);
+            var contentPartThird = _testContext.TestContentFactory.CreatePart(datas[2], 2);
 
             // Act.
             await _fabric.Content.Store(entry.Id, content);

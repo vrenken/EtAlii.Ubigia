@@ -45,7 +45,7 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
@@ -78,9 +78,9 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 3;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(0);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
@@ -97,9 +97,9 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             contentDefinition.TotalParts = 1;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(2);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
@@ -116,9 +116,9 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             contentDefinition.TotalParts = 1;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(1);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(1);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
@@ -135,8 +135,8 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create();
-            var contentDefinitionPart = TestContentDefinition.CreatePart(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
             //connection.Content.StoreDefinition(entry.Id, contentDefinition);
 
             var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
@@ -152,8 +152,8 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create(10);
-            var contentDefinitionPart = TestContentDefinition.CreatePart(5);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(5);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
@@ -171,8 +171,8 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create(10);
-            var contentDefinitionPart = TestContentDefinition.CreatePart(15);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(15);
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
@@ -189,7 +189,7 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             var contentDefinitionPart = (ContentDefinitionPart)null;
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
@@ -207,14 +207,14 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create();
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
             var retrievedContentDefinition = await _fabric.Content.RetrieveDefinition(entry.Id);
 
             // Assert.
-            AssertData.AreEqual(contentDefinition, retrievedContentDefinition, false);
+            Assert.True(_testContext.ContentComparer.AreEqual(contentDefinition, retrievedContentDefinition, false));
             Assert.Equal((UInt64)contentDefinition.Parts.Count, retrievedContentDefinition.Summary.TotalParts);
             Assert.True(retrievedContentDefinition.Summary.IsComplete);
         }
@@ -226,9 +226,9 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 2;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(1);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(1);
 
             // Act.
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
@@ -238,7 +238,7 @@
             // Assert.
             Assert.Equal(contentDefinition.TotalParts, retrievedContentDefinition.Summary.TotalParts);
             Assert.False(retrievedContentDefinition.Summary.IsComplete);
-            Assert.Equal(1, retrievedContentDefinition.Summary.AvailableParts.Length);
+            Assert.Single(retrievedContentDefinition.Summary.AvailableParts);
             Assert.Equal((UInt64)1, retrievedContentDefinition.Summary.AvailableParts.First());
         }
 
@@ -249,9 +249,9 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var contentDefinition = TestContentDefinition.Create(0);
+            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 3;
-            var contentDefinitionPart = TestContentDefinition.CreatePart(2);
+            var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
 
             // Act.
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
@@ -261,7 +261,7 @@
             // Assert.
             Assert.Equal(contentDefinition.TotalParts, retrievedContentDefinition.Summary.TotalParts);
             Assert.False(retrievedContentDefinition.Summary.IsComplete);
-            Assert.Equal(1, retrievedContentDefinition.Summary.AvailableParts.Length);
+            Assert.Single(retrievedContentDefinition.Summary.AvailableParts);
             Assert.Equal((UInt64)2, retrievedContentDefinition.Summary.AvailableParts.First());
         }
 

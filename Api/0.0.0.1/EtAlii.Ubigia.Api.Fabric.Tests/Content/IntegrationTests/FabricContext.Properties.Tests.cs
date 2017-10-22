@@ -42,7 +42,7 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var properties = TestProperties.Create();
+            var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
             await _fabric.Properties.Store(entry.Id, properties, scope);
@@ -58,16 +58,16 @@
             var scope = new ExecutionScope(false);
             var root = await _fabric.Roots.Get("Hierarchy");
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
-            var properties = TestProperties.CreateComplete();
+            var properties = _testContext.TestPropertiesFactory.CreateComplete();
             await _fabric.Properties.Store(entry.Id, properties, scope);
 
             // Act.
             var retrievedProperties = await _fabric.Properties.Retrieve(entry.Id, scope);
 
             // Assert.
-            AssertData.AreEqual(properties, retrievedProperties);
-            Assert.Equal(true, retrievedProperties.Stored);
-            Assert.Equal(true, properties.Stored);
+            Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));
+            Assert.True(retrievedProperties.Stored);
+            Assert.True(properties.Stored);
         }
     }
 }
