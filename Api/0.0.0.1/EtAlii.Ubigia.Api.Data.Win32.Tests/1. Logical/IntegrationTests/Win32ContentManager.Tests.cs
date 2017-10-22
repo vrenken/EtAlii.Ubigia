@@ -183,7 +183,7 @@
 
             //// Assert.
             Assert.True(File.Exists(retrievedFilePath));
-            AssertData.FilesAreEqual(_testContext.TestFile2MImage, retrievedFilePath);
+            _testContext.FileComparer.AreEqual(_testContext.TestFile2MImage, retrievedFilePath);
 
             // Assure.
             if (File.Exists(retrievedFilePath))
@@ -209,7 +209,7 @@
 
             //// Assert.
             Assert.True(File.Exists(retrievedFilePath));
-            AssertData.FilesAreEqual(_testContext.TestFile10MRaw, retrievedFilePath);
+            _testContext.FileComparer.AreEqual(_testContext.TestFile10MRaw, retrievedFilePath);
 
             // Assure.
             if (File.Exists(retrievedFilePath))

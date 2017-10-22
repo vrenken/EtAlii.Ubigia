@@ -4,14 +4,21 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
+    using Ubigia.Tests;
 
     public class LogicalUnitTestContext : IDisposable
     {
         public ILogicalTestContext LogicalTestContext { get; private set; }
         public IDiagnosticsConfiguration Diagnostics { get; private set; }
 
+        public FileComparer FileComparer { get; }
+        public FolderComparer FolderComparer { get; }
+
         public LogicalUnitTestContext()
         {
+            FileComparer = new FileComparer();
+            FolderComparer = new FolderComparer(FileComparer);
+
             var task = Task.Run(async () =>
             {
                 Diagnostics = TestDiagnostics.Create();

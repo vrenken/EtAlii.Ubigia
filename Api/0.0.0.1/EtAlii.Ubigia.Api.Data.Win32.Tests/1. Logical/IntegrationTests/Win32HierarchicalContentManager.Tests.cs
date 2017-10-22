@@ -65,7 +65,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ContentManagerException>(act);
+            Assert.Throws<ContentManagerException>(act);
         }
 
 
@@ -105,7 +105,7 @@
 
             //// Assert.
             Assert.True(File.Exists(retrievedFolderPath));
-            AssertData.FilesAreEqual(_testFolderSimple, retrievedFolderPath);
+            _testContext.FileComparer.AreEqual(_testFolderSimple, retrievedFolderPath);
 
             // Assure.
             if (Directory.Exists(retrievedFolderPath))

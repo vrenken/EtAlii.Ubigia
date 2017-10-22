@@ -327,14 +327,14 @@
         //    var connection = await _testContext.CreateDataConnection(false);
         //    var fabricContextConfiguration = new FabricContextConfiguration()
         //        .Use(connection);
-            
+
 
         //    // Act.
         //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); });
         //    //var act = fabric.Roots.Add(Guid.NewGuid().ToString());
 
         //    // Assert.
-        //    ExceptionAssert.Throws<InvalidInfrastructureOperationException>(act);
+        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
         //}
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -350,7 +350,7 @@
         //    //var act = fabric.Roots.Get(Guid.NewGuid());
 
         //    // Assert.
-        //    ExceptionAssert.Throws<InvalidInfrastructureOperationException>(act);
+        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
         //}
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -366,7 +366,7 @@
         //    //var act = fabric.Roots.Remove(Guid.NewGuid());
 
         //    // Assert.
-        //    ExceptionAssert.Throws<InvalidInfrastructureOperationException>(act);
+        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
         //}
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -382,7 +382,7 @@
         //    //var act = fabric.Roots.GetAll();
 
         //    // Assert.
-        //    ExceptionAssert.Throws<InvalidInfrastructureOperationException>(act);
+        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
         //}
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -398,7 +398,7 @@
         //    //act = fabric.Roots.Change(Guid.NewGuid(), Guid.NewGuid().ToString());
 
         //    // Assert.
-        //    ExceptionAssert.Throws<InvalidInfrastructureOperationException>(act);
+        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
         //}
 
         [Fact, Trait("Category", TestAssembly.Category)]

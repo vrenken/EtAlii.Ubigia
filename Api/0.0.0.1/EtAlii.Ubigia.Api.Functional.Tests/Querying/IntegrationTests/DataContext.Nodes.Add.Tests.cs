@@ -239,7 +239,7 @@
             var act = new Action(() => items.Add("\"Overijssel_01").Single());
 
             // Assert.
-            ExceptionAssert.Throws<NodeQueryingException>(act);
+            Assert.Throws<NodeQueryingException>(act);
         }
     }
 }

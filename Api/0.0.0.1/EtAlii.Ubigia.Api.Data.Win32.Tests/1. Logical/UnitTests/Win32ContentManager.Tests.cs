@@ -25,62 +25,62 @@
             }
         }
 
-    //    [Fact]
-    //    public void Win32ContentManager_Stubbed_Create()
-    //    {
-    //        // Arrange.
-    //        var entries = new StubIEntries();
-    //        var connection = new StubIDataConnection();
-    //        connection.EntriesGet = () => entries;
+        //    [Fact]
+        //    public void Win32ContentManager_Stubbed_Create()
+        //    {
+        //        // Arrange.
+        //        var entries = new StubIEntries();
+        //        var connection = new StubIDataConnection();
+        //        connection.EntriesGet = () => entries;
 
-    //        // Act.
-    //        var contentManager = new Win32ContentManager(connection);
+        //        // Act.
+        //        var contentManager = new Win32ContentManager(connection);
 
-    //        // Assert.
-    //    }
+        //        // Assert.
+        //    }
 
-    //    [Fact]
-    //    public void Win32ContentManager_Stubbed_Upload_Non_Existing_File()
-    //    {
-    //        // Arrange.
-    //        var entries = new StubIEntries();
-    //        var content = new StubIContent();
-    //        var connection = new StubIDataConnection();
-    //        connection.EntriesGet = () => entries;
-    //        connection.ContentGet = () => content;
+        //    [Fact]
+        //    public void Win32ContentManager_Stubbed_Upload_Non_Existing_File()
+        //    {
+        //        // Arrange.
+        //        var entries = new StubIEntries();
+        //        var content = new StubIContent();
+        //        var connection = new StubIDataConnection();
+        //        connection.EntriesGet = () => entries;
+        //        connection.ContentGet = () => content;
 
-    //        var contentManager = new Win32ContentManager(connection);
-    //        var fileName = Guid.NewGuid().ToString();
+        //        var contentManager = new Win32ContentManager(connection);
+        //        var fileName = Guid.NewGuid().ToString();
 
-    //        // Act.
-    //        var act = new Action(() =>
-    //        {
-    //            contentManager.Upload(fileName, Identifier.Empty);
-    //        });
+        //        // Act.
+        //        var act = new Action(() =>
+        //        {
+        //            contentManager.Upload(fileName, Identifier.Empty);
+        //        });
 
-    //        // Assert.
-    //        ExceptionAssert.Throws<ContentManagerException>(act);
-    //    }
+        //        // Assert.
+        //        Assert.Throws<ContentManagerException>(act);
+        //    }
 
-    //    [Fact]
-    //    public void Win32ContentManager_Stubbed_Upload_Existing_File()
-    //    {
-    //        // Arrange.
-    //        var entries = new StubIEntries();
-    //        var content = new StubIContent();
-    //        var connection = new StubIDataConnection();
-    //        connection.EntriesGet = () => entries;
-    //        connection.ContentGet = () => content;
-    //        var contentManager = new Win32ContentManager(connection);
+        //    [Fact]
+        //    public void Win32ContentManager_Stubbed_Upload_Existing_File()
+        //    {
+        //        // Arrange.
+        //        var entries = new StubIEntries();
+        //        var content = new StubIContent();
+        //        var connection = new StubIDataConnection();
+        //        connection.EntriesGet = () => entries;
+        //        connection.ContentGet = () => content;
+        //        var contentManager = new Win32ContentManager(connection);
 
-    //        // Act.
-    //        var act = new Action(() =>
-    //        {
-    //            contentManager.Upload(_testImageFileName, Identifier.Empty);
-    //        });
+        //        // Act.
+        //        var act = new Action(() =>
+        //        {
+        //            contentManager.Upload(_testImageFileName, Identifier.Empty);
+        //        });
 
-    //        // Assert.
-    //        ExceptionAssert.Throws<ContentManagerException>(act);
-    //    }
+        //        // Assert.
+        //        Assert.Throws<ContentManagerException>(act);
+        //    }
     }
 }
