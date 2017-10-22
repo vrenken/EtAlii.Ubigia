@@ -7,6 +7,13 @@
     
     public class TemporalGraphPathWeaver_Tests
     {
+        private readonly TestIdentifierFactory _testIdentifierFactory;
+
+        public TemporalGraphPathWeaver_Tests(TestIdentifierFactory testIdentifierFactory)
+        {
+            _testIdentifierFactory = testIdentifierFactory;
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void TemporalGraphPathWeaver_Create()
         {
@@ -23,7 +30,7 @@
         {
             // Arrange.
             var weaver = new TemporalGraphPathWeaver();
-            var start = TestIdentifier.Create();
+            var start = _testIdentifierFactory.Create();
             var path = GraphPath.Create(
                 start,
                 GraphRelation.Parent,
@@ -60,7 +67,7 @@
         {
             // Arrange.
             var weaver = new TemporalGraphPathWeaver();
-            var start = TestIdentifier.Create();
+            var start = _testIdentifierFactory.Create();
             var path = GraphPath.Create(
                 start,
                 GraphRelation.Parent,
