@@ -2,7 +2,6 @@
 {
     using System;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     
@@ -69,7 +68,7 @@
             var act = new Action(() => _factory.Create(null, "test"));
 
             // Assert.
-            ExceptionAssert.Throws<NullReferenceException>(act);
+            Assert.Throws<NullReferenceException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

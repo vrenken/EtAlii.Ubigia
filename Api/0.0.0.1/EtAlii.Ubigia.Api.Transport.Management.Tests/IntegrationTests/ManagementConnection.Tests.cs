@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class ManagementConnection_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
@@ -35,10 +34,10 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account, configuration.Password + "BAAD", false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -49,10 +48,10 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account + "BAAD", configuration.Password, false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -63,10 +62,10 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account + "BAAD", configuration.Password + "BAAD", false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -78,10 +77,10 @@
             await connection.Open();
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -105,10 +104,10 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
 
             // Act.
-            var act = connection.Close();
+            var act = new Func<Task>(async () => await connection.Close());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -138,10 +137,10 @@
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User);
 
             // Act.
-            var act = connection.OpenSpace(accountName, Guid.NewGuid().ToString());
+            var act = new Func<Task>(async () => await connection.OpenSpace(accountName, Guid.NewGuid().ToString()));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -154,10 +153,10 @@
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User);
 
             // Act.
-            var act = connection.OpenSpace(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
+            var act = new Func<Task>(async () => await connection.OpenSpace(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -170,10 +169,10 @@
             var account = await connection.Accounts.Add(accountName, password, AccountTemplate.User);
 
             // Act.
-            var act = connection.OpenSpace(Guid.NewGuid().ToString(), SpaceName.Data);
+            var act = new Func<Task>(async () => await connection.OpenSpace(Guid.NewGuid().ToString(), SpaceName.Data));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
     }
 }

@@ -82,10 +82,10 @@
             var contentManager = logicalContext.Content;
 
             // Act.
-            var act = contentManager.Upload(fileName, entry.Id);
+            var act = new Func<Task>(async () => await contentManager.Upload(fileName, entry.Id));
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<ContentManagerException>(act);
+            await Assert.ThrowsAsync<ContentManagerException>(act);
         }
 
 

@@ -73,10 +73,10 @@
             await connection.Open();
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -88,10 +88,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false, false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -103,10 +103,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -118,10 +118,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System + "BAAD", false, false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -133,10 +133,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System, false, false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -148,10 +148,10 @@
                 _testContext.TransportTestContext.Context.SystemAccountPassword + "BAAD", SpaceName.System + "BAAD", false, false);
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -164,10 +164,10 @@
             await connection.Open();
 
             // Act.
-            var act = connection.Open();
+            var act = new Func<Task>(async () => await connection.Open());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -199,10 +199,10 @@
             var connection = await _testContext.TransportTestContext.CreateDataConnection(false);
 
             // Act.
-            var act = connection.Close();
+            var act = new Func<Task>(async () => await connection.Close());
 
             // Assert.
-            await ExceptionAssert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
     }
 }
