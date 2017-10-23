@@ -17,29 +17,27 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestImage_01.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="TestImage_01.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22" />
     <PackageReference Include="xunit" Version="2.3.0" />
     <PackageReference Include="xunit.assert" Version="2.3.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="System.Configuration" />
+    <Reference Include="System.Management.Automation">
+      <HintPath>..\EtAlii.Ubigia.PowerShell\Prerequisites\System.Management.Automation.dll</HintPath>
+    </Reference>
   </ItemGroup>
-
-  <Import Project="..\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems" Label="Shared" />
 
 </Project>
