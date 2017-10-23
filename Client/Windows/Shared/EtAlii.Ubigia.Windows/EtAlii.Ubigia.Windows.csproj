@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
-    <PackageReference Include="ControlzEx" Version="2.2.0.4" />
+    <PackageReference Include="ControlzEx" Version="3.0.2.4" />
     <PackageReference Include="Fluent.Ribbon" Version="4.0.3.394" />
   </ItemGroup>
 

@@ -6,6 +6,7 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.NET47.Tests")]
 
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser")]
 [assembly: InternalsVisibleTo("SpaceBrowser")]
 
 
