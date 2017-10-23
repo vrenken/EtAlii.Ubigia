@@ -17,10 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj" />
   </ItemGroup>
 </Project>
