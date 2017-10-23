@@ -16,23 +16,24 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <OutputType>Exe</OutputType>
-    <AssemblyName>SpaceBrowser</AssemblyName>
+    <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ControlzEx" Version="2.2.0.4" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="AvalonDock" Version="2.0.2000" />
     <PackageReference Include="AvalonEdit" Version="5.0.4" />
-    <PackageReference Include="ControlzEx" Version="3.0.2.4" />
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
-    <PackageReference Include="Fluent.Ribbon" Version="4.0.3.394" />
-    <PackageReference Include="Northwoods.GoWPF" Version="2.2.3" />
+    <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
+    <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
     <PackageReference Include="Syncfusion.Grid.Base46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.Grid.WPF46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.SfChart.WPF46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="15.3.0.33" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.1.1" />
   </ItemGroup>
 
   <!-- 
