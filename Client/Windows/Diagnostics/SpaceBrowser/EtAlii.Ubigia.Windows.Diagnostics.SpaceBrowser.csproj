@@ -78,8 +78,4 @@
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Visual\Graphs\Workflow\" />
-  </ItemGroup>
-
 </Project>
