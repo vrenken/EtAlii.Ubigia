@@ -25,8 +25,7 @@
 
             if (viewModel.CanExecute)
             {
-                Task.Factory.StartNew(
-                    (o) =>
+                Task.Factory.StartNew(() =>
                     {
                         viewModel.CanExecute = false;
                         viewModel.CanStop = true;
@@ -35,7 +34,8 @@
                         Task.Delay(2000).Wait();
                         viewModel.CanStop = false;
                         viewModel.CanExecute = true;
-                    }, ThreadPoolScheduler.Instance);
+                    });
+                //ThreadPoolScheduler.Instance
             }
         }
     }
