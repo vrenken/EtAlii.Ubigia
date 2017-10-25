@@ -263,7 +263,7 @@
             foreach (var character in SpecialCharacters2)
             {
                 var result = act(character);
-                Assert.False(result.Errors.Any(e => e.Exception is ScriptParserException));
+                Assert.DoesNotContain(result.Errors, e => e.Exception is ScriptParserException);
             }
         }
 
