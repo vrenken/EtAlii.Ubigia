@@ -1,333 +1,64 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{067F42D4-4734-4EFF-9730-87A0110BDBB4}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Client.Windows</RootNamespace>
-    <AssemblyName>Client</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkProfile />
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <TargetFramework>net47</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>StorageBrowser</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>Bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>true</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Storage.ico</ApplicationIcon>
-  </PropertyGroup>
-  <ItemGroup>
-    <Compile Include="Services\Models\IApplicationService.cs" />
-    <Compile Include="ShellExtension\Model\IShellExtensionService.cs" />
-    <Compile Include="ShellExtension\Model\ShellExtensionService.cs" />
-    <Compile Include="TaskbarIcon\Commands\ExitApplicationCommand.cs" />
-    <Compile Include="TaskbarIcon\Models\ITaskbarIconService.cs" />
-    <Compile Include="TaskbarIcon\Models\TaskbarIconService.cs" />
-    <Compile Include="TaskbarIcon\Views\TaskbarIcon.xaml.cs">
-      <DependentUpon>TaskbarIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserInterface\Commands\AddNewStorageCommand.cs" />
-    <Compile Include="UserInterface\Commands\ChangeStorageCommand.cs" />
-    <Compile Include="UserInterface\Commands\CloseDialogCommand.cs" />
-    <Compile Include="UserInterface\Commands\RemoveStorageCommand.cs" />
-    <Compile Include="Settings\ViewModels\StorageSettingsViewModel.cs" />
-    <Compile Include="UserInterface\ViewModels\MainWindowViewModel.cs" />
-    <Compile Include="UserInterface\Views\Status\ComponentStatusControl.xaml.cs">
-      <DependentUpon>ComponentStatusControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserInterface\Views\Status\StatisticsControl.xaml.cs">
-      <DependentUpon>StatisticsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserInterface\Views\Status\PerformanceControl.xaml.cs">
-      <DependentUpon>PerformanceControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserInterface\Views\StorageYammerSettingsControl.xaml.cs">
-      <DependentUpon>StorageYammerSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageLinkedinSettingsControl.xaml.cs">
-      <DependentUpon>StorageLinkedinSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageBlueKiwiSettingsControl.xaml.cs">
-      <DependentUpon>StorageBlueKiwiSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageFacebookSettingsControl.xaml.cs">
-      <DependentUpon>StorageFacebookSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageOutlookSettingsControl.xaml.cs">
-      <DependentUpon>StorageOutlookSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageTwitterSettingsControl.xaml.cs">
-      <DependentUpon>StorageTwitterSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageFilesystemSettingsControl.xaml.cs">
-      <DependentUpon>StorageFilesystemSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageGeneralSettingsControl.xaml.cs">
-      <DependentUpon>StorageGeneralSettingsControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Settings\Views\StorageWindow.xaml.cs">
-      <DependentUpon>StorageWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="UserInterface\Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Shared\IpcMessage.cs" />
-    <Compile Include="Shared\MemoryMappedDataReceivedEventArgs.cs" />
-    <Compile Include="Shared\MemoryMappedFileCommunicator.cs" />
-    <Compile Include="TaskbarIcon\Commands\ShowTabItemCommand.cs" />
-    <Compile Include="TaskbarIcon\Commands\ShowSettingsCommand.cs" />
-    <Compile Include="TaskbarIcon\ViewModels\TaskbarIconViewModel.cs" />
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.2\lib\netstandard2.0\EtAlii.xTechnology.MicroContainer.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroMvvm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroMvvm.1.0.0.0\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroMvvm.dll</HintPath>
-    </Reference>
-    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Hardcodet.NotifyIcon.Wpf.1.0.8\lib\net451\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="LogicNP.EZNamespaceExtensions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=183e52843b1db176">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ShellExtension\ShellExtension\Prerequisites\LogicNP.EZNamespaceExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationFramework.Aero" />
-    <Reference Include="System" />
-    <Reference Include="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Expression.Blend.Sdk.1.0.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UIAutomationProvider">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationCore">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="PresentationFramework">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
-    <Resource Include="Images\Info.png" />
-    <Resource Include="Images\Preferences.png" />
-    <Compile Include="TaskbarIcon\Commands\ShowAboutCommand.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="App.xaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>App.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Shared\Commands\CommandBase.cs" />
-    <Compile Include="TaskbarIcon\Commands\ShowUserInterfaceCommand.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <None Include="app.config" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
-      <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
-      <Name>EtAlii.Ubigia.Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
-      <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
-      <Name>EtAlii.Ubigia.Windows.Settings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\ShellExtension\ShellExtension\EtAlii.Ubigia.ShellExtension.csproj">
-      <Project>{3f498635-614c-4b1f-8b10-44ac098a3411}</Project>
-      <Name>EtAlii.Ubigia.ShellExtension</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Shared\EtAlii.Ubigia.Windows.Shared.csproj">
-      <Project>{e4e719ed-9dac-4d49-84a3-6fef8957a352}</Project>
-      <Name>EtAlii.Ubigia.Windows.Shared</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Add.png" />
-    <Resource Include="Images\Remove.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Close.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Storage.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Settings\Commands\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="TaskbarIcon\Views\TaskbarIcon.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="UserInterface\Views\Status\ComponentStatusControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserInterface\Views\Status\StatisticsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserInterface\Views\Status\PerformanceControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserInterface\Views\StorageYammerSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageLinkedinSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageBlueKiwiSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageFacebookSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageOutlookSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageTwitterSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageFilesystemSettingsControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Settings\Views\StorageGeneralSettingsControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Settings\Views\StorageWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="UserInterface\Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Shared\Resources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Import Project="..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
+
+  <!-- 
+  Interesting link:
+  https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
   -->
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- XAML elements -->
+    <Page Include="**\*.xaml" Exclude="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </Page>
+    <Compile Remove="Connection\**" />
+    <EmbeddedResource Remove="Connection\**" />
+    <None Remove="Connection\**" />
+    <Page Remove="Connection\**" />
+    <None Remove="Images\Add.png" />
+    <None Remove="Images\Close.png" />
+    <None Remove="Images\Info.png" />
+    <None Remove="Images\Preferences.png" />
+    <None Remove="Images\Remove.png" />
+    <EmbeddedResource Include="Images\Add.png" />
+    <EmbeddedResource Include="Images\Close.png" />
+    <EmbeddedResource Include="Images\Info.png" />
+    <EmbeddedResource Include="Images\Preferences.png" />
+    <EmbeddedResource Include="Images\Remove.png" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
+    <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj" />
+    <ProjectReference Include="..\Shared\EtAlii.Ubigia.Windows.Shared.csproj" />
+     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+
+    <!-- Resources -->
+
+    <!-- Settings -->
+  </ItemGroup>
+
 </Project>
