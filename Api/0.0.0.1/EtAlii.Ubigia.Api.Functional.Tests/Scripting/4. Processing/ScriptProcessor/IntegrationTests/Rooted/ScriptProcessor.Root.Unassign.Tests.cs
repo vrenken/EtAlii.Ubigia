@@ -64,7 +64,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -93,7 +93,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -122,7 +122,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
         }
     }
 }

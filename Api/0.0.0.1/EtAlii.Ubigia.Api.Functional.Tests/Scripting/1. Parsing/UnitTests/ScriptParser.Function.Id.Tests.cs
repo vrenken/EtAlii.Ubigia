@@ -40,7 +40,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(0, part.Arguments.Length);
+            Assert.Empty(part.Arguments);
         }
 
 

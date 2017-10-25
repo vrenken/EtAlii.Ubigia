@@ -615,7 +615,7 @@
             Assert.Equal("12", selectResult1.IntValue);
             Assert.False(((IInternalNode)selectResult1).GetProperties().ContainsKey("BoolValue"));
             Assert.NotNull(selectResult2);
-            Assert.Equal(0, ((IInternalNode)selectResult2).GetProperties().Count);
+            Assert.Empty(((IInternalNode)selectResult2).GetProperties());
         }
 
 

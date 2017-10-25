@@ -164,7 +164,7 @@
             var result = _parser.Parse("/&38a52be49352453eaf975c3b448652f0_A.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40$Third/Fourth/");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -176,7 +176,7 @@
             var result = _parser.Parse("/&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40/&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -188,7 +188,7 @@
             var result = _parser.Parse("/&38a52be49352453eaf975c3b448652fP.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40$Third/Fourth/");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -200,7 +200,7 @@
             var result = _parser.Parse("/&38a52be49352453eaf975c3b448652f-.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40$Third/Fourth/");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -212,7 +212,7 @@
             var result = _parser.Parse("/&38a52be49352453.eaf975c3b448652f.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40$Third/Fourth/");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
     }
 }

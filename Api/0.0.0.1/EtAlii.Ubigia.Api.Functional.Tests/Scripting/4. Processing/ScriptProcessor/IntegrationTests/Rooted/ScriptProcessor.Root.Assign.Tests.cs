@@ -62,7 +62,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
             Assert.NotNull(root);
             Assert.Equal("time", root.Name);
         }
@@ -90,7 +90,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
             Assert.NotNull(root);
             Assert.Equal("time", root.Name);
         }
@@ -118,7 +118,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
             Assert.NotNull(root);
             Assert.Equal("specialtime", root.Name);
         }
@@ -146,7 +146,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
             Assert.NotNull(root);
             Assert.Equal("specialtime", root.Name);
         }
@@ -174,7 +174,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
             Assert.NotNull(root);
             Assert.Equal("projects", root.Name);
         }
@@ -202,7 +202,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);
+            Assert.Empty(result);
             Assert.NotNull(root);
             Assert.Equal("projects", root.Name);
         }

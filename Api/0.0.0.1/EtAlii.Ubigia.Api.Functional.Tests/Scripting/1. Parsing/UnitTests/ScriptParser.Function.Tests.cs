@@ -41,7 +41,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(0, part.Arguments.Length);
+            Assert.Empty(part.Arguments);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -429,7 +429,7 @@
             var part = sequence.Parts.Skip(2).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(0, part.Arguments.Length);
+            Assert.Empty(part.Arguments);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -615,7 +615,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(0, part.Arguments.Length);
+            Assert.Empty(part.Arguments);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
