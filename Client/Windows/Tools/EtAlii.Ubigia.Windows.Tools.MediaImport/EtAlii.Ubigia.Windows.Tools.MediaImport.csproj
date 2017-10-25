@@ -1,312 +1,83 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{EE3641E1-AECB-4B19-9BBB-09388EE746C9}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>EtAlii.Ubigia.Windows.Tools.MediaImport</RootNamespace>
-    <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <WarningLevel>4</WarningLevel>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
-    <TargetFrameworkProfile />
+    <TargetFramework>net47</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>StorageBrowser</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
+    <OutputType>Exe</OutputType>
+    <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <UseVSHostingProcess>false</UseVSHostingProcess>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Icon-Logo-White-Shaded.ico</ApplicationIcon>
-  </PropertyGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj">
-      <Project>{d36b8b0f-c13b-44bc-926d-0dd7e7957f01}</Project>
-      <Name>EtAlii.Ubigia.Api.Functional.NET47</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj">
-      <Project>{16596297-5e14-4ca4-a77c-70fa35d2b9be}</Project>
-      <Name>EtAlii.Ubigia.Api.Fabric</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj">
-      <Project>{5f7b884e-7e42-4a32-adb3-e8cbb3fd5b31}</Project>
-      <Name>EtAlii.Ubigia.Api.Functional.Diagnostics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj">
-      <Project>{29d6c7c1-38d6-49c0-931a-a70ab08635c9}</Project>
-      <Name>EtAlii.Ubigia.Api.Functional</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj">
-      <Project>{8c4d3afb-67d3-4865-98bb-93e84b42e147}</Project>
-      <Name>EtAlii.Ubigia.Api.Logical.Diagnostics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj">
-      <Project>{caeab577-9dab-43fa-a185-c81c7cb1b507}</Project>
-      <Name>EtAlii.Ubigia.Api.Logical</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj">
-      <Project>{afd2bf70-5f38-4f91-90e2-6321c8e6f746}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport.Diagnostics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj">
-      <Project>{64723c77-5242-4671-a0bb-984deeb79dbf}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport.SignalR</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
-      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj">
-      <Project>{90b9ab5d-4d86-4870-b832-be86c55b017b}</Project>
-      <Name>EtAlii.Ubigia.Windows.Mvvm</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
-      <Project>{c8117c72-e17b-4871-9fec-2f36db15acf0}</Project>
-      <Name>EtAlii.Ubigia.Windows</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Shared\Settings\EtAlii.Ubigia.Windows.Settings.csproj">
-      <Project>{3c9ae863-b5c1-47db-befa-f165c1a3fbc7}</Project>
-      <Name>EtAlii.Ubigia.Windows.Settings</Name>
-    </ProjectReference>
+    <PackageReference Include="ControlzEx" Version="2.2.0.4" />
+    <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
+    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
+    <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
+    <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
+    <PackageReference Include="Syncfusion.Grid.Base46" Version="15.3.0.33" />
+    <PackageReference Include="Syncfusion.Grid.WPF46" Version="15.3.0.33" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="15.3.0.33" />
+    <PackageReference Include="Syncfusion.SfChart.WPF46" Version="15.3.0.33" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="15.3.0.33" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.1.1" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
   </ItemGroup>
+
+  <!-- 
+  Interesting link:
+  https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
+  -->
   <ItemGroup>
-    <Reference Include="ControlzEx, Version=2.2.0.4, Culture=neutral, PublicKeyToken=f08b075e934b7045, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ControlzEx.2.2.0.4\lib\net45\ControlzEx.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.Ubigia.Api.1.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.Diagnostics, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Diagnostics.1.0.3\lib\net461\EtAlii.xTechnology.Diagnostics.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroContainer, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroContainer.1.0.2\lib\netstandard2.0\EtAlii.xTechnology.MicroContainer.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.MicroMvvm, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.MicroMvvm.1.0.0.0\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.xTechnology.MicroMvvm.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.xTechnology.Structure, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\EtAlii.xTechnology.Structure.1.0.4\lib\netstandard2.0\EtAlii.xTechnology.Structure.dll</HintPath>
-    </Reference>
-    <Reference Include="Fluent, Version=5.0.2.46, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Fluent.Ribbon.5.0.2.46\lib\net45\Fluent.dll</HintPath>
-    </Reference>
-    <Reference Include="Hardcodet.Wpf.TaskbarNotification, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Hardcodet.Wpf.Taskbar.1.0.4\lib\net461\Hardcodet.Wpf.TaskbarNotification.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\ControlzEx.2.2.0.4\lib\net45\System.Windows.Interactivity.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
+
   <ItemGroup>
+    <!-- App.xaml -->
     <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </ApplicationDefinition>
-    <Compile Include="Checking\IItemChecker.cs" />
-    <Compile Include="Checking\_Model\ItemChange.cs" />
-    <Compile Include="Configuration\Converters\ShortPathConverter.cs" />
-    <Compile Include="Configuration\ViewModels\EditFolderViewModel.cs" />
-    <Compile Include="Configuration\ViewModels\ConfigurationViewModel.Space.cs" />
-    <Compile Include="Configuration\ViewModels\ConfigurationViewModel.Folders.cs" />
-    <Compile Include="Configuration\ViewModels\ConfigurationViewModel.cs" />
-    <Compile Include="Configuration\ViewModels\IConfigurationViewModel.cs" />
-    <Compile Include="Configuration\ViewModels\IEditFolderViewModel.cs" />
-    <Compile Include="Configuration\Views\EditFolderWindow.xaml.cs">
-      <DependentUpon>EditFolderWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Checking\ItemChecker.cs" />
-    <Compile Include="Checking\_Model\ItemCheckAction.cs" />
-    <Compile Include="Configuration\Views\IConfigurationWindow.cs" />
-    <Compile Include="Configuration\Views\IEditFolderWindow.cs" />
-    <Compile Include="Configuration\_Model\ObservableFolderSyncConfigurationCollection.cs" />
-    <Compile Include="Configuration\_Model\IObservableFolderSyncConfigurationCollection.cs" />
-    <Compile Include="TaskbarIcon\ITaskbarIconHost.cs" />
-    <Compile Include="TaskbarIcon\ViewModels\ITaskbarIconViewModel.cs" />
-    <Compile Include="TaskbarIcon\Views\ITaskbarIcon.cs" />
-    <Compile Include="TaskbarIcon\_Scaffolding\DataContextScaffolding.cs" />
-    <Compile Include="TaskbarIcon\_Scaffolding\ConfigurationScaffolding.cs" />
-    <Compile Include="TaskbarIcon\_Scaffolding\ItemCheckScaffolding.cs" />
-    <Compile Include="TaskbarIcon\_Scaffolding\FolderMonitorScaffolding.cs" />
-    <Compile Include="TaskbarIcon\_Scaffolding\TaskbarIconScaffolding.cs" />
-    <Compile Include="IScaffolding.cs" />
-    <Compile Include="TaskbarIcon\_Scaffolding\DiagnosticsScaffolding.cs" />
-    <Compile Include="Updating\Direct\Handlers\IItemChangedHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\IItemCreatedHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\IItemDestroyedHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\IItemRenameHandler.cs" />
-    <Compile Include="Updating\Direct\Monitoring\IFolderMonitorManager.cs" />
-    <Compile Include="Updating\IDirectoryHelper.cs" />
-    <Compile Include="Updating\ILocalPathSplitter.cs" />
-    <Compile Include="Updating\IStringEscaper.cs" />
-    <Compile Include="Updating\LocalPathSplitter.cs" />
-    <Compile Include="Updating\Direct\Monitoring\FolderMonitorManager.cs" />
-    <Compile Include="Configuration\_Model\FolderSyncConfiguration.cs" />
-    <Compile Include="Updating\Direct\Monitoring\IFolderMonitor.cs" />
-    <Compile Include="TaskbarIcon\TaskbarIconHost.cs" />
-    <Compile Include="TaskbarIcon\TaskbarIconHostFactory.cs" />
-    <Compile Include="TaskbarIcon\TaskbarIconResource.cs" />
-    <Compile Include="Updating\Direct\Monitoring\FolderMonitor.cs" />
-    <Compile Include="TaskbarIcon\ViewModels\TaskbarIconViewModel.cs" />
-    <Compile Include="TaskbarIcon\Views\TaskbarIcon.xaml.cs">
-      <DependentUpon>TaskbarIcon.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Updating\Periodical\FolderUpdater.cs" />
-    <Compile Include="Updating\Periodical\IFolderUpdater.cs" />
-    <Compile Include="Updating\StringEscaper.cs" />
-    <Compile Include="Updating\Direct\Handlers\ItemChangedHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\ItemDestroyedHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\ItemCreatedHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\ItemRenameHandler.cs" />
-    <Compile Include="Updating\Direct\Handlers\IItemUpdateHandler.cs" />
-    <Compile Include="Updating\DirectoryHelper.cs" />
-    <Compile Include="Updating\Direct\ItemUpdater.cs" />
-    <Compile Include="Updating\Direct\IItemUpdater.cs" />
-    <Page Include="Configuration\Views\EditFolderWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
+
+    <!-- XAML elements -->
+    <Page Include="**\*.xaml" Exclude="App.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Page>
-    <Page Include="Configuration\Views\ConfigurationWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Configuration\Views\ConfigurationWindow.xaml.cs">
-      <DependentUpon>ConfigurationWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Resources.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TaskbarIcon\Views\TaskbarIcon.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
+    <Compile Remove="Textual\**" />
+    <EmbeddedResource Remove="Textual\**" />
+    <None Remove="Textual\**" />
+    <Page Remove="Textual\**" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj" />
+    <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj" />
+     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+
+    <!-- Resources -->
+    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
+    <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
+
+    <!-- Settings -->
+    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
+    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <Resource Include="Icon-Logo-Black.ico" />
-    <Resource Include="Icon-Logo-Red.ico" />
-    <Resource Include="Icon-Logo-White-Shaded.ico" />
-    <Resource Include="Icon-Logo-White.ico" />
-    <Resource Include="Exif\09174065.txt" />
-    <Content Include="Exif\exiftool%28-k -a -u -g1 -w txt -X%29.exe" />
-    <Resource Include="Exif\IMG_20161105_182442.txt" />
-    <Resource Include="Exif\IMG_3490.txt" />
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
-    <AppDesigner Include="Properties\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_Model\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-    <Error Condition="!Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets'))" />
-  </Target>
-  <Import Project="..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('..\..\..\..\packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>
