@@ -18,12 +18,12 @@
 
             var name = "EtAlii";
             var category = "EtAlii.Ubigia.Provisioning";
-            var diagnostics = new DiagnosticsFactory().Create(true, false, true,
-                () => new LogFactory(),
-                () => new ProfilerFactory(),
-                (factory) => factory.Create(name, category),
-                (factory) => factory.Create(name, category));
-            //var diagnostics = new DiagnosticsFactory().CreateDisabled(name, category);
+            //var diagnostics = new DiagnosticsFactory().Create(true, false, true,
+            //    () => new LogFactory(),
+            //    () => new ProfilerFactory(),
+            //    (factory) => factory.Create(name, category),
+            //    (factory) => factory.Create(name, category));
+            var diagnostics = new DiagnosticsFactory().CreateDisabled(name, category);
 
             var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
 

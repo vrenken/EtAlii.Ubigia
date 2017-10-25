@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics;
+    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;

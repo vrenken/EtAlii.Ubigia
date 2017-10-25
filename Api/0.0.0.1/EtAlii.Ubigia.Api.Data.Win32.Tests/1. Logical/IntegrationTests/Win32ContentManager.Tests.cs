@@ -2,11 +2,9 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Helpers.Win32.Tests;
-    using EtAlii.Ubigia.Tests;
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Diagnostics.Tests;
     using EtAlii.Ubigia.Api.Functional.Win32;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;

@@ -15,12 +15,10 @@
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
+    <ApplicationIcon />
+    <StartupObject />
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
-  </ItemGroup>
 
   <!-- 
   Interesting link:
@@ -35,32 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <!-- App.xaml -->
-    <ApplicationDefinition Include="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </ApplicationDefinition>
-
-    <!-- XAML elements -->
-    <Page Include="**\*.xaml" Exclude="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </Page>
-    <None Remove="Icon-Logo-Black.ico" />
-    <None Remove="Icon-Logo-Red.ico" />
-    <None Remove="Icon-Logo-White-Shaded.ico" />
-    <EmbeddedResource Include="Icon-Logo-Black.ico" />
-    <EmbeddedResource Include="Icon-Logo-Red.ico" />
-    <EmbeddedResource Include="Icon-Logo-White-Shaded.ico" />
-    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-
-    <!-- Resources -->
-    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
-    <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
-
-    <!-- Settings -->
-    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
-    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics.csproj" />
   </ItemGroup>
 
 </Project>

@@ -34,31 +34,33 @@
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Compile Remove="Connection\**" />
-    <EmbeddedResource Remove="Connection\**" />
-    <None Remove="Connection\**" />
-    <Page Remove="Connection\**" />
-    <None Remove="Images\Add.png" />
-    <None Remove="Images\Close.png" />
-    <None Remove="Images\Info.png" />
-    <None Remove="Images\Preferences.png" />
-    <None Remove="Images\Remove.png" />
+    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+
     <EmbeddedResource Include="Images\Add.png" />
     <EmbeddedResource Include="Images\Close.png" />
     <EmbeddedResource Include="Images\Info.png" />
     <EmbeddedResource Include="Images\Preferences.png" />
     <EmbeddedResource Include="Images\Remove.png" />
+
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
     <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
     <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj" />
     <ProjectReference Include="..\Shared\EtAlii.Ubigia.Windows.Shared.csproj" />
-     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
 
     <!-- Resources -->
 
     <!-- Settings -->
+
+    <None Update="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="App.*.config">
+      <IsTransformFile>True</IsTransformFile>
+    </None>
   </ItemGroup>
+
+  <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
 
 </Project>

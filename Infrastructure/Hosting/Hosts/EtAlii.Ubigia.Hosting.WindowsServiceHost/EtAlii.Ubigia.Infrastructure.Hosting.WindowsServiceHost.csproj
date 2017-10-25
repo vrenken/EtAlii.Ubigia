@@ -69,8 +69,12 @@
 
   <ItemGroup>
     <!-- Configuration elements -->
-    <Content Include="App.config" Exclude="App.config" />
-    <Content Include="App.*.config" Exclude="App.config" DependentUpon="App.config" />
+    <None Update="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="App.*.config" DependentUpon="App.config">
+      <IsTransformFile>True</IsTransformFile>
+    </None>
   </ItemGroup>
 
 </Project>
