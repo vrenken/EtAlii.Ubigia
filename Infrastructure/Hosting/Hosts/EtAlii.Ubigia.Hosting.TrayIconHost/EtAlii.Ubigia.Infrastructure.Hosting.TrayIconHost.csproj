@@ -49,10 +49,7 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
-    <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -104,6 +101,12 @@
     <!-- Settings -->
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Configuration elements -->
+    <Content Include="App.config" Exclude="App.config" />
+    <Content Include="App.*.config" Exclude="App.config" DependentUpon="App.config" />
   </ItemGroup>
 
 </Project>

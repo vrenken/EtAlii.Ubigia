@@ -53,7 +53,7 @@
             });
 
             // Assert.
-            ExceptionAssert.Throws<ArgumentNullException>(act);
+            Assert.Throws<ArgumentNullException>(act);
         }
 
         [Fact]

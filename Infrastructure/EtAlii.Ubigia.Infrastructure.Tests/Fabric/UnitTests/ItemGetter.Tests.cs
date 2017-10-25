@@ -40,7 +40,7 @@
         //    });
 
         //    // Assert.
-        //    ExceptionAssert.Throws<ArgumentException>(act);
+        //    Assert.Throws<ArgumentException>(act);
         //}
     }
 }

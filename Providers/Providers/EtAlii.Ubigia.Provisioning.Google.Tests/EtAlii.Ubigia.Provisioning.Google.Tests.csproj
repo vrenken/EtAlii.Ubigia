@@ -47,8 +47,8 @@
     <Reference Include="EtAlii.Ubigia, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\EtAlii.Ubigia.1.0.22\lib\netstandard2.0\EtAlii.Ubigia.dll</HintPath>
     </Reference>
-    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.26.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.26\lib\netstandard2.0\EtAlii.Ubigia.Tests.dll</HintPath>
+    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.27.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.27\lib\netstandard2.0\EtAlii.Ubigia.Tests.dll</HintPath>
     </Reference>
     <Reference Include="HashLib, Version=2.1.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\HashLib.2.1.0.2\lib\netstandard2.0\HashLib.dll</HintPath>

@@ -63,6 +63,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- Configuration elements -->
+    <Content Include="App.config" Exclude="App.config" />
+    <Content Include="App.*.config" Exclude="App.config" DependentUpon="App.config" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <Reference Include="System.Configuration" />
   </ItemGroup>
 
