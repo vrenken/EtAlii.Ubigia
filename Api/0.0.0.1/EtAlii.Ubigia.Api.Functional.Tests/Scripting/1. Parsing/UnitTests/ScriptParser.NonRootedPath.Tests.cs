@@ -90,7 +90,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -118,7 +118,7 @@
             var result = _parser.Parse("/First/Second/Third/Fourth\r\n$var1 = /Fourth/4\r\n/Fifth is bad/5\r\n/Sixth/6");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -130,7 +130,7 @@
             var result = _parser.Parse("/First/Second/Third/Fourth\r\n$var1 = /Fourth/4\r\n/Fifth//5\r\n/Sixth/6");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -243,7 +243,7 @@
             var result = _parser.Parse("thislineisbad #and this should be ok");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -255,7 +255,7 @@
             var result = _parser.Parse("thislineisbad");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -267,7 +267,7 @@
             var result = _parser.Parse("#ThisLineIsOk\r\nButThisLineIsBad");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -279,7 +279,7 @@
             var result = _parser.Parse("#ThisLineIsBad\r\nButThisLineIsOk");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

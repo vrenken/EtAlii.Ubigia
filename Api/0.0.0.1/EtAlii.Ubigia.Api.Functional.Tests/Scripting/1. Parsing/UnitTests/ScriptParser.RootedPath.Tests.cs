@@ -122,7 +122,7 @@
 
             // Assert.
             var script = result.Script;
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -150,7 +150,7 @@
             var result = _parser.Parse("First:Second/Third/Fourth\r\n$var1 = Fourth:4\r\nFifth is bad:5\r\nSixth:6");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -162,7 +162,7 @@
             var result = _parser.Parse("First:Second/Third/Fourth\r\n$var1 = Fourth:4\r\nFifth:/5\r\nSixth:6");
 
             // Assert.
-            Assert.True(result.Errors.Any(e => e.Exception is ScriptParserException));
+            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

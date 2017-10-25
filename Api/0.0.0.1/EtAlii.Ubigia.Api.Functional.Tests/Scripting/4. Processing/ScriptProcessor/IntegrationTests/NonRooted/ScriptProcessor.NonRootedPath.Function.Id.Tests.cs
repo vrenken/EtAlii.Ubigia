@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(0, result.Length);  // << Question: should the $var2 assignment create output or not? Nope it should not. only assign (<=), function or path results should.
+            Assert.Empty(result);  // << Question: should the $var2 assignment create output or not? Nope it should not. only assign (<=), function or path results should.
             Assert.IsAssignableFrom<INode>(await scope.Variables["var1"].Value.SingleAsync());
             Assert.IsType<Identifier>(await scope.Variables["var2"].Value.SingleAsync());
             Assert.Equal((await scope.Variables["var1"].Value.Cast<INode>().SingleAsync()).Id, await scope.Variables["var2"].Value.Cast<Identifier>().SingleAsync());
