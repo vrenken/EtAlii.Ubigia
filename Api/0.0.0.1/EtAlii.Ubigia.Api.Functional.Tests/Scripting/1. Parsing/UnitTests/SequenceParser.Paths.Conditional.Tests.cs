@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
-            Assert.Equal(1, conditionalPathSubjectPart.Conditions.Length);
+            Assert.Single(conditionalPathSubjectPart.Conditions);
             Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
-            Assert.Equal(1, conditionalPathSubjectPart.Conditions.Length);
+            Assert.Single(conditionalPathSubjectPart.Conditions);
             Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
@@ -179,7 +179,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
 
@@ -203,13 +203,13 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(3).Cast<ConditionalPathSubjectPart>().First();
-            Assert.Equal(1, conditionalPathSubjectPart.Conditions.Length);
+            Assert.Single(conditionalPathSubjectPart.Conditions);
             Assert.Equal("Type", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Family", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
-            Assert.Equal(1, conditionalPathSubjectPart.Conditions.Length);
+            Assert.Single(conditionalPathSubjectPart.Conditions);
             Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
@@ -234,13 +234,13 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(3).Cast<ConditionalPathSubjectPart>().First();
-            Assert.Equal(1, conditionalPathSubjectPart.Conditions.Length);
+            Assert.Single(conditionalPathSubjectPart.Conditions);
             Assert.Equal("Type", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Null(conditionalPathSubjectPart.Conditions[0].Value);
             Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
-            Assert.Equal(1, conditionalPathSubjectPart.Conditions.Length);
+            Assert.Single(conditionalPathSubjectPart.Conditions);
             Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
@@ -276,7 +276,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -311,7 +311,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -346,7 +346,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
 
@@ -381,7 +381,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -415,7 +415,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal(ConditionType.Equal, conditionalPathSubjectPart.Conditions[1].Type);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -449,7 +449,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal(ConditionType.MoreThan, conditionalPathSubjectPart.Conditions[1].Type);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -483,7 +483,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal(ConditionType.MoreThanOrEqual, conditionalPathSubjectPart.Conditions[1].Type);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -517,7 +517,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal(ConditionType.NotEqual, conditionalPathSubjectPart.Conditions[1].Type);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -551,7 +551,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal(ConditionType.LessThan, conditionalPathSubjectPart.Conditions[1].Type);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -585,7 +585,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.Equal(ConditionType.LessThanOrEqual, conditionalPathSubjectPart.Conditions[1].Type);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
             Assert.Equal("IsMale", conditionalPathSubjectPart.Conditions[2].Property);
-            Assert.Equal(true, conditionalPathSubjectPart.Conditions[2].Value);
+            Assert.True((bool)conditionalPathSubjectPart.Conditions[2].Value);
         }
 
     }

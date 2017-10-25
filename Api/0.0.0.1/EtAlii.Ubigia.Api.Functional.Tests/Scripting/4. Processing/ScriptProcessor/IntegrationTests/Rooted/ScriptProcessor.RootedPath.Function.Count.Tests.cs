@@ -79,7 +79,7 @@
 
             // Assert.
             Assert.NotNull(personsAfter);
-            Assert.Equal(1, personsAfter.Length);
+            Assert.Single(personsAfter);
             Assert.Equal(3, personsAfter.Single());
         }
 
@@ -116,7 +116,7 @@
 
             // Assert.
             Assert.NotNull(personsAfter);
-            Assert.Equal(1, personsAfter.Length);
+            Assert.Single(personsAfter);
             Assert.Equal(3, personsAfter.Single());
         }
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -152,7 +152,7 @@
 
             // Assert.
             Assert.NotNull(personsAfter);
-            Assert.Equal(1, personsAfter.Length);
+            Assert.Single(personsAfter);
             Assert.Equal(3, personsAfter.Single());
         }
     }

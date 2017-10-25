@@ -60,7 +60,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.IsType<object[]>(result);
             Assert.IsAssignableFrom<IReadOnlyEntry>(result[0]);
             Assert.Equal("Jane", result.Cast<IReadOnlyEntry>().Single().Type);
@@ -86,7 +86,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.IsType<object[]>(result);
             Assert.IsAssignableFrom<IReadOnlyEntry>(result[0]);
             Assert.Equal("Jane", result.Cast<IReadOnlyEntry>().Single().Type);
@@ -112,7 +112,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.IsType<object[]>(result);
             Assert.IsAssignableFrom<IReadOnlyEntry>(result[0]);
             Assert.Equal("Jane", result.Cast<IReadOnlyEntry>().Single().Type);
@@ -138,7 +138,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.IsType<object[]>(result);
             Assert.IsAssignableFrom<IReadOnlyEntry>(result[0]);
             Assert.Equal("Jane", result.Cast<IReadOnlyEntry>().Single().Type);

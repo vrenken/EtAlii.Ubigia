@@ -75,7 +75,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             dynamic first = result.First();
 
             Assert.Equal("Does", first.ToString());
@@ -112,7 +112,7 @@
             var result = await lastSequence.Output.ToArray();
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             dynamic first = result.First();
 
             Assert.Equal("Does", first.ToString());
@@ -150,7 +150,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             dynamic first = result.First();
 
             Assert.Equal("Does", first.ToString());
@@ -188,7 +188,7 @@
 
             // Assert.
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             dynamic first = result.First();
 
             Assert.Equal("Does", first.ToString());

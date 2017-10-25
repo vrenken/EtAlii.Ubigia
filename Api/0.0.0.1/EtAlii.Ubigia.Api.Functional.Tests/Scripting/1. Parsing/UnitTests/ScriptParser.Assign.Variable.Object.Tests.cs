@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= ''").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= \"\"").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -91,7 +91,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -134,7 +134,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -157,7 +157,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -178,7 +178,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -198,7 +198,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -218,7 +218,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -238,7 +238,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -258,7 +258,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -278,7 +278,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -298,7 +298,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -318,7 +318,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -338,7 +338,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -359,7 +359,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -379,7 +379,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -399,7 +399,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -419,7 +419,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                                        "}").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -440,7 +440,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= { FirstName: \"John\", LastName: \"Doe\" }").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -457,7 +457,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= { \"FirstName\": \"John\", \"LastName\": \"Doe\" }").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -474,7 +474,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= { 'FirstName': \"John\", 'LastName': \"Doe\" }").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -491,7 +491,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= { 'FirstName': 'John', 'LastName': 'Doe' }").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -508,7 +508,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= { FirstName: \"John\", LastName: \"Doe\", Birthdate: 28-07-1978 }").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -527,7 +527,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse("$johnDoe <= { FirstName: \"John\", LastName: \"Doe\", Birthdate: 1978-07-28 }").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("johnDoe", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());

@@ -85,9 +85,9 @@
             var script = result.Script;
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var firstSequence = script.Sequences.ElementAt(0);
-            Assert.Equal(1, firstSequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.Length);
+            Assert.Single(firstSequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts);
             var secondSequence = script.Sequences.ElementAt(1);
-            Assert.Equal(1, secondSequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts.Length);
+            Assert.Single(secondSequence.Parts.Skip(1).Cast<RootedPathSubject>().First().Parts);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

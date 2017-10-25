@@ -33,7 +33,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -47,7 +47,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact(Skip = "Unable to validate functions during parsing (yet)"), Trait("Category", TestAssembly.Category)]
@@ -60,7 +60,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -80,7 +80,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("include", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
         }
@@ -102,7 +102,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("include", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<ConstantPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
@@ -125,7 +125,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("include", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<ConstantPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
@@ -150,7 +150,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("include", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsChildOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<ConstantPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
@@ -175,7 +175,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("include", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsChildOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<WildcardPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);

@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 
@@ -66,7 +66,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 
@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 
@@ -139,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 
@@ -168,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 
@@ -197,7 +197,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 
@@ -227,7 +227,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = parseResult.Script;
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
             Assert.Null(script);
         }
 

@@ -142,7 +142,7 @@
             var script = _parser.Parse("#thislineissafe").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -154,7 +154,7 @@
             var script = _parser.Parse("#thislineissafe #and this line also").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -201,7 +201,7 @@
             var script = _parser.Parse("/this/line/is/safe #and this comment also").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             Assert.IsType<AbsolutePathSubject>(script.Sequences.ElementAt(0).Parts.Skip(1).First());
             Assert.IsType<Comment>(script.Sequences.ElementAt(0).Parts.Skip(2).First());
         }
@@ -215,7 +215,7 @@
             var script = _parser.Parse("/this/line/is/safe   #and this comment also").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             Assert.IsType<AbsolutePathSubject>(script.Sequences.ElementAt(0).Parts.Skip(1).First());
             Assert.IsType<Comment>(script.Sequences.ElementAt(0).Parts.Skip(2).First());
         }
@@ -229,7 +229,7 @@
             var script = _parser.Parse("/this/line/is/safe#and this comment also").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             Assert.IsType<AbsolutePathSubject>(script.Sequences.ElementAt(0).Parts.Skip(1).First());
             Assert.IsType<Comment>(script.Sequences.ElementAt(0).Parts.Skip(2).First());
         }
