@@ -37,7 +37,7 @@
 
             // Assert.
             Assert.True(result.HasValue);
-            Assert.Equal(true, result);
+            Assert.True(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -56,7 +56,7 @@
 
             // Assert.
             Assert.True(result.HasValue);
-            Assert.Equal(true, result);
+            Assert.True(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -75,7 +75,7 @@
 
             // Assert.
             Assert.True(result.HasValue);
-            Assert.Equal(true, result);
+            Assert.True(result);
         }
 
 
@@ -95,7 +95,7 @@
 
             // Assert.
             Assert.True(result.HasValue);
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -114,7 +114,7 @@
 
             // Assert.
             Assert.True(result.HasValue);
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -133,7 +133,7 @@
 
             // Assert.
             Assert.True(result.HasValue);
-            Assert.Equal(false, result);
+            Assert.False(result);
         }
 
 

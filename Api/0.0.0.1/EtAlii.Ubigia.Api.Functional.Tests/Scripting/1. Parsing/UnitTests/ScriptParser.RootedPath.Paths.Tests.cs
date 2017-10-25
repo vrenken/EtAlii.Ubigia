@@ -19,7 +19,7 @@
             // Assert.
             var script = result.Script;
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

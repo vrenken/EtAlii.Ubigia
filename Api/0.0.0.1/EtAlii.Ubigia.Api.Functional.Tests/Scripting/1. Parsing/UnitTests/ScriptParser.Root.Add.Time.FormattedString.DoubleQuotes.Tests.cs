@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             var rootedPathSubject = sequence.Parts.Skip(0).Cast<RootedPathSubject>().First();
             Assert.Equal("time", rootedPathSubject.Root);
-            Assert.Equal(1, rootedPathSubject.Parts.Length);
+            Assert.Single(rootedPathSubject.Parts);
             Assert.IsType<ConstantPathSubjectPart>(rootedPathSubject.Parts[0]);
             Assert.Equal("2016", rootedPathSubject.Parts.Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             var rootedPathSubject = sequence.Parts.Skip(0).Cast<RootedPathSubject>().First();
             Assert.Equal("time", rootedPathSubject.Root);
-            Assert.Equal(1, rootedPathSubject.Parts.Length);
+            Assert.Single(rootedPathSubject.Parts);
             Assert.IsType<ConstantPathSubjectPart>(rootedPathSubject.Parts[0]);
             Assert.Equal("2016", rootedPathSubject.Parts.Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             var rootedPathSubject = sequence.Parts.Skip(0).Cast<RootedPathSubject>().First();
             Assert.Equal("time", rootedPathSubject.Root);
-            Assert.Equal(1, rootedPathSubject.Parts.Length);
+            Assert.Single(rootedPathSubject.Parts);
             Assert.IsType<ConstantPathSubjectPart>(rootedPathSubject.Parts[0]);
             Assert.Equal("2016-12", rootedPathSubject.Parts.Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
@@ -95,7 +95,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             var rootedPathSubject = sequence.Parts.Skip(0).Cast<RootedPathSubject>().First();
             Assert.Equal("time", rootedPathSubject.Root);
-            Assert.Equal(1, rootedPathSubject.Parts.Length);
+            Assert.Single(rootedPathSubject.Parts);
             Assert.IsType<ConstantPathSubjectPart>(rootedPathSubject.Parts[0]);
             Assert.Equal("2016-12", rootedPathSubject.Parts.Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
@@ -120,7 +120,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             var rootedPathSubject = sequence.Parts.Skip(0).Cast<RootedPathSubject>().First();
             Assert.Equal("time", rootedPathSubject.Root);
-            Assert.Equal(1, rootedPathSubject.Parts.Length);
+            Assert.Single(rootedPathSubject.Parts);
             Assert.IsType<ConstantPathSubjectPart>(rootedPathSubject.Parts[0]);
             Assert.Equal("2016-12-04 13:38", rootedPathSubject.Parts.Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
@@ -144,7 +144,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             var rootedPathSubject = sequence.Parts.Skip(0).Cast<RootedPathSubject>().First();
             Assert.Equal("time", rootedPathSubject.Root);
-            Assert.Equal(1, rootedPathSubject.Parts.Length);
+            Assert.Single(rootedPathSubject.Parts);
             Assert.IsType<ConstantPathSubjectPart>(rootedPathSubject.Parts[0]);
             Assert.Equal("2016-12-04 13:38", rootedPathSubject.Parts.Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));

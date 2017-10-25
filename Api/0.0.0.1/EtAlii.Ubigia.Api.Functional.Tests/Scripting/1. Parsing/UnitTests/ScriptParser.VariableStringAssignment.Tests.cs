@@ -15,7 +15,7 @@
             var script = _parser.Parse("$var1 <= \"Test\"").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("var1", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
@@ -31,7 +31,7 @@
             var script = _parser.Parse("$var1<=\"Test\"").Script;
 
             // Assert.
-            Assert.Equal(1, script.Sequences.Count());
+            Assert.Single(script.Sequences);
             var sequence = script.Sequences.First();
             Assert.Equal("var1", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());

@@ -54,7 +54,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -67,7 +67,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -80,7 +80,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -100,7 +100,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -122,7 +122,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -144,7 +144,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -166,7 +166,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -185,7 +185,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -199,7 +199,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -212,7 +212,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -225,7 +225,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -238,7 +238,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -251,7 +251,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -267,7 +267,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -280,7 +280,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -293,7 +293,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -449,7 +449,7 @@
             var part = sequence.Parts.Skip(2).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -471,7 +471,7 @@
             var part = sequence.Parts.Skip(2).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -635,7 +635,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -657,7 +657,7 @@
             var part = sequence.Parts.First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("First", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -737,7 +737,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("function", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<VariableFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("var1", ((VariableFunctionSubjectArgument)part.Arguments[0]).Name);
         }
@@ -753,7 +753,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -766,7 +766,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -779,7 +779,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -792,7 +792,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -831,7 +831,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -844,7 +844,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -857,7 +857,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -870,7 +870,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -884,7 +884,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -897,7 +897,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -910,7 +910,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -923,7 +923,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
 
@@ -937,7 +937,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -950,7 +950,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -963,7 +963,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -976,7 +976,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -989,7 +989,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -1002,7 +1002,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -1015,7 +1015,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -1028,7 +1028,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -1041,7 +1041,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -1054,7 +1054,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -1067,7 +1067,7 @@
             var parseResult = _parser.Parse(text);
 
             // Assert.
-            Assert.Equal(1, parseResult.Errors.Length);
+            Assert.Single(parseResult.Errors);
         }
     }
 }

@@ -63,7 +63,7 @@
             // Assert.
             Assert.NotNull(script);
             Assert.NotNull(result);
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

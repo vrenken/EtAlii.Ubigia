@@ -61,7 +61,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<VariableFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("path", ((VariableFunctionSubjectArgument)part.Arguments[0]).Name);
         }
@@ -83,7 +83,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("/Hierarchy", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -105,7 +105,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("/Hierarchy äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -130,7 +130,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("/Hierarchy", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -152,7 +152,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<ConstantFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("/Hierarchy äëöüáéóúâêôû", ((ConstantFunctionSubjectArgument)part.Arguments[0]).Value);
         }
@@ -175,7 +175,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.Equal("Hierarchy", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]).Name);
@@ -199,7 +199,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.Equal("Hierarchy", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]).Name);
@@ -224,7 +224,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.Equal("Hierarchy", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]).Name);
@@ -254,7 +254,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<RootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("now", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
         }
@@ -276,7 +276,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<RootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("2016-02-19", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
         }
@@ -299,7 +299,7 @@
             var part = sequence.Parts.Skip(1).First() as FunctionSubject;
             Assert.NotNull(part);
             Assert.Equal("id", part.Name);
-            Assert.Equal(1, part.Arguments.Length);
+            Assert.Single(part.Arguments);
             Assert.IsType<RootedPathFunctionSubjectArgument>(part.Arguments[0]);
             Assert.Equal("2016-02-19", ((ConstantPathSubjectPart)((RootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]).Name);
         }
