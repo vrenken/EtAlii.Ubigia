@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Diagnostics.Tests
+﻿namespace EtAlii.Ubigia.Api.Logical.Win32.IntegrationTests
 {
     using System;
     using System.IO;

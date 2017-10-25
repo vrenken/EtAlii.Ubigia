@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Provisioning.Hosting
 {
-    using EtAlii.Ubigia.Api.Diagnostics;
+    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;

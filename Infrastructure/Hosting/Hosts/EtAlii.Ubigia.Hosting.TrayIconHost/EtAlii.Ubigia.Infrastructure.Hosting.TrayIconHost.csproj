@@ -49,6 +49,7 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
+    <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
   </ItemGroup>
 
@@ -84,15 +85,16 @@
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+
     <None Remove="Icon-Logo-Black.ico" />
     <None Remove="Icon-Logo-Red.ico" />
     <None Remove="Icon-Logo-White-Shaded.ico" />
     <EmbeddedResource Include="Icon-Logo-Black.ico" />
     <EmbeddedResource Include="Icon-Logo-Red.ico" />
     <EmbeddedResource Include="Icon-Logo-White-Shaded.ico" />
-    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
 
     <!-- Resources -->
     <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
@@ -105,8 +107,14 @@
 
   <ItemGroup>
     <!-- Configuration elements -->
-    <Content Include="App.config" Exclude="App.config" />
-    <Content Include="App.*.config" Exclude="App.config" DependentUpon="App.config" />
+    <None Update="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="App.*.config" DependentUpon="App.config">
+      <IsTransformFile>True</IsTransformFile>
+    </None>
   </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
 </Project>

@@ -1,8 +1,7 @@
-namespace EtAlii.Ubigia.Api.Diagnostics
+namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport.Diagnostics;
 
     public static class DataConnectionConfigurationDiagnosticsExtension
     {
