@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="3.1.0" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
