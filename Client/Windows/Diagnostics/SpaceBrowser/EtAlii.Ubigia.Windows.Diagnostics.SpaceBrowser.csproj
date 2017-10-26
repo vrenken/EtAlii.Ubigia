@@ -27,6 +27,7 @@
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
     <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
     <PackageReference Include="Syncfusion.Grid.Base46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.Grid.WPF46" Version="15.3.0.33" />

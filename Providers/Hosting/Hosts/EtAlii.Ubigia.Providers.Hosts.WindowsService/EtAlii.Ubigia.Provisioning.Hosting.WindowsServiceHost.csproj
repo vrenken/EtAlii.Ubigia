@@ -17,6 +17,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics.csproj" />
   </ItemGroup>
 
