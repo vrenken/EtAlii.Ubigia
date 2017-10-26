@@ -9,9 +9,9 @@
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;
 
-        public TemporalGraphPathWeaver_Tests(TestIdentifierFactory testIdentifierFactory)
+        public TemporalGraphPathWeaver_Tests()
         {
-            _testIdentifierFactory = testIdentifierFactory;
+            _testIdentifierFactory = new TestIdentifierFactory();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
