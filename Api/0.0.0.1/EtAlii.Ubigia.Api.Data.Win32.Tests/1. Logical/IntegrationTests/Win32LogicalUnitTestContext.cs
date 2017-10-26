@@ -23,20 +23,16 @@
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);
 
-            var task = Task.Run(() =>
-            {
-                LogicalTestContext = new LogicalTestContextFactory().Create();
+            LogicalTestContext = new LogicalTestContextFactory().Create();
 
-                // Getting Temp file names to use
-                TestFile2MImage = Win32TestHelper.CreateTemporaryFileName();
-                TestFile10MRaw = Win32TestHelper.CreateTemporaryFileName();
-                TestFile100MRaw = Win32TestHelper.CreateTemporaryFileName();
+            // Getting Temp file names to use
+            TestFile2MImage = Win32TestHelper.CreateTemporaryFileName();
+            TestFile10MRaw = Win32TestHelper.CreateTemporaryFileName();
+            TestFile100MRaw = Win32TestHelper.CreateTemporaryFileName();
 
-                Win32TestHelper.SaveResourceTestImage(TestFile2MImage);
-                Win32TestHelper.SaveTestFile(TestFile10MRaw, 10);
-                Win32TestHelper.SaveTestFile(TestFile100MRaw, 100);
-            });
-            task.Wait();
+            Win32TestHelper.SaveResourceTestImage(TestFile2MImage);
+            Win32TestHelper.SaveTestFile(TestFile10MRaw, 10);
+            Win32TestHelper.SaveTestFile(TestFile100MRaw, 100);
         }
 
         public void Dispose()
