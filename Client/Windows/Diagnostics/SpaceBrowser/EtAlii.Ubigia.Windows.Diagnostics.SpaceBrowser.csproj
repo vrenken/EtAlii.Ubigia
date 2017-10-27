@@ -61,6 +61,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Remove="Bin\**" />
+    <EmbeddedResource Remove="Bin\**" />
+    <None Remove="Bin\**" />
+    <Page Remove="Bin\**" />
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
     
     <Compile Remove="Textual\Script\Templates\SimpleScript.cs" />
