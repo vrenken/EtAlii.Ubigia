@@ -15,7 +15,7 @@
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
@@ -67,10 +67,14 @@
 
   <ItemGroup>
     <!-- Configuration elements -->
-    <Content Include="App.config" Exclude="App.config" />
-    <Content Include="App.*.config" Exclude="App.config" DependentUpon="App.config" />
+    <None Update="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="App.*.config" DependentUpon="App.config">
+      <IsTransformFile>True</IsTransformFile>
+    </None>
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics.csproj" />
   </ItemGroup>
