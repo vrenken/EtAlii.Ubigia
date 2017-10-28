@@ -30,14 +30,11 @@
 
         public ICommand OpenUserPortalCommand { get; }
 
-        public bool CanStartService { get { return _canStartService; } set { SetProperty(ref _canStartService, value); } }
+        public bool CanStartService { get => _canStartService; set => SetProperty(ref _canStartService, value); }
         private bool _canStartService;
 
-        public bool CanStopService { get { return _canStopService; } set { SetProperty(ref _canStopService, value); } }
+        public bool CanStopService { get => _canStopService; set => SetProperty(ref _canStopService, value); }
         private bool _canStopService;
-
-        public string IconToShow { get { return _iconToShow; } set { SetProperty(ref _iconToShow, value); } }
-        private string _iconToShow = TrayIconResource.Stopped;
 
         public TaskbarIconViewModel()
         {
@@ -61,6 +58,7 @@
         {
             _host = host;
             _host.PropertyChanged += OnHostPropertyChanged;
+            SetIcon(TrayIconResource.Stopped);
         }
 
         private void UpdateToolTip()
@@ -89,23 +87,33 @@
         {
             switch (e.PropertyName)
             {
-                case "IsRunning":
+                case nameof(_host.IsRunning):
                     CanStopService = _host.IsRunning;
                     CanStartService = !_host.IsRunning;
-                    IconToShow = _host.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+                    UpdateIcon();
                     UpdateToolTip();
                     break;
-                case "HasError":
+                case nameof(_host.HasError):
                     if (_host.HasError)
                     {
-                        IconToShow = TrayIconResource.Errored;
+                        SetIcon(TrayIconResource.Errored);
                     }
                     else
                     {
-                        IconToShow = _host.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+                        UpdateIcon();
                     }
                     break;
             }
+        }
+
+        private void UpdateIcon()
+        {
+            var iconToShow = _host.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+            SetIcon(iconToShow);
+        }
+        private void SetIcon(string iconFile)
+        {
+            _host.TaskbarIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(iconFile);
         }
 
         private void StartSpaceBrowser()

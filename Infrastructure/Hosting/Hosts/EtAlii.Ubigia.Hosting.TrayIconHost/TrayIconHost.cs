@@ -34,14 +34,12 @@
 
         public override void Start()
         {
-            TaskbarIcon.Dispatcher.Invoke(() =>
-            {
-                TaskbarIcon.Visibility = Visibility.Visible;
-            });
+            TaskbarIcon.Dispatcher.Invoke(() => TaskbarIcon.Visibility = Visibility.Visible);
+
             Task.Delay(500).ContinueWith((o) =>
             {
-                try
-                {
+            try
+            {
                     IsRunning = false;
 
                     Infrastructure.Start();
@@ -79,7 +77,7 @@
         /// </summary>
         /// <typeparam name="T">Type of the property.</typeparam>
         /// <param name="storage">Reference to a property with both getter and setter.</param>
-        /// <param name="value">Desired value for the property.</param>
+        /// <param name="newValue"></param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers that
         /// support CallerMemberName.</param>
@@ -99,16 +97,15 @@
         /// <summary>
         /// Notifies listeners that a property value has changed.
         /// </summary>
+        /// <param name="newValue"></param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        /// <param name="sender"></param>
+        /// <param name="oldValue"></param>
         protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
-            var eventHandler = PropertyChanged;
-            if (eventHandler != null)
-            {
-                eventHandler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }
