@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="**\*" Exclude="*.cs" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
