@@ -113,7 +113,16 @@
         }
         private void SetIcon(string iconFile)
         {
-            _host.TaskbarIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(iconFile);
+            var current = _host.TaskbarIcon.Icon;
+
+            var type = typeof(TaskbarIconViewModel);
+            var resourceNamespace = Path.GetFileNameWithoutExtension(type.Assembly.CodeBase);
+            using (var stream = type.Assembly.GetManifestResourceStream($"{resourceNamespace}.{iconFile}"))
+            {
+                _host.TaskbarIcon.Icon = new System.Drawing.Icon(stream);
+            }
+            current?.Dispose();
+
         }
 
         private void StartSpaceBrowser()
