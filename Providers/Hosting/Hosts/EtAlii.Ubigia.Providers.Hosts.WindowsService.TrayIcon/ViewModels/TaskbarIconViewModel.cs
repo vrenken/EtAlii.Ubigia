@@ -2,6 +2,7 @@
 {
     using EtAlii.xTechnology.Mvvm;
     using System.Text;
+    using System.IO;
     using System.Windows;
     using System.Windows.Input;
 
@@ -39,13 +40,6 @@
 
         private bool _canStopService;
 
-        public string IconToShow
-        {
-            get { return _iconToShow; }
-            set { SetProperty(ref _iconToShow, value); }
-        }
-
-        private string _iconToShow = TrayIconResource.Stopped;
 
         public TaskbarIconViewModel()
         {
@@ -62,6 +56,7 @@
         {
             _providerHost = providerHost;
             _providerHost.PropertyChanged += OnHostPropertyChanged;
+            SetIcon(TrayIconResource.Stopped);
         }
 
         private void UpdateToolTip()
@@ -85,24 +80,43 @@
             ToolTipText = sb.ToString();
         }
 
+        private void UpdateIcon()
+        {
+            var iconToShow = _providerHost.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+            SetIcon(iconToShow);
+        }
+        private void SetIcon(string iconFile)
+        {
+            var current = _providerHost.TaskbarIcon.Icon;
+
+            var type = typeof(TaskbarIconViewModel);
+            var resourceNamespace = Path.GetFileNameWithoutExtension(type.Assembly.CodeBase);
+            using (var stream = type.Assembly.GetManifestResourceStream($"{resourceNamespace}.{iconFile}"))
+            {
+                _providerHost.TaskbarIcon.Icon = new System.Drawing.Icon(stream);
+            }
+            current?.Dispose();
+
+        }
+
         private void OnHostPropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
         {
             switch (e.PropertyName)
             {
-                case "IsRunning":
+                case nameof(_providerHost.IsRunning):
                     CanStopService = _providerHost.IsRunning;
                     CanStartService = !_providerHost.IsRunning;
-                    IconToShow = _providerHost.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+                    UpdateIcon();
                     UpdateToolTip();
                     break;
-                case "HasError":
+                case nameof(_providerHost.HasError):
                     if (_providerHost.HasError)
                     {
-                        IconToShow = TrayIconResource.Errored;
+                        SetIcon(TrayIconResource.Errored);
                     }
                     else
                     {
-                        IconToShow = _providerHost.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+                        UpdateIcon();
                     }
                     break;
             }

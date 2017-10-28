@@ -11,7 +11,6 @@
         ICommand StopServiceCommand { get; }
         bool CanStartService { get; set; }
         bool CanStopService { get; set; }
-        string IconToShow { get; set; }
         void Initialize(ITrayIconProviderHost providerHost);
     }
 }
