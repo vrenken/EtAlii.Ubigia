@@ -5,8 +5,9 @@
     /// </summary>
     public partial class TaskbarIcon : Hardcodet.Wpf.TaskbarNotification.TaskbarIcon, ITaskbarIcon
     {
-        public TaskbarIcon()
+        public TaskbarIcon(ITaskbarIconViewModel viewModel)
         {
+            DataContext = viewModel;
             InitializeComponent();
         }
     }

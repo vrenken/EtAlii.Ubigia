@@ -3,12 +3,11 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System.ComponentModel;
-    internal interface ITaskbarIconViewModel : INotifyPropertyChanged
+    public interface ITaskbarIconViewModel : INotifyPropertyChanged
     {
         bool CanStartService { get; set; }
         bool CanStopService { get; set; }
         ICommand ExitApplicationCommand { get; }
-        string IconToShow { get; set; }
         ICommand OpenAdminPortalCommand { get; }
         ICommand OpenUserPortalCommand { get; }
         ICommand SpaceBrowserCommand { get; }
