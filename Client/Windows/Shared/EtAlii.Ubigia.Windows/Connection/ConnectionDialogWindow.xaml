@@ -9,8 +9,10 @@
     WindowStartupLocation="CenterOwner"
     x:Name="root"
     FlowDirection="LeftToRight"
-    Title="Connection selection"
-    Loaded="ConnectionSettingsDialogWindow_OnLoaded"
+    Title=""
+    TitleBarHeight="0"
+    WindowStyle="None" 
+    Loaded="OnLoaded"
     Height="350" Width="400" >
 
     <f:RibbonWindow.Resources>
@@ -78,7 +80,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="Header-Ubigia.png" />
+        <Image Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Source="pack://siteoforigin:,,,/Images/Header-Ubigia.png" />
         <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Content="Select the storage and space to connect to" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" />
 
         <Label Grid.Row="1" Grid.Column="0" Content="Server" />

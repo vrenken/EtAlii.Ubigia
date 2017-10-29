@@ -14,7 +14,7 @@
             InitializeComponent();
         }
 
-        private void ConnectionSettingsDialogWindow_OnLoaded(object sender, RoutedEventArgs e)
+        private void OnLoaded(object sender, RoutedEventArgs e)
         {
             if (String.IsNullOrWhiteSpace(AddressComboBox.Text))
             {
