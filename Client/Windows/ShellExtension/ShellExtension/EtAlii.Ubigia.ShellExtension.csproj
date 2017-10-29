@@ -182,7 +182,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
-    <None Include="packages.config" />
     <None Include="Register-PreBuild.bat" />
     <None Include="ShellRegistration.snk" />
     <None Include="Register-PostBuild.bat" />
