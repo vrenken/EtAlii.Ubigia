@@ -17,6 +17,8 @@
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <OutputType>WinExe</OutputType>
     <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser</AssemblyName>
+    <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <Win32Resource />
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,6 +54,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Page>
+    <None Remove="Icon.ico" />
+    <Content Include="Icon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj" />
      <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />

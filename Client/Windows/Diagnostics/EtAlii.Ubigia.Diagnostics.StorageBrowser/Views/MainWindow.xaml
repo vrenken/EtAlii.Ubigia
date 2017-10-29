@@ -8,7 +8,7 @@
     FlowDirection="LeftToRight"
     Title="Ubigia - Storage browser" 
     Height="503.2" Width="682.6" 
-    Icon="/StorageBrowser;component/Icon-Logo.ico">
+    Icon="pack://siteoforigin:,,,/Icon.ico">
 
     <f:RibbonWindow.Resources>
         <ResourceDictionary>
