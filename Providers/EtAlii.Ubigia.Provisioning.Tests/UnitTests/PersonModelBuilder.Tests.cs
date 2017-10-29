@@ -44,13 +44,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(0, lastNames.Length);
+            Assert.Empty(lastNames);
             Assert.NotNull(emails);
-            Assert.Equal(0, emails.Length);
+            Assert.Empty(emails);
             Assert.NotNull(phones);
-            Assert.Equal(0, phones.Length);
+            Assert.Empty(phones);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
 
@@ -70,14 +70,14 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
-            Assert.Equal(1, lastNames.SelectMany(ln => ln.FirstNames).Count());
+            Assert.Single(lastNames);
+            Assert.Single(lastNames.SelectMany(ln => ln.FirstNames));
             Assert.NotNull(emails);
-            Assert.Equal(1, emails.Length);
+            Assert.Single(emails);
             Assert.NotNull(phones);
-            Assert.Equal(1, phones.Length);
+            Assert.Single(phones);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
         [Fact]
@@ -97,13 +97,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
+            Assert.Single(lastNames);
             Assert.NotNull(emails);
             Assert.Equal(2, emails.Length);
             Assert.NotNull(phones);
             Assert.Equal(2, phones.Length);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
 
@@ -130,7 +130,7 @@
             Assert.NotNull(phones);
             Assert.Equal(2, phones.Length);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
 
@@ -158,7 +158,7 @@
             Assert.NotNull(phones);
             Assert.Equal(2, phones.Length);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
         [Fact]
@@ -178,13 +178,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
+            Assert.Single(lastNames);
             Assert.NotNull(emails);
-            Assert.Equal(1, emails.Length);
+            Assert.Single(emails);
             Assert.NotNull(phones);
             Assert.Equal(2, phones.Length);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
         [Fact]
@@ -204,13 +204,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
+            Assert.Single(lastNames);
             Assert.NotNull(emails);
             Assert.Equal(2, emails.Length);
             Assert.NotNull(phones);
-            Assert.Equal(1, phones.Length);
+            Assert.Single(phones);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
         [Fact(Skip = "Not working yet")]
@@ -230,13 +230,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
+            Assert.Single(lastNames);
             Assert.NotNull(emails);
             Assert.Equal(2, emails.Length);
             Assert.NotNull(phones);
-            Assert.Equal(1, phones.Length);
+            Assert.Single(phones);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
         [Fact(Skip = "Not working yet")]
@@ -256,13 +256,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
+            Assert.Single(lastNames);
             Assert.NotNull(emails);
-            Assert.Equal(1, emails.Length);
+            Assert.Single(emails);
             Assert.NotNull(phones);
             Assert.Equal(2, phones.Length);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
 
         [Fact(Skip = "Not working yet")]
@@ -282,13 +282,13 @@
 
             // Assert.
             Assert.NotNull(lastNames);
-            Assert.Equal(1, lastNames.Length);
+            Assert.Single(lastNames);
             Assert.NotNull(emails);
             Assert.Equal(2, emails.Length);
             Assert.NotNull(phones);
             Assert.Equal(2, phones.Length);
             Assert.NotNull(photos);
-            Assert.Equal(0, photos.Length);
+            Assert.Empty(photos);
         }
     }
 }
