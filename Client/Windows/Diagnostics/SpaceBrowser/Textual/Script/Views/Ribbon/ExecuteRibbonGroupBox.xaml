@@ -15,20 +15,20 @@
         Command="{Binding ExecuteCommand}" 
         IsEnabled="{Binding CanExecute, FallbackValue=false}"
         Header="Start" 
-        LargeIcon="\Images\Icons\Media-Play.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Media-Play.png" />
     <Fluent:Button 
         Command="{Binding PauseCommand}" 
         IsEnabled="{Binding CanStop, FallbackValue=false}"
         Header="Pause" 
-        LargeIcon="\Images\Icons\Media-Pause.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Media-Pause.png" />
     <Fluent:Button 
         Command="{Binding StopCommand}" 
         IsEnabled="{Binding CanStop, FallbackValue=false}"
         Header="Stop" 
-        LargeIcon="\Images\Icons\Media-Stop.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Media-Stop.png" />
     <Fluent:Button 
         Command="{x:Null}" 
         IsEnabled="False"
         Header="Analyse" 
-        LargeIcon="\Images\Icons\Search-Find.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Search-Find.png" />
 </Fluent:RibbonGroupBox>

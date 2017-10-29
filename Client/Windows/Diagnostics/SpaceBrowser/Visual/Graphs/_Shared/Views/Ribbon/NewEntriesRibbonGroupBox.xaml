@@ -15,9 +15,9 @@
     <Fluent:ToggleButton
         Header="Add"
         IsChecked="{Binding AddNewEntries}"
-        LargeIcon="\Images\Icons\Share-01.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Share-01.png" />
     <Fluent:ToggleButton
         Header="Expand"
         IsChecked="{Binding ExpandNewEntries}"
-        LargeIcon="\Images\Icons\Data-Share.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Data-Share.png" />
 </Fluent:RibbonGroupBox>

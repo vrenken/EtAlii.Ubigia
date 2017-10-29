@@ -14,21 +14,21 @@
     <Fluent:Button 
         Command="ApplicationCommands.Undo" 
         Header="Undo" 
-        LargeIcon="\Images\Icons\Command-Undo.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Command-Undo.png" />
     <Fluent:Button 
         Command="ApplicationCommands.Redo" 
         Header="Redo" 
-        LargeIcon="\Images\Icons\Command-Redo.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Command-Redo.png" />
     <Fluent:Button 
         Command="ApplicationCommands.Cut" 
         Header="Cut" 
-        LargeIcon="\Images\Icons\Instrument-Scissors.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Instrument-Scissors.png" />
     <Fluent:Button 
         Command="ApplicationCommands.Copy" 
         Header="Copy" 
-        LargeIcon="\Images\Icons\Command-Paste.png"/>
+        LargeIcon="pack://siteoforigin:,,,/Images/Command-Paste.png"/>
     <Fluent:Button 
         Command="ApplicationCommands.Paste" 
         Header="Paste" 
-        LargeIcon="\Images\Icons\Clipboard-Next.png"/>
+        LargeIcon="pack://siteoforigin:,,,/Images/Clipboard-Next.png"/>
 </Fluent:RibbonGroupBox>

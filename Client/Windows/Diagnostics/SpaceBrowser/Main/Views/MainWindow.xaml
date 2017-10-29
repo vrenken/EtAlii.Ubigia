@@ -15,7 +15,7 @@
     Left="{Binding Source={x:Static p:Settings.Default}, Path=MainWindowLeft, Mode=TwoWay}"
     Top="{Binding Source={x:Static p:Settings.Default}, Path=MainWindowTop, Mode=TwoWay}"
     WindowState="{Binding Source={x:Static p:Settings.Default}, Path=MainWindowState, Mode=TwoWay}"
-    Initialized="OnWindowInitialized" Closing="OnWindowClosing" Icon="/SpaceBrowser;component/Icon-Logo.ico">
+    Initialized="OnWindowInitialized" Closing="OnWindowClosing" Icon="pack://siteoforigin:,,,/Icon.ico">
     
     <views:MainContent/>
     

@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Logical graph";
-            Icon = @"\Images\Icons\Nodes.png";
+            Icon = @"pack://siteoforigin:,,,/Images/Nodes.png";
             TitleFormat = "Logical graph view {0}";
             InfoLine = "Create a document that shows a information stored in a space using a logical graph";
             InfoTip1 = "Usefull for change analysis";

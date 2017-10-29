@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Hierarchical";
-            Icon = @"\Images\Icons\Tree.png";
+            Icon = @"pack://siteoforigin:,,,/Images/Tree.png";
             TitleFormat = "Tree view {0}";
             InfoLine = "Create a document that shows information stored in a space hierarchically";
             InfoTip1 = "Usefull for tree structure analysis";
