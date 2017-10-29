@@ -42,10 +42,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Page>
-    <None Remove="Connection\Header-Ubigia.png" />
-    <None Remove="Connection\Header.png" />
-    <Content Include="Connection\Header-Ubigia.png" />
-    <Content Include="Connection\Header.png" />
+    <EmbeddedResource Include="Connection\Header-Ubigia.png" />
+    <EmbeddedResource Include="Connection\Header.png" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj" />
      <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
 

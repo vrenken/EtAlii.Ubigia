@@ -38,8 +38,8 @@
     </Page>
     <None Remove="Connection\Header-Ubigia.png" />
     <None Remove="Connection\Header.png" />
-    <Content Include="Connection\Header-Ubigia.png" />
-    <Content Include="Connection\Header.png" />
+    <EmbeddedResource Include="Connection\Header-Ubigia.png" />
+    <EmbeddedResource Include="Connection\Header.png" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj" />
      <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
