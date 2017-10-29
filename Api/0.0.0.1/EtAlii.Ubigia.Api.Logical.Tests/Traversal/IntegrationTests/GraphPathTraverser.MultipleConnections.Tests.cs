@@ -74,7 +74,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.Equal(hierarchy[depth - 1], result.First().Type);
         }
 
@@ -115,7 +115,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.Equal(hierarchy[depth - 1], result.First().Type);
         }
 
@@ -250,7 +250,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.Equal(hierarchy[depth - 2], result.First().Type);
         }
 
@@ -292,7 +292,7 @@
             var result = await results.ToArray();
 
             // Assert.
-            Assert.Equal(1, result.Length);
+            Assert.Single(result);
             Assert.Equal(hierarchy[depth - 2], result.First().Type);
         }
 
