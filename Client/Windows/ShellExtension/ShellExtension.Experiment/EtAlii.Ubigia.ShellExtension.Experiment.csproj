@@ -126,7 +126,6 @@
       <Link>ShellRegistration.snk</Link>
     </None>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="RegisterExtensionDotNet40.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
