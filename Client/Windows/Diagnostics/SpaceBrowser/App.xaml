@@ -7,7 +7,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Fluent;Component/Themes/office2013/generic.xaml" />
+                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/EtAlii.Ubigia.Windows;component\Icons.xaml" />
                 <ResourceDictionary Source="/Resources.xaml" />
             </ResourceDictionary.MergedDictionaries>
