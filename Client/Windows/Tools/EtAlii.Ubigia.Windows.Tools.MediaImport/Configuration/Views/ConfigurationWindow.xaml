@@ -16,7 +16,7 @@
     <f:RibbonWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Fluent;Component/Themes/office2013/generic.xaml" />
+                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Color x:Key="{x:Static f:MetroColors.ThemeColorKey}">#359900</Color>
         </ResourceDictionary>
