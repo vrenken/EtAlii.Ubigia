@@ -18,5 +18,5 @@
         Header="Clear profiling results"
         Command="{Binding ClearCommand}"
         CommandParameter="{Binding Code}"
-        LargeIcon="\Images\Icons\Garbage-Closed.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" />
 </Fluent:RibbonGroupBox>

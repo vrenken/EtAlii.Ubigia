@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Profiling";
-            Icon = @"\Images\Icons\Arrow.png";
+            Icon = @"pack://siteoforigin:,,,/Images/Arrow.png";
             TitleFormat = "Profiler view {0}";
             InfoLine = "Create a profiling document";
             InfoTip1 = "Shows profiling details of all API access to a space";

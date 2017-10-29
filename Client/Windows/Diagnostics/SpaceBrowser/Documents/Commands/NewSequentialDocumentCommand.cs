@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Sequential";
-            Icon = @"\Images\Icons\View-Details.png";
+            Icon = @"pack://siteoforigin:,,,/Images/View-Details.png";
             TitleFormat = "Sequential view {0}";
             InfoLine = "Create a document to show information stored in a space sequentially";
             InfoTip1 = "Usefull for order analysis";

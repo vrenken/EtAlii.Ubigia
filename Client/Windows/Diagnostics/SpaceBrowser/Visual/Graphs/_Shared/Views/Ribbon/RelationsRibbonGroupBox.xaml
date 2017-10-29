@@ -17,13 +17,13 @@
     <Fluent:ToggleButton 
         Header="Hierarchical"
         IsChecked="{Binding ShowHierarchical}"
-        LargeIcon="\Images\Icons\Graph-Diagram.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Graph-Diagram.png" />
     <Fluent:ToggleButton 
         Header="Sequential"
         IsChecked="{Binding ShowSequential}"
-        LargeIcon="\Images\Icons\Arrow-Expand.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Arrow-Expand.png" />
     <Fluent:ToggleButton 
         Header="Temporal"
         IsChecked="{Binding ShowTemporal}"
-        LargeIcon="\Images\Icons\Clock-01.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Clock-01.png" />
 </Fluent:RibbonGroupBox>

@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Query";
-            Icon = @"\Images\Icons\File-Format-GraphQuery.png";
+            Icon = @"pack://siteoforigin:,,,/Images/File-Format-GraphQuery.png";
             TitleFormat = "Query view {0}";
             InfoLine = "Create a document to invoke scripts on a space";
             InfoTip1 = "Allows execution scripts written in the GQL script language";

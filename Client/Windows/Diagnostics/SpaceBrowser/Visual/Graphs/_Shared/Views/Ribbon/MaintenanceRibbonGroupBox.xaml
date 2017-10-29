@@ -16,12 +16,12 @@
 
     <Fluent:Button 
         Header="Remove distant entries"
-        LargeIcon="\Images\Icons\Grid.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Grid.png" />
     <Fluent:DropDownButton 
         Header="Bookmarks"
-        LargeIcon="\Images\Icons\Map-Location.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Map-Location.png" />
     <Fluent:Button 
         Header="Clear current view"
         Command="{Binding ClearGraphCommand}"
-        LargeIcon="\Images\Icons\Garbage-Closed.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" />
 </Fluent:RibbonGroupBox>

@@ -18,9 +18,9 @@
         Header="Scroll to entries"
         Command="{Binding ClearCommand}"
         CommandParameter="{Binding Code}"
-        LargeIcon="\Images\Icons\Navigation-Down.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Down.png" />
     <Fluent:ToggleButton 
         IsChecked="{Binding AutoExpandNodes}"
         Header="Expand new entries"
-        LargeIcon="\Images\Icons\Navigation-Right.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Right.png" />
 </Fluent:RibbonGroupBox>

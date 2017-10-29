@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Code";
-            Icon = @"\Images\Icons\File-Format-CSharp.png";
+            Icon = @"pack://siteoforigin:,,,/Images/File-Format-CSharp.png";
             TitleFormat = "Code view {0}";
             InfoLine = "Create a document to interact with a space programmatically";
             InfoTip1 = "Usefull for complex iterative or recursive activities";

@@ -15,11 +15,11 @@
     <Fluent:ToggleButton
         Header="Update"
         IsChecked="{Binding UpdateSelectedEntries}"
-        LargeIcon="\Images\Icons\Command-Refresh-01.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Command-Refresh-01.png" />
 
     <Fluent:ToggleButton
         Header="Expand"
         IsChecked="{Binding ExpandSelectedEntries}"
-        LargeIcon="\Images\Icons\Flow-Cart.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Flow-Cart.png" />
 
 </Fluent:RibbonGroupBox>

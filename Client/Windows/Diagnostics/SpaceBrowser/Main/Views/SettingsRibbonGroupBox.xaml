@@ -13,5 +13,5 @@
     Header="Settings">
     <Fluent:Button 
         Header="Configuration"
-        LargeIcon="\Images\Icons\Gear.png" />
+        LargeIcon="pack://siteoforigin:,,,/Images/Gear.png" />
 </Fluent:RibbonGroupBox>

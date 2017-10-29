@@ -24,7 +24,7 @@
         {
             DocumentFactory = factory;
             Header = "Temporal";
-            Icon = @"\Images\Icons\Clock-01.png";
+            Icon = @"pack://siteoforigin:,,,/Images/Clock-01.png";
             TitleFormat = "Temporal view {0}";
             InfoLine = "Create a document to show information stored in a space temporal";
             InfoTip1 = "Usefull for temporal analysis";
