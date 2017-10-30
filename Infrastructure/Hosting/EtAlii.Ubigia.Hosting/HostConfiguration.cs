@@ -5,45 +5,28 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Hosting;
 
-    public class HostConfiguration : IHostConfiguration
+    public class HostConfiguration : EtAlii.xTechnology.Hosting.HostConfiguration, IHostConfiguration
     {
-        public IHostExtension[] Extensions { get; private set; }
-
         public IStorage Storage { get; private set; }
 
         public IInfrastructure Infrastructure { get; private set; }
 
-        private Func<Container, IHost> _getHost; 
-        public IHost GetHost(Container container)
-        {
-            return _getHost(container);
-        }
+        //private Func<Container, IHost> _getHost; 
+        //public IHost GetHost(Container container)
+        //{
+        //    return _getHost(container);
+        //}
 
 
         public HostConfiguration()
         {
-            Extensions = new IHostExtension[0];
-
-            _getHost = container =>
-            {
-                container.Register<IHost, DefaultHost>();
-                return container.GetInstance<IHost>();
-            };
-        }
-
-        public IHostConfiguration Use(IHostExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException(nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
+            //_getHost = container =>
+            //{
+            //    container.Register<IHost, DefaultHost>();
+            //    return container.GetInstance<IHost>();
+            //};
         }
 
         public IHostConfiguration Use(IStorage storage)
@@ -69,21 +52,21 @@
             return this;
         }
 
-        public IHostConfiguration Use<THost>()
-            where THost : class, IHost
-        {
-            //if (_getHost != null)
-            //{
-            //    throw new InvalidOperationException("GetHost already set.");
-            //}
+        //public IHostConfiguration Use<THost>()
+        //    where THost : class, IHost
+        //{
+        //    //if (_getHost != null)
+        //    //{
+        //    //    throw new InvalidOperationException("GetHost already set.");
+        //    //}
 
-            _getHost = container =>
-            {
-                container.Register<IHost, THost>();
-                return container.GetInstance<IHost>();
-            };
+        //    //_getHost = container =>
+        //    //{
+        //    //    container.Register<IHost, THost>();
+        //    //    return container.GetInstance<IHost>();
+        //    //};
 
-            return this;
-        }
+        //    return this;
+        //}
     }
 }

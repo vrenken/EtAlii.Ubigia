@@ -178,13 +178,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{89D67D89-DCB7-4E7C-8A67-D4AFE7207254}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.ConsoleHost\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.csproj", "{6226CEBC-9799-476E-9232-32C92F0B766E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.ConsoleHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj", "{6226CEBC-9799-476E-9232-32C92F0B766E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.TrayIconHost\EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj", "{C1B77360-2C75-47DA-AB35-E7773F24010B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.TrayIconHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.TrayIconHost\EtAlii.xTechnology.Hosting.TrayIconHost.csproj", "{C1B77360-2C75-47DA-AB35-E7773F24010B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.WebsiteHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.WebsiteHost\EtAlii.Ubigia.Infrastructure.Hosting.WebsiteHost.csproj", "{520FD0B0-484D-4531-8013-CBCCB43B06C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.WebsiteHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.WebsiteHost\EtAlii.xTechnology.Hosting.WebsiteHost.csproj", "{520FD0B0-484D-4531-8013-CBCCB43B06C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.WindowsServiceHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.WindowsServiceHost\EtAlii.Ubigia.Infrastructure.Hosting.WindowsServiceHost.csproj", "{E07B01FE-8EE7-4C77-9388-26EB2CAAE209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.WindowsServiceHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.WindowsServiceHost\EtAlii.xTechnology.Hosting.WindowsServiceHost.csproj", "{E07B01FE-8EE7-4C77-9388-26EB2CAAE209}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{D6148CAE-B71D-4B81-B1DA-AD57E5585A88}"
 EndProject
@@ -203,7 +203,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Diagnostics", "Providers\EtAlii.Ubigia.Provisioning.Diagnostics\EtAlii.Ubigia.Provisioning.Diagnostics.csproj", "{749F3F1E-7728-41F2-84F4-72550C0C4917}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics.csproj", "{461879E8-97BF-4C67-8F8C-A992450DED42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.Diagnostics", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj", "{461879E8-97BF-4C67-8F8C-A992450DED42}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics", "Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj", "{CF80D9F9-DEF0-4B81-9FFF-7DC4B641B71C}"
 EndProject
@@ -357,7 +357,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport.Management.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.shproj", "{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj", "{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.TestHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj", "{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosting", "Hosting", "{0AE31F89-7ABC-42DB-88CB-965B6467E793}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting", "Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj", "{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -4106,6 +4110,56 @@ Global
 		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x64.Build.0 = Debug|Any CPU
 		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x86.ActiveCfg = Debug|Any CPU
 		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8}.Trial|x86.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|ARM.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|Compact.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|Compact.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|x64.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Debug|x86.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|Any CPU.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|ARM.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|ARM.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|Compact.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|Compact.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|x64.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|x64.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|x86.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.MailSystem Dev|x86.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|ARM.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|ARM.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|Compact.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|Compact.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|x64.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|x64.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|x86.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Release|x86.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|Any CPU.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|Any CPU.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|ARM.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|ARM.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|Compact.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|Compact.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|x64.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|x64.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|x86.ActiveCfg = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Retail|x86.Build.0 = Release|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|Any CPU.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|ARM.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|ARM.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|Compact.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|Compact.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|x64.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|x64.Build.0 = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|x86.ActiveCfg = Debug|Any CPU
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE}.Trial|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4154,7 +4208,7 @@ Global
 		{E715DBF2-CDBF-4521-908F-4806A66891E4} = {35B4038D-1EFF-4ABE-9DCC-3CF7057F20FF}
 		{08DFF5F2-15AF-416E-963E-5DDDCD4C495C} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{C47AAE22-60A5-4BDD-850F-3A488F788A39} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
-		{89D67D89-DCB7-4E7C-8A67-D4AFE7207254} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
+		{89D67D89-DCB7-4E7C-8A67-D4AFE7207254} = {0AE31F89-7ABC-42DB-88CB-965B6467E793}
 		{6226CEBC-9799-476E-9232-32C92F0B766E} = {89D67D89-DCB7-4E7C-8A67-D4AFE7207254}
 		{C1B77360-2C75-47DA-AB35-E7773F24010B} = {89D67D89-DCB7-4E7C-8A67-D4AFE7207254}
 		{520FD0B0-484D-4531-8013-CBCCB43B06C0} = {89D67D89-DCB7-4E7C-8A67-D4AFE7207254}
@@ -4164,7 +4218,7 @@ Global
 		{C8117C72-E17B-4871-9FEC-2F36DB15ACF0} = {6750AB8B-B637-4887-9970-6E5DF7694B64}
 		{6367AD1A-35EF-4777-9A33-1FB80CF5963B} = {35B4038D-1EFF-4ABE-9DCC-3CF7057F20FF}
 		{749F3F1E-7728-41F2-84F4-72550C0C4917} = {F19F9F48-9A25-44E4-A84D-D9CA958E93E9}
-		{461879E8-97BF-4C67-8F8C-A992450DED42} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
+		{461879E8-97BF-4C67-8F8C-A992450DED42} = {0AE31F89-7ABC-42DB-88CB-965B6467E793}
 		{CF80D9F9-DEF0-4B81-9FFF-7DC4B641B71C} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
 		{D0F4DD6B-EAAA-4AD8-888D-1F5106757DDF} = {EFAB3FBA-3E94-498C-8375-7B61DC1BB487}
 		{38718901-8C9D-4BDC-A9CA-2035749DC84D} = {F19F9F48-9A25-44E4-A84D-D9CA958E93E9}
@@ -4234,6 +4288,7 @@ Global
 		{40F79FC3-6DD4-41C6-92EA-B62392B77935} = {4EFFAE29-4B50-4004-AAEB-A43D71265251}
 		{F9CB6A59-98FD-4D02-9D34-CE0617A8949B} = {4EFFAE29-4B50-4004-AAEB-A43D71265251}
 		{320A1A47-84C6-4E2B-99C4-4B1EB53CF1E8} = {89D67D89-DCB7-4E7C-8A67-D4AFE7207254}
+		{73F64D4A-2B61-4A61-9DAB-9C335723C2FE} = {0AE31F89-7ABC-42DB-88CB-965B6467E793}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

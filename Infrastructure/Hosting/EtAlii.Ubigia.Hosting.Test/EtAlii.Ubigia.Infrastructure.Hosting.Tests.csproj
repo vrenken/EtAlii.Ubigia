@@ -32,7 +32,7 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.Ubigia.Infrastructure.Hosting.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
   </ItemGroup>
 
 </Project>

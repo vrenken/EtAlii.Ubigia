@@ -22,7 +22,18 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
+
+    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
+    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.22">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -36,16 +47,23 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
-    <PackageReference Include="xunit" Version="2.3.1" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web" />
   </ItemGroup>
 
 </Project>

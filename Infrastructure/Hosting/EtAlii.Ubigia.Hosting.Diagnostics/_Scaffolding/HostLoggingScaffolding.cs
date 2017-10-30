@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
