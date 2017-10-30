@@ -112,9 +112,9 @@
       <Project>{66F50771-FBE2-42B7-B673-CBDB32498BEC}</Project>
       <Name>EtAlii.Ubigia.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj">
+    <ProjectReference Include="..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj">
       <Project>{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Hosting</Name>
+      <Name>EtAlii.Ubigia.Infrastructure.Hosting.Owin</Name>
     </ProjectReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.Local.csproj">
       <Project>{D06E5031-F8A9-4CCE-8722-6CC760BA6041}</Project>

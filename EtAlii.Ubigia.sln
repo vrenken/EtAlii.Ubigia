@@ -172,7 +172,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Hosting", "1. Hosting", "{E715DBF2-CDBF-4521-908F-4806A66891E4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Owin", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj", "{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests.csproj", "{C47AAE22-60A5-4BDD-850F-3A488F788A39}"
 EndProject

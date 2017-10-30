@@ -62,7 +62,7 @@
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
   </ItemGroup>
 
   <!-- 

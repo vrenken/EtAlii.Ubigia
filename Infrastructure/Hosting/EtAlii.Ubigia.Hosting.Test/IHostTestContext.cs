@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using xTechnology.Hosting;
 
     public interface IHostTestContext
     {

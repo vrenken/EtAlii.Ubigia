@@ -24,8 +24,8 @@
 
             var services = new Type[]
             {
-                typeof(StorageService),
-                typeof(InfrastructureService),
+                typeof(IStorageService),
+                typeof(IInfrastructureService),
             };
             configuration.Use(services);
 

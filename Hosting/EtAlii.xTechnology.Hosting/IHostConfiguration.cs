@@ -7,9 +7,9 @@ namespace EtAlii.xTechnology.Hosting
     public interface IHostConfiguration
     {
         IHostExtension[] Extensions { get; }
-
-        IHostService[] Services { get; }
-        IHostConfiguration Use(params IHostService[] services);
         IHostConfiguration Use(params IHostExtension[] extensions);
+
+        Type[] Services { get; }
+        IHostConfiguration Use(params Type[] hostServices);
     }
 }

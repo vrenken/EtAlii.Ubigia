@@ -23,7 +23,8 @@
             //var infrastructure = _infrastructureFactory.Create(storage, _diagnostics);
             container.Register(() => _storage);
             container.Register(() => _infrastructure);
-            //container.Register(() => _hostConfiguration);
+            container.Register<IStorageService, StorageService>();
+            container.Register<IInfrastructureService, InfrastructureService>();
 
             //container.Register<ISerializer, Serializer>(Lifestyle.Singleton);
             //container.Register(() => new SerializerFactory().Create());
