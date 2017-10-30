@@ -3,8 +3,9 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
+    using xTechnology.Hosting;
 
-    public class TestHost : IInfrastructureHost
+    public class TestHost : IHost
     {
         public IInfrastructureClient Client { get; }
 

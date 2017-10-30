@@ -4,24 +4,25 @@
 
     class ServiceManager : IServiceManager
     {
-        private readonly IHostConfiguration _configuration;
+        private IHostService[] _services;
 
-        public ServiceManager(IHostConfiguration configuration)
+        public void Initialize(IHostService[] services)
         {
-            _configuration = configuration;
+            _services = services;
         }
 
         public void Start()
         {
-            foreach (var service in _configuration.Services)
+            foreach (var service in _services)
             {
+
                 service.Start();
             }
         }
 
         public void Stop()
         {
-            foreach (var service in _configuration.Services.Reverse())
+            foreach (var service in _services.Reverse())
             {
                 service.Stop();
             }

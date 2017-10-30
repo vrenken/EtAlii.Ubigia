@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
+    using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
     public class HostScaffolding<THost> : IScaffolding
         where THost : class, IHost
@@ -14,6 +15,15 @@
         public void Register(Container container)
         {
             container.Register<IHost, THost>();
+            container.Register<IServiceManager, ServiceManager>();
+            container.RegisterInitializer<IServiceManager>(serviceManager =>
+            {
+                var services = _configuration.Services
+                .Select(service => (IHostService)container.GetInstance(service))
+                .ToArray();
+                serviceManager.Initialize(services);
+            });
+
             container.Register<IHostConfiguration>(() => _configuration);
         }
     }
