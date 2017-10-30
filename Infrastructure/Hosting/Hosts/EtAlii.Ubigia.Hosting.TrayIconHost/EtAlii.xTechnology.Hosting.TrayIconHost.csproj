@@ -1,0 +1,122 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>Unit test project</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
+    <OutputType>WinExe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
+
+    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
+    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
+    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.22">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <OutputItemType>Content</OutputItemType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
+    <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
+  </ItemGroup>
+
+  <!-- 
+  Interesting link:
+  https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
+  -->
+
+  <ItemGroup>
+    <!-- App.xaml -->
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </ApplicationDefinition>
+
+    <!-- XAML elements -->
+    <Page Include="**\*.xaml" Exclude="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
+    <None Remove="Icon-Logo-Black.ico" />
+    <None Remove="Icon-Logo-Red.ico" />
+    <None Remove="Icon-Logo-White-Shaded.ico" />
+    <EmbeddedResource Include="Icon-Logo-Black.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icon-Logo-Red.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Icon-Logo-White-Shaded.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+
+    <!-- Resources -->
+
+    <!-- Settings -->
+    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
+    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Configuration elements -->
+    <None Update="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="App.*.config" DependentUpon="App.config">
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+  </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+
+</Project>

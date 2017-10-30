@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
@@ -7,9 +7,9 @@
     {
         private readonly IDiagnosticsConfiguration _diagnostics;
 
-        public HostDiagnosticsScaffolding(IDiagnosticsConfiguration diagnostics1)
+        public HostDiagnosticsScaffolding(IDiagnosticsConfiguration diagnostics)
         {
-            _diagnostics = diagnostics1;
+            _diagnostics = diagnostics;
         }
 
         public void Register(Container container)

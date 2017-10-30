@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description></Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Clients\**" />
+    <Compile Remove="Transports\**" />
+    <EmbeddedResource Remove="Clients\**" />
+    <EmbeddedResource Remove="Transports\**" />
+    <None Remove="Clients\**" />
+    <None Remove="Transports\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="DataConnectionFactory.Extensions.cs" />
+    <Compile Remove="IDataConnection.Extensions.cs" />
+    <Compile Remove="ILocalDataConnection.cs" />
+    <Compile Remove="LocalDataConnection.cs" />
+    <Compile Remove="LocalInfrastructure.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
+  </ItemGroup>
+
+</Project>

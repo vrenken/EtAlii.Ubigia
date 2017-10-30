@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
             _diagnostics = diagnostics;
         }
 
-        public void Initialize(Container container)
+        public void Register(Container container)
         {
             //var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
             //    () => new DisabledLogFactory(),

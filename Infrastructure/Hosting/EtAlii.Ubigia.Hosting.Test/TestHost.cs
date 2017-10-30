@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
 
-    public class TestHost : IHost
+    public class TestHost : IInfrastructureHost
     {
         public IInfrastructureClient Client { get; }
 

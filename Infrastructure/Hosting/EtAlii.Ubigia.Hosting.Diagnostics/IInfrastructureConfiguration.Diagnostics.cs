@@ -1,16 +1,12 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class IInfrastructureConfigurationDiagnosticsExtension
+    public static class IHostConfigurationDiagnosticsExtension
     {
         public static IHostConfiguration Use(this IHostConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
-            var extensions = new IHostExtension[]
-            {
-                new DiagnosticsHostExtension(diagnostics), 
-            };
-            return configuration.Use(extensions);
+            return configuration.Use(new DiagnosticsHostExtension(diagnostics));
         }
     }
 }
