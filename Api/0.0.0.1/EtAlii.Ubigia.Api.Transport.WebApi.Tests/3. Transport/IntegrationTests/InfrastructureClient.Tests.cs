@@ -12,7 +12,7 @@
     {
         private const string _url = "http://api.openkeyval.org/";
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post()
         {
             var identifier = Guid.NewGuid().ToString().Replace("-", "");
@@ -53,7 +53,8 @@
             int desc;
             return InternetGetConnectedState(out desc, 0);
         }
-        //[Fact, Trait("Category", TestAssembly.Category)]
+
+        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post_Get_Result()
         {
             var identifier = Guid.NewGuid().ToString().Replace("-", "");

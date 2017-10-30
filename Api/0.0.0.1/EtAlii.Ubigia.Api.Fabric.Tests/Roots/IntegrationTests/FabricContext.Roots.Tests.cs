@@ -52,7 +52,7 @@
             Assert.Equal(name, root.Name);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Event_Added()
         {
             // Arrange.
@@ -234,7 +234,7 @@
         }
 
         // TODO: The roots changed event should be raised, right?
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Event_Changed()
         {
             // Arrange.

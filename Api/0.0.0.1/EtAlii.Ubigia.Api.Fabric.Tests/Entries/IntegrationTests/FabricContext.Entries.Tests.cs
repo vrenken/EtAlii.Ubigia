@@ -44,7 +44,6 @@
             var root = await _fabric.Roots.Get("Hierarchy");
             Assert.NotNull(root);
             var id = root.Identifier;
-            Assert.NotNull(id);
             Assert.NotEqual(Identifier.Empty, id);
 
             // Act.
@@ -65,7 +64,6 @@
                 var root = await _fabric.Roots.Get(rootName);
                 Assert.NotNull(root);
                 var id = root.Identifier;
-                Assert.NotNull(id);
                 Assert.NotEqual(Identifier.Empty, id);
 
                 // Act.
@@ -162,7 +160,7 @@
             Assert.True(duration < 2d, $"{count} entry changes took: {duration} seconds");
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Entries_Event_Prepared()
         {
             // Arrange.
@@ -181,7 +179,7 @@
             Assert.Equal(entry.Id, preparedIdentifier);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Entries_Event_Stored()
         {
             // Arrange.
