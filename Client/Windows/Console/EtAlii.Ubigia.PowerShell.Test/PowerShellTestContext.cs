@@ -17,6 +17,7 @@
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.InMemory;
     using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class PowerShellTestContext
@@ -68,13 +69,12 @@
 
             // Create a host instance.
             var hostConfiguration = new HostConfiguration()
-                .UseTestHost<PowerShellHost>(diagnostics)
-                .Use(infrastructure)
-                .Use(storage);
-            var host = new HostFactory().Create(hostConfiguration);
+                .UseTestHost(diagnostics)
+                .UseInfrastructure(storage, infrastructure);
+            var host = new HostFactory<PowerShellHost>().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
-            Context.Start(host);
+            Context.Start(host, infrastructure);
             PowerShell = CreatePowerShell();
 
             InvokeSelectStorage();
@@ -189,7 +189,7 @@
 
         public Collection<PSObject> InvokeSelectStorage()
         {
-            var configuration = Context.Host.Infrastructure.Configuration;
+            var configuration = Context.Infrastructure.Configuration;
             PowerShell.Commands.Clear();
             PowerShell.AddCommand("Select-Storage")
                        .AddArgument(configuration.Address)
