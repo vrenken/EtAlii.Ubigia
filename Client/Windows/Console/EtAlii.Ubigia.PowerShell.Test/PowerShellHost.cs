@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Hosting
 {
-    using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Logging;
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.xTechnology.Hosting;
 
     public class PowerShellHost : IHost
     {
@@ -13,19 +12,18 @@
 
         public IInfrastructure Infrastructure { get; }
 
-        public IStorage Storage { get; }
-
+        private readonly IServiceManager _serviceManager;
         private readonly ILogger _logger;
 
         public PowerShellHost(
+            IServiceManager serviceManager,
             IHostConfiguration configuration,
             IInfrastructure infrastructure,
-            IStorage storage,
             ILogger logger)
         {
             Configuration = configuration;
             Infrastructure = infrastructure;
-            Storage = storage;
+            _serviceManager = serviceManager;
             _logger = logger;
         }
 
@@ -33,7 +31,7 @@
         {
             try
             {
-                Infrastructure.Start();
+                _serviceManager.Start();
             }
             catch (Exception e)
             {
@@ -47,7 +45,7 @@
         }
         public void Stop() 
         {
-            Infrastructure.Stop();
+            _serviceManager.Stop();
 
             // End logging.
             //Logger.EndSession(); // Disabled because of performance loss.

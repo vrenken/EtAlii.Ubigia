@@ -38,7 +38,7 @@
         public void PowerShell_Storage_Select()
         {
             // Arrange.
-            var configuration = _testContext.Context.Host.Infrastructure.Configuration;
+            var configuration = _testContext.Context.Infrastructure.Configuration;
 
             // Act.
             var result = _testContext.InvokeSelectStorage();
