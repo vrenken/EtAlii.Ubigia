@@ -2,26 +2,31 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.xTechnology.Hosting;
 
     public class HostTestContext<THost>
         where THost : class, IHost
     {
+        public IInfrastructure Infrastructure { get; private set; }
         public THost Host { get; private set; }
-        public string SystemAccountName => Host?.Infrastructure.Configuration.Account;
-        public string SystemAccountPassword => Host?.Infrastructure.Configuration.Password;
+        public string SystemAccountName => Infrastructure?.Configuration.Account;
+        public string SystemAccountPassword => Infrastructure?.Configuration.Password;
 
-        public void Start(IHost host)
+        public void Start(IHost host, IInfrastructure infrastructure)
         {
             Host = (THost)host;
             Host.Start();
+
+            Infrastructure = infrastructure;
         }
 
         public async Task<ISystemConnection> CreateSystemConnection()
         {
             var connectionConfiguration = new SystemConnectionConfiguration()
-                .Use(Host.Infrastructure)
-                .Use(SystemTransportProvider.Create(Host.Infrastructure));
+                .Use(Infrastructure)
+                .Use(SystemTransportProvider.Create(Infrastructure));
             var connection = new SystemConnectionFactory().Create(connectionConfiguration);
             return await Task.FromResult(connection);
         }
@@ -32,6 +37,8 @@
         {
             Host.Stop();
             Host = null;
+
+            Infrastructure = null;
         }
 
         public async Task AddUserAccountAndSpaces(ISystemConnection connection, string accountName, string password, string[] spaceNames)

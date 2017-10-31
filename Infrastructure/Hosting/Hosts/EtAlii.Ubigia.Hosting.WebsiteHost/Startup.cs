@@ -1,14 +1,15 @@
 ﻿using System.Web.Configuration;
-using EtAlii.Ubigia.Infrastructure.Hosting;
 using EtAlii.Ubigia.Storage;
+using EtAlii.xTechnology.Hosting;
 using Microsoft.Owin;
 
 [assembly: OwinStartup(typeof(Startup))]
 
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
@@ -61,10 +62,8 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
             // Create a host instance.
             var hostConfigurationSection = (IHostConfigurationSection)WebConfigurationManager.GetWebApplicationSection("ubigia/host");
             var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
-                .Use(infrastructure)
-                .Use(storage)
-                .Use<WebsiteHost>();
-            var host = new HostFactory().Create(hostConfiguration);
+                .UseInfrastructure(storage, infrastructure);
+            var host = new HostFactory<WebsiteHost>().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();

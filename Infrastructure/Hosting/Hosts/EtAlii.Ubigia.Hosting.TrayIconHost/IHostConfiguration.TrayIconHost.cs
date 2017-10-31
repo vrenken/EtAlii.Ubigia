@@ -1,6 +1,5 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
-
     public static class IHostConfigurationTrayIconHostExtension
     {
         public static IHostConfiguration UseTrayIconHost(this IHostConfiguration configuration)

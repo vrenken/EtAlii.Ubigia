@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Xml.Linq;
     using EtAlii.xTechnology.Diagnostics;
 
     public class HostConfiguration : IHostConfiguration
@@ -15,7 +14,6 @@
         public string HostTitle { get; private set; }
         public string ProductTitle { get; private set; }
 
-        public Func<IHost> HostFactory { get; private set; }
         public Type[] Services { get; private set; }
 
         public IDiagnosticsConfiguration Diagnostics { get; private set; }
@@ -27,6 +25,8 @@
         public HostConfiguration()
         {
             Extensions = new IHostExtension[0];
+            Services = new Type[0];
+            Commands = new IHostCommand[0];
         }
 
         public IHostConfiguration Use(string enabledImage, string errorImage, string disabledImage)
@@ -66,11 +66,12 @@
             return this;
         }
 
-        public IHostConfiguration Use(Func<IHost> hostFactory)
+        public IHostConfiguration Use<THost>()
+            where THost : IHost
         {
-            HostFactory = hostFactory;
             return this;
         }
+
         public IHostConfiguration Use(IDiagnosticsConfiguration diagnostics)
         {
             Diagnostics = diagnostics;

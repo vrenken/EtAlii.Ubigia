@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System;
-    using System.Collections.Generic;
-    using EtAlii.xTechnology.MicroContainer;
     using EtAlii.xTechnology.Hosting;
     using Functional;
     using Storage;

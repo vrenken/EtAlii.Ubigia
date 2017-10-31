@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.MicroContainer;
 

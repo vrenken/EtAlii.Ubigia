@@ -9,7 +9,9 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.InMemory;
-    using EtAlii.xTechnology.Diagnostics; 
+    using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Hosting;
+
     public sealed class HostTestContext : HostTestContext<TestHost>, IHostTestContext
     {
         public void Start()
@@ -50,12 +52,11 @@
             // Create a host instance.
             var hostConfiguration = new HostConfiguration()
                 .UseTestHost(diagnostics)
-                .Use(infrastructure)
-                .Use(storage);
-            var host = new HostFactory().Create(hostConfiguration);
+                .UseInfrastructure(storage, infrastructure);
+            var host = new HostFactory<TestHost>().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
-            Start(host);
+            Start(host, infrastructure);
         }
     }
 }

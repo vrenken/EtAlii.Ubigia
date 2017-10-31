@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace EtAlii.xTechnology.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
-    using System.Collections;
+    using System;
 
     public interface IHostConfiguration
     {

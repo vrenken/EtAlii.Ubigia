@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin;
