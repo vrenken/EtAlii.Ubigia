@@ -15,7 +15,17 @@
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
+    <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows</NameOfOriginalMSBuildProject>
   </PropertyGroup>
+
+  <!-- near the top -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
+
+  <!-- anywhere in the middle -->
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
+    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="ControlzEx" Version="2.2.0.4" />
@@ -56,4 +66,6 @@
     <!-- Settings -->
   </ItemGroup>
 
+  <!-- near the bottom -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>

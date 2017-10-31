@@ -16,8 +16,18 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <OutputType>WinExe</OutputType>
+    <NameOfOriginalMSBuildProject>EtAlii.xTechnology.Hosting.TrayIconHost</NameOfOriginalMSBuildProject>
   </PropertyGroup>
 
+  <!-- near the top -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
+
+  <!-- anywhere in the middle -->
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
+    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
+  </PropertyGroup>
+    
+  
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.22">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -119,4 +129,6 @@
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
+  <!-- near the bottom -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>

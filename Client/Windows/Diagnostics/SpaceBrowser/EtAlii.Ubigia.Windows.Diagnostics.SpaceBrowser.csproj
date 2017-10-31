@@ -18,7 +18,17 @@
     <OutputType>WinExe</OutputType>
     <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</AssemblyName>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
+    <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</NameOfOriginalMSBuildProject>
   </PropertyGroup>
+
+  <!-- near the top -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
+
+  <!-- anywhere in the middle -->
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
+    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
+  </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
@@ -92,4 +102,7 @@
 
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
+  <!-- near the bottom -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>
+
