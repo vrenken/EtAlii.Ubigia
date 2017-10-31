@@ -1,30 +1,29 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.WindowsServiceHost
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.xTechnology.Hosting;
 
-    public class WindowsServiceHost : HostBase
+    public class WindowsServiceHost : IHost
     {
-        //private readonly ILogger _logger;
+        private readonly IServiceManager _serviceManager;
+        private readonly IHostConfiguration _configuration;
 
-        public WindowsServiceHost(
-            IInfrastructure infrastructure,
+        protected WindowsServiceHost(
             IHostConfiguration configuration,
-            IStorage storage)
-            : base(configuration, infrastructure, storage)
+            IServiceManager serviceManager)
         {
-            //_logger = logger;
+            _configuration = configuration;
+            _serviceManager = serviceManager;
         }
 
-        public override void Start()
+        public void Start()
         {
             Task.Delay(500).ContinueWith((o) =>
             {
                 try
                 {
-                    Infrastructure.Start();
+                    _serviceManager.Start();
                 }
                 catch (Exception)
                 {
@@ -38,9 +37,9 @@
             });
         }
 
-        public override void Stop()
+        public void Stop()
         {
-            Infrastructure.Stop();
+            _serviceManager.Stop();
         }
 
     }

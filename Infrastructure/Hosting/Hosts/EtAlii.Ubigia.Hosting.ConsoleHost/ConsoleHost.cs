@@ -1,30 +1,30 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.xTechnology.Hosting;
 
-    public class ConsoleHost : HostBase
+    public class ConsoleHost : IHost
     {
-        //private readonly ILogger _logger;
+        private readonly IServiceManager _serviceManager;
+        private readonly IHostConfiguration _configuration;
 
-        public ConsoleHost(
-            IInfrastructure infrastructure,
+        protected ConsoleHost(
             IHostConfiguration configuration,
-            IStorage storage)
-            : base(configuration, infrastructure, storage)
+            IServiceManager serviceManager)
         {
-            //_logger = logger;
+            _configuration = configuration;
+            _serviceManager = serviceManager;
         }
 
-        public override void Start()
+
+        public void Start()
         {
             Task.Delay(500).ContinueWith((o) =>
             {
                 try
                 {
-                    Infrastructure.Start();
+                    _serviceManager.Start();
                 }
                 catch (Exception)
                 {
@@ -38,9 +38,9 @@
             });
         }
 
-        public override void Stop()
+        public void Stop()
         {
-            Infrastructure.Stop();
+            _serviceManager.Stop();
         }
     }
 }

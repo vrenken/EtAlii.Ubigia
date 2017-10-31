@@ -1,14 +1,13 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Storage;
+    using EtAlii.xTechnology.Hosting;
 
-    public class TrayIconHost : HostBase, ITrayIconHost
+    public class TrayIconHost : ITrayIconHost
     {
         public bool IsRunning { get { return _isRunning; } set { SetProperty(ref _isRunning, value); } }
         private bool _isRunning;
@@ -20,19 +19,22 @@
 
         //private readonly ILogger _logger;
 
-        public TrayIconHost(
-            IInfrastructure infrastructure,
+        private readonly IServiceManager _serviceManager;
+        private readonly IHostConfiguration _configuration;
+
+        protected TrayIconHost(
             IHostConfiguration configuration,
-            IStorage storage,
+            IServiceManager serviceManager,
             ITaskbarIcon taskbarIcon)
-            : base(configuration, infrastructure, storage)
         {
+            _configuration = configuration;
+            _serviceManager = serviceManager;
             TaskbarIcon = taskbarIcon;
             //_logger = logger;
         }
 
 
-        public override void Start()
+        public void Start()
         {
             TaskbarIcon.Dispatcher.Invoke(() => TaskbarIcon.Visibility = Visibility.Visible);
 
@@ -42,7 +44,7 @@
             {
                     IsRunning = false;
 
-                    Infrastructure.Start();
+                _serviceManager.Start();
 
                     IsRunning = true;
                 }
@@ -60,10 +62,10 @@
             });
         }
 
-        public override void Stop()
+        public void Stop()
         {
             IsRunning = false;
-            Infrastructure.Stop();
+            _serviceManager.Stop();
         }
 
         /// <summary>

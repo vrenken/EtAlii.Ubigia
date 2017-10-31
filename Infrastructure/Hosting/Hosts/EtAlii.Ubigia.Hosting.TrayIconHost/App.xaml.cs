@@ -1,9 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using System.Configuration;
     using System.Windows;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
@@ -13,7 +14,6 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Logging;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -67,10 +67,8 @@
             // Create a host instance.
             var hostConfigurationSection = (IHostConfigurationSection)exeConfiguration.GetSection("ubigia/host");
             var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
-                .Use(infrastructure)
-                .Use(storage)
-                .Use<TrayIconHost>();
-            var host = new HostFactory().Create(hostConfiguration);
+                .UseInfrastructure(storage, infrastructure);
+            var host = new HostFactory<TrayIconHost>().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();

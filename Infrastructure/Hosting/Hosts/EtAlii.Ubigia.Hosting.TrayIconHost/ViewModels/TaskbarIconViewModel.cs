@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Mvvm;
     using System;
@@ -7,10 +7,12 @@
     using System.Text;
     using System.Windows;
     using System.Windows.Input;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.Properties;
 
     internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
+        private readonly IInfrastructure _infrastructure;
         private ITrayIconHost _host;
 
         public string ToolTipText { get { return _toolTipText; } private set { SetProperty(ref _toolTipText, value); } }
@@ -36,8 +38,9 @@
         public bool CanStopService { get => _canStopService; set => SetProperty(ref _canStopService, value); }
         private bool _canStopService;
 
-        public TaskbarIconViewModel()
+        public TaskbarIconViewModel(IInfrastructure infrastructure)
         {
+            _infrastructure = infrastructure;
             StopServiceCommand = new RelayCommand(o => StopHost());
             StartServiceCommand = new RelayCommand(o => StartHost());
             ExitApplicationCommand = new RelayCommand(o => Shutdown());
@@ -50,7 +53,7 @@
 
         private void BrowseTo(string relativeAddress)
         {
-            var hostAddress = _host.Infrastructure.Configuration.Address.Replace("+", "localhost");
+            var hostAddress = _infrastructure.Configuration.Address.Replace("+", "localhost");
             Process.Start(new ProcessStartInfo(hostAddress + relativeAddress) {UseShellExecute = true});
         }
 
@@ -67,7 +70,7 @@
 
             sb.AppendLine("Ubigia infastructure host");
             sb.AppendLine();
-            sb.AppendFormat("Address: {0}", _host.Infrastructure.Configuration.Address);
+            sb.AppendFormat("Address: {0}", _infrastructure.Configuration.Address);
 
             if (_host.HasError)
             {
@@ -127,12 +130,12 @@
 
         private void StartSpaceBrowser()
         {
-            StartProcess(Settings.Default.SpaceBrowserPath, _host.Infrastructure.Configuration.Address);
+            StartProcess(Settings.Default.SpaceBrowserPath, _infrastructure.Configuration.Address);
         }
 
         private void StartStorageBrowser()
         {
-            StartProcess(Settings.Default.StorageBrowserPath, _host.Infrastructure.Configuration.Address);
+            StartProcess(Settings.Default.StorageBrowserPath, _infrastructure.Configuration.Address);
         }
 
         private void StartHost()

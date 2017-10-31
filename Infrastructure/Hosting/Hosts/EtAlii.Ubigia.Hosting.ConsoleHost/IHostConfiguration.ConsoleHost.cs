@@ -1,6 +1,5 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
-
     public static class IHostConfigurationConsoleHostExtension
     {
         public static IHostConfiguration UseConsoleHost(this IHostConfiguration configuration)

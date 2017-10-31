@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.MicroContainer;
 
     public class TrayIconHostExtension : IHostExtension
     {
-        public void Initialize(Container container)
+        public void Register(Container container)
         {
             var scaffoldings = new IScaffolding[]
             {

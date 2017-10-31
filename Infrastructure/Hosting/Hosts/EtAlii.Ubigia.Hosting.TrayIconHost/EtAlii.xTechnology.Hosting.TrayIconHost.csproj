@@ -17,6 +17,7 @@
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <OutputType>WinExe</OutputType>
     <NameOfOriginalMSBuildProject>EtAlii.xTechnology.Hosting.TrayIconHost</NameOfOriginalMSBuildProject>
+    <StartupObject />
   </PropertyGroup>
 
   <!-- near the top -->
@@ -57,6 +58,13 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
@@ -105,10 +113,7 @@
     <EmbeddedResource Include="Icon-Logo-White-Shaded.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
+
 
     <!-- Resources -->
 

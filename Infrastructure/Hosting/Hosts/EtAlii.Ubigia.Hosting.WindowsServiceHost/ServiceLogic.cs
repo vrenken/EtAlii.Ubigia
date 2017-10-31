@@ -1,10 +1,11 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.WindowsServiceHost
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using System;
     using System.Collections.Generic;
     using System.Configuration;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
@@ -14,6 +15,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Diagnostics;
+    using EtAlii.xTechnology.Hosting;
 
     public class ServiceLogic : IServiceLogic
     {
@@ -71,12 +73,10 @@
             // Create a host instance.
             var hostConfigurationSection = (IHostConfigurationSection)exeConfiguration.GetSection("ubigia/host");
             var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
-                .Use(infrastructure)
-                .Use(storage)
-                .Use<WindowsServiceHost>();
-            _host = new HostFactory().Create(hostConfiguration);
+                .UseInfrastructure(storage, infrastructure);
+            _host = new HostFactory<WindowsServiceHost>().Create(hostConfiguration);
 
-            var infrastructureName = _host.Infrastructure.Configuration.Name;
+            var infrastructureName = infrastructure.Configuration.Name;
             Name = String.Format(_nameFormat, infrastructureName).Replace(" ","_");
             DisplayName = String.Format(_displayNameFormat, infrastructureName);
             Description = String.Format(_descriptionFormat, infrastructureName);
@@ -84,13 +84,7 @@
 
         public void Start(IEnumerable<string> args)
         {
-            Console.WriteLine("Starting Ubigia infrastructure...");
-
             _host.Start();
-
-            Console.WriteLine("All OK. Ubigia is serving the storage specified below.");
-            Console.WriteLine("Name: " + _host.Infrastructure.Configuration.Name);
-            Console.WriteLine("Address: " + _host.Infrastructure.Configuration.Address);
         }
 
         public void Stop()

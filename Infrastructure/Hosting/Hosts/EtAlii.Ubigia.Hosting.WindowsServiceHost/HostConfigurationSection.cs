@@ -1,7 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.xTechnology.Hosting
 {
     using System.Configuration;
-    using EtAlii.Ubigia.Infrastructure.Hosting.WindowsServiceHost;
 
     public class HostConfigurationSection : ConfigurationSection, IHostConfigurationSection
     {

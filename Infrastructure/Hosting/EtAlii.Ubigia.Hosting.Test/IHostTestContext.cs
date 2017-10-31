@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
     using xTechnology.Hosting;
 
@@ -12,7 +13,7 @@
 
         void Start();
 
-        void Start(IHost host);
+        void Start(IHost host, IInfrastructure infrastructure);
         void Stop();
 
         Task<ISystemConnection> CreateSystemConnection();

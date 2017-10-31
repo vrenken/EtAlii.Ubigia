@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting.WindowsServiceHost
+namespace EtAlii.xTechnology.Hosting
 {
 
     public static class IHostConfigurationWindowsServiceHostExtension
