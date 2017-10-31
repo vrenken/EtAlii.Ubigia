@@ -1,7 +1,7 @@
 ﻿<tb:TaskbarIcon 
     x:Class="EtAlii.Ubigia.Client.Windows.TaskbarIcon.TaskbarIcon"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:tb="clr-namespace:Hardcodet.Wpf.TaskbarNotification;assembly=Hardcodet.Wpf.TaskbarNotification"
+    xmlns:tb="http://www.hardcodet.net/taskbar"
     xmlns:Commands="clr-namespace:EtAlii.Ubigia.Client.Windows.TaskbarIcon"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
