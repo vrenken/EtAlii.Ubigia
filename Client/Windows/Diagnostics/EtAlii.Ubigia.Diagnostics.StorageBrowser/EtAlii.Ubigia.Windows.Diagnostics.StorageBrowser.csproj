@@ -19,6 +19,15 @@
     <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser</AssemblyName>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <Win32Resource />
+    <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser</NameOfOriginalMSBuildProject>
+  </PropertyGroup>
+
+  <!-- near the top -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
+
+  <!-- anywhere in the middle -->
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
+    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
 
   <ItemGroup>
@@ -71,4 +80,6 @@
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
 
+  <!-- near the bottom -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>
