@@ -22,53 +22,10 @@
     {
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-            var name = "EtAlii";
-            var category = "EtAlii.Ubigia.Infrastructure";
-            //var diagnostics = new DiagnosticsFactory().Create(true, false, true,
-            //    () => new LogFactory(),
-            //    () => new ProfilerFactory(),
-            //    (factory) => factory.Create(name, category),
-            //    (factory) => factory.Create(name, category));
-            var diagnostics = new DiagnosticsFactory().CreateDisabled(name, category);
-
             var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            var configuration = new HostConfigurationBuilder().Build(sectionName => exeConfiguration.GetSection(sectionName));
 
-            // Create a storage instance.
-            var storageConfigurationSection = (IStorageConfigurationSection)exeConfiguration.GetSection("ubigia/storage");
-            var storageConfiguration = storageConfigurationSection.ToStorageConfiguration();
-            var storage = new StorageFactory().Create(storageConfiguration);
-
-            // Fetch the Infrastructure configuration.
-            var infrastructureConfigurationSection = (IInfrastructureConfigurationSection)exeConfiguration.GetSection("ubigia/infrastructure");
-            var infrastructureConfiguration = infrastructureConfigurationSection.ToInfrastructureConfiguration();
-
-            // Create fabric instance.
-            var fabricConfiguration = new FabricContextConfiguration()
-                .Use(storage);
-            var fabric = new FabricContextFactory().Create(fabricConfiguration);
-
-            // Create logical context instance.
-            var logicalConfiguration = new LogicalContextConfiguration()
-                .Use(fabric)
-                .Use(infrastructureConfiguration.Name, infrastructureConfiguration.Address);
-            var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
-
-            // Create a Infrastructure instance.
-            infrastructureConfiguration = infrastructureConfiguration
-                .UseWebApi(diagnostics) // TODO: Web API usage should also be configured in the configuration section.
-                .UseWebApiAdminApi()
-                .UseWebApiAdminPortal()
-                .UseWebApiUserApi()
-                .UseWebApiUserPortal()
-                .UseSignalRApi()
-                .Use(logicalContext);
-            var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
-
-            // Create a host instance.
-            var hostConfigurationSection = (IHostConfigurationSection)exeConfiguration.GetSection("ubigia/host");
-            var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
-                .UseInfrastructure(storage, infrastructure);
-            var host = new HostFactory<TrayIconHost>().Create(hostConfiguration);
+            var host = new HostFactory<TrayIconHost>().Create(configuration);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();
