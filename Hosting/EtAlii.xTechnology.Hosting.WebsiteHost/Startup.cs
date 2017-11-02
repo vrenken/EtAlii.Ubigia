@@ -26,44 +26,9 @@ namespace EtAlii.xTechnology.Hosting
         {
             var applicationManager = new WebsiteApplicationManager(application);
 
-            var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.Infrastructure"); // TODO: Diagnostics should be moved to each of the configuration sections.
+            var configuration = new HostConfigurationBuilder().Build(sectionName => WebConfigurationManager.GetWebApplicationSection(sectionName), applicationManager);
 
-            // Create a storage instance.
-            var storageConfigurationSection = (IStorageConfigurationSection)WebConfigurationManager.GetWebApplicationSection("ubigia/storage");
-            var storageConfiguration = storageConfigurationSection.ToStorageConfiguration();
-            var storage = new StorageFactory().Create(storageConfiguration);
-
-            // Fetch the Infrastructure configuration.
-            var infrastructureConfigurationSection = (IInfrastructureConfigurationSection)WebConfigurationManager.GetWebApplicationSection("ubigia/infrastructure");
-            var infrastructureConfiguration = infrastructureConfigurationSection.ToInfrastructureConfiguration();
-
-            // Create fabric instance.
-            var fabricConfiguration = new FabricContextConfiguration()
-                .Use(storage);
-            var fabric = new FabricContextFactory().Create(fabricConfiguration);
-
-            // Create logical context instance.
-            var logicalConfiguration = new LogicalContextConfiguration()
-                .Use(fabric)
-                .Use(infrastructureConfiguration.Name, infrastructureConfiguration.Address);
-            var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
-
-            // Create a Infrastructure instance.
-            infrastructureConfiguration = infrastructureConfiguration
-                .UseWebApi(diagnostics, applicationManager) // TODO: Web API usage should also be configured in the configuration section.
-                .UseWebApiAdminApi()
-                .UseWebApiAdminPortal()
-                .UseWebApiUserApi()
-                .UseWebApiUserPortal()
-                .UseSignalRApi()
-                .Use(logicalContext);
-            var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
-
-            // Create a host instance.
-            var hostConfigurationSection = (IHostConfigurationSection)WebConfigurationManager.GetWebApplicationSection("ubigia/host");
-            var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
-                .UseInfrastructure(storage, infrastructure);
-            var host = new HostFactory<WebsiteHost>().Create(hostConfiguration);
+            var host = new HostFactory<WebsiteHost>().Create(configuration);
 
             // Start hosting both the infrastructure and the storage.
             host.Start();
