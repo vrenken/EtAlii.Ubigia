@@ -35,7 +35,6 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Hosting.Diagnostics\EtAlii.xTechnology.Hosting.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
-    <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
   </ItemGroup>
 
 </Project>

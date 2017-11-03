@@ -24,6 +24,9 @@
 
   <ItemGroup>
     <EmbeddedResource Include="**\*" Exclude="*.cs;*.csproj" />
+    <Compile Remove="obj\**" />
+    <EmbeddedResource Remove="obj\**" />
+    <None Remove="obj\**" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
