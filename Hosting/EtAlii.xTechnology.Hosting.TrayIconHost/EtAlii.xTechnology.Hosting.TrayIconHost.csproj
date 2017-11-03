@@ -14,19 +14,18 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <OutputType>WinExe</OutputType>
-    <NameOfOriginalMSBuildProject>EtAlii.xTechnology.Hosting.TrayIconHost</NameOfOriginalMSBuildProject>
-    <StartupObject />
+    <!--<LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>-->
+    <OutputType>library</OutputType>
+    <!--<NameOfOriginalMSBuildProject>EtAlii.xTechnology.Hosting.TrayIconHost</NameOfOriginalMSBuildProject>-->
   </PropertyGroup>
 
-  <!-- near the top -->
+  <!-- near the top --><!--
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 
-  <!-- anywhere in the middle -->
+  --><!-- anywhere in the middle --><!--
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
-  </PropertyGroup>
+  </PropertyGroup>-->
     
   
   <ItemGroup>
@@ -89,14 +88,8 @@
   -->
 
   <ItemGroup>
-    <!-- App.xaml -->
-    <ApplicationDefinition Include="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </ApplicationDefinition>
-
     <!-- XAML elements -->
-    <Page Include="**\*.xaml" Exclude="App.xaml">
+    <Page Include="**\*.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -132,8 +125,8 @@
     </None>
   </ItemGroup>
 
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
+  <!--<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
-  <!-- near the bottom -->
-  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
+  --><!-- near the bottom --><!--
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />-->
 </Project>

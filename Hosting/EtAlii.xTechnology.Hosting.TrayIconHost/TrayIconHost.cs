@@ -7,7 +7,7 @@
     using System.Windows;
     using EtAlii.xTechnology.Hosting;
 
-    public class TrayIconHost : ITrayIconHost
+    public partial class TrayIconHost : ITrayIconHost
     {
         public bool IsRunning { get { return _isRunning; } set { SetProperty(ref _isRunning, value); } }
         private bool _isRunning;
