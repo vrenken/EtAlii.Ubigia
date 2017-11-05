@@ -32,6 +32,9 @@
 
         public ICommand OpenUserPortalCommand { get; }
 
+        public MenuItemViewModel[] MenuItems { get => _menuItems; set => SetProperty(ref _menuItems, value); }
+        private MenuItemViewModel[] _menuItems = new MenuItemViewModel[0];
+        
         public bool CanStartService { get => _canStartService; set => SetProperty(ref _canStartService, value); }
         private bool _canStartService;
 
@@ -62,6 +65,30 @@
             _host = host;
             _host.PropertyChanged += OnHostPropertyChanged;
             SetIcon(TrayIconResource.Stopped);
+
+            MenuItems = new []
+            {
+                new MenuItemViewModel("About"),
+                new MenuItemViewModel("User API service", new []
+                {
+                    new MenuItemViewModel("Start"),
+                    new MenuItemViewModel("Stop"),
+                    new MenuItemViewModel("Configure"),
+                }),
+                new MenuItemViewModel("Admin API service", new []
+                {
+                    new MenuItemViewModel("Start"),
+                    new MenuItemViewModel("Stop"),
+                    new MenuItemViewModel("Configure"),
+                }),
+                new MenuItemViewModel("Start service", StartServiceCommand),
+                new MenuItemViewModel("Stop service", StopServiceCommand),
+                new MenuItemViewModel("Space browser", SpaceBrowserCommand),
+                new MenuItemViewModel("Storage browser", StorageBrowserCommand),
+                new MenuItemViewModel("User portal", OpenUserPortalCommand),
+                new MenuItemViewModel("Admin portal", OpenAdminPortalCommand),
+                new MenuItemViewModel("Exit", ExitApplicationCommand),
+            };
         }
 
         private void UpdateToolTip()

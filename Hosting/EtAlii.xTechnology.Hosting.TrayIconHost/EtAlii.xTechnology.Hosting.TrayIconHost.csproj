@@ -115,16 +115,6 @@
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
 
-  <ItemGroup>
-    <!-- Configuration elements -->
-    <None Update="App.config">
-      <TransformOnBuild>true</TransformOnBuild>
-    </None>
-    <None Update="App.*.config" DependentUpon="App.config">
-      <IsTransformFile>True</IsTransformFile>
-    </None>
-  </ItemGroup>
-
   <!--<Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
   --><!-- near the bottom --><!--
