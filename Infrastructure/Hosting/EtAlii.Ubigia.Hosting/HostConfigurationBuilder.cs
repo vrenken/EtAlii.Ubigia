@@ -75,9 +75,12 @@
                 .Use(logicalContext);
             infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
 
+            var hostCommands = new HostCommandsFactory().Create(infrastructure);
+            
             // Create a host instance.
             var hostConfigurationSection = (IHostConfigurationSection)getConfigurationSection("ubigia/host");
             var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
+                .Use(hostCommands)
                 .UseInfrastructure(storage, infrastructure);
 
             return hostConfiguration;
