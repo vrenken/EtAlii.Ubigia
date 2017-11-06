@@ -41,7 +41,7 @@
             _host.StatusChanged += OnHostStatusChanged;
             SetIcon(TrayIconResource.Stopped);
 
-            MenuItems = ToViewModels(_host.Commands);
+            MenuItems = _hostCommandsConverter.ToViewModels(_host.Commands);
             
 
             //MenuItems = new []

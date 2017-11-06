@@ -1,7 +1,0 @@
-﻿namespace EtAlii.xTechnology.Hosting
-{
-    internal interface IHostCommandsConverter
-    {
-        MenuItemViewModel[] ToViewModels(IHostCommand[] commands);
-    }
-}
