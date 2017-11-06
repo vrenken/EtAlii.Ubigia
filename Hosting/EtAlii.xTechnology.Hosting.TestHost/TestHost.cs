@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Storage;
     using xTechnology.Hosting;
 
-    public class TestHost : IHost
+    public class TestHost : HostBase, IHost
     {
         private readonly IServiceManager _serviceManager;
         public IInfrastructureClient Client { get; }
@@ -36,6 +36,8 @@
 
         public virtual void Start()
         {
+            Status = HostStatus.Starting;
+
             _serviceManager.Start();
 
             var folder = Storage.PathBuilder.BaseFolder;
@@ -43,11 +45,25 @@
             {
                 ((IFolderManager)Storage.FolderManager).Delete(folder);
             }
+
+            Status = HostStatus.Running;
         }
 
         public virtual void Stop()
         {
+            Status = HostStatus.Stopping;
+
             _serviceManager.Stop();
+
+            Status = HostStatus.Stopped;
+            
+        }
+
+        public void Shutdown()
+        {
+            Stop();
+
+            Status = HostStatus.Shutdown;
         }
     }
 }
