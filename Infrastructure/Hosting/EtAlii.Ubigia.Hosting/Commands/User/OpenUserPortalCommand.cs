@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System;
     using System.Runtime.CompilerServices;
+    using EtAlii.xTechnology.Hosting;
 
     class OpenUserPortalCommand : HostCommandBase, IOpenUserPortalCommand
     {
@@ -17,5 +18,11 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting
         {
             _websiteBrowser.BrowseTo("/");
         }
+
+        protected override void OnHostStatusChanged(HostStatus status)
+        {
+            CanExecute = status == HostStatus.Running;
+        }
+
     }
 }

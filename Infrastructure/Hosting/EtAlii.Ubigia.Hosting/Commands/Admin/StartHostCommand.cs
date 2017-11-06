@@ -7,13 +7,14 @@
     {
         public string Name => "Admin/API service/Start";
 
-        public StartHostCommand()
-        {
-        }
-
         public void Execute()
         {
             Host.Start();
+        }
+
+        protected override void OnHostStatusChanged(HostStatus status)
+        {
+            CanExecute = status != HostStatus.Running;
         }
     }
 }

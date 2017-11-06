@@ -1,40 +1,24 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Mvvm;
-    using System;
-    using System.Diagnostics;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Text;
     using System.Windows;
-    using System.Windows.Input;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Properties;
 
     internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
         private readonly IInfrastructure _infrastructure;
         private ITrayIconHost _host;
 
-        public string ToolTipText { get { return _toolTipText; } private set { SetProperty(ref _toolTipText, value); } }
+        public string ToolTipText { get => _toolTipText; private set => SetProperty(ref _toolTipText, value); }
         private string _toolTipText;
 
-        public ICommand ExitApplicationCommand { get; }
-
-        public ICommand StartServiceCommand { get; }
-
-        public ICommand StopServiceCommand { get; }
-
-        public ICommand StorageBrowserCommand { get; }
-
-        public ICommand SpaceBrowserCommand { get; }
-
-        public ICommand OpenAdminPortalCommand { get; }
-
-        public ICommand OpenUserPortalCommand { get; }
-
-        public MenuItemViewModel[] MenuItems { get => _menuItems; set => SetProperty(ref _menuItems, value); }
+        public MenuItemViewModel[] MenuItems { get => _menuItems; private set => SetProperty(ref _menuItems, value); }
         private MenuItemViewModel[] _menuItems = new MenuItemViewModel[0];
-        
+
         public bool CanStartService { get => _canStartService; set => SetProperty(ref _canStartService, value); }
         private bool _canStartService;
 
@@ -44,51 +28,76 @@
         public TaskbarIconViewModel(IInfrastructure infrastructure)
         {
             _infrastructure = infrastructure;
-            StopServiceCommand = new RelayCommand(o => StopHost());
-            StartServiceCommand = new RelayCommand(o => StartHost());
-            ExitApplicationCommand = new RelayCommand(o => Shutdown());
-            StorageBrowserCommand = new RelayCommand(o => StartStorageBrowser());
-            SpaceBrowserCommand = new RelayCommand(o => StartSpaceBrowser());
-
-            OpenAdminPortalCommand = new RelayCommand(o => BrowseTo("/Admin"));
-            OpenUserPortalCommand = new RelayCommand(o => BrowseTo("/"));
-        }
-
-        private void BrowseTo(string relativeAddress)
-        {
-            var hostAddress = _infrastructure.Configuration.Address.Replace("+", "localhost");
-            Process.Start(new ProcessStartInfo(hostAddress + relativeAddress) {UseShellExecute = true});
         }
 
         public void Initialize(ITrayIconHost host)
         {
             _host = host;
             _host.PropertyChanged += OnHostPropertyChanged;
+            _host.StatusChanged += OnHostStatusChanged;
             SetIcon(TrayIconResource.Stopped);
 
-            MenuItems = new []
+            MenuItems = ToViewModels(_host.Commands);
+            
+
+            //MenuItems = new []
+            //{
+            //    new MenuItemViewModel("About"),
+            //    new MenuItemViewModel("User API service", new []
+            //    {
+            //        new MenuItemViewModel("Start"),
+            //        new MenuItemViewModel("Stop"),
+            //        new MenuItemViewModel("Configure"),
+            //    }),
+            //    new MenuItemViewModel("Admin API service", new []
+            //    {
+            //        new MenuItemViewModel("Start"),
+            //        new MenuItemViewModel("Stop"),
+            //        new MenuItemViewModel("Configure"),
+            //    }),
+            //    new MenuItemViewModel("Start service", StartServiceCommand),
+            //    new MenuItemViewModel("Stop service", StopServiceCommand),
+            //    new MenuItemViewModel("Space browser", SpaceBrowserCommand),
+            //    new MenuItemViewModel("Storage browser", StorageBrowserCommand),
+            //    new MenuItemViewModel("User portal", OpenUserPortalCommand),
+            //    new MenuItemViewModel("Admin portal", OpenAdminPortalCommand),
+            //    new MenuItemViewModel("Exit", ExitApplicationCommand),
+            //};
+        }
+
+ 
+        private MenuItemViewModel[] ToViewModels(IHostCommand[] commands)
+        {
+            var result = new List<MenuItemViewModel>();
+
+            foreach (var command in commands)
             {
-                new MenuItemViewModel("About"),
-                new MenuItemViewModel("User API service", new []
+                var nameParts = command.Name.Split('/');
+
+                MenuItemViewModel parent = null;
+
+                for (int i = 0; i < nameParts.Length; i++)
                 {
-                    new MenuItemViewModel("Start"),
-                    new MenuItemViewModel("Stop"),
-                    new MenuItemViewModel("Configure"),
-                }),
-                new MenuItemViewModel("Admin API service", new []
-                {
-                    new MenuItemViewModel("Start"),
-                    new MenuItemViewModel("Stop"),
-                    new MenuItemViewModel("Configure"),
-                }),
-                new MenuItemViewModel("Start service", StartServiceCommand),
-                new MenuItemViewModel("Stop service", StopServiceCommand),
-                new MenuItemViewModel("Space browser", SpaceBrowserCommand),
-                new MenuItemViewModel("Storage browser", StorageBrowserCommand),
-                new MenuItemViewModel("User portal", OpenUserPortalCommand),
-                new MenuItemViewModel("Admin portal", OpenAdminPortalCommand),
-                new MenuItemViewModel("Exit", ExitApplicationCommand),
-            };
+                    var collectionToAddTo = (IList<MenuItemViewModel>) parent?.Items ?? result;
+                    if (i == nameParts.Length - 1)
+                    {
+                        var menuItem = new MenuItemViewModel(nameParts[i], new WrappedHostCommand(command));
+                        collectionToAddTo.Add(menuItem);
+                    }
+                    else
+                    {
+                        var newHeader = nameParts[i];
+                        var menuItem = collectionToAddTo.FirstOrDefault(item => item.Header == newHeader);
+                        if (menuItem == null)
+                        {
+                            menuItem = new MenuItemViewModel(newHeader);
+                            collectionToAddTo.Add(menuItem);
+                        }
+                        parent = menuItem;
+                    }
+                }
+            }
+            return result.ToArray();
         }
 
         private void UpdateToolTip()
@@ -118,8 +127,7 @@
             switch (e.PropertyName)
             {
                 case nameof(_host.IsRunning):
-                    CanStopService = _host.IsRunning;
-                    CanStartService = !_host.IsRunning;
+
                     UpdateIcon();
                     UpdateToolTip();
                     break;
@@ -134,6 +142,17 @@
                     }
                     break;
             }
+        }
+
+        private void OnHostStatusChanged(HostStatus status)
+        {
+            switch (status)
+            {
+                case HostStatus.Shutdown:
+                    Application.Current.Shutdown();
+                    break;
+            }
+            ;
         }
 
         private void UpdateIcon()
@@ -153,44 +172,6 @@
             }
             current?.Dispose();
 
-        }
-
-        private void StartSpaceBrowser()
-        {
-            StartProcess(Settings.Default.SpaceBrowserPath, _infrastructure.Configuration.Address);
-        }
-
-        private void StartStorageBrowser()
-        {
-            StartProcess(Settings.Default.StorageBrowserPath, _infrastructure.Configuration.Address);
-        }
-
-        private void StartHost()
-        {
-            _host.Start();
-        }
-
-        private void StopHost()
-        {
-            _host.Stop();
-        }
-
-        private void StartProcess(string fileName, string arguments = "")
-        {
-            fileName = Path.Combine(Environment.CurrentDirectory, fileName);
-            var startInfo = new ProcessStartInfo
-            {
-                FileName = fileName,
-                Arguments = arguments,
-                UseShellExecute = true,
-            };
-            Process.Start(startInfo);
-        }
-
-        private void Shutdown()
-        {
-            _host.Stop();
-            Application.Current.Shutdown();
         }
     }
 }

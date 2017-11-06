@@ -8,13 +8,14 @@
     {
         public string Name => "Admin/API service/Stop";
 
-        public StopHostCommand()
-        {
-        }
-
         public void Execute()
         {
             Host.Stop();
+        }
+
+        protected override void OnHostStatusChanged(HostStatus status)
+        {
+            CanExecute = status == HostStatus.Running;
         }
     }
 }

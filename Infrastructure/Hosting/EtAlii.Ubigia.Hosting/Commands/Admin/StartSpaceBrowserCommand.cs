@@ -2,6 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.Hosting;
 
     class StartSpaceBrowserCommand : HostCommandBase, IStartSpaceBrowserCommand
     {
@@ -20,6 +21,11 @@
         {
             var spaceBrowserPath = "SpaceBrowser.exe";
             _processStarter.StartProcess(spaceBrowserPath, _infrastructure.Configuration.Address);
+        }
+
+        protected override void OnHostStatusChanged(HostStatus status)
+        {
+            CanExecute = status == HostStatus.Running;
         }
     }
 }
