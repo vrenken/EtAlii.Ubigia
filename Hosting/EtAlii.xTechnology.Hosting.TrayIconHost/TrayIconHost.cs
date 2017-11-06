@@ -7,7 +7,7 @@
     using System.Windows;
     using EtAlii.xTechnology.Hosting;
 
-    public partial class TrayIconHost : ITrayIconHost
+    public partial class TrayIconHost : HostBase, ITrayIconHost
     {
         public bool IsRunning { get { return _isRunning; } set { SetProperty(ref _isRunning, value); } }
         private bool _isRunning;
@@ -36,6 +36,8 @@
 
         public void Start()
         {
+            Status = HostStatus.Starting;
+
             TaskbarIcon.Dispatcher.Invoke(() => TaskbarIcon.Visibility = Visibility.Visible);
 
             Task.Delay(500).ContinueWith((o) =>
@@ -47,6 +49,7 @@
                 _serviceManager.Start();
 
                     IsRunning = true;
+                    Status = HostStatus.Running;
                 }
                 catch (Exception)
                 {
@@ -64,8 +67,18 @@
 
         public void Stop()
         {
+            Status = HostStatus.Stopping;
             IsRunning = false;
             _serviceManager.Stop();
+
+            Status = HostStatus.Stopped;
+        }
+
+        public void Shutdown()
+        {
+            Stop();
+
+            Status = HostStatus.Shutdown;
         }
 
         /// <summary>
