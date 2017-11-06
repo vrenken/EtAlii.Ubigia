@@ -9,6 +9,6 @@ namespace EtAlii.xTechnology.Hosting
         bool CanExecute { get; }
 
         event EventHandler CanExecuteChanged;
-
+        void Initialize(IHost host);
     }
 }

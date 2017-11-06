@@ -6,5 +6,14 @@ namespace EtAlii.xTechnology.Hosting
     {
         void Start();
         void Stop();
+
+        void Shutdown();
+
+        HostStatus Status { get; }
+
+        event Action<HostStatus> StatusChanged;
+
+        IHostCommand[] Commands { get; }
+        void Initialize(IHostCommand[] commands);
     }
 }

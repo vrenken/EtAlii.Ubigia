@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
 
-    public class WindowsServiceHost : IHost
+    public class WindowsServiceHost : HostBase, IHost
     {
         private readonly IServiceManager _serviceManager;
         private readonly IHostConfiguration _configuration;
@@ -19,11 +19,15 @@
 
         public void Start()
         {
+            Status = HostStatus.Starting;
+
             Task.Delay(500).ContinueWith((o) =>
             {
                 try
                 {
                     _serviceManager.Start();
+
+                    Status = HostStatus.Running;
                 }
                 catch (Exception)
                 {
@@ -39,8 +43,19 @@
 
         public void Stop()
         {
+            Status = HostStatus.Stopping;
+
             _serviceManager.Stop();
+
+            Status = HostStatus.Stopped;
         }
 
+
+        public void Shutdown()
+        {
+            Stop();
+
+            Status = HostStatus.Shutdown;
+        }
     }
 }

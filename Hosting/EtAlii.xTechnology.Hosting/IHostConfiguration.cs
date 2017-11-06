@@ -9,5 +9,8 @@
 
         Type[] Services { get; }
         IHostConfiguration Use(params Type[] hostServices);
+
+        IHostCommand[] Commands { get; }
+        IHostConfiguration Use(params IHostCommand[] commands);
     }
 }
