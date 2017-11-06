@@ -24,11 +24,11 @@
     {
         private PowerShell PowerShell { get; set; }
 
-        public HostTestContext<PowerShellHost> Context { get; private set; }
+        public HostTestContext<PowerShellTestHost> Context { get; private set; }
 
         public PowerShellTestContext()
         {
-            Context = new HostTestContext<PowerShellHost>();
+            Context = new HostTestContext<PowerShellTestHost>();
         }
 
         public void Start()
@@ -71,7 +71,7 @@
             var hostConfiguration = new HostConfiguration()
                 .UseTestHost(diagnostics)
                 .UseInfrastructure(storage, infrastructure);
-            var host = new HostFactory<PowerShellHost>().Create(hostConfiguration);
+            var host = new HostFactory<PowerShellTestHost>().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
             Context.Start(host, infrastructure);
