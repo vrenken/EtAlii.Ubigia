@@ -8,9 +8,10 @@
     using System.Windows;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
+    internal partial class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
         private readonly IInfrastructure _infrastructure;
+        private readonly IHostCommandsConverter _hostCommandsConverter;
         private ITrayIconHost _host;
 
         public string ToolTipText { get => _toolTipText; private set => SetProperty(ref _toolTipText, value); }
@@ -25,9 +26,12 @@
         public bool CanStopService { get => _canStopService; set => SetProperty(ref _canStopService, value); }
         private bool _canStopService;
 
-        public TaskbarIconViewModel(IInfrastructure infrastructure)
+        public TaskbarIconViewModel(
+            IInfrastructure infrastructure,
+            IHostCommandsConverter hostCommandsConverter)
         {
             _infrastructure = infrastructure;
+            _hostCommandsConverter = hostCommandsConverter;
         }
 
         public void Initialize(ITrayIconHost host)
@@ -65,40 +69,6 @@
             //};
         }
 
- 
-        private MenuItemViewModel[] ToViewModels(IHostCommand[] commands)
-        {
-            var result = new List<MenuItemViewModel>();
-
-            foreach (var command in commands)
-            {
-                var nameParts = command.Name.Split('/');
-
-                MenuItemViewModel parent = null;
-
-                for (int i = 0; i < nameParts.Length; i++)
-                {
-                    var collectionToAddTo = (IList<MenuItemViewModel>) parent?.Items ?? result;
-                    if (i == nameParts.Length - 1)
-                    {
-                        var menuItem = new MenuItemViewModel(nameParts[i], new WrappedHostCommand(command));
-                        collectionToAddTo.Add(menuItem);
-                    }
-                    else
-                    {
-                        var newHeader = nameParts[i];
-                        var menuItem = collectionToAddTo.FirstOrDefault(item => item.Header == newHeader);
-                        if (menuItem == null)
-                        {
-                            menuItem = new MenuItemViewModel(newHeader);
-                            collectionToAddTo.Add(menuItem);
-                        }
-                        parent = menuItem;
-                    }
-                }
-            }
-            return result.ToArray();
-        }
 
         private void UpdateToolTip()
         {

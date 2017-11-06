@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
 
-    public class ConsoleHost : HostBase, IHost
+    public partial class ConsoleHost : HostBase, IHost
     {
         private readonly IServiceManager _serviceManager;
         private readonly IHostConfiguration _configuration;
