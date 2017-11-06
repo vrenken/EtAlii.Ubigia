@@ -23,7 +23,19 @@
 
         public void Initialize(IHost host)
         {
+            if (Host != null)
+            {
+                Host.StatusChanged -= OnHostStatusChanged;
+            }
             Host = host;
+            if (Host != null)
+            {
+                Host.StatusChanged += OnHostStatusChanged;
+            }
+        }
+
+        protected virtual void OnHostStatusChanged(HostStatus status)
+        {
         }
     }
 }

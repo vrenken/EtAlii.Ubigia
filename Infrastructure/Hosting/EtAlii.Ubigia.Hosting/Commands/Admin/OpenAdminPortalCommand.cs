@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System;
+    using EtAlii.xTechnology.Hosting;
 
     class OpenAdminPortalCommand : HostCommandBase, IOpenAdminPortalCommand
     {
@@ -16,6 +17,11 @@
         public void Execute()
         {
             _websiteBrowser.BrowseTo("/Admin");
+        }
+
+        protected override void OnHostStatusChanged(HostStatus status)
+        {
+            CanExecute = status == HostStatus.Running;
         }
 
     }

@@ -2,6 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.Hosting;
 
     class StartStorageBrowserCommand : HostCommandBase, IStartStorageBrowserCommand
     {
@@ -19,6 +20,11 @@
         {
             var storageBrowserPath = "StorageBrowser.exe";
             _processStarter.StartProcess(storageBrowserPath, _infrastructure.Configuration.Address);
+        }
+
+        protected override void OnHostStatusChanged(HostStatus status)
+        {
+            CanExecute = status == HostStatus.Running;
         }
     }
 }
