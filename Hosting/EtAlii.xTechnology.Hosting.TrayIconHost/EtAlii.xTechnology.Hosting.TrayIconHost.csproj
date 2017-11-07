@@ -94,18 +94,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-    <None Remove="Icon-Logo-Black.ico" />
-    <None Remove="Icon-Logo-Red.ico" />
-    <None Remove="Icon-Logo-White-Shaded.ico" />
-    <EmbeddedResource Include="Icon-Logo-Black.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Icon-Logo-Red.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Icon-Logo-White-Shaded.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
 
 
     <!-- Resources -->

@@ -1,14 +1,40 @@
 namespace EtAlii.xTechnology.Hosting
 {
+    using System.Drawing;
+    using System.IO;
+    using System.Reflection;
+    using System.Windows;
+
     public static class IHostConfigurationTrayIconHostExtension
     {
-        public static IHostConfiguration UseTrayIconHost(this IHostConfiguration configuration)
+        public static IHostConfiguration UseTrayIconHost(
+            this IHostConfiguration configuration,
+            System.Windows.Application application,
+            string runningIconResource,
+            string stoppedIconResource,
+            string errorIconResource)
         {
+            application.ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+            var assembly = application.GetType().Assembly;
+            var runningIcon = ToIcon(assembly, runningIconResource);
+            var stoppedIcon = ToIcon(assembly, stoppedIconResource);
+            var errorIcon = ToIcon(assembly, errorIconResource);
+
             var extensions = new IHostExtension[]
             {
-                new TrayIconHostExtension(),
+                new TrayIconHostExtension(runningIcon, stoppedIcon, errorIcon),
             };
             return configuration.Use(extensions);
+        }
+
+        private static Icon ToIcon(Assembly assembly, string resource)
+        {
+            var resourceNamespace = Path.GetFileNameWithoutExtension(assembly.CodeBase);
+            using (var stream = assembly.GetManifestResourceStream($"{resourceNamespace}.{resource}"))
+            {
+                return new System.Drawing.Icon(stream);
+            }
         }
     }
 }

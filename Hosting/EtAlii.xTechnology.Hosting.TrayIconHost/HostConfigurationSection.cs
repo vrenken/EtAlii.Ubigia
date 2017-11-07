@@ -6,8 +6,7 @@
     {
         public IHostConfiguration ToHostConfiguration()
         {
-            var configuration = new HostConfiguration()
-                .UseTrayIconHost();
+            var configuration = new HostConfiguration();
             return configuration;
         }
     }

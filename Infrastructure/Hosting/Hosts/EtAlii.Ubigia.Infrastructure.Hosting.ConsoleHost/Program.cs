@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 {
-    using System;
     using System.Configuration;
     using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.xTechnology.Hosting;
     using ConsoleHost = EtAlii.xTechnology.Hosting.ConsoleHost;
 
     public class Program
@@ -12,10 +12,10 @@
         /// </summary>
         public static void Main()
         {
-            Console.WriteLine("Starting Ubigia infrastructure...");
-
             var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var configuration = new HostConfigurationBuilder().Build(sectionName => exeConfiguration.GetSection(sectionName));
+            var configuration = new HostConfigurationBuilder()
+                .Build(sectionName => exeConfiguration.GetSection(sectionName))
+                .UseConsoleHost();
 
             ConsoleHost.Start(configuration);
         }

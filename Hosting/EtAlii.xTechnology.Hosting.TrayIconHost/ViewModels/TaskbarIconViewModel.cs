@@ -1,18 +1,19 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
     using EtAlii.xTechnology.Mvvm;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
     using System.Text;
     using System.Windows;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using System.Drawing;
 
     internal partial class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
         private readonly IInfrastructure _infrastructure;
         private readonly IHostCommandsConverter _hostCommandsConverter;
         private ITrayIconHost _host;
+        private Icon _runningIcon;
+        private Icon _stoppedIcon;
+        private Icon _errorIcon;
 
         public string ToolTipText { get => _toolTipText; private set => SetProperty(ref _toolTipText, value); }
         private string _toolTipText;
@@ -28,12 +29,17 @@
             _hostCommandsConverter = hostCommandsConverter;
         }
 
-        public void Initialize(ITrayIconHost host)
+        public void Initialize(ITrayIconHost host, Icon runningIcon, Icon stoppedIcon, Icon errorIcon)
         {
             _host = host;
             _host.PropertyChanged += OnHostPropertyChanged;
             _host.StatusChanged += OnHostStatusChanged;
-            SetIcon(TrayIconResource.Stopped);
+
+            _runningIcon = runningIcon;
+            _stoppedIcon = stoppedIcon;
+            _errorIcon = errorIcon;
+
+            SetIcon(_stoppedIcon);
 
             MenuItems = _hostCommandsConverter.ToViewModels(_host.Commands);
         }
@@ -73,7 +79,7 @@
                 case nameof(_host.HasError):
                     if (_host.HasError)
                     {
-                        SetIcon(TrayIconResource.Errored);
+                        SetIcon(_errorIcon);
                     }
                     else
                     {
@@ -96,21 +102,12 @@
 
         private void UpdateIcon()
         {
-            var iconToShow = _host.IsRunning ? TrayIconResource.Running : TrayIconResource.Stopped;
+            var iconToShow = _host.IsRunning ? _runningIcon : _stoppedIcon;
             SetIcon(iconToShow);
         }
-        private void SetIcon(string iconFile)
+        private void SetIcon(Icon icon)
         {
-            var current = _host.TaskbarIcon.Icon;
-
-            var type = typeof(TaskbarIconViewModel);
-            var resourceNamespace = Path.GetFileNameWithoutExtension(type.Assembly.CodeBase);
-            using (var stream = type.Assembly.GetManifestResourceStream($"{resourceNamespace}.{iconFile}"))
-            {
-                _host.TaskbarIcon.Icon = new System.Drawing.Icon(stream);
-            }
-            current?.Dispose();
-
+            _host.TaskbarIcon.Icon = icon;
         }
     }
 }
