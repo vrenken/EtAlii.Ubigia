@@ -16,7 +16,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <OutputType>Exe</OutputType>
-    <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</AssemblyName>
+    <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Tools.MediaImport</NameOfOriginalMSBuildProject>
   </PropertyGroup>
 
@@ -35,6 +35,7 @@
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
     <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
+    <PackageReference Include="ControlzEx" Version="2.2.0.4" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
     <PackageReference Include="Syncfusion.Grid.Base46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.Grid.WPF46" Version="15.3.0.33" />
@@ -89,6 +90,8 @@
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
+
+  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
 
   <!-- near the bottom -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
