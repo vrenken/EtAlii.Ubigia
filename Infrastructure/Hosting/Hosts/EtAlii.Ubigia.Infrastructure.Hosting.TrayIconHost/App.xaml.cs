@@ -14,9 +14,16 @@
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
             var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var configuration = new HostConfigurationBuilder().Build(sectionName => exeConfiguration.GetSection(sectionName));
+            var configuration = new HostConfigurationBuilder()
+                .Build(sectionName => exeConfiguration.GetSection(sectionName))
+                .UseTrayIconHost(
+                    this,
+                    "Icon-Logo-White-Shaded.ico",
+                    "Icon-Logo-Black.ico",
+                    "Icon-Logo-Red.ico");
 
-            TrayIconHost.Start(configuration, this);
+
+        TrayIconHost.Start(configuration);
         }
     }
 }
