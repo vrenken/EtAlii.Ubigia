@@ -16,51 +16,8 @@
                     <Setter Property="ItemsSource" Value="{Binding Items}" />
                     <Setter Property="Command" Value="{Binding Command}" />
                     <Setter Property="IsCheckable" Value="False" />
-                    <!--<Setter Property="ItemContainerStyle">
-                        <Setter.Value>
-                            <Style TargetType="MenuItem">
-                                <Setter Property="Header" Value="{Binding Header}" />
-                                <Setter Property="ItemsSource" Value="{Binding Items}" />
-                                <Setter Property="Command" Value="{Binding Command}" />
-                                <Setter Property="IsCheckable" Value="False" />
-                            </Style>
-                        </Setter.Value>
-                    </Setter>-->
                 </Style>
             </ContextMenu.ItemContainerStyle>
         </ContextMenu>
-        <!--<ContextMenu>
-            <MenuItem 
-                Header="Start service" 
-                IsEnabled="{Binding CanStartService}"
-                Command="{Binding StartServiceCommand}" />
-
-            <MenuItem 
-                Header="Stop service" 
-                IsEnabled="{Binding CanStopService}"
-                Command="{Binding StopServiceCommand}" />
-            <Separator />
-            <MenuItem 
-                Header="Space browser" 
-                IsEnabled="{Binding CanStopService}"
-                Command="{Binding SpaceBrowserCommand}" />
-            <MenuItem 
-                Header="Storage browser" 
-                IsEnabled="{Binding CanStopService}"
-                Command="{Binding StorageBrowserCommand}" />
-            <Separator />
-            <MenuItem 
-                Header="User portal" 
-                IsEnabled="{Binding CanStopService}"
-                Command="{Binding OpenUserPortalCommand}" />
-            <MenuItem 
-                Header="Admin portal" 
-                IsEnabled="{Binding CanStopService}"
-                Command="{Binding OpenAdminPortalCommand}" />
-            <Separator />
-            <MenuItem 
-                Header="Exit" 
-                Command="{Binding ExitApplicationCommand}" />
-        </ContextMenu>-->
     </tb:TaskbarIcon.ContextMenu>
 </tb:TaskbarIcon>

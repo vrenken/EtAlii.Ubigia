@@ -4,8 +4,6 @@
     using System.ComponentModel;
     public interface ITaskbarIconViewModel : INotifyPropertyChanged
     {
-        bool CanStartService { get; set; }
-        bool CanStopService { get; set; }
         string ToolTipText { get; }
 
         void Initialize(ITrayIconHost host);
