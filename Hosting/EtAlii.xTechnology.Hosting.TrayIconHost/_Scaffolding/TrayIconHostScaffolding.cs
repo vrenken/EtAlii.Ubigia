@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Hosting
     {
         public void Register(Container container)
         {
+            container.Register<IHostCommandsConverter, HostCommandsConverter>();
             container.Register<ITaskbarIconViewModel, TaskbarIconViewModel>();
             container.Register<ITaskbarIcon, TaskbarIcon>();
             container.RegisterInitializer<IHost>(host =>

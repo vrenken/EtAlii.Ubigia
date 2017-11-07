@@ -3,6 +3,7 @@
     using System;
     using System.Configuration;
     using EtAlii.Ubigia.Infrastructure.Hosting;
+    using ConsoleHost = EtAlii.xTechnology.Hosting.ConsoleHost;
 
     public class Program
     {
@@ -16,7 +17,7 @@
             var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
             var configuration = new HostConfigurationBuilder().Build(sectionName => exeConfiguration.GetSection(sectionName));
 
-            EtAlii.xTechnology.Hosting.Program.Start(configuration);
+            ConsoleHost.Start(configuration);
         }
     }
 }
