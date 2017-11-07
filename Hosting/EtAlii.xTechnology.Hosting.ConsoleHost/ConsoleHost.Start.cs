@@ -1,13 +1,13 @@
-﻿namespace EtAlii.xTechnology.Hosting
+namespace EtAlii.xTechnology.Hosting
 {
     using System;
-    using System.Configuration;
+    using System.Windows;
 
-    public class Program
+    /// <summary>
+    /// Interaction logic for App.xaml
+    /// </summary>
+    public partial class ConsoleHost
     {
-        /// <summary>
-        /// The main entry point for the application. 
-        /// </summary>
         public static void Start(IHostConfiguration configuration)
         {
             Console.WriteLine("Starting Ubigia infrastructure...");
@@ -17,11 +17,8 @@
             // Start hosting both the infrastructure and the storage.
             host.Start();
 
-            Console.WriteLine();
-            Console.WriteLine("- Press any key to stop - ");
-            Console.ReadKey();
-
-            host.Stop();
+            var consoleDialog = new ConsoleDialog(host);
+            consoleDialog.Start();
         }
     }
 }
