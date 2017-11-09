@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
@@ -25,19 +25,20 @@
 
             container.Register<IStartHostCommand, StartHostCommand>();
             container.Register<IStopHostCommand, StopHostCommand>();
-
             container.Register<IShutdownHostCommand, ShutdownHostCommand>();
+            container.Register<IConfigureFirewallRulesCommand, ConfigureFirewallRulesCommand>();
             
             return new IHostCommand[]
             {
                 container.GetInstance<IStartHostCommand>(),
                 container.GetInstance<IStopHostCommand>(),
+                container.GetInstance<IConfigureFirewallRulesCommand>(),
+                container.GetInstance<IShutdownHostCommand>(),
 
                 container.GetInstance<IStartSpaceBrowserCommand>(),
                 container.GetInstance<IStartStorageBrowserCommand>(),
                 container.GetInstance<IOpenAdminPortalCommand>(),
                 container.GetInstance<IOpenUserPortalCommand>(),
-                container.GetInstance<IShutdownHostCommand>(),
             };
         }
     }
