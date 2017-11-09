@@ -1,6 +1,7 @@
 param (
 	[string] $ServicePort,
 	[string] $ServiceAssemblyName,
+	[string] $RuleDisplayName,
 	[string] $LogFile
 )
 
@@ -14,17 +15,11 @@ function Check-ExitCode() {
 	}
 }
 
-$user          = $env:USERNAME
-#$discoveryPort = 1235
-$url           = "http://+:$ServicePort/" # for netsh http [...] urlacl
-$ruleBaseName  = "EtAlii Infrastructure Service"
-#$clientApp     = "EtAlii.Ubigia.Windows.Touch"
-
 # Match function for _our_ firewall rules
 function Match-NetFirewallRule($rule) 
 {
 	# Rules from this (or a previous) script
-	if ($rule.DisplayName.StartsWith($ruleBaseName)) 
+	if ($rule.DisplayName.StartsWith($RuleDisplayName)) 
 	{
 		return $true
 	}
@@ -45,14 +40,20 @@ if ($LogFile)
 	Start-Transcript -Path $LogFile -Force >$null
 }
 
+#====================================================================================
+# Firewall rule configuration.
+$user = $env:USERNAME
 echo "Removing existing firewall rules"
 echo "----------------------------------------------------------------------------------"
 Get-NetFirewallRule | where { Match-NetFirewallRule $_ } | %{ Remove-NetFirewallRule -PassThru -Name $_.Name } # -PassThru outputs removed rules
 
 echo "Adding firewall rules"
 echo "----------------------------------------------------------------------------------"
-New-NetFirewallRule -DisplayName "$ruleBaseName (Api)" -Direction Inbound -Action Allow -Protocol "TCP" -LocalPort $ServicePort
-#New-NetFirewallRule -DisplayName "$ruleBaseName (Discovery)" -Direction Inbound -Action Allow -Protocol "UDP" -LocalPort $discoveryPort
+New-NetFirewallRule -DisplayName "$RuleDisplayName" -Direction Inbound -Action Allow -Protocol "TCP" -LocalPort $ServicePort
+
+#====================================================================================
+# HTTP URL ACL configuration.
+$url = "http://+:$ServicePort/" # for netsh http [...] urlacl
 
 echo "Adding HTTP URL ACL $url for user $user"
 echo "----------------------------------------------------------------------------------"
@@ -63,6 +64,10 @@ netsh http delete urlacl url=$url >$null
 # Since Start-Transcript does not capture output of native commands, we do it manually
 & netsh http add urlacl url=$url user=$user | Out-Default
 Check-ExitCode
+
+#====================================================================================
+# App loopback exemption.
+#$clientApp     = "EtAlii.Ubigia.Windows.Touch"
 
 #echo "Adding loopback exemption for $clientApp"
 #echo "----------------------------------------------------------------------------------"
