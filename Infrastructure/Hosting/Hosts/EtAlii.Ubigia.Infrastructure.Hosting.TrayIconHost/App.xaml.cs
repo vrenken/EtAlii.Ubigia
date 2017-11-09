@@ -3,6 +3,7 @@
     using System.Configuration;
     using System.Windows;
     using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Owin;
     using EtAlii.xTechnology.Hosting;
 
 

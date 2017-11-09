@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 {
     using System.Configuration;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Owin;
     using EtAlii.xTechnology.Hosting;
     using ConsoleHost = EtAlii.xTechnology.Hosting.ConsoleHost;
 
