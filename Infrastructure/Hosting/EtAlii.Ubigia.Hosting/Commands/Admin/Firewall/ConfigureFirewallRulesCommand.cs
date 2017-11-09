@@ -55,6 +55,7 @@
                 {
                     "-ServicePort", _infrastructure.Configuration.Address.Split(':').Last(),
                     "-ServiceAssemblyName", assemblyName,
+                    "-RuleDisplayName", $"EtAlii Infrastructure Service ({_infrastructure.Configuration.Name})",
                     "-LogFile", logFile
                 };
 
