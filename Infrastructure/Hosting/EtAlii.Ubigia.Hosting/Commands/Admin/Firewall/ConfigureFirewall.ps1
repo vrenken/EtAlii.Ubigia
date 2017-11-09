@@ -1,4 +1,5 @@
 param (
+	[string] $ServicePort,
 	[string] $ServiceAssemblyName,
 	[string] $LogFile
 )
@@ -14,22 +15,23 @@ function Check-ExitCode() {
 }
 
 $user          = $env:USERNAME
-$apiPort       = 1234
-$discoveryPort = 1235
-$url           = "http://+:$apiPort/" # for netsh http [...] urlacl
+#$discoveryPort = 1235
+$url           = "http://+:$ServicePort/" # for netsh http [...] urlacl
 $ruleBaseName  = "EtAlii Infrastructure Service"
 #$clientApp     = "EtAlii.Ubigia.Windows.Touch"
 
 # Match function for _our_ firewall rules
-function Match-NetFirewallRule($rule) {
-
+function Match-NetFirewallRule($rule) 
+{
 	# Rules from this (or a previous) script
-	if ($rule.DisplayName.StartsWith($ruleBaseName)) {
+	if ($rule.DisplayName.StartsWith($ruleBaseName)) 
+	{
 		return $true
 	}
 
 	# Generated rules by Windows Firewall prompt
-	elseif ($ServiceAssemblyName) {
+	elseif ($ServiceAssemblyName) 
+	{
 		$ignoreCase = $true
 		return [string]::Compare($ServiceAssemblyName, $rule.DisplayName, $ignoreCase) -eq 0
 	}
@@ -38,7 +40,8 @@ function Match-NetFirewallRule($rule) {
 }
 
 # Logging
-if ($LogFile) {
+if ($LogFile) 
+{
 	Start-Transcript -Path $LogFile -Force >$null
 }
 
@@ -48,8 +51,8 @@ Get-NetFirewallRule | where { Match-NetFirewallRule $_ } | %{ Remove-NetFirewall
 
 echo "Adding firewall rules"
 echo "----------------------------------------------------------------------------------"
-New-NetFirewallRule -DisplayName "$ruleBaseName (Api)" -Direction Inbound -Action Allow -Protocol "TCP" -LocalPort $apiPort
-New-NetFirewallRule -DisplayName "$ruleBaseName (Discovery)" -Direction Inbound -Action Allow -Protocol "UDP" -LocalPort $discoveryPort
+New-NetFirewallRule -DisplayName "$ruleBaseName (Api)" -Direction Inbound -Action Allow -Protocol "TCP" -LocalPort $ServicePort
+#New-NetFirewallRule -DisplayName "$ruleBaseName (Discovery)" -Direction Inbound -Action Allow -Protocol "UDP" -LocalPort $discoveryPort
 
 echo "Adding HTTP URL ACL $url for user $user"
 echo "----------------------------------------------------------------------------------"

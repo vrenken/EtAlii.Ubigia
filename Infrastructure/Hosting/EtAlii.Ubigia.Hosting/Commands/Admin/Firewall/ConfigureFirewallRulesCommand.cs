@@ -4,13 +4,20 @@
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
-    using System.Reflection;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
     public class ConfigureFirewallRulesCommand : HostCommandBase, IConfigureFirewallRulesCommand
     {
         public string Name => "Admin/Configure firewall rules";
+
+        private readonly IInfrastructure _infrastructure;
+
+        public ConfigureFirewallRulesCommand(IInfrastructure infrastructure)
+        {
+            _infrastructure = infrastructure;
+        }
 
         public void Execute()
         {
@@ -29,7 +36,7 @@
             Task.Run(() =>
             {
                 var scriptFullPath = Path.GetTempFileName();
-                scriptFullPath = Path.ChangeExtension(scriptFullPath, "ps");
+                scriptFullPath = Path.ChangeExtension(scriptFullPath, "ps1");
                 var type = this.GetType();
                 var assembly = type.Assembly;
                 var assemblyName = assembly.GetName().Name;
@@ -39,26 +46,27 @@
                 using (var reader = new StreamReader(resourceStream))
                 using (var writer = new StreamWriter(fileStream))
                 {
-                    var content = reader.ReadLine();
+                    var content = reader.ReadToEnd();
                     writer.Write(content);
                 }
 
-                //var logFile = Path.GetTempFileName();
+                var logFile = Path.GetTempFileName();
                 var scriptArgs = new[]
                 {
+                    "-ServicePort", _infrastructure.Configuration.Address.Split(':').Last(),
                     "-ServiceAssemblyName", assemblyName,
-                    //  "-LogFile", logFile
+                    "-LogFile", logFile
                 };
 
                 var process = StartElevatedPowerShellScript(scriptFullPath, scriptArgs);
                 process.WaitForExit();
 
-                File.Delete(scriptFullPath);
-
-                //Debug.WriteLine($"[{GetType().Name}] Firewall configuration script exit code: {proc.ExitCode}");
-                //ProcessLogFile(logFile);
+                //Debug.WriteLine($"[{GetType().Name}] Firewall configuration script exit code: {process.ExitCode}");
+                ProcessLogFile(logFile);
 
                 taskCompletionSource.SetResult(process.ExitCode == 0);
+
+                File.Delete(scriptFullPath);
             });
 
             return taskCompletionSource.Task;
@@ -95,22 +103,22 @@
             return !arg.Contains(' ') ? arg : '"' + arg + '"';
         }
 
-        //private void ProcessLogFile(string logFile)
-        //{
-        //    if (File.Exists(logFile))
-        //    {
-        //        try
-        //        {
-        //            Debug.WriteLine($"[{GetType().Name}] Firewall configuration script output:");
-        //            var log = File.ReadAllText(logFile);
-        //            Debug.WriteLine(log);
-        //        }
-        //        finally
-        //        {
-        //            File.Delete(logFile);
-        //        }
-        //    }
-        //}
+        private void ProcessLogFile(string logFile)
+        {
+            if (File.Exists(logFile))
+            {
+                try
+                {
+                    //Debug.WriteLine($"[{GetType().Name}] Firewall configuration script output:");
+                    //var log = File.ReadAllText(logFile);
+                    //Debug.WriteLine(log);
+                }
+                finally
+                {
+                    File.Delete(logFile);
+                }
+            }
+        }
 
     }
 }
