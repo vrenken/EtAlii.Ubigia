@@ -17,6 +17,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Commands\Admin\Firewall\ConfigureFirewall.ps1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Commands\Admin\Firewall\ConfigureFirewall.ps1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.22" />
   </ItemGroup>

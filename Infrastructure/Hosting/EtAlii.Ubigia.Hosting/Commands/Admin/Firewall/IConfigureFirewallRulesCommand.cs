@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public interface IStartSpaceBrowserCommand : IHostCommand
+    public interface IConfigureFirewallRulesCommand : IHostCommand
     {
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
     using System.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Functional;
