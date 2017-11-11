@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
     using System;
+    using System.ComponentModel;
     using EtAlii.xTechnology.Hosting;
 
     public abstract class HostCommandBase
@@ -25,16 +26,33 @@
         {
             if (Host != null)
             {
-                Host.StatusChanged -= OnHostStatusChanged;
+                Host.PropertyChanged -= OnHostPropertyChanged;
             }
             Host = host;
             if (Host != null)
             {
-                Host.StatusChanged += OnHostStatusChanged;
+                Host.PropertyChanged += OnHostPropertyChanged;
             }
         }
 
-        protected virtual void OnHostStatusChanged(HostStatus status)
+        private void OnHostPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            switch (e.PropertyName)
+            {
+                case nameof(Host.State):
+                    OnHostStateChanged(Host.State);
+                    break;
+                case nameof(Host.Status):
+                    OnHostStatusChanged(Host.Status);
+                    break;
+            }
+        }
+
+        protected virtual void OnHostStatusChanged(HostStatus[] hostStatus)
+        {
+        }
+
+        protected virtual void OnHostStateChanged(HostState state)
         {
         }
     }
