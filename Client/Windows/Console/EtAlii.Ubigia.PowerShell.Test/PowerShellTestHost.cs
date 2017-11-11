@@ -29,14 +29,15 @@
 
         public void Start()
         {
-            Status = HostStatus.Starting;
+            State = HostState.Starting;
             try
             {
                 _serviceManager.Start();
-                Status = HostStatus.Running;
+                State = HostState.Running;
             }
             catch (Exception e)
             {
+                State = HostState.Error;
                 _logger.Critical("Fatal exception in infrastructure hosting", e);
                 _logger.Info("Restarting infrastructure hosting");
                 Task.Delay(2000);
@@ -47,20 +48,20 @@
         }
         public void Stop()
         {
-            Status = HostStatus.Stopping;
+            State = HostState.Stopping;
 
             _serviceManager.Stop();
 
             // End logging.
             //Logger.EndSession(); // Disabled because of performance loss.
 
-            Status = HostStatus.Stopped;
+            State = HostState.Stopped;
         }
         public void Shutdown()
         {
             Stop();
 
-            Status = HostStatus.Shutdown;
+            State = HostState.Shutdown;
         }
     }
 }

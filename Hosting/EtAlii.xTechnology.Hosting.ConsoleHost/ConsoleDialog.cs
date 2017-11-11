@@ -1,7 +1,7 @@
 namespace EtAlii.xTechnology.Hosting
 {
     using System;
-    using System.Collections.Generic;
+    using System.ComponentModel;
 
     public class ConsoleDialog
     {
@@ -14,18 +14,28 @@ namespace EtAlii.xTechnology.Hosting
         {
             _parentMenuItemFinder = new ParentMenuItemFinder();
             _host = host;
-            _host.StatusChanged += OnHostOnStatusChanged;
+            _host.PropertyChanged += OnHostPropertyChanged;
 
             var hostCommandsConverter = new HostCommandsConverter();
 
             _rootMenuItems = hostCommandsConverter.ToMenuItems(_host.Commands);
         }
 
-        private void OnHostOnStatusChanged(HostStatus status)
+        private void OnHostPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch (status)
+            switch (e.PropertyName)
             {
-                case HostStatus.Shutdown:
+                case nameof(_host.State):
+                    OnHostStateChanged(_host.State);
+                    break;
+            }
+        }
+
+        private void OnHostStateChanged(HostState state)
+        {
+            switch (state)
+            {
+                case HostState.Shutdown:
                     Environment.Exit(0);
                     break;
             }
@@ -37,7 +47,7 @@ namespace EtAlii.xTechnology.Hosting
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine($"Host status: {_host.Status}");
+                Console.WriteLine($"Host state: {_host.State}");
                 Console.WriteLine();
 
                 var currentMenuItems = _currentMenuItem?.Items?.ToArray() ?? _rootMenuItems;

@@ -11,27 +11,27 @@
 
         public void Start()
         {
-            Status = HostStatus.Starting;
+            State = HostState.Starting;
 
             _serviceManager.Start();
 
-            Status = HostStatus.Running;
+            State = HostState.Running;
         }
 
         public void Stop()
         {
-            Status = HostStatus.Stopping;
+            State = HostState.Stopping;
 
             _serviceManager.Stop();
 
-            Status = HostStatus.Stopped;
+            State = HostState.Stopped;
         }
 
         public void Shutdown()
         {
             Stop();
 
-            Status = HostStatus.Shutdown;
+            State = HostState.Shutdown;
         }
     }
 }

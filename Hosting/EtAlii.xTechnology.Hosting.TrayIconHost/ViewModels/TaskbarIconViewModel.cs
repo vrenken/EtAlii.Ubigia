@@ -3,12 +3,10 @@
     using EtAlii.xTechnology.Mvvm;
     using System.Text;
     using System.Windows;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using System.Drawing;
 
     internal partial class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
-        private readonly IInfrastructure _infrastructure;
         private readonly IHostCommandsConverter _hostCommandsConverter;
         private ITrayIconHost _host;
         private Icon _runningIcon;
@@ -21,11 +19,8 @@
         public MenuItemViewModel[] MenuItems { get => _menuItems; private set => SetProperty(ref _menuItems, value); }
         private MenuItemViewModel[] _menuItems = new MenuItemViewModel[0];
 
-        public TaskbarIconViewModel(
-            IInfrastructure infrastructure,
-            IHostCommandsConverter hostCommandsConverter)
+        public TaskbarIconViewModel(IHostCommandsConverter hostCommandsConverter)
         {
-            _infrastructure = infrastructure;
             _hostCommandsConverter = hostCommandsConverter;
         }
 
@@ -33,7 +28,6 @@
         {
             _host = host;
             _host.PropertyChanged += OnHostPropertyChanged;
-            _host.StatusChanged += OnHostStatusChanged;
 
             _runningIcon = runningIcon;
             _stoppedIcon = stoppedIcon;
@@ -49,19 +43,14 @@
         {
             var sb = new StringBuilder();
 
-            sb.AppendLine("Ubigia infastructure host");
             sb.AppendLine();
-            sb.AppendFormat("Address: {0}", _infrastructure.Configuration.Address);
 
-            if (_host.HasError)
+            foreach (var status in _host.Status)
             {
+                sb.AppendLine(status.Title);
                 sb.AppendLine();
-                sb.Append("(In error)");
-            }
-            else if (!_host.IsRunning)
-            {
+                sb.AppendLine(status.Summary);
                 sb.AppendLine();
-                sb.Append("(Not running)");
             }
             ToolTipText = sb.ToString();
         }
@@ -71,38 +60,42 @@
         {
             switch (e.PropertyName)
             {
-                case nameof(_host.IsRunning):
-
-                    UpdateIcon();
+                case nameof(_host.Status):
                     UpdateToolTip();
                     break;
-                case nameof(_host.HasError):
-                    if (_host.HasError)
-                    {
-                        SetIcon(_errorIcon);
-                    }
-                    else
-                    {
-                        UpdateIcon();
-                    }
+                case nameof(_host.State):
+                    OnHostStateChanged(_host.State);
                     break;
             }
         }
 
-        private void OnHostStatusChanged(HostStatus status)
+        private void OnHostStateChanged(HostState state)
         {
-            switch (status)
+            UpdateIcon();
+
+            switch (state)
             {
-                case HostStatus.Shutdown:
+                case HostState.Shutdown:
                     Application.Current.Shutdown();
                     break;
             }
-            ;
         }
 
         private void UpdateIcon()
         {
-            var iconToShow = _host.IsRunning ? _runningIcon : _stoppedIcon;
+            Icon iconToShow;
+            switch (_host.State)
+            {
+                case HostState.Running:
+                    iconToShow = _runningIcon;
+                    break;
+                case HostState.Error:
+                    iconToShow = _errorIcon;
+                    break;
+                default:
+                    iconToShow = _stoppedIcon;
+                    break;
+            }
             SetIcon(iconToShow);
         }
         private void SetIcon(Icon icon)
