@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Hosting;
 
     public partial class ConsoleHost : HostBase, IHost
     {
@@ -20,17 +19,18 @@
 
         public void Start()
         {
-            Status = HostStatus.Starting;
+            State = HostState.Starting;
 
             Task.Delay(500).ContinueWith((o) =>
             {
                 try
                 {
                     _serviceManager.Start();
-                    Status = HostStatus.Running;
+                    State = HostState.Running;
                 }
                 catch (Exception)
                 {
+                    State = HostState.Error;
                     //_logger.Critical("Fatal exception in infrastructure hosting", e);
                     //_logger.Info("Restarting infrastructure hosting");
                     Task.Delay(2000);
@@ -43,18 +43,18 @@
 
         public void Stop()
         {
-            Status = HostStatus.Stopping;
+            State = HostState.Stopping;
 
             _serviceManager.Stop();
 
-            Status = HostStatus.Stopped;
+            State = HostState.Stopped;
         }
 
         public void Shutdown()
         {
             Stop();
-            
-            Status = HostStatus.Shutdown;
+
+            State = HostState.Shutdown;
         }
     }
 }

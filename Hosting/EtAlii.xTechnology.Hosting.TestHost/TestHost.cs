@@ -36,7 +36,7 @@
 
         public virtual void Start()
         {
-            Status = HostStatus.Starting;
+            State = HostState.Starting;
 
             _serviceManager.Start();
 
@@ -46,16 +46,16 @@
                 ((IFolderManager)Storage.FolderManager).Delete(folder);
             }
 
-            Status = HostStatus.Running;
+            State = HostState.Running;
         }
 
         public virtual void Stop()
         {
-            Status = HostStatus.Stopping;
+            State = HostState.Stopping;
 
             _serviceManager.Stop();
 
-            Status = HostStatus.Stopped;
+            State = HostState.Stopped;
             
         }
 
@@ -63,7 +63,7 @@
         {
             Stop();
 
-            Status = HostStatus.Shutdown;
+            State = HostState.Shutdown;
         }
     }
 }
