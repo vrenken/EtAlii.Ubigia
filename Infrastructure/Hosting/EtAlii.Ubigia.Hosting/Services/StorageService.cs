@@ -1,10 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
+    using EtAlii.xTechnology.Hosting;
     using Storage;
 
     public class StorageService : IStorageService
     {
         private readonly IStorage _storage;
+        private IHost _host;
+        public HostStatus Status { get; } = new HostStatus(nameof(StorageService));
 
         public StorageService(IStorage storage)
         {
