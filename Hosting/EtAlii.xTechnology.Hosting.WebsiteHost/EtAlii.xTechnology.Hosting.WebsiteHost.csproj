@@ -21,14 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Infrastructure\Hosting\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
     <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Portal.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
   </ItemGroup>
 
   <ItemGroup>
