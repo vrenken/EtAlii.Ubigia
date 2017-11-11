@@ -24,9 +24,9 @@
             TryConfigure();
         }
 
-        protected override void OnHostStatusChanged(HostStatus status)
+        protected override void OnHostStateChanged(HostState state)
         {
-            CanExecute = status == HostStatus.Stopped || status == HostStatus.Shutdown;
+            CanExecute = state == HostState.Stopped || state == HostState.Shutdown;
         }
 
         private Task<bool> TryConfigure()

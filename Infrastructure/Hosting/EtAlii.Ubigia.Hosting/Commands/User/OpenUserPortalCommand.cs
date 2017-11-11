@@ -19,9 +19,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
             _websiteBrowser.BrowseTo("/");
         }
 
-        protected override void OnHostStatusChanged(HostStatus status)
+        protected override void OnHostStateChanged(HostState state)
         {
-            CanExecute = status == HostStatus.Running;
+            CanExecute = state == HostState.Running;
         }
 
     }
