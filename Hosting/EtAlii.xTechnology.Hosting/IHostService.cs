@@ -6,6 +6,7 @@ namespace EtAlii.xTechnology.Hosting
     {
         //string Name { get; }
         //string Description { get; }
+        HostStatus Status { get; } 
 
         void Start();
         void Stop();

@@ -2,18 +2,20 @@
 
 namespace EtAlii.xTechnology.Hosting
 {
-    public interface IHost
+    using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    public interface IHost : INotifyPropertyChanged
     {
         void Start();
         void Stop();
 
         void Shutdown();
 
-        HostStatus Status { get; }
+        HostState State { get; }
 
-        event Action<HostStatus> StatusChanged;
+        HostStatus[] Status { get; }
 
         IHostCommand[] Commands { get; }
-        void Initialize(IHostCommand[] commands);
+        void Initialize(IHostCommand[] commands, HostStatus[] status);
     }
 }

@@ -1,28 +1,45 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
     using System;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
 
     public abstract class HostBase
     {
-        public HostStatus Status { get => _status; protected set => SetStatus(value); }
-        private HostStatus _status;
+        public HostState State { get => _state; protected set => SetProperty(ref _state, value); }
+        private HostState _state;
+        public HostStatus[] Status => _status; 
+        private HostStatus[] _status = new HostStatus[0];
+
         public IHostCommand[] Commands => _commands; 
         private IHostCommand[] _commands;
 
-        public event Action<HostStatus> StatusChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        private void SetStatus(HostStatus newValue)
+        public void Initialize(IHostCommand[] commands, HostStatus[] status)
         {
-            if (_status != newValue)
+            _commands = commands;
+            _status = status;
+
+            foreach (var s in _status)
             {
-                _status = newValue;
-                StatusChanged?.Invoke(_status);
+                s.PropertyChanged += OnStatusPropertyChanged;
             }
         }
 
-        public void Initialize(IHostCommand[] commands)
+        private void OnStatusPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            _commands = commands;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Status)));
         }
+
+        protected void SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
+        {
+            if (!object.Equals((object) storage, (object) newValue))
+            {
+                storage = newValue;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
     }
 }

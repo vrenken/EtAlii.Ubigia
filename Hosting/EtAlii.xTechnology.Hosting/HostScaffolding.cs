@@ -14,25 +14,29 @@
 
         public void Register(Container container)
         {
+            container.Register<IHostConfiguration>(() => _configuration);
+
             container.Register<IHost, THost>();
             container.RegisterInitializer<IHost>(host =>
             {
-                host.Initialize(_configuration.Commands);
                 foreach (var command in _configuration.Commands)
                 {
                     command.Initialize(host);
                 }
+                var serviceManager = container.GetInstance<IServiceManager>();
+                var services = _configuration.Services
+                    .Select(service => (IHostService)container.GetInstance(service))
+                    .ToArray();
+
+                var status = services
+                    .Select(service => service.Status)
+                    .ToArray();
+
+                host.Initialize(_configuration.Commands, status);
+                serviceManager.Initialize(services);
+                
             });
             container.Register<IServiceManager, ServiceManager>();
-            container.RegisterInitializer<IServiceManager>(serviceManager =>
-            {
-                var services = _configuration.Services
-                .Select(service => (IHostService)container.GetInstance(service))
-                .ToArray();
-                serviceManager.Initialize(services);
-            });
-
-            container.Register<IHostConfiguration>(() => _configuration);
         }
     }
 }
