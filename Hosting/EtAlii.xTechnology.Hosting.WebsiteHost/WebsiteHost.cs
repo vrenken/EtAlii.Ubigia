@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.xTechnology.Hosting
 {
-    public class WebsiteHost : HostBase, IHost
+    public partial class WebsiteHost : HostBase, IHost
     {
         private readonly IServiceManager _serviceManager;
 
