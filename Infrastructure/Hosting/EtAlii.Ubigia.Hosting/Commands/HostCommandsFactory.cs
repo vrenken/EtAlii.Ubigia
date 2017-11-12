@@ -33,12 +33,13 @@
                 container.GetInstance<IStartHostCommand>(),
                 container.GetInstance<IStopHostCommand>(),
                 container.GetInstance<IConfigureFirewallRulesCommand>(),
-                container.GetInstance<IShutdownHostCommand>(),
 
                 container.GetInstance<IStartSpaceBrowserCommand>(),
                 container.GetInstance<IStartStorageBrowserCommand>(),
                 container.GetInstance<IOpenAdminPortalCommand>(),
                 container.GetInstance<IOpenUserPortalCommand>(),
+
+                container.GetInstance<IShutdownHostCommand>(),
             };
         }
     }
