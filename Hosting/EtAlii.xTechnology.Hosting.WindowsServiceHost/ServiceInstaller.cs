@@ -9,7 +9,7 @@
     [System.ComponentModel.DesignerCategory("Code")]
     public class ServiceInstaller : Installer
     {
-        public static void Install(IServiceLogic service)
+        public static void Install(ServiceDetails service)
         {
             if (HasService(service.Name))
             {
@@ -31,7 +31,7 @@
             }
         }
 
-        public static void Uninstall(IServiceLogic service)
+        public static void Uninstall(ServiceDetails service)
         {
             if (!HasService(service.Name))
             {
@@ -68,7 +68,7 @@
             return hasService;
         }
 
-        public ServiceInstaller(IServiceLogic service)
+        public ServiceInstaller(ServiceDetails service)
         {
             var serviceProcessInstaller = new ServiceProcessInstaller();
             var serviceInstaller = new System.ServiceProcess.ServiceInstaller();
@@ -95,7 +95,7 @@
             Installers.Add(serviceInstaller);
         }
 
-        private static TransactedInstaller GetInstaller(IServiceLogic service)
+        private static TransactedInstaller GetInstaller(ServiceDetails service)
         {
             var serviceAssembly = service.GetType().Assembly;
 

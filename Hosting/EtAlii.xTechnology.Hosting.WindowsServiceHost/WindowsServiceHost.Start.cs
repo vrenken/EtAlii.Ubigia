@@ -7,17 +7,17 @@
     using System.Security.Principal;
     using System.ServiceProcess;
 
-    public static class Program
+    public partial class WindowsServiceHost
     {
-        public static void Main(string[] args)
+        public static void Start(string[] args, IHostConfiguration configuration, ServiceDetails serviceDetails)
         {
             // Instantiate the service logic.
-            var serviceLogic = new ServiceLogic();
+            var serviceLogic = new ServiceLogic(configuration);
 
             // No arguments? Run the Service and exit when service exits.
             if (!args.Any())
             {
-                ServiceBase.Run(new WindowsService(serviceLogic));
+                ServiceBase.Run(new WindowsService(serviceLogic, serviceDetails));
                 return;
             }
 
@@ -30,11 +30,11 @@
                     break;
                 case "/I":
                 case "/INSTALL":
-                    InstallService(serviceLogic, args);
+                    InstallService(serviceDetails, args);
                     break;
                 case "/U":
                 case "/UNINSTALL":
-                    UninstallService(serviceLogic, args);
+                    UninstallService(serviceDetails, args);
                     break;
                 default:
                     PrintUsage();
@@ -42,11 +42,11 @@
             }
         }
 
-        private static void InstallService(IServiceLogic myService, string[] args)
+        private static void InstallService(ServiceDetails service, string[] args)
         {
             if (IsAdministrator())
             {
-                ServiceInstaller.Install(myService);
+                ServiceInstaller.Install(service);
             }
             else
             {
@@ -54,11 +54,11 @@
             }
         }
 
-        private static void UninstallService(IServiceLogic myService, string[] args)
+        private static void UninstallService(ServiceDetails service, string[] args)
         {
             if (IsAdministrator())
             {
-                ServiceInstaller.Uninstall(myService);
+                ServiceInstaller.Uninstall(service);
             }
             else
             {
@@ -111,7 +111,7 @@
         {
             Console.WriteLine("Usage:");
             Console.WriteLine();
-            Console.WriteLine(" /Start\t\tStart the service logic");
+            Console.WriteLine(" /Start\t\tStart the service");
             Console.WriteLine(" /Install\tInstall the executable as Windows Service");
             Console.WriteLine(" /Uninstall\tUninstall the Windows Service");
         }

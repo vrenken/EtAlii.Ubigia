@@ -7,10 +7,10 @@
     {
         private readonly IServiceLogic _serviceLogic;
 
-        public WindowsService(IServiceLogic serviceLogic)
+        public WindowsService(IServiceLogic serviceLogic, ServiceDetails details)
         {
             _serviceLogic = serviceLogic;
-            ServiceName = serviceLogic.Name;
+            ServiceName = details.Name;
         }
 
         protected override void OnStart(string[] args)

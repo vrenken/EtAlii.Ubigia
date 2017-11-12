@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
 
-    public class WindowsServiceHost : HostBase, IHost
+    public partial class WindowsServiceHost : HostBase, IHost
     {
         private readonly IServiceManager _serviceManager;
         private readonly IHostConfiguration _configuration;
