@@ -44,6 +44,8 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.1" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -62,7 +64,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Hosting\EtAlii.xTechnology.Hosting.TrayIconHost\EtAlii.xTechnology.Hosting.TrayIconHost.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
   </ItemGroup>
 
