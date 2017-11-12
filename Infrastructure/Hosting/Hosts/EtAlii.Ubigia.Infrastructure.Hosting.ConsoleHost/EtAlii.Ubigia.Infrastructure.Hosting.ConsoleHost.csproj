@@ -19,7 +19,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Hosting\EtAlii.xTechnology.Hosting.ConsoleHost\EtAlii.xTechnology.Hosting.ConsoleHost.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
   </ItemGroup>
 
@@ -50,6 +49,7 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

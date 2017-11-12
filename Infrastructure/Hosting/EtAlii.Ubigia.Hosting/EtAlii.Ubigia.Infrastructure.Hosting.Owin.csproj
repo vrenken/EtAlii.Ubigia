@@ -27,10 +27,10 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.22" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Hosting\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />

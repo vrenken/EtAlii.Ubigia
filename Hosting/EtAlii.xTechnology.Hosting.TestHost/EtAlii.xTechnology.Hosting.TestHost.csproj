@@ -37,6 +37,7 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="Microsoft.Owin.Testing" Version="3.1.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
@@ -47,7 +48,6 @@
     <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
     <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />
     <ProjectReference Include="..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
-    <ProjectReference Include="..\EtAlii.xTechnology.Hosting\EtAlii.xTechnology.Hosting.csproj" />
   </ItemGroup>
 
 </Project>
