@@ -11,7 +11,6 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.User;
     using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.MicroContainer;
     using Functional;
     using Storage;
     using xTechnology.Hosting;
@@ -80,8 +79,8 @@
             // Create a host instance.
             var hostConfigurationSection = (IHostConfigurationSection)getConfigurationSection("ubigia/host");
             var hostConfiguration = hostConfigurationSection.ToHostConfiguration()
-                .Use(hostCommands)
-                .UseInfrastructure(storage, infrastructure);
+                .UseInfrastructure(storage, infrastructure)
+                .Use(hostCommands);
 
             return hostConfiguration;
         }
