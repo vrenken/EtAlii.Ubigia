@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
     using System;
+    using System.Diagnostics;
+    using System.IO;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
@@ -18,8 +20,15 @@
         public string Name => "Admin/Storage browser";
         public void Execute()
         {
-            var storageBrowserPath = "StorageBrowser.exe";
-            _processStarter.StartProcess(storageBrowserPath, _infrastructure.Configuration.Address);
+            var uri = new Uri(this.GetType().Assembly.CodeBase);
+            var folder = Path.GetDirectoryName(uri.LocalPath);
+
+            folder = Path.Combine(folder, System.Diagnostics.Debugger.IsAttached
+                ? "..\\..\\..\\..\\..\\..\\..\\Client\\Windows\\Diagnostics\\EtAlii.Ubigia.Diagnostics.StorageBrowser\\bin\\Debug\\net47"
+                : "");
+
+            var executable = "EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser.exe";
+            _processStarter.StartProcess(folder, executable, _infrastructure.Configuration.Address);
         }
 
         protected override void OnHostStateChanged(HostState state)

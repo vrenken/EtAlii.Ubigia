@@ -3,6 +3,6 @@
 
     public interface IProcessStarter
     {
-        void StartProcess(string fileName, string arguments = "");
+        void StartProcess(string folder, string fileName, string arguments = "");
     }
 }

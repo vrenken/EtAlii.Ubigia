@@ -6,11 +6,11 @@
 
     class ProcessStarter : IProcessStarter
     {
-        public void StartProcess(string fileName, string arguments = "")
+        public void StartProcess(string folder, string fileName, string arguments = "")
         {
-            fileName = Path.Combine(Environment.CurrentDirectory, fileName);
             var startInfo = new ProcessStartInfo
             {
+                WorkingDirectory = folder,
                 FileName = fileName,
                 Arguments = arguments,
                 UseShellExecute = true,
