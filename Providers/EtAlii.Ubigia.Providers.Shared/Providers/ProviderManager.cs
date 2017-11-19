@@ -12,8 +12,8 @@
         private IProvider[] _providers;
 
 
-        public ProviderManager(IProvidersContext context, 
-            ILogger logger, 
+        public ProviderManager(IProvidersContext context,
+            ILogger logger,
             ILogFactory logFactory)
         {
             _context = context;
