@@ -18,7 +18,7 @@
 
         public void Register(Container container)
         {
-            //container.Register<IProviderManager, ProviderManager>();
+            container.Register<IProviderManager, ProviderManager>();
             container.Register<IProvidersContext, ProvidersContext>();
             container.RegisterInitializer<IProvidersContext>(context => context.Initialize(_providerConfigurations, _dataContextFactory));
             container.Register(() => new SerializerFactory().Create());
