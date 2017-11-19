@@ -4,6 +4,8 @@
 
     public interface IProvisioning
     {
+        string Status { get; }
+
         IDataContext Data { get; }
         IProvisioningConfiguration Configuration { get; }
         void Stop();

@@ -3,22 +3,25 @@
     using EtAlii.xTechnology.Logging;
     using System;
     using System.Collections.Generic;
+    using System.Text;
 
     public class ProviderManager : IProviderManager
     {
         private readonly IProvidersContext _context;
-        private readonly ILogger _logger;
-        private readonly ILogFactory _logFactory;
         private IProvider[] _providers;
+        //private readonly ILogger _logger;
+        //private readonly ILogFactory _logFactory;
 
+        public string Status { get; private set; }
 
-        public ProviderManager(IProvidersContext context,
-            ILogger logger,
-            ILogFactory logFactory)
+        public ProviderManager(IProvidersContext context//,
+            //ILogger logger,
+            //ILogFactory logFactory
+            )
         {
             _context = context;
-            _logger = logger;
-            _logFactory = logFactory;
+            //_logger = logger;
+            //_logFactory = logFactory;
         }
 
         public void Start()
@@ -28,7 +31,9 @@
                 throw new InvalidOperationException("Providers have already been started");
             }
 
-            _logger.Info("Starting providers");
+            var sb = new StringBuilder();
+
+            sb.AppendLine("Starting providers");
 
             var providers = new List<IProvider>();
 
@@ -40,13 +45,14 @@
                     var copiedProviderConfiguration = new ProviderConfiguration(configuration)
                         .Use(connection => _context.CreateDataContext(connection))
                         .Use(_context.ManagementConnection)
-                        .Use(_context.SystemDataContext)
-                        .Use(_logFactory);
+                        .Use(_context.SystemDataContext);
+                        //.Use(_logFactory);
                     provider = copiedProviderConfiguration.Factory.Create(copiedProviderConfiguration);
                 }
                 catch (Exception e)
                 {
-                    _logger.Critical("Unable to create provider using factory {0}", e, configuration.Factory.GetType());
+                    sb.AppendLine($"Unable to create provider using factory {configuration.Factory.GetType()}");
+                    //_logger.Critical("Unable to create provider using factory {0}", e, configuration.Factory.GetType());
                 }
 
                 if (provider != null)
@@ -58,14 +64,18 @@
                     }
                     catch (Exception e)
                     {
-                        _logger.Critical("Unable to start provider {0}", e, provider.GetType());
+                        sb.AppendLine($"Unable to start provider {provider.GetType()}");
+                        //_logger.Critical("Unable to start provider {0}", e, provider.GetType());
                     }
                 }
             }
 
             _providers = providers.ToArray();
 
-            _logger.Info("Started providers");
+            sb.AppendLine("Started providers");
+            //_logger.Info("Started providers");
+
+            Status = sb.ToString();
         }
 
         public void Stop()
@@ -75,7 +85,11 @@
                 throw new InvalidOperationException("Providers have not been started");
             }
 
-            _logger.Info("Stopping providers");
+            var sb = new StringBuilder();
+
+            sb.AppendLine("Stopping providers");
+            //_logger.Info("Stopping providers");
+
             foreach (var provider in _providers)
             {
                 try
@@ -84,12 +98,16 @@
                 }
                 catch (Exception e)
                 {
-                    _logger.Critical("Unable to stop provider {0}", e, provider.GetType());
+                    sb.AppendLine($"Unable to stop provider {provider.GetType()}");
+                    //_logger.Critical("Unable to stop provider {0}", e, provider.GetType());
                 }
             }
 
             _providers = null;
-            _logger.Info("Stopped providers");
+            sb.AppendLine($"Stopped providers");
+            //_logger.Info("Stopped providers");
+
+            Status = sb.ToString();
         }
     }
 }

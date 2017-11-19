@@ -10,6 +10,8 @@
 
         public IProvisioningConfiguration Configuration { get; }
 
+        public string Status => _providerManager.Status;
+
         protected Provisioning(
             IDataContext data,
             IProvisioningConfiguration configuration,
