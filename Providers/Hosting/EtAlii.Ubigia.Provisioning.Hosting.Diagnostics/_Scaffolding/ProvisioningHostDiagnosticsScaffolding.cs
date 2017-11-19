@@ -7,9 +7,9 @@
     {
         private readonly IDiagnosticsConfiguration _diagnostics;
 
-        public ProvisioningHostDiagnosticsScaffolding(IDiagnosticsConfiguration diagnostics1)
+        public ProvisioningHostDiagnosticsScaffolding(IDiagnosticsConfiguration diagnostics)
         {
-            _diagnostics = diagnostics1;
+            _diagnostics = diagnostics;
         }
 
         public void Register(Container container)
