@@ -9,7 +9,6 @@
     {
         private readonly IStorage _storage;
         private readonly IInfrastructure _infrastructure;
-        //private readonly IHostConfiguration _configuration;
 
         public InfrastructureHostExtension(IStorage storage, IInfrastructure infrastructure)
         {
@@ -19,15 +18,10 @@
 
         public void Register(Container container)
         {
-            //var storage = _storageFactory.Create(_diagnostics);
-            //var infrastructure = _infrastructureFactory.Create(storage, _diagnostics);
             container.Register(() => _storage);
             container.Register(() => _infrastructure);
             container.Register<IStorageService, StorageService>();
             container.Register<IInfrastructureService, InfrastructureService>();
-
-            //container.Register<ISerializer, Serializer>(Lifestyle.Singleton);
-            //container.Register(() => new SerializerFactory().Create());
         }
     }
 }
