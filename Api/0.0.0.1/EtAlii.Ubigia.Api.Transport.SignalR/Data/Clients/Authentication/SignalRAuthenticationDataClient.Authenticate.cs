@@ -20,8 +20,7 @@
             }
             else
             {
-                string message =
-                    $"Unable to authenticate on the specified storage ({signalRConnection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({signalRConnection.Configuration.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
@@ -37,8 +36,7 @@
             }
             else
             {
-                string message =
-                    $"Unable to authenticate on the specified storage ({signalRConnection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({signalRConnection.Configuration.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
@@ -47,13 +45,15 @@
         {
             if (password != null || authenticationToken == null)
             {
-                var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData);
-                connection.Headers["Host-Identifier"] = _hostIdentifier;
-                connection.Credentials = new NetworkCredential(accountName, password);
-                var authenticationProxy = connection.CreateHubProxy(SignalRHub.Authentication);
-                await connection.Start(httpClient);
-                authenticationToken = await _invoker.Invoke<string>(authenticationProxy, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
-                connection.Stop();
+                using (var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData))
+                {
+                    connection.Headers["Host-Identifier"] = _hostIdentifier;
+                    connection.Credentials = new NetworkCredential(accountName, password);
+                    var authenticationProxy = connection.CreateHubProxy(SignalRHub.Authentication);
+                    await connection.Start(httpClient);
+                    authenticationToken = await _invoker.Invoke<string>(authenticationProxy, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
+                    connection.Stop();
+                }
             }
 
             if (String.IsNullOrWhiteSpace(authenticationToken))
