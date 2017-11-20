@@ -63,14 +63,16 @@
 
         private async Task<Storage> GetConnectedStorage(IHttpClient httpClient, string address, string accountName, string password, string authenticationToken)
         {
-            var hubConnection = new HubConnectionFactory().Create(address + RelativeUri.UserData);
-            hubConnection.Headers["Authentication-Token"] = authenticationToken;
-            hubConnection.Credentials = new NetworkCredential(accountName, password);
-            var proxy = hubConnection.CreateHubProxy(SignalRHub.Authentication);
-            await hubConnection.Start(httpClient);
-            var storage = await _invoker.Invoke<Storage>(proxy, SignalRHub.Authentication, "GetLocalStorage");
-            hubConnection.Stop();
-            return storage;
+            using (var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData))
+            {
+                connection.Headers["Authentication-Token"] = authenticationToken;
+                connection.Credentials = new NetworkCredential(accountName, password);
+                var proxy = connection.CreateHubProxy(SignalRHub.Authentication);
+                await connection.Start(httpClient);
+                var storage = await _invoker.Invoke<Storage>(proxy, SignalRHub.Authentication, "GetLocalStorage");
+                connection.Stop();
+                return storage;
+            }
         }
     }
 }
