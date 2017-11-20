@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
+    using System.ComponentModel;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Storage;
@@ -7,7 +8,6 @@
 
     public class TestHost : HostBase, IHost
     {
-        private readonly IServiceManager _serviceManager;
         public IInfrastructureClient Client { get; }
 
         public IInfrastructure Infrastructure { get; }
@@ -25,45 +25,32 @@
             IStorage storage, 
             IInfrastructure infrastructure,
             IHostConfiguration configuration)
+            : base(serviceManager)
         {
-            _serviceManager = serviceManager;
             Client = client;
             AddressFactory = addressFactory;
             Storage = storage;
             Infrastructure = infrastructure;
             Configuration = configuration;
+
+            PropertyChanged += OnPropertyChanged;
         }
 
-        public virtual void Start()
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            State = HostState.Starting;
-
-            _serviceManager.Start();
-
-            var folder = Storage.PathBuilder.BaseFolder;
-            if (Storage.FolderManager.Exists(folder))
+            switch (e.PropertyName)
             {
-                ((IFolderManager)Storage.FolderManager).Delete(folder);
+                case nameof(State):
+                    if (State == HostState.Running)
+                    {
+                        var folder = Storage.PathBuilder.BaseFolder;
+                        if (Storage.FolderManager.Exists(folder))
+                        {
+                            ((IFolderManager) Storage.FolderManager).Delete(folder);
+                        }
+                    }
+                    break;
             }
-
-            State = HostState.Running;
-        }
-
-        public virtual void Stop()
-        {
-            State = HostState.Stopping;
-
-            _serviceManager.Stop();
-
-            State = HostState.Stopped;
-            
-        }
-
-        public void Shutdown()
-        {
-            Stop();
-
-            State = HostState.Shutdown;
         }
     }
 }
