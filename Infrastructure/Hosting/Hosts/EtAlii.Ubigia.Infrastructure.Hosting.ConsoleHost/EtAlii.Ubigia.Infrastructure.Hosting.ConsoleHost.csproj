@@ -49,7 +49,7 @@
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.0.1" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.0.2.1" />
   </ItemGroup>
 
   <ItemGroup>

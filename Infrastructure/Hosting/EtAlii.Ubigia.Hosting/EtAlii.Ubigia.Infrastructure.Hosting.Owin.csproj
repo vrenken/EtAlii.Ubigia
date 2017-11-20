@@ -27,7 +27,7 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.22" />
     <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.22" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2.1" />
   </ItemGroup>
 
   <ItemGroup>
