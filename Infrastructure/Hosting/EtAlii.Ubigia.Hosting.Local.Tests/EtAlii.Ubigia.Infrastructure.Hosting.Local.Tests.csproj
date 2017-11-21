@@ -46,46 +46,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="EtAlii.Ubigia, Version=1.0.22.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.1.0.22\lib\netstandard2.0\EtAlii.Ubigia.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Api, Version=1.0.12.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Api.1.0.12\lib\portable-net45+win+wpa81+MonoAndroid10+MonoTouch10+xamarinios10+xamarinmac20\EtAlii.Ubigia.Api.dll</HintPath>
-    </Reference>
-    <Reference Include="EtAlii.Ubigia.Tests, Version=1.0.27.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\EtAlii.Ubigia.Tests.1.0.27\lib\netstandard2.0\EtAlii.Ubigia.Tests.dll</HintPath>
-    </Reference>
-    <Reference Include="HashLib, Version=2.1.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\HashLib.2.1.0.2\lib\netstandard2.0\HashLib.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Extensions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\Microsoft.Net.Http.2.2.29\lib\net45\System.Net.Http.Primitives.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="xunit.assert, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.assert.2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.extensibility.core.2.3.1\lib\netstandard1.1\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\xunit.extensibility.execution.2.3.1\lib\net452\xunit.execution.desktop.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
       <ItemGroup>
@@ -95,30 +55,7 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTests\UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj">
-      <Project>{b2479e9d-04dc-4a35-837a-e69c62eb4c8a}</Project>
-      <Name>EtAlii.Ubigia.Api.Transport</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Diagnostics\EtAlii.Ubigia.Infrastructure.Diagnostics.csproj">
-      <Project>{6367ad1a-35ef-4777-9a33-1fb80cf5963b}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Diagnostics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure\EtAlii.Ubigia.Infrastructure.csproj">
-      <Project>{66F50771-FBE2-42B7-B673-CBDB32498BEC}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj">
-      <Project>{08DFF5F2-15AF-416E-963E-5DDDCD4C495C}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Hosting.Owin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.Local.csproj">
-      <Project>{D06E5031-F8A9-4CCE-8722-6CC760BA6041}</Project>
-      <Name>EtAlii.Ubigia.Infrastructure.Hosting.Local</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
@@ -127,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="IntegrationTests\" />
+    <Folder Include="UnitTests\" />
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\..\..\packages\xunit.analyzers.0.7.0\analyzers\dotnet\cs\xunit.analyzers.dll" />
