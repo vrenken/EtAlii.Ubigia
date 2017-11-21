@@ -64,6 +64,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <!-- xaml -->
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
@@ -86,10 +90,6 @@
     <EmbeddedResource Include="Icon-Logo-White-Shaded.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj" />
   </ItemGroup>
 
   <ItemGroup>
