@@ -34,8 +34,7 @@
             // First check if any of the components is aware of a service.
             foreach (var component in _components)
             {
-                object serviceInstance;
-                if (component.TryGetService(serviceType, out serviceInstance))
+                if (component.TryGetService(serviceType, out var serviceInstance))
                 {
                     return serviceInstance;
                 }
