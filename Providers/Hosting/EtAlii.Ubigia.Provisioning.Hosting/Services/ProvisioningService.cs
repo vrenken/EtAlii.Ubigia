@@ -12,6 +12,8 @@
 
         public HostStatus Status { get; } = new HostStatus(nameof(ProvisioningService));
 
+        public IHostCommand[] Commands { get; } = Array.Empty<IHostCommand>();
+
         public ProvisioningService(IProvisioning provisioning)
         {
             _provisioning = provisioning;
