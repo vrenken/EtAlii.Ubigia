@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
+    using System;
     using System.Text;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
@@ -8,6 +9,7 @@
     {
         private readonly IInfrastructure _infrastructure;
         public HostStatus Status { get; } = new HostStatus(nameof(InfrastructureService));
+        public IHostCommand[] Commands { get; } = Array.Empty<IHostCommand>();
 
         public InfrastructureService(IInfrastructure infrastructure)
         {

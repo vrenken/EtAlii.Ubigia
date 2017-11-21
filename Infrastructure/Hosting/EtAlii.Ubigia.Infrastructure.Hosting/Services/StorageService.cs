@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
+    using System;
     using EtAlii.xTechnology.Hosting;
     using Storage;
 
@@ -8,6 +9,7 @@
         private readonly IStorage _storage;
         private IHost _host;
         public HostStatus Status { get; } = new HostStatus(nameof(StorageService));
+        public IHostCommand[] Commands { get; } = Array.Empty<IHostCommand>();
 
         public StorageService(IStorage storage)
         {
