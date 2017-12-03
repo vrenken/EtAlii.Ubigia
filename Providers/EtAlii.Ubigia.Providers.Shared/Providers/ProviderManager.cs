@@ -49,7 +49,7 @@
                         //.Use(_logFactory);
                     provider = copiedProviderConfiguration.Factory.Create(copiedProviderConfiguration);
                 }
-                catch (Exception e)
+                catch (Exception)// e)
                 {
                     sb.AppendLine($"Unable to create provider using factory {configuration.Factory.GetType()}");
                     //_logger.Critical("Unable to create provider using factory {0}", e, configuration.Factory.GetType());
@@ -62,7 +62,7 @@
                         provider.Start();
                         providers.Add(provider);
                     }
-                    catch (Exception e)
+                    catch (Exception)// e)
                     {
                         sb.AppendLine($"Unable to start provider {provider.GetType()}");
                         //_logger.Critical("Unable to start provider {0}", e, provider.GetType());
@@ -96,7 +96,7 @@
                 {
                     provider.Stop();
                 }
-                catch (Exception e)
+                catch (Exception)// e)
                 {
                     sb.AppendLine($"Unable to stop provider {provider.GetType()}");
                     //_logger.Critical("Unable to stop provider {0}", e, provider.GetType());
