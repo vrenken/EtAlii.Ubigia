@@ -35,8 +35,4 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-  </ItemGroup>
-
 </Project>
