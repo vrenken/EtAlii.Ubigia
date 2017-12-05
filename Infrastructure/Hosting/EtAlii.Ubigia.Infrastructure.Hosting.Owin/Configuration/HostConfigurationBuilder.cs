@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
     using System;
+    using EtAlii.xTechnology.Hosting.Owin;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;

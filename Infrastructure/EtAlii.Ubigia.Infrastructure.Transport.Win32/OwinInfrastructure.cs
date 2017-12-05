@@ -4,6 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Hosting.Owin;
 
     public class OwinInfrastructure : InfrastructureBase
     {

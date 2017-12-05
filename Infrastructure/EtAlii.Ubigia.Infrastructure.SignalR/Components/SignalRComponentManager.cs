@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
 {
+    using EtAlii.xTechnology.Hosting.Owin;
     using System.Linq;
     using global::Owin;
 
@@ -18,12 +19,11 @@
             };
         }
 
-        public void Start(object iAppBuilder)
+        public void Start(IAppBuilder applicationBuilder)
         {
-            var application = (IAppBuilder)iAppBuilder;
             foreach (var component in _components)
             {
-                component.Start(application);
+                component.Start(applicationBuilder);
             }
         }
 

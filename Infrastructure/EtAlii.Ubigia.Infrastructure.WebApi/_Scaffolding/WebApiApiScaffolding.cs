@@ -2,6 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Hosting.Owin;
 
     internal class WebApiApiScaffolding<TAuthenticationIdentityProvider> : IScaffolding
             where TAuthenticationIdentityProvider : class, IAuthenticationIdentityProvider

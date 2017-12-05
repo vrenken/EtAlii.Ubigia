@@ -20,18 +20,17 @@
             _components = components;
         }
 
-        public void Start(object iAppBuilder)
+        public void Start(IAppBuilder applicationBuilder)
         {
-            var application = (IAppBuilder)iAppBuilder;
             var httpListenerName = typeof (HttpListener).FullName;
-            if (application.Properties.ContainsKey(httpListenerName))
+            if (applicationBuilder.Properties.ContainsKey(httpListenerName))
             {
-                _httpListener = (HttpListener) application.Properties[httpListenerName];
+                _httpListener = (HttpListener)applicationBuilder.Properties[httpListenerName];
             }
 
             foreach (var component in _components)
             {
-                component.Start(application);
+                component.Start(applicationBuilder);
             }
 
             //_logger.Info("Starting WebAPI services");
@@ -44,7 +43,7 @@
             //    _httpConfiguration.EnableSystemDiagnosticsTracing();
             //}
 
-            application.UseWebApi(_httpConfiguration);
+            applicationBuilder.UseWebApi(_httpConfiguration);
 
             _httpConfiguration.EnsureInitialized();
 
