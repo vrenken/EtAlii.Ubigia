@@ -1,42 +1,21 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin
 {
     using System;
+    using global::Owin;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.Hosting.Owin;
     using Microsoft.Owin.Hosting;
 
-    public class DefaultApplicationManager : IApplicationManager 
+    public class DefaultApplicationManager : NewApplicationManager
     {
-        private readonly IInfrastructureConfiguration _configuration;
-        private IDisposable _host;
-
         public DefaultApplicationManager(IInfrastructureConfiguration configuration)
+            : base(applicationBuilderFactory => CreateApplicationBuilder(configuration, applicationBuilderFactory))
         {
-            _configuration = configuration;
         }
 
-        public void Start(IComponentManager[] componentManagers)
+        private static IDisposable CreateApplicationBuilder(IInfrastructureConfiguration configuration, Action<IAppBuilder> applicationBuilder)
         {
-            _host = WebApp.Start(_configuration.Address, appBuilder =>
-            {
-                foreach (var componentManager in componentManagers)
-                {
-                    componentManager.Start(appBuilder);
-                }   
-            });
-        }
-
-        public void Stop(IComponentManager[] componentManagers)
-        {
-            foreach (var componentManager in componentManagers)
-            {
-                componentManager.Stop();
-            }
-
-            if (_host != null)
-            {
-                _host.Dispose();
-                _host = null;
-            }
+            return WebApp.Start(configuration.Address, applicationBuilder);
         }
     }
 }

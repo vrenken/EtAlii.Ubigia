@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.xTechnology.Hosting.Owin;
 
     public static class IInfrastructureConfigurationWebApiExtension
     {

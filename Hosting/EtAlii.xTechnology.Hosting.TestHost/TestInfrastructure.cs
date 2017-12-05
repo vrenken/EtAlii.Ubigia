@@ -7,6 +7,7 @@
     using EtAlii.xTechnology.Logging;
     using Microsoft.Owin.Testing;
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Hosting.Owin;
 
     public class TestInfrastructure : IInfrastructure// WebApiInfrastructure
     {

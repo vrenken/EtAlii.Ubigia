@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics
 {
+    using global::Owin;
+
     public class ProfilingWebApiComponentManager : IWebApiComponentManager
     {
         private readonly IWebApiComponentManager _componentManager;
@@ -23,11 +25,11 @@
             //profiler.Register(_stopCountCounter, SamplingType.IncrementalCount, "Count", "Number of times the ComponentManager is stopped", "The number of times the Stop method has executed");
         }
 
-        public void Start(object iAppBuilder)
+        public void Start(IAppBuilder applicationBuilder)
         {
             //var application = (IAppBuilder)iAppBuilder;
             //var start = Environment.TickCount;
-            _componentManager.Start(iAppBuilder);
+            _componentManager.Start(applicationBuilder);
             //_profiler.WriteSample(_startDurationCounter, Environment.TickCount - start);
             //_profiler.WriteSample(_startCountCounter, 1d);
         }
