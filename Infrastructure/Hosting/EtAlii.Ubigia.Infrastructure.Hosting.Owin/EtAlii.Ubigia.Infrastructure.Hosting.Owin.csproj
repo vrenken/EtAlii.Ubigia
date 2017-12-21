@@ -35,4 +35,8 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="_Scaffolding\" />
+  </ItemGroup>
+
 </Project>

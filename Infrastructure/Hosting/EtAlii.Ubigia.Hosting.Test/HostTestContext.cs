@@ -3,6 +3,7 @@
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Portal.Admin;
@@ -40,6 +41,7 @@
 
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
+                .UseOwin<TestInfrastructure>()
                 .UseSignalRTestApi(diagnostics)
                 .UseWebApiAdminApi()
                 .UseWebApiAdminPortal()

@@ -4,6 +4,7 @@
     using EtAlii.xTechnology.Hosting.Owin;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
@@ -65,7 +66,8 @@
 
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
-                .UseWebApi(diagnostics, applicationManager) // TODO: Web API usage should also be configured in the configuration section.
+                .UseOwin(applicationManager)
+                .UseWebApi(diagnostics) // TODO: Web API usage should also be configured in the configuration section.
                 .UseWebApiAdminApi()
                 .UseWebApiAdminPortal()
                 .UseWebApiUserApi()

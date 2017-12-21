@@ -14,6 +14,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
     using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics;
+    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
     using EtAlii.Ubigia.Storage;
     using EtAlii.Ubigia.Storage.InMemory;
     using EtAlii.xTechnology.Diagnostics;
@@ -60,6 +61,7 @@
                 // The powershell tests cannot use the test infrastructure because process boundaries disable direct interaction 
                 // between the host/infrastructure and the unit tests.
                 //.UseTestInfrastructure(infrastructureDiagnostics)
+                .UseOwin()
                 .UseWebApi(diagnostics)
                 .UseWebApiAdminApi()
                 .UseWebApiUserApi()
