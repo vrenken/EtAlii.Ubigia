@@ -2,22 +2,14 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Hosting.Owin;
 
     public class WebApiInfrastructureExtension : IInfrastructureExtension
     {
-        private readonly IApplicationManager _applicationManager;
-
-        internal WebApiInfrastructureExtension(IApplicationManager applicationManager)
-        {
-            _applicationManager = applicationManager;
-        }
-
         public void Initialize(Container container)
         {
             var scaffoldings = new IScaffolding[]
             {
-                new WebApiApiScaffolding<DefaultAuthenticationIdentityProvider>(_applicationManager),
+                new WebApiApiScaffolding<DefaultAuthenticationIdentityProvider>(),
 
                 //new WebApiProfilingScaffolding(diagnostics),
                 //new WebApiLoggingScaffolding(diagnostics),

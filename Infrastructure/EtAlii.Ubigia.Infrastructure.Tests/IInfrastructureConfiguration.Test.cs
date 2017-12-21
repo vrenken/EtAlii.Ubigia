@@ -22,8 +22,7 @@ namespace EtAlii.Ubigia.Infrastructure
             return configuration
                 .Use(extensions)
                 .Use(_webApiFactory.Create)
-                .Use((container, components) => _signalRFactory.Create(signalRDependencyResolver, components))
-                .Use<TestInfrastructure>();
+                .Use((container, components) => _signalRFactory.Create(signalRDependencyResolver, components));
         }
     }
 }
