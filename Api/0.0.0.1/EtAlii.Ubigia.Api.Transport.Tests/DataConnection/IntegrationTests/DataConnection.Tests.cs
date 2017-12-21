@@ -68,7 +68,7 @@
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateDataConnection(
-                _testContext.TransportTestContext.Context.SystemAccountName, 
+                _testContext.TransportTestContext.Context.SystemAccountName,
                 _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
             await connection.Open();
 
@@ -77,6 +77,21 @@
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task DataConnection_Open()
+        {
+            // Arrange.
+            var connection = await _testContext.TransportTestContext.CreateDataConnection(
+                _testContext.TransportTestContext.Context.SystemAccountName,
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+
+            // Act.
+            await connection.Open();
+
+            // Assert.
+            Assert.True(connection.IsConnected);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
