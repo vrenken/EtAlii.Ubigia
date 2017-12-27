@@ -1,9 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore
 {
+    using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;
 
     public class StorageService : ServiceBase
     {
+        private readonly IStorage _storage;
+
+        public StorageService(IStorage storage)
+        {
+            _storage = storage;
+        }
+
         public override void Start()
         {
         }
