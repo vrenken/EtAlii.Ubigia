@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net47</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>Unit test project</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ApplicationIcon />
+    <OutputType>Exe</OutputType>
+    <StartupObject>EtAlii.Ubigia.Provisioning.Hosting.Program</StartupObject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.0.2.1" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting\EtAlii.Ubigia.Provisioning.Hosting.csproj" />
+  </ItemGroup>
+
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Provisioning.Facebook.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Provisioning.Mail.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Time\EtAlii.Ubigia.Provisioning.Time.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Twitter\EtAlii.Ubigia.Provisioning.Twitter.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Gis.GeoNames\EtAlii.Ubigia.Provisioning.Gis.GeoNames.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Gis.Google\EtAlii.Ubigia.Provisioning.Gis.Google.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap\EtAlii.Ubigia.Provisioning.Gis.OpenStreetMap.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj" />
+    <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Configuration elements -->
+    <None Update="App.config">
+      <TransformOnBuild>true</TransformOnBuild>
+    </None>
+    <None Update="App.*.config" DependentUpon="App.config">
+      <IsTransformFile>True</IsTransformFile>
+    </None>
+  </ItemGroup>
+
+</Project>
