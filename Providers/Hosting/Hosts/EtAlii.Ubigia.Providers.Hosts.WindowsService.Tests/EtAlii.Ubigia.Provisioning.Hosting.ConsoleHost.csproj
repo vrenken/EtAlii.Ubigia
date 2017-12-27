@@ -41,11 +41,6 @@
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj" />
   </ItemGroup>
 
-
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-  </ItemGroup>
-
   <ItemGroup>
     <!-- Configuration elements -->
     <None Update="App.config">
