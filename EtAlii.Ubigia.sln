@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{7C2871EF-E67E-4CD0-BF65-DA0E1C05C4EB}"
 EndProject
@@ -106,7 +106,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Provisioning", "Provisionin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{49340CF0-CC2A-4FB0-AE63-C78AD0F57073}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost", "Providers\Hosting\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.csproj", "{BD678695-A0A8-4600-8EE9-BEC4D5C71DAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47", "Providers\Hosting\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.Tests\EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47.csproj", "{BD678695-A0A8-4600-8EE9-BEC4D5C71DAE}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Time", "Providers\Providers\EtAlii.Ubigia.Providers.Time\EtAlii.Ubigia.Provisioning.Time.csproj", "{F33427F9-F7C5-4BDC-AD6A-9561FEF54BC6}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -135,7 +135,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning"
 		{29D6C7C1-38D6-49C0-931A-A70AB08635C9} = {29D6C7C1-38D6-49C0-931A-A70AB08635C9}
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost", "Providers\Hosting\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.TrayIcon\EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.csproj", "{8BFE758E-6A15-4FEA-8E72-399D1256E6BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47", "Providers\Hosting\Hosts\EtAlii.Ubigia.Providers.Hosts.WindowsService.TrayIcon\EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47.csproj", "{8BFE758E-6A15-4FEA-8E72-399D1256E6BF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Windows.Mvvm", "Client\Windows\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj", "{90B9AB5D-4D86-4870-B832-BE86C55B017B}"
 EndProject
@@ -331,11 +331,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Hosts", "Hosts", "{3B380DEE-D6CE-4379-B020-49D121E9A8BA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.csproj", "{3D2D1075-D12E-4E4E-87A4-7644B3457AB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Net47", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost\EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Net47.csproj", "{3D2D1075-D12E-4E4E-87A4-7644B3457AB7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TestHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj", "{DB60C722-9863-48D4-BA54-A1520E6E53D3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost\EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.csproj", "{5B74C33B-C1E4-4C85-AA16-5F616BD4940C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.Net47", "Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost\EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.Net47.csproj", "{5B74C33B-C1E4-4C85-AA16-5F616BD4940C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Kestrel", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Kestrel\EtAlii.Ubigia.Infrastructure.Hosting.Kestrel.csproj", "{F8D1DED0-FE1E-4D19-952A-5030D50DF42F}"
 EndProject
