@@ -1,0 +1,90 @@
+﻿{
+  "Host": {
+    "Systems": [
+      {
+        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.InfrastructureSystemFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore",
+        "Services": [
+          {
+            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.StorageServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore",
+            "Name": "Debug storage",
+            "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
+          },
+          {
+            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.InfrastructureServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore",
+            "Name": "Debug storage"
+          },
+          {
+            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.AuthenticationServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore"
+          }
+        ],
+        "Modules": [
+          {
+            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.AspNetCore.AdminModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.AspNetCore",
+            "Name": "Admin",
+            "IpAddress": "0.0.0.0",
+            "Port": "5000",
+            "Modules": [
+              {
+                "Name": "Api",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore.AdminWebApiServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore.AdminSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore"
+                  }
+                ]
+              },
+              {
+                "Name": "Portal",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore.AdminPortalControllerServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore.AdminPortalFileHostingServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.AspNetCore.UserModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.AspNetCore",
+            "Name": "User",
+            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
+            "Port": "5001",
+            "Modules": [
+              {
+                "Name": "Api",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore.UserWebApiServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore.UserSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore"
+                  }
+                ]
+              },
+              {
+                "Name": "Portal",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore.UserPortalControllerServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore.UserPortalFileHostingServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    }
+  }
