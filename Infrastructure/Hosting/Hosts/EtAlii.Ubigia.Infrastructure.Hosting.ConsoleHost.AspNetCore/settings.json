@@ -2,19 +2,19 @@
   "Host": {
     "Systems": [
       {
-        "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.InfrastructureSystemFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore",
+        "Factory": "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore",
         "Services": [
           {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.StorageServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore",
             "Name": "Debug storage",
             "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
           },
           {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.InfrastructureServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore",
             "Name": "Debug storage"
           },
           {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore.AuthenticationServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.AspNetCore"
+            "Factory": "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore"
           }
         ],
         "Modules": [
