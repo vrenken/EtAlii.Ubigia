@@ -1,20 +1,103 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore
 {
+    using System;
+    using EtAlii.Ubigia.Infrastructure.Fabric;
+    using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Logical;
+    using EtAlii.Ubigia.Infrastructure.Transport;
+    using System.Linq;
     using EtAlii.xTechnology.Hosting;
+    using Microsoft.Extensions.Configuration;
 
-    public class InfrastructureService : ServiceBase
+    public class InfrastructureService : ServiceBase<IAspNetCoreHost, IInfrastructureSystem>, IInfrastructureService
     {
+        private readonly IConfiguration _configuration;
+        public IInfrastructure Infrastructure { get; private set; }
+        private IInfrastructureSystem _system;
+
+        public InfrastructureService(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
         public override void Start()
         {
+            Infrastructure = CreateInfrastructure();
+            Infrastructure.Start();
         }
 
         public override void Stop()
         {
+            Infrastructure.Stop();
         }
 
-        protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
+        protected override void Initialize(
+            IAspNetCoreHost host, IInfrastructureSystem system, 
+            IModule[] moduleChain, out Status status)
         {
+            _system = system;
             status = new Status(nameof(InfrastructureService));
+        }
+        private IInfrastructure CreateInfrastructure()
+        {
+            var storage = _system.Services.OfType<IStorageService>().Single().Storage;
+
+            string name;
+            name = _configuration.GetValue<string>(nameof(name));
+            if (name == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(name)} not set in service configuration.");
+            }
+
+            string address;
+            address = _configuration.GetValue<string>(nameof(address));
+            if (address == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(address)} not set in service configuration.");
+            }
+
+            string account;
+            account = _configuration.GetValue<string>(nameof(account));
+            if (account == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(account)} not set in service configuration.");
+            }
+
+            string password;
+            password = _configuration.GetValue<string>(nameof(password));
+            if (password == null)
+            {
+                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(password)} not set in service configuration.");
+            }
+
+
+            // Fetch the Infrastructure configuration.
+            var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
+            var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
+                .Use(name, address, account, password);
+
+            // Create fabric instance.
+            var fabricConfiguration = new FabricContextConfiguration()
+                .Use(storage);
+            var fabric = new FabricContextFactory().Create(fabricConfiguration);
+
+            // Create logical context instance.
+            var logicalConfiguration = new LogicalContextConfiguration()
+                .Use(fabric)
+                .Use(infrastructureConfiguration.Name, infrastructureConfiguration.Address);
+            var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
+
+            // Create a Infrastructure instance.
+            infrastructureConfiguration = infrastructureConfiguration
+                //.UseOwin(applicationManager)
+                //.UseWebApi(diagnostics) // TODO: Web API usage should also be configured in the configuration section.
+                //.UseWebApiAdminApi()
+                //.UseWebApiAdminPortal()
+                //.UseWebApiUserApi()
+                //.UseWebApiUserPortal()
+                //.UseSignalRApi()
+                .Use(logicalContext);
+            return new InfrastructureFactory().Create(infrastructureConfiguration);
         }
     }
 }

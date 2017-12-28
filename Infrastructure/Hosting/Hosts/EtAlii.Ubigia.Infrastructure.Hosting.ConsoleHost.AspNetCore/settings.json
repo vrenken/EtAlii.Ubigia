@@ -11,7 +11,10 @@
           },
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore",
-            "Name": "Debug storage"
+            "Name": "Debug storage",
+            "Account": "test",
+            "Password": "123",
+            "Address": "http://+:64000"
           },
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore"

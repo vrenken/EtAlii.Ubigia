@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class InfrastructureSystem : SystemBase<IAspNetCoreHost>
+    public class InfrastructureSystem : SystemBase<IAspNetCoreHost>, IInfrastructureSystem
     {
         private readonly ISystemCommandsFactory _systemCommandsFactory;
 
