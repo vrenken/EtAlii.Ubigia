@@ -22,6 +22,7 @@
     <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.22" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.1.26" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
