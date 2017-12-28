@@ -3,13 +3,13 @@
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;
 
-    public class StorageService : ServiceBase
+    public class StorageService : ServiceBase, IStorageService
     {
-        private readonly IStorage _storage;
+        public IStorage Storage { get; }
 
         public StorageService(IStorage storage)
         {
-            _storage = storage;
+            Storage = storage;
         }
 
         public override void Start()

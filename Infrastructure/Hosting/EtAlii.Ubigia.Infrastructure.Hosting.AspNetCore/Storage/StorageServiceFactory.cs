@@ -13,7 +13,7 @@
         {
             var container = new Container();
 
-            container.Register<IService, StorageService>();
+            container.Register<IStorageService, StorageService>();
 
             string baseFolder;
             baseFolder = configuration.GetValue<string>(nameof(baseFolder));
@@ -36,7 +36,7 @@
 
             container.Register<IStorage>(() => storage);
 
-            return container.GetInstance<IService>();
+            return container.GetInstance<IStorageService>();
         }
     }
 }
