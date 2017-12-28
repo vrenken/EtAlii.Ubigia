@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.csproj" />
   </ItemGroup>
 
