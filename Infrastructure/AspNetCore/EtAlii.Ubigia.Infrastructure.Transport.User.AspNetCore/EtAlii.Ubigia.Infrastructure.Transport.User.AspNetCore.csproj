@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.csproj" />
   </ItemGroup>
 
 </Project>

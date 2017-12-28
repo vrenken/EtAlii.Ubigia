@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore
 {
+    using EtAlii.xTechnology.Hosting;
+
     public class UserPortalFileHostingService : ServiceBase
     {
         public override void Start()

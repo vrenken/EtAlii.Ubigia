@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
 {
+    using EtAlii.xTechnology.Hosting;
+
     public class UserSignalRService : ServiceBase
     {
         public override void Start()
