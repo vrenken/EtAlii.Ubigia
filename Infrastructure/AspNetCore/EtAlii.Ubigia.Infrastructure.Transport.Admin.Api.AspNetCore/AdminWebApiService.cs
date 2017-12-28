@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore
 {
+    using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;

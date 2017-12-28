@@ -341,8 +341,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Katana", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Katana\EtAlii.Ubigia.Infrastructure.Hosting.Katana.csproj", "{1BC22DC5-EA01-4D1E-8AE2-27AF32A21D30}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.csproj", "{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{B5E48C89-0CD6-4D4F-AACB-961833428964}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Owin", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj", "{4F4721D1-115B-4C79-8FC8-055D018499C6}"
@@ -364,6 +362,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.csproj", "{D26D1667-7354-4501-B193-0568583E5F3A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.csproj", "{357D8BF4-4BE6-4DFA-8327-239521CE62D5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.csproj", "{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -4060,56 +4060,6 @@ Global
 		{1BC22DC5-EA01-4D1E-8AE2-27AF32A21D30}.Trial|x64.Build.0 = Debug|Any CPU
 		{1BC22DC5-EA01-4D1E-8AE2-27AF32A21D30}.Trial|x86.ActiveCfg = Debug|Any CPU
 		{1BC22DC5-EA01-4D1E-8AE2-27AF32A21D30}.Trial|x86.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|ARM.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|Compact.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|Compact.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|x64.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Debug|x86.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|Any CPU.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|ARM.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|ARM.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|Compact.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|Compact.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|x64.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|x64.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|x86.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.MailSystem Dev|x86.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|ARM.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|ARM.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|Compact.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|Compact.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|x64.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|x64.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|x86.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Release|x86.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|Any CPU.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|Any CPU.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|ARM.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|ARM.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|Compact.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|Compact.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|x64.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|x64.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|x86.ActiveCfg = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Retail|x86.Build.0 = Release|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|Any CPU.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|ARM.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|ARM.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|Compact.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|Compact.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|x64.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|x64.Build.0 = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|x86.ActiveCfg = Debug|Any CPU
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64}.Trial|x86.Build.0 = Debug|Any CPU
 		{B5E48C89-0CD6-4D4F-AACB-961833428964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5E48C89-0CD6-4D4F-AACB-961833428964}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5E48C89-0CD6-4D4F-AACB-961833428964}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -4560,6 +4510,56 @@ Global
 		{357D8BF4-4BE6-4DFA-8327-239521CE62D5}.Trial|x64.Build.0 = Debug|Any CPU
 		{357D8BF4-4BE6-4DFA-8327-239521CE62D5}.Trial|x86.ActiveCfg = Debug|Any CPU
 		{357D8BF4-4BE6-4DFA-8327-239521CE62D5}.Trial|x86.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|ARM.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|Compact.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|Compact.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|x64.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Debug|x86.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|Any CPU.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|ARM.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|ARM.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|Compact.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|Compact.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|x64.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|x64.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|x86.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.MailSystem Dev|x86.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|ARM.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|ARM.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|Compact.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|Compact.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|x64.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|x64.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|x86.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Release|x86.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|Any CPU.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|Any CPU.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|ARM.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|ARM.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|Compact.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|Compact.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|x64.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|x64.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|x86.ActiveCfg = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Retail|x86.Build.0 = Release|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|Any CPU.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|ARM.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|ARM.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|Compact.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|Compact.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|x64.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|x64.Build.0 = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|x86.ActiveCfg = Debug|Any CPU
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53}.Trial|x86.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -4686,7 +4686,6 @@ Global
 		{5B74C33B-C1E4-4C85-AA16-5F616BD4940C} = {3B380DEE-D6CE-4379-B020-49D121E9A8BA}
 		{F8D1DED0-FE1E-4D19-952A-5030D50DF42F} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{1BC22DC5-EA01-4D1E-8AE2-27AF32A21D30} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
-		{EC0A93AA-01E5-46C4-AA66-9F1BBB743F64} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{B5E48C89-0CD6-4D4F-AACB-961833428964} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{4F4721D1-115B-4C79-8FC8-055D018499C6} = {E715DBF2-CDBF-4521-908F-4806A66891E4}
 		{401B886E-4CFA-4682-8468-D63ECAF95010} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
@@ -4698,6 +4697,7 @@ Global
 		{23A51E28-1093-4604-B66A-74C6C11096D0} = {D3A1889D-59A4-4EDA-B98D-832AF77EF413}
 		{D26D1667-7354-4501-B193-0568583E5F3A} = {D3A1889D-59A4-4EDA-B98D-832AF77EF413}
 		{357D8BF4-4BE6-4DFA-8327-239521CE62D5} = {D3A1889D-59A4-4EDA-B98D-832AF77EF413}
+		{AC9CB5FF-8A37-4499-9AD2-07CC73B42E53} = {D3A1889D-59A4-4EDA-B98D-832AF77EF413}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
