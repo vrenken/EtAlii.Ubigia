@@ -1,20 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
-    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
-    using EtAlii.xTechnology.MicroContainer;
 
     public class AspNetCoreInfrastructure : InfrastructureBase
     {
-        private readonly Container _container;
-        private IComponentManager[] _componentManagers;
-        private readonly IApplicationManager _applicationManager;
+        //private readonly Container _container;
+        //private IComponentManager[] _componentManagers;
+        //private readonly IApplicationManager _applicationManager;
 
         public AspNetCoreInfrastructure(
-            IApplicationManager applicationManager,
-            Container container,
+            //IApplicationManager applicationManager,
+            //Container container,
             IInfrastructureConfiguration configuration,
             ISpaceRepository spaces,
             IIdentifierRepository identifiers,
@@ -28,8 +25,8 @@
             ILogicalContext logicalContext)
             : base(configuration, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext)
         {
-            _applicationManager = applicationManager;
-            _container = container;
+            //_applicationManager = applicationManager;
+            //_container = container;
         }
 
         public override void Start()
@@ -47,18 +44,18 @@
 
             base.Start();
 
-            _componentManagers = Configuration.ComponentManagerFactories
-                .Select(componentManagerFactory => componentManagerFactory(_container, Configuration.ComponentFactories))
-                .Cast<IComponentManager>()
-                .ToArray();
+            //_componentManagers = Configuration.ComponentManagerFactories
+            //    .Select(componentManagerFactory => componentManagerFactory(_container, Configuration.ComponentFactories))
+            //    .Cast<IComponentManager>()
+            //    .ToArray();
 
-            _applicationManager.Start(_componentManagers);
+            //_applicationManager.Start(_componentManagers);
         }
 
         public override void Stop()
         {
-            _applicationManager.Stop(_componentManagers);
-            _componentManagers = null;
+            //_applicationManager.Stop(_componentManagers);
+            //_componentManagers = null;
 
             base.Stop();
         }
