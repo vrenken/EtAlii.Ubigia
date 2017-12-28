@@ -22,7 +22,7 @@
         ],
         "Modules": [
           {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.AspNetCore.AdminModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore",
             "Name": "Admin",
             "IpAddress": "0.0.0.0",
             "Port": "5000",
@@ -31,10 +31,10 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore.AdminWebApiServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.AdminWebApiServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore"
                   },
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore.AdminSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore"
                   }
                 ]
               },
@@ -42,17 +42,17 @@
                 "Name": "Portal",
                 "Services": [
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore.AdminPortalControllerServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore"
                   },
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore.AdminPortalFileHostingServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.Admin.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore"
                   }
                 ]
               }
             ]
           },
           {
-            "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.AspNetCore.UserModuleFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore",
             "Name": "User",
             "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
             "Port": "5001",
@@ -61,10 +61,10 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore.UserWebApiServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore.UserWebApiServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore"
                   },
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore.UserSignalRServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore"
                   }
                 ]
               },
@@ -72,10 +72,10 @@
                 "Name": "Portal",
                 "Services": [
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore.UserPortalControllerServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore"
                   },
                   {
-                    "Factory": "EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore.UserPortalFileHostingServiceFactory, EtAlii.xTechnology.Hosting.Tests.Infrastructure.User.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore"
                   }
                 ]
               }
