@@ -4,7 +4,7 @@
     using Xunit;
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
+    using EtAlii.Ubigia.Infrastructure.Transport;
 
 
     public class Aes_Test
