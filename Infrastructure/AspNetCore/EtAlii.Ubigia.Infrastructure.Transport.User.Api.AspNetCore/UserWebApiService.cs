@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
 {
+    using System.Linq;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -19,7 +21,8 @@
                 {
                     services.AddMvc().ConfigureApplicationPartManager(manager =>
                     {
-                        manager.FeatureProviders.Clear();
+                        manager.FeatureProviders.Remove(manager.FeatureProviders.OfType<ControllerFeatureProvider>().Single());
+                        manager.FeatureProviders.Add(new TypedControllerFeatureProvider<WebApiController>());
                     });
                 },
                 appBuilder =>
