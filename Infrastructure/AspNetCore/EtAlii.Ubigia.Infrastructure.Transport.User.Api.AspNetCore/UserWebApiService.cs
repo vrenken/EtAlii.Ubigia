@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
 {
     using System.Linq;
+    using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
@@ -16,24 +16,20 @@
 
         protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
         {
+            var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+
             applicationBuilder.UseBranchWithServices(Port, "/user/api",
                 services =>
                 {
-                    services.AddMvc().ConfigureApplicationPartManager(manager =>
-                    {
-                        manager.FeatureProviders.Remove(manager.FeatureProviders.OfType<ControllerFeatureProvider>().Single());
-                        manager.FeatureProviders.Add(new TypedControllerFeatureProvider<WebApiController>());
-                    });
+                    services
+                        .AddSingleton<IRootRepository>(infrastructure.Roots)
+                        .AddSingleton<IEntryRepository>(infrastructure.Entries)
+                        .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
+                        .AddSingleton<IContentRepository>(infrastructure.Content)
+                        .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
+                        .AddMvcForTypedController<WebApiController>();
                 },
-                appBuilder =>
-                {
-                    appBuilder.Use(async (c, next) =>
-                    {
-                        await c.Response.WriteAsync("USER API!");
-                    });
-                    appBuilder.UseWelcomePage();//.UseDirectoryBrowser();
-                    appBuilder.UseMvc();
-                });
+                appBuilder => appBuilder.UseMvc());
         }
     }
 }
