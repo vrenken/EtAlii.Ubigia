@@ -10,16 +10,13 @@
     internal class AuthenticationTokenVerifier : IAuthenticationTokenVerifier
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IInfrastructureConfiguration _configuration;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public AuthenticationTokenVerifier(
             IAccountRepository accountRepository,
-            IInfrastructureConfiguration configuration, 
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
             _accountRepository = accountRepository;
-            _configuration = configuration;
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
