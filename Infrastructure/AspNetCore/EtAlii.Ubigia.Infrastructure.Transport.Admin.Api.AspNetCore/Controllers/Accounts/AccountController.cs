@@ -14,9 +14,6 @@
     {
         private readonly IAccountRepository _items;
 
-        //protected ILogger Logger { get { return _logger; } }
-        //private readonly ILogger _logger;
-
         public AccountController(IAccountRepository items)
         {
             _items = items;

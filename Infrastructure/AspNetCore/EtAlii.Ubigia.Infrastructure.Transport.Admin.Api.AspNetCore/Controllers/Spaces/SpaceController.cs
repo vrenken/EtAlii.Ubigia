@@ -14,9 +14,6 @@
     {
         private readonly ISpaceRepository _items;
 
-        //protected ILogger Logger { get { return _logger; } }
-        //private readonly ILogger _logger;
-
         public SpaceController(ISpaceRepository items)
         {
             _items = items;
