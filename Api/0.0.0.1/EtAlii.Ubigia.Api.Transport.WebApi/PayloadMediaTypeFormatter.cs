@@ -44,17 +44,17 @@
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (readStream == null)
             {
-                throw new ArgumentNullException("readStream");
+                throw new ArgumentNullException(nameof(readStream));
             }
 
             if (effectiveEncoding == null)
             {
-                throw new ArgumentNullException("effectiveEncoding");
+                throw new ArgumentNullException(nameof(effectiveEncoding));
             }
 
             // Special-case for simple types: Deserialize a Dictionary with a single element named Value.
@@ -71,9 +71,8 @@
             if (IsSimpleType(type) || type == typeof(byte[]))
             {
                 // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
-                var dictionaryType = OpenDictionaryType.MakeGenericType(new[] { typeof(string), type });
-                var dictionary = base.ReadFromStream(dictionaryType, readStream, effectiveEncoding, formatterLogger) as IDictionary;
-                if (dictionary == null)
+                var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
+                if (!(base.ReadFromStream(dictionaryType, readStream, effectiveEncoding, formatterLogger) is IDictionary dictionary))
                 {
                     // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
                     // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
@@ -119,17 +118,17 @@
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (readStream == null)
             {
-                throw new ArgumentNullException("readStream");
+                throw new ArgumentNullException(nameof(readStream));
             }
 
             if (effectiveEncoding == null)
             {
-                throw new ArgumentNullException("effectiveEncoding");
+                throw new ArgumentNullException(nameof(effectiveEncoding));
             }
 
             var reader = new BsonDataReader(new BinaryReader(readStream, effectiveEncoding));
@@ -155,17 +154,17 @@
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (writeStream == null)
             {
-                throw new ArgumentNullException("writeStream");
+                throw new ArgumentNullException(nameof(writeStream));
             }
 
             if (effectiveEncoding == null)
             {
-                throw new ArgumentNullException("effectiveEncoding");
+                throw new ArgumentNullException(nameof(effectiveEncoding));
             }
 
             if (value == null)
@@ -202,17 +201,17 @@
         {
             if (type == null)
             {
-                throw new ArgumentNullException("type");
+                throw new ArgumentNullException(nameof(type));
             }
 
             if (writeStream == null)
             {
-                throw new ArgumentNullException("writeStream");
+                throw new ArgumentNullException(nameof(writeStream));
             }
 
             if (effectiveEncoding == null)
             {
-                throw new ArgumentNullException("effectiveEncoding");
+                throw new ArgumentNullException(nameof(effectiveEncoding));
             }
 
             return new BsonDataWriter(new BinaryWriter(writeStream, effectiveEncoding));
@@ -226,9 +225,7 @@
             // Cannot happen.
             // Contract.Assert(type != null);
 
-            bool isSimpleType;
-
-            isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string);
+            var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string);
 
             return isSimpleType;
         }    }
