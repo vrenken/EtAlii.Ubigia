@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     //[RequiresAuthenticationToken]
-    [Route(RelativeUri.Data.Spaces)]
+    [Route(RelativeUri.Admin.Api.Spaces)]
     public class SpaceController : WebApiController
     {
         private readonly ISpaceRepository _items;
@@ -23,9 +23,8 @@
         }
 
         // Get all spaces for the specified accountid
-        [Route("{accountId}")]
-        //public IActionResult GetForAccount([FromUri]Guid accountId)
-        public IActionResult GetForAccount(Guid accountId)
+        [HttpGet]
+        public IActionResult GetForAccount([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
@@ -41,9 +40,8 @@
             return response;
         }
 
-        [Route("{accountId}/{spaceName}")]
-        //public IActionResult GetForAccount([FromUri]Guid accountId, [FromUri]string spaceName)
-        public IActionResult GetForAccount(Guid accountId, string spaceName)
+        [HttpGet]
+        public IActionResult GetForAccount([RequiredFromQuery]Guid accountId, [RequiredFromQuery]string spaceName)
         {
             IActionResult response;
             try
@@ -60,6 +58,7 @@
         }
 
         // Get all Items
+        [HttpGet]
         public IActionResult Get()
         {
             IActionResult response;
@@ -77,9 +76,8 @@
         }
 
         // Get Item by id
-        [Route("{spaceId}")]
-        //public IActionResult Get([FromUri]Guid spaceId)
-        public IActionResult Get(Guid spaceId)
+        [HttpGet]
+        public IActionResult Get([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
@@ -96,6 +94,7 @@
         }
 
         // Add item
+        [HttpPost]
         public IActionResult Post([FromBody]Space item, string spaceTemplate)
         {
             IActionResult response;
@@ -114,9 +113,8 @@
         }
 
         // Update Item by id
-        [Route("{spaceId}")]
-        //public IActionResult Put([FromUri]Guid spaceId, Space space)
-        public IActionResult Put(Guid spaceId, Space space)
+        [HttpPut]
+        public IActionResult Put([RequiredFromQuery]Guid spaceId, Space space)
         {
             IActionResult response;
             try
@@ -133,9 +131,8 @@
         }
 
         // Delete Item by id
-        [Route("{spaceId}")]
-        //public IActionResult Delete([FromUri]Guid spaceId)
-        public IActionResult Delete(Guid spaceId)
+        [HttpDelete]
+        public IActionResult Delete([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
