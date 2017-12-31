@@ -10,8 +10,8 @@
     public partial class EntryController : WebApiController
     {
         // Get a new prepared entry for the specified spaceId
-        [Route(RelativeUri.Data.Entry + "/{spaceId}"), HttpPost]
-        public IActionResult Post(Guid spaceId)
+        [HttpPost]
+        public IActionResult Post([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
@@ -24,7 +24,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Entry POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;

@@ -12,9 +12,8 @@
     [Authorize]
     public partial class EntryController : WebApiController
     {
-        [Route(RelativeUri.Data.Entry + "/{" + UriParameter.EntryId + "}"), HttpGet]
-        //public IActionResult GetSingle([FromUri(BinderType = typeof(IdentifierBinder), Name = UriParameter.EntryId)]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
-        public IActionResult GetSingle([ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
+        [HttpGet]
+        public IActionResult GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
         {
             IActionResult response;
             try
@@ -24,15 +23,13 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Entry GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
-        [Route(RelativeUri.Data.Entries + "/{" + UriParameter.EntryIds + "}"), HttpGet]
-        //public IActionResult GetMultiple([FromUri(BinderType = typeof(IdentifiersBinder), Name = UriParameter.EntryIds)]IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
-        public IActionResult GetMultiple([ModelBinder(typeof(IdentifiersBinder))]IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
+        [HttpGet]
+        public IActionResult GetMultiple([RequiredFromQuery, ModelBinder(typeof(IdentifiersBinder))]IEnumerable<Identifier> entryIds, EntryRelation entryRelations = EntryRelation.None)
         {
             IActionResult response;
             try
@@ -42,15 +39,14 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Entries GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
-        [Route(RelativeUri.Data.RelatedEntries + "/{entryId}"), HttpGet]
+        [HttpGet]
         //public IActionResult GetRelated([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
-        public IActionResult GetRelated([ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
+        public IActionResult GetRelated([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             IActionResult response;
             try
@@ -60,7 +56,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a ChildEntries GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;

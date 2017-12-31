@@ -2,7 +2,6 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
@@ -11,7 +10,7 @@
     public partial class EntryController : WebApiController
     {
         // Update Item by id
-        [Route(RelativeUri.Data.Entry), HttpPut]
+        [HttpPut]
         public IActionResult Put(Entry entry)
         {
             IActionResult response;
@@ -25,7 +24,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Entry PUT client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
