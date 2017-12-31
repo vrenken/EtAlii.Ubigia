@@ -1,46 +1,26 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
     using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.ModelBinding;
 
     //[RequiresAuthenticationToken]
-    [Route(RelativeUri.Data.Storages)]
+    [Route(RelativeUri.Admin.Api.Storages)]
     public class StorageController : WebApiController
     {
         private readonly IStorageRepository _items;
 
-        //protected ILogger Logger { get { return _logger; } }
-        //private readonly ILogger _logger;
-
-        //private readonly IDiagnosticsConfiguration _diagnostics;
-
         public StorageController(IStorageRepository items)
         {
             _items = items;
-
-            //_diagnostics = diagnostics;
-            //if (_diagnostics.EnableLogging)
-            //{
-            //    Logger.Info("Creating StorageController");
-            //}
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            //if (!disposing && _diagnostics.EnableLogging)
-            //{
-            //    Logger.Info("Destroying StorageController");
-            //}
-            base.Dispose(disposing);
-        }
-
-        //[Route(RelativeUri.Storages), HttpGet]
-        [Route("{local}")]
-        //public IActionResult GetLocal([FromUri]string local)
-        public IActionResult GetLocal(string local)
+        [HttpGet]
+        public IActionResult GetLocal([RequiredFromQuery]string local)
         {
             IActionResult response;
             try
@@ -56,9 +36,8 @@
             return response;
         }
 
-        [Route("{storageName}")]
-        //public IActionResult GetByName([FromUri]string storageName)
-        public IActionResult GetByName(string storageName)
+        [HttpGet]
+        public IActionResult GetByName([RequiredFromQuery]string storageName)
         {
             IActionResult response;
             try
@@ -76,7 +55,8 @@
 
 
         // Get all Items
-        public IActionResult Get()
+        [HttpGet]
+        public IActionResult GetAll()
         {
             IActionResult response;
             try
@@ -93,9 +73,8 @@
         }
 
         // Get Item by id
-        [Route("{storageId}")]
-        //public IActionResult Get([FromUri]Guid storageId)
-        public IActionResult Get(Guid storageId)
+        [HttpGet]
+        public IActionResult GetById([RequiredFromQuery]Guid storageId)
         {
             IActionResult response;
             try
@@ -112,6 +91,7 @@
         }
 
         // Add item
+        [HttpPost]
         public IActionResult Post([FromBody]Storage item)
         {
             IActionResult response;
@@ -129,9 +109,8 @@
         }
 
         // Update Item by id
-        [Route("{storageId}")]
-        //public IActionResult Put([FromUri]Guid storageId, Storage storage)
-        public IActionResult Put(Guid storageId, Storage storage)
+        [HttpPut]
+        public IActionResult Put([RequiredFromQuery]Guid storageId, Storage storage)
         {
             IActionResult response;
             try
@@ -148,9 +127,8 @@
         }
 
         // Delete Item by id
-        [Route("{storageId}")]
-        //public IActionResult Delete([FromUri]Guid storageId)
-        public IActionResult Delete(Guid storageId)
+        [HttpDelete]
+        public IActionResult Delete([RequiredFromQuery]Guid storageId)
         {
             IActionResult response;
             try
