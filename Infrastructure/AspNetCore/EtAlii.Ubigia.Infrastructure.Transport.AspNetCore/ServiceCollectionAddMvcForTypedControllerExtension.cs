@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
+    using System;
     using System.Linq;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Mvc;
@@ -11,8 +12,14 @@
         public static IMvcBuilder AddMvcForTypedController<TController>(this IServiceCollection services)
             where TController : ControllerBase
         {
+            return AddMvcForTypedController<TController>(services, options => { });
+        }
+
+        public static IMvcBuilder AddMvcForTypedController<TController>(this IServiceCollection services, Action<MvcOptions> configureMvcOptions)
+            where TController : ControllerBase
+        {
             return services
-                .AddMvc()
+                .AddMvc(configureMvcOptions)
                 .AddApplicationPart(typeof(TController).Assembly)
                 .ConfigureApplicationPartManager(manager =>
                 {
