@@ -9,6 +9,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
+    [Route(RelativeUri.User.Api.Content)]
     public class ContentController : WebApiController
     {
         private readonly IContentRepository _items;
@@ -18,9 +19,8 @@
             _items = items;
         }
 
-        [Route(RelativeUri.Data.Content + "/{entryId}"), HttpGet]
-        //public IActionResult Get([FromUri(BinderType = typeof(IdentifierBinder))] Identifier entryId)
-        public IActionResult Get([ModelBinder(typeof(IdentifierBinder))] Identifier entryId)
+        [HttpGet]
+        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId)
         {
             IActionResult response = null;
             try
@@ -30,16 +30,13 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a content GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
-        [Route(RelativeUri.Data.Content + "/{entryId}/{contentPartId}"), HttpGet]
-        //public IActionResult Get([FromUri(BinderType = typeof(IdentifierBinder))] Identifier entryId,
-        //    [FromUri] UInt64 contentPartId)
-        public IActionResult Get([ModelBinder(typeof(IdentifierBinder))] Identifier entryId, UInt64 contentPartId)
+        [HttpGet]
+        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery]UInt64 contentPartId)
         {
             IActionResult response = null;
             try
@@ -49,7 +46,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Content part GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -61,9 +57,8 @@
         /// <param name="entryId"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        [Route(RelativeUri.Data.Content + "/{entryId}"), HttpPost]
-        //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
-        public IActionResult Post([ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
+        [HttpPost]
+        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [FromBody] Content content)
         {
             IActionResult response = null;
             try
@@ -76,7 +71,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Content POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -89,9 +83,9 @@
         /// <param name="contentPartId"></param>
         /// <param name="contentPart"></param>
         /// <returns></returns>
-        [Route(RelativeUri.Data.Content + "/{entryId}"), HttpPost]
+        [HttpPost]
         //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))] Identifier entryId, UInt64 contentPartId, [FromBody] ContentPart contentPart)
-        public IActionResult Post([ModelBinder(typeof(IdentifierBinder))] Identifier entryId, UInt64 contentPartId, [FromBody] ContentPart contentPart)
+        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))] Identifier entryId, [RequiredFromQuery] UInt64 contentPartId, [FromBody] ContentPart contentPart)
         {
             IActionResult response = null;
             try
@@ -109,7 +103,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Content part POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
