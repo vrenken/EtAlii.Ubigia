@@ -9,6 +9,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
+    [Route(RelativeUri.User.Api.Properties)]
     public class PropertiesController : WebApiController
     {
         private readonly IPropertiesRepository _properties;
@@ -18,9 +19,8 @@
             _properties = properties;
         }
 
-        [Route(RelativeUri.Data.Properties + "/{entryId}"), HttpGet]
-        //public IActionResult Get([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId)
-        public IActionResult Get([ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
+        [HttpGet]
+        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
         {
             IActionResult response = null;
             try
@@ -30,7 +30,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a properties GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -42,9 +41,8 @@
         /// <param name="entryId"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        [Route(RelativeUri.Data.Properties + "/{entryId}"), HttpPost]
-        //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId, [FromBody]PropertyDictionary properties)
-        public IActionResult Post([ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]PropertyDictionary properties)
+        [HttpPost]
+        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]PropertyDictionary properties)
         {
             IActionResult response = null;
             try
@@ -57,7 +55,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Content POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
