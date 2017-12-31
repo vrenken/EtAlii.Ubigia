@@ -9,6 +9,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
+    [Route(RelativeUri.User.Api.ContentDefinition)]
     public class ContentDefinitionController : WebApiController
     {
         private readonly IContentDefinitionRepository _items;
@@ -18,9 +19,8 @@
             _items = items;
         }
 
-        [Route(RelativeUri.Data.ContentDefinition + "/{entryId}"), HttpGet]
-        //public IActionResult Get([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId)
-        public IActionResult Get([ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
+        [HttpGet]
+        public IActionResult Get([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId)
         {
             IActionResult response = null;
             try
@@ -30,16 +30,14 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a ContentDefinition GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
         // Post a new contentdefinition for the specified entry.
-        [Route(RelativeUri.Data.ContentDefinition + "/{entryId}"), HttpPost]
-        //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
-        public IActionResult Post([ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
+        [HttpPost]
+        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]ContentDefinition contentDefinition)
         {
             IActionResult response = null;
             try
@@ -52,16 +50,15 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a ContentDefinition POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
         // Post a new ContentDefinitionPart for the specified entry.
-        [Route(RelativeUri.Data.ContentDefinition + "/{entryId}"), HttpPost]
+        [HttpPost]
         //public IActionResult Post([FromUri(BinderType = typeof(IdentifierBinder))]Identifier entryId, UInt64 contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
-        public IActionResult Post([ModelBinder(typeof(IdentifierBinder))]Identifier entryId, UInt64 contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
+        public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [RequiredFromQuery] UInt64 contentDefinitionPartId, [FromBody]ContentDefinitionPart contentDefinitionPart)
         {
             IActionResult response = null;
             try
@@ -79,7 +76,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a ContentDefinition POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
