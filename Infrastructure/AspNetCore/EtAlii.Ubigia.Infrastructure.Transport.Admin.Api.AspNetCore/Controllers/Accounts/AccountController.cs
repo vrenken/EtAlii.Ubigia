@@ -9,7 +9,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     //[RequiresAuthenticationToken]
-    [Route(RelativeUri.Data.Accounts)]
+    [Route(RelativeUri.Admin.Api.Accounts)]
     public class AccountController : WebApiController
     {
         private readonly IAccountRepository _items;
@@ -22,9 +22,8 @@
             _items = items;
         }
 
-        [Route("{accountName}")]
-        //public IActionResult GetByName([FromUri]string accountName)
-        public IActionResult GetByName(string accountName)
+        [HttpGet]
+        public IActionResult GetByName([RequiredFromQuery]string accountName)
         {
             IActionResult response;
             try
@@ -42,6 +41,7 @@
 
 
         // Get all Items
+        [HttpGet]
         public IActionResult Get()
         {
             IActionResult response;
@@ -59,9 +59,8 @@
         }
 
         // Get Item by id
-        [Route("{accountId}")]
-        //public IActionResult Get([FromUri]Guid accountId)
-        public IActionResult Get(Guid accountId)
+        [HttpGet]
+        public IActionResult Get([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
@@ -78,6 +77,7 @@
         }
 
         // Add item
+        [HttpPost]
         public IActionResult Post([FromBody]Account item, string accountTemplate)
         {
             IActionResult response;
@@ -96,9 +96,8 @@
         }
 
         // Update Item by id
-        [Route("{accountId}")]
-        //public IActionResult Put([FromUri]Guid accountId, Account account)
-        public IActionResult Put(Guid accountId, Account account)
+        [HttpPut]
+        public IActionResult Put([RequiredFromQuery]Guid accountId, Account account)
         {
             IActionResult response;
             try
@@ -115,9 +114,8 @@
         }
 
         // Delete Item by id
-        [Route("{accountId}")]
-        //public IActionResult Delete([FromUri]Guid accountId)
-        public IActionResult Delete(Guid accountId)
+        [HttpDelete]
+        public IActionResult Delete([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
             try
