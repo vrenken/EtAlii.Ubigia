@@ -9,6 +9,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
+    [Route(RelativeUri.User.Api.Roots)]
     public class RootController : WebApiController
     {
         private readonly IRootRepository _items;
@@ -19,8 +20,8 @@
         }
 
         // Get all spaces for the specified accountid
-        [Route(RelativeUri.Data.Roots + "/{spaceId}"), HttpGet]
-        public IActionResult GetForSpace(Guid spaceId)
+        [HttpGet]
+        public IActionResult GetForSpace([RequiredFromQuery]Guid spaceId)
         {
             IActionResult response;
             try
@@ -30,7 +31,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Root GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -38,8 +38,8 @@
 
 
         // Get Item by id
-        [Route(RelativeUri.Data.Roots + "/{spaceId}/{rootId}"), HttpGet]
-        public IActionResult GetById(Guid spaceId, Guid rootId)
+        [HttpGet]
+        public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
         {
             IActionResult response;
             try
@@ -49,15 +49,14 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Root GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
         // Get Item by id
-        [Route(RelativeUri.Data.Roots + "/{spaceId}/{rootName}"), HttpGet]
-        public IActionResult GetByName(Guid spaceId, string rootName)
+        [HttpGet]
+        public IActionResult GetByName([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]string rootName)
         {
             IActionResult response;
             try
@@ -67,15 +66,14 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Root GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
         // Add item
-        [Route(RelativeUri.Data.Roots + "/{spaceId}"), HttpPost]
-        public IActionResult Post(Guid spaceId, [FromBody]Root root)
+        [HttpPost]
+        public IActionResult Post([RequiredFromQuery]Guid spaceId, [FromBody]Root root)
         {
             IActionResult response;
             try
@@ -91,15 +89,14 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Root POST client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
         // Update Item by id
-        [Route(RelativeUri.Data.Roots + "/{spaceId}"), HttpPut]
-        public IActionResult Put(Guid spaceId, Guid rootId, Root root)
+        [HttpPut]
+        public IActionResult Put([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, Root root)
         {
             IActionResult response;
             try
@@ -110,15 +107,14 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Root PUT client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
         }
 
         // Delete Item by id
-        [Route(RelativeUri.Data.Roots + "/{spaceId}/{rootId}"), HttpDelete]
-        public IActionResult Delete(Guid spaceId, Guid rootId)
+        [HttpDelete]
+        public IActionResult Delete([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
         {
             IActionResult response;
             try
@@ -129,7 +125,6 @@
             }
             catch (Exception ex)
             {
-                //_logger.Critical("Unable to serve a Root DELETE client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;
