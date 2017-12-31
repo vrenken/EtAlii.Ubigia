@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.FileProviders;
 
     public class AdminWebApiService : AspNetCoreServiceBase
     {
@@ -19,7 +20,7 @@
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
-            applicationBuilder.UseBranchWithServices(Port, "/admin/api",
+            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.BaseUrl,
                 services =>
                 {
                     services
@@ -27,13 +28,12 @@
                         .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
                         .AddSingleton<IStorageRepository>(infrastructure.Storages)
                         .AddMvcForTypedController<WebApiController>();
+                        //.AddRazorOptions(options =>
+                        //{
+                        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
+                        //});
                 },
                 appBuilder => appBuilder.UseMvc());
-        }
-
-        protected override void Initialize(IAspNetCoreHost host, ISystem system, IModule[] moduleChain, out Status status)
-        {
-            base.Initialize(host, system, moduleChain, out status);
         }
     }
 }
