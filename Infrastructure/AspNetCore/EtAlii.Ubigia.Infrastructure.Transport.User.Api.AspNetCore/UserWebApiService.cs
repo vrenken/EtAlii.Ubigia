@@ -18,7 +18,7 @@
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
-            applicationBuilder.UseBranchWithServices(Port, "/user/api",
+            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.User.Api.BaseUrl,
                 services =>
                 {
                     services
