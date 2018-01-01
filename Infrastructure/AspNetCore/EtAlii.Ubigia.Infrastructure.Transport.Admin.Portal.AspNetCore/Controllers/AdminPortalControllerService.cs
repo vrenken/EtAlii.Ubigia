@@ -20,7 +20,14 @@
         protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
         {
             applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
-                services => services.AddMvcForTypedController<AdminPortalController>(),
+                services =>
+                {
+                    services.AddMvcForTypedController<AdminPortalController>();
+                    //.AddRazorOptions(options =>
+                    //{
+                    //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
+                    //});
+                },
                 appBuilder => appBuilder.UseWelcomePage().UseMvc());
         }
     }
