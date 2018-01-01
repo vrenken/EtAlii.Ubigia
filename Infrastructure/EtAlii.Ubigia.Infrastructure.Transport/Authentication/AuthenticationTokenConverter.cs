@@ -16,7 +16,7 @@
 
         public byte[] ToBytes(AuthenticationToken token)
         {
-            var tokenAsBytes = new byte[] {};
+            byte[] tokenAsBytes;
             using (var stream = new MemoryStream())
             {
                 using (var writer = new BsonDataWriter(stream))
