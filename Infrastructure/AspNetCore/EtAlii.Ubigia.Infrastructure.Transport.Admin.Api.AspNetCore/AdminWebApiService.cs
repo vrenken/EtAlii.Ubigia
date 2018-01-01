@@ -7,7 +7,6 @@
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.FileProviders;
 
     public class AdminWebApiService : AspNetCoreServiceBase
     {
@@ -27,13 +26,15 @@
                         .AddSingleton<IAccountRepository>(infrastructure.Accounts)
                         .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
                         .AddSingleton<IStorageRepository>(infrastructure.Storages)
-                        .AddMvcForTypedController<WebApiController>();
-                        //.AddRazorOptions(options =>
-                        //{
-                        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
-                        //});
+                        .AddMvcForTypedController<WebApiController>(options =>
+                        {
+                            //options.InputFormatters.Add();
+                        });
                 },
-                appBuilder => appBuilder.UseMvc());
+                appBuilder =>
+                {
+                    appBuilder.UseMvc();
+                });
         }
     }
 }
