@@ -8,12 +8,12 @@
     {
         private readonly IStorageRepository _storageRepository;
 
-        private readonly ISignalRAuthenticationVerifier _authenticationVerifier;
-        private readonly ISignalRAuthenticationTokenVerifier _authenticationTokenVerifier;
+        private readonly ISimpleAuthenticationVerifier _authenticationVerifier;
+        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
         public AuthenticationHub(
-            ISignalRAuthenticationVerifier authenticationVerifier, 
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier, 
+            ISimpleAuthenticationVerifier authenticationVerifier,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier, 
             IStorageRepository storageRepository)
         {
             _authenticationVerifier = authenticationVerifier;

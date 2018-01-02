@@ -6,13 +6,15 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.SignalR;
 
-    public class AccountHub : Hub
+    public class AccountHub : HubBase
     {
         private readonly IAccountRepository _items;
 
-        public AccountHub(IAccountRepository items)
+        public AccountHub(
+            IAccountRepository items,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+            : base(authenticationTokenVerifier)
         {
             _items = items;
         }

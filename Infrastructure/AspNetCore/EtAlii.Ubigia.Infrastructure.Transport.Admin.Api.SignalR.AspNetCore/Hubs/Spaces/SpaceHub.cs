@@ -6,13 +6,15 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.SignalR;
 
-    public class SpaceHub : Hub
+    public class SpaceHub : HubBase
     {
         private readonly ISpaceRepository _items;
 
-        public SpaceHub(ISpaceRepository items)
+        public SpaceHub(
+            ISpaceRepository items,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+            : base(authenticationTokenVerifier)
         {
             _items = items;
         }

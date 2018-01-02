@@ -10,8 +10,8 @@
         private readonly IRootRepository _items;
 
         public RootHub(
-            IRootRepository items, 
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            IRootRepository items,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;
