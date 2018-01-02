@@ -9,7 +9,7 @@
 
         public EntryHub(
             IEntryRepository items,
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;

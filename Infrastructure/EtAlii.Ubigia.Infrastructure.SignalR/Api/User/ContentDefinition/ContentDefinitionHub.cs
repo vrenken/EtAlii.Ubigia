@@ -10,7 +10,7 @@
 
         public ContentDefinitionHub(
             IContentDefinitionRepository items,
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;

@@ -10,7 +10,7 @@
 
         public ContentHub(
             IContentRepository items,
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;

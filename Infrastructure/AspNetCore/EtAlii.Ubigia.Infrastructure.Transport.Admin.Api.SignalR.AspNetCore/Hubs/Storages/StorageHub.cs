@@ -4,13 +4,15 @@
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.SignalR;
 
-    public class StorageHub : Hub
+    public class StorageHub : HubBase
     {
         private readonly IStorageRepository _items;
 
-        public StorageHub(IStorageRepository items)
+        public StorageHub(
+            IStorageRepository items,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+            : base(authenticationTokenVerifier)
         {
             _items = items;
         }
