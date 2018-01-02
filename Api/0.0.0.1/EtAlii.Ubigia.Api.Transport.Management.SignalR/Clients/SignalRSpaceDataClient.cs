@@ -54,7 +54,7 @@
 
         public async Task<IEnumerable<Space>> GetAll(Guid accountId)
         {
-            return await _invoker.Invoke<IEnumerable<Space>>(_proxy, SignalRHub.Space, "GetForAccount", accountId);
+            return await _invoker.Invoke<IEnumerable<Space>>(_proxy, SignalRHub.Space, "GetAllForAccount", accountId);
         }
 
         public async Task Connect(IStorageConnection storageConnection)
