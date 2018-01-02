@@ -2,6 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
 
     public partial class EntryHub : HubBase
     {
@@ -9,7 +10,7 @@
 
         public EntryHub(
             IEntryRepository items,
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;

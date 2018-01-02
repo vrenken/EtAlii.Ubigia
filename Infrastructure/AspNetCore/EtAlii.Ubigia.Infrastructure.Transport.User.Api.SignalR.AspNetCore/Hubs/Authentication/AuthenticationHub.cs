@@ -3,6 +3,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.Extensions.Primitives;
 
@@ -10,12 +11,12 @@
     {
         private readonly IStorageRepository _storageRepository;
 
-        private readonly ISignalRAuthenticationVerifier _authenticationVerifier;
-        private readonly ISignalRAuthenticationTokenVerifier _authenticationTokenVerifier;
+        private readonly ISimpleAuthenticationVerifier _authenticationVerifier;
+        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
         public AuthenticationHub(
-            ISignalRAuthenticationVerifier authenticationVerifier, 
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier, 
+            ISimpleAuthenticationVerifier authenticationVerifier,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier, 
             IStorageRepository storageRepository)
         {
             _authenticationVerifier = authenticationVerifier;
