@@ -31,7 +31,7 @@
             return response;
         }
 
-        public ContentPart Get(Identifier entryId, UInt64 contentPartId)
+        public ContentPart GetPart(Identifier entryId, UInt64 contentPartId)
         {
             ContentPart response = null;
             try
@@ -76,7 +76,7 @@
         /// <param name="contentPartId"></param>
         /// <param name="contentPart"></param>
         /// <returns></returns>
-        public void Post(Identifier entryId, UInt64 contentPartId, ContentPart contentPart)
+        public void PostPart(Identifier entryId, UInt64 contentPartId, ContentPart contentPart)
         {
             try
             {

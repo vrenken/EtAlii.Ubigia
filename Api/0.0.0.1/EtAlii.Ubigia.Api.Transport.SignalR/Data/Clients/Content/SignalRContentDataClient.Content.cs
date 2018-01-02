@@ -14,7 +14,7 @@
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
-            await _invoker.Invoke(_contentProxy, SignalRHub.Content, "Post", identifier, contentPart.Id, contentPart);
+            await _invoker.Invoke(_contentProxy, SignalRHub.Content, "PostPart", identifier, contentPart.Id, contentPart);
 
             BlobPartHelper.SetStored(contentPart, true);
         }
@@ -26,7 +26,7 @@
 
         public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
-            return await _invoker.Invoke<ContentPart>(_contentProxy, SignalRHub.Content, "Get", identifier, contentPartId);
+            return await _invoker.Invoke<ContentPart>(_contentProxy, SignalRHub.Content, "GetPart", identifier, contentPartId);
         }
     }
 }

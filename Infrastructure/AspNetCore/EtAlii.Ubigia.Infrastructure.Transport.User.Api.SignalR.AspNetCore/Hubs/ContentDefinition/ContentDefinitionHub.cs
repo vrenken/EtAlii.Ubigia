@@ -3,7 +3,6 @@
     using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
 
     public class ContentDefinitionHub : HubBase
     {
@@ -49,7 +48,7 @@
         }
 
         // Post a new ContentDefinitionPart for the specified entry.
-        public void Post(Identifier entryId, UInt64 contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
+        public void PostPart(Identifier entryId, UInt64 contentDefinitionPartId, ContentDefinitionPart contentDefinitionPart)
         {
             try
             {
