@@ -4,13 +4,13 @@
     using Microsoft.Extensions.Configuration;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class AdminSignalRServiceFactory : ServiceFactoryBase
+    public class UserSignalRServiceFactory : ServiceFactoryBase
     {
         public override IService Create(IConfigurationSection configuration)
         {
             var container = new Container();
 
-            container.Register<IService, AdminSignalRService>();
+            container.Register<IService, UserSignalRService>();
 
             container.Register<IConfigurationSection>(() => configuration);
 
