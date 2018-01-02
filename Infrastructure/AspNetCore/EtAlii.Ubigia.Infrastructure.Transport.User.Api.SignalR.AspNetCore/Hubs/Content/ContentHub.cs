@@ -3,7 +3,6 @@
     using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
 
     public class ContentHub : HubBase
     {
