@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -8,9 +8,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class UserWebApiService : AspNetCoreServiceBase
+    public class UserRestService : AspNetCoreServiceBase
     {
-        public UserWebApiService(IConfigurationSection configuration) : base(configuration)
+        public UserRestService(IConfigurationSection configuration) : base(configuration)
         {
         }
 
@@ -27,7 +27,7 @@
                         .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
                         .AddSingleton<IContentRepository>(infrastructure.Content)
                         .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
-                        .AddMvcForTypedController<WebApiController>();
+                        .AddMvcForTypedController<RestController>();
                 },
                 appBuilder => appBuilder.UseMvc());
         }

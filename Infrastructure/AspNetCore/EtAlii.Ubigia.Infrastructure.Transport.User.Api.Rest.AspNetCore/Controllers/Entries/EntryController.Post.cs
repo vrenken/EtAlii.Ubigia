@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
@@ -7,7 +7,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    public partial class EntryController : WebApiController
+    public partial class EntryController : RestController
     {
         // Get a new prepared entry for the specified spaceId
         [HttpPost]

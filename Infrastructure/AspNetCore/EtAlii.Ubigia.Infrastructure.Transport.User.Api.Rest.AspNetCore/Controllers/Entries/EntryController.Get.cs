@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
     using System;
     using System.Collections.Generic;
@@ -10,7 +10,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    public partial class EntryController : WebApiController
+    public partial class EntryController : RestController
     {
         [HttpGet]
         public IActionResult GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)

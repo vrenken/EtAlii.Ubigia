@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 
 {
     using System.Linq;
@@ -7,7 +7,7 @@
     using Newtonsoft.Json;
 
     [Route("routes")]
-    public class RoutesController : WebApiController
+    public class RoutesController : RestController
     {
         private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
         private readonly JsonSerializerSettings _settings;
