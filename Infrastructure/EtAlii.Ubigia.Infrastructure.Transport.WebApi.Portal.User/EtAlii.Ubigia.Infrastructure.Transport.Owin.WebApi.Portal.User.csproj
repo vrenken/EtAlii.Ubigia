@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>net471</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -17,6 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
     <ProjectReference Include="..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj" />
     <ProjectReference Include="..\..\Providers\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj" />
@@ -24,9 +25,6 @@
 
   <ItemGroup>
     <EmbeddedResource Include="**\*" Exclude="*.cs;*.csproj" />
-    <Compile Remove="obj\**" />
-    <EmbeddedResource Remove="obj\**" />
-    <None Remove="obj\**" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
