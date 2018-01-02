@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class AdminSignalRService : ServiceBase
+    public class UserSignalRService : ServiceBase
     {
         public override void Start()
         {
@@ -14,7 +14,7 @@
 
         protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
         {
-            status = new Status(nameof(AdminSignalRService));
+            status = new Status(nameof(UserSignalRService));
         }
     }
 }
