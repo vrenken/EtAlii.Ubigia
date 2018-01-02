@@ -5,9 +5,9 @@
 
     public class HubBase : Hub
     {
-        private readonly ISignalRAuthenticationTokenVerifier _authenticationTokenVerifier;
+        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public HubBase(ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+        public HubBase(ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
         {
             _authenticationTokenVerifier = authenticationTokenVerifier;
         }

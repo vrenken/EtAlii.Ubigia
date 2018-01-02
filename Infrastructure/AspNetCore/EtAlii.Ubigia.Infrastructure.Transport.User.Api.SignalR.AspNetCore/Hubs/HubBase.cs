@@ -1,31 +1,34 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR;
+    using Microsoft.Extensions.Primitives;
 
     public class HubBase : Hub
     {
-        private readonly ISignalRAuthenticationTokenVerifier _authenticationTokenVerifier;
+        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public HubBase(ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+        public HubBase(ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
         {
             _authenticationTokenVerifier = authenticationTokenVerifier;
         }
 
-        public override Task OnConnected()
+        public override Task OnConnectedAsync()
         {
-            var authenticationToken = Context.Headers.Get("Authentication-Token");
+            Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+            var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(authenticationToken, null);
 
-            return base.OnConnected();
+            return base.OnConnectedAsync();
         }
 
-        public override Task OnReconnected()
-        {
-            var authenticationToken = Context.Headers.Get("Authentication-Token");
-            _authenticationTokenVerifier.Verify(authenticationToken, null);
+        //public override Task OnReconnectedAsync()
+        //{
+        //    var authenticationToken = Context.Headers.Get("Authentication-Token");
+        //    _authenticationTokenVerifier.Verify(authenticationToken, null);
 
-            return base.OnReconnected();
-        }
+        //    return base.OnReconnected();
+        //}
     }
 }
