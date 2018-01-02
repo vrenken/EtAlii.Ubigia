@@ -81,8 +81,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0.0.0.2", "0.0.0.2", "{8B0F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Test\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj", "{49228937-7ED7-4524-8BEA-98B33EAE49A1}"
 	ProjectSection(ProjectDependencies) = postProject
-		{7C020A57-0746-46E3-8F98-39C76FA37A3B} = {7C020A57-0746-46E3-8F98-39C76FA37A3B}
-		{66F50771-FBE2-42B7-B673-CBDB32498BEC} = {66F50771-FBE2-42B7-B673-CBDB32498BEC}
 		{238096ED-9BC0-4427-8C21-9C62E24BB1C7} = {238096ED-9BC0-4427-8C21-9C62E24BB1C7}
 	EndProjectSection
 EndProject
@@ -90,9 +88,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Tests\EtAlii.Ubigia.Infrastructure.Tests.csproj", "{238096ED-9BC0-4427-8C21-9C62E24BB1C7}"
 	ProjectSection(ProjectDependencies) = postProject
-		{AE581332-D0B8-4481-BA67-71D11BFB056E} = {AE581332-D0B8-4481-BA67-71D11BFB056E}
 		{7C020A57-0746-46E3-8F98-39C76FA37A3B} = {7C020A57-0746-46E3-8F98-39C76FA37A3B}
-		{B2479E9D-04DC-4A35-837A-E69C62EB4C8A} = {B2479E9D-04DC-4A35-837A-E69C62EB4C8A}
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser", "Client\Windows\Diagnostics\EtAlii.Ubigia.Diagnostics.StorageBrowser\EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser.csproj", "{BD1ACDEE-CAE1-490D-BACB-4B868EB529AF}"
@@ -344,6 +340,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{B5E48C89-0CD6-4D4F-AACB-961833428964}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Owin", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj", "{4F4721D1-115B-4C79-8FC8-055D018499C6}"
+	ProjectSection(ProjectDependencies) = postProject
+		{32A87373-0BE2-4061-9649-A739792CB0EE} = {32A87373-0BE2-4061-9649-A739792CB0EE}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Owin", "Owin", "{401B886E-4CFA-4682-8468-D63ECAF95010}"
 EndProject
