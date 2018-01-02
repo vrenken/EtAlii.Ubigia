@@ -8,7 +8,7 @@
 
     //[RequiresAuthenticationToken]
     [Route(RelativeUri.Admin.Api.Storages)]
-    public class StorageController : WebApiController
+    public class StorageController : RestController
     {
         private readonly IStorageRepository _items;
 

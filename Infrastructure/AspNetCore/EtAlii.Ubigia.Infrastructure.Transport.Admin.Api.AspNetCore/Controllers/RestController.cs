@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNetCore.Mvc;
 
-    public abstract class WebApiController : Controller
+    public abstract class RestController : Controller
     {
     }
 }

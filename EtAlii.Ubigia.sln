@@ -350,7 +350,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AspNetCore", "AspNetCore", "{D3A1889D-59A4-4EDA-B98D-832AF77EF413}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.csproj", "{5491A406-FA10-49F4-A075-D6F42822C74B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.csproj", "{5491A406-FA10-49F4-A075-D6F42822C74B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.csproj", "{FB2E0B7B-4D64-48CC-8925-333B425682B9}"
 EndProject

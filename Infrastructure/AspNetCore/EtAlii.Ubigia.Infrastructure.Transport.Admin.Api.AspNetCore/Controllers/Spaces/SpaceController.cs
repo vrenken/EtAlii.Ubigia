@@ -10,7 +10,7 @@
 
     //[RequiresAuthenticationToken]
     [Route(RelativeUri.Admin.Api.Spaces)]
-    public class SpaceController : WebApiController
+    public class SpaceController : RestController
     {
         private readonly ISpaceRepository _items;
 

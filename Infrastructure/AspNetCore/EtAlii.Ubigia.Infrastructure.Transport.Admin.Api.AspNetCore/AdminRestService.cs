@@ -8,9 +8,9 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class AdminWebApiService : AspNetCoreServiceBase
+    public class AdminRestService : AspNetCoreServiceBase
     {
-        public AdminWebApiService(IConfigurationSection configuration) 
+        public AdminRestService(IConfigurationSection configuration) 
             : base(configuration)
         {
         }
@@ -26,7 +26,7 @@
                         .AddSingleton<IAccountRepository>(infrastructure.Accounts)
                         .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
                         .AddSingleton<IStorageRepository>(infrastructure.Storages)
-                        .AddMvcForTypedController<WebApiController>(options =>
+                        .AddMvcForTypedController<RestController>(options =>
                         {
                             //options.InputFormatters.Add();
                         });

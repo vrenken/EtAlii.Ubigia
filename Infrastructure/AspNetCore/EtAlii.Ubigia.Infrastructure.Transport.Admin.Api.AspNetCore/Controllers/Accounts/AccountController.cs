@@ -10,7 +10,7 @@
 
     //[RequiresAuthenticationToken]
     [Route(RelativeUri.Admin.Api.Accounts)]
-    public class AccountController : WebApiController
+    public class AccountController : RestController
     {
         private readonly IAccountRepository _items;
 
