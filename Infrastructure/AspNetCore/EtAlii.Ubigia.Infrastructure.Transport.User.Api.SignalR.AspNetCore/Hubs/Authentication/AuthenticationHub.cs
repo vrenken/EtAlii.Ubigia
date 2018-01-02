@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore
 {
+    using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.SignalR;
+    using Microsoft.Extensions.Primitives;
 
     public class AuthenticationHub : Hub
     {
@@ -28,7 +30,9 @@
 
         public Storage GetLocalStorage()
         {
-            var authenticationToken = Context.Headers.Get("Authentication-Token");
+            Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+            var authenticationToken = stringValues.Single();
+            //var authenticationToken = Context.Headers.Get("Authentication-Token");
             _authenticationTokenVerifier.Verify(authenticationToken, null);
 
             return _storageRepository.GetLocal();

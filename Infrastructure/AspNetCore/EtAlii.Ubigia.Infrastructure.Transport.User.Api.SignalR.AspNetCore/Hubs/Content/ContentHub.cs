@@ -97,7 +97,8 @@
 
         private void SignalUpdated(Identifier identifier)
         {
-            Clients.All.updated(identifier);
+            Clients.All.InvokeAsync("updated", new object[] { identifier });
+            //Clients.All.updated(identifier);
         }
     }
 }
