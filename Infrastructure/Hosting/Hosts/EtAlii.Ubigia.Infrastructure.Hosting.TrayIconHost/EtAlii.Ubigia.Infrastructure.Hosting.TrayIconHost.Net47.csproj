@@ -15,6 +15,15 @@
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <OutputType>WinExe</OutputType>
+    <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.Net47</NameOfOriginalMSBuildProject>
+  </PropertyGroup>
+
+  <!-- near the top -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
+
+  <!-- anywhere in the middle -->
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
+    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
 
   <ItemGroup>
@@ -107,5 +116,8 @@
       <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
+
+  <!-- near the bottom -->
+  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 
 </Project>
