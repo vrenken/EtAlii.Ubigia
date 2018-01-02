@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
     using System;
     using EtAlii.Ubigia.Api;
@@ -10,7 +10,7 @@
     //[RequiresAuthenticationToken]
     [Authorize]
     [Route(RelativeUri.User.Api.Content)]
-    public class ContentController : WebApiController
+    public class ContentController : RestController
     {
         private readonly IContentRepository _items;
 

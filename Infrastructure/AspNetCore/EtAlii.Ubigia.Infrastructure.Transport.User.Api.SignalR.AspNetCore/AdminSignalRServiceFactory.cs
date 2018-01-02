@@ -1,16 +1,16 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore
 {
     using EtAlii.xTechnology.Hosting;
-    using EtAlii.xTechnology.MicroContainer;
     using Microsoft.Extensions.Configuration;
+    using EtAlii.xTechnology.MicroContainer;
 
-    public class UserSignalRServiceFactory : ServiceFactoryBase
+    public class AdminSignalRServiceFactory : ServiceFactoryBase
     {
         public override IService Create(IConfigurationSection configuration)
         {
             var container = new Container();
 
-            container.Register<IService, UserSignalRService>();
+            container.Register<IService, AdminSignalRService>();
 
             container.Register<IConfigurationSection>(() => configuration);
 

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
@@ -8,7 +8,7 @@
     //[RequiresAuthenticationToken]
     [Authorize]
     [Route(RelativeUri.User.Api.Entry)]
-    public partial class EntryController : WebApiController
+    public partial class EntryController : RestController
     {
         private readonly IEntryRepository _items;
 
