@@ -1,0 +1,16 @@
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
+{
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Filters;
+
+    internal class HttpsAttribute : ActionFilterAttribute
+    {
+        public override void OnActionExecuting(ActionExecutingContext actionContext)
+        {
+            if (!actionContext.HttpContext.Request.IsHttps)
+            {
+                actionContext.Result = new BadRequestResult();
+            }
+        }
+    }
+}

@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
         {
             var scaffoldings = new IScaffolding[]
             {
-                new AspNetCoreApplicationScaffolding()//_applicationManager), 
+                //new AspNetCoreApplicationScaffolding()//_applicationManager), 
             };
 
             foreach (var scaffolding in scaffoldings)
