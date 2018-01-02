@@ -2,17 +2,15 @@
 {
     using System;
     using System.Linq;
-    using System.Net;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.Http;
-    using Microsoft.AspNetCore.Mvc;
 
-    internal class AuthenticationTokenVerifier : IAuthenticationTokenVerifier
+    public class SimpleAuthenticationTokenVerifier : ISimpleAuthenticationTokenVerifier
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-        public AuthenticationTokenVerifier(
+        public SimpleAuthenticationTokenVerifier(
             IAccountRepository accountRepository,
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
@@ -20,10 +18,9 @@
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public IActionResult Verify(HttpContext context, Controller controller, string requiredRole)
+        public void Verify(string authenticationTokenAsString, string requiredRole)
         {
-            IActionResult result = controller.Forbid();
-            var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(context);
+            var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
             if (authenticationToken != null)
             {
                 try
@@ -34,28 +31,26 @@
                         // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
                         if (requiredRole != null)
                         {
-                            if (account.Roles.Contains(requiredRole))
+                            if (!account.Roles.Contains(requiredRole))
                             {
-                                result = controller.Ok();
+                                throw new UnauthorizedInfrastructureOperationException("Unauthorized account: Account does not contain the required role");
                             }
                         }
                         else
                         {
-                            result = controller.Ok();
+                            // No role is required, just an authenticated user.
                         }
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    result = controller.Forbid("Unauthorized account");
+                    throw new UnauthorizedInfrastructureOperationException("Unauthorized account", e);
                 }
             }
             else
             {
-                result = controller.BadRequest("Missing Authentication-Token");
+                throw new UnauthorizedInfrastructureOperationException("Missing Authentication-Token");
             }
-
-            return result;
         }
     }
 }

@@ -6,7 +6,7 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Primitives;
 
-    internal class DefaultAuthenticationIdentityProvider : IAuthenticationIdentityProvider
+    internal class DefaultHttpContextAuthenticationIdentityProvider : IHttpContextAuthenticationIdentityProvider
     {
         /// <summary>
         /// Parses the Authorization header and creates account credentials
