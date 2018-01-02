@@ -16,7 +16,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.AspNetCore" Version="1.0.2.29" />
-    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.csproj" />

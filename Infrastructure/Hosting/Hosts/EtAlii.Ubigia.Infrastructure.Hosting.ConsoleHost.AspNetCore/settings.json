@@ -17,21 +17,23 @@
             "Address": "http://+:64000"
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore"
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+            "IpAddress": "0.0.0.0",
+            "Port": "64002"
           }
         ],
         "Modules": [
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore",
             "Name": "Admin",
-            "IpAddress": "0.0.0.0",
-            "Port": "5000",
+            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
+            "Port": "64001",
             "Modules": [
               {
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.AdminWebApiServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore"
                   },
                   {
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore"
@@ -54,8 +56,8 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore",
             "Name": "User",
-            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
-            "Port": "5001",
+            "IpAddress": "0.0.0.0",
+            "Port": "64000",
             "Modules": [
               {
                 "Name": "Api",
