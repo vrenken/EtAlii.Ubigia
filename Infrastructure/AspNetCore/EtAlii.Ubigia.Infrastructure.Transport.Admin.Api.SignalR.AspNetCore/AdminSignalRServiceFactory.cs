@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore
 {
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
