@@ -23,11 +23,19 @@
 
             public static class Api
             {
-                public const string BaseUrl = "/admin/api";
+                public static class Rest
+                {
+                    public const string BaseUrl = "/admin/api/rest";
 
-                public const string Accounts = "admin/api/account";
-                public const string Storages = "admin/api/storage";
-                public const string Spaces = "admin/api/space";
+                    public const string Accounts = "admin/api/rest/account";
+                    public const string Storages = "admin/api/rest/storage";
+                    public const string Spaces = "admin/api/rest/space";
+                }
+
+                public static class SignalR
+                {
+                    public const string BaseUrl = "/admin/api/stream";
+                }
             }
         }
 
@@ -43,16 +51,25 @@
 
             public static class Api
             {
-                public const string BaseUrl = "/user/api";
+                public static class Rest
+                {
+                    public const string BaseUrl = "/user/api/rest";
 
-                public const string Entry = "user/api/entry";
-                public const string RelatedEntries = "user/api/relatedentries";
-                public const string Entries = "user/api/entries";
+                    public const string Entry = "user/api/rest/entry";
+                    public const string RelatedEntries = "user/api/rest/relatedentries";
+                    public const string Entries = "user/api/rest/entries";
 
-                public const string Roots = "user/api/root";
-                public const string Content = "user/api/content";
-                public const string Properties = "user/api/properties";
-                public const string ContentDefinition = "user/api/contentdefinition";
+                    public const string Roots = "user/api/rest/root";
+                    public const string Content = "user/api/rest/content";
+                    public const string Properties = "user/api/rest/properties";
+                    public const string ContentDefinition = "user/api/rest/contentdefinition";
+                }
+
+                public static class SignalR
+                {
+                    public const string BaseUrl = "/user/api/stream";
+                }
+
             }
         }
 
