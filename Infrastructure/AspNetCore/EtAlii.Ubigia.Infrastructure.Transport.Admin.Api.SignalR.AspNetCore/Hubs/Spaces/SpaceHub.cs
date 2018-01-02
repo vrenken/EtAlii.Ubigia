@@ -21,7 +21,7 @@
 
 
         // Get all spaces for the specified accountid
-        public IEnumerable<Space> GetForAccount(Guid accountId)
+        public IEnumerable<Space> GetAllForAccount(Guid accountId)
         {
             IEnumerable<Space> response;
             try
