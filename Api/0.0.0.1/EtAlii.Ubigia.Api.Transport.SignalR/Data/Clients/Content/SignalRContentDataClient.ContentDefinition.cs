@@ -13,7 +13,7 @@
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await _invoker.Invoke(_contentDefinitionProxy, SignalRHub.ContentDefinition, "Post", identifier, contentDefinitionPart.Id, contentDefinitionPart);
+            await _invoker.Invoke(_contentDefinitionProxy, SignalRHub.ContentDefinition, "PostPart", identifier, contentDefinitionPart.Id, contentDefinitionPart);
 
             MarkAsStored(contentDefinitionPart);
         }
