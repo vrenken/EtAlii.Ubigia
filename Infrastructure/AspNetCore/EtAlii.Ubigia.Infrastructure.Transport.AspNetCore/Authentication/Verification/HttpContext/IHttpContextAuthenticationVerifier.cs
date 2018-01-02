@@ -4,8 +4,8 @@
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
 
-    public interface IAuthenticationTokenVerifier
+    public interface IHttpContextAuthenticationVerifier
     {
-        IActionResult Verify(HttpContext actionContext, Controller controller, string requiredRole);
+        IActionResult Verify(HttpContext context, Controller controller);
     }
 }

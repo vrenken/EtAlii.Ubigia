@@ -1,30 +1,26 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
-    using System.Net;
-    using System.Net.Http;
     using System.Security.Principal;
     using System.Threading;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.ApplicationInsights.AspNetCore.Extensions;
-    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;
 
-    internal class AuthenticationVerifier : IAuthenticationVerifier
+    internal class HttpContextAuthenticationVerifier : IHttpContextAuthenticationVerifier
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IInfrastructureConfiguration _configuration;
-        private readonly IAuthenticationIdentityProvider _authenticationIdentityProvider;
+        private readonly IHttpContextAuthenticationIdentityProvider _authenticationIdentityProvider;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-        public AuthenticationVerifier(
+        public HttpContextAuthenticationVerifier(
             IAccountRepository accountRepository,
             IInfrastructureConfiguration configuration,
-            IAuthenticationIdentityProvider authenticationIdentityProvider,
+            IHttpContextAuthenticationIdentityProvider authenticationIdentityProvider,
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
             _accountRepository = accountRepository;
