@@ -19,18 +19,14 @@
 
         private void SignalPrepared(Identifier identifier)
         {
-            Clients.All.prepared(identifier);
-
-            //var hubContext = GlobalHost.ConnectionManager.GetHubContext<EntryNotificationHub>();
-            //hubContext.Clients.All.prepared(identifier);
-
-            //Hub.Clients.Group(identifier.Space.ToString()).Prepared(identifier);
+            Clients.All.InvokeAsync("prepared", new object[] { identifier });
+            //Clients.All.prepared(identifier);
         }
 
         private void SignalStored(Identifier identifier)
         {
-            Clients.All.stored(identifier);
-            //Hub.Clients.Group(identifier.Space.ToString()).Stored(identifier);
+            Clients.All.InvokeAsync("stored", new object[] { identifier });
+            //Clients.All.stored(identifier);
         }
 
     }

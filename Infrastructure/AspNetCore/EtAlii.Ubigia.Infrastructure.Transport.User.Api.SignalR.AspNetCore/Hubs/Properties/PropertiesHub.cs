@@ -44,7 +44,8 @@
                 _items.Store(entryId, properties);
 
                 // Send the updated event.
-                Clients.All.stored(entryId);
+                Clients.All.InvokeAsync("stored", new object[] { entryId });
+                //Clients.All.stored(entryId);
             }
             catch (Exception e)
             {

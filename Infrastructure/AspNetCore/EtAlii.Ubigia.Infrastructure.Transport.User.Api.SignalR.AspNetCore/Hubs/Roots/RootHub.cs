@@ -27,7 +27,6 @@
             }
             catch (Exception e)
             {
-                //_logger.Critical("Unable to serve a Root GET client request", ex);
                 throw new InvalidOperationException("Unable to serve a Root GET client request", e);
             }
             return response;
@@ -44,7 +43,6 @@
             }
             catch (Exception e)
             {
-                //_logger.Critical("Unable to serve a Root GET client request", ex);
                 throw new InvalidOperationException("Unable to serve a Root GET client request", e);
             }
             return response;
@@ -60,7 +58,6 @@
             }
             catch (Exception e)
             {
-                //_logger.Critical("Unable to serve a Root GET client request", ex);
                 throw new InvalidOperationException("Unable to serve a Root GET client request", e);
             }
             return response;
@@ -84,7 +81,6 @@
             }
             catch (Exception e)
             {
-                //_logger.Critical("Unable to serve a Root POST client request", ex);
                 throw new InvalidOperationException("Unable to serve a Root POST client request", e);
             }
             return response;
@@ -103,7 +99,6 @@
             }
             catch (Exception e)
             {
-                //_logger.Critical("Unable to serve a Root PUT client request", ex);
                 throw new InvalidOperationException("Unable to serve a Root PUT client request", e);
             }
             return response;
@@ -121,7 +116,6 @@
             }
             catch (Exception e)
             {
-                //_logger.Critical("Unable to serve a Root DELETE client request", ex);
                 throw new InvalidOperationException("Unable to serve a Root DELETE client request", e);
             }
         }
@@ -130,20 +124,20 @@
         
         private void SignalAdded(Guid spaceId, Guid rootId)
         {
-            Clients.All.added(rootId);
-            //Hub.Clients.Group(spaceId.ToString()).added(rootId);
+            Clients.All.InvokeAsync("added", new object[] { rootId });
+            //Clients.All.added(rootId);
         }
 
         private void SignalChanged(Guid spaceId, Guid rootId)
         {
-            Clients.All.changed(rootId);
-            //Hub.Clients.Group(spaceId.ToString()).changed(rootId);
+            Clients.All.InvokeAsync("changed", new object[]{ rootId });
+            //Clients.All.changed(rootId);
         }
 
         private void SignalRemoved(Guid spaceId, Guid rootId)
         {
-            Clients.All.removed(rootId);
-            //Hub.Clients.Group(spaceId.ToString()).removed(rootId);
+            Clients.All.InvokeAsync("removed", new object[] { rootId });
+            //Clients.All.removed(rootId);
         }
     }
 }
