@@ -1,14 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
     using System.Linq;
-    using System.Text;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
-    using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.IdentityModel.Tokens;
 
     public class AuthenticationService : AspNetCoreServiceBase, IAuthenticationService
     {
@@ -29,21 +26,31 @@
                 {
                     services
                         .AddSingleton<IConfigurationSection>(_configuration)
-                        .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-                        .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                        .AddJwtBearer(options =>
-                        {
-                            options.TokenValidationParameters = new TokenValidationParameters
-                            {
-                                ValidateIssuer = true,
-                                ValidateAudience = true,
-                                ValidateLifetime = true,
-                                ValidateIssuerSigningKey = true,
-                                ValidIssuer = _configuration["Jwt:Issuer"],
-                                ValidAudience = _configuration["Jwt:Issuer"],
-                                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]))
-                            };
-                        });
+                        .AddSingleton<IAuthenticationVerifier, AuthenticationVerifier>()
+                        .AddSingleton<IAuthenticationTokenVerifier, AuthenticationTokenVerifier>()
+                        .AddSingleton<IAuthenticationIdentityProvider, DefaultAuthenticationIdentityProvider>()
+                        .AddSingleton<IAccountRepository>(infrastructure.Accounts);
+                        //.AddAuthentication(options =>
+                        //{
+                        //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                        //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                        //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        //})
+                        //.AddJwtBearer(options =>
+                        //{
+                        //    options.TokenValidationParameters = new TokenValidationParameters
+                        //    {
+                        //        ValidateIssuer = true,
+                        //        ValidateAudience = true,
+                        //        ValidateIssuerSigningKey = true,
+                        //        ValidIssuer = _configuration["Jwt:Issuer"],
+                        //        ValidAudience = _configuration["Jwt:Issuer"],
+                        //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"])),
+                        //        ValidateLifetime = true, //validate the expiration and not before values in the token
+                        //        ClockSkew = TimeSpan.FromMinutes(1) //5 minute tolerance for the expiration date
+
+                        //    };
+                        //});
                     services
                         .AddMvcForTypedController<AuthenticateController>();
                 },
