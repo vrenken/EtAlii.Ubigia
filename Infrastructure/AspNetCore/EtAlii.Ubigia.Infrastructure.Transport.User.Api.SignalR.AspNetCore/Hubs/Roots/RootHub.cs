@@ -4,14 +4,15 @@
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
 
     public class RootHub : HubBase
     {
         private readonly IRootRepository _items;
 
         public RootHub(
-            IRootRepository items, 
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            IRootRepository items,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;

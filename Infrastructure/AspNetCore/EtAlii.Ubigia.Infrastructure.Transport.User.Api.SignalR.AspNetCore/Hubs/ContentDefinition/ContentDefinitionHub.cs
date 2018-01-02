@@ -3,6 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
 
     public class ContentDefinitionHub : HubBase
     {
@@ -10,7 +11,7 @@
 
         public ContentDefinitionHub(
             IContentDefinitionRepository items,
-            ISignalRAuthenticationTokenVerifier authenticationTokenVerifier)
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
             : base(authenticationTokenVerifier)
         {
             _items = items;
