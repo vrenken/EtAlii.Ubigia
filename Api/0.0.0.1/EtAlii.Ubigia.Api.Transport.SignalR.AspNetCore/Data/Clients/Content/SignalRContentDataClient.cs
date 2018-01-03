@@ -17,11 +17,14 @@
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
-
+            
+            var factory = new HubConnectionFactory();
             await Task.Run(() =>
             {
-                _contentProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Content);
-                _contentDefinitionProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.ContentDefinition);
+                _contentConnection = factory.Create(spaceConnection.Storage.Address + "/" + SignalRHub.Content, spaceConnection.Transport.HttpClientHandler);
+                _contentDefinitionConnection = factory.Create(spaceConnection.Storage.Address + "/" + SignalRHub.ContentDefinition, spaceConnection.Transport.HttpClientHandler);
+                //_contentProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Content);
+                //_contentDefinitionProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.ContentDefinition);
             });
         }
 
@@ -29,11 +32,10 @@
         {
             await base.Disconnect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                _contentDefinitionProxy = null;
-                _contentProxy = null;
-            });
+            await _contentDefinitionConnection.DisposeAsync();
+            _contentDefinitionConnection = null;
+            await _contentConnection.DisposeAsync();
+            _contentConnection = null;
         }
     }
 }

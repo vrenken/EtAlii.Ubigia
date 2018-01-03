@@ -3,11 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Microsoft.AspNet.SignalR.Client;
+    using Microsoft.AspNetCore.SignalR.Client;
 
     internal class SignalRRootDataClient : SignalRClientBase, IRootDataClient<ISignalRSpaceTransport>
     {
-        private IHubProxy _proxy;
+        private HubConnection _connection;
         private readonly IHubProxyMethodInvoker _invoker;
 
         public SignalRRootDataClient(IHubProxyMethodInvoker invoker)
@@ -21,12 +21,12 @@
             {
                 Name = name,
             };
-            return await _invoker.Invoke<Root>(_proxy, SignalRHub.Root, "Post", Connection.Space.Id, root);
+            return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "Post", Connection.Space.Id, root);
         }
 
         public async Task Remove(Guid rootId)
         {
-            await _invoker.Invoke(_proxy, SignalRHub.Root, "Delete", Connection.Space.Id, rootId);
+            await _invoker.Invoke(_connection, SignalRHub.Root, "Delete", Connection.Space.Id, rootId);
         }
 
         public async Task<Root> Change(Guid rootId, string rootName)
@@ -37,22 +37,22 @@
                 Name = rootName,
             };
 
-            return await _invoker.Invoke<Root>(_proxy, SignalRHub.Root, "Put", Connection.Space.Id, rootId, root);
+            return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "Put", Connection.Space.Id, rootId, root);
         }
 
         public async Task<Root> Get(string rootName)
         {
-            return await _invoker.Invoke<Root>(_proxy, SignalRHub.Root, "GetByName", Connection.Space.Id, rootName);
+            return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "GetByName", Connection.Space.Id, rootName);
         }
 
         public async Task<Root> Get(Guid rootId)
         {
-            return await _invoker.Invoke<Root>(_proxy, SignalRHub.Root, "GetById", Connection.Space.Id, rootId);
+            return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "GetById", Connection.Space.Id, rootId);
         }
 
         public async Task<IEnumerable<Root>> GetAll()
         {
-            return await _invoker.Invoke<IEnumerable<Root>>(_proxy, SignalRHub.Root, "GetForSpace", Connection.Space.Id);
+            return await _invoker.Invoke<IEnumerable<Root>>(_connection, SignalRHub.Root, "GetForSpace", Connection.Space.Id);
         }
 
         public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
@@ -61,7 +61,8 @@
 
             await Task.Run(() =>
             {
-                _proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Root);
+                _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + "/" + SignalRHub.Root, spaceConnection.Transport.HttpClientHandler);
+                //_proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Root);
             });
         }
 
@@ -69,10 +70,13 @@
         {
             await base.Disconnect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                _proxy = null;
-            });
+            await _connection.DisposeAsync();
+            _connection = null;
+
+            //await Task.Run(() =>
+            //{
+            //    _proxy = null;
+            //});
         }
     }
 }

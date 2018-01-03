@@ -2,8 +2,6 @@
 {
     using System.Threading.Tasks;
     using System.Net;
-    using System.Net.Http;
-    using Microsoft.AspNetCore.SignalR.Client.Http;
 
     public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
     {
@@ -16,7 +14,7 @@
 
             var signalRConnection = (ISignalRSpaceConnection) connection;
             var storage = await GetConnectedStorage(
-                signalRConnection.Transport.HttpClient,
+                signalRConnection.Transport.HttpClientHandler,
                 signalRConnection.Configuration.Address,
                 signalRConnection.Configuration.AccountName,
                 signalRConnection.Configuration.Password,
@@ -44,7 +42,7 @@
             var signalRConnection = (ISignalRStorageConnection)connection;
 
             var storage = await GetConnectedStorage(
-                signalRConnection.Transport.HttpClient,
+                signalRConnection.Transport.HttpClientHandler,
                 signalRConnection.Configuration.Address,
                 signalRConnection.Configuration.AccountName,
                 signalRConnection.Configuration.Password,
@@ -62,16 +60,14 @@
             return storage;
         }
 
-        private async Task<Storage> GetConnectedStorage(HttpClientHandler httpClientHandler, string address, string accountName, string password, string authenticationToken)
+        private async Task<Storage> GetConnectedStorage(ClientHttpMessageHandler httpClientHandler, string address, string accountName, string password, string authenticationToken)
         {
-            var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData, httpClientHandler);
-            httpClientHandler
-
-            connection.Headers["Authentication-Token"] = authenticationToken;
+            var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData + "/" + SignalRHub.Authentication, httpClientHandler);
+            httpClientHandler.AuthenticationToken = authenticationToken;
             httpClientHandler.Credentials = new NetworkCredential(accountName, password);
-            var proxy = connection.CreateHubProxy(SignalRHub.Authentication);
+            //var proxy = connection.CreateHubProxy(SignalRHub.Authentication);
             await connection.StartAsync();
-            var storage = await _invoker.Invoke<Storage>(proxy, SignalRHub.Authentication, "GetLocalStorage");
+            var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();
             return storage;
         }

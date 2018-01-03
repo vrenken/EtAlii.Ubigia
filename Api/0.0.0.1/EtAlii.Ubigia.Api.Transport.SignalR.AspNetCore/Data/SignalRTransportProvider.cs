@@ -1,32 +1,32 @@
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using Microsoft.AspNetCore.SignalR.Internal.Client.Http;
+    using System.Net.Http;
 
     public class SignalRTransportProvider : ITransportProvider
     {
-        public IHttpClient HttpClient { get; }
+        public ClientHttpMessageHandler HttpClientHandler { get; }
 
         private string _authenticationToken;
 
-        private SignalRTransportProvider(IHttpClient httpClient) 
+        private SignalRTransportProvider(ClientHttpMessageHandler httpClientHandler) 
         {
-            HttpClient = httpClient;
+            HttpClientHandler = httpClientHandler;
         }
 
         public static SignalRTransportProvider Create()
         {
-            return new SignalRTransportProvider(new DefaultHttpClient());
+            return new SignalRTransportProvider(new ClientHttpMessageHandler());
         }
 
-        public static SignalRTransportProvider Create(IHttpClient httpClient)
+        public static SignalRTransportProvider Create(ClientHttpMessageHandler httpClientHandler)
         {
-            return new SignalRTransportProvider(httpClient);
+            return new SignalRTransportProvider(httpClientHandler);
         }
 
         public ISpaceTransport GetSpaceTransport()
         {
             return new SignalRSpaceTransport(
-                HttpClient, 
+                HttpClientHandler, 
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }

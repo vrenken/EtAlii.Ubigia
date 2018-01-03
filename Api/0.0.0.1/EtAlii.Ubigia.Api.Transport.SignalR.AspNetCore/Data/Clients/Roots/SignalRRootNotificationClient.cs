@@ -7,9 +7,9 @@
 
     internal class SignalRRootNotificationClient : SignalRClientBase, IRootNotificationClient<ISignalRSpaceTransport>
     {
-        private IHubProxy _proxy;
+        private HubConnection _connection;
         private readonly string _name;
-        private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+        //private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
         public event Action<Guid> Added = delegate { };
         public event Action<Guid> Changed = delegate { };
@@ -41,13 +41,15 @@
 
             await Task.Run(() =>
             {
-                _proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(_name);
-                _subscriptions = new[]
-                {
-                    _proxy.On<Guid>("added", OnAdded),
-                    _proxy.On<Guid>("changed", OnChanged),
-                    _proxy.On<Guid>("removed", OnRemoved),
-                };
+                _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + "/" + _name, spaceConnection.Transport.HttpClientHandler);
+                _connection.On<Guid>("added", OnAdded);
+                _connection.On<Guid>("changed", OnChanged);
+                _connection.On<Guid>("removed", OnRemoved);
+
+                //_proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(_name);
+                //_subscriptions = new[]
+                //{
+                //};
             });
         }
 
@@ -55,14 +57,17 @@
         {
             await base.Disconnect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                foreach (var subscription in _subscriptions)
-                {
-                    subscription.Dispose();
-                }
-                _proxy = null;
-            });
+            await _connection.DisposeAsync();
+            _connection = null;
+
+            //await Task.Run(() =>
+            //{
+            //    foreach (var subscription in _subscriptions)
+            //    {
+            //        subscription.Dispose();
+            //    }
+            //    _proxy = null;
+            //});
         }
     }
 }

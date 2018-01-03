@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNet.SignalR.Client;
+    using Microsoft.AspNetCore.SignalR.Client;
 
     internal class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
     {
-        private IHubProxy _proxy;
+        private HubConnection _connection;
         private readonly IHubProxyMethodInvoker _invoker;
 
         public SignalRPropertiesDataClient(
@@ -17,7 +17,7 @@
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await _invoker.Invoke(_proxy, SignalRHub.Property, "Post", identifier, properties);
+            await _invoker.Invoke(_connection, SignalRHub.Property, "Post", identifier, properties);
 
             PropertiesHelper.SetStored(properties, true);
         }
@@ -26,7 +26,7 @@
         {
             return await scope.Cache.GetProperties(identifier, async () =>
             {
-                var result = await _invoker.Invoke<PropertyDictionary>(_proxy, SignalRHub.Property, "Get", identifier);
+                var result = await _invoker.Invoke<PropertyDictionary>(_connection, SignalRHub.Property, "Get", identifier);
                 if (result != null)
                 {
                     PropertiesHelper.SetStored(result, true);
@@ -42,7 +42,8 @@
 
             await Task.Run(() =>
             {
-                _proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Property);
+                _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + "/" + SignalRHub.Property, spaceConnection.Transport.HttpClientHandler);
+                //_proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Property);
             });
         }
 
@@ -50,10 +51,13 @@
         {
             await base.Disconnect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                _proxy = null;
-            });
+            await _connection.DisposeAsync();
+            _connection = null;
+
+            //await Task.Run(() =>
+            //{
+            //    _proxy = null;
+            //});
         }
     }
 }
