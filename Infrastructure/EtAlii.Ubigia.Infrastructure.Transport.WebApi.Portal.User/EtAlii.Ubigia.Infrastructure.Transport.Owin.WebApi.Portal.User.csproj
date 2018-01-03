@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="**\*" Exclude="*.cs;*.csproj" />
+    <EmbeddedResource Include="**\*" Exclude="*.cs;*.csproj;bin\**;obj\**" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
 
