@@ -22,6 +22,16 @@
             return serializer;
         }
 
+        public static void Configure(JsonSerializerSettings settings)
+        {
+            settings.ContractResolver = new FieldBasedContractResolver();
+            settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
+            settings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
+            settings.TypeNameHandling = TypeNameHandling.None;
+            //settings.DateFormatHandling = DateFormatHandling.IsoDateFormat,
+            //settings.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
+            AddDefaultConverters(settings.Converters);
+        }
         public static void AddDefaultConverters(ICollection<JsonConverter> converters)
         {
             // We want custom tailored unsigned long conversion. 
