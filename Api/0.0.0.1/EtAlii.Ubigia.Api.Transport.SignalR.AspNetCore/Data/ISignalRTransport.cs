@@ -1,11 +1,11 @@
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using Microsoft.AspNet.SignalR.Client;
-    using Microsoft.AspNet.SignalR.Client.Http;
+    using System.Net.Http;
+    using Microsoft.AspNetCore.SignalR.Client;
 
     public interface ISignalRTransport
     {
-        IHttpClient HttpClient { get; }
+        ClientHttpMessageHandler HttpClientHandler { get; }
         HubConnection HubConnection { get; }
 
         string AuthenticationToken { get; set; }

@@ -1,27 +1,27 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
     using Microsoft.AspNetCore.SignalR.Client;
-    using Microsoft.AspNetCore.SignalR.Client.Http;
 
     public class SignalRSpaceTransport : SpaceTransportBase, ISignalRSpaceTransport
     {
         public HubConnection HubConnection { get; private set; }
 
-        public IHttpClient HttpClient { get; }
+        public ClientHttpMessageHandler HttpClientHandler { get; }
 
         public string AuthenticationToken { get { return _authenticationTokenGetter(); } set { _authenticationTokenSetter(value); } }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 
         public SignalRSpaceTransport(
-            IHttpClient httpClient, 
+            ClientHttpMessageHandler httpClientHandler, 
             Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-            HttpClient = httpClient;
+            HttpClientHandler = httpClientHandler;
             _authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
         }
@@ -32,7 +32,7 @@
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
             }
-            HubConnection = new HubConnectionFactory().Create(address + RelativeUri.UserData);
+            HubConnection = new HubConnectionFactory().Create(address + RelativeUri.UserData, HttpClientHandler);
         }
 
         public override async Task Start(ISpaceConnection spaceConnection, string address)
@@ -42,7 +42,7 @@
             // TODO: Dang, we do not use websockets but server-side events.... 
             // Could this be improved by somehow creating a autotransport with WebSocketTransport inside? 
             // This requires the .Start call to be made in a non-PCL project which allows instantiation of the WebSocketTransport class.
-            await HubConnection.Start(HttpClient);
+            await HubConnection.StartAsync();
         }
 
         public override async Task Stop(ISpaceConnection spaceConnection)
@@ -54,7 +54,7 @@
 
             await base.Stop(spaceConnection);
 
-            HubConnection.Dispose();
+            await HubConnection.DisposeAsync();
             HubConnection = null;
         }
 

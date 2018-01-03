@@ -21,7 +21,7 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-            var account = await _invoker.Invoke<Account>(_accountProxy, SignalRHub.Account, "GetByName", accountName);
+            var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetByName", accountName);
             if (account == null)
             {
                 string message = $"Unable to connect using the specified account ({accountName})";
