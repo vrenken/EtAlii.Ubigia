@@ -36,7 +36,7 @@
                     "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore"
                   }
                 ]
               },
@@ -63,10 +63,10 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore.UserWebApiServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore"
                   }
                 ]
               },
