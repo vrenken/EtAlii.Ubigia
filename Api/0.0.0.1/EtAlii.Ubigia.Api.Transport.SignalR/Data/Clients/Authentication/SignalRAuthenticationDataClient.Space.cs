@@ -24,7 +24,7 @@
 
         private async Task<Space> GetSpace(Account currentAccount, string spaceName)
         {
-            var spaces = await _invoker.Invoke<IEnumerable<Space>>(_spaceProxy, SignalRHub.Space, "GetForAccount", currentAccount.Id.ToString());
+            var spaces = await _invoker.Invoke<IEnumerable<Space>>(_spaceProxy, SignalRHub.Space, "GetAllForAccount", currentAccount.Id.ToString());
             return spaces.FirstOrDefault(s => s.Name == spaceName);
         }
     }
