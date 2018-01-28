@@ -2,10 +2,10 @@
 {
     public static class SignalRHub
     {
-        public const string Authentication = "AuthenticationHub";
+        public const string Authentication = "/Authentication";
 
-        public const string Account = "AccountHub";
-        public const string Storage = "StorageHub";
-        public const string Space = "SpaceHub";
+        public const string Account = "/Account";
+        public const string Storage = "/Storage";
+        public const string Space = "/Space";
     }
 }
