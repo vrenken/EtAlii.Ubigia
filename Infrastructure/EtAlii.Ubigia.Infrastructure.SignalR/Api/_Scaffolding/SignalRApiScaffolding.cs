@@ -21,8 +21,8 @@
             container.Register<IParameterResolver,SignalRParameterResolver>();
             container.Register(() => new SerializerFactory().Create());
 
-            container.Register<ISignalRAuthenticationVerifier, SignalRAuthenticationVerifier>();
-            container.Register<ISignalRAuthenticationTokenVerifier, SignalRAuthenticationTokenVerifier>();
+            container.Register<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>();
+            container.Register<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>();
 
             // We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.
             _signalRDependencyResolver.Register(typeof(JsonSerializer), () => (JsonSerializer)container.GetInstance<ISerializer>());
