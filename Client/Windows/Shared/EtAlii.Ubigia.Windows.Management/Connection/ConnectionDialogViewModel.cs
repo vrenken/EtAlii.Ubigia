@@ -46,6 +46,13 @@
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
             _connectionSettingsPersister.Load(out password);
 
+            if (System.Diagnostics.Debugger.IsAttached)
+            {
+                defaultServer = "http://localhost:64001/admin";
+                defaultLogin = "Administrator";
+                defaultPassword = password = "administrator123";
+            }
+
             SetDefaults(defaultServer, defaultLogin, defaultPassword, password);
 
             SaveAndCloseCommand = new RelayCommand(SaveAndClose, CanSaveAndClose);
