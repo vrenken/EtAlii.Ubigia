@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.AspNetCore.SignalR.Tests.Common;
 using Microsoft.AspNetCore.Sockets;
 using Microsoft.AspNetCore.Sockets.Client;
 using Microsoft.AspNetCore.Sockets.Client.Http;
@@ -164,19 +165,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                     new TransferModeFeature { TransferMode = requestedTransferMode });
                 try
                 {
-                    var closeTcs = new TaskCompletionSource<object>();
-                    connection.Closed += e =>
-                    {
-                        if (e != null)
-                        {
-                            closeTcs.SetException(e);
-                        }
-                        else
-                        {
-                            closeTcs.SetResult(null);
-                        }
-                    };
-
                     var receiveTcs = new TaskCompletionSource<string>();
                     connection.OnReceived((data, state) =>
                     {
@@ -221,7 +209,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                     logger.LogInformation("Receiving message");
                     Assert.Equal(message, await receiveTcs.Task.OrTimeout());
                     logger.LogInformation("Completed receive");
-                    await closeTcs.Task.OrTimeout();
+                    await connection.Closed.OrTimeout();
                 }
                 catch (Exception ex)
                 {
@@ -338,22 +326,11 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 try
                 {
                     var closeTcs = new TaskCompletionSource<object>();
-                    connection.Closed += e =>
-                    {
-                        if (e != null)
-                        {
-                            closeTcs.SetException(e);
-                        }
-                        else
-                        {
-                            closeTcs.SetResult(null);
-                        }
-                    };
 
                     logger.LogInformation("Starting connection to {url}", url);
                     await connection.StartAsync().OrTimeout();
 
-                    await closeTcs.Task.OrTimeout();
+                    await connection.Closed.OrTimeout();
                 }
                 catch (Exception ex)
                 {

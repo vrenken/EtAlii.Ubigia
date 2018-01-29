@@ -6,22 +6,19 @@ import { IConnection } from "./IConnection"
 import { HttpConnection } from "./HttpConnection"
 import { TransportType, TransferMode } from "./Transports"
 import { Subject, Observable } from "./Observable"
-import { IHubProtocol, ProtocolType, MessageType, HubMessage, CompletionMessage, ResultMessage, InvocationMessage, StreamInvocationMessage, NegotiationMessage } from "./IHubProtocol";
+import { IHubProtocol, ProtocolType, MessageType, HubMessage, CompletionMessage, ResultMessage, InvocationMessage, StreamInvocationMessage, NegotiationMessage, HubInvocationMessage } from "./IHubProtocol";
 import { JsonHubProtocol } from "./JsonHubProtocol";
 import { TextMessageFormat } from "./Formatters"
 import { Base64EncodedHubProtocol } from "./Base64EncodedHubProtocol"
 import { ILogger, LogLevel } from "./ILogger"
 import { ConsoleLogger, NullLogger, LoggerFactory } from "./Loggers"
 import { IHubConnectionOptions } from "./IHubConnectionOptions"
-import { setTimeout, clearTimeout } from "timers";
 
 export { TransportType } from "./Transports"
 export { HttpConnection } from "./HttpConnection"
 export { JsonHubProtocol } from "./JsonHubProtocol"
 export { LogLevel, ILogger } from "./ILogger"
 export { ConsoleLogger, NullLogger } from "./Loggers"
-
-const DEFAULT_SERVER_TIMEOUT_IN_MS: number = 30 * 1000;
 
 export class HubConnection {
     private readonly connection: IConnection;
@@ -31,14 +28,9 @@ export class HubConnection {
     private methods: Map<string, ((...args: any[]) => void)[]>;
     private id: number;
     private closedCallbacks: ConnectionClosed[];
-    private timeoutHandle: NodeJS.Timer;
-    private serverTimeoutInMilliseconds: number;
 
     constructor(urlOrConnection: string | IConnection, options: IHubConnectionOptions = {}) {
         options = options || {};
-
-        this.serverTimeoutInMilliseconds = options.serverTimeoutInMilliseconds || DEFAULT_SERVER_TIMEOUT_IN_MS;
-
         if (typeof urlOrConnection === "string") {
             this.connection = new HttpConnection(urlOrConnection, options);
         }
@@ -59,10 +51,6 @@ export class HubConnection {
     }
 
     private processIncomingData(data: any) {
-        if (this.timeoutHandle !== undefined) {
-            clearTimeout(this.timeoutHandle);
-        }
-
         // Parse the messages
         let messages = this.protocol.parseMessages(data);
 
@@ -75,10 +63,10 @@ export class HubConnection {
                     break;
                 case MessageType.StreamItem:
                 case MessageType.Completion:
-                    let callback = this.callbacks.get((<any>message).invocationId);
+                    let callback = this.callbacks.get((<HubInvocationMessage>message).invocationId);
                     if (callback != null) {
                         if (message.type === MessageType.Completion) {
-                            this.callbacks.delete((<any>message).invocationId);
+                            this.callbacks.delete((<HubInvocationMessage>message).invocationId);
                         }
                         callback(message);
                     }
@@ -91,32 +79,14 @@ export class HubConnection {
                     break;
             }
         }
-
-        this.configureTimeout();
-    }
-
-    private configureTimeout() {
-        if (!this.connection.features || !this.connection.features.inherentKeepAlive) {
-            // Set the timeout timer
-            this.timeoutHandle = setTimeout(() => this.serverTimeout(), this.serverTimeoutInMilliseconds);
-        }
-    }
-
-    private serverTimeout() {
-        // The server hasn't talked to us in a while. It doesn't like us anymore ... :(
-        // Terminate the connection
-        this.connection.stop(new Error("Server timeout elapsed without receiving a message from the server."));
     }
 
     private invokeClientMethod(invocationMessage: InvocationMessage) {
         let methods = this.methods.get(invocationMessage.target.toLowerCase());
         if (methods) {
             methods.forEach(m => m.apply(this, invocationMessage.arguments));
-            if (invocationMessage.invocationId) {
-                // This is not supported in v1. So we return an error to avoid blocking the server waiting for the response.
-                let message = "Server requested a response, which is not supported in this version of the client."
-                this.logger.log(LogLevel.Error, message);
-                this.connection.stop(new Error(message))
+            if (!invocationMessage.nonblocking) {
+                // TODO: send result back to the server?
             }
         }
         else {
@@ -152,14 +122,9 @@ export class HubConnection {
         if (requestedTransferMode === TransferMode.Binary && actualTransferMode === TransferMode.Text) {
             this.protocol = new Base64EncodedHubProtocol(this.protocol);
         }
-
-        this.configureTimeout();
     }
 
     stop(): void {
-        if (this.timeoutHandle) {
-            clearTimeout(this.timeoutHandle);
-        }
         return this.connection.stop();
     }
 
@@ -278,24 +243,16 @@ export class HubConnection {
     }
 
     private createInvocation(methodName: string, args: any[], nonblocking: boolean): InvocationMessage {
-        if (nonblocking) {
-            return <InvocationMessage>{
-                type: MessageType.Invocation,
-                target: methodName,
-                arguments: args,
-            };
-        }
-        else {
-            let id = this.id;
-            this.id++;
+        let id = this.id;
+        this.id++;
 
-            return <InvocationMessage>{
-                type: MessageType.Invocation,
-                invocationId: id.toString(),
-                target: methodName,
-                arguments: args,
-            };
-        }
+        return <InvocationMessage>{
+            type: MessageType.Invocation,
+            invocationId: id.toString(),
+            target: methodName,
+            arguments: args,
+            nonblocking: nonblocking
+        };
     }
 
     private createStreamInvocation(methodName: string, args: any[]): StreamInvocationMessage {

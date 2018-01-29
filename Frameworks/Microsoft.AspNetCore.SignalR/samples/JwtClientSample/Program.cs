@@ -34,9 +34,6 @@ namespace JwtClientSample
                 .WithJwtBearer(() => _tokens[userId])
                 .Build();
 
-            var closedTcs = new TaskCompletionSource<object>();
-            hubConnection.Closed += e => closedTcs.SetResult(null);
-
             hubConnection.On<string, string>("Message", (sender, message) => Console.WriteLine($"[{userId}] {sender}: {message}"));
             await hubConnection.StartAsync();
             Console.WriteLine($"[{userId}] Connection Started");
@@ -46,7 +43,7 @@ namespace JwtClientSample
 
             try
             {
-                while (!closedTcs.Task.IsCompleted)
+                while (!hubConnection.Closed.IsCompleted)
                 {
                     await Task.Delay(1000);
                     ticks++;

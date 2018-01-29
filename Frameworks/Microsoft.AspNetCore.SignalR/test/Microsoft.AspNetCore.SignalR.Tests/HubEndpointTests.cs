@@ -11,8 +11,10 @@ using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.SignalR.Core;
 using Microsoft.AspNetCore.SignalR.Internal;
 using Microsoft.AspNetCore.SignalR.Internal.Protocol;
+using Microsoft.AspNetCore.SignalR.Tests.Common;
 using Microsoft.AspNetCore.Sockets;
 using Microsoft.AspNetCore.Sockets.Features;
 using Microsoft.Extensions.DependencyInjection;
@@ -459,7 +461,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
         }
 
         [Fact]
-        public async Task HubMethodDoesNotSendResultWhenInvocationIsNonBlocking()
+        public async Task HubMethodCanReturnValue()
         {
             var serviceProvider = CreateServiceProvider();
 
@@ -469,13 +471,13 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             {
                 var endPointTask = endPoint.OnConnectedAsync(client.Connection);
 
-                await client.SendInvocationAsync(nameof(MethodHub.ValueMethod), nonBlocking: true).OrTimeout();
+                var result = (await client.InvokeAsync(nameof(MethodHub.ValueMethod)).OrTimeout()).Result;
+
+                // json serializer makes this a long
+                Assert.Equal(43L, result);
 
                 // kill the connection
                 client.Dispose();
-
-                // Ensure the client channel is empty
-                Assert.Null(client.TryRead());
 
                 await endPointTask.OrTimeout();
             }
@@ -552,7 +554,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
         [Theory]
         [InlineData(nameof(MethodHub.VoidMethod))]
         [InlineData(nameof(MethodHub.MethodThatThrows))]
-        [InlineData(nameof(MethodHub.ValueMethod))]
         public async Task NonBlockingInvocationDoesNotSendCompletion(string methodName)
         {
             var serviceProvider = CreateServiceProvider();
@@ -566,11 +567,11 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 // This invocation should be completely synchronous
                 await client.SendInvocationAsync(methodName, nonBlocking: true).OrTimeout();
 
-                // kill the connection
-                client.Dispose();
-
                 // Nothing should have been written
                 Assert.False(client.Application.Reader.TryRead(out var buffer));
+
+                // kill the connection
+                client.Dispose();
 
                 await endPointTask.OrTimeout();
             }
@@ -828,84 +829,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
 
         [Theory]
         [MemberData(nameof(HubTypes))]
-        public async Task SendToOthers(Type hubType)
-        {
-            var serviceProvider = CreateServiceProvider();
-
-            dynamic endPoint = serviceProvider.GetService(GetEndPointType(hubType));
-
-            using (var firstClient = new TestClient())
-            using (var secondClient = new TestClient())
-            {
-                Task firstEndPointTask = endPoint.OnConnectedAsync(firstClient.Connection);
-                Task secondEndPointTask = endPoint.OnConnectedAsync(secondClient.Connection);
-
-                await Task.WhenAll(firstClient.Connected, secondClient.Connected).OrTimeout();
-
-                await firstClient.SendInvocationAsync("SendToOthers", "To others").OrTimeout();
-
-                var secondClientResult = await secondClient.ReadAsync().OrTimeout();
-                var invocation = Assert.IsType<InvocationMessage>(secondClientResult);
-                Assert.Equal("Send", invocation.Target);
-                Assert.Equal("To others", invocation.Arguments[0]);
-
-                var firstClientResult = await firstClient.ReadAsync().OrTimeout();
-                var completion = Assert.IsType<CompletionMessage>(firstClientResult);
-
-                await secondClient.SendInvocationAsync("BroadcastMethod", "To everyone").OrTimeout();
-                firstClientResult = await firstClient.ReadAsync().OrTimeout();
-                invocation = Assert.IsType<InvocationMessage>(firstClientResult);
-                Assert.Equal("Broadcast", invocation.Target);
-                Assert.Equal("To everyone", invocation.Arguments[0]);
-
-                // kill the connections
-                firstClient.Dispose();
-                secondClient.Dispose();
-
-                await Task.WhenAll(firstEndPointTask, secondEndPointTask).OrTimeout();
-
-
-            }
-        }
-
-        [Theory]
-        [MemberData(nameof(HubTypes))]
-        public async Task SendToCaller(Type hubType)
-        {
-            var serviceProvider = CreateServiceProvider();
-
-            dynamic endPoint = serviceProvider.GetService(GetEndPointType(hubType));
-
-            using (var firstClient = new TestClient())
-            using (var secondClient = new TestClient())
-            {
-                Task firstEndPointTask = endPoint.OnConnectedAsync(firstClient.Connection);
-                Task secondEndPointTask = endPoint.OnConnectedAsync(secondClient.Connection);
-
-                await Task.WhenAll(firstClient.Connected, secondClient.Connected).OrTimeout();
-
-                await firstClient.SendInvocationAsync("SendToCaller", "To caller").OrTimeout();
-
-                var firstClientResult = await firstClient.ReadAsync().OrTimeout();
-                var invocation = Assert.IsType<InvocationMessage>(firstClientResult);
-                Assert.Equal("Send", invocation.Target);
-                Assert.Equal("To caller", invocation.Arguments[0]);
-
-                await firstClient.SendInvocationAsync("BroadcastMethod", "To everyone").OrTimeout();
-                var secondClientResult = await secondClient.ReadAsync().OrTimeout();
-                invocation = Assert.IsType<InvocationMessage>(secondClientResult);
-                Assert.Equal("Broadcast", invocation.Target);
-                Assert.Equal("To everyone", invocation.Arguments[0]);
-
-                // kill the connections
-                firstClient.Dispose();
-
-                await firstEndPointTask.OrTimeout();
-            }
-        }
-
-        [Theory]
-        [MemberData(nameof(HubTypes))]
         public async Task SendToAllExcept(Type hubType)
         {
             var serviceProvider = CreateServiceProvider();
@@ -983,108 +906,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 Assert.Equal("Send", invocation.Target);
                 Assert.Single(invocation.Arguments);
                 Assert.Equal("test", invocation.Arguments[0]);
-
-                // kill the connections
-                firstClient.Dispose();
-                secondClient.Dispose();
-
-                await Task.WhenAll(firstEndPointTask, secondEndPointTask).OrTimeout();
-            }
-        }
-
-        [Theory]
-        [MemberData(nameof(HubTypes))]
-        public async Task SendToGroupExcept(Type hubType)
-        {
-            var serviceProvider = CreateServiceProvider();
-
-            dynamic endPoint = serviceProvider.GetService(GetEndPointType(hubType));
-
-            using (var firstClient = new TestClient())
-            using (var secondClient = new TestClient())
-            {
-                Task firstEndPointTask = endPoint.OnConnectedAsync(firstClient.Connection);
-                Task secondEndPointTask = endPoint.OnConnectedAsync(secondClient.Connection);
-
-                await Task.WhenAll(firstClient.Connected, secondClient.Connected).OrTimeout();
-
-                var result = (await firstClient.InvokeAsync("GroupSendMethod", "testGroup", "test").OrTimeout()).Result;
-
-                // check that 'firstConnection' hasn't received the group send
-                Assert.Null(firstClient.TryRead());
-
-                // check that 'secondConnection' hasn't received the group send
-                Assert.Null(secondClient.TryRead());
-
-                await firstClient.InvokeAsync(nameof(MethodHub.GroupAddMethod), "testGroup").OrTimeout();
-                await secondClient.InvokeAsync(nameof(MethodHub.GroupAddMethod), "testGroup").OrTimeout();
-
-                var excludedIds = new List<string> { firstClient.Connection.ConnectionId };
-
-                await firstClient.SendInvocationAsync("GroupExceptSendMethod", "testGroup", "test", excludedIds).OrTimeout();
-
-                // check that 'secondConnection' has received the group send
-                var hubMessage = await secondClient.ReadAsync().OrTimeout();
-                var invocation = Assert.IsType<InvocationMessage>(hubMessage);
-                Assert.Equal("Send", invocation.Target);
-                Assert.Single(invocation.Arguments);
-                Assert.Equal("test", invocation.Arguments[0]);
-
-                // Check that first client only got the completion message
-                hubMessage = await firstClient.ReadAsync().OrTimeout();
-                Assert.IsType<CompletionMessage>(hubMessage);
-
-                Assert.Null(firstClient.TryRead());
-
-                // kill the connections
-                firstClient.Dispose();
-                secondClient.Dispose();
-
-                await Task.WhenAll(firstEndPointTask, secondEndPointTask).OrTimeout();
-            }
-        }
-
-        [Theory]
-        [MemberData(nameof(HubTypes))]
-        public async Task SendToOthersInGroup(Type hubType)
-        {
-            var serviceProvider = CreateServiceProvider();
-
-            dynamic endPoint = serviceProvider.GetService(GetEndPointType(hubType));
-
-            using (var firstClient = new TestClient())
-            using (var secondClient = new TestClient())
-            {
-                Task firstEndPointTask = endPoint.OnConnectedAsync(firstClient.Connection);
-                Task secondEndPointTask = endPoint.OnConnectedAsync(secondClient.Connection);
-
-                await Task.WhenAll(firstClient.Connected, secondClient.Connected).OrTimeout();
-
-                var result = (await firstClient.InvokeAsync("GroupSendMethod", "testGroup", "test").OrTimeout()).Result;
-
-                // check that 'firstConnection' hasn't received the group send
-                Assert.Null(firstClient.TryRead());
-
-                // check that 'secondConnection' hasn't received the group send
-                Assert.Null(secondClient.TryRead());
-
-                await firstClient.InvokeAsync(nameof(MethodHub.GroupAddMethod), "testGroup").OrTimeout();
-                await secondClient.InvokeAsync(nameof(MethodHub.GroupAddMethod), "testGroup").OrTimeout();
-
-                await firstClient.SendInvocationAsync("SendToOthersInGroup", "testGroup", "test").OrTimeout();
-
-                // check that 'secondConnection' has received the group send
-                var hubMessage = await secondClient.ReadAsync().OrTimeout();
-                var invocation = Assert.IsType<InvocationMessage>(hubMessage);
-                Assert.Equal("Send", invocation.Target);
-                Assert.Single(invocation.Arguments);
-                Assert.Equal("test", invocation.Arguments[0]);
-
-                // Check that first client only got the completion message
-                hubMessage = await firstClient.ReadAsync().OrTimeout();
-                Assert.IsType<CompletionMessage>(hubMessage);
-
-                Assert.Null(firstClient.TryRead());
 
                 // kill the connections
                 firstClient.Dispose();
@@ -1559,85 +1380,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             }
         }
 
-        [Fact]
-        public async Task DoesNotWritePingMessagesIfSufficientOtherMessagesAreSent()
-        {
-            var serviceProvider = CreateServiceProvider(services =>
-                services.Configure<HubOptions>(options =>
-                    options.KeepAliveInterval = TimeSpan.FromMilliseconds(100)));
-            var endPoint = serviceProvider.GetService<HubEndPoint<MethodHub>>();
-
-            using (var client = new TestClient(false, new JsonHubProtocol()))
-            {
-                var endPointLifetime = endPoint.OnConnectedAsync(client.Connection).OrTimeout();
-
-                await client.Connected.OrTimeout();
-
-                // Echo a bunch of stuff, waiting 10ms between each, until 500ms have elapsed
-                DateTime start = DateTime.UtcNow;
-                while ((DateTime.UtcNow - start).TotalMilliseconds <= 500.0)
-                {
-                    await client.SendInvocationAsync("Echo", "foo").OrTimeout();
-                    await Task.Delay(10);
-                }
-
-                // Shut down
-                client.Dispose();
-
-                await endPointLifetime.OrTimeout();
-
-                // We shouldn't have any ping messages
-                HubMessage message;
-                var counter = 0;
-                while ((message = await client.ReadAsync()) != null)
-                {
-                    counter += 1;
-                    Assert.IsNotType<PingMessage>(message);
-                }
-                Assert.InRange(counter, 1, 50);
-            }
-        }
-
-        [Fact]
-        public async Task WritesPingMessageIfNothingWrittenWhenKeepAliveIntervalElapses()
-        {
-            var serviceProvider = CreateServiceProvider(services =>
-                services.Configure<HubOptions>(options =>
-                    options.KeepAliveInterval = TimeSpan.FromMilliseconds(100)));
-            var endPoint = serviceProvider.GetService<HubEndPoint<MethodHub>>();
-
-            using (var client = new TestClient(false, new JsonHubProtocol()))
-            {
-                var endPointLifetime = endPoint.OnConnectedAsync(client.Connection).OrTimeout();
-                await client.Connected.OrTimeout();
-
-                // Wait 500 ms, but make sure to yield some time up to unblock concurrent threads
-                // This is useful on AppVeyor because it's slow enough to end up with no time
-                // being available for the endpoint to run.
-                for (var i = 0; i < 50; i += 1)
-                {
-                    client.Connection.TickHeartbeat();
-                    await Task.Yield();
-                    await Task.Delay(10);
-                }
-
-                // Shut down
-                client.Dispose();
-
-                await endPointLifetime.OrTimeout();
-
-                // We should have all pings
-                HubMessage message;
-                var counter = 0;
-                while ((message = await client.ReadAsync().OrTimeout()) != null)
-                {
-                    counter += 1;
-                    Assert.Same(PingMessage.Instance, message);
-                }
-                Assert.InRange(counter, 1, Int32.MaxValue);
-            }
-        }
-
         private static void AssertHubMessage(HubMessage expected, HubMessage actual)
         {
             // We aren't testing InvocationIds here
@@ -1655,10 +1397,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                     break;
                 case InvocationMessage expectedInvocation:
                     var actualInvocation = Assert.IsType<InvocationMessage>(actual);
-
-                    // Either both must have non-null invocationIds or both must have null invocation IDs. Checking the exact value is NOT desired here though as it could be randomly generated
-                    Assert.True((expectedInvocation.InvocationId == null && actualInvocation.InvocationId == null) ||
-                        (expectedInvocation.InvocationId != null && actualInvocation.InvocationId != null));
+                    Assert.Equal(expectedInvocation.NonBlocking, actualInvocation.NonBlocking);
                     Assert.Equal(expectedInvocation.Target, actualInvocation.Target);
                     Assert.Equal(expectedInvocation.Arguments, actualInvocation.Arguments);
                     break;
@@ -1731,16 +1470,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 return Clients.Group(groupName).Send(message);
             }
 
-            public Task GroupExceptSendMethod(string groupName, string message, IReadOnlyList<string> excludedIds)
-            {
-                return Clients.GroupExcept(groupName, excludedIds).Send(message);
-            }
-
-            public Task SendToOthersInGroup(string groupName, string message)
-            {
-                return Clients.OthersInGroup(groupName).Send(message);
-            }
-
             public Task BroadcastMethod(string message)
             {
                 return Clients.All.Broadcast(message);
@@ -1749,16 +1478,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             public Task SendToAllExcept(string message, IReadOnlyList<string> excludedIds)
             {
                 return Clients.AllExcept(excludedIds).Send(message);
-            }
-
-            public Task SendToOthers(string message)
-            {
-                return Clients.Others.Send(message);
-            }
-
-            public Task SendToCaller(string message)
-            {
-                return Clients.Caller.Send(message);
             }
         }
 
@@ -1929,16 +1648,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 return Clients.Group(groupName).Send(message);
             }
 
-            public Task GroupExceptSendMethod(string groupName, string message, IReadOnlyList<string> excludedIds)
-            {
-                return Clients.GroupExcept(groupName, excludedIds).Send(message);
-            }
-
-            public Task SendToOthersInGroup(string groupName, string message)
-            {
-                return Clients.OthersInGroup(groupName).Send(message);
-            }
-
             public Task BroadcastMethod(string message)
             {
                 return Clients.All.Broadcast(message);
@@ -1947,16 +1656,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             public Task SendToAllExcept(string message, IReadOnlyList<string> excludedIds)
             {
                 return Clients.AllExcept(excludedIds).Send(message);
-            }
-
-            public Task SendToOthers(string message)
-            {
-                return Clients.Others.Send(message);
-            }
-
-            public Task SendToCaller(string message)
-            {
-                return Clients.Caller.Send(message);
             }
         }
 
@@ -2070,16 +1769,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 return Clients.Group(groupName).InvokeAsync("Send", message);
             }
 
-            public Task GroupExceptSendMethod(string groupName, string message, IReadOnlyList<string> excludedIds)
-            {
-                return Clients.GroupExcept(groupName, excludedIds).InvokeAsync("Send", message);
-            }
-
-            public Task SendToOthersInGroup(string groupName, string message)
-            {
-                return Clients.OthersInGroup(groupName).InvokeAsync("Send", message);
-            }
-
             public Task BroadcastMethod(string message)
             {
                 return Clients.All.InvokeAsync("Broadcast", message);
@@ -2162,16 +1851,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             public bool HasHttpContext()
             {
                 return Context.Connection.GetHttpContext() != null;
-            }
-
-            public Task SendToOthers(string message)
-            {
-                return Clients.Others.InvokeAsync("Send", message);
-            }
-
-            public Task SendToCaller(string message)
-            {
-                return Clients.Caller.InvokeAsync("Send", message);
             }
         }
 

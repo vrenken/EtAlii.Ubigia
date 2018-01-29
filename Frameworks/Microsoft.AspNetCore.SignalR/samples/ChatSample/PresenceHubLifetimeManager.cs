@@ -111,7 +111,7 @@ namespace ChatSample
                         _hubContext = _serviceProvider.GetRequiredService<IHubContext<THub>>();
                     }
 
-                    hub.Clients = new HubCallerClients(_hubContext.Clients, connection.ConnectionId);
+                    hub.Clients = _hubContext.Clients;
                     hub.Context = new HubCallerContext(connection);
                     hub.Groups = _hubContext.Groups;
 
@@ -170,11 +170,6 @@ namespace ChatSample
         public override Task RemoveGroupAsync(string connectionId, string groupName)
         {
             return _wrappedHubLifetimeManager.RemoveGroupAsync(connectionId, groupName);
-        }
-
-        public override Task InvokeGroupExceptAsync(string groupName, string methodName, object[] args, IReadOnlyList<string> excludedIds)
-        {
-            return _wrappedHubLifetimeManager.InvokeGroupExceptAsync(groupName, methodName, args, excludedIds);
         }
     }
 }

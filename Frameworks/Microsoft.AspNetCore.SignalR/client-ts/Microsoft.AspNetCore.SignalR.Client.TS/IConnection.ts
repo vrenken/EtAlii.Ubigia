@@ -9,7 +9,7 @@ export interface IConnection {
 
     start(): Promise<void>;
     send(data: any): Promise<void>;
-    stop(error?: Error): void;
+    stop(): void;
 
     onreceive: DataReceived;
     onclose: ConnectionClosed;

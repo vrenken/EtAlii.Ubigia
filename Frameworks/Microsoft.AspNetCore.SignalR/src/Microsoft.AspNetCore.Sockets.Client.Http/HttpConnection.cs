@@ -28,20 +28,17 @@ namespace Microsoft.AspNetCore.Sockets.Client
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
 
-        private volatile ConnectionState _connectionState = ConnectionState.Disconnected;
-        private readonly object _stateChangeLock = new object();
-
+        private volatile int _connectionState = ConnectionState.Initial;
         private volatile ChannelConnection<byte[], SendMessage> _transportChannel;
         private readonly HttpClient _httpClient;
         private readonly HttpOptions _httpOptions;
         private volatile ITransport _transport;
         private volatile Task _receiveLoopTask;
-        private TaskCompletionSource<object> _startTcs;
-        private TaskCompletionSource<object> _closeTcs;
-        private TaskQueue _eventQueue;
+        private TaskCompletionSource<object> _startTcs = new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
+        private readonly TaskCompletionSource<object> _closedTcs = new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
+        private TaskQueue _eventQueue = new TaskQueue();
         private readonly ITransportFactory _transportFactory;
         private string _connectionId;
-        private Exception _abortException;
         private readonly TimeSpan _eventQueueDrainTimeout = TimeSpan.FromSeconds(5);
         private ChannelReader<byte[]> Input => _transportChannel.Input;
         private ChannelWriter<SendMessage> Output => _transportChannel.Output;
@@ -52,7 +49,7 @@ namespace Microsoft.AspNetCore.Sockets.Client
 
         public IFeatureCollection Features { get; } = new FeatureCollection();
 
-        public event Action<Exception> Closed;
+        public Task Closed => _closedTcs.Task;
 
         public HttpConnection(Uri url)
             : this(url, TransportType.All)
@@ -98,7 +95,7 @@ namespace Microsoft.AspNetCore.Sockets.Client
             _logger = _loggerFactory.CreateLogger<HttpConnection>();
             _httpOptions = httpOptions;
             _httpClient = _httpOptions?.HttpMessageHandler == null ? new HttpClient() : new HttpClient(_httpOptions?.HttpMessageHandler);
-            _httpClient.Timeout = HttpClientTimeout;
+            _httpClient.Timeout =  HttpClientTimeout;
             _transportFactory = transportFactory ?? throw new ArgumentNullException(nameof(transportFactory));
         }
 
@@ -106,26 +103,25 @@ namespace Microsoft.AspNetCore.Sockets.Client
 
         private Task StartAsyncCore()
         {
-            if (ChangeState(from: ConnectionState.Disconnected, to: ConnectionState.Connecting) != ConnectionState.Disconnected)
+            if (Interlocked.CompareExchange(ref _connectionState, ConnectionState.Connecting, ConnectionState.Initial)
+                != ConnectionState.Initial)
             {
                 return Task.FromException(
-                    new InvalidOperationException($"Cannot start a connection that is not in the {nameof(ConnectionState.Disconnected)} state."));
+                    new InvalidOperationException("Cannot start a connection that is not in the Initial state."));
             }
-
-            _startTcs = new TaskCompletionSource<object>(TaskCreationOptions.RunContinuationsAsynchronously);
-            _eventQueue = new TaskQueue();
 
             StartAsyncInternal()
                 .ContinueWith(t =>
                 {
-                    var abortException = _abortException;
-                    if (t.IsFaulted || abortException != null)
+                    if (t.IsFaulted)
                     {
-                        _startTcs.SetException(_abortException ?? t.Exception.InnerException);
+                        _startTcs.SetException(t.Exception.InnerException);
+                        _closedTcs.TrySetException(t.Exception.InnerException);
                     }
                     else if (t.IsCanceled)
                     {
                         _startTcs.SetCanceled();
+                        _closedTcs.SetCanceled();
                     }
                     else
                     {
@@ -152,8 +148,8 @@ namespace Microsoft.AspNetCore.Sockets.Client
                     var negotiationResponse = await Negotiate(Url, _httpClient, _logger);
                     _connectionId = negotiationResponse.ConnectionId;
 
-                    // Connection is being disposed while start was in progress
-                    if (_connectionState == ConnectionState.Disposed)
+                    // Connection is being stopped while start was in progress
+                    if (_connectionState == ConnectionState.Disconnected)
                     {
                         _logger.HttpConnectionClosed(_connectionId);
                         return;
@@ -168,25 +164,17 @@ namespace Microsoft.AspNetCore.Sockets.Client
             }
             catch
             {
-                // The connection can now be either in the Connecting or Disposed state - only change the state to
-                // Disconnected if the connection was in the Connecting state to not resurrect a Disposed connection
-                ChangeState(from: ConnectionState.Connecting, to: ConnectionState.Disconnected);
+                Interlocked.Exchange(ref _connectionState, ConnectionState.Disconnected);
                 throw;
             }
 
-            // if the connection is not in the Connecting state here it means the user called DisposeAsync while
-            // the connection was starting
-            if (ChangeState(from: ConnectionState.Connecting, to: ConnectionState.Connected) == ConnectionState.Connecting)
+            // if the connection is not in the Connecting state here it means the user called DisposeAsync
+            if (Interlocked.CompareExchange(ref _connectionState, ConnectionState.Connected, ConnectionState.Connecting)
+                == ConnectionState.Connecting)
             {
-                _closeTcs = new TaskCompletionSource<object>();
-
                 _ = Input.Completion.ContinueWith(async t =>
                 {
-                    // Grab the exception and then clear it.
-                    // See comment at AbortAsync for more discussion on the thread-safety
-                    // StartAsync can't be called until the ChangeState below, so we're OK.
-                    var abortException = _abortException;
-                    _abortException = null;
+                    Interlocked.Exchange(ref _connectionState, ConnectionState.Disconnected);
 
                     // There is an inherent race between receive and close. Removing the last message from the channel
                     // makes Input.Completion task completed and runs this continuation. We need to await _receiveLoopTask
@@ -199,38 +187,28 @@ namespace Microsoft.AspNetCore.Sockets.Client
                     await _receiveLoopTask;
 
                     _logger.DrainEvents(_connectionId);
+                    await _eventQueue.Drain();
 
                     await Task.WhenAny(_eventQueue.Drain().NoThrow(), Task.Delay(_eventQueueDrainTimeout));
+                    _httpClient?.Dispose();
 
                     _logger.CompleteClosed(_connectionId);
-
-                    // At this point the connection can be either in the Connected or Disposed state. The state should be changed
-                    // to the Disconnected state only if it was in the Connected state.
-                    // From this point on, StartAsync can be called at any time.
-                    ChangeState(from: ConnectionState.Connected, to: ConnectionState.Disconnected);
-
-                    _closeTcs.SetResult(null);
-
-                    try
+                    if (t.IsFaulted)
                     {
-                        if (t.IsFaulted)
-                        {
-                            Closed?.Invoke(t.Exception.InnerException);
-                        }
-                        else
-                        {
-                            // Call the closed event. If there was an abort exception, it will be flowed forward
-                            // However, if there wasn't, this will just be null and we're good
-                            Closed?.Invoke(abortException);
-                        }
+                        _closedTcs.TrySetException(t.Exception.InnerException);
                     }
-                    catch (Exception ex)
+                    if (t.IsCanceled)
                     {
-                        // Suppress (but log) the exception, this is user code
-                        _logger.ErrorDuringClosedEvent(ex);
+                        _closedTcs.TrySetCanceled();
+                    }
+                    else
+                    {
+                        _closedTcs.TrySetResult(null);
                     }
                 });
 
+                // start receive loop only after the Connected event was raised to
+                // avoid Received event being raised before the Connected event
                 _receiveLoopTask = ReceiveAsync();
             }
         }
@@ -325,14 +303,10 @@ namespace Microsoft.AspNetCore.Sockets.Client
             // Start the transport, giving it one end of the pipeline
             try
             {
-                await _transport.StartAsync(connectUrl, applicationSide, GetTransferMode(), _connectionId, this);
+                await _transport.StartAsync(connectUrl, applicationSide, requestedTransferMode: GetTransferMode(), connectionId: _connectionId);
 
                 // actual transfer mode can differ from the one that was requested so set it on the feature
-                if (!_transport.Mode.HasValue)
-                {
-                    // This can happen with custom transports so it should be an exception, not an assert.
-                    throw new InvalidOperationException("Transport was expected to set the Mode property after StartAsync, but it has not been set.");
-                }
+                Debug.Assert(_transport.Mode.HasValue, "transfer mode not set after transport started");
                 SetTransferMode(_transport.Mode.Value);
             }
             catch (Exception ex)
@@ -461,42 +435,17 @@ namespace Microsoft.AspNetCore.Sockets.Client
             }
         }
 
-        // AbortAsync creates a few thread-safety races that we are OK with.
-        //  1. If the transport shuts down gracefully after AbortAsync is called but BEFORE _abortException is called, then the
-        //     Closed event will not receive the Abort exception. This is OK because technically the transport was shut down gracefully
-        //     before it was aborted
-        //  2. If the transport is closed gracefully and then AbortAsync is called before it captures the _abortException value
-        //     the graceful shutdown could be turned into an abort. However, again, this is an inherent race between two different conditions:
-        //     The transport shutting down because the server went away, and the user requesting the Abort
-        //  3. Finally, because this is an instance field, there is a possible race around accidentally re-using _abortException in the restarted
-        //     connection. The scenario here is: AbortAsync(someException); StartAsync(); CloseAsync(); Where the _abortException value from the
-        //     first AbortAsync call is still set at the time CloseAsync gets to calling the Closed event. However, this can't happen because the
-        //     StartAsync method can't be called until the connection state is changed to Disconnected, which happens AFTER the close code
-        //     captures and resets _abortException.
-        public async Task AbortAsync(Exception exception) => await StopAsyncCore(exception ?? throw new ArgumentNullException(nameof(exception))).ForceAsync();
+        public async Task DisposeAsync() => await DisposeAsyncCore().ForceAsync();
 
-        public async Task StopAsync() => await StopAsyncCore(exception: null).ForceAsync();
-
-        private async Task StopAsyncCore(Exception exception)
+        private async Task DisposeAsyncCore()
         {
-            lock (_stateChangeLock)
-            {
-                if (!(_connectionState == ConnectionState.Connecting || _connectionState == ConnectionState.Connected))
-                {
-                    _logger.SkippingStop(_connectionId);
-                    return;
-                }
-            }
-
-            // Note that this method can be called at the same time when the connection is being closed from the server
-            // side due to an error. We are resilient to this since we merely try to close the channel here and the
-            // channel can be closed only once. As a result the continuation that does actual job and raises the Closed
-            // event runs always only once.
-
-            // See comment at AbortAsync for more discussion on the thread-safety of this.
-            _abortException = exception;
-
             _logger.StoppingClient(_connectionId);
+
+            if (Interlocked.Exchange(ref _connectionState, ConnectionState.Disconnected) == ConnectionState.Initial)
+            {
+                // the connection was never started so there is nothing to clean up
+                return;
+            }
 
             try
             {
@@ -523,29 +472,7 @@ namespace Microsoft.AspNetCore.Sockets.Client
                 await _receiveLoopTask;
             }
 
-            if (_closeTcs != null)
-            {
-                await _closeTcs.Task;
-            }
-        }
-
-        public async Task DisposeAsync() => await DisposeAsyncCore().ForceAsync();
-
-        private async Task DisposeAsyncCore()
-        {
-            // This will no-op if we're already stopped
-            await StopAsyncCore(exception: null);
-
-            if (ChangeState(to: ConnectionState.Disposed) == ConnectionState.Disposed)
-            {
-                _logger.SkippingDispose(_connectionId);
-
-                // the connection was already disposed
-                return;
-            }
-
-            _logger.DisposingClient(_connectionId);
-
+            _closedTcs.TrySetResult(null);
             _httpClient?.Dispose();
         }
 
@@ -595,39 +522,12 @@ namespace Microsoft.AspNetCore.Sockets.Client
             }
         }
 
-        private ConnectionState ChangeState(ConnectionState from, ConnectionState to)
+        private class ConnectionState
         {
-            lock (_stateChangeLock)
-            {
-                var state = _connectionState;
-                if (_connectionState == from)
-                {
-                    _connectionState = to;
-                }
-
-                _logger.ConnectionStateChanged(_connectionId, state, to);
-                return state;
-            }
-        }
-
-        private ConnectionState ChangeState(ConnectionState to)
-        {
-            lock (_stateChangeLock)
-            {
-                var state = _connectionState;
-                _connectionState = to;
-                _logger.ConnectionStateChanged(_connectionId, state, to);
-                return state;
-            }
-        }
-
-        // Internal because it's used by logging to avoid ToStringing prematurely.
-        internal enum ConnectionState
-        {
-            Disconnected,
-            Connecting,
-            Connected,
-            Disposed
+            public const int Initial = 0;
+            public const int Connecting = 1;
+            public const int Connected = 2;
+            public const int Disconnected = 3;
         }
 
         private class NegotiationResponse

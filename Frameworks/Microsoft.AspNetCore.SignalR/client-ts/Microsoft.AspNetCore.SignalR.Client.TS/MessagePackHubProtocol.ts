@@ -52,27 +52,17 @@ export class MessagePackHubProtocol implements IHubProtocol {
     }
 
     private createInvocationMessage(properties: any[]): InvocationMessage {
-        if (properties.length != 4) {
+        if (properties.length != 5) {
             throw new Error("Invalid payload for Invocation message.");
         }
 
-        let invocationId = properties[1];
-        if (invocationId) {
-            return {
-                type: MessageType.Invocation,
-                invocationId: invocationId,
-                target: properties[2],
-                arguments: properties[3]
-            } as InvocationMessage;
-        }
-        else {
-            return {
-                type: MessageType.Invocation,
-                target: properties[2],
-                arguments: properties[3]
-            } as InvocationMessage;
-        }
-
+        return {
+            type: MessageType.Invocation,
+            invocationId: properties[1],
+            nonblocking: properties[2],
+            target: properties[3],
+            arguments: properties[4]
+        } as InvocationMessage;
     }
 
     private createStreamItemMessage(properties: any[]): ResultMessage {
@@ -138,8 +128,8 @@ export class MessagePackHubProtocol implements IHubProtocol {
 
     private writeInvocation(invocationMessage: InvocationMessage): ArrayBuffer {
         let msgpack = msgpack5();
-        let payload = msgpack.encode([MessageType.Invocation, invocationMessage.invocationId || null,
-        invocationMessage.target, invocationMessage.arguments]);
+        let payload = msgpack.encode([MessageType.Invocation, invocationMessage.invocationId,
+        invocationMessage.nonblocking, invocationMessage.target, invocationMessage.arguments]);
 
         return BinaryMessageFormat.write(payload.slice());
     }

@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.SignalR.Internal;
 using Microsoft.AspNetCore.SignalR.Internal.Protocol;
+using Microsoft.AspNetCore.SignalR.Tests.Common;
 using Microsoft.AspNetCore.Sockets.Client;
-using Microsoft.AspNetCore.Sockets.Features;
 using Microsoft.Extensions.Logging;
 using Moq;
 using Xunit;
@@ -34,7 +34,6 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
         public async Task DisposeAsyncCallsConnectionStart()
         {
             var connection = new Mock<IConnection>();
-            connection.Setup(m => m.Features).Returns(new FeatureCollection());
             connection.Setup(m => m.StartAsync()).Verifiable();
             var hubConnection = new HubConnection(connection.Object, Mock.Of<IHubProtocol>(), null);
             await hubConnection.DisposeAsync();
@@ -73,11 +72,10 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
         {
             var hubConnection = new HubConnection(new TestConnection(), Mock.Of<IHubProtocol>(), null);
             var closedEventTcs = new TaskCompletionSource<Exception>();
-            hubConnection.Closed += e => closedEventTcs.SetResult(e);
 
             await hubConnection.StartAsync().OrTimeout();
             await hubConnection.DisposeAsync().OrTimeout();
-            Assert.Null(await closedEventTcs.Task);
+            await hubConnection.Closed.OrTimeout();
         }
 
         [Fact]
@@ -183,28 +181,9 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
 
             await hubConnection.StartAsync();
             var invokeTask = hubConnection.InvokeAsync<int>("testMethod");
+            await hubConnection.DisposeAsync();
 
-            var exception = new InvalidOperationException();
-            mockConnection.Raise(m => m.Closed += null, exception);
-
-            var actualException = await Assert.ThrowsAsync<InvalidOperationException>(async () => await invokeTask);
-            Assert.Equal(exception, actualException);
-        }
-
-        [Fact]
-        public async Task ConnectionTerminatedIfServerTimeoutIntervalElapsesWithNoMessages()
-        {
-            var connection = new TestConnection();
-            var hubConnection = new HubConnection(connection, new JsonHubProtocol(), new LoggerFactory());
-
-            hubConnection.ServerTimeout = TimeSpan.FromMilliseconds(100);
-
-            await hubConnection.StartAsync().OrTimeout();
-
-            var closeTcs = new TaskCompletionSource<Exception>();
-            hubConnection.Closed += ex => closeTcs.TrySetResult(ex);
-            var exception = Assert.IsType<TimeoutException>(await closeTcs.Task.OrTimeout());
-            Assert.Equal("Server timeout (100.00ms) elapsed without receiving a message from the server.", exception.Message);
+            await Assert.ThrowsAsync<InvalidOperationException>(async () => await invokeTask);
         }
 
         // Moq really doesn't handle out parameters well, so to make these tests work I added a manual mock -anurse

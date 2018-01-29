@@ -77,25 +77,18 @@ namespace Microsoft.AspNetCore.SignalR.Internal.Protocol
         private static InvocationMessage CreateInvocationMessage(Unpacker unpacker, IInvocationBinder binder)
         {
             var invocationId = ReadInvocationId(unpacker);
-
-            // For MsgPack, we represent an empty invocation ID as an empty string,
-            // so we need to normalize that to "null", which is what indicates a non-blocking invocation.
-            if (string.IsNullOrEmpty(invocationId))
-            {
-                invocationId = null;
-            }
-
+            var nonBlocking = ReadBoolean(unpacker, "nonBlocking");
             var target = ReadString(unpacker, "target");
             var parameterTypes = binder.GetParameterTypes(target);
 
             try
             {
                 var arguments = BindArguments(unpacker, parameterTypes);
-                return new InvocationMessage(invocationId, target, argumentBindingException: null, arguments: arguments);
+                return new InvocationMessage(invocationId, nonBlocking, target, argumentBindingException: null, arguments: arguments);
             }
             catch (Exception ex)
             {
-                return new InvocationMessage(invocationId, target, ExceptionDispatchInfo.Capture(ex));
+                return new InvocationMessage(invocationId, nonBlocking, target, ExceptionDispatchInfo.Capture(ex));
             }
         }
 
@@ -225,16 +218,10 @@ namespace Microsoft.AspNetCore.SignalR.Internal.Protocol
 
         private void WriteInvocationMessage(InvocationMessage invocationMessage, Packer packer)
         {
-            packer.PackArrayHeader(4);
+            packer.PackArrayHeader(5);
             packer.Pack(HubProtocolConstants.InvocationMessageType);
-            if (string.IsNullOrEmpty(invocationMessage.InvocationId))
-            {
-                packer.PackNull();
-            }
-            else
-            {
-                packer.PackString(invocationMessage.InvocationId);
-            }
+            packer.PackString(invocationMessage.InvocationId);
+            packer.Pack(invocationMessage.NonBlocking);
             packer.PackString(invocationMessage.Target);
             packer.PackObject(invocationMessage.Arguments, _serializationContext);
         }
@@ -320,16 +307,9 @@ namespace Microsoft.AspNetCore.SignalR.Internal.Protocol
             Exception msgPackException = null;
             try
             {
-                if (unpacker.Read())
+                if (unpacker.ReadString(out var value))
                 {
-                    if (unpacker.LastReadData.IsNil)
-                    {
-                        return null;
-                    }
-                    else
-                    {
-                        return unpacker.LastReadData.AsString();
-                    }
+                    return value;
                 }
             }
             catch (Exception e)

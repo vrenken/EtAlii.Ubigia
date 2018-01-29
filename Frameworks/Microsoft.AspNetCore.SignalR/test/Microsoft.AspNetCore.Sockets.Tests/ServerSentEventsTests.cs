@@ -3,10 +3,11 @@
 
 using System.IO;
 using System.Text;
-using System.Threading.Channels;
 using System.Threading.Tasks;
+using System.Threading.Channels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.SignalR.Tests.Common;
 using Microsoft.AspNetCore.Sockets.Internal.Transports;
 using Microsoft.Extensions.Logging;
 using Xunit;
@@ -18,14 +19,11 @@ namespace Microsoft.AspNetCore.Sockets.Tests
         [Fact]
         public async Task SSESetsContentType()
         {
-            var toApplication = Channel.CreateUnbounded<byte[]>();
-            var toTransport = Channel.CreateUnbounded<byte[]>();
+            var channel = Channel.CreateUnbounded<byte[]>();
             var context = new DefaultHttpContext();
-            var connection = new DefaultConnectionContext("foo", toTransport, toApplication);
+            var sse = new ServerSentEventsTransport(channel, connectionId: string.Empty, loggerFactory: new LoggerFactory());
 
-            var sse = new ServerSentEventsTransport(toTransport.Reader, connectionId: string.Empty, loggerFactory: new LoggerFactory());
-
-            Assert.True(toTransport.Writer.TryComplete());
+            Assert.True(channel.Writer.TryComplete());
 
             await sse.ProcessRequestAsync(context, context.RequestAborted);
 
@@ -36,16 +34,13 @@ namespace Microsoft.AspNetCore.Sockets.Tests
         [Fact]
         public async Task SSETurnsResponseBufferingOff()
         {
-            var toApplication = Channel.CreateUnbounded<byte[]>();
-            var toTransport = Channel.CreateUnbounded<byte[]>();
+            var channel = Channel.CreateUnbounded<byte[]>();
             var context = new DefaultHttpContext();
-            var connection = new DefaultConnectionContext("foo", toTransport, toApplication);
-
             var feature = new HttpBufferingFeature();
             context.Features.Set<IHttpBufferingFeature>(feature);
-            var sse = new ServerSentEventsTransport(toTransport.Reader, connectionId: string.Empty, loggerFactory: new LoggerFactory());
+            var sse = new ServerSentEventsTransport(channel, connectionId: string.Empty, loggerFactory: new LoggerFactory());
 
-            Assert.True(toTransport.Writer.TryComplete());
+            Assert.True(channel.Writer.TryComplete());
 
             await sse.ProcessRequestAsync(context, context.RequestAborted);
 
@@ -55,25 +50,23 @@ namespace Microsoft.AspNetCore.Sockets.Tests
         [Fact]
         public async Task SSEWritesMessages()
         {
-            var toApplication = Channel.CreateUnbounded<byte[]>();
-            var toTransport = Channel.CreateUnbounded<byte[]>(new UnboundedChannelOptions
+            var channel = Channel.CreateUnbounded<byte[]>(new UnboundedChannelOptions
             {
                 AllowSynchronousContinuations = true
             });
-            var context = new DefaultHttpContext();
-            var connection = new DefaultConnectionContext("foo", toTransport, toApplication);
 
+            var context = new DefaultHttpContext();
             var ms = new MemoryStream();
             context.Response.Body = ms;
-            var sse = new ServerSentEventsTransport(toTransport.Reader, connectionId: string.Empty, loggerFactory: new LoggerFactory());
+            var sse = new ServerSentEventsTransport(channel, connectionId: string.Empty, loggerFactory: new LoggerFactory());
 
             var task = sse.ProcessRequestAsync(context, context.RequestAborted);
 
-            await toTransport.Writer.WriteAsync(Encoding.ASCII.GetBytes("Hello"));
+            await channel.Writer.WriteAsync(Encoding.ASCII.GetBytes("Hello"));
 
             Assert.Equal(":\r\ndata: Hello\r\n\r\n", Encoding.ASCII.GetString(ms.ToArray()));
 
-            toTransport.Writer.TryComplete();
+            channel.Writer.TryComplete();
 
             await task.OrTimeout();
         }
@@ -84,18 +77,15 @@ namespace Microsoft.AspNetCore.Sockets.Tests
         [InlineData("Hello\r\nWorld", ":\r\ndata: Hello\r\ndata: World\r\n\r\n")]
         public async Task SSEAddsAppropriateFraming(string message, string expected)
         {
-            var toApplication = Channel.CreateUnbounded<byte[]>();
-            var toTransport = Channel.CreateUnbounded<byte[]>();
+            var channel = Channel.CreateUnbounded<byte[]>();
             var context = new DefaultHttpContext();
-            var connection = new DefaultConnectionContext("foo", toTransport, toApplication);
-
-            var sse = new ServerSentEventsTransport(toTransport.Reader, connectionId: string.Empty, loggerFactory: new LoggerFactory());
+            var sse = new ServerSentEventsTransport(channel, connectionId: string.Empty, loggerFactory: new LoggerFactory());
             var ms = new MemoryStream();
             context.Response.Body = ms;
 
-            await toTransport.Writer.WriteAsync(Encoding.UTF8.GetBytes(message));
+            await channel.Writer.WriteAsync(Encoding.UTF8.GetBytes(message));
 
-            Assert.True(toTransport.Writer.TryComplete());
+            Assert.True(channel.Writer.TryComplete());
 
             await sse.ProcessRequestAsync(context, context.RequestAborted);
 

@@ -17,7 +17,6 @@ update=false
 repo_path="$DIR"
 channel=''
 tools_source=''
-tools_source_suffix=''
 
 #
 # Functions
@@ -30,14 +29,13 @@ __usage() {
     echo "    <Arguments>...         Arguments passed to the command. Variable number of arguments allowed."
     echo ""
     echo "Options:"
-    echo "    --verbose                                             Show verbose output."
-    echo "    -c|--channel <CHANNEL>                                The channel of KoreBuild to download. Overrides the value from the config file.."
-    echo "    --config-file <FILE>                                  The path to the configuration file that stores values. Defaults to korebuild.json."
-    echo "    -d|--dotnet-home <DIR>                                The directory where .NET Core tools will be stored. Defaults to '\$DOTNET_HOME' or '\$HOME/.dotnet."
-    echo "    --path <PATH>                                         The directory to build. Defaults to the directory containing the script."
-    echo "    -s|--tools-source|-ToolsSource <URL>                  The base url where build tools can be downloaded. Overrides the value from the config file."
-    echo "    --tools-source-suffix|-ToolsSourceSuffix <SUFFIX>     The suffix to append to tools-source. Useful for query strings."
-    echo "    -u|--update                                           Update to the latest KoreBuild even if the lock file is present."
+    echo "    --verbose                                 Show verbose output."
+    echo "    -c|--channel <CHANNEL>                    The channel of KoreBuild to download. Overrides the value from the config file.."
+    echo "    --config-file <FILE>                      The path to the configuration file that stores values. Defaults to korebuild.json."
+    echo "    -d|--dotnet-home <DIR>                    The directory where .NET Core tools will be stored. Defaults to '\$DOTNET_HOME' or '\$HOME/.dotnet."
+    echo "    --path <PATH>                             The directory to build. Defaults to the directory containing the script."
+    echo "    -s|--tools-source|-ToolsSource <URL>      The base url where build tools can be downloaded. Overrides the value from the config file."
+    echo "    -u|--update                               Update to the latest KoreBuild even if the lock file is present."
     echo ""
     echo "Description:"
     echo "    This function will create a file \$DIR/korebuild-lock.txt. This lock file can be committed to source, but does not have to be."
@@ -52,7 +50,7 @@ get_korebuild() {
     local version
     local lock_file="$repo_path/korebuild-lock.txt"
     if [ ! -f "$lock_file" ] || [ "$update" = true ]; then
-        __get_remote_file "$tools_source/korebuild/channels/$channel/latest.txt" "$lock_file" "$tools_source_suffix"
+        __get_remote_file "$tools_source/korebuild/channels/$channel/latest.txt" "$lock_file"
     fi
     version="$(grep 'version:*' -m 1 "$lock_file")"
     if [[ "$version" == '' ]]; then
@@ -68,7 +66,7 @@ get_korebuild() {
             local remote_path="$tools_source/korebuild/artifacts/$version/korebuild.$version.zip"
             tmpfile="$(mktemp)"
             echo -e "${MAGENTA}Downloading KoreBuild ${version}${RESET}"
-            if __get_remote_file "$remote_path" "$tmpfile" "$tools_source_suffix"; then
+            if __get_remote_file "$remote_path" "$tmpfile"; then
                 unzip -q -d "$korebuild_path" "$tmpfile"
             fi
             rm "$tmpfile" || true
@@ -100,7 +98,6 @@ __machine_has() {
 __get_remote_file() {
     local remote_path=$1
     local local_path=$2
-    local remote_path_suffix=$3
 
     if [[ "$remote_path" != 'http'* ]]; then
         cp "$remote_path" "$local_path"
@@ -109,14 +106,14 @@ __get_remote_file() {
 
     local failed=false
     if __machine_has wget; then
-        wget --tries 10 --quiet -O "$local_path" "${remote_path}${remote_path_suffix}" || failed=true
+        wget --tries 10 --quiet -O "$local_path" "$remote_path" || failed=true
     else
         failed=true
     fi
 
     if [ "$failed" = true ] && __machine_has curl; then
         failed=false
-        curl --retry 10 -sSL -f --create-dirs -o "$local_path" "${remote_path}${remote_path_suffix}" || failed=true
+        curl --retry 10 -sSL -f --create-dirs -o "$local_path" "$remote_path" || failed=true
     fi
 
     if [ "$failed" = true ]; then
@@ -166,11 +163,6 @@ while [[ $# -gt 0 ]]; do
             shift
             tools_source="${1:-}"
             [ -z "$tools_source" ] && __usage
-            ;;
-        --tools-source-suffix|-ToolsSourceSuffix)
-            shift
-            tools_source_suffix="${1:-}"
-            [ -z "$tools_source_suffix" ] && __usage
             ;;
         -u|--update|-Update)
             update=true
