@@ -9,11 +9,11 @@ namespace Microsoft.AspNetCore.SignalR
     public class Hub : IDisposable
     {
         private bool _disposed;
-        private IHubCallerClients _clients;
+        private IHubClients _clients;
         private HubCallerContext _context;
         private IGroupManager _groups;
 
-        public IHubCallerClients Clients
+        public IHubClients Clients
         {
             get
             {

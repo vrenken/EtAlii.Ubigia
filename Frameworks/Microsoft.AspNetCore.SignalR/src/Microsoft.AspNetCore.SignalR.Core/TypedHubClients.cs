@@ -5,46 +5,32 @@ using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.SignalR
 {
-    internal class TypedHubClients<T> : IHubCallerClients<T>
+    internal class TypedHubClients<T> : IHubClients<T>
     {
-        private IHubCallerClients _hubClients;
+        private IHubClients hubClients;
 
-        public TypedHubClients(IHubCallerClients dynamicContext)
+        public TypedHubClients(IHubClients dynamicContext)
         {
-            _hubClients = dynamicContext;
+            hubClients = dynamicContext;
         }
 
-        public T All => TypedClientBuilder<T>.Build(_hubClients.All);
+        public T All => TypedClientBuilder<T>.Build(hubClients.All);
 
-        public T Caller => TypedClientBuilder<T>.Build(_hubClients.Caller);
-
-        public T Others => TypedClientBuilder<T>.Build(_hubClients.Others);
-
-        public T AllExcept(IReadOnlyList<string> excludedIds) => TypedClientBuilder<T>.Build(_hubClients.AllExcept(excludedIds));
+        public T AllExcept(IReadOnlyList<string> excludedIds) => TypedClientBuilder<T>.Build(hubClients.AllExcept(excludedIds));
 
         public T Client(string connectionId)
         {
-            return TypedClientBuilder<T>.Build(_hubClients.Client(connectionId));
+            return TypedClientBuilder<T>.Build(hubClients.Client(connectionId));
         }
 
         public T Group(string groupName)
         {
-            return TypedClientBuilder<T>.Build(_hubClients.Group(groupName));
-        }
-
-        public T GroupExcept(string groupName, IReadOnlyList<string> excludeIds)
-        {
-            return TypedClientBuilder<T>.Build(_hubClients.GroupExcept(groupName, excludeIds));
-        }
-
-        public T OthersInGroup(string groupName)
-        {
-            return TypedClientBuilder<T>.Build(_hubClients.OthersInGroup(groupName));
+            return TypedClientBuilder<T>.Build(hubClients.Group(groupName));
         }
 
         public T User(string userId)
         {
-            return TypedClientBuilder<T>.Build(_hubClients.User(userId));
+            return TypedClientBuilder<T>.Build(hubClients.User(userId));
         }
     }
 }

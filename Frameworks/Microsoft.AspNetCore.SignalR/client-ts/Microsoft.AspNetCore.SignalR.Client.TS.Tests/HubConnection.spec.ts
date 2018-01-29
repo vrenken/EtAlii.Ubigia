@@ -10,8 +10,7 @@ import { TextMessageFormat } from "../Microsoft.AspNetCore.SignalR.Client.TS/For
 import { ILogger, LogLevel } from "../Microsoft.AspNetCore.SignalR.Client.TS/ILogger"
 import { MessageType } from "../Microsoft.AspNetCore.SignalR.Client.TS/IHubProtocol"
 
-import { asyncit as it, captureException, delay, PromiseSource } from './Utils';
-import { IHubConnectionOptions } from "../Microsoft.AspNetCore.SignalR.Client.TS/IHubConnectionOptions";
+import { asyncit as it, captureException } from './JasmineUtils';
 
 describe("HubConnection", () => {
 
@@ -40,7 +39,9 @@ describe("HubConnection", () => {
             expect(connection.sentData.length).toBe(1);
             expect(JSON.parse(connection.sentData[0])).toEqual({
                 type: MessageType.Invocation,
+                invocationId: connection.lastInvocationId,
                 target: "testMethod",
+                nonblocking: true,
                 arguments: [
                     "arg",
                     42
@@ -66,6 +67,7 @@ describe("HubConnection", () => {
                 type: MessageType.Invocation,
                 invocationId: connection.lastInvocationId,
                 target: "testMethod",
+                nonblocking: false,
                 arguments: [
                     "arg",
                     42
@@ -435,46 +437,7 @@ describe("HubConnection", () => {
             connection.receive({ type: MessageType.Completion, invocationId: connection.lastInvocationId, result: "foo" });
 
             expect(await invokePromise).toBe("foo");
-        });
-
-        it("does not terminate if messages are received", async () => {
-            let connection = new TestConnection();
-            let hubConnection = new HubConnection(connection, { serverTimeoutInMilliseconds: 100 });
-
-            let p = new PromiseSource<Error>();
-            hubConnection.onclose(error => p.resolve(error));
-
-            await hubConnection.start();
-
-            await connection.receive({ type: MessageType.Ping });
-            await delay(50);
-            await connection.receive({ type: MessageType.Ping });
-            await delay(50);
-            await connection.receive({ type: MessageType.Ping });
-            await delay(50);
-            await connection.receive({ type: MessageType.Ping });
-            await delay(50);
-
-            connection.stop();
-
-            let error = await p.promise;
-
-            expect(error).toBeUndefined();
-        });
-
-        it("terminates if no messages received within timeout interval", async () => {
-            let connection = new TestConnection();
-            let hubConnection = new HubConnection(connection, { serverTimeoutInMilliseconds: 100 });
-
-            let p = new PromiseSource<Error>();
-            hubConnection.onclose(error => p.resolve(error));
-
-            await hubConnection.start();
-
-            let error = await p.promise;
-
-            expect(error).toEqual(new Error("Server timeout elapsed without receiving a message from the server."));
-        });
+        })
     })
 });
 
@@ -500,9 +463,9 @@ class TestConnection implements IConnection {
         return Promise.resolve();
     };
 
-    stop(error?: Error): void {
+    stop(): void {
         if (this.onclose) {
-            this.onclose(error);
+            this.onclose();
         }
     };
 
@@ -543,3 +506,25 @@ class TestObserver implements Observer<any>
         this.itemsSource.resolve(this.itemsReceived);
     }
 };
+
+class PromiseSource<T> {
+    public promise: Promise<T>
+
+    private resolver: (value?: T | PromiseLike<T>) => void;
+    private rejecter: (reason?: any) => void;
+
+    constructor() {
+        this.promise = new Promise<T>((resolve, reject) => {
+            this.resolver = resolve;
+            this.rejecter = reject;
+        });
+    }
+
+    resolve(value?: T | PromiseLike<T>) {
+        this.resolver(value);
+    }
+
+    reject(reason?: any) {
+        this.rejecter(reason);
+    }
+}

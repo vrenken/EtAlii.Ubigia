@@ -57,7 +57,7 @@ describe("Connection", () => {
                             done();
                         })
                         .catch((error: Error) => {
-                            expect(error.message).toBe("Cannot start a connection that is not in the 'Disconnected' state.");
+                            expect(error.message).toBe("Cannot start a connection that is not in the 'Initial' state.");
                             done();
                         });
 
@@ -81,13 +81,11 @@ describe("Connection", () => {
         }
     });
 
-    it("can start a stopped connection", async (done) => {
-        let negotiateCalls = 0;
+    it("cannot start a stopped connection", async (done) => {
         let options: IHttpConnectionOptions = {
             httpClient: <IHttpClient>{
                 post(url: string): Promise<string> {
-                    negotiateCalls += 1;
-                    return Promise.reject("reached negotiate");
+                    return Promise.reject("error");
                 },
                 get(url: string): Promise<string> {
                     return Promise.resolve("");
@@ -99,18 +97,22 @@ describe("Connection", () => {
         let connection = new HttpConnection("http://tempuri.org", options);
 
         try {
+            // start will fail and transition the connection to the Disconnected state
             await connection.start();
-        } catch (e) {
-            expect(e).toBe("reached negotiate");
+        }
+        catch (e) {
+            // The connection is not setup to be running so just ignore the error.
         }
 
         try {
             await connection.start();
-        } catch (e) {
-            expect(e).toBe("reached negotiate");
+            fail();
+            done();
         }
-
-        done();
+        catch (e) {
+            expect(e.message).toBe("Cannot start a connection that is not in the 'Initial' state.");
+            done();
+        }
     });
 
     it("can stop a starting connection", async (done) => {
@@ -318,7 +320,7 @@ describe("Connection", () => {
                 // mode: TransferMode : TransferMode.Text
                 connect(url: string, requestedTransferMode: TransferMode): Promise<TransferMode> { return Promise.resolve(transportTransferMode); },
                 send(data: any): Promise<void> { return Promise.resolve(); },
-                stop(): void { },
+                stop(): void {},
                 onreceive: null,
                 onclose: null,
                 mode: transportTransferMode

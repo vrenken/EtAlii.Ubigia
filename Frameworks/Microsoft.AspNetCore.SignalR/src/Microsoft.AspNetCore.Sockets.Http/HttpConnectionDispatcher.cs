@@ -2,13 +2,11 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Sockets.Features;
 using Microsoft.AspNetCore.Sockets.Internal;
 using Microsoft.AspNetCore.Sockets.Internal.Transports;
 using Microsoft.Extensions.Logging;
@@ -101,7 +99,7 @@ namespace Microsoft.AspNetCore.Sockets
                     return;
                 }
 
-                if (!await EnsureConnectionStateAsync(connection, context, TransportType.ServerSentEvents, supportedTransports, logScope, options))
+                if (!await EnsureConnectionStateAsync(connection, context, TransportType.ServerSentEvents, supportedTransports, logScope))
                 {
                     // Bad connection state. It's already set the response status code.
                     return;
@@ -127,7 +125,7 @@ namespace Microsoft.AspNetCore.Sockets
                     return;
                 }
 
-                if (!await EnsureConnectionStateAsync(connection, context, TransportType.WebSockets, supportedTransports, logScope, options))
+                if (!await EnsureConnectionStateAsync(connection, context, TransportType.WebSockets, supportedTransports, logScope))
                 {
                     // Bad connection state. It's already set the response status code.
                     return;
@@ -151,7 +149,7 @@ namespace Microsoft.AspNetCore.Sockets
                     return;
                 }
 
-                if (!await EnsureConnectionStateAsync(connection, context, TransportType.LongPolling, supportedTransports, logScope, options))
+                if (!await EnsureConnectionStateAsync(connection, context, TransportType.LongPolling, supportedTransports, logScope))
                 {
                     // Bad connection state. It's already set the response status code.
                     return;
@@ -336,12 +334,6 @@ namespace Microsoft.AspNetCore.Sockets
 
         private async Task ExecuteApplication(SocketDelegate socketDelegate, ConnectionContext connection)
         {
-            // Verify some initialization invariants
-            // We want to be positive that the IConnectionInherentKeepAliveFeature is initialized before invoking the application, if the long polling transport is in use.
-            Debug.Assert(connection.Metadata[ConnectionMetadataNames.Transport] != null, "Transport has not been initialized yet");
-            Debug.Assert((TransportType?)connection.Metadata[ConnectionMetadataNames.Transport] != TransportType.LongPolling ||
-                connection.Features.Get<IConnectionInherentKeepAliveFeature>() != null, "Long-polling transport is in use but IConnectionInherentKeepAliveFeature as not configured");
-
             // Jump onto the thread pool thread so blocking user code doesn't block the setup of the
             // connection and transport
             await AwaitableThreadPool.Yield();
@@ -443,7 +435,7 @@ namespace Microsoft.AspNetCore.Sockets
             }
         }
 
-        private async Task<bool> EnsureConnectionStateAsync(DefaultConnectionContext connection, HttpContext context, TransportType transportType, TransportType supportedTransports, ConnectionLogScope logScope, HttpSocketOptions options)
+        private async Task<bool> EnsureConnectionStateAsync(DefaultConnectionContext connection, HttpContext context, TransportType transportType, TransportType supportedTransports, ConnectionLogScope logScope)
         {
             if ((supportedTransports & transportType) == 0)
             {
@@ -465,12 +457,6 @@ namespace Microsoft.AspNetCore.Sockets
                 _logger.CannotChangeTransport(connection.ConnectionId, transport.Value, transportType);
                 await context.Response.WriteAsync("Cannot change transports mid-connection");
                 return false;
-            }
-
-            // Configure transport-specific features.
-            if (transportType == TransportType.LongPolling)
-            {
-                connection.Features.Set<IConnectionInherentKeepAliveFeature>(new ConnectionInherentKeepAliveFeature(options.LongPolling.PollTimeout));
             }
 
             // Setup the connection state from the http context
