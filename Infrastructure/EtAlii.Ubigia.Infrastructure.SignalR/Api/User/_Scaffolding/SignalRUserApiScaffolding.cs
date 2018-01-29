@@ -15,12 +15,12 @@
 
         public void Register(Container container)
         {
-            _signalRDependencyResolver.Register(typeof(AuthenticationHub), () => new AuthenticationHub(container.GetInstance<ISignalRAuthenticationVerifier>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>(), container.GetInstance<IStorageRepository>()));
-            _signalRDependencyResolver.Register(typeof(EntryHub), () => new EntryHub(container.GetInstance<IEntryRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
-            _signalRDependencyResolver.Register(typeof(ContentHub), () => new ContentHub(container.GetInstance<IContentRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
-            _signalRDependencyResolver.Register(typeof(ContentDefinitionHub), () => new ContentDefinitionHub(container.GetInstance<IContentDefinitionRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
-            _signalRDependencyResolver.Register(typeof(PropertiesHub), () => new PropertiesHub(container.GetInstance<IPropertiesRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
-            _signalRDependencyResolver.Register(typeof(RootHub), () => new RootHub(container.GetInstance<IRootRepository>(), container.GetInstance<ISignalRAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(AuthenticationHub), () => new AuthenticationHub(container.GetInstance<ISimpleAuthenticationVerifier>(), container.GetInstance<ISimpleAuthenticationTokenVerifier>(), container.GetInstance<IStorageRepository>()));
+            _signalRDependencyResolver.Register(typeof(EntryHub), () => new EntryHub(container.GetInstance<IEntryRepository>(), container.GetInstance<ISimpleAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(ContentHub), () => new ContentHub(container.GetInstance<IContentRepository>(), container.GetInstance<ISimpleAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(ContentDefinitionHub), () => new ContentDefinitionHub(container.GetInstance<IContentDefinitionRepository>(), container.GetInstance<ISimpleAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(PropertiesHub), () => new PropertiesHub(container.GetInstance<IPropertiesRepository>(), container.GetInstance<ISimpleAuthenticationTokenVerifier>()));
+            _signalRDependencyResolver.Register(typeof(RootHub), () => new RootHub(container.GetInstance<IRootRepository>(), container.GetInstance<ISimpleAuthenticationTokenVerifier>()));
 
             _signalRDependencyResolver.Register(typeof(IEntryRepository), container.GetInstance<IEntryRepository>);
             _signalRDependencyResolver.Register(typeof(IContentRepository), container.GetInstance<IContentRepository>);
@@ -29,8 +29,8 @@
             _signalRDependencyResolver.Register(typeof(IRootRepository), container.GetInstance<IRootRepository>);
 
             // IStorageRepository (already registered)
-            _signalRDependencyResolver.Register(typeof(ISignalRAuthenticationVerifier), container.GetInstance<ISignalRAuthenticationVerifier>);
-            _signalRDependencyResolver.Register(typeof(ISignalRAuthenticationTokenVerifier), container.GetInstance< ISignalRAuthenticationTokenVerifier>);
+            _signalRDependencyResolver.Register(typeof(ISimpleAuthenticationVerifier), container.GetInstance<ISimpleAuthenticationVerifier>);
+            _signalRDependencyResolver.Register(typeof(ISimpleAuthenticationTokenVerifier), container.GetInstance<ISimpleAuthenticationTokenVerifier>);
         }
     }
 }
