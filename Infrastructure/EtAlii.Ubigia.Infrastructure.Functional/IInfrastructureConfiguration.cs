@@ -10,8 +10,13 @@
         ILogicalContext Logical { get; }
 
         string Address { get; }
+
         string Name { get; }
+
+	    [Obsolete("Authentication credentials should be refactored out of the configuration")]
         string Account { get; }
+
+	    [Obsolete("Authentication credentials should be refactored out of the configuration")]
         string Password { get; }
 
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
