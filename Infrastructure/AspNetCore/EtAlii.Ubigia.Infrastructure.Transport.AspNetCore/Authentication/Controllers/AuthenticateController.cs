@@ -1,16 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Configuration;
 
     [Route("")]
     public class AuthenticateController : Controller
     {
-        private readonly IAuthenticationVerifier _authenticationVerifier;
+        private readonly IHttpContextAuthenticationVerifier _authenticationVerifier;
 
-        public AuthenticateController(IAuthenticationVerifier authenticationVerifier)
+        public AuthenticateController(IHttpContextAuthenticationVerifier authenticationVerifier)
         {
             _authenticationVerifier = authenticationVerifier;
         }
