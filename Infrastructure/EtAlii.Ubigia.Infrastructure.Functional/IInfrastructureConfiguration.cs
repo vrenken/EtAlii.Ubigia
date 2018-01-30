@@ -13,12 +13,6 @@
 
         string Name { get; }
 
-	    [Obsolete("Authentication credentials should be refactored out of the configuration")]
-        string Account { get; }
-
-	    [Obsolete("Authentication credentials should be refactored out of the configuration")]
-        string Password { get; }
-
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; }
 
         IInfrastructureExtension[] Extensions { get; }
@@ -27,7 +21,7 @@
         Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; }
         Func<Container, object>[] ComponentFactories { get; }
 
-        IInfrastructureConfiguration Use(string name, string address, string account, string password);
+        IInfrastructureConfiguration Use(string name, string address);
 
         IInfrastructureConfiguration Use(IInfrastructureExtension[] extensions);
         IInfrastructureConfiguration Use(ILogicalContext logical);

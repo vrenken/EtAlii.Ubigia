@@ -15,14 +15,6 @@
             {
                 throw new NotSupportedException("The address is required to construct a Infrastructure instance");
             }
-            if (String.IsNullOrWhiteSpace(configuration.Account))
-            {
-                throw new NotSupportedException("The account is required to construct a Infrastructure instance");
-            }
-            if (String.IsNullOrWhiteSpace(configuration.Password))
-            {
-                throw new NotSupportedException("The password is required to construct a Infrastructure instance");
-            }
             if (configuration.SystemConnectionCreationProxy == null)
             {
                 throw new NotSupportedException("A SystemConnectionCreationProxy is required to construct a Infrastructure instance");

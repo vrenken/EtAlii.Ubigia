@@ -16,10 +16,6 @@
 
         public string Address { get; private set; }
 
-        public string Account { get; private set; }
-
-        public string Password { get; private set; }
-
         public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; private set; }
 
         public Func<Container, object>[] ComponentFactories { get; private set; }
@@ -86,7 +82,7 @@
             return this;
         }
 
-        public IInfrastructureConfiguration Use(string name, string address, string account, string password)
+        public IInfrastructureConfiguration Use(string name, string address)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
@@ -96,19 +92,9 @@
             {
                 throw new ArgumentException(nameof(address));
             }
-            if (String.IsNullOrWhiteSpace(account))
-            {
-                throw new ArgumentException(nameof(account));
-            }
-            if (String.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentException(nameof(password));
-            }
 
             Name = name;
             Address = address;
-            Account = account;
-            Password = password;
             return this;
         }
 
