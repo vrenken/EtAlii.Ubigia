@@ -56,25 +56,10 @@
                 throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(address)} not set in service configuration.");
             }
 
-            string account;
-            account = _configuration.GetValue<string>(nameof(account));
-            if (account == null)
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(account)} not set in service configuration.");
-            }
-
-            string password;
-            password = _configuration.GetValue<string>(nameof(password));
-            if (password == null)
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(password)} not set in service configuration.");
-            }
-
-
             // Fetch the Infrastructure configuration.
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use(name, address, account, password);
+                .Use(name, address);
 
             // Create fabric instance.
             var fabricConfiguration = new FabricContextConfiguration()

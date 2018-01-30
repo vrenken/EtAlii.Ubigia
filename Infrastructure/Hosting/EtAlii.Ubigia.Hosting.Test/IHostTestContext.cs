@@ -8,10 +8,12 @@
     public interface IHostTestContext
     {
         TestHost Host { get; }
-        string SystemAccountName { get; }
-        string SystemAccountPassword { get; }
+	    string SystemAccountName { get; }
+	    string SystemAccountPassword { get; }
+	    string TestAccountName { get; }
+	    string TestAccountPassword { get; }
 
-        void Start();
+		void Start();
 
         void Start(IHost host, IInfrastructure infrastructure);
         void Stop();

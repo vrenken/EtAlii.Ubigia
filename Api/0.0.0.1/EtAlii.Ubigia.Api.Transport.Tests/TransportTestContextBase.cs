@@ -35,7 +35,7 @@
         {
             var configuration = Context.Host.Infrastructure.Configuration;
 
-            return await CreateManagementConnection(configuration.Address, configuration.Account, configuration.Password, openOnCreation);
+            return await CreateManagementConnection(configuration.Address, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
         }
 
         public abstract Task<IManagementConnection> CreateManagementConnection(string address, string account, string password, bool openOnCreation = true);

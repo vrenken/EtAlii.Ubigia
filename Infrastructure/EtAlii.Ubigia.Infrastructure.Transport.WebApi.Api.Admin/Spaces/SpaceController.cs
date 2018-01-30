@@ -10,7 +10,6 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    [RequiresAuthenticationToken(Role.Admin, Role.System)]
     [Route(RelativeUri.Data.Spaces)]
     public class SpaceController : ApiController
     {
@@ -24,8 +23,9 @@
             _items = items;
         }
 
-        // Get all spaces for the specified accountid
-        public HttpResponseMessage GetForAccount([FromUri]Guid accountId)
+		// Get all spaces for the specified accountid
+		[RequiresAuthenticationToken(Role.Admin, Role.User, Role.System)] // TODO: SECURITY: This is ugly and might be a security breach.
+		public HttpResponseMessage GetForAccount([FromUri]Guid accountId)
         {
             HttpResponseMessage response;
             try
@@ -41,7 +41,8 @@
             return response;
         }
 
-        public HttpResponseMessage GetForAccount([FromUri]Guid accountId, [FromUri]string spaceName)
+	    [RequiresAuthenticationToken(Role.Admin, Role.User, Role.System)] // TODO: SECURITY: This is ugly and might be a security breach.
+		public HttpResponseMessage GetForAccount([FromUri]Guid accountId, [FromUri]string spaceName)
         {
             HttpResponseMessage response;
             try
@@ -57,7 +58,8 @@
             return response;
         }
 
-        // Get all Items
+		// Get all Items
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Get()
         {
             HttpResponseMessage response;
@@ -74,7 +76,8 @@
             return response;
         }
 
-        // Get Item by id
+		// Get Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Get([FromUri]Guid spaceId)
         {
             HttpResponseMessage response;
@@ -91,7 +94,8 @@
             return response;
         }
 
-        // Add item
+		// Add item
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Post([FromBody]Space item, string spaceTemplate)
         {
             HttpResponseMessage response;
@@ -109,7 +113,8 @@
             return response;
         }
 
-        // Update Item by id
+		// Update Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Put([FromUri]Guid spaceId, Space space)
         {
             HttpResponseMessage response;
@@ -126,7 +131,8 @@
             return response;
         }
 
-        // Delete Item by id
+		// Delete Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Delete([FromUri]Guid spaceId)
         {
             HttpResponseMessage response;

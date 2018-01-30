@@ -11,18 +11,28 @@
     {
         public IInfrastructure Infrastructure { get; private set; }
         public THost Host { get; private set; }
-        public string SystemAccountName => Infrastructure?.Configuration.Account;
-        public string SystemAccountPassword => Infrastructure?.Configuration.Password;
+        public string SystemAccountName { get; private set; }
+		public string SystemAccountPassword { get; private set; }
+		public string TestAccountName { get; private set; }
+		public string TestAccountPassword { get; private set; }
 
-        public void Start(IHost host, IInfrastructure infrastructure)
+		public void Start(IHost host, IInfrastructure infrastructure)
         {
             Host = (THost)host;
             Host.Start();
 
             Infrastructure = infrastructure;
+
+	        var systemAccount = Infrastructure.Accounts.Get("System");
+	        SystemAccountName = systemAccount.Name;
+	        SystemAccountPassword = systemAccount.Password;
+
+	        var adminAccount = Infrastructure.Accounts.Get("Administrator");
+	        TestAccountName = adminAccount.Name;
+	        TestAccountPassword = adminAccount.Password;
         }
 
-        public async Task<ISystemConnection> CreateSystemConnection()
+		public async Task<ISystemConnection> CreateSystemConnection()
         {
             var connectionConfiguration = new SystemConnectionConfiguration()
                 .Use(Infrastructure)
@@ -39,6 +49,11 @@
             Host = null;
 
             Infrastructure = null;
+
+	        SystemAccountName = null;
+	        SystemAccountPassword = null;
+	        TestAccountName = null;
+	        TestAccountPassword = null;
         }
 
         public async Task AddUserAccountAndSpaces(ISystemConnection connection, string accountName, string password, string[] spaceNames)
