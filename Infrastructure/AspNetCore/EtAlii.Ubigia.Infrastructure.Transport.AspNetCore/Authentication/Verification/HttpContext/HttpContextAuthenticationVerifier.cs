@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Security.Principal;
     using System.Threading;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.ApplicationInsights.AspNetCore.Extensions;
     using Microsoft.AspNetCore.Http;
@@ -13,23 +14,20 @@
     internal class HttpContextAuthenticationVerifier : IHttpContextAuthenticationVerifier
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IInfrastructureConfiguration _configuration;
         private readonly IHttpContextAuthenticationIdentityProvider _authenticationIdentityProvider;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public HttpContextAuthenticationVerifier(
             IAccountRepository accountRepository,
-            IInfrastructureConfiguration configuration,
             IHttpContextAuthenticationIdentityProvider authenticationIdentityProvider,
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
             _accountRepository = accountRepository;
-            _configuration = configuration;
             _authenticationIdentityProvider = authenticationIdentityProvider;
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public IActionResult Verify(HttpContext context, Controller controller)
+        public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
         {
             var identity = _authenticationIdentityProvider.Get(context);
             if (identity == null)
@@ -37,14 +35,21 @@
                 return Challenge(context, controller);
             }
 
-            var isAdmin = _configuration.Account == identity.Name && _configuration.Password == identity.Password;
-
             var account = _accountRepository.Get(identity.Name, identity.Password);
-            if (account == null && !isAdmin)
+            if (account == null)
             {
                 return Challenge(context, controller);
             }
-            var accountName = isAdmin ? _configuration.Account : account.Name;
+	        if (requiredRoles.Any())
+	        {
+		        var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
+		        if (!hasOneRequiredRole)
+		        {
+			        throw new UnauthorizedInfrastructureOperationException("Invalid role");
+		        }
+	        }
+
+			var accountName = account.Name;
 
             var response = CreateResponse(context, controller, accountName);
 
