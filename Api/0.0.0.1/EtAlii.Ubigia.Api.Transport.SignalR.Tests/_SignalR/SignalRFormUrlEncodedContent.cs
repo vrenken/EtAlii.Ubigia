@@ -5,7 +5,6 @@
     using System.Net.Http;
     using System.Net.Http.Headers;
     using System.Text;
-    using FormUrlEncodedContent = SignalRFormUrlEncodedContent;
 
     /// <summary>
     /// A container for name/value tuples encoded using application/x-www-form-urlencoded MIME type.
@@ -26,7 +25,7 @@
         {
             if (nameValueCollection == null)
             {
-                throw new ArgumentNullException("nameValueCollection");
+                throw new ArgumentNullException(nameof(nameValueCollection));
             }
             var stringBuilder = new StringBuilder();
             foreach (var keyValuePair in nameValueCollection)
