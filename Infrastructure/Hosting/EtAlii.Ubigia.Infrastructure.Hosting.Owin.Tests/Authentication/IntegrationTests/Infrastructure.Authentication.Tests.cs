@@ -50,7 +50,7 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
+            var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
             string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act
