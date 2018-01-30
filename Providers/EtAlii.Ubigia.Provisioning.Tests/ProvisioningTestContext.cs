@@ -53,14 +53,14 @@ namespace EtAlii.Ubigia.Provisioning
         public async Task<IManagementConnection> OpenManagementConnection()
         {
             var diagnostics = TestDiagnostics.Create();
-            var configuration = Context.Host.Infrastructure.Configuration;
+			var configuration = Context.Host.Infrastructure.Configuration;
             var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
                 .Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
                 .Use(diagnostics)
                 .Use(configuration.Address)
-                .Use(configuration.Account, configuration.Password);
+                .Use(Context.TestAccountName, Context.TestAccountPassword);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             await connection.Open();
             return connection;
