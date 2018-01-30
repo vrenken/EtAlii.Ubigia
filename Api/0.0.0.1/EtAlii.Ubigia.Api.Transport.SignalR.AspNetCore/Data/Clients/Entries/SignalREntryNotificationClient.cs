@@ -9,7 +9,7 @@
     {
         private HubConnection _connection;
         private readonly string _name;
-        //private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+        private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
         public event Action<Identifier> Prepared = delegate { };
         public event Action<Identifier> Stored = delegate { };
@@ -33,14 +33,14 @@
         {
             await base.Connect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + "/" + _name, spaceConnection.Transport.HttpClientHandler);
-                //_proxy = Connection.Transport.HubConnection.CreateHubProxy(_name);
+			_connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + _name, spaceConnection.Transport);//spaceConnection.Transport.HttpClientHandler);
+	        await _connection.StartAsync();
 
-                _connection.On<Identifier>("prepared", OnPrepared);
-                _connection.On<Identifier>("stored", OnStored);
-            });
+	        _subscriptions = new[]
+	        {
+				_connection.On<Identifier>("prepared", OnPrepared),
+                _connection.On<Identifier>("stored", OnStored),
+            };
         }
 
         public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
@@ -50,14 +50,10 @@
             await _connection.DisposeAsync();
             _connection = null;
 
-            //await Task.Run(() =>
-            //{
-            //    foreach (var subscription in _subscriptions)
-            //    {
-            //        subscription.Dispose();
-            //    }
-            //    _proxy = null;
-            //});
+	        foreach (var subscription in _subscriptions)
+	        {
+		        subscription.Dispose();
+	        }
         }
-    }
+	}
 }

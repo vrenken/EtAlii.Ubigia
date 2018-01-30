@@ -2,9 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Net;
-    using System.Net.Http;
-    using Microsoft.AspNetCore.Sockets.Http;
 
     public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
     {
@@ -13,7 +10,7 @@
         public async Task Authenticate(ISpaceConnection connection)
         {
             var signalRConnection = (ISignalRSpaceConnection)connection;
-            var authenticationToken = await GetAuthenticationToken(signalRConnection.Transport.HttpClientHandler, signalRConnection.Configuration.AccountName, signalRConnection.Configuration.Password, signalRConnection.Configuration.Address, signalRConnection.Transport.AuthenticationToken);
+            var authenticationToken = await GetAuthenticationToken(signalRConnection.Configuration.AccountName, signalRConnection.Configuration.Password, signalRConnection.Configuration.Address, signalRConnection.Transport.AuthenticationToken);
             
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -29,7 +26,7 @@
         public async Task Authenticate(IStorageConnection connection)
         {
             var signalRConnection = (ISignalRStorageConnection)connection;
-            var authenticationToken = await GetAuthenticationToken(signalRConnection.Transport.HttpClientHandler, signalRConnection.Configuration.AccountName, signalRConnection.Configuration.Password, signalRConnection.Configuration.Address, signalRConnection.Transport.AuthenticationToken);
+            var authenticationToken = await GetAuthenticationToken(signalRConnection.Configuration.AccountName, signalRConnection.Configuration.Password, signalRConnection.Configuration.Address, signalRConnection.Transport.AuthenticationToken);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -42,17 +39,14 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(ClientHttpMessageHandler httpClientHandler, string accountName, string password, string address, string authenticationToken)
+        private async Task<string> GetAuthenticationToken(string accountName, string password, string address, string authenticationToken)
         {
             if (password != null || authenticationToken == null)
             {
-                var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData + "/" + SignalRHub.Authentication, httpClientHandler);
-                httpClientHandler.HostIdentifier = _hostIdentifier;
-                httpClientHandler.Credentials = new NetworkCredential(accountName, password);
-                //var authenticationProxy = connection.CreateHubProxy(SignalRHub.Authentication);
+                var connection = new HubConnectionFactory().CreateForHost(address + RelativeUri.UserData + "/" + SignalRHub.Authentication, _hostIdentifier);
                 await connection.StartAsync();
                 authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
-                await connection.DisposeAsync();
+				await connection.DisposeAsync();
             }
 
             if (String.IsNullOrWhiteSpace(authenticationToken))

@@ -78,21 +78,14 @@
 
         public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await Task.Run(() =>
-            {
-                _connection = new HubConnectionFactory().Create(storageConnection.Storage.Address + "/" + SignalRHub.Account, storageConnection.Transport.HttpClientHandler);
-                //_proxy = storageConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Account);
-            });
+            _connection = new HubConnectionFactory().Create(storageConnection.Storage.Address + RelativeUri.UserData + "/" + SignalRHub.Account, storageConnection.Transport);
+			await _connection.StartAsync();
         }
 
         public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
             await _connection.DisposeAsync();
             _connection = null;
-            //await Task.Run(() =>
-            //{
-            //    _proxy = null;
-            //});
         }
     }
 }

@@ -19,13 +19,12 @@
             await base.Connect(spaceConnection);
             
             var factory = new HubConnectionFactory();
-            await Task.Run(() =>
-            {
-                _contentConnection = factory.Create(spaceConnection.Storage.Address + "/" + SignalRHub.Content, spaceConnection.Transport.HttpClientHandler);
-                _contentDefinitionConnection = factory.Create(spaceConnection.Storage.Address + "/" + SignalRHub.ContentDefinition, spaceConnection.Transport.HttpClientHandler);
-                //_contentProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Content);
-                //_contentDefinitionProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.ContentDefinition);
-            });
+
+	        _contentConnection = factory.Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + SignalRHub.Content, spaceConnection.Transport);
+            _contentDefinitionConnection = factory.Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + SignalRHub.ContentDefinition, spaceConnection.Transport);
+
+	        await _contentConnection.StartAsync();
+	        await _contentDefinitionConnection.StartAsync();
         }
 
         public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)

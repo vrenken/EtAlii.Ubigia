@@ -22,16 +22,11 @@
             await base.Connect(spaceConnection);
 
             var factory = new HubConnectionFactory();
-            await Task.Run(() =>
-            {
-                _accountConnection = factory.Create(spaceConnection.Storage.Address + "/" + SignalRHub.Account, spaceConnection.Transport.HttpClientHandler);
-                _spaceConnection = factory.Create(spaceConnection.Storage.Address + "/" + SignalRHub.Space, spaceConnection.Transport.HttpClientHandler);
-                //_accountProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Account);
-                //_spaceProxy = spaceConnection.Transport.HubConnection.CreateHubProxy(SignalRHub.Space);
 
-                // Also let's set the correct authentication token. 
-                spaceConnection.Transport.HttpClientHandler.AuthenticationToken = spaceConnection.Transport.AuthenticationToken;
-            });
+	        _accountConnection = factory.Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + SignalRHub.Account, spaceConnection.Transport);
+			_spaceConnection = factory.Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + SignalRHub.Space, spaceConnection.Transport);
+	        await _accountConnection.StartAsync();
+	        await _spaceConnection.StartAsync();
         }
 
         public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)

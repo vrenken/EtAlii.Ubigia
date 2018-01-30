@@ -9,7 +9,7 @@
     {
         private HubConnection _connection;
         private readonly string _name;
-        //private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+        private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
         public event Action<Identifier> Updated = delegate { };
         public event Action<Identifier> Stored = delegate { };
@@ -33,18 +33,14 @@
         {
             await base.Connect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + "/" + _name, spaceConnection.Transport.HttpClientHandler);
-                _connection.On<Identifier>("updated", OnUpdated);
-                _connection.On<Identifier>("stored", OnStored);
-                //_proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(_name);
-                //_subscriptions = new[]
-                //{
-                //    _proxy.On<Identifier>("updated", OnUpdated),
-                //    _proxy.On<Identifier>("stored", OnStored),
-                //};
-            });
+			_connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + _name, spaceConnection.Transport);
+	        await _connection.StartAsync();
+
+	        _subscriptions = new[]
+	        {
+		        _connection.On<Identifier>("updated", OnUpdated),
+		        _connection.On<Identifier>("stored", OnStored),
+	        };
         }
 
         public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
@@ -54,14 +50,10 @@
             await _connection.DisposeAsync();
             _connection = null;
 
-            //await Task.Run(() =>
-            //{
-            //    foreach (var subscription in _subscriptions)
-            //    {
-            //        subscription.Dispose();
-            //    }
-            //    _proxy = null;
-            //});
-        }
-    }
+			foreach (var subscription in _subscriptions)
+			{
+				subscription.Dispose();
+			}
+		}
+	}
 }
