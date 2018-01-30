@@ -18,13 +18,13 @@
             //_logger = logger;
         }
 
-        public HttpStatusCode Verify(HttpActionContext actionContext)
+        public HttpStatusCode Verify(HttpActionContext actionContext, params string[] requiredRoles)
         {
             //var message = String.Format("Verifying authentication");
             //_logger.Info(message);
             //var start = Environment.TickCount;
 
-            var result = _verifier.Verify(actionContext);
+            var result = _verifier.Verify(actionContext, requiredRoles);
 
             //message = String.Format("Verified authentication (Status: {0} Duration: {1}ms)", result, Environment.TickCount - start);
             //_logger.Info(message);

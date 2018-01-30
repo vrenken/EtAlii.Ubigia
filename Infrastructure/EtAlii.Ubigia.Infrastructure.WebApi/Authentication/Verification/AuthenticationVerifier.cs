@@ -29,7 +29,7 @@
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public HttpStatusCode Verify(HttpActionContext actionContext)
+        public HttpStatusCode Verify(HttpActionContext actionContext, params string[] requiredRoles)
         {
             var identity = _authenticationIdentityProvider.Get(actionContext);
             if (identity == null)
@@ -38,15 +38,23 @@
                 return HttpStatusCode.Unauthorized;
             }
 
-            var isAdmin = _configuration.Account == identity.Name && _configuration.Password == identity.Password;
-
             var account = _accountRepository.Get(identity.Name, identity.Password);
-            if (account == null && !isAdmin)
+            if (account == null)
             {
                 Challenge(actionContext);
                 return HttpStatusCode.Unauthorized;
             }
-            var accountName = isAdmin ? _configuration.Account : account.Name;
+
+	        if (requiredRoles.Any())
+	        {
+		        var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
+		        if (!hasOneRequiredRole)
+		        {
+			        Challenge(actionContext);
+			        return HttpStatusCode.Unauthorized;
+		        }
+			}
+			var accountName = account.Name;
 
             actionContext.Response = CreateResponse(actionContext, accountName);
 

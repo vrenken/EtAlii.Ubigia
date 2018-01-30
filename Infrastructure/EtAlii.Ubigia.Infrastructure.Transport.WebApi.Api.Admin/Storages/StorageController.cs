@@ -5,10 +5,11 @@
     using System.Net.Http;
     using System.Web.Http;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    [RequiresAuthenticationToken]
+    [RequiresAuthenticationToken(Role.Admin, Role.System)]
     [Route(RelativeUri.Data.Storages)]
     public class StorageController : ApiController
     {

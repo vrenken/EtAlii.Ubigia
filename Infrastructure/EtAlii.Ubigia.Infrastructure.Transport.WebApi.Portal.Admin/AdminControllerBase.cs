@@ -6,7 +6,7 @@
     using System.Web.Http;
     using EtAlii.Ubigia.Api.Transport;
 
-    [RequiresAuthenticationToken(Role.Admin)]
+    [RequiresAuthenticationToken(Role.Admin, Role.System)]
     public class AdminControllerBase : ApiController
     {
         protected AdminControllerBase()

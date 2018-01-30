@@ -6,12 +6,12 @@
 
     public class RequiresAuthenticationTokenAttribute : ActionFilterAttribute
     {
-        private readonly string _requiredRole;
+        private readonly string[] _requiredRoles;
         private IAuthenticationTokenVerifier _verifier;
 
-        public RequiresAuthenticationTokenAttribute(string requiredRole = null)
+        public RequiresAuthenticationTokenAttribute(params string[] requiredRoles)
         {
-            _requiredRole = requiredRole;
+			_requiredRoles = requiredRoles;
         }
 
         public override void OnActionExecuting(HttpActionContext actionContext)
@@ -22,7 +22,7 @@
             {
                 _verifier = (IAuthenticationTokenVerifier)actionContext.ControllerContext.Configuration.DependencyResolver.GetService(typeof(IAuthenticationTokenVerifier));
             }
-            var status = _verifier.Verify(actionContext, _requiredRole);
+            var status = _verifier.Verify(actionContext, _requiredRoles);
             if (status == HttpStatusCode.OK || 
                 status == HttpStatusCode.Unauthorized)
             {

@@ -7,7 +7,6 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
-    [RequiresAuthenticationToken]
     public partial class EntryController : ApiController
     {
         // Update Item by id
