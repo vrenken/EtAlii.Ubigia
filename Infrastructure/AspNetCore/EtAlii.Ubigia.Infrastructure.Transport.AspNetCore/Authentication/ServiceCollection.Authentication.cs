@@ -18,12 +18,12 @@
 		{
 			services
 				.TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
-				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
+				.TryAddSingleton<IStorageRepository>(infrastructure.Storages)
 				.AddSingleton<IHttpContextAuthenticationVerifier, HttpContextAuthenticationVerifier>()
 				.AddSingleton<IHttpContextAuthenticationTokenVerifier, HttpContextAuthenticationTokenVerifier>()
 				.AddSingleton<IHttpContextAuthenticationIdentityProvider, DefaultHttpContextAuthenticationIdentityProvider>();
 
-			AddJwtBearer(services);
+			//AddJwtBearer(services);
 
 			return services;
 		}
@@ -31,6 +31,8 @@
 		public static IServiceCollection AddInfrastructureSimpleAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
 	    {
 		    services
+			    .TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
+			    .TryAddSingleton<IStorageRepository>(infrastructure.Storages)
 				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver);
 				//.AddSingleton<IParameterResolver, SignalRParameterResolver>()
 				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
