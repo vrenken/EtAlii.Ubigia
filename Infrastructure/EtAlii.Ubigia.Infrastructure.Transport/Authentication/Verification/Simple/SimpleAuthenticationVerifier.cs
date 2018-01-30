@@ -1,42 +1,46 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class SimpleAuthenticationVerifier : ISimpleAuthenticationVerifier
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IInfrastructureConfiguration _configuration;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public SimpleAuthenticationVerifier(
             IAccountRepository accountRepository,
-            IInfrastructureConfiguration configuration,
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
             _accountRepository = accountRepository;
-            _configuration = configuration;
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public string Verify(string accountName, string password, string hostIdentifier)
+        public string Verify(string accountName, string password, string hostIdentifier, params string[] requiredRoles)
         {
             if (String.IsNullOrWhiteSpace(accountName) || String.IsNullOrWhiteSpace(password))
             {
                 throw new InvalidInfrastructureOperationException("Unauthorized");
             }
 
-            var isAdmin = _configuration.Account == accountName && _configuration.Password == password;
-
             var account = _accountRepository.Get(accountName, password);
-            if (account == null && !isAdmin)
+            if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException("Invalid account");
             }
-            //var accountName = isAdmin ? _configuration.Account : account.Name;
 
-            var authenticationToken = CreateAuthenticationToken(accountName, hostIdentifier);
+	        if (requiredRoles.Any())
+	        {
+		        var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
+		        if (!hasOneRequiredRole)
+		        {
+			        throw new UnauthorizedInfrastructureOperationException("Invalid role");
+		        }
+	        }
+
+			var authenticationToken = CreateAuthenticationToken(accountName, hostIdentifier);
 
             return authenticationToken;
         }
