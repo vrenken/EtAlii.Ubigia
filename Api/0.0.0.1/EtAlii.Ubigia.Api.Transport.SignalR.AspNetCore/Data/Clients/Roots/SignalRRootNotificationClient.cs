@@ -9,9 +9,9 @@
     {
         private HubConnection _connection;
         private readonly string _name;
-        //private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+		private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-        public event Action<Guid> Added = delegate { };
+		public event Action<Guid> Added = delegate { };
         public event Action<Guid> Changed = delegate { };
         public event Action<Guid> Removed = delegate { };
 
@@ -39,18 +39,15 @@
         {
             await base.Connect(spaceConnection);
 
-            await Task.Run(() =>
-            {
-                _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + "/" + _name, spaceConnection.Transport.HttpClientHandler);
-                _connection.On<Guid>("added", OnAdded);
-                _connection.On<Guid>("changed", OnChanged);
-                _connection.On<Guid>("removed", OnRemoved);
+            _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + _name, spaceConnection.Transport);
+	        await _connection.StartAsync();
 
-                //_proxy = spaceConnection.Transport.HubConnection.CreateHubProxy(_name);
-                //_subscriptions = new[]
-                //{
-                //};
-            });
+			_subscriptions = new[]
+			{
+				_connection.On<Guid>("added", OnAdded),
+				_connection.On<Guid>("changed", OnChanged),
+				_connection.On<Guid>("removed", OnRemoved),
+			};
         }
 
         public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
@@ -60,14 +57,10 @@
             await _connection.DisposeAsync();
             _connection = null;
 
-            //await Task.Run(() =>
-            //{
-            //    foreach (var subscription in _subscriptions)
-            //    {
-            //        subscription.Dispose();
-            //    }
-            //    _proxy = null;
-            //});
+	        foreach (var subscription in _subscriptions)
+	        {
+		        subscription.Dispose();
+	        }
         }
-    }
+	}
 }

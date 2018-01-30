@@ -1,61 +1,52 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
     using System;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
-    using Microsoft.AspNetCore.SignalR.Client;
 
     public class SignalRSpaceTransport : SpaceTransportBase, ISignalRSpaceTransport
     {
-        public HubConnection HubConnection { get; private set; }
-
-        public ClientHttpMessageHandler HttpClientHandler { get; }
+	    private bool _started;
 
         public string AuthenticationToken { get { return _authenticationTokenGetter(); } set { _authenticationTokenSetter(value); } }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 
         public SignalRSpaceTransport(
-            ClientHttpMessageHandler httpClientHandler, 
             Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-            HttpClientHandler = httpClientHandler;
             _authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
         }
 
-        public override void Initialize(ISpaceConnection spaceConnection, string address)
-        {
-            if (HubConnection != null)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
-            }
-            HubConnection = new HubConnectionFactory().Create(address + RelativeUri.UserData, HttpClientHandler);
-        }
+		public override void Initialize(ISpaceConnection spaceConnection, string address)
+		{
+			if (_started)
+			{
+				throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
+			}
+		}
 
-        public override async Task Start(ISpaceConnection spaceConnection, string address)
+		public override async Task Start(ISpaceConnection spaceConnection, string address)
         {
             await base.Start(spaceConnection, address);
 
-            // TODO: Dang, we do not use websockets but server-side events.... 
-            // Could this be improved by somehow creating a autotransport with WebSocketTransport inside? 
-            // This requires the .Start call to be made in a non-PCL project which allows instantiation of the WebSocketTransport class.
-            await HubConnection.StartAsync();
+	        _started = true;
+
+	        // TODO: Dang, we do not use websockets but server-side events.... 
+	        // Could this be improved by somehow creating a autotransport with WebSocketTransport inside? 
+	        // This requires the .Start call to be made in a non-PCL project which allows instantiation of the WebSocketTransport class.
         }
 
         public override async Task Stop(ISpaceConnection spaceConnection)
         {
-            if (HubConnection == null)
+            if (!_started)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToTransport);
             }
 
             await base.Stop(spaceConnection);
-
-            await HubConnection.DisposeAsync();
-            HubConnection = null;
         }
 
         protected override IScaffolding[] CreateScaffoldingInternal()
