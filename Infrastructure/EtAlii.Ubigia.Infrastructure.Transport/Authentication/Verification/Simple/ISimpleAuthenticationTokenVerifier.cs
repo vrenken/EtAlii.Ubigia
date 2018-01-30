@@ -2,6 +2,6 @@
 {
     public interface ISimpleAuthenticationTokenVerifier
     {
-        void Verify(string authenticationTokenAsString, string requiredRole);
+        void Verify(string authenticationTokenAsString, params string[] requiredRoles);
     }
 }

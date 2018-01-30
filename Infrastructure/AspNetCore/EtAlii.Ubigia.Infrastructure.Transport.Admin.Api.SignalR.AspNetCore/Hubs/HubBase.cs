@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport;
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.Extensions.Primitives;
 
@@ -18,7 +19,7 @@
         {
             Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
             var authenticationToken = stringValues.Single();
-            _authenticationTokenVerifier.Verify(authenticationToken, null);
+            _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
 
             return base.OnConnectedAsync();
         }
