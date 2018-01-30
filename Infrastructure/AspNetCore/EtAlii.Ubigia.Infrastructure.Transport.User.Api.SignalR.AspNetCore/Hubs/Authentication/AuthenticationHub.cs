@@ -2,8 +2,8 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
     using Microsoft.AspNetCore.SignalR;
     using Microsoft.Extensions.Primitives;
 
@@ -26,15 +26,14 @@
 
         public string Authenticate(string accountName, string password, string hostIdentifier)
         {
-            return _authenticationVerifier.Verify(accountName, password, hostIdentifier);
+            return _authenticationVerifier.Verify(accountName, password, hostIdentifier, Role.User, Role.System);
         }
 
         public Storage GetLocalStorage()
         {
             Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
             var authenticationToken = stringValues.Single();
-            //var authenticationToken = Context.Headers.Get("Authentication-Token");
-            _authenticationTokenVerifier.Verify(authenticationToken, null);
+            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 
             return _storageRepository.GetLocal();
         }

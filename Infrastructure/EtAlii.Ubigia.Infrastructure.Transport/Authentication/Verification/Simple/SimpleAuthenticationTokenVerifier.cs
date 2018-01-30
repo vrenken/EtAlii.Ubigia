@@ -18,7 +18,7 @@
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public void Verify(string authenticationTokenAsString, string requiredRole)
+        public void Verify(string authenticationTokenAsString, params string[] requiredRoles)
         {
             var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
             if (authenticationToken != null)
@@ -26,23 +26,22 @@
                 try
                 {
                     var account = _accountRepository.Get(authenticationToken.Name);
-                    if (account != null)
+                    if (account == null)
                     {
-                        // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
-                        if (requiredRole != null)
-                        {
-                            if (!account.Roles.Contains(requiredRole))
-                            {
-                                throw new UnauthorizedInfrastructureOperationException("Unauthorized account: Account does not contain the required role");
-                            }
-                        }
-                        else
-                        {
-                            // No role is required, just an authenticated user.
-                        }
+	                    throw new UnauthorizedInfrastructureOperationException("Unauthorized account: Account does not contain the required role");
                     }
-                }
-                catch (Exception e)
+	                // Let's be a bit safe, if there are any requiredRoles we are going to check the roles collection for it.
+	                if (requiredRoles.Any())
+	                {
+		                var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
+		                if (!hasOneRequiredRole)
+		                {
+			                throw new UnauthorizedInfrastructureOperationException("Invalid role");
+		                }
+	                }
+
+				}
+				catch (Exception e)
                 {
                     throw new UnauthorizedInfrastructureOperationException("Unauthorized account", e);
                 }
