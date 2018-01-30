@@ -80,7 +80,13 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Account Add(Account item, AccountTemplate template)
         {
-            var account = _fabric.Items.Add(Items, CannAddFunction, item);
+			// We want to make absolutely sure that the account has the roles described by the template. 
+	        item.Roles = item.Roles
+		        .Concat(template.RolesToAssign)
+		        .Distinct()
+		        .ToArray();
+
+			var account = _fabric.Items.Add(Items, CannAddFunction, item);
 
             if (account != null)
             {
