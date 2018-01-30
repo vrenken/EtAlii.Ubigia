@@ -10,7 +10,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    [RequiresAuthenticationToken]
+    [RequiresAuthenticationToken(Role.Admin, Role.System)]
     [Route(RelativeUri.Data.Spaces)]
     public class SpaceController : ApiController
     {

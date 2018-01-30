@@ -20,7 +20,14 @@
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
     internal class RequiresAuthenticationAttribute : AuthorizationFilterAttribute
     {
-        private IAuthenticationVerifier _verifier;
+	    private readonly string[] _requiredRoles;
+
+	    public RequiresAuthenticationAttribute(params string[] requiredRoles)
+	    {
+		    _requiredRoles = requiredRoles;
+	    }
+
+		private IAuthenticationVerifier _verifier;
 
         /// <summary>
         /// Override to Web API filter method to handle Basic Auth check
@@ -34,7 +41,7 @@
             {
                 _verifier = (IAuthenticationVerifier)actionContext.ControllerContext.Configuration.DependencyResolver.GetService(typeof(IAuthenticationVerifier));
             }
-            var status = _verifier.Verify(actionContext);
+            var status = _verifier.Verify(actionContext, _requiredRoles);
             if (status == HttpStatusCode.OK)
             {
                 base.OnAuthorization(actionContext);

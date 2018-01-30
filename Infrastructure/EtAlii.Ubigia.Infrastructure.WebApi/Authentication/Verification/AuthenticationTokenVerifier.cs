@@ -20,44 +20,42 @@
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public HttpStatusCode Verify(HttpActionContext actionContext, string requiredRole)
+        public HttpStatusCode Verify(HttpActionContext actionContext, params string[] requiredRoles)
         {
-            var result = HttpStatusCode.Forbidden;
             var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(actionContext);
-            if (authenticationToken != null)
+	        if (authenticationToken == null)
+	        {
+		        actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Authentication-Token");
+		        return HttpStatusCode.BadRequest;
+	        }
+
+			try
             {
-                try
+                var account = _accountRepository.Get(authenticationToken.Name);
+	            if (account == null)
+	            {
+		            actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account");
+		            return HttpStatusCode.Forbidden;
+				}
+
+				// Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
+				if (requiredRoles.Any())
                 {
-                    var account = _accountRepository.Get(authenticationToken.Name);
-                    if (account != null)
-                    {
-                        // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
-                        if (requiredRole != null)
-                        {
-                            if (account.Roles.Contains(requiredRole))
-                            {
-                                result = HttpStatusCode.OK;
-                            }
-                        }
-                        else
-                        {
-                            result = HttpStatusCode.OK;
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    result = HttpStatusCode.Forbidden;
-                    actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account");
-                }
+	                var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
+	                if (!hasOneRequiredRole)
+	                {
+		                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account");
+		                return HttpStatusCode.Forbidden;
+	                }
+				}
             }
-            else
+            catch (Exception)
             {
-                result = HttpStatusCode.BadRequest;
-                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.BadRequest, "Missing Authentication-Token");
+                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account");
+	            return HttpStatusCode.Forbidden;
             }
 
-            return result;
+			return HttpStatusCode.OK;
         }
-    }
+	}
 }

@@ -6,7 +6,6 @@
     using System.Web.Http;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
-    [RequiresAuthenticationToken]
     public partial class EntryController : ApiController
     {
         // Get a new prepared entry for the specified spaceId

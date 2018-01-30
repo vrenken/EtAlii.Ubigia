@@ -5,6 +5,6 @@
 
     public interface IAuthenticationTokenVerifier
     {
-        HttpStatusCode Verify(HttpActionContext actionContext, string requiredRole);
+        HttpStatusCode Verify(HttpActionContext actionContext, params string[] requiredRoles);
     }
 }
