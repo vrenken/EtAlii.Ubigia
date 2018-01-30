@@ -9,7 +9,6 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    [RequiresAuthenticationToken(Role.Admin, Role.System)]
     [Route(RelativeUri.Data.Storages)]
     public class StorageController : ApiController
     {
@@ -40,8 +39,9 @@
             base.Dispose(disposing);
         }
 
-        //[Route(RelativeUri.Storages), HttpGet]
-        public HttpResponseMessage GetLocal([FromUri]string local)
+		//[Route(RelativeUri.Storages), HttpGet]
+		[RequiresAuthenticationToken(Role.Admin, Role.User, Role.System)] // TODO: SECURITY: This is ugly and might be a security breach.
+		public HttpResponseMessage GetLocal([FromUri]string local)
         {
             HttpResponseMessage response;
             try
@@ -57,7 +57,8 @@
             return response;
         }
 
-        public HttpResponseMessage GetByName([FromUri]string storageName)
+	    [RequiresAuthenticationToken(Role.Admin, Role.System)]
+	    public HttpResponseMessage GetByName([FromUri]string storageName)
         {
             HttpResponseMessage response;
             try
@@ -74,8 +75,9 @@
         }
 
 
-        // Get all Items
-        public HttpResponseMessage Get()
+		// Get all Items
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
+		public HttpResponseMessage Get()
         {
             HttpResponseMessage response;
             try
@@ -91,8 +93,9 @@
             return response;
         }
 
-        // Get Item by id
-        public HttpResponseMessage Get([FromUri]Guid storageId)
+		// Get Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
+		public HttpResponseMessage Get([FromUri]Guid storageId)
         {
             HttpResponseMessage response;
             try
@@ -108,8 +111,9 @@
             return response;
         }
 
-        // Add item
-        public HttpResponseMessage Post([FromBody]Storage item)
+		// Add item
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
+		public HttpResponseMessage Post([FromBody]Storage item)
         {
             HttpResponseMessage response;
             try
@@ -125,8 +129,9 @@
             return response;
         }
 
-        // Update Item by id
-        public HttpResponseMessage Put([FromUri]Guid storageId, Storage storage)
+		// Update Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
+		public HttpResponseMessage Put([FromUri]Guid storageId, Storage storage)
         {
             HttpResponseMessage response;
             try
@@ -142,8 +147,9 @@
             return response;
         }
 
-        // Delete Item by id
-        public HttpResponseMessage Delete([FromUri]Guid storageId)
+		// Delete Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
+		public HttpResponseMessage Delete([FromUri]Guid storageId)
         {
             HttpResponseMessage response;
             try

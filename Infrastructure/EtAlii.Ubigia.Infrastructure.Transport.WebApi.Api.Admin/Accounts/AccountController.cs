@@ -10,7 +10,6 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    [RequiresAuthenticationToken(Role.Admin, Role.System)]
     [Route(RelativeUri.Data.Accounts)]
     public class AccountController : ApiController
     {
@@ -24,7 +23,8 @@
             _items = items;
         }
 
-        public HttpResponseMessage GetByName([FromUri]string accountName)
+	    [RequiresAuthenticationToken(Role.Admin, Role.User, Role.System)] // TODO: SECURITY: This is ugly and might be a security breach.
+		public HttpResponseMessage GetByName([FromUri]string accountName)
         {
             HttpResponseMessage response;
             try
@@ -41,7 +41,8 @@
         }
 
 
-        // Get all Items
+		// Get all Items
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Get()
         {
             HttpResponseMessage response;
@@ -58,7 +59,8 @@
             return response;
         }
 
-        // Get Item by id
+		// Get Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.User, Role.System)] // TODO: SECURITY: This is ugly and might be a security breach.
         public HttpResponseMessage Get([FromUri]Guid accountId)
         {
             HttpResponseMessage response;
@@ -75,7 +77,8 @@
             return response;
         }
 
-        // Add item
+		// Add item
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Post([FromBody]Account item, string accountTemplate)
         {
             HttpResponseMessage response;
@@ -93,7 +96,8 @@
             return response;
         }
 
-        // Update Item by id
+		// Update Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Put([FromUri]Guid accountId, Account account)
         {
             HttpResponseMessage response;
@@ -110,7 +114,8 @@
             return response;
         }
 
-        // Delete Item by id
+		// Delete Item by id
+		[RequiresAuthenticationToken(Role.Admin, Role.System)]
         public HttpResponseMessage Delete([FromUri]Guid accountId)
         {
             HttpResponseMessage response;

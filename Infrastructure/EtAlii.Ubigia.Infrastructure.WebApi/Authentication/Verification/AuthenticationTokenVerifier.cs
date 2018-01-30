@@ -44,7 +44,7 @@
 	                var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
 	                if (!hasOneRequiredRole)
 	                {
-		                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account");
+		                actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized account: Account does not contain the required role");
 		                return HttpStatusCode.Forbidden;
 	                }
 				}

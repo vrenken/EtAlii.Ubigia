@@ -195,8 +195,8 @@
             PowerShell.Commands.Clear();
             PowerShell.AddCommand("Select-Storage")
                        .AddArgument(configuration.Address)
-                       .AddArgument(configuration.Account)
-                       .AddArgument(configuration.Password);
+                       .AddArgument(Context.TestAccountName)
+                       .AddArgument(Context.TestAccountPassword);
             return PowerShell.Invoke();
         }
 

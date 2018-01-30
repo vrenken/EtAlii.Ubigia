@@ -7,7 +7,6 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     
@@ -30,9 +29,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Storage_Local_With_Authentication()
         {
-            // Arrange.
+			// Arrange.
+			var context = _hostTestContext;
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(configuration.Account, configuration.Password);
+            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
             string address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
             var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
@@ -63,9 +63,10 @@
         [Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Storage_Delayed()
         {
-            // Arrange.
+			// Arrange.
+			var context = _hostTestContext;
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(configuration.Account, configuration.Password);
+            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
             string address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
             var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));

@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     
@@ -21,8 +20,9 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Authentication_Url()
         {
+	        var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(configuration.Account, configuration.Password);
+            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
             string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
             var token = await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
@@ -32,8 +32,9 @@
         public async Task Infrastructure_Get_Authentication_Url_Invalid_Password()
         {
             // Arrange.
+	        var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(configuration.Account, configuration.Password + "BAAD");
+            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
             string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act
@@ -46,9 +47,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Authentication_Url_Invalid_Account()
         {
-            // Arrange.
+			// Arrange.
+			var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(configuration.Account + "BAAD", configuration.Password);
+            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
             string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act

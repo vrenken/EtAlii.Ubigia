@@ -6,7 +6,7 @@
     using System.Web.Http;
     using EtAlii.Ubigia.Api.Transport;
 
-    [RequiresAuthenticationToken(Role.User)]
+    [RequiresAuthenticationToken(Role.User, Role.System)]
     public class UserControllerBase : ApiController
     {
         internal UserControllerBase()

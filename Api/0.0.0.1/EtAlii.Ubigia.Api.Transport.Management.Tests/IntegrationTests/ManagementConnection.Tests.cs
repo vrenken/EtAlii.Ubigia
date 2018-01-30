@@ -21,17 +21,19 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open()
         {
-            var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account, configuration.Password, false);
+	        var context = _testContext.TransportTestContext.Context;
+			var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword, false);
             await connection.Open();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open_Invalid_Password()
         {
-            // Arrange.
+			// Arrange.
+			var context = _testContext.TransportTestContext.Context;
             var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account, configuration.Password + "BAAD", false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword + "BAAD", false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -43,9 +45,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open_Invalid_Account()
         {
-            // Arrange.
+			// Arrange.
+			var context = _testContext.TransportTestContext.Context;
             var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account + "BAAD", configuration.Password, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName + "BAAD", context.TestAccountPassword, false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -57,9 +60,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open_Invalid_Account_And_Password()
         {
-            // Arrange.
+			// Arrange.
+			var context = _testContext.TransportTestContext.Context;
             var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account + "BAAD", configuration.Password + "BAAD", false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName + "BAAD", context.TestAccountPassword + "BAAD", false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -71,9 +75,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open_Already_Open()
         {
-            // Arrange.
+			// Arrange.
+			var context = _testContext.TransportTestContext.Context;
             var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account, configuration.Password, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword, false);
             await connection.Open();
 
             // Act.
@@ -86,9 +91,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Open_And_Close()
         {
-            // Act.
+			// Act.
+			var context = _testContext.TransportTestContext.Context;
             var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, configuration.Account, configuration.Password, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword, false);
 
             // Arrange.
             await connection.Open();

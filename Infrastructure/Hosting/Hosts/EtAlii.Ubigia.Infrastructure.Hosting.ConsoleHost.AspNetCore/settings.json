@@ -12,8 +12,6 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
             "Name": "Debug storage",
-            "Account": "test",
-            "Password": "123",
             "Address": "http://+:64000"
           },
           {
