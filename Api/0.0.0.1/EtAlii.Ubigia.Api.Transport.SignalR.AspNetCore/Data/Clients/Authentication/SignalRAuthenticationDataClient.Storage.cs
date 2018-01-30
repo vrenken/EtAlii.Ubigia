@@ -57,7 +57,7 @@
 	        string address, 
 	        string authenticationToken)
         {
-            var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData + "/" + SignalRHub.Authentication, authenticationToken);
+            var connection = new HubConnectionFactory().Create(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication, authenticationToken);
             await connection.StartAsync();
             var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();

@@ -40,7 +40,7 @@
         {
             await base.Connect(spaceConnection);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + RelativeUri.UserData + "/" + SignalRHub.Property, spaceConnection.Transport);
+            _connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Property, spaceConnection.Transport);
 	        await _connection.StartAsync();
         }
 

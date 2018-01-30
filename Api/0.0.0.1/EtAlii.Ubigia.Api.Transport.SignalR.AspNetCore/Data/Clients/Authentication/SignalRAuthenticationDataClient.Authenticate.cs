@@ -43,7 +43,7 @@
         {
             if (password != null || authenticationToken == null)
             {
-                var connection = new HubConnectionFactory().CreateForHost(address + RelativeUri.UserData + "/" + SignalRHub.Authentication, _hostIdentifier);
+                var connection = new HubConnectionFactory().CreateForHost(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication, _hostIdentifier);
                 await connection.StartAsync();
                 authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
 				await connection.DisposeAsync();
