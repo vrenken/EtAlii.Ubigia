@@ -239,9 +239,12 @@
             Assert.NotNull(account);
             Assert.Equal(name, account.Name);
             Assert.Equal(password, account.Password);
-            Assert.Empty(account.Roles);
+	        Assert.Single(account.Roles);
+	        Assert.Contains(Role.User, account.Roles);
+	        Assert.DoesNotContain("", account.Roles);
+	        Assert.DoesNotContain(null, account.Roles);
 
-            account.Roles = new[] { "First", "Second", "Third" };
+			account.Roles = new[] { "First", "Second", "Third" };
             account = await connection.Accounts.Change(account);
             Assert.NotNull(account);
             Assert.Equal(name, account.Name);
@@ -273,9 +276,12 @@
 
             account = await connection.Accounts.Get(account.Id);
             Assert.NotNull(account);
-            Assert.Empty(account.Roles);
+	        Assert.Single(account.Roles);
+	        Assert.Contains(Role.User, account.Roles);
+	        Assert.DoesNotContain("", account.Roles);
+	        Assert.DoesNotContain(null, account.Roles);
 
-            account.Roles = new[] { "First", "Second", "Third" };
+			account.Roles = new[] { "First", "Second", "Third" };
             account = await connection.Accounts.Change(account);
             Assert.NotNull(account);
             Assert.Equal(name, account.Name);
