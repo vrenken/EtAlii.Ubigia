@@ -31,8 +31,11 @@ namespace JwtClientSample
             var hubConnection = new HubConnectionBuilder()
                 .WithUrl(ServerUrl + "/broadcast")
                 .WithTransport(transportType)
-                .WithJwtBearer(() => _tokens[userId])
+                .WithAccessToken(() => _tokens[userId])
                 .Build();
+
+            var closedTcs = new TaskCompletionSource<object>();
+            hubConnection.Closed += e => closedTcs.SetResult(null);
 
             hubConnection.On<string, string>("Message", (sender, message) => Console.WriteLine($"[{userId}] {sender}: {message}"));
             await hubConnection.StartAsync();
@@ -43,7 +46,7 @@ namespace JwtClientSample
 
             try
             {
-                while (!hubConnection.Closed.IsCompleted)
+                while (!closedTcs.Task.IsCompleted)
                 {
                     await Task.Delay(1000);
                     ticks++;

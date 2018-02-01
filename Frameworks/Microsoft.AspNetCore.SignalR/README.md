@@ -16,21 +16,34 @@ This project is part of ASP.NET Core. You can find samples, documentation and ge
 You can install the latest released JavaScript client from npm with the following command:
 
 ```bash
-npm install @aspnet/signalr-client
+npm install @aspnet/signalr
 ```
 
-The CI build publishes the latest dev version of the JavaScript client to our dev npm registry as @aspnet/signalr-client. You can install the module as follows:
+**NOTE:** Previous previews of the SignalR client library for JavaScript were named `@aspnet/signalr-client`. This has been deprecated as of Preview 1.
+
+**IMPORTANT:** When using preview builds, you should always ensure you are using the same version of both the JavaScript client and the Server. The version numbers should align as they are produced in the same build process.
+
+The CI build publishes the latest dev version of the JavaScript client to our dev npm registry as @aspnet/signalr. You can install the module as follows:
 
 - Create an .npmrc file with the following line:
-  `@aspnet:registry=https://dotnet.myget.org/f/aspnetcore-ci-dev/npm/`
+  `@aspnet:registry=https://dotnet.myget.org/f/aspnetcore-dev/npm/`
 - Run:
-  `npm install @aspnet/signalr-client`
+  `npm install @aspnet/signalr`
 
 Alternatively, if you don't want to create the .npmrc file run the following commands:
 ```
-npm install msgpack5
-npm install @aspnet/signalr-client --registry https://dotnet.myget.org/f/aspnetcore-ci-dev/npm/
+npm install @aspnet/signalr --registry https://dotnet.myget.org/f/aspnetcore-dev/npm/
 ```
+
+We also have a MsgPack protocol library which is installed via:
+
+```bash
+ npm install @aspnet/signalr-protocol-msgpack
+```
+
+## Deploying
+
+Once you've installed the NPM modules, they will be located in the `node_modules/@aspnet/signalr` and `node_modules/@aspnet/signalr-protocol-msgpack` folders. If you are building a NodeJS application or using an ECMAScript module loader/bundler (such as [webpack](https://webpack.js.org)), you can load them directly. If you are building a browser application without using a module bundler, you can find UMD-compatible bundles in the `dist/browser` folder; minified versions are provided as well. Simply copy these to your project as appropriate and use a build task to keep them up-to-date.
 
 ## Building from source
 

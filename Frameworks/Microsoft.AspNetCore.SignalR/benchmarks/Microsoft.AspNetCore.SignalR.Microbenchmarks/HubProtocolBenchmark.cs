@@ -1,3 +1,6 @@
+// Copyright (c) .NET Foundation. All rights reserved.
+// Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
+
 using System;
 using BenchmarkDotNet.Attributes;
 using Microsoft.AspNetCore.SignalR.Internal;
@@ -6,7 +9,6 @@ using Microsoft.AspNetCore.SignalR.Internal.Protocol;
 
 namespace Microsoft.AspNetCore.SignalR.Microbenchmarks
 {
-    [ParameterizedJobConfig(typeof(CoreConfig))]
     public class HubProtocolBenchmark
     {
         private HubProtocolReaderWriter _hubProtocolReaderWriter;
@@ -36,16 +38,16 @@ namespace Microsoft.AspNetCore.SignalR.Microbenchmarks
             switch (Input)
             {
                 case Message.NoArguments:
-                    _hubMessage = new InvocationMessage("123", true, "Target", null);
+                    _hubMessage = new InvocationMessage(target: "Target", argumentBindingException: null);
                     break;
                 case Message.FewArguments:
-                    _hubMessage = new InvocationMessage("123", true, "Target", null, 1, "Foo", 2.0f);
+                    _hubMessage = new InvocationMessage(target: "Target", argumentBindingException: null, 1, "Foo", 2.0f);
                     break;
                 case Message.ManyArguments:
-                    _hubMessage = new InvocationMessage("123", true, "Target", null, 1, "string", 2.0f, true, (byte)9, new byte[] { 5, 4, 3, 2, 1 }, 'c', 123456789101112L);
+                    _hubMessage = new InvocationMessage(target: "Target", argumentBindingException: null, 1, "string", 2.0f, true, (byte)9, new byte[] { 5, 4, 3, 2, 1 }, 'c', 123456789101112L);
                     break;
                 case Message.LargeArguments:
-                    _hubMessage = new InvocationMessage("123", true, "Target", null, new string('F', 10240), new byte[10240]);
+                    _hubMessage = new InvocationMessage(target: "Target", argumentBindingException: null, new string('F', 10240), new byte[10240]);
                     break;
             }
 

@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Client;
-using Microsoft.AspNetCore.SignalR.Tests.Common;
 using Microsoft.AspNetCore.Sockets;
 using Microsoft.AspNetCore.Sockets.Client;
 using Microsoft.AspNetCore.Sockets.Client.Http;
@@ -115,7 +114,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                     .Returns<HttpRequestMessage, CancellationToken>(
                         (request, cancellationToken) => Task.FromException<HttpResponseMessage>(new InvalidOperationException("HTTP requests should not be sent.")));
 
-                var connection = new HttpConnection(new Uri(url), TransportType.WebSockets, loggerFactory, new HttpOptions { HttpMessageHandler = mockHttpHandler.Object});
+                var connection = new HttpConnection(new Uri(url), TransportType.WebSockets, loggerFactory, new HttpOptions { HttpMessageHandler = mockHttpHandler.Object });
 
                 try
                 {
@@ -165,6 +164,19 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                     new TransferModeFeature { TransferMode = requestedTransferMode });
                 try
                 {
+                    var closeTcs = new TaskCompletionSource<object>();
+                    connection.Closed += e =>
+                    {
+                        if (e != null)
+                        {
+                            closeTcs.SetException(e);
+                        }
+                        else
+                        {
+                            closeTcs.SetResult(null);
+                        }
+                    };
+
                     var receiveTcs = new TaskCompletionSource<string>();
                     connection.OnReceived((data, state) =>
                     {
@@ -209,7 +221,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                     logger.LogInformation("Receiving message");
                     Assert.Equal(message, await receiveTcs.Task.OrTimeout());
                     logger.LogInformation("Completed receive");
-                    await connection.Closed.OrTimeout();
+                    await closeTcs.Task.OrTimeout();
                 }
                 catch (Exception ex)
                 {
@@ -314,6 +326,8 @@ namespace Microsoft.AspNetCore.SignalR.Tests
         {
             using (StartLog(out var loggerFactory, testName: $"ConnectionCanSendAndReceiveMessages_{transportType.ToString()}"))
             {
+                _serverFixture.SetTestLoggerFactory(loggerFactory);
+
                 var logger = loggerFactory.CreateLogger<EndToEndTests>();
 
                 var url = _serverFixture.Url + "/uncreatable";
@@ -326,15 +340,37 @@ namespace Microsoft.AspNetCore.SignalR.Tests
                 try
                 {
                     var closeTcs = new TaskCompletionSource<object>();
+                    connection.Closed += e =>
+                    {
+                        if (e != null)
+                        {
+                            closeTcs.SetException(e);
+                        }
+                        else
+                        {
+                            closeTcs.SetResult(null);
+                        }
+                    };
 
                     logger.LogInformation("Starting connection to {url}", url);
-                    await connection.StartAsync().OrTimeout();
 
-                    await connection.Closed.OrTimeout();
+                    try
+                    {
+                        await connection.StartAsync().OrTimeout();
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        // Due to a race, this can fail with OperationCanceledException in the SendAsync
+                        // call that HubConnection does to send the negotiate message.
+                        // This has only been happening on AppVeyor, likely due to a slower CI machine
+                        // The closed event will still fire with the exception we care about.
+                    }
+
+                    await closeTcs.Task.OrTimeout();
                 }
                 catch (Exception ex)
                 {
-                    logger.LogInformation(ex, "Test threw exception");
+                    logger.LogError(ex, "Test threw {exceptionType}: {message}", ex.GetType(), ex.Message);
                     throw;
                 }
                 finally
