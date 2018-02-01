@@ -24,6 +24,8 @@ namespace Microsoft.AspNetCore.SignalR.Client
 {
     public class HubConnection
     {
+        public static readonly TimeSpan DefaultServerTimeout = TimeSpan.FromSeconds(30); // Server ping rate is 15 sec, this is 2 times that.
+
         private readonly ILoggerFactory _loggerFactory;
         private readonly ILogger _logger;
         private readonly IConnection _connection;
@@ -32,14 +34,22 @@ namespace Microsoft.AspNetCore.SignalR.Client
         private HubProtocolReaderWriter _protocolReaderWriter;
 
         private readonly object _pendingCallsLock = new object();
-        private readonly CancellationTokenSource _connectionActive = new CancellationTokenSource();
         private readonly Dictionary<string, InvocationRequest> _pendingCalls = new Dictionary<string, InvocationRequest>();
         private readonly ConcurrentDictionary<string, List<InvocationHandler>> _handlers = new ConcurrentDictionary<string, List<InvocationHandler>>();
+        private CancellationTokenSource _connectionActive;
 
         private int _nextId = 0;
         private volatile bool _startCalled;
+        private Timer _timeoutTimer;
+        private bool _needKeepAlive;
 
-        public Task Closed { get; }
+        public event Action<Exception> Closed;
+
+        /// <summary>
+        /// Gets or sets the server timeout interval for the connection. Changes to this value
+        /// will not be applied until the Keep Alive timer is next reset.
+        /// </summary>
+        public TimeSpan ServerTimeout { get; set; } = DefaultServerTimeout;
 
         public HubConnection(IConnection connection, IHubProtocol protocol, ILoggerFactory loggerFactory)
         {
@@ -59,11 +69,10 @@ namespace Microsoft.AspNetCore.SignalR.Client
             _loggerFactory = loggerFactory ?? NullLoggerFactory.Instance;
             _logger = _loggerFactory.CreateLogger<HubConnection>();
             _connection.OnReceived((data, state) => ((HubConnection)state).OnDataReceivedAsync(data), this);
-            Closed = _connection.Closed.ContinueWith(task =>
-            {
-                Shutdown(task.Exception);
-                return task;
-            }).Unwrap();
+            _connection.Closed += e => Shutdown(e);
+
+            // Create the timer for timeout, but disabled by default (we enable it when started).
+            _timeoutTimer = new Timer(state => ((HubConnection)state).TimeoutElapsed(), this, Timeout.Infinite, Timeout.Infinite);
         }
 
         public async Task StartAsync()
@@ -75,6 +84,20 @@ namespace Microsoft.AspNetCore.SignalR.Client
             finally
             {
                 _startCalled = true;
+            }
+        }
+
+        private void TimeoutElapsed()
+        {
+            _connection.AbortAsync(new TimeoutException($"Server timeout ({ServerTimeout.TotalMilliseconds:0.00}ms) elapsed without receiving a message from the server."));
+        }
+
+        private void ResetTimeoutTimer()
+        {
+            if (_needKeepAlive)
+            {
+                _logger.ResettingKeepAliveTimer();
+                _timeoutTimer.Change(ServerTimeout, Timeout.InfiniteTimeSpan);
             }
         }
 
@@ -94,17 +117,22 @@ namespace Microsoft.AspNetCore.SignalR.Client
 
             transferModeFeature.TransferMode = requestedTransferMode;
             await _connection.StartAsync();
+            _needKeepAlive = _connection.Features.Get<IConnectionInherentKeepAliveFeature>() == null;
+
             var actualTransferMode = transferModeFeature.TransferMode;
 
             _protocolReaderWriter = new HubProtocolReaderWriter(_protocol, GetDataEncoder(requestedTransferMode, actualTransferMode));
 
             _logger.HubProtocol(_protocol.Name);
 
+            _connectionActive = new CancellationTokenSource();
             using (var memoryStream = new MemoryStream())
             {
                 NegotiationProtocol.WriteMessage(new NegotiationMessage(_protocol.Name), memoryStream);
                 await _connection.SendAsync(memoryStream.ToArray(), _connectionActive.Token);
             }
+
+            ResetTimeoutTimer();
         }
 
         private IDataEncoder GetDataEncoder(TransferMode requestedTransferMode, TransferMode actualTransferMode)
@@ -121,12 +149,16 @@ namespace Microsoft.AspNetCore.SignalR.Client
             return new PassThroughEncoder();
         }
 
+        public async Task StopAsync() => await StopAsyncCore().ForceAsync();
+
+        private Task StopAsyncCore() => _connection.StopAsync();
+
         public async Task DisposeAsync() => await DisposeAsyncCore().ForceAsync();
 
         private async Task DisposeAsyncCore()
         {
+            _timeoutTimer.Dispose();
             await _connection.DisposeAsync();
-            await Closed;
         }
 
         // TODO: Client return values/tasks?
@@ -211,7 +243,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
             _logger.PreparingBlockingInvocation(irq.InvocationId, methodName, irq.ResultType.FullName, args.Length);
 
             // Client invocations are always blocking
-            var invocationMessage = new InvocationMessage(irq.InvocationId, nonBlocking: false, target: methodName,
+            var invocationMessage = new InvocationMessage(irq.InvocationId, target: methodName,
                 argumentBindingException: null, arguments: args);
 
             _logger.RegisterInvocation(invocationMessage.InvocationId);
@@ -274,14 +306,14 @@ namespace Microsoft.AspNetCore.SignalR.Client
                 throw new InvalidOperationException($"The '{nameof(SendAsync)}' method cannot be called before the connection has been started.");
             }
 
-            var invocationMessage = new InvocationMessage(GetNextId(), nonBlocking: true, target: methodName,
+            var invocationMessage = new InvocationMessage(null, target: methodName,
                 argumentBindingException: null, arguments: args);
 
             ThrowIfConnectionTerminated(invocationMessage.InvocationId);
 
             try
             {
-                _logger.PreparingNonBlockingInvocation(invocationMessage.InvocationId, methodName, args.Length);
+                _logger.PreparingNonBlockingInvocation(methodName, args.Length);
 
                 var payload = _protocolReaderWriter.WriteMessage(invocationMessage);
                 _logger.SendInvocation(invocationMessage.InvocationId);
@@ -298,6 +330,7 @@ namespace Microsoft.AspNetCore.SignalR.Client
 
         private async Task OnDataReceivedAsync(byte[] data)
         {
+            ResetTimeoutTimer();
             if (_protocolReaderWriter.ReadMessages(data, _binder, out var messages))
             {
                 foreach (var message in messages)
@@ -338,12 +371,12 @@ namespace Microsoft.AspNetCore.SignalR.Client
             }
         }
 
-        private void Shutdown(Exception ex = null)
+        private void Shutdown(Exception exception = null)
         {
             _logger.ShutdownConnection();
-            if (ex != null)
+            if (exception != null)
             {
-                _logger.ShutdownWithError(ex);
+                _logger.ShutdownWithError(exception);
             }
 
             lock (_pendingCallsLock)
@@ -356,13 +389,22 @@ namespace Microsoft.AspNetCore.SignalR.Client
                 foreach (var outstandingCall in _pendingCalls.Values)
                 {
                     _logger.RemoveInvocation(outstandingCall.InvocationId);
-                    if (ex != null)
+                    if (exception != null)
                     {
-                        outstandingCall.Fail(ex);
+                        outstandingCall.Fail(exception);
                     }
                     outstandingCall.Dispose();
                 }
                 _pendingCalls.Clear();
+            }
+
+            try
+            {
+                Closed?.Invoke(exception);
+            }
+            catch (Exception ex)
+            {
+                _logger.ErrorDuringClosedEvent(ex);
             }
         }
 

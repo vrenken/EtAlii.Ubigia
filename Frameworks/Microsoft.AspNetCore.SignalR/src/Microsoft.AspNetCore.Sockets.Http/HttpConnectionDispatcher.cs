@@ -2,11 +2,14 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Sockets.Features;
 using Microsoft.AspNetCore.Sockets.Internal;
 using Microsoft.AspNetCore.Sockets.Internal.Transports;
 using Microsoft.Extensions.Logging;
@@ -53,6 +56,7 @@ namespace Microsoft.AspNetCore.Sockets
                 }
                 else
                 {
+                    context.Response.ContentType = "text/plain";
                     context.Response.StatusCode = StatusCodes.Status405MethodNotAllowed;
                 }
             }
@@ -76,6 +80,7 @@ namespace Microsoft.AspNetCore.Sockets
                 }
                 else
                 {
+                    context.Response.ContentType = "text/plain";
                     context.Response.StatusCode = StatusCodes.Status405MethodNotAllowed;
                 }
             }
@@ -99,13 +104,13 @@ namespace Microsoft.AspNetCore.Sockets
                     return;
                 }
 
-                if (!await EnsureConnectionStateAsync(connection, context, TransportType.ServerSentEvents, supportedTransports, logScope))
+                if (!await EnsureConnectionStateAsync(connection, context, TransportType.ServerSentEvents, supportedTransports, logScope, options))
                 {
                     // Bad connection state. It's already set the response status code.
                     return;
                 }
 
-                _logger.EstablishedConnection(connection.ConnectionId, context.TraceIdentifier);
+                _logger.EstablishedConnection();
 
                 // ServerSentEvents is a text protocol only
                 connection.TransportCapabilities = TransferMode.Text;
@@ -125,13 +130,13 @@ namespace Microsoft.AspNetCore.Sockets
                     return;
                 }
 
-                if (!await EnsureConnectionStateAsync(connection, context, TransportType.WebSockets, supportedTransports, logScope))
+                if (!await EnsureConnectionStateAsync(connection, context, TransportType.WebSockets, supportedTransports, logScope, options))
                 {
                     // Bad connection state. It's already set the response status code.
                     return;
                 }
 
-                _logger.EstablishedConnection(connection.ConnectionId, context.TraceIdentifier);
+                _logger.EstablishedConnection();
 
                 var ws = new WebSocketsTransport(options.WebSockets, connection.Application, connection, _loggerFactory);
 
@@ -149,7 +154,7 @@ namespace Microsoft.AspNetCore.Sockets
                     return;
                 }
 
-                if (!await EnsureConnectionStateAsync(connection, context, TransportType.LongPolling, supportedTransports, logScope))
+                if (!await EnsureConnectionStateAsync(connection, context, TransportType.LongPolling, supportedTransports, logScope, options))
                 {
                     // Bad connection state. It's already set the response status code.
                     return;
@@ -165,6 +170,7 @@ namespace Microsoft.AspNetCore.Sockets
 
                         // The connection was disposed
                         context.Response.StatusCode = StatusCodes.Status404NotFound;
+                        context.Response.ContentType = "text/plain";
                         return;
                     }
 
@@ -191,7 +197,7 @@ namespace Microsoft.AspNetCore.Sockets
                     // Raise OnConnected for new connections only since polls happen all the time
                     if (connection.ApplicationTask == null)
                     {
-                        _logger.EstablishedConnection(connection.ConnectionId, connection.GetHttpContext().TraceIdentifier);
+                        _logger.EstablishedConnection();
 
                         connection.Metadata[ConnectionMetadataNames.Transport] = TransportType.LongPolling;
 
@@ -199,7 +205,7 @@ namespace Microsoft.AspNetCore.Sockets
                     }
                     else
                     {
-                        _logger.ResumingConnection(connection.ConnectionId, connection.GetHttpContext().TraceIdentifier);
+                        _logger.ResumingConnection();
                     }
 
                     // REVIEW: Performance of this isn't great as this does a bunch of per request allocations
@@ -334,6 +340,12 @@ namespace Microsoft.AspNetCore.Sockets
 
         private async Task ExecuteApplication(SocketDelegate socketDelegate, ConnectionContext connection)
         {
+            // Verify some initialization invariants
+            // We want to be positive that the IConnectionInherentKeepAliveFeature is initialized before invoking the application, if the long polling transport is in use.
+            Debug.Assert(connection.Metadata[ConnectionMetadataNames.Transport] != null, "Transport has not been initialized yet");
+            Debug.Assert((TransportType?)connection.Metadata[ConnectionMetadataNames.Transport] != TransportType.LongPolling ||
+                connection.Features.Get<IConnectionInherentKeepAliveFeature>() != null, "Long-polling transport is in use but IConnectionInherentKeepAliveFeature as not configured");
+
             // Jump onto the thread pool thread so blocking user code doesn't block the setup of the
             // connection and transport
             await AwaitableThreadPool.Yield();
@@ -359,7 +371,7 @@ namespace Microsoft.AspNetCore.Sockets
             // Get the bytes for the connection id
             var negotiateResponseBuffer = Encoding.UTF8.GetBytes(GetNegotiatePayload(connection.ConnectionId, options));
 
-            _logger.NegotiationRequest(connection.ConnectionId);
+            _logger.NegotiationRequest();
 
             // Write it out to the response with the right content length
             context.Response.ContentLength = negotiateResponseBuffer.Length;
@@ -406,10 +418,12 @@ namespace Microsoft.AspNetCore.Sockets
                 return;
             }
 
+            context.Response.ContentType = "text/plain";
+
             var transport = (TransportType?)connection.Metadata[ConnectionMetadataNames.Transport];
             if (transport == TransportType.WebSockets)
             {
-                _logger.PostNotAllowedForWebSockets(connection.ConnectionId);
+                _logger.PostNotAllowedForWebSockets();
                 context.Response.StatusCode = StatusCodes.Status405MethodNotAllowed;
                 await context.Response.WriteAsync("POST requests are not allowed for WebSocket connections.");
                 return;
@@ -425,7 +439,7 @@ namespace Microsoft.AspNetCore.Sockets
                 buffer = stream.ToArray();
             }
 
-            _logger.ReceivedBytes(connection.ConnectionId, buffer.Length);
+            _logger.ReceivedBytes(buffer.Length);
             while (!connection.Application.Writer.TryWrite(buffer))
             {
                 if (!await connection.Application.Writer.WaitToWriteAsync())
@@ -435,15 +449,19 @@ namespace Microsoft.AspNetCore.Sockets
             }
         }
 
-        private async Task<bool> EnsureConnectionStateAsync(DefaultConnectionContext connection, HttpContext context, TransportType transportType, TransportType supportedTransports, ConnectionLogScope logScope)
+        private async Task<bool> EnsureConnectionStateAsync(DefaultConnectionContext connection, HttpContext context, TransportType transportType, TransportType supportedTransports, ConnectionLogScope logScope, HttpSocketOptions options)
         {
             if ((supportedTransports & transportType) == 0)
             {
+                context.Response.ContentType = "text/plain";
                 context.Response.StatusCode = StatusCodes.Status404NotFound;
-                _logger.TransportNotSupported(connection.ConnectionId, transportType);
+                _logger.TransportNotSupported(transportType);
                 await context.Response.WriteAsync($"{transportType} transport not supported by this end point type");
                 return false;
             }
+
+            // Set the IHttpConnectionFeature now that we can access it.
+            connection.Features.Set(context.Features.Get<IHttpConnectionFeature>());
 
             var transport = (TransportType?)connection.Metadata[ConnectionMetadataNames.Transport];
 
@@ -453,10 +471,17 @@ namespace Microsoft.AspNetCore.Sockets
             }
             else if (transport != transportType)
             {
+                context.Response.ContentType = "text/plain";
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
-                _logger.CannotChangeTransport(connection.ConnectionId, transport.Value, transportType);
+                _logger.CannotChangeTransport(transport.Value, transportType);
                 await context.Response.WriteAsync("Cannot change transports mid-connection");
                 return false;
+            }
+
+            // Configure transport-specific features.
+            if (transportType == TransportType.LongPolling)
+            {
+                connection.Features.Set<IConnectionInherentKeepAliveFeature>(new ConnectionInherentKeepAliveFeature(options.LongPolling.PollTimeout));
             }
 
             // Setup the connection state from the http context
@@ -481,6 +506,7 @@ namespace Microsoft.AspNetCore.Sockets
             {
                 // There's no connection ID: bad request
                 context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync("Connection ID required");
                 return null;
             }
@@ -489,6 +515,7 @@ namespace Microsoft.AspNetCore.Sockets
             {
                 // No connection with that ID: Not Found
                 context.Response.StatusCode = StatusCodes.Status404NotFound;
+                context.Response.ContentType = "text/plain";
                 await context.Response.WriteAsync("No Connection with that ID");
                 return null;
             }

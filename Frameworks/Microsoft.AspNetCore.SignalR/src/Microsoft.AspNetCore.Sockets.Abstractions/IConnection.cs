@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -12,11 +12,13 @@ namespace Microsoft.AspNetCore.Sockets.Client
     {
         Task StartAsync();
         Task SendAsync(byte[] data, CancellationToken cancellationToken);
+        Task StopAsync();
         Task DisposeAsync();
+        Task AbortAsync(Exception ex);
 
         IDisposable OnReceived(Func<byte[], object, Task> callback, object state);
 
-        Task Closed { get; }
+        event Action<Exception> Closed;
 
         IFeatureCollection Features { get; }
     }

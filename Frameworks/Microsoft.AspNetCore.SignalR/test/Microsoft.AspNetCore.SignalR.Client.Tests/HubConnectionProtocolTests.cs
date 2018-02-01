@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR.Internal.Protocol;
-using Microsoft.AspNetCore.SignalR.Tests.Common;
 using Microsoft.AspNetCore.Sockets;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -36,7 +35,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
                 await connection.ReadSentTextMessageAsync().OrTimeout();
                 var invokeMessage = await connection.ReadSentTextMessageAsync().OrTimeout();
 
-                Assert.Equal("{\"invocationId\":\"1\",\"type\":1,\"target\":\"Foo\",\"nonBlocking\":true,\"arguments\":[]}\u001e", invokeMessage);
+                Assert.Equal("{\"type\":1,\"target\":\"Foo\",\"arguments\":[]}\u001e", invokeMessage);
             }
             finally
             {
@@ -142,7 +141,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
         public async Task StreamCompletesWhenCompletionMessageIsReceived()
         {
             var connection = new TestConnection();
-            var hubConnection = new HubConnection(connection, new JsonHubProtocol(new JsonSerializer()), new LoggerFactory());
+            var hubConnection = new HubConnection(connection, new JsonHubProtocol(), new LoggerFactory());
             try
             {
                 await hubConnection.StartAsync();
@@ -373,7 +372,7 @@ namespace Microsoft.AspNetCore.SignalR.Client.Tests
                 using (var ms = new MemoryStream())
                 {
                     new MessagePackHubProtocol()
-                        .WriteMessage(new InvocationMessage("1", true, "MyMethod", null, 42), ms);
+                        .WriteMessage(new InvocationMessage(null, "MyMethod", null, 42), ms);
 
                     var invokeMessage = Convert.ToBase64String(ms.ToArray());
                     var payloadSize = invokeMessage.Length.ToString(CultureInfo.InvariantCulture);

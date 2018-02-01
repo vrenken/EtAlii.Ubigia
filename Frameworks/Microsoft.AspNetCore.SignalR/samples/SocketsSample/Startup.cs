@@ -1,9 +1,11 @@
 // Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Serialization;
 using SocketsSample.EndPoints;
 using SocketsSample.Hubs;
 
@@ -17,7 +19,11 @@ namespace SocketsSample
         {
             services.AddSockets();
 
-            services.AddSignalR();
+            services.AddSignalR(options =>
+            {
+                // Faster pings for testing
+                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
+            });
             // .AddRedis();
 
             services.AddCors(o =>
@@ -47,15 +53,15 @@ namespace SocketsSample
 
             app.UseSignalR(routes =>
             {
-                routes.MapHub<DynamicChat>("dynamic");
-                routes.MapHub<Chat>("default");
-                routes.MapHub<Streaming>("streaming");
-                routes.MapHub<HubTChat>("hubT");
+                routes.MapHub<DynamicChat>("/dynamic");
+                routes.MapHub<Chat>("/default");
+                routes.MapHub<Streaming>("/streaming");
+                routes.MapHub<HubTChat>("/hubT");
             });
 
             app.UseSockets(routes =>
             {
-                routes.MapEndPoint<MessagesEndPoint>("chat");
+                routes.MapEndPoint<MessagesEndPoint>("/chat");
             });
         }
     }

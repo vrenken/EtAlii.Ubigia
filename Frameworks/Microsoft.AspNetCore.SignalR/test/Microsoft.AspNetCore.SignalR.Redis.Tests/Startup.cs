@@ -12,6 +12,7 @@ namespace Microsoft.AspNetCore.SignalR.Redis.Tests
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSignalR()
+                .AddMessagePackProtocol()
                 .AddRedis(options =>
                 {
                     // We start the servers before starting redis so we want to time them out ASAP
@@ -21,7 +22,7 @@ namespace Microsoft.AspNetCore.SignalR.Redis.Tests
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseSignalR(options => options.MapHub<EchoHub>("echo"));
+            app.UseSignalR(options => options.MapHub<EchoHub>("/echo"));
         }
     }
 }

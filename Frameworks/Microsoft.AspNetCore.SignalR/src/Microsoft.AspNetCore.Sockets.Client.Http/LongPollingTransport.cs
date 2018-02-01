@@ -2,14 +2,14 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Threading.Channels;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Sockets.Client.Http;
 using Microsoft.AspNetCore.Sockets.Client.Internal;
+using Microsoft.AspNetCore.Sockets.Features;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 
@@ -23,7 +23,6 @@ namespace Microsoft.AspNetCore.Sockets.Client
         private Channel<byte[], SendMessage> _application;
         private Task _sender;
         private Task _poller;
-        private string _connectionId;
 
         private readonly CancellationTokenSource _transportCts = new CancellationTokenSource();
 
@@ -42,26 +41,27 @@ namespace Microsoft.AspNetCore.Sockets.Client
             _logger = (loggerFactory ?? NullLoggerFactory.Instance).CreateLogger<LongPollingTransport>();
         }
 
-        public Task StartAsync(Uri url, Channel<byte[], SendMessage> application, TransferMode requestedTransferMode, string connectionId)
+        public Task StartAsync(Uri url, Channel<byte[], SendMessage> application, TransferMode requestedTransferMode, IConnection connection)
         {
             if (requestedTransferMode != TransferMode.Binary && requestedTransferMode != TransferMode.Text)
             {
                 throw new ArgumentException("Invalid transfer mode.", nameof(requestedTransferMode));
             }
 
+            connection.Features.Set<IConnectionInherentKeepAliveFeature>(new ConnectionInherentKeepAliveFeature(_httpClient.Timeout));
+
             _application = application;
             Mode = requestedTransferMode;
-            _connectionId = connectionId;
 
-            _logger.StartTransport(_connectionId, Mode.Value);
+            _logger.StartTransport(Mode.Value);
 
             // Start sending and polling (ask for binary if the server supports it)
             _poller = Poll(url, _transportCts.Token);
-            _sender = SendUtils.SendMessages(url, _application, _httpClient, _httpOptions, _transportCts, _logger, _connectionId);
+            _sender = SendUtils.SendMessages(url, _application, _httpClient, _httpOptions, _transportCts, _logger);
 
             Running = Task.WhenAll(_sender, _poller).ContinueWith(t =>
             {
-                _logger.TransportStopped(_connectionId, t.Exception?.InnerException);
+                _logger.TransportStopped(t.Exception?.InnerException);
                 _application.Writer.TryComplete(t.IsFaulted ? t.Exception.InnerException : null);
                 return t;
             }).Unwrap();
@@ -71,7 +71,7 @@ namespace Microsoft.AspNetCore.Sockets.Client
 
         public async Task StopAsync()
         {
-            _logger.TransportStopping(_connectionId);
+            _logger.TransportStopping();
 
             _transportCts.Cancel();
 
@@ -87,7 +87,7 @@ namespace Microsoft.AspNetCore.Sockets.Client
 
         private async Task Poll(Uri pollUrl, CancellationToken cancellationToken)
         {
-            _logger.StartReceive(_connectionId);
+            _logger.StartReceive();
             try
             {
                 while (!cancellationToken.IsCancellationRequested)
@@ -113,14 +113,14 @@ namespace Microsoft.AspNetCore.Sockets.Client
 
                     if (response.StatusCode == HttpStatusCode.NoContent || cancellationToken.IsCancellationRequested)
                     {
-                        _logger.ClosingConnection(_connectionId);
+                        _logger.ClosingConnection();
 
                         // Transport closed or polling stopped, we're done
                         break;
                     }
                     else
                     {
-                        _logger.ReceivedMessages(_connectionId);
+                        _logger.ReceivedMessages();
 
                         // Until Pipeline starts natively supporting BytesReader, this is the easiest way to do this.
                         var payload = await response.Content.ReadAsByteArrayAsync();
@@ -140,18 +140,18 @@ namespace Microsoft.AspNetCore.Sockets.Client
             catch (OperationCanceledException)
             {
                 // transport is being closed
-                _logger.ReceiveCanceled(_connectionId);
+                _logger.ReceiveCanceled();
             }
             catch (Exception ex)
             {
-                _logger.ErrorPolling(_connectionId, pollUrl, ex);
+                _logger.ErrorPolling(pollUrl, ex);
                 throw;
             }
             finally
             {
                 // Make sure the send loop is terminated
                 _transportCts.Cancel();
-                _logger.ReceiveStopped(_connectionId);
+                _logger.ReceiveStopped();
             }
         }
     }

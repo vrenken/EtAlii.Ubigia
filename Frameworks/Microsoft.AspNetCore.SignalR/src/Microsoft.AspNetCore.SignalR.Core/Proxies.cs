@@ -17,9 +17,26 @@ namespace Microsoft.AspNetCore.SignalR
             _userId = userId;
         }
 
-        public Task InvokeAsync(string method, params object[] args)
+        public Task SendAsync(string method, params object[] args)
         {
-            return _lifetimeManager.InvokeUserAsync(_userId, method, args);
+            return _lifetimeManager.SendUserAsync(_userId, method, args);
+        }
+    }
+
+    public class MultipleUserProxy<THub> : IClientProxy
+    {
+        private readonly IReadOnlyList<string> _userIds;
+        private readonly HubLifetimeManager<THub> _lifetimeManager;
+
+        public MultipleUserProxy(HubLifetimeManager<THub> lifetimeManager, IReadOnlyList<string> userIds)
+        {
+            _lifetimeManager = lifetimeManager;
+            _userIds = userIds;
+        }
+
+        public Task SendAsync(string method, params object[] args)
+        {
+            return _lifetimeManager.SendUsersAsync(_userIds, method, args);
         }
     }
 
@@ -34,9 +51,45 @@ namespace Microsoft.AspNetCore.SignalR
             _groupName = groupName;
         }
 
-        public Task InvokeAsync(string method, params object[] args)
+        public Task SendAsync(string method, params object[] args)
         {
-            return _lifetimeManager.InvokeGroupAsync(_groupName, method, args);
+            return _lifetimeManager.SendGroupAsync(_groupName, method, args);
+        }
+    }
+
+    public class MultipleGroupProxy<THub> : IClientProxy
+    {
+        private readonly HubLifetimeManager<THub> _lifetimeManager;
+        private IReadOnlyList<string> _groupNames;
+
+        public MultipleGroupProxy(HubLifetimeManager<THub> lifetimeManager, IReadOnlyList<string> groupNames)
+        {
+            _lifetimeManager = lifetimeManager;
+            _groupNames = groupNames;
+        }
+
+        public Task SendAsync(string method, params object[] args)
+        {
+            return _lifetimeManager.SendGroupsAsync(_groupNames, method, args);
+        }
+    }
+
+    public class GroupExceptProxy<THub> : IClientProxy
+    {
+        private readonly string _groupName;
+        private readonly HubLifetimeManager<THub> _lifetimeManager;
+        private readonly IReadOnlyList<string> _excludedIds;
+
+        public GroupExceptProxy(HubLifetimeManager<THub> lifetimeManager, string groupName, IReadOnlyList<string> excludedIds)
+        {
+            _lifetimeManager = lifetimeManager;
+            _groupName = groupName;
+            _excludedIds = excludedIds;
+        }
+
+        public Task SendAsync(string method, params object[] args)
+        {
+            return _lifetimeManager.SendGroupExceptAsync(_groupName, method, args, _excludedIds);
         }
     }
 
@@ -49,9 +102,9 @@ namespace Microsoft.AspNetCore.SignalR
             _lifetimeManager = lifetimeManager;
         }
 
-        public Task InvokeAsync(string method, params object[] args)
+        public Task SendAsync(string method, params object[] args)
         {
-            return _lifetimeManager.InvokeAllAsync(method, args);
+            return _lifetimeManager.SendAllAsync(method, args);
         }
     }
 
@@ -66,9 +119,9 @@ namespace Microsoft.AspNetCore.SignalR
             _excludedIds = excludedIds;
         }
 
-        public Task InvokeAsync(string method, params object[] args)
+        public Task SendAsync(string method, params object[] args)
         {
-            return _lifetimeManager.InvokeAllExceptAsync(method, args, _excludedIds);
+            return _lifetimeManager.SendAllExceptAsync(method, args, _excludedIds);
         }
     }
 
@@ -83,9 +136,26 @@ namespace Microsoft.AspNetCore.SignalR
             _connectionId = connectionId;
         }
 
-        public Task InvokeAsync(string method, params object[] args)
+        public Task SendAsync(string method, params object[] args)
         {
-            return _lifetimeManager.InvokeConnectionAsync(_connectionId, method, args);
+            return _lifetimeManager.SendConnectionAsync(_connectionId, method, args);
+        }
+    }
+
+    public class MultipleClientProxy<THub> : IClientProxy
+    {
+        private readonly HubLifetimeManager<THub> _lifetimeManager;
+        private IReadOnlyList<string> _connectionIds;
+
+        public MultipleClientProxy(HubLifetimeManager<THub> lifetimeManager, IReadOnlyList<string> connectionIds)
+        {
+            _lifetimeManager = lifetimeManager;
+            _connectionIds = connectionIds;
+        }
+
+        public Task SendAsync(string method, params object[] args)
+        {
+            return _lifetimeManager.SendConnectionsAsync(_connectionIds, method, args);
         }
     }
 

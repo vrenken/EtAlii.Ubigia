@@ -1,4 +1,4 @@
-﻿// Copyright (c) .NET Foundation. All rights reserved.
+// Copyright (c) .NET Foundation. All rights reserved.
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using System;
@@ -50,12 +50,12 @@ namespace JwtSample
                     {
                         OnMessageReceived = context =>
                         {
-                            var signalRTokenHeader = context.Request.Query["signalRTokenHeader"];
+                            var accessToken = context.Request.Query["access_token"];
 
-                            if (!string.IsNullOrEmpty(signalRTokenHeader) &&
+                            if (!string.IsNullOrEmpty(accessToken) &&
                                 (context.HttpContext.WebSockets.IsWebSocketRequest || context.Request.Headers["Accept"] == "text/event-stream"))
                             {
-                                context.Token = context.Request.Query["signalRTokenHeader"];
+                                context.Token = context.Request.Query["access_token"];
                             }
                             return Task.CompletedTask;
                         }
@@ -66,7 +66,7 @@ namespace JwtSample
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseFileServer();
-            app.UseSignalR(options => options.MapHub<Broadcaster>("broadcast"));
+            app.UseSignalR(options => options.MapHub<Broadcaster>("/broadcast"));
 
             var routeBuilder = new RouteBuilder(app);
             routeBuilder.MapGet("generatetoken", c => c.Response.WriteAsync(GenerateToken(c)));
