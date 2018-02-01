@@ -72,13 +72,13 @@
 
         private void SignalUpdated(Identifier identifier)
         {
-            Clients.All.InvokeAsync("updated", new object[] { identifier });
+            Clients.All.SendAsync("updated", new object[] { identifier });
             //Clients.All.updated(identifier);
         }
 
         private void SignalStored(Identifier identifier)
         {
-            Clients.All.InvokeAsync("stored", new object[] { identifier });
+            Clients.All.SendAsync("stored", new object[] { identifier });
             //Clients.All.stored(identifier);
         }
     }
