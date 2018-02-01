@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using Microsoft.AspNetCore.SignalR.Client;
+	using Microsoft.AspNetCore.SignalR;
+	using Microsoft.AspNetCore.SignalR.Client;
     using Microsoft.AspNetCore.Sockets;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
@@ -14,7 +15,7 @@
 			    .WithTransport(TransportType.WebSockets)
 			    //.WithMessageHandler(httpClientHandler)
 			    .WithConsoleLogger(LogLevel.Debug)
-			    .WithJsonProtocol((JsonSerializer)new SerializerFactory().Create());
+			    .WithJsonProtocol(new JsonHubProtocolOptions { PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() });
 		    return builder;
 	    }
 
