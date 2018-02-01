@@ -27,7 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Hosting\EtAlii.xTechnology.Hosting.TestHost\EtAlii.xTechnology.Hosting.TestHost.csproj" />
+    <ProjectReference Include="..\..\Hosting\EtAlii.xTechnology.Hosting.TestHost.Owin\EtAlii.xTechnology.Hosting.TestHost.Owin.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.WebApi\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.csproj" />
   </ItemGroup>
