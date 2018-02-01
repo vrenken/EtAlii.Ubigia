@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     public sealed class SystemConnectionFactory : ISystemConnectionFactory
