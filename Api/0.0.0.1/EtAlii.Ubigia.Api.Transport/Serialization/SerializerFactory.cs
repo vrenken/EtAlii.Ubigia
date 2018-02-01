@@ -22,17 +22,25 @@
             return serializer;
         }
 
-        public static void Configure(JsonSerializerSettings settings)
-        {
-            settings.ContractResolver = new FieldBasedContractResolver();
-            settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
-            settings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
-            settings.TypeNameHandling = TypeNameHandling.None;
-            //settings.DateFormatHandling = DateFormatHandling.IsoDateFormat,
-            //settings.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
-            AddDefaultConverters(settings.Converters);
-        }
-        public static void AddDefaultConverters(ICollection<JsonConverter> converters)
+	    public static void Configure(JsonSerializerSettings settings)
+	    {
+		    settings.ContractResolver = new FieldBasedContractResolver();
+		    settings.ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor;
+		    settings.DefaultValueHandling = DefaultValueHandling.IgnoreAndPopulate;
+		    settings.TypeNameHandling = TypeNameHandling.None;
+		    //settings.DateFormatHandling = DateFormatHandling.IsoDateFormat,
+		    //settings.DateTimeZoneHandling = DateTimeZoneHandling.RoundtripKind,
+		    AddDefaultConverters(settings.Converters);
+	    }
+
+	    public static JsonSerializerSettings CreateSerializerSettings()
+	    {
+		    var settings = new JsonSerializerSettings();
+			Configure(settings);
+		    return settings;
+	    }
+
+		public static void AddDefaultConverters(ICollection<JsonConverter> converters)
         {
             // We want custom tailored unsigned long conversion. 
             // Reason for this is that we cannot trust the available ulong serialization because it is not supported by the JSON standard.
