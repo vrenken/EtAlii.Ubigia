@@ -28,8 +28,7 @@
         {
             var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
 
-            Identifier previousHeadIdentifier;
-            var identifier = _testContext.HostTestContext.Host.Infrastructure.Identifiers.GetNextHead(space.Id, out previousHeadIdentifier);
+            var identifier = _testContext.HostTestContext.Host.Infrastructure.Identifiers.GetNextHead(space.Id, out Identifier previousHeadIdentifier);
             Assert.NotEqual(identifier, Identifier.Empty);
             Assert.NotEqual(previousHeadIdentifier, Identifier.Empty);
             Assert.NotEqual(identifier, previousHeadIdentifier);

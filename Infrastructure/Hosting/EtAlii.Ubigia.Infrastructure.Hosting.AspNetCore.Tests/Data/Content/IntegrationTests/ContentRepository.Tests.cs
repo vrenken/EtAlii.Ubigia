@@ -2,7 +2,6 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
