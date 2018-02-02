@@ -32,8 +32,9 @@
 						.AddInfrastructureSerialization()
 
 	                    .AddCors()
-                        .AddSignalR(options => SerializerFactory.Configure(options.JsonSerializerSettings) );
-                },
+                        .AddSignalR()
+		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+				},
                 appBuilder =>
                 {
                     appBuilder

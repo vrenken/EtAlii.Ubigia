@@ -23,18 +23,19 @@
             applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.User.Api.SignalR.BaseUrl,
                 services =>
                 {
-                    services
-                        .AddSingleton<IRootRepository>(infrastructure.Roots)
-                        .AddSingleton<IEntryRepository>(infrastructure.Entries)
-                        .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
-                        .AddSingleton<IContentRepository>(infrastructure.Content)
-                        .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
+	                services
+		                .AddSingleton<IRootRepository>(infrastructure.Roots)
+		                .AddSingleton<IEntryRepository>(infrastructure.Entries)
+		                .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
+		                .AddSingleton<IContentRepository>(infrastructure.Content)
+		                .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
 
-	                    .AddInfrastructureSimpleAuthentication(infrastructure)
-	                    .AddInfrastructureSerialization()
+		                .AddInfrastructureSimpleAuthentication(infrastructure)
+		                .AddInfrastructureSerialization()
 
-						.AddCors()
-						.AddSignalR(options => SerializerFactory.Configure(options.JsonSerializerSettings));
+		                .AddCors()
+		                .AddSignalR()
+		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
                 },
                 appBuilder =>
                 {
