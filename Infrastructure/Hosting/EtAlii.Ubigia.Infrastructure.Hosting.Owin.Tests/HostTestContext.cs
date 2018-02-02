@@ -55,8 +55,10 @@
             // Create a host instance.
             var hostConfiguration = new HostConfiguration()
                 .UseTestHost(diagnostics)
-                .UseInfrastructure(storage, infrastructure);
-            var host = new HostFactory<TestHost>().Create(hostConfiguration);
+				.Use(new InfrastructureHostExtension(storage, infrastructure));
+                //.UseInfrastructure(storage, infrastructure);
+	        
+			var host = new HostFactory<TestHost>().Create(hostConfiguration);
 
             // Start hosting both the infrastructure and the storage.
             Start(host, infrastructure);
