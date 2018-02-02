@@ -54,6 +54,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
 
   </ItemGroup>
 

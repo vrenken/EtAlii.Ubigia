@@ -1,23 +1,24 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 {
-    using System.Configuration;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Owin;
-    using EtAlii.xTechnology.Hosting;
-    using ConsoleHost = EtAlii.xTechnology.Hosting.ConsoleHost;
+	using Microsoft.Extensions.Configuration;
+	using EtAlii.xTechnology.Hosting;
 
-    public class Program
+	public class Program
     {
         /// <summary>
         /// The main entry point for the application. 
         /// </summary>
         public static void Main()
         {
-            var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var configuration = new HostConfigurationBuilder()
-                .Build(sectionName => exeConfiguration.GetSection(sectionName))
-                .UseConsoleHost();
+	        var applicationConfiguration = new ConfigurationBuilder()
+		        .AddJsonFile("settings.json")
+		        .Build();
 
-            ConsoleHost.Start(configuration);
-        }
+	        var hostConfiguration = new HostConfigurationBuilder()
+		        .Build(applicationConfiguration)
+		        .UseConsoleHost();
+
+	        ConsoleHost.Start(hostConfiguration);
+		}
     }
 }
