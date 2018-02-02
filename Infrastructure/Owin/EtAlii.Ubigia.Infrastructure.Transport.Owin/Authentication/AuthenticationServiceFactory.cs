@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin
 {
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
