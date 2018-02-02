@@ -2,39 +2,36 @@
   "Host": {
     "Systems": [
       {
-        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
+        "IpAddress": "0.0.0.0",
+        "Port": "64002",
         "Services": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
             "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
-            "Name": "Debug storage",
-            "Address": "http://+:64000"
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+            "Name": "Debug storage"
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
-            "IpAddress": "0.0.0.0",
-            "Port": "64002"
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Owin.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Owin"
           }
         ],
         "Modules": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Owin.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Owin",
             "Name": "Admin",
-            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
-            "Port": "64001",
             "Modules": [
               {
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin"
                   }
                 ]
               },
@@ -42,29 +39,27 @@
                 "Name": "Portal",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Owin.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Owin"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Owin.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Owin"
                   }
                 ]
               }
             ]
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Owin.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Owin",
             "Name": "User",
-            "IpAddress": "0.0.0.0",
-            "Port": "64000",
             "Modules": [
               {
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.Owin.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.Owin"
                   }
                 ]
               },
@@ -72,10 +67,10 @@
                 "Name": "Portal",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Owin.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Owin"
                   },
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Owin.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Owin"
                   }
                 ]
               }
