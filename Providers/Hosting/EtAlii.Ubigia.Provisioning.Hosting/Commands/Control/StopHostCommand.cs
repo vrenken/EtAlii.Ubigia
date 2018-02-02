@@ -12,9 +12,9 @@
             Host.Stop();
         }
 
-        protected override void OnHostStateChanged(HostState state)
+        protected override void OnHostStateChanged(State state)
         {
-            CanExecute = state == HostState.Running;
+            CanExecute = state == State.Running;
         }
     }
 }

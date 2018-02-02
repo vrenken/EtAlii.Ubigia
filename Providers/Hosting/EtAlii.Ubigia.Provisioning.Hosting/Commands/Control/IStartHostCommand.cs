@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public interface IStartHostCommand : IHostCommand
+    public interface IStartHostCommand : ICommand
     {
     }
 }
