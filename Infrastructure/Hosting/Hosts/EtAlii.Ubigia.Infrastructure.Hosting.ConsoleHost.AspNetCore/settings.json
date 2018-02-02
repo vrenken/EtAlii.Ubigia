@@ -2,15 +2,15 @@
   "Host": {
     "Systems": [
       {
-        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
         "Services": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
             "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
           },
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
             "Address": "http://+:64000"
           },

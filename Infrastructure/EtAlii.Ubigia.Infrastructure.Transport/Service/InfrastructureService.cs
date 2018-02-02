@@ -1,15 +1,14 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Transport;
     using System.Linq;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
-    public class InfrastructureService : ServiceBase<IAspNetCoreHost, IInfrastructureSystem>, IInfrastructureService
+    public class InfrastructureService : ServiceBase<IHost, IInfrastructureSystem>, IInfrastructureService
     {
         private readonly IConfiguration _configuration;
         public IInfrastructure Infrastructure { get; private set; }
@@ -32,7 +31,7 @@
         }
 
         protected override void Initialize(
-            IAspNetCoreHost host, IInfrastructureSystem system, 
+	        IHost host, IInfrastructureSystem system, 
             IModule[] moduleChain, out Status status)
         {
             _system = system;
@@ -74,14 +73,7 @@
 
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
-                .UseAspNetCore()
-                //.UseOwin(applicationManager)
-                //.UseWebApi(diagnostics) // TODO: Web API usage should also be configured in the configuration section.
-                //.UseWebApiAdminApi()
-                //.UseWebApiAdminPortal()
-                //.UseWebApiUserApi()
-                //.UseWebApiUserPortal()
-                //.UseSignalRApi()
+	            .Use<SystemConnectionInfrastructure>()
                 .Use(logicalContext);
             return new InfrastructureFactory().Create(infrastructureConfiguration);
         }
