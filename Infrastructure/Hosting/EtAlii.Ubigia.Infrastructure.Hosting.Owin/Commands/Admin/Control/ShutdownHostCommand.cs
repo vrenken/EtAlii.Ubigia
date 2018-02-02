@@ -6,10 +6,11 @@
     {
         public string Name => "Shutdown";
 
-        public ShutdownHostCommand()
-        {
-        }
-        public void Execute()
+	    public ShutdownHostCommand(IHost host) : base(host)
+	    {
+	    }
+
+		public void Execute()
         {
             Host.Shutdown();
         }
