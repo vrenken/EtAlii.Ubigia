@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public interface IOpenAdminPortalCommand : IHostCommand
+    public interface IOpenAdminPortalCommand : ICommand
     {
     }
 }

@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public interface IStartStorageBrowserCommand : IHostCommand
+    public interface IStartStorageBrowserCommand : ICommand
     {
     }
 }
