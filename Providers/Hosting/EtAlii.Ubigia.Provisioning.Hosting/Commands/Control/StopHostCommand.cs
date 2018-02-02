@@ -7,7 +7,10 @@
     {
         public string Name => "Admin/Provisioning service/Stop";
 
-        public void Execute()
+	    public StopHostCommand(IHost host) : base(host)
+	    {
+	    }
+		public void Execute()
         {
             Host.Stop();
         }
