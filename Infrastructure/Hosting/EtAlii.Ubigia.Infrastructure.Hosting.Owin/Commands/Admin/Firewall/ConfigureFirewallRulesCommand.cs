@@ -13,8 +13,8 @@
 
         private readonly IInfrastructure _infrastructure;
 
-        public ConfigureFirewallRulesCommand(IInfrastructure infrastructure)
-        {
+	    public ConfigureFirewallRulesCommand(IHost host, IInfrastructure infrastructure) : base(host)
+	    {
             _infrastructure = infrastructure;
         }
 

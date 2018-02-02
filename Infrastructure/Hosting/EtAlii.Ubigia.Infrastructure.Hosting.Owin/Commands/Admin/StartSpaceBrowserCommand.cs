@@ -10,8 +10,9 @@
         private readonly IProcessStarter _processStarter;
         private readonly IInfrastructure _infrastructure;
 
-        public StartSpaceBrowserCommand(IProcessStarter processStarter, IInfrastructure infrastructure)
-        {
+        public StartSpaceBrowserCommand(IHost host, IProcessStarter processStarter, IInfrastructure infrastructure)
+	        : base(host)
+		{
             _processStarter = processStarter;
             _infrastructure = infrastructure;
         }

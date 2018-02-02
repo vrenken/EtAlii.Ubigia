@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
-    using System;
-    using System.Runtime.CompilerServices;
     using EtAlii.xTechnology.Hosting;
 
     class OpenUserPortalCommand : HostCommandBase, IOpenUserPortalCommand
@@ -10,8 +8,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 
         private readonly IWebsiteBrowser _websiteBrowser;
 
-        public OpenUserPortalCommand(IWebsiteBrowser websiteBrowser)
-        {
+        public OpenUserPortalCommand(IHost host, IWebsiteBrowser websiteBrowser)
+	        : base(host)
+		{
             _websiteBrowser = websiteBrowser;
         }
         public void Execute()
@@ -19,9 +18,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
             _websiteBrowser.BrowseTo("/");
         }
 
-        protected override void OnHostStateChanged(HostState state)
+        protected override void OnHostStateChanged(State state)
         {
-            CanExecute = state == HostState.Running;
+            CanExecute = state == State.Running;
         }
 
     }

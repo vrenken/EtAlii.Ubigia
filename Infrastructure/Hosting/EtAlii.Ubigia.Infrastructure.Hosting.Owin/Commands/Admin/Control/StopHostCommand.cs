@@ -6,7 +6,11 @@
     {
         public string Name => "Admin/API service/Stop";
 
-        public void Execute()
+	    public StopHostCommand(IHost host) : base(host)
+	    {
+	    }
+
+		public void Execute()
         {
             Host.Stop();
         }

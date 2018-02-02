@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
     using System;
-    using System.Diagnostics;
     using System.IO;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
@@ -11,7 +10,8 @@
         private readonly IProcessStarter _processStarter;
         private readonly IInfrastructure _infrastructure;
 
-        public StartStorageBrowserCommand(IProcessStarter processStarter, IInfrastructure infrastructure)
+        public StartStorageBrowserCommand(IHost host, IProcessStarter processStarter, IInfrastructure infrastructure)
+			: base(host)
         {
             _processStarter = processStarter;
             _infrastructure = infrastructure;

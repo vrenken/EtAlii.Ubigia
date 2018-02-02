@@ -7,7 +7,11 @@
     {
         public string Name => "Admin/API service/Start";
 
-        public void Execute()
+	    public StartHostCommand(IHost host) : base(host)
+	    {
+	    }
+
+		public void Execute()
         {
             Host.Start();
         }

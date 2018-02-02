@@ -9,12 +9,12 @@
 
         private readonly IWebsiteBrowser _websiteBrowser;
 
-        public OpenAdminPortalCommand(IWebsiteBrowser websiteBrowser)
+        public OpenAdminPortalCommand(IHost host, IWebsiteBrowser websiteBrowser) : base(host)
         {
             _websiteBrowser = websiteBrowser;
         }
 
-        public void Execute()
+		public void Execute()
         {
             _websiteBrowser.BrowseTo("/Admin");
         }
