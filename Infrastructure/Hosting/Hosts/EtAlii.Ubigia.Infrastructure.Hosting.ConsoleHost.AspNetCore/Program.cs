@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
 {
     using Microsoft.Extensions.Configuration;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
     using EtAlii.xTechnology.Hosting;
 
 

@@ -2,28 +2,29 @@
 {
     using System.Configuration;
     using System.Windows;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Owin;
     using EtAlii.xTechnology.Hosting;
+    using Microsoft.Extensions.Configuration;
 
-
-    /// <summary>
+	/// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
     public partial class App : Application
     {
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-            var exeConfiguration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var configuration = new HostConfigurationBuilder()
-                .Build(sectionName => exeConfiguration.GetSection(sectionName))
+	        var applicationConfiguration = new ConfigurationBuilder()
+		        .AddJsonFile("settings.json")
+		        .Build();
+
+	        var hostConfiguration = new HostConfigurationBuilder()
+		        .Build(applicationConfiguration)
                 .UseTrayIconHost(
                     this,
                     "Icon-Logo-White-Shaded.ico",
                     "Icon-Logo-Black.ico",
                     "Icon-Logo-Red.ico");
 
-            TrayIconHost.Start(configuration);
+            TrayIconHost.Start(hostConfiguration);
         }
     }
 }
