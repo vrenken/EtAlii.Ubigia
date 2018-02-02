@@ -14,9 +14,9 @@
             Host.Shutdown();
         }
 
-        protected override void OnHostStateChanged(HostState state)
+        protected override void OnHostStateChanged(State state)
         {
-            CanExecute = state == HostState.Running || state == HostState.Stopped;
+            CanExecute = state == State.Running || state == State.Stopped;
         }
     }
 }
