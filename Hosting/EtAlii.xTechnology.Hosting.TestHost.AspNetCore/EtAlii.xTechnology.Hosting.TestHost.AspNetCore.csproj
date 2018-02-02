@@ -17,17 +17,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -35,10 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.27" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.30" />
     <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2.29" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Testing" Version="2.1.0-preview2-30005" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Testing" Version="2.1.0-preview2-30006" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.3.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
