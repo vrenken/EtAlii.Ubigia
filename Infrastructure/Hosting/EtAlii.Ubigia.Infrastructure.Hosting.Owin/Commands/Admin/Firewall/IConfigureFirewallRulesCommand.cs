@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.Hosting;
 
-    public interface IConfigureFirewallRulesCommand : IHostCommand
+    public interface IConfigureFirewallRulesCommand : ICommand
     {
     }
 }

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
-    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -24,9 +23,9 @@
             TryConfigure();
         }
 
-        protected override void OnHostStateChanged(HostState state)
+        protected override void OnHostStateChanged(State state)
         {
-            CanExecute = state == HostState.Stopped || state == HostState.Shutdown;
+            CanExecute = state == State.Stopped || state == State.Shutdown;
         }
 
         private Task<bool> TryConfigure()
