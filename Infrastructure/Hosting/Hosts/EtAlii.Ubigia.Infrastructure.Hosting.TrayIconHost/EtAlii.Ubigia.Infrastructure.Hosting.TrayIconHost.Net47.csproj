@@ -27,28 +27,28 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
 
-    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.22">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.25">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -66,7 +66,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.22" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
@@ -82,6 +82,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </Page>
+    <None Remove="settings.json" />
+    <Content Include="settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
   </ItemGroup>
 

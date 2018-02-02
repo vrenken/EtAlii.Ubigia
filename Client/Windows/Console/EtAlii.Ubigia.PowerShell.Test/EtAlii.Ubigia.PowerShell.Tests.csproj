@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.22" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.25" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.assert" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
