@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net471</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>Unit test project</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyName>EtAlii.Ubigia.Infrastructure.Transport.Owin.Tests</AssemblyName>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Owin.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.30" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Hosting\EtAlii.xTechnology.Hosting.TestHost.Owin\EtAlii.xTechnology.Hosting.TestHost.Owin.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.Rest.Owin.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.SignalR.Owin\EtAlii.Ubigia.Infrastructure.Transport.SignalR.Owin.csproj" />
+  </ItemGroup>
+
+</Project>
