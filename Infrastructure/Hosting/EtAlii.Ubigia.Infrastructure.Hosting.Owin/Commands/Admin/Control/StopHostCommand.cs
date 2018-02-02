@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Owin
 {
-    using System;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Hosting;
 
     class StopHostCommand : HostCommandBase, IStopHostCommand
@@ -13,9 +11,9 @@
             Host.Stop();
         }
 
-        protected override void OnHostStateChanged(HostState state)
+        protected override void OnHostStateChanged(State state)
         {
-            CanExecute = state == HostState.Running;
+            CanExecute = state == State.Running;
         }
     }
 }
