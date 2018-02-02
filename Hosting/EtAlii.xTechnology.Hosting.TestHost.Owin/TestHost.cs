@@ -19,13 +19,13 @@
         public IHostConfiguration Configuration { get; }
 
         public TestHost(
-            IServiceManager serviceManager,
+            ISystemManager systemManager,
             IInfrastructureClient client, 
             IAddressFactory addressFactory, 
             IStorage storage, 
             IInfrastructure infrastructure,
             IHostConfiguration configuration)
-            : base(serviceManager)
+            : base(systemManager)
         {
             Client = client;
             AddressFactory = addressFactory;
@@ -41,7 +41,7 @@
             switch (e.PropertyName)
             {
                 case nameof(State):
-                    if (State == HostState.Running)
+                    if (State == State.Running)
                     {
                         var folder = Storage.PathBuilder.BaseFolder;
                         if (Storage.FolderManager.Exists(folder))

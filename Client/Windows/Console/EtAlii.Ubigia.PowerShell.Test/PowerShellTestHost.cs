@@ -13,11 +13,11 @@
         private readonly ILogger _logger;
 
         public PowerShellTestHost(
-            IServiceManager serviceManager,
+            ISystemManager systemManager,
             IHostConfiguration configuration,
             IInfrastructure infrastructure,
             ILogger logger)
-            : base(serviceManager)
+            : base(systemManager)
         {
             Configuration = configuration;
             Infrastructure = infrastructure;

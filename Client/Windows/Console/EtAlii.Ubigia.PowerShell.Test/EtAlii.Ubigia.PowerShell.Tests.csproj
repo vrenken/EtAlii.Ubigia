@@ -24,11 +24,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.SignalR\EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.Admin\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.WebApi.Api.User\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\EtAlii.Ubigia.Infrastructure.WebApi.Diagnostics\EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.Rest.Diagnostics.Owin\EtAlii.Ubigia.Infrastructure.Transport.Rest.Diagnostics.Owin.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Signalr.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Signalr.Owin.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj" />
   </ItemGroup>
