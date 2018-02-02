@@ -1,8 +1,8 @@
-namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
+namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using EtAlii.xTechnology.Hosting;
 
-    public class InfrastructureSystem : SystemBase<IAspNetCoreHost>, IInfrastructureSystem
+    public class InfrastructureSystem : SystemBase, IInfrastructureSystem
     {
         private readonly ISystemCommandsFactory _systemCommandsFactory;
 
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
         }
 
         protected override void Initialize(
-            IAspNetCoreHost host, IService[] services, IModule[] modules, 
+	        IHost host, IService[] services, IModule[] modules, 
             out Status status, out ICommand[] commands)
         {
             status = new Status(nameof(InfrastructureSystem));
