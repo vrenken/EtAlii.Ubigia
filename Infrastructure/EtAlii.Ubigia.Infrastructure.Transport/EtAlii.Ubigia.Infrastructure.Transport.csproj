@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.25" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2.32" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.2.34-preview-t000" />
     <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0" />
   </ItemGroup>
 
