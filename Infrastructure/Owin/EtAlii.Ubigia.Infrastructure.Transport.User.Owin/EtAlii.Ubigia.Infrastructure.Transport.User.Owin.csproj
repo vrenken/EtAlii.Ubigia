@@ -17,10 +17,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Net47" Version="1.0.2.31" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Owin\EtAlii.Ubigia.Infrastructure.Transport.Owin.csproj" />
   </ItemGroup>
 
