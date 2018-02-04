@@ -5,9 +5,9 @@
     using Microsoft.Extensions.Configuration;
 
 	/// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App : Application
+	/// Interaction logic for App.xaml
+	/// </summary>
+	public partial class App : Application
     {
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
