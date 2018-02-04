@@ -6,20 +6,16 @@
     using System.Text;
     using EtAlii.xTechnology.Hosting;
 
-    public class ProvisioningService : IProvisioningService
+    public class ProvisioningService : ServiceBase, IProvisioningService
     {
         private readonly IProvisioning _provisioning;
-
-        public HostStatus Status { get; } = new HostStatus(nameof(ProvisioningService));
-
-        public IHostCommand[] Commands { get; } = Array.Empty<IHostCommand>();
 
         public ProvisioningService(IProvisioning provisioning)
         {
             _provisioning = provisioning;
         }
 
-        public void Start()
+        public override void Start()
         {
             Status.Title = "Ubigia provisioning";
 
@@ -47,7 +43,7 @@
 
         }
 
-        public void Stop()
+        public override void Stop()
         {
             Status.Description = "Stopping...";
             Status.Summary = Status.Description;
@@ -63,5 +59,11 @@
             Status.Description = sb.ToString();
             Status.Summary = Status.Description;
         }
+
+	    protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
+	    {
+			status = new Status(nameof(ProvisioningService));
+
+	    }
     }
 }
