@@ -9,7 +9,7 @@
         {
         }
 
-        public IHostCommand[] Create()
+        public ICommand[] Create()
         {
             var container = new Container();
 
@@ -17,7 +17,7 @@
             container.Register<IStopHostCommand, StopHostCommand>();
             container.Register<IShutdownHostCommand, ShutdownHostCommand>();
             
-            return new IHostCommand[]
+            return new ICommand[]
             {
                 container.GetInstance<IStartHostCommand>(),
                 container.GetInstance<IStopHostCommand>(),
