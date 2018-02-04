@@ -304,7 +304,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj", "{B5E48C89-0CD6-4D4F-AACB-961833428964}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Owin", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Owin.csproj", "{4F4721D1-115B-4C79-8FC8-055D018499C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Net47", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Net47.csproj", "{4F4721D1-115B-4C79-8FC8-055D018499C6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Owin", "Owin", "{401B886E-4CFA-4682-8468-D63ECAF95010}"
 EndProject
@@ -374,7 +374,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj", "{B390BC64-4AE6-4C0D-AB69-95DFBA68754D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.TestHost.Owin", "Hosting\EtAlii.xTechnology.Hosting.TestHost.Owin\EtAlii.xTechnology.Hosting.TestHost.Owin.csproj", "{D644698D-5983-480D-A9B1-09247D50862E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.TestHost.Net47", "Hosting\EtAlii.xTechnology.Hosting.TestHost.Owin\EtAlii.xTechnology.Hosting.TestHost.Net47.csproj", "{D644698D-5983-480D-A9B1-09247D50862E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.xTechnology.Hosting.TestHost.AspNetCore", "Hosting\EtAlii.xTechnology.Hosting.TestHost.AspNetCore\EtAlii.xTechnology.Hosting.TestHost.AspNetCore.csproj", "{47AD71D6-C6FC-432C-95A6-7D950A6C19CE}"
 EndProject
