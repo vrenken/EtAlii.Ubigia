@@ -1,8 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Storage;
+	using EtAlii.xTechnology.MicroContainer;
+	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Transport;
+	using EtAlii.Ubigia.Storage;
     using xTechnology.Hosting;
 
     public class InfrastructureHostExtension : IHostExtension
