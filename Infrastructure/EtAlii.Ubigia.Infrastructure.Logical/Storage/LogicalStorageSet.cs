@@ -18,11 +18,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private ObservableCollection<Storage> Items { get; set; }
 
-        public event EventHandler<Storage> Initialized { add { _initialized += value; } remove { var initialized = _initialized; if (initialized != null) initialized -= value; } }
-        private EventHandler<Storage> _initialized;
-
-        public event EventHandler<Storage> Added { add { _added += value; } remove { var added = _added; if (added != null) added -= value; } }
-        private EventHandler<Storage> _added;
+	    public event EventHandler<Storage> Initialized;
+	    public event EventHandler<Storage> Added;
 
         public LogicalStorageSet(
             ILocalStorageGetter localStorageGetter, 
@@ -40,7 +37,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
             if (storage != null)
             {
-                _added?.Invoke(this, storage);
+                Added?.Invoke(this, storage);
             }
             return storage;
         }
@@ -57,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 var storage = _localStorageGetter.GetLocal(items);
                 items.Add(storage);
 
-                _initialized?.Invoke(this, storage);
+                Initialized?.Invoke(this, storage);
             }
 
             Items = items;
