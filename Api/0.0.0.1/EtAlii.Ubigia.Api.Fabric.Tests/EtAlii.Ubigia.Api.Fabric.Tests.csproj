@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>
