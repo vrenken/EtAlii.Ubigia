@@ -36,11 +36,12 @@ namespace EtAlii.Ubigia.Provisioning
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)
         {
             var diagnostics = TestDiagnostics.Create();
-            var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
 
             var connectionConfiguration = new DataConnectionConfiguration()
                 .Use(diagnostics)
-                .Use(SignalRTransportProvider.Create(signalRHttpClient))
+	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
+				.Use(SignalRTransportProvider.Create())
                 .Use(Context.Host.Infrastructure.Configuration.Address)
                 .Use(accountName, spaceName, accountPassword);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
@@ -54,10 +55,11 @@ namespace EtAlii.Ubigia.Provisioning
         {
             var diagnostics = TestDiagnostics.Create();
 			var configuration = Context.Host.Infrastructure.Configuration;
-            var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-                .Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
+	            //.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
+				.Use(SignalRStorageTransportProvider.Create())
                 .Use(diagnostics)
                 .Use(configuration.Address)
                 .Use(Context.TestAccountName, Context.TestAccountPassword);

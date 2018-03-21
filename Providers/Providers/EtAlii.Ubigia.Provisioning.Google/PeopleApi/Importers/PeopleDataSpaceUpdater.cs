@@ -4,12 +4,15 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
     using EtAlii.Ubigia.Api.Transport;
-    using global::Google.Contacts;
-    using global::Google.GData.Client;
+	using global::Google.Apis.PeopleService.v1.Data;
+    using global::Google.Apis.Auth.OAuth2;
+    using global::Google.Apis.PeopleService.v1;
+    using global::Google.Apis.Services;
 
-    public class PeopleDataSpaceUpdater : IPeopleDataSpaceUpdater
+	public class PeopleDataSpaceUpdater : IPeopleDataSpaceUpdater
     {
-        private readonly IProviderContext _context;
+
+		private readonly IProviderContext _context;
         private readonly IUserSettingsGetter _userSettingsGetter;
         private readonly IPersonSetter _personSetter;
         private readonly TimeSpan _updateThreshold = TimeSpan.FromHours(1); 
@@ -47,24 +50,47 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             using (var userDataContext = _context.CreateDataContext(configurationSpace.Account.Name, SpaceName.Data))
             {
                 var request = CreateRequest(systemSettings, userSettings);
-                var feed = request.GetContacts();
-                feed.AutoPaging = true;
-                foreach (var person in feed.Entries)
+	            var feed = request.Execute();//.GetContacts();
+                //feed.AutoPaging = true;
+                foreach (var person in feed.Connections)//.Entries)
                 {
-                    _personSetter.Set(userDataContext , person);
-                }
+		            _personSetter.Set(userDataContext, person);
+				}
             }
         }
 
-        private ContactsRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
-        {
-            var parameters = new OAuth2Parameters();
-            parameters.AccessToken = userSettings.AccessToken;
-            parameters.RefreshToken = userSettings.RefreshToken;
+	    //private ContactsRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
+	    //{
+		   // var parameters = new OAuth2Parameters();
+		   // parameters.AccessToken = userSettings.AccessToken;
+		   // parameters.RefreshToken = userSettings.RefreshToken;
 
-            var settings = new RequestSettings(systemSettings.ClientId, parameters);
-            var request = new ContactsRequest(settings);
-            return request;
+		   // var settings = new RequestSettings(systemSettings.ClientId, parameters);
+		   // var request = new ContactsRequest(settings);
+		   // return request;
+	    //}
+
+		private PeopleResource.ConnectionsResource.ListRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
+        {
+			var parameters = new global::Google.Apis.Auth.OAuth2.JsonCredentialParameters
+		        {
+					ClientId = systemSettings.ClientId,
+			        PrivateKey = userSettings.AccessToken,
+			        RefreshToken = userSettings.RefreshToken
+		        };
+
+	        var initializer = new BaseClientService.Initializer();
+			var service = new global::Google.Apis.PeopleService.v1.PeopleServiceService(initializer);
+			//var builder = new global::Google.Apis.Requests.RequestBuilder();
+	        return new PeopleResource.ConnectionsResource.ListRequest(service, "people/me");
+			//builder.
+			//var parameters = new OAuth2Parameters();
+			//         parameters.AccessToken = userSettings.AccessToken;
+			//         parameters.RefreshToken = userSettings.RefreshToken;
+
+			//var settings = new RequestSettings(systemSettings.ClientId, parameters);
+            //var request = new ContactsRequest(settings);
+            //return request;
         }
-    }
+	}
 }

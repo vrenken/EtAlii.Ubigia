@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -34,8 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Apis.Auth" Version="1.29.2" />
-    <PackageReference Include="Google.GData.Contacts" Version="2.2.0" />
+    <PackageReference Include="Google.Apis.PeopleService.v1" Version="1.32.2.1169" />
   </ItemGroup>
 
   <ItemGroup>
