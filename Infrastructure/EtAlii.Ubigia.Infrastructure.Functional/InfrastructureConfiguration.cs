@@ -100,12 +100,7 @@
 
         public IInfrastructureConfiguration Use(ILogicalContext logical)
         {
-            if (logical == null)
-            {
-                throw new ArgumentException(nameof(logical));
-            }
-
-            Logical = logical;
+	        Logical = logical ?? throw new ArgumentException(nameof(logical));
 
             return this;
         }
