@@ -3,10 +3,11 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using EtAlii.Ubigia.Api.Functional;
-    using global::Google.Contacts;
+    using global::Google.Apis.PeopleService.v1.Data;
+    using global::Google.Apis.Auth.OAuth2;
 
     public interface IPersonSetter
     {
-        void Set(IDataContext context, Contact person);
+        void Set(IDataContext context, Person person);
     }
 }
