@@ -20,10 +20,11 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
+            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
 
             var connectionConfiguration = new DataConnectionConfiguration()
-                .Use(SignalRTransportProvider.Create(signalRHttpClient))
+	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
+	            .Use(SignalRTransportProvider.Create())
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);
@@ -48,10 +49,11 @@
         public override async Task<IManagementConnection> CreateManagementConnection(string address, string account, string password, bool openOnCreation = true)
         {
             var diagnostics = TestDiagnostics.Create();
-            var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler());
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-                .Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
+	            //.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
+	            .Use(SignalRStorageTransportProvider.Create())
                 .Use(address)
                 .Use(account, password)
                 .Use(diagnostics);
