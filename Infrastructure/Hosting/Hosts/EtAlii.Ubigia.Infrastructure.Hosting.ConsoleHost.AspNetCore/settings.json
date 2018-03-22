@@ -5,7 +5,7 @@
         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
         "Services": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
             "Name": "Debug storage",
             "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
           },
