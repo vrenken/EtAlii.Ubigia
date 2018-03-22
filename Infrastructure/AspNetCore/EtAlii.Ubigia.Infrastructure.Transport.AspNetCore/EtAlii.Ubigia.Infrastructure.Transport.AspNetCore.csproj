@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.30" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.2.34-preview-t000" />
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.40" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.3.36" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.1.0-preview2-30015" />
   </ItemGroup>
 

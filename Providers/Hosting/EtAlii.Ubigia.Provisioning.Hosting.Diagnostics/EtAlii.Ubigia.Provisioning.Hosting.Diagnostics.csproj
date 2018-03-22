@@ -34,7 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
   </ItemGroup>
 
   <ItemGroup>

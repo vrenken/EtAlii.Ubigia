@@ -15,7 +15,7 @@
     <Content Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.AspNetCore" Version="1.0.2.34-preview-t000" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.AspNetCore" Version="1.0.3.36" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.csproj" />
@@ -25,6 +25,7 @@
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
     <Content Update="settings.*.json" DependentUpon="settings.json" />
   </ItemGroup>
 
