@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -22,11 +22,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests.csproj" />
+    <ProjectReference Include="..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Diagnostics\EtAlii.Ubigia.Api.Transport.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

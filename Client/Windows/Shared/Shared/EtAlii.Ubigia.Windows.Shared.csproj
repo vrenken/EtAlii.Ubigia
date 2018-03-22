@@ -51,7 +51,7 @@
     <EmbeddedResource Include="Icon-Logo-White.ico" />
     <EmbeddedResource Include="Icon-Logo.ico" />
     <EmbeddedResource Include="Icon-Logo.png" />
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
      <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />

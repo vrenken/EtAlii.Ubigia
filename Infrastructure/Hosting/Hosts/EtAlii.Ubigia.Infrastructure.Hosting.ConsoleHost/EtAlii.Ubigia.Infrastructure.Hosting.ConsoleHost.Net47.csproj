@@ -29,28 +29,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.25">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.40">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
 
-    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.25">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.40">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.25">
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.40">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.25">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.40">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.25">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.40">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -58,12 +58,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Net47" Version="1.0.2.34-preview-t000" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Net47" Version="1.0.3.36" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.Ntfs\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Net47.csproj" />
   </ItemGroup>
 

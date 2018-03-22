@@ -18,10 +18,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.30" />
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.25" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.30" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.2.34-preview-t000" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.40" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.40" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.3.36" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
@@ -36,6 +36,7 @@
     <ProjectReference Include="..\..\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin.csproj" />
     <ProjectReference Include="..\..\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Signalr.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Signalr.Owin.csproj" />
     <ProjectReference Include="..\..\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Owin.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.Owin\EtAlii.Ubigia.Infrastructure.Hosting.Net47.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
 

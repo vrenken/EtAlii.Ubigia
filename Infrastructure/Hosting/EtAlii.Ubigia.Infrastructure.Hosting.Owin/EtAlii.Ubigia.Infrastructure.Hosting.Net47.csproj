@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport.Ntfs\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.csproj" />
     <ProjectReference Include="..\..\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin.csproj" />
     <ProjectReference Include="..\..\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin.csproj" />
     <ProjectReference Include="..\..\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Owin.csproj" />
