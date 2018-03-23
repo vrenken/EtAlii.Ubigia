@@ -11,12 +11,12 @@
         private readonly ILogicalContext _logicalContext;
         private readonly IAccountInitializer _accountInitializer;
 
-        public AccountRepository(
+		public AccountRepository(
             ILogicalContext logicalContext, 
             IAccountInitializer accountInitializer)
         {
             _accountInitializer = accountInitializer;
-            _logicalContext = logicalContext;
+			_logicalContext = logicalContext;
             _logicalContext.Accounts.Added += OnAccountAdded;
         }
 
@@ -25,12 +25,12 @@
             _accountInitializer.Initialize(e.Account, e.Template);
         }
 
-        public Account Get(string accountName)
-        {
-            return _logicalContext.Accounts.Get(accountName);
-        }
+		public Account Get(string accountName)
+		{
+			return _logicalContext.Accounts.Get(accountName);
+		}
 
-        public Account Get(string accountName, string password)
+		public Account Get(string accountName, string password)
         {
             return _logicalContext.Accounts.Get(accountName, password);
         }
