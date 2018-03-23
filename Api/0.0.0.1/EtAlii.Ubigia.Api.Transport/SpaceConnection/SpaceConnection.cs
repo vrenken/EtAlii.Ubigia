@@ -85,13 +85,13 @@
 
             await Transport.Start(this, Configuration.Address);
 
-            Account = await Authentication.Data.GetAccount(this);
-            Space = await Authentication.Data.GetSpace(this);
+			Account = await Authentication.Data.GetAccount(this);
+	        Space = await Authentication.Data.GetSpace(this);
         }
-        
-        #region Disposable
 
-        private bool _disposed = false;
+		#region Disposable
+
+		private bool _disposed = false;
 
         //Implement IDisposable.
         public void Dispose()
