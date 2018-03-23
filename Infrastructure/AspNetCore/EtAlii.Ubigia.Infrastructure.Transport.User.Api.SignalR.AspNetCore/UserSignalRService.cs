@@ -24,8 +24,10 @@
                 services =>
                 {
 	                services
-		                .AddSingleton<IRootRepository>(infrastructure.Roots)
-		                .AddSingleton<IEntryRepository>(infrastructure.Entries)
+						.AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+						.AddSingleton<IAccountRepository>(infrastructure.Accounts)
+						.AddSingleton<IRootRepository>(infrastructure.Roots)
+						.AddSingleton<IEntryRepository>(infrastructure.Entries)
 		                .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
 		                .AddSingleton<IContentRepository>(infrastructure.Content)
 		                .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
@@ -48,7 +50,10 @@
                         {
                             routes.MapHub<AuthenticationHub>(SignalRHub.Authentication);
 
-                            routes.MapHub<RootHub>(SignalRHub.Root);
+							routes.MapHub<AccountHub>(SignalRHub.Account);
+							routes.MapHub<SpaceHub>(SignalRHub.Space);
+
+							routes.MapHub<RootHub>(SignalRHub.Root);
                             routes.MapHub<EntryHub>(SignalRHub.Entry);
                             routes.MapHub<PropertiesHub>(SignalRHub.Property);
                             routes.MapHub<ContentHub>(SignalRHub.Content);
