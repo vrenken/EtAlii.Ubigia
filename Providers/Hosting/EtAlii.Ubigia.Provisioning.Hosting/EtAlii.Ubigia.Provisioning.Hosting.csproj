@@ -42,7 +42,7 @@
   
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.3.36" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.40" />
   </ItemGroup>
 
 </Project>
