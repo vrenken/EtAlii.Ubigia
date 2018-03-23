@@ -13,7 +13,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Account, connection.Configuration.Space);
+            var space = await GetSpace(connection.Configuration.Space);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
@@ -22,10 +22,15 @@
             return space;
         }
 
-        private async Task<Space> GetSpace(Account currentAccount, string spaceName)
+        private async Task<Space> GetSpace(string spaceName)
         {
-            var spaces = await _invoker.Invoke<IEnumerable<Space>>(_spaceConnection, SignalRHub.Space, "GetForAccount", currentAccount.Id.ToString());
-            return spaces.FirstOrDefault(s => s.Name == spaceName);
+            var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName);
+			if (space == null)
+			{
+				string message = $"Unable to connect to the the specified space ({spaceName})";
+				throw new UnauthorizedInfrastructureOperationException(message);
+			}
+			return space;// s.FirstOrDefault(s => s.Name == spaceName);
         }
     }
 }
