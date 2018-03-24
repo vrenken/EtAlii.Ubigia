@@ -1,170 +1,170 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
-{
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Tests;
-    using Xunit;
-    using System;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure;
+﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
+//{
+//    using EtAlii.Ubigia.Api;
+//    using EtAlii.Ubigia.Infrastructure.Hosting;
+//    using EtAlii.Ubigia.Tests;
+//    using Xunit;
+//    using System;
+//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using EtAlii.Ubigia.Infrastructure;
 
-    public sealed class ContentRepository_Tests : IClassFixture<HostUnitTestContext>
-    {
-        private readonly HostUnitTestContext _testContext;
+//    public sealed class ContentRepository_Tests : IClassFixture<HostUnitTestContext>
+//    {
+//        private readonly HostUnitTestContext _testContext;
 
-        public ContentRepository_Tests(HostUnitTestContext testContext)
-        {
-            _testContext = testContext;
-        }
+//        public ContentRepository_Tests(HostUnitTestContext testContext)
+//        {
+//            _testContext = testContext;
+//        }
 
-        [Fact]
-        public void ContentRepository_Store_Content()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = _testContext.TestContentFactory.Create();
+//        [Fact]
+//        public void ContentRepository_Store_Content()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var content = _testContext.TestContentFactory.Create();
 
-            // Act.
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
+//            // Act.
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
 
-            // Assert.
-            Assert.True(content.Stored);
-        }
+//            // Assert.
+//            Assert.True(content.Stored);
+//        }
 
-        [Fact]
-        public void ContentRepository_Store_ContentPart()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var data = _testContext.TestContentFactory.CreateData(100, 500);
-            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
-            var content = _testContext.TestContentFactory.Create(1);
-            var contentPart = _testContext.TestContentFactory.CreatePart(data);
+//        [Fact]
+//        public void ContentRepository_Store_ContentPart()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var data = _testContext.TestContentFactory.CreateData(100, 500);
+//            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
+//            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+//            var content = _testContext.TestContentFactory.Create(1);
+//            var contentPart = _testContext.TestContentFactory.CreatePart(data);
 
-            // Act.
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
+//            // Act.
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
 
-            // Assert.
-            Assert.True(content.Stored);
-            Assert.True(contentPart.Stored);
-        }
+//            // Assert.
+//            Assert.True(content.Stored);
+//            Assert.True(contentPart.Stored);
+//        }
 
 
-        [Fact]
-        public void ContentRepository_Store_ContentPart_Out_Of_Bounds()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = _testContext.TestContentFactory.Create(3);
-            var contentPart = _testContext.TestContentFactory.CreatePart(6);
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
+//        [Fact]
+//        public void ContentRepository_Store_ContentPart_Out_Of_Bounds()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var content = _testContext.TestContentFactory.Create(3);
+//            var contentPart = _testContext.TestContentFactory.CreatePart(6);
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
 
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
-            });
+//            // Act.
+//            var act = new Action(() =>
+//            {
+//                _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
+//            });
 
-            // Assert.
-            Assert.Throws<ContentRepositoryException>(act);
-        }
+//            // Assert.
+//            Assert.Throws<ContentRepositoryException>(act);
+//        }
 
-        [Fact]
-        public void ContentRepository_Store_ContentPart_Before_Content()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = _testContext.TestContentFactory.Create(1);
-            var contentPart = _testContext.TestContentFactory.CreatePart(0);
+//        [Fact]
+//        public void ContentRepository_Store_ContentPart_Before_Content()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var content = _testContext.TestContentFactory.Create(1);
+//            var contentPart = _testContext.TestContentFactory.CreatePart(0);
 
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
-            });
+//            // Act.
+//            var act = new Action(() =>
+//            {
+//                _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
+//            });
 
-            // Assert.
-            Assert.Throws<ContentRepositoryException>(act);
-        }
+//            // Assert.
+//            Assert.Throws<ContentRepositoryException>(act);
+//        }
 
-        [Fact]
-        public void ContentRepository_Retrieve_Content()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var data = _testContext.TestContentFactory.CreateData(100, 500);
-            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+//        [Fact]
+//        public void ContentRepository_Retrieve_Content()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var data = _testContext.TestContentFactory.CreateData(100, 500);
+//            var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
+//            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
-            var content = _testContext.TestContentFactory.Create(1);
-            var contentPart = _testContext.TestContentFactory.CreatePart(data);
+//            var content = _testContext.TestContentFactory.Create(1);
+//            var contentPart = _testContext.TestContentFactory.CreatePart(data);
 
-            // Act.
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
-            var retrievedContentPart = _testContext.HostTestContext.Host.Infrastructure.Content.Get(entry.Id, 0);
+//            // Act.
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, contentPart);
+//            var retrievedContentPart = _testContext.HostTestContext.Host.Infrastructure.Content.Get(entry.Id, 0);
 
-            // Assert.
-            Assert.True(_testContext.ContentComparer.AreEqual(contentPart, retrievedContentPart));
-        }
+//            // Assert.
+//            Assert.True(_testContext.ContentComparer.AreEqual(contentPart, retrievedContentPart));
+//        }
 
-        [Fact]
-        public void ContentRepository_Store_ContentDefinition_Null_Content()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = (Content)null;
+//        [Fact]
+//        public void ContentRepository_Store_ContentDefinition_Null_Content()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var content = (Content)null;
 
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
-            });
+//            // Act.
+//            var act = new Action(() =>
+//            {
+//                _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
+//            });
 
-            // Assert.
-            Assert.Throws<ContentRepositoryException>(act);
-        }
+//            // Assert.
+//            Assert.Throws<ContentRepositoryException>(act);
+//        }
 
-        [Fact]
-        public void ContentRepository_Store_ContentDefinition_No_Identifier()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = _testContext.TestContentFactory.Create();
+//        [Fact]
+//        public void ContentRepository_Store_ContentDefinition_No_Identifier()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var content = _testContext.TestContentFactory.Create();
 
-            // Act.
-            var act = new Action(() =>
-            {
-                _testContext.HostTestContext.Host.Infrastructure.Content.Store(Identifier.Empty, content);
-            });
+//            // Act.
+//            var act = new Action(() =>
+//            {
+//                _testContext.HostTestContext.Host.Infrastructure.Content.Store(Identifier.Empty, content);
+//            });
 
-            // Assert.
-            Assert.Throws<ContentRepositoryException>(act);
-        }
+//            // Assert.
+//            Assert.Throws<ContentRepositoryException>(act);
+//        }
 
-        [Fact]
-        public void ContentRepository_Get_Content()
-        {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = _testContext.TestContentFactory.Create();
+//        [Fact]
+//        public void ContentRepository_Get_Content()
+//        {
+//            // Arrange.
+//            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
+//            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+//            var content = _testContext.TestContentFactory.Create();
 
-            // Act.
-            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
-            var retrievedContent = _testContext.HostTestContext.Host.Infrastructure.Content.Get(entry.Id);
+//            // Act.
+//            _testContext.HostTestContext.Host.Infrastructure.Content.Store(entry.Id, content);
+//            var retrievedContent = _testContext.HostTestContext.Host.Infrastructure.Content.Get(entry.Id);
 
-            // Assert.
-            Assert.True(_testContext.ContentComparer.AreEqual(content, retrievedContent, true));
-        }
-    }
-}
+//            // Assert.
+//            Assert.True(_testContext.ContentComparer.AreEqual(content, retrievedContent, true));
+//        }
+//    }
+//}
