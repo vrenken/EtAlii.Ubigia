@@ -13,8 +13,8 @@
 
             var signalRConnection = (ISignalRSpaceConnection) connection;
             var storage = await GetConnectedStorage(
-                signalRConnection.Configuration.Address,
-                signalRConnection.Transport.AuthenticationToken);
+	            signalRConnection.Transport,
+				signalRConnection.Configuration.Address);
 
             if (storage == null)
             {
@@ -38,8 +38,8 @@
             var signalRConnection = (ISignalRStorageConnection)connection;
 
             var storage = await GetConnectedStorage(
-                signalRConnection.Configuration.Address,
-                signalRConnection.Transport.AuthenticationToken);
+	            signalRConnection.Transport,
+				signalRConnection.Configuration.Address);
 
             if (storage == null)
             {
@@ -54,10 +54,10 @@
         }
 
         private async Task<Storage> GetConnectedStorage(
-	        string address, 
-	        string authenticationToken)
+	        ISignalRTransport transport,
+	        string address)
         {
-            var connection = new HubConnectionFactory().Create(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication, authenticationToken);
+			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler, address + SignalRHub.BasePath + "/" + SignalRHub.Authentication, transport.AuthenticationToken);
             await connection.StartAsync();
             var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();

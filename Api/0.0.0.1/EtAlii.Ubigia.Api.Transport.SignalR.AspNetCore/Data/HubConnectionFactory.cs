@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
+	using System.Net.Http;
 	using Microsoft.AspNetCore.SignalR;
 	using Microsoft.AspNetCore.SignalR.Client;
     using Microsoft.AspNetCore.Sockets;
@@ -8,36 +9,40 @@
 
     public class HubConnectionFactory
     {
-	    private IHubConnectionBuilder CreateBuilder(string address)
+	    private IHubConnectionBuilder CreateBuilder(HttpMessageHandler httpClientHandler, string address)
 	    {
 		    var builder = new HubConnectionBuilder()
 			    .WithUrl(address)
-			    .WithTransport(TransportType.WebSockets)
-			    //.WithMessageHandler(httpClientHandler)
+			    //.WithTransport(TransportType.WebSockets) // TODO: Activate websockets based testing when it becomes supported. 
+			    .WithTransport(TransportType.LongPolling)
 			    .WithConsoleLogger(LogLevel.Debug)
 			    .WithJsonProtocol(new JsonHubProtocolOptions { PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() });
-		    return builder;
+		    if (httpClientHandler != null)
+		    {
+			    builder = builder.WithMessageHandler(httpClientHandler);
+		    }
+			return builder;
 	    }
 
-	    public HubConnection CreateForHost(string address, string hostIdentifier)
+	    public HubConnection CreateForHost(HttpMessageHandler httpClientHandler, string address, string hostIdentifier)
 	    {
-		    var builder = CreateBuilder(address);
+		    var builder = CreateBuilder(httpClientHandler, address);
 		    builder = builder.WithHeader("Host-Identifier", hostIdentifier);
 			return builder.Build();
 		}
 
-	    public HubConnection Create(string address, ISignalRSpaceTransport transport)
+	    public HubConnection Create(ISignalRSpaceTransport transport, string address)
 	    {
-		    return Create(address, transport.AuthenticationToken);
+		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken);
 	    }
-	    public HubConnection Create(string address, ISignalRStorageTransport transport)
+	    public HubConnection Create(ISignalRStorageTransport transport, string address)
 	    {
-		    return Create(address, transport.AuthenticationToken);
+		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken);
 	    }
 
-		public HubConnection Create(string address, string authenticationToken)
+		public HubConnection Create(HttpMessageHandler httpClientHandler, string address, string authenticationToken)
 	    {
-		    var builder = CreateBuilder(address);
+		    var builder = CreateBuilder(httpClientHandler, address);
 			builder = builder.WithHeader("Authentication-Token", authenticationToken);
 			return builder.Build();
         }
