@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -15,5 +15,26 @@
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.42" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.40" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.40" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.AspNetCore" Version="1.0.42" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
+  </ItemGroup>
 
 </Project>
