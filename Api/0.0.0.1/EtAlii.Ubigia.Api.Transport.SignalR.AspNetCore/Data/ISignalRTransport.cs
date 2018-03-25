@@ -1,7 +1,11 @@
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    public interface ISignalRTransport
+	using System.Net.Http;
+
+	public interface ISignalRTransport
     {
-        string AuthenticationToken { get; set; }
+	    HttpMessageHandler HttpMessageHandler { get; }
+
+		string AuthenticationToken { get; set; }
     }
 }

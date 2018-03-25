@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
     using System;
+    using System.Net.Http;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
@@ -10,15 +11,19 @@
     {
 		private bool _started;
 
-		public string AuthenticationToken { get { return _authenticationTokenGetter(); } set { _authenticationTokenSetter(value); } }
+	    public HttpMessageHandler HttpMessageHandler { get; }
+
+		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 
         public SignalRStorageTransport(
-            Action<string> authenticationTokenSetter, 
+	        HttpMessageHandler httpMessageHandler,
+			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-            _authenticationTokenSetter = authenticationTokenSetter;
+	        HttpMessageHandler = httpMessageHandler;
+			_authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
         }
 
