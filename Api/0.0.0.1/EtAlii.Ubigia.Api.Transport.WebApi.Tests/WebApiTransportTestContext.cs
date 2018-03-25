@@ -20,12 +20,11 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            //var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
-            //var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+            var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
+            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
 
             var connectionConfiguration = new DataConnectionConfiguration()
-	            //.Use(WebApiTransportProvider.Create(infrastructureClient))
-				.Use(WebApiTransportProvider.Create())
+                .Use(WebApiTransportProvider.Create(infrastructureClient))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);
@@ -51,12 +50,11 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            //var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
-            //var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+            var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
+            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-	            //.Use(WebApiStorageTransportProvider.Create(infrastructureClient))
-				.Use(WebApiStorageTransportProvider.Create())
+                .Use(WebApiStorageTransportProvider.Create(infrastructureClient))
                 .Use(address)
                 .Use(account, password)
                 .Use(diagnostics);
