@@ -72,8 +72,7 @@
             // Create a host instance.
             var hostConfiguration = new HostConfiguration()
                 .UseTestHost(diagnostics)
-		        //.Use(new InfrastructureHostExtension(storage, infrastructure))
-		        ;
+		        .Use(new InfrastructureHostExtension(storage, infrastructure));
 				//.UseInfrastructure(storage, infrastructure);
             var host = new HostFactory<PowerShellTestHost>().Create(hostConfiguration);
 
