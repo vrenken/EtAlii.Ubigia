@@ -11,9 +11,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.WebApi
             _infrastructureClient = infrastructureClient;
         }
 
-        public static WebApiStorageTransportProvider Create(IInfrastructureClient infrastructureClient)
-        {
-            return new WebApiStorageTransportProvider(infrastructureClient);
+	    public static WebApiStorageTransportProvider Create()//IInfrastructureClient infrastructureClient)
+	    {
+		    return new WebApiStorageTransportProvider(null);//infrastructureClient);
         }
 
         public ISpaceTransport GetSpaceTransport()

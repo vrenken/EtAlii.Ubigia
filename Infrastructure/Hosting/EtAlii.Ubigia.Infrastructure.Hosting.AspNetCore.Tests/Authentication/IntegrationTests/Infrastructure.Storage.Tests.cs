@@ -37,7 +37,7 @@
             var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
             _hostTestContext.Host.Client.AuthenticationToken = token;
-            address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Data.Storages) + "?local";
+            address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
             var storage = _hostTestContext.Host.Client.Get<Storage>(address);
@@ -51,7 +51,7 @@
         {
             // Arrange.
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
-            var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Data.Storages) + "?local";
+            var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
 
             // Act.
             var act = new Func<Task>(async () => await _hostTestContext.Host.Client.Get<Storage>(address));
@@ -72,7 +72,7 @@
             Assert.True(!String.IsNullOrWhiteSpace(token));
             _hostTestContext.Host.Client.AuthenticationToken = token;
             Thread.Sleep(50000);
-            address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Data.Storages) + "?local";
+            address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
             var storage = _hostTestContext.Host.Client.Get<Storage>(address);
@@ -87,7 +87,7 @@
         {
             // Arrange.
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
-            var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Data.Storages) + "?local";
+            var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
 
             // Act.
             var act = new Action(() =>
