@@ -17,13 +17,14 @@
         [Fact]
         public void PropertiesRepository_Store_Properties()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var properties = _testContext.TestPropertiesFactory.Create();
 
             // Act.
-            _testContext.HostTestContext.Host.Infrastructure.Properties.Store(entry.Id, properties);
+            context.Host.Infrastructure.Properties.Store(entry.Id, properties);
 
             // Assert.
             Assert.True(properties.Stored);
@@ -32,14 +33,15 @@
         [Fact]
         public void PropertiesRepository_Retrieve_Properties()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
-            _testContext.HostTestContext.Host.Infrastructure.Properties.Store(entry.Id, properties);
+            context.Host.Infrastructure.Properties.Store(entry.Id, properties);
 
             // Act.
-            var retrievedProperties = _testContext.HostTestContext.Host.Infrastructure.Properties.Get(entry.Id);
+            var retrievedProperties = context.Host.Infrastructure.Properties.Get(entry.Id);
 
             // Assert.
             Assert.True(_testContext.PropertyDictionaryComparer.AreEqual(properties, retrievedProperties));

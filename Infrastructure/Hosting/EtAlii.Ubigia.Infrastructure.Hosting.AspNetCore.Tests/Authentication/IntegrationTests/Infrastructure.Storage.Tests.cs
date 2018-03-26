@@ -11,38 +11,30 @@
     using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
 
-	public class Infrastructure_Storage_Tests : IDisposable
-    {
-        private IHostTestContext _hostTestContext;
+	public class Infrastructure_Storage_Tests : IClassFixture<HostUnitTestContext>
+	{
+	    private readonly HostUnitTestContext _testContext;
 
-        public Infrastructure_Storage_Tests()
+        public Infrastructure_Storage_Tests(HostUnitTestContext testContext)
         {
-            _hostTestContext = new HostTestContextFactory().Create();
-            _hostTestContext.Start();
-        }
-
-        public void Dispose()
-        {
-            _hostTestContext.Stop();
-            _hostTestContext = null;
+	        _testContext = testContext;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Storage_Local_With_Authentication()
         {
 			// Arrange.
-			var context = _hostTestContext;
-            var configuration = _hostTestContext.Host.Infrastructure.Configuration;
+			var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
-            var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var token = await context.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
-            _hostTestContext.Host.Client.AuthenticationToken = token;
-            address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+            context.Host.Client.AuthenticationToken = token;
+            address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
-            var storage = _hostTestContext.Host.Client.Get<Storage>(address);
+            var storage = context.Host.Client.Get<Storage>(address);
 
             // Assert.
             Assert.NotNull(storage);
@@ -52,12 +44,12 @@
         public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
         {
 			// Arrange.
-            var configuration = _hostTestContext.Host.Infrastructure.Configuration;
+	        var context = _testContext.HostTestContext;
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
 
             // Act.
-            var act = new Func<Task>(async () => await _hostTestContext.Host.Client.Get<Storage>(address));
+            var act = new Func<Task>(async () => await context.Host.Client.Get<Storage>(address));
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
@@ -67,19 +59,18 @@
         public async Task Infrastructure_Get_Storage_Delayed()
         {
 			// Arrange.
-			var context = _hostTestContext;
-            var configuration = _hostTestContext.Host.Infrastructure.Configuration;
+	        var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
-            var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var token = await context.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
-            _hostTestContext.Host.Client.AuthenticationToken = token;
+            context.Host.Client.AuthenticationToken = token;
             Thread.Sleep(50000);
-            address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+            address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
-            var storage = _hostTestContext.Host.Client.Get<Storage>(address);
+            var storage = context.Host.Client.Get<Storage>(address);
             
             // Assert.
             Assert.NotNull(storage);
@@ -90,15 +81,15 @@
         public void Infrastructure_Get_Storage_Delayed_Without_Authentication()
         {
 			// Arrange.
-            var configuration = _hostTestContext.Host.Infrastructure.Configuration;
+	        var context = _testContext.HostTestContext;
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
 
             // Act.
             var act = new Action(() =>
             {
                 Thread.Sleep(50000);
-                var storage = _hostTestContext.Host.Client.Get<Storage>(address);
+                var storage = context.Host.Client.Get<Storage>(address);
                 Assert.NotNull(storage);
             });
 

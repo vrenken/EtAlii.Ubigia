@@ -19,13 +19,14 @@
         [Fact]
         public void ContentDefinitionRepository_Store_ContentDefinition()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+			// Arrange.
+			var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Assert.
             Assert.True(contentDefinition.Stored);
@@ -34,11 +35,13 @@
         [Fact]
         public void ContentDefinitionRepository_Store_ContentDefinition_Including_Parts()
         {
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
 
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(10);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             Assert.True(contentDefinition.Stored);
 
@@ -51,15 +54,16 @@
         [Fact]
         public void ContentDefinitionRepository_Store_Null()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = (ContentDefinition)null;
 
             // Act.
             var act = new Action(() =>
             {
-                _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+                context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
             });
 
             // Assert.
@@ -69,15 +73,16 @@
         [Fact]
         public void ContentDefinitionRepository_Store_No_Identifier()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
 
             // Act.
             var act = new Action(() =>
             {
-                _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(Identifier.Empty, contentDefinition);
+                context.Host.Infrastructure.ContentDefinition.Store(Identifier.Empty, contentDefinition);
             });
 
             // Assert.
@@ -87,14 +92,15 @@
         [Fact]
         public void ContentDefinitionRepository_Get_ContentDefinition()
         {
-            // Act.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Arrange.
-            var retrievedContentDefinition = _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Get(entry.Id);
+            var retrievedContentDefinition = context.Host.Infrastructure.ContentDefinition.Get(entry.Id);
 
             // Assert.
             Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
@@ -103,16 +109,17 @@
         [Fact]
         public void ContentDefinitionRepository_Store_ContentDefinitionPart()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
 
             // Act.
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
 
             // Assert.
             Assert.True(contentDefinitionPart.Stored);
@@ -121,18 +128,19 @@
         [Fact]
         public void ContentDefinitionRepository_Store_ContentDefinitionPart_Outside_Bounds()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(2);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
             
             // Act.
             var act = new Action(() =>
             {
-                _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
+                context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPart);
             });
 
             // Assert.
@@ -142,20 +150,21 @@
         [Fact]
         public void ContentDefinitionRepository_Store_ContentDefinitionPart_Twice()
         {
-            // Arrange.
-            var space = InfrastructureTestHelper.CreateSpace(_testContext.HostTestContext.Host.Infrastructure);
-            var entry = _testContext.HostTestContext.Host.Infrastructure.Entries.Prepare(space.Id);
+	        // Arrange.
+	        var context = _testContext.HostTestContext;
+            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(0);
             contentDefinition.TotalParts = 1;
             var contentDefinitionPartFirst = _testContext.TestContentDefinitionFactory.CreatePart(0);
             var contentDefinitionPartSecond = _testContext.TestContentDefinitionFactory.CreatePart(0);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
-            _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartFirst);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinition);
+            context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartFirst);
 
             // Act.
             var act = new Action(() =>
             {
-                _testContext.HostTestContext.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartSecond);
+                context.Host.Infrastructure.ContentDefinition.Store(entry.Id, contentDefinitionPartSecond);
             });
 
             // Assert.
