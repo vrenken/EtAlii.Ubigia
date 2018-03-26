@@ -6,11 +6,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using Xunit;
+    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
-    
-    public class Infrastructure_Storage_Tests : IDisposable
+
+	public class Infrastructure_Storage_Tests : IDisposable
     {
         private IHostTestContext _hostTestContext;
 
@@ -33,11 +34,12 @@
 			var context = _hostTestContext;
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-            string address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+	        var addressFactory = new AddressFactory();
+            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
             var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
             _hostTestContext.Host.Client.AuthenticationToken = token;
-            address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+            address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
             var storage = _hostTestContext.Host.Client.Get<Storage>(address);
@@ -49,9 +51,10 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
         {
-            // Arrange.
+			// Arrange.
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
-            var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+	        var addressFactory = new AddressFactory();
+            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
 
             // Act.
             var act = new Func<Task>(async () => await _hostTestContext.Host.Client.Get<Storage>(address));
@@ -67,12 +70,13 @@
 			var context = _hostTestContext;
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-            string address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+	        var addressFactory = new AddressFactory();
+            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
             var token = await _hostTestContext.Host.Client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
             _hostTestContext.Host.Client.AuthenticationToken = token;
             Thread.Sleep(50000);
-            address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+            address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
             var storage = _hostTestContext.Host.Client.Get<Storage>(address);
@@ -85,9 +89,10 @@
         [Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
         public void Infrastructure_Get_Storage_Delayed_Without_Authentication()
         {
-            // Arrange.
+			// Arrange.
             var configuration = _hostTestContext.Host.Infrastructure.Configuration;
-            var address = _hostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
+	        var addressFactory = new AddressFactory();
+            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Admin.Api.Storages) + "?local";
 
             // Act.
             var act = new Action(() =>

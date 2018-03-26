@@ -4,11 +4,11 @@
     using System.Net;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using Xunit;
+    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
-    
-    public class Infrastructure_Authentication_Tests : IClassFixture<HostUnitTestContext>
+	public class Infrastructure_Authentication_Tests : IClassFixture<HostUnitTestContext>
     {
         private readonly HostUnitTestContext _testContext;
 
@@ -20,12 +20,18 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Authentication_Url()
         {
+			// Arrange.
 	        var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-            string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
-            var token = await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
-            Assert.True(!String.IsNullOrWhiteSpace(token));
+	        var addressFactory = new AddressFactory();
+            string address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+
+			// Act.
+	        var token = await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
+
+			// Assert.
+	        Assert.True(!String.IsNullOrWhiteSpace(token));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -35,7 +41,8 @@
 	        var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
-            string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+	        var addressFactory = new AddressFactory();
+            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act
             var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
@@ -51,7 +58,8 @@
 			var context = _testContext.HostTestContext;
             var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
-            string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+	        var addressFactory = new AddressFactory();
+            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
 
             // Act
             var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
