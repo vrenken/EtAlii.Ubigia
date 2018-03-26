@@ -65,7 +65,7 @@
             }
 
 	        var configuration = new ManagementConnectionConfiguration()
-		        .Use(WebApiStorageTransportProvider.Create())//Client))
+		        .Use(WebApiStorageTransportProvider.Create(Client))
                 .Use(address)
                 .Use(accountName, password);
             ManagementConnection = new ManagementConnectionFactory().Create(configuration);
