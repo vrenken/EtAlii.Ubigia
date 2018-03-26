@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
  
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -18,17 +18,12 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.40" />
+    <PackageReference Include="System.Management.Automation" Version="6.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.AspNetCore.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Management.Automation">
-      <HintPath>Prerequisites\System.Management.Automation.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
