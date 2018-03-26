@@ -22,8 +22,7 @@
         public async Task ManagementConnection_Open()
         {
 	        var context = _testContext.TransportTestContext.Context;
-			var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.HostAddress, context.TestAccountName, context.TestAccountPassword, false);
             await connection.Open();
         }
 
@@ -32,8 +31,7 @@
         {
 			// Arrange.
 			var context = _testContext.TransportTestContext.Context;
-            var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword + "BAAD", false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.HostAddress, context.TestAccountName, context.TestAccountPassword + "BAAD", false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -47,8 +45,7 @@
         {
 			// Arrange.
 			var context = _testContext.TransportTestContext.Context;
-            var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName + "BAAD", context.TestAccountPassword, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.HostAddress, context.TestAccountName + "BAAD", context.TestAccountPassword, false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -62,8 +59,7 @@
         {
 			// Arrange.
 			var context = _testContext.TransportTestContext.Context;
-            var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName + "BAAD", context.TestAccountPassword + "BAAD", false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.HostAddress, context.TestAccountName + "BAAD", context.TestAccountPassword + "BAAD", false);
 
             // Act.
             var act = new Func<Task>(async () => await connection.Open());
@@ -77,8 +73,7 @@
         {
 			// Arrange.
 			var context = _testContext.TransportTestContext.Context;
-            var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.HostAddress, context.TestAccountName, context.TestAccountPassword, false);
             await connection.Open();
 
             // Act.
@@ -93,8 +88,7 @@
         {
 			// Act.
 			var context = _testContext.TransportTestContext.Context;
-            var configuration = _testContext.TransportTestContext.Context.Host.Infrastructure.Configuration;
-            var connection = await _testContext.TransportTestContext.CreateManagementConnection(configuration.Address, context.TestAccountName, context.TestAccountPassword, false);
+            var connection = await _testContext.TransportTestContext.CreateManagementConnection(context.HostAddress, context.TestAccountName, context.TestAccountPassword, false);
 
             // Arrange.
             await connection.Open();

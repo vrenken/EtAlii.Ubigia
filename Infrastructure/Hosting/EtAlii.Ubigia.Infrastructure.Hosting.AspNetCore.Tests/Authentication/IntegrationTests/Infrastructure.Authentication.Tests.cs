@@ -22,10 +22,9 @@
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            string address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+            string address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
 
 			// Act.
 	        var token = await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
@@ -39,10 +38,9 @@
         {
             // Arrange.
 	        var context = _testContext.HostTestContext;
-            var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
 
             // Act
             var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
@@ -56,10 +54,9 @@
         {
 			// Arrange.
 			var context = _testContext.HostTestContext;
-            var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
             var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
 
             // Act
             var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));

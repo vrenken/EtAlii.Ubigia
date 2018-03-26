@@ -2,7 +2,9 @@
 
 namespace EtAlii.Ubigia.Provisioning
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Net.Http;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;
@@ -36,13 +38,14 @@ namespace EtAlii.Ubigia.Provisioning
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)
         {
             var diagnostics = TestDiagnostics.Create();
-            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
-            var connectionConfiguration = new DataConnectionConfiguration()
+			var connectionConfiguration = new DataConnectionConfiguration()
                 .Use(diagnostics)
-	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
-				.Use(SignalRTransportProvider.Create())
-                .Use(Context.Host.Infrastructure.Configuration.Address)
+				//.Use(SignalRTransportProvider.Create(signalRHttpClient))
+				.Use(SignalRTransportProvider.Create(httpMessageHandlerFactory))
+                .Use(Context.HostAddress)
                 .Use(accountName, spaceName, accountPassword);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
@@ -54,14 +57,14 @@ namespace EtAlii.Ubigia.Provisioning
         public async Task<IManagementConnection> OpenManagementConnection()
         {
             var diagnostics = TestDiagnostics.Create();
-			var configuration = Context.Host.Infrastructure.Configuration;
-            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
-            var connectionConfiguration = new ManagementConnectionConfiguration()
+			var connectionConfiguration = new ManagementConnectionConfiguration()
 	            //.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
-				.Use(SignalRStorageTransportProvider.Create())
+				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(diagnostics)
-                .Use(configuration.Address)
+                .Use(Context.HostAddress)
                 .Use(Context.TestAccountName, Context.TestAccountPassword);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             await connection.Open();

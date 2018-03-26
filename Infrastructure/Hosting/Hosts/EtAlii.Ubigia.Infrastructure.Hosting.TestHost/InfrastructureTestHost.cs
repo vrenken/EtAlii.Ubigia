@@ -12,7 +12,7 @@
 
     public class InfrastructureTestHost : EtAlii.xTechnology.Hosting.TestHost, IAspNetCoreHost
     {
-	    public IInfrastructure Infrastructure => _infrastructure.Value;
+	    internal IInfrastructure Infrastructure => _infrastructure.Value;
 	    private readonly Lazy<IInfrastructure> _infrastructure;
 
 	    public IStorage Storage => _storage.Value;

@@ -11,6 +11,9 @@
 	    string TestAccountName { get; }
 	    string TestAccountPassword { get; }
 
+	    string HostAddress { get; }
+	    string HostName { get; }
+
 		void Start();
 
         //void Start(IHost host, IInfrastructure infrastructure);
