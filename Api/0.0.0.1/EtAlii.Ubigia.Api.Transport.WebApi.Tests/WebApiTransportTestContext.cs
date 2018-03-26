@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Net.Http;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
@@ -20,12 +22,12 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            //var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
-            //var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
+	        var httpClientFactory = new TestHttpClientFactory(Context.Host.Server);
+			var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
 
-            var connectionConfiguration = new DataConnectionConfiguration()
-	            //.Use(WebApiTransportProvider.Create(infrastructureClient))
-				.Use(WebApiTransportProvider.Create())
+			var connectionConfiguration = new DataConnectionConfiguration()
+	            .Use(WebApiTransportProvider.Create(infrastructureClient))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);
@@ -51,12 +53,11 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            //var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
-            //var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+            var httpClientFactory = new TestHttpClientFactory(Context.Host.Server);
+            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-	            //.Use(WebApiStorageTransportProvider.Create(infrastructureClient))
-				.Use(WebApiStorageTransportProvider.Create())
+	            .Use(WebApiStorageTransportProvider.Create(infrastructureClient))
                 .Use(address)
                 .Use(account, password)
                 .Use(diagnostics);
