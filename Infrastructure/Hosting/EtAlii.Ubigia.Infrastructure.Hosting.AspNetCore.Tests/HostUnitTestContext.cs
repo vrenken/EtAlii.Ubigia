@@ -24,7 +24,6 @@
 
             HostTestContext = new HostTestContextFactory().Create();
             HostTestContext.Start();
-
         }
 
         public void Dispose()
