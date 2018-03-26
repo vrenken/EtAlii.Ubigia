@@ -38,7 +38,6 @@
         public void PowerShell_Storage_Select()
         {
             // Arrange.
-            var configuration = _testContext.Context.Infrastructure.Configuration;
 
             // Act.
             var result = _testContext.InvokeSelectStorage();
@@ -49,7 +48,7 @@
             Assert.True(result.Count == 1);
             var storage = result[0].BaseObject as Storage;
             Assert.NotNull(storage);
-            Assert.Equal(storage.Address, configuration.Address);
+	        Assert.Equal(storage.Address, _testContext.Context.HostAddress);//configuration.Address);
         }
 
         [Fact]

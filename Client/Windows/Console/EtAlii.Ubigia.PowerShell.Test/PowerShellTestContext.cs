@@ -5,86 +5,28 @@
     using System.Management.Automation;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.User;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Diagnostics;
-    using EtAlii.Ubigia.Infrastructure.Transport.Owin;
-    using EtAlii.Ubigia.Storage;
-    using EtAlii.Ubigia.Storage.InMemory;
-    using EtAlii.xTechnology.Diagnostics;
-    using EtAlii.xTechnology.Hosting;
     using Xunit;
 
     public class PowerShellTestContext
     {
         private PowerShell PowerShell { get; set; }
 
-        public HostTestContext<PowerShellTestHost> Context { get; private set; }
-
-        public PowerShellTestContext()
-        {
-            Context = new HostTestContext<PowerShellTestHost>();
-        }
+        public IHostTestContext Context { get; private set; }
 
         public void Start()
         {
-            var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.Infrastructure"); // TODO: Diagnostics should be moved to each of the configuration sections.
-            //diagnostics.EnableLogging = true;
+			// TODO: The powershell tests cannot use the test infrastructure because process boundaries disable direct interaction 
+			// between the host/infrastructure and the unit tests.
 
-            // Create a Storage instance.
-            var storageConfiguration = TestStorageConfiguration.Create()
-                .UseInMemoryStorage();
-            var storage = new StorageFactory().Create(storageConfiguration);
+			Context = new HostTestContextFactory().Create();
+	        Context.Start();
 
-            // Fetch the Infrastructure configuration.
-            var infrastructureConfiguration = TestInfrastructureConfiguration.Create();
+			PowerShell = CreatePowerShell();
+			InvokeSelectStorage();
+		}
 
-            // Create fabric instance.
-            var fabricConfiguration = new FabricContextConfiguration()
-                .Use(storage);
-            var fabric = new FabricContextFactory().Create(fabricConfiguration);
-
-            // Create logical context instance.
-            var logicalConfiguration = new LogicalContextConfiguration()
-                .Use(fabric)
-                .Use(infrastructureConfiguration.Name, infrastructureConfiguration.Address);
-            var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
-
-            // Create a Infrastructure instance.
-            infrastructureConfiguration = infrastructureConfiguration
-                // The powershell tests cannot use the test infrastructure because process boundaries disable direct interaction 
-                // between the host/infrastructure and the unit tests.
-                //.UseTestInfrastructure(infrastructureDiagnostics)
-                .UseOwin()
-                .UseWebApi(diagnostics)
-                .UseWebApiAdminApi()
-                .UseWebApiUserApi()
-                .UseSignalRApi()
-                .Use(logicalContext);
-            var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
-
-            // Create a host instance.
-            var hostConfiguration = new HostConfiguration()
-                .UseTestHost(diagnostics)
-		        //.Use(new InfrastructureHostExtension(storage, infrastructure))
-		        ;
-				//.UseInfrastructure(storage, infrastructure);
-            var host = new HostFactory<PowerShellTestHost>().Create(hostConfiguration);
-
-            // Start hosting both the infrastructure and the storage.
-            Context.Start(host, infrastructure);
-            PowerShell = CreatePowerShell();
-
-            InvokeSelectStorage();
-        }
-
-        public void Stop()
+		public void Stop()
         {
             PowerShell.Dispose();
             PowerShell = null;
@@ -193,12 +135,13 @@
 
         public Collection<PSObject> InvokeSelectStorage()
         {
-            var configuration = Context.Infrastructure.Configuration;
+            //var configuration = Context.Infrastructure.Configuration;
             PowerShell.Commands.Clear();
-            PowerShell.AddCommand("Select-Storage")
-                       .AddArgument(configuration.Address)
-                       .AddArgument(Context.TestAccountName)
-                       .AddArgument(Context.TestAccountPassword);
+	        PowerShell.AddCommand("Select-Storage")
+				//.AddArgument(Context.HostAddress)//configuration.Address)
+					  .AddArgument($"{Context.HostAddress}:{Context.Host.AdminModule.Port}/Admin")
+                      .AddArgument(Context.TestAccountName)
+                      .AddArgument(Context.TestAccountPassword);
             return PowerShell.Invoke();
         }
 

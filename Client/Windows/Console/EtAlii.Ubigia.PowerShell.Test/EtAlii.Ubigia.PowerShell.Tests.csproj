@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -14,31 +14,22 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.40" />
     <PackageReference Include="xunit" Version="2.3.1" />
-    <PackageReference Include="xunit.assert" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-  </ItemGroup>
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.0.2" /> 
+    <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="6.0.2" />
+    <PackageReference Include="Microsoft.WSMan.Management" Version="6.0.2" />  </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Owin.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Owin.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.Rest.Diagnostics.Owin\EtAlii.Ubigia.Infrastructure.Transport.Rest.Diagnostics.Owin.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Owin.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Signalr.Owin\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Signalr.Owin.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Management.Automation">
-      <HintPath>..\EtAlii.Ubigia.PowerShell\Prerequisites\System.Management.Automation.dll</HintPath>
-    </Reference>
   </ItemGroup>
 
 </Project>
