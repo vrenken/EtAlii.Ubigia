@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Transport;
 
     public interface IHostTestContext
@@ -13,6 +14,8 @@
 
 	    string HostAddress { get; }
 	    string HostName { get; }
+
+	    IInfrastructureClient CreateRestInfrastructureClient();
 
 		void Start();
 

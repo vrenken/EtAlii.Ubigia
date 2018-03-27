@@ -2,7 +2,6 @@
 {
 	using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore;
@@ -18,9 +17,7 @@
 	    public IStorage Storage => _storage.Value;
 	    private readonly Lazy<IStorage> _storage;
 
-		public IInfrastructureClient Client { get; }
-
-	    public AdminModule AdminModule => _adminModule.Value;
+		public AdminModule AdminModule => _adminModule.Value;
 	    private readonly Lazy<AdminModule> _adminModule;
 	    public UserModule UserModule => _userModule.Value;
 	    private readonly Lazy<UserModule> _userModule;

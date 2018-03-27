@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Infrastructure
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using System.Net;
+	using System.Net;
     using System.Net.Http;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using Microsoft.AspNetCore.TestHost;
 
-	public class TestHttpClientFactory : IHttpClientFactory
+	internal class TestHttpClientFactory : IHttpClientFactory
     {
         private readonly TestServer _testServer;
 

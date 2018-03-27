@@ -5,7 +5,8 @@
 	using System.Threading;
 	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Api.Transport.WebApi;
+	using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.xTechnology.Hosting;
 
@@ -44,7 +45,7 @@
 			TestAccountPassword = adminAccount.Password;
 		}
 
-	    private void WaitUntilHostIsRunning(InfrastructureTestHost host)
+		private void WaitUntilHostIsRunning(InfrastructureTestHost host)
 	    {
 		    var resetEvent = new ManualResetEvent(false);
 
@@ -110,9 +111,14 @@
             return await Task.FromResult(connection);
         }
 
+	    public IInfrastructureClient CreateRestInfrastructureClient()
+	    {
+		    var httpClientFactory = new TestHttpClientFactory(this.Host.Server);
+		    var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+		    return infrastructureClient;
+	    }
 
-
-        public void Stop()
+		public void Stop()
         {
             Host.Stop();
             Host = null;

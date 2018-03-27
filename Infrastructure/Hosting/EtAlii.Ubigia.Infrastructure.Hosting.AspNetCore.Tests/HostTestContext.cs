@@ -5,7 +5,7 @@
 	using System.IO;
 	using System.Linq;
 	using System.Net.NetworkInformation;
-    using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
 	public sealed class HostTestContext : HostTestContextBase
