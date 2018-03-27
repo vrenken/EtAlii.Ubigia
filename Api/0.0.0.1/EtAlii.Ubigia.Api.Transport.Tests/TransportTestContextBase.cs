@@ -22,18 +22,18 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-	        return await CreateDataConnection($"{Context.HostAddress}:{Context.Host.UserModule.Port}/User", accountName, password, spaceName, openOnCreation, true, null);
+	        return await CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true, null);
 		}
 
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {
-			return await CreateDataConnection($"{Context.HostAddress}:{Context.Host.UserModule.Port}/User", accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
+			return await CreateDataConnection(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
         }
 		public abstract Task<IDataConnection> CreateDataConnection(string address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
 
         public async Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true)
         {
-			return await CreateManagementConnection($"{Context.HostAddress}:{Context.Host.AdminModule.Port}/Admin", Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
+			return await CreateManagementConnection(Context.ManagementServiceAddress, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
         }
 
 		public abstract Task<IManagementConnection> CreateManagementConnection(string address, string account, string password, bool openOnCreation = true);

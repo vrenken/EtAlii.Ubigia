@@ -40,9 +40,14 @@
 
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
-            var connectionConfiguration = new DataConnectionConfiguration()
+			// TODO: Temporary patch to make downscaling from a management to a data connection possible.
+	        var uriBuilder = new UriBuilder(Configuration.Address);
+	        uriBuilder.Path = uriBuilder.Path.Replace("Admin", "User");
+	        var address = uriBuilder.ToString();
+
+			var connectionConfiguration = new DataConnectionConfiguration()
                 .Use(Configuration.TransportProvider)
-                .Use(Configuration.Address)
+                .Use(address)
                 .Use(accountName, spaceName, null);
             var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
             await dataConnection.Open();
