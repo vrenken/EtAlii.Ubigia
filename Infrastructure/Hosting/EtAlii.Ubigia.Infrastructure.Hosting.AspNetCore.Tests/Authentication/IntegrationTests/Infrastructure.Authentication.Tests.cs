@@ -24,10 +24,11 @@
 	        var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            string address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-			// Act.
-	        var token = await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
+	        // Act.
+			var token = await client.Get<string>(address, credentials);
 
 			// Assert.
 	        Assert.True(!String.IsNullOrWhiteSpace(token));
@@ -41,9 +42,10 @@
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-            // Act
-            var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
+			// Act
+			var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
 
             // Assert.
             await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -57,9 +59,10 @@
             var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-            // Act
-            var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
+			// Act
+			var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
 
             // Assert.
             await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);

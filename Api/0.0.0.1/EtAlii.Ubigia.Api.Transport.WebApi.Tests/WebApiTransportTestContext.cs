@@ -23,11 +23,10 @@
             var diagnostics = TestDiagnostics.Create();
 
 			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
-	        var httpClientFactory = new TestHttpClientFactory(Context.Host.Server);
-			var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+	        var client = Context.CreateRestInfrastructureClient();
 
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            .Use(WebApiTransportProvider.Create(infrastructureClient))
+	            .Use(WebApiTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);
@@ -53,11 +52,10 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-            var httpClientFactory = new TestHttpClientFactory(Context.Host.Server);
-            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+	        var client = Context.CreateRestInfrastructureClient();
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-	            .Use(WebApiStorageTransportProvider.Create(infrastructureClient))
+	            .Use(WebApiStorageTransportProvider.Create(client))
                 .Use(address)
                 .Use(account, password)
                 .Use(diagnostics);

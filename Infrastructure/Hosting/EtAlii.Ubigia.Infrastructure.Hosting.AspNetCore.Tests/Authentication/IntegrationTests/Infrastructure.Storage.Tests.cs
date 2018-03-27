@@ -28,13 +28,14 @@
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
-            var token = await context.Host.Client.Get<string>(address, credentials);
+			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+            var token = await client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
-            context.Host.Client.AuthenticationToken = token;
+            client.AuthenticationToken = token;
             address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
-            var storage = context.Host.Client.Get<Storage>(address);
+            var storage = client.Get<Storage>(address);
 
             // Assert.
             Assert.NotNull(storage);
@@ -47,9 +48,10 @@
 	        var context = _testContext.HostTestContext;
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
+	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-            // Act.
-            var act = new Func<Task>(async () => await context.Host.Client.Get<Storage>(address));
+			// Act.
+			var act = new Func<Task>(async () => await client.Get<Storage>(address));
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
@@ -63,14 +65,15 @@
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
-            var token = await context.Host.Client.Get<string>(address, credentials);
+			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+            var token = await client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
-            context.Host.Client.AuthenticationToken = token;
+            client.AuthenticationToken = token;
             Thread.Sleep(50000);
             address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
             
             // Act.
-            var storage = context.Host.Client.Get<Storage>(address);
+            var storage = client.Get<Storage>(address);
             
             // Assert.
             Assert.NotNull(storage);
@@ -84,12 +87,13 @@
 	        var context = _testContext.HostTestContext;
 	        var addressFactory = new AddressFactory();
             var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
+	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-            // Act.
-            var act = new Action(() =>
+			// Act.
+			var act = new Action(() =>
             {
                 Thread.Sleep(50000);
-                var storage = context.Host.Client.Get<Storage>(address);
+                var storage = client.Get<Storage>(address);
                 Assert.NotNull(storage);
             });
 
