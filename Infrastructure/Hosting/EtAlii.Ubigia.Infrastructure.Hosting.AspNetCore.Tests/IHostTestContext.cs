@@ -13,7 +13,10 @@
 	    string TestAccountPassword { get; }
 
 	    string HostAddress { get; }
-	    string HostName { get; }
+	    string ManagementServiceAddress { get; }
+	    string DataServiceAddress { get; }
+
+		string HostName { get; }
 
 	    IInfrastructureClient CreateRestInfrastructureClient();
 

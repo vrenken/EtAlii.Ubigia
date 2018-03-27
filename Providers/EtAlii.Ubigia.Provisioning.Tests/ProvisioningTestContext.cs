@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Provisioning
                 .Use(diagnostics)
 				//.Use(SignalRTransportProvider.Create(signalRHttpClient))
 				.Use(SignalRTransportProvider.Create(httpMessageHandlerFactory))
-                .Use(Context.HostAddress)
+                .Use(Context.DataServiceAddress)
                 .Use(accountName, spaceName, accountPassword);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Provisioning
 	            //.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(diagnostics)
-                .Use(Context.HostAddress)
+                .Use(Context.ManagementServiceAddress)
                 .Use(Context.TestAccountName, Context.TestAccountPassword);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             await connection.Open();

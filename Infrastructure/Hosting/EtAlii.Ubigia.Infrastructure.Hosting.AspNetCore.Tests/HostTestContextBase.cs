@@ -20,7 +20,10 @@
 		public string TestAccountPassword { get; private set; }
 
 	    public string HostAddress => "http://127.0.0.1";//Infrastructure?.Configuration?.Address?.Replace("+", "127.0.0.1");
-	    public string HostName => Infrastructure?.Configuration?.Name;
+	    public string ManagementServiceAddress => $"{HostAddress}:{Host.AdminModule.Port}/Admin";
+	    public string DataServiceAddress => $"{HostAddress}:{Host.UserModule.Port}/User";
+
+		public string HostName => Infrastructure?.Configuration?.Name;
 
 		public abstract void Start();
 
