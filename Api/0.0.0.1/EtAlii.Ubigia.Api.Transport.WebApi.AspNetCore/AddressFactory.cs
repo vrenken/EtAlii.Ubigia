@@ -9,7 +9,7 @@
         {
             var builder = new UriBuilder(address)
             {
-                Path = String.Join("/", fragments)
+                Path = "/" + String.Join("/", fragments)
             };
             var result = builder.ToString();
             return result;
@@ -28,10 +28,10 @@
 
             var builder = new UriBuilder(storage.Address)
             {
-                Path = path, 
+                Path = "/" + path, 
                 Query = String.Join("&", queryComponents)
             };
             return builder.ToString();
-        }
+		}
     }
 }
