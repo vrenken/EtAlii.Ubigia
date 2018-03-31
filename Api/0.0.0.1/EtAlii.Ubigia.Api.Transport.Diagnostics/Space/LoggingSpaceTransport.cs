@@ -12,7 +12,7 @@
         private readonly ISpaceTransport _transport;
         private readonly ILogger _logger;
 
-        private string _address;
+        private Uri _address;
 
         public LoggingSpaceTransport(
             ISpaceTransport transport, 
@@ -22,7 +22,7 @@
             _logger = logger;
         }
 
-        public void Initialize(ISpaceConnection spaceConnection, string address)
+        public void Initialize(ISpaceConnection spaceConnection, Uri address)
         {
             _address = address;
 
@@ -37,7 +37,7 @@
 
         }
 
-        public async Task Start(ISpaceConnection spaceConnection, string address)
+        public async Task Start(ISpaceConnection spaceConnection, Uri address)
         {
             _address = address;
 

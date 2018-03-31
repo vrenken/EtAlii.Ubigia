@@ -27,7 +27,7 @@
             _authenticationTokenGetter = authenticationTokenGetter;
         }
 
-		public override void Initialize(IStorageConnection storageConnection, string address)
+		public override void Initialize(IStorageConnection storageConnection, Uri address)
 		{
 			if (_started)
 			{
@@ -35,7 +35,7 @@
 			}
 		}
 
-		public override async Task Start(IStorageConnection storageConnection, string address)
+		public override async Task Start(IStorageConnection storageConnection, Uri address)
         {
             await base.Start(storageConnection, address);
 

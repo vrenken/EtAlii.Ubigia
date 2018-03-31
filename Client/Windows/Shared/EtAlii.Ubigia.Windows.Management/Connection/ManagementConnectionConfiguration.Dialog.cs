@@ -60,10 +60,12 @@
             IManagementConnection connection = null;
             if (tryReturnConnection == true)
             {
-                configuration = new ManagementConnectionConfiguration()
+	            var address = new Uri(viewModel.Address, UriKind.Absolute);
+
+				configuration = new ManagementConnectionConfiguration()
                     .Use(configuration.TransportProvider)
                     .Use(configuration.Extensions)
-                    .Use(viewModel.Address)
+                    .Use(address)
                     .Use(viewModel.Account, window.PasswordBox.Password);
 
                 connection = new ManagementConnectionFactory().Create(configuration);

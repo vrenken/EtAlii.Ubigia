@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
 {
-    using System.Configuration;
+	using System;
+	using System.Configuration;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
 
@@ -18,9 +19,10 @@
 
         public IInfrastructureConfiguration ToInfrastructureConfiguration()
         {
+	        var address = new Uri(Address, UriKind.Absolute);
             var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var configuration = new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use(Name, Address);
+                .Use(Name, address);
             return configuration;
         }
     }

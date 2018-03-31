@@ -40,11 +40,11 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(HttpMessageHandler httpMessageHandler, string accountName, string password, string address, string authenticationToken)
+        private async Task<string> GetAuthenticationToken(HttpMessageHandler httpMessageHandler, string accountName, string password, Uri address, string authenticationToken)
         {
             if (password != null || authenticationToken == null)
             {
-                var connection = new HubConnectionFactory().CreateForHost(httpMessageHandler, address + SignalRHub.BasePath + "/" + SignalRHub.Authentication, _hostIdentifier);
+				var connection = new HubConnectionFactory().CreateForHost(httpMessageHandler, new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), _hostIdentifier);
                 await connection.StartAsync();
                 authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
 				await connection.DisposeAsync();

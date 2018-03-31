@@ -26,16 +26,16 @@
             _authenticationTokenGetter = authenticationTokenGetter;
         }
 
-        public override void Initialize(ISpaceConnection spaceConnection, string address)
+        public override void Initialize(ISpaceConnection spaceConnection, Uri address)
         {
             if (HubConnection != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
             }
-            HubConnection = new HubConnectionFactory().Create(address + RelativeUri.UserData);
+            HubConnection = new HubConnectionFactory().Create(new Uri(address + RelativeUri.UserData));
         }
 
-        public override async Task Start(ISpaceConnection spaceConnection, string address)
+        public override async Task Start(ISpaceConnection spaceConnection, Uri address)
         {
             await base.Start(spaceConnection, address);
 

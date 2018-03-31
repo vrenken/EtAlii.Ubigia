@@ -50,7 +50,7 @@
             {
                 var configuration = new ManagementConnectionConfiguration()
                     .Use(SignalRStorageTransportProvider.Create())
-                    .Use(address)
+                    .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, password)
                     .Use(diagnostics);
                 connection = factory.Create(configuration);

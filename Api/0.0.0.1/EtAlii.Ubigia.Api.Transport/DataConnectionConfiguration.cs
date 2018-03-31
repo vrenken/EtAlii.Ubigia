@@ -11,7 +11,7 @@
 
         public Func<IDataConnection> FactoryExtension { get; private set; }
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         public string AccountName { get; private set; }
 
@@ -61,18 +61,14 @@
             return this;
         }
 
-        public IDataConnectionConfiguration Use(string address)
+        public IDataConnectionConfiguration Use(Uri address)
         {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (Address != null)
+			if (Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this DataConnectionConfiguration");
             }
 
-            Address = address;
+            Address = address ?? throw new ArgumentNullException(nameof(address));
             return this;
         }
 

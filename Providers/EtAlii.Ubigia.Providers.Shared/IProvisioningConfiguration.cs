@@ -10,7 +10,7 @@
         IProvisioningExtension[] Extensions { get; }
 
         IProviderConfiguration[] ProviderConfigurations { get; }
-        IProvisioningConfiguration Use(string address, string account, string password);
+        IProvisioningConfiguration Use(Uri address, string account, string password);
 
         IProvisioningConfiguration Use(IProvisioningExtension[] extensions);
 
@@ -18,7 +18,7 @@
 
         string Account { get; }
         string Password { get; }
-        string Address { get; }
+        Uri Address { get; }
 
         IStorageTransportProvider CreateStorageTransportProvider();
         ITransportProvider CreateTransportProvider();

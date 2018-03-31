@@ -38,7 +38,8 @@
             {
                 var task = Task.Run(async () =>
                 {
-                    await PowerShellClient.Current.OpenManagementConnection(Address, AccountName, Password);
+	                var address = new Uri(Address, UriKind.Absolute);
+                    await PowerShellClient.Current.OpenManagementConnection(address, AccountName, Password);
                 });
                 task.Wait();
                 WriteDebug($"Using storage at {Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");

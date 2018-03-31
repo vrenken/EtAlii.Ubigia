@@ -28,16 +28,16 @@
             _authenticationTokenGetter = authenticationTokenGetter;
         }
 
-        public override void Initialize(IStorageConnection storageConnection, string address)
+        public override void Initialize(IStorageConnection storageConnection, Uri address)
         {
             if (HubConnection != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
             }
-            HubConnection = new HubConnectionFactory().Create(address + RelativeUri.UserData);
+            HubConnection = new HubConnectionFactory().Create(new Uri(address + RelativeUri.UserData));
         }
 
-        public override async Task Start(IStorageConnection storageConnection, string address)
+        public override async Task Start(IStorageConnection storageConnection, Uri address)
         {
             await base.Start(storageConnection, address);
 

@@ -24,13 +24,13 @@
 
             if (spaceInfoProvider != null)
             {
-                string address;
+                Uri address;
                 var targetStorage = spaceInfoProvider.TargetStorage;
 
                 if (spaceInfoProvider.Space != null)
                 {
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Spaces, UriParameter.SpaceId, spaceInfoProvider.Space.Id.ToString());
-                    space = !String.IsNullOrWhiteSpace(address) ? await _client.Get<Space>(address) : null;
+                    space = address != null ? await _client.Get<Space>(address) : null;
                 }
                 else if (!String.IsNullOrWhiteSpace(spaceInfoProvider.SpaceName))
                 {
@@ -42,7 +42,7 @@
                 else if (spaceInfoProvider.SpaceId != Guid.Empty)
                 {
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Spaces, UriParameter.SpaceId, spaceInfoProvider.SpaceId.ToString());
-                    space = !String.IsNullOrWhiteSpace(address) ? await _client.Get<Space>(address) : null;
+                    space = address != null ? await _client.Get<Space>(address) : null;
                 }
             }
 

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
+	using System;
 	using System.Net.Http;
 	using Microsoft.AspNetCore.SignalR;
 	using Microsoft.AspNetCore.SignalR.Client;
@@ -9,7 +10,7 @@
 
     public class HubConnectionFactory
     {
-	    private IHubConnectionBuilder CreateBuilder(HttpMessageHandler httpClientHandler, string address)
+	    private IHubConnectionBuilder CreateBuilder(HttpMessageHandler httpClientHandler, Uri address)
 	    {
 		    var builder = new HubConnectionBuilder()
 			    .WithUrl(address)
@@ -24,23 +25,23 @@
 			return builder;
 	    }
 
-	    public HubConnection CreateForHost(HttpMessageHandler httpClientHandler, string address, string hostIdentifier)
+	    public HubConnection CreateForHost(HttpMessageHandler httpClientHandler, Uri address, string hostIdentifier)
 	    {
 		    var builder = CreateBuilder(httpClientHandler, address);
 		    builder = builder.WithHeader("Host-Identifier", hostIdentifier);
 			return builder.Build();
 		}
 
-	    public HubConnection Create(ISignalRSpaceTransport transport, string address)
+	    public HubConnection Create(ISignalRSpaceTransport transport, Uri address)
 	    {
 		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken);
 	    }
-	    public HubConnection Create(ISignalRStorageTransport transport, string address)
+	    public HubConnection Create(ISignalRStorageTransport transport, Uri address)
 	    {
 		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken);
 	    }
 
-		public HubConnection Create(HttpMessageHandler httpClientHandler, string address, string authenticationToken)
+		public HubConnection Create(HttpMessageHandler httpClientHandler, Uri address, string authenticationToken)
 	    {
 		    var builder = CreateBuilder(httpClientHandler, address);
 			builder = builder.WithHeader("Authentication-Token", authenticationToken);

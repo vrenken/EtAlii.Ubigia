@@ -10,7 +10,7 @@
         private readonly IStorageConnection _connection;
         private readonly ILogger _logger;
 
-        private string _address;
+        private Uri _address;
 
         public Storage Storage => _connection.Storage;
         public bool IsConnected => _connection.IsConnected;

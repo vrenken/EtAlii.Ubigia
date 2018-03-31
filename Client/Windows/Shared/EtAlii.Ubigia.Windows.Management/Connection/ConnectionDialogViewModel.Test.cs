@@ -34,9 +34,10 @@
 
                 try
                 {
+	                var address = new Uri(Address, UriKind.Absolute);
                     var configuration = new ManagementConnectionConfiguration()
                         .Use(SignalRStorageTransportProvider.Create())
-                        .Use(Address)
+                        .Use(address)
                         .Use(Account, password);
                     var connection = new ManagementConnectionFactory().Create(configuration);
 

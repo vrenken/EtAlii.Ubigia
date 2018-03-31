@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Transport;
 
@@ -12,9 +13,9 @@
 	    string TestAccountName { get; }
 	    string TestAccountPassword { get; }
 
-	    string HostAddress { get; }
-	    string ManagementServiceAddress { get; }
-	    string DataServiceAddress { get; }
+	    Uri HostAddress { get; }
+	    Uri ManagementServiceAddress { get; }
+	    Uri DataServiceAddress { get; }
 
 		string HostName { get; }
 

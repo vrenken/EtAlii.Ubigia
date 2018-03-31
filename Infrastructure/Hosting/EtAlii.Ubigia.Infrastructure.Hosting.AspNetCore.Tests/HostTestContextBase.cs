@@ -19,9 +19,12 @@
 		public string TestAccountName { get; private set; }
 		public string TestAccountPassword { get; private set; }
 
-	    public string HostAddress => "http://127.0.0.1";//Infrastructure?.Configuration?.Address?.Replace("+", "127.0.0.1");
-	    public string ManagementServiceAddress => $"{HostAddress}:{Host.AdminModule.Port}/Admin";
-	    public string DataServiceAddress => $"{HostAddress}:{Host.UserModule.Port}/User";
+	    private const string HostSchemaAndIp = "http://127.0.0.1";
+
+		public Uri HostAddress { get; } = new Uri(HostSchemaAndIp, UriKind.Absolute);
+
+	    public Uri ManagementServiceAddress => new Uri($"{HostSchemaAndIp}:{Host.AdminModule.Port}/Admin");
+	    public Uri DataServiceAddress => new Uri($"{HostSchemaAndIp}:{Host.UserModule.Port}/User");
 
 		public string HostName => Infrastructure?.Configuration?.Name;
 

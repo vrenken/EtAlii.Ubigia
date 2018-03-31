@@ -29,14 +29,14 @@
         {
 			return await CreateDataConnection(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
         }
-		public abstract Task<IDataConnection> CreateDataConnection(string address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
+		public abstract Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
 
         public async Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true)
         {
 			return await CreateManagementConnection(Context.ManagementServiceAddress, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
         }
 
-		public abstract Task<IManagementConnection> CreateManagementConnection(string address, string account, string password, bool openOnCreation = true);
+		public abstract Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true);
 
         public async Task<Account> AddUserAccount(IManagementConnection connection)
         {

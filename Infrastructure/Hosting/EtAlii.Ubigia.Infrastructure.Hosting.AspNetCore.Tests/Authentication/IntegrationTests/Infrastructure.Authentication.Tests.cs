@@ -24,7 +24,7 @@
 	        var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 	        // Act.
@@ -41,7 +41,7 @@
 	        var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act
@@ -58,7 +58,7 @@
 			var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act

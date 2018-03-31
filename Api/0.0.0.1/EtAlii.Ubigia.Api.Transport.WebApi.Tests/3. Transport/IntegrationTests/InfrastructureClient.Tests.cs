@@ -10,7 +10,7 @@
     
     public class InfrastructureClientIntegrationTests
     {
-        private const string _url = "http://api.openkeyval.org/";
+        private readonly Uri _url = new Uri("http://api.openkeyval.org/", UriKind.Absolute);
 
         [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]
         public async Task InfrastructureClient_Post()
@@ -25,7 +25,7 @@
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
-            await client.Post(_url + identifier, testMessage);
+            await client.Post(new Uri(_url + identifier), testMessage);
         }
 
         [Fact(Skip="Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -36,7 +36,7 @@
                 var httpClientFactory = new DefaultHttpClientFactory();
                 var client = new DefaultInfrastructureClient(httpClientFactory);
 
-                var result = await client.Get<TestPackage>("http://echo.jsontest.com/first/ping/second/pong/third/42");
+                var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute));
                 Assert.NotNull(result);
                 Assert.Equal("ping", result.first);
                 Assert.Equal("pong", result.second);
@@ -67,7 +67,7 @@
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
-            await client.Post(_url + identifier, testMessage);
+            await client.Post(new Uri(_url + identifier), testMessage);
 
             //var result = infrastructureClient.Get<TestMessage>(_url + identifier);
             //Assert.NotNull(result);

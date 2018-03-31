@@ -16,7 +16,7 @@
 
         public async Task<Storage> Get(IStorageInfoProvider storageInfoProvider, Storage currentStorage, bool useCurrentStorage = true)
         {
-            string address = null;
+            Uri address = null;
 
             //var currentStorage = StorageCmdlet.Current;
 
@@ -33,7 +33,7 @@
                 address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.StorageId.ToString());
             }
 
-            var storage = !String.IsNullOrWhiteSpace(address) ? await _client.Get<Storage>(address) : null;
+            var storage = address != null ? await _client.Get<Storage>(address) : null;
 
             if (storage == null && useCurrentStorage)
             {

@@ -48,7 +48,7 @@
             Assert.True(result.Count == 1);
             var storage = result[0].BaseObject as Storage;
             Assert.NotNull(storage);
-	        Assert.Equal(storage.Address, _testContext.Context.HostAddress);//configuration.Address);
+	        Assert.Equal(storage.Address, _testContext.Context.HostAddress.ToString());//configuration.Address);
         }
 
         [Fact]

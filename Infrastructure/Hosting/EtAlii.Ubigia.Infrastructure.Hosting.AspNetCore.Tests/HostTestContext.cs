@@ -12,15 +12,19 @@
     {
 	    public override void Start()
 	    {
-		    var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
+		    //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
 
-		    var ports = GetAvailableTcpPorts(64000, 3)
-			    .Select(p => p.ToString())
-			    .ToArray();
+		    //var ports = GetAvailableTcpPorts(64000, 3)
+			   // .Select(p => p.ToString())
+			   // .ToArray();
 
-		    var userPort = ports[0];//"64000";
-		    var adminPort = ports[1];//"64001";
-			var authenticationPort = ports[2];//"64002";
+		    //var userPort = ports[0];//"64000";
+		    //var adminPort = ports[1];//"64001";
+		    //var authenticationPort = ports[2];//"64002";
+
+		    var userPort = "64000";
+		    var adminPort = "64001";
+		    var authenticationPort = "64002";
 
 			var applicationConfiguration = new ConfigurationBuilder()
 				.AddInMemoryCollection(new Dictionary<string, string>()
@@ -29,11 +33,11 @@
 
 				    { "Host:Systems:0:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory"  },
 				    { "Host:Systems:0:Services:0:Name", "Debug storage"  },
-				    { "Host:Systems:0:Services:0:BaseFolder", tempFolder  },
+				    //{ "Host:Systems:0:Services:0:BaseFolder", tempFolder  },
 
 				    { "Host:Systems:0:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport" },
 					{ "Host:Systems:0:Services:1:Name", "Debug storage" },
-					{ "Host:Systems:0:Services:1:Address", "http://+:64000" },
+					{ "Host:Systems:0:Services:1:Address", "http://127.0.0.1:64000" },
 
 				    { "Host:Systems:0:Services:2:Factory", "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore" },
 					{ "Host:Systems:0:Services:2:IpAddress", "0.0.0.0" },

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -8,11 +9,11 @@
     {
         public bool IsConnected { get; private set; }
 
-        public virtual void Initialize(IStorageConnection storageConnection, string address)
+        public virtual void Initialize(IStorageConnection storageConnection, Uri address)
         {
         }
 
-        public virtual async Task Start(IStorageConnection storageConnection, string address)
+        public virtual async Task Start(IStorageConnection storageConnection, Uri address)
         {
             await Task.Run(() => { IsConnected = true; });
 

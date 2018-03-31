@@ -35,9 +35,10 @@
 
                 try
                 {
+	                var address = new Uri(Address, UriKind.Absolute);
                     var connectionConfiguration = new DataConnectionConfiguration()
                         .Use(SignalRTransportProvider.Create())
-                        .Use(Address)
+                        .Use(address)
                         .Use(Account, Space, password);
 
                     var connection = new DataConnectionFactory().Create(connectionConfiguration);

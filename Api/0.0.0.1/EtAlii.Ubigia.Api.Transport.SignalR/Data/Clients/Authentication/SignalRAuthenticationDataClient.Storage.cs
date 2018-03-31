@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using System.Net;
     using Microsoft.AspNet.SignalR.Client.Http;
 
@@ -28,7 +29,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return storage;
         }
@@ -56,14 +57,14 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return storage;
         }
 
-        private async Task<Storage> GetConnectedStorage(IHttpClient httpClient, string address, string accountName, string password, string authenticationToken)
+        private async Task<Storage> GetConnectedStorage(IHttpClient httpClient, Uri address, string accountName, string password, string authenticationToken)
         {
-            using (var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData))
+            using (var connection = new HubConnectionFactory().Create(new Uri(address + RelativeUri.UserData)))
             {
                 connection.Headers["Authentication-Token"] = authenticationToken;
                 connection.Credentials = new NetworkCredential(accountName, password);

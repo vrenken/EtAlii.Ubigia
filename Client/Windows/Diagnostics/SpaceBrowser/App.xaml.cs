@@ -55,7 +55,7 @@
                 var connectionConfiguration = new DataConnectionConfiguration()
                     .Use(SignalRTransportProvider.Create())
                     .Use(diagnostics)
-                    .Use(address)
+                    .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, space, password);
                 connection = factory.CreateForProfiling(connectionConfiguration);
                 try

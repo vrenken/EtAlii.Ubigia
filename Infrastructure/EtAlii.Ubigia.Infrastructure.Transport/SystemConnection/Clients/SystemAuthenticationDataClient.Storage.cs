@@ -17,7 +17,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return await Task.FromResult(storage);
         }
@@ -32,7 +32,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return await Task.FromResult(storage);
         }

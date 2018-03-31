@@ -63,11 +63,13 @@
             IDataConnection connection = null;
             if (tryReturnConnection == true)
             {
-                // We need to provide a clean configuration. else the factoryextension func will be called over and over. 
-                configuration = new DataConnectionConfiguration()
+				var address = new Uri(viewModel.Address, UriKind.Absolute);
+
+				// We need to provide a clean configuration. else the factoryextension func will be called over and over. 
+				configuration = new DataConnectionConfiguration()
                     .Use(configuration.TransportProvider)
                     //.Use(configuration.Diagnostics)
-                    .Use(viewModel.Address)
+                    .Use(address)
                     .Use(viewModel.Account, viewModel.Space, window.PasswordBox.Password)
                     .Use(configuration.Extensions);
 

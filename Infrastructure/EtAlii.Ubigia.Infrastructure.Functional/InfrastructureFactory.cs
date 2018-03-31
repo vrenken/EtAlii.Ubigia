@@ -11,7 +11,7 @@
             {
                 throw new NotSupportedException("The name is required to construct a Infrastructure instance");
             }
-            if (String.IsNullOrWhiteSpace(configuration.Address))
+            if (configuration.Address == null)
             {
                 throw new NotSupportedException("The address is required to construct a Infrastructure instance");
             }

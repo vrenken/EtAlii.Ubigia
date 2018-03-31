@@ -3,35 +3,39 @@
     using System;
     using System.Collections.Generic;
 
-    public class AddressFactory : IAddressFactory
-    {
-        public string CreateFullAddress(string address, params string[] fragments)
-        {
-            var builder = new UriBuilder(address)
-            {
-                Path = "/" + String.Join("/", fragments)
-            };
-            var result = builder.ToString();
-            return result;
-        }
+	public class AddressFactory : IAddressFactory
+	{
+		public Uri Create(Uri baseAddress, string relativeAddress, params string[] parameters)
+		{
+			var queryComponents = new List<string>();
+			if (parameters.Length > 1)
+			{
+				for (int i = 0; i < parameters.Length; i += 2)
+				{
+					var key = parameters[i];
+					var value = Uri.EscapeDataString(parameters[i + 1]);
 
-        public string Create(Storage storage, string path, params string[] parameters)
-        {
-            var queryComponents = new List<string>();
-            for (int i = 0; i < parameters.Length; i += 2)
-            {
-                var key = parameters[i];
-                var value = Uri.EscapeDataString(parameters[i + 1]);
+					queryComponents.Add(String.Join("=", key, value));
+				}
+			}
+			else if (parameters.Length == 1)
+			{
+				queryComponents.Add(parameters[0]);
+			}
 
-                queryComponents.Add(String.Join("=", key, value));
-            }
-
-            var builder = new UriBuilder(storage.Address)
-            {
-                Path = "/" + path, 
-                Query = String.Join("&", queryComponents)
-            };
-            return builder.ToString();
+			var builder = new UriBuilder(baseAddress)
+			{
+				Query = String.Join("&", queryComponents)
+			};
+			builder.Path += relativeAddress;
+			return builder.Uri;//ToString();
 		}
-    }
+
+		public Uri Create(Storage storage, string relativeAddress, params string[] parameters)
+		{
+			var baseAddress = new Uri(storage.Address, UriKind.Absolute);
+			return Create(baseAddress, relativeAddress, parameters);
+		}
+	}
+
 }

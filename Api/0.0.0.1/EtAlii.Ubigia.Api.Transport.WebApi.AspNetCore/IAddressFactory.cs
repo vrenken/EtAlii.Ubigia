@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-    public interface IAddressFactory
+	using System;
+
+	public interface IAddressFactory
     {
-        string CreateFullAddress(string address, params string[] fragments);
-        string Create(Storage storage, string path, params string[] parameters);
+        Uri Create(Uri baseAddress, string relativeAddress, params string[] parameters);
+	    Uri Create(Storage storage, string relativeAddress, params string[] parameters);
     }
 }
