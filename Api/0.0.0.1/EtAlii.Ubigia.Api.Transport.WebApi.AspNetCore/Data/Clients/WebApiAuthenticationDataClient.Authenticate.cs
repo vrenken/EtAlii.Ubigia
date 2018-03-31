@@ -24,8 +24,7 @@
             }
             else
             {
-                string message =
-                    $"Unable to authenticate on the specified storage ({webApiConnection.Configuration.Address})";
+                var message = $"Unable to authenticate on the specified storage ({webApiConnection.Configuration.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
