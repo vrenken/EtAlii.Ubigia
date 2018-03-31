@@ -27,12 +27,14 @@
 		                .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
 		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
 
-						.AddInfrastructureSimpleAuthentication(infrastructure)
+		                //.AddInfrastructureSimpleAuthentication(infrastructure)
+						.AddInfrastructureHttpContextAuthentication(infrastructure)
 		                .AddInfrastructureSerialization()
 
 						.AddMvcForTypedController<RestController>(options =>
 						{
-							//options.InputFormatters.Add();
+							options.InputFormatters.Add(new PayloadMediaTypeInputFormatter());
+							options.OutputFormatters.Add(new PayloadMediaTypeOutputFormatter());
 						});
 				},
                 appBuilder =>

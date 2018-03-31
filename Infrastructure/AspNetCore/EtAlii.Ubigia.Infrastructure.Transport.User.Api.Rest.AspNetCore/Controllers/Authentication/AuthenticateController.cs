@@ -5,7 +5,7 @@
 	using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    [Route("")]
+	[Route(RelativeUri.Authenticate)]
     public class AuthenticateController : RestController
 	{
         private readonly IHttpContextAuthenticationVerifier _authenticationVerifier;
