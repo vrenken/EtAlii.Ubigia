@@ -22,15 +22,19 @@
             applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Rest.BaseUrl,
                 services =>
                 {
-                    services
-                        .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-                        .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-                        .AddSingleton<IStorageRepository>(infrastructure.Storages)
-                        .AddMvcForTypedController<RestController>(options =>
-                        {
-                            //options.InputFormatters.Add();
-                        });
-                },
+	                services
+		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
+		                .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
+
+						.AddInfrastructureSimpleAuthentication(infrastructure)
+		                .AddInfrastructureSerialization()
+
+						.AddMvcForTypedController<RestController>(options =>
+						{
+							//options.InputFormatters.Add();
+						});
+				},
                 appBuilder =>
                 {
                     appBuilder.UseMvc();

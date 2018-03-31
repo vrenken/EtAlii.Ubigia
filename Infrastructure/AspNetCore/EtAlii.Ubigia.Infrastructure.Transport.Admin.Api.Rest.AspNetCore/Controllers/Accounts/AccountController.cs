@@ -20,7 +20,7 @@
         }
 
         [HttpGet]
-        public IActionResult GetByName([RequiredFromQuery]string accountName)
+		public IActionResult GetByName([RequiredFromQuery]string accountName)
         {
             IActionResult response;
             try
