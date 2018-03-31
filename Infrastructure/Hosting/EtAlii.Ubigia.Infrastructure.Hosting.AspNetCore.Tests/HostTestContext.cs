@@ -39,9 +39,9 @@
 					{ "Host:Systems:0:Services:1:Name", "Debug storage" },
 					{ "Host:Systems:0:Services:1:Address", "http://127.0.0.1:64000" },
 
-				    { "Host:Systems:0:Services:2:Factory", "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore" },
-					{ "Host:Systems:0:Services:2:IpAddress", "0.0.0.0" },
-					{ "Host:Systems:0:Services:2:Port", authenticationPort },
+					//{ "Host:Systems:0:Services:2:Factory", "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore" },
+					//{ "Host:Systems:0:Services:2:IpAddress", "0.0.0.0" },
+					//{ "Host:Systems:0:Services:2:Port", authenticationPort },
 
 				    { "Host:Systems:0:Modules:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore" },
 				    { "Host:Systems:0:Modules:0:Name", "Admin" },
