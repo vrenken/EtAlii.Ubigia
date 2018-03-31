@@ -115,10 +115,12 @@
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream, Encoding effectiveEncoding)
 	    {
+		    //var content = new StreamReader(readStream).ReadToEnd();
 		    using (var reader = this.CreateJsonReader(type, readStream, effectiveEncoding))
 		    {
 			    reader.CloseInput = false;
-			    var serializer = JsonSerializer.CreateDefault();
+			    var serializer = new SerializerFactory().Create();
+			    //var serializer = JsonSerializer.CreateDefault();
 			    return serializer.Deserialize(reader, type);
 		    }
 		}
@@ -211,7 +213,8 @@
 		    using (var writer = CreateJsonWriter(type, writeStream, effectiveEncoding))
 		    {
 			    writer.CloseOutput = false;
-			    var serializer = JsonSerializer.CreateDefault();
+				var serializer = new SerializerFactory().Create();
+			    //var serializer = JsonSerializer.CreateDefault();
 			    serializer.Serialize(writer, value);
 			    writer.Flush();
 		    };
