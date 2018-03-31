@@ -50,15 +50,19 @@
 
             string address;
             address = _configuration.GetValue<string>(nameof(address));
-            if (address == null)
-            {
-                throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(address)} not set in service configuration.");
-            }
+	        if (address == null)
+	        {
+		        throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: {nameof(address)} not set in service configuration.");
+	        }
+	        if (!Uri.IsWellFormedUriString(address, UriKind.Absolute))
+	        {
+		        throw new InvalidOperationException($"Unable to start service {nameof(InfrastructureService)}: no valid {nameof(address)} set in service configuration.");
+	        }
 
-            // Fetch the Infrastructure configuration.
-            var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
+			// Fetch the Infrastructure configuration.
+			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             var infrastructureConfiguration = new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use(name, address);
+                .Use(name, new Uri(address, UriKind.Absolute));
 
             // Create fabric instance.
             var fabricConfiguration = new FabricContextConfiguration()

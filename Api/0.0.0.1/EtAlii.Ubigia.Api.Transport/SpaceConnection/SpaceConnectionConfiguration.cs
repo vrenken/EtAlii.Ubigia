@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
     {
         public ISpaceTransport Transport { get; private set; }
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         public string AccountName { get; private set; }
 
@@ -51,18 +51,14 @@ namespace EtAlii.Ubigia.Api.Transport
             return this;
         }
 
-        public ISpaceConnectionConfiguration Use(string address)
+        public ISpaceConnectionConfiguration Use(Uri address)
         {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (Address != null)
+			if (Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this SpaceConnectionConfiguration");
             }
 
-            Address = address;
+            Address = address ?? throw new ArgumentNullException(nameof(address));
             return this;
         }
 

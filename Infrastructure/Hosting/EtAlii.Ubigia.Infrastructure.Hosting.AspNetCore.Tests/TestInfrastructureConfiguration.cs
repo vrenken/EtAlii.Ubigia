@@ -11,9 +11,10 @@
 
         public static IInfrastructureConfiguration Create()
         {
-            var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
+	        var address = new Uri(String.Format(TestAddressFormat, TestPort), UriKind.Absolute);
+			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             return new InfrastructureConfiguration(systemConnectionCreationProxy)
-                .Use("Unit test infrastructure", String.Format(TestAddressFormat, TestPort));
+                .Use("Unit test infrastructure", address);
         }
     }
 }

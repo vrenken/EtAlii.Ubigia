@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -15,7 +16,7 @@
             _infrastructure = infrastructure;
         }
 
-        public void Initialize(ISpaceConnection spaceConnection, string address)
+        public void Initialize(ISpaceConnection spaceConnection, Uri address)
         {
         }
 
@@ -24,7 +25,7 @@
             await Task.Run(() => IsConnected = true);
         }
 
-        public async Task Start(ISpaceConnection spaceConnection, string address)
+        public async Task Start(ISpaceConnection spaceConnection, Uri address)
         {
             await Task.Run(() => IsConnected = true);
         }

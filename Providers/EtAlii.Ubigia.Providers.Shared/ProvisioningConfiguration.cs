@@ -17,7 +17,7 @@
         //public IStorage Storage { get { return _storage; } }
         //private IStorage _storage;
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         public string Account { get; private set; }
 
@@ -63,13 +63,9 @@
             return this;
         }
 
-        public IProvisioningConfiguration Use(string address, string account, string password)
+        public IProvisioningConfiguration Use(Uri address, string account, string password)
         {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (String.IsNullOrWhiteSpace(account))
+			if (String.IsNullOrWhiteSpace(account))
             {
                 throw new ArgumentException(nameof(account));
             }
@@ -78,7 +74,7 @@
                 throw new ArgumentException(nameof(password));
             }
 
-            Address = address;
+            Address = address ?? throw new ArgumentNullException(nameof(address));
             Account = account;
             Password = password;
             return this;

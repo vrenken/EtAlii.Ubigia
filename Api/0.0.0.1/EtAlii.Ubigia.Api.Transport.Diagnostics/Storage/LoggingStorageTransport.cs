@@ -13,7 +13,7 @@
         private readonly IStorageTransport _transport;
         private readonly ILogger _logger;
 
-        private string _address;
+        private Uri _address;
 
         public LoggingStorageTransport(
             IStorageTransport transport, 
@@ -23,7 +23,7 @@
             _logger = logger;
         }
 
-        public void Initialize(IStorageConnection storageConnection, string address)
+        public void Initialize(IStorageConnection storageConnection, Uri address)
         {
             _address = address;
 
@@ -37,7 +37,7 @@
             _logger.Info(message);
         }
 
-        public async Task Start(IStorageConnection storageConnection, string address)
+        public async Task Start(IStorageConnection storageConnection, Uri address)
         {
             _address = address;
 

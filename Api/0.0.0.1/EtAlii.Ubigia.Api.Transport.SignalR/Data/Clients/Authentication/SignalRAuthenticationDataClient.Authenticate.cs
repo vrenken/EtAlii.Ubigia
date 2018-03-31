@@ -41,11 +41,11 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(IHttpClient httpClient, string accountName, string password, string address, string authenticationToken)
+        private async Task<string> GetAuthenticationToken(IHttpClient httpClient, string accountName, string password, Uri address, string authenticationToken)
         {
             if (password != null || authenticationToken == null)
             {
-                using (var connection = new HubConnectionFactory().Create(address + RelativeUri.UserData))
+                using (var connection = new HubConnectionFactory().Create(new Uri(address + RelativeUri.UserData)))
                 {
                     connection.Headers["Host-Identifier"] = _hostIdentifier;
                     connection.Credentials = new NetworkCredential(accountName, password);

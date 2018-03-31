@@ -12,7 +12,7 @@
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
             "Name": "Debug storage",
-            "Address": "http://+:64000"
+            "Address": "http://127.0.0.1:64000"
           },
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",

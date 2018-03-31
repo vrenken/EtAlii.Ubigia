@@ -12,8 +12,8 @@
             }
 
             var webApiConnection = (IWebApiConnection)connection;
-            var localAddress = webApiConnection.AddressFactory.CreateFullAddress(connection.Configuration.Address, RelativeUri.Data.Storages) + "?local";
-            var storage = await webApiConnection.Client.Get<Storage>(localAddress);
+            var localAddress = webApiConnection.AddressFactory.Create(connection.Configuration.Address, RelativeUri.Data.Storages, "local");
+			var storage = await webApiConnection.Client.Get<Storage>(localAddress);
 
             if (storage == null)
             {
@@ -22,7 +22,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return storage;
         }
@@ -34,9 +34,9 @@
             }
 
             var webApiConnection = (IWebApiConnection)connection;
-            var localAddress = webApiConnection.AddressFactory.CreateFullAddress(connection.Configuration.Address, RelativeUri.Data.Storages) + "?local";
+            var localAddress = webApiConnection.AddressFactory.Create(connection.Configuration.Address, RelativeUri.Data.Storages, "local");
             var storage = await webApiConnection.Client.Get<Storage>(localAddress);
-
+			 
             if (storage == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToStorage);
@@ -44,7 +44,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return storage;
         }

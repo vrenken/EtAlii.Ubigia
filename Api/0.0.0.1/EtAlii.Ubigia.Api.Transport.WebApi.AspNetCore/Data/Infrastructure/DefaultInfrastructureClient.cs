@@ -32,7 +32,7 @@
             _hostIdentifier = Convert.ToBase64String(bytes);
         }
 
-        public async Task<TResult> Get<TResult>(string address, ICredentials credentials = null)
+        public async Task<TResult> Get<TResult>(Uri address, ICredentials credentials = null)
         {
             using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {
@@ -49,13 +49,13 @@
             }
         }
 
-        public async Task<TValue> Post<TValue>(string address, TValue value = null, ICredentials credentials = null)
+        public async Task<TValue> Post<TValue>(Uri address, TValue value = null, ICredentials credentials = null)
             where TValue : class
         {
             return await Post<TValue, TValue>(address, value, credentials);
         }
 
-        public async Task<TResult> Post<TValue, TResult>(string address, TValue value = null,
+        public async Task<TResult> Post<TValue, TResult>(Uri address, TValue value = null,
             ICredentials credentials = null)
             where TValue : class
             where TResult : class
@@ -76,7 +76,7 @@
             }
         }
 
-	    public async Task Delete(string address, ICredentials credentials = null)
+	    public async Task Delete(Uri address, ICredentials credentials = null)
         {
             using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {
@@ -92,7 +92,7 @@
             }
         }
 
-        public async Task<TValue> Put<TValue>(string address, TValue value, ICredentials credentials = null)
+        public async Task<TValue> Put<TValue>(Uri address, TValue value, ICredentials credentials = null)
         {
             using (var client = _httpClientFactory.Create(credentials, _hostIdentifier, AuthenticationToken))
             {

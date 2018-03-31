@@ -22,13 +22,13 @@
 
             if (accountInfoProvider != null)
             {
-                string address;
+                Uri address;
                 var targetStorage = currentStorage ?? accountInfoProvider.TargetStorage;
 
                 if (accountInfoProvider.Account != null)
                 {
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.Account.Id.ToString());
-                    account = !String.IsNullOrWhiteSpace(address) ? await _client.Get<Account>(address) : null;
+                    account = address != null ? await _client.Get<Account>(address) : null;
                 }
                 else if (!String.IsNullOrWhiteSpace(accountInfoProvider.AccountName))
                 {
@@ -39,7 +39,7 @@
                 else if (accountInfoProvider.AccountId != Guid.Empty)
                 {
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.AccountId.ToString());
-                    account = !String.IsNullOrWhiteSpace(address) ? await _client.Get<Account>(address) : null;
+                    account = address != null ? await _client.Get<Account>(address) : null;
                 }
             }
 

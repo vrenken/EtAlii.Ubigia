@@ -27,12 +27,12 @@
 			var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
             var token = await client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
             client.AuthenticationToken = token;
-            address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
+            address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, "local");
             
             // Act.
             var storage = client.Get<Storage>(address);
@@ -47,7 +47,7 @@
 			// Arrange.
 	        var context = _testContext.HostTestContext;
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, "local");
 	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act.
@@ -64,13 +64,13 @@
 	        var context = _testContext.HostTestContext;
             var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Authenticate);
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
             var token = await client.Get<string>(address, credentials);
             Assert.True(!String.IsNullOrWhiteSpace(token));
             client.AuthenticationToken = token;
             Thread.Sleep(50000);
-            address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
+            address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, "local");
             
             // Act.
             var storage = client.Get<Storage>(address);
@@ -86,7 +86,7 @@
 			// Arrange.
 	        var context = _testContext.HostTestContext;
 	        var addressFactory = new AddressFactory();
-            var address = addressFactory.CreateFullAddress(context.HostAddress, RelativeUri.Admin.Api.Storages) + "?local";
+            var address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, "local");
 	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
 			// Act.

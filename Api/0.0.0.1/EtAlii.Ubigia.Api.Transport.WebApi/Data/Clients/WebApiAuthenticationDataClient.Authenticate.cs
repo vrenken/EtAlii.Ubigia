@@ -52,7 +52,7 @@
             }
         }
 
-        private static async Task<string> GetAuthenticationToken(IInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, string address)
+        private static async Task<string> GetAuthenticationToken(IInfrastructureClient client, IAddressFactory addressFactory, string accountName, string password, Uri address)
         {
             string authenticationToken;
             if (password == null && client.AuthenticationToken != null)
@@ -62,7 +62,7 @@
             else
             {
                 var credentials = new NetworkCredential(accountName, password);
-                var localAddress = addressFactory.CreateFullAddress(address, RelativeUri.Authenticate);
+                var localAddress = addressFactory.Create(address, RelativeUri.Authenticate);
                 authenticationToken = await client.Get<string>(localAddress, credentials);
             }
 

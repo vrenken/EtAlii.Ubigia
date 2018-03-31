@@ -15,7 +15,7 @@
 
         private static IDisposable CreateApplicationBuilder(IInfrastructureConfiguration configuration, Action<IAppBuilder> applicationBuilder)
         {
-            return WebApp.Start(configuration.Address, applicationBuilder);
+            return WebApp.Start(configuration.Address.ToString(), applicationBuilder);
         }
     }
 }

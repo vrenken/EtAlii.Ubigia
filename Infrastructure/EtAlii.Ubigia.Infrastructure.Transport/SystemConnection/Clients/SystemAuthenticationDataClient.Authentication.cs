@@ -38,7 +38,7 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(string accountName, string password, string address)
+        private async Task<string> GetAuthenticationToken(string accountName, string password, Uri address)
         {
             string authenticationToken;
             if (password == null && _authenticationToken != null)

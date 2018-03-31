@@ -9,7 +9,7 @@
     {
         ILogicalContext Logical { get; }
 
-        string Address { get; }
+        Uri Address { get; }
 
         string Name { get; }
 
@@ -21,7 +21,7 @@
         Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; }
         Func<Container, object>[] ComponentFactories { get; }
 
-        IInfrastructureConfiguration Use(string name, string address);
+        IInfrastructureConfiguration Use(string name, Uri address);
 
         IInfrastructureConfiguration Use(IInfrastructureExtension[] extensions);
         IInfrastructureConfiguration Use(ILogicalContext logical);

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
 
     public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
     {
@@ -23,7 +24,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return storage;
         }
@@ -48,16 +49,16 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address;
+            storage.Address = connection.Configuration.Address.ToString();
 
             return storage;
         }
 
         private async Task<Storage> GetConnectedStorage(
 	        ISignalRTransport transport,
-	        string address)
+	        Uri address)
         {
-			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler, address + SignalRHub.BasePath + "/" + SignalRHub.Authentication, transport.AuthenticationToken);
+			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), transport.AuthenticationToken);
             await connection.StartAsync();
             var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();

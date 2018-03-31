@@ -1,10 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    public interface ISpaceConnectionConfiguration
+	using System;
+
+	public interface ISpaceConnectionConfiguration
     {
         ISpaceTransport Transport { get; }
 
-        string Address { get; }
+        Uri Address { get; }
         string AccountName { get; }
         string Password { get; }
         string Space { get; }
@@ -13,7 +15,7 @@
 
         ISpaceConnectionConfiguration Use(ISpaceTransport transport);
 
-        ISpaceConnectionConfiguration Use(string address);
+        ISpaceConnectionConfiguration Use(Uri address);
         ISpaceConnectionConfiguration Use(string accountName, string space, string password);
 
         ISpaceConnectionConfiguration Use(ISpaceConnectionExtension[] extensions);

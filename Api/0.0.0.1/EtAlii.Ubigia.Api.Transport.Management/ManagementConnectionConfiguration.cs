@@ -12,7 +12,7 @@
 
         public Func<IManagementConnection> FactoryExtension { get; private set; }
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         public string AccountName { get; private set; }
 
@@ -59,18 +59,14 @@
             return this;
         }
 
-        public IManagementConnectionConfiguration Use(string address)
+        public IManagementConnectionConfiguration Use(Uri address)
         {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (Address != null)
+			if (Address != null)
             {
                 throw new InvalidOperationException("An address has already been assigned to this ManagementConnectionConfiguration");
             }
 
-            Address = address;
+            Address = address ?? throw new ArgumentNullException(nameof(address));
             return this;
         }
 

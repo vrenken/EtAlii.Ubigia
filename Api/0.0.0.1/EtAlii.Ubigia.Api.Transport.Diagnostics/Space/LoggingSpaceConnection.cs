@@ -9,7 +9,7 @@
         private readonly ISpaceConnection _connection;
         private readonly ILogger _logger;
 
-        private string _address;
+        private Uri _address;
 
         public Account Account => _connection.Account;
         public Space Space => _connection.Space;

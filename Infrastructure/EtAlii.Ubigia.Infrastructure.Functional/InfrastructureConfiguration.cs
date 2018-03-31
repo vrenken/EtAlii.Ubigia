@@ -14,7 +14,7 @@
 
         public string Name { get; private set; }
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; private set; }
 
@@ -82,19 +82,15 @@
             return this;
         }
 
-        public IInfrastructureConfiguration Use(string name, string address)
+        public IInfrastructureConfiguration Use(string name, Uri address)
         {
             if (String.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentException(nameof(name));
             }
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
 
-            Name = name;
-            Address = address;
+			Name = name;
+            Address = address ?? throw new ArgumentNullException(nameof(address));
             return this;
         }
 

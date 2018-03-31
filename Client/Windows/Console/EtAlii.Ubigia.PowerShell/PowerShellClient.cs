@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.PowerShell
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
@@ -57,7 +58,7 @@
             return _current;
         }
 
-        public async Task OpenManagementConnection(string address, string accountName, string password)
+        public async Task OpenManagementConnection(Uri address, string accountName, string password)
         {
             if (ManagementConnection != null && ManagementConnection.IsConnected)
             {

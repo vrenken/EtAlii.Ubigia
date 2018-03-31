@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR.Client;
 
     internal class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
@@ -40,7 +41,7 @@
         {
             await base.Connect(spaceConnection);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Property);
+            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Property, UriKind.Absolute));
 	        await _connection.StartAsync();
         }
 
