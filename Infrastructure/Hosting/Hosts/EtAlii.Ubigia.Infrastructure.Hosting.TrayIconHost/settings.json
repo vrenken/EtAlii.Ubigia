@@ -13,12 +13,12 @@
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
             "Name": "Debug storage",
             "Address": "http://127.0.0.1:64000"
-          },
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
-            "IpAddress": "0.0.0.0",
-            "Port": "64002"
-          }
+          }//,
+          //{
+          //  "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+          //  "IpAddress": "0.0.0.0",
+          //  "Port": "64002"
+          //}
         ],
         "Modules": [
           {
