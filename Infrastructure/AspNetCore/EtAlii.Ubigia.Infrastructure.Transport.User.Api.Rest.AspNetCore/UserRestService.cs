@@ -28,10 +28,15 @@
                         .AddSingleton<IContentRepository>(infrastructure.Content)
                         .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
 
-		                .AddInfrastructureSimpleAuthentication(infrastructure)
+	                    //.AddInfrastructureSimpleAuthentication(infrastructure)
+	                    .AddInfrastructureHttpContextAuthentication(infrastructure)
 		                .AddInfrastructureSerialization()
-	                    
-	                    .AddMvcForTypedController<RestController>();
+
+		                .AddMvcForTypedController<RestController>(options =>
+		                {
+			                options.InputFormatters.Add(new PayloadMediaTypeInputFormatter());
+			                options.OutputFormatters.Add(new PayloadMediaTypeOutputFormatter());
+		                });
 				},
                 appBuilder => appBuilder.UseMvc());
         }
