@@ -27,8 +27,12 @@
                         .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
                         .AddSingleton<IContentRepository>(infrastructure.Content)
                         .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
-                        .AddMvcForTypedController<RestController>();
-                },
+
+		                .AddInfrastructureSimpleAuthentication(infrastructure)
+		                .AddInfrastructureSerialization()
+	                    
+	                    .AddMvcForTypedController<RestController>();
+				},
                 appBuilder => appBuilder.UseMvc());
         }
     }

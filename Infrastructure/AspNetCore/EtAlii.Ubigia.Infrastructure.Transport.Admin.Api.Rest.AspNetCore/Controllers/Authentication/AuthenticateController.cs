@@ -1,11 +1,13 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore
 {
-    using Microsoft.AspNetCore.Authorization;
+	using EtAlii.Ubigia.Api.Transport;
+	using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+	using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     [Route("")]
-    public class AuthenticateController : Controller
-    {
+    public class AuthenticateController : RestController
+	{
         private readonly IHttpContextAuthenticationVerifier _authenticationVerifier;
 
         public AuthenticateController(IHttpContextAuthenticationVerifier authenticationVerifier)
@@ -17,7 +19,7 @@
         [HttpGet]
         public IActionResult Get()
         {
-            var result = _authenticationVerifier.Verify(HttpContext, this);
+            var result = _authenticationVerifier.Verify(HttpContext, this, Role.Admin, Role.System);
             return result;
         }
     }
