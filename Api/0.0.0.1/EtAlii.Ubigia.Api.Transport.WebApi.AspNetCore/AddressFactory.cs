@@ -27,7 +27,7 @@
 			{
 				Query = String.Join("&", queryComponents)
 			};
-			builder.Path += relativeAddress;
+			builder.Path += "/" + relativeAddress;
 			return builder.Uri;//ToString();
 		}
 
