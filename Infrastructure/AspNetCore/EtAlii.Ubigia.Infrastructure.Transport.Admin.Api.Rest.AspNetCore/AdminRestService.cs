@@ -23,9 +23,9 @@
                 services =>
                 {
 	                services
+		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
 		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
 		                .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
 
 		                //.AddInfrastructureSimpleAuthentication(infrastructure)
 						.AddInfrastructureHttpContextAuthentication(infrastructure)

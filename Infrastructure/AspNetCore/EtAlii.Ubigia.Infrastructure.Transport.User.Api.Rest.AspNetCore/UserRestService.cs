@@ -22,7 +22,11 @@
                 services =>
                 {
                     services
-                        .AddSingleton<IRootRepository>(infrastructure.Roots)
+	                    .AddSingleton<IStorageRepository>(infrastructure.Storages)
+	                    .AddSingleton<IAccountRepository>(infrastructure.Accounts)
+	                    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+
+						.AddSingleton<IRootRepository>(infrastructure.Roots)
                         .AddSingleton<IEntryRepository>(infrastructure.Entries)
                         .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
                         .AddSingleton<IContentRepository>(infrastructure.Content)
