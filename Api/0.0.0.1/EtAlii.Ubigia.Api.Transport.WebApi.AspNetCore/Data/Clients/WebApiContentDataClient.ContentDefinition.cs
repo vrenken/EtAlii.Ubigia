@@ -6,7 +6,7 @@
     {
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             await Connection.Client.Post(address, contentDefinition);
 
             MarkAsStored(contentDefinition);
@@ -14,7 +14,7 @@
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
             await Connection.Client.Post(address, contentDefinitionPart);
 
             MarkAsStored(contentDefinitionPart);
@@ -22,7 +22,7 @@
 
         public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             var contentDefinition = await Connection.Client.Get<ContentDefinition>(address);
             return contentDefinition;
         }
