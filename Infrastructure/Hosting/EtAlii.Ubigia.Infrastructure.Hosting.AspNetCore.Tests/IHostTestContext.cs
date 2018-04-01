@@ -12,8 +12,10 @@
 	    string SystemAccountPassword { get; }
 	    string TestAccountName { get; }
 	    string TestAccountPassword { get; }
+	    string AdminAccountName { get; }
+	    string AdminAccountPassword { get; }
 
-	    Uri HostAddress { get; }
+		Uri HostAddress { get; }
 	    Uri ManagementServiceAddress { get; }
 	    Uri DataServiceAddress { get; }
 
