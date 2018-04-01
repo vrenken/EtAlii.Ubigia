@@ -25,8 +25,8 @@
 
         private async Task<Space> GetSpace(Account currentAccount, string spaceName)
         {
-            var spaces = _infrastructure.Spaces.GetAll(currentAccount.Id);
-            return await Task.FromResult(spaces.FirstOrDefault(s => s.Name == spaceName));
+            var space = _infrastructure.Spaces.Get(currentAccount.Id, spaceName);
+            return await Task.FromResult(space);
         }
     }
 }
