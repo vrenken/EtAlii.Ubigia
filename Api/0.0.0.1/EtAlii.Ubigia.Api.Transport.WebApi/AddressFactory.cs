@@ -10,22 +10,21 @@
 	        relativeAddress = relativeAddress ?? String.Empty;
 
 			var queryComponents = new List<string>();
-	        if (parameters.Length > 1)
+	        for (int i = 0; i < parameters.Length; i += 2)
 	        {
-		        for (int i = 0; i < parameters.Length; i += 2)
+		        var key = parameters[i];
+		        if (i + 1 < parameters.Length)
 		        {
-			        var key = parameters[i];
 			        var value = Uri.EscapeDataString(parameters[i + 1]);
-
 			        queryComponents.Add(String.Join("=", key, value));
 		        }
-	        }
-	        else if (parameters.Length == 1)
-	        {
-		        queryComponents.Add(parameters[0]);
+		        else
+		        {
+			        queryComponents.Add(key);
+		        }
 	        }
 
-	        var builder = new UriBuilder(baseAddress)
+			var builder = new UriBuilder(baseAddress)
 	        {
 		        Query = String.Join("&", queryComponents)
 	        };
