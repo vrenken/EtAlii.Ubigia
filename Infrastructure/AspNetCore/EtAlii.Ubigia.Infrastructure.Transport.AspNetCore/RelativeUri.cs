@@ -38,7 +38,11 @@
 
             public static class Api
             {
-                public const string Entry = "entry";
+	            public const string Storages = "storage";
+	            public const string Accounts = "account";
+	            public const string Spaces = "space";
+
+				public const string Entry = "entry";
                 public const string RelatedEntries = "relatedentries";
                 public const string Entries = "entries";
 
