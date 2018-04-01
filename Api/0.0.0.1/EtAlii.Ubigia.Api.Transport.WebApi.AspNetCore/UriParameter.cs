@@ -2,7 +2,10 @@
 {
     public static class UriParameter 
     {
-        public const string EntryId = "entryId";
+	    public const string AuthenticationToken = "authenticationToken";
+	    public const string Local = "local";
+
+		public const string EntryId = "entryId";
         public const string EntryIds = "entryIds";
         public const string EntryRelations = "entryRelations";
         public const string EntriesWithRelation = "entriesWithRelation";
