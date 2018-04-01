@@ -13,69 +13,36 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;
 
-    public class PayloadMediaTypeOutputFormatter : OutputFormatter//: BaseJsonMediaTypeFormatter
+    public class PayloadMediaTypeOutputFormatter : OutputFormatter
 	{
         public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
+		private readonly ISerializer _serializer;
 
-		///// <summary>
-		///// Initializes a new instance of the <see cref="BsonMediaTypeFormatter"/> class.
-		///// </summary>
 		public PayloadMediaTypeOutputFormatter()
 		{
 		    // Set default supported media type
 		    SupportedMediaTypes.Add(MediaType);
-
-		//    SerializerFactory.AddDefaultConverters(SerializerSettings.Converters);
+			_serializer = new SerializerFactory().Create();
 		}
-
-		///// <summary>
-		///// Initializes a new instance of the <see cref="BsonMediaTypeFormatter"/> class.
-		///// </summary>
-		///// <param name="formatter">The <see cref="BsonMediaTypeFormatter"/> instance to copy settings from.</param>
-		//protected PayloadMediaTypeFormatter(BsonMediaTypeFormatter formatter)
-		//    : base(formatter)
-		//{
-		//}
-
-		/// <inheritdoc />
 
 		protected override bool CanWriteType(Type type)
 		{
 			return true;
-			//if (typeof(Contact).IsAssignableFrom(type) || typeof(IEnumerable<Contact>).IsAssignableFrom(type))
-			//{
-			//	return base.CanWriteType(type);
-			//}
-			//return false;
 		}
 
 		public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
 		{
 			var response = context.HttpContext.Response;
-
-			//var stream = new MemoryStream();
-			WriteToStream(context.ObjectType, context.Object, response.Body);//stream);//, Encoding.UTF8);
-			//response.Body = stream;
-
+			WriteToStream(context.ObjectType, context.Object, response.Body);
 			await Task.CompletedTask;
 		}
 
-		public void WriteToStream(Type type, object value, Stream writeStream)//, Encoding effectiveEncoding)
+		public void WriteToStream(Type type, object value, Stream writeStream)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
             if (writeStream == null)
             {
                 throw new ArgumentNullException(nameof(writeStream));
             }
-
-            //if (effectiveEncoding == null)
-            //{
-            //    throw new ArgumentNullException(nameof(effectiveEncoding));
-            //}
 
             if (value == null)
             {
@@ -98,29 +65,26 @@
                 {
                     { "Value", value },
                 };
-	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream);//, effectiveEncoding);
+	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream);
 			}
 			else
             {
 
-				WriteToStreamInternal(type, value, writeStream);//, effectiveEncoding);
+				WriteToStreamInternal(type, value, writeStream);
             }
         }
 
-	    private void WriteToStreamInternal(Type type, object value, Stream writeStream)//, Encoding effectiveEncoding)
+	    private void WriteToStreamInternal(Type type, object value, Stream writeStream)
 	    {
-			using (var writer = CreateJsonWriter(type, writeStream))//, effectiveEncoding))
+			using (var writer = CreateJsonWriter(type, writeStream))
 		    {
 			    writer.CloseOutput = false;
-			    var serializer = new SerializerFactory().Create();
-			    //var serializer = JsonSerializer.CreateDefault();
-			    serializer.Serialize(writer, value);
+			    _serializer.Serialize(writer, value);
 			    writer.Flush();
 		    };
 		}
 
-		/// <inheritdoc />
-		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)//, Encoding effectiveEncoding)
+		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)
         {
             if (type == null)
             {
@@ -132,12 +96,7 @@
                 throw new ArgumentNullException(nameof(writeStream));
             }
 
-            //if (effectiveEncoding == null)
-            //{
-            //    throw new ArgumentNullException(nameof(effectiveEncoding));
-            //}
-
-            return new BsonDataWriter(new BinaryWriter(writeStream));//, effectiveEncoding));
+            return new BsonDataWriter(new BinaryWriter(writeStream));
         }
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
@@ -145,9 +104,6 @@
         // To do: https://aspnetwebstack.codeplex.com/workitem/1467
         private static bool IsSimpleType(Type type)
         {
-            // Cannot happen.
-            // Contract.Assert(type != null);
-
             var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string);
 
             return isSimpleType;

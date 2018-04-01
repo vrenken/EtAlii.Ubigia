@@ -13,54 +13,36 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;
 
-    public class PayloadMediaTypeInputFormatter : InputFormatter//: BaseJsonMediaTypeFormatter
+    public class PayloadMediaTypeInputFormatter : InputFormatter
 	{
         private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
         private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
         private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
 
         public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
+		private readonly ISerializer _serializer;
 
-		///// <summary>
-		///// Initializes a new instance of the <see cref="BsonMediaTypeFormatter"/> class.
-		///// </summary>
 		public PayloadMediaTypeInputFormatter()
 		{
 		    // Set default supported media type
 		    SupportedMediaTypes.Add(MediaType);
-
-		//    SerializerFactory.AddDefaultConverters(SerializerSettings.Converters);
+			_serializer = new SerializerFactory().Create();
 		}
 
-		///// <summary>
-		///// Initializes a new instance of the <see cref="BsonMediaTypeFormatter"/> class.
-		///// </summary>
-		///// <param name="formatter">The <see cref="BsonMediaTypeFormatter"/> instance to copy settings from.</param>
-		//protected PayloadMediaTypeFormatter(BsonMediaTypeFormatter formatter)
-		//    : base(formatter)
-		//{
-		//}
-
-		/// <inheritdoc />
 
 		protected override bool CanReadType(Type type)
 		{
 			return true;
-			//if (typeof(Contact).IsAssignableFrom(type) || typeof(IEnumerable<Contact>).IsAssignableFrom(type))
-			//{
-			//	return base.CanReadType(type);
-			//}
-			//return false;
 		}
 
 		public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
 		{
 			var request = context.HttpContext.Request;
-			var result = ReadFromStream(context.ModelType, request.Body);//, Encoding.UTF8);
+			var result = ReadFromStream(context.ModelType, request.Body);
 			return await InputFormatterResult.SuccessAsync(result);
 		}
 
-		private object ReadFromStream(Type type, Stream readStream)//, Encoding effectiveEncoding)
+		private object ReadFromStream(Type type, Stream readStream)
         {
             if (type == null)
             {
@@ -87,7 +69,7 @@
             {
                 // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
                 var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
-                if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))//, effectiveEncoding) is IDictionary dictionary))
+                if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
                 {
                     // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
                     // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
@@ -124,22 +106,20 @@
             }
             else
             {
-				return ReadFromStreamInternal(type, readStream);//, effectiveEncoding);
+				return ReadFromStreamInternal(type, readStream);
             }
         }
 
-	    private object ReadFromStreamInternal(Type type, Stream readStream)//, Encoding effectiveEncoding)
+	    private object ReadFromStreamInternal(Type type, Stream readStream)
 	    {
-			using (var reader = this.CreateJsonReader(type, readStream))//, effectiveEncoding))
+			using (var reader = this.CreateJsonReader(type, readStream))
 		    {
 			    reader.CloseInput = false;
-			    var serializer = new SerializerFactory().Create();
-			    //var serializer = JsonSerializer.CreateDefault();
-			    return serializer.Deserialize(reader, type);
+				return _serializer.Deserialize(reader, type);
 		    }
 		}
-		/// <inheritdoc />
-		public JsonReader CreateJsonReader(Type type, Stream readStream)//, Encoding effectiveEncoding)
+
+		public JsonReader CreateJsonReader(Type type, Stream readStream)
         {
             if (type == null)
             {
@@ -151,12 +131,7 @@
                 throw new ArgumentNullException(nameof(readStream));
             }
 
-            //if (effectiveEncoding == null)
-            //{
-            //    throw new ArgumentNullException(nameof(effectiveEncoding));
-            //}
-
-            var reader = new BsonDataReader(new BinaryReader(readStream));//, effectiveEncoding));
+            var reader = new BsonDataReader(new BinaryReader(readStream));
 
             try
             {
@@ -179,9 +154,6 @@
         // To do: https://aspnetwebstack.codeplex.com/workitem/1467
         private static bool IsSimpleType(Type type)
         {
-            // Cannot happen.
-            // Contract.Assert(type != null);
-
             var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string);
 
             return isSimpleType;
