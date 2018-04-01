@@ -7,6 +7,8 @@
 	{
 		public Uri Create(Uri baseAddress, string relativeAddress, params string[] parameters)
 		{
+			relativeAddress = relativeAddress ?? String.Empty;
+
 			var queryComponents = new List<string>();
 			if (parameters.Length > 1)
 			{
@@ -27,7 +29,8 @@
 			{
 				Query = String.Join("&", queryComponents)
 			};
-			builder.Path += "/" + relativeAddress;
+
+			builder.Path = builder.Path.TrimEnd('/') + "/" + relativeAddress.TrimStart('/');
 			return builder.Uri;//ToString();
 		}
 
