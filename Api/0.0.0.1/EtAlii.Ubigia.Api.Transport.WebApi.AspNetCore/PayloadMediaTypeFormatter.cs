@@ -4,45 +4,46 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.IO;
-    //using System.Net.Http.Formatting;
+    using System.Net;
+    using System.Net.Http;
+    using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
     using System.Reflection;
     using System.Text;
+    using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;
 
-    public class PayloadMediaTypeFormatter //: BaseJsonMediaTypeFormatter
+    public class PayloadMediaTypeFormatter : MediaTypeFormatter
     {
         private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
         private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
         private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo();
 
         public static readonly MediaTypeWithQualityHeaderValue MediaType = new MediaTypeWithQualityHeaderValue("application/bson");
+	    public static readonly MediaTypeHeaderValue ContentMediaType = new MediaTypeHeaderValue("application/bson");
+	    private readonly ISerializer _serializer;
 
-        ///// <summary>
-        ///// Initializes a new instance of the <see cref="BsonMediaTypeFormatter"/> class.
-        ///// </summary>
-        //public PayloadMediaTypeFormatter()
-        //{
-        //    // Set default supported media type
-        //    SupportedMediaTypes.Add(MediaType);
+		public PayloadMediaTypeFormatter()
+		{
+			// Set default supported media type
+			SupportedMediaTypes.Add(MediaType);
+			_serializer = new SerializerFactory().Create();
+		}
 
-        //    SerializerFactory.AddDefaultConverters(SerializerSettings.Converters);
-        //}
+		public override bool CanReadType(Type type)
+		{
+			return true;
+		}
 
-        ///// <summary>
-        ///// Initializes a new instance of the <see cref="BsonMediaTypeFormatter"/> class.
-        ///// </summary>
-        ///// <param name="formatter">The <see cref="BsonMediaTypeFormatter"/> instance to copy settings from.</param>
-        //protected PayloadMediaTypeFormatter(BsonMediaTypeFormatter formatter)
-        //    : base(formatter)
-        //{
-        //}
+	    public override bool CanWriteType(Type type)
+	    {
+		    return true;
+	    }
 
-        /// <inheritdoc />
-        public object ReadFromStream(Type type, Stream readStream, Encoding effectiveEncoding)
-        {
-            if (type == null)
+	    public override async Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+	    {
+		    if (type == null)
             {
                 throw new ArgumentNullException(nameof(type));
             }
@@ -50,11 +51,6 @@
             if (readStream == null)
             {
                 throw new ArgumentNullException(nameof(readStream));
-            }
-
-            if (effectiveEncoding == null)
-            {
-                throw new ArgumentNullException(nameof(effectiveEncoding));
             }
 
             // Special-case for simple types: Deserialize a Dictionary with a single element named Value.
@@ -72,7 +68,7 @@
             {
                 // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
                 var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
-                if (!(ReadFromStreamInternal(dictionaryType, readStream, effectiveEncoding) is IDictionary dictionary))
+                if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
                 {
                     // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
                     // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
@@ -89,7 +85,7 @@
                     if (dictionary.Count == 1 && (item.Key as string) == "Value")
                     {
                         // Success
-                        return item.Value;
+                        return await Task.FromResult(item.Value);
                     }
                     else
                     {
@@ -109,23 +105,21 @@
             }
             else
             {
-				return ReadFromStreamInternal(type, readStream, effectiveEncoding);
+				var result = ReadFromStreamInternal(type, readStream);
+	            return await Task.FromResult(result);
             }
         }
 
-	    private object ReadFromStreamInternal(Type type, Stream readStream, Encoding effectiveEncoding)
+	    private object ReadFromStreamInternal(Type type, Stream readStream)
 	    {
-		    //var content = new StreamReader(readStream).ReadToEnd();
-		    using (var reader = this.CreateJsonReader(type, readStream, effectiveEncoding))
+		    using (var reader = this.CreateJsonReader(type, readStream))
 		    {
 			    reader.CloseInput = false;
-			    var serializer = new SerializerFactory().Create();
-			    //var serializer = JsonSerializer.CreateDefault();
-			    return serializer.Deserialize(reader, type);
+				return _serializer.Deserialize(reader, type);
 		    }
 		}
-		/// <inheritdoc />
-		public JsonReader CreateJsonReader(Type type, Stream readStream, Encoding effectiveEncoding)
+
+	    public JsonReader CreateJsonReader(Type type, Stream readStream)
         {
             if (type == null)
             {
@@ -137,12 +131,7 @@
                 throw new ArgumentNullException(nameof(readStream));
             }
 
-            if (effectiveEncoding == null)
-            {
-                throw new ArgumentNullException(nameof(effectiveEncoding));
-            }
-
-            var reader = new BsonDataReader(new BinaryReader(readStream, effectiveEncoding));
+            var reader = new BsonDataReader(new BinaryReader(readStream));
 
             try
             {
@@ -160,9 +149,8 @@
             return reader;
         }
 
-        /// <inheritdoc />
-        public void WriteToStream(Type type, object value, Stream writeStream, Encoding effectiveEncoding)
-        {
+	    public override async Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+	    {
             if (type == null)
             {
                 throw new ArgumentNullException(nameof(type));
@@ -171,11 +159,6 @@
             if (writeStream == null)
             {
                 throw new ArgumentNullException(nameof(writeStream));
-            }
-
-            if (effectiveEncoding == null)
-            {
-                throw new ArgumentNullException(nameof(effectiveEncoding));
             }
 
             if (value == null)
@@ -193,35 +176,34 @@
             var runtimeType = value.GetType();
             if (IsSimpleType(runtimeType) || runtimeType == typeof(byte[]))
             {
-                // Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  Is
-                // written out as binary equivalent of { "Value": value } JSON.
+				// Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  
+	            // Is written out as binary equivalent of { "Value": value } JSON.
                 var temporaryDictionary = new Dictionary<string, object>
                 {
                     { "Value", value },
                 };
-	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream, effectiveEncoding);
+	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream);
 			}
 			else
             {
 
-				WriteToStreamInternal(type, value, writeStream, effectiveEncoding);
+				WriteToStreamInternal(type, value, writeStream);
             }
-        }
 
-	    private void WriteToStreamInternal(Type type, object value, Stream writeStream, Encoding effectiveEncoding)
+		    await Task.CompletedTask;
+	    }
+
+	    private void WriteToStreamInternal(Type type, object value, Stream writeStream)
 	    {
-		    using (var writer = CreateJsonWriter(type, writeStream, effectiveEncoding))
+		    using (var writer = CreateJsonWriter(type, writeStream))
 		    {
 			    writer.CloseOutput = false;
-				var serializer = new SerializerFactory().Create();
-			    //var serializer = JsonSerializer.CreateDefault();
-			    serializer.Serialize(writer, value);
+				_serializer.Serialize(writer, value);
 			    writer.Flush();
 		    };
 		}
 
-		/// <inheritdoc />
-		public JsonWriter CreateJsonWriter(Type type, Stream writeStream, Encoding effectiveEncoding)
+		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)
         {
             if (type == null)
             {
@@ -233,12 +215,7 @@
                 throw new ArgumentNullException(nameof(writeStream));
             }
 
-            if (effectiveEncoding == null)
-            {
-                throw new ArgumentNullException(nameof(effectiveEncoding));
-            }
-
-            return new BsonDataWriter(new BinaryWriter(writeStream, effectiveEncoding));
+            return new BsonDataWriter(new BinaryWriter(writeStream));
         }
 
         // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
@@ -246,11 +223,9 @@
         // To do: https://aspnetwebstack.codeplex.com/workitem/1467
         private static bool IsSimpleType(Type type)
         {
-            // Cannot happen.
-            // Contract.Assert(type != null);
-
             var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string);
 
             return isSimpleType;
-        }    }
+        }
+    }
 }
