@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
     using System;
-    using System.IO;
     using System.Net;
     using System.Net.Http;
-    using System.Text;
     using System.Threading.Tasks;
 
     public sealed class DefaultInfrastructureClient : IInfrastructureClient
@@ -40,7 +38,7 @@
                 {
                     var response = await client.GetAsync(address);
                     await WaitAndTestResponse(response, HttpMethod.Get);
-                    return await ParseResult<TResult>(response);
+	                return await response.Content.ReadAsAsync<TResult>(new [] {_formatter });
                 }
                 catch (AggregateException e)
                 {
@@ -64,12 +62,11 @@
             {
                 try
                 {
-	                var content = ToContent(typeof(TValue), value);
-					var response = await client.PostAsync(address, content);
+	                var response = await client.PostAsync(address, value, _formatter);
                     await WaitAndTestResponse(response, HttpMethod.Post);
-                    return await ParseResult<TResult>(response);
-                }
-                catch (AggregateException e)
+					return await response.Content.ReadAsAsync<TResult>(new[] { _formatter });
+				}
+				catch (AggregateException e)
                 {
                     throw new InfrastructureConnectionException(PostErrorMessage, e);
                 }
@@ -98,12 +95,11 @@
             {
                 try
                 {
-	                var content = ToContent(typeof(TValue), value);
-                    var response = await client.PutAsync(address, content);
+	                var response = await client.PutAsync(address, value, _formatter);
                     await WaitAndTestResponse(response, HttpMethod.Put);
-                    return await ParseResult<TValue>(response);
-                }
-                catch (AggregateException e)
+					return await response.Content.ReadAsAsync<TValue>(new[] { _formatter });
+				}
+				catch (AggregateException e)
                 {
                     throw new InfrastructureConnectionException(PutErrorMessage, e);
                 }
@@ -146,34 +142,5 @@
             errorString = String.IsNullOrWhiteSpace(errorString) ? "UNKNOWN" : errorString;
             return errorString;
         }
-
-        private async Task<TValue> ParseResult<TValue>(HttpResponseMessage result)
-        {
-
-	        return await FromContent<TValue>(result.Content);
-
-			//return await result.Content.ReadAsAsync<TValue>(new[] {_formatter});
-        }
-
-
-	    private StreamContent ToContent(Type type, object value)
-	    {
-		    using (var stream = new MemoryStream())
-		    {
-			    _formatter.WriteToStream(type, value, stream, Encoding.UTF8);
-			    stream.Position = 0;
-			    return new StreamContent(stream);
-		    }
-	    }
-
-
-
-	    private async Task<TValue> FromContent<TValue>(HttpContent content)
-	    {
-		    using (var stream = await content.ReadAsStreamAsync())
-		    {
-			    return (TValue)_formatter.ReadFromStream(typeof(TValue), stream, Encoding.UTF8);
-		    }
-	    }
 	}
 }
