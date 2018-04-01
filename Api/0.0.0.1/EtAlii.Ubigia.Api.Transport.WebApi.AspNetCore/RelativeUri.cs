@@ -2,12 +2,12 @@
 {
     public static class RelativeUri 
     {
-        // TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
+		// TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
 		public static string ApiRest = "Api/Rest/";
 	    public const string Authenticate = "authenticate";
 
-	    public static class Admin
+		public static class Admin
         {
             public const string MicrosoftGraphSettings = "admin/settings/microsoft/graph";
             public const string GooglePeopleApiSettings = "admin/settings/google/peopleapi";
