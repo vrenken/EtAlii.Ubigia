@@ -4,7 +4,10 @@
     {
         // TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
-        public static class Admin
+		public static string ApiRest = "Api/Rest/";
+	    public const string Authenticate = "authenticate";
+
+	    public static class Admin
         {
             public const string MicrosoftGraphSettings = "admin/settings/microsoft/graph";
             public const string GooglePeopleApiSettings = "admin/settings/google/peopleapi";
@@ -23,21 +26,19 @@
 
         public static class Data
         {
-            public const string Accounts = "data/account";
+            public const string Accounts = "account";
 
-            public const string Storages = "data/storage";
-            public const string Spaces = "data/space";
+            public const string Storages = "storage";
+            public const string Spaces = "space";
 
-            public const string Entry = "data/entry";
-            public const string RelatedEntries = "data/relatedentries";
-            public const string Entries = "data/entries";
+            public const string Entry = "entry";
+            public const string RelatedEntries = "relatedentries";
+            public const string Entries = "entries";
 
-            public const string Roots = "data/root";
-            public const string Content = "data/content";
-            public const string Properties = "data/properties";
-            public const string ContentDefinition = "data/contentdefinition";
+            public const string Roots = "root";
+            public const string Content = "content";
+            public const string Properties = "properties";
+            public const string ContentDefinition = "contentdefinition";
         }
-
-        public const string Authenticate = "authenticate";
     }
 }

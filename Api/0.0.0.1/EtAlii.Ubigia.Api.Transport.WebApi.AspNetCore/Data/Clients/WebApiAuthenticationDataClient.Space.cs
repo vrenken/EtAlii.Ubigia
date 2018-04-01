@@ -24,9 +24,13 @@
 
         private async Task<Space> GetSpace(Account currentAccount, string spaceName)
         {
-            var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.Data.Spaces, UriParameter.AccountId, currentAccount.Id.ToString());
-            var spaces = await _connection.Client.Get<IEnumerable<Space>>(address);
-            return spaces.FirstOrDefault(s => s.Name == spaceName);
+	        //var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.Spaces, UriParameter.AccountId, currentAccount.Id.ToString());
+	        //var spaces = await _connection.Client.Get<IEnumerable<Space>>(address);
+	        //return spaces.FirstOrDefault(s => s.Name == spaceName);
+
+	        var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.Spaces, UriParameter.SpaceName, spaceName);
+	        var space = await _connection.Client.Get<Space>(address);
+	        return space;
         }
-    }
+	}
 }

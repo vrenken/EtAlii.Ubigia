@@ -22,15 +22,15 @@
 
             if (storageInfoProvider.Storage != null)
             {
-                address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.Storage.Id.ToString());
+                address = _addressFactory.Create(currentStorage, RelativeUri.ApiRest + RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.Storage.Id.ToString());
             }
             else if (!String.IsNullOrWhiteSpace(storageInfoProvider.StorageName))
             {
-                address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageName, storageInfoProvider.StorageName);
+                address = _addressFactory.Create(currentStorage, RelativeUri.ApiRest + RelativeUri.Data.Storages, UriParameter.StorageName, storageInfoProvider.StorageName);
             }
             else if (storageInfoProvider.StorageId != Guid.Empty)
             {
-                address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.StorageId.ToString());
+                address = _addressFactory.Create(currentStorage, RelativeUri.ApiRest + RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.StorageId.ToString());
             }
 
             var storage = address != null ? await _client.Get<Storage>(address) : null;
