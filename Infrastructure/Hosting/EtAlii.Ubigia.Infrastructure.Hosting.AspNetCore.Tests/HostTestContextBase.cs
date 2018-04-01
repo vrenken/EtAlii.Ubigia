@@ -16,10 +16,13 @@
         public InfrastructureTestHost Host { get; private set; }
         public string SystemAccountName { get; private set; }
 		public string SystemAccountPassword { get; private set; }
-		public string TestAccountName { get; private set; }
-		public string TestAccountPassword { get; private set; }
+	    public string TestAccountName { get; private set; }
+	    public string TestAccountPassword { get; private set; }
 
-	    private const string HostSchemaAndIp = "http://127.0.0.1";
+	    public string AdminAccountName { get; private set; }
+	    public string AdminAccountPassword { get; private set; }
+
+		private const string HostSchemaAndIp = "http://127.0.0.1";
 
 		public Uri HostAddress { get; } = new Uri(HostSchemaAndIp, UriKind.Absolute);
 
@@ -47,6 +50,10 @@
 			SystemAccountPassword = systemAccount.Password;
 
 			var adminAccount = Infrastructure.Accounts.Get("Administrator");
+			AdminAccountName = adminAccount.Name;
+			AdminAccountPassword = adminAccount.Password;
+
+			// TODO: Create test user account and use this instead of the admin account.
 			TestAccountName = adminAccount.Name;
 			TestAccountPassword = adminAccount.Password;
 		}
@@ -119,7 +126,7 @@
 
 	    public IInfrastructureClient CreateRestInfrastructureClient()
 	    {
-		    var httpClientFactory = new TestHttpClientFactory(this.Host.Server);
+			var httpClientFactory = new TestHttpClientFactory(this.Host.Server);
 		    var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
 		    return infrastructureClient;
 	    }
