@@ -24,7 +24,7 @@
 
 		    var userPort = "64000";
 		    var adminPort = "64001";
-		    var authenticationPort = "64002";
+		    //var authenticationPort = "64002";
 
 			var applicationConfiguration = new ConfigurationBuilder()
 				.AddInMemoryCollection(new Dictionary<string, string>()
