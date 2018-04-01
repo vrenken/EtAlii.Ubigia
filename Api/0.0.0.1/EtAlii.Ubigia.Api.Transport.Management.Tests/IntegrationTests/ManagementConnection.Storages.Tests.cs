@@ -180,11 +180,11 @@
         public async Task ManagementConnection_Storages_Change()
         {
             var connection = await _testContext.CreateManagementConnection();
-
+	        var index = 10;
             var name = Guid.NewGuid().ToString();
-            var address = Guid.NewGuid().ToString();
+            var address = $"http://www.host{++index}.com";
 
-            var storage = await connection.Storages.Add(name, address);
+			var storage = await connection.Storages.Add(name, address);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
@@ -195,7 +195,7 @@
             Assert.Equal(address, storage.Address);
 
             name = Guid.NewGuid().ToString();
-            address = Guid.NewGuid().ToString();
+	        address = $"http://www.host{++index}.com";
             storage = await connection.Storages.Change(storage.Id, name, address);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
