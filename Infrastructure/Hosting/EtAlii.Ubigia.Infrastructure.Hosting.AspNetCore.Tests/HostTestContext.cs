@@ -37,7 +37,7 @@
 
 				    { "Host:Systems:0:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport" },
 					{ "Host:Systems:0:Services:1:Name", "Debug storage" },
-					{ "Host:Systems:0:Services:1:Address", "http://127.0.0.1:64000" },
+					{ "Host:Systems:0:Services:1:Address", "http://127.0.0.1" },
 
 					//{ "Host:Systems:0:Services:2:Factory", "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore" },
 					//{ "Host:Systems:0:Services:2:IpAddress", "0.0.0.0" },
