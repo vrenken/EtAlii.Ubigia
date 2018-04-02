@@ -44,9 +44,8 @@
         public ConnectionDialogViewModel(ConnectionDialogWindow window, string defaultServer, string defaultLogin, string defaultPassword, string defaultSpace)
         {
             _window = window;
-            string password;
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
-            _connectionSettingsPersister.Load(out password);
+            _connectionSettingsPersister.Load(out string password);
 
 			if (System.Diagnostics.Debugger.IsAttached)
 			{
