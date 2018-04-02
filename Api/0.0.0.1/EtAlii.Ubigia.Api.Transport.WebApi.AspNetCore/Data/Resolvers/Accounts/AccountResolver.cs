@@ -27,18 +27,18 @@
 
                 if (accountInfoProvider.Account != null)
                 {
-                    address = _addressFactory.Create(targetStorage, RelativeUri.ApiRest + RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.Account.Id.ToString());
+                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.Account.Id.ToString());
                     account = address != null ? await _client.Get<Account>(address) : null;
                 }
                 else if (!String.IsNullOrWhiteSpace(accountInfoProvider.AccountName))
                 {
-                    address = _addressFactory.Create(targetStorage, RelativeUri.ApiRest + RelativeUri.Data.Accounts);
+                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts);
                     var accounts = await _client.Get<IEnumerable<Account>>(address);
                     account = accounts.FirstOrDefault(u => u.Name == accountInfoProvider.AccountName);
                 }
                 else if (accountInfoProvider.AccountId != Guid.Empty)
                 {
-                    address = _addressFactory.Create(targetStorage, RelativeUri.ApiRest + RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.AccountId.ToString());
+                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.AccountId.ToString());
                     account = address != null ? await _client.Get<Account>(address) : null;
                 }
             }

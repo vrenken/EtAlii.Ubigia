@@ -6,7 +6,7 @@
     {
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.Properties, UriParameter.EntryId, identifier.ToString());
+            var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Properties, UriParameter.EntryId, identifier.ToString());
             await Connection.Client.Post(address, properties);
             PropertiesHelper.SetStored(properties, true);
         }
@@ -15,7 +15,7 @@
         {
             return await scope.Cache.GetProperties(identifier, async () =>
             {
-                var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.Properties, UriParameter.EntryId, identifier.ToString());
+                var address = Connection.AddressFactory.Create(Connection.Storage, RelativeUri.Data.Properties, UriParameter.EntryId, identifier.ToString());
                 var result = await Connection.Client.Get<PropertyDictionary>(address);
                 if (result != null)
                 {

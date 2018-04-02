@@ -4,6 +4,8 @@
     {
         // TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
+        public static string ApiRest = "";
+
         public static class Admin
         {
             public const string MicrosoftGraphSettings = "admin/settings/microsoft/graph";

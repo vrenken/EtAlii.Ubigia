@@ -21,7 +21,7 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-            var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.ApiRest + RelativeUri.Data.Accounts, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
+            var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.Data.Accounts, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
             var account = await _connection.Client.Get<Account>(address);
             if (account == null)
             {
