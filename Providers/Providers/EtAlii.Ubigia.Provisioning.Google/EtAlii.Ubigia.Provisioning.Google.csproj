@@ -35,6 +35,8 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Apis.PeopleService.v1" Version="1.32.2.1169" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>

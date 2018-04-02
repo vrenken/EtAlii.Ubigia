@@ -39,4 +39,9 @@
     <Folder Include="_Scaffolding\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.4.1" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>

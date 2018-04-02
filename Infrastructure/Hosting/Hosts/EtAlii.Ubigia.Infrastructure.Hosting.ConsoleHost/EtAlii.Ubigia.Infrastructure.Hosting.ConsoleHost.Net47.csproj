@@ -59,8 +59,8 @@
 
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Net47" Version="1.0.42" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Net47" Version="1.0.43" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>

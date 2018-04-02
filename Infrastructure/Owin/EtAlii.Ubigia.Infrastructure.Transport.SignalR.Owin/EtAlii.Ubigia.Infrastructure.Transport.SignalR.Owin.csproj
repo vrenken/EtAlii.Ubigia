@@ -17,8 +17,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.2" />
-    <PackageReference Include="Microsoft.Owin.Cors" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Core" Version="2.2.3" />
+    <PackageReference Include="Microsoft.Owin.Cors" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
