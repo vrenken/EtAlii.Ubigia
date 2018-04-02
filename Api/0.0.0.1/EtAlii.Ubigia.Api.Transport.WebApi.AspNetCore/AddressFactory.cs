@@ -29,7 +29,7 @@
 				Query = String.Join("&", queryComponents)
 			};
 
-			builder.Path = builder.Path.TrimEnd('/') + "/" + relativeAddress.TrimStart('/');
+			builder.Path = builder.Path.TrimEnd('/') + "/" + RelativeUri.ApiRest + relativeAddress.TrimStart('/');
 			return builder.Uri;//ToString();
 		}
 
