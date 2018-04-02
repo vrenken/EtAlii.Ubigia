@@ -19,7 +19,9 @@
 			services
 				.TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
 				.TryAddSingleton<IStorageRepository>(infrastructure.Storages)
+				.AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 				.AddSingleton<IHttpContextAuthenticationVerifier, HttpContextAuthenticationVerifier>()
+				.AddSingleton<IHttpContextResponseBuilder, HttpContextResponseBuilder>()
 				.AddSingleton<IHttpContextAuthenticationTokenVerifier, HttpContextAuthenticationTokenVerifier>()
 				.AddSingleton<IHttpContextAuthenticationIdentityProvider, DefaultHttpContextAuthenticationIdentityProvider>();
 
