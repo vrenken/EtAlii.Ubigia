@@ -34,9 +34,9 @@
 	                    if (requiredRoles.Any())
 	                    {
 		                    var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
-		                    if (!hasOneRequiredRole)
+		                    if (hasOneRequiredRole)
 		                    {
-			                    controller.Forbid();
+			                    result = controller.Ok();
 		                    }
 	                    }
                         else
