@@ -108,7 +108,7 @@
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid storageId, Storage storage)
+        public IActionResult Put([RequiredFromQuery]Guid storageId, [FromBody]Storage storage)
         {
             IActionResult response;
             try

@@ -8,19 +8,19 @@
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
     using Microsoft.AspNetCore.Mvc;
 
-    //[RequiresAuthenticationToken]
+	//[RequiresAuthenticationToken]
     [Route(RelativeUri.Admin.Api.Spaces)]
     public class SpaceController : RestController
     {
-        private readonly ISpaceRepository _items;
+	    private readonly ISpaceRepository _items;
 
-        public SpaceController(ISpaceRepository items)
-        {
-            _items = items;
-        }
+	    public SpaceController(ISpaceRepository items)
+	    {
+		    _items = items;
+	    }
 
-        // Get all spaces for the specified accountid
-        [HttpGet]
+		// Get all spaces for the specified accountid
+		[HttpGet]
         public IActionResult GetForAccount([RequiredFromQuery]Guid accountId)
         {
             IActionResult response;
@@ -37,25 +37,25 @@
             return response;
         }
 
-        [HttpGet]
-        public IActionResult GetForAccount([RequiredFromQuery]Guid accountId, [RequiredFromQuery]string spaceName)
-        {
-            IActionResult response;
-            try
-            {
-                var space = _items.Get(accountId, spaceName);
-                response = Ok(space);
-            }
-            catch (Exception ex)
-            {
-                //Logger.Critical("Unable to serve a Space GET client request", ex);
-                response = BadRequest(ex.Message);
-            }
-            return response;
-        }
+		[HttpGet]
+		public IActionResult GetForAccount([RequiredFromQuery]Guid accountId, [RequiredFromQuery]string spaceName)
+		{
+			IActionResult response;
+			try
+			{
+				var space = _items.Get(accountId, spaceName);
+				response = Ok(space);
+			}
+			catch (Exception ex)
+			{
+				//Logger.Critical("Unable to serve a Space GET client request", ex);
+				response = BadRequest(ex.Message);
+			}
+			return response;
+		}
 
-        // Get all Items
-        [HttpGet]
+		// Get all Items
+		[HttpGet]
         public IActionResult Get()
         {
             IActionResult response;
@@ -111,7 +111,7 @@
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid spaceId, Space space)
+        public IActionResult Put([RequiredFromQuery]Guid spaceId, [FromBody]Space space)
         {
             IActionResult response;
             try
