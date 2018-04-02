@@ -1,3 +1,3 @@
 ﻿using Xunit;
 
-[assembly: CollectionBehavior(collectionBehavior: CollectionBehavior.CollectionPerAssembly, DisableTestParallelization = false)]
+[assembly: CollectionBehavior(CollectionBehavior.CollectionPerClass, DisableTestParallelization = false)]
