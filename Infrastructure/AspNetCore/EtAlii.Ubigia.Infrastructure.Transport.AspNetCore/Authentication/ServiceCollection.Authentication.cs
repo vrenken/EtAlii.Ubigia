@@ -40,6 +40,7 @@
 				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
 			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 			    .AddSingleton<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>()
+			    .AddSingleton<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>()
 			    .AddSingleton<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>();
 
 			//AddJwtBearer(services);
