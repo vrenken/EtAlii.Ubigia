@@ -21,7 +21,8 @@
             container.Register<IParameterResolver,SignalRParameterResolver>();
             container.Register(() => new SerializerFactory().Create());
 
-            container.Register<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>();
+	        container.Register<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>();
+			container.Register<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>();
             container.Register<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>();
 
             // We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.

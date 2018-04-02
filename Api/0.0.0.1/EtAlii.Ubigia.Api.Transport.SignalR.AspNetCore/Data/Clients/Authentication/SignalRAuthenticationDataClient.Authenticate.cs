@@ -42,7 +42,15 @@
 
         private async Task<string> GetAuthenticationToken(HttpMessageHandler httpMessageHandler, string accountName, string password, Uri address, string authenticationToken)
         {
-            if (password != null || authenticationToken == null)
+	        if (password == null && authenticationToken != null)
+	        {
+		        // These lines are needed to make the downscale from admin/system to user accoun based authentication tokens.
+		        var connection = new HubConnectionFactory().Create(httpMessageHandler, new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), authenticationToken);
+		        await connection.StartAsync();
+		        authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier);
+		        await connection.DisposeAsync();
+	        }
+            else if (password != null && authenticationToken == null)
             {
 				var connection = new HubConnectionFactory().CreateForHost(httpMessageHandler, new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), _hostIdentifier);
                 await connection.StartAsync();
