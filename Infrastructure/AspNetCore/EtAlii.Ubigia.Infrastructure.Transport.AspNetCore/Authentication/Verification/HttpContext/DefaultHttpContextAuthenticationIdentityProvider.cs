@@ -31,13 +31,13 @@
                 var encodedUsernamePassword = authenticationHeader.Substring("Basic".Length).Trim();
                 var usernamePassword = Encoding.Default.GetString(Convert.FromBase64String(encodedUsernamePassword));
 
-                var seperatorIndex = usernamePassword.IndexOf(':');
-                if (seperatorIndex == -1)
+                var separatorIndex = usernamePassword.IndexOf(':');
+                if (separatorIndex == -1)
                 {
                     return null;
                 }
-                var username = usernamePassword.Substring(0, seperatorIndex);
-                var password = usernamePassword.Substring(seperatorIndex + 1);
+                var username = usernamePassword.Substring(0, separatorIndex);
+                var password = usernamePassword.Substring(separatorIndex + 1);
 
                 return new AuthenticationIdentity(username, password);
             }

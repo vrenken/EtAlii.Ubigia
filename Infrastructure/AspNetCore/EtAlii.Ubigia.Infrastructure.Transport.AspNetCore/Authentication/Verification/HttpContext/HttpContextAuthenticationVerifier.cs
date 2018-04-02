@@ -15,16 +15,16 @@
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IHttpContextAuthenticationIdentityProvider _authenticationIdentityProvider;
-        private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
+	    private readonly IHttpContextResponseBuilder _responseBuilder;
 
-        public HttpContextAuthenticationVerifier(
+		public HttpContextAuthenticationVerifier(
             IAccountRepository accountRepository,
             IHttpContextAuthenticationIdentityProvider authenticationIdentityProvider,
-            IAuthenticationTokenConverter authenticationTokenConverter)
+            IHttpContextResponseBuilder responseBuilder)
         {
             _accountRepository = accountRepository;
             _authenticationIdentityProvider = authenticationIdentityProvider;
-            _authenticationTokenConverter = authenticationTokenConverter;
+	        _responseBuilder = responseBuilder;
         }
 
         public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
@@ -51,7 +51,7 @@
 
 			var accountName = account.Name;
 
-            var response = CreateResponse(context, controller, accountName);
+            var response = _responseBuilder.Build(context, controller, accountName);
 
             var principal = new GenericPrincipal(identity, null);
 
@@ -88,43 +88,6 @@
                 context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{host}\"");
             }
             return controller.Unauthorized();
-        }
-
-        private IActionResult CreateResponse(HttpContext context, Controller controller, string accountName)
-        {
-            IActionResult response;
-            try
-            {
-                var success = context.Request.Headers.TryGetValue("Host-Identifier", out StringValues values);
-                if (success)
-                {
-                    var hostIdentifier = values.First();
-
-                    var authenticationToken = new AuthenticationToken
-                    {
-                        Name = accountName,
-                        Address = hostIdentifier,
-                        Salt = DateTime.UtcNow.ToBinary(),
-                    };
-
-                    var authenticationTokenAsBytes = _authenticationTokenConverter.ToBytes(authenticationToken);
-                    authenticationTokenAsBytes = Aes.Encrypt(authenticationTokenAsBytes);
-                    var authenticationTokenAsString = Convert.ToBase64String(authenticationTokenAsBytes);
-
-                    response = controller.Ok(authenticationTokenAsString);
-                }
-                else
-                {
-                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed;
-                }
-            }
-            catch (Exception ex)
-            {
-                response = controller.BadRequest(ex.Message);
-                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk");
-            }
-            return response;
-
         }
     }
 }

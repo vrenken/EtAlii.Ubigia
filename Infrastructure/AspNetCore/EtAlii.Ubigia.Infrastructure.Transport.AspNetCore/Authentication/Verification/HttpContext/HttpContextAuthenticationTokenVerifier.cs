@@ -19,7 +19,7 @@
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
-        public IActionResult Verify(HttpContext context, Controller controller, string requiredRole)
+        public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
         {
             IActionResult result = controller.Forbid();
             var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(context);
@@ -30,14 +30,15 @@
                     var account = _accountRepository.Get(authenticationToken.Name);
                     if (account != null)
                     {
-                        // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
-                        if (requiredRole != null)
-                        {
-                            if (account.Roles.Contains(requiredRole))
-                            {
-                                result = controller.Ok();
-                            }
-                        }
+	                    // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
+	                    if (requiredRoles.Any())
+	                    {
+		                    var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role));
+		                    if (!hasOneRequiredRole)
+		                    {
+			                    controller.Forbid();
+		                    }
+	                    }
                         else
                         {
                             result = controller.Ok();
