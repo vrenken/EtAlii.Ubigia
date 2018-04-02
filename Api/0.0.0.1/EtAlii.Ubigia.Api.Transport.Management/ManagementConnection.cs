@@ -43,7 +43,11 @@
 			// TODO: Temporary patch to make downscaling from a management to a data connection possible.
 	        var uriBuilder = new UriBuilder(Configuration.Address);
 	        uriBuilder.Path = uriBuilder.Path.Replace("Admin", "User");
-	        var address = uriBuilder.Uri;
+
+			// TODO: Temporary patch to make downscaling from a management to a data connection possible.
+	        uriBuilder.Port = uriBuilder.Port - 1;
+
+			var address = uriBuilder.Uri;
 
 			var connectionConfiguration = new DataConnectionConfiguration()
                 .Use(Configuration.TransportProvider)
