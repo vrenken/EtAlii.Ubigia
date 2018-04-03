@@ -37,8 +37,8 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.40" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.44" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Net47" Version="1.0.44" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.46" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Net47" Version="1.0.46" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.6.2" />
     <PackageReference Include="Microsoft.Owin.Testing" Version="4.0.0" />
     <PackageReference Include="xunit" Version="2.3.1" />
