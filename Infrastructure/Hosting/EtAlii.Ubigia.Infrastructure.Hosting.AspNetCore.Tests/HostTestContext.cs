@@ -2,7 +2,6 @@
 {
 	using System;
 	using System.Collections.Generic;
-	using System.IO;
 	using System.Linq;
 	using System.Net.NetworkInformation;
 	using EtAlii.xTechnology.Hosting;
@@ -73,9 +72,9 @@
 
 		    var hostConfiguration = new HostConfigurationBuilder()
 			    .Build(applicationConfiguration);
-			    //.UseTestHost(diagnostics);
+            //.UseTestHost(diagnostics);
 
-		    var host = (InfrastructureTestHost)new HostFactory<InfrastructureTestHost>().Create(hostConfiguration);
+            var host = new HostFactory<InProcessInfrastructureTestHost>().Create(hostConfiguration);
 
 		    base.Start(host, () => host.Infrastructure);
 
@@ -121,54 +120,5 @@
 
 		    return result;
 	    }
-
-		//    public void Start()
-		//    {
-		//        var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.Infrastructure");
-		//        //diagnostics.EnableLogging = true;
-
-		//        // Create a Storage instance.
-		//        var storageConfiguration = TestStorageConfiguration.Create()
-		//            .UseInMemoryStorage();
-		//        var storage = new StorageFactory().Create(storageConfiguration);
-
-		//        // Fetch the Infrastructure configuration.
-		//        var infrastructureConfiguration = TestInfrastructureConfiguration.Create();
-
-		//        // Create fabric instance.
-		//        var fabricConfiguration = new FabricContextConfiguration()
-		//            .Use(storage);
-		//        var fabric = new FabricContextFactory().Create(fabricConfiguration);
-
-		//        // Create logical context instance.
-		//        var logicalConfiguration = new LogicalContextConfiguration()
-		//            .Use(fabric)
-		//            .Use(infrastructureConfiguration.Name, infrastructureConfiguration.Address);
-		//        var logicalContext = new LogicalContextFactory().Create(logicalConfiguration);
-
-		//        // Create a Infrastructure instance.
-		//        infrastructureConfiguration = infrastructureConfiguration
-		//         .Use<SystemConnectionInfrastructure>()
-		////.Use<TestInfrastructure>()
-		////.UseAspNetCore<TestInfrastructure>()
-		////.UseSignalRTestApi(diagnostics)
-		////.UseWebApiAdminApi()
-		////.UseWebApiAdminPortal()
-		////.UseWebApiUserApi()
-		////.UseWebApiUserPortal()
-		////.Use(diagnostics)
-		//.Use(logicalContext);
-		//        var infrastructure = new InfrastructureFactory().Create(infrastructureConfiguration);
-
-		//        // Create a host instance.
-		//        var hostConfiguration = new HostConfiguration()
-		//            .UseTestHost(diagnostics)
-		//            //.UseInfrastructure(storage, infrastructure)
-		//;
-		//        var host = new HostFactory<TestHost>().Create(hostConfiguration);
-
-		//        // Start hosting both the infrastructure and the storage.
-		//        Start(host, infrastructure);
-		//    }
 	}
 }

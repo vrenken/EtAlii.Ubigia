@@ -9,7 +9,7 @@
 	using EtAlii.Ubigia.Storage;
 	using EtAlii.xTechnology.Hosting;
 
-    public class InfrastructureTestHost : EtAlii.xTechnology.Hosting.TestHost, IAspNetCoreHost
+    public class InProcessInfrastructureTestHost : EtAlii.xTechnology.Hosting.InprocessTestHost
     {
 	    internal IInfrastructure Infrastructure => _infrastructure.Value;
 	    private readonly Lazy<IInfrastructure> _infrastructure;
@@ -22,10 +22,8 @@
 	    public UserModule UserModule => _userModule.Value;
 	    private readonly Lazy<UserModule> _userModule;
 
-		protected InfrastructureTestHost(
-		    IHostConfiguration configuration,
-		    ISystemManager systemManager)
-		    : base(configuration, systemManager)
+		protected InProcessInfrastructureTestHost(ISystemManager systemManager)
+		    : base(systemManager)
 	    {
 		    _infrastructure = new Lazy<IInfrastructure>(() => this.Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single());
 		    _storage = new Lazy<IStorage>(() => this.Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single());

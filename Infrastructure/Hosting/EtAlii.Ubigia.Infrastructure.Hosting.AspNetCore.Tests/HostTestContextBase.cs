@@ -1,19 +1,16 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
 	using System;
-	using System.ComponentModel;
-	using System.Threading;
 	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Api.Transport.WebApi;
 	using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport;
-    using EtAlii.xTechnology.Hosting;
 
     public abstract class HostTestContextBase : IHostTestContext
     {
         public IInfrastructure Infrastructure { get; private set; }
-        public InfrastructureTestHost Host { get; private set; }
+        public InProcessInfrastructureTestHost Host { get; private set; }
         public string SystemAccountName { get; private set; }
 		public string SystemAccountPassword { get; private set; }
 	    public string TestAccountName { get; private set; }
@@ -33,7 +30,7 @@
 
 		public abstract void Start();
 
-		protected void Start(InfrastructureTestHost host, Func<IInfrastructure> getInfrastructure)
+		protected void Start(InProcessInfrastructureTestHost host, Func<IInfrastructure> getInfrastructure)
 		{
 			Host = host;
 			host.Start();
@@ -57,63 +54,6 @@
 			TestAccountName = adminAccount.Name;
 			TestAccountPassword = adminAccount.Password;
 		}
-
-		private void WaitUntilHostIsRunning(InfrastructureTestHost host)
-	    {
-		    var resetEvent = new ManualResetEvent(false);
-
-		    void SignalResetEvent(object o, PropertyChangedEventArgs e)
-		    {
-			    switch (e.PropertyName)
-			    {
-				    case nameof(host.State):
-					    if (host.State == State.Running)
-					    {
-						    resetEvent.Set();
-					    }
-
-					    break;
-			    }
-		    }
-
-		    host.PropertyChanged += SignalResetEvent;
-
-		    host.Start();
-
-		    resetEvent.WaitOne(TimeSpan.FromSeconds(5), true);
-
-		    host.PropertyChanged -= SignalResetEvent;
-	    }
-
-	    private void WaitUntilModuleIsRunning(IModule module)
-	    {
-		    if (module.State == State.Running)
-		    {
-			    return;
-		    }
-
-			var resetEvent = new ManualResetEvent(false);
-
-		    void SignalResetEvent(object o, PropertyChangedEventArgs e)
-		    {
-			    switch (e.PropertyName)
-			    {
-				    case nameof(module.State):
-					    if (module.State == State.Running)
-					    {
-						    resetEvent.Set();
-					    }
-
-					    break;
-			    }
-		    }
-
-		    module.PropertyChanged += SignalResetEvent;
-
-		    resetEvent.WaitOne(TimeSpan.FromSeconds(5), true);
-
-		    module.PropertyChanged -= SignalResetEvent;
-	    }
 
 		public async Task<ISystemConnection> CreateSystemConnection()
         {

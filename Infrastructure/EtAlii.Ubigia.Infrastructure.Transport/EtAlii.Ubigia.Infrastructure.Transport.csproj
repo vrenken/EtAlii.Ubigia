@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.43" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.44" />
   </ItemGroup>
 
   <ItemGroup>

@@ -18,11 +18,11 @@
 
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.43" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.44" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.40" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.40" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.AspNetCore" Version="1.0.43" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.AspNetCore" Version="1.0.44" />
   </ItemGroup>
 
   <ItemGroup>
