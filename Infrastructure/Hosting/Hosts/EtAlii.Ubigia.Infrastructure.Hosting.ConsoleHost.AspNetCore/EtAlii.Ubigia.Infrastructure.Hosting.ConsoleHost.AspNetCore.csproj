@@ -15,7 +15,7 @@
     <Content Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.AspNetCore" Version="1.0.43" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.AspNetCore" Version="1.0.44" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.csproj" />

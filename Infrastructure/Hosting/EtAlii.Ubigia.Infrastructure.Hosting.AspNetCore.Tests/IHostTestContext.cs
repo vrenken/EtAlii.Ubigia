@@ -7,7 +7,7 @@
 
     public interface IHostTestContext
     {
-	    InfrastructureTestHost Host { get; }
+        InProcessInfrastructureTestHost Host { get; }
 	    string SystemAccountName { get; }
 	    string SystemAccountPassword { get; }
 	    string TestAccountName { get; }
