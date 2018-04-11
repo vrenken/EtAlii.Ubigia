@@ -12,14 +12,14 @@
     {
         private PowerShell PowerShell { get; set; }
 
-        public IHostTestContext Context { get; private set; }
+        public IHostTestContext<NetworkedInfrastructureTestHost> Context { get; private set; }
 
         public void Start()
         {
 			// TODO: The powershell tests cannot use the test infrastructure because process boundaries disable direct interaction 
 			// between the host/infrastructure and the unit tests.
 
-			Context = new HostTestContextFactory().Create();
+			Context = new HostTestContextFactory().Create<NetworkedInfrastructureHostTestContext>();
 	        Context.Start();
 
 			PowerShell = CreatePowerShell();
@@ -137,11 +137,12 @@
         {
             //var configuration = Context.Infrastructure.Configuration;
             PowerShell.Commands.Clear();
-	        PowerShell.AddCommand("Select-Storage")
-				//.AddArgument(Context.HostAddress)//configuration.Address)
-					  .AddArgument($"{Context.HostAddress}:{Context.Host.AdminModule.Port}/Admin")
-                      .AddArgument(Context.TestAccountName)
-                      .AddArgument(Context.TestAccountPassword);
+	        PowerShell
+	            .AddCommand("Select-Storage")
+				.AddArgument(Context.HostAddress)//configuration.Address)
+				//.AddArgument($"{Context.ManagementServiceAddress}")
+                .AddArgument(Context.AdminAccountName)
+                .AddArgument(Context.AdminAccountPassword);
             return PowerShell.Invoke();
         }
 
