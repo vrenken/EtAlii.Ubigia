@@ -6,15 +6,16 @@
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Hosting;
 
-    public abstract class TransportTestContextBase : ITransportTestContext
+    public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext<THostTestContext>
+        where THostTestContext: class, IHostTestContext, new()
     {
-        public IHostTestContext Context { get; private set; }
+        public THostTestContext Context { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
 
-        protected TransportTestContextBase(IHostTestContextFactory testHostFactory)
+        protected TransportTestContextBase()//IHostTestContextFactory testHostFactory)
         {
-            _testHostFactory = testHostFactory;
+            _testHostFactory = new HostTestContextFactory();
         }
 
         public async Task<IDataConnection> CreateDataConnection(bool openOnCreation = true)
@@ -51,7 +52,7 @@
         {
             await Task.Run(() =>
             {
-                Context = _testHostFactory.Create();
+                Context = _testHostFactory.Create<THostTestContext>();
                 Context.Start();
             });
         }

@@ -1,20 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
 	using System;
-	using System.Net.Http;
 	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Diagnostics;
+	using EtAlii.Ubigia.Api.Tests;
+	using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using EtAlii.Ubigia.Api.Transport.WebApi;
     using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Infrastructure;
 
-    public class WebApiTransportTestContext : TransportTestContextBase
+    public class WebApiTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext
     {
-        public WebApiTransportTestContext(IHostTestContextFactory testHostFactory) : base(testHostFactory)
+        public WebApiTransportTestContext()//IHostTestContextFactory testHostFactory) : base(testHostFactory)
         {
         }
 

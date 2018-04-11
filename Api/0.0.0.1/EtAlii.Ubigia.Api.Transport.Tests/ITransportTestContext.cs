@@ -6,9 +6,14 @@ namespace EtAlii.Ubigia.Api.Tests
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Infrastructure.Hosting;
 
-    public interface ITransportTestContext
+    public interface ITransportTestContext : ITransportTestContext<InProcessInfrastructureHostTestContext>
     {
-        IHostTestContext Context { get; }
+    }
+
+    public interface ITransportTestContext<out THostTestContext>
+        where THostTestContext : class, IHostTestContext, new()
+    {
+        THostTestContext Context { get; }
 
         Task<IDataConnection> CreateDataConnection(bool openOnCreation = true);
         Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
