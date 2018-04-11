@@ -28,6 +28,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Client\" />
+  </ItemGroup>
+
   <Import Project="..\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems" Label="Shared" />
 
 </Project>
