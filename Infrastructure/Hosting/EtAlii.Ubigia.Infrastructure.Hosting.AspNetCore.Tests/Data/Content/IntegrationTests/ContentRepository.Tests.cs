@@ -7,11 +7,11 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure;
 
-    public sealed class ContentRepository_Tests : IClassFixture<HostUnitTestContext>
+    public sealed class ContentRepository_Tests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public ContentRepository_Tests(HostUnitTestContext testContext)
+        public ContentRepository_Tests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

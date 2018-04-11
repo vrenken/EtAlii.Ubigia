@@ -9,11 +9,11 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     
-    public sealed class RootInitializer_Tests : IClassFixture<HostUnitTestContext>
+    public sealed class RootInitializer_Tests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public RootInitializer_Tests(HostUnitTestContext testContext)
+        public RootInitializer_Tests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

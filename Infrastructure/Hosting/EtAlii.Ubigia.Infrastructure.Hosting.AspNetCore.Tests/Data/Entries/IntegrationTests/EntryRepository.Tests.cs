@@ -9,12 +9,12 @@
     using EtAlii.Ubigia.Infrastructure;
 
 
-    public class EntryRepository_Tests : IClassFixture<HostUnitTestContext>
+    public class EntryRepository_Tests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
         private const int _count = 10;
 
-        public EntryRepository_Tests(HostUnitTestContext testContext)
+        public EntryRepository_Tests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

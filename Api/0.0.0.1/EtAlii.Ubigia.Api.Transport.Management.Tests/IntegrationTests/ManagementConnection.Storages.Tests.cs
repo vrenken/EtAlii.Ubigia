@@ -6,12 +6,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
 
     
     public class ManagementConnection_Storages_Tests : IDisposable
     {
-        private static ITransportTestContext _testContext;
+        private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
 
         public ManagementConnection_Storages_Tests()
         {

@@ -6,11 +6,11 @@
     using System.Linq;
 
     
-    public sealed class StorageRepository_Tests : IClassFixture<HostUnitTestContext>
+    public sealed class StorageRepository_Tests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public StorageRepository_Tests(HostUnitTestContext testContext)
+        public StorageRepository_Tests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
