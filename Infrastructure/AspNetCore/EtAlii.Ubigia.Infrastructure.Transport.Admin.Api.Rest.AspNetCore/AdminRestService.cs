@@ -25,10 +25,12 @@
 	                services
 		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
 		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-		                .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+	                    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
 
-		                //.AddInfrastructureSimpleAuthentication(infrastructure)
-						.AddInfrastructureHttpContextAuthentication(infrastructure)
+	                    .AddSingleton<IRootRepository>(infrastructure.Roots) // We wand the management portal to manage the roots as well.
+
+                        //.AddInfrastructureSimpleAuthentication(infrastructure)
+                        .AddInfrastructureHttpContextAuthentication(infrastructure)
 		                .AddInfrastructureSerialization()
 
 						.AddMvcForTypedController<RestController>(options =>
