@@ -92,7 +92,7 @@
             var result = _testContext.InvokeGetRootByName(rootName);
             var root = _testContext.ToAssertedResult<Root>(result);
             Assert.NotNull(root);
-            Assert.Equal(root.Name, rootName);
+            Assert.Equal(rootName, root.Name);
         }
 
         private void Check_Root_Entry(string rootName)
@@ -100,7 +100,7 @@
             var result = _testContext.InvokeGetRootByName(rootName);
             var root = _testContext.ToAssertedResult<Root>(result);
             Assert.NotNull(root);
-            Assert.Equal(root.Name, rootName);
+            Assert.Equal(rootName, root.Name);
             //result = Invokeget
         }
 
@@ -115,7 +115,7 @@
             result = _testContext.InvokeGetSpaceByName(firstName);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, firstName);
+            Assert.Equal(firstName, space.Name);
 
             var secondName = Guid.NewGuid().ToString();
 
@@ -137,7 +137,7 @@
             result = _testContext.InvokeGetSpaceByName(secondName);
             space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, secondName);
+            Assert.Equal(secondName, space.Name);
         }
 
 
@@ -150,7 +150,7 @@
             var result = _testContext.InvokeGetSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
         }
 
         [Fact]
@@ -164,7 +164,7 @@
             var result = _testContext.InvokeGetSpaceByInstance();
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
         }
 
 
@@ -178,7 +178,7 @@
             var result = _testContext.InvokeGetSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
 
             _testContext.InvokeRemoveSpaceByName(name);
 
@@ -226,7 +226,7 @@
             var result = _testContext.InvokeSelectSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
         }
 
     }
