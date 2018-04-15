@@ -1,13 +1,13 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
 {
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.PowerShell.Tests;
-    using Xunit;
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Transport;
+    using Xunit;
 
-    
+
     public class Root_Test : IDisposable
     {
         private Guid _spaceId;
@@ -102,7 +102,7 @@
             result = _testContext.InvokeGetRootByName(firstName);
             var root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, firstName);
+            Assert.Equal(firstName, root.Name);
 
             var secondName = Guid.NewGuid().ToString();
 
@@ -124,7 +124,7 @@
             result = _testContext.InvokeGetRootByName(secondName);
             root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, secondName);
+            Assert.Equal(secondName, root.Name);
         }
 
 
@@ -173,7 +173,7 @@
             var result = _testContext.InvokeGetRootByInstance();
             var root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, name);
+            Assert.Equal(name, root.Name);
         }
 
 
@@ -187,7 +187,7 @@
             var result = _testContext.InvokeGetRootByName(name);
             var root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, name);
+            Assert.Equal(name, root.Name);
 
             _testContext.InvokeRemoveRootByName(name);
 
@@ -235,7 +235,7 @@
             var result = _testContext.InvokeSelectRootByName(name);
             var root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, name);
+            Assert.Equal(name, root.Name);
         }
     }
 }
