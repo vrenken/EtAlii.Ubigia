@@ -4,9 +4,11 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
     //[RequiresAuthenticationToken]
+    //[Authorize]
     [Route(RelativeUri.Admin.Api.Storages)]
     public class StorageController : RestController
     {
