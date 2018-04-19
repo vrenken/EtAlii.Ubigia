@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore
 {
     using System;
     using EtAlii.Ubigia.Api;
@@ -7,10 +7,9 @@
     using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
-    // TODO: REST Based data access is not yet secure!
     //[RequiresAuthenticationToken]
     //[Authorize]
-    [Route(RelativeUri.User.Api.Roots)]
+    [Route(RelativeUri.Admin.Api.Roots)]
     public class RootController : RestController
     {
         private readonly IRootRepository _items;
@@ -64,23 +63,6 @@
         //}
 
 
-        // Get Item by id
-        [HttpGet]
-        public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
-        {
-            IActionResult response;
-            try
-            {
-                var root = _items.Get(spaceId, rootId);
-                response = Ok(root);
-            }
-            catch (Exception ex)
-            {
-                response = BadRequest(ex.Message);
-            }
-            return response;
-        }
-
         //// Get Item by id
         //[HttpGet]
         //public IActionResult GetByName([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]string rootName)
@@ -97,6 +79,23 @@
         //    }
         //    return response;
         //}
+
+        // Get Item by id
+        [HttpGet]
+        public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
+        {
+            IActionResult response;
+            try
+            {
+                var root = _items.Get(spaceId, rootId);
+                response = Ok(root);
+            }
+            catch (Exception ex)
+            {
+                response = BadRequest(ex.Message);
+            }
+            return response;
+        }
 
         // Add item
         [HttpPost]
