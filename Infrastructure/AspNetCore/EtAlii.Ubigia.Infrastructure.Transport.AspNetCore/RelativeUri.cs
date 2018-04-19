@@ -29,6 +29,7 @@
                 public const string Accounts = "account";
                 public const string Storages = "storage";
                 public const string Spaces = "space";
+                public const string Roots = "root";
             }
         }
 
