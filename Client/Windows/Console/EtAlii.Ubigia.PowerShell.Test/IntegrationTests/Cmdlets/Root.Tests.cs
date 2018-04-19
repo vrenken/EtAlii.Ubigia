@@ -5,6 +5,7 @@
     using EtAlii.Ubigia.PowerShell.Tests;
     using System;
     using System.Collections.Generic;
+    using System.Management.Automation;
     using Xunit;
 
 
@@ -94,36 +95,23 @@
         [Fact]
         public void PowerShell_Root_Update()
         {
+            // Arrange.
             var result = _testContext.InvokeGetRoots();
-
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddRoot(firstName);
-
             result = _testContext.InvokeGetRootByName(firstName);
             var root = _testContext.ToAssertedResult<Root>(result);
-
-            Assert.Equal(firstName, root.Name);
-
             var secondName = Guid.NewGuid().ToString();
-
             root.Name = secondName;
 
+            // Act.
             _testContext.InvokeUpdateRoot(root);
-
-            Exception exceptedException = null;
-            try
-            {
-                result = _testContext.InvokeGetRootByName(firstName);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
-
+            Assert.Throws<CmdletInvocationException>(() => { result = _testContext.InvokeGetRootByName(firstName); });
             result = _testContext.InvokeGetRootByName(secondName);
             root = _testContext.ToAssertedResult<Root>(result);
 
+            // Assert.
+            Assert.Equal(firstName, root.Name);
             Assert.Equal(secondName, root.Name);
         }
 
@@ -234,7 +222,7 @@
 
             var result = _testContext.InvokeSelectRootByName(name);
             var root = _testContext.ToAssertedResult<Root>(result);
-
+             
             Assert.Equal(name, root.Name);
         }
     }
