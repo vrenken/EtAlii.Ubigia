@@ -57,7 +57,7 @@
 
             var name = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
-
+             
             result = _testContext.InvokeGetSpaces();
             spaces = _testContext.ToAssertedResult<List<Space>>(result);
             var secondCount = spaces.Count;

@@ -20,7 +20,7 @@
 			// between the host/infrastructure and the unit tests.
 
 			Context = new HostTestContextFactory().Create<NetworkedInfrastructureHostTestContext>();
-	        Context.Start();
+	        Context.Start(true);
 
 			PowerShell = CreatePowerShell();
 			InvokeSelectStorage();
@@ -139,7 +139,7 @@
             PowerShell.Commands.Clear();
 	        PowerShell
 	            .AddCommand("Select-Storage")
-				.AddArgument(Context.HostAddress)//configuration.Address)
+				.AddArgument(Context.ManagementServiceAddress)//configuration.Address)
 				//.AddArgument($"{Context.ManagementServiceAddress}")
                 .AddArgument(Context.AdminAccountName)
                 .AddArgument(Context.AdminAccountPassword);
