@@ -11,11 +11,11 @@
     using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
 
     
-    public class SystemConnection_Tests : IClassFixture<HostUnitTestContext>
+    public class SystemConnection_Tests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public SystemConnection_Tests(HostUnitTestContext testContext)
+        public SystemConnection_Tests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
