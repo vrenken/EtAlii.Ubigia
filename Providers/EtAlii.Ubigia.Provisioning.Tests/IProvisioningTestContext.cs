@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Provisioning
 
     public interface IProvisioningTestContext
     {
-        IHostTestContext Context { get; }
+        IHostTestContext<InProcessInfrastructureTestHost> Context { get; }
 
         Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName);
 
