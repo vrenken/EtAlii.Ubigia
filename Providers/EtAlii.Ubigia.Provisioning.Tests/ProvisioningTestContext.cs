@@ -13,13 +13,11 @@ namespace EtAlii.Ubigia.Provisioning
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Infrastructure;
     using EtAlii.Ubigia.Infrastructure.Hosting;
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {
-        public IHostTestContext Context { get; private set; }
+        public IHostTestContext<InProcessInfrastructureTestHost> Context { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
 
@@ -77,8 +75,8 @@ namespace EtAlii.Ubigia.Provisioning
         {
             await Task.Run(() =>
             {
-                Context = _testHostFactory.Create();
-                Context.Start();
+                Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
+                Context.Start(false);
             });
         }
 
