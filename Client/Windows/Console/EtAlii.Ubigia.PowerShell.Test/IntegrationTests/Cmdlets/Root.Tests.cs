@@ -96,23 +96,25 @@
         public void PowerShell_Root_Update()
         {
             // Arrange.
-            var result = _testContext.InvokeGetRoots();
+            //var result = _testContext.InvokeGetRoots();
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddRoot(firstName);
+            var result = _testContext.InvokeGetRootByName(firstName);
+            var originalRoot = _testContext.ToAssertedResult<Root>(result);
             result = _testContext.InvokeGetRootByName(firstName);
-            var root = _testContext.ToAssertedResult<Root>(result);
+            var updatedRoot = _testContext.ToAssertedResult<Root>(result);
             var secondName = Guid.NewGuid().ToString();
-            root.Name = secondName;
+            updatedRoot.Name = secondName;
 
             // Act.
-            _testContext.InvokeUpdateRoot(root);
+            _testContext.InvokeUpdateRoot(updatedRoot);
             Assert.Throws<CmdletInvocationException>(() => { result = _testContext.InvokeGetRootByName(firstName); });
             result = _testContext.InvokeGetRootByName(secondName);
-            root = _testContext.ToAssertedResult<Root>(result);
+            updatedRoot = _testContext.ToAssertedResult<Root>(result);
 
             // Assert.
-            Assert.Equal(firstName, root.Name);
-            Assert.Equal(secondName, root.Name);
+            Assert.Equal(firstName, originalRoot.Name);
+            Assert.Equal(secondName, updatedRoot.Name);
         }
 
 
