@@ -23,20 +23,31 @@
 
         // Get all spaces for the specified accountid
         [HttpGet]
-        public IActionResult Get([RequiredFromQuery]Guid spaceId, string rootName)
+        public IActionResult Get([RequiredFromQuery]Guid spaceId, [FromQuery(Name = "rootId")]string id, [FromQuery]string idType)
         {
             IActionResult response;
             try
             {
-                if (rootName != null)
-                {
-                    var root = _items.Get(spaceId, rootName);
-                    response = Ok(root);
-                }
-                else
+                if (id == null)
                 {
                     var roots = _items.GetAll(spaceId);
                     response = Ok(roots);
+                }
+                else
+                {
+                    Root root;
+                    switch (idType)
+                    {
+                        case "rootId":
+                            var rootId = Guid.Parse(id);
+                            root = _items.Get(spaceId, rootId);
+                            break;
+                        case "rootName":
+                        default:
+                            root = _items.Get(spaceId, id);
+                            break;
+                    }
+                    response = Ok(root);
                 }
             }
             catch (Exception ex)
@@ -45,6 +56,7 @@
             }
             return response;
         }
+
 
         //// Get all spaces for the specified accountid
         //[HttpGet]
@@ -65,21 +77,21 @@
 
 
         // Get Item by id
-        [HttpGet]
-        public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId)
-        {
-            IActionResult response;
-            try
-            {
-                var root = _items.Get(spaceId, rootId);
-                response = Ok(root);
-            }
-            catch (Exception ex)
-            {
-                response = BadRequest(ex.Message);
-            }
-            return response;
-        }
+        //[HttpGet]
+        //public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [RequiredFromQuery(Name = "byId")]string byId)
+        //{
+        //    IActionResult response;
+        //    try
+        //    {
+        //        var root = _items.Get(spaceId, rootId);
+        //        response = Ok(root);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response = BadRequest(ex.Message);
+        //    }
+        //    return response;
+        //}
 
         //// Get Item by id
         //[HttpGet]
@@ -123,7 +135,7 @@
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, Root root)
+        public IActionResult Put([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [FromBody]Root root)
         {
             IActionResult response;
             try
