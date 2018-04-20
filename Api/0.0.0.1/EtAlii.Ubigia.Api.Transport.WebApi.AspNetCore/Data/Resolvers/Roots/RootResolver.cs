@@ -33,13 +33,13 @@
                 else if (rootInfoProvider.RootId != Guid.Empty)
                 {
                     var targetSpace = await _spaceResolver.Get((ISpaceInfoProvider)rootInfoProvider, currentSpace, currentAccount);
-                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootId.ToString());
+                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootId.ToString(), UriParameter.IdType, "rootId");
                     root = address != null ? await _client.Get<Root>(address) : null;
                 }
                 else if (!String.IsNullOrEmpty(rootInfoProvider.RootName))
                 {
                     var targetSpace = await _spaceResolver.Get((ISpaceInfoProvider)rootInfoProvider, currentSpace, currentAccount);
-                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootName, rootInfoProvider.RootName);
+                    address = _addressFactory.Create(targetStorage, RelativeUri.Data.Roots, UriParameter.SpaceId, targetSpace.Id.ToString(), UriParameter.RootId, rootInfoProvider.RootName, UriParameter.IdType, "rootName");
                     root = address != null ? await _client.Get<Root>(address) : null;
                 }
             }
