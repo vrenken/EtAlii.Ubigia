@@ -34,8 +34,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR\EtAlii.Ubigia.Api.Transport.SignalR.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj" />
   </ItemGroup>
   
