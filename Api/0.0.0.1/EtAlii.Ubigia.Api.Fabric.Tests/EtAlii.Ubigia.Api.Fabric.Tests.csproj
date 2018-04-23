@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>
