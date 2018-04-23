@@ -226,7 +226,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Fabric.Management", "Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Management\EtAlii.Ubigia.Api.Fabric.Management.csproj", "{39F1AA26-BE51-4744-AA8D-16113DD76E70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi.AspNetCore", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.AspNetCore.csproj", "{4CF1773B-6516-484F-A0CD-D75593693644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj", "{4CF1773B-6516-484F-A0CD-D75593693644}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj", "{F9A4EB81-611C-453E-8B71-27099E54E982}"
 EndProject
@@ -300,9 +300,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore", "Infrastructure\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore.csproj", "{E619436A-7114-4F60-A3DE-55420AAF1261}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.csproj", "{0EECDB46-0E61-4C66-862E-CDC4659FD8F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.SignalR.csproj", "{0EECDB46-0E61-4C66-862E-CDC4659FD8F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.csproj", "{40E9E118-5F2D-46FE-BE9A-A032D2DDC0C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj", "{40E9E118-5F2D-46FE-BE9A-A032D2DDC0C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frameworks", "Frameworks", "{70B0CC1F-9F35-448E-86DB-34458A5F9C03}"
 EndProject
@@ -346,9 +346,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.Ntfs", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.Ntfs\EtAlii.Ubigia.Infrastructure.Transport.Ntfs.csproj", "{212B80E5-2E20-4E80-94BB-783FF1D4FD99}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore.csproj", "{EA097B67-CA07-4DC5-9FAA-DACEAB5E79F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.WebApi", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.csproj", "{EA097B67-CA07-4DC5-9FAA-DACEAB5E79F6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests.csproj", "{0A2CB968-DF25-44ED-8FC7-43DD9876949B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj", "{0A2CB968-DF25-44ED-8FC7-43DD9876949B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Transport.InMemory", "Infrastructure\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj", "{E03012DB-F37C-4E75-97A1-546C0AD67581}"
 EndProject

@@ -26,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore.csproj" />

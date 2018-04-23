@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests.csproj" />
   </ItemGroup>
 
