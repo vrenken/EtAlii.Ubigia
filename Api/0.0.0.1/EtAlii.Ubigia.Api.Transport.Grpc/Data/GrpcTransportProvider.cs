@@ -1,26 +1,26 @@
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System;
 	using System.Net.Http;
 
-	public class SignalRTransportProvider : ITransportProvider
+	public class GrpcTransportProvider : ITransportProvider
     {
         private string _authenticationToken;
 	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
 
-	    public SignalRTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
+	    public GrpcTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
 	    {
 		    _httpMessageHandlerFactory = httpMessageHandlerFactory;
 	    }
 
-		public static SignalRTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
+		public static GrpcTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
         {
-	        return new SignalRTransportProvider(httpMessageHandlerFactory);//new ClientHttpMessageHandler());
+	        return new GrpcTransportProvider(httpMessageHandlerFactory);//new ClientHttpMessageHandler());
         }
 
         public ISpaceTransport GetSpaceTransport()
         {
-            return new SignalRSpaceTransport(
+            return new GrpcSpaceTransport(
 	            _httpMessageHandlerFactory?.Invoke(),
 				v => _authenticationToken = v, 
                 () => _authenticationToken);

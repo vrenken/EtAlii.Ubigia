@@ -1,8 +1,8 @@
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System.Net.Http;
 
-	public interface ISignalRTransport
+	public interface IGrpcTransport
     {
 	    HttpMessageHandler HttpMessageHandler { get; }
 

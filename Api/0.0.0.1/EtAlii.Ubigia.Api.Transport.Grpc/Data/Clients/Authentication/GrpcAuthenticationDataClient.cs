@@ -1,16 +1,15 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System;
 	using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
         private HubConnection _accountConnection;
         private HubConnection _spaceConnection;
         private readonly IHubProxyMethodInvoker _invoker;
 
-        public SignalRAuthenticationDataClient(
+        public GrpcAuthenticationDataClient(
             IHubProxyMethodInvoker invoker)
         {
             _invoker = invoker;
@@ -18,19 +17,19 @@
 
         }
 
-        public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
 
             var factory = new HubConnectionFactory();
 
-			_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Account, UriKind.Absolute));
-			_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Space, UriKind.Absolute));
+			_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Account, UriKind.Absolute));
+			_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Space, UriKind.Absolute));
 	        await _accountConnection.StartAsync();
 	        await _spaceConnection.StartAsync();
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Disconnect(spaceConnection);
 

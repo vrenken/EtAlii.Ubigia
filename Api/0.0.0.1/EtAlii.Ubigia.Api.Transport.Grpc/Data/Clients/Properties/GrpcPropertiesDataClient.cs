@@ -1,15 +1,14 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System;
 	using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
 
-    internal class SignalRPropertiesDataClient : SignalRClientBase, IPropertiesDataClient<ISignalRSpaceTransport>
+    internal class GrpcPropertiesDataClient : GrpcClientBase, IPropertiesDataClient<IGrpcSpaceTransport>
     {
         private HubConnection _connection;
         private readonly IHubProxyMethodInvoker _invoker;
 
-        public SignalRPropertiesDataClient(
+        public GrpcPropertiesDataClient(
             IHubProxyMethodInvoker invoker)
         {
             _invoker = invoker;
@@ -18,7 +17,7 @@
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await _invoker.Invoke(_connection, SignalRHub.Property, "Post", identifier, properties);
+            await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties);
 
             PropertiesHelper.SetStored(properties, true);
         }
@@ -27,7 +26,7 @@
         {
             return await scope.Cache.GetProperties(identifier, async () =>
             {
-                var result = await _invoker.Invoke<PropertyDictionary>(_connection, SignalRHub.Property, "Get", identifier);
+                var result = await _invoker.Invoke<PropertyDictionary>(_connection, GrpcHub.Property, "Get", identifier);
                 if (result != null)
                 {
                     PropertiesHelper.SetStored(result, true);
@@ -37,15 +36,15 @@
             });
         }
 
-        public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Property, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Property, UriKind.Absolute));
 	        await _connection.StartAsync();
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Disconnect(spaceConnection);
 

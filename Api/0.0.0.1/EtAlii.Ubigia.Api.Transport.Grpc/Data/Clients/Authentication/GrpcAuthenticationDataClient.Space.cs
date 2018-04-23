@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
         public async Task<Space> GetSpace(ISpaceConnection connection)
         {
@@ -24,7 +24,7 @@
 
         private async Task<Space> GetSpace(string spaceName)
         {
-            var space = await _invoker.Invoke<Space>(_spaceConnection, SignalRHub.Space, "GetForAuthenticationToken", spaceName);
+            var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
 			if (space == null)
 			{
 				string message = $"Unable to connect to the the specified space ({spaceName})";

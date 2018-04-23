@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-    public static class SignalRHub
+    public static class GrpcHub
     {
 	    public const string BasePath = "/api/stream";
 

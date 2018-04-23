@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
 
-    internal class SignalRRootNotificationClient : SignalRClientBase, IRootNotificationClient<ISignalRSpaceTransport>
+    internal class GrpcRootNotificationClient : GrpcClientBase, IRootNotificationClient<IGrpcSpaceTransport>
     {
         private HubConnection _connection;
         private readonly string _name;
@@ -15,9 +14,9 @@
         public event Action<Guid> Changed = delegate { };
         public event Action<Guid> Removed = delegate { };
 
-        public SignalRRootNotificationClient()
+        public GrpcRootNotificationClient()
         {
-            _name = SignalRHub.Root;
+            _name = GrpcHub.Root;
         }
 
         private void OnAdded(Guid id)
@@ -35,11 +34,11 @@
             Removed(id);
         }
 
-        public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + _name, UriKind.Absolute));
+			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute));
 	        await _connection.StartAsync();
 
 			_subscriptions = new[]
@@ -50,7 +49,7 @@
 			};
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Disconnect(spaceConnection);
 
