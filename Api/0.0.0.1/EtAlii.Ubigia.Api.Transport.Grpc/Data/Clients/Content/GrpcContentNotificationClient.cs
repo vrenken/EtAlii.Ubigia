@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
 
-    internal class SignalRContentNotificationClient : SignalRClientBase, IContentNotificationClient<ISignalRSpaceTransport>
+    internal class GrpcContentNotificationClient : GrpcClientBase, IContentNotificationClient<IGrpcSpaceTransport>
     {
         private HubConnection _connection;
         private readonly string _name;
@@ -14,9 +13,9 @@
         public event Action<Identifier> Updated = delegate { };
         public event Action<Identifier> Stored = delegate { };
 
-        public SignalRContentNotificationClient()
+        public GrpcContentNotificationClient()
         {
-            _name = SignalRHub.Content;
+            _name = GrpcHub.Content;
         }
 
         private void OnUpdated(Identifier identifier)
@@ -29,11 +28,11 @@
             Stored(identifier);
         }
 
-        public override async Task Connect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + _name, UriKind.Absolute));
+			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute));
 	        await _connection.StartAsync();
 
 	        _subscriptions = new[]
@@ -43,7 +42,7 @@
 	        };
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Disconnect(spaceConnection);
 

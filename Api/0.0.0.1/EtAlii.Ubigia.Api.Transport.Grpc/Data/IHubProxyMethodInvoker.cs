@@ -1,7 +1,7 @@
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
+    using Microsoft.AspNetCore.Grpc.Client;
 
     public interface IHubProxyMethodInvoker
     {

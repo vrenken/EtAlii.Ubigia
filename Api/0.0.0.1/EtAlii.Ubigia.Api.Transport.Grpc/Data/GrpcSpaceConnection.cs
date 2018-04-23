@@ -1,8 +1,8 @@
-namespace EtAlii.Ubigia.Api.Transport.SignalR
+namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-    internal class SignalRSpaceConnection : SpaceConnection<SignalRSpaceTransport>, ISignalRSpaceConnection
+    internal class GrpcSpaceConnection : SpaceConnection<GrpcSpaceTransport>, IGrpcSpaceConnection
     {
-        public SignalRSpaceConnection(
+        public GrpcSpaceConnection(
             ISpaceTransport transport, 
             ISpaceConnectionConfiguration configuration, 
             IRootContext roots, 

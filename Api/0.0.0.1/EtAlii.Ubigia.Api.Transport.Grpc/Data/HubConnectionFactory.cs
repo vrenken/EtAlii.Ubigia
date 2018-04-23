@@ -1,9 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System;
 	using System.Net.Http;
-	using Microsoft.AspNetCore.SignalR;
-	using Microsoft.AspNetCore.SignalR.Client;
     using Microsoft.AspNetCore.Sockets;
     using Microsoft.Extensions.Logging;
     using Newtonsoft.Json;
@@ -32,11 +30,11 @@
 			return builder.Build();
 		}
 
-	    public HubConnection Create(ISignalRSpaceTransport transport, Uri address)
+	    public HubConnection Create(IGrpcSpaceTransport transport, Uri address)
 	    {
 		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken);
 	    }
-	    public HubConnection Create(ISignalRStorageTransport transport, Uri address)
+	    public HubConnection Create(IGrpcStorageTransport transport, Uri address)
 	    {
 		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken);
 	    }

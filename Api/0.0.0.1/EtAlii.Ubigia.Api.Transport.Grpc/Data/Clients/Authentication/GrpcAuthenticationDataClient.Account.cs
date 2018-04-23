@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Threading.Tasks;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
         public async Task<Account> GetAccount(ISpaceConnection connection)
         {
@@ -21,7 +21,7 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-			var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetForAuthenticationToken");
+			var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
             if (account == null)
             {
                 string message = $"Unable to connect using the specified account ({accountName})";

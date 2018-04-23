@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
 	using System;
 	using System.Threading.Tasks;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
         public async Task<Storage> GetConnectedStorage(ISpaceConnection connection)
         {
@@ -12,10 +12,10 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var signalRConnection = (ISignalRSpaceConnection) connection;
+            var grpcConnection = (IGrpcSpaceConnection) connection;
             var storage = await GetConnectedStorage(
-	            signalRConnection.Transport,
-				signalRConnection.Configuration.Address);
+                grpcConnection.Transport,
+                grpcConnection.Configuration.Address);
 
             if (storage == null)
             {
@@ -36,11 +36,11 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var signalRConnection = (ISignalRStorageConnection)connection;
+            var grpcConnection = (IGrpcStorageConnection)connection;
 
             var storage = await GetConnectedStorage(
-	            signalRConnection.Transport,
-				signalRConnection.Configuration.Address);
+                grpcConnection.Transport,
+                grpcConnection.Configuration.Address);
 
             if (storage == null)
             {
@@ -55,12 +55,12 @@
         }
 
         private async Task<Storage> GetConnectedStorage(
-	        ISignalRTransport transport,
+	        IGrpcTransport transport,
 	        Uri address)
         {
-			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), transport.AuthenticationToken);
+			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), transport.AuthenticationToken);
             await connection.StartAsync();
-            var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
+            var storage = await _invoker.Invoke<Storage>(connection, GrpcHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();
             return storage;
         }

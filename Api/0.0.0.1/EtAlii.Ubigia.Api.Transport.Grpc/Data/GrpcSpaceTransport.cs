@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SignalRSpaceTransport : SpaceTransportBase, ISignalRSpaceTransport
+    public class GrpcSpaceTransport : SpaceTransportBase, IGrpcSpaceTransport
     {
 	    private bool _started;
 
@@ -15,7 +15,7 @@
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 
-        public SignalRSpaceTransport(
+        public GrpcSpaceTransport(
 	        HttpMessageHandler httpMessageHandler,
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
@@ -58,7 +58,7 @@
         {
             return new IScaffolding[]
             {
-                new SignalRSpaceClientsScaffolding()
+                new GrpcSpaceClientsScaffolding()
             };
         }
     }
