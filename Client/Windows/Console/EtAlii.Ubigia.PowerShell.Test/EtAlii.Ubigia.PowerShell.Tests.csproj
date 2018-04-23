@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj" />
-    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj" />
   </ItemGroup>
