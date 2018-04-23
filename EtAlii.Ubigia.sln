@@ -184,7 +184,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.Gis.Google", "Providers\Providers\EtAlii.Ubigia.Provisioning.Gis.Google\EtAlii.Ubigia.Provisioning.Gis.Google.csproj", "{28D28A16-8EDC-41EC-81C3-F5B88D73BB58}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.Tests\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore.Tests.csproj", "{47A68414-4D71-4A8C-9F8E-3BC54DD497E4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.WebApi.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.Tests\EtAlii.Ubigia.Api.Transport.WebApi.Tests.csproj", "{47A68414-4D71-4A8C-9F8E-3BC54DD497E4}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.shproj", "{43519CAD-F917-4CF3-B9CB-2F84BBCAF2E0}"
 EndProject
@@ -266,7 +266,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Fabric.Te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Logical.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.csproj", "{1ECE49C7-202D-4094-8A6E-F98737A5480F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi.AspNetCore.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests\EtAlii.Ubigia.Api.Transport.Management.WebApi.AspNetCore.Tests.csproj", "{40F79FC3-6DD4-41C6-92EA-B62392B77935}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests\EtAlii.Ubigia.Api.Transport.Management.WebApi.Tests.csproj", "{40F79FC3-6DD4-41C6-92EA-B62392B77935}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Transport.Management.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.shproj", "{F9CB6A59-98FD-4D02-9D34-CE0617A8949B}"
 EndProject
@@ -338,7 +338,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Fabric.Tests", "Infrastructure\EtAlii.Ubigia.Infrastructure.Fabric.Tests\EtAlii.Ubigia.Infrastructure.Fabric.Tests.csproj", "{2B77D6AE-F957-4335-BEF8-0959393876B3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests.csproj", "{D9F477EB-6D2F-4F33-8E6B-B24D030976B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Transport.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj", "{D9F477EB-6D2F-4F33-8E6B-B24D030976B9}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj", "{B390BC64-4AE6-4C0D-AB69-95DFBA68754D}"
 EndProject
