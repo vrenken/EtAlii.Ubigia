@@ -21,6 +21,9 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
+            //var request = new AuthenticationTokenRequest { AuthenticationToken = _};
+            //await _client.GetAccountForAuthenticationTokenAsync()
+
             // TODO: GRPC
             var account = await Task.FromResult<Account>(null);
 			//var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");

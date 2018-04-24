@@ -23,19 +23,38 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIgRXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0LkdycGMiFwoVQXV0aGVudGljYXRpb25SZXF1ZXN0IhgKFkF1dGhl",
-            "bnRpY2F0aW9uUmVzcG9uc2UyoQEKGUF1dGhlbnRpY2F0aW9uR3JwY1NlcnZp",
-            "Y2USgwEKDEF1dGhlbnRpY2F0ZRI3LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
-            "cG9ydC5HcnBjLkF1dGhlbnRpY2F0aW9uUmVxdWVzdBo4LkV0QWxpaS5VYmln",
-            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjLkF1dGhlbnRpY2F0aW9uUmVzcG9uc2Ui",
-            "AEJYCiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwY0IGVWJpZ2lh",
-            "UAGiAgZVYmlnaWGqAiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3Jw",
-            "Y2IGcHJvdG8z"));
+            "bnNwb3J0LkdycGMiVgoVQXV0aGVudGljYXRpb25SZXF1ZXN0EhMKC0FjY291",
+            "bnROYW1lGAEgASgJEhAKCFBhc3N3b3JkGAIgASgJEhYKDmhvc3RJZGVudGlm",
+            "aWVyGAMgASgJIjUKFkF1dGhlbnRpY2F0aW9uUmVzcG9uc2USGwoTQXV0aGVu",
+            "dGljYXRpb25Ub2tlbhgBIAEoCSI5ChpBdXRoZW50aWNhdGlvblRva2VuUmVx",
+            "dWVzdBIbChNBdXRoZW50aWNhdGlvblRva2VuGAEgASgJIjIKG0F1dGhlbnRp",
+            "Y2F0aW9uVG9rZW5SZXNwb25zZRITCgtBY2NvdW50TmFtZRgBIAEoCSIVChNM",
+            "b2NhbFN0b3JhZ2VSZXF1ZXN0IisKFExvY2FsU3RvcmFnZVJlc3BvbnNlEhMK",
+            "C1N0b3JhZ2VOYW1lGAEgASgJMtIEChlBdXRoZW50aWNhdGlvbkdycGNTZXJ2",
+            "aWNlEoMBCgxBdXRoZW50aWNhdGUSNy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
+            "c3BvcnQuR3JwYy5BdXRoZW50aWNhdGlvblJlcXVlc3QaOC5FdEFsaWkuVWJp",
+            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5BdXRoZW50aWNhdGlvblJlc3BvbnNl",
+            "IgAShQEKDkF1dGhlbnRpY2F0ZUFzEjcuRXRBbGlpLlViaWdpYS5BcGkuVHJh",
+            "bnNwb3J0LkdycGMuQXV0aGVudGljYXRpb25SZXF1ZXN0GjguRXRBbGlpLlVi",
+            "aWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQXV0aGVudGljYXRpb25SZXNwb25z",
+            "ZSIAEqEBCiBHZXRBY2NvdW50Rm9yQXV0aGVudGljYXRpb25Ub2tlbhI8LkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkF1dGhlbnRpY2F0aW9u",
+            "VG9rZW5SZXF1ZXN0Gj0uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuQXV0aGVudGljYXRpb25Ub2tlblJlc3BvbnNlIgASggEKD0dldExvY2Fs",
+            "U3RvcmFnZRI1LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkxv",
+            "Y2FsU3RvcmFnZVJlcXVlc3QaNi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
+            "cnQuR3JwYy5Mb2NhbFN0b3JhZ2VSZXNwb25zZSIAQlgKIEV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjQgZVYmlnaWFQAaICBlViaWdpYaoCIEV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationRequest.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationRequest.Parser, new[]{ "AccountName", "Password", "HostIdentifier" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse.Parser, new[]{ "AuthenticationToken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenRequest.Parser, new[]{ "AuthenticationToken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenResponse.Parser, new[]{ "AccountName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageResponse.Parser, new[]{ "StorageName" }, null, null, null)
           }));
     }
     #endregion
@@ -66,11 +85,47 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationRequest(AuthenticationRequest other) : this() {
+      accountName_ = other.accountName_;
+      password_ = other.password_;
+      hostIdentifier_ = other.hostIdentifier_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationRequest Clone() {
       return new AuthenticationRequest(this);
+    }
+
+    /// <summary>Field number for the "AccountName" field.</summary>
+    public const int AccountNameFieldNumber = 1;
+    private string accountName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountName {
+      get { return accountName_; }
+      set {
+        accountName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Password" field.</summary>
+    public const int PasswordFieldNumber = 2;
+    private string password_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Password {
+      get { return password_; }
+      set {
+        password_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "hostIdentifier" field.</summary>
+    public const int HostIdentifierFieldNumber = 3;
+    private string hostIdentifier_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string HostIdentifier {
+      get { return hostIdentifier_; }
+      set {
+        hostIdentifier_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -86,12 +141,18 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (AccountName != other.AccountName) return false;
+      if (Password != other.Password) return false;
+      if (HostIdentifier != other.HostIdentifier) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (AccountName.Length != 0) hash ^= AccountName.GetHashCode();
+      if (Password.Length != 0) hash ^= Password.GetHashCode();
+      if (HostIdentifier.Length != 0) hash ^= HostIdentifier.GetHashCode();
       return hash;
     }
 
@@ -102,11 +163,32 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountName);
+      }
+      if (Password.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Password);
+      }
+      if (HostIdentifier.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(HostIdentifier);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (AccountName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountName);
+      }
+      if (Password.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Password);
+      }
+      if (HostIdentifier.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(HostIdentifier);
+      }
       return size;
     }
 
@@ -114,6 +196,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     public void MergeFrom(AuthenticationRequest other) {
       if (other == null) {
         return;
+      }
+      if (other.AccountName.Length != 0) {
+        AccountName = other.AccountName;
+      }
+      if (other.Password.Length != 0) {
+        Password = other.Password;
+      }
+      if (other.HostIdentifier.Length != 0) {
+        HostIdentifier = other.HostIdentifier;
       }
     }
 
@@ -125,6 +216,18 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
           default:
             input.SkipLastField();
             break;
+          case 10: {
+            AccountName = input.ReadString();
+            break;
+          }
+          case 18: {
+            Password = input.ReadString();
+            break;
+          }
+          case 26: {
+            HostIdentifier = input.ReadString();
+            break;
+          }
         }
       }
     }
@@ -155,11 +258,23 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationResponse(AuthenticationResponse other) : this() {
+      authenticationToken_ = other.authenticationToken_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationResponse Clone() {
       return new AuthenticationResponse(this);
+    }
+
+    /// <summary>Field number for the "AuthenticationToken" field.</summary>
+    public const int AuthenticationTokenFieldNumber = 1;
+    private string authenticationToken_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AuthenticationToken {
+      get { return authenticationToken_; }
+      set {
+        authenticationToken_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -169,6 +284,345 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(AuthenticationResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AuthenticationToken != other.AuthenticationToken) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AuthenticationToken.Length != 0) hash ^= AuthenticationToken.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AuthenticationToken.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AuthenticationToken);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AuthenticationToken.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthenticationToken);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AuthenticationResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AuthenticationToken.Length != 0) {
+        AuthenticationToken = other.AuthenticationToken;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AuthenticationToken = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AuthenticationTokenRequest : pb::IMessage<AuthenticationTokenRequest> {
+    private static readonly pb::MessageParser<AuthenticationTokenRequest> _parser = new pb::MessageParser<AuthenticationTokenRequest>(() => new AuthenticationTokenRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AuthenticationTokenRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthenticationTokenRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthenticationTokenRequest(AuthenticationTokenRequest other) : this() {
+      authenticationToken_ = other.authenticationToken_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthenticationTokenRequest Clone() {
+      return new AuthenticationTokenRequest(this);
+    }
+
+    /// <summary>Field number for the "AuthenticationToken" field.</summary>
+    public const int AuthenticationTokenFieldNumber = 1;
+    private string authenticationToken_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AuthenticationToken {
+      get { return authenticationToken_; }
+      set {
+        authenticationToken_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AuthenticationTokenRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AuthenticationTokenRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AuthenticationToken != other.AuthenticationToken) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AuthenticationToken.Length != 0) hash ^= AuthenticationToken.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AuthenticationToken.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AuthenticationToken);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AuthenticationToken.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthenticationToken);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AuthenticationTokenRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AuthenticationToken.Length != 0) {
+        AuthenticationToken = other.AuthenticationToken;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AuthenticationToken = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AuthenticationTokenResponse : pb::IMessage<AuthenticationTokenResponse> {
+    private static readonly pb::MessageParser<AuthenticationTokenResponse> _parser = new pb::MessageParser<AuthenticationTokenResponse>(() => new AuthenticationTokenResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AuthenticationTokenResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthenticationTokenResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthenticationTokenResponse(AuthenticationTokenResponse other) : this() {
+      accountName_ = other.accountName_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AuthenticationTokenResponse Clone() {
+      return new AuthenticationTokenResponse(this);
+    }
+
+    /// <summary>Field number for the "AccountName" field.</summary>
+    public const int AccountNameFieldNumber = 1;
+    private string accountName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string AccountName {
+      get { return accountName_; }
+      set {
+        accountName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AuthenticationTokenResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AuthenticationTokenResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AccountName != other.AccountName) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AccountName.Length != 0) hash ^= AccountName.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AccountName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(AccountName);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AccountName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountName);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AuthenticationTokenResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AccountName.Length != 0) {
+        AccountName = other.AccountName;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            AccountName = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class LocalStorageRequest : pb::IMessage<LocalStorageRequest> {
+    private static readonly pb::MessageParser<LocalStorageRequest> _parser = new pb::MessageParser<LocalStorageRequest>(() => new LocalStorageRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<LocalStorageRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LocalStorageRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LocalStorageRequest(LocalStorageRequest other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LocalStorageRequest Clone() {
+      return new LocalStorageRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as LocalStorageRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(LocalStorageRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -200,7 +654,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(AuthenticationResponse other) {
+    public void MergeFrom(LocalStorageRequest other) {
       if (other == null) {
         return;
       }
@@ -214,6 +668,123 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
           default:
             input.SkipLastField();
             break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class LocalStorageResponse : pb::IMessage<LocalStorageResponse> {
+    private static readonly pb::MessageParser<LocalStorageResponse> _parser = new pb::MessageParser<LocalStorageResponse>(() => new LocalStorageResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<LocalStorageResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LocalStorageResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LocalStorageResponse(LocalStorageResponse other) : this() {
+      storageName_ = other.storageName_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public LocalStorageResponse Clone() {
+      return new LocalStorageResponse(this);
+    }
+
+    /// <summary>Field number for the "StorageName" field.</summary>
+    public const int StorageNameFieldNumber = 1;
+    private string storageName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string StorageName {
+      get { return storageName_; }
+      set {
+        storageName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as LocalStorageResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(LocalStorageResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (StorageName != other.StorageName) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (StorageName.Length != 0) hash ^= StorageName.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (StorageName.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(StorageName);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (StorageName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(StorageName);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(LocalStorageResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.StorageName.Length != 0) {
+        StorageName = other.StorageName;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            StorageName = input.ReadString();
+            break;
+          }
         }
       }
     }
