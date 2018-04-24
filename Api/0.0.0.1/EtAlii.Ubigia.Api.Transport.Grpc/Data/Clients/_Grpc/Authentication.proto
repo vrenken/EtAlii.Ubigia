@@ -16,12 +16,43 @@ service AuthenticationGrpcService
 {
 	// Try to authenticate.
 	rpc Authenticate (AuthenticationRequest) returns (AuthenticationResponse) {}
+	// Try to authenticate as another user.
+	rpc AuthenticateAs (AuthenticationRequest) returns (AuthenticationResponse) {}
+
+	rpc GetAccountForAuthenticationToken(AuthenticationTokenRequest) returns (AuthenticationTokenResponse) {}
+
+	rpc GetLocalStorage(LocalStorageRequest) returns (LocalStorageResponse) {}
+	
 }
 
 message AuthenticationRequest
 {
+	string AccountName = 1;
+	string Password = 2;
+	string hostIdentifier = 3;
 }
 
 message AuthenticationResponse
 {
+	string AuthenticationToken = 1;
 }
+
+message AuthenticationTokenRequest
+{
+	string AuthenticationToken = 1;
+}
+
+message AuthenticationTokenResponse
+{
+	string AccountName = 1;
+}
+
+message LocalStorageRequest
+{
+}
+
+message LocalStorageResponse
+{
+	string StorageName = 1;
+}
+

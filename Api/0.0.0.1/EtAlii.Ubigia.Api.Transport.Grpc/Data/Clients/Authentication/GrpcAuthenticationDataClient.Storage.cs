@@ -58,6 +58,10 @@
 	        IGrpcTransport transport,
 	        Uri address)
         {
+            var request = new LocalStorageRequest { };
+            var response = await _client.GetLocalStorageAsync(request);
+            //return response.AuthenticationToken;
+
             // TODO: GRPC
             var storage = await Task.FromResult<Storage>(null);
 			//var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), transport.AuthenticationToken);
