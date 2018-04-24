@@ -58,10 +58,12 @@
 	        IGrpcTransport transport,
 	        Uri address)
         {
-			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), transport.AuthenticationToken);
-            await connection.StartAsync();
-            var storage = await _invoker.Invoke<Storage>(connection, GrpcHub.Authentication, "GetLocalStorage");
-            await connection.DisposeAsync();
+            // TODO: GRPC
+            var storage = await Task.FromResult<Storage>(null);
+			//var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), transport.AuthenticationToken);
+            //await connection.StartAsync();
+            //var storage = await _invoker.Invoke<Storage>(connection, GrpcHub.Authentication, "GetLocalStorage");
+            //await connection.DisposeAsync();
             return storage;
         }
     }

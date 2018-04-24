@@ -1,0 +1,27 @@
+﻿//
+// Copyright 2018 Peter renken.
+
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc";
+
+package EtAlii.Ubigia.Api.Transport.Grpc;
+
+// The Roots Grpc service definition.
+service RootsGrpcService  
+{
+	// Try to authenticate.
+	rpc Get (RootRequest) returns (RootResponse) {}
+}
+
+message RootRequest
+{
+}
+
+message RootResponse
+{
+}

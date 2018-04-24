@@ -24,7 +24,9 @@
 
         private async Task<Space> GetSpace(string spaceName)
         {
-            var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
+            // TODO: GRPC
+            var space = await Task.FromResult<Space>(null);
+            //var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
 			if (space == null)
 			{
 				string message = $"Unable to connect to the the specified space ({spaceName})";

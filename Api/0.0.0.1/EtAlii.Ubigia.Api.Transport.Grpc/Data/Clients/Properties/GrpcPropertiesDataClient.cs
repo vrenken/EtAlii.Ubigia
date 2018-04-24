@@ -5,19 +5,20 @@
 
     internal class GrpcPropertiesDataClient : GrpcClientBase, IPropertiesDataClient<IGrpcSpaceTransport>
     {
-        private HubConnection _connection;
-        private readonly IHubProxyMethodInvoker _invoker;
+        //private HubConnection _connection;
+        //private readonly IHubProxyMethodInvoker _invoker;
 
-        public GrpcPropertiesDataClient(
-            IHubProxyMethodInvoker invoker)
-        {
-            _invoker = invoker;
-        }
+        //public GrpcPropertiesDataClient(
+        //    IHubProxyMethodInvoker invoker)
+        //{
+        //    _invoker = invoker;
+        //}
 
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties);
+            // TODO: GRPC
+            //await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties);
 
             PropertiesHelper.SetStored(properties, true);
         }
@@ -26,7 +27,9 @@
         {
             return await scope.Cache.GetProperties(identifier, async () =>
             {
-                var result = await _invoker.Invoke<PropertyDictionary>(_connection, GrpcHub.Property, "Get", identifier);
+                // TODO: GRPC
+                var result = await Task.FromResult<PropertyDictionary>(null);
+                //var result = await _invoker.Invoke<PropertyDictionary>(_connection, GrpcHub.Property, "Get", identifier);
                 if (result != null)
                 {
                     PropertiesHelper.SetStored(result, true);
@@ -40,16 +43,18 @@
         {
             await base.Connect(spaceConnection);
 
-            _connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Property, UriKind.Absolute));
-	        await _connection.StartAsync();
+            // TODO: GRPC
+            //_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Property, UriKind.Absolute));
+	        //await _connection.StartAsync();
         }
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Disconnect(spaceConnection);
 
-            await _connection.DisposeAsync();
-            _connection = null;
+            // TODO: GRPC
+            //await _connection.DisposeAsync();
+            //_connection = null;
         }
     }
 }
