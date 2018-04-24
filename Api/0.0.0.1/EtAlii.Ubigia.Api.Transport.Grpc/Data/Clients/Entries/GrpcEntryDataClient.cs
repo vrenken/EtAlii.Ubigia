@@ -6,27 +6,31 @@
 
     internal class GrpcEntryDataClient : GrpcClientBase, IEntryDataClient<IGrpcSpaceTransport> 
     {
-        private HubConnection _connection;
-        private readonly IHubProxyMethodInvoker _invoker;
+        //private HubConnection _connection;
+        //private readonly IHubProxyMethodInvoker _invoker;
         
-        public GrpcEntryDataClient(
-            IHubProxyMethodInvoker invoker)
-        {
-            _invoker = invoker;
-        }
+        //public GrpcEntryDataClient(
+        //    IHubProxyMethodInvoker invoker)
+        //{
+        //    _invoker = invoker;
+        //}
 
         public async Task<IEditableEntry> Prepare()
         {
-            return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Post", Connection.Space.Id);
+            // TODO: GRPC
+            //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Post", Connection.Space.Id);
+            return await Task.FromResult<IEditableEntry>(null);
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
-            scope.Cache.InvalidateEntry(entry.Id);
+            // TODO: GRPC
+            //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
+            //scope.Cache.InvalidateEntry(entry.Id);
             // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
-            //scope.Cache.InvalidateEntry(result.Id);
-            return result;
+            ////scope.Cache.InvalidateEntry(result.Id);
+            //return result;
+            return await Task.FromResult<IReadOnlyEntry>(null);
         }
 
         public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
@@ -38,7 +42,9 @@
         {
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
-                return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
+                // TODO: GRPC
+                //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
+                return await Task.FromResult<IReadOnlyEntry>(null);
             });
         }
 
@@ -50,7 +56,9 @@
             {
                 var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
                 {
-                    return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
+                    // TODO: GRPC
+                    return await Task.FromResult<IReadOnlyEntry>(null);
+                    //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                 });
                 result.Add(entry);
             }
@@ -61,7 +69,9 @@
         {
             return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
             {
-                return await _invoker.Invoke<IEnumerable<Entry>>(_connection, GrpcHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
+                // TODO: GRPC
+                return await Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
+                //return await _invoker.Invoke<IEnumerable<Entry>>(_connection, GrpcHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
             });
         }
 
@@ -69,8 +79,9 @@
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Entry, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
-	        await _connection.StartAsync();
+            // TODO: GRPC
+            //_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Entry, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
+	        //await _connection.StartAsync();
 
         }
 
@@ -78,8 +89,9 @@
         {
             await base.Disconnect(spaceConnection);
 
-            await _connection.DisposeAsync();
-            _connection = null;
+            // TODO: GRPC
+            //await _connection.DisposeAsync();
+            //_connection = null;
         }
     }
 }

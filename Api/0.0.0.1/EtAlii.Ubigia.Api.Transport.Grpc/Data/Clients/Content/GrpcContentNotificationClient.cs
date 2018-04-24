@@ -6,7 +6,7 @@
 
     internal class GrpcContentNotificationClient : GrpcClientBase, IContentNotificationClient<IGrpcSpaceTransport>
     {
-        private HubConnection _connection;
+        //private HubConnection _connection;
         private readonly string _name;
         private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
@@ -32,22 +32,23 @@
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute));
-	        await _connection.StartAsync();
+            // TODO: GRPC
+			//_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute));
+	        //await _connection.StartAsync();
 
-	        _subscriptions = new[]
-	        {
-		        _connection.On<Identifier>("updated", OnUpdated),
-		        _connection.On<Identifier>("stored", OnStored),
-	        };
+	        //_subscriptions = new[]
+	        //{
+		    //    _connection.On<Identifier>("updated", OnUpdated),
+		    //    _connection.On<Identifier>("stored", OnStored),
+	        //};
         }
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Disconnect(spaceConnection);
 
-            await _connection.DisposeAsync();
-            _connection = null;
+            //await _connection.DisposeAsync();
+            //_connection = null;
 
 			foreach (var subscription in _subscriptions)
 			{

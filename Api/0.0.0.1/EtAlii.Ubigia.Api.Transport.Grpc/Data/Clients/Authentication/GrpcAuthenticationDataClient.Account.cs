@@ -21,7 +21,9 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-			var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
+            // TODO: GRPC
+            var account = await Task.FromResult<Account>(null);
+			//var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
             if (account == null)
             {
                 string message = $"Unable to connect using the specified account ({accountName})";
