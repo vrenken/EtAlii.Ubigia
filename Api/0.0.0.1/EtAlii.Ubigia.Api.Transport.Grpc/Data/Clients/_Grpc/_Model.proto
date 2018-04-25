@@ -52,13 +52,28 @@ message Account
 
 message Root
 {
+	Guid Id = 1;
+	string Name = 2;
+	Identifier Identifier = 3;
+}
+
+message Identifier
+{
+	Guid Storage = 1;
+	Guid Account = 2;
+	Guid Space = 3;
+
+	fixed64 Era = 4;
+	fixed64 Period = 5;
+	fixed64 Moment = 6;
 }
 
 message Entity
 {
+	string Type = 1;
 }
 
-message Identifier
+message Relation
 {
 }
 
