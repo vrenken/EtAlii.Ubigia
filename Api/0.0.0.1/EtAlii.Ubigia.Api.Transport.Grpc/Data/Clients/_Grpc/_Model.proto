@@ -37,7 +37,7 @@ message Space
 {
 	Guid Id = 1;
 	string Name = 2;
-	Guid AccountId= 3;
+	Guid AccountId = 3;
 }
 
 message Account
@@ -77,10 +77,49 @@ message Relation
 {
 }
 
+message BlobSummary
+{
+	bool IsComplete = 1;
+	repeated fixed64 AvailableParts = 2;
+	uint64 TotalParts = 3;
+}
+
 message Content
 {
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	BlobSummary Summary = 3;
+	uint64 TotalParts = 4;
 }
+
+message ContentPart
+{
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	uint64 Id = 3;
+
+	bytes Data = 4;
+}
+
 
 message ContentDefinition
 {
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	BlobSummary Summary = 3;
+	uint64 TotalParts = 4;
+
+	uint64 Size = 5;
+	fixed64 Checksum = 6;
+	repeated ContentDefinitionPart Parts = 7;
+}
+
+message ContentDefinitionPart
+{
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	uint64 Id = 3;
+
+	uint64 Size = 4;
+	fixed64 Checksum = 5;
 }
