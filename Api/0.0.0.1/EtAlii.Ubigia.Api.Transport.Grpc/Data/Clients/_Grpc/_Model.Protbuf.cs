@@ -38,11 +38,29 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             "bGUucHJvdG9idWYuVGltZXN0YW1wIooBCgRSb290EjIKAklkGAEgASgLMiYu",
             "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuR3VpZBIMCgROYW1l",
             "GAIgASgJEkAKCklkZW50aWZpZXIYAyABKAsyLC5FdEFsaWkuVWJpZ2lhLkFw",
-            "aS5UcmFuc3BvcnQuR3JwYy5JZGVudGlmaWVyIggKBkVudGl0eSIMCgpJZGVu",
-            "dGlmaWVyIgkKB0NvbnRlbnQiEwoRQ29udGVudERlZmluaXRpb25CWAogRXRB",
-            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNCBlViaWdpYVABogIGVWJp",
-            "Z2lhqgIgRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNiBnByb3Rv",
-            "Mw=="));
+            "aS5UcmFuc3BvcnQuR3JwYy5JZGVudGlmaWVyIuIBCgpJZGVudGlmaWVyEjcK",
+            "B1N0b3JhZ2UYASABKAsyJi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "R3JwYy5HdWlkEjcKB0FjY291bnQYAiABKAsyJi5FdEFsaWkuVWJpZ2lhLkFw",
+            "aS5UcmFuc3BvcnQuR3JwYy5HdWlkEjUKBVNwYWNlGAMgASgLMiYuRXRBbGlp",
+            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuR3VpZBILCgNFcmEYBCABKAYS",
+            "DgoGUGVyaW9kGAUgASgGEg4KBk1vbWVudBgGIAEoBiIWCgZFbnRpdHkSDAoE",
+            "VHlwZRgBIAEoCSIKCghSZWxhdGlvbiJNCgtCbG9iU3VtbWFyeRISCgpJc0Nv",
+            "bXBsZXRlGAEgASgIEhYKDkF2YWlsYWJsZVBhcnRzGAIgAygGEhIKClRvdGFs",
+            "UGFydHMYAyABKAQiewoHQ29udGVudBIOCgZTdG9yZWQYASABKAgSDAoETmFt",
+            "ZRgCIAEoCRI+CgdTdW1tYXJ5GAMgASgLMi0uRXRBbGlpLlViaWdpYS5BcGku",
+            "VHJhbnNwb3J0LkdycGMuQmxvYlN1bW1hcnkSEgoKVG90YWxQYXJ0cxgEIAEo",
+            "BCJFCgtDb250ZW50UGFydBIOCgZTdG9yZWQYASABKAgSDAoETmFtZRgCIAEo",
+            "CRIKCgJJZBgDIAEoBBIMCgREYXRhGAQgASgMIu0BChFDb250ZW50RGVmaW5p",
+            "dGlvbhIOCgZTdG9yZWQYASABKAgSDAoETmFtZRgCIAEoCRI+CgdTdW1tYXJ5",
+            "GAMgASgLMi0uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQmxv",
+            "YlN1bW1hcnkSEgoKVG90YWxQYXJ0cxgEIAEoBBIMCgRTaXplGAUgASgEEhAK",
+            "CENoZWNrc3VtGAYgASgGEkYKBVBhcnRzGAcgAygLMjcuRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0LkdycGMuQ29udGVudERlZmluaXRpb25QYXJ0ImEK",
+            "FUNvbnRlbnREZWZpbml0aW9uUGFydBIOCgZTdG9yZWQYASABKAgSDAoETmFt",
+            "ZRgCIAEoCRIKCgJJZBgDIAEoBBIMCgRTaXplGAQgASgEEhAKCENoZWNrc3Vt",
+            "GAUgASgGQlgKIEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjQgZV",
+            "YmlnaWFQAaICBlViaWdpYaoCIEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9y",
+            "dC5HcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -52,10 +70,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Space), global::EtAlii.Ubigia.Api.Transport.Grpc.Space.Parser, new[]{ "Id", "Name", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Account), global::EtAlii.Ubigia.Api.Transport.Grpc.Account.Parser, new[]{ "Id", "Name", "Password", "Roles", "Created", "Updated" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Root), global::EtAlii.Ubigia.Api.Transport.Grpc.Root.Parser, new[]{ "Id", "Name", "Identifier" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Entity), global::EtAlii.Ubigia.Api.Transport.Grpc.Entity.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier), global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Content), global::EtAlii.Ubigia.Api.Transport.Grpc.Content.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinition), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinition.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier), global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier.Parser, new[]{ "Storage", "Account", "Space", "Era", "Period", "Moment" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Entity), global::EtAlii.Ubigia.Api.Transport.Grpc.Entity.Parser, new[]{ "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Relation), global::EtAlii.Ubigia.Api.Transport.Grpc.Relation.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary), global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary.Parser, new[]{ "IsComplete", "AvailableParts", "TotalParts" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Content), global::EtAlii.Ubigia.Api.Transport.Grpc.Content.Parser, new[]{ "Stored", "Name", "Summary", "TotalParts" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentPart), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentPart.Parser, new[]{ "Stored", "Name", "Id", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinition), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinition.Parser, new[]{ "Stored", "Name", "Summary", "TotalParts", "Size", "Checksum", "Parts" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart.Parser, new[]{ "Stored", "Name", "Id", "Size", "Checksum" }, null, null, null)
           }));
     }
     #endregion
@@ -1196,95 +1218,6 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
   }
 
-  public sealed partial class Entity : pb::IMessage<Entity> {
-    private static readonly pb::MessageParser<Entity> _parser = new pb::MessageParser<Entity>(() => new Entity());
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<Entity> Parser { get { return _parser; } }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[6]; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    pbr::MessageDescriptor pb::IMessage.Descriptor {
-      get { return Descriptor; }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Entity() {
-      OnConstruction();
-    }
-
-    partial void OnConstruction();
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Entity(Entity other) : this() {
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public Entity Clone() {
-      return new Entity(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override bool Equals(object other) {
-      return Equals(other as Entity);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(Entity other) {
-      if (ReferenceEquals(other, null)) {
-        return false;
-      }
-      if (ReferenceEquals(other, this)) {
-        return true;
-      }
-      return true;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override int GetHashCode() {
-      int hash = 1;
-      return hash;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public override string ToString() {
-      return pb::JsonFormatter.ToDiagnosticString(this);
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void WriteTo(pb::CodedOutputStream output) {
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public int CalculateSize() {
-      int size = 0;
-      return size;
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Entity other) {
-      if (other == null) {
-        return;
-      }
-    }
-
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(pb::CodedInputStream input) {
-      uint tag;
-      while ((tag = input.ReadTag()) != 0) {
-        switch(tag) {
-          default:
-            input.SkipLastField();
-            break;
-        }
-      }
-    }
-
-  }
-
   public sealed partial class Identifier : pb::IMessage<Identifier> {
     private static readonly pb::MessageParser<Identifier> _parser = new pb::MessageParser<Identifier>(() => new Identifier());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1292,7 +1225,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[7]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1309,11 +1242,83 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Identifier(Identifier other) : this() {
+      Storage = other.storage_ != null ? other.Storage.Clone() : null;
+      Account = other.account_ != null ? other.Account.Clone() : null;
+      Space = other.space_ != null ? other.Space.Clone() : null;
+      era_ = other.era_;
+      period_ = other.period_;
+      moment_ = other.moment_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Identifier Clone() {
       return new Identifier(this);
+    }
+
+    /// <summary>Field number for the "Storage" field.</summary>
+    public const int StorageFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Guid storage_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Guid Storage {
+      get { return storage_; }
+      set {
+        storage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Account" field.</summary>
+    public const int AccountFieldNumber = 2;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Guid account_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Guid Account {
+      get { return account_; }
+      set {
+        account_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Space" field.</summary>
+    public const int SpaceFieldNumber = 3;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Guid space_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Guid Space {
+      get { return space_; }
+      set {
+        space_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Era" field.</summary>
+    public const int EraFieldNumber = 4;
+    private ulong era_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Era {
+      get { return era_; }
+      set {
+        era_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Period" field.</summary>
+    public const int PeriodFieldNumber = 5;
+    private ulong period_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Period {
+      get { return period_; }
+      set {
+        period_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Moment" field.</summary>
+    public const int MomentFieldNumber = 6;
+    private ulong moment_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Moment {
+      get { return moment_; }
+      set {
+        moment_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1323,6 +1328,326 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public bool Equals(Identifier other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Storage, other.Storage)) return false;
+      if (!object.Equals(Account, other.Account)) return false;
+      if (!object.Equals(Space, other.Space)) return false;
+      if (Era != other.Era) return false;
+      if (Period != other.Period) return false;
+      if (Moment != other.Moment) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (storage_ != null) hash ^= Storage.GetHashCode();
+      if (account_ != null) hash ^= Account.GetHashCode();
+      if (space_ != null) hash ^= Space.GetHashCode();
+      if (Era != 0UL) hash ^= Era.GetHashCode();
+      if (Period != 0UL) hash ^= Period.GetHashCode();
+      if (Moment != 0UL) hash ^= Moment.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (storage_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Storage);
+      }
+      if (account_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Account);
+      }
+      if (space_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Space);
+      }
+      if (Era != 0UL) {
+        output.WriteRawTag(33);
+        output.WriteFixed64(Era);
+      }
+      if (Period != 0UL) {
+        output.WriteRawTag(41);
+        output.WriteFixed64(Period);
+      }
+      if (Moment != 0UL) {
+        output.WriteRawTag(49);
+        output.WriteFixed64(Moment);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (storage_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Storage);
+      }
+      if (account_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Account);
+      }
+      if (space_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Space);
+      }
+      if (Era != 0UL) {
+        size += 1 + 8;
+      }
+      if (Period != 0UL) {
+        size += 1 + 8;
+      }
+      if (Moment != 0UL) {
+        size += 1 + 8;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Identifier other) {
+      if (other == null) {
+        return;
+      }
+      if (other.storage_ != null) {
+        if (storage_ == null) {
+          storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+        }
+        Storage.MergeFrom(other.Storage);
+      }
+      if (other.account_ != null) {
+        if (account_ == null) {
+          account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+        }
+        Account.MergeFrom(other.Account);
+      }
+      if (other.space_ != null) {
+        if (space_ == null) {
+          space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+        }
+        Space.MergeFrom(other.Space);
+      }
+      if (other.Era != 0UL) {
+        Era = other.Era;
+      }
+      if (other.Period != 0UL) {
+        Period = other.Period;
+      }
+      if (other.Moment != 0UL) {
+        Moment = other.Moment;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (storage_ == null) {
+              storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+            }
+            input.ReadMessage(storage_);
+            break;
+          }
+          case 18: {
+            if (account_ == null) {
+              account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+            }
+            input.ReadMessage(account_);
+            break;
+          }
+          case 26: {
+            if (space_ == null) {
+              space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+            }
+            input.ReadMessage(space_);
+            break;
+          }
+          case 33: {
+            Era = input.ReadFixed64();
+            break;
+          }
+          case 41: {
+            Period = input.ReadFixed64();
+            break;
+          }
+          case 49: {
+            Moment = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Entity : pb::IMessage<Entity> {
+    private static readonly pb::MessageParser<Entity> _parser = new pb::MessageParser<Entity>(() => new Entity());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Entity> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Entity() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Entity(Entity other) : this() {
+      type_ = other.type_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Entity Clone() {
+      return new Entity(this);
+    }
+
+    /// <summary>Field number for the "Type" field.</summary>
+    public const int TypeFieldNumber = 1;
+    private string type_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Type {
+      get { return type_; }
+      set {
+        type_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Entity);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Entity other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Type != other.Type) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Type.Length != 0) hash ^= Type.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Type.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Type);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Type.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Type);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(Entity other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Type.Length != 0) {
+        Type = other.Type;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Type = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class Relation : pb::IMessage<Relation> {
+    private static readonly pb::MessageParser<Relation> _parser = new pb::MessageParser<Relation>(() => new Relation());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<Relation> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Relation() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Relation(Relation other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public Relation Clone() {
+      return new Relation(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as Relation);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(Relation other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -1354,7 +1679,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(Identifier other) {
+    public void MergeFrom(Relation other) {
       if (other == null) {
         return;
       }
@@ -1374,6 +1699,172 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
   }
 
+  public sealed partial class BlobSummary : pb::IMessage<BlobSummary> {
+    private static readonly pb::MessageParser<BlobSummary> _parser = new pb::MessageParser<BlobSummary>(() => new BlobSummary());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<BlobSummary> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BlobSummary() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BlobSummary(BlobSummary other) : this() {
+      isComplete_ = other.isComplete_;
+      availableParts_ = other.availableParts_.Clone();
+      totalParts_ = other.totalParts_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public BlobSummary Clone() {
+      return new BlobSummary(this);
+    }
+
+    /// <summary>Field number for the "IsComplete" field.</summary>
+    public const int IsCompleteFieldNumber = 1;
+    private bool isComplete_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool IsComplete {
+      get { return isComplete_; }
+      set {
+        isComplete_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "AvailableParts" field.</summary>
+    public const int AvailablePartsFieldNumber = 2;
+    private static readonly pb::FieldCodec<ulong> _repeated_availableParts_codec
+        = pb::FieldCodec.ForFixed64(18);
+    private readonly pbc::RepeatedField<ulong> availableParts_ = new pbc::RepeatedField<ulong>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<ulong> AvailableParts {
+      get { return availableParts_; }
+    }
+
+    /// <summary>Field number for the "TotalParts" field.</summary>
+    public const int TotalPartsFieldNumber = 3;
+    private ulong totalParts_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong TotalParts {
+      get { return totalParts_; }
+      set {
+        totalParts_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as BlobSummary);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(BlobSummary other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (IsComplete != other.IsComplete) return false;
+      if(!availableParts_.Equals(other.availableParts_)) return false;
+      if (TotalParts != other.TotalParts) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (IsComplete != false) hash ^= IsComplete.GetHashCode();
+      hash ^= availableParts_.GetHashCode();
+      if (TotalParts != 0UL) hash ^= TotalParts.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (IsComplete != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(IsComplete);
+      }
+      availableParts_.WriteTo(output, _repeated_availableParts_codec);
+      if (TotalParts != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(TotalParts);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (IsComplete != false) {
+        size += 1 + 1;
+      }
+      size += availableParts_.CalculateSize(_repeated_availableParts_codec);
+      if (TotalParts != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TotalParts);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(BlobSummary other) {
+      if (other == null) {
+        return;
+      }
+      if (other.IsComplete != false) {
+        IsComplete = other.IsComplete;
+      }
+      availableParts_.Add(other.availableParts_);
+      if (other.TotalParts != 0UL) {
+        TotalParts = other.TotalParts;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            IsComplete = input.ReadBool();
+            break;
+          }
+          case 18:
+          case 17: {
+            availableParts_.AddEntriesFrom(input, _repeated_availableParts_codec);
+            break;
+          }
+          case 24: {
+            TotalParts = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public sealed partial class Content : pb::IMessage<Content> {
     private static readonly pb::MessageParser<Content> _parser = new pb::MessageParser<Content>(() => new Content());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1381,7 +1872,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[8]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1398,11 +1889,65 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Content(Content other) : this() {
+      stored_ = other.stored_;
+      name_ = other.name_;
+      Summary = other.summary_ != null ? other.Summary.Clone() : null;
+      totalParts_ = other.totalParts_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Content Clone() {
       return new Content(this);
+    }
+
+    /// <summary>Field number for the "Stored" field.</summary>
+    public const int StoredFieldNumber = 1;
+    private bool stored_;
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Stored {
+      get { return stored_; }
+      set {
+        stored_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Summary" field.</summary>
+    public const int SummaryFieldNumber = 3;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary summary_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary Summary {
+      get { return summary_; }
+      set {
+        summary_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "TotalParts" field.</summary>
+    public const int TotalPartsFieldNumber = 4;
+    private ulong totalParts_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong TotalParts {
+      get { return totalParts_; }
+      set {
+        totalParts_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1418,12 +1963,20 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Stored != other.Stored) return false;
+      if (Name != other.Name) return false;
+      if (!object.Equals(Summary, other.Summary)) return false;
+      if (TotalParts != other.TotalParts) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Stored != false) hash ^= Stored.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (summary_ != null) hash ^= Summary.GetHashCode();
+      if (TotalParts != 0UL) hash ^= TotalParts.GetHashCode();
       return hash;
     }
 
@@ -1434,11 +1987,39 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (Stored != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Stored);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (summary_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Summary);
+      }
+      if (TotalParts != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(TotalParts);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Stored != false) {
+        size += 1 + 1;
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (summary_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Summary);
+      }
+      if (TotalParts != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TotalParts);
+      }
       return size;
     }
 
@@ -1446,6 +2027,21 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     public void MergeFrom(Content other) {
       if (other == null) {
         return;
+      }
+      if (other.Stored != false) {
+        Stored = other.Stored;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.summary_ != null) {
+        if (summary_ == null) {
+          summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary();
+        }
+        Summary.MergeFrom(other.Summary);
+      }
+      if (other.TotalParts != 0UL) {
+        TotalParts = other.TotalParts;
       }
     }
 
@@ -1457,6 +2053,232 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
           default:
             input.SkipLastField();
             break;
+          case 8: {
+            Stored = input.ReadBool();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (summary_ == null) {
+              summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary();
+            }
+            input.ReadMessage(summary_);
+            break;
+          }
+          case 32: {
+            TotalParts = input.ReadUInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentPart : pb::IMessage<ContentPart> {
+    private static readonly pb::MessageParser<ContentPart> _parser = new pb::MessageParser<ContentPart>(() => new ContentPart());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentPart> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[11]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPart() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPart(ContentPart other) : this() {
+      stored_ = other.stored_;
+      name_ = other.name_;
+      id_ = other.id_;
+      data_ = other.data_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPart Clone() {
+      return new ContentPart(this);
+    }
+
+    /// <summary>Field number for the "Stored" field.</summary>
+    public const int StoredFieldNumber = 1;
+    private bool stored_;
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Stored {
+      get { return stored_; }
+      set {
+        stored_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Id" field.</summary>
+    public const int IdFieldNumber = 3;
+    private ulong id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Data" field.</summary>
+    public const int DataFieldNumber = 4;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentPart);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentPart other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Stored != other.Stored) return false;
+      if (Name != other.Name) return false;
+      if (Id != other.Id) return false;
+      if (Data != other.Data) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Stored != false) hash ^= Stored.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Id != 0UL) hash ^= Id.GetHashCode();
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Stored != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Stored);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (Id != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(Id);
+      }
+      if (Data.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteBytes(Data);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Stored != false) {
+        size += 1 + 1;
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Id != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Id);
+      }
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentPart other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Stored != false) {
+        Stored = other.Stored;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Id != 0UL) {
+        Id = other.Id;
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Stored = input.ReadBool();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 24: {
+            Id = input.ReadUInt64();
+            break;
+          }
+          case 34: {
+            Data = input.ReadBytes();
+            break;
+          }
         }
       }
     }
@@ -1470,7 +2292,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[9]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1487,11 +2309,100 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentDefinition(ContentDefinition other) : this() {
+      stored_ = other.stored_;
+      name_ = other.name_;
+      Summary = other.summary_ != null ? other.Summary.Clone() : null;
+      totalParts_ = other.totalParts_;
+      size_ = other.size_;
+      checksum_ = other.checksum_;
+      parts_ = other.parts_.Clone();
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentDefinition Clone() {
       return new ContentDefinition(this);
+    }
+
+    /// <summary>Field number for the "Stored" field.</summary>
+    public const int StoredFieldNumber = 1;
+    private bool stored_;
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Stored {
+      get { return stored_; }
+      set {
+        stored_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Summary" field.</summary>
+    public const int SummaryFieldNumber = 3;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary summary_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary Summary {
+      get { return summary_; }
+      set {
+        summary_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "TotalParts" field.</summary>
+    public const int TotalPartsFieldNumber = 4;
+    private ulong totalParts_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong TotalParts {
+      get { return totalParts_; }
+      set {
+        totalParts_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Size" field.</summary>
+    public const int SizeFieldNumber = 5;
+    private ulong size_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Size {
+      get { return size_; }
+      set {
+        size_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Checksum" field.</summary>
+    public const int ChecksumFieldNumber = 6;
+    private ulong checksum_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Checksum {
+      get { return checksum_; }
+      set {
+        checksum_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Parts" field.</summary>
+    public const int PartsFieldNumber = 7;
+    private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart> _repeated_parts_codec
+        = pb::FieldCodec.ForMessage(58, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart.Parser);
+    private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart> parts_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionPart> Parts {
+      get { return parts_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1507,12 +2418,26 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (Stored != other.Stored) return false;
+      if (Name != other.Name) return false;
+      if (!object.Equals(Summary, other.Summary)) return false;
+      if (TotalParts != other.TotalParts) return false;
+      if (Size != other.Size) return false;
+      if (Checksum != other.Checksum) return false;
+      if(!parts_.Equals(other.parts_)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (Stored != false) hash ^= Stored.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (summary_ != null) hash ^= Summary.GetHashCode();
+      if (TotalParts != 0UL) hash ^= TotalParts.GetHashCode();
+      if (Size != 0UL) hash ^= Size.GetHashCode();
+      if (Checksum != 0UL) hash ^= Checksum.GetHashCode();
+      hash ^= parts_.GetHashCode();
       return hash;
     }
 
@@ -1523,11 +2448,55 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (Stored != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Stored);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (summary_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Summary);
+      }
+      if (TotalParts != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(TotalParts);
+      }
+      if (Size != 0UL) {
+        output.WriteRawTag(40);
+        output.WriteUInt64(Size);
+      }
+      if (Checksum != 0UL) {
+        output.WriteRawTag(49);
+        output.WriteFixed64(Checksum);
+      }
+      parts_.WriteTo(output, _repeated_parts_codec);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (Stored != false) {
+        size += 1 + 1;
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (summary_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Summary);
+      }
+      if (TotalParts != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(TotalParts);
+      }
+      if (Size != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Size);
+      }
+      if (Checksum != 0UL) {
+        size += 1 + 8;
+      }
+      size += parts_.CalculateSize(_repeated_parts_codec);
       return size;
     }
 
@@ -1535,6 +2504,274 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     public void MergeFrom(ContentDefinition other) {
       if (other == null) {
         return;
+      }
+      if (other.Stored != false) {
+        Stored = other.Stored;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.summary_ != null) {
+        if (summary_ == null) {
+          summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary();
+        }
+        Summary.MergeFrom(other.Summary);
+      }
+      if (other.TotalParts != 0UL) {
+        TotalParts = other.TotalParts;
+      }
+      if (other.Size != 0UL) {
+        Size = other.Size;
+      }
+      if (other.Checksum != 0UL) {
+        Checksum = other.Checksum;
+      }
+      parts_.Add(other.parts_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Stored = input.ReadBool();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (summary_ == null) {
+              summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.BlobSummary();
+            }
+            input.ReadMessage(summary_);
+            break;
+          }
+          case 32: {
+            TotalParts = input.ReadUInt64();
+            break;
+          }
+          case 40: {
+            Size = input.ReadUInt64();
+            break;
+          }
+          case 49: {
+            Checksum = input.ReadFixed64();
+            break;
+          }
+          case 58: {
+            parts_.AddEntriesFrom(input, _repeated_parts_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentDefinitionPart : pb::IMessage<ContentDefinitionPart> {
+    private static readonly pb::MessageParser<ContentDefinitionPart> _parser = new pb::MessageParser<ContentDefinitionPart>(() => new ContentDefinitionPart());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentDefinitionPart> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentDefinitionPart() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentDefinitionPart(ContentDefinitionPart other) : this() {
+      stored_ = other.stored_;
+      name_ = other.name_;
+      id_ = other.id_;
+      size_ = other.size_;
+      checksum_ = other.checksum_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentDefinitionPart Clone() {
+      return new ContentDefinitionPart(this);
+    }
+
+    /// <summary>Field number for the "Stored" field.</summary>
+    public const int StoredFieldNumber = 1;
+    private bool stored_;
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Stored {
+      get { return stored_; }
+      set {
+        stored_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    /// <summary>
+    /// Needed?
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Id" field.</summary>
+    public const int IdFieldNumber = 3;
+    private ulong id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Size" field.</summary>
+    public const int SizeFieldNumber = 4;
+    private ulong size_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Size {
+      get { return size_; }
+      set {
+        size_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Checksum" field.</summary>
+    public const int ChecksumFieldNumber = 5;
+    private ulong checksum_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong Checksum {
+      get { return checksum_; }
+      set {
+        checksum_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentDefinitionPart);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentDefinitionPart other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Stored != other.Stored) return false;
+      if (Name != other.Name) return false;
+      if (Id != other.Id) return false;
+      if (Size != other.Size) return false;
+      if (Checksum != other.Checksum) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Stored != false) hash ^= Stored.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Id != 0UL) hash ^= Id.GetHashCode();
+      if (Size != 0UL) hash ^= Size.GetHashCode();
+      if (Checksum != 0UL) hash ^= Checksum.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Stored != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Stored);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (Id != 0UL) {
+        output.WriteRawTag(24);
+        output.WriteUInt64(Id);
+      }
+      if (Size != 0UL) {
+        output.WriteRawTag(32);
+        output.WriteUInt64(Size);
+      }
+      if (Checksum != 0UL) {
+        output.WriteRawTag(41);
+        output.WriteFixed64(Checksum);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Stored != false) {
+        size += 1 + 1;
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Id != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Id);
+      }
+      if (Size != 0UL) {
+        size += 1 + pb::CodedOutputStream.ComputeUInt64Size(Size);
+      }
+      if (Checksum != 0UL) {
+        size += 1 + 8;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentDefinitionPart other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Stored != false) {
+        Stored = other.Stored;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Id != 0UL) {
+        Id = other.Id;
+      }
+      if (other.Size != 0UL) {
+        Size = other.Size;
+      }
+      if (other.Checksum != 0UL) {
+        Checksum = other.Checksum;
       }
     }
 
@@ -1546,6 +2783,26 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
           default:
             input.SkipLastField();
             break;
+          case 8: {
+            Stored = input.ReadBool();
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 24: {
+            Id = input.ReadUInt64();
+            break;
+          }
+          case 32: {
+            Size = input.ReadUInt64();
+            break;
+          }
+          case 41: {
+            Checksum = input.ReadFixed64();
+            break;
+          }
         }
       }
     }
