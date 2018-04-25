@@ -92,8 +92,8 @@
     </Exec>
     <Warning Text="COMPILED: $(ProtoCompilerCommandLine)" />
 
-    <Move SourceFiles="%(ProtoFiles.TemporaryFile)" DestinationFiles="%(ProtoFiles.FinalProtobufFile)" ContinueOnError="True"/>
-    <Move SourceFiles="%(ProtoFiles.TemporaryGrpcFile)" DestinationFiles="%(ProtoFiles.FinalGrpcFile)" ContinueOnError="True"/>
+    <Move SourceFiles="%(ProtoFiles.TemporaryFile)" DestinationFiles="%(ProtoFiles.FinalProtobufFile)" Condition="Exists(%(ProtoFiles.TemporaryFile))"/>
+    <Move SourceFiles="%(ProtoFiles.TemporaryGrpcFile)" DestinationFiles="%(ProtoFiles.FinalGrpcFile)" Condition="Exists(%(ProtoFiles.TemporaryGrpcFile))"/>
     <!--<Warning Text="@(OutputOfExec->'%(Identity)', '%0a%0d')" />-->
 
     <ItemGroup>
