@@ -14,54 +14,54 @@
         //    _invoker = invoker;
         //}
 
-        public async Task<Root> Add(string name)
+        public async Task<Api.Root> Add(string name)
         {
-            var root = new Root
+            var root = new Api.Root
             {
                 Name = name,
             };
             // TODO: GRPC
-            return await Task.FromResult<Root>(null);
+            return await Task.FromResult<Api.Root>(null);
             //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "Post", Connection.Space.Id, root);
         }
 
-        public async Task Remove(Guid rootId)
+        public async Task Remove(System.Guid rootId)
         {
             // TODO: GRPC
             //await _invoker.Invoke(_connection, GrpcHub.Root, "Delete", Connection.Space.Id, rootId);
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public async Task<Api.Root> Change(System.Guid rootId, string rootName)
         {
-            var root = new Root
+            var root = new Api.Root
             {
                 Id = rootId,
                 Name = rootName,
             };
 
             // TODO: GRPC
-            return await Task.FromResult<Root>(null);
+            return await Task.FromResult<Api.Root>(null);
             //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "Put", Connection.Space.Id, rootId, root);
         }
 
-        public async Task<Root> Get(string rootName)
+        public async Task<Api.Root> Get(string rootName)
         {
             // TODO: GRPC
-            return await Task.FromResult<Root>(null);
+            return await Task.FromResult<Api.Root>(null);
             //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "GetByName", Connection.Space.Id, rootName);
         }
 
-        public async Task<Root> Get(Guid rootId)
+        public async Task<Api.Root> Get(System.Guid rootId)
         {
             // TODO: GRPC
-            return await Task.FromResult<Root>(null);
+            return await Task.FromResult<Api.Root>(null);
             //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "GetById", Connection.Space.Id, rootId);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public async Task<IEnumerable<Api.Root>> GetAll()
         {
             // TODO: GRPC
-            return await Task.FromResult<IEnumerable<Root>>(null);
+            return await Task.FromResult<IEnumerable<Api.Root>>(null);
             //return await _invoker.Invoke<IEnumerable<Root>>(_connection, GrpcHub.Root, "GetForSpace", Connection.Space.Id);
         }
 

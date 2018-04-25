@@ -5,7 +5,7 @@
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
-        public async Task<Storage> GetConnectedStorage(ISpaceConnection connection)
+        public async Task<Api.Storage> GetConnectedStorage(ISpaceConnection connection)
         {
             if (connection.Storage != null)
             {
@@ -29,7 +29,7 @@
             return storage;
         }
 
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public async Task<Api.Storage> GetConnectedStorage(IStorageConnection connection)
         {
             if (connection.Storage != null)
             {
@@ -54,7 +54,7 @@
             return storage;
         }
 
-        private async Task<Storage> GetConnectedStorage(
+        private async Task<Api.Storage> GetConnectedStorage(
 	        IGrpcTransport transport,
 	        Uri address)
         {
@@ -63,7 +63,7 @@
             //return response.AuthenticationToken;
 
             // TODO: GRPC
-            var storage = await Task.FromResult<Storage>(null);
+            var storage = await Task.FromResult<Api.Storage>(null);
 			//var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), transport.AuthenticationToken);
             //await connection.StartAsync();
             //var storage = await _invoker.Invoke<Storage>(connection, GrpcHub.Authentication, "GetLocalStorage");

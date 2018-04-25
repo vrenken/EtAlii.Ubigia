@@ -10,26 +10,26 @@
         private readonly string _name;
 		private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-		public event Action<Guid> Added = delegate { };
-        public event Action<Guid> Changed = delegate { };
-        public event Action<Guid> Removed = delegate { };
+		public event Action<System.Guid> Added = delegate { };
+        public event Action<System.Guid> Changed = delegate { };
+        public event Action<System.Guid> Removed = delegate { };
 
         public GrpcRootNotificationClient()
         {
             _name = GrpcHub.Root;
         }
 
-        private void OnAdded(Guid id)
+        private void OnAdded(System.Guid id)
         {
             Added(id); 
         }
 
-        private void OnChanged(Guid id)
+        private void OnChanged(System.Guid id)
         {
             Changed(id);
         }
 
-        private void OnRemoved(Guid id)
+        private void OnRemoved(System.Guid id)
         {
             Removed(id);
         }

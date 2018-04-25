@@ -10,15 +10,14 @@
     <CsFileExtension>.cs</CsFileExtension>
     <ProtobufSubCsFileExtension>.Protbuf.cs</ProtobufSubCsFileExtension>
     <GrpcSubCsFileExtension>.Grpc.cs</GrpcSubCsFileExtension>
+    
+    <GrpcToolsPackageName>Grpc.Tools</GrpcToolsPackageName>
+    <ProtoBufToolsPackageName>Google.Protobuf.Tools</ProtoBufToolsPackageName>
     <!-- =========================================================================================== -->
   </PropertyGroup>
 
   <Target Name="GenerateProtoBufCsCode" BeforeTargets="BeforeBuild" DependsOnTargets="BeforeGenerateProtoBufCsCode">
 
-    <PropertyGroup>
-      <GrpcToolsPackageName>Grpc.Tools</GrpcToolsPackageName>
-      <ProtoBufToolsPackageName>Google.Protobuf.Tools</ProtoBufToolsPackageName>
-    </PropertyGroup>
 
     <!-- Let's find out which GRPC and Protbuf package versions are installed in this project. -->
     <FindInList CaseSensitive="false"
@@ -61,32 +60,40 @@
         <TrimmedFolderWithRoot>%(RootDir)$([System.String]::Copy('%(Directory)').TrimEnd('\'))</TrimmedFolderWithRoot>
         <!--<TemporaryFile>$(MSBuildProjectDirectory)\$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))$(CsFileExtension)</TemporaryFile>
         <TemporaryGrpcFile>$(MSBuildProjectDirectory)\$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))Grpc$(CsFileExtension)</TemporaryGrpcFile>-->
-        <TemporaryFile>$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))\$([System.String]::Copy('%(Filename)').Replace('_',''))$(CsFileExtension)</TemporaryFile>
-        <TemporaryGrpcFile>$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))\$([System.String]::Copy('%(Filename)').Replace('_',''))Grpc$(CsFileExtension)</TemporaryGrpcFile>
+        <TemporaryFile>$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))$(CsFileExtension)</TemporaryFile>
+        <TemporaryGrpcFile>$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))Grpc$(CsFileExtension)</TemporaryGrpcFile>
         <FinalProtobufFile>%(RootDir)%(Directory)%(Filename)$(ProtobufSubCsFileExtension)</FinalProtobufFile>
         <FinalProtobufFilesToClean>%(RootDir)%(Directory)*$(ProtobufSubCsFileExtension)</FinalProtobufFilesToClean>
         <FinalGrpcFile>%(RootDir)%(Directory)%(Filename)$(GrpcSubCsFileExtension)</FinalGrpcFile>
         <FinalGrpcFilesToClean>%(RootDir)%(Directory)*$(GrpcSubCsFileExtension)</FinalGrpcFilesToClean>
-        <ProtoBufTempFolder>$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))</ProtoBufTempFolder>
-        <ProtoBufCommandLinePrefix>$(ProtoBufExe) --grpc_out="$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))" --csharp_out="$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))" $(ProtoBufPlugin)</ProtoBufCommandLinePrefix>
+        <!--<ProtoBufTempFolder>$(ProtoBufTempFolder)\$([System.String]::Copy('%(Filename)').Replace('_',''))</ProtoBufTempFolder>-->
       </ProtoFiles>
     </ItemGroup>
     <ItemGroup>
       <ProtobufFilesToDelete Include="%(ProtoFiles.FinalProtobufFilesToClean)" />
       <GrpcFilesToDelete Include="%(ProtoFiles.FinalGrpcFilesToClean)" />
     </ItemGroup>
+
+    <PropertyGroup>
+      <ProtoBufCommandLinePrefix>$(ProtoBufExe) --grpc_out="$(ProtoBufTempFolder)" --csharp_out="$(ProtoBufTempFolder)" $(ProtoBufPlugin)</ProtoBufCommandLinePrefix>
+
+    </PropertyGroup>
     <!-- =========================================================================================== -->
 
-    <MakeDir Directories="%(ProtoFiles.ProtoBufTempFolder)" ContinueOnError="True"  />
+    <MakeDir Directories="$(ProtoBufTempFolder)" ContinueOnError="True"  />
     <Delete Files="@(ProtobufFilesToDelete)" />
     <Delete Files="@(GrpcFilesToDelete)" />
 
-    <Exec Command="%(ProtoFiles.ProtoBufCommandLinePrefix) --proto_path=&quot;%(ProtoFiles.TrimmedFolderWithRoot)&quot; &quot;%(ProtoFiles.FullPath)&quot;" ConsoleToMSBuild="True" ContinueOnError="True" EchoOff="False">
+    <PropertyGroup>
+      <ProtoCompilerCommandLine>$(ProtoBufCommandLinePrefix)  --proto_path=&quot;$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\$(ProtoBufToolsVersion)\Tools&quot; @(ProtoFiles->'--proto_path=&quot;%(TrimmedFolderWithRoot)&quot;', ' ') @(ProtoFiles->'&quot;%(FullPath)&quot;', ' ')</ProtoCompilerCommandLine>
+    </PropertyGroup>
+    <Exec Command="$(ProtoCompilerCommandLine)" ConsoleToMSBuild="True" ContinueOnError="True" EchoOff="False">
       <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
+    <Warning Text="COMPILED: $(ProtoCompilerCommandLine)" />
 
-    <Move SourceFiles="%(ProtoFiles.TemporaryFile)" DestinationFiles="%(ProtoFiles.FinalProtobufFile)"/>
-    <Move SourceFiles="%(ProtoFiles.TemporaryGrpcFile)" DestinationFiles="%(ProtoFiles.FinalGrpcFile)"/>
+    <Move SourceFiles="%(ProtoFiles.TemporaryFile)" DestinationFiles="%(ProtoFiles.FinalProtobufFile)" ContinueOnError="True"/>
+    <Move SourceFiles="%(ProtoFiles.TemporaryGrpcFile)" DestinationFiles="%(ProtoFiles.FinalGrpcFile)" ContinueOnError="True"/>
     <!--<Warning Text="@(OutputOfExec->'%(Identity)', '%0a%0d')" />-->
 
     <ItemGroup>
@@ -104,15 +111,18 @@
     <RemoveDir Directories="$(ProtoBufTempFolder)"/>
   </Target>
 
-  <ItemGroup>
-    <Compile Update="**\*$(ProtobufSubCsFileExtension)" SubType="Code">
-      <DependentUpon>$([System.String]::Copy('%(Filename)%(Extension)').Replace('$(ProtobufSubCsFileExtension)','.proto'))</DependentUpon>
-    </Compile>
+    <ItemGroup>
+      <Compile Update="**\*$(ProtobufSubCsFileExtension)" SubType="Code">
+        <DependentUpon>$([System.String]::Copy('%(Filename)%(Extension)').Replace('$(ProtobufSubCsFileExtension)','.proto'))</DependentUpon>
+      </Compile>
 
-    <Compile Update="**\*$(GrpcSubCsFileExtension)" SubType="Code">
-      <DependentUpon>$([System.String]::Copy('%(Filename)%(Extension)').Replace('$(GrpcSubCsFileExtension)','.proto'))</DependentUpon>
-    </Compile>
+      <Compile Update="**\*$(GrpcSubCsFileExtension)" SubType="Code">
+        <DependentUpon>$([System.String]::Copy('%(Filename)%(Extension)').Replace('$(GrpcSubCsFileExtension)','.proto'))</DependentUpon>
+      </Compile>
 
+    <None Include="$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\3.5.1\tools\**\*.proto" Visible="False" >
+      <Link>Data\Clients\_Grpc\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </None>       
   </ItemGroup>
 
 </Project>

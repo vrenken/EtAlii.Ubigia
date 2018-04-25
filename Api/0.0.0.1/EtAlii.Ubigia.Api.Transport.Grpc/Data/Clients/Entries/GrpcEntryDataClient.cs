@@ -22,7 +22,7 @@
             return await Task.FromResult<IEditableEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
+        public async Task<IReadOnlyEntry> Change(IEditableEntry entry, Api.ExecutionScope scope)
         {
             // TODO: GRPC
             //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
@@ -33,12 +33,12 @@
             return await Task.FromResult<IReadOnlyEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Api.Root root, Api.ExecutionScope scope, Api.EntryRelation entryRelations = Api.EntryRelation.None)
         {
             return await Get(root.Identifier, scope, entryRelations);
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Api.Identifier entryIdentifier, Api.ExecutionScope scope, Api.EntryRelation entryRelations = Api.EntryRelation.None)
         {
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
@@ -48,7 +48,7 @@
             });
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Api.Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             // TODO: this can be improved by using one single Web API call.
             var result = new List<IReadOnlyEntry>();
@@ -65,7 +65,7 @@
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Api.Identifier entryIdentifier, Api.EntryRelation entriesWithRelation, Api.ExecutionScope scope, Api.EntryRelation entryRelations = Api.EntryRelation.None)
         {
             return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
             {

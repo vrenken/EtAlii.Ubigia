@@ -23,15 +23,22 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg1Db250ZW50LnByb3RvEiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "R3JwYyIQCg5Db250ZW50UmVxdWVzdCIRCg9Db250ZW50UmVzcG9uc2UyggEK",
-            "EkNvbnRlbnRHcnBjU2VydmljZRJsCgNHZXQSMC5FdEFsaWkuVWJpZ2lhLkFw",
-            "aS5UcmFuc3BvcnQuR3JwYy5Db250ZW50UmVxdWVzdBoxLkV0QWxpaS5VYmln",
-            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjLkNvbnRlbnRSZXNwb25zZSIAQlgKIEV0",
-            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjQgZVYmlnaWFQAaICBlVi",
-            "aWdpYaoCIEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjYgZwcm90",
-            "bzM="));
+            "R3JwYxoMX01vZGVsLnByb3RvIhAKDkNvbnRlbnRSZXF1ZXN0IhEKD0NvbnRl",
+            "bnRSZXNwb25zZTLQAwoSQ29udGVudEdycGNTZXJ2aWNlEmwKA0dldBIwLkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkNvbnRlbnRSZXF1ZXN0",
+            "GjEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQ29udGVudFJl",
+            "c3BvbnNlIgASbQoEUG9zdBIwLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9y",
+            "dC5HcnBjLkNvbnRlbnRSZXF1ZXN0GjEuRXRBbGlpLlViaWdpYS5BcGkuVHJh",
+            "bnNwb3J0LkdycGMuQ29udGVudFJlc3BvbnNlIgASbAoDUHV0EjAuRXRBbGlp",
+            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQ29udGVudFJlcXVlc3QaMS5F",
+            "dEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5Db250ZW50UmVzcG9u",
+            "c2UiABJvCgZEZWxldGUSMC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "R3JwYy5Db250ZW50UmVxdWVzdBoxLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
+            "cG9ydC5HcnBjLkNvbnRlbnRSZXNwb25zZSIAQlgKIEV0QWxpaS5VYmlnaWEu",
+            "QXBpLlRyYW5zcG9ydC5HcnBjQgZVYmlnaWFQAaICBlViaWdpYaoCIEV0QWxp",
+            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse.Parser, null, null, null, null)

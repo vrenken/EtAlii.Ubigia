@@ -1,0 +1,71 @@
+﻿//
+// Copyright 2018 Peter renken.
+
+syntax = "proto3";
+
+import "Google/Protobuf/Timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc;
+
+message Guid
+{
+	fixed64 Data1 = 1;
+	fixed64 Data2 = 2;
+	fixed64 Data3 = 3;
+	fixed64 Data4 = 4;
+}
+message IpAddress
+{
+	fixed64 Data = 1;
+}
+
+message Storage
+{
+	Guid Id = 1;
+	string Name = 2;
+	string Address = 3;
+}
+
+message Space 
+{
+	Guid Id = 1;
+	string Name = 2;
+	Guid AccountId= 3;
+}
+
+message Account
+{
+	Guid Id = 1;
+	string Name = 2;
+	string Password = 3;
+	repeated string Roles = 4;
+	//Google.Protobuf.TimeStamp Created = 5;
+	//Google.Protobuf.TimeStamp Updated = 6;
+}
+
+message Root
+{
+}
+
+message Entity
+{
+}
+
+message Identifier
+{
+}
+
+message Content
+{
+}
+
+message ContentDefinition
+{
+}
