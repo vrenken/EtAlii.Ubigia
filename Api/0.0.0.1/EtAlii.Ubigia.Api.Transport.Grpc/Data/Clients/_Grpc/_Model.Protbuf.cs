@@ -35,11 +35,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             "VHJhbnNwb3J0LkdycGMuR3VpZBIMCgROYW1lGAIgASgJEhAKCFBhc3N3b3Jk",
             "GAMgASgJEg0KBVJvbGVzGAQgAygJEisKB0NyZWF0ZWQYBSABKAsyGi5nb29n",
             "bGUucHJvdG9idWYuVGltZXN0YW1wEisKB1VwZGF0ZWQYBiABKAsyGi5nb29n",
-            "bGUucHJvdG9idWYuVGltZXN0YW1wIgYKBFJvb3QiCAoGRW50aXR5IgwKCklk",
-            "ZW50aWZpZXIiCQoHQ29udGVudCITChFDb250ZW50RGVmaW5pdGlvbkJYCiBF",
-            "dEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwY0IGVWJpZ2lhUAGiAgZV",
-            "YmlnaWGqAiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwY2IGcHJv",
-            "dG8z"));
+            "bGUucHJvdG9idWYuVGltZXN0YW1wIooBCgRSb290EjIKAklkGAEgASgLMiYu",
+            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuR3VpZBIMCgROYW1l",
+            "GAIgASgJEkAKCklkZW50aWZpZXIYAyABKAsyLC5FdEFsaWkuVWJpZ2lhLkFw",
+            "aS5UcmFuc3BvcnQuR3JwYy5JZGVudGlmaWVyIggKBkVudGl0eSIMCgpJZGVu",
+            "dGlmaWVyIgkKB0NvbnRlbnQiEwoRQ29udGVudERlZmluaXRpb25CWAogRXRB",
+            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNCBlViaWdpYVABogIGVWJp",
+            "Z2lhqgIgRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNiBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -48,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Storage), global::EtAlii.Ubigia.Api.Transport.Grpc.Storage.Parser, new[]{ "Id", "Name", "Address" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Space), global::EtAlii.Ubigia.Api.Transport.Grpc.Space.Parser, new[]{ "Id", "Name", "AccountId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Account), global::EtAlii.Ubigia.Api.Transport.Grpc.Account.Parser, new[]{ "Id", "Name", "Password", "Roles", "Created", "Updated" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Root), global::EtAlii.Ubigia.Api.Transport.Grpc.Root.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Root), global::EtAlii.Ubigia.Api.Transport.Grpc.Root.Parser, new[]{ "Id", "Name", "Identifier" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Entity), global::EtAlii.Ubigia.Api.Transport.Grpc.Entity.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier), global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.Content), global::EtAlii.Ubigia.Api.Transport.Grpc.Content.Parser, null, null, null, null),
@@ -1032,11 +1035,47 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Root(Root other) : this() {
+      Id = other.id_ != null ? other.Id.Clone() : null;
+      name_ = other.name_;
+      Identifier = other.identifier_ != null ? other.Identifier.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Root Clone() {
       return new Root(this);
+    }
+
+    /// <summary>Field number for the "Id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Guid id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Guid Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "Identifier" field.</summary>
+    public const int IdentifierFieldNumber = 3;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier identifier_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier Identifier {
+      get { return identifier_; }
+      set {
+        identifier_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1052,12 +1091,18 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(Id, other.Id)) return false;
+      if (Name != other.Name) return false;
+      if (!object.Equals(Identifier, other.Identifier)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (id_ != null) hash ^= Id.GetHashCode();
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (identifier_ != null) hash ^= Identifier.GetHashCode();
       return hash;
     }
 
@@ -1068,11 +1113,32 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (id_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Id);
+      }
+      if (Name.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (identifier_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Identifier);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (id_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (identifier_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Identifier);
+      }
       return size;
     }
 
@@ -1080,6 +1146,21 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     public void MergeFrom(Root other) {
       if (other == null) {
         return;
+      }
+      if (other.id_ != null) {
+        if (id_ == null) {
+          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+        }
+        Id.MergeFrom(other.Id);
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.identifier_ != null) {
+        if (identifier_ == null) {
+          identifier_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier();
+        }
+        Identifier.MergeFrom(other.Identifier);
       }
     }
 
@@ -1091,6 +1172,24 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
           default:
             input.SkipLastField();
             break;
+          case 10: {
+            if (id_ == null) {
+              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+            }
+            input.ReadMessage(id_);
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            if (identifier_ == null) {
+              identifier_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Identifier();
+            }
+            input.ReadMessage(identifier_);
+            break;
+          }
         }
       }
     }
