@@ -46,8 +46,8 @@ message Account
 	string Name = 2;
 	string Password = 3;
 	repeated string Roles = 4;
-	//Google.Protobuf.TimeStamp Created = 5;
-	//Google.Protobuf.TimeStamp Updated = 6;
+	google.protobuf.Timestamp Created = 5;
+	google.protobuf.Timestamp Updated = 6;
 }
 
 message Root
