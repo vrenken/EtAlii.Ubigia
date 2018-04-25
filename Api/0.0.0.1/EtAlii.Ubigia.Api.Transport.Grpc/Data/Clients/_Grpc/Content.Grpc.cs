@@ -29,6 +29,27 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
         __Marshaller_ContentRequest,
         __Marshaller_ContentResponse);
 
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Post",
+        __Marshaller_ContentRequest,
+        __Marshaller_ContentResponse);
+
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Put",
+        __Marshaller_ContentRequest,
+        __Marshaller_ContentResponse);
+
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Delete",
+        __Marshaller_ContentRequest,
+        __Marshaller_ContentResponse);
+
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
@@ -38,13 +59,22 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     /// <summary>Base class for server-side implementations of ContentGrpcService</summary>
     public abstract partial class ContentGrpcServiceBase
     {
-      /// <summary>
-      /// Try to authenticate.
-      /// </summary>
-      /// <param name="request">The request received from the client.</param>
-      /// <param name="context">The context of the server-side call handler being invoked.</param>
-      /// <returns>The response to send back to the client (wrapped by a task).</returns>
       public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> Get(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> Post(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> Put(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -74,49 +104,69 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       {
       }
 
-      /// <summary>
-      /// Try to authenticate.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The response received from the server.</returns>
       public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Get(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Try to authenticate.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The response received from the server.</returns>
       public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Get, null, options, request);
       }
-      /// <summary>
-      /// Try to authenticate.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="headers">The initial metadata to send with the call. This parameter is optional.</param>
-      /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
-      /// <param name="cancellationToken">An optional token for canceling the call.</param>
-      /// <returns>The call object.</returns>
       public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      /// <summary>
-      /// Try to authenticate.
-      /// </summary>
-      /// <param name="request">The request to send to the server.</param>
-      /// <param name="options">The options for the call.</param>
-      /// <returns>The call object.</returns>
       public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Get, null, options, request);
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Post(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Post(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Post(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Post, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PostAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Post, null, options, request);
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Put(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Put(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Put(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Put, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return PutAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Put, null, options, request);
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return Delete(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Delete, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return DeleteAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Delete, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override ContentGrpcServiceClient NewInstance(ClientBaseConfiguration configuration)
@@ -130,7 +180,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     public static grpc::ServerServiceDefinition BindService(ContentGrpcServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_Get, serviceImpl.Get).Build();
+          .AddMethod(__Method_Get, serviceImpl.Get)
+          .AddMethod(__Method_Post, serviceImpl.Post)
+          .AddMethod(__Method_Put, serviceImpl.Put)
+          .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
     }
 
   }

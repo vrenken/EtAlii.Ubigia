@@ -23,36 +23,39 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChRBdXRoZW50aWNhdGlvbi5wcm90bxIgRXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0LkdycGMiVgoVQXV0aGVudGljYXRpb25SZXF1ZXN0EhMKC0FjY291",
-            "bnROYW1lGAEgASgJEhAKCFBhc3N3b3JkGAIgASgJEhYKDmhvc3RJZGVudGlm",
-            "aWVyGAMgASgJIjUKFkF1dGhlbnRpY2F0aW9uUmVzcG9uc2USGwoTQXV0aGVu",
-            "dGljYXRpb25Ub2tlbhgBIAEoCSI5ChpBdXRoZW50aWNhdGlvblRva2VuUmVx",
-            "dWVzdBIbChNBdXRoZW50aWNhdGlvblRva2VuGAEgASgJIjIKG0F1dGhlbnRp",
-            "Y2F0aW9uVG9rZW5SZXNwb25zZRITCgtBY2NvdW50TmFtZRgBIAEoCSIVChNM",
-            "b2NhbFN0b3JhZ2VSZXF1ZXN0IisKFExvY2FsU3RvcmFnZVJlc3BvbnNlEhMK",
-            "C1N0b3JhZ2VOYW1lGAEgASgJMtIEChlBdXRoZW50aWNhdGlvbkdycGNTZXJ2",
-            "aWNlEoMBCgxBdXRoZW50aWNhdGUSNy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
-            "c3BvcnQuR3JwYy5BdXRoZW50aWNhdGlvblJlcXVlc3QaOC5FdEFsaWkuVWJp",
-            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5BdXRoZW50aWNhdGlvblJlc3BvbnNl",
-            "IgAShQEKDkF1dGhlbnRpY2F0ZUFzEjcuRXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0LkdycGMuQXV0aGVudGljYXRpb25SZXF1ZXN0GjguRXRBbGlpLlVi",
-            "aWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQXV0aGVudGljYXRpb25SZXNwb25z",
-            "ZSIAEqEBCiBHZXRBY2NvdW50Rm9yQXV0aGVudGljYXRpb25Ub2tlbhI8LkV0",
-            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkF1dGhlbnRpY2F0aW9u",
-            "VG9rZW5SZXF1ZXN0Gj0uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
-            "cGMuQXV0aGVudGljYXRpb25Ub2tlblJlc3BvbnNlIgASggEKD0dldExvY2Fs",
-            "U3RvcmFnZRI1LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkxv",
-            "Y2FsU3RvcmFnZVJlcXVlc3QaNi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
-            "cnQuR3JwYy5Mb2NhbFN0b3JhZ2VSZXNwb25zZSIAQlgKIEV0QWxpaS5VYmln",
-            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjQgZVYmlnaWFQAaICBlViaWdpYaoCIEV0",
-            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjYgZwcm90bzM="));
+            "bnNwb3J0LkdycGMaDF9Nb2RlbC5wcm90byJWChVBdXRoZW50aWNhdGlvblJl",
+            "cXVlc3QSEwoLQWNjb3VudE5hbWUYASABKAkSEAoIUGFzc3dvcmQYAiABKAkS",
+            "FgoOaG9zdElkZW50aWZpZXIYAyABKAkicQoWQXV0aGVudGljYXRpb25SZXNw",
+            "b25zZRIbChNBdXRoZW50aWNhdGlvblRva2VuGAEgASgJEjoKB0FjY291bnQY",
+            "AiABKAsyKS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5BY2Nv",
+            "dW50IjkKGkF1dGhlbnRpY2F0aW9uVG9rZW5SZXF1ZXN0EhsKE0F1dGhlbnRp",
+            "Y2F0aW9uVG9rZW4YASABKAkiWQobQXV0aGVudGljYXRpb25Ub2tlblJlc3Bv",
+            "bnNlEjoKB0FjY291bnQYASABKAsyKS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
+            "c3BvcnQuR3JwYy5BY2NvdW50IhUKE0xvY2FsU3RvcmFnZVJlcXVlc3QiKwoU",
+            "TG9jYWxTdG9yYWdlUmVzcG9uc2USEwoLU3RvcmFnZU5hbWUYASABKAky0gQK",
+            "GUF1dGhlbnRpY2F0aW9uR3JwY1NlcnZpY2USgwEKDEF1dGhlbnRpY2F0ZRI3",
+            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkF1dGhlbnRpY2F0",
+            "aW9uUmVxdWVzdBo4LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBj",
+            "LkF1dGhlbnRpY2F0aW9uUmVzcG9uc2UiABKFAQoOQXV0aGVudGljYXRlQXMS",
+            "Ny5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5BdXRoZW50aWNh",
+            "dGlvblJlcXVlc3QaOC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3Jw",
+            "Yy5BdXRoZW50aWNhdGlvblJlc3BvbnNlIgASoQEKIEdldEFjY291bnRGb3JB",
+            "dXRoZW50aWNhdGlvblRva2VuEjwuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
+            "b3J0LkdycGMuQXV0aGVudGljYXRpb25Ub2tlblJlcXVlc3QaPS5FdEFsaWku",
+            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5BdXRoZW50aWNhdGlvblRva2Vu",
+            "UmVzcG9uc2UiABKCAQoPR2V0TG9jYWxTdG9yYWdlEjUuRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0LkdycGMuTG9jYWxTdG9yYWdlUmVxdWVzdBo2LkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkxvY2FsU3RvcmFnZVJl",
+            "c3BvbnNlIgBCWAogRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNC",
+            "BlViaWdpYVABogIGVWJpZ2lhqgIgRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
+            "b3J0LkdycGNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationRequest.Parser, new[]{ "AccountName", "Password", "HostIdentifier" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse.Parser, new[]{ "AuthenticationToken" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationResponse.Parser, new[]{ "AuthenticationToken", "Account" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenRequest.Parser, new[]{ "AuthenticationToken" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenResponse.Parser, new[]{ "AccountName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationTokenResponse.Parser, new[]{ "Account" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageRequest.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.LocalStorageResponse.Parser, new[]{ "StorageName" }, null, null, null)
           }));
@@ -259,6 +262,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationResponse(AuthenticationResponse other) : this() {
       authenticationToken_ = other.authenticationToken_;
+      Account = other.account_ != null ? other.Account.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -277,6 +281,17 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       }
     }
 
+    /// <summary>Field number for the "Account" field.</summary>
+    public const int AccountFieldNumber = 2;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Account account_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Account Account {
+      get { return account_; }
+      set {
+        account_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
       return Equals(other as AuthenticationResponse);
@@ -291,6 +306,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
         return true;
       }
       if (AuthenticationToken != other.AuthenticationToken) return false;
+      if (!object.Equals(Account, other.Account)) return false;
       return true;
     }
 
@@ -298,6 +314,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     public override int GetHashCode() {
       int hash = 1;
       if (AuthenticationToken.Length != 0) hash ^= AuthenticationToken.GetHashCode();
+      if (account_ != null) hash ^= Account.GetHashCode();
       return hash;
     }
 
@@ -312,6 +329,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
         output.WriteRawTag(10);
         output.WriteString(AuthenticationToken);
       }
+      if (account_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Account);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -319,6 +340,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       int size = 0;
       if (AuthenticationToken.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(AuthenticationToken);
+      }
+      if (account_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Account);
       }
       return size;
     }
@@ -330,6 +354,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       }
       if (other.AuthenticationToken.Length != 0) {
         AuthenticationToken = other.AuthenticationToken;
+      }
+      if (other.account_ != null) {
+        if (account_ == null) {
+          account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Account();
+        }
+        Account.MergeFrom(other.Account);
       }
     }
 
@@ -343,6 +373,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             break;
           case 10: {
             AuthenticationToken = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (account_ == null) {
+              account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Account();
+            }
+            input.ReadMessage(account_);
             break;
           }
         }
@@ -492,7 +529,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationTokenResponse(AuthenticationTokenResponse other) : this() {
-      accountName_ = other.accountName_;
+      Account = other.account_ != null ? other.Account.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -500,14 +537,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       return new AuthenticationTokenResponse(this);
     }
 
-    /// <summary>Field number for the "AccountName" field.</summary>
-    public const int AccountNameFieldNumber = 1;
-    private string accountName_ = "";
+    /// <summary>Field number for the "Account" field.</summary>
+    public const int AccountFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.Account account_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string AccountName {
-      get { return accountName_; }
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.Account Account {
+      get { return account_; }
       set {
-        accountName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        account_ = value;
       }
     }
 
@@ -524,14 +561,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (AccountName != other.AccountName) return false;
+      if (!object.Equals(Account, other.Account)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (AccountName.Length != 0) hash ^= AccountName.GetHashCode();
+      if (account_ != null) hash ^= Account.GetHashCode();
       return hash;
     }
 
@@ -542,17 +579,17 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (AccountName.Length != 0) {
+      if (account_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(AccountName);
+        output.WriteMessage(Account);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (AccountName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccountName);
+      if (account_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Account);
       }
       return size;
     }
@@ -562,8 +599,11 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       if (other == null) {
         return;
       }
-      if (other.AccountName.Length != 0) {
-        AccountName = other.AccountName;
+      if (other.account_ != null) {
+        if (account_ == null) {
+          account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Account();
+        }
+        Account.MergeFrom(other.Account);
       }
     }
 
@@ -576,7 +616,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             input.SkipLastField();
             break;
           case 10: {
-            AccountName = input.ReadString();
+            if (account_ == null) {
+              account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Account();
+            }
+            input.ReadMessage(account_);
             break;
           }
         }

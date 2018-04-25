@@ -23,15 +23,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChBQcm9wZXJ0aWVzLnByb3RvEiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
-            "cnQuR3JwYyITChFQcm9wZXJ0aWVzUmVxdWVzdCIUChJQcm9wZXJ0aWVzUmVz",
-            "cG9uc2UyiwEKFVByb3BlcnRpZXNHcnBjU2VydmljZRJyCgNHZXQSMy5FdEFs",
-            "aWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5Qcm9wZXJ0aWVzUmVxdWVz",
-            "dBo0LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLlByb3BlcnRp",
-            "ZXNSZXNwb25zZSIAQlgKIEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5H",
-            "cnBjQgZVYmlnaWFQAaICBlViaWdpYaoCIEV0QWxpaS5VYmlnaWEuQXBpLlRy",
-            "YW5zcG9ydC5HcnBjYgZwcm90bzM="));
+            "cnQuR3JwYxoMX01vZGVsLnByb3RvIhMKEVByb3BlcnRpZXNSZXF1ZXN0IhQK",
+            "ElByb3BlcnRpZXNSZXNwb25zZTKLAQoVUHJvcGVydGllc0dycGNTZXJ2aWNl",
+            "EnIKA0dldBIzLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLlBy",
+            "b3BlcnRpZXNSZXF1ZXN0GjQuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
+            "LkdycGMuUHJvcGVydGllc1Jlc3BvbnNlIgBCWAogRXRBbGlpLlViaWdpYS5B",
+            "cGkuVHJhbnNwb3J0LkdycGNCBlViaWdpYVABogIGVWJpZ2lhqgIgRXRBbGlp",
+            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesRequest.Parser, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesResponse.Parser, null, null, null, null)

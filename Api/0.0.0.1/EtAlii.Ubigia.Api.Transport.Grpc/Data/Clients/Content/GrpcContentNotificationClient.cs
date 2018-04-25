@@ -10,20 +10,20 @@
         private readonly string _name;
         private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-        public event Action<Identifier> Updated = delegate { };
-        public event Action<Identifier> Stored = delegate { };
+        public event Action<Api.Identifier> Updated = delegate { };
+        public event Action<Api.Identifier> Stored = delegate { };
 
         public GrpcContentNotificationClient()
         {
             _name = GrpcHub.Content;
         }
 
-        private void OnUpdated(Identifier identifier)
+        private void OnUpdated(Api.Identifier identifier)
         {
             Updated(identifier);
         }
 
-        private void OnStored(Identifier identifier)
+        private void OnStored(Api.Identifier identifier)
         {
             Stored(identifier);
         }

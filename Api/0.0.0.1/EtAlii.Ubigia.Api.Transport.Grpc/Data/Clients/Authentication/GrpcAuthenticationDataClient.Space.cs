@@ -6,7 +6,7 @@
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
-        public async Task<Space> GetSpace(ISpaceConnection connection)
+        public async Task<Api.Space> GetSpace(ISpaceConnection connection)
         {
             if (connection.Space != null)
             {
@@ -22,10 +22,10 @@
             return space;
         }
 
-        private async Task<Space> GetSpace(string spaceName)
+        private async Task<Api.Space> GetSpace(string spaceName)
         {
             // TODO: GRPC
-            var space = await Task.FromResult<Space>(null);
+            var space = await Task.FromResult<Api.Space>(null);
             //var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
 			if (space == null)
 			{

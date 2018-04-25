@@ -10,14 +10,14 @@
         private readonly string _name;
 		private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-		public event Action<Identifier> Stored = delegate { };
+		public event Action<Api.Identifier> Stored = delegate { };
 
         public GrpcPropertiesNotificationClient()
         {
             _name = GrpcHub.Property;
         }
 
-        private void OnStored(Identifier identifier)
+        private void OnStored(Api.Identifier identifier)
         {
             Stored(identifier);
         }

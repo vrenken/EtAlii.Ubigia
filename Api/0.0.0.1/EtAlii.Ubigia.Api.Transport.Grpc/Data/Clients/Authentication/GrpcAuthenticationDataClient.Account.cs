@@ -4,7 +4,7 @@
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
-        public async Task<Account> GetAccount(ISpaceConnection connection)
+        public async Task<Api.Account> GetAccount(ISpaceConnection connection)
         {
             if (connection.Account != null)
             {
@@ -19,13 +19,13 @@
             return account;
         }
 
-        private async Task<Account> GetAccount(string accountName)
+        private async Task<Api.Account> GetAccount(string accountName)
         {
             //var request = new AuthenticationTokenRequest { AuthenticationToken = _};
             //await _client.GetAccountForAuthenticationTokenAsync()
 
             // TODO: GRPC
-            var account = await Task.FromResult<Account>(null);
+            var account = await Task.FromResult<Api.Account>(null);
 			//var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
             if (account == null)
             {
