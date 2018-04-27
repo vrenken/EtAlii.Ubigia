@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Description>Unit test project</Description>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.19.0</Version>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl></PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <PackageReleaseNotes></PackageReleaseNotes>
+    <PackageTags></PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="TestImage_01.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="TestImage_01.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="xunit" Version="2.3.1" />
+    <PackageReference Include="xunit.assert" Version="2.3.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <Import Project="..\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems" Label="Shared" />
+
+</Project>
