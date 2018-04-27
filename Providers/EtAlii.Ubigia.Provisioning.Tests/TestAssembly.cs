@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Provisioning
+﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
     public class TestAssembly
     {

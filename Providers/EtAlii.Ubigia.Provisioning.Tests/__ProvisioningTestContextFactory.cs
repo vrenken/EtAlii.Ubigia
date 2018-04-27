@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Provisioning
+﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.xTechnology.MicroContainer;

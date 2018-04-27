@@ -1,10 +1,10 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Provisioning
+namespace EtAlii.Ubigia.Provisioning.Tests
 {
-	using System;
-	using System.Net.Http;
-	using System.Threading.Tasks;
+    using System;
+    using System.Net.Http;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;

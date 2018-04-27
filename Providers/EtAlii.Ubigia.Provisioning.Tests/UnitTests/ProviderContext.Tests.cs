@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Provisioning.UnitTests
+﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using Xunit;
 
-    public class ProviderContext_Tests
+    public class ProviderContextTests
     {
         [Fact]
         public void ProviderContext_Create()

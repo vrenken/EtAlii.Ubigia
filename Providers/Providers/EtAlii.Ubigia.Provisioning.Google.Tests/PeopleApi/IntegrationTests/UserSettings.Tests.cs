@@ -6,15 +6,16 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
+    using EtAlii.Ubigia.Provisioning.Tests;
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
     
-    public class UserSettings_Tests : IClassFixture<ProvisioningUnitTestContext>
+    public class UserSettingsTests : IClassFixture<ProvisioningUnitTestContext>
     {
         private readonly ProvisioningUnitTestContext _testContext;
 
-        public UserSettings_Tests(ProvisioningUnitTestContext testContext)
+        public UserSettingsTests(ProvisioningUnitTestContext testContext)
         {
             _testContext = testContext;
         }

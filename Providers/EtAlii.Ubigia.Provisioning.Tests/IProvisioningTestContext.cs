@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Provisioning
+namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;

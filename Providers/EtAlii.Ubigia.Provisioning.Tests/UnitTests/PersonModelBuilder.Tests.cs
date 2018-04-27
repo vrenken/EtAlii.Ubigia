@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Provisioning.UnitTests
+﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using System.Linq;
     using Xunit;
 
-    public class PersonModelBuilder_Tests
+    public class PersonModelBuilderTests
     {
         [Fact]
         public void PersonModelBuilder_Create()
