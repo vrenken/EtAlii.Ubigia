@@ -11,6 +11,7 @@ using System.Threading.Channels;
 using Microsoft.AspNetCore.Sockets.Client.Http;
 using Microsoft.AspNetCore.Sockets.Client.Internal;
 using Microsoft.Extensions.Logging;
+// ReSharper disable all
 
 namespace Microsoft.AspNetCore.Sockets.Client
 {
