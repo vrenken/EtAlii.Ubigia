@@ -1,14 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc
 {
-    using System.Diagnostics;
-    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
     using EtAlii.xTechnology.Hosting;
-    using Microsoft.Grpc.Builder;
-    using Microsoft.Grpc.Http;
-    using Microsoft.Grpc.Mvc.Controllers;
+    using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
 
     public class AdminPortalControllerService : GrpcServiceBase
     {
@@ -17,18 +12,25 @@
         {
         }
 
-        protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
+
+        protected override void OnConfigureServer(Server server)
         {
-            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
-                services =>
-                {
-                    services.AddMvcForTypedController<AdminPortalController>();
-                    //.AddRazorOptions(options =>
-                    //{
-                    //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
-                    //});
-                },
-                appBuilder => appBuilder.UseWelcomePage().UseMvc());
+            base.OnConfigureServer(server);
+        }
+
+        protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
+        {
+            // TODO: GRPC
+            //applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
+            //    services =>
+            //    {
+            //        services.AddMvcForTypedController<AdminPortalController>();
+            //        //.AddRazorOptions(options =>
+            //        //{
+            //        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
+            //        //});
+            //    },
+            //    appBuilder => appBuilder.UseWelcomePage().UseMvc());
         }
     }
 }
