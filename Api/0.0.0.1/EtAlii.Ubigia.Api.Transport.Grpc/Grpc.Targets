@@ -127,7 +127,7 @@
         <DependentUpon>$([System.String]::Copy('%(Filename)%(Extension)').Replace('$(GrpcSubCsFileExtension)','.proto'))</DependentUpon>
       </Compile>
 
-      <None Update="$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\3.5.1\tools\google\protobuf\*.proto" >
+      <None Include="$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\3.5.1\tools\google\protobuf\*.proto" Visible="False" >
         <Link>Data\Clients\_Grpc\Google\Protobuf\%(Filename)%(Extension)</Link>
       </None>       
       <!--<None Include="Data\Clients\_Grpc\Google\Protobuf" Visible="False" />       
