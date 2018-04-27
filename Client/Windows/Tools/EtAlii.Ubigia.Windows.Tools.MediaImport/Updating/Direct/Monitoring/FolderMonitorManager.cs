@@ -52,7 +52,7 @@
             {
                 AddMonitor(folderSyncConfiguration);
             }
-            _folderSyncConfigurations.CollectionChanged += FolderSyncConfigurationsChanged;
+            folderSyncConfigurations.CollectionChanged += FolderSyncConfigurationsChanged;
             Monitors.CollectionChanged += MonitorsChanged;
         }
 
