@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿// ReSharper disable UnusedMember.Global
+using System.Collections.ObjectModel;
 
 namespace EtAlii.Ubigia.Client.Windows
 {
