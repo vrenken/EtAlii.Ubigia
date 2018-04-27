@@ -5,6 +5,7 @@ using System;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Sockets;
 using Microsoft.Extensions.DependencyInjection;
+// ReSharper disable all
 
 namespace Microsoft.AspNetCore.Builder
 {
