@@ -69,6 +69,7 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cconstants/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cfunctions/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cfunctions_005Cparameters/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cpaths/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cpaths_005Cconverters/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cpaths_005Cconverters_005Cpathsubjecttographpathparts/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C4_002E_0020processing_005Csubjects_005Cpaths_005Cconverters_005Cpathsubjecttographpathparts_005Cconditional/@EntryIndexedValue">True</s:Boolean>
