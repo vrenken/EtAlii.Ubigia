@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Win32;
+    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
@@ -98,7 +98,7 @@
                                     .Use(diagnostics)
                                     .Use(container.GetInstance<ILogicalContext>())
                                     .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
-                                    .UseWin32();
+                                    .UseNET47();
                 return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
             });
             container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());

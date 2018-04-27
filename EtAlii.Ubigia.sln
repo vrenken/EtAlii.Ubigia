@@ -118,13 +118,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Provisioning.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Windows.Mvvm", "Client\Windows\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj", "{90B9AB5D-4D86-4870-B832-BE86C55B017B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.NET47.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32.Tests\EtAlii.Ubigia.Api.Functional.NET47.Tests.csproj", "{1704C757-6B9C-486A-8155-62250033A2C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.NET47.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.NET47.Tests\EtAlii.Ubigia.Api.Functional.NET47.Tests.csproj", "{1704C757-6B9C-486A-8155-62250033A2C3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C9F061AC-9618-4A5C-96E9-569FAEE99503}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{47801A27-6239-4B4D-8377-B864C2EF23B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.NET47", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj", "{D36B8B0F-C13B-44BC-926D-0DD7E7957F01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.NET47", "Api\0.0.0.1\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj", "{D36B8B0F-C13B-44BC-926D-0DD7E7957F01}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local\EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost.csproj", "{D06E5031-F8A9-4CCE-8722-6CC760BA6041}"
 EndProject
