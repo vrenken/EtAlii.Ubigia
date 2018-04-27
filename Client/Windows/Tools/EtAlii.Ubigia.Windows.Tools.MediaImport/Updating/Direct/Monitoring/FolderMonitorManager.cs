@@ -16,8 +16,6 @@
         private readonly Container _container;
         private readonly ILogger _logger;
 
-        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
-
         public ObservableCollection<IFolderMonitor> Monitors { get; } = new ObservableCollection<IFolderMonitor>();
 
         public bool AllMonitorsAreRunning
@@ -47,11 +45,10 @@
             ILogger logger)
         {
             _container = container;
-            _folderSyncConfigurations = folderSyncConfigurations;
             _logger = logger;
 
 
-            foreach (var folderSyncConfiguration in _folderSyncConfigurations)
+            foreach (var folderSyncConfiguration in folderSyncConfigurations)
             {
                 AddMonitor(folderSyncConfiguration);
             }

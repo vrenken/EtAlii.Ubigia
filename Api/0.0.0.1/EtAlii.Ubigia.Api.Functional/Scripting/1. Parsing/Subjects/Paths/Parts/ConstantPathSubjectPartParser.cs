@@ -12,7 +12,6 @@ namespace EtAlii.Ubigia.Api.Functional
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
-        private readonly IConstantHelper _constantHelper;
         private readonly INodeFinder _nodeFinder;
         private const string _textId = "Text";
 
@@ -22,13 +21,12 @@ namespace EtAlii.Ubigia.Api.Functional
             INodeFinder nodeFinder)
         {
             _nodeValidator = nodeValidator;
-            _constantHelper = constantHelper;
             _nodeFinder = nodeFinder;
 
             Parser = new LpsParser(Id, true,
-                (Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_textId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\'')) 
+                (Lp.One(c => constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_textId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).ZeroOrMore().Id(_textId) + Lp.One(c => c == '\'')) 
             );
         }
 

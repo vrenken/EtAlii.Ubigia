@@ -7,11 +7,11 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     
-    public class ManagementConnection_Spaces_Configuration_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionSpacesConfigurationTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {
         private readonly StartedTransportUnitTestContext _testContext;
 
-        public ManagementConnection_Spaces_Configuration_Tests(StartedTransportUnitTestContext testContext)
+        public ManagementConnectionSpacesConfigurationTests(StartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
         }

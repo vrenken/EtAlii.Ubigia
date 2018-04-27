@@ -11,11 +11,6 @@
 
     public class ProfilingAspectsViewModel : BindableBase, IProfilingAspectsViewModel
     {
-        private readonly IProfilingDataContext _dataContext;
-        private readonly IProfilingLogicalContext _logicalContext;
-        private readonly IProfilingFabricContext _fabricContext;
-        private readonly IProfilingDataConnection _connection;
-
         public IProfilingAspectViewModel[] Functional { get; }
 
         public IProfilingAspectViewModel[] Logical { get; }
@@ -30,15 +25,10 @@
             IProfilingFabricContext fabricContext,
             IProfilingDataConnection connection)
         {
-            _dataContext = dataContext;
-            _logicalContext = logicalContext;
-            _fabricContext = fabricContext;
-            _connection = connection;
-
-            Functional = Create(ProfilingAspects.Functional.All, _dataContext, () => Functional);
-            Logical = Create(ProfilingAspects.Logical.All, _logicalContext, () => Logical);
-            Fabric = Create(ProfilingAspects.Fabric.All, _fabricContext, () => Fabric);
-            Transport = Create(ProfilingAspects.Transport.All, _connection, () => Transport);
+            Functional = Create(ProfilingAspects.Functional.All, dataContext, () => Functional);
+            Logical = Create(ProfilingAspects.Logical.All, logicalContext, () => Logical);
+            Fabric = Create(ProfilingAspects.Fabric.All, fabricContext, () => Fabric);
+            Transport = Create(ProfilingAspects.Transport.All, connection, () => Transport);
 
             Initializer(Functional);
             Initializer(Logical);

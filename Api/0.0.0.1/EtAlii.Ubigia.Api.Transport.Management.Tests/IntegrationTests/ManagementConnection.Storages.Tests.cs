@@ -10,11 +10,11 @@
     using Xunit;
 
     
-    public class ManagementConnection_Storages_Tests : IDisposable
+    public class ManagementConnectionStoragesTests : IDisposable
     {
         private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
 
-        public ManagementConnection_Storages_Tests()
+        public ManagementConnectionStoragesTests()
         {
             var task = Task.Run(async () =>
             {

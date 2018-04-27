@@ -13,7 +13,6 @@
         private readonly ISequenceParser _sequenceParser;
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private readonly INewLineParser _newLineParser;
         private readonly LpsParser _parser;
 
         public ScriptParser(
@@ -25,12 +24,11 @@
             _sequenceParser = sequenceParser;
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _newLineParser = newLineParser;
 
-            var firstParser = _newLineParser.Optional + sequenceParser.Parser;
-            var nextParser = _newLineParser.Required + sequenceParser.Parser;
+            var firstParser = newLineParser.Optional + sequenceParser.Parser;
+            var nextParser = newLineParser.Required + sequenceParser.Parser;
 
-            _parser = new LpsParser(_id, true, firstParser.NextZeroOrMore(nextParser) + _newLineParser.Optional); 
+            _parser = new LpsParser(_id, true, firstParser.NextZeroOrMore(nextParser) + newLineParser.Optional); 
         }
 
         public ScriptParseResult Parse(string text)

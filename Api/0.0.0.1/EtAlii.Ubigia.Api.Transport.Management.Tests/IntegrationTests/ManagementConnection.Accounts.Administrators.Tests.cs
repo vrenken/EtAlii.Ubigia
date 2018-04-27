@@ -8,11 +8,11 @@
     using Xunit;
 
     
-    public class ManagementConnection_Accounts_Administrators_Tests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
 
-        public ManagementConnection_Accounts_Administrators_Tests(NotStartedTransportUnitTestContext testContext)
+        public ManagementConnectionAccountsAdministratorsTests(NotStartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
 

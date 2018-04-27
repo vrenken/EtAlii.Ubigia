@@ -11,7 +11,6 @@
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private readonly INewLineParser _newLineParser;
         private readonly IKeyValuePairParser _keyValuePairParser;
         private const string _textId = "Text";
 
@@ -23,18 +22,17 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _newLineParser = newLineParser;
             _keyValuePairParser = keyValuePairParser;
 
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket");
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket");
 
-            var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + _newLineParser.OptionalMultiple);//; //.Debug("Comma");
+            var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + newLineParser.OptionalMultiple);//; //.Debug("Comma");
             Parser = new LpsParser(Id, true,
                 Lp.InBrackets(
                 start,
-                _newLineParser.OptionalMultiple +
-                Lp.List(_keyValuePairParser.Parser, separator, Lp.ZeroOrMore(' ')).Maybe() + _newLineParser.OptionalMultiple,
+                newLineParser.OptionalMultiple +
+                Lp.List(_keyValuePairParser.Parser, separator, Lp.ZeroOrMore(' ')).Maybe() + newLineParser.OptionalMultiple,
                 end)
                 );//.Debug("ObjectConstant");
         }

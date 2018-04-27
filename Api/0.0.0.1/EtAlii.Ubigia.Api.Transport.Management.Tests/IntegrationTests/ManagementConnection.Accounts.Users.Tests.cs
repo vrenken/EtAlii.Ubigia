@@ -7,11 +7,11 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     
-    public class ManagementConnection_Accounts_Users_Tests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionAccountsUsersTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
 
-        public ManagementConnection_Accounts_Users_Tests(NotStartedTransportUnitTestContext testContext)
+        public ManagementConnectionAccountsUsersTests(NotStartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>
