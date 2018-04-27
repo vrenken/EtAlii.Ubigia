@@ -90,7 +90,7 @@
     <Exec Command="$(ProtoCompilerCommandLine)" ConsoleToMSBuild="True" ContinueOnError="True" EchoOff="False">
       <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
     </Exec>
-    <Warning Text="COMPILED: $(ProtoCompilerCommandLine)" />
+    <Message Text="COMPILED: $(ProtoCompilerCommandLine)" />
 
     <Move SourceFiles="%(ProtoFiles.TemporaryFile)" DestinationFiles="%(ProtoFiles.FinalProtobufFile)" Condition="Exists(%(ProtoFiles.TemporaryFile))"/>
     <Move SourceFiles="%(ProtoFiles.TemporaryGrpcFile)" DestinationFiles="%(ProtoFiles.FinalGrpcFile)" Condition="Exists(%(ProtoFiles.TemporaryGrpcFile))"/>
