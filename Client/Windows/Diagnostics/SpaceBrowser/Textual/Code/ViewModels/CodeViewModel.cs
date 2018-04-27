@@ -18,8 +18,6 @@
         public event Action CodeChanged = delegate { };
         private IDisposable _codeChangedSubscription;
 
-        private readonly ITextTemplateQueryHandler _textTemplateQueryHandler;
-        private readonly ICompileCodeUnitOfworkHandler _compileCodeUnitOfworkHandler;
         private readonly IExecuteCodeUnitOfworkHandler _executeCodeUnitOfworkHandler;
 
         public CodeViewModel(
@@ -33,8 +31,6 @@
         {
             _graphContext = graphContext;
             Buttons = buttons;
-            _textTemplateQueryHandler = textTemplateQueryHandler;
-            _compileCodeUnitOfworkHandler = compileCodeUnitOfworkHandler;
             _executeCodeUnitOfworkHandler = executeCodeUnitOfworkHandler;
 
             PropertyChanged += OnPropertyChanged;
@@ -42,9 +38,9 @@
             _codeChangedSubscription = Observable.FromEvent((handler) => CodeChanged += handler, (handler) => CodeChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
                                 .ObserveOnDispatcher()
-                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new CompileCodeUnitOfwork(this), _compileCodeUnitOfworkHandler));
+                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new CompileCodeUnitOfwork(this), compileCodeUnitOfworkHandler));
 
-            Code = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Code.Templates.SimpleCode.cs"), _textTemplateQueryHandler).Single();
+            Code = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Code.Templates.SimpleCode.cs"), textTemplateQueryHandler).Single();
         }
 
         protected override void Execute(object obj)

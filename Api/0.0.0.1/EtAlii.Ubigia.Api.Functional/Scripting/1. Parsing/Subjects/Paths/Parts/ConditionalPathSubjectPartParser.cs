@@ -11,7 +11,6 @@
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConditionParser _conditionParser;
-        private readonly INewLineParser _newLineParser;
         private readonly INodeFinder _nodeFinder;
 
         public ConditionalPathSubjectPartParser(
@@ -23,13 +22,12 @@
             _nodeValidator = nodeValidator;
             _conditionParser = conditionParser;
             _nodeFinder = nodeFinder;
-            _newLineParser = newLineParser;
 
             var separator = Lp.Char('&');//.Debug("Separator", true);
             Parser = new LpsParser(Id, true,
                 Lp.One(c => c == '.') + //.Debug("Point") + 
-                _newLineParser.OptionalMultiple + //.Debug("NL1") +  
-                Lp.List(_conditionParser.Parser, separator, _newLineParser.OptionalMultiple));
+                newLineParser.OptionalMultiple + //.Debug("NL1") +  
+                Lp.List(_conditionParser.Parser, separator, newLineParser.OptionalMultiple));
                 //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")));
         }
 

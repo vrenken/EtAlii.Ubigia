@@ -34,8 +34,6 @@
         public event Action CodeChanged = delegate { };
         private IDisposable _scriptChangedSubscription;
 
-        private readonly ITextTemplateQueryHandler _textTemplateQueryHandler;
-        private readonly IParseScriptUnitOfworkHandler _parseScriptUnitOfworkHandler;
         private readonly IProcessScriptUnitOfworkHandler _processScriptUnitOfworkHandler;
 
 
@@ -48,8 +46,6 @@
         {
             _graphContext = graphContext;
             Buttons = buttons;
-            _textTemplateQueryHandler = textTemplateQueryHandler;
-            _parseScriptUnitOfworkHandler = parseScriptUnitOfworkHandler;
             _processScriptUnitOfworkHandler = processScriptUnitOfworkHandler;
 
             PropertyChanged += OnPropertyChanged;
@@ -59,9 +55,9 @@
             _scriptChangedSubscription = Observable.FromEvent((handler) => CodeChanged += handler, (handler) => CodeChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
                                 .ObserveOnDispatcher()
-                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new ParseScriptUnitOfwork(this), _parseScriptUnitOfworkHandler));
+                                .Subscribe(e => _graphContext.UnitOfWorkProcessor.Process(new ParseScriptUnitOfwork(this), parseScriptUnitOfworkHandler));
 
-            Code = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs"), _textTemplateQueryHandler).Single();
+            Code = _graphContext.QueryProcessor.Process(new TextTemplateQuery("EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Textual.Script.Templates.SimpleScript.cs"), textTemplateQueryHandler).Single();
         }
 
         protected override void Execute(object obj)

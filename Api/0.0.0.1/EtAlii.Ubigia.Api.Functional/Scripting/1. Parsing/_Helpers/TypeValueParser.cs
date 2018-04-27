@@ -6,7 +6,6 @@
     {
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
-        private readonly IConstantHelper _constantHelper;
 
         public LpsParser Parser { get; }
 
@@ -22,12 +21,11 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _constantHelper = constantHelper;
 
             Parser = new LpsParser(Id, true,
                 new LpsParser(_valueId, true,
-                    Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c)) +
-                    (Lp.Char('.') + Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()
+                    Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)) +
+                    (Lp.Char('.') + Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()
                 )
             );//.Debug("TypeValueParser", true);
         }

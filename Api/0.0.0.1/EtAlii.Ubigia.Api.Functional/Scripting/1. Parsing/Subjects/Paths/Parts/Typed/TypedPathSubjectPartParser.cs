@@ -13,7 +13,6 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private const string _textId = "Text";
-        private readonly string[] _types;
 
         public TypedPathSubjectPartParser(
             INodeValidator nodeValidator,
@@ -22,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
 
-            _types = new[]
+            var types = new[]
             {
                 "Words", "Word",
                 "Number",
@@ -32,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Parser = new LpsParser
                 (Id, true, 
                     Lp.One(c => c == '[') + //.Debug("Bracket-Open", true) + 
-                    Lp.Any(true, _types).Id(_textId) + //.Debug("Content", true) + 
+                    Lp.Any(true, types).Id(_textId) + //.Debug("Content", true) + 
                     Lp.One(c => c == ']')//.Debug("Bracket-Close", true)
                 );//.Debug("TypedPathSubjectPartParser", true);
         }

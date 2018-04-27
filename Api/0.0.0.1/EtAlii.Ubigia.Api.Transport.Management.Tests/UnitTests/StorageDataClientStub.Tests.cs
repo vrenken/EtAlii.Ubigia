@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class StorageDataClientStub_Tests
+    public class StorageDataClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void StorageDataClientStub_Create()

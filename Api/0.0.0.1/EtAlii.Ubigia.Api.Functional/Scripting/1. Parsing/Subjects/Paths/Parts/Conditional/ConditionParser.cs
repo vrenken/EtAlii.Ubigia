@@ -7,12 +7,6 @@
     internal class ConditionParser : IConditionParser
     {
         private readonly INodeValidator _nodeValidator;
-        private readonly IQuotedTextParser _quotedTextParser;
-        private readonly IBooleanValueParser _booleanValueParser;
-        private readonly IIntegerValueParser _integerValueParser;
-        private readonly IFloatValueParser _floatValueParser;
-        private readonly IDateTimeValueParser _dateTimeValueParser;
-        private readonly ITimeSpanValueParser _timeSpanValueParser;
 
         private readonly INodeFinder _nodeFinder;
 
@@ -39,22 +33,16 @@
             INodeFinder nodeFinder)
         {
             _nodeValidator = nodeValidator;
-            _quotedTextParser = quotedTextParser;
-            _booleanValueParser = booleanValueParser;
-            _integerValueParser = integerValueParser;
-            _floatValueParser = floatValueParser;
-            _dateTimeValueParser = dateTimeValueParser;
-            _timeSpanValueParser = timeSpanValueParser;
             _nodeFinder = nodeFinder;
 
             var typeParsers = 
                 (
-                    _quotedTextParser.Parser | 
-                    _dateTimeValueParser.Parser | 
-                    _timeSpanValueParser.Parser |
-                    _booleanValueParser.Parser | 
-                    _floatValueParser.Parser | 
-                    _integerValueParser.Parser
+                    quotedTextParser.Parser | 
+                    dateTimeValueParser.Parser | 
+                    timeSpanValueParser.Parser |
+                    booleanValueParser.Parser | 
+                    floatValueParser.Parser | 
+                    integerValueParser.Parser
                 );
 
             var conditions =
@@ -77,22 +65,22 @@
 
             _innerValueFinders = new Func<LpNode, LpNode>[]
             {
-                node => _nodeFinder.FindFirst(node, _quotedTextParser.Id),
-                node => _nodeFinder.FindFirst(node, _dateTimeValueParser.Id),
-                node => _nodeFinder.FindFirst(node, _timeSpanValueParser.Id),
-                node => _nodeFinder.FindFirst(node, _booleanValueParser.Id),
-                node => _nodeFinder.FindFirst(node, _integerValueParser.Id),
-                node => _nodeFinder.FindFirst(node, _floatValueParser.Id),
+                node => _nodeFinder.FindFirst(node, quotedTextParser.Id),
+                node => _nodeFinder.FindFirst(node, dateTimeValueParser.Id),
+                node => _nodeFinder.FindFirst(node, timeSpanValueParser.Id),
+                node => _nodeFinder.FindFirst(node, booleanValueParser.Id),
+                node => _nodeFinder.FindFirst(node, integerValueParser.Id),
+                node => _nodeFinder.FindFirst(node, floatValueParser.Id),
 
             };
 
             _valueParserSelector = new Selector<LpNode, Func<LpNode, object>>()
-                .Register(node => node.Id == _quotedTextParser.Id, node => _quotedTextParser.Parse(node))
-                .Register(node => node.Id == _dateTimeValueParser.Id, node => _dateTimeValueParser.Parse(node))
-                .Register(node => node.Id == _timeSpanValueParser.Id, node => _timeSpanValueParser.Parse(node))
-                .Register(node => node.Id == _booleanValueParser.Id, node => _booleanValueParser.Parse(node))
-                .Register(node => node.Id == _integerValueParser.Id, node => _integerValueParser.Parse(node))
-                .Register(node => node.Id == _floatValueParser.Id, node => _floatValueParser.Parse(node));
+                .Register(node => node.Id == quotedTextParser.Id, node => quotedTextParser.Parse(node))
+                .Register(node => node.Id == dateTimeValueParser.Id, node => dateTimeValueParser.Parse(node))
+                .Register(node => node.Id == timeSpanValueParser.Id, node => timeSpanValueParser.Parse(node))
+                .Register(node => node.Id == booleanValueParser.Id, node => booleanValueParser.Parse(node))
+                .Register(node => node.Id == integerValueParser.Id, node => integerValueParser.Parse(node))
+                .Register(node => node.Id == floatValueParser.Id, node => floatValueParser.Parse(node));
         }
 
         public Condition Parse(LpNode node)

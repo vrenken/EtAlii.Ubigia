@@ -10,7 +10,6 @@
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
-        private readonly IConstantHelper _constantHelper;
         private readonly INodeFinder _nodeFinder;
         private const string _beforeTextId = "BeforeText";
         private const string _afterTextId = "AfterText";
@@ -21,19 +20,18 @@
             INodeFinder nodeFinder)
         {
             _nodeValidator = nodeValidator;
-            _constantHelper = constantHelper;
             _nodeFinder = nodeFinder;
 
             var beforeTextParser = new LpsParser("Before", true,
-                (Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_beforeTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_beforeTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_beforeTextId) + Lp.One(c => c == '\''))
+                (Lp.One(c => constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_beforeTextId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_beforeTextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_beforeTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
             var afterTextParser = new LpsParser("After", true,
-                (Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_afterTextId)) |
-                (Lp.One(c => c == '\"') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\"')) |
-                (Lp.One(c => c == '\'') + Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\''))
+                (Lp.One(c => constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(_afterTextId)) |
+                (Lp.One(c => c == '\"') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\"')) |
+                (Lp.One(c => c == '\'') + Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(_afterTextId) + Lp.One(c => c == '\''))
             ).Maybe();
 
             Parser = new LpsParser(Id, true,

@@ -9,7 +9,6 @@
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
-        private readonly IPathRelationParserBuilder _pathRelationParserBuilder;
 
         private const string _relationId = @"/";
         private const string _relationDescription = @"IS_PARENT_OF";
@@ -19,9 +18,8 @@
             IPathRelationParserBuilder pathRelationParserBuilder)
         {
             _nodeValidator = nodeValidator;
-            _pathRelationParserBuilder = pathRelationParserBuilder;
 
-            var relationParser = _pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
+            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(_relationDescription, _relationId);
             Parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser");
         }
 

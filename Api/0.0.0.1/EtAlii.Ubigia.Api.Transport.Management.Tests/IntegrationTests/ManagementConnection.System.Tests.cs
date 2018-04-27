@@ -5,11 +5,11 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ManagementConnection_System_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionSystemTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {
         private readonly StartedTransportUnitTestContext _testContext;
 
-        public ManagementConnection_System_Tests(StartedTransportUnitTestContext testContext)
+        public ManagementConnectionSystemTests(StartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
 

@@ -11,7 +11,6 @@ namespace EtAlii.Ubigia.Api.Functional
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
-        private readonly IConstantHelper _constantHelper;
         private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
 
         public RootedPathSubjectParser(
@@ -20,12 +19,11 @@ namespace EtAlii.Ubigia.Api.Functional
             IPathSubjectPartsParser pathSubjectPartsParser) 
         {
             _nodeValidator = nodeValidator;
-            _constantHelper = constantHelper;
             _pathSubjectPartsParser = pathSubjectPartsParser;
             Parser = new LpsParser
                 (
                     _id, true,
-                    Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c)).Id("root") +
+                    Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
                     Lp.Char(':') +
                     //_pathSubjectPartsParser.Parser.OneOrMore().Id("path") +
                     _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path") +
