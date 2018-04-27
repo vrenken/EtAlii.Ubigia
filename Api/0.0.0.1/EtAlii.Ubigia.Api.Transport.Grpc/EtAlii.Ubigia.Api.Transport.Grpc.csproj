@@ -15,23 +15,12 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.5.1" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.5.1" />
-    <PackageReference Include="Grpc" Version="1.11.0" />
-    <PackageReference Include="Grpc.Tools" Version="1.11.0" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\Frameworks\Microsoft.AspNetCore.SignalR\src\Microsoft.AspNetCore.SignalR.Client\Microsoft.AspNetCore.SignalR.Client.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Grpc.Targets" Visible="False" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Data\Clients\_Grpc\_Model.Protbuf.cs">
-      <DependentUpon>_Model.proto</DependentUpon>
-    </Compile>
-  </ItemGroup>
+
+ 
   <Import Project="Grpc.Targets" />
 </Project>
