@@ -128,7 +128,7 @@
       </Compile>
 
       <None Update="$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\3.5.1\tools\google\protobuf\*.proto" >
-        <Link>Data\Clients\_Grpc\Google\Protobuf\%(Filename)%(Extension)</Link>
+        <Link>Clients\_Grpc\Google\Protobuf\%(Filename)%(Extension)</Link>
       </None>       
       <!--<None Include="Data\Clients\_Grpc\Google\Protobuf" Visible="False" />       
       <None Include="Data\Clients\_Grpc\Google" Visible="False" />       -->
