@@ -1,4 +1,5 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
+﻿// ReSharper disable UnusedMember.Global
+namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
     using System.Collections.Generic;
     using System.ComponentModel;
