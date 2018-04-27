@@ -1,0 +1,62 @@
+﻿//
+// Copyright 2018 Peter renken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Management.Grpc";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Management.Grpc;
+
+// The Authentication Grpc service definition.
+service AuthenticationGrpcService 
+{
+	// Try to authenticate.
+	rpc Authenticate (AuthenticationRequest) returns (AuthenticationResponse) {}
+	// Try to authenticate as another user.
+	rpc AuthenticateAs (AuthenticationRequest) returns (AuthenticationResponse) {}
+
+	rpc GetAccountForAuthenticationToken(AuthenticationTokenRequest) returns (AuthenticationTokenResponse) {}
+
+	rpc GetLocalStorage(LocalStorageRequest) returns (LocalStorageResponse) {}
+	
+}
+
+message AuthenticationRequest
+{
+	string AccountName = 1;
+	string Password = 2;
+	string hostIdentifier = 3;
+}
+
+message AuthenticationResponse
+{
+	string AuthenticationToken = 1;
+	Account Account = 2;
+}
+
+message AuthenticationTokenRequest
+{
+	string AuthenticationToken = 1;
+}
+
+message AuthenticationTokenResponse
+{
+	Account Account = 1;
+}
+
+message LocalStorageRequest
+{
+}
+
+message LocalStorageResponse
+{
+	string StorageName = 1;
+}
+

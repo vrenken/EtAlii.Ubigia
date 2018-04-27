@@ -14,17 +14,17 @@ option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc";
 
 package EtAlii.Ubigia.Api.Transport.Grpc;
 
-// The Entries Grpc service definition.
-service EntriesGrpcService 
+// The Entry Grpc service definition.
+service EntryGrpcService 
 {
 	// Try to authenticate.
-	rpc Get (EntriesRequest) returns (EntriesResponse) {}
+	rpc Get (EntryRequest) returns (EntryResponse) {}
 }
 
-message EntriesRequest
+message EntryRequest
 {
 }
 
-message EntriesResponse
+message EntryResponse
 {
 }

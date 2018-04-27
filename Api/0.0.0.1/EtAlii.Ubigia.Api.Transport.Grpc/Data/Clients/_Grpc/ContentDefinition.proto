@@ -1,0 +1,32 @@
+﻿//
+// Copyright 2018 Peter renken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc;
+
+// The ContentDefinition Grpc service definition.
+service ContentDefinitionGrpcService 
+{
+	rpc Get (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
+	rpc Post (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
+	rpc Put (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
+	rpc Delete (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
+}
+
+message ContentDefinitionRequest
+{
+}
+
+message ContentDefinitionResponse
+{
+}

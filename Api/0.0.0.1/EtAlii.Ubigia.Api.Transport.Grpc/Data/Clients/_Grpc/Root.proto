@@ -14,8 +14,8 @@ option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc";
 
 package EtAlii.Ubigia.Api.Transport.Grpc;
 
-// The Roots Grpc service definition.
-service RootsGrpcService  
+// The Root Grpc service definition.
+service RootGrpcService  
 {
 	rpc Get (RootRequest) returns (RootResponse) {}
 	rpc Post (RootRequest) returns (RootResponse) {}
