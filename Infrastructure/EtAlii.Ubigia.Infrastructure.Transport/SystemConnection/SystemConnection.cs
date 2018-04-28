@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 
     internal class SystemConnection : ISystemConnection
     {

@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
+﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 //{
 //    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
 //    using Xunit;
