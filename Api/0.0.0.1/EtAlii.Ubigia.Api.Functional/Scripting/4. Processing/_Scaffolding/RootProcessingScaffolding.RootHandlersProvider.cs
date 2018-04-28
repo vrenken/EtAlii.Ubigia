@@ -4,7 +4,7 @@
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal partial class RootProcessingScaffolding : IScaffolding
+    internal partial class RootProcessingScaffolding
     {
         private readonly IRootHandlerMappersProvider _rootHandlerMappersProvider;
 

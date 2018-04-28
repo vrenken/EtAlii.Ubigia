@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Account, DefaultParameterSetName = "byStorage")]
-    public class SelectAccount : AccountTargetingCmdlet, IAccountInfoProvider
+    public class SelectAccount : AccountTargetingCmdlet
     {
         protected override void BeginProcessing()
         {

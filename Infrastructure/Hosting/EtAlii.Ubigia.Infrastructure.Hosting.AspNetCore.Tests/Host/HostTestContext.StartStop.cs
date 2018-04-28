@@ -8,8 +8,8 @@
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.Extensions.Configuration;
 
-    public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
-        where TInfrastructureTestHost : class, IInfrastructureTestHost
+    public partial class HostTestContext<TInfrastructureTestHost> 
+	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
         public void Start(bool useRandomPorts = false)
         {

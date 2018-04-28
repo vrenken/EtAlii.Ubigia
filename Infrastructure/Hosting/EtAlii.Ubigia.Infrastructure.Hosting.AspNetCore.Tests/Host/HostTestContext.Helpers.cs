@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Transport;
 
-    public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
+    public partial class HostTestContext<TInfrastructureTestHost> 
         where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
         public async Task<ISystemConnection> CreateSystemConnection()

@@ -4,7 +4,7 @@
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal partial class SubjectProcessingScaffolding : IScaffolding
+    internal partial class SubjectProcessingScaffolding
     {
         private readonly IFunctionHandlersProvider _functionHandlersProvider;
 
