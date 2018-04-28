@@ -1,32 +1,32 @@
-﻿<Fluent:RibbonGroupBox 
+﻿<fluent:RibbonGroupBox 
     x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.ExecuteRibbonGroupBox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
-    Fluent:KeyTip.Keys="C"
+    fluent:KeyTip.Keys="C"
     Header="Execution">
-    <Fluent:Button 
+    <fluent:Button 
         Command="{Binding ExecuteCommand}" 
         IsEnabled="{Binding CanExecute, FallbackValue=false}"
         Header="Start" 
         LargeIcon="pack://siteoforigin:,,,/Images/Media-Play.png" />
-    <Fluent:Button 
+    <fluent:Button 
         Command="{Binding PauseCommand}" 
         IsEnabled="{Binding CanStop, FallbackValue=false}"
         Header="Pause" 
         LargeIcon="pack://siteoforigin:,,,/Images/Media-Pause.png" />
-    <Fluent:Button 
+    <fluent:Button 
         Command="{Binding StopCommand}" 
         IsEnabled="{Binding CanStop, FallbackValue=false}"
         Header="Stop" 
         LargeIcon="pack://siteoforigin:,,,/Images/Media-Stop.png" />
-    <Fluent:Button 
+    <fluent:Button 
         Command="{x:Null}" 
         IsEnabled="False"
         Header="Analyse" 
         LargeIcon="pack://siteoforigin:,,,/Images/Search-Find.png" />
-</Fluent:RibbonGroupBox>
+</fluent:RibbonGroupBox>

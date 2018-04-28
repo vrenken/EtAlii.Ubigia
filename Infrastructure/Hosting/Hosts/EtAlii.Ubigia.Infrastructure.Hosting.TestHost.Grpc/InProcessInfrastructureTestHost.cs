@@ -9,7 +9,7 @@
 	using EtAlii.Ubigia.Storage;
 	using EtAlii.xTechnology.Hosting;
 
-    public class InProcessInfrastructureTestHost : EtAlii.xTechnology.Hosting.InProcessTestHost, IInfrastructureTestHost
+    public class InProcessInfrastructureTestHost : InProcessTestHost, IInfrastructureTestHost
     {
 	    public IInfrastructure Infrastructure => _infrastructure.Value;
 	    private readonly Lazy<IInfrastructure> _infrastructure;
@@ -25,10 +25,10 @@
 		protected InProcessInfrastructureTestHost(ISystemManager systemManager)
 		    : base(systemManager)
 	    {
-		    _infrastructure = new Lazy<IInfrastructure>(() => this.Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single());
-		    _storage = new Lazy<IStorage>(() => this.Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single());
-		    _adminModule = new Lazy<AdminModule>(() => this.Systems.Single().Modules.OfType<AdminModule>().Single());
-		    _userModule = new Lazy<UserModule>(() => this.Systems.Single().Modules.OfType<UserModule>().Single());
+		    _infrastructure = new Lazy<IInfrastructure>(() => Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single());
+		    _storage = new Lazy<IStorage>(() => Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single());
+		    _adminModule = new Lazy<AdminModule>(() => Systems.Single().Modules.OfType<AdminModule>().Single());
+		    _userModule = new Lazy<UserModule>(() => Systems.Single().Modules.OfType<UserModule>().Single());
 		}
 	}
 }

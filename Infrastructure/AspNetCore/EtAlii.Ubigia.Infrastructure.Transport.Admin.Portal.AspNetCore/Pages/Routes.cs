@@ -12,7 +12,7 @@ namespace RouteDebugging.Pages
 
         public RoutesModel(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
-            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+            _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
         }
 
         public List<RouteInfo> Routes { get; set; }

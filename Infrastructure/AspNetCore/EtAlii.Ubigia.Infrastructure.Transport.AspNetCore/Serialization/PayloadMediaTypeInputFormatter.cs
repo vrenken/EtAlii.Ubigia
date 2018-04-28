@@ -111,7 +111,7 @@
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream)
 	    {
-			using (var reader = this.CreateJsonReader(type, readStream))
+			using (var reader = CreateJsonReader(type, readStream))
 		    {
 			    reader.CloseInput = false;
 				return _serializer.Deserialize(reader, type);

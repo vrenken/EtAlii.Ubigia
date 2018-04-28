@@ -7,7 +7,7 @@
     xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
-    xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
     xmlns:ubigia="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:mvvm="clr-namespace:EtAlii.Ubigia.Windows.Mvvm;assembly=EtAlii.Ubigia.Windows.Mvvm"
     xmlns:sf="http://schemas.syncfusion.com/wpf"
@@ -165,22 +165,22 @@
                 </xcad:LayoutRoot>
         </xcad:DockingManager>
     </DockPanel>
-        <Fluent:StatusBar 
+        <fluent:StatusBar 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"
             Grid.Row="2" >
-            <Fluent:StatusBar.Resources>
+            <fluent:StatusBar.Resources>
                 <ResourceDictionary>
-                    <Style TargetType="{x:Type Fluent:StatusBarItem}" >
+                    <Style TargetType="{x:Type fluent:StatusBarItem}" >
                         <Setter Property="Foreground" Value="White" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                     </Style>
                 </ResourceDictionary>
-            </Fluent:StatusBar.Resources>
-            <Fluent:StatusBarItem
+            </fluent:StatusBar.Resources>
+            <fluent:StatusBarItem
                 Title="Status" 
                 Value="Online" 
                 HorizontalAlignment="Left"/>
-        </Fluent:StatusBar>
+        </fluent:StatusBar>
     </Grid>
 </UserControl>
