@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿//namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 //{
 //    using EtAlii.Ubigia.Infrastructure.Hosting;
 

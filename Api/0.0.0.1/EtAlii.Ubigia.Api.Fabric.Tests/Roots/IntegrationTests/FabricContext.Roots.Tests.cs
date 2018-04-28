@@ -404,7 +404,6 @@
         public async Task FabricContext_Roots_Add_Already_Existing_Storage()
         {
             // Arrange.
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var root = await _fabric.Roots.Add(name);
             Assert.NotNull(root);

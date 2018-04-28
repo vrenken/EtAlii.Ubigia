@@ -61,6 +61,7 @@
 
             // Assert.
             var script = result.Script;
+            Assert.NotNull(script);
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
         }
 

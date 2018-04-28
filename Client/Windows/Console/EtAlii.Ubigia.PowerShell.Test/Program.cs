@@ -10,7 +10,7 @@
         {
             string scriptName = Path.Combine(Directory.GetCurrentDirectory(), "TestScript.ps1");
             var process = Process.Start(@"C:\Program Files (x86)\PowerGUI\ScriptEditor.exe", scriptName);
-            process.WaitForExit();
+            process?.WaitForExit();
         }
     }
 }

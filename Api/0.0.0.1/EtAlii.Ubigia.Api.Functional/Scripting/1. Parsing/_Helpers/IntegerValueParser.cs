@@ -9,8 +9,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id => _id;
-        private const string _id = "IntegerValue";
+        public string Id { get; } = "IntegerValue";
 
         public IntegerValueParser(INodeValidator nodeValidator)
         {

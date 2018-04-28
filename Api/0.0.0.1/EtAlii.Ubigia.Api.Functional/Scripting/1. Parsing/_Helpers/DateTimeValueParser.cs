@@ -10,8 +10,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id => _id;
-        private const string _id = "DateTimeValue";
+        public string Id { get; } = "DateTimeValue";
 
         public DateTimeValueParser(INodeValidator nodeValidator)
         {

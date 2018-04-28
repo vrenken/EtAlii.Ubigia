@@ -1,6 +1,5 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
-    using EtAlii.Ubigia.Api.Transport.WebApi;
     using Xunit;
 
     
@@ -9,7 +8,13 @@
         [Fact]
         public void PayloadMediaTypeFormatter_Create()
         {
+            // Arrange.
+            
+            // Act.
             var formatter = new PayloadMediaTypeFormatter();
+            
+            // Assert.
+            Assert.NotNull(formatter);
         }
     }
 }

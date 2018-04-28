@@ -27,15 +27,17 @@
         public void ScopeVariable_New_From_Null()
         {
             // Arrange.
-
+            ScopeVariable variable = null;
+            
             // Act.
             var act = new Action(() =>
             {
-                var variable = new ScopeVariable(null, "source");
+                variable = new ScopeVariable(null, "source");
             });
 
             // Assert.
             Assert.Throws<ArgumentNullException>(act);
+            Assert.Null(variable);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

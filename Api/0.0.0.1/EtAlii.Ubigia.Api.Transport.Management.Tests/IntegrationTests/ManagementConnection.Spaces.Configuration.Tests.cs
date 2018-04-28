@@ -254,7 +254,6 @@
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Configuration);
             Assert.NotNull(space);

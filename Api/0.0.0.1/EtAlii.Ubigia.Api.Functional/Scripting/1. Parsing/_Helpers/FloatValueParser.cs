@@ -10,8 +10,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id => _id;
-        private const string _id = "FloatValue";
+        public string Id { get; } = "FloatValue";
 
         public FloatValueParser(INodeValidator nodeValidator)
         {

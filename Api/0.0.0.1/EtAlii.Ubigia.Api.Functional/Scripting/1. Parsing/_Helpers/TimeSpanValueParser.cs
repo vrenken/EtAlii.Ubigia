@@ -10,8 +10,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id => _id;
-        private const string _id = "TimeSpanValue";
+        public string Id { get; } = "TimeSpanValue";
 
         public TimeSpanValueParser(
             INodeValidator nodeValidator, 

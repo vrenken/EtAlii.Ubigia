@@ -55,11 +55,12 @@
                 .Use(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
-            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Act.
+            var processor = new ScriptProcessorFactory().Create(configuration);
 
             // Assert.
+            Assert.NotNull(processor);
         }
 
         [Fact]
@@ -454,6 +455,7 @@
             dynamic familyAfter = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
+            Assert.NotEmpty(result);
             Assert.NotNull(familyBefore);
             Assert.NotNull(familyAfter);
             Assert.Equal("Family", familyBefore.ObjectType);

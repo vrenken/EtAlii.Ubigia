@@ -10,8 +10,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id => _id;
-        private const string _id = "BooleanValue";
+        public string Id { get; } = "BooleanValue";
 
         private const string ValueId = "Value";
 
@@ -32,7 +31,7 @@
         {     
             _nodeValidator.EnsureSuccess(node, Id);
             var text = _nodeFinder.FindFirst(node, ValueId).Match.ToString().ToLower();
-            return text == "true" ? true : false;
+            return text == "true";
         }
 
         public bool CanParse(LpNode node)

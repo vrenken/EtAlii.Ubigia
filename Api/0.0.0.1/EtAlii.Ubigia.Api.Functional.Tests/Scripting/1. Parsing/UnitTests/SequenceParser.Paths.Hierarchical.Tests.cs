@@ -627,7 +627,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             // Act.
             var act = new Action(() =>
             {
-                var sequence = _parser.Parse(text);
+                _parser.Parse(text);
             });
 
             // Assert.
@@ -644,7 +644,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             // Act.
             var act = new Action(() =>
             {
-                var sequence = _parser.Parse(text);
+                _parser.Parse(text);
             });
 
             // Assert.
@@ -660,7 +660,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             // Act.
             var act = new Action(() =>
             {
-                var sequence = _parser.Parse(text);
+                _parser.Parse(text);
             });
 
             // Assert.
@@ -672,11 +672,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             // Arrange.
             var text = "$var <= /\"\"/\"\"/\"\"";
-
+            
             // Act.
             var act = new Action(() =>
             {
-                var sequence = _parser.Parse(text);
+                _parser.Parse(text);
             });
 
             // Assert.

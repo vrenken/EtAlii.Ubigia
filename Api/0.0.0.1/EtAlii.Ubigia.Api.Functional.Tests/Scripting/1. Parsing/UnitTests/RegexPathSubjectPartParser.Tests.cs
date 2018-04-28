@@ -16,6 +16,7 @@
             var parser = new RegexPathSubjectPartParser(new NodeValidator(), new NodeFinder());
 
             // Assert.
+            Assert.NotNull(parser);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

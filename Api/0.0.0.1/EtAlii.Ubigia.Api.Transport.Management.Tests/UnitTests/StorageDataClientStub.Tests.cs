@@ -16,6 +16,7 @@
             var storageDataClientStub = new StorageDataClientStub();
 
             // Assert.
+            Assert.NotNull(storageDataClientStub);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

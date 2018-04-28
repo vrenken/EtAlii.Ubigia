@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.PowerShell.Tests;
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
@@ -11,7 +10,6 @@
 
     public class RootTest : IDisposable
     {
-        private Guid _spaceId;
         private PowerShellTestContext _testContext;
 
         public RootTest()
@@ -39,8 +37,7 @@
 
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
             var result = _testContext.InvokeSelectSpaceByName(name);
-            var space = _testContext.ToAssertedResult<Space>(result);
-            _spaceId = space.Id;
+            _testContext.ToAssertedResult<Space>(result);
         }
 
         private void TestCleanup()
@@ -67,9 +64,10 @@
 
             // Act.
             var result = _testContext.InvokeGetRoots();
+            var roots = _testContext.ToAssertedResult<List<Root>>(result);
 
             // Assert.
-            var roots = _testContext.ToAssertedResult<List<Root>>(result);
+            Assert.NotEmpty(roots);
         }
 
         [Fact]
@@ -184,7 +182,7 @@
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetRootByName(name);
+                _testContext.InvokeGetRootByName(name);
             }
             catch (Exception e)
             {

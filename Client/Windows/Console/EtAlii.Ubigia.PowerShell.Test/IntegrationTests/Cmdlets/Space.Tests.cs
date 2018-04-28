@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.PowerShell.Tests;
     using Xunit;
     using System;
     using System.Collections.Generic;
@@ -44,24 +43,33 @@
         [Fact]
         public void PowerShell_Spaces_Get()
         {
+            // Arrange.
+            
+            // Act.
             var result = _testContext.InvokeGetSpaces();
             var spaces = _testContext.ToAssertedResult<List<Space>>(result);
+            
+            // Assert.
+            Assert.NotEmpty(spaces);
         }
 
         [Fact]
         public void PowerShell_Space_Add()
         {
+            // Arrange.
             var result = _testContext.InvokeGetSpaces();
             var spaces = _testContext.ToAssertedResult<List<Space>>(result);
             var firstCount = spaces.Count;
 
+            // Act.
             var name = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
              
+            
+            // Assert.
             result = _testContext.InvokeGetSpaces();
             spaces = _testContext.ToAssertedResult<List<Space>>(result);
             var secondCount = spaces.Count;
-
             Assert.True(secondCount == firstCount + 1);
         }
 
@@ -107,12 +115,12 @@
         [Fact]
         public void PowerShell_Space_Update()
         {
-            var result = _testContext.InvokeGetSpaces();
+            _testContext.InvokeGetSpaces();
 
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(firstName, SpaceTemplate.Data);
 
-            result = _testContext.InvokeGetSpaceByName(firstName);
+            var result = _testContext.InvokeGetSpaceByName(firstName);
             var space = _testContext.ToAssertedResult<Space>(result);
 
             Assert.Equal(firstName, space.Name);
@@ -126,7 +134,7 @@
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetSpaceByName(firstName);
+                _testContext.InvokeGetSpaceByName(firstName);
             }
             catch (Exception e)
             {
@@ -185,7 +193,7 @@
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetSpaceByName(name);
+                _testContext.InvokeGetSpaceByName(name);
             }
             catch (Exception e)
             {

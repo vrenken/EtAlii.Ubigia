@@ -93,6 +93,7 @@
             });
 
             // Assert.
+            Assert.NotNull(content);
             Assert.Throws<ContentRepositoryException>(act);
         }
 
@@ -154,6 +155,7 @@
             });
 
             // Assert.
+            Assert.NotNull(entry);
             Assert.Throws<ContentRepositoryException>(act);
         }
 

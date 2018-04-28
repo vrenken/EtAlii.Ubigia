@@ -371,7 +371,6 @@
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(name, password, AccountTemplate.User);

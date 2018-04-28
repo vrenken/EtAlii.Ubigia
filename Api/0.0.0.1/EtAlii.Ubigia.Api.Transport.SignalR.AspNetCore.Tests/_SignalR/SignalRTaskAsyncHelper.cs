@@ -56,7 +56,6 @@
 
         public static Task Series(Func<object, Task>[] tasks, object[] state)
         {
-            Task empty = Empty;
             Task task = Empty;
             for (int index = 0; index < tasks.Length; ++index)
                 task = Then(task, tasks[index], state[index]);
