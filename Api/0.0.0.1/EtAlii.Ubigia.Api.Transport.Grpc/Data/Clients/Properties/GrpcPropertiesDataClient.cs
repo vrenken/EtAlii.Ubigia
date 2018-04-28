@@ -14,7 +14,7 @@
         //}
 
 
-        public async Task Store(Api.Identifier identifier, Api.PropertyDictionary properties, Api.ExecutionScope scope)
+        public async Task Store(Api.Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
             // TODO: GRPC
             //await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties);
@@ -22,12 +22,12 @@
             PropertiesHelper.SetStored(properties, true);
         }
 
-        public async Task<Api.PropertyDictionary> Retrieve(Api.Identifier identifier, Api.ExecutionScope scope)
+        public async Task<PropertyDictionary> Retrieve(Api.Identifier identifier, ExecutionScope scope)
         {
             return await scope.Cache.GetProperties(identifier, async () =>
             {
                 // TODO: GRPC
-                var result = await Task.FromResult<Api.PropertyDictionary>(null);
+                var result = await Task.FromResult<PropertyDictionary>(null);
                 //var result = await _invoker.Invoke<PropertyDictionary>(_connection, GrpcHub.Property, "Get", identifier);
                 if (result != null)
                 {

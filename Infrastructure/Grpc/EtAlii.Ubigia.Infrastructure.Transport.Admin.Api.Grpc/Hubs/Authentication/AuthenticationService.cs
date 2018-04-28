@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 
-    public class AuthenticationService : EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationGrpcService.AuthenticationGrpcServiceBase
+    public class AuthenticationService : AuthenticationGrpcService.AuthenticationGrpcServiceBase
     {
         private readonly IStorageRepository _storageRepository;
 

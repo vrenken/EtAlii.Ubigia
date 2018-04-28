@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 		        };
 
 	        var initializer = new BaseClientService.Initializer();
-			var service = new global::Google.Apis.PeopleService.v1.PeopleServiceService(initializer);
+			var service = new PeopleServiceService(initializer);
 			//var builder = new global::Google.Apis.Requests.RequestBuilder();
 	        return new PeopleResource.ConnectionsResource.ListRequest(service, "people/me");
 			//builder.

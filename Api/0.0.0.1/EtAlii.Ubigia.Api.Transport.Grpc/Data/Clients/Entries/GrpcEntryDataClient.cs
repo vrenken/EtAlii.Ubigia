@@ -21,7 +21,7 @@
             return await Task.FromResult<IEditableEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Change(IEditableEntry entry, Api.ExecutionScope scope)
+        public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
             // TODO: GRPC
             //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
@@ -32,12 +32,12 @@
             return await Task.FromResult<IReadOnlyEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Get(Api.Root root, Api.ExecutionScope scope, Api.EntryRelation entryRelations = Api.EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Api.Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             return await Get(root.Identifier, scope, entryRelations);
         }
 
-        public async Task<IReadOnlyEntry> Get(Api.Identifier entryIdentifier, Api.ExecutionScope scope, Api.EntryRelation entryRelations = Api.EntryRelation.None)
+        public async Task<IReadOnlyEntry> Get(Api.Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
@@ -64,7 +64,7 @@
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Api.Identifier entryIdentifier, Api.EntryRelation entriesWithRelation, Api.ExecutionScope scope, Api.EntryRelation entryRelations = Api.EntryRelation.None)
+        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Api.Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
             return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
             {
