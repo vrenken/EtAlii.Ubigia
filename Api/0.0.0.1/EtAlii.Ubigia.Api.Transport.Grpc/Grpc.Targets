@@ -83,7 +83,7 @@
     <MakeDir Directories="$(ProtoBufTempFolder)" ContinueOnError="True"  />
     <Delete Files="@(ProtobufFilesToDelete)" />
     <Delete Files="@(GrpcFilesToDelete)" />
-
+ 
     <PropertyGroup>
       <ProtoCompilerCommandLine>$(ProtoBufCommandLinePrefix)  --proto_path=&quot;$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\$(ProtoBufToolsVersion)\Tools&quot; @(ProtoFiles->'--proto_path=&quot;%(TrimmedFolderWithRoot)&quot;', ' ') @(ProtoFiles->'&quot;%(FullPath)&quot;', ' ')</ProtoCompilerCommandLine>
     </PropertyGroup>
