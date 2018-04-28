@@ -3,7 +3,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommunications.Connect, Nouns.Space)]
-    public abstract class CmdletBase : System.Management.Automation.Cmdlet
+    public abstract class CmdletBase : Cmdlet
     {
     }
 }

@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class LogicalContextScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class LogicalContextScaffolding : IScaffolding
     {
         private readonly ILogicalContextConfiguration _configuration;
 

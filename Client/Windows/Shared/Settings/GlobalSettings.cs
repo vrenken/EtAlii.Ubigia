@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Client.Windows
             Storage.CollectionChanged += OnStorageSettingsChanged;
         }
 
-        void OnStorageSettingsChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        void OnStorageSettingsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
