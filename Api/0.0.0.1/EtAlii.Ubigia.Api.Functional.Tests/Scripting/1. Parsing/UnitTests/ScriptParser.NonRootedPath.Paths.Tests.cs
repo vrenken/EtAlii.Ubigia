@@ -167,20 +167,22 @@
         public void ScriptParser_NonRootedPath_Parse_Query_Unquoted_Path_With_Normal_Characters()
         {
             // Arrange.
-
+            int count;
+            
             // Act.
             var act = new Action<char>(c =>
             {
                 var symbol = $"ThirdIs{c}Cool";
                 var query = $"/First/Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
-                var count = script.Sequences.Count();
+                count = script.Sequences.Count();
             });
 
             // Assert.
             foreach (var character in NormalCharacters)
             {
                 act(character);
+                Assert.NotEqual(0, count);
             }
         }
 
@@ -188,20 +190,23 @@
         public void ScriptParser_NonRootedPath_Parse_Query_Quoted_Path_With_Normal_Characters()
         {
             // Arrange.
-
+            int count;
+            
             // Act.
             var act = new Action<char>(c =>
             {
                 var symbol = $"\"ThirdIs{c}Cool\"";
                 var query = $"/First/Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
-                var count = script.Sequences.Count();
+                count = script.Sequences.Count();
             });
 
             // Assert.
+            Assert.NotEqual(0, count);
             foreach (var character in NormalCharacters)
             {
                 act(character);
+                Assert.NotEqual(0, count);
             }
         }
 
@@ -210,22 +215,26 @@
         public void ScriptParser_NonRootedPath_Parse_Query_Quoted_Path_With_Special_Characters()
         {
             // Arrange.
-
+            int count;
+            
             // Act.
             var act = new Action<char>(c =>
             {
                 var symbol = $"\"ThirdIs{c}Cool\"";
                 var query = $"/First/Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
-                var count = script.Sequences.Count();
+                count = script.Sequences.Count();
             });
 
             // Assert.
+            Assert.NotEqual(0, count);
             foreach (var character in SpecialCharacters)
             {
                 act(character);
+                Assert.NotEqual(0, count);
             }
             act('/'); // Let's also check the separator charachter.
+            Assert.NotEqual(0, count);
         }
 
 

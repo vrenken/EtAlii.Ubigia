@@ -13,6 +13,7 @@
 
         public FunctionSubject(string name)
         {
+            Name = name;
             Arguments = new FunctionSubjectArgument[] {};
         }
 

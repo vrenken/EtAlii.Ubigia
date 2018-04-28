@@ -73,9 +73,7 @@
 
                     if (dragDropEffect != DragDropEffects.None)
                     {
-                        DragDropEffects enmEffect = 
-                                   DragDrop.DoDragDrop(sender as DependencyObject, 
-                                                       selectedItem, dragDropEffect);
+                        DragDrop.DoDragDrop(sender as DependencyObject, selectedItem, dragDropEffect);
                     }
                 }
             }

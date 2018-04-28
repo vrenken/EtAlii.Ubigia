@@ -65,6 +65,8 @@
             var contentManager = logicalContext.Content;
 
             // Assert.
+            Assert.NotNull(entry);
+            Assert.NotNull(contentManager);
         }
 
 

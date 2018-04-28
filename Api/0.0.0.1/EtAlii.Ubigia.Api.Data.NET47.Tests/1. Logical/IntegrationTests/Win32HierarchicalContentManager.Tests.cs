@@ -43,6 +43,7 @@
             var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
 
             // Assert.
+            Assert.NotNull(hierarchicalContentManager);
         }
 
         [Fact(Skip="Not working yet")]
