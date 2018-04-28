@@ -16,6 +16,7 @@
             var parser = new NewLineParser();
 
             // Assert.
+            Assert.NotNull(parser);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
