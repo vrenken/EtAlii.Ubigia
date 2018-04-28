@@ -16,7 +16,7 @@
 
         public override string ToString()
         {
-            return $"{base.GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}";
+            return $"{GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}";
         }
     }
 }

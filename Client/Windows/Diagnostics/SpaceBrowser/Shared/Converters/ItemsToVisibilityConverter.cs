@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public class ItemsToVisibilityConverter : IValueConverter
     {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             var items = value as IEnumerable<object>;
             bool isVisible = items != null && items.Any();
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             return isVisible ? Visibility.Visible : Visibility.Collapsed;
         }
 
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

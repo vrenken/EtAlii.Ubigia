@@ -40,7 +40,7 @@
         /// desired value.</returns>
         protected bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
         {
-            if (object.Equals(storage, newValue)) return false;
+            if (Equals(storage, newValue)) return false;
 
             var oldValue = storage;
             storage = newValue;

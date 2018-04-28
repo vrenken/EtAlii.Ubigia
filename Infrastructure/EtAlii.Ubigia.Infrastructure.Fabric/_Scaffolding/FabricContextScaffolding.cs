@@ -3,7 +3,7 @@
     using Storage;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class FabricContextScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class FabricContextScaffolding : IScaffolding
     {
         private readonly IStorage _storage;
 

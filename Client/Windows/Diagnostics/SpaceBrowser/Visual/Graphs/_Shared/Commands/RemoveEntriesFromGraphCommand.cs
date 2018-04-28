@@ -25,7 +25,7 @@
 
         public override string ToString()
         {
-            return $"{base.GetType()}, Reason: {ProcessReason}, Time:{Time}";
+            return $"{GetType()}, Reason: {ProcessReason}, Time:{Time}";
         }
     }
 }

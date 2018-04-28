@@ -23,7 +23,7 @@
 
         public System.Windows.Input.ICommand ClearCommand { get; }
 
-        public bool AutoExpandNodes { get { return _autoExpandNodes; } set { base.SetProperty(ref _autoExpandNodes, value); } }
+        public bool AutoExpandNodes { get { return _autoExpandNodes; } set { SetProperty(ref _autoExpandNodes, value); } }
         private bool _autoExpandNodes;
 
         //public ScriptButtonsViewModel Buttons { get { return _buttons; } }

@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public class GraphOutputConverter : IValueConverter
     {
-        public object Convert(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             if (value is Identifier)
             {
@@ -88,7 +88,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             }
         }
 
-        public object ConvertBack(object value, System.Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }

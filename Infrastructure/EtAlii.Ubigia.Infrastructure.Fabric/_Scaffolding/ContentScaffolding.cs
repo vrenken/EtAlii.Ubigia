@@ -3,7 +3,7 @@
     using HashLib;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ContentScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class ContentScaffolding : IScaffolding
     {
         public void Register(Container container)
         {
