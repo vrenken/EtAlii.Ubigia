@@ -19,7 +19,7 @@
         <ProtobufInputs Include="$(MSBuildProjectDirectory)\**\*.proto" />
         <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**\*$(ProtobufSubCsFileExtension);$(MSBuildProjectDirectory)\**\*$(GrpcSubCsFileExtension)" />
     </ItemGroup>
-
+ 
     <Target Name="GenerateProtoBufCsCode" 
           BeforeTargets="BeforeBuild" 
           DependsOnTargets="BeforeGenerateProtoBufCsCode"
