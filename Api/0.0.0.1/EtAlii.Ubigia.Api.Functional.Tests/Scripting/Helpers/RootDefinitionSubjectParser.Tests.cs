@@ -21,7 +21,7 @@
         {
             _parser = null;
         }
-
+ 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void RootDefinitionSubject_Parse_01()
         {
