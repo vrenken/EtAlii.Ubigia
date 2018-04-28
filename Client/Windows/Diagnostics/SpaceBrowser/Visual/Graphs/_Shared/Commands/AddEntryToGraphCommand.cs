@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
         public override string ToString()
         {
-            return $"{base.GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}, Time:{Time}";
+            return $"{GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}, Time:{Time}";
         }
     }
 }

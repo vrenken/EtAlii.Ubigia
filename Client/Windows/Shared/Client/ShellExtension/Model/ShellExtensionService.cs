@@ -22,11 +22,11 @@ namespace EtAlii.Ubigia.Client.Windows
             var globalSettings = App.Current.Container.GetInstance<IGlobalSettings>();
             globalSettings.Storage.CollectionChanged -= OnStoragesChanged;
 
-            EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Unregister();
-            EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.ReloadWindowsExplorers();
+            ShellExtension.Unregister();
+            ShellExtension.ReloadWindowsExplorers();
         }
         
-        void OnStoragesChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        void OnStoragesChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
             switch (e.Action)
             {
@@ -78,15 +78,15 @@ namespace EtAlii.Ubigia.Client.Windows
                 var hasObsoleteStorages = Registrations.GetObsolete(globalSettings).Length > 0;
                 shouldUpdate = hasMissingStorages || hasObsoleteStorages;
             }
-            if (shouldUpdate || !EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.IsRegistered)
+            if (shouldUpdate || !ShellExtension.IsRegistered)
             {
-                EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Unregister();
+                ShellExtension.Unregister();
 
                 if(globalSettings.Storage.Count > 0)
                 {
-                    EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.Register();
+                    ShellExtension.Register();
                 }
-                EtAlii.Ubigia.Client.Windows.Shared.ShellExtension.ReloadWindowsExplorers();
+                ShellExtension.ReloadWindowsExplorers();
             }
         }
     }

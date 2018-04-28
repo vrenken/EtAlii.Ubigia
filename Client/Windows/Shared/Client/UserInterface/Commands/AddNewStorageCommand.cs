@@ -4,6 +4,8 @@ using System.Windows.Input;
 
 namespace EtAlii.Ubigia.Client.Windows.UserInterface
 {
+    using App = EtAlii.Ubigia.Client.Windows.Shared.App;
+
     /// <summary>
     /// Shows the add new storage dialog.
     /// </summary>

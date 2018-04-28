@@ -35,9 +35,9 @@
             await Task.Run(() => IsConnected = false);
         }
 
-        EtAlii.xTechnology.MicroContainer.IScaffolding[] ISpaceTransport.CreateScaffolding()
+        xTechnology.MicroContainer.IScaffolding[] ISpaceTransport.CreateScaffolding()
         {
-            return new EtAlii.xTechnology.MicroContainer.IScaffolding[]
+            return new xTechnology.MicroContainer.IScaffolding[]
             {
                 new SystemClientsScaffolding(_infrastructure)
             };

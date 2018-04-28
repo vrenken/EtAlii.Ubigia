@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ItemsScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class ItemsScaffolding : IScaffolding
     {
         public void Register(Container container)
         {

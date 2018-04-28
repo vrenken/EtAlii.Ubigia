@@ -31,7 +31,7 @@
             var transport = configuration.TransportProvider.GetStorageTransport();
             var scaffoldings = transport
                 .CreateScaffolding()
-                .Concat(new EtAlii.xTechnology.MicroContainer.IScaffolding[]
+                .Concat(new IScaffolding[]
             {
                 new SystemConnectionScaffolding(configuration),
                 new SystemInfrastructureScaffolding(), 

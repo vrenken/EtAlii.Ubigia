@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SystemClientsScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class SystemClientsScaffolding : IScaffolding
     {
         private readonly IInfrastructure _infrastructure;
 

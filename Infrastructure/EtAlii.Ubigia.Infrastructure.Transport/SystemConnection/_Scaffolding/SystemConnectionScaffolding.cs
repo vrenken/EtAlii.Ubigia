@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SystemConnectionScaffolding : xTechnology.MicroContainer.IScaffolding
+    public class SystemConnectionScaffolding : IScaffolding
     {
         private readonly ISystemConnectionConfiguration _configuration;
 
