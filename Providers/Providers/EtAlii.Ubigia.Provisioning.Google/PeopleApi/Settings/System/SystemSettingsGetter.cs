@@ -25,9 +25,7 @@
             });
             task.Wait();
 
-            object value = null;
-
-            if (result.TryGetValue("ClientId", out value))
+            if (result.TryGetValue("ClientId", out var value))
             {
                 settings.ClientId = (string)value;
             }

@@ -24,9 +24,7 @@
 
         public void Process(OperatorParameters parameters)
         {
-            PathSubject pathToAdd = null;
-
-            pathToAdd = GetPathToAdd(parameters);
+            var pathToAdd = GetPathToAdd(parameters);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor requires a path on the right side");

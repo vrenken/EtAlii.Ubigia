@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             return Task.Run(() =>
             {
-                GraphPathPart[] result = {null};
+                GraphPathPart[] result;
                 if (pathSubjectPartPosition == 0 ||
                     previousPathSubjectPart is IsParentOfPathSubjectPart && pathSubjectPartPosition == 1)
                 {

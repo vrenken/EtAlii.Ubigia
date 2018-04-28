@@ -267,8 +267,7 @@
             int startIndex1 = startIndex + 1;
             while (startIndex1 < input.Length)
             {
-                int length1 = 0;
-                if (startIndex1 + 2 < input.Length && GetQuotedPairLength(input, startIndex1, out length1) == HttpParseResult.Parsed)
+                if (startIndex1 + 2 < input.Length && GetQuotedPairLength(input, startIndex1, out var length1) == HttpParseResult.Parsed)
                 {
                     startIndex1 += length1;
                 }
@@ -281,8 +280,7 @@
                         {
                             if (nestedCount > 5)
                                 return HttpParseResult.InvalidFormat;
-                            int length2 = 0;
-                            switch (GetExpressionLength(input, startIndex1, openChar, closeChar, supportsNesting, ref nestedCount, out length2))
+                            switch (GetExpressionLength(input, startIndex1, openChar, closeChar, supportsNesting, ref nestedCount, out var length2))
                             {
                                 case HttpParseResult.Parsed:
                                     startIndex1 += length2;

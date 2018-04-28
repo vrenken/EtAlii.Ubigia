@@ -112,7 +112,7 @@
     
             if (!result.IsSuccessStatusCode)
             {
-                Exception e = null;
+                Exception e;
                 string message;
 
                 var error = await GetError(result);

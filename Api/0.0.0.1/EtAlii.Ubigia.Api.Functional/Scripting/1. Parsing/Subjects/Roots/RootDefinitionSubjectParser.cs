@@ -13,20 +13,21 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly ITypeValueParser _typeValueParser;
-        private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
+//        private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
 //        private const string _textId = "Text";
 //        private const string _pathId = "SchemaPath";
 
         public RootDefinitionSubjectParser(
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
-            ITypeValueParser typeValueParser, 
-            IPathSubjectPartsParser pathSubjectPartsParser)
+            ITypeValueParser typeValueParser 
+//            IPathSubjectPartsParser pathSubjectPartsParser
+            )
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _typeValueParser = typeValueParser;
-            _pathSubjectPartsParser = pathSubjectPartsParser;
+//            _pathSubjectPartsParser = pathSubjectPartsParser;
 
             Parser = new LpsParser
                 (

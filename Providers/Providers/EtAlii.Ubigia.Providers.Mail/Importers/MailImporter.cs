@@ -109,13 +109,13 @@
                         var safeTitle = message.Subject.Select(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)).ToArray();
                         
                         var lastSequence = await _context.Scripts.Process("/Communications += \"{0}\"", safeTitle);
-                        var result = await lastSequence.Output.ToArray();
+                        await lastSequence.Output.ToArray();
 
                         var scope = new ScriptScope();
                         scope.Variables.Add("content", new ScopeVariable(message.BodyText.Text, "Mail"));
                         
                         lastSequence = await _context.Scripts.Process("/Communications/\"{0}\" <= $content", safeTitle);
-                        result = await lastSequence.Output.ToArray();
+                        await lastSequence.Output.ToArray();
 
                     });
                     task.Wait();

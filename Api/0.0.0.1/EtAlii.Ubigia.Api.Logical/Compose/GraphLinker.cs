@@ -56,7 +56,7 @@
             {
                 var locationUpdateEntry = await _graphUpdater.Update(locationEntry, scope);
                 var locationLinkUpdateEntry = await _graphLinkAdder.AddLink(locationUpdateEntry, locationLinkOriginalEntry, EntryType.Add, scope);
-                locationResult = await _graphChildAdder.AddChild(locationLinkUpdateEntry.Id, itemName, scope);
+                await _graphChildAdder.AddChild(locationLinkUpdateEntry.Id, itemName, scope);
             }
 
             throw new NotImplementedException();

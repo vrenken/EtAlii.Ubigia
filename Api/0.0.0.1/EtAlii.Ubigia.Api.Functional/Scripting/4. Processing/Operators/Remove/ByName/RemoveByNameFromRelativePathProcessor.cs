@@ -27,9 +27,7 @@
 
         public void Process(OperatorParameters parameters)
         {
-            PathSubject pathToRemove = null;
-
-            pathToRemove = GetPathToRemove(parameters);
+            var pathToRemove = GetPathToRemove(parameters);
             if (pathToRemove == null)
             {
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");

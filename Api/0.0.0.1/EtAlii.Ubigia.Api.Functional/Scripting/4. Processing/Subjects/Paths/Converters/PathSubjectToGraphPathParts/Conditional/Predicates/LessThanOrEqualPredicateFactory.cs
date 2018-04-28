@@ -10,8 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional
             return (Predicate<PropertyDictionary>)(p =>
             {
                 var result = false;
-                object propertyValue = null;
-                if (p.TryGetValue(condition.Property, out propertyValue))
+                if (p.TryGetValue(condition.Property, out var propertyValue))
                 {
                     if (propertyValue != null)
                     {

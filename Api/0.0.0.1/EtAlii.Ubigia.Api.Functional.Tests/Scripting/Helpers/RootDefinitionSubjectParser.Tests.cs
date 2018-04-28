@@ -4,7 +4,7 @@
     using Xunit;
 
     
-    public partial class RootDefinitionSubjectParserTests : IDisposable
+    public class RootDefinitionSubjectParserTests : IDisposable
     {
         private IRootDefinitionSubjectParser _parser;
 
@@ -14,32 +14,7 @@
             var nodeFinder = new NodeFinder();
             var constantHelper = new ConstantHelper();
             var typeValueParser = new TypeValueParser(nodeValidator, nodeFinder, constantHelper);
-
-            var integerValueParser = new IntegerValueParser(nodeValidator);
-            var quotedTextParser = new QuotedTextParser(nodeValidator, nodeFinder, constantHelper);
-            var dateTimeValueParser = new DateTimeValueParser(nodeValidator);
-            var timeSpanValueParser = new TimeSpanValueParser(nodeValidator, nodeFinder);
-            var booleanValueParser = new BooleanValueParser(nodeValidator, nodeFinder);
-            var floatValueParser = new FloatValueParser(nodeValidator);
-            var newLineParser = new NewLineParser();
-
-            var pathRelationParserBuilder = new PathRelationParserBuilder();
-
-            var conditionParser = new ConditionParser(nodeValidator, quotedTextParser, dateTimeValueParser, timeSpanValueParser, booleanValueParser, integerValueParser, floatValueParser, nodeFinder);
-            var traversingWildcardPathSubjectPartParser = new TraversingWildcardPathSubjectPartParser(nodeValidator, nodeFinder, integerValueParser);
-            var wildcardPathSubjectPartParser = new WildcardPathSubjectPartParser(nodeValidator, constantHelper, nodeFinder);
-            var conditionalPathSubjectPartParser = new ConditionalPathSubjectPartParser(nodeValidator, conditionParser, newLineParser, nodeFinder);
-            var constantPathSubjectPartParser = new ConstantPathSubjectPartParser(nodeValidator, constantHelper, nodeFinder);
-            var variablePathSubjectPartParser = new VariablePathSubjectPartParser(nodeValidator, nodeFinder);
-            var identifierPathSubjectPartParser = new IdentifierPathSubjectPartParser(nodeValidator, nodeFinder);
-            var isParentOfPathSubjectPartParser = new IsParentOfPathSubjectPartParser(nodeValidator, pathRelationParserBuilder);
-            var isChildOfPathSubjectPartParser = new IsChildOfPathSubjectPartParser(nodeValidator, pathRelationParserBuilder);
-            var downdateOfPathSubjectPartParser = new DowndateOfPathSubjectPartParser(nodeValidator, pathRelationParserBuilder);
-            var updatesOfPathSubjectPartParser = new UpdatesOfPathSubjectPartParser(nodeValidator, pathRelationParserBuilder);
-            var typedPathSubjectPartParser = new TypedPathSubjectPartParser(nodeValidator, nodeFinder);
-            var regexPathSubjectPartParser = new RegexPathSubjectPartParser(nodeValidator, nodeFinder);
-            var pathSubjectPartsParser = new PathSubjectPartsParser(traversingWildcardPathSubjectPartParser, wildcardPathSubjectPartParser, conditionalPathSubjectPartParser, constantPathSubjectPartParser, variablePathSubjectPartParser, identifierPathSubjectPartParser, isParentOfPathSubjectPartParser, isChildOfPathSubjectPartParser, downdateOfPathSubjectPartParser, updatesOfPathSubjectPartParser, typedPathSubjectPartParser, regexPathSubjectPartParser, nodeValidator);
-            _parser = new RootDefinitionSubjectParser(nodeValidator, nodeFinder, typeValueParser, pathSubjectPartsParser);
+            _parser = new RootDefinitionSubjectParser(nodeValidator, nodeFinder, typeValueParser);
         }
 
         public void Dispose()

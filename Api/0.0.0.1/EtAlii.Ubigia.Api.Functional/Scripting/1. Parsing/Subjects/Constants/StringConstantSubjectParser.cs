@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            string text = null;
+            string text;
             var quotedTextNode = _nodeFinder.FindFirst(node, _quotedTextParser.Id);
             if (quotedTextNode != null)
             {
