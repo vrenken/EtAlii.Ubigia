@@ -16,7 +16,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
-    <StartupObject>EtAlii.Ubigia.Provisioning.Hosting.Program</StartupObject>
+    <StartupObject>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47.Program</StartupObject>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47</NameOfOriginalMSBuildProject>
   </PropertyGroup>
 
