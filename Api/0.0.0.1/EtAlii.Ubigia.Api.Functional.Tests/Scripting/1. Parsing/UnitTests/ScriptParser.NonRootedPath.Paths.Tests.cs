@@ -167,7 +167,7 @@
         public void ScriptParser_NonRootedPath_Parse_Query_Unquoted_Path_With_Normal_Characters()
         {
             // Arrange.
-            int count;
+            var count = 0;
             
             // Act.
             var act = new Action<char>(c =>
@@ -190,7 +190,7 @@
         public void ScriptParser_NonRootedPath_Parse_Query_Quoted_Path_With_Normal_Characters()
         {
             // Arrange.
-            int count;
+            var count = 0;
             
             // Act.
             var act = new Action<char>(c =>
@@ -215,7 +215,7 @@
         public void ScriptParser_NonRootedPath_Parse_Query_Quoted_Path_With_Special_Characters()
         {
             // Arrange.
-            int count;
+            var count = 0;
             
             // Act.
             var act = new Action<char>(c =>
