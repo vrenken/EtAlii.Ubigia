@@ -13,7 +13,7 @@
         public string Id => _id;
         private const string _id = "BooleanValue";
 
-        private const string _valueId = "Value";
+        private const string ValueId = "Value";
 
         public BooleanValueParser(
             INodeValidator nodeValidator, 
@@ -22,8 +22,8 @@
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             Parser = new LpsParser(Id, true,
-                (Lp.One(c => Char.ToLower(c) == 't') + Lp.One(c => Char.ToLower(c) == 'r') + Lp.One(c => Char.ToLower(c) == 'u') + Lp.One(c => Char.ToLower(c) == 'e')).Id(_valueId) |
-                (Lp.One(c => Char.ToLower(c) == 'f') + Lp.One(c => Char.ToLower(c) == 'a') + Lp.One(c => Char.ToLower(c) == 'l') + Lp.One(c => Char.ToLower(c) == 's') + Lp.One(c => Char.ToLower(c) == 'e')).Id(_valueId)
+                (Lp.One(c => Char.ToLower(c) == 't') + Lp.One(c => Char.ToLower(c) == 'r') + Lp.One(c => Char.ToLower(c) == 'u') + Lp.One(c => Char.ToLower(c) == 'e')).Id(ValueId) |
+                (Lp.One(c => Char.ToLower(c) == 'f') + Lp.One(c => Char.ToLower(c) == 'a') + Lp.One(c => Char.ToLower(c) == 'l') + Lp.One(c => Char.ToLower(c) == 's') + Lp.One(c => Char.ToLower(c) == 'e')).Id(ValueId)
             );
         }
 
@@ -31,7 +31,7 @@
         public bool Parse(LpNode node)
         {     
             _nodeValidator.EnsureSuccess(node, Id);
-            var text = _nodeFinder.FindFirst(node, _valueId).Match.ToString().ToLower();
+            var text = _nodeFinder.FindFirst(node, ValueId).Match.ToString().ToLower();
             return text == "true" ? true : false;
         }
 

@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="EtAlii.Ubigia.Client.Windows.Diagnostics.TimeFilterContent"
+    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.TimeFilterContent"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"

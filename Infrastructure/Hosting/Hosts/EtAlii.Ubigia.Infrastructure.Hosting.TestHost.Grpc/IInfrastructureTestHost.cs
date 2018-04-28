@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
     using EtAlii.Ubigia.Infrastructure.Transport.User.Grpc;

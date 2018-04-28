@@ -9,7 +9,7 @@
     using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
 
     
-    public class SystemConnection_DataConnection_Tests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
+    public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private string _accountName;
@@ -17,7 +17,7 @@
         private string[] _spaceNames;
         private ISystemConnection _systemConnection;
 
-        public SystemConnection_DataConnection_Tests(InfrastructureUnitTestContext testContext)
+        public SystemConnectionDataConnectionTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

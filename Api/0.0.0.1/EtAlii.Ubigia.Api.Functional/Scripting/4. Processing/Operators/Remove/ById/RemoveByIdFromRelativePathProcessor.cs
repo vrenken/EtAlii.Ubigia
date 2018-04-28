@@ -58,7 +58,7 @@
             IObserver<object> output)
         {
             var newEntry = await _context.Logical.Nodes.Remove(id, identifierToRemove, scope);
-            var result = new DynamicNode((IReadOnlyEntry)newEntry);
+            var result = new DynamicNode(newEntry);
             output.OnNext(result);
         }
     }

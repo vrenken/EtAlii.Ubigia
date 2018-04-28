@@ -1,10 +1,10 @@
 ﻿<Fluent:RibbonGroupBox 
-    x:Class="EtAlii.Ubigia.Client.Windows.Diagnostics.CodeMaintenanceRibbonGroupBox"
+    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.CodeMaintenanceRibbonGroupBox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
     xmlns:s="clr-namespace:System;assembly=mscorlib"  
-    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views"
+    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 

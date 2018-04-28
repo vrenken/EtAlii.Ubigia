@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
-    using EtAlii.xTechnology.Logging;
     using System;
     using System.Collections.Generic;
     using System.Text;

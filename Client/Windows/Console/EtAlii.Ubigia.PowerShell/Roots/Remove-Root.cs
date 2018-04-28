@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Root, DefaultParameterSetName = "byRootName", SupportsShouldProcess = true)]
-    public class Remove_Root : RootTargetingCmdlet
+    public class RemoveRoot : RootTargetingCmdlet
     {
         [Parameter(Mandatory = false, Position = 999, HelpMessage = "Force root removal.")]
         public SwitchParameter Force { get; set; }

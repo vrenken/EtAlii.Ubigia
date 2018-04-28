@@ -8,12 +8,12 @@
     using System.Collections.Generic;
 
 
-    public class Space_Test : IDisposable
+    public class SpaceTest : IDisposable
     {
         private PowerShellTestContext _testContext;
 
 
-        public Space_Test()
+        public SpaceTest()
         {
             TestInitialize();
         }

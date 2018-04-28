@@ -2,8 +2,7 @@
 {
 	using System;
 	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.Ubigia.Infrastructure.Transport;
+	using EtAlii.Ubigia.Infrastructure.Transport;
 
 
     public interface IHostTestContext<out TInfrastructureTestHost> : IHostTestContext

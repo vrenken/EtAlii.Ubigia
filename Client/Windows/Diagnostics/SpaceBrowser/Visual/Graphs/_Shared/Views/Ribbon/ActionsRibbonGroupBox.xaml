@@ -1,5 +1,5 @@
 ﻿<Fluent:RibbonGroupBox 
-    x:Class="EtAlii.Ubigia.Client.Windows.Diagnostics.ActionsRibbonGroupBox"
+    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.ActionsRibbonGroupBox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"

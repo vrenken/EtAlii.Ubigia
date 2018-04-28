@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Tests
+namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     public class TimeAddResult
     {

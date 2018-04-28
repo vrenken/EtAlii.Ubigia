@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
         private readonly object _lockObject = new object();
 
-        private const string _folder = "Accounts";
+        private const string Folder = "Accounts";
 
         private ObservableCollection<Account> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
         private ObservableCollection<Account> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private ObservableCollection<Account> InitializeItems()
         {
-            var items = _fabric.Items.GetItems<Account>(_folder);
+            var items = _fabric.Items.GetItems<Account>(Folder);
             return items;
         }
 
@@ -108,7 +108,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public ObservableCollection<Account> GetItems()
         {
-            return _fabric.Items.GetItems<Account>(_folder);
+            return _fabric.Items.GetItems<Account>(Folder);
         }
 
         public void Remove(Guid itemId)
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Account Update(Guid itemId, Account updatedItem)
         {
-            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }
     }
 }

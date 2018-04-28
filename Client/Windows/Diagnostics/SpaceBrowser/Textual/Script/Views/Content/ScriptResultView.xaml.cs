@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections;
     using System.Windows;
     using System.Windows.Controls;
-    using EtAlii.Ubigia.Client.Windows.Diagnostics;
     using Syncfusion.UI.Xaml.Grid;
 
     public partial class ScriptResultView : UserControl
@@ -17,7 +16,7 @@
 
         public object Source
         {
-            get { return (object)GetValue(SourceProperty); }
+            get { return GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
         }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ScriptResultView), new PropertyMetadata(null, OnSourceChanged));

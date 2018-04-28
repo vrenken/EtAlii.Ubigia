@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    public class ContentCacheHelper_Tests
+    public class ContentCacheHelperTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ContentCacheHelper_Create()

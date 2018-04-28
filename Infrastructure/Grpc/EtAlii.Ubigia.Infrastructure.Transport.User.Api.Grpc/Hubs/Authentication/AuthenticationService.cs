@@ -1,13 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
-    using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
-    using Microsoft.Extensions.Primitives;
 
     public class AuthenticationService : EtAlii.Ubigia.Api.Transport.Grpc.AuthenticationGrpcService.AuthenticationGrpcServiceBase
     {

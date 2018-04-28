@@ -1,6 +1,6 @@
 ﻿using Fluent;
 
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     /// <summary>
     /// Interaction logic for RelationsRibbonGroupBox.xaml

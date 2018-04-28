@@ -4,8 +4,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
     using EtAlii.Ubigia.Api.Transport;
-	using global::Google.Apis.PeopleService.v1.Data;
-    using global::Google.Apis.Auth.OAuth2;
     using global::Google.Apis.PeopleService.v1;
     using global::Google.Apis.Services;
 
@@ -17,7 +15,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         private readonly IPersonSetter _personSetter;
         private readonly TimeSpan _updateThreshold = TimeSpan.FromHours(1); 
 
-        private readonly string[] _contactScopes = new[] { "https://www.googleapis.com/auth/contacts.readonly" };     // view your basic profile info.
+        //private readonly string[] _contactScopes = new[] { "https://www.googleapis.com/auth/contacts.readonly" };     // view your basic profile info.
 
         public PeopleDataSpaceUpdater(
             IProviderContext context,

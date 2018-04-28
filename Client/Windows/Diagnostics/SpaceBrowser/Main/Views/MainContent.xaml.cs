@@ -1,11 +1,7 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using System;
-    using System.IO;
     using System.Linq;
-    using System.Text;
     using System.Windows.Controls;
-    using EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties;
     using Xceed.Wpf.AvalonDock.Layout;
     using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
@@ -19,41 +15,41 @@
                 InitializeComponent();
         }
 
-
-        private void SaveLayoutSettings()
-        {
-            using (var stream = new MemoryStream())
-            {
-                var serializer = new XmlLayoutSerializer(DockingManager);
-                serializer.Serialize(stream);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                using (var reader = new StreamReader(stream))
-                {
-                    Settings.Default.MainWindowLayout = reader.ReadToEnd();
-                }
-            }
-        }
-
-        private void LoadLayoutSettings()
-        {
-            if (!String.IsNullOrWhiteSpace(Settings.Default.MainWindowLayout))
-            {
-                var currentLayout = DockingManager.Layout.Children.OfType<LayoutContent>()
-                                                                  .Where(c => c.ContentId != null)
-                                                                  .ToArray();
-                var bytes = Encoding.Default.GetBytes(Settings.Default.MainWindowLayout);
-                using (var stream = new MemoryStream(bytes))
-                {
-                    var serializer = new XmlLayoutSerializer(DockingManager);
-                    serializer.LayoutSerializationCallback += (sender, e) =>
-                    {
-                        ApplyLayout(currentLayout, e);
-                    };
-                    serializer.Deserialize(stream);
-                }
-            }
-        }
+//
+//        private void SaveLayoutSettings()
+//        {
+//            using (var stream = new MemoryStream())
+//            {
+//                var serializer = new XmlLayoutSerializer(DockingManager);
+//                serializer.Serialize(stream);
+//                stream.Seek(0, SeekOrigin.Begin);
+//
+//                using (var reader = new StreamReader(stream))
+//                {
+//                    Settings.Default.MainWindowLayout = reader.ReadToEnd();
+//                }
+//            }
+//        }
+//
+//        private void LoadLayoutSettings()
+//        {
+//            if (!String.IsNullOrWhiteSpace(Settings.Default.MainWindowLayout))
+//            {
+//                var currentLayout = DockingManager.Layout.Children.OfType<LayoutContent>()
+//                                                                  .Where(c => c.ContentId != null)
+//                                                                  .ToArray();
+//                var bytes = Encoding.Default.GetBytes(Settings.Default.MainWindowLayout);
+//                using (var stream = new MemoryStream(bytes))
+//                {
+//                    var serializer = new XmlLayoutSerializer(DockingManager);
+//                    serializer.LayoutSerializationCallback += (sender, e) =>
+//                    {
+//                        ApplyLayout(currentLayout, e);
+//                    };
+//                    serializer.Deserialize(stream);
+//                }
+//            }
+//        }
 
         private void ApplyLayout(LayoutContent[] currentLayout, LayoutSerializationCallbackEventArgs e)
         {

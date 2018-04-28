@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
             dynamic windows = shellApplication.Windows;
             int count = windows.Count;
 
-            for (int i = 0; i < (int)count; i++)
+            for (int i = 0; i < count; i++)
             {
                 dynamic item = windows.Item(i);
 

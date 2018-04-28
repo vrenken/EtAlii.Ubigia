@@ -8,11 +8,11 @@
     using System.Collections.Generic;
 
 
-    public class Account_Test : IDisposable
+    public class AccountTest : IDisposable
     {
         private PowerShellTestContext _testContext;
 
-        public Account_Test()
+        public AccountTest()
         {
             TestInitialize();
         }

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
-    using System;
     using System.Linq;
     using System.Security.Principal;
     using System.Threading;

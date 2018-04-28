@@ -9,7 +9,6 @@
     using System.Net.Http.Formatting;
     using System.Net.Http.Headers;
     using System.Reflection;
-    using System.Text;
     using System.Threading.Tasks;
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;

@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Helpers.NET47.Tests;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Api.Tests;
     using Ubigia.Tests;
 
     public class NET47LogicalUnitTestContext : IDisposable

@@ -3,9 +3,9 @@
     using Xunit;
 
     
-    public class App_Tests
+    public class AppTests
     {
-        public App_Tests()
+        public AppTests()
         {
             PowerShellClient.Current = new PowerShellClientFactory().Create<PowerShellClient>();
         }

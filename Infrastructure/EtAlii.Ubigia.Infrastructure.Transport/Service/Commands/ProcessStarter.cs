@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System;
     using System.Diagnostics;
-    using System.IO;
 
     class ProcessStarter : IProcessStarter
     {

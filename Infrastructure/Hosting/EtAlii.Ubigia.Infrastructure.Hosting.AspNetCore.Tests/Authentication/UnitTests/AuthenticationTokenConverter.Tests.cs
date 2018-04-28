@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport;
 
 	// TODO: Move all instances of this test class to single testproject
-    public class AuthenticationTokenConverter_Tests
+    public class AuthenticationTokenConverterTests
     {
         [Fact]
         public void AuthenticationTokenConverter_Converter_Token()

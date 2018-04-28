@@ -27,7 +27,7 @@
         {
             var contentPart = await _fabric.Content.Retrieve(identifier, contentPartId);
             var buffer = contentPart.Data;
-            localDataStream.Write(buffer, 0, (int)buffer.Length);
+            localDataStream.Write(buffer, 0, buffer.Length);
         }
     }
 }

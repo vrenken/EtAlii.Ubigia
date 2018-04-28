@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     public partial class GraphView : GraphViewBase
     {
@@ -7,9 +7,9 @@
             InitializeComponent();
         }
 
-        private void OnContextMenuOpened(object sender, System.Windows.RoutedEventArgs e)
-        {
-            //((ContextMenu)sender).DataContext = this.DataContext;
-        }
+//        private void OnContextMenuOpened(object sender, System.Windows.RoutedEventArgs e)
+//        {
+//            //((ContextMenu)sender).DataContext = this.DataContext;
+//        }
     }
 }

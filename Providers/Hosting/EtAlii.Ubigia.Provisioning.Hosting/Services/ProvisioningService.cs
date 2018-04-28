@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting
 {
-    using EtAlii.xTechnology.Logging;
-    using System;
-    using System.Collections.Generic;
     using System.Text;
     using EtAlii.xTechnology.Hosting;
 

@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RootedPathSubjectParser : IRootedPathSubjectParser
     {
-        private const string _id = "RootedPathSubject";
+        private const string Id = "RootedPathSubject";
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _pathSubjectPartsParser = pathSubjectPartsParser;
             Parser = new LpsParser
                 (
-                    _id, true,
+                    Id, true,
                     Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
                     Lp.Char(':') +
                     //_pathSubjectPartsParser.Parser.OneOrMore().Id("path") +
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public Subject Parse(LpNode node)
         {
-            _nodeValidator.EnsureSuccess(node, _id);
+            _nodeValidator.EnsureSuccess(node, Id);
 
             var root = node.Children.Single(n => n.Id == "root").ToString();
             var childNodes = node.Children.Single(n => n.Id == "path")?.Children ?? new LpNode[] { };
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public bool CanParse(LpNode node)
         {
-            return node.Id == _id;
+            return node.Id == Id;
         }
 
         public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)

@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class GraphPathTraverserFactory_Tests
+    public class GraphPathTraverserFactoryTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void GraphPathTraverserFactory_New()

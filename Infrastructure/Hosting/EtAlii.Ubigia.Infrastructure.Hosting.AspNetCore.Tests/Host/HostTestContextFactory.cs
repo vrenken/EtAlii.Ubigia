@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
-    using EtAlii.xTechnology.Hosting;
-
     public class HostTestContextFactory : IHostTestContextFactory
     {
         public THostTestContext Create<THostTestContext>()

@@ -6,7 +6,6 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public partial class GraphComposerIntegrationTests
@@ -84,9 +83,9 @@
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
-            var hierarchy = hierarchyResult.Item2;
+//            var hierarchy = hierarchyResult.Item2;
             string item = Guid.NewGuid().ToString();
-            var addedEntry = await composer.Add(entry.Id, item, scope);
+            await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
@@ -119,9 +118,9 @@
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
-            var hierarchy = hierarchyResult.Item2;
+//            var hierarchy = hierarchyResult.Item2;
             string item = Guid.NewGuid().ToString();
-            var addedEntry = await composer.Add(entry.Id, item, scope);
+            await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);

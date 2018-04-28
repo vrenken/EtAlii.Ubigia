@@ -1,5 +1,5 @@
 ﻿using EtAlii.xTechnology.Workflow;
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
 
     public class ApplyLayoutingToGraphCommandHandler : CommandHandlerBase<ApplyLayoutingToGraphCommand>, IApplyLayoutingToGraphCommandHandler

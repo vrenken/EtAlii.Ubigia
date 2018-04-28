@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using ICSharpCode.AvalonEdit;
     using ICSharpCode.AvalonEdit.Document;

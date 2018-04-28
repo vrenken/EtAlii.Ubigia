@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly INodeFinder _nodeFinder;
-        private const string _textId = "Text";
+        private const string TextId = "Text";
 
         public StringConstantSubjectParser(
             INodeValidator nodeValidator,
@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 (
                     Id, true,
                     //Lp.Char('/').Not().Debug("Start", true) + 
-                    (Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Wrap(_textId) | 
+                    (Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Wrap(TextId) | 
                     //new LpsParser("Start", false, Lp.Char('/')).Not().Debug("Bracket-Start", true) + 
                     _quotedTextParser.Parser) + //.Debug("Content", true)) + //.Look(c => c != '/', c => c != '/').Debug("Look", true)
                     //new LpsParser(Lp.Char('/').Not().Debug("Stop", true) | Lp.End)
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             }
             else
             {
-                text = _nodeFinder.FindFirst(node, _textId).Match.ToString();
+                text = _nodeFinder.FindFirst(node, TextId).Match.ToString();
             }
             return new StringConstantSubject(text);
         }

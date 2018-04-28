@@ -621,13 +621,13 @@
                 return tcs.TrySetException((IEnumerable<Exception>)aggregateException.InnerExceptions);
             return tcs.TrySetException(e);
         }
-
-        private static Task Canceled()
-        {
-            TaskCompletionSource<object> completionSource = new TaskCompletionSource<object>();
-            completionSource.SetCanceled();
-            return (Task)completionSource.Task;
-        }
+//
+//        private static Task Canceled()
+//        {
+//            TaskCompletionSource<object> completionSource = new TaskCompletionSource<object>();
+//            completionSource.SetCanceled();
+//            return (Task)completionSource.Task;
+//        }
 
         private static Task<T> Canceled<T>()
         {
@@ -871,15 +871,15 @@
                 return RunTask(task, (Action)(() => successor(arg1, arg2)));
             }
 
-            internal static Task<TResult> ThenWithArgs(Task task, Func<T1, TResult> successor, T1 arg1)
-            {
-                return TaskRunners<object, TResult>.RunTask(task, (Func<TResult>)(() => successor(arg1)));
-            }
-
-            internal static Task<TResult> ThenWithArgs(Task task, Func<T1, T2, TResult> successor, T1 arg1, T2 arg2)
-            {
-                return TaskRunners<object, TResult>.RunTask(task, (Func<TResult>)(() => successor(arg1, arg2)));
-            }
+//            internal static Task<TResult> ThenWithArgs(Task task, Func<T1, TResult> successor, T1 arg1)
+//            {
+//                return TaskRunners<object, TResult>.RunTask(task, (Func<TResult>)(() => successor(arg1)));
+//            }
+//
+//            internal static Task<TResult> ThenWithArgs(Task task, Func<T1, T2, TResult> successor, T1 arg1, T2 arg2)
+//            {
+//                return TaskRunners<object, TResult>.RunTask(task, (Func<TResult>)(() => successor(arg1, arg2)));
+//            }
 
             internal static Task<TResult> ThenWithArgs(Task<T> task, Func<T, T1, TResult> successor, T1 arg1)
             {
@@ -895,11 +895,11 @@
             {
                 return TaskRunners<object, Task>.RunTask(task, (Func<Task>)(() => successor(arg1, arg2)));
             }
-
-            internal static Task<Task<TResult>> ThenWithArgs(Task<T> task, Func<T, T1, Task<TResult>> successor, T1 arg1)
-            {
-                return TaskRunners<T, Task<TResult>>.RunTask(task, (Func<Task<T>, Task<TResult>>)(t => successor(t.Result, arg1)));
-            }
+//
+//            internal static Task<Task<TResult>> ThenWithArgs(Task<T> task, Func<T, T1, Task<TResult>> successor, T1 arg1)
+//            {
+//                return TaskRunners<T, Task<TResult>>.RunTask(task, (Func<Task<T>, Task<TResult>>)(t => successor(t.Result, arg1)));
+//            }
 
             internal static Task<Task<T>> ThenWithArgs(Task<T> task, Func<Task<T>, T1, Task<T>> successor, T1 arg1)
             {

@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class ContentPartCalculator_Tests
+    public class ContentPartCalculatorTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PartCalculator_Create()

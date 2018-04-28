@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class ContentDataClientStub_Tests
+    public class ContentDataClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ContentDataClientStub_Create()

@@ -7,11 +7,11 @@
     using EtAlii.Ubigia.Infrastructure;
 
     
-    public sealed class SpaceRepository_Tests : IClassFixture<InfrastructureUnitTestContext>
+    public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
 
-        public SpaceRepository_Tests(InfrastructureUnitTestContext testContext)
+        public SpaceRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

@@ -1,7 +1,6 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.xTechnology.Workflow;
-    using System.Reactive.Concurrency;
     using System.Threading.Tasks;
 
     public class ExecuteCodeUnitOfworkHandler : UnitOfWorkHandlerBase<ExecuteCodeUnitOfwork>, IExecuteCodeUnitOfworkHandler

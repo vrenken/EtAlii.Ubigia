@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;

@@ -14,8 +14,8 @@
         Task<IEnumerable<Root>> GetAll();
     }
 
-    public interface IRootDataClient<in Ttransport> : IRootDataClient, ISpaceTransportClient<Ttransport>
-        where Ttransport: ISpaceTransport
+    public interface IRootDataClient<in TTransport> : IRootDataClient, ISpaceTransportClient<TTransport>
+        where TTransport: ISpaceTransport
     {
     }
 }

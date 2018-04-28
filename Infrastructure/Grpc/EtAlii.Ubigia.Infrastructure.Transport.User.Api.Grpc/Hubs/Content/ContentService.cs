@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
-    using System;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class ContentService : EtAlii.Ubigia.Api.Transport.Grpc.ContentGrpcService.ContentGrpcServiceBase

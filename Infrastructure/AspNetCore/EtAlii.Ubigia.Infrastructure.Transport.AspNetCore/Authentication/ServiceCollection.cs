@@ -11,9 +11,9 @@
 		{
 			if (collection == null)
 				throw new ArgumentNullException(nameof(collection));
-			if ((object)instance == null)
+			if (instance == null)
 				throw new ArgumentNullException(nameof(instance));
-			ServiceDescriptor descriptor = ServiceDescriptor.Singleton(typeof(TService), (object)instance);
+			ServiceDescriptor descriptor = ServiceDescriptor.Singleton(typeof(TService), instance);
 			collection.TryAdd(descriptor);
 			return collection;
 		}

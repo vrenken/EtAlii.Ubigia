@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.xTechnology.Workflow;
     using System;
@@ -9,7 +9,7 @@
     {
         private readonly IDataContext _dataContext;
 
-        private readonly object _lockObject = new object();
+//        private readonly object _lockObject = new object();
 
         public ParseScriptUnitOfworkHandler(
             IDataContext dataContext)

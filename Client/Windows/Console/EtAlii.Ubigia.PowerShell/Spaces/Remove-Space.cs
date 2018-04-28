@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Space, DefaultParameterSetName = "bySpaceName", SupportsShouldProcess = true)]
-    public class Remove_Space : SpaceTargetingCmdlet
+    public class RemoveSpace : SpaceTargetingCmdlet
     {
         [Parameter(Mandatory = false, Position = 999, HelpMessage = "Force space removal.")]
         public SwitchParameter Force { get; set; }

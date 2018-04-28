@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using global::Google.Apis.PeopleService.v1.Data;
-    using global::Google.Apis.Auth.OAuth2;
 
     public class PersonSetter : IPersonSetter
     {
