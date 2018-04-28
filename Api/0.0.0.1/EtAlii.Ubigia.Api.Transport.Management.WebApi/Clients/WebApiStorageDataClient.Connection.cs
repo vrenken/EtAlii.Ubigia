@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Transport;
 
-    internal sealed partial class WebApiStorageDataClient : WebApiClientBase, IStorageDataClient
+    internal sealed partial class WebApiStorageDataClient
     {
     }
 }

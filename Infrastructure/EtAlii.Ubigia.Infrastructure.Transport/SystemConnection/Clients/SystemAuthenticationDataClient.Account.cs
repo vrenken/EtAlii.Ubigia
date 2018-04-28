@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
 
-    internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
+    internal partial class SystemAuthenticationDataClient
     {
         public async Task<Account> GetAccount(ISpaceConnection connection)
         {

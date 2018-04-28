@@ -3,7 +3,7 @@
 	using System;
 	using System.Threading.Tasks;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class SignalRAuthenticationDataClient
     {
         public async Task<Storage> GetConnectedStorage(ISpaceConnection connection)
         {
