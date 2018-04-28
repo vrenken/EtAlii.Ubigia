@@ -1,11 +1,10 @@
 ﻿<Project>
-
   <PropertyGroup>
     <!-- =========================================================================================== -->
     <!-- These are global properties, used in multiple tasks. -->
     <!--<ProtoBufTempFolder>_ProtbufTemp</ProtoBufTempFolder>-->
-    <!--<ProtoBufTempFolder>$(TEMP)\$([System.Environment]::TickCount)\_ProtbufTemp</ProtoBufTempFolder>-->
-    <ProtoBufTempFolder>$(TEMP)\_ProtbufTemp</ProtoBufTempFolder>
+    <ProtoBufTempFolder>$(TEMP)\$([System.Environment]::TickCount)\_ProtbufTemp</ProtoBufTempFolder>
+    <!--<ProtoBufTempFolder>$(TEMP)\_ProtbufTemp</ProtoBufTempFolder>-->
 
     <CsFileExtension>.cs</CsFileExtension>
     <ProtobufSubCsFileExtension>.Protbuf.cs</ProtobufSubCsFileExtension>
@@ -16,8 +15,16 @@
     <!-- =========================================================================================== -->
   </PropertyGroup>
 
-  <Target Name="GenerateProtoBufCsCode" BeforeTargets="BeforeBuild" DependsOnTargets="BeforeGenerateProtoBufCsCode">
+    <ItemGroup>
+        <ProtobufInputs Include="$(MSBuildProjectDirectory)\**\*.proto" />
+        <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**\*$(ProtobufSubCsFileExtension);$(MSBuildProjectDirectory)\**\*$(GrpcSubCsFileExtension)" />
+    </ItemGroup>
 
+    <Target Name="GenerateProtoBufCsCode" 
+          BeforeTargets="BeforeBuild" 
+          DependsOnTargets="BeforeGenerateProtoBufCsCode"
+          Inputs="@(ProtobufInputs)"
+          Outputs="@(ProtobufOutputs)">
 
     <!-- Let's find out which GRPC and Protbuf package versions are installed in this project. -->
     <FindInList CaseSensitive="false"
@@ -45,12 +52,6 @@
       <ProtoBufPlugin>--plugin=protoc-gen-grpc="$(NuGetPackageRoot)grpc.tools\$(GrpcToolsVersion)\tools\$(ProtoBufArchitecture)\grpc_csharp_plugin.exe"</ProtoBufPlugin>
     </PropertyGroup>
 
-    <!--<Warning Text="$(GrpcToolsVersion)" />
-    <Warning Text="%(GrpcToolsFound.Version)" />
-
-    <Warning Text="$(ProtoBufToolsVersion)" />
-    <Warning Text="%(ProtoBufToolsFound.Version)" />-->
-
     <!-- =========================================================================================== -->
     <!-- In this Target we define a few temporary items. -->
     <ItemGroup>
@@ -76,30 +77,36 @@
 
     <PropertyGroup>
       <ProtoBufCommandLinePrefix>$(ProtoBufExe) --grpc_out="$(ProtoBufTempFolder)" --csharp_out="$(ProtoBufTempFolder)" $(ProtoBufPlugin)</ProtoBufCommandLinePrefix>
-
     </PropertyGroup>
     <!-- =========================================================================================== -->
+
+    <Message Text="==== EtAlii.xTechnology.MsBuild.Grpc compiler ====" />
+    <Message Text="Grpc.Tools NuGet package version: $(GrpcToolsVersion)" />
+    <Message Text="Google.Protobuf.Tools NuGet package version: $(ProtoBufToolsVersion)" />
+    <Message Text="Input .proto files:" />
+    <Message Text="%(OriginalProtoFiles.RecursiveDir)%(OriginalProtoFiles.Filename)%(OriginalProtoFiles.Extension)" />
 
     <MakeDir Directories="$(ProtoBufTempFolder)" ContinueOnError="True"  />
     <Delete Files="@(ProtobufFilesToDelete)" />
     <Delete Files="@(GrpcFilesToDelete)" />
- 
+
     <PropertyGroup>
       <ProtoCompilerCommandLine>$(ProtoBufCommandLinePrefix)  --proto_path=&quot;$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\$(ProtoBufToolsVersion)\Tools&quot; @(ProtoFiles->'--proto_path=&quot;%(TrimmedFolderWithRoot)&quot;', ' ') @(ProtoFiles->'&quot;%(FullPath)&quot;', ' ')</ProtoCompilerCommandLine>
     </PropertyGroup>
     <Exec Command="$(ProtoCompilerCommandLine)" ConsoleToMSBuild="True" ContinueOnError="True" EchoOff="False">
-      <Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />
+      <!--<Output TaskParameter="ConsoleOutput" PropertyName="OutputOfExec" />-->
     </Exec>
-    <Message Text="COMPILED: $(ProtoCompilerCommandLine)" />
+    <!--<Message Text="COMPILED: $(ProtoCompilerCommandLine)" />-->
 
     <Move SourceFiles="%(ProtoFiles.TemporaryFile)" DestinationFiles="%(ProtoFiles.FinalProtobufFile)" Condition="Exists(%(ProtoFiles.TemporaryFile))"/>
     <Move SourceFiles="%(ProtoFiles.TemporaryGrpcFile)" DestinationFiles="%(ProtoFiles.FinalGrpcFile)" Condition="Exists(%(ProtoFiles.TemporaryGrpcFile))"/>
-    <!--<Warning Text="@(OutputOfExec->'%(Identity)', '%0a%0d')" />-->
 
-    <ItemGroup>
-      <CreatedFiles Include="**\*$(ProtobufSubCsFileExtension);**\*$(GrpcSubCsFileExtension)" />
-    </ItemGroup>
-    <!--<Warning Text="FOLDER: $([System.String]::Copy('%(CreatedFiles.Filename)%(CreatedFiles.Extension)').Replace('$(GrpcSubCsFileExtension)','.proto'))" />-->
+      <ItemGroup>
+          <CreatedFiles Include="$(MSBuildProjectDirectory)\**\*$(ProtobufSubCsFileExtension);$(MSBuildProjectDirectory)\**\*$(GrpcSubCsFileExtension)" />
+      </ItemGroup>
+
+      <Message Text="Output .cs files:" />
+      <Message Text="%(CreatedFiles.RecursiveDir)%(CreatedFiles.Filename)%(CreatedFiles.Extension)" />
   </Target>
 
   <Target Name="BeforeGenerateProtoBufCsCode" BeforeTargets="GenerateProtoBufCsCode">

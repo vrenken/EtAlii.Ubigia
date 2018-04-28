@@ -13,14 +13,14 @@ option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc";
 //option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
 
 package EtAlii.Ubigia.Api.Transport.Grpc;
-
+   
 message Guid
 {
 	fixed64 Data1 = 1;
 	fixed64 Data2 = 2;
 	fixed64 Data3 = 3;
 	fixed64 Data4 = 4;
-}
+}  
 message IpAddress
 {
 	fixed64 Data = 1;
