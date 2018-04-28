@@ -51,7 +51,7 @@
         // Executes a query with a collection result.
         public IEnumerable<T> ExecuteCollection<T>(QueryModel queryModel)
         {
-            var result = (IEnumerable<T>)null;
+            IEnumerable<T> result;
 
             var scope = new ScriptScope();
 

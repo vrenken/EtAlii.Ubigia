@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             return Task.Run(() =>
             {
-                GraphPathPart[] result = { null };
+                GraphPathPart[] result;
                 var name = ((ConstantPathSubjectPart)pathSubjectPart).Name;
 
                 if (pathSubjectPartPosition == 0 ||

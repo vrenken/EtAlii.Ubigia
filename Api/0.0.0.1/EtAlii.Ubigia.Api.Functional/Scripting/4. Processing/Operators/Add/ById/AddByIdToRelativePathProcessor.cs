@@ -21,9 +21,7 @@
 
         public void Process(OperatorParameters parameters)
         {
-            var idToAdd = Identifier.Empty;
-
-            idToAdd = GetIdToAdd(parameters);
+            var idToAdd = GetIdToAdd(parameters);
             if (idToAdd == Identifier.Empty)
             {
                 throw new ScriptProcessingException("The AddByIdToRelativePathProcessor requires a identifier to add");

@@ -9,7 +9,6 @@
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
-        private readonly IConstantHelper _constantHelper;
         private readonly INodeFinder _nodeFinder;
         private const string TextId = "Text";
 
@@ -19,16 +18,15 @@
             INodeFinder nodeFinder)
         {
             _nodeValidator = nodeValidator;
-            _constantHelper = constantHelper;
             _nodeFinder = nodeFinder;
 
             Parser = new LpsParser(Id, true,
                 //(Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(TextId)) |
                 (Lp.One(c => c == '\"') +
-                 Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(TextId) +
+                 Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(TextId) +
                  Lp.One(c => c == '\"')) |
                 (Lp.One(c => c == '\'') +
-                 Lp.One(c => _constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(TextId) +
+                 Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\'')).OneOrMore().Id(TextId) +
                  Lp.One(c => c == '\''))
                 );
         }

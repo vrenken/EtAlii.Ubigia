@@ -111,7 +111,6 @@
             dynamic single = items.Add("Overijssel_01").Single();
 
             Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
-            delta = Environment.TickCount;
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -135,7 +134,6 @@
             dynamic single = items.Add("Overijssel_01").Single();
 
             Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
-            delta = Environment.TickCount;
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -159,7 +157,6 @@
             dynamic single = items.Add("Overijssel_01").Single();
 
             Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
-            delta = Environment.TickCount;
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());

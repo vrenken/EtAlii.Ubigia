@@ -24,9 +24,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (nextPart != null)
             {
-                bool skipNextTemp = false;
                 var nextPartExecutionPlanner = _sequencePartExecutionPlannerSelector.Select(nextPart);
-                leftExecutionPlan = _subjectExecutionPlanCombiner.Combine(nextPartExecutionPlanner, nextPart, null, null, out skipNextTemp);
+                leftExecutionPlan = _subjectExecutionPlanCombiner.Combine(nextPartExecutionPlanner, nextPart, null, null, out var _);
             }
 
             skipNext = true;

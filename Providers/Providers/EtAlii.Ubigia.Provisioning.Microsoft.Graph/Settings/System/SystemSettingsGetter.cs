@@ -25,9 +25,7 @@
             });
             task.Wait();
 
-            object value = null;
-
-            if (result.TryGetValue("ApplicationId", out value))
+            if (result.TryGetValue("ApplicationId", out var value))
             {
                 settings.ApplicationId = (string)value;
             }

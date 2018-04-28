@@ -22,8 +22,6 @@
 
         public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
         {
-            IReadOnlyEntry result = null;
-
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(_context.Fabric);
             var graphPathTraverser = _graphPathTraverserFactory.Create(configuration);
@@ -32,7 +30,7 @@
                 graphPathTraverser.Traverse(GraphPath.Create(item), Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
-            result = await results.SingleAsync(); // The GraphRenamer cannot handle multiple updates yet.
+            var result = await results.SingleAsync();
 
             if (result.Type != newName)
             {

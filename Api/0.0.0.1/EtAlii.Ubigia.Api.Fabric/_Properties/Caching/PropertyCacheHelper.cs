@@ -11,8 +11,7 @@
 
         public PropertyDictionary GetProperties(Identifier identifier)
         {
-            PropertyDictionary properties = null;
-            _cacheProvider.Cache.TryGetValue(identifier, out properties);
+            _cacheProvider.Cache.TryGetValue(identifier, out var properties);
             return properties;
         }
 
