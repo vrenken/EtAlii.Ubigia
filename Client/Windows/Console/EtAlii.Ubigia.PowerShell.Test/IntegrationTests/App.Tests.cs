@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using Xunit;
 

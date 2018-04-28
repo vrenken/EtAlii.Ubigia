@@ -15,6 +15,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Assert.
+            Assert.NotNull(contentDataClientStub);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

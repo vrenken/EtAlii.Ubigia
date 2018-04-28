@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Tests;
     using Xunit;
 
     
@@ -73,13 +72,13 @@
         {
             _testContext.InvokeSelectStorage();
 
-            var result = _testContext.InvokeGetStorages();
+            _testContext.InvokeGetStorages();
 
             var firstName = Guid.NewGuid().ToString();
             var firstAddress = Guid.NewGuid().ToString();
             _testContext.InvokeAddStorage(firstName, firstAddress);
 
-            result = _testContext.InvokeGetStorageByName(firstName);
+            var result = _testContext.InvokeGetStorageByName(firstName);
             var storage = _testContext.ToAssertedResult<Storage>(result);
 
             Assert.Equal(storage.Name, firstName);
@@ -97,7 +96,7 @@
             try
             {
                 result = _testContext.InvokeGetStorageByName(firstName);
-                storage = _testContext.ToAssertedResult<Storage>(result);
+                _testContext.ToAssertedResult<Storage>(result);
             }
             catch (Exception e)
             {

@@ -141,6 +141,7 @@
             var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
+            Assert.NotNull(contentDefinition);
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 

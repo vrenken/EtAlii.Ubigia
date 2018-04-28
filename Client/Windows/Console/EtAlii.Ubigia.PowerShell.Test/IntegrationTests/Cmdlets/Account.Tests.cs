@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.PowerShell.Tests;
     using Xunit;
     using System;
     using System.Collections.Generic;
@@ -40,9 +39,10 @@
 
             // Act.
             var result = _testContext.InvokeGetAccounts();
-
+            var accounts = _testContext.ToAssertedResult<List<Account>>(result);
+            
             // Assert.
-            var Accounts = _testContext.ToAssertedResult<List<Account>>(result);
+            Assert.NotEmpty(accounts);
         }
 
         [Fact]
@@ -79,13 +79,13 @@
         [Fact]
         public void PowerShell_Account_Update()
         {
-            var result = _testContext.InvokeGetAccounts();
+            _testContext.InvokeGetAccounts();
 
             var firstAccountName = Guid.NewGuid().ToString();
             var firstPassword = Guid.NewGuid().ToString();
             _testContext.InvokeAddAccount(firstAccountName, firstPassword, AccountTemplate.User);
 
-            result = _testContext.InvokeGetAccountByName(firstAccountName);
+            var result = _testContext.InvokeGetAccountByName(firstAccountName);
             var account = _testContext.ToAssertedResult<Account>(result);
 
             Assert.Equal(account.Name, firstAccountName);
@@ -102,7 +102,7 @@
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetAccountByName(firstAccountName);
+                _testContext.InvokeGetAccountByName(firstAccountName);
             }
             catch (Exception e)
             {
@@ -163,7 +163,7 @@
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetAccountByName(accountName);
+                _testContext.InvokeGetAccountByName(accountName);
             }
             catch (Exception e)
             {

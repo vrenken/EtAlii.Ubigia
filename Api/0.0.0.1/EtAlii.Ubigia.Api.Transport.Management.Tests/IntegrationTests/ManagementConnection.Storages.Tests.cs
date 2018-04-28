@@ -336,7 +336,6 @@
         {
             // Arrange.
             var connection = await _testContext.CreateManagementConnection();
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
             var storage = await connection.Storages.Add(name, address);

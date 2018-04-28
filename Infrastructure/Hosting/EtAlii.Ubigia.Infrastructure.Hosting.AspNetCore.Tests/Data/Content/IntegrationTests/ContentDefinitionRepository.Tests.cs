@@ -86,6 +86,7 @@
             });
 
             // Assert.
+            Assert.NotNull(entry);
             Assert.Throws<ContentDefinitionRepositoryException>(act);
         }
 

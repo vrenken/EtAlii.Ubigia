@@ -265,14 +265,15 @@
         public void ScriptParser_Parse_Query_Unquoted_RootedPath_With_Normal_Characters()
         {
             // Arrange.
-
+            var count = 0;
+            
             // Act.
             var act = new Action<char>(c =>
             {
                 var symbol = $"ThirdIs{c}Cool";
                 var query = $"First:Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
-                var count = script.Sequences.Count();
+                count = script.Sequences.Count();
             });
 
             // Assert.
@@ -280,12 +281,14 @@
             {
                 act(character);
             }
+            Assert.NotEqual(0, count);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_Parse_Query_Quoted_RootedPath_With_Normal_Characters()
         {
             // Arrange.
+            var count = 0;
 
             // Act.
             var act = new Action<char>(c =>
@@ -293,7 +296,7 @@
                 var symbol = $"\"ThirdIs{c}Cool\"";
                 var query = $"First:Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
-                var count = script.Sequences.Count();
+                count = script.Sequences.Count();
             });
 
             // Assert.
@@ -301,6 +304,7 @@
             {
                 act(character);
             }
+            Assert.NotEqual(0, count);
         }
 
 
@@ -308,6 +312,7 @@
         public void ScriptParser_Parse_Query_Quoted_RootedPath_With_Special_Characters()
         {
             // Arrange.
+            var count = 0;
 
             // Act.
             var act = new Action<char>(c =>
@@ -315,7 +320,7 @@
                 var symbol = $"\"ThirdIs{c}Cool\"";
                 var query = $"First:Second/{symbol}/Fourth";
                 var script = _parser.Parse(query).Script;
-                var count = script.Sequences.Count();
+                count = script.Sequences.Count();
             });
 
             // Assert.
@@ -324,6 +329,7 @@
                 act(character);
             }
             act('/'); // Let's also check the separator charachter.
+            Assert.NotEqual(0, count);
         }
 
 

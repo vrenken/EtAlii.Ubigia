@@ -216,6 +216,7 @@
             var act = processor.Process(addScript);
 
             // Assert.
+            Assert.NotNull(beforeResult);
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
         }
 

@@ -16,6 +16,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Assert.
+            Assert.NotNull(spaceDataClientStub);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Hosting
+﻿//namespace EtAlii.Ubigia.PowerShell.Tests
 //{
 //    using EtAlii.xTechnology.Logging;
 //    using EtAlii.Ubigia.Infrastructure.Functional;

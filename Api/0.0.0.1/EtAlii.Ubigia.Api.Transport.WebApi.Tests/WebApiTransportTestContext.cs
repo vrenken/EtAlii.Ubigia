@@ -13,10 +13,6 @@
 
     public class WebApiTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext
     {
-        public WebApiTransportTestContext()//IHostTestContextFactory testHostFactory) : base(testHostFactory)
-        {
-        }
-
         public override async Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {
             var diagnostics = TestDiagnostics.Create();

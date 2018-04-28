@@ -14,8 +14,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id => _id;
-        private const string _id = "KeyValuePair";
+        public string Id { get; } = "KeyValuePair";
 
         private const string KeyId = "Key";
         private const string ValueId = "Value";

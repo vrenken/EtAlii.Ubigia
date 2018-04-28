@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
     using System;
     using System.Runtime.InteropServices;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
     
@@ -50,8 +50,7 @@
         //Creating a function that uses the API function...
         private static bool IsConnectedToInternet()
         {
-            int desc;
-            return InternetGetConnectedState(out desc, 0);
+            return InternetGetConnectedState(out var _, 0);
         }
 
         [Fact(Skip = "Unknown reason"), Trait("Category", TestAssembly.Category)]

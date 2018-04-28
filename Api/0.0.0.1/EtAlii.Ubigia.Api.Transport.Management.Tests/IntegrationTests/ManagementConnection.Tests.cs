@@ -140,6 +140,7 @@
             var act = new Func<Task>(async () => await connection.OpenSpace(accountName, Guid.NewGuid().ToString()));
 
             // Assert.
+            Assert.NotNull(account);
             await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
@@ -156,6 +157,7 @@
             var act = new Func<Task>(async () => await connection.OpenSpace(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
 
             // Assert.
+            Assert.NotNull(account);
             await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
 
@@ -172,6 +174,7 @@
             var act = new Func<Task>(async () => await connection.OpenSpace(Guid.NewGuid().ToString(), SpaceName.Data));
 
             // Assert.
+            Assert.NotNull(account);
             await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
         }
     }

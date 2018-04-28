@@ -16,6 +16,7 @@
             var converter = new PropertyDictionaryJSonConverter();
 
             // Assert.
+            Assert.NotNull(converter);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

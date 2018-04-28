@@ -14,6 +14,7 @@
             var subject = new FunctionSubject("Rename");
 
             // Assert.
+            Assert.NotNull(subject);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -25,6 +26,7 @@
             var subject = new FunctionSubject("Rename", new ConstantFunctionSubjectArgument("First"));
 
             // Assert.
+            Assert.NotNull(subject);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
