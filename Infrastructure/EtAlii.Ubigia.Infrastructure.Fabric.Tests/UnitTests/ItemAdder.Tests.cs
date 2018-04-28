@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.UnitTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
     using System;
     using System.Collections.Generic;

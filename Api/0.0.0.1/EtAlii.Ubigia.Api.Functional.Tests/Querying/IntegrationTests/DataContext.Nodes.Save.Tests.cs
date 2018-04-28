@@ -17,22 +17,20 @@
         private ILogicalContext _logicalContext;
         private IDataContext _context;
         private string _countryPath;
-        private readonly LogicalUnitTestContext _testContext;
 
         public DataContextNodesSaveTests(LogicalUnitTestContext testContext)
         {
-            _testContext = testContext;
             var task = Task.Run(async () =>
             {
                 var start = Environment.TickCount;
 
                 _diagnostics = TestDiagnostics.Create();
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+                _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
                 var configuration = new DataContextConfiguration()
                     .Use(_diagnostics)
                     .Use(_logicalContext);
                 _context = new DataContextFactory().Create(configuration);
-                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+                var addResult = await testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
                 _countryPath = addResult.Path;
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);

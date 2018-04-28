@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
 {
 	using System;
 	using System.Net.Http;

@@ -7,7 +7,6 @@
     {
         private readonly IPropertyCacheRetrieveHandler _retrieveHandler;
         private readonly IPropertyCacheStoreHandler _storeHandler;
-        private readonly IPropertiesCacheContextProvider _contextProvider;
 
         internal CachingPropertiesContext(
             IPropertiesCacheContextProvider contextProvider,
@@ -17,8 +16,7 @@
             _retrieveHandler = retrieveHandler;
             _storeHandler = storeHandler;
 
-            _contextProvider = contextProvider;
-            _contextProvider.Context.Stored += OnStored;
+            contextProvider.Context.Stored += OnStored;
         }
 
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
