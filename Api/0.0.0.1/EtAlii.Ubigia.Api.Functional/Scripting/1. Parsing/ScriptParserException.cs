@@ -5,7 +5,6 @@
     public class ScriptParserException : Exception
     {
         public ScriptParserException()
-            : base()
         {
         }
 

@@ -5,7 +5,6 @@
     public class ScriptProcessingException : Exception
     {
         public ScriptProcessingException()
-            : base()
         {
         }
 

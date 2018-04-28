@@ -11,9 +11,10 @@
             // Arrange.
 
             // Act.
-            new NodeSet(null, null, null);
+            var nodeSet = new NodeSet(null, null, null);
 
             // Assert.
+            Assert.NotNull(nodeSet);
         }
     }
 }
