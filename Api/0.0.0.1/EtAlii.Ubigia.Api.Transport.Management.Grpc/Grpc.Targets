@@ -18,7 +18,7 @@
 
   <Target Name="GenerateProtoBufCsCode" BeforeTargets="BeforeBuild" DependsOnTargets="BeforeGenerateProtoBufCsCode">
 
-
+ 
     <!-- Let's find out which GRPC and Protbuf package versions are installed in this project. -->
     <FindInList CaseSensitive="false"
                 List="@(PackageReference)"
