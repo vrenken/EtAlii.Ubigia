@@ -94,7 +94,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Int32)123, result["Hello"]);
+            Assert.Equal(123, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -548,7 +548,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal((Double)123.456, result["Hello"]);
+            Assert.Equal(123.456, result["Hello"]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -790,7 +790,7 @@
             Assert.NotNull(result);
             Assert.Equal(5, result.Count);
             Assert.Equal("World", result["Hello"]);
-            Assert.Equal((Int32)1234, result["Int32"]);
+            Assert.Equal(1234, result["Int32"]);
             Assert.True((bool)result["Boolean"]);
             Assert.Null(result["Null"]);
             Assert.Equal((Int16)1234, result["Int16"]);
