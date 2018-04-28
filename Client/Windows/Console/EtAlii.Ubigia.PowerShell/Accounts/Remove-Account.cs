@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Account, DefaultParameterSetName = "byStorage", SupportsShouldProcess = true)]
-    public class RemoveAccount : AccountTargetingCmdlet, IAccountInfoProvider
+    public class RemoveAccount : AccountTargetingCmdlet
     {
         [Parameter(Mandatory = false, Position = 999, HelpMessage = "Force account removal.")]
         public SwitchParameter Force { get; set; }

@@ -3,8 +3,8 @@
 	using System;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 
-	public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
-        where TInfrastructureTestHost : class, IInfrastructureTestHost
+	public partial class HostTestContext<TInfrastructureTestHost> 
+		where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
         public IInfrastructure Infrastructure { get; private set; }
         public TInfrastructureTestHost Host { get; private set; }
