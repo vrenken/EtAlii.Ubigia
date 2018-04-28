@@ -15,19 +15,16 @@
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
-        private readonly LogicalUnitTestContext _testContext;
 
         public ScriptProcessorAssignDynamicTimeIntegrationTests(LogicalUnitTestContext testContext)
         {
-            _testContext = testContext;
-
             var task = Task.Run(async () =>
             {
                 _diagnostics = TestDiagnostics.Create();
                 var scriptParserConfiguration = new ScriptParserConfiguration()
                     .Use(_diagnostics);
                 _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+                _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
             });
             task.Wait();
         }

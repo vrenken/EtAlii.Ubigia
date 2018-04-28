@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.UnitTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
     public sealed class ItemGetterTests
     {

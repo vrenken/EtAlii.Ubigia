@@ -10,15 +10,12 @@
     public class FabricContextEntriesTests : IClassFixture<TransportUnitTestContext>, IDisposable
     {
         private IFabricContext _fabric;
-        private readonly TransportUnitTestContext _testContext;
 
         public FabricContextEntriesTests(TransportUnitTestContext testContext)
         {
-            _testContext = testContext;
-
             var task = Task.Run(async () =>
             {
-                var connection = await _testContext.TransportTestContext.CreateDataConnection();
+                var connection = await testContext.TransportTestContext.CreateDataConnection();
                 var fabricContextConfiguration = new FabricContextConfiguration()
                     .Use(connection);
                 _fabric = new FabricContextFactory().Create(fabricContextConfiguration);

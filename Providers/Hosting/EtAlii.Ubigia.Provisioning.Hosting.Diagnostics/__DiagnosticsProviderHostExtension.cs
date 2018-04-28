@@ -1,4 +1,4 @@
-//namespace EtAlii.Ubigia.Provisioning.Hosting
+//namespace EtAlii.Ubigia.Provisioning.Hosting.Diagnostics
 //{
 //    using EtAlii.xTechnology.Diagnostics;
 //    using EtAlii.xTechnology.Logging;

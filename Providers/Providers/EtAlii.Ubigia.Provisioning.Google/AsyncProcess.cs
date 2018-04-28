@@ -1,6 +1,6 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
+namespace EtAlii.Ubigia.Provisioning.Google
 {
     using System;
     using System.Threading;

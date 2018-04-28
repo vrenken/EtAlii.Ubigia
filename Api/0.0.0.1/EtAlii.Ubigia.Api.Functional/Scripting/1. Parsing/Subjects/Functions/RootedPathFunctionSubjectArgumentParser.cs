@@ -10,7 +10,6 @@
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
-        private readonly IConstantHelper _constantHelper;
         private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
 
         public RootedPathFunctionSubjectArgumentParser(
@@ -19,10 +18,9 @@
             IPathSubjectPartsParser pathSubjectPartsParser)
         {
             _nodeValidator = nodeValidator;
-            _constantHelper = constantHelper;
             _pathSubjectPartsParser = pathSubjectPartsParser;
             Parser = new LpsParser(Id, true,
-                    Lp.OneOrMore(c => _constantHelper.IsValidConstantCharacter(c)).Id("root") +
+                    Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
                     Lp.Char(':') +
                     _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path")
                 );//.Debug("RootedPathFunctionSubjectArgumentParser", true); ;
