@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure
+﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System;
     using EtAlii.Ubigia.Api;

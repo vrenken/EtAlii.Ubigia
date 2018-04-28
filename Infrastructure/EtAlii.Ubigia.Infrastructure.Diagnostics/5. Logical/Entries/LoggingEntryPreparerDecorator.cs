@@ -1,7 +1,8 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Logical
+﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.Logging;
 
     internal class LoggingEntryPreparerDecorator : IEntryPreparer

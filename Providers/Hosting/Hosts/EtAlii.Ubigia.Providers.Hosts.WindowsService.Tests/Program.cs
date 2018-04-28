@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Provisioning.Hosting
+﻿namespace EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47
 {
     using EtAlii.xTechnology.Hosting;
     using global::Microsoft.Extensions.Configuration;
