@@ -17,7 +17,7 @@
 
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 
-        private int _currentId = 0;
+        private int _currentId;
 
         public JournalViewModel(
             IFabricContext fabric,

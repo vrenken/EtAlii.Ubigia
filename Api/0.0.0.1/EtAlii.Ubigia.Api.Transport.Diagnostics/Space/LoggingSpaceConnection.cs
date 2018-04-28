@@ -61,7 +61,7 @@
 
         #region Disposable
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()
