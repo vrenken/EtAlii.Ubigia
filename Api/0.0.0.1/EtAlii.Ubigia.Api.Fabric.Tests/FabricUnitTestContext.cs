@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Tests;
     using EtAlii.xTechnology.Diagnostics;
 
     public class FabricUnitTestContext : IDisposable

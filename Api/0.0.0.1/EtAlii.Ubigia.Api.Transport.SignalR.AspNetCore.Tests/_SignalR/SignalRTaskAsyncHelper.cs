@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;

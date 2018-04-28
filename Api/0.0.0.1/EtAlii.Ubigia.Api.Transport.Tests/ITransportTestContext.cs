@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Tests
 	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
+	using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
 
     public interface ITransportTestContext : ITransportTestContext<InProcessInfrastructureHostTestContext>
     {

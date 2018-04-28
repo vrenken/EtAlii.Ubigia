@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting
+namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Hosting;

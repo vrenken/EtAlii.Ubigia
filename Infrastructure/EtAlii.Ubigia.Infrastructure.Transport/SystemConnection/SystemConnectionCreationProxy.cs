@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class SystemConnectionCreationProxy : ISystemConnectionCreationProxy
     {

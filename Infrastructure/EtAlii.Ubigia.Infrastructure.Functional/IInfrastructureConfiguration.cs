@@ -2,7 +2,6 @@
 {
     using System;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using EtAlii.Ubigia.Infrastructure.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     public interface IInfrastructureConfiguration

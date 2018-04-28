@@ -1,8 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Transport;
     using Xunit;

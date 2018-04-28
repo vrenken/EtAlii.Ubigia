@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
 
     public class TransportTestContextFactory
     {

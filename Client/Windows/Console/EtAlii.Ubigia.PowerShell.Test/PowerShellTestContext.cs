@@ -6,6 +6,7 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
     using Xunit;
 
     public class PowerShellTestContext
