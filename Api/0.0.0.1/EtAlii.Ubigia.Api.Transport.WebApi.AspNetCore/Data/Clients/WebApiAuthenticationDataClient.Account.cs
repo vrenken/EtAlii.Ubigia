@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    public partial class WebApiAuthenticationDataClient : IAuthenticationDataClient
+    public partial class WebApiAuthenticationDataClient
     {
         public async Task<Account> GetAccount(ISpaceConnection connection)
         {

@@ -4,7 +4,7 @@
     using System.Net.Http;
     using System.Threading.Tasks;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class SignalRAuthenticationDataClient
     {
         private readonly string _hostIdentifier;
 

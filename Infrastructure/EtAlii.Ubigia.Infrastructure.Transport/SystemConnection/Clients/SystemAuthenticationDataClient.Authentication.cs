@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
 
-    internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
+    internal partial class SystemAuthenticationDataClient
     {
         private string _authenticationToken;
 
