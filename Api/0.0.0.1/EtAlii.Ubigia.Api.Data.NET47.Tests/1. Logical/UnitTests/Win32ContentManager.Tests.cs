@@ -1,15 +1,15 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.NET47.UnitTests
+﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Helpers.NET47.Tests;
     using System.IO;
 
     
-    public class NET47ContentManagerTests : IDisposable
+    public class NET47ContentManager2Tests : IDisposable
     {
         private readonly string _testImageFileName;
 
-        public NET47ContentManagerTests()
+        public NET47ContentManager2Tests()
         {
             // Getting Temp file name to use
             _testImageFileName = NET47TestHelper.CreateTemporaryFileName();

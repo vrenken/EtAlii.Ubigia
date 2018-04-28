@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.NET47.IntegrationTests
+﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
 {
     using System;
     using System.IO;
