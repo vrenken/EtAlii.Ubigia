@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public Predicate<PropertyDictionary> Create(Condition condition)
         {
-            return (Predicate<PropertyDictionary>)(p =>
+            return p =>
             {
                 var result = false;
                 if (p.TryGetValue(condition.Property, out var propertyValue))
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     }
                 }
                 return result;
-            });
+            };
 
         }
     }

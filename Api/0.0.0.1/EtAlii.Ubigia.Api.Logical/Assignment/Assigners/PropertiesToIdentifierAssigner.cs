@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
                 else
                 {
-                    return (IInternalNode)new DynamicNode(entry, properties);
+                    return new DynamicNode(entry, properties);
                 }
             }
         }

@@ -28,7 +28,7 @@
             var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
             var subject = parts[0] is IsParentOfPathSubjectPart 
-                ? (NonRootedPathSubject)new AbsolutePathSubject(parts) 
+                ? new AbsolutePathSubject(parts) 
                 : (NonRootedPathSubject)new RelativePathSubject(parts);
 
             return new NonRootedPathFunctionSubjectArgument(subject);
