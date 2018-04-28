@@ -5,11 +5,11 @@
     using Xunit;
 
 
-    public sealed class PropertiesRepository_Tests : IClassFixture<InfrastructureUnitTestContext>
+    public sealed class PropertiesRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
 
-        public PropertiesRepository_Tests(InfrastructureUnitTestContext testContext)
+        public PropertiesRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Client.Windows.UserInterface;
     using System.Diagnostics;
     using System.Reflection;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for App.xaml
@@ -45,26 +44,26 @@
                 return alreadyRunning;
             }
         }
-
-        private void OnApplicationStartup(object sender, StartupEventArgs e)
-        {
-            if (AlreadyRunning)
-            {
-                Current.Shutdown();
-            }
-            else
-            {
-                RegisterKnownTypes();
-                //Container.Verify();
-
-                StartServices();
-            }
-        }
-
-        private void OnApplicationExit(object sender, ExitEventArgs e)
-        {
-            StopServices();
-        }
+//
+//        private void OnApplicationStartup(object sender, StartupEventArgs e)
+//        {
+//            if (AlreadyRunning)
+//            {
+//                Current.Shutdown();
+//            }
+//            else
+//            {
+//                RegisterKnownTypes();
+//                //Container.Verify();
+//
+//                StartServices();
+//            }
+//        }
+//
+//        private void OnApplicationExit(object sender, ExitEventArgs e)
+//        {
+//            StopServices();
+//        }
 
         private void StartServices()
         {

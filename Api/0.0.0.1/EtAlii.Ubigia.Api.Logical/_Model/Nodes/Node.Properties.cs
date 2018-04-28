@@ -29,8 +29,7 @@
         protected T GetProperty<T>([CallerMemberName] string propertyName = null)
         {
             var oldValue = default(T);
-            object value;
-            if (_properties.TryGetValue(propertyName, out value))
+            if (_properties.TryGetValue(propertyName, out object value))
             {
                 oldValue = (T)value;
             }
@@ -72,9 +71,12 @@
         /// <summary>
         /// Notifies listeners that a property value has changed.
         /// </summary>
+        /// <param name="newValue"></param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        /// <param name="sender"></param>
+        /// <param name="oldValue"></param>
         protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
             var eventHandler = PropertyChanged;

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>

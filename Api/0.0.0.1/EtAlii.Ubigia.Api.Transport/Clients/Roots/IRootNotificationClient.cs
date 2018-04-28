@@ -9,8 +9,8 @@
         event Action<Guid> Removed;
     }
 
-    public interface IRootNotificationClient<in Ttransport> : IRootNotificationClient, ISpaceTransportClient<Ttransport>
-        where Ttransport: ISpaceTransport
+    public interface IRootNotificationClient<in TTransport> : IRootNotificationClient, ISpaceTransportClient<TTransport>
+        where TTransport: ISpaceTransport
     {
     }
 }

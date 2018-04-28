@@ -7,11 +7,11 @@
     using System.Linq;
 
 
-    public class AccountRepository_Administrators_Tests : IClassFixture<InfrastructureUnitTestContext>
+    public class AccountRepositoryAdministratorsTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
 
-        public AccountRepository_Administrators_Tests(InfrastructureUnitTestContext testContext)
+        public AccountRepositoryAdministratorsTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

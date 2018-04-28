@@ -6,9 +6,8 @@
 	using Microsoft.AspNetCore.SignalR.Client;
     using Microsoft.AspNetCore.Sockets;
     using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json;
 
-    public class HubConnectionFactory
+	public class HubConnectionFactory
     {
 	    private IHubConnectionBuilder CreateBuilder(HttpMessageHandler httpClientHandler, Uri address)
 	    {

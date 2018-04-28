@@ -8,11 +8,11 @@
     using Xunit;
     using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
-	public class Infrastructure_Authentication_Tests : IClassFixture<InfrastructureUnitTestContext>
+	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
 
-        public Infrastructure_Authentication_Tests(InfrastructureUnitTestContext testContext)
+        public InfrastructureAuthenticationTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

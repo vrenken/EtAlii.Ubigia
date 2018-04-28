@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore
 {
 	using System;
-    using System.Collections.Generic;
-    using System.Linq;
+	using System.Linq;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.AspNetCore.SignalR;
 	using Microsoft.Extensions.Primitives;
 

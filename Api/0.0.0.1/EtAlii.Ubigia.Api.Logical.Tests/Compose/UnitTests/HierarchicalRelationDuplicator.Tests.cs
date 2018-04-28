@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
+﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
@@ -6,11 +6,11 @@
     using Xunit;
 
     
-    public class HierarchicalRelationDuplicator_UnitTests
+    public class HierarchicalRelationDuplicatorUnitTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;
 
-        public HierarchicalRelationDuplicator_UnitTests()
+        public HierarchicalRelationDuplicatorUnitTests()
         {
             _testIdentifierFactory = new TestIdentifierFactory();
         }
@@ -24,6 +24,7 @@
             var hierarchicalRelationDuplicator = new HierarchicalRelationDuplicator();
 
             // Assert.
+            Assert.NotNull(hierarchicalRelationDuplicator);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

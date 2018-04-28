@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class ContentNotificationClientStub_Tests
+    public class ContentNotificationClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ContentNotificationClientStub_Create()

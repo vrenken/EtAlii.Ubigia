@@ -15,8 +15,8 @@
         Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId);
     }
 
-    public interface IContentDataClient<in Ttransport> : IContentDataClient, ISpaceTransportClient<Ttransport>
-        where Ttransport: ISpaceTransport
+    public interface IContentDataClient<in TTransport> : IContentDataClient, ISpaceTransportClient<TTransport>
+        where TTransport: ISpaceTransport
     {
 
     }

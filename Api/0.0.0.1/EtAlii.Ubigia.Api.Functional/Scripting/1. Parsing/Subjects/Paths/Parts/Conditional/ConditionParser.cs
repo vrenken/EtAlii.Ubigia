@@ -15,9 +15,9 @@
         public string Id => _id;
         private const string _id = "Condition";
 
-        private const string _propertyId = "Property";
-        private const string _conditionId = "ConditionType";
-        private const string _valueId = "Value";
+        private const string PropertyId = "Property";
+        private const string ConditionId = "ConditionType";
+        private const string ValueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
         private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
@@ -50,18 +50,18 @@
                     (Lp.Char('!').Maybe() + Lp.Char('=')) |
                     (Lp.Char('>') + Lp.Char('=').Maybe()) |
                     (Lp.Char('<') + Lp.Char('=').Maybe()) 
-                ).Id(_conditionId);
+                ).Id(ConditionId);
 
             Parser = new LpsParser(Id, true,
                 (
-                    Lp.Name().Id(_propertyId) |
-                    Lp.Char('"') + Lp.Name().Id(_propertyId) + Lp.Char('"') |
-                    Lp.Char('\'') + Lp.Name().Id(_propertyId) + Lp.Char('\'')
+                    Lp.Name().Id(PropertyId) |
+                    Lp.Char('"') + Lp.Name().Id(PropertyId) + Lp.Char('"') |
+                    Lp.Char('\'') + Lp.Name().Id(PropertyId) + Lp.Char('\'')
                 ) +
                 Lp.OneOrMore(' ').Maybe() +
                 conditions +
                 Lp.OneOrMore(' ').Maybe() +
-                new LpsParser(_valueId, true, typeParsers).Maybe());
+                new LpsParser(ValueId, true, typeParsers).Maybe());
 
             _innerValueFinders = new Func<LpNode, LpNode>[]
             {
@@ -87,10 +87,10 @@
         {
             _nodeValidator.EnsureSuccess(node, Id);
             
-            var propertyNode = _nodeFinder.FindFirst(node, _propertyId);
+            var propertyNode = _nodeFinder.FindFirst(node, PropertyId);
             var property = propertyNode.Match.ToString();
 
-            var valueNode = _nodeFinder.FindFirst(node, _valueId);
+            var valueNode = _nodeFinder.FindFirst(node, ValueId);
             object value = null;
 
             if (valueNode != null)
@@ -98,7 +98,7 @@
                 value = Determine(valueNode);
             }
 
-            var conditionNode = _nodeFinder.FindFirst(node, _conditionId);
+            var conditionNode = _nodeFinder.FindFirst(node, ConditionId);
             var condition = conditionNode.Match.ToString();
 
             ConditionType conditionType;

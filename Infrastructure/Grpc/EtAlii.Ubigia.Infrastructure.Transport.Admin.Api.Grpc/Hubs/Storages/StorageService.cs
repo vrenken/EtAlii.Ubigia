@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
-    using System;
-    using System.Collections.Generic;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class StorageService : EtAlii.Ubigia.Api.Transport.Management.Grpc.StorageGrpcService.StorageGrpcServiceBase

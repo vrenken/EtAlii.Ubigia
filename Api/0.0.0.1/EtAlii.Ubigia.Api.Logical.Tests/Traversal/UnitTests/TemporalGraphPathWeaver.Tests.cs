@@ -5,11 +5,11 @@
     using Xunit;
 
     
-    public class TemporalGraphPathWeaver_Tests
+    public class TemporalGraphPathWeaverTests
     {
         private readonly TestIdentifierFactory _testIdentifierFactory;
 
-        public TemporalGraphPathWeaver_Tests()
+        public TemporalGraphPathWeaverTests()
         {
             _testIdentifierFactory = new TestIdentifierFactory();
         }
@@ -23,6 +23,7 @@
             var weaver = new TemporalGraphPathWeaver();
 
             // Assert.
+            Assert.NotNull(weaver);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

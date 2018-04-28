@@ -94,10 +94,10 @@
 
         }
 
-        private string GetType(DateTime utcTime, string format)
-        {
-            return utcTime.ToString(format);
-        }
+//        private string GetType(DateTime utcTime, string format)
+//        {
+//            return utcTime.ToString(format);
+//        }
 
         private void Setup()
         {

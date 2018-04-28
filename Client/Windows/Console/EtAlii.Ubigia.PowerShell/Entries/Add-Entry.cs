@@ -6,7 +6,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Entry)]
-    public class Add_Entry : SpaceCmdlet
+    public class AddEntry : SpaceCmdlet
     {
         #region Content related properties
 

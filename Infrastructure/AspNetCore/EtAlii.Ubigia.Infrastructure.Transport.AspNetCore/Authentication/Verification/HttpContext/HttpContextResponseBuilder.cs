@@ -2,11 +2,7 @@
 {
     using System;
     using System.Linq;
-    using System.Security.Principal;
-    using System.Threading;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.ApplicationInsights.AspNetCore.Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;

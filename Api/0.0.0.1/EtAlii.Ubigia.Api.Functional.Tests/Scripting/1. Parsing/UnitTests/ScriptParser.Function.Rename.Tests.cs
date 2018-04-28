@@ -37,6 +37,7 @@
             var script = _parser.Parse(scriptText).Script;
 
             // Assert.
+            Assert.NotNull(script);
             //Assert.NotNull(script);
             //Assert.True(script.Sequences.Count() == 1);
         }

@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class GraphPathBuilder_Tests
+    public class GraphPathBuilderTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void GraphPathBuilder_Create()
@@ -14,6 +14,7 @@
             var builder = new GraphPathBuilder();
 
             // Assert.
+            Assert.NotNull(builder);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

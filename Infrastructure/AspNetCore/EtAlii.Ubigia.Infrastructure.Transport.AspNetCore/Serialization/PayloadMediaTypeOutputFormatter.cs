@@ -1,12 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
 	using System;
-    using System.Collections;
-    using System.Collections.Generic;
+	using System.Collections.Generic;
     using System.IO;
     using System.Reflection;
-    using System.Text;
-    using System.Threading.Tasks;
+	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using Microsoft.AspNetCore.Mvc.Formatters;
     using Microsoft.Net.Http.Headers;

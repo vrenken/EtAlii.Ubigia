@@ -8,7 +8,7 @@
     using Xunit;
 
     
-    public sealed class ItemAdder_Tests
+    public sealed class ItemAdderTests
     {
         [Fact]
         public void ItemAdder_Add()

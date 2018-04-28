@@ -43,12 +43,12 @@
         {
             if (properties == null)
             {
-                throw new ArgumentNullException("properties");
+                throw new ArgumentNullException(nameof(properties));
             }
 
             if (entry == null)
             {
-                throw new ArgumentNullException("entry");
+                throw new ArgumentNullException(nameof(entry));
             }
 
             _entry = entry;

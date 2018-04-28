@@ -9,7 +9,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Space, DefaultParameterSetName = "bySpaceName")]
-    public class Add_Space : AccountTargetingCmdlet, IAccountInfoProvider
+    public class AddSpace : AccountTargetingCmdlet, IAccountInfoProvider
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The name of the space that should be added.")]
         public string SpaceName { get; set; }

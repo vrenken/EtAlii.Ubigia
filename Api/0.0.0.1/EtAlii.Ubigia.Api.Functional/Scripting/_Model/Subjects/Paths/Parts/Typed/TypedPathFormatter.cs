@@ -1,4 +1,5 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿// ReSharper disable InconsistentNaming
+namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;

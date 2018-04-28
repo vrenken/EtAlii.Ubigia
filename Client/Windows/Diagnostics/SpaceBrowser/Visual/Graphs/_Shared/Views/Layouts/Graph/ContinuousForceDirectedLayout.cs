@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using Northwoods.GoXam;
     using Northwoods.GoXam.Layout;

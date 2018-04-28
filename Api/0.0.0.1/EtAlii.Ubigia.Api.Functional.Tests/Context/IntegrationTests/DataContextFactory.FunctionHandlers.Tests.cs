@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
 

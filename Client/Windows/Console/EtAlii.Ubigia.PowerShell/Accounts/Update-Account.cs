@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsData.Update, Nouns.Account, DefaultParameterSetName = "byStorage")]
-    public class Update_Account : StorageTargetingCmdlet
+    public class UpdateAccount : StorageTargetingCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "byAccount")]
         public Account Account { get; set; }

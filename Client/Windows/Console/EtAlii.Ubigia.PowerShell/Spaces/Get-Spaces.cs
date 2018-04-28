@@ -10,7 +10,7 @@
 
     [Cmdlet(VerbsCommon.Get, Nouns.Spaces, DefaultParameterSetName = "ByAccountName")]
     [Description("Gets the spaces for the specified account")]
-    public class Get_Spaces : AccountTargetingCmdlet, IAccountInfoProvider
+    public class GetSpaces : AccountTargetingCmdlet, IAccountInfoProvider
     {
         protected override void ProcessRecord()
         {

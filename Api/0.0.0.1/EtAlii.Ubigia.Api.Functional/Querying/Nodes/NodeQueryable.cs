@@ -16,7 +16,7 @@
         {
             if (String.IsNullOrEmpty(startPath))
             {
-                throw new ArgumentNullException("startPath");
+                throw new ArgumentNullException(nameof(startPath));
             }
             if (String.IsNullOrWhiteSpace(startPath))
             {
@@ -31,7 +31,7 @@
         {
             if (startRoot == null)
             {
-                throw new ArgumentNullException("startRoot");
+                throw new ArgumentNullException(nameof(startRoot));
             }
             StartRoot = startRoot;
         }
@@ -41,7 +41,7 @@
         {
             if (startRoot == null)
             {
-                throw new ArgumentNullException("startRoot");
+                throw new ArgumentNullException(nameof(startRoot));
             }
             StartRoot = startRoot;
         }
@@ -51,7 +51,7 @@
         {
             if (startIdentifier == Identifier.Empty)
             {
-                throw new ArgumentNullException("startIdentifier");
+                throw new ArgumentNullException(nameof(startIdentifier));
             }
             StartIdentifier = startIdentifier;
         }

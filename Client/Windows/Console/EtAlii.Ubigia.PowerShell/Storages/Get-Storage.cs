@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Storage, DefaultParameterSetName = "byStorage")]
-    public class Get_Storage : StorageCmdlet, IStorageInfoProvider
+    public class GetStorage : StorageCmdlet, IStorageInfoProvider
     {
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "byStorage", HelpMessage = "The storage that should be retrieved.")]
         public Storage Storage { get; set; }

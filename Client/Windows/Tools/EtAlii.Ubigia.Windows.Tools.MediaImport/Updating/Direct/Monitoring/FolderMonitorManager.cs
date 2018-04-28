@@ -4,7 +4,6 @@
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
@@ -178,23 +177,23 @@
             switch (e.PropertyName)
             {
                 case "IsRunning":
-                    NotifyPropertyChanged(this, null, null, "AllMonitorsAreRunning");
+                    NotifyPropertyChanged(this, null, null, nameof(AllMonitorsAreRunning));
                     break;
                 case "HasManagerError":
                 case "HasError":
-                    NotifyPropertyChanged(this, null, null, "HasError");
+                    NotifyPropertyChanged(this, null, null, nameof(HasError));
                     break;
             }
         }
-
-        private void OnError(object sender, ErrorEventArgs e)
-        {
-            Stop();
-            Start();
-        }
-
-        private void OnChanged(object sender, FileSystemEventArgs e)
-        {
-        }
+//
+//        private void OnError(object sender, ErrorEventArgs e)
+//        {
+//            Stop();
+//            Start();
+//        }
+//
+//        private void OnChanged(object sender, FileSystemEventArgs e)
+//        {
+//        }
     }
 }

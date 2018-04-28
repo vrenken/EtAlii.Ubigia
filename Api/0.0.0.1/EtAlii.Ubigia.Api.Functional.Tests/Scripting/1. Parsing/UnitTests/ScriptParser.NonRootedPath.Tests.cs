@@ -60,7 +60,7 @@
             var result = _parser.Parse(query);
 
             // Assert.
-            var script = result.Script;
+            Assert.NotNull(result.Script);
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
         }
 
@@ -89,7 +89,7 @@
             var result = _parser.Parse(query);
 
             // Assert.
-            var script = result.Script;
+            Assert.Null(result.Script);
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
         }
 

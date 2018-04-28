@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>

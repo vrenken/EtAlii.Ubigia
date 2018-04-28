@@ -11,11 +11,11 @@
     using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
 
-	public class Infrastructure_Storage_Tests : IClassFixture<InfrastructureUnitTestContext>
+	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;
 
-        public Infrastructure_Storage_Tests(InfrastructureUnitTestContext testContext)
+        public InfrastructureStorageTests(InfrastructureUnitTestContext testContext)
         {
 	        _testContext = testContext;
         }

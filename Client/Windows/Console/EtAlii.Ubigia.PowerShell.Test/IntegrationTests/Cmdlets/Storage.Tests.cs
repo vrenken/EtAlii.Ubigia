@@ -7,11 +7,11 @@
     using Xunit;
 
     
-    public class Storage_Test : IDisposable
+    public class StorageTest : IDisposable
     {
         private PowerShellTestContext _testContext;
 
-        public Storage_Test()
+        public StorageTest()
         {
             TestInitialize();
         }

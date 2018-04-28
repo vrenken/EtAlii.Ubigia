@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
 	//using EtAlii.Ubigia.Api.Transport.WebApi;
-	using EtAlii.Ubigia.Infrastructure.Functional;
-	using EtAlii.Ubigia.Infrastructure;
 	using EtAlii.xTechnology.MicroContainer;
 
 	public class TestHostScaffolding : IScaffolding

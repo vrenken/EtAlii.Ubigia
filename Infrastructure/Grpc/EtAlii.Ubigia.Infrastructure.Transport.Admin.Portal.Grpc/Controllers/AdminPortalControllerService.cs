@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc
 {
-    using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
     using EtAlii.xTechnology.Hosting;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;

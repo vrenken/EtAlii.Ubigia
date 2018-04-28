@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-	using System;
-	using System.Threading.Tasks;
+    using System.Threading.Tasks;
 
     internal class GrpcPropertiesDataClient : GrpcClientBase, IPropertiesDataClient<IGrpcSpaceTransport>
     {

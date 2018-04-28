@@ -6,7 +6,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsData.Update, Nouns.Storage, DefaultParameterSetName = "byStorage")]
-    public class Update_Storage : CmdletBase
+    public class UpdateStorage : CmdletBase
     {
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "byStorage")]
         public Storage Storage { get; set; }

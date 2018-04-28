@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.PowerShell.Spaces
     using EtAlii.Ubigia.Api.Transport;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Space, DefaultParameterSetName = "bySpaceName")]
-    public class Select_Space : SpaceTargetingCmdlet
+    public class SelectSpace : SpaceTargetingCmdlet
     {
         protected override void BeginProcessing()
         {

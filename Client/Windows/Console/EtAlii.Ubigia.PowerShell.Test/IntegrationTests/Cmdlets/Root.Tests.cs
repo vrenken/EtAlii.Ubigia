@@ -9,12 +9,12 @@
     using Xunit;
 
 
-    public class Root_Test : IDisposable
+    public class RootTest : IDisposable
     {
         private Guid _spaceId;
         private PowerShellTestContext _testContext;
 
-        public Root_Test()
+        public RootTest()
         {
             TestInitialize();
         }

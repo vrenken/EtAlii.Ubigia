@@ -34,7 +34,7 @@
             _logger.Info("Stopped Twitter provider");
         }
 
-        private void Add(long Time)
+        private void Add(long time)
         {
             _logger.Info("Checking Twitter for new content");
         }

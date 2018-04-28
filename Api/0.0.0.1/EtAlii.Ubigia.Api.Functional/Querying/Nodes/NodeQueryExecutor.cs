@@ -104,21 +104,21 @@
             }
             return result;
         }
-
-        private void AddOutput<T>(List<object> output, object o)
-        {
-            // Only the final result is used.
-            output.Clear();
-
-            var enumerable = o as IEnumerable<object>;
-            if (enumerable != null)
-            {
-                output.AddRange(enumerable);
-            }
-            else if (o != null)
-            {
-                output.Add(o);
-            }
-        }
+//
+//        private void AddOutput<T>(List<object> output, object o)
+//        {
+//            // Only the final result is used.
+//            output.Clear();
+//
+//            var enumerable = o as IEnumerable<object>;
+//            if (enumerable != null)
+//            {
+//                output.AddRange(enumerable);
+//            }
+//            else if (o != null)
+//            {
+//                output.Add(o);
+//            }
+//        }
     }
 }

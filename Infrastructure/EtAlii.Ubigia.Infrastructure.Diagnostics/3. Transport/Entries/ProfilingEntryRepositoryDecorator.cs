@@ -11,29 +11,29 @@
         private readonly IEntryRepository _repository;
         private readonly IProfiler _profiler;
 
-        private const string _getByIdCounter = "EntryRepository.Get.ById";
-        private const string _getRelatedCounter = "EntryRepository.Get.Related";
+        private const string GetByIdCounter = "EntryRepository.Get.ById";
+        private const string GetRelatedCounter = "EntryRepository.Get.Related";
         
-        private const string _prepareCounter = "EntryRepository.Prepare";
-        private const string _storeCounter = "EntryRepository.Store";
+        private const string PrepareCounter = "EntryRepository.Prepare";
+        private const string StoreCounter = "EntryRepository.Store";
 
         public ProfilingEntryRepositoryDecorator(IEntryRepository entryRepository, IProfiler profiler)
         {
             _repository = entryRepository;
             _profiler = profiler;
 
-            profiler.Register(_getByIdCounter, SamplingType.RawCount, "Milliseconds", "Get entry by id", "The time it takes for the Get method to execute");
-            profiler.Register(_getRelatedCounter, SamplingType.RawCount, "Milliseconds", "Get related entries", "The time it takes for the GetRelated method to execute");
+            profiler.Register(GetByIdCounter, SamplingType.RawCount, "Milliseconds", "Get entry by id", "The time it takes for the Get method to execute");
+            profiler.Register(GetRelatedCounter, SamplingType.RawCount, "Milliseconds", "Get related entries", "The time it takes for the GetRelated method to execute");
             
-            profiler.Register(_prepareCounter, SamplingType.RawCount, "Milliseconds", "Prepare entry", "The time it takes for the Prepare method to execute");
-            profiler.Register(_storeCounter, SamplingType.RawCount, "Milliseconds", "Store entry", "The time it takes for the Store method to execute"); 
+            profiler.Register(PrepareCounter, SamplingType.RawCount, "Milliseconds", "Prepare entry", "The time it takes for the Prepare method to execute");
+            profiler.Register(StoreCounter, SamplingType.RawCount, "Milliseconds", "Store entry", "The time it takes for the Store method to execute"); 
         }
 
         public IEnumerable<Entry> GetRelated(Identifier identifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             var start = Environment.TickCount;
             var entries = _repository.GetRelated(identifier, entriesWithRelation, entryRelations);
-            _profiler.WriteSample(_getRelatedCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetRelatedCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entries;
         }
 
@@ -41,7 +41,7 @@
         {
             var start = Environment.TickCount;
             var entries = _repository.Get(identifiers, entryRelations);
-            _profiler.WriteSample(_getByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entries;
         }
 
@@ -49,7 +49,7 @@
         {
             var start = Environment.TickCount;
             var entry = _repository.Get(identifier, entryRelations);
-            _profiler.WriteSample(_getByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
 
@@ -57,7 +57,7 @@
         {
             var start = Environment.TickCount;
             var entry = _repository.Prepare(spaceId);
-            _profiler.WriteSample(_prepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
 
@@ -65,7 +65,7 @@
         {
             var start = Environment.TickCount;
             var entry = _repository.Prepare(spaceId, identifier);
-            _profiler.WriteSample(_prepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }
 
@@ -73,7 +73,7 @@
         {
             var start = Environment.TickCount;
             var storedEntry = _repository.Store(entry);
-            _profiler.WriteSample(_storeCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storedEntry;
         }
         
@@ -81,7 +81,7 @@
         {
             var start = Environment.TickCount;
             var storedEntry = _repository.Store(entry);
-            _profiler.WriteSample(_storeCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(StoreCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return storedEntry;
         }
     }

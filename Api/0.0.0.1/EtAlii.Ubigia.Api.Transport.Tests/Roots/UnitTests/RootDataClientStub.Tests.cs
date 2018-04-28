@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class RootDataClientStub_Tests
+    public class RootDataClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void RootDataClientStub_Create()

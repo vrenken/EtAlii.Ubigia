@@ -25,12 +25,12 @@
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             Value = Observable.Create<object>(observer =>
             {
-                IEnumerable enumerable = new object[] {};
+                IEnumerable enumerable;// = new object[] {};
                 if (value is string || (value is IEnumerable) == false)
                 {
                     enumerable = new[] { value };
@@ -55,7 +55,7 @@
         {
             if (value == null)
             {
-                throw new ArgumentNullException("value");
+                throw new ArgumentNullException(nameof(value));
             }
 
             Value = value;

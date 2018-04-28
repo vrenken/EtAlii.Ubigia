@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections;
     using System.Windows;
     using System.Windows.Controls;
-    using EtAlii.Ubigia.Client.Windows.Diagnostics;
 
     public partial class ResultsView : UserControl
     {
@@ -16,14 +15,14 @@
 
         public object SelectedItem
         {
-            get { return (object)GetValue(SelectedItemProperty); }
+            get { return GetValue(SelectedItemProperty); }
             set { SetValue(SelectedItemProperty, value); }
         }
         public static readonly DependencyProperty SelectedItemProperty = DependencyProperty.Register("SelectedItem", typeof(object), typeof(ResultsView), new PropertyMetadata(null));
 
         public object Source
         {
-            get { return (object)GetValue(SourceProperty); }
+            get { return GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
         }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ResultsView), new PropertyMetadata(null, OnSourceChanged));

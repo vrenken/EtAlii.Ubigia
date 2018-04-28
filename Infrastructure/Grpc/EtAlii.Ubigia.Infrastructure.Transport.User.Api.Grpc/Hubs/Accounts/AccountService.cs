@@ -1,12 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
-	using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-	using Microsoft.Extensions.Primitives;
+	using EtAlii.Ubigia.Infrastructure.Functional;
 
 	public class AccountService : EtAlii.Ubigia.Api.Transport.Grpc.AccountGrpcService.AccountGrpcServiceBase
     {

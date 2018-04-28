@@ -9,12 +9,12 @@
     using EtAlii.Ubigia.Infrastructure;
 
 
-    public class EntryRepository_Tests : IClassFixture<InfrastructureUnitTestContext>
+    public class EntryRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private const int _count = 10;
 
-        public EntryRepository_Tests(InfrastructureUnitTestContext testContext)
+        public EntryRepositoryTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -138,7 +138,7 @@
             for (int i = 0; i < _count; i++)
             {
                 // Act.
-                loadedEntries[i] = (IEditableEntry)context.Host.Infrastructure.Entries.Get(createdEntries[i].Id);
+                loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];
@@ -159,7 +159,7 @@
             for (int i = 0; i < _count - 1; i++)
             {
                 // Act.
-                loadedEntries[i] = (IEditableEntry)context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
+                loadedEntries[i] = context.Host.Infrastructure.Entries.Get(createdEntries[i].Id, EntryRelation.Previous | EntryRelation.Next);
 
                 // Assert.
                 var loadedEntry = loadedEntries[i];

@@ -44,10 +44,10 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             else return null;
         }
 
-        private string GetEmail(EmailAddress email)
-        {
-            return email?.Value;
-        }
+//        private string GetEmail(EmailAddress email)
+//        {
+//            return email?.Value;
+//        }
 
         private string GetEmail(IList<EmailAddress> emails)
         {

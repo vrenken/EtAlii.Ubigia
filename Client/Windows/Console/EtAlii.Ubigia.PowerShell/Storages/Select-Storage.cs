@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Storage)]
-    public class Select_Storage : StorageCmdlet
+    public class SelectStorage : StorageCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The address of the storage that should be selected.")]
         public string Address { get; set; }

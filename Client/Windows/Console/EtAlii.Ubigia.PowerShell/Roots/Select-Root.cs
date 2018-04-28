@@ -6,7 +6,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Root, DefaultParameterSetName = "byRootName")]
-    public class Select_Root : RootTargetingCmdlet
+    public class SelectRoot : RootTargetingCmdlet
     {
         protected override void BeginProcessing()
         {

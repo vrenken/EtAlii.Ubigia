@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using EtAlii.xTechnology.Hosting;
 
     public class InProcessInfrastructureHostTestContext : HostTestContext<InProcessInfrastructureTestHost>
     {

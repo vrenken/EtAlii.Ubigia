@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -25,11 +24,11 @@
         {
             _spaceInitializer.Initialize(e.Space, e.Template);
         }
-
-        private ObservableCollection<Space> GetItems()
-        {
-            return _logicalContext.Spaces.GetItems();
-        }
+//
+//        private ObservableCollection<Space> GetItems()
+//        {
+//            return _logicalContext.Spaces.GetItems();
+//        }
 
         public Space Add(Space item, SpaceTemplate template)
         {

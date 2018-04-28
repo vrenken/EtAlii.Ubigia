@@ -1,13 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
 {
 	using System;
-	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-	using EtAlii.Ubigia.Api.Transport.WebApi;
 	using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport;
 
-    public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
+	public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
         where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
         public IInfrastructure Infrastructure { get; private set; }
