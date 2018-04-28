@@ -24,7 +24,7 @@
             }
             if (updatedItem == null)
             {
-                throw new ArgumentNullException("No item specified");
+                throw new ArgumentNullException(nameof(updatedItem), "No item specified");
             }
 
             var itemToUpdate = items.SingleOrDefault(item => item.Id == itemId);
