@@ -14,7 +14,7 @@
 
         public RoutesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
-            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+            _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
             _settings = new JsonSerializerSettings();
             _settings.Formatting = Formatting.Indented;
         }

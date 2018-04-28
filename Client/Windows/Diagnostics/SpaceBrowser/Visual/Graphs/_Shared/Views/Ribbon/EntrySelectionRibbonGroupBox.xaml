@@ -1,23 +1,23 @@
-﻿<Fluent:RibbonGroupBox 
+﻿<fluent:RibbonGroupBox 
     x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.EntrySelectionRibbonGroupBox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
     DataContext="{Binding Configuration}"
-    Fluent:KeyTip.Keys="S"
+    fluent:KeyTip.Keys="S"
     Header="Selected entries">
-    <Fluent:ToggleButton
+    <fluent:ToggleButton
         Header="Update"
         IsChecked="{Binding UpdateSelectedEntries}"
         LargeIcon="pack://siteoforigin:,,,/Images/Command-Refresh-01.png" />
 
-    <Fluent:ToggleButton
+    <fluent:ToggleButton
         Header="Expand"
         IsChecked="{Binding ExpandSelectedEntries}"
         LargeIcon="pack://siteoforigin:,,,/Images/Flow-Cart.png" />
 
-</Fluent:RibbonGroupBox>
+</fluent:RibbonGroupBox>
