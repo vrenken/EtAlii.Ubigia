@@ -4,7 +4,7 @@
 // </auto-generated>
 // Original file comments:
 //
-// Copyright 2018 Peter renken.
+// Copyright 2018 Peter Vrenken.
 //
 #pragma warning disable 1591
 #region Designer generated code
