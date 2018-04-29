@@ -4,9 +4,8 @@
     using System.Windows;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using Northwoods.GoXam.Model;
 
-    public partial class GraphDocumentViewModelBase : GraphLinksModel<EntryNode, Identifier, string, EntryLink>, IGraphDocumentViewModel, IDragDropHandler
+    public partial class GraphDocumentViewModelBase : IDragDropHandler
     {
         public bool CanDrop(IDataObject dropObject, IEnumerable dropTarget)
         {

@@ -1,9 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
-
-    public sealed partial class SignalRStorageDataClient : IStorageDataClient<ISignalRStorageTransport>
+    public sealed partial class SignalRStorageDataClient
     {
     }
 }

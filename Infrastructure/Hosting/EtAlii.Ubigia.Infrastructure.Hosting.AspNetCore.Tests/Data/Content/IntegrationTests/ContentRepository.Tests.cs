@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure;
 
     public sealed class ContentRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {

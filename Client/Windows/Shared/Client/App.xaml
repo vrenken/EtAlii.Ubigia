@@ -1,4 +1,4 @@
-﻿<shared:App x:Class="EtAlii.Ubigia.Client.Windows.App"
+﻿<shared:App x:Class="EtAlii.Ubigia.Windows.Client.App"
     xmlns:shared="http://schemas.ubigia.etalii.net/shared"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"

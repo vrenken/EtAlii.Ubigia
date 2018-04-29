@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Windows.Management;
     using System;
     using System.Threading.Tasks;
@@ -13,7 +12,7 @@
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : System.Windows.Application
+    public partial class App
     {
         public new IMainWindow MainWindow { get => base.MainWindow as IMainWindow; set => base.MainWindow = (Window)value; }
 

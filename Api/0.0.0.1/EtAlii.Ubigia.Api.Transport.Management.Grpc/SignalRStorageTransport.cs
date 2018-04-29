@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using System;
     using System.Net.Http;

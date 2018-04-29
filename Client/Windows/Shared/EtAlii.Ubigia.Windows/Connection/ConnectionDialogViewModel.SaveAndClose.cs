@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Windows
 {
     using System;
-    using EtAlii.xTechnology.Mvvm;
 
-    internal partial class ConnectionDialogViewModel : BindableBase
+    internal partial class ConnectionDialogViewModel
     {
         private bool CanSaveAndClose(object parameter)
         {

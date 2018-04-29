@@ -1,10 +1,8 @@
-﻿using EtAlii.Ubigia.Client.Windows.Shared;
-using System;
-using System.Windows;
-
-namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     using EtAlii.Ubigia.Windows;
+    using System;
+    using System.Windows;
 
     public class ExitApplicationCommand : CommandBase<ExitApplicationCommand>
     {

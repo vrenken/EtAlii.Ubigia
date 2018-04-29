@@ -1,11 +1,9 @@
-﻿using System.Windows;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for StorageWindow.xaml
     /// </summary>
-    public partial class StorageWindow : Window
+    public partial class StorageWindow
     {
         public new StorageSettingsViewModel DataContext
         {

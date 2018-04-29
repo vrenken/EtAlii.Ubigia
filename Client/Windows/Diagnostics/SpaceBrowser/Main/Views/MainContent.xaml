@@ -26,7 +26,7 @@
 
         <ubigia:Ribbon 
             Grid.Row="0" 
-            LastFocusedDocument="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}" />
+            LastFocusedDocument="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />
 
         <DockPanel
             Grid.Row="1" 
@@ -76,7 +76,7 @@
                     </mvvm:ListBasedTemplateSelector>
                 </xcad:DockingManager.LayoutItemTemplateSelector>
 
-                <xcad:LayoutRoot x:Name="layoutRoot">
+                <xcad:LayoutRoot x:Name="LayoutRoot">
                     <xcad:LayoutPanel Orientation="Horizontal">
                         <xcad:LayoutAnchorablePane DockWidth="200">
 
@@ -90,7 +90,7 @@
 
                                 <xctk:PropertyGrid
                                 NameColumnWidth="110"
-                                SelectedObject="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content.SelectedObject}"/>
+                                SelectedObject="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content.SelectedObject}"/>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutPanel Orientation="Vertical" >
@@ -102,22 +102,22 @@
                                 DockHeight="400">
                                 <xcad:LayoutAnchorable ContentId="scriptOutput" Title="Script results">
                                     <views:ScriptResultView 
-                                        Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding ScriptResults}" />
                                 </xcad:LayoutAnchorable>
                                 <xcad:LayoutAnchorable ContentId="scriptVariables" Title="Script variables">
                                     <views:ScriptResultView 
-                                        Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding ScriptVariables}" />
                                 </xcad:LayoutAnchorable>
                                 <xcad:LayoutAnchorable ContentId="scriptStatus" Title="Script status">
                                     <views:ScriptExecutionView
-                                            Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
+                                            Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                             ExecutionStatus="{Binding ExecutionStatus}"/>
                                 </xcad:LayoutAnchorable>
                                 <xcad:LayoutAnchorable ContentId="scriptErrors" Title="Script errors">
                                     <views:ScriptErrorsView 
-                                            Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
+                                            Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                             ItemsSource="{Binding Errors}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>

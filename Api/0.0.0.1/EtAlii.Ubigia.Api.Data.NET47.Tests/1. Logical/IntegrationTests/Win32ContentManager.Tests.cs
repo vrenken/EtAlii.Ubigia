@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Helpers.NET47.Tests;
     using System;
     using System.IO;
     using System.Threading.Tasks;

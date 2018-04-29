@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
 	//using EtAlii.Ubigia.Api.Transport.WebApi;
 	using EtAlii.xTechnology.MicroContainer;

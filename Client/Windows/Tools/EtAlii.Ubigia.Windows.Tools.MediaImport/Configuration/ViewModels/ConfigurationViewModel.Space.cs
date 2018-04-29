@@ -3,13 +3,11 @@
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.xTechnology.Mvvm;
     using Fluent;
 
-    internal partial class ConfigurationViewModel : BindableBase
+    internal partial class ConfigurationViewModel
     {
         public ICommand SelectSpaceCommand { get; }
 

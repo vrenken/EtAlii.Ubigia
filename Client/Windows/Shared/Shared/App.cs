@@ -1,10 +1,11 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Shared
+﻿namespace EtAlii.Ubigia.Windows.Shared
 {
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.MicroContainer;
     using System;
     using System.IO;
+    using EtAlii.Ubigia.Windows.Settings;
 
     public abstract class App : System.Windows.Application
     {

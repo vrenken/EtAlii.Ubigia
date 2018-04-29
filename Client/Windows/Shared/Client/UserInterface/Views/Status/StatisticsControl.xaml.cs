@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for StatisticsControl.xaml
     /// </summary>
-    public partial class StatisticsControl : UserControl
+    public partial class StatisticsControl
     {
         public StatisticsControl()
         {

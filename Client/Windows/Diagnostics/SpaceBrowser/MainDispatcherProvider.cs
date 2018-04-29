@@ -2,7 +2,6 @@
 {
     using System;
     using System.Windows.Threading;
-    using EtAlii.Ubigia.Client.Windows.Shared;
 
     public class MainDispatcherInvoker : IMainDispatcherInvoker
     {

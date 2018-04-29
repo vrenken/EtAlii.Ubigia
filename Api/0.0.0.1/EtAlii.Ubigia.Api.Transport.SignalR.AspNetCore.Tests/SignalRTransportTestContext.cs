@@ -3,7 +3,6 @@
 	using System;
 	using System.Net.Http;
 	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Tests;
 	using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
@@ -12,7 +11,7 @@
     using EtAlii.Ubigia.Api.Transport.Tests;
 	using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
 
-	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext<InProcessInfrastructureHostTestContext>
+	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
         public override async Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {

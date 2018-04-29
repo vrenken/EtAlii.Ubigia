@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore
 {
 	//using EtAlii.Ubigia.Api.Transport.WebApi;
 	using EtAlii.xTechnology.MicroContainer;

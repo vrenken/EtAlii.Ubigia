@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Shared
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     using System;
     using System.ComponentModel;

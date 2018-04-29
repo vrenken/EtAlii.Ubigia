@@ -4,7 +4,7 @@
     using System.Net.Http;
     using System.Threading.Tasks;
 
-    public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
+    public partial class GrpcAuthenticationDataClient
     {
         private readonly string _hostIdentifier;
 

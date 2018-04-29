@@ -13,7 +13,7 @@
 
     <FrameworkElement.Resources>
 
-        <DataTemplate x:Key="treeLinkTemplate">
+        <DataTemplate x:Key="TreeLinkTemplate">
             <go:LinkShape Stroke="Black" StrokeThickness="1">
                 <go:Link.Route>
                     <go:Route Routing="Orthogonal" Corner="4" />
@@ -21,7 +21,7 @@
             </go:LinkShape>
         </DataTemplate>
 
-        <DataTemplate x:Key="treeNodeTemplate">
+        <DataTemplate x:Key="TreeNodeTemplate">
             <TextBlock 
                 Text="{Binding Path=Data.Entry.Type}"
                 FontSize="14" 
@@ -60,8 +60,8 @@
         AllowZoom="True"
         mvvm:DragDropBehaviour.DragDropHandler="{Binding}"  
         mvvm:DragDropBehaviour.IsDragSource="False"
-        NodeTemplate="{StaticResource treeNodeTemplate}"
-        LinkTemplate="{StaticResource treeLinkTemplate}">
+        NodeTemplate="{StaticResource TreeNodeTemplate}"
+        LinkTemplate="{StaticResource TreeLinkTemplate}">
         <go:Diagram.ClickSelectingTool>
             <local:ClickSelectingTool 
                 GraphContext="{Binding GraphContext}"/>

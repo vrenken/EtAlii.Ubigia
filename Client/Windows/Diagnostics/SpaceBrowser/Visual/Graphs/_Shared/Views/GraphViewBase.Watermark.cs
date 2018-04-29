@@ -6,10 +6,9 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Media;
 
-    public partial class GraphViewBase : UserControl
+    public partial class GraphViewBase
     {
         private DependencyObject _watermark;
         private IDisposable _watermarkFinder;

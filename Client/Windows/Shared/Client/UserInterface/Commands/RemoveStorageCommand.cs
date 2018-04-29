@@ -1,11 +1,9 @@
-﻿using EtAlii.Ubigia.Client.Windows.Shared;
-using System;
-using System.Windows;
-using System.Windows.Input;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using App = EtAlii.Ubigia.Client.Windows.Shared.App;
+    using System;
+    using System.Windows;
+    using System.Windows.Input;
+    using EtAlii.Ubigia.Windows.Settings;
 
     /// <summary>
     /// Shows the change storage dialog.

@@ -1,7 +1,7 @@
 ﻿// ReSharper disable UnusedMember.Global
 using System.Collections.ObjectModel;
 
-namespace EtAlii.Ubigia.Client.Windows
+namespace EtAlii.Ubigia.Windows.Settings
 {
     public interface IGlobalSettings
     {

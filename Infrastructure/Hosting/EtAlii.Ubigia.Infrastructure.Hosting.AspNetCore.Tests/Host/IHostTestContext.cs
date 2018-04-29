@@ -3,7 +3,7 @@
 	using System;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
-	using EtAlii.Ubigia.Infrastructure.Transport;
+	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
 
 
     public interface IHostTestContext<out TInfrastructureTestHost> : IHostTestContext

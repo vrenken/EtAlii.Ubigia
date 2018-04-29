@@ -2,10 +2,9 @@
 {
     using System.Collections;
     using System.Windows;
-    using System.Windows.Controls;
     using Syncfusion.UI.Xaml.Grid;
 
-    public partial class ScriptResultView : UserControl
+    public partial class ScriptResultView
     {
         public IEnumerable ItemsSource
         {

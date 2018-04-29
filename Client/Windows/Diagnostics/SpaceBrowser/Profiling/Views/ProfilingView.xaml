@@ -22,7 +22,7 @@
 
     <!--<syncfusion:GridTreeControl />-->
     <sf:GridTreeControl
-        x:Name="gridTreeControl"
+        x:Name="GridTreeControl"
         HorizontalAlignment="Stretch"
         AllowDragColumns="False"
         AllowDrop="False"

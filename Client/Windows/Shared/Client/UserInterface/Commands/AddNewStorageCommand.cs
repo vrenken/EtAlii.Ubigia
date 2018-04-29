@@ -1,11 +1,9 @@
-﻿using EtAlii.Ubigia.Client.Windows.Shared;
-using System;
-using System.Windows.Input;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using App = EtAlii.Ubigia.Client.Windows.Shared.App;
-
+    using EtAlii.Ubigia.Windows.Settings;
+    using System;
+    using System.Windows.Input;
+    
     /// <summary>
     /// Shows the add new storage dialog.
     /// </summary>

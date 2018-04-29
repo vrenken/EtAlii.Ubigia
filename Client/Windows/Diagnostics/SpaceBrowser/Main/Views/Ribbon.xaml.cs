@@ -6,7 +6,7 @@
     /// <summary>
     /// Interaction logic for SettingsRibbonGroupBox.xaml
     /// </summary>
-    public partial class Ribbon : Fluent.Ribbon
+    public partial class Ribbon
     {
         public object LastFocusedDocument { get { return GetValue(LastFocusedDocumentProperty); } set { SetValue(LastFocusedDocumentProperty, value); } }
         public static readonly DependencyProperty LastFocusedDocumentProperty = DependencyProperty.Register("LastFocusedDocument", typeof(object), typeof(Ribbon), new PropertyMetadata(null, OnLastFocusedDocumentChanged));

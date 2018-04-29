@@ -1,11 +1,13 @@
-﻿using EtAlii.Ubigia.Client.Windows.Shared;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 
-namespace EtAlii.Ubigia.Client.Windows
+namespace EtAlii.Ubigia.Windows.Client
 {
+    using EtAlii.Ubigia.Windows.Settings;
+    using EtAlii.Ubigia.Windows.Shared;
+
     public class ShellExtensionService : IShellExtensionService
     {
         public void Start()

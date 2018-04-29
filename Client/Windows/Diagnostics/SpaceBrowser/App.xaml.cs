@@ -3,7 +3,6 @@
     using System;
     using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.SignalR;
@@ -12,7 +11,7 @@
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         public new static App Current => Application.Current as App;
 

@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using Fluent;
-
-    internal partial class EditFolderWindow : RibbonWindow, IEditFolderWindow
+    internal partial class EditFolderWindow : IEditFolderWindow
     {
         public EditFolderWindow()
         {

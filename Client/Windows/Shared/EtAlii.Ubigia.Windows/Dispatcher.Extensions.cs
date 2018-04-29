@@ -1,8 +1,8 @@
-﻿using System;
-using System.Windows.Threading;
-
-namespace EtAlii.Ubigia.Client.Windows.Shared
+﻿namespace EtAlii.Ubigia.Windows
 {
+    using System;
+    using System.Windows.Threading;
+
     public static class DispatcherExtensions
     {
         public static void SafeInvoke(this Dispatcher dispatcher, Action callBack, DispatcherPriority priority = DispatcherPriority.Normal)

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Newtonsoft.Json;
 
-namespace RouteDebugging.Pages
+namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore
 {
     public class RoutesModel : PageModel
     {

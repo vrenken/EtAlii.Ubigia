@@ -4,10 +4,9 @@
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure;
 
-    
-    public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
+
+	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
 
