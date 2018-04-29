@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia.Windows
 {
     using System;
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Windows;
 
     public static class DataConnectionConfigurationExtension
     {

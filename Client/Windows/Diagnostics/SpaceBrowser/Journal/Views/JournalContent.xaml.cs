@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     /// <summary>
     /// Interaction logic for JournalContent.xaml
     /// </summary>
-    public partial class JournalContent : UserControl
+    public partial class JournalContent
     {
         public JournalContent()
         {

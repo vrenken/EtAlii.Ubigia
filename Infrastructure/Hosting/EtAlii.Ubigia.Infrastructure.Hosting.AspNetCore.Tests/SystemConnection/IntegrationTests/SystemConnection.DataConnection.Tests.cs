@@ -4,11 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Transport;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
-
     
     public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
     {

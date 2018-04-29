@@ -2,9 +2,8 @@
 {
     using System.Collections;
     using System.Windows;
-    using System.Windows.Controls;
 
-    public partial class ScriptErrorsView : UserControl
+    public partial class ScriptErrorsView
     {
         public IEnumerable ItemsSource
         {

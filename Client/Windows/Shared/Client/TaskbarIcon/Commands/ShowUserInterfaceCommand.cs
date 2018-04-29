@@ -1,8 +1,6 @@
-﻿using EtAlii.Ubigia.Client.Windows.Shared;
-using EtAlii.Ubigia.Client.Windows.UserInterface;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
-namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Shows some part of the user interface.

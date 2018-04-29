@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 {
 	using System;
 	using EtAlii.Ubigia.Storage;

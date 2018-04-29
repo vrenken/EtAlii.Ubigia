@@ -2,12 +2,11 @@
 {
     using System;
     using System.Windows;
-    using Fluent;
 
     /// <summary>
     /// Interaction logic for DataConnectionDialogWindow.xaml
     /// </summary>
-    public partial class ConnectionDialogWindow : RibbonWindow
+    public partial class ConnectionDialogWindow
     {
         public ConnectionDialogWindow()
         {

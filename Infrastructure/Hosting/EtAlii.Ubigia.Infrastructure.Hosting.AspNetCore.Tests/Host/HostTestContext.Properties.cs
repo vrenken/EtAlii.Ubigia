@@ -2,6 +2,7 @@
 {
 	using System;
 	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
 
 	public partial class HostTestContext<TInfrastructureTestHost> 
 		where TInfrastructureTestHost : class, IInfrastructureTestHost

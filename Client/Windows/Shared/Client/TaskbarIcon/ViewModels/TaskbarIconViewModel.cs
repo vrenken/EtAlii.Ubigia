@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     using EtAlii.xTechnology.Mvvm;
 

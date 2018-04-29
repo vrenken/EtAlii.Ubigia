@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EtAlii.Ubigia.Client.Windows.Shared
+namespace EtAlii.Ubigia.Windows.Shared
 {
     public static class Identifiers 
     {

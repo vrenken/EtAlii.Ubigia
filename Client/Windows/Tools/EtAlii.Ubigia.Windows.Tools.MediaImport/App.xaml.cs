@@ -3,7 +3,6 @@
     using System;
     using System.Threading;
     using System.Windows;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
@@ -14,7 +13,7 @@
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         private ITaskbarIconHost _host;
 

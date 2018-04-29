@@ -15,7 +15,7 @@
 
 using System;
 
-namespace EtAlii.Ubigia.Client.Windows.Shared
+namespace EtAlii.Ubigia.Windows.Client
 {
     public class MemoryMappedDataReceivedEventArgs : EventArgs
     {

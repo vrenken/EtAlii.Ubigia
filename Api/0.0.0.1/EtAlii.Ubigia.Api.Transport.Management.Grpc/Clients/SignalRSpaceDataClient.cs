@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using System;
     using System.Collections.Generic;
@@ -17,44 +17,44 @@
             _invoker = invoker;
         }
 
-        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
+        public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
-            var space = new Space
+            var space = new Api.Space
             {
                 Name = spaceName,
                 AccountId = accountId,
             };
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Post", space, template.Name);
+            return await _invoker.Invoke<Api.Space>(_connection, SignalRHub.Space, "Post", space, template.Name);
         }
 
-        public async Task Remove(Guid spaceId)
+        public async Task Remove(System.Guid spaceId)
         {
             await _invoker.Invoke(_connection, SignalRHub.Space, "Delete", spaceId);
         }
 
-        public async Task<Space> Change(Guid spaceId, string spaceName)
+        public async Task<Api.Space> Change(System.Guid spaceId, string spaceName)
         {
-            var space = new Space
+            var space = new Api.Space
             {
                 Id = spaceId,
                 Name = spaceName,
             };
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Put", spaceId, space);
+            return await _invoker.Invoke<Api.Space>(_connection, SignalRHub.Space, "Put", spaceId, space);
         }
 
-        public async Task<Space> Get(Guid accountId, string spaceName)
+        public async Task<Api.Space> Get(System.Guid accountId, string spaceName)
         {
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "GetForAccount", accountId, spaceName);
+            return await _invoker.Invoke<Api.Space>(_connection, SignalRHub.Space, "GetForAccount", accountId, spaceName);
         }
 
-        public async Task<Space> Get(Guid spaceId)
+        public async Task<Api.Space> Get(System.Guid spaceId)
         {
-            return await _invoker.Invoke<Space>(_connection, SignalRHub.Space, "Get", spaceId);
+            return await _invoker.Invoke<Api.Space>(_connection, SignalRHub.Space, "Get", spaceId);
         }
 
-        public async Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public async Task<IEnumerable<Api.Space>> GetAll(System.Guid accountId)
         {
-            return await _invoker.Invoke<IEnumerable<Space>>(_connection, SignalRHub.Space, "GetAllForAccount", accountId);
+            return await _invoker.Invoke<IEnumerable<Api.Space>>(_connection, SignalRHub.Space, "GetAllForAccount", accountId);
         }
 
         public async Task Connect(IStorageConnection storageConnection)

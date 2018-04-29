@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 
-namespace EtAlii.Ubigia.Client.Windows.Shared
+namespace EtAlii.Ubigia.Windows.Shared
 {
     public static class ShellExtension
     {
@@ -19,8 +19,8 @@ namespace EtAlii.Ubigia.Client.Windows.Shared
         public static void ReloadWindowsExplorers()
         {
             // based on http://stackoverflow.com/questions/2488727/refresh-windows-explorer-in-win7
-            var CLSID_ShellApplication = new Guid("13709620-C279-11CE-A49E-444553540000");
-            var shellApplicationType = Type.GetTypeFromCLSID(CLSID_ShellApplication, true);
+            var clsidShellApplication = new Guid("13709620-C279-11CE-A49E-444553540000");
+            var shellApplicationType = Type.GetTypeFromCLSID(clsidShellApplication, true);
 
             dynamic shellApplication = Activator.CreateInstance(shellApplicationType);
             dynamic windows = shellApplication.Windows;

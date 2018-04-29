@@ -10,7 +10,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    public partial class EntryController : RestController
+    public partial class EntryController
     {
         [HttpGet]
         public IActionResult GetSingle([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, EntryRelation entryRelations = EntryRelation.None)

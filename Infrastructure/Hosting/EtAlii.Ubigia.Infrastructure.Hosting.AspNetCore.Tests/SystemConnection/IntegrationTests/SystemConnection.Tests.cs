@@ -6,10 +6,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
-
     
     public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
     {

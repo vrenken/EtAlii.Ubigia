@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Provisioning.Diagnostics
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class IProvidisioningConfigurationDiagnosticsExtension
+    public static class ProvidisioningConfigurationDiagnosticsExtension
     {
         public static IProvisioningConfiguration Use(this IProvisioningConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {

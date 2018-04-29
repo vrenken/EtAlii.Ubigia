@@ -1,10 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace EtAlii.Ubigia.Client.Windows.Shared
+﻿namespace EtAlii.Ubigia.Windows.Shared
 {
+    using System;
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Linq;
+    using EtAlii.Ubigia.Windows.Settings;
+
     public static class Registrations
     {
         public static string[] GetObsolete(IGlobalSettings globalSettings)

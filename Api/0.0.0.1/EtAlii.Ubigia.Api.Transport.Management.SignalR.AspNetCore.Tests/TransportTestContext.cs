@@ -1,3 +1,4 @@
+// ReSharper disable once CheckNamespace
 namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using EtAlii.Ubigia.Api.Tests;

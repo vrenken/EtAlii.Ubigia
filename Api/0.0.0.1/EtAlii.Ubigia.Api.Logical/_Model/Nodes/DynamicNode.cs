@@ -3,7 +3,7 @@
     using System;
     using System.Dynamic;
 
-    public partial class DynamicNode : DynamicObject, IInternalNode, INode, IEquatable<DynamicNode>
+    public partial class DynamicNode : DynamicObject, IInternalNode
     {
         private const string NotSupportedErrorMessage = "This action is not supported on DynamicNode instances";
 

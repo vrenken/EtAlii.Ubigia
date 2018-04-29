@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.PowerShell
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using EtAlii.Ubigia.Api;
     using System.Management.Automation;

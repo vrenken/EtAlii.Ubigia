@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using System;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
@@ -13,8 +12,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {

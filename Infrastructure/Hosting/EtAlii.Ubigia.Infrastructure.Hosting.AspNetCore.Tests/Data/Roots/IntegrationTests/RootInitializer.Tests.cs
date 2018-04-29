@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
     using System;
     using EtAlii.Ubigia.Infrastructure.Fabric;
@@ -9,11 +8,11 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     
-    public sealed class RootInitializer_Tests : IClassFixture<InfrastructureUnitTestContext>
+    public sealed class RootInitializerTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
 
-        public RootInitializer_Tests(InfrastructureUnitTestContext testContext)
+        public RootInitializerTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }

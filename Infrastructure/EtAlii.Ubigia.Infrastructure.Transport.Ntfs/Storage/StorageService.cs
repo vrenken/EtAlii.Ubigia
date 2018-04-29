@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Ntfs
 {
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;

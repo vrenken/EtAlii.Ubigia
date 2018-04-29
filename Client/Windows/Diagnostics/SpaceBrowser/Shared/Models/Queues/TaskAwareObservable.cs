@@ -7,37 +7,37 @@
 
     internal class TaskAwareObservable<T> : IObservable<T>, IDisposable
     {
-        private readonly Task task;
-        private readonly Subject<T> subject;
-        private readonly CancellationTokenSource taskCancellationTokenSource;
+        private readonly Task _task;
+        private readonly Subject<T> _subject;
+        private readonly CancellationTokenSource _taskCancellationTokenSource;
 
         public TaskAwareObservable(Subject<T> subject, Task task, CancellationTokenSource tokenSource)
         {
-            this.task = task;
-            this.subject = subject;
-            taskCancellationTokenSource = tokenSource;
+            this._task = task;
+            this._subject = subject;
+            _taskCancellationTokenSource = tokenSource;
         }
 
         public IDisposable Subscribe(IObserver<T> observer)
         {
-            var disposable = subject.Subscribe(observer);
-            if (task.Status == TaskStatus.Created)
-                task.Start();
+            var disposable = _subject.Subscribe(observer);
+            if (_task.Status == TaskStatus.Created)
+                _task.Start();
             return disposable;
         }
 
         public void Dispose()
         {
             // cancel consumption and wait task to finish
-            taskCancellationTokenSource.Cancel();
-            task.Wait();
+            _taskCancellationTokenSource.Cancel();
+            _task.Wait();
 
             // dispose tokenSource and task
-            taskCancellationTokenSource.Dispose();
-            task.Dispose();
+            _taskCancellationTokenSource.Dispose();
+            _task.Dispose();
 
             // dispose subject
-            subject.Dispose();
+            _subject.Dispose();
         }
     }
 }

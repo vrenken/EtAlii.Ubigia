@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.NET47
 {
     using System.Windows;
     using EtAlii.xTechnology.Hosting;
@@ -7,8 +7,8 @@
 	/// <summary>
 	/// Interaction logic for App.xaml
 	/// </summary>
-	public partial class App : Application
-    {
+	public partial class App
+	{
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
 	        var applicationConfiguration = new ConfigurationBuilder()

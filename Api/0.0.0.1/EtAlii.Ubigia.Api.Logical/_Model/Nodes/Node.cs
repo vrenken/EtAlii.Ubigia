@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial class Node : IInternalNode, INode, IEquatable<Node>
+    public partial class Node : IInternalNode
     {
         // TODO: There should be no properties on the Node base class.
 

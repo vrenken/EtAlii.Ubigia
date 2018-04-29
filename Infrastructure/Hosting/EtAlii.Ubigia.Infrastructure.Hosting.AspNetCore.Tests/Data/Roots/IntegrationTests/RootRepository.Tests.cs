@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using Xunit;
+	using Xunit;
     using System;
     using System.Linq;
 

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using System;
     using System.Collections.Generic;
@@ -18,52 +18,52 @@
             _invoker = invoker;
         }
 
-        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        public async Task<Api.Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
-            var account = new Account
+            var account = new Api.Account
             {
                 Name = accountName,
                 Password = accountPassword,
             };
 
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Post", account, template.Name);
+            return await _invoker.Invoke<Api.Account>(_connection, SignalRHub.Account, "Post", account, template.Name);
         }
 
-        public async Task Remove(Guid accountId)
+        public async Task Remove(System.Guid accountId)
         {
             await _invoker.Invoke(_connection, SignalRHub.Account, "Delete", accountId);
         }
 
-        public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
+        public async Task<Api.Account> Change(System.Guid accountId, string accountName, string accountPassword)
         {
-            var account = new Account
+            var account = new Api.Account
             {
                 Id = accountId,
                 Name = accountName,
                 Password = accountPassword,
             };
 
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Put", accountId, account);
+            return await _invoker.Invoke<Api.Account>(_connection, SignalRHub.Account, "Put", accountId, account);
         }
 
-        public async Task<Account> Change(Account account)
+        public async Task<Api.Account> Change(Api.Account account)
         {
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Put", account.Id, account);
+            return await _invoker.Invoke<Api.Account>(_connection, SignalRHub.Account, "Put", account.Id, account);
         }
 
-        public async Task<Account> Get(string accountName)
+        public async Task<Api.Account> Get(string accountName)
         {
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "GetByName", accountName);
+            return await _invoker.Invoke<Api.Account>(_connection, SignalRHub.Account, "GetByName", accountName);
         }
 
-        public async Task<Account> Get(Guid accountId)
+        public async Task<Api.Account> Get(System.Guid accountId)
         {
-            return await _invoker.Invoke<Account>(_connection, SignalRHub.Account, "Get", accountId);
+            return await _invoker.Invoke<Api.Account>(_connection, SignalRHub.Account, "Get", accountId);
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public async Task<IEnumerable<Api.Account>> GetAll()
         {
-            return await _invoker.Invoke<IEnumerable<Account>>(_connection, SignalRHub.Account, "GetAll");
+            return await _invoker.Invoke<IEnumerable<Api.Account>>(_connection, SignalRHub.Account, "GetAll");
         }
 
         public async Task Connect(IStorageConnection storageConnection)

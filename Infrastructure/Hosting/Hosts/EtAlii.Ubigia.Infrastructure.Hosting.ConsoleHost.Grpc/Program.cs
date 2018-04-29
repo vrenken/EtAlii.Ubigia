@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Grpc
 {
     using Microsoft.Extensions.Configuration;
     using EtAlii.xTechnology.Hosting;

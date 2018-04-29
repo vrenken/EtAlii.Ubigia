@@ -2,9 +2,8 @@
 {
     using System.Collections;
     using System.Windows;
-    using System.Windows.Controls;
 
-    public partial class ResultsView : UserControl
+    public partial class ResultsView
     {
         public IEnumerable ItemsSource
         {

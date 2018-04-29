@@ -5,7 +5,7 @@
     xmlns:f="clr-namespace:Fluent;assembly=Fluent"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterOwner"
-    x:Name="root"
+    x:Name="Root"
     FlowDirection="LeftToRight"
     Title=""
     TitleBarHeight="0"
@@ -110,18 +110,18 @@
                 Grid.Column="0" 
                 Content="Test connection" 
                 Command="{Binding Path=TestCommand}"
-                CommandParameter="{Binding ElementName=root}"/>
+                CommandParameter="{Binding ElementName=Root}"/>
             <Button 
                 Grid.Column="2" 
                 Content="Ok"
                 IsDefault="True"
                 Command="{Binding Path=SaveAndCloseCommand}"
-                CommandParameter="{Binding ElementName=root}"/>
+                CommandParameter="{Binding ElementName=Root}"/>
             <Button 
                 Grid.Column="3" 
                 Content="Cancel" 
                 Command="{Binding Path=CancelCommand}"
-                CommandParameter="{Binding ElementName=root}"/>
+                CommandParameter="{Binding ElementName=Root}"/>
         </Grid>
     </Grid>
 </f:RibbonWindow>

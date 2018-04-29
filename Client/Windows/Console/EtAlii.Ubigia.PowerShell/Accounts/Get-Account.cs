@@ -3,7 +3,6 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Account, DefaultParameterSetName = "byStorage")]
     public class GetAccount : AccountTargetingCmdlet

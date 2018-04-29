@@ -202,7 +202,6 @@
             });
 
             // Assert.
-            Assert.NotEqual(0, count);
             foreach (var character in NormalCharacters)
             {
                 act(character);
@@ -227,7 +226,6 @@
             });
 
             // Assert.
-            Assert.NotEqual(0, count);
             foreach (var character in SpecialCharacters)
             {
                 act(character);

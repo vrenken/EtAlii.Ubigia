@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows
+﻿namespace EtAlii.Ubigia.Windows.Settings
 {
     using EtAlii.xTechnology.Mvvm;
     using Microsoft.Win32;

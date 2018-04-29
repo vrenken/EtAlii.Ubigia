@@ -1,9 +1,8 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Api
+namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
     

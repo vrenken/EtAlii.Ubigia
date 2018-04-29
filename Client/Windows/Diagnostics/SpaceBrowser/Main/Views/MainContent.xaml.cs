@@ -1,14 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Linq;
-    using System.Windows.Controls;
     using Xceed.Wpf.AvalonDock.Layout;
     using Xceed.Wpf.AvalonDock.Layout.Serialization;
 
     /// <summary>
     /// Interaction logic for MainContent.xaml
     /// </summary>
-    public partial class MainContent : UserControl
+    public partial class MainContent
     {
         public MainContent()
         {

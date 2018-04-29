@@ -30,7 +30,7 @@
 
         internal abstract class DragDropBehaviourBase
         {
-            protected DependencyProperty _property;
+            protected DependencyProperty Property;
 
             /// <summary>
             /// attach the events
@@ -49,9 +49,9 @@
             public void PropertyChangedHandler(DependencyObject sender,
                                                DependencyPropertyChangedEventArgs e)
             {
-                if (_property == null)
+                if (Property == null)
                 {
-                    _property = e.Property;
+                    Property = e.Property;
                 }
 
                 object oldValue = e.OldValue;
@@ -99,7 +99,7 @@
                     return;
                 }
 
-                var action = dp.GetValue(_property) as IDragDropHandler;
+                var action = dp.GetValue(Property) as IDragDropHandler;
                 if (action == null)
                 {
                     return;

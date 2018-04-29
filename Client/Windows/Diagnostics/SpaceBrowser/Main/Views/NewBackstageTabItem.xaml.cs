@@ -3,7 +3,7 @@
     /// <summary>
     /// Interaction logic for Backstage.xaml
     /// </summary>
-    public partial class NewBackstageTabItem : Fluent.BackstageTabItem
+    public partial class NewBackstageTabItem
     {
         public NewBackstageTabItem()
         {

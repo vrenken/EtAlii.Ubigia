@@ -5,9 +5,8 @@
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.xTechnology.Mvvm;
 
-    internal partial class ConnectionDialogViewModel : BindableBase
+    internal partial class ConnectionDialogViewModel
     {
         private bool CanTest(object parameter)
         {

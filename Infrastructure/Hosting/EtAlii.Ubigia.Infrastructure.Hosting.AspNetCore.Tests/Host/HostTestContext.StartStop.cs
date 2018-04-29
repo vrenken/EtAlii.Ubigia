@@ -5,6 +5,7 @@
 	using System.Linq;
 	using System.Net.NetworkInformation;
 	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.Extensions.Configuration;
 
@@ -27,7 +28,7 @@
                 {
                     { "Host:Systems:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport"  },
 
-                    { "Host:Systems:0:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory"  },
+                    { "Host:Systems:0:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory"  },
                     { "Host:Systems:0:Services:0:Name", "Debug storage"  },
 				    //{ "Host:Systems:0:Services:0:BaseFolder", tempFolder  },
 

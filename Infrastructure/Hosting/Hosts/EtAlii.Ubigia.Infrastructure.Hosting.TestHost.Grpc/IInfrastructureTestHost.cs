@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;

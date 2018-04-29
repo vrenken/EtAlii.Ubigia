@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.InMemory
 {
     using System;
     using EtAlii.Ubigia.Storage;

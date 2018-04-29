@@ -7,17 +7,17 @@
     xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300" >
-    <ListBox x:Name="listBox" 
+    <ListBox x:Name="ListBox" 
         DataContext="{Binding RootsViewModel}"
         ItemsSource="{Binding AvailableRoots}"
         SelectedItem="{Binding SelectedRoot}"
         DisplayMemberPath="Name">
         <i:Interaction.Triggers>
             <i:EventTrigger EventName="SelectionChanged">
-                <i:InvokeCommandAction Command="{Binding BeginEntryDragCommand}" CommandParameter="{Binding ElementName=listBox}" />
+                <i:InvokeCommandAction Command="{Binding BeginEntryDragCommand}" CommandParameter="{Binding ElementName=ListBox}" />
             </i:EventTrigger>
             <i:EventTrigger EventName="PreviewMouseLeftButtonDown">
-                <i:InvokeCommandAction Command="{Binding BeginEntryDragCommand}" CommandParameter="{Binding ElementName=listBox}" />
+                <i:InvokeCommandAction Command="{Binding BeginEntryDragCommand}" CommandParameter="{Binding ElementName=ListBox}" />
             </i:EventTrigger>
         </i:Interaction.Triggers>
     </ListBox>
