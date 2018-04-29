@@ -11,39 +11,39 @@
 
 using grpc = global::Grpc.Core;
 
-namespace EtAlii.Ubigia.Api.Transport.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   /// <summary>
   /// The ContentDefinition Grpc service definition.
   /// </summary>
   public static partial class ContentDefinitionGrpcService
   {
-    static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionGrpcService";
+    static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest> __Marshaller_ContentDefinitionRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> __Marshaller_ContentDefinitionResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest> __Marshaller_ContentDefinitionRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> __Marshaller_ContentDefinitionResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Get",
         __Marshaller_ContentDefinitionRequest,
         __Marshaller_ContentDefinitionResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Post",
         __Marshaller_ContentDefinitionRequest,
         __Marshaller_ContentDefinitionResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Put",
         __Marshaller_ContentDefinitionRequest,
         __Marshaller_ContentDefinitionResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Delete",
@@ -53,28 +53,28 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionReflection.Descriptor.Services[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Base class for server-side implementations of ContentDefinitionGrpcService</summary>
     public abstract partial class ContentDefinitionGrpcServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> Get(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> Get(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> Post(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> Post(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> Put(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> Put(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -104,67 +104,67 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       {
       }
 
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Get(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Get, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Get, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Post(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Post(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Post(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Post(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Post(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Post, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PostAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Post, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Put(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Put(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Put(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Put(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Put(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Put, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PutAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Put, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Delete(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse Delete(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Delete, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return DeleteAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Delete, null, options, request);
       }

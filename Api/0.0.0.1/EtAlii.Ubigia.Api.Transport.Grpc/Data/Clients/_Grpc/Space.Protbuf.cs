@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace EtAlii.Ubigia.Api.Transport.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
   /// <summary>Holder for reflection information generated from Space.proto</summary>
   public static partial class SpaceReflection {
@@ -22,28 +22,32 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     static SpaceReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "CgtTcGFjZS5wcm90bxIgRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
-            "cGMaDF9Nb2RlbC5wcm90byJCCgxTcGFjZVJlcXVlc3QSMgoCSWQYASABKAsy",
-            "Ji5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5HdWlkIkcKDVNw",
-            "YWNlUmVzcG9uc2USNgoFU3BhY2UYASABKAsyJy5FdEFsaWkuVWJpZ2lhLkFw",
-            "aS5UcmFuc3BvcnQuR3JwYy5TcGFjZTK+AwoQU3BhY2VHcnBjU2VydmljZRJo",
-            "CgNHZXQSLi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5TcGFj",
-            "ZVJlcXVlc3QaLy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5T",
-            "cGFjZVJlc3BvbnNlIgASaQoEUG9zdBIuLkV0QWxpaS5VYmlnaWEuQXBpLlRy",
-            "YW5zcG9ydC5HcnBjLlNwYWNlUmVxdWVzdBovLkV0QWxpaS5VYmlnaWEuQXBp",
-            "LlRyYW5zcG9ydC5HcnBjLlNwYWNlUmVzcG9uc2UiABJoCgNQdXQSLi5FdEFs",
-            "aWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5TcGFjZVJlcXVlc3QaLy5F",
-            "dEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5TcGFjZVJlc3BvbnNl",
-            "IgASawoGRGVsZXRlEi4uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
-            "cGMuU3BhY2VSZXF1ZXN0Gi8uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
-            "LkdycGMuU3BhY2VSZXNwb25zZSIAQlgKIEV0QWxpaS5VYmlnaWEuQXBpLlRy",
-            "YW5zcG9ydC5HcnBjQgZVYmlnaWFQAaICBlViaWdpYaoCIEV0QWxpaS5VYmln",
-            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjYgZwcm90bzM="));
+            "CgtTcGFjZS5wcm90bxItRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sGgxfTW9kZWwucHJvdG8iTwoMU3BhY2VSZXF1ZXN0",
+            "Ej8KAklkGAEgASgLMjMuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sLkd1aWQiVAoNU3BhY2VSZXNwb25zZRJDCgVTcGFj",
+            "ZRgBIAEoCzI0LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
+            "cmVQcm90b2NvbC5TcGFjZTKqBAoQU3BhY2VHcnBjU2VydmljZRKCAQoDR2V0",
+            "EjsuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3Rv",
+            "Y29sLlNwYWNlUmVxdWVzdBo8LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9y",
+            "dC5HcnBjLldpcmVQcm90b2NvbC5TcGFjZVJlc3BvbnNlIgASgwEKBFBvc3QS",
+            "Oy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2wuU3BhY2VSZXF1ZXN0GjwuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
+            "LkdycGMuV2lyZVByb3RvY29sLlNwYWNlUmVzcG9uc2UiABKCAQoDUHV0Ejsu",
+            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29s",
+            "LlNwYWNlUmVxdWVzdBo8LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5H",
+            "cnBjLldpcmVQcm90b2NvbC5TcGFjZVJlc3BvbnNlIgAShQEKBkRlbGV0ZRI7",
+            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2Nv",
+            "bC5TcGFjZVJlcXVlc3QaPC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "R3JwYy5XaXJlUHJvdG9jb2wuU3BhY2VSZXNwb25zZSIAQnIKLUV0QWxpaS5V",
+            "YmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbEIGVWJpZ2lh",
+            "UAGiAgZVYmlnaWGqAi1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3Jw",
+            "Yy5XaXJlUHJvdG9jb2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.SpaceRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.SpaceRequest.Parser, new[]{ "Id" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.SpaceResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.SpaceResponse.Parser, new[]{ "Space" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceRequest.Parser, new[]{ "Id" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceResponse.Parser, new[]{ "Space" }, null, null, null)
           }));
     }
     #endregion
@@ -57,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.SpaceReflection.Descriptor.MessageTypes[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -84,9 +88,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     /// <summary>Field number for the "Id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::EtAlii.Ubigia.Api.Transport.Grpc.Guid id_;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::EtAlii.Ubigia.Api.Transport.Grpc.Guid Id {
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid Id {
       get { return id_; }
       set {
         id_ = value;
@@ -146,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Id.MergeFrom(other.Id);
       }
@@ -162,7 +166,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Guid();
+              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
             input.ReadMessage(id_);
             break;
@@ -180,7 +184,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.SpaceReflection.Descriptor.MessageTypes[1]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -207,9 +211,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     /// <summary>Field number for the "Space" field.</summary>
     public const int SpaceFieldNumber = 1;
-    private global::EtAlii.Ubigia.Api.Transport.Grpc.Space space_;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space space_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::EtAlii.Ubigia.Api.Transport.Grpc.Space Space {
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space Space {
       get { return space_; }
       set {
         space_ = value;
@@ -269,7 +273,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       }
       if (other.space_ != null) {
         if (space_ == null) {
-          space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Space();
+          space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
         }
         Space.MergeFrom(other.Space);
       }
@@ -285,7 +289,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
             break;
           case 10: {
             if (space_ == null) {
-              space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.Space();
+              space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
             }
             input.ReadMessage(space_);
             break;

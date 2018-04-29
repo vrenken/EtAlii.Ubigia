@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 

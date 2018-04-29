@@ -11,43 +11,43 @@
 
 using grpc = global::Grpc.Core;
 
-namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
   /// <summary>
   /// The Authentication Grpc service definition.
   /// </summary>
   public static partial class AuthenticationGrpcService
   {
-    static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationGrpcService";
+    static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest> __Marshaller_AuthenticationRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> __Marshaller_AuthenticationResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest> __Marshaller_AuthenticationTokenRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse> __Marshaller_AuthenticationTokenResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest> __Marshaller_LocalStorageRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse> __Marshaller_LocalStorageResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest> __Marshaller_AuthenticationRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> __Marshaller_AuthenticationResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest> __Marshaller_AuthenticationTokenRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse> __Marshaller_AuthenticationTokenResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest> __Marshaller_LocalStorageRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse> __Marshaller_LocalStorageResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> __Method_Authenticate = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> __Method_Authenticate = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Authenticate",
         __Marshaller_AuthenticationRequest,
         __Marshaller_AuthenticationResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> __Method_AuthenticateAs = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> __Method_AuthenticateAs = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "AuthenticateAs",
         __Marshaller_AuthenticationRequest,
         __Marshaller_AuthenticationResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse> __Method_GetAccountForAuthenticationToken = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse> __Method_GetAccountForAuthenticationToken = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetAccountForAuthenticationToken",
         __Marshaller_AuthenticationTokenRequest,
         __Marshaller_AuthenticationTokenResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse> __Method_GetLocalStorage = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse> __Method_GetLocalStorage = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetLocalStorage",
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationReflection.Descriptor.Services[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Base class for server-side implementations of AuthenticationGrpcService</summary>
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> Authenticate(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> Authenticate(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -80,17 +80,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> AuthenticateAs(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> AuthenticateAs(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse> GetAccountForAuthenticationToken(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse> GetAccountForAuthenticationToken(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse> GetLocalStorage(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse> GetLocalStorage(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -128,7 +128,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse Authenticate(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse Authenticate(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Authenticate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse Authenticate(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse Authenticate(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Authenticate, null, options, request);
       }
@@ -150,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> AuthenticateAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> AuthenticateAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return AuthenticateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -160,7 +160,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> AuthenticateAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> AuthenticateAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Authenticate, null, options, request);
       }
@@ -172,7 +172,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse AuthenticateAs(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse AuthenticateAs(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return AuthenticateAs(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -182,7 +182,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse AuthenticateAs(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse AuthenticateAs(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_AuthenticateAs, null, options, request);
       }
@@ -194,7 +194,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> AuthenticateAsAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> AuthenticateAsAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return AuthenticateAsAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -204,39 +204,39 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationResponse> AuthenticateAsAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationResponse> AuthenticateAsAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_AuthenticateAs, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse GetAccountForAuthenticationToken(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse GetAccountForAuthenticationToken(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetAccountForAuthenticationToken(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse GetAccountForAuthenticationToken(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse GetAccountForAuthenticationToken(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetAccountForAuthenticationToken, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse> GetAccountForAuthenticationTokenAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse> GetAccountForAuthenticationTokenAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetAccountForAuthenticationTokenAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenResponse> GetAccountForAuthenticationTokenAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AuthenticationTokenRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenResponse> GetAccountForAuthenticationTokenAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationTokenRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetAccountForAuthenticationToken, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse GetLocalStorage(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse GetLocalStorage(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetLocalStorage(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse GetLocalStorage(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse GetLocalStorage(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_GetLocalStorage, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse> GetLocalStorageAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse> GetLocalStorageAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetLocalStorageAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageResponse> GetLocalStorageAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.LocalStorageRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageResponse> GetLocalStorageAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.LocalStorageRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetLocalStorage, null, options, request);
       }

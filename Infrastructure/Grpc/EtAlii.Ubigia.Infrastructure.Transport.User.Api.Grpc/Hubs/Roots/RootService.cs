@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
+    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 

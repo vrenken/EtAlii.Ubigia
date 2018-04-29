@@ -20,6 +20,7 @@
     <ItemGroup>
         <ProtobufInputs Include="$(MSBuildProjectDirectory)\**\*.proto" />
         <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**\*$(ProtobufSubCsFileExtension);$(MSBuildProjectDirectory)\**\*$(GrpcSubCsFileExtension)" />
+      <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**.*.*" Condition="'@(ProtobufOutputs)'==''" /> <!-- In case we haven't got any outputs yet -->
     </ItemGroup>
 
     <Target Name="GenerateProtoBufCsCode"
