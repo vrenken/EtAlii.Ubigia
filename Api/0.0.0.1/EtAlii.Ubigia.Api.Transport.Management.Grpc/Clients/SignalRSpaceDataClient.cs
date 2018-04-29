@@ -19,7 +19,7 @@
 
         public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
-            var space = new Api.Space
+            var space = new Api.Space 
             {
                 Name = spaceName,
                 AccountId = accountId,
