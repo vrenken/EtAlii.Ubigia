@@ -1,12 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
     using System;
-    using System.Net;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
+    using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
+    using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
+    using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
+    using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
     using Xunit;
-    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.Grpc.RelativeUri;
 
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -22,16 +23,16 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword };
+			
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var response = await client.AuthenticateAsync(request);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.NotNull(response);
+		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -39,16 +40,16 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword};
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var response = await client.AuthenticateAsync(request);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.NotNull(response);
+		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -56,16 +57,16 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword};
+		    
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var response = await client.AuthenticateAsync(request);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.NotNull(response);
+		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -73,16 +74,16 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword};
 
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var response = await client.AuthenticateAsync(request);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.NotNull(response);
+		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -90,16 +91,16 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword};
+		    
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var response = await client.AuthenticateAsync(request);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.NotNull(response);
+		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -107,16 +108,16 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword};
+		    
 		    // Act.
-		    var token = await client.Get<string>(address, credentials);
+		    var response = await client.AuthenticateAsync(request);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.NotNull(response);
+		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -124,13 +125,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword + "BAAD"};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -141,13 +141,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword + "BAAD");
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword + "BAAD"};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -158,13 +157,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword + "BAAD");
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword + "BAAD"};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -175,13 +173,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword + "BAAD");
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword + "BAAD"};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -191,13 +188,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword + "BAAD");
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword + "BAAD"};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -208,13 +204,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName + "BAAD", Password = context.TestAccountPassword};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -225,13 +220,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.SystemAccountName + "BAAD", context.SystemAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName + "BAAD", Password = context.SystemAccountPassword};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -242,13 +236,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.AdminAccountName + "BAAD", context.AdminAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new UserAuthenticationClient(channel);
+		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName + "BAAD", Password = context.AdminAccountPassword};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -259,13 +252,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.SystemAccountName + "BAAD", context.SystemAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName + "BAAD", Password = context.SystemAccountPassword};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
@@ -276,13 +268,12 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var credentials = new NetworkCredential(context.AdminAccountName + "BAAD", context.AdminAccountPassword);
-		    var addressFactory = new AddressFactory();
-		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var client = new AdminAuthenticationClient(channel);
+		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName + "BAAD", Password = context.AdminAccountPassword};
 
 		    // Act
-		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
 		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
