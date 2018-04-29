@@ -14,7 +14,6 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <AssemblyName>EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
