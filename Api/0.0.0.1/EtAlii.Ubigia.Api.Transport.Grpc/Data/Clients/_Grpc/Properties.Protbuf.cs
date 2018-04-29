@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace EtAlii.Ubigia.Api.Transport.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
   /// <summary>Holder for reflection information generated from Properties.proto</summary>
   public static partial class PropertiesReflection {
@@ -22,19 +22,21 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     static PropertiesReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChBQcm9wZXJ0aWVzLnByb3RvEiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
-            "cnQuR3JwYxoMX01vZGVsLnByb3RvIhMKEVByb3BlcnRpZXNSZXF1ZXN0IhQK",
-            "ElByb3BlcnRpZXNSZXNwb25zZTKLAQoVUHJvcGVydGllc0dycGNTZXJ2aWNl",
-            "EnIKA0dldBIzLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLlBy",
-            "b3BlcnRpZXNSZXF1ZXN0GjQuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
-            "LkdycGMuUHJvcGVydGllc1Jlc3BvbnNlIgBCWAogRXRBbGlpLlViaWdpYS5B",
-            "cGkuVHJhbnNwb3J0LkdycGNCBlViaWdpYVABogIGVWJpZ2lhqgIgRXRBbGlp",
-            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGNiBnByb3RvMw=="));
+            "ChBQcm9wZXJ0aWVzLnByb3RvEi1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
+            "cnQuR3JwYy5XaXJlUHJvdG9jb2waDF9Nb2RlbC5wcm90byITChFQcm9wZXJ0",
+            "aWVzUmVxdWVzdCIUChJQcm9wZXJ0aWVzUmVzcG9uc2UypgEKFVByb3BlcnRp",
+            "ZXNHcnBjU2VydmljZRKMAQoDR2V0EkAuRXRBbGlpLlViaWdpYS5BcGkuVHJh",
+            "bnNwb3J0LkdycGMuV2lyZVByb3RvY29sLlByb3BlcnRpZXNSZXF1ZXN0GkEu",
+            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29s",
+            "LlByb3BlcnRpZXNSZXNwb25zZSIAQnIKLUV0QWxpaS5VYmlnaWEuQXBpLlRy",
+            "YW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbEIGVWJpZ2lhUAGiAgZVYmlnaWGq",
+            "Ai1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2xiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesRequest.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesResponse.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertiesRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertiesRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertiesResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertiesResponse.Parser, null, null, null, null)
           }));
     }
     #endregion
@@ -48,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesReflection.Descriptor.MessageTypes[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertiesReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -137,7 +139,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.PropertiesReflection.Descriptor.MessageTypes[1]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertiesReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

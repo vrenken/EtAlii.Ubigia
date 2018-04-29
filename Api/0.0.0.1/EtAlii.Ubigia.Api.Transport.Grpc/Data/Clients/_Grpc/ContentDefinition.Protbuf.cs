@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace EtAlii.Ubigia.Api.Transport.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
   /// <summary>Holder for reflection information generated from ContentDefinition.proto</summary>
   public static partial class ContentDefinitionReflection {
@@ -22,29 +22,32 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     static ContentDefinitionReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChdDb250ZW50RGVmaW5pdGlvbi5wcm90bxIgRXRBbGlpLlViaWdpYS5BcGku",
-            "VHJhbnNwb3J0LkdycGMaDF9Nb2RlbC5wcm90byIaChhDb250ZW50RGVmaW5p",
-            "dGlvblJlcXVlc3QiGwoZQ29udGVudERlZmluaXRpb25SZXNwb25zZTKuBAoc",
-            "Q29udGVudERlZmluaXRpb25HcnBjU2VydmljZRKAAQoDR2V0EjouRXRBbGlp",
-            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQ29udGVudERlZmluaXRpb25S",
-            "ZXF1ZXN0GjsuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQ29u",
-            "dGVudERlZmluaXRpb25SZXNwb25zZSIAEoEBCgRQb3N0EjouRXRBbGlpLlVi",
-            "aWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQ29udGVudERlZmluaXRpb25SZXF1",
-            "ZXN0GjsuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuQ29udGVu",
-            "dERlZmluaXRpb25SZXNwb25zZSIAEoABCgNQdXQSOi5FdEFsaWkuVWJpZ2lh",
-            "LkFwaS5UcmFuc3BvcnQuR3JwYy5Db250ZW50RGVmaW5pdGlvblJlcXVlc3Qa",
-            "Oy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5Db250ZW50RGVm",
-            "aW5pdGlvblJlc3BvbnNlIgASgwEKBkRlbGV0ZRI6LkV0QWxpaS5VYmlnaWEu",
-            "QXBpLlRyYW5zcG9ydC5HcnBjLkNvbnRlbnREZWZpbml0aW9uUmVxdWVzdBo7",
-            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLkNvbnRlbnREZWZp",
-            "bml0aW9uUmVzcG9uc2UiAEJYCiBFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
-            "cnQuR3JwY0IGVWJpZ2lhUAGiAgZVYmlnaWGqAiBFdEFsaWkuVWJpZ2lhLkFw",
-            "aS5UcmFuc3BvcnQuR3JwY2IGcHJvdG8z"));
+            "ChdDb250ZW50RGVmaW5pdGlvbi5wcm90bxItRXRBbGlpLlViaWdpYS5BcGku",
+            "VHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sGgxfTW9kZWwucHJvdG8iGgoY",
+            "Q29udGVudERlZmluaXRpb25SZXF1ZXN0IhsKGUNvbnRlbnREZWZpbml0aW9u",
+            "UmVzcG9uc2UylgUKHENvbnRlbnREZWZpbml0aW9uR3JwY1NlcnZpY2USmgEK",
+            "A0dldBJHLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQ",
+            "cm90b2NvbC5Db250ZW50RGVmaW5pdGlvblJlcXVlc3QaSC5FdEFsaWkuVWJp",
+            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudERl",
+            "ZmluaXRpb25SZXNwb25zZSIAEpsBCgRQb3N0EkcuRXRBbGlpLlViaWdpYS5B",
+            "cGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkNvbnRlbnREZWZpbml0",
+            "aW9uUmVxdWVzdBpILkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBj",
+            "LldpcmVQcm90b2NvbC5Db250ZW50RGVmaW5pdGlvblJlc3BvbnNlIgASmgEK",
+            "A1B1dBJHLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQ",
+            "cm90b2NvbC5Db250ZW50RGVmaW5pdGlvblJlcXVlc3QaSC5FdEFsaWkuVWJp",
+            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudERl",
+            "ZmluaXRpb25SZXNwb25zZSIAEp0BCgZEZWxldGUSRy5FdEFsaWkuVWJpZ2lh",
+            "LkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudERlZmlu",
+            "aXRpb25SZXF1ZXN0GkguRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sLkNvbnRlbnREZWZpbml0aW9uUmVzcG9uc2UiAEJy",
+            "Ci1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2xCBlViaWdpYVABogIGVWJpZ2lhqgItRXRBbGlpLlViaWdpYS5BcGkuVHJh",
+            "bnNwb3J0LkdycGMuV2lyZVByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.ModelReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionRequest.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionResponse.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionResponse.Parser, null, null, null, null)
           }));
     }
     #endregion
@@ -58,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionReflection.Descriptor.MessageTypes[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -147,7 +150,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.ContentDefinitionReflection.Descriptor.MessageTypes[1]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

@@ -11,18 +11,18 @@
 
 using grpc = global::Grpc.Core;
 
-namespace EtAlii.Ubigia.Api.Transport.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   /// <summary>
   /// The Entry Grpc service definition.
   /// </summary>
   public static partial class EntryGrpcService
   {
-    static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.EntryGrpcService";
+    static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest> __Marshaller_EntryRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse> __Marshaller_EntryResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest> __Marshaller_EntryRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse> __Marshaller_EntryResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Get",
@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
     {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.EntryServiceReflection.Descriptor.Services[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryServiceReflection.Descriptor.Services[0]; }
     }
 
     /// <summary>Base class for server-side implementations of EntryGrpcService</summary>
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       /// <param name="request">The request received from the client.</param>
       /// <param name="context">The context of the server-side call handler being invoked.</param>
       /// <returns>The response to send back to the client (wrapped by a task).</returns>
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse> Get(global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse> Get(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -82,7 +82,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Get(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The response received from the server.</returns>
-      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse Get(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Get, null, options, request);
       }
@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       /// <param name="deadline">An optional deadline for the call. The call will be cancelled if deadline is hit.</param>
       /// <param name="cancellationToken">An optional token for canceling the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return GetAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc {
       /// <param name="request">The request to send to the server.</param>
       /// <param name="options">The options for the call.</param>
       /// <returns>The call object.</returns>
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.EntryResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.EntryRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Get, null, options, request);
       }

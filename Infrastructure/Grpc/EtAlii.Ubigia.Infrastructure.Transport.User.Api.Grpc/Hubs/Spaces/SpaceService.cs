@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public class SpaceService : EtAlii.Ubigia.Api.Transport.Grpc.SpaceGrpcService.SpaceGrpcServiceBase
+    public class SpaceService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceGrpcService.SpaceGrpcServiceBase
     {
         private readonly ISpaceRepository _items;
         private readonly IAccountRepository _accountItems;

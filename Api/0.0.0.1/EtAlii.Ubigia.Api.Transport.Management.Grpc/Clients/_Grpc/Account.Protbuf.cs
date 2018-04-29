@@ -7,7 +7,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
+namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
   /// <summary>Holder for reflection information generated from Account.proto</summary>
   public static partial class AccountReflection {
@@ -22,32 +22,36 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
     static AccountReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg1BY2NvdW50LnByb3RvEitFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "TWFuYWdlbWVudC5HcnBjGgxfTW9kZWwucHJvdG8iTwoOQWNjb3VudFJlcXVl",
-            "c3QSPQoCSWQYASABKAsyMS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "TWFuYWdlbWVudC5HcnBjLkd1aWQiWAoPQWNjb3VudFJlc3BvbnNlEkUKB0Fj",
-            "Y291bnQYASABKAsyNC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFu",
-            "YWdlbWVudC5HcnBjLkFjY291bnQyrAQKEkFjY291bnRHcnBjU2VydmljZRKC",
-            "AQoDR2V0EjsuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1l",
-            "bnQuR3JwYy5BY2NvdW50UmVxdWVzdBo8LkV0QWxpaS5VYmlnaWEuQXBpLlRy",
-            "YW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuQWNjb3VudFJlc3BvbnNlIgASgwEK",
-            "BFBvc3QSOy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVu",
-            "dC5HcnBjLkFjY291bnRSZXF1ZXN0GjwuRXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5BY2NvdW50UmVzcG9uc2UiABKCAQoD",
-            "UHV0EjsuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQu",
-            "R3JwYy5BY2NvdW50UmVxdWVzdBo8LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
-            "cG9ydC5NYW5hZ2VtZW50LkdycGMuQWNjb3VudFJlc3BvbnNlIgAShQEKBkRl",
-            "bGV0ZRI7LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50",
-            "LkdycGMuQWNjb3VudFJlcXVlc3QaPC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
-            "c3BvcnQuTWFuYWdlbWVudC5HcnBjLkFjY291bnRSZXNwb25zZSIAQm4KK0V0",
-            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGNCBlVi",
-            "aWdpYVABogIGVWJpZ2lhqgIrRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
-            "Lk1hbmFnZW1lbnQuR3JwY2IGcHJvdG8z"));
+            "Cg1BY2NvdW50LnByb3RvEjhFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "TWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbBoMX01vZGVsLnByb3RvIlwK",
+            "DkFjY291bnRSZXF1ZXN0EkoKAklkGAEgASgLMj4uRXRBbGlpLlViaWdpYS5B",
+            "cGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuR3Vp",
+            "ZCJlCg9BY2NvdW50UmVzcG9uc2USUgoHQWNjb3VudBgBIAEoCzJBLkV0QWxp",
+            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVBy",
+            "b3RvY29sLkFjY291bnQylAUKEkFjY291bnRHcnBjU2VydmljZRKcAQoDR2V0",
+            "EkguRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3Jw",
+            "Yy5XaXJlUHJvdG9jb2wuQWNjb3VudFJlcXVlc3QaSS5FdEFsaWkuVWJpZ2lh",
+            "LkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5B",
+            "Y2NvdW50UmVzcG9uc2UiABKdAQoEUG9zdBJILkV0QWxpaS5VYmlnaWEuQXBp",
+            "LlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29sLkFjY291",
+            "bnRSZXF1ZXN0GkkuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFn",
+            "ZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuQWNjb3VudFJlc3BvbnNlIgASnAEK",
+            "A1B1dBJILkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50",
+            "LkdycGMuV2lyZVByb3RvY29sLkFjY291bnRSZXF1ZXN0GkkuRXRBbGlpLlVi",
+            "aWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2wuQWNjb3VudFJlc3BvbnNlIgASnwEKBkRlbGV0ZRJILkV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29s",
+            "LkFjY291bnRSZXF1ZXN0GkkuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
+            "Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuQWNjb3VudFJlc3BvbnNl",
+            "IgBCiAEKOEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50",
+            "LkdycGMuV2lyZVByb3RvY29sQgZVYmlnaWFQAaICBlViaWdpYaoCOEV0QWxp",
+            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVBy",
+            "b3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Management.Grpc.ModelReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountRequest.Parser, new[]{ "Id" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountResponse.Parser, new[]{ "Account" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest.Parser, new[]{ "Id" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse.Parser, new[]{ "Account" }, null, null, null)
           }));
     }
     #endregion
@@ -61,7 +65,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountReflection.Descriptor.MessageTypes[0]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -88,9 +92,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
 
     /// <summary>Field number for the "Id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Guid id_;
+    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Guid Id {
+    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid Id {
       get { return id_; }
       set {
         id_ = value;
@@ -150,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Guid();
+          id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
         }
         Id.MergeFrom(other.Id);
       }
@@ -166,7 +170,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Guid();
+              id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
             }
             input.ReadMessage(id_);
             break;
@@ -184,7 +188,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountReflection.Descriptor.MessageTypes[1]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -211,9 +215,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
 
     /// <summary>Field number for the "Account" field.</summary>
     public const int AccountFieldNumber = 1;
-    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Account account_;
+    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Account account_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Account Account {
+    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Account Account {
       get { return account_; }
       set {
         account_ = value;
@@ -273,7 +277,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
       }
       if (other.account_ != null) {
         if (account_ == null) {
-          account_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Account();
+          account_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Account();
         }
         Account.MergeFrom(other.Account);
       }
@@ -289,7 +293,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc {
             break;
           case 10: {
             if (account_ == null) {
-              account_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.Account();
+              account_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Account();
             }
             input.ReadMessage(account_);
             break;

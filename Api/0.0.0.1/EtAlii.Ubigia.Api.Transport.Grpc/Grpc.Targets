@@ -16,13 +16,14 @@
   </PropertyGroup>
 
     <ItemGroup>
-        <ProtobufInputs Include="$(MSBuildProjectDirectory)\**\*.proto" />
-        <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**\*$(ProtobufSubCsFileExtension);$(MSBuildProjectDirectory)\**\*$(GrpcSubCsFileExtension)" />
+      <ProtobufInputs Include="$(MSBuildProjectDirectory)\**\*.proto" />
+      <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**\*$(ProtobufSubCsFileExtension);$(MSBuildProjectDirectory)\**\*$(GrpcSubCsFileExtension)" />
+      <ProtobufOutputs Include="$(MSBuildProjectDirectory)\**.*.*" Condition="'@(ProtobufOutputs)'==''" /> <!-- In case we haven't got any outputs yet -->
     </ItemGroup>
  
-    <Target Name="GenerateProtoBufCsCode" 
-          BeforeTargets="BeforeBuild" 
-          DependsOnTargets="BeforeGenerateProtoBufCsCode"
+    <Target Name="GenerateProtoBufCsCode"
+            BeforeTargets="BeforeBuild"
+            DependsOnTargets="BeforeGenerateProtoBufCsCode"
           Inputs="@(ProtobufInputs)"
           Outputs="@(ProtobufOutputs)">
 

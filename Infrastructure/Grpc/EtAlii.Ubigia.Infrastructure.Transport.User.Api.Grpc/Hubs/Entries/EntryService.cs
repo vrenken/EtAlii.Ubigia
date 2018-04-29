@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public partial class EntryService : EtAlii.Ubigia.Api.Transport.Grpc.EntryGrpcService.EntryGrpcServiceBase
+    public partial class EntryService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryGrpcService.EntryGrpcServiceBase
     {
         private readonly IEntryRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;

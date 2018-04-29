@@ -1,8 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
+	using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 
-	public class AccountService : EtAlii.Ubigia.Api.Transport.Management.Grpc.AccountGrpcService.AccountGrpcServiceBase
+	public class AccountService : AccountGrpcService.AccountGrpcServiceBase
     {
 		private readonly IAccountRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;

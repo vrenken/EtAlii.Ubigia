@@ -1,8 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
+	using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 
-	public class SpaceService : EtAlii.Ubigia.Api.Transport.Management.Grpc.SpaceGrpcService.SpaceGrpcServiceBase
+	public class SpaceService : SpaceGrpcService.SpaceGrpcServiceBase
     {
 		private readonly ISpaceRepository _items;
 		private readonly IAccountRepository _accountItems;
