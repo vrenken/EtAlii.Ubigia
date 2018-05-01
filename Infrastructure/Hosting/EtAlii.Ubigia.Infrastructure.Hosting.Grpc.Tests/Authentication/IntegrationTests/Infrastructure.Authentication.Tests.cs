@@ -2,10 +2,10 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    using global::Grpc.Core;
     using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
-    using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
+    using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
     using Xunit;
 
@@ -19,13 +19,13 @@
         }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
-	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser()
+	    public async void Infrastructure_Get_Authentication_Url_User_TestUser()
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword };
+		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 			
 		    // Act.
 		    var response = await client.AuthenticateAsync(request);
@@ -40,9 +40,9 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword};
+		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act.
 		    var response = await client.AuthenticateAsync(request);
@@ -57,9 +57,9 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword};
+		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
 		    
 		    // Act.
 		    var response = await client.AuthenticateAsync(request);
@@ -74,9 +74,9 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword};
+		    var request = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act.
 		    var response = await client.AuthenticateAsync(request);
@@ -91,9 +91,9 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword};
+		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
 		    
 		    // Act.
 		    var response = await client.AuthenticateAsync(request);
@@ -108,9 +108,9 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword};
+		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
 		    
 		    // Act.
 		    var response = await client.AuthenticateAsync(request);
@@ -125,15 +125,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword + "BAAD"};
+		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword + "BAAD", HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -141,15 +141,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword + "BAAD"};
+		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword + "BAAD", HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -157,15 +157,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword + "BAAD"};
+		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword + "BAAD", HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -173,30 +173,30 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword + "BAAD"};
+		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword + "BAAD", HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 	    [Fact, Trait("Category", TestAssembly.Category)]
 	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Password()
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword + "BAAD"};
+		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword + "BAAD", HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -204,15 +204,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName + "BAAD", Password = context.TestAccountPassword};
+		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName + "BAAD", Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -220,15 +220,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName + "BAAD", Password = context.SystemAccountPassword};
+		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName + "BAAD", Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -236,15 +236,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
-		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName + "BAAD", Password = context.AdminAccountPassword};
+		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName + "BAAD", Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -252,15 +252,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName + "BAAD", Password = context.SystemAccountPassword};
+		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName + "BAAD", Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -268,15 +268,15 @@
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;
-		    var channel = _testContext.HostTestContext.CreateGrpcInfrastructureChannel();
+		    var channel = context.CreateAdminGrpcInfrastructureChannel();
 		    var client = new AdminAuthenticationClient(channel);
-		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName + "BAAD", Password = context.AdminAccountPassword};
+		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName + "BAAD", Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act
 		    var act = new Func<Task>(async () => await client.AuthenticateAsync(request));
 
 		    // Assert.
-		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+		    await Assert.ThrowsAsync<RpcException>(act); // UnauthorizedInfrastructureOperationException
 	    }
 	}
 }

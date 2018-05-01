@@ -1,24 +1,23 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
-    using EtAlii.xTechnology.Hosting;
+	using System.Linq;
+	using EtAlii.xTechnology.Hosting;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
 
-    public class UserGrpcService : GrpcServiceBase
+	public class UserGrpcService : GrpcServiceBase
     {
-        public UserGrpcService(IConfigurationSection configuration) 
+	    public UserGrpcService(IConfigurationSection configuration) 
             : base(configuration)
-        {
-        }
-
-
-        protected override void OnConfigureServer(Server server)
-        {
-            base.OnConfigureServer(server);
-        }
+	    {
+	    }
 
         protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
         {
+	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+
+	        serviceDefinitions.Add(new UserAuthenticationServiceDefinitionFactory().Create(infrastructure));
+	        
             // TODO: GRPC
       //      var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 

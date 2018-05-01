@@ -23,7 +23,7 @@
             PropertyDictionaryComparer = new PropertyDictionaryComparer();
 
             HostTestContext = new HostTestContextFactory().Create<InProcessInfrastructureHostTestContext>();
-            HostTestContext.Start();
+            HostTestContext.Start(true);
         }
 
         public void Dispose()

@@ -1,18 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
     using System;
-    using System.Net;
     using System.Threading;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+    using global::Grpc.Core;
     using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
-    using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
+    using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
+    using AdminStorageClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageGrpcService.StorageGrpcServiceClient;
+    using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest;
     using Xunit;
-    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.Grpc.RelativeUri;
-
 
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
@@ -28,20 +27,22 @@
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
-			var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-			var addressFactory = new AddressFactory();
-			var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
-			client.AuthenticationToken = token;
-			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
-
+			var channel = context.CreateAdminGrpcInfrastructureChannel();
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword };
+			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
+			var token = authenticationResponse.AuthenticationToken;
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
+			
 			// Act.
-			var storage = client.Get<Storage>(address);
-
+			var response = await client.GetLocalAsync(request);
+		
 			// Assert.
-			Assert.NotNull(storage);
+			Assert.NotNull(response);
+			Assert.NotNull(response.Storage);
+			Assert.NotNull(response.Storage.Id);
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -49,20 +50,22 @@
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
-			var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
-			var addressFactory = new AddressFactory();
-			var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
-			client.AuthenticationToken = token;
-			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
+			var channel = context.CreateAdminGrpcInfrastructureChannel();
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier  };
+			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
+			var token = authenticationResponse.AuthenticationToken;
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
 
 			// Act.
-			var storage = client.Get<Storage>(address);
-
+			var response = await client.GetLocalAsync(request);
+		
 			// Assert.
-			Assert.NotNull(storage);
+			Assert.NotNull(response);
+			Assert.NotNull(response.Storage);
+			Assert.NotNull(response.Storage.Id);
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -70,36 +73,37 @@
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
-			var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
-			var addressFactory = new AddressFactory();
-			var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
-			client.AuthenticationToken = token;
-			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
+			var channel = context.CreateAdminGrpcInfrastructureChannel();
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier  };
+			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
+			var token = authenticationResponse.AuthenticationToken;
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
 
 			// Act.
-			var storage = client.Get<Storage>(address);
-
+			var response = await client.GetLocalAsync(request);
+		
 			// Assert.
-			Assert.NotNull(storage);
+			Assert.NotNull(response);
+			Assert.NotNull(response.Storage);
+			Assert.NotNull(response.Storage.Id);
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
 		}
-
+		
 		[Fact, Trait("Category", TestAssembly.Category)]
         public async Task Infrastructure_Get_Storage_Local_Without_Authentication()
         {
 			// Arrange.
-	        var context = _testContext.HostTestContext;
-	        var addressFactory = new AddressFactory();
-            var address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
-	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-
+	        var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
+	        var client = new AdminStorageClient(channel);
+	        var request = new AdminStorageRequest();
+	        
 			// Act.
-			var act = new Func<Task>(async () => await client.Get<Storage>(address));
+			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -107,21 +111,23 @@
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
-			var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-			var addressFactory = new AddressFactory();
-			var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
-			client.AuthenticationToken = token;
+			var channel = context.CreateAdminGrpcInfrastructureChannel();
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier  };
+			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
+			var token = authenticationResponse.AuthenticationToken;
 			Thread.Sleep(50000);
-			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
 
 			// Act.
-			var storage = client.Get<Storage>(address);
+			var response = await client.GetLocalAsync(request);
 
 			// Assert.
-			Assert.NotNull(storage);
+			Assert.NotNull(response);
+			Assert.NotNull(response.Storage);
+			Assert.NotNull(response.Storage.Id);
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -129,21 +135,23 @@
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
-			var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
-			var addressFactory = new AddressFactory();
-			var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
-			client.AuthenticationToken = token;
+			var channel = context.CreateAdminGrpcInfrastructureChannel();
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier  };
+			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
+			var token = authenticationResponse.AuthenticationToken;
 			Thread.Sleep(50000);
-			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
 
 			// Act.
-			var storage = client.Get<Storage>(address);
+			var response = await client.GetLocalAsync(request);
 
 			// Assert.
-			Assert.NotNull(storage);
+			Assert.NotNull(response);
+			Assert.NotNull(response.Storage);
+			Assert.NotNull(response.Storage.Id);
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -151,42 +159,55 @@
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
-			var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
-			var addressFactory = new AddressFactory();
-			var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
-			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
-			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
-			client.AuthenticationToken = token;
+			var channel = context.CreateAdminGrpcInfrastructureChannel();
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier  };
+			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
+			var token = authenticationResponse.AuthenticationToken;
 			Thread.Sleep(50000);
-			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
-
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
+			
 			// Act.
-			var storage = client.Get<Storage>(address);
+			var response = await client.GetLocalAsync(request);
 
 			// Assert.
-			Assert.NotNull(storage);
+			Assert.NotNull(response);
+			Assert.NotNull(response.Storage);
+			Assert.NotNull(response.Storage.Id);
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
-        public void Infrastructure_Get_Storage_Delayed_Without_Authentication()
-        {
+		public async void Infrastructure_Get_Storage_Delayed_Without_Authentication_01()
+		{
 			// Arrange.
-	        var context = _testContext.HostTestContext;
-	        var addressFactory = new AddressFactory();
-            var address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
-	        var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+			var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
+			Thread.Sleep(50000);
+	        
+			// Act.
+			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
+
+			// Assert.
+			var exception = await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
+		}
+		
+		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
+		public async void Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
+		{
+			// Arrange.
+			var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
+			Thread.Sleep(50000);
+			var client = new AdminStorageClient(channel);
+			var request = new AdminStorageRequest();
 
 			// Act.
-			var act = new Action(() =>
-            {
-                Thread.Sleep(50000);
-                var storage = client.Get<Storage>(address);
-                Assert.NotNull(storage);
-            });
+			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
-            // Assert.
-            Assert.Throws<InvalidInfrastructureOperationException>(act);
-        }
+			// Assert.
+			await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
+		}
     }
 }
