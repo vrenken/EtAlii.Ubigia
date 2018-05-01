@@ -5,12 +5,12 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 
-    public class RootService : RootGrpcService.RootGrpcServiceBase
+    public class UserRootService : RootGrpcService.RootGrpcServiceBase, IUserRootService
     {
         private readonly IRootRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public RootService(
+        public UserRootService(
             IRootRepository items,
             ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
         {

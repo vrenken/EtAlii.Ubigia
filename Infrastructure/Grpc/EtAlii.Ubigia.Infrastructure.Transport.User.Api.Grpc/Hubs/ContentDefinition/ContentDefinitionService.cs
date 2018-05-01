@@ -2,12 +2,12 @@
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public class ContentDefinitionService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase
+    public class UserContentDefinitionService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase, IUserContentDefinitionService
     {
         private readonly IContentDefinitionRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public ContentDefinitionService(
+        public UserContentDefinitionService(
             IContentDefinitionRepository items,
             ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
         {

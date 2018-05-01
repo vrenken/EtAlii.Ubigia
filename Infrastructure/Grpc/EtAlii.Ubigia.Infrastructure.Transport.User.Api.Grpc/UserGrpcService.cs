@@ -12,12 +12,24 @@
 	    {
 	    }
 
-        protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
+	    protected override void OnConfigureServer(Server server)
+	    {
+		    base.OnConfigureServer(server);
+		}
+
+	    protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
         {
 	        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
-
+            
 	        serviceDefinitions.Add(new UserAuthenticationServiceDefinitionFactory().Create(infrastructure));
-	        
+	        serviceDefinitions.Add(new UserAccountServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserSpaceServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserRootServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserEntryServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserPropertiesServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserContentServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserContentDefinitionServiceDefinitionFactory().Create(infrastructure));
+
             // TODO: GRPC
       //      var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
