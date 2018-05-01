@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
-    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public class PropertiesService : PropertiesGrpcService.PropertiesGrpcServiceBase
+    public class UserContentService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGrpcService.ContentGrpcServiceBase, IUserContentService
     {
-        private readonly IPropertiesRepository _items;
+        private readonly IContentRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public PropertiesService(
-            IPropertiesRepository items,
+        public UserContentService(
+            IContentRepository items,
             ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
         {
             _items = items;

@@ -2,13 +2,13 @@
 {
 	using EtAlii.Ubigia.Infrastructure.Functional;
 
-	public class AccountService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountGrpcService.AccountGrpcServiceBase
+	public class UserAccountService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountGrpcService.AccountGrpcServiceBase, IUserAccountService
     {
         private readonly IAccountRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-		public AccountService(
+		public UserAccountService(
             IAccountRepository items,
             ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
 			IAuthenticationTokenConverter authenticationTokenConverter)
