@@ -11,12 +11,6 @@
         {
         }
 
-
-        protected override void OnConfigureServer(Server server)
-        {
-            base.OnConfigureServer(server);
-        }
-
         protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
         {
         }
