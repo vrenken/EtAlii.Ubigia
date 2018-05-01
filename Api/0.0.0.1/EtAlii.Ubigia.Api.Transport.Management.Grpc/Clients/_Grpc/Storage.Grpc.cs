@@ -29,6 +29,13 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
         __Marshaller_StorageRequest,
         __Marshaller_StorageResponse);
 
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> __Method_GetLocal = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetLocal",
+        __Marshaller_StorageRequest,
+        __Marshaller_StorageResponse);
+
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
@@ -60,6 +67,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     public abstract partial class StorageGrpcServiceBase
     {
       public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> Get(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> GetLocal(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -119,6 +131,22 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Get, null, options, request);
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse GetLocal(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetLocal(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse GetLocal(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetLocal, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> GetLocalAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetLocalAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse> GetLocalAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetLocal, null, options, request);
       }
       public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
@@ -181,6 +209,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Get, serviceImpl.Get)
+          .AddMethod(__Method_GetLocal, serviceImpl.GetLocal)
           .AddMethod(__Method_Post, serviceImpl.Post)
           .AddMethod(__Method_Put, serviceImpl.Put)
           .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
