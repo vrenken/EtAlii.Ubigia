@@ -1,29 +1,29 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 
-    public class AuthenticationService : AuthenticationGrpcService.AuthenticationGrpcServiceBase
+    public class UserAuthenticationService : AuthenticationGrpcService.AuthenticationGrpcServiceBase, IUserAuthenticationService
     {
         private readonly IStorageRepository _storageRepository;
 
         private readonly ISimpleAuthenticationVerifier _authenticationVerifier;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
-        private readonly ISimpleAuthenticationBuilder _authenticationBuilder;
+	    private readonly ISimpleAuthenticationBuilder _authenticationBuilder;
 
-        public AuthenticationService(
+		public UserAuthenticationService(
             ISimpleAuthenticationVerifier authenticationVerifier,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
-            IStorageRepository storageRepository,
+            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier, 
+            IStorageRepository storageRepository, 
             ISimpleAuthenticationBuilder authenticationBuilder)
         {
             _authenticationVerifier = authenticationVerifier;
             _authenticationTokenVerifier = authenticationTokenVerifier;
             _storageRepository = storageRepository;
-            _authenticationBuilder = authenticationBuilder;
+	        _authenticationBuilder = authenticationBuilder;
         }
 
         public override Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
@@ -41,7 +41,7 @@
         public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
             string currentAccountAuthenticationToken = null;
-
+            
             //Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
             //var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);

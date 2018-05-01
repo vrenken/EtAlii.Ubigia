@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
+    using System.Linq;
     using EtAlii.xTechnology.Hosting;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
@@ -18,7 +19,12 @@
 
         protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
         {
+            var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+
+            serviceDefinitions.Add(new AdminAuthenticationServiceDefinitionFactory().Create(infrastructure));
+            
             // TODO: GRPC
+            
     //        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
     //        applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Grpc.BaseUrl,
