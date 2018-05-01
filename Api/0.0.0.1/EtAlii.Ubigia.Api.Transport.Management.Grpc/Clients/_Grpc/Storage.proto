@@ -18,6 +18,7 @@ package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 service StorageGrpcService  
 {
 	rpc Get (StorageRequest) returns (StorageResponse) {}
+	rpc GetLocal (StorageRequest) returns (StorageResponse) {}
 	rpc Post (StorageRequest) returns (StorageResponse) {}
 	rpc Put (StorageRequest) returns (StorageResponse) {}
 	rpc Delete (StorageRequest) returns (StorageResponse) {}
