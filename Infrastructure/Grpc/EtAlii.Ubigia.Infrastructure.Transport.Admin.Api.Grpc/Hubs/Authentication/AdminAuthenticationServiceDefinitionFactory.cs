@@ -13,10 +13,11 @@
             var container = new Container();
             container.Register<IAdminAuthenticationService, AdminAuthenticationService>();
        
-            new AuthenticationScaffolding(infrastructure).Register(container);     
+            new AdminApiScaffolding(infrastructure).Register(container);
+            new AuthenticationScaffolding().Register(container);     
             new SerializationScaffolding().Register(container);
             
-            var authenticationService= (AdminAuthenticationService)container.GetInstance<IAdminAuthenticationService>();
+            var authenticationService = (AdminAuthenticationService)container.GetInstance<IAdminAuthenticationService>();
             return AuthenticationGrpcService.BindService(authenticationService);
         }
     }

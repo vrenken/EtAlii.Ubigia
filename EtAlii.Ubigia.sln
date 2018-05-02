@@ -384,6 +384,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests.csproj", "{033FA774-2B3A-44F4-8052-5C5DF3BD0F39}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{388BAEAA-1DAB-430D-9730-4EDA363AF56F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{89F4CC52-E5E5-4D41-9562-62973213A4EA}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{40f79fc3-6dd4-41c6-92ea-b62392b77935}*SharedItemsImports = 4
@@ -5772,6 +5776,8 @@ Global
 		{871C935F-7C3B-4341-B4B4-C81FEDEB2286} = {F39C0D13-A684-474D-B2EC-A97DE1D89080}
 		{BF0B58FF-02FF-4734-A225-CF705957C723} = {F39C0D13-A684-474D-B2EC-A97DE1D89080}
 		{033FA774-2B3A-44F4-8052-5C5DF3BD0F39} = {D6148CAE-B71D-4B81-B1DA-AD57E5585A88}
+		{388BAEAA-1DAB-430D-9730-4EDA363AF56F} = {3A638E29-D29C-44C9-B95E-C253B578F8E1}
+		{89F4CC52-E5E5-4D41-9562-62973213A4EA} = {6E5AC0D8-5F90-4ED2-9075-C1E1396E6669}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}

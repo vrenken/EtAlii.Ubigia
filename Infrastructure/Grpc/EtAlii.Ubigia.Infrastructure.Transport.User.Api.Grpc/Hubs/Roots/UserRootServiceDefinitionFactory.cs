@@ -13,7 +13,8 @@
             var container = new Container();
             container.Register<IUserRootService, UserRootService>();
        
-            new AuthenticationScaffolding(infrastructure).Register(container);     
+            new UserApiScaffolding(infrastructure).Register(container);
+            new AuthenticationScaffolding().Register(container);     
             new SerializationScaffolding().Register(container);
             
             var rootService = (UserRootService)container.GetInstance<IUserRootService>();

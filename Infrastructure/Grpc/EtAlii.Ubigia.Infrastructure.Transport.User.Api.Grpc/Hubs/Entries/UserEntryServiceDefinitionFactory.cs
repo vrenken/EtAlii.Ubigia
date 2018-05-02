@@ -13,7 +13,8 @@
             var container = new Container();
             container.Register<IUserEntryService, UserEntryService>();
        
-            new AuthenticationScaffolding(infrastructure).Register(container);     
+            new UserApiScaffolding(infrastructure).Register(container);
+            new AuthenticationScaffolding().Register(container);     
             new SerializationScaffolding().Register(container);
             
             var entryService = (UserEntryService)container.GetInstance<IUserEntryService>();
