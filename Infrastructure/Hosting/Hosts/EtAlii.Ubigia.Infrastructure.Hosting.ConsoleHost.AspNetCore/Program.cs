@@ -2,6 +2,7 @@
 {
     using Microsoft.Extensions.Configuration;
     using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.ConsoleHost;
 
 
     public class Program

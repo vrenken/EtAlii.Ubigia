@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using System.Linq;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.Grpc;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
 
@@ -10,11 +10,6 @@
         public AdminGrpcService(IConfigurationSection configuration) 
             : base(configuration)
         {
-        }
-
-        protected override void OnConfigureServer(Server server)
-        {
-            base.OnConfigureServer(server);
         }
 
         protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)

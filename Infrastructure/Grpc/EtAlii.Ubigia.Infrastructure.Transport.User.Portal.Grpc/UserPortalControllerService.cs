@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc
 {
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.Grpc;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
 
@@ -8,12 +8,6 @@
     {
         public UserPortalControllerService(IConfigurationSection configuration) : base(configuration)
         {
-        }
-
-
-        protected override void OnConfigureServer(Server server)
-        {
-            base.OnConfigureServer(server);
         }
 
         protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)

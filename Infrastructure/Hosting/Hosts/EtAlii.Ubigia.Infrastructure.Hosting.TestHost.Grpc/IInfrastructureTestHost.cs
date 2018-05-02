@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
     using EtAlii.Ubigia.Infrastructure.Transport.User.Grpc;
     using EtAlii.Ubigia.Storage;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.Grpc;
 
     public interface IInfrastructureTestHost : IGrpcHost
     {
