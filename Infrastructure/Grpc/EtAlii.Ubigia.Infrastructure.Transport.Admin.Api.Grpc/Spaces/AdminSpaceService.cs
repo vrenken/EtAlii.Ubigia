@@ -3,14 +3,14 @@
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 
-	public class SpaceService : SpaceGrpcService.SpaceGrpcServiceBase
+	public class AdminSpaceService : SpaceGrpcService.SpaceGrpcServiceBase, IAdminSpaceService
     {
 		private readonly ISpaceRepository _items;
 		private readonly IAccountRepository _accountItems;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-		public SpaceService(
+		public AdminSpaceService(
 			ISpaceRepository items,
 			IAccountRepository accountItems,
 			ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,

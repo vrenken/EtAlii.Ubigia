@@ -2,6 +2,7 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.Authentication;
+    using EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.Spaces;
     using EtAlii.xTechnology.Hosting.Grpc;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
@@ -18,6 +19,7 @@
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
             serviceDefinitions.Add(new AdminAuthenticationServiceDefinitionFactory().Create(infrastructure));
+            serviceDefinitions.Add(new AdminSpaceServiceDefinitionFactory().Create(infrastructure));
             
             // TODO: GRPC
             
