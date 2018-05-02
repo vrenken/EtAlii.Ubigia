@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Grpc
 {
     using EtAlii.xTechnology.Hosting.Grpc;
-    using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
 
     public class UserModule : GrpcModuleBase
@@ -10,10 +9,5 @@
             : base(configuration)
         {
         }
-
-        protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
-        {
-        }
-
     }
 }
