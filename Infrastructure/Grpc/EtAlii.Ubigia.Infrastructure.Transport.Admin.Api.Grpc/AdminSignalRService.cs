@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using System.Linq;
+    using EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.Authentication;
     using EtAlii.xTechnology.Hosting.Grpc;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
