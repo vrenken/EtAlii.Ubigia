@@ -7,6 +7,7 @@
 	using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
 	using EtAlii.Ubigia.Infrastructure.Transport.User.Grpc;
 	using EtAlii.Ubigia.Storage;
+	using EtAlii.xTechnology.Hosting.TestHost.Grpc;
 	using EtAlii.xTechnology.Hosting;
 
     public class NetworkedInfrastructureTestHost : NetworkedTestHost, IInfrastructureTestHost

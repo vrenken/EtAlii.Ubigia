@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;

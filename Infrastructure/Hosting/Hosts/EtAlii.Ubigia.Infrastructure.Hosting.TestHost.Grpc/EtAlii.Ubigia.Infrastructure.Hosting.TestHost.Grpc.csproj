@@ -1,29 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
-    <Description></Description>
+    <Description>
+    </Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
-
-
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.40" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.40" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.0.51" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.0.54" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.InMemory\EtAlii.Ubigia.Infrastructure.Transport.InMemory.csproj" />
@@ -33,5 +35,4 @@
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.csproj" />
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Hosting\EtAlii.Ubigia.Infrastructure.Hosting.csproj" />
   </ItemGroup>
-
 </Project>
