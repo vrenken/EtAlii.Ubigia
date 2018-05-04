@@ -123,3 +123,8 @@ message ContentDefinitionPart
 	uint64 Size = 4;
 	fixed64 Checksum = 5;
 }
+
+message PropertyDictionary
+{
+	string Data = 1;
+}

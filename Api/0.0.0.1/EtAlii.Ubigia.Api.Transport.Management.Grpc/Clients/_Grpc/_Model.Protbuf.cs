@@ -65,10 +65,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             "LkdycGMuV2lyZVByb3RvY29sLkNvbnRlbnREZWZpbml0aW9uUGFydCJhChVD",
             "b250ZW50RGVmaW5pdGlvblBhcnQSDgoGU3RvcmVkGAEgASgIEgwKBE5hbWUY",
             "AiABKAkSCgoCSWQYAyABKAQSDAoEU2l6ZRgEIAEoBBIQCghDaGVja3N1bRgF",
-            "IAEoBkKIAQo4RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1l",
-            "bnQuR3JwYy5XaXJlUHJvdG9jb2xCBlViaWdpYVABogIGVWJpZ2lhqgI4RXRB",
-            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJl",
-            "UHJvdG9jb2xiBnByb3RvMw=="));
+            "IAEoBiIiChJQcm9wZXJ0eURpY3Rpb25hcnkSDAoERGF0YRgBIAEoCUKIAQo4",
+            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5X",
+            "aXJlUHJvdG9jb2xCBlViaWdpYVABogIGVWJpZ2lhqgI4RXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2xi",
+            "BnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -85,7 +86,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Content), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Content.Parser, new[]{ "Stored", "Name", "Summary", "TotalParts" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentPart), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentPart.Parser, new[]{ "Stored", "Name", "Id", "Data" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentDefinition), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentDefinition.Parser, new[]{ "Stored", "Name", "Summary", "TotalParts", "Size", "Checksum", "Parts" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentDefinitionPart), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentDefinitionPart.Parser, new[]{ "Stored", "Name", "Id", "Size", "Checksum" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentDefinitionPart), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ContentDefinitionPart.Parser, new[]{ "Stored", "Name", "Id", "Size", "Checksum" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.PropertyDictionary), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.PropertyDictionary.Parser, new[]{ "Data" }, null, null, null)
           }));
     }
     #endregion
@@ -2809,6 +2811,123 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
           }
           case 41: {
             Checksum = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class PropertyDictionary : pb::IMessage<PropertyDictionary> {
+    private static readonly pb::MessageParser<PropertyDictionary> _parser = new pb::MessageParser<PropertyDictionary>(() => new PropertyDictionary());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<PropertyDictionary> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PropertyDictionary() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PropertyDictionary(PropertyDictionary other) : this() {
+      data_ = other.data_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public PropertyDictionary Clone() {
+      return new PropertyDictionary(this);
+    }
+
+    /// <summary>Field number for the "Data" field.</summary>
+    public const int DataFieldNumber = 1;
+    private string data_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as PropertyDictionary);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(PropertyDictionary other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Data != other.Data) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Data.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Data);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Data);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(PropertyDictionary other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Data = input.ReadString();
             break;
           }
         }
