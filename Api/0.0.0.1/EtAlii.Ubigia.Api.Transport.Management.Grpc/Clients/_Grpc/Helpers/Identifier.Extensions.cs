@@ -1,0 +1,39 @@
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
+{
+    public static class IdentifierExtension 
+    {
+        public static Identifier ToLocal(this WireProtocol.Identifier id)
+        {
+            var storage = id.Storage.ToLocal();
+            var account = id.Account.ToLocal();
+            var space = id.Space.ToLocal();
+
+            var era = id.Era;
+            var period = id.Period;
+            var moment = id.Moment;
+            
+            return Identifier.Create(storage,account, space, era, period, moment);
+        }
+        
+        public static WireProtocol.Identifier ToWire(this Identifier identifier)
+        {
+            var storage = identifier.Storage.ToWire();
+            var account = identifier.Account.ToWire();
+            var space = identifier.Space.ToWire();
+
+            var era = identifier.Era;
+            var period = identifier.Period;
+            var moment = identifier.Moment;
+            
+            return new WireProtocol.Identifier()
+            {
+                Storage = storage,
+                Account = account, 
+                Space = space, 
+                Era = era,
+                Period = period, 
+                Moment = moment,
+            };
+        }
+    }
+}
