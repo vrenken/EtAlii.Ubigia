@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Entries
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     public interface IUserEntryService
     {

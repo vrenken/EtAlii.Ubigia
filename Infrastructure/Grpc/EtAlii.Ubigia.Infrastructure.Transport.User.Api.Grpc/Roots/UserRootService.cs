@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Roots
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;

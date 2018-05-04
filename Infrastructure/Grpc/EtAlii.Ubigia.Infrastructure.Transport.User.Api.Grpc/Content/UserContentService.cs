@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Content
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
 

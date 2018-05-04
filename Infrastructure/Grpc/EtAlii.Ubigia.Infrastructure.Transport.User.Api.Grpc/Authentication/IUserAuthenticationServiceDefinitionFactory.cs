@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Authentication
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;

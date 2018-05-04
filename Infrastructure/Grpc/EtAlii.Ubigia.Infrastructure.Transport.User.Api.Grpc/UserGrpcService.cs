@@ -1,14 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
 	using System.Linq;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Accounts;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Authentication;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Content;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.ContentDefinition;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Entries;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Properties;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Roots;
-	using EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.Spaces;
 	using EtAlii.xTechnology.Hosting.Grpc;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
