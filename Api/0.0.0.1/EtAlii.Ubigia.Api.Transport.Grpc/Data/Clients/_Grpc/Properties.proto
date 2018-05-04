@@ -18,13 +18,26 @@ package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 service PropertiesGrpcService 
 {
 	// Try to authenticate.
-	rpc Get (PropertiesRequest) returns (PropertiesResponse) {}
+	rpc Get (PropertiesGetRequest) returns (PropertiesGetResponse) {}
+	rpc Post (PropertiesPostRequest) returns (PropertiesPostResponse) {}
 }
 
-message PropertiesRequest
+message PropertiesGetRequest
 {
+	Identifier EntryId = 1;
 }
 
-message PropertiesResponse
+message PropertiesGetResponse
+{
+	PropertyDictionary PropertyDictionary = 1;
+}
+
+message PropertiesPostRequest
+{
+	Identifier EntryId = 1;
+	PropertyDictionary PropertyDictionary = 2;
+}
+
+message PropertiesPostResponse
 {
 }
