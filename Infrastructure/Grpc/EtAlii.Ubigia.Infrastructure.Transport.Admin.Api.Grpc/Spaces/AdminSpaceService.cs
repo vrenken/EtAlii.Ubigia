@@ -64,6 +64,7 @@
             return Task.FromResult(response);
         }
 
+        // Add item
         public override Task<SpaceSingleResponse> Post(SpacePostSingleRequest request, ServerCallContext context)
         {
             var space = request.Space.ToLocal();
@@ -79,7 +80,7 @@
             return Task.FromResult(response);
         }
 
-        // Add item
+        // Update item
         public override Task<SpaceSingleResponse> Put(SpaceSingleRequest request, ServerCallContext context)
         {
             var space = request.Space.ToLocal();
@@ -92,7 +93,7 @@
             return Task.FromResult(response);
         }
 
-        // Update Item by id
+        // Delete Item
         public override Task<SpaceSingleResponse> Delete(SpaceSingleRequest request, ServerCallContext context)
         {
             switch (request)

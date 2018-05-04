@@ -14,21 +14,45 @@ option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
 
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
+
+
 // The Root Grpc service definition.
-service RootGrpcService  
+service RootGrpcService
 {
-	rpc Get (RootRequest) returns (RootResponse) {}
-	rpc Post (RootRequest) returns (RootResponse) {}
-	rpc Put (RootRequest) returns (RootResponse) {}
-	rpc Delete (RootRequest) returns (RootResponse) {}
+	rpc GetSingle (RootSingleRequest) returns (RootSingleResponse) {}
+	rpc GetMultiple (RootMultipleRequest) returns (RootMultipleResponse) {}
+	rpc Post (RootPostSingleRequest) returns (RootSingleResponse) {}
+	rpc Put (RootSingleRequest) returns (RootSingleResponse) {}
+	rpc Delete (RootSingleRequest) returns (RootSingleResponse) {}
 }
 
-message RootRequest
+message RootSingleRequest
 {
-	Guid Id = 1;
+	Guid SpaceId = 1;
+	oneof Selection
+	{
+		Guid Id = 2;
+		string Name = 3;
+		Root Root = 4;
+	}
 }
 
-message RootResponse
+message RootPostSingleRequest
+{
+	Guid SpaceId = 1;
+	Root Root = 2;
+}
+
+message RootMultipleRequest
+{
+}
+
+message RootSingleResponse
 {
 	Root Root = 1;
+}
+
+message RootMultipleResponse
+{
+	repeated Root Roots = 1;
 }
