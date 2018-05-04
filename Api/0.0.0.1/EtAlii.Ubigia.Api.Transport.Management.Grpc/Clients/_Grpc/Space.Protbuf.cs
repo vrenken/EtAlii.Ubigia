@@ -23,44 +23,61 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "CgtTcGFjZS5wcm90bxI4RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1h",
-            "bmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2waDF9Nb2RlbC5wcm90byJaCgxT",
-            "cGFjZVJlcXVlc3QSSgoCSWQYASABKAsyPi5FdEFsaWkuVWJpZ2lhLkFwaS5U",
-            "cmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5HdWlkIl8K",
-            "DVNwYWNlUmVzcG9uc2USTgoFU3BhY2UYASABKAsyPy5FdEFsaWkuVWJpZ2lh",
-            "LkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5T",
-            "cGFjZTKCBQoQU3BhY2VHcnBjU2VydmljZRKYAQoDR2V0EkYuRXRBbGlpLlVi",
+            "bmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2waDF9Nb2RlbC5wcm90byLRAQoS",
+            "U3BhY2VTaW5nbGVSZXF1ZXN0EkwKAklkGAEgASgLMj4uRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wu",
+            "R3VpZEgAEg4KBE5hbWUYAiABKAlIABJQCgVTcGFjZRgDIAEoCzI/LkV0QWxp",
+            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVBy",
+            "b3RvY29sLlNwYWNlSABCCwoJU2VsZWN0aW9uInoKFlNwYWNlUG9zdFNpbmds",
+            "ZVJlcXVlc3QSTgoFU3BhY2UYASABKAsyPy5FdEFsaWkuVWJpZ2lhLkFwaS5U",
+            "cmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5TcGFjZRIQ",
+            "CghUZW1wbGF0ZRgCIAEoCSIWChRTcGFjZU11bHRpcGxlUmVxdWVzdCJlChNT",
+            "cGFjZVNpbmdsZVJlc3BvbnNlEk4KBVNwYWNlGAEgASgLMj8uRXRBbGlpLlVi",
             "aWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9j",
-            "b2wuU3BhY2VSZXF1ZXN0GkcuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
-            "Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3BhY2VSZXNwb25zZSIA",
-            "EpkBCgRQb3N0EkYuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFn",
-            "ZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3BhY2VSZXF1ZXN0GkcuRXRBbGlp",
-            "LlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJv",
-            "dG9jb2wuU3BhY2VSZXNwb25zZSIAEpgBCgNQdXQSRi5FdEFsaWkuVWJpZ2lh",
-            "LkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5T",
-            "cGFjZVJlcXVlc3QaRy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFu",
-            "YWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5TcGFjZVJlc3BvbnNlIgASmwEK",
-            "BkRlbGV0ZRJGLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2Vt",
-            "ZW50LkdycGMuV2lyZVByb3RvY29sLlNwYWNlUmVxdWVzdBpHLkV0QWxpaS5V",
-            "YmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3Rv",
-            "Y29sLlNwYWNlUmVzcG9uc2UiAEKIAQo4RXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2xCBlViaWdpYVAB",
-            "ogIGVWJpZ2lhqgI4RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFn",
-            "ZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2xiBnByb3RvMw=="));
+            "b2wuU3BhY2UiaAoVU3BhY2VNdWx0aXBsZVJlc3BvbnNlEk8KBlNwYWNlcxgB",
+            "IAMoCzI/LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50",
+            "LkdycGMuV2lyZVByb3RvY29sLlNwYWNlMu8GChBTcGFjZUdycGNTZXJ2aWNl",
+            "EqoBCglHZXRTaW5nbGUSTC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "TWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5TcGFjZVNpbmdsZVJlcXVl",
+            "c3QaTS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5H",
+            "cnBjLldpcmVQcm90b2NvbC5TcGFjZVNpbmdsZVJlc3BvbnNlIgASsAEKC0dl",
+            "dE11bHRpcGxlEk4uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFn",
+            "ZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3BhY2VNdWx0aXBsZVJlcXVlc3Qa",
+            "Ty5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBj",
+            "LldpcmVQcm90b2NvbC5TcGFjZU11bHRpcGxlUmVzcG9uc2UiABKpAQoEUG9z",
+            "dBJQLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50Lkdy",
+            "cGMuV2lyZVByb3RvY29sLlNwYWNlUG9zdFNpbmdsZVJlcXVlc3QaTS5FdEFs",
+            "aWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQ",
+            "cm90b2NvbC5TcGFjZVNpbmdsZVJlc3BvbnNlIgASpAEKA1B1dBJMLkV0QWxp",
+            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVBy",
+            "b3RvY29sLlNwYWNlU2luZ2xlUmVxdWVzdBpNLkV0QWxpaS5VYmlnaWEuQXBp",
+            "LlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29sLlNwYWNl",
+            "U2luZ2xlUmVzcG9uc2UiABKnAQoGRGVsZXRlEkwuRXRBbGlpLlViaWdpYS5B",
+            "cGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3Bh",
+            "Y2VTaW5nbGVSZXF1ZXN0Gk0uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
+            "Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3BhY2VTaW5nbGVSZXNw",
+            "b25zZSIAQogBCjhFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdl",
+            "bWVudC5HcnBjLldpcmVQcm90b2NvbEIGVWJpZ2lhUAGiAgZVYmlnaWGqAjhF",
+            "dEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldp",
+            "cmVQcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceRequest.Parser, new[]{ "Id" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceResponse.Parser, new[]{ "Space" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest.Parser, new[]{ "Id", "Name", "Space" }, new[]{ "Selection" }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest.Parser, new[]{ "Space", "Template" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse.Parser, new[]{ "Space" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse.Parser, new[]{ "Spaces" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class SpaceRequest : pb::IMessage<SpaceRequest> {
-    private static readonly pb::MessageParser<SpaceRequest> _parser = new pb::MessageParser<SpaceRequest>(() => new SpaceRequest());
+  public sealed partial class SpaceSingleRequest : pb::IMessage<SpaceSingleRequest> {
+    private static readonly pb::MessageParser<SpaceSingleRequest> _parser = new pb::MessageParser<SpaceSingleRequest>(() => new SpaceSingleRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SpaceRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<SpaceSingleRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -73,40 +90,93 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SpaceRequest() {
+    public SpaceSingleRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SpaceRequest(SpaceRequest other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+    public SpaceSingleRequest(SpaceSingleRequest other) : this() {
+      switch (other.SelectionCase) {
+        case SelectionOneofCase.Id:
+          Id = other.Id.Clone();
+          break;
+        case SelectionOneofCase.Name:
+          Name = other.Name;
+          break;
+        case SelectionOneofCase.Space:
+          Space = other.Space.Clone();
+          break;
+      }
+
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SpaceRequest Clone() {
-      return new SpaceRequest(this);
+    public SpaceSingleRequest Clone() {
+      return new SpaceSingleRequest(this);
     }
 
     /// <summary>Field number for the "Id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid Id {
-      get { return id_; }
+      get { return selectionCase_ == SelectionOneofCase.Id ? (global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid) selection_ : null; }
       set {
-        id_ = value;
+        selection_ = value;
+        selectionCase_ = value == null ? SelectionOneofCase.None : SelectionOneofCase.Id;
       }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return selectionCase_ == SelectionOneofCase.Name ? (string) selection_ : ""; }
+      set {
+        selection_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        selectionCase_ = SelectionOneofCase.Name;
+      }
+    }
+
+    /// <summary>Field number for the "Space" field.</summary>
+    public const int SpaceFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space Space {
+      get { return selectionCase_ == SelectionOneofCase.Space ? (global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space) selection_ : null; }
+      set {
+        selection_ = value;
+        selectionCase_ = value == null ? SelectionOneofCase.None : SelectionOneofCase.Space;
+      }
+    }
+
+    private object selection_;
+    /// <summary>Enum of possible cases for the "Selection" oneof.</summary>
+    public enum SelectionOneofCase {
+      None = 0,
+      Id = 1,
+      Name = 2,
+      Space = 3,
+    }
+    private SelectionOneofCase selectionCase_ = SelectionOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SelectionOneofCase SelectionCase {
+      get { return selectionCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearSelection() {
+      selectionCase_ = SelectionOneofCase.None;
+      selection_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SpaceRequest);
+      return Equals(other as SpaceSingleRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SpaceRequest other) {
+    public bool Equals(SpaceSingleRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -114,13 +184,19 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Name != other.Name) return false;
+      if (!object.Equals(Space, other.Space)) return false;
+      if (SelectionCase != other.SelectionCase) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
+      if (selectionCase_ == SelectionOneofCase.Id) hash ^= Id.GetHashCode();
+      if (selectionCase_ == SelectionOneofCase.Name) hash ^= Name.GetHashCode();
+      if (selectionCase_ == SelectionOneofCase.Space) hash ^= Space.GetHashCode();
+      hash ^= (int) selectionCase_;
       return hash;
     }
 
@@ -131,32 +207,58 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (id_ != null) {
+      if (selectionCase_ == SelectionOneofCase.Id) {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
+      }
+      if (selectionCase_ == SelectionOneofCase.Name) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (selectionCase_ == SelectionOneofCase.Space) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Space);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (id_ != null) {
+      if (selectionCase_ == SelectionOneofCase.Id) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (selectionCase_ == SelectionOneofCase.Name) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (selectionCase_ == SelectionOneofCase.Space) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Space);
       }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SpaceRequest other) {
+    public void MergeFrom(SpaceSingleRequest other) {
       if (other == null) {
         return;
       }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
-        }
-        Id.MergeFrom(other.Id);
+      switch (other.SelectionCase) {
+        case SelectionOneofCase.Id:
+          if (Id == null) {
+            Id = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+          }
+          Id.MergeFrom(other.Id);
+          break;
+        case SelectionOneofCase.Name:
+          Name = other.Name;
+          break;
+        case SelectionOneofCase.Space:
+          if (Space == null) {
+            Space = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+          }
+          Space.MergeFrom(other.Space);
+          break;
       }
+
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -168,10 +270,25 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             input.SkipLastField();
             break;
           case 10: {
-            if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+            global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid subBuilder = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+            if (selectionCase_ == SelectionOneofCase.Id) {
+              subBuilder.MergeFrom(Id);
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(subBuilder);
+            Id = subBuilder;
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space subBuilder = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+            if (selectionCase_ == SelectionOneofCase.Space) {
+              subBuilder.MergeFrom(Space);
+            }
+            input.ReadMessage(subBuilder);
+            Space = subBuilder;
             break;
           }
         }
@@ -180,10 +297,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
   }
 
-  public sealed partial class SpaceResponse : pb::IMessage<SpaceResponse> {
-    private static readonly pb::MessageParser<SpaceResponse> _parser = new pb::MessageParser<SpaceResponse>(() => new SpaceResponse());
+  public sealed partial class SpacePostSingleRequest : pb::IMessage<SpacePostSingleRequest> {
+    private static readonly pb::MessageParser<SpacePostSingleRequest> _parser = new pb::MessageParser<SpacePostSingleRequest>(() => new SpacePostSingleRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<SpaceResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<SpacePostSingleRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -196,20 +313,260 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SpaceResponse() {
+    public SpacePostSingleRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SpaceResponse(SpaceResponse other) : this() {
+    public SpacePostSingleRequest(SpacePostSingleRequest other) : this() {
+      Space = other.space_ != null ? other.Space.Clone() : null;
+      template_ = other.template_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpacePostSingleRequest Clone() {
+      return new SpacePostSingleRequest(this);
+    }
+
+    /// <summary>Field number for the "Space" field.</summary>
+    public const int SpaceFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space space_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space Space {
+      get { return space_; }
+      set {
+        space_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Template" field.</summary>
+    public const int TemplateFieldNumber = 2;
+    private string template_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Template {
+      get { return template_; }
+      set {
+        template_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SpacePostSingleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SpacePostSingleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Space, other.Space)) return false;
+      if (Template != other.Template) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (space_ != null) hash ^= Space.GetHashCode();
+      if (Template.Length != 0) hash ^= Template.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (space_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Space);
+      }
+      if (Template.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Template);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (space_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Space);
+      }
+      if (Template.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Template);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SpacePostSingleRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.space_ != null) {
+        if (space_ == null) {
+          space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+        }
+        Space.MergeFrom(other.Space);
+      }
+      if (other.Template.Length != 0) {
+        Template = other.Template;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (space_ == null) {
+              space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+            }
+            input.ReadMessage(space_);
+            break;
+          }
+          case 18: {
+            Template = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SpaceMultipleRequest : pb::IMessage<SpaceMultipleRequest> {
+    private static readonly pb::MessageParser<SpaceMultipleRequest> _parser = new pb::MessageParser<SpaceMultipleRequest>(() => new SpaceMultipleRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SpaceMultipleRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceMultipleRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceMultipleRequest(SpaceMultipleRequest other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceMultipleRequest Clone() {
+      return new SpaceMultipleRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SpaceMultipleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SpaceMultipleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SpaceMultipleRequest other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SpaceSingleResponse : pb::IMessage<SpaceSingleResponse> {
+    private static readonly pb::MessageParser<SpaceSingleResponse> _parser = new pb::MessageParser<SpaceSingleResponse>(() => new SpaceSingleResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SpaceSingleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceSingleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceSingleResponse(SpaceSingleResponse other) : this() {
       Space = other.space_ != null ? other.Space.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public SpaceResponse Clone() {
-      return new SpaceResponse(this);
+    public SpaceSingleResponse Clone() {
+      return new SpaceSingleResponse(this);
     }
 
     /// <summary>Field number for the "Space" field.</summary>
@@ -225,11 +582,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as SpaceResponse);
+      return Equals(other as SpaceSingleResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(SpaceResponse other) {
+    public bool Equals(SpaceSingleResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -270,7 +627,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(SpaceResponse other) {
+    public void MergeFrom(SpaceSingleResponse other) {
       if (other == null) {
         return;
       }
@@ -295,6 +652,115 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
               space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
             }
             input.ReadMessage(space_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SpaceMultipleResponse : pb::IMessage<SpaceMultipleResponse> {
+    private static readonly pb::MessageParser<SpaceMultipleResponse> _parser = new pb::MessageParser<SpaceMultipleResponse>(() => new SpaceMultipleResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SpaceMultipleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceMultipleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceMultipleResponse(SpaceMultipleResponse other) : this() {
+      spaces_ = other.spaces_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SpaceMultipleResponse Clone() {
+      return new SpaceMultipleResponse(this);
+    }
+
+    /// <summary>Field number for the "Spaces" field.</summary>
+    public const int SpacesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space> _repeated_spaces_codec
+        = pb::FieldCodec.ForMessage(10, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space.Parser);
+    private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space> spaces_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space> Spaces {
+      get { return spaces_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SpaceMultipleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SpaceMultipleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!spaces_.Equals(other.spaces_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= spaces_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      spaces_.WriteTo(output, _repeated_spaces_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += spaces_.CalculateSize(_repeated_spaces_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SpaceMultipleResponse other) {
+      if (other == null) {
+        return;
+      }
+      spaces_.Add(other.spaces_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            spaces_.AddEntriesFrom(input, _repeated_spaces_codec);
             break;
           }
         }

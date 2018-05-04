@@ -13,7 +13,7 @@
             var guid = Guid.NewGuid();
             
             // Act.
-            var wireGuid = guid.ToGuid();
+            var wireGuid = guid.ToWire();
 
             // Assert
             Assert.NotEqual<ulong>(0, wireGuid.Data1);
@@ -25,10 +25,10 @@
         {
             // Arrange.
             var guid = Guid.NewGuid();
-            var wireGuid = guid.ToGuid();
+            var wireGuid = guid.ToWire();
             
             // Act.
-            var secondGuid = wireGuid.ToGuid();
+            var secondGuid = wireGuid.ToLocal();
             
             // Assert
             Assert.Equal(guid, secondGuid);

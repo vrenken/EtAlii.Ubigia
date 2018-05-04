@@ -4,7 +4,7 @@
 
     public static class GuidExtension 
     {
-        public static System.Guid ToGuid(this WireProtocol.Guid id)
+        public static System.Guid ToLocal(this WireProtocol.Guid id)
         {
             var bytes = new byte[16]; 
             
@@ -14,7 +14,7 @@
             return new System.Guid(bytes);
         }
         
-        public static WireProtocol.Guid ToGuid(this System.Guid id)
+        public static WireProtocol.Guid ToWire(this System.Guid id)
         {
             var bytes = id.ToByteArray();
             return new WireProtocol.Guid()

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.Spaces
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;

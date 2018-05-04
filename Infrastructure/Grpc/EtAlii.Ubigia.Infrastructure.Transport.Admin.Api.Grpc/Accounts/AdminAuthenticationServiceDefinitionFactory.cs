@@ -6,19 +6,19 @@
     using EtAlii.xTechnology.MicroContainer;
     using global::Grpc.Core;
 
-    public class AdminAuthenticationServiceDefinitionFactory : IAdminAuthenticationServiceDefinitionFactory
+    public class AdminAccountServiceDefinitionFactory : IAdminAccountServiceDefinitionFactory
     {
         public ServerServiceDefinition Create(IInfrastructure infrastructure)
         {
             var container = new Container();
-            container.Register<IAdminAuthenticationService, AdminAuthenticationService>();
+            container.Register<IAdminAccountService, AdminAccountService>();
        
             new AdminApiScaffolding(infrastructure).Register(container);
             new AuthenticationScaffolding().Register(container);     
             new SerializationScaffolding().Register(container);
             
-            var authenticationService = (AdminAuthenticationService)container.GetInstance<IAdminAuthenticationService>();
-            return AuthenticationGrpcService.BindService(authenticationService);
+            var authenticationService = (AdminAccountService)container.GetInstance<IAdminAccountService>();
+            return AccountGrpcService.BindService(authenticationService);
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.Authentication
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;

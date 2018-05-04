@@ -23,48 +23,62 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg1TdG9yYWdlLnByb3RvEjhFdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "TWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbBoMX01vZGVsLnByb3RvIlwK",
-            "DlN0b3JhZ2VSZXF1ZXN0EkoKAklkGAEgASgLMj4uRXRBbGlpLlViaWdpYS5B",
-            "cGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuR3Vp",
-            "ZCJlCg9TdG9yYWdlUmVzcG9uc2USUgoHU3RvcmFnZRgBIAEoCzJBLkV0QWxp",
-            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVBy",
-            "b3RvY29sLlN0b3JhZ2UyuAYKElN0b3JhZ2VHcnBjU2VydmljZRKcAQoDR2V0",
-            "EkguRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3Jw",
-            "Yy5XaXJlUHJvdG9jb2wuU3RvcmFnZVJlcXVlc3QaSS5FdEFsaWkuVWJpZ2lh",
-            "LkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5T",
-            "dG9yYWdlUmVzcG9uc2UiABKhAQoIR2V0TG9jYWwSSC5FdEFsaWkuVWJpZ2lh",
-            "LkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5T",
-            "dG9yYWdlUmVxdWVzdBpJLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5N",
-            "YW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29sLlN0b3JhZ2VSZXNwb25zZSIA",
-            "Ep0BCgRQb3N0EkguRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFn",
-            "ZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3RvcmFnZVJlcXVlc3QaSS5FdEFs",
+            "TWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbBoMX01vZGVsLnByb3RvItcB",
+            "ChRTdG9yYWdlU2luZ2xlUmVxdWVzdBJMCgJJZBgBIAEoCzI+LkV0QWxpaS5V",
+            "YmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3Rv",
+            "Y29sLkd1aWRIABIOCgROYW1lGAIgASgJSAASVAoHU3RvcmFnZRgDIAEoCzJB",
+            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMu",
+            "V2lyZVByb3RvY29sLlN0b3JhZ2VIAEILCglTZWxlY3Rpb24iGAoWU3RvcmFn",
+            "ZU11bHRpcGxlUmVxdWVzdCJrChVTdG9yYWdlU2luZ2xlUmVzcG9uc2USUgoH",
+            "U3RvcmFnZRgBIAEoCzJBLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5N",
+            "YW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29sLlN0b3JhZ2UibgoXU3RvcmFn",
+            "ZU11bHRpcGxlUmVzcG9uc2USUwoIU3RvcmFnZXMYASADKAsyQS5FdEFsaWku",
+            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90",
+            "b2NvbC5TdG9yYWdlMrEIChJTdG9yYWdlR3JwY1NlcnZpY2USrgEKCUdldFNp",
+            "bmdsZRJOLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50",
+            "LkdycGMuV2lyZVByb3RvY29sLlN0b3JhZ2VTaW5nbGVSZXF1ZXN0Gk8uRXRB",
+            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJl",
+            "UHJvdG9jb2wuU3RvcmFnZVNpbmdsZVJlc3BvbnNlIgAStAEKC0dldE11bHRp",
+            "cGxlElAuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQu",
+            "R3JwYy5XaXJlUHJvdG9jb2wuU3RvcmFnZU11bHRpcGxlUmVxdWVzdBpRLkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2ly",
+            "ZVByb3RvY29sLlN0b3JhZ2VNdWx0aXBsZVJlc3BvbnNlIgASrQEKCEdldExv",
+            "Y2FsEk4uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQu",
+            "R3JwYy5XaXJlUHJvdG9jb2wuU3RvcmFnZVNpbmdsZVJlcXVlc3QaTy5FdEFs",
             "aWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBjLldpcmVQ",
-            "cm90b2NvbC5TdG9yYWdlUmVzcG9uc2UiABKcAQoDUHV0EkguRXRBbGlpLlVi",
-            "aWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9j",
-            "b2wuU3RvcmFnZVJlcXVlc3QaSS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3Bv",
-            "cnQuTWFuYWdlbWVudC5HcnBjLldpcmVQcm90b2NvbC5TdG9yYWdlUmVzcG9u",
-            "c2UiABKfAQoGRGVsZXRlEkguRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
-            "Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3RvcmFnZVJlcXVlc3Qa",
-            "SS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuTWFuYWdlbWVudC5HcnBj",
-            "LldpcmVQcm90b2NvbC5TdG9yYWdlUmVzcG9uc2UiAEKIAQo4RXRBbGlpLlVi",
-            "aWdpYS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9j",
-            "b2xCBlViaWdpYVABogIGVWJpZ2lhqgI4RXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2xiBnByb3RvMw=="));
+            "cm90b2NvbC5TdG9yYWdlU2luZ2xlUmVzcG9uc2UiABKpAQoEUG9zdBJOLkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2ly",
+            "ZVByb3RvY29sLlN0b3JhZ2VTaW5nbGVSZXF1ZXN0Gk8uRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wu",
+            "U3RvcmFnZVNpbmdsZVJlc3BvbnNlIgASqAEKA1B1dBJOLkV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29s",
+            "LlN0b3JhZ2VTaW5nbGVSZXF1ZXN0Gk8uRXRBbGlpLlViaWdpYS5BcGkuVHJh",
+            "bnNwb3J0Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3RvcmFnZVNp",
+            "bmdsZVJlc3BvbnNlIgASqwEKBkRlbGV0ZRJOLkV0QWxpaS5VYmlnaWEuQXBp",
+            "LlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMuV2lyZVByb3RvY29sLlN0b3Jh",
+            "Z2VTaW5nbGVSZXF1ZXN0Gk8uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
+            "Lk1hbmFnZW1lbnQuR3JwYy5XaXJlUHJvdG9jb2wuU3RvcmFnZVNpbmdsZVJl",
+            "c3BvbnNlIgBCiAEKOEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5h",
+            "Z2VtZW50LkdycGMuV2lyZVByb3RvY29sQgZVYmlnaWFQAaICBlViaWdpYaoC",
+            "OEV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5NYW5hZ2VtZW50LkdycGMu",
+            "V2lyZVByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest.Parser, new[]{ "Id" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageResponse.Parser, new[]{ "Storage" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest.Parser, new[]{ "Id", "Name", "Storage" }, new[]{ "Selection" }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleRequest), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleResponse.Parser, new[]{ "Storage" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleResponse), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleResponse.Parser, new[]{ "Storages" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class StorageRequest : pb::IMessage<StorageRequest> {
-    private static readonly pb::MessageParser<StorageRequest> _parser = new pb::MessageParser<StorageRequest>(() => new StorageRequest());
+  public sealed partial class StorageSingleRequest : pb::IMessage<StorageSingleRequest> {
+    private static readonly pb::MessageParser<StorageSingleRequest> _parser = new pb::MessageParser<StorageSingleRequest>(() => new StorageSingleRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<StorageRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<StorageSingleRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -77,40 +91,93 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StorageRequest() {
+    public StorageSingleRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StorageRequest(StorageRequest other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+    public StorageSingleRequest(StorageSingleRequest other) : this() {
+      switch (other.SelectionCase) {
+        case SelectionOneofCase.Id:
+          Id = other.Id.Clone();
+          break;
+        case SelectionOneofCase.Name:
+          Name = other.Name;
+          break;
+        case SelectionOneofCase.Storage:
+          Storage = other.Storage.Clone();
+          break;
+      }
+
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StorageRequest Clone() {
-      return new StorageRequest(this);
+    public StorageSingleRequest Clone() {
+      return new StorageSingleRequest(this);
     }
 
     /// <summary>Field number for the "Id" field.</summary>
     public const int IdFieldNumber = 1;
-    private global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid id_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid Id {
-      get { return id_; }
+      get { return selectionCase_ == SelectionOneofCase.Id ? (global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid) selection_ : null; }
       set {
-        id_ = value;
+        selection_ = value;
+        selectionCase_ = value == null ? SelectionOneofCase.None : SelectionOneofCase.Id;
       }
+    }
+
+    /// <summary>Field number for the "Name" field.</summary>
+    public const int NameFieldNumber = 2;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return selectionCase_ == SelectionOneofCase.Name ? (string) selection_ : ""; }
+      set {
+        selection_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        selectionCase_ = SelectionOneofCase.Name;
+      }
+    }
+
+    /// <summary>Field number for the "Storage" field.</summary>
+    public const int StorageFieldNumber = 3;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage Storage {
+      get { return selectionCase_ == SelectionOneofCase.Storage ? (global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage) selection_ : null; }
+      set {
+        selection_ = value;
+        selectionCase_ = value == null ? SelectionOneofCase.None : SelectionOneofCase.Storage;
+      }
+    }
+
+    private object selection_;
+    /// <summary>Enum of possible cases for the "Selection" oneof.</summary>
+    public enum SelectionOneofCase {
+      None = 0,
+      Id = 1,
+      Name = 2,
+      Storage = 3,
+    }
+    private SelectionOneofCase selectionCase_ = SelectionOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SelectionOneofCase SelectionCase {
+      get { return selectionCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void ClearSelection() {
+      selectionCase_ = SelectionOneofCase.None;
+      selection_ = null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as StorageRequest);
+      return Equals(other as StorageSingleRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(StorageRequest other) {
+    public bool Equals(StorageSingleRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -118,13 +185,19 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
         return true;
       }
       if (!object.Equals(Id, other.Id)) return false;
+      if (Name != other.Name) return false;
+      if (!object.Equals(Storage, other.Storage)) return false;
+      if (SelectionCase != other.SelectionCase) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (id_ != null) hash ^= Id.GetHashCode();
+      if (selectionCase_ == SelectionOneofCase.Id) hash ^= Id.GetHashCode();
+      if (selectionCase_ == SelectionOneofCase.Name) hash ^= Name.GetHashCode();
+      if (selectionCase_ == SelectionOneofCase.Storage) hash ^= Storage.GetHashCode();
+      hash ^= (int) selectionCase_;
       return hash;
     }
 
@@ -135,32 +208,58 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (id_ != null) {
+      if (selectionCase_ == SelectionOneofCase.Id) {
         output.WriteRawTag(10);
         output.WriteMessage(Id);
+      }
+      if (selectionCase_ == SelectionOneofCase.Name) {
+        output.WriteRawTag(18);
+        output.WriteString(Name);
+      }
+      if (selectionCase_ == SelectionOneofCase.Storage) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Storage);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (id_ != null) {
+      if (selectionCase_ == SelectionOneofCase.Id) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Id);
+      }
+      if (selectionCase_ == SelectionOneofCase.Name) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (selectionCase_ == SelectionOneofCase.Storage) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Storage);
       }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(StorageRequest other) {
+    public void MergeFrom(StorageSingleRequest other) {
       if (other == null) {
         return;
       }
-      if (other.id_ != null) {
-        if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
-        }
-        Id.MergeFrom(other.Id);
+      switch (other.SelectionCase) {
+        case SelectionOneofCase.Id:
+          if (Id == null) {
+            Id = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+          }
+          Id.MergeFrom(other.Id);
+          break;
+        case SelectionOneofCase.Name:
+          Name = other.Name;
+          break;
+        case SelectionOneofCase.Storage:
+          if (Storage == null) {
+            Storage = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage();
+          }
+          Storage.MergeFrom(other.Storage);
+          break;
       }
+
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -172,10 +271,25 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             input.SkipLastField();
             break;
           case 10: {
-            if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+            global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid subBuilder = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+            if (selectionCase_ == SelectionOneofCase.Id) {
+              subBuilder.MergeFrom(Id);
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(subBuilder);
+            Id = subBuilder;
+            break;
+          }
+          case 18: {
+            Name = input.ReadString();
+            break;
+          }
+          case 26: {
+            global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage subBuilder = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage();
+            if (selectionCase_ == SelectionOneofCase.Storage) {
+              subBuilder.MergeFrom(Storage);
+            }
+            input.ReadMessage(subBuilder);
+            Storage = subBuilder;
             break;
           }
         }
@@ -184,10 +298,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
   }
 
-  public sealed partial class StorageResponse : pb::IMessage<StorageResponse> {
-    private static readonly pb::MessageParser<StorageResponse> _parser = new pb::MessageParser<StorageResponse>(() => new StorageResponse());
+  public sealed partial class StorageMultipleRequest : pb::IMessage<StorageMultipleRequest> {
+    private static readonly pb::MessageParser<StorageMultipleRequest> _parser = new pb::MessageParser<StorageMultipleRequest>(() => new StorageMultipleRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<StorageResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<StorageMultipleRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -200,20 +314,109 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StorageResponse() {
+    public StorageMultipleRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StorageResponse(StorageResponse other) : this() {
+    public StorageMultipleRequest(StorageMultipleRequest other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StorageMultipleRequest Clone() {
+      return new StorageMultipleRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as StorageMultipleRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(StorageMultipleRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(StorageMultipleRequest other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class StorageSingleResponse : pb::IMessage<StorageSingleResponse> {
+    private static readonly pb::MessageParser<StorageSingleResponse> _parser = new pb::MessageParser<StorageSingleResponse>(() => new StorageSingleResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<StorageSingleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StorageSingleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StorageSingleResponse(StorageSingleResponse other) : this() {
       Storage = other.storage_ != null ? other.Storage.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public StorageResponse Clone() {
-      return new StorageResponse(this);
+    public StorageSingleResponse Clone() {
+      return new StorageSingleResponse(this);
     }
 
     /// <summary>Field number for the "Storage" field.</summary>
@@ -229,11 +432,11 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as StorageResponse);
+      return Equals(other as StorageSingleResponse);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(StorageResponse other) {
+    public bool Equals(StorageSingleResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -274,7 +477,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(StorageResponse other) {
+    public void MergeFrom(StorageSingleResponse other) {
       if (other == null) {
         return;
       }
@@ -299,6 +502,115 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
               storage_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage();
             }
             input.ReadMessage(storage_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class StorageMultipleResponse : pb::IMessage<StorageMultipleResponse> {
+    private static readonly pb::MessageParser<StorageMultipleResponse> _parser = new pb::MessageParser<StorageMultipleResponse>(() => new StorageMultipleResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<StorageMultipleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StorageMultipleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StorageMultipleResponse(StorageMultipleResponse other) : this() {
+      storages_ = other.storages_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public StorageMultipleResponse Clone() {
+      return new StorageMultipleResponse(this);
+    }
+
+    /// <summary>Field number for the "Storages" field.</summary>
+    public const int StoragesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage> _repeated_storages_codec
+        = pb::FieldCodec.ForMessage(10, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage.Parser);
+    private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage> storages_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Storage> Storages {
+      get { return storages_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as StorageMultipleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(StorageMultipleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!storages_.Equals(other.storages_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= storages_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      storages_.WriteTo(output, _repeated_storages_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += storages_.CalculateSize(_repeated_storages_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(StorageMultipleResponse other) {
+      if (other == null) {
+        return;
+      }
+      storages_.Add(other.storages_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            storages_.AddEntriesFrom(input, _repeated_storages_codec);
             break;
           }
         }
