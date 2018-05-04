@@ -39,7 +39,3 @@
 //        }
 //    }
 //}
-
-namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.Authentication
-{
-}
