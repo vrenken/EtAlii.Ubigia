@@ -14,21 +14,42 @@ option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProto
 
 package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 
+
 // The Space Grpc service definition.
-service SpaceGrpcService  
+service SpaceGrpcService
 {
-	rpc Get (SpaceRequest) returns (SpaceResponse) {}
-	rpc Post (SpaceRequest) returns (SpaceResponse) {}
-	rpc Put (SpaceRequest) returns (SpaceResponse) {}
-	rpc Delete (SpaceRequest) returns (SpaceResponse) {}
+	rpc GetSingle (SpaceSingleRequest) returns (SpaceSingleResponse) {}
+	rpc GetMultiple (SpaceMultipleRequest) returns (SpaceMultipleResponse) {}
+	rpc Post (SpacePostSingleRequest) returns (SpaceSingleResponse) {}
+	rpc Put (SpaceSingleRequest) returns (SpaceSingleResponse) {}
+	rpc Delete (SpaceSingleRequest) returns (SpaceSingleResponse) {}
 }
 
-message SpaceRequest
+message SpaceSingleRequest
 {
-	Guid Id = 1;
+	oneof Selection
+	{
+		Guid Id = 1;
+		string Name = 2;
+		Space Space = 3;
+	}
 }
-
-message SpaceResponse
+message SpacePostSingleRequest
 {
 	Space Space = 1;
+	string Template = 2;
+}
+
+message SpaceMultipleRequest
+{
+}
+
+message SpaceSingleResponse
+{
+	Space Space = 1;
+}
+
+message SpaceMultipleResponse
+{
+	repeated Space Spaces = 1;
 }

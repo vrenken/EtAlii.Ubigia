@@ -14,21 +14,42 @@ option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProto
 
 package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 
+
 // The Account Grpc service definition.
-service AccountGrpcService   
+service AccountGrpcService
 {
-	rpc Get (AccountRequest) returns (AccountResponse) {}
-	rpc Post (AccountRequest) returns (AccountResponse) {}
-	rpc Put (AccountRequest) returns (AccountResponse) {}
-	rpc Delete (AccountRequest) returns (AccountResponse) {}
+	rpc GetSingle (AccountSingleRequest) returns (AccountSingleResponse) {}
+	rpc GetMultiple (AccountMultipleRequest) returns (AccountMultipleResponse) {}
+	rpc Post (AccountPostSingleRequest) returns (AccountSingleResponse) {}
+	rpc Put (AccountSingleRequest) returns (AccountSingleResponse) {}
+	rpc Delete (AccountSingleRequest) returns (AccountSingleResponse) {}
 }
 
-message AccountRequest
+message AccountSingleRequest
 {
-	Guid Id = 1;
+	oneof Selection
+	{
+		Guid Id = 1;
+		string Name = 2;
+		Account Account = 3;
+	}
 }
-
-message AccountResponse
+message AccountPostSingleRequest
 {
 	Account Account = 1;
+	string Template = 2;
+}
+
+message AccountMultipleRequest
+{
+}
+
+message AccountSingleResponse
+{
+	Account Account = 1;
+}
+
+message AccountMultipleResponse
+{
+	repeated Account Accounts = 1;
 }

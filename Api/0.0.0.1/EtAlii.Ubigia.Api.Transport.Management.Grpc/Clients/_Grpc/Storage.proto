@@ -17,19 +17,34 @@ package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 // The Storage Grpc service definition.
 service StorageGrpcService  
 {
-	rpc Get (StorageRequest) returns (StorageResponse) {}
-	rpc GetLocal (StorageRequest) returns (StorageResponse) {}
-	rpc Post (StorageRequest) returns (StorageResponse) {}
-	rpc Put (StorageRequest) returns (StorageResponse) {}
-	rpc Delete (StorageRequest) returns (StorageResponse) {}
+    rpc GetSingle (StorageSingleRequest) returns (StorageSingleResponse) {}
+    rpc GetMultiple (StorageMultipleRequest) returns (StorageMultipleResponse) {}
+	rpc GetLocal (StorageSingleRequest) returns (StorageSingleResponse) {}
+	rpc Post (StorageSingleRequest) returns (StorageSingleResponse) {}
+	rpc Put (StorageSingleRequest) returns (StorageSingleResponse) {}
+	rpc Delete (StorageSingleRequest) returns (StorageSingleResponse) {}
 }
 
-message StorageRequest
+message StorageSingleRequest
 {
-	Guid Id = 1;
+    oneof Selection 
+    {
+        Guid Id = 1;
+        string Name = 2;
+        Storage Storage = 3;        
+    }
 }
 
-message StorageResponse
+message StorageMultipleRequest
+{
+}
+
+message StorageSingleResponse
 {
 	Storage Storage = 1;
+}
+
+message StorageMultipleResponse
+{
+    repeated Storage Storages = 1;
 }

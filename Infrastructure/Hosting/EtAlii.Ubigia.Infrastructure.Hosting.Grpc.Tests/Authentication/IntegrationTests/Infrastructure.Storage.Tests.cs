@@ -10,7 +10,7 @@
     using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
     using AdminStorageClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageGrpcService.StorageGrpcServiceClient;
-    using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageRequest;
+    using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
     using Xunit;
 
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
@@ -42,7 +42,7 @@
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
-			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -65,7 +65,7 @@
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
-			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -88,7 +88,7 @@
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
-			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 		
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -127,7 +127,7 @@
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
-			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -151,7 +151,7 @@
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
-			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
@@ -175,7 +175,7 @@
 			Assert.NotNull(response);
 			Assert.NotNull(response.Storage);
 			Assert.NotNull(response.Storage.Id);
-			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToGuid());
+			Assert.NotEqual(Guid.Empty, response.Storage.Id.ToLocal());
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]

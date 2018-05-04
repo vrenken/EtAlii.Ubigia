@@ -19,36 +19,46 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest> __Marshaller_AccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> __Marshaller_AccountResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest> __Marshaller_AccountSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> __Marshaller_AccountSingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest> __Marshaller_AccountMultipleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse> __Marshaller_AccountMultipleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest> __Marshaller_AccountPostSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest.Parser.ParseFrom);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> __Method_GetSingle = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
-        "Get",
-        __Marshaller_AccountRequest,
-        __Marshaller_AccountResponse);
+        "GetSingle",
+        __Marshaller_AccountSingleRequest,
+        __Marshaller_AccountSingleResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse> __Method_GetMultiple = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "GetMultiple",
+        __Marshaller_AccountMultipleRequest,
+        __Marshaller_AccountMultipleResponse);
+
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Post",
-        __Marshaller_AccountRequest,
-        __Marshaller_AccountResponse);
+        __Marshaller_AccountPostSingleRequest,
+        __Marshaller_AccountSingleResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Put",
-        __Marshaller_AccountRequest,
-        __Marshaller_AccountResponse);
+        __Marshaller_AccountSingleRequest,
+        __Marshaller_AccountSingleResponse);
 
-    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse>(
+    static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Delete",
-        __Marshaller_AccountRequest,
-        __Marshaller_AccountResponse);
+        __Marshaller_AccountSingleRequest,
+        __Marshaller_AccountSingleResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -59,22 +69,27 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     /// <summary>Base class for server-side implementations of AccountGrpcService</summary>
     public abstract partial class AccountGrpcServiceBase
     {
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> Get(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> GetSingle(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse> GetMultiple(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> Put(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
 
-      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> Delete(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::ServerCallContext context)
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> Put(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> Delete(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -104,67 +119,83 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       {
       }
 
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Get(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse GetSingle(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return Get(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetSingle(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Get(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse GetSingle(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.BlockingUnaryCall(__Method_Get, null, options, request);
+        return CallInvoker.BlockingUnaryCall(__Method_GetSingle, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> GetSingleAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
-        return GetAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+        return GetSingleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> GetAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> GetSingleAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::CallOptions options)
       {
-        return CallInvoker.AsyncUnaryCall(__Method_Get, null, options, request);
+        return CallInvoker.AsyncUnaryCall(__Method_GetSingle, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse GetMultiple(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMultiple(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse GetMultiple(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_GetMultiple, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse> GetMultipleAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetMultipleAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleResponse> GetMultipleAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_GetMultiple, null, options, request);
+      }
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Post(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse Post(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Post, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PostAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> PostAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Post, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Put(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse Put(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Put(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Put(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse Put(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Put, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return PutAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> PutAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Put, null, options, request);
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Delete(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse Delete(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return Delete(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse Delete(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse Delete(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.BlockingUnaryCall(__Method_Delete, null, options, request);
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
       {
         return DeleteAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
       }
-      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountRequest request, grpc::CallOptions options)
+      public virtual grpc::AsyncUnaryCall<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleResponse> DeleteAsync(global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_Delete, null, options, request);
       }
@@ -180,7 +211,8 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
     public static grpc::ServerServiceDefinition BindService(AccountGrpcServiceBase serviceImpl)
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
-          .AddMethod(__Method_Get, serviceImpl.Get)
+          .AddMethod(__Method_GetSingle, serviceImpl.GetSingle)
+          .AddMethod(__Method_GetMultiple, serviceImpl.GetMultiple)
           .AddMethod(__Method_Post, serviceImpl.Post)
           .AddMethod(__Method_Put, serviceImpl.Put)
           .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
