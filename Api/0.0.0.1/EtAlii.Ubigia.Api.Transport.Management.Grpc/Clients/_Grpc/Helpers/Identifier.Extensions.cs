@@ -1,5 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public static class IdentifierExtension 
     {
         public static Identifier ToLocal(this WireProtocol.Identifier id)
@@ -34,6 +37,16 @@
                 Period = period, 
                 Moment = moment,
             };
+        }
+        
+        public static IEnumerable<WireProtocol.Identifier> ToWire(this IEnumerable<Identifier> identifiers)
+        {
+            return identifiers.Select(id => id.ToWire());
+        }
+        
+        public static IEnumerable<Identifier> ToLocal(this IEnumerable<WireProtocol.Identifier> identifiers)
+        {
+            return identifiers.Select(id => id.ToLocal());
         }
     }
 }

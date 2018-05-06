@@ -68,13 +68,95 @@ message Identifier
 	fixed64 Moment = 6;
 }
 
-message Entity
+message Entry
 {
-	string Type = 1;
+    IdentifierComponent Id = 1;
+    TypeComponent Type = 2;
+    
+    RelationComponent Parent = 3;
+    repeated RelationsComponent Children = 4;
+
+    RelationComponent Parent2 = 5;
+    repeated RelationsComponent Children2 = 6;
+
+    RelationComponent Downdate = 7;
+    repeated RelationsComponent Updates = 8;
+
+    RelationComponent Previous = 9;
+    RelationComponent Next = 10;
+
+    RelationComponent Indexed = 11;
+    repeated RelationsComponent Indexes = 12;
+}
+
+message IdentifierComponent
+{
+    // All.
+    bool Stored = 1;
+    //string Name = 2;
+
+    // Noncomposite.
+
+    // Specific.
+    Identifier Identifier = 2;
+}
+
+message TypeComponent
+{
+    // All.
+    bool Stored = 1;
+    //string Name = 2;
+
+    // Noncomposite.
+
+    // Specific.
+    string Type = 2;
+}
+
+message RelationComponent
+{
+	// All.
+	bool Stored = 1;
+    //string Name = 2;
+
+	// Noncomposite.
+	
+	// Specific.
+	Relation Relation = 2;
+}
+
+message RelationsComponent
+{
+	// All.
+	bool Stored = 1;
+	//string Name = 2;
+
+	// Composite.
+	fixed64 Id = 2;
+
+	// Specific.
+	repeated Relation Relations = 3;
 }
 
 message Relation
 {
+    Identifier Id = 1;
+    fixed64 Moment = 2;
+}
+
+enum EntryRelation
+{
+	None = 0;
+	Parent = 1;
+	Child = 2;
+	Previous = 4;
+	Next = 8;
+	Downdate = 16;
+	Update = 32;
+	Index = 64;
+	Indexed = 128;
+	All = 255;
+
 }
 
 message BlobSummary

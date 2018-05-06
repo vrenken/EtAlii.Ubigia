@@ -23,29 +23,62 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChJFbnRyeVNlcnZpY2UucHJvdG8SLUV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
-            "cG9ydC5HcnBjLldpcmVQcm90b2NvbBoMX01vZGVsLnByb3RvIg4KDEVudHJ5",
-            "UmVxdWVzdCIPCg1FbnRyeVJlc3BvbnNlMpcBChBFbnRyeUdycGNTZXJ2aWNl",
-            "EoIBCgNHZXQSOy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5X",
-            "aXJlUHJvdG9jb2wuRW50cnlSZXF1ZXN0GjwuRXRBbGlpLlViaWdpYS5BcGku",
-            "VHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkVudHJ5UmVzcG9uc2UiAEJy",
-            "Ci1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
-            "b2xCBlViaWdpYVABogIGVWJpZ2lhqgItRXRBbGlpLlViaWdpYS5BcGkuVHJh",
-            "bnNwb3J0LkdycGMuV2lyZVByb3RvY29sYgZwcm90bzM="));
+            "cG9ydC5HcnBjLldpcmVQcm90b2NvbBoMX01vZGVsLnByb3RvIrYBChJFbnRy",
+            "eVNpbmdsZVJlcXVlc3QSSgoHRW50cnlJZBgBIAEoCzI5LkV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5JZGVudGlmaWVy",
+            "ElQKDkVudHJ5UmVsYXRpb25zGAIgASgOMjwuRXRBbGlpLlViaWdpYS5BcGku",
+            "VHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkVudHJ5UmVsYXRpb24iuQEK",
+            "FEVudHJ5TXVsdGlwbGVSZXF1ZXN0EksKCEVudHJ5SWRzGAEgAygLMjkuRXRB",
+            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLklk",
+            "ZW50aWZpZXISVAoORW50cnlSZWxhdGlvbnMYAiABKA4yPC5FdEFsaWkuVWJp",
+            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuRW50cnlSZWxh",
+            "dGlvbiJaChNFbnRyeVNpbmdsZVJlc3BvbnNlEkMKBUVudHJ5GAEgASgLMjQu",
+            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29s",
+            "LkVudHJ5Il4KFUVudHJ5TXVsdGlwbGVSZXNwb25zZRJFCgdFbnRyaWVzGAEg",
+            "AygLMjQuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVBy",
+            "b3RvY29sLkVudHJ5IlgKEEVudHJ5UG9zdFJlcXVlc3QSRAoHU3BhY2VJZBgB",
+            "IAEoCzIzLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQ",
+            "cm90b2NvbC5HdWlkIlYKD0VudHJ5UHV0UmVxdWVzdBJDCgVFbnRyeRgBIAEo",
+            "CzI0LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90",
+            "b2NvbC5FbnRyeTL4BQoQRW50cnlHcnBjU2VydmljZRKUAQoJR2V0U2luZ2xl",
+            "EkEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3Rv",
+            "Y29sLkVudHJ5U2luZ2xlUmVxdWVzdBpCLkV0QWxpaS5VYmlnaWEuQXBpLlRy",
+            "YW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5FbnRyeVNpbmdsZVJlc3BvbnNl",
+            "IgASmgEKC0dldE11bHRpcGxlEkMuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
+            "b3J0LkdycGMuV2lyZVByb3RvY29sLkVudHJ5TXVsdGlwbGVSZXF1ZXN0GkQu",
+            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29s",
+            "LkVudHJ5TXVsdGlwbGVSZXNwb25zZSIAEo0BCgRQb3N0Ej8uRXRBbGlpLlVi",
+            "aWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkVudHJ5UG9z",
+            "dFJlcXVlc3QaQi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5X",
+            "aXJlUHJvdG9jb2wuRW50cnlTaW5nbGVSZXNwb25zZSIAEosBCgNQdXQSPi5F",
+            "dEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wu",
+            "RW50cnlQdXRSZXF1ZXN0GkIuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
+            "LkdycGMuV2lyZVByb3RvY29sLkVudHJ5U2luZ2xlUmVzcG9uc2UiABKRAQoG",
+            "RGVsZXRlEkEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2ly",
+            "ZVByb3RvY29sLkVudHJ5U2luZ2xlUmVxdWVzdBpCLkV0QWxpaS5VYmlnaWEu",
+            "QXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5FbnRyeVNpbmdsZVJl",
+            "c3BvbnNlIgBCcgotRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMu",
+            "V2lyZVByb3RvY29sQgZVYmlnaWFQAaICBlViaWdpYaoCLUV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRequest.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryResponse.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest.Parser, new[]{ "EntryId", "EntryRelations" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest.Parser, new[]{ "EntryIds", "EntryRelations" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse.Parser, new[]{ "Entry" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse.Parser, new[]{ "Entries" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest.Parser, new[]{ "SpaceId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest.Parser, new[]{ "Entry" }, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class EntryRequest : pb::IMessage<EntryRequest> {
-    private static readonly pb::MessageParser<EntryRequest> _parser = new pb::MessageParser<EntryRequest>(() => new EntryRequest());
+  public sealed partial class EntrySingleRequest : pb::IMessage<EntrySingleRequest> {
+    private static readonly pb::MessageParser<EntrySingleRequest> _parser = new pb::MessageParser<EntrySingleRequest>(() => new EntrySingleRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EntryRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<EntrySingleRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -58,40 +91,68 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntryRequest() {
+    public EntrySingleRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntryRequest(EntryRequest other) : this() {
+    public EntrySingleRequest(EntrySingleRequest other) : this() {
+      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryRelations_ = other.entryRelations_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntryRequest Clone() {
-      return new EntryRequest(this);
+    public EntrySingleRequest Clone() {
+      return new EntrySingleRequest(this);
+    }
+
+    /// <summary>Field number for the "EntryId" field.</summary>
+    public const int EntryIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier entryId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier EntryId {
+      get { return entryId_; }
+      set {
+        entryId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "EntryRelations" field.</summary>
+    public const int EntryRelationsFieldNumber = 2;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation entryRelations_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation EntryRelations {
+      get { return entryRelations_; }
+      set {
+        entryRelations_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as EntryRequest);
+      return Equals(other as EntrySingleRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EntryRequest other) {
+    public bool Equals(EntrySingleRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(EntryId, other.EntryId)) return false;
+      if (EntryRelations != other.EntryRelations) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (entryId_ != null) hash ^= EntryId.GetHashCode();
+      if (EntryRelations != 0) hash ^= EntryRelations.GetHashCode();
       return hash;
     }
 
@@ -102,18 +163,41 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (entryId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntryId);
+      }
+      if (EntryRelations != 0) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) EntryRelations);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (entryId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntryId);
+      }
+      if (EntryRelations != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EntryRelations);
+      }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EntryRequest other) {
+    public void MergeFrom(EntrySingleRequest other) {
       if (other == null) {
         return;
+      }
+      if (other.entryId_ != null) {
+        if (entryId_ == null) {
+          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+        }
+        EntryId.MergeFrom(other.EntryId);
+      }
+      if (other.EntryRelations != 0) {
+        EntryRelations = other.EntryRelations;
       }
     }
 
@@ -125,16 +209,27 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           default:
             input.SkipLastField();
             break;
+          case 10: {
+            if (entryId_ == null) {
+              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+            }
+            input.ReadMessage(entryId_);
+            break;
+          }
+          case 16: {
+            entryRelations_ = (global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation) input.ReadEnum();
+            break;
+          }
         }
       }
     }
 
   }
 
-  public sealed partial class EntryResponse : pb::IMessage<EntryResponse> {
-    private static readonly pb::MessageParser<EntryResponse> _parser = new pb::MessageParser<EntryResponse>(() => new EntryResponse());
+  public sealed partial class EntryMultipleRequest : pb::IMessage<EntryMultipleRequest> {
+    private static readonly pb::MessageParser<EntryMultipleRequest> _parser = new pb::MessageParser<EntryMultipleRequest>(() => new EntryMultipleRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<EntryResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<EntryMultipleRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -147,40 +242,67 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntryResponse() {
+    public EntryMultipleRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntryResponse(EntryResponse other) : this() {
+    public EntryMultipleRequest(EntryMultipleRequest other) : this() {
+      entryIds_ = other.entryIds_.Clone();
+      entryRelations_ = other.entryRelations_;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public EntryResponse Clone() {
-      return new EntryResponse(this);
+    public EntryMultipleRequest Clone() {
+      return new EntryMultipleRequest(this);
+    }
+
+    /// <summary>Field number for the "EntryIds" field.</summary>
+    public const int EntryIdsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier> _repeated_entryIds_codec
+        = pb::FieldCodec.ForMessage(10, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier.Parser);
+    private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier> entryIds_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier> EntryIds {
+      get { return entryIds_; }
+    }
+
+    /// <summary>Field number for the "EntryRelations" field.</summary>
+    public const int EntryRelationsFieldNumber = 2;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation entryRelations_ = 0;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation EntryRelations {
+      get { return entryRelations_; }
+      set {
+        entryRelations_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as EntryResponse);
+      return Equals(other as EntryMultipleRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(EntryResponse other) {
+    public bool Equals(EntryMultipleRequest other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if(!entryIds_.Equals(other.entryIds_)) return false;
+      if (EntryRelations != other.EntryRelations) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      hash ^= entryIds_.GetHashCode();
+      if (EntryRelations != 0) hash ^= EntryRelations.GetHashCode();
       return hash;
     }
 
@@ -191,18 +313,31 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      entryIds_.WriteTo(output, _repeated_entryIds_codec);
+      if (EntryRelations != 0) {
+        output.WriteRawTag(16);
+        output.WriteEnum((int) EntryRelations);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      size += entryIds_.CalculateSize(_repeated_entryIds_codec);
+      if (EntryRelations != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) EntryRelations);
+      }
       return size;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(EntryResponse other) {
+    public void MergeFrom(EntryMultipleRequest other) {
       if (other == null) {
         return;
+      }
+      entryIds_.Add(other.entryIds_);
+      if (other.EntryRelations != 0) {
+        EntryRelations = other.EntryRelations;
       }
     }
 
@@ -214,6 +349,492 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           default:
             input.SkipLastField();
             break;
+          case 10: {
+            entryIds_.AddEntriesFrom(input, _repeated_entryIds_codec);
+            break;
+          }
+          case 16: {
+            entryRelations_ = (global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation) input.ReadEnum();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EntrySingleResponse : pb::IMessage<EntrySingleResponse> {
+    private static readonly pb::MessageParser<EntrySingleResponse> _parser = new pb::MessageParser<EntrySingleResponse>(() => new EntrySingleResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EntrySingleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryServiceReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntrySingleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntrySingleResponse(EntrySingleResponse other) : this() {
+      Entry = other.entry_ != null ? other.Entry.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntrySingleResponse Clone() {
+      return new EntrySingleResponse(this);
+    }
+
+    /// <summary>Field number for the "Entry" field.</summary>
+    public const int EntryFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry entry_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry Entry {
+      get { return entry_; }
+      set {
+        entry_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EntrySingleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EntrySingleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Entry, other.Entry)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entry_ != null) hash ^= Entry.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (entry_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Entry);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (entry_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Entry);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EntrySingleResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entry_ != null) {
+        if (entry_ == null) {
+          entry_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry();
+        }
+        Entry.MergeFrom(other.Entry);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (entry_ == null) {
+              entry_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry();
+            }
+            input.ReadMessage(entry_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EntryMultipleResponse : pb::IMessage<EntryMultipleResponse> {
+    private static readonly pb::MessageParser<EntryMultipleResponse> _parser = new pb::MessageParser<EntryMultipleResponse>(() => new EntryMultipleResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EntryMultipleResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryServiceReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryMultipleResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryMultipleResponse(EntryMultipleResponse other) : this() {
+      entries_ = other.entries_.Clone();
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryMultipleResponse Clone() {
+      return new EntryMultipleResponse(this);
+    }
+
+    /// <summary>Field number for the "Entries" field.</summary>
+    public const int EntriesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry> _repeated_entries_codec
+        = pb::FieldCodec.ForMessage(10, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry.Parser);
+    private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry> entries_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry> Entries {
+      get { return entries_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EntryMultipleResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EntryMultipleResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!entries_.Equals(other.entries_)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= entries_.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      entries_.WriteTo(output, _repeated_entries_codec);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      size += entries_.CalculateSize(_repeated_entries_codec);
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EntryMultipleResponse other) {
+      if (other == null) {
+        return;
+      }
+      entries_.Add(other.entries_);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            entries_.AddEntriesFrom(input, _repeated_entries_codec);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EntryPostRequest : pb::IMessage<EntryPostRequest> {
+    private static readonly pb::MessageParser<EntryPostRequest> _parser = new pb::MessageParser<EntryPostRequest>(() => new EntryPostRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EntryPostRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryServiceReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryPostRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryPostRequest(EntryPostRequest other) : this() {
+      SpaceId = other.spaceId_ != null ? other.SpaceId.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryPostRequest Clone() {
+      return new EntryPostRequest(this);
+    }
+
+    /// <summary>Field number for the "SpaceId" field.</summary>
+    public const int SpaceIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid spaceId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid SpaceId {
+      get { return spaceId_; }
+      set {
+        spaceId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EntryPostRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EntryPostRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(SpaceId, other.SpaceId)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (spaceId_ != null) hash ^= SpaceId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (spaceId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(SpaceId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (spaceId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpaceId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EntryPostRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.spaceId_ != null) {
+        if (spaceId_ == null) {
+          spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+        }
+        SpaceId.MergeFrom(other.SpaceId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (spaceId_ == null) {
+              spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+            }
+            input.ReadMessage(spaceId_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class EntryPutRequest : pb::IMessage<EntryPutRequest> {
+    private static readonly pb::MessageParser<EntryPutRequest> _parser = new pb::MessageParser<EntryPutRequest>(() => new EntryPutRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<EntryPutRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryServiceReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryPutRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryPutRequest(EntryPutRequest other) : this() {
+      Entry = other.entry_ != null ? other.Entry.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public EntryPutRequest Clone() {
+      return new EntryPutRequest(this);
+    }
+
+    /// <summary>Field number for the "Entry" field.</summary>
+    public const int EntryFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry entry_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry Entry {
+      get { return entry_; }
+      set {
+        entry_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as EntryPutRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(EntryPutRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Entry, other.Entry)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entry_ != null) hash ^= Entry.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (entry_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Entry);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (entry_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Entry);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(EntryPutRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entry_ != null) {
+        if (entry_ == null) {
+          entry_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry();
+        }
+        Entry.MergeFrom(other.Entry);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (entry_ == null) {
+              entry_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry();
+            }
+            input.ReadMessage(entry_);
+            break;
+          }
         }
       }
     }
