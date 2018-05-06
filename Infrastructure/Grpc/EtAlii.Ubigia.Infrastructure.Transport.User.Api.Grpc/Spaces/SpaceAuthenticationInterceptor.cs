@@ -3,13 +3,12 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
     using global::Grpc.Core;
     using global::Grpc.Core.Interceptors;
 
     public class SpaceAuthenticationInterceptor : global::Grpc.Core.Interceptors.Interceptor, ISpaceAuthenticationInterceptor
     {
-        public const string AuthenticationTokenHeaderKey = "x-AuthenticationToken";
-
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
         public SpaceAuthenticationInterceptor(ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
@@ -19,7 +18,7 @@
 
         private void EnsureUserIsAuthenticated(Metadata headers)
         {
-            if (!(headers.SingleOrDefault(h => h.Key == AuthenticationTokenHeaderKey) is
+            if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is
                 Metadata.Entry authenticationTokenHeader)) return;
             
             var authenticationToken = authenticationTokenHeader.Value;

@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
     using global::Grpc.Core;
     using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
@@ -26,13 +28,17 @@
 		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
 		    var request = new UserAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
-			
+	
 		    // Act.
-		    var response = await client.AuthenticateAsync(request);
-
+		    var call = client.AuthenticateAsync(request);
+		    var response = await call.ResponseAsync;
+		        
 		    // Assert.
 		    Assert.NotNull(response);
-		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
+		    var authenticationToken = call
+			    .GetTrailers()
+			    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -43,13 +49,17 @@
 		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
 		    var request = new UserAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
-
+		    
 		    // Act.
-		    var response = await client.AuthenticateAsync(request);
-
+		    var call = client.AuthenticateAsync(request);
+		    var response = await call.ResponseAsync;
+		        
 		    // Assert.
 		    Assert.NotNull(response);
-		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
+		    var authenticationToken = call
+			    .GetTrailers()
+			    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -60,13 +70,17 @@
 		    var channel = context.CreateUserGrpcInfrastructureChannel();
 		    var client = new UserAuthenticationClient(channel);
 		    var request = new UserAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
-		    
-		    // Act.
-		    var response = await client.AuthenticateAsync(request);
 
+		    // Act.
+		    var call = client.AuthenticateAsync(request);
+		    var response = await call.ResponseAsync;
+		        
 		    // Assert.
 		    Assert.NotNull(response);
-		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
+		    var authenticationToken = call
+			    .GetTrailers()
+			    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
