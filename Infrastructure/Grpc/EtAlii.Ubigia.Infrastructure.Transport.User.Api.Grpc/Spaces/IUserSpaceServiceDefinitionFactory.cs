@@ -5,6 +5,6 @@
 
     public interface IUserSpaceServiceDefinitionFactory
     {
-        ServerServiceDefinition Create(IInfrastructure infrastructure);
+        ServerServiceDefinition Create(IInfrastructure infrastructure, ISpaceAuthenticationInterceptor spaceAuthenticationInterceptor);
     }
 }

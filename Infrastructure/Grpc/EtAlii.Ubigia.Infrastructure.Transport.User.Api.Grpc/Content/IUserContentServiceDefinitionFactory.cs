@@ -5,6 +5,6 @@
 
     public interface IUserContentServiceDefinitionFactory
     {
-        ServerServiceDefinition Create(IInfrastructure infrastructure);
+        ServerServiceDefinition Create(IInfrastructure infrastructure, ISpaceAuthenticationInterceptor spaceAuthenticationInterceptor);
     }
 }

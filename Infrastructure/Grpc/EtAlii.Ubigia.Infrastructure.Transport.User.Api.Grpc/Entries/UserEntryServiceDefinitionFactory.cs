@@ -5,10 +5,11 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
     using EtAlii.xTechnology.MicroContainer;
     using global::Grpc.Core;
+    using global::Grpc.Core.Interceptors;
 
     public class UserEntryServiceDefinitionFactory : IUserEntryServiceDefinitionFactory
     {
-        public ServerServiceDefinition Create(IInfrastructure infrastructure)
+        public ServerServiceDefinition Create(IInfrastructure infrastructure, ISpaceAuthenticationInterceptor spaceAuthenticationInterceptor)
         {
             var container = new Container();
             container.Register<IUserEntryService, UserEntryService>();
@@ -18,7 +19,8 @@
             new SerializationScaffolding().Register(container);
             
             var entryService = (UserEntryService)container.GetInstance<IUserEntryService>();
-            return EntryGrpcService.BindService(entryService);
+            var serverServiceDefinition = EntryGrpcService.BindService(entryService);
+            return serverServiceDefinition.Intercept((Interceptor)spaceAuthenticationInterceptor);
         }
     }
 }
