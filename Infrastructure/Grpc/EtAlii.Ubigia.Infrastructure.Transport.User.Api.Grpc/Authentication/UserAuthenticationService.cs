@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
@@ -35,15 +36,15 @@
                 Account = null,
                 AuthenticationToken = authenticationToken
             };
+
+            context.ResponseTrailers.Add(SpaceAuthenticationInterceptor.AuthenticationTokenHeaderKey, authenticationToken);
             return Task.FromResult(response);
         }
 
         public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
-            string currentAccountAuthenticationToken = null;
-            
-            //Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
-            //var authenticationToken = stringValues.Single();
+            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header =>
+                header.Key == SpaceAuthenticationInterceptor.AuthenticationTokenHeaderKey).Value;
             _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
 
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
@@ -63,11 +64,9 @@
 
         public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
         {
-            string authenticationToken = null;
-
-            //Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
-            //var authenticationToken = stringValues.Single();
-            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
+            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header =>
+                header.Key == SpaceAuthenticationInterceptor.AuthenticationTokenHeaderKey).Value;
+            _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
 
             var storage = _storageRepository.GetLocal();
 

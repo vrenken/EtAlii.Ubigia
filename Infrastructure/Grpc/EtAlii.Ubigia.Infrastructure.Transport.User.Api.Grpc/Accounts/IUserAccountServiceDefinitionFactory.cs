@@ -5,6 +5,6 @@
 
     public interface IUserAccountServiceDefinitionFactory
     {
-        ServerServiceDefinition Create(IInfrastructure infrastructure);
+        ServerServiceDefinition Create(IInfrastructure infrastructure, IAccountAuthenticationInterceptor accountAuthenticationInterceptor);
     }
 }

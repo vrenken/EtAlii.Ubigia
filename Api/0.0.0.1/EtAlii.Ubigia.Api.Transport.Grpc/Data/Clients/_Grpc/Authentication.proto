@@ -37,8 +37,8 @@ message AuthenticationRequest
 
 message AuthenticationResponse
 {
-	string AuthenticationToken = 1;
-	Account Account = 2;
+	//string AuthenticationToken = 1;
+	//Account Account = 2;
 }
 
 message AuthenticationTokenRequest
