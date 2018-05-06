@@ -17,16 +17,38 @@ package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 // The ContentDefinition Grpc service definition.
 service ContentDefinitionGrpcService 
 {
-	rpc Get (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
-	rpc Post (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
-	rpc Put (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
-	rpc Delete (ContentDefinitionRequest) returns (ContentDefinitionResponse) {}
+	rpc Get (ContentDefinitionGetRequest) returns (ContentDefinitionGetResponse) {}
+	rpc Post (ContentDefinitionPostRequest) returns (ContentDefinitionPostResponse) {}
+	rpc PostPart (ContentDefinitionPartPostRequest) returns (ContentDefinitionPartPostResponse) {}
 }
 
-message ContentDefinitionRequest
+message ContentDefinitionGetRequest
+{
+	Identifier EntryId = 1;
+}
+
+message ContentDefinitionGetResponse
+{
+	ContentDefinition ContentDefinition = 1;
+}
+
+message ContentDefinitionPostRequest
+{
+	Identifier EntryId = 1;
+	ContentDefinition ContentDefinition = 2;
+}
+
+message ContentDefinitionPostResponse
 {
 }
 
-message ContentDefinitionResponse
+message ContentDefinitionPartPostRequest
+{
+	Identifier EntryId = 1;
+	fixed64 ContentDefinitionPartId = 2;
+	ContentDefinitionPart ContentDefinitionPart = 3;
+}
+
+message ContentDefinitionPartPostResponse
 {
 }

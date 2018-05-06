@@ -23,39 +23,64 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg1Db250ZW50LnByb3RvEi1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "R3JwYy5XaXJlUHJvdG9jb2waDF9Nb2RlbC5wcm90byIQCg5Db250ZW50UmVx",
-            "dWVzdCIRCg9Db250ZW50UmVzcG9uc2UyvAQKEkNvbnRlbnRHcnBjU2Vydmlj",
-            "ZRKGAQoDR2V0Ej0uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMu",
-            "V2lyZVByb3RvY29sLkNvbnRlbnRSZXF1ZXN0Gj4uRXRBbGlpLlViaWdpYS5B",
-            "cGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkNvbnRlbnRSZXNwb25z",
-            "ZSIAEocBCgRQb3N0Ej0uRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
-            "cGMuV2lyZVByb3RvY29sLkNvbnRlbnRSZXF1ZXN0Gj4uRXRBbGlpLlViaWdp",
-            "YS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkNvbnRlbnRSZXNw",
-            "b25zZSIAEoYBCgNQdXQSPS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "R3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudFJlcXVlc3QaPi5FdEFsaWkuVWJp",
-            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudFJl",
-            "c3BvbnNlIgASiQEKBkRlbGV0ZRI9LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
-            "cG9ydC5HcnBjLldpcmVQcm90b2NvbC5Db250ZW50UmVxdWVzdBo+LkV0QWxp",
-            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5Db250",
-            "ZW50UmVzcG9uc2UiAEJyCi1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "R3JwYy5XaXJlUHJvdG9jb2xCBlViaWdpYVABogIGVWJpZ2lhqgItRXRBbGlp",
-            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sYgZwcm90",
-            "bzM="));
+            "R3JwYy5XaXJlUHJvdG9jb2waDF9Nb2RlbC5wcm90byJfChFDb250ZW50R2V0",
+            "UmVxdWVzdBJKCgdFbnRyeUlkGAEgASgLMjkuRXRBbGlpLlViaWdpYS5BcGku",
+            "VHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLklkZW50aWZpZXIiXQoSQ29u",
+            "dGVudEdldFJlc3BvbnNlEkcKB0NvbnRlbnQYASABKAsyNi5FdEFsaWkuVWJp",
+            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudCJ6",
+            "ChVDb250ZW50UGFydEdldFJlcXVlc3QSSgoHRW50cnlJZBgBIAEoCzI5LkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5J",
+            "ZGVudGlmaWVyEhUKDUNvbnRlbnRQYXJ0SWQYAiABKAYiaQoWQ29udGVudFBh",
+            "cnRHZXRSZXNwb25zZRJPCgtDb250ZW50UGFydBgBIAEoCzI6LkV0QWxpaS5V",
+            "YmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5Db250ZW50",
+            "UGFydCKpAQoSQ29udGVudFBvc3RSZXF1ZXN0EkoKB0VudHJ5SWQYASABKAsy",
+            "OS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2wuSWRlbnRpZmllchJHCgdDb250ZW50GAIgASgLMjYuRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkNvbnRlbnQiFQoT",
+            "Q29udGVudFBvc3RSZXNwb25zZSLMAQoWQ29udGVudFBhcnRQb3N0UmVxdWVz",
+            "dBJKCgdFbnRyeUlkGAEgASgLMjkuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
+            "b3J0LkdycGMuV2lyZVByb3RvY29sLklkZW50aWZpZXISFQoNQ29udGVudFBh",
+            "cnRJZBgCIAEoBhJPCgtDb250ZW50UGFydBgDIAEoCzI6LkV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5Db250ZW50UGFy",
+            "dCIZChdDb250ZW50UGFydFBvc3RSZXNwb25zZTLuBAoSQ29udGVudEdycGNT",
+            "ZXJ2aWNlEowBCgNHZXQSQC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "R3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudEdldFJlcXVlc3QaQS5FdEFsaWku",
+            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVu",
+            "dEdldFJlc3BvbnNlIgASmAEKB0dldFBhcnQSRC5FdEFsaWkuVWJpZ2lhLkFw",
+            "aS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudFBhcnRHZXRS",
+            "ZXF1ZXN0GkUuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2ly",
+            "ZVByb3RvY29sLkNvbnRlbnRQYXJ0R2V0UmVzcG9uc2UiABKPAQoEUG9zdBJB",
+            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2Nv",
+            "bC5Db250ZW50UG9zdFJlcXVlc3QaQi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
+            "c3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQ29udGVudFBvc3RSZXNwb25zZSIA",
+            "EpsBCghQb3N0UGFydBJFLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5H",
+            "cnBjLldpcmVQcm90b2NvbC5Db250ZW50UGFydFBvc3RSZXF1ZXN0GkYuRXRB",
+            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkNv",
+            "bnRlbnRQYXJ0UG9zdFJlc3BvbnNlIgBCcgotRXRBbGlpLlViaWdpYS5BcGku",
+            "VHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sQgZVYmlnaWFQAaICBlViaWdp",
+            "YaoCLUV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90",
+            "b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentRequest.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentResponse.Parser, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest.Parser, new[]{ "EntryId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse.Parser, new[]{ "Content" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest.Parser, new[]{ "EntryId", "ContentPartId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse.Parser, new[]{ "ContentPart" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest.Parser, new[]{ "EntryId", "Content" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest.Parser, new[]{ "EntryId", "ContentPartId", "ContentPart" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse.Parser, null, null, null, null)
           }));
     }
     #endregion
 
   }
   #region Messages
-  public sealed partial class ContentRequest : pb::IMessage<ContentRequest> {
-    private static readonly pb::MessageParser<ContentRequest> _parser = new pb::MessageParser<ContentRequest>(() => new ContentRequest());
+  public sealed partial class ContentGetRequest : pb::IMessage<ContentGetRequest> {
+    private static readonly pb::MessageParser<ContentGetRequest> _parser = new pb::MessageParser<ContentGetRequest>(() => new ContentGetRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ContentRequest> Parser { get { return _parser; } }
+    public static pb::MessageParser<ContentGetRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
@@ -68,28 +93,705 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ContentRequest() {
+    public ContentGetRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ContentRequest(ContentRequest other) : this() {
+    public ContentGetRequest(ContentGetRequest other) : this() {
+      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ContentRequest Clone() {
-      return new ContentRequest(this);
+    public ContentGetRequest Clone() {
+      return new ContentGetRequest(this);
+    }
+
+    /// <summary>Field number for the "EntryId" field.</summary>
+    public const int EntryIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier entryId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier EntryId {
+      get { return entryId_; }
+      set {
+        entryId_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ContentRequest);
+      return Equals(other as ContentGetRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ContentRequest other) {
+    public bool Equals(ContentGetRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(EntryId, other.EntryId)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entryId_ != null) hash ^= EntryId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (entryId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntryId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (entryId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntryId);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentGetRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entryId_ != null) {
+        if (entryId_ == null) {
+          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+        }
+        EntryId.MergeFrom(other.EntryId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (entryId_ == null) {
+              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+            }
+            input.ReadMessage(entryId_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentGetResponse : pb::IMessage<ContentGetResponse> {
+    private static readonly pb::MessageParser<ContentGetResponse> _parser = new pb::MessageParser<ContentGetResponse>(() => new ContentGetResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentGetResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentGetResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentGetResponse(ContentGetResponse other) : this() {
+      Content = other.content_ != null ? other.Content.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentGetResponse Clone() {
+      return new ContentGetResponse(this);
+    }
+
+    /// <summary>Field number for the "Content" field.</summary>
+    public const int ContentFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content content_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content Content {
+      get { return content_; }
+      set {
+        content_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentGetResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentGetResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Content, other.Content)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (content_ != null) hash ^= Content.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (content_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Content);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (content_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Content);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentGetResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.content_ != null) {
+        if (content_ == null) {
+          content_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content();
+        }
+        Content.MergeFrom(other.Content);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (content_ == null) {
+              content_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content();
+            }
+            input.ReadMessage(content_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentPartGetRequest : pb::IMessage<ContentPartGetRequest> {
+    private static readonly pb::MessageParser<ContentPartGetRequest> _parser = new pb::MessageParser<ContentPartGetRequest>(() => new ContentPartGetRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentPartGetRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartGetRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartGetRequest(ContentPartGetRequest other) : this() {
+      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      contentPartId_ = other.contentPartId_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartGetRequest Clone() {
+      return new ContentPartGetRequest(this);
+    }
+
+    /// <summary>Field number for the "EntryId" field.</summary>
+    public const int EntryIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier entryId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier EntryId {
+      get { return entryId_; }
+      set {
+        entryId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ContentPartId" field.</summary>
+    public const int ContentPartIdFieldNumber = 2;
+    private ulong contentPartId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong ContentPartId {
+      get { return contentPartId_; }
+      set {
+        contentPartId_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentPartGetRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentPartGetRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(EntryId, other.EntryId)) return false;
+      if (ContentPartId != other.ContentPartId) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entryId_ != null) hash ^= EntryId.GetHashCode();
+      if (ContentPartId != 0UL) hash ^= ContentPartId.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (entryId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntryId);
+      }
+      if (ContentPartId != 0UL) {
+        output.WriteRawTag(17);
+        output.WriteFixed64(ContentPartId);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (entryId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntryId);
+      }
+      if (ContentPartId != 0UL) {
+        size += 1 + 8;
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentPartGetRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entryId_ != null) {
+        if (entryId_ == null) {
+          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+        }
+        EntryId.MergeFrom(other.EntryId);
+      }
+      if (other.ContentPartId != 0UL) {
+        ContentPartId = other.ContentPartId;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (entryId_ == null) {
+              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+            }
+            input.ReadMessage(entryId_);
+            break;
+          }
+          case 17: {
+            ContentPartId = input.ReadFixed64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentPartGetResponse : pb::IMessage<ContentPartGetResponse> {
+    private static readonly pb::MessageParser<ContentPartGetResponse> _parser = new pb::MessageParser<ContentPartGetResponse>(() => new ContentPartGetResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentPartGetResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartGetResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartGetResponse(ContentPartGetResponse other) : this() {
+      ContentPart = other.contentPart_ != null ? other.ContentPart.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartGetResponse Clone() {
+      return new ContentPartGetResponse(this);
+    }
+
+    /// <summary>Field number for the "ContentPart" field.</summary>
+    public const int ContentPartFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart contentPart_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart ContentPart {
+      get { return contentPart_; }
+      set {
+        contentPart_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentPartGetResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentPartGetResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(ContentPart, other.ContentPart)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (contentPart_ != null) hash ^= ContentPart.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (contentPart_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ContentPart);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (contentPart_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ContentPart);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentPartGetResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.contentPart_ != null) {
+        if (contentPart_ == null) {
+          contentPart_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart();
+        }
+        ContentPart.MergeFrom(other.ContentPart);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (contentPart_ == null) {
+              contentPart_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart();
+            }
+            input.ReadMessage(contentPart_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentPostRequest : pb::IMessage<ContentPostRequest> {
+    private static readonly pb::MessageParser<ContentPostRequest> _parser = new pb::MessageParser<ContentPostRequest>(() => new ContentPostRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentPostRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPostRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPostRequest(ContentPostRequest other) : this() {
+      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      Content = other.content_ != null ? other.Content.Clone() : null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPostRequest Clone() {
+      return new ContentPostRequest(this);
+    }
+
+    /// <summary>Field number for the "EntryId" field.</summary>
+    public const int EntryIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier entryId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier EntryId {
+      get { return entryId_; }
+      set {
+        entryId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Content" field.</summary>
+    public const int ContentFieldNumber = 2;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content content_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content Content {
+      get { return content_; }
+      set {
+        content_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentPostRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentPostRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(EntryId, other.EntryId)) return false;
+      if (!object.Equals(Content, other.Content)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entryId_ != null) hash ^= EntryId.GetHashCode();
+      if (content_ != null) hash ^= Content.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (entryId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntryId);
+      }
+      if (content_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Content);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (entryId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntryId);
+      }
+      if (content_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Content);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentPostRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entryId_ != null) {
+        if (entryId_ == null) {
+          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+        }
+        EntryId.MergeFrom(other.EntryId);
+      }
+      if (other.content_ != null) {
+        if (content_ == null) {
+          content_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content();
+        }
+        Content.MergeFrom(other.Content);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (entryId_ == null) {
+              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+            }
+            input.ReadMessage(entryId_);
+            break;
+          }
+          case 18: {
+            if (content_ == null) {
+              content_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Content();
+            }
+            input.ReadMessage(content_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentPostResponse : pb::IMessage<ContentPostResponse> {
+    private static readonly pb::MessageParser<ContentPostResponse> _parser = new pb::MessageParser<ContentPostResponse>(() => new ContentPostResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentPostResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPostResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPostResponse(ContentPostResponse other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPostResponse Clone() {
+      return new ContentPostResponse(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentPostResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentPostResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -121,7 +823,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ContentRequest other) {
+    public void MergeFrom(ContentPostResponse other) {
       if (other == null) {
         return;
       }
@@ -141,14 +843,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
   }
 
-  public sealed partial class ContentResponse : pb::IMessage<ContentResponse> {
-    private static readonly pb::MessageParser<ContentResponse> _parser = new pb::MessageParser<ContentResponse>(() => new ContentResponse());
+  public sealed partial class ContentPartPostRequest : pb::IMessage<ContentPartPostRequest> {
+    private static readonly pb::MessageParser<ContentPartPostRequest> _parser = new pb::MessageParser<ContentPartPostRequest>(() => new ContentPartPostRequest());
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public static pb::MessageParser<ContentResponse> Parser { get { return _parser; } }
+    public static pb::MessageParser<ContentPartPostRequest> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[1]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -157,28 +859,213 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ContentResponse() {
+    public ContentPartPostRequest() {
       OnConstruction();
     }
 
     partial void OnConstruction();
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ContentResponse(ContentResponse other) : this() {
+    public ContentPartPostRequest(ContentPartPostRequest other) : this() {
+      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      contentPartId_ = other.contentPartId_;
+      ContentPart = other.contentPart_ != null ? other.ContentPart.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public ContentResponse Clone() {
-      return new ContentResponse(this);
+    public ContentPartPostRequest Clone() {
+      return new ContentPartPostRequest(this);
+    }
+
+    /// <summary>Field number for the "EntryId" field.</summary>
+    public const int EntryIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier entryId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier EntryId {
+      get { return entryId_; }
+      set {
+        entryId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ContentPartId" field.</summary>
+    public const int ContentPartIdFieldNumber = 2;
+    private ulong contentPartId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ulong ContentPartId {
+      get { return contentPartId_; }
+      set {
+        contentPartId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ContentPart" field.</summary>
+    public const int ContentPartFieldNumber = 3;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart contentPart_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart ContentPart {
+      get { return contentPart_; }
+      set {
+        contentPart_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override bool Equals(object other) {
-      return Equals(other as ContentResponse);
+      return Equals(other as ContentPartPostRequest);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public bool Equals(ContentResponse other) {
+    public bool Equals(ContentPartPostRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(EntryId, other.EntryId)) return false;
+      if (ContentPartId != other.ContentPartId) return false;
+      if (!object.Equals(ContentPart, other.ContentPart)) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entryId_ != null) hash ^= EntryId.GetHashCode();
+      if (ContentPartId != 0UL) hash ^= ContentPartId.GetHashCode();
+      if (contentPart_ != null) hash ^= ContentPart.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (entryId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntryId);
+      }
+      if (ContentPartId != 0UL) {
+        output.WriteRawTag(17);
+        output.WriteFixed64(ContentPartId);
+      }
+      if (contentPart_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ContentPart);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (entryId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntryId);
+      }
+      if (ContentPartId != 0UL) {
+        size += 1 + 8;
+      }
+      if (contentPart_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ContentPart);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ContentPartPostRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entryId_ != null) {
+        if (entryId_ == null) {
+          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+        }
+        EntryId.MergeFrom(other.EntryId);
+      }
+      if (other.ContentPartId != 0UL) {
+        ContentPartId = other.ContentPartId;
+      }
+      if (other.contentPart_ != null) {
+        if (contentPart_ == null) {
+          contentPart_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart();
+        }
+        ContentPart.MergeFrom(other.ContentPart);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            if (entryId_ == null) {
+              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+            }
+            input.ReadMessage(entryId_);
+            break;
+          }
+          case 17: {
+            ContentPartId = input.ReadFixed64();
+            break;
+          }
+          case 26: {
+            if (contentPart_ == null) {
+              contentPart_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPart();
+            }
+            input.ReadMessage(contentPart_);
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ContentPartPostResponse : pb::IMessage<ContentPartPostResponse> {
+    private static readonly pb::MessageParser<ContentPartPostResponse> _parser = new pb::MessageParser<ContentPartPostResponse>(() => new ContentPartPostResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ContentPartPostResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartPostResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartPostResponse(ContentPartPostResponse other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ContentPartPostResponse Clone() {
+      return new ContentPartPostResponse(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ContentPartPostResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ContentPartPostResponse other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
@@ -210,7 +1097,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public void MergeFrom(ContentResponse other) {
+    public void MergeFrom(ContentPartPostResponse other) {
       if (other == null) {
         return;
       }
