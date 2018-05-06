@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -8,15 +7,19 @@
     <Description>StorageBrowser</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
-
   <!-- 
   Interesting link:
   https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
@@ -30,7 +33,6 @@
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-
   <ItemGroup>
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
@@ -51,14 +53,11 @@
     <EmbeddedResource Include="Icon-Logo-White.ico" />
     <EmbeddedResource Include="Icon-Logo.ico" />
     <EmbeddedResource Include="Icon-Logo.png" />
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.40" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.41" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
-     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-
+    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
     <!-- Resources -->
-
     <!-- Settings -->
   </ItemGroup>
-
 </Project>
