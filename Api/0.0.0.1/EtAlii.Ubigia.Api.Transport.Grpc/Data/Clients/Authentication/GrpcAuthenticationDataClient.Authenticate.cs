@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System;
-    using System.Net.Http;
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
@@ -12,7 +12,7 @@
         public async Task Authenticate(ISpaceConnection connection)
         {
             var grpcConnection = (IGrpcSpaceConnection)connection;
-            var authenticationToken = await GetAuthenticationToken(grpcConnection.Transport.HttpMessageHandler, grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Configuration.Address, grpcConnection.Transport.AuthenticationToken);
+            var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
             
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -28,7 +28,7 @@
         public async Task Authenticate(IStorageConnection connection)
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
-            var authenticationToken = await GetAuthenticationToken(grpcConnection.Transport.HttpMessageHandler, grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Configuration.Address, grpcConnection.Transport.AuthenticationToken);
+            var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -41,27 +41,35 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(HttpMessageHandler httpMessageHandler, string accountName, string password, Uri address, string authenticationToken)
+        private async Task<string> GetAuthenticationToken(string accountName, string password, string authenticationToken)
         {
 	        if (password == null && authenticationToken != null)
 	        {
 	            var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
-	            var response = await _client.AuthenticateAsAsync(request);
-	            return response.AuthenticationToken;
-
-                // DONE: GRPC
-                //      // These lines are needed to make the downscale from admin/system to user accoun based authentication tokens.
-                //      var connection = new HubConnectionFactory().Create(httpMessageHandler, new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), authenticationToken);
-                //await connection.StartAsync();
-                //authenticationToken = await _invoker.Invoke<string>(connection, GrpcHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier);
-                //await connection.DisposeAsync();
-            }
+	            var call = _client.AuthenticateAsAsync(request);
+	            await call.ResponseAsync;
+	            var newAuthenticationToken = call
+	                .GetTrailers()
+	                .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+	            return newAuthenticationToken;
+	            
+	            // DONE: GRPC
+	            //      // These lines are needed to make the downscale from admin/system to user accoun based authentication tokens.
+	            //      var connection = new HubConnectionFactory().Create(httpMessageHandler, new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), authenticationToken);
+	            //await connection.StartAsync();
+	            //authenticationToken = await _invoker.Invoke<string>(connection, GrpcHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier);
+	            //await connection.DisposeAsync();
+	        }
             else if (password != null && authenticationToken == null)
             {
                 var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
-                var response = await _client.AuthenticateAsync(request);
-                return response.AuthenticationToken;
-
+                var call = _client.AuthenticateAsAsync(request);
+                await call.ResponseAsync;
+                var newAuthenticationToken = call
+                    .GetTrailers()
+                    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+                return newAuthenticationToken;
+                
                 // DONE: GRPC
                 //            var connection = new HubConnectionFactory().CreateForHost(httpMessageHandler, new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), _hostIdentifier);
                 //            await connection.StartAsync();
