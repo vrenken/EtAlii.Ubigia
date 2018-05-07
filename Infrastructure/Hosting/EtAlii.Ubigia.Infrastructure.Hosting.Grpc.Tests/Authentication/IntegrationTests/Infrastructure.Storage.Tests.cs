@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
     using System;
+    using System.Linq;
     using System.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using global::Grpc.Core;
     using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
@@ -22,21 +24,32 @@
 	        _testContext = testContext;
         }
 
+		private async Task<Metadata> CreateAuthenticationHeaders(Channel channel, InProcessInfrastructureHostTestContext context)
+		{
+			var authenticationClient = new AdminAuthenticationClient(channel);
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword };
+			
+			var call = authenticationClient.AuthenticateAsync(authenticationRequest);
+			var authenticationResponse = await call.ResponseAsync; 
+			var authenticationToken = call
+				.GetTrailers()
+				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
+			var headers = new Metadata {{GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken}};
+			return headers;
+		}
+		
 		[Fact, Trait("Category", TestAssembly.Category)]
 		public async Task Infrastructure_Get_Storage_Local_Admin_TestUser_With_Authentication()
 		{
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword };
-			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
-			var token = authenticationResponse.AuthenticationToken;
+			var headers = await CreateAuthenticationHeaders(channel, context);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 			
 			// Act.
-			var response = await client.GetLocalAsync(request);
+			var response = await client.GetLocalAsync(request, headers);
 		
 			// Assert.
 			Assert.NotNull(response);
@@ -51,15 +64,12 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier  };
-			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
-			var token = authenticationResponse.AuthenticationToken;
+			var headers = await CreateAuthenticationHeaders(channel, context);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
 			// Act.
-			var response = await client.GetLocalAsync(request);
+			var response = await client.GetLocalAsync(request, headers);
 		
 			// Assert.
 			Assert.NotNull(response);
@@ -74,15 +84,12 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier  };
-			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
-			var token = authenticationResponse.AuthenticationToken;
+			var headers = await CreateAuthenticationHeaders(channel, context);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
 			// Act.
-			var response = await client.GetLocalAsync(request);
+			var response = await client.GetLocalAsync(request, headers);
 		
 			// Assert.
 			Assert.NotNull(response);
@@ -112,16 +119,13 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier  };
-			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
-			var token = authenticationResponse.AuthenticationToken;
+			var headers = await CreateAuthenticationHeaders(channel, context);
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
 			// Act.
-			var response = await client.GetLocalAsync(request);
+			var response = await client.GetLocalAsync(request, headers);
 
 			// Assert.
 			Assert.NotNull(response);
@@ -136,16 +140,13 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier  };
-			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
-			var token = authenticationResponse.AuthenticationToken;
+			var headers = await CreateAuthenticationHeaders(channel, context);
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 
 			// Act.
-			var response = await client.GetLocalAsync(request);
+			var response = await client.GetLocalAsync(request, headers);
 
 			// Assert.
 			Assert.NotNull(response);
@@ -160,16 +161,13 @@
 			// Arrange.
 			var context = _testContext.HostTestContext;
 			var channel = context.CreateAdminGrpcInfrastructureChannel();
-			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier  };
-			var authenticationResponse = await authenticationClient.AuthenticateAsync(authenticationRequest);
-			var token = authenticationResponse.AuthenticationToken;
+			var headers = await CreateAuthenticationHeaders(channel, context);
 			Thread.Sleep(50000);
 			var client = new AdminStorageClient(channel);
 			var request = new AdminStorageRequest();
 			
 			// Act.
-			var response = await client.GetLocalAsync(request);
+			var response = await client.GetLocalAsync(request, headers);
 
 			// Assert.
 			Assert.NotNull(response);
