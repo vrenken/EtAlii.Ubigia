@@ -1,21 +1,25 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
-    using Microsoft.AspNetCore.SignalR.Client;
+    using AdminSpacePostSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest;
+    using AdminSpaceSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest;
+    using AdminSpaceMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest;
+    using IGrpcStorageTransport = EtAlii.Ubigia.Api.Transport.Grpc.IGrpcStorageTransport;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 
     public sealed class GrpcSpaceDataClient : ISpaceDataClient<IGrpcStorageTransport>
     {
-        private HubConnection _connection;
-        private readonly IHubProxyMethodInvoker _invoker;
+        private SpaceGrpcService.SpaceGrpcServiceClient _client;
 
-        public GrpcSpaceDataClient(IHubProxyMethodInvoker invoker)
-        {
-            _invoker = invoker;
-        }
+//        private HubConnection _connection;
+//        private readonly IHubProxyMethodInvoker _invoker;
+//
+//        public GrpcSpaceDataClient(IHubProxyMethodInvoker invoker)
+//        {
+//            _invoker = invoker;
+//        }
 
         public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
@@ -23,13 +27,29 @@
             {
                 Name = spaceName,
                 AccountId = accountId,
+            }.ToWire();
+            
+            var request = new AdminSpacePostSingleRequest
+            {
+                Space = space,
+                Template = template.ToString()
             };
-            return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Post", space, template.Name);
+            var call = _client.PostAsync(request);
+            var response = await call.ResponseAsync;
+
+            return response.Space.ToLocal();
+            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Post", space, template.Name);
         }
 
         public async Task Remove(System.Guid spaceId)
         {
-            await _invoker.Invoke(_connection, GrpcHub.Space, "Delete", spaceId);
+            var request = new AdminSpaceSingleRequest
+            {
+                Id = spaceId.ToWire(),
+            };
+            var call = _client.DeleteAsync(request);
+            var response = await call.ResponseAsync;
+            //await _invoker.Invoke(_connection, GrpcHub.Space, "Delete", spaceId);
         }
 
         public async Task<Api.Space> Change(System.Guid spaceId, string spaceName)
@@ -38,23 +58,56 @@
             {
                 Id = spaceId,
                 Name = spaceName,
+            }.ToWire();
+            
+            var request = new AdminSpaceSingleRequest
+            {
+                Space = space,
             };
-            return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Put", spaceId, space);
+            var call = _client.PutAsync(request);
+            var response = await call.ResponseAsync;
+
+            return response.Space.ToLocal();
+            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Put", spaceId, space);
         }
 
         public async Task<Api.Space> Get(System.Guid accountId, string spaceName)
         {
-            return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "GetForAccount", accountId, spaceName);
+            var request = new AdminSpaceSingleRequest
+            {
+                Name = spaceName,
+            };
+            var call = _client.GetSingleAsync(request);
+            var response = await call.ResponseAsync;
+
+            return response.Space.ToLocal();
+            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "GetForAccount", accountId, spaceName);
         }
 
         public async Task<Api.Space> Get(System.Guid spaceId)
         {
-            return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Get", spaceId);
+            var request = new AdminSpaceSingleRequest
+            {
+                Id = spaceId.ToWire(),
+            };
+            var call = _client.GetSingleAsync(request);
+            var response = await call.ResponseAsync;
+
+            return response.Space.ToLocal();
+            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Get", spaceId);
         }
 
         public async Task<IEnumerable<Api.Space>> GetAll(System.Guid accountId)
         {
-            return await _invoker.Invoke<IEnumerable<Api.Space>>(_connection, GrpcHub.Space, "GetAllForAccount", accountId);
+            var request = new AdminSpaceMultipleRequest
+            {                               
+                AccountId = accountId.ToWire(),
+            };
+            var call = _client.GetMultipleAsync(request);
+            var response = await call.ResponseAsync;
+
+            return response.Spaces.ToLocal();
+            //return await _invoker.Invoke<IEnumerable<Api.Space>>(_connection, GrpcHub.Space, "GetAllForAccount", accountId);
         }
 
         public async Task Connect(IStorageConnection storageConnection)
@@ -69,14 +122,16 @@
 
         public async Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Space, UriKind.Absolute));
-			await _connection.StartAsync();
+            // TODO: GRPC
+//            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Space, UriKind.Absolute));
+//			await _connection.StartAsync();
         }
 
         public async Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            await _connection.DisposeAsync();
-            _connection = null;
+            // TODO: GRPC
+//            await _connection.DisposeAsync();
+//            _connection = null;
         }
     }
 }

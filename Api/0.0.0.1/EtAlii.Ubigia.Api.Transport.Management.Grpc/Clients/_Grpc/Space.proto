@@ -42,6 +42,7 @@ message SpacePostSingleRequest
 
 message SpaceMultipleRequest
 {
+	Guid AccountId = 1;
 }
 
 message SpaceSingleResponse

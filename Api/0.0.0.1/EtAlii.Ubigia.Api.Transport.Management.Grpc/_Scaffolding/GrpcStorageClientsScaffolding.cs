@@ -10,7 +10,7 @@
         {
             container.Register<IStorageConnection, GrpcStorageConnection>();
 
-            container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
+            //container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
 
             container.Register<IAuthenticationDataClient, GrpcAuthenticationDataClient>();
 
