@@ -29,5 +29,10 @@
         {
             return spaces.Select(s => s.ToWire());
         }
+        
+        public static IEnumerable<Space> ToLocal(this IEnumerable<WireProtocol.Space> spaces)
+        {
+            return spaces.Select(s => s.ToLocal());
+        }
     }
 }

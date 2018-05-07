@@ -37,5 +37,10 @@
         {
             return accounts.Select(s => s.ToWire());
         }
+        
+        public static IEnumerable<Account> ToLocal(this IEnumerable<WireProtocol.Account> accounts)
+        {
+            return accounts.Select(s => s.ToLocal());
+        }
     }
 }

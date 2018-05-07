@@ -55,8 +55,10 @@
         // Get all Items
         public override Task<SpaceMultipleResponse> GetMultiple(SpaceMultipleRequest request, ServerCallContext context)
         {
+            var accountId = request.AccountId.ToLocal();
+            
             var spaces = _items
-                .GetAll()
+                .GetAll(accountId)
                 .ToWire();
             var response = new SpaceMultipleResponse();
             response.Spaces.AddRange(spaces);
