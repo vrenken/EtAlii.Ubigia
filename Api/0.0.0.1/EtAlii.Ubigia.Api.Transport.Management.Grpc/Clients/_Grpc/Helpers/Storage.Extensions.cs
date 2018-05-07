@@ -29,5 +29,9 @@
         {
             return storages.Select(s => s.ToWire());
         }
+        public static IEnumerable<Storage> ToLocal(this IEnumerable<WireProtocol.Storage> storages)
+        {
+            return storages.Select(s => s.ToLocal());
+        }
     }
 }

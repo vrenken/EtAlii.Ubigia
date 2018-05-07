@@ -17,8 +17,8 @@
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.SignalR.csproj" />
   </ItemGroup>
   <Import Project="Grpc.Targets" />
 </Project>

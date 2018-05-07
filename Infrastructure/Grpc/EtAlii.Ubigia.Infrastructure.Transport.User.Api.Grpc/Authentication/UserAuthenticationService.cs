@@ -39,8 +39,7 @@
 
         public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
-            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header =>
-                header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
             _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
 
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
@@ -57,8 +56,7 @@
 
         public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
         {
-            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header =>
-                header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
             _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
 
             var storage = _storageRepository.GetLocal();
