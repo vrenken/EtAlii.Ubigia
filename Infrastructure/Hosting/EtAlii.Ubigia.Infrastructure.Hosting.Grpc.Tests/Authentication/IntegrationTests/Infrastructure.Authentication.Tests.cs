@@ -93,11 +93,15 @@
 		    var request = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 
 		    // Act.
-		    var response = await client.AuthenticateAsync(request);
-
+		    var call = client.AuthenticateAsync(request);
+		    var response = await call.ResponseAsync;
+		    
 		    // Assert.
 		    Assert.NotNull(response);
-		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
+		    var authenticationToken = call
+			    .GetTrailers()
+			    .SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
+		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -110,11 +114,15 @@
 		    var request = new AdminAuthenticationRequest { AccountName = context.SystemAccountName, Password = context.SystemAccountPassword, HostIdentifier = context.HostIdentifier };
 		    
 		    // Act.
-		    var response = await client.AuthenticateAsync(request);
-
+		    var call = client.AuthenticateAsync(request);
+		    var response = await call.ResponseAsync;
+		    
 		    // Assert.
 		    Assert.NotNull(response);
-		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
+		    var authenticationToken = call
+			    .GetTrailers()
+			    .SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
+		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -127,11 +135,15 @@
 		    var request = new AdminAuthenticationRequest { AccountName = context.AdminAccountName, Password = context.AdminAccountPassword, HostIdentifier = context.HostIdentifier };
 		    
 		    // Act.
-		    var response = await client.AuthenticateAsync(request);
+		    var call = client.AuthenticateAsync(request);
+		    var response = await call.ResponseAsync;
 
 		    // Assert.
 		    Assert.NotNull(response);
-		    Assert.False(String.IsNullOrWhiteSpace(response.AuthenticationToken));
+		    var authenticationToken = call
+			    .GetTrailers()
+			    .SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
+		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]

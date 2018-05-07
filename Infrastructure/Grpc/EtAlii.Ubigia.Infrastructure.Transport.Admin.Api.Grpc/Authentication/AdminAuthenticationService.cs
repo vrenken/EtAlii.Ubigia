@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
+    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
@@ -30,29 +32,20 @@
         {
             var authenticationToken = _authenticationVerifier.Verify(request.AccountName, request.Password, request.HostIdentifier, Role.User, Role.System);
 
-            var response = new AuthenticationResponse
-            {
-                Account = null,
-                AuthenticationToken = authenticationToken
-            };
+            context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken);
+            var response = new AuthenticationResponse();
             return Task.FromResult(response);
         }
 
         public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
-            string currentAccountAuthenticationToken = null;
-
-            //Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
-            //var authenticationToken = stringValues.Single();
+            var currentAccountAuthenticationToken = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
             _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
 
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
 
-            var response = new AuthenticationResponse
-            {
-                Account = null,
-                AuthenticationToken = otherAccountAuthenticationToken
-            };
+            context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, otherAccountAuthenticationToken);
+            var response = new AuthenticationResponse();
             return Task.FromResult(response);
         }
 
@@ -63,10 +56,7 @@
 
         public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
         {
-            string authenticationToken = null;
-
-            //Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
-            //var authenticationToken = stringValues.Single();
+            var authenticationToken = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
             _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 
             var storage = _storageRepository.GetLocal();

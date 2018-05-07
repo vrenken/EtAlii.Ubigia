@@ -1,11 +1,11 @@
 namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
 
-    internal class SignalRStorageConnection : StorageConnection<ISignalRStorageTransport>, ISignalRStorageConnection
+    internal class GrpcStorageConnection : StorageConnection<IGrpcStorageTransport>, IGrpcStorageConnection
     {
-        public SignalRStorageConnection(
+        public GrpcStorageConnection(
             IStorageTransport transport, 
             IStorageConnectionConfiguration configuration, 
             IStorageContext storages, 

@@ -4,10 +4,10 @@
     using System.Net.Http;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SignalRStorageTransport : StorageTransportBase, ISignalRStorageTransport
+    public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
     {
 		private bool _started;
 
@@ -17,7 +17,7 @@
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 
-        public SignalRStorageTransport(
+        public GrpcStorageTransport(
 	        HttpMessageHandler httpMessageHandler,
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
@@ -57,7 +57,7 @@
         {
             return new IScaffolding[]
             {
-                new SignalRStorageClientsScaffolding()
+                new GrpcStorageClientsScaffolding()
             };
         }
     }
