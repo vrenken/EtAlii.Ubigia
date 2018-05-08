@@ -13,14 +13,6 @@
     {
         private SpaceGrpcService.SpaceGrpcServiceClient _client;
 
-//        private HubConnection _connection;
-//        private readonly IHubProxyMethodInvoker _invoker;
-//
-//        public GrpcSpaceDataClient(IHubProxyMethodInvoker invoker)
-//        {
-//            _invoker = invoker;
-//        }
-
         public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
             var space = new Api.Space 
@@ -120,18 +112,17 @@
             await Disconnect((IStorageConnection<IGrpcStorageTransport>) storageConnection);
         }
 
-        public async Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            // TODO: GRPC
-//            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Space, UriKind.Absolute));
-//			await _connection.StartAsync();
-        }
+            var channel = storageConnection.Transport.Channel;
+            _client = new SpaceGrpcService.SpaceGrpcServiceClient(channel);
+            return Task.CompletedTask;
+      }
 
-        public async Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            // TODO: GRPC
-//            await _connection.DisposeAsync();
-//            _connection = null;
+            _client = null;
+            return Task.CompletedTask;
         }
     }
 }

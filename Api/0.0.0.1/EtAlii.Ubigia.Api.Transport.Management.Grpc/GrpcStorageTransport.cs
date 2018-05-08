@@ -1,28 +1,28 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using System;
-    using System.Net.Http;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.xTechnology.MicroContainer;
+    using global::Grpc.Core;
 
-    public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
+	public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
     {
 		private bool _started;
 
-	    public HttpMessageHandler HttpMessageHandler { get; }
-
+	    public Channel Channel { get; }
+	    
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 
         public GrpcStorageTransport(
-	        HttpMessageHandler httpMessageHandler,
+	        Channel channel, 
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-	        HttpMessageHandler = httpMessageHandler;
+	        Channel = channel;
 			_authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
         }
