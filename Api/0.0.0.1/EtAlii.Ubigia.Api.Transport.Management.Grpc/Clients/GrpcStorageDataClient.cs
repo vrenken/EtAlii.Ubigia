@@ -10,15 +10,7 @@
 
     public sealed partial class GrpcStorageDataClient : IStorageDataClient<IGrpcStorageTransport>
     {
-//        private HubConnection _connection;
-//        private readonly IHubProxyMethodInvoker _invoker;
         private StorageGrpcService.StorageGrpcServiceClient _client;
-
-//        public GrpcStorageDataClient(IHubProxyMethodInvoker invoker)
-//        {
-//            _invoker = invoker;
-//        }
-
 
         public async Task<Api.Storage> Add(string storageName, string storageAddress)
         {
@@ -114,18 +106,17 @@
             await Disconnect((IStorageConnection<IGrpcStorageTransport>)storageConnection);
         }
 
-        public async Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            // TODO: GRPC
-            //_connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Storage, UriKind.Absolute));
-            //await _connection.StartAsync();
+            var channel = storageConnection.Transport.Channel;
+            _client = new StorageGrpcService.StorageGrpcServiceClient(channel);
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            // TODO: GRPC
-            //await _connection.DisposeAsync();
-            //_connection = null;
+            _client = null;
+            return Task.CompletedTask;
         }
     }
 }

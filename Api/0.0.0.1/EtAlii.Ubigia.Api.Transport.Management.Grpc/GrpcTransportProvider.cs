@@ -1,29 +1,29 @@
 namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
 	using System;
-	using System.Net.Http;
 	using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc;
+	using global::Grpc.Core;
 
-    public class GrpcStorageTransportProvider : IStorageTransportProvider
+	public class GrpcStorageTransportProvider : IStorageTransportProvider
     {
         private string _authenticationToken;
-	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
+	    private readonly Func<Channel> _grpcChannelFactory;
 
-		public GrpcStorageTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
+		public GrpcStorageTransportProvider(Func<Channel> grpcChannelFactory)
 		{
-			_httpMessageHandlerFactory = httpMessageHandlerFactory;
+			_grpcChannelFactory = grpcChannelFactory;
 		}
 
-		public static GrpcStorageTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
+		public static GrpcStorageTransportProvider Create(Func<Channel> grpcChannelFactory = null)
         {
-	        return new GrpcStorageTransportProvider(httpMessageHandlerFactory);
+	        return new GrpcStorageTransportProvider(grpcChannelFactory);
         }
 
         public ISpaceTransport GetSpaceTransport()
         {
             return new GrpcSpaceTransport(
-	            _httpMessageHandlerFactory?.Invoke(),
+	            _grpcChannelFactory?.Invoke(),
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
         public IStorageTransport GetStorageTransport()
         {
             return new GrpcStorageTransport(
-				_httpMessageHandlerFactory?.Invoke(),
+	            _grpcChannelFactory?.Invoke(),
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
