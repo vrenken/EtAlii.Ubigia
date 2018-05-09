@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 {
     using System;
     using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.xTechnology.Diagnostics;
 
     public class NotStartedTransportUnitTestContext : IDisposable

@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext<THostTestContext>
         where THostTestContext: class, IHostTestContext, new()

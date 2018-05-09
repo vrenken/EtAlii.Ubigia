@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.SignalR.Tests;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     internal class TransportTestContext
     {

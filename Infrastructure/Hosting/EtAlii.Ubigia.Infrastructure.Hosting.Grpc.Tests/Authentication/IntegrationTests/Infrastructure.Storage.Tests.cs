@@ -14,6 +14,7 @@
     using AdminStorageClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageGrpcService.StorageGrpcServiceClient;
     using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
     using Xunit;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{

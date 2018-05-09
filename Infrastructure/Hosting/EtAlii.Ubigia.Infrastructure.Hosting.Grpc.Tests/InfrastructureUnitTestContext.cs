@@ -2,6 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class InfrastructureUnitTestContext : IDisposable
     {
