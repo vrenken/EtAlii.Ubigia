@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
-    using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProvisioningTestContextFactory

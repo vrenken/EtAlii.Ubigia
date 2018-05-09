@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using System;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Tests;
 
     public class InfrastructureUnitTestContext : IDisposable

@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
+namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     public interface IHostTestContextFactory
     {

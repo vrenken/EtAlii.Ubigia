@@ -9,7 +9,7 @@
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.Ubigia.Api.Transport.Tests;
-	using EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests;
+	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
 	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
