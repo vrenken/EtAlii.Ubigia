@@ -27,4 +27,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc.csproj" />
   </ItemGroup>
+  <Import Project="..\..\..\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.projitems" Label="Shared" />
 </Project>
