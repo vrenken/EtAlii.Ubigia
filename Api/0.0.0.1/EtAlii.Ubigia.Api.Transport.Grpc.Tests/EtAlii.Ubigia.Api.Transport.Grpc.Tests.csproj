@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Client\" />
+    <Folder Include="Host" />
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems" Label="Shared" />
 </Project>

@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -8,19 +7,22 @@
     <Description>Unit test project</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
@@ -29,15 +31,12 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="System.Configuration" />
   </ItemGroup>
-
   <ItemGroup>
     <Folder Include="Client\" />
+    <Folder Include="Host" />
   </ItemGroup>
-
   <Import Project="..\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems" Label="Shared" />
-
 </Project>

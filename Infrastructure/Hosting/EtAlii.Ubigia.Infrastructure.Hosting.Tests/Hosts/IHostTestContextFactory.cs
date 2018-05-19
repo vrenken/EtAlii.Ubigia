@@ -5,6 +5,6 @@
         THostTestContext Create<THostTestContext>()
             where THostTestContext : class, IHostTestContext, new();
 
-        IHostTestContext Create();
+        //IHostTestContext Create();
     } 
 }
