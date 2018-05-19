@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public interface IHostTestContext<out TInfrastructureTestHost> : IHostTestContext
-        where TInfrastructureTestHost : class//, IInfrastructureTestHost
+        where TInfrastructureTestHost : class//IInfrastructureTestHost
     {
         TInfrastructureTestHost Host { get; }
     }
