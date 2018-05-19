@@ -7,7 +7,7 @@
     }
 
     public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
-        where TInfrastructureTestHost : class, IInfrastructureTestHost
+	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
 	}
 }

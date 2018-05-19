@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -21,12 +20,13 @@
   <ItemGroup>
     <PackageReference Include="xunit" Version="2.3.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.1" />
-    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.0.2" /> 
+    <PackageReference Include="Microsoft.PowerShell.SDK" Version="6.0.2" />
     <PackageReference Include="Microsoft.PowerShell.Commands.Diagnostics" Version="6.0.2" />
-    <PackageReference Include="Microsoft.WSMan.Management" Version="6.0.2" />  </ItemGroup>
-
+    <PackageReference Include="Microsoft.WSMan.Management" Version="6.0.2" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests\EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests.csproj" />
+    <ProjectReference Include="..\..\..\..\Infrastructure\Hosting\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell.Analysis\EtAlii.Ubigia.PowerShell.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.PowerShell\EtAlii.Ubigia.PowerShell.csproj" />
   </ItemGroup>

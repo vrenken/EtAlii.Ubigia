@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Tests
     {
         public ITransportTestContext<InProcessInfrastructureHostTestContext> Create()
         {
-            return new TransportTestContextFactory().Create<SignalRTransportTestContext>();
+            return new TransportTestContextFactory().Create<GrpcTransportTestContext>();
         }
     }
 }

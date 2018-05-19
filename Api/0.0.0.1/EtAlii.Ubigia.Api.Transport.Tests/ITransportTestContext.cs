@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Tests
     }
 
     public interface ITransportTestContext<out THostTestContext>
-        where THostTestContext : class, IHostTestContext, new()
+        where THostTestContext : class, new()
     {
         THostTestContext Context { get; }
 

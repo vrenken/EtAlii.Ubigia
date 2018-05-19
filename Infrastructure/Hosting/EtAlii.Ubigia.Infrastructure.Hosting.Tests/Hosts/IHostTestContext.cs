@@ -4,6 +4,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
+    public interface IHostTestContext<out TInfrastructureTestHost> : IHostTestContext
+        where TInfrastructureTestHost : class//, IInfrastructureTestHost
+    {
+        TInfrastructureTestHost Host { get; }
+    }
+
     public interface IHostTestContext
     {
         string SystemAccountName { get; }
