@@ -9,20 +9,18 @@
 	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
 	using EtAlii.Ubigia.Api.Transport.Tests;
 	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+	using global::Grpc.Core;
 
-	public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
+    public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
         public override async Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {
             var diagnostics = TestDiagnostics.Create();
 
-			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
-			//var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
-
-	        throw new NotImplementedException("GrpcTransportProvider.Create should be supported");
+			var grpcChannelFactory = new Func<Channel>(() => Context.CreateUserGrpcInfrastructureChannel());
+            
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
-	            .Use(GrpcTransportProvider.Create(null))
+	            .Use(GrpcTransportProvider.Create(grpcChannelFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);
@@ -47,16 +45,13 @@
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
             var diagnostics = TestDiagnostics.Create();
-	        //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler());
-	        //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
+            //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler());
+            //var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
-	        throw new NotImplementedException("GrpcStorageTransportProvider.Create should be supported");
-	        
-			var connectionConfiguration = new ManagementConnectionConfiguration()
-				//.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
-				//.Use(SignalRStorageTransportProvider.Create())
-				//.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
-				.Use(GrpcStorageTransportProvider.Create(null))
+            var grpcChannelFactory = new Func<Channel>(() => Context.CreateAdminGrpcInfrastructureChannel());
+
+            var connectionConfiguration = new ManagementConnectionConfiguration()
+				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory))
 				.Use(address)
                 .Use(account, password)
                 .Use(diagnostics);
