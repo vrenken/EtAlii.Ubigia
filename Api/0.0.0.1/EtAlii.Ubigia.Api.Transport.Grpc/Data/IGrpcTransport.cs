@@ -9,5 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 	    //HttpMessageHandler HttpMessageHandler { get; }
 
 		string AuthenticationToken { get; set; }
+	    
+	    Metadata AuthenticationHeaders { get; set; }
     }
 }
