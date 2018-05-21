@@ -13,6 +13,8 @@
 
 	    public Channel Channel { get; }
 	    
+	    public Metadata AuthenticationHeaders { get; set; }
+	    
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
