@@ -30,26 +30,27 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             "c3QSGwoTQXV0aGVudGljYXRpb25Ub2tlbhgBIAEoCSJmChtBdXRoZW50aWNh",
             "dGlvblRva2VuUmVzcG9uc2USRwoHQWNjb3VudBgBIAEoCzI2LkV0QWxpaS5V",
             "YmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5BY2NvdW50",
-            "IhUKE0xvY2FsU3RvcmFnZVJlcXVlc3QiKwoUTG9jYWxTdG9yYWdlUmVzcG9u",
-            "c2USEwoLU3RvcmFnZU5hbWUYASABKAkyugUKGUF1dGhlbnRpY2F0aW9uR3Jw",
-            "Y1NlcnZpY2USnQEKDEF1dGhlbnRpY2F0ZRJELkV0QWxpaS5VYmlnaWEuQXBp",
-            "LlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5BdXRoZW50aWNhdGlvblJl",
-            "cXVlc3QaRS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJl",
-            "UHJvdG9jb2wuQXV0aGVudGljYXRpb25SZXNwb25zZSIAEp8BCg5BdXRoZW50",
-            "aWNhdGVBcxJELkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
-            "cmVQcm90b2NvbC5BdXRoZW50aWNhdGlvblJlcXVlc3QaRS5FdEFsaWkuVWJp",
+            "IhUKE0xvY2FsU3RvcmFnZVJlcXVlc3QiXwoUTG9jYWxTdG9yYWdlUmVzcG9u",
+            "c2USRwoHU3RvcmFnZRgBIAEoCzI2LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
+            "cG9ydC5HcnBjLldpcmVQcm90b2NvbC5TdG9yYWdlMroFChlBdXRoZW50aWNh",
+            "dGlvbkdycGNTZXJ2aWNlEp0BCgxBdXRoZW50aWNhdGUSRC5FdEFsaWkuVWJp",
             "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQXV0aGVudGlj",
-            "YXRpb25SZXNwb25zZSIAErsBCiBHZXRBY2NvdW50Rm9yQXV0aGVudGljYXRp",
-            "b25Ub2tlbhJJLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
-            "cmVQcm90b2NvbC5BdXRoZW50aWNhdGlvblRva2VuUmVxdWVzdBpKLkV0QWxp",
-            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5BdXRo",
-            "ZW50aWNhdGlvblRva2VuUmVzcG9uc2UiABKcAQoPR2V0TG9jYWxTdG9yYWdl",
-            "EkIuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3Rv",
-            "Y29sLkxvY2FsU3RvcmFnZVJlcXVlc3QaQy5FdEFsaWkuVWJpZ2lhLkFwaS5U",
-            "cmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuTG9jYWxTdG9yYWdlUmVzcG9u",
-            "c2UiAEJyCi1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJl",
-            "UHJvdG9jb2xCBlViaWdpYVABogIGVWJpZ2lhqgItRXRBbGlpLlViaWdpYS5B",
-            "cGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sYgZwcm90bzM="));
+            "YXRpb25SZXF1ZXN0GkUuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sLkF1dGhlbnRpY2F0aW9uUmVzcG9uc2UiABKfAQoO",
+            "QXV0aGVudGljYXRlQXMSRC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "R3JwYy5XaXJlUHJvdG9jb2wuQXV0aGVudGljYXRpb25SZXF1ZXN0GkUuRXRB",
+            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkF1",
+            "dGhlbnRpY2F0aW9uUmVzcG9uc2UiABK7AQogR2V0QWNjb3VudEZvckF1dGhl",
+            "bnRpY2F0aW9uVG9rZW4SSS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
+            "R3JwYy5XaXJlUHJvdG9jb2wuQXV0aGVudGljYXRpb25Ub2tlblJlcXVlc3Qa",
+            "Si5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2wuQXV0aGVudGljYXRpb25Ub2tlblJlc3BvbnNlIgASnAEKD0dldExvY2Fs",
+            "U3RvcmFnZRJCLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
+            "cmVQcm90b2NvbC5Mb2NhbFN0b3JhZ2VSZXF1ZXN0GkMuRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLkxvY2FsU3RvcmFn",
+            "ZVJlc3BvbnNlIgBCcgotRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sQgZVYmlnaWFQAaICBlViaWdpYaoCLUV0QWxpaS5V",
+            "YmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
@@ -58,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationTokenRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationTokenRequest.Parser, new[]{ "AuthenticationToken" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationTokenResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationTokenResponse.Parser, new[]{ "Account" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.LocalStorageRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.LocalStorageRequest.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.LocalStorageResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.LocalStorageResponse.Parser, new[]{ "StorageName" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.LocalStorageResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.LocalStorageResponse.Parser, new[]{ "Storage" }, null, null, null)
           }));
     }
     #endregion
@@ -684,7 +685,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public LocalStorageResponse(LocalStorageResponse other) : this() {
-      storageName_ = other.storageName_;
+      Storage = other.storage_ != null ? other.Storage.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -692,14 +693,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       return new LocalStorageResponse(this);
     }
 
-    /// <summary>Field number for the "StorageName" field.</summary>
-    public const int StorageNameFieldNumber = 1;
-    private string storageName_ = "";
+    /// <summary>Field number for the "Storage" field.</summary>
+    public const int StorageFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage storage_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    public string StorageName {
-      get { return storageName_; }
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage Storage {
+      get { return storage_; }
       set {
-        storageName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+        storage_ = value;
       }
     }
 
@@ -716,14 +717,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if (StorageName != other.StorageName) return false;
+      if (!object.Equals(Storage, other.Storage)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
-      if (StorageName.Length != 0) hash ^= StorageName.GetHashCode();
+      if (storage_ != null) hash ^= Storage.GetHashCode();
       return hash;
     }
 
@@ -734,17 +735,17 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
-      if (StorageName.Length != 0) {
+      if (storage_ != null) {
         output.WriteRawTag(10);
-        output.WriteString(StorageName);
+        output.WriteMessage(Storage);
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
-      if (StorageName.Length != 0) {
-        size += 1 + pb::CodedOutputStream.ComputeStringSize(StorageName);
+      if (storage_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Storage);
       }
       return size;
     }
@@ -754,8 +755,11 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       if (other == null) {
         return;
       }
-      if (other.StorageName.Length != 0) {
-        StorageName = other.StorageName;
+      if (other.storage_ != null) {
+        if (storage_ == null) {
+          storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage();
+        }
+        Storage.MergeFrom(other.Storage);
       }
     }
 
@@ -768,7 +772,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             input.SkipLastField();
             break;
           case 10: {
-            StorageName = input.ReadString();
+            if (storage_ == null) {
+              storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage();
+            }
+            input.ReadMessage(storage_);
             break;
           }
         }

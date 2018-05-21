@@ -32,38 +32,39 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             "SABCCwoJU2VsZWN0aW9uIqABChVSb290UG9zdFNpbmdsZVJlcXVlc3QSRAoH",
             "U3BhY2VJZBgBIAEoCzIzLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5H",
             "cnBjLldpcmVQcm90b2NvbC5HdWlkEkEKBFJvb3QYAiABKAsyMy5FdEFsaWku",
-            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUm9vdCIV",
-            "ChNSb290TXVsdGlwbGVSZXF1ZXN0IlcKElJvb3RTaW5nbGVSZXNwb25zZRJB",
-            "CgRSb290GAEgASgLMjMuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
-            "cGMuV2lyZVByb3RvY29sLlJvb3QiWgoUUm9vdE11bHRpcGxlUmVzcG9uc2US",
-            "QgoFUm9vdHMYASADKAsyMy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "R3JwYy5XaXJlUHJvdG9jb2wuUm9vdDL2BQoPUm9vdEdycGNTZXJ2aWNlEpIB",
-            "CglHZXRTaW5nbGUSQC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3Jw",
-            "Yy5XaXJlUHJvdG9jb2wuUm9vdFNpbmdsZVJlcXVlc3QaQS5FdEFsaWkuVWJp",
-            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUm9vdFNpbmds",
-            "ZVJlc3BvbnNlIgASmAEKC0dldE11bHRpcGxlEkIuRXRBbGlpLlViaWdpYS5B",
-            "cGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLlJvb3RNdWx0aXBsZVJl",
-            "cXVlc3QaQy5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJl",
-            "UHJvdG9jb2wuUm9vdE11bHRpcGxlUmVzcG9uc2UiABKRAQoEUG9zdBJELkV0",
-            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5S",
-            "b290UG9zdFNpbmdsZVJlcXVlc3QaQS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
-            "c3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUm9vdFNpbmdsZVJlc3BvbnNlIgAS",
-            "jAEKA1B1dBJALkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
-            "cmVQcm90b2NvbC5Sb290U2luZ2xlUmVxdWVzdBpBLkV0QWxpaS5VYmlnaWEu",
-            "QXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5Sb290U2luZ2xlUmVz",
-            "cG9uc2UiABKPAQoGRGVsZXRlEkAuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
-            "b3J0LkdycGMuV2lyZVByb3RvY29sLlJvb3RTaW5nbGVSZXF1ZXN0GkEuRXRB",
+            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUm9vdCJb",
+            "ChNSb290TXVsdGlwbGVSZXF1ZXN0EkQKB1NwYWNlSWQYASABKAsyMy5FdEFs",
+            "aWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuR3Vp",
+            "ZCJXChJSb290U2luZ2xlUmVzcG9uc2USQQoEUm9vdBgBIAEoCzIzLkV0QWxp",
+            "aS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5Sb290",
+            "IloKFFJvb3RNdWx0aXBsZVJlc3BvbnNlEkIKBVJvb3RzGAEgAygLMjMuRXRB",
             "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLlJv",
-            "b3RTaW5nbGVSZXNwb25zZSIAQnIKLUV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
-            "cG9ydC5HcnBjLldpcmVQcm90b2NvbEIGVWJpZ2lhUAGiAgZVYmlnaWGqAi1F",
-            "dEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2xi",
-            "BnByb3RvMw=="));
+            "b3Qy9gUKD1Jvb3RHcnBjU2VydmljZRKSAQoJR2V0U2luZ2xlEkAuRXRBbGlp",
+            "LlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLlJvb3RT",
+            "aW5nbGVSZXF1ZXN0GkEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sLlJvb3RTaW5nbGVSZXNwb25zZSIAEpgBCgtHZXRN",
+            "dWx0aXBsZRJCLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
+            "cmVQcm90b2NvbC5Sb290TXVsdGlwbGVSZXF1ZXN0GkMuRXRBbGlpLlViaWdp",
+            "YS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLlJvb3RNdWx0aXBs",
+            "ZVJlc3BvbnNlIgASkQEKBFBvc3QSRC5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFu",
+            "c3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUm9vdFBvc3RTaW5nbGVSZXF1ZXN0",
+            "GkEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3Rv",
+            "Y29sLlJvb3RTaW5nbGVSZXNwb25zZSIAEowBCgNQdXQSQC5FdEFsaWkuVWJp",
+            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUm9vdFNpbmds",
+            "ZVJlcXVlc3QaQS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5X",
+            "aXJlUHJvdG9jb2wuUm9vdFNpbmdsZVJlc3BvbnNlIgASjwEKBkRlbGV0ZRJA",
+            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2Nv",
+            "bC5Sb290U2luZ2xlUmVxdWVzdBpBLkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5z",
+            "cG9ydC5HcnBjLldpcmVQcm90b2NvbC5Sb290U2luZ2xlUmVzcG9uc2UiAEJy",
+            "Ci1FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
+            "b2xCBlViaWdpYVABogIGVWJpZ2lhqgItRXRBbGlpLlViaWdpYS5BcGkuVHJh",
+            "bnNwb3J0LkdycGMuV2lyZVByb3RvY29sYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootSingleRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootSingleRequest.Parser, new[]{ "SpaceId", "Id", "Name", "Root" }, new[]{ "Selection" }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootPostSingleRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootPostSingleRequest.Parser, new[]{ "SpaceId", "Root" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootMultipleRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootMultipleRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootMultipleRequest), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootMultipleRequest.Parser, new[]{ "SpaceId" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootSingleResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootSingleResponse.Parser, new[]{ "Root" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootMultipleResponse), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RootMultipleResponse.Parser, new[]{ "Roots" }, null, null, null)
           }));
@@ -510,11 +511,23 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RootMultipleRequest(RootMultipleRequest other) : this() {
+      SpaceId = other.spaceId_ != null ? other.SpaceId.Clone() : null;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RootMultipleRequest Clone() {
       return new RootMultipleRequest(this);
+    }
+
+    /// <summary>Field number for the "SpaceId" field.</summary>
+    public const int SpaceIdFieldNumber = 1;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid spaceId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid SpaceId {
+      get { return spaceId_; }
+      set {
+        spaceId_ = value;
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -530,12 +543,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(SpaceId, other.SpaceId)) return false;
       return true;
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public override int GetHashCode() {
       int hash = 1;
+      if (spaceId_ != null) hash ^= SpaceId.GetHashCode();
       return hash;
     }
 
@@ -546,11 +561,18 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public void WriteTo(pb::CodedOutputStream output) {
+      if (spaceId_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(SpaceId);
+      }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public int CalculateSize() {
       int size = 0;
+      if (spaceId_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SpaceId);
+      }
       return size;
     }
 
@@ -558,6 +580,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     public void MergeFrom(RootMultipleRequest other) {
       if (other == null) {
         return;
+      }
+      if (other.spaceId_ != null) {
+        if (spaceId_ == null) {
+          spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+        }
+        SpaceId.MergeFrom(other.SpaceId);
       }
     }
 
@@ -569,6 +597,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           default:
             input.SkipLastField();
             break;
+          case 10: {
+            if (spaceId_ == null) {
+              spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+            }
+            input.ReadMessage(spaceId_);
+            break;
+          }
         }
       }
     }
