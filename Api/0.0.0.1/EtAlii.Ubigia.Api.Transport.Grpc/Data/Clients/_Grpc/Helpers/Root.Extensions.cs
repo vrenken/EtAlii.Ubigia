@@ -29,5 +29,10 @@
         {
             return roots.Select(s => s.ToWire());
         }
+        
+        public static IEnumerable<Root> ToLocal(this IEnumerable<WireProtocol.Root> roots)
+        {
+            return roots.Select(s => s.ToLocal());
+        }
     }
 }
