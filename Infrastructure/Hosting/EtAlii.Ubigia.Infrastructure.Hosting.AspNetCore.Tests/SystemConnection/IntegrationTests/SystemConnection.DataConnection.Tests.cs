@@ -6,6 +6,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Xunit;
     
+    [Trait("Technology", "AspNetCore")]
     public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
     {
         private readonly InfrastructureUnitTestContext _testContext;

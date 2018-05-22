@@ -3,6 +3,7 @@
     using Xunit;
 
 
+    [Trait("Technology", "AspNetCore")]
     public sealed class PropertiesRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
