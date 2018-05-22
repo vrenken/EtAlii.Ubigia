@@ -9,8 +9,8 @@
     {
         public override Task<EntrySingleResponse> Post(EntryPostRequest request, ServerCallContext context)
         {
-            var spaceId = request.SpaceId.ToLocal();
-            var entry = _items.Prepare(spaceId);
+            var entry = request.Entry.ToLocal();
+            entry = _items.Store(entry);
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
