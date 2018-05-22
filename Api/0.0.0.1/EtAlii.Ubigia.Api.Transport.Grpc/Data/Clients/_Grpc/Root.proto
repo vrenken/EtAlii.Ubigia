@@ -45,6 +45,7 @@ message RootPostSingleRequest
 
 message RootMultipleRequest
 {
+	Guid SpaceId = 1;
 }
 
 message RootSingleResponse
