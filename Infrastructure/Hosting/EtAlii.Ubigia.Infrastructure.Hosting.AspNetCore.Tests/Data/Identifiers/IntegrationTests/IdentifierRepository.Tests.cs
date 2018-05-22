@@ -4,6 +4,7 @@
     using Xunit;
 
     
+    [Trait("Technology", "AspNetCore")]
     public class IdentifierRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

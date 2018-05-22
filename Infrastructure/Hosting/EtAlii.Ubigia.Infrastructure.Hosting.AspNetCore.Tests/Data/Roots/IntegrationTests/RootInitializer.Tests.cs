@@ -8,6 +8,7 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     
+    [Trait("Technology", "AspNetCore")]
     public sealed class RootInitializerTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

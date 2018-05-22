@@ -5,6 +5,7 @@
     using System.Linq;
 
     
+	[Trait("Technology", "AspNetCore")]
     public class RootRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
