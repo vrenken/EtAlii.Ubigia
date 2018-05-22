@@ -30,5 +30,16 @@
             response.Entries.AddRange(entries.ToWire());
             return Task.FromResult(response);
         }
+        public override Task<EntryMultipleResponse> GetRelated(EntryRelatedRequest request, ServerCallContext context)
+        {
+            var entryId = request.EntryId.ToLocal();
+            var entryRelations = request.EntryRelations.ToLocal();
+            var entriesWithRelation = request.EntriesWithRelation.ToLocal();
+            var entries = _items.GetRelated(entryId, entriesWithRelation, entryRelations);
+
+            var response = new EntryMultipleResponse();
+            response.Entries.AddRange(entries.ToWire());
+            return Task.FromResult(response);
+        }
     }
 }

@@ -9,8 +9,8 @@
     {
         public override Task<EntrySingleResponse> Put(EntryPutRequest request, ServerCallContext context)
         {
-            var entry = request.Entry.ToLocal();
-            entry = _items.Store(entry);
+            var spaceId = request.SpaceId.ToLocal();
+            var entry = _items.Prepare(spaceId);
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
