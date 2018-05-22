@@ -11,7 +11,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(connection.Configuration.AccountName);
+            var account = await GetAccount(connection.Configuration.AccountName, ((IGrpcSpaceConnection)connection).Transport);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);
@@ -19,20 +19,16 @@
             return account;
         }
 
-        private async Task<Api.Account> GetAccount(string accountName)
+        private Task<Api.Account> GetAccount(string accountName, IGrpcSpaceTransport transport)
         {
-            //var request = new AuthenticationTokenRequest { AuthenticationToken = _};
-            //await _client.GetAccountForAuthenticationTokenAsync()
-
-            // TODO: GRPC
-            var account = await Task.FromResult<Api.Account>(null);
-			//var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
+            var account = _account;
+            //var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
             if (account == null)
             {
                 string message = $"Unable to connect using the specified account ({accountName})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
-            return account;
+            return Task.FromResult(account);
         }
 
     }
