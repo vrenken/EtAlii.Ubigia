@@ -16,6 +16,7 @@
     using Xunit;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
+	[Trait("Technology", "Grpc")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;

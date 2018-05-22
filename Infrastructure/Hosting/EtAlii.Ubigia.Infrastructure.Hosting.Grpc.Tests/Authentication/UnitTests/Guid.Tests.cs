@@ -4,6 +4,7 @@
     using System;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
 
+    [Trait("Technology", "Grpc")]
     public class GuidTest
     {
         [Fact]

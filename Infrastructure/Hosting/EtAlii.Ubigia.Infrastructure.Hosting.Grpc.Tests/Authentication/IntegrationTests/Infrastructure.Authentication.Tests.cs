@@ -11,6 +11,7 @@
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
     using Xunit;
 
+	[Trait("Technology", "Grpc")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
