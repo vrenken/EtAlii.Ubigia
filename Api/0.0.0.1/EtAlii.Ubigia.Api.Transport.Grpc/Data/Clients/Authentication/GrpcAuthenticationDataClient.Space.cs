@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
     public partial class GrpcAuthenticationDataClient
     {
@@ -22,12 +23,14 @@
 
         private async Task<Api.Space> GetSpace(string spaceName)
         {
-            // TODO: GRPC
-            var space = await Task.FromResult<Api.Space>(null);
+            var request = new SpaceSingleRequest {Name = spaceName};
+            var response = await _spaceClient.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
             //var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
-			if (space == null)
+
+            var space = response.Space.ToLocal();
+            if (space == null)
 			{
-				string message = $"Unable to connect to the the specified space ({spaceName})";
+				var message = $"Unable to connect to the the specified space ({spaceName})";
 				throw new UnauthorizedInfrastructureOperationException(message);
 			}
 			return space;// s.FirstOrDefault(s => s.Name == spaceName);

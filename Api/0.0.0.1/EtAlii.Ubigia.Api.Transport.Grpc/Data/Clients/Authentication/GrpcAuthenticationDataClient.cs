@@ -5,42 +5,34 @@
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
-        //private HubConnection _accountConnection;
-        //private HubConnection _spaceConnection;
-        //private readonly IHubProxyMethodInvoker _invoker;
         private AuthenticationGrpcService.AuthenticationGrpcServiceClient _client;
+        private StorageGrpcService.StorageGrpcServiceClient _storageClient;
+        private IGrpcSpaceConnection _connection;
+        private SpaceGrpcService.SpaceGrpcServiceClient _spaceClient;
+        private Api.Account _account;
 
         public GrpcAuthenticationDataClient()
-            //IHubProxyMethodInvoker invoker)
         {
-            //_invoker = invoker;
             _hostIdentifier = CreateHostIdentifier();
-
         }
 
-        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
-
-            // TODO: GRPC
-            //var factory = new HubConnectionFactory();
-
-            // TODO: GRPC
-            //_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Account, UriKind.Absolute));
-            //_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Space, UriKind.Absolute));
-            //await _accountConnection.StartAsync();
-            //await _spaceConnection.StartAsync();
+            var channel = spaceConnection.Transport.Channel;
+            _connection = (IGrpcSpaceConnection) spaceConnection;
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            _spaceClient = new SpaceGrpcService.SpaceGrpcServiceClient(channel);
+            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
+            return Task.CompletedTask;
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Disconnect(spaceConnection);
-
-            // TODO: GRPC
-            //await _accountConnection.DisposeAsync();
-            //_accountConnection = null;
-            //await _spaceConnection.DisposeAsync();
-            //_spaceConnection = null;
+            _connection = null;
+            _client = null;
+            _spaceClient = null;
+            _storageClient = null;
+            return Task.CompletedTask;
         }
     }
 }
