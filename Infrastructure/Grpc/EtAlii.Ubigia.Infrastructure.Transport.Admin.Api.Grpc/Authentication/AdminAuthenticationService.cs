@@ -49,23 +49,18 @@
             return Task.FromResult(response);
         }
 
-        public override Task<AuthenticationTokenResponse> GetAccountForAuthenticationToken(AuthenticationTokenRequest request, ServerCallContext context)
-        {
-            return base.GetAccountForAuthenticationToken(request, context);
-        }
-
-        public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
-        {
-            var authenticationToken = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
-
-            var storage = _storageRepository.GetLocal();
-
-            var response = new LocalStorageResponse
-            {
-                StorageName = storage.Name
-            };
-            return Task.FromResult(response);
-        }
+//        public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
+//        {
+//            var authenticationToken = context.RequestHeaders.Single(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+//            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
+//
+//            var storage = _storageRepository.GetLocal();
+//
+//            var response = new LocalStorageResponse
+//            {
+//                StorageName = storage.Name
+//            };
+//            return Task.FromResult(response);
+//        }
     }
 }
