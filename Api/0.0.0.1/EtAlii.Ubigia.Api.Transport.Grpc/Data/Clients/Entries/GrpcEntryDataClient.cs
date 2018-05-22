@@ -2,34 +2,32 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+    using EntryRelation = EtAlii.Ubigia.Api.EntryRelation;
 
     internal class GrpcEntryDataClient : GrpcClientBase, IEntryDataClient<IGrpcSpaceTransport> 
     {
-        //private HubConnection _connection;
-        //private readonly IHubProxyMethodInvoker _invoker;
-        
-        //public GrpcEntryDataClient(
-        //    IHubProxyMethodInvoker invoker)
-        //{
-        //    _invoker = invoker;
-        //}
+        private EntryGrpcService.EntryGrpcServiceClient _client;
+        private IGrpcSpaceConnection _connection;
 
         public async Task<IEditableEntry> Prepare()
         {
-            // TODO: GRPC
+            var request = new EntryPutRequest { SpaceId = Connection.Space.Id.ToWire() };
+            var response = await _client.PutAsync(request, _connection.Transport.AuthenticationHeaders);
             //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Post", Connection.Space.Id);
-            return await Task.FromResult<IEditableEntry>(null);
+            return response.Entry.ToLocal();
         }
 
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            // TODO: GRPC
+            var request = new EntryPostRequest {Entry = ((IComponentEditableEntry)entry).ToWire()};
+            var response = await _client.PostAsync(request, _connection.Transport.AuthenticationHeaders);
             //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
-            //scope.Cache.InvalidateEntry(entry.Id);
+
+            scope.Cache.InvalidateEntry(entry.Id);
             // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
-            ////scope.Cache.InvalidateEntry(result.Id);
-            //return result;
-            return await Task.FromResult<IReadOnlyEntry>(null);
+            //scope.Cache.InvalidateEntry(result.Id);
+            return response.Entry.ToLocal();
         }
 
         public async Task<IReadOnlyEntry> Get(Api.Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
@@ -41,9 +39,10 @@
         {
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
-                // TODO: GRPC
+                var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
+                var response = await _client.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
                 //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
-                return await Task.FromResult<IReadOnlyEntry>(null);
+                return response.Entry.ToLocal();
             });
         }
 
@@ -55,8 +54,9 @@
             {
                 var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
                 {
-                    // TODO: GRPC
-                    return await Task.FromResult<IReadOnlyEntry>(null);
+                    var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
+                    var response = await _client.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
+                    return response.Entry.ToLocal();
                     //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                 });
                 result.Add(entry);
@@ -68,29 +68,27 @@
         {
             return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
             {
-                // TODO: GRPC
-                return await Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
+                var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire()};
+                var response = await _client.GetRelatedAsync(request, _connection.Transport.AuthenticationHeaders);
+                return response.Entries.ToLocal();
                 //return await _invoker.Invoke<IEnumerable<Entry>>(_connection, GrpcHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
             });
         }
 
-        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
-
-            // TODO: GRPC
-            //_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Entry, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
-	        //await _connection.StartAsync();
+            var channel = spaceConnection.Transport.Channel;
+            _connection = (IGrpcSpaceConnection)spaceConnection;
+            _client = new EntryGrpcService.EntryGrpcServiceClient(channel);
+            return Task.CompletedTask;
 
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Disconnect(spaceConnection);
-
-            // TODO: GRPC
-            //await _connection.DisposeAsync();
-            //_connection = null;
+            _connection = null;
+            _client = null;
+            return Task.CompletedTask;
         }
     }
 }
