@@ -1,42 +1,29 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
     internal partial class GrpcContentDataClient : GrpcClientBase, IContentDataClient<IGrpcSpaceTransport>
     {
-        //private HubConnection _contentConnection;
-        //private HubConnection _contentDefinitionConnection;
-        //private readonly IHubProxyMethodInvoker _invoker;
+        private ContentGrpcService.ContentGrpcServiceClient _contentClient;
+        private ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient _contentDefinitionClient;
+        private IGrpcSpaceConnection _connection;
 
-        //public GrpcContentDataClient(IHubProxyMethodInvoker invoker)
-        //{
-        //    _invoker = invoker;
-        //}
-
-        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
-
-            // TODO: GRPC
-            //var factory = new HubConnectionFactory();
-
-            // TODO: GRPC
-	        //_contentConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Content, UriKind.Absolute));
-            //_contentDefinitionConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.ContentDefinition, UriKind.Absolute));
-
-	        //await _contentConnection.StartAsync();
-	        //await _contentDefinitionConnection.StartAsync();
+            var channel = spaceConnection.Transport.Channel;
+            _connection = (IGrpcSpaceConnection) spaceConnection;
+            _contentClient = new ContentGrpcService.ContentGrpcServiceClient(channel);
+            _contentDefinitionClient = new ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient(channel);
+            return Task.CompletedTask;
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Disconnect(spaceConnection);
-
-            // TODO: GRPC
-            //await _contentDefinitionConnection.DisposeAsync();
-            //_contentDefinitionConnection = null;
-            //await _contentConnection.DisposeAsync();
-            //_contentConnection = null;
+            _connection = null;
+            _contentClient = null;
+            _contentDefinitionClient = null;
+            return Task.CompletedTask;
         }
     }
 }

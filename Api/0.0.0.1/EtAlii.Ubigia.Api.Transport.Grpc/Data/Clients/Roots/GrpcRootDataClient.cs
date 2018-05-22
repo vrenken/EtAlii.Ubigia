@@ -2,16 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
 
     internal class GrpcRootDataClient : GrpcClientBase, IRootDataClient<IGrpcSpaceTransport>
     {
-        //private HubConnection _connection;
-        //private readonly IHubProxyMethodInvoker _invoker;
-
-        //public GrpcRootDataClient(IHubProxyMethodInvoker invoker)
-        //{
-        //    _invoker = invoker;
-        //}
+        private RootGrpcService.RootGrpcServiceClient _client;
+        private IGrpcSpaceConnection _connection;
 
         public async Task<Api.Root> Add(string name)
         {
@@ -19,15 +15,15 @@
             {
                 Name = name,
             };
-            // TODO: GRPC
-            return await Task.FromResult<Api.Root>(null);
-            //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "Post", Connection.Space.Id, root);
+            var request = new RootSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
+            var response = await _client.PutAsync(request,_connection.Transport.AuthenticationHeaders);
+            return response.Root.ToLocal();
         }
 
         public async Task Remove(System.Guid rootId)
         {
-            // TODO: GRPC
-            //await _invoker.Invoke(_connection, GrpcHub.Root, "Delete", Connection.Space.Id, rootId);
+            var request = new RootSingleRequest { Id = rootId.ToWire(), SpaceId = Connection.Space.Id.ToWire()}; 
+            await _client.DeleteAsync(request, _connection.Transport.AuthenticationHeaders);
         }
 
         public async Task<Api.Root> Change(System.Guid rootId, string rootName)
@@ -37,49 +33,45 @@
                 Id = rootId,
                 Name = rootName,
             };
-
-            // TODO: GRPC
-            return await Task.FromResult<Api.Root>(null);
-            //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "Put", Connection.Space.Id, rootId, root);
+            var request = new RootPostSingleRequest { Root = root.ToWire(), SpaceId = Connection.Space.Id.ToWire() };
+            var response = await _client.PostAsync(request, _connection.Transport.AuthenticationHeaders);
+            return response.Root.ToLocal();
         }
 
         public async Task<Api.Root> Get(string rootName)
         {
-            // TODO: GRPC
-            return await Task.FromResult<Api.Root>(null);
-            //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "GetByName", Connection.Space.Id, rootName);
+            var request = new RootSingleRequest { Name = rootName, SpaceId = Connection.Space.Id.ToWire() }; 
+            var response = await _client.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
+            return response.Root.ToLocal();
         }
 
         public async Task<Api.Root> Get(System.Guid rootId)
         {
-            // TODO: GRPC
-            return await Task.FromResult<Api.Root>(null);
-            //return await _invoker.Invoke<Root>(_connection, GrpcHub.Root, "GetById", Connection.Space.Id, rootId);
+            var request = new RootSingleRequest { Id = rootId.ToWire(), SpaceId = Connection.Space.Id.ToWire() }; 
+            var response = await _client.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
+            return response.Root.ToLocal();
         }
 
         public async Task<IEnumerable<Api.Root>> GetAll()
         {
-            // TODO: GRPC
-            return await Task.FromResult<IEnumerable<Api.Root>>(null);
-            //return await _invoker.Invoke<IEnumerable<Root>>(_connection, GrpcHub.Root, "GetForSpace", Connection.Space.Id);
+            var request = new RootMultipleRequest { SpaceId = Connection.Space.Id.ToWire()}; 
+            var response = await _client.GetMultipleAsync(request, _connection.Transport.AuthenticationHeaders);
+            return response.Roots.ToLocal();
         }
 
-        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
-
-            // TODO: GRPC
-            //_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Root, UriKind.Absolute));
-	        //await _connection.StartAsync();
+            var channel = spaceConnection.Transport.Channel;
+            _connection = (IGrpcSpaceConnection)spaceConnection;
+            _client = new RootGrpcService.RootGrpcServiceClient(channel);
+            return Task.CompletedTask;
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Disconnect(spaceConnection);
-
-            // TODO: GRPC
-            //await _connection.DisposeAsync();
-            //_connection = null;
+            _connection = null;
+            _client = null;
+            return Task.CompletedTask;
         }
     }
 }
