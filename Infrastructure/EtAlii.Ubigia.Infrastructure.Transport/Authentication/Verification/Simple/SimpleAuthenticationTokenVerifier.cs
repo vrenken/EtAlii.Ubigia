@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -18,14 +19,20 @@
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 
+        
         public void Verify(string authenticationTokenAsString, params string[] requiredRoles)
+        {
+            Verify(authenticationTokenAsString, out _, requiredRoles);
+        }
+
+        public void Verify(string authenticationTokenAsString, out Account account, params string[] requiredRoles)
         {
             var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
             if (authenticationToken != null)
             {
                 try
                 {
-                    var account = _accountRepository.Get(authenticationToken.Name);
+                    account = _accountRepository.Get(authenticationToken.Name);
                     if (account == null)
                     {
 	                    throw new UnauthorizedInfrastructureOperationException("Unauthorized account: Account does not contain the required role");
