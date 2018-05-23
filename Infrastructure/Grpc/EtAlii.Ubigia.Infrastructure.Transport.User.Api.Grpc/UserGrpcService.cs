@@ -30,6 +30,7 @@
 	        var accountAuthenticationInterceptor = container.GetInstance<IAccountAuthenticationInterceptor>();
 
 	        serviceDefinitions.Add(new UserAuthenticationServiceDefinitionFactory().Create(infrastructure));
+	        serviceDefinitions.Add(new UserStorageServiceDefinitionFactory().Create(infrastructure, accountAuthenticationInterceptor));
 	        serviceDefinitions.Add(new UserAccountServiceDefinitionFactory().Create(infrastructure, accountAuthenticationInterceptor));
 	        serviceDefinitions.Add(new UserSpaceServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
 	        serviceDefinitions.Add(new UserRootServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
