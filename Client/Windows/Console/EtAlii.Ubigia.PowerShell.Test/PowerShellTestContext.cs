@@ -21,7 +21,7 @@
 			// between the host/infrastructure and the unit tests.
 
 			Context = new HostTestContextFactory().Create<NetworkedInfrastructureHostTestContext>();
-	        Context.Start(true);
+	        Context.Start();
 
 			PowerShell = CreatePowerShell();
 			InvokeSelectStorage();
