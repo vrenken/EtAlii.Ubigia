@@ -14,7 +14,6 @@
         {
             var grpcConnection = (IGrpcSpaceConnection)connection;
             
-            _connection = grpcConnection;
             var channel = grpcConnection.Transport.Channel;
             _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
             
@@ -36,7 +35,6 @@
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
 
-            _connection = grpcConnection;
             var channel = grpcConnection.Transport.Channel;
             _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
             
