@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
             await Task.Run(() =>
             {
                 Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
-                Context.Start(false);
+                Context.Start();
             });
         }
 

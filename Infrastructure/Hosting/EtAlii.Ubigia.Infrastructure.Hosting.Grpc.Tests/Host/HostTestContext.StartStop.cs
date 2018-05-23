@@ -12,14 +12,14 @@
     public partial class HostTestContext<TInfrastructureTestHost> 
 	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
-	    public void Start(bool useRandomPorts = false)
+	    public void Start()
 	    {
 		    // We need to start each test hosting one at a time. 
 		    // Reason is that this is the only way to make sure that the ports aren't reused.
-		    HostMutex.ExecuteExclusive(() => StartExclusive(useRandomPorts));
+		    HostMutex.ExecuteExclusive(() => StartExclusive(true));
 	    }
 
-        private void StartExclusive(bool useRandomPorts = false)
+        private void StartExclusive(bool useRandomPorts)
         {
             //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
 

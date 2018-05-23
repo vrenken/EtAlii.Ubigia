@@ -25,7 +25,7 @@
 
         string HostName { get; }
 
-        void Start(bool useRandomPorts = false);
+        void Start();
 
         //void Start(IHost host, IInfrastructure infrastructure);
         void Stop();
