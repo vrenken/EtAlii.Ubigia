@@ -2,6 +2,7 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+    using global::Grpc.Core;
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
@@ -20,10 +21,7 @@
 
         public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            var channel = spaceConnection.Transport.Channel;
-            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
-            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
-            _spaceClient = new SpaceGrpcService.SpaceGrpcServiceClient(channel);
+            SetClients(spaceConnection.Transport.Channel);
             return Task.CompletedTask;
         }
 
@@ -34,5 +32,13 @@
             _spaceClient = null;
             return Task.CompletedTask;
         }
+
+        private void SetClients(Channel channel)
+        {
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            _storageClient = new StorageGrpcService.StorageGrpcServiceClient(channel);
+            _spaceClient = new SpaceGrpcService.SpaceGrpcServiceClient(channel);
+        }
+        
     }
 }

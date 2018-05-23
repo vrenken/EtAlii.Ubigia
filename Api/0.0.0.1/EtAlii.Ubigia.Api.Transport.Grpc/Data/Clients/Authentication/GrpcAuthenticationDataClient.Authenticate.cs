@@ -14,8 +14,7 @@
         {
             var grpcConnection = (IGrpcSpaceConnection)connection;
             
-            var channel = grpcConnection.Transport.Channel;
-            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            SetClients(grpcConnection.Transport.Channel);
             
             var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
             if (!String.IsNullOrWhiteSpace(authenticationToken))
@@ -35,8 +34,7 @@
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
 
-            var channel = grpcConnection.Transport.Channel;
-            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            SetClients(grpcConnection.Transport.Channel);
             
             var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
 
