@@ -12,7 +12,8 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Configuration.Space);
+            var transport = ((IGrpcSpaceConnection) connection).Transport;
+            var space = await GetSpace(connection.Configuration.Space, transport);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
@@ -21,10 +22,10 @@
             return space;
         }
 
-        private async Task<Api.Space> GetSpace(string spaceName)
+        private async Task<Api.Space> GetSpace(string spaceName, IGrpcTransport transport)
         {
             var request = new SpaceSingleRequest {Name = spaceName};
-            var response = await _spaceClient.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
+            var response = await _spaceClient.GetSingleAsync(request, transport.AuthenticationHeaders);
             //var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
 
             var space = response.Space.ToLocal();
