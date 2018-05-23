@@ -39,7 +39,7 @@
         private PowerShell CreatePowerShell()
         {
             var path = typeof(Nouns).Assembly.GetName().CodeBase.Replace("file:///", String.Empty);
-            var powerShell = PowerShell.Create();
+            var powerShell = PowerShell.Create(RunspaceMode.NewRunspace);
             powerShell.Commands.AddCommand("Import-Module").AddParameter("Name", path);
             powerShell.Invoke();
             powerShell.Commands.Clear();
