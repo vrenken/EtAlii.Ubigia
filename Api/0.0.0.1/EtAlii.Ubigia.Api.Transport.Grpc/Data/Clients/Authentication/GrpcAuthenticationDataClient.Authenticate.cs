@@ -12,6 +12,11 @@
         public async Task Authenticate(ISpaceConnection connection)
         {
             var grpcConnection = (IGrpcSpaceConnection)connection;
+            
+            _connection = grpcConnection;
+            var channel = grpcConnection.Transport.Channel;
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            
             var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
             
             if (!String.IsNullOrWhiteSpace(authenticationToken))
@@ -28,6 +33,11 @@
         public async Task Authenticate(IStorageConnection connection)
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
+
+            _connection = grpcConnection;
+            var channel = grpcConnection.Transport.Channel;
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
+            
             var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))

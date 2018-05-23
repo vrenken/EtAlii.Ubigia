@@ -9,6 +9,7 @@
         //private HubConnection _spaceConnection;
         //private readonly IHubProxyMethodInvoker _invoker;
         private AuthenticationGrpcService.AuthenticationGrpcServiceClient _client;
+        private IGrpcConnection _connection;
 
         public GrpcAuthenticationDataClient()
             //IHubProxyMethodInvoker invoker)
@@ -20,27 +21,15 @@
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Connect(spaceConnection);
-
-            // TODO: GRPC
-            //var factory = new HubConnectionFactory();
-
-            // TODO: GRPC
-            //_accountConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Account, UriKind.Absolute));
-            //_spaceConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + GrpcHub.Space, UriKind.Absolute));
-            //await _accountConnection.StartAsync();
-            //await _spaceConnection.StartAsync();
+            var channel = spaceConnection.Transport.Channel;
+            _connection = (IGrpcConnection) spaceConnection;
+            _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);
         }
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            await base.Disconnect(spaceConnection);
-
-            // TODO: GRPC
-            //await _accountConnection.DisposeAsync();
-            //_accountConnection = null;
-            //await _spaceConnection.DisposeAsync();
-            //_spaceConnection = null;
+            _connection = null;
+            _client = null;
         }
     }
 }
