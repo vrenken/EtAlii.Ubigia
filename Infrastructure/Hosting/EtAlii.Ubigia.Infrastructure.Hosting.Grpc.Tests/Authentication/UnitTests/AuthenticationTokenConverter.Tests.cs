@@ -7,6 +7,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport;
 
 	// TODO: Move all instances of this test class to single testproject
+    [Trait("Technology", "Grpc")]
     public class AuthenticationTokenConverterTests
     {
         [Fact]

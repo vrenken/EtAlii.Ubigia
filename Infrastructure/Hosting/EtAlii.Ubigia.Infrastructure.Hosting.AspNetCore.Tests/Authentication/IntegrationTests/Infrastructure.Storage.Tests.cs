@@ -11,6 +11,7 @@
     using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
 
+	[Trait("Technology", "AspNetCore")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;

@@ -6,6 +6,7 @@
     using EtAlii.Ubigia.Api.Transport;
 
 
+	[Trait("Technology", "Grpc")]
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

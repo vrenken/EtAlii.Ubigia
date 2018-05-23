@@ -5,6 +5,6 @@
 
     public interface IAdminStorageServiceDefinitionFactory
     {
-        ServerServiceDefinition Create(IInfrastructure infrastructure);
+        ServerServiceDefinition Create(IInfrastructure infrastructure, IAccountAuthenticationInterceptor accountAuthenticationInterceptor);
     }
 }

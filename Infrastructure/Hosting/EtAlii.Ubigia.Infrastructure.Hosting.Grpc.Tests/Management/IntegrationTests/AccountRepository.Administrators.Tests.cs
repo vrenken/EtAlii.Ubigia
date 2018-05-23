@@ -7,6 +7,7 @@
     using System.Linq;
 
 
+	[Trait("Technology", "Grpc")]
     public class AccountRepositoryAdministratorsTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

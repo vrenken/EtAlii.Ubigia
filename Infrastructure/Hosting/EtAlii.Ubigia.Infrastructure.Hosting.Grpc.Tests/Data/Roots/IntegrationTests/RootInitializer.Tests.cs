@@ -8,6 +8,7 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     
+    [Trait("Technology", "Grpc")]
     public sealed class RootInitializerTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

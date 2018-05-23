@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
+﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using System;
     using System.Linq;
@@ -26,7 +26,7 @@
             }
             
             var authenticationToken = authenticationTokenHeader.Value;
-            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
+            _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
             
             // TODO: Check space ID.
         }

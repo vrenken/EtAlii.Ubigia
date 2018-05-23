@@ -8,6 +8,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
     
+    [Trait("Technology", "AspNetCore")]
     public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

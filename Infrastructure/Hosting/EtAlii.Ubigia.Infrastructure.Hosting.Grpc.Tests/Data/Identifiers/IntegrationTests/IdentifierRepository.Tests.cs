@@ -4,6 +4,7 @@
     using Xunit;
 
     
+    [Trait("Technology", "Grpc")]
     public class IdentifierRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

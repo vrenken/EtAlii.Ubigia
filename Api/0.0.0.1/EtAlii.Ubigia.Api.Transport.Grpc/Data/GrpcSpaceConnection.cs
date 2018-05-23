@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-    internal class GrpcSpaceConnection : SpaceConnection<GrpcSpaceTransport>, IGrpcSpaceConnection
+    internal class GrpcSpaceConnection : SpaceConnection<IGrpcSpaceTransport>, IGrpcSpaceConnection
     {
         public GrpcSpaceConnection(
             ISpaceTransport transport, 

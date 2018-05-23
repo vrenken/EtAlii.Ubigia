@@ -5,6 +5,7 @@
     using System.Linq;
 
     
+	[Trait("Technology", "Grpc")]
     public class RootRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
