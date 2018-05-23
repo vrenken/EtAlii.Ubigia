@@ -30,22 +30,28 @@
 
         public override Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
         {
-            var authenticationToken = _authenticationVerifier.Verify(request.AccountName, request.Password, request.HostIdentifier, Role.User, Role.System);
+            var authenticationToken = _authenticationVerifier.Verify(request.AccountName, request.Password, request.HostIdentifier, out EtAlii.Ubigia.Api.Account account, Role.User, Role.System);
 
+            // We do not want to return the password.
+            account.Password = null;
+            
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken);
-            var response = new AuthenticationResponse();
+            var response = new AuthenticationResponse { Account = account.ToWire() };
             return Task.FromResult(response);
         }
 
         public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
             var currentAccountAuthenticationToken = context.RequestHeaders.Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-            _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
+            _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, out EtAlii.Ubigia.Api.Account account, Role.User, Role.System);
 
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
 
+            // We do not want to return the password.
+            account.Password = null;
+
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, otherAccountAuthenticationToken);
-            var response = new AuthenticationResponse();
+            var response = new AuthenticationResponse { Account = account.ToWire() };
             return Task.FromResult(response);
         }
 //
