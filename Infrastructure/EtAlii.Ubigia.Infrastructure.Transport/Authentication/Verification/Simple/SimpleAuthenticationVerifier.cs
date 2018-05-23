@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -20,12 +21,17 @@
 
         public string Verify(string accountName, string password, string hostIdentifier, params string[] requiredRoles)
         {
+            return Verify(accountName, password, hostIdentifier, out _, requiredRoles);
+        }
+
+        public string Verify(string accountName, string password, string hostIdentifier, out Account account, params string[] requiredRoles)
+        {
             if (String.IsNullOrWhiteSpace(accountName) || String.IsNullOrWhiteSpace(password))
             {
                 throw new InvalidInfrastructureOperationException("Unauthorized");
             }
 
-            var account = _accountRepository.Get(accountName, password);
+            account = _accountRepository.Get(accountName, password);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException("Invalid account");
