@@ -7,6 +7,7 @@
 
 
 	// TODO: Move all instances of this test class to single testproject
+    [Trait("Technology", "AspNetCore")]
     public class AesTest
     {
         [Fact]

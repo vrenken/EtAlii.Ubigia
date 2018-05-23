@@ -6,6 +6,7 @@
     using System.Linq;
 
     
+	[Trait("Technology", "AspNetCore")]
     public sealed class StorageRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

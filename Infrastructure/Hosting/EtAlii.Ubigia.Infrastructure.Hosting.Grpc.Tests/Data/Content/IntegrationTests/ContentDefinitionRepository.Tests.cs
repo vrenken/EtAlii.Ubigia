@@ -5,6 +5,7 @@
     using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
+    [Trait("Technology", "Grpc")]
     public sealed class ContentDefinitionRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;

@@ -6,6 +6,7 @@
     using EtAlii.Ubigia.Api.Transport;
 
 
+	[Trait("Technology", "AspNetCore")]
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
