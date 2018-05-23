@@ -29,13 +29,13 @@
 		private async Task<Metadata> CreateAuthenticationHeaders(Channel channel, InProcessInfrastructureHostTestContext context)
 		{
 			var authenticationClient = new AdminAuthenticationClient(channel);
-			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword };
+			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 			
 			var call = authenticationClient.AuthenticateAsync(authenticationRequest);
 			var authenticationResponse = await call.ResponseAsync; 
 			var authenticationToken = call
 				.GetTrailers()
-				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
+				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Value;
 			var headers = new Metadata {{GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken}};
 			return headers;
 		}
