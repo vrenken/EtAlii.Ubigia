@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
+﻿using System;
+
+namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -12,7 +14,7 @@
             {
                 Id = account.Id.ToLocal(),
                 Created = account.Created.ToDateTime(),
-                Updated = account.Updated.ToDateTime(),
+                Updated = account.Updated?.ToDateTime(),
                 Name = account.Name,
                 Password = account.Password,
                 Roles = account.Roles.ToArray()
@@ -27,8 +29,11 @@
                 Created = Timestamp.FromDateTime(account.Created),
                 Updated = account.Updated.HasValue ? Timestamp.FromDateTime(account.Updated.Value) : null,
                 Name = account.Name,
-                Password = account.Password,
             };
+            if (account.Password != null)
+            {
+                result.Password = account.Password;
+            }
             result.Roles.AddRange(account.Roles.ToArray());
             return result;
         }
