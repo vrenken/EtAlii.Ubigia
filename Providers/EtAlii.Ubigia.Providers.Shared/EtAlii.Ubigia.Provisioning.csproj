@@ -36,7 +36,7 @@
     <Compile Remove="LocalInfrastructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.41" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.43" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.4.1" />
   </ItemGroup>
   <ItemGroup>
