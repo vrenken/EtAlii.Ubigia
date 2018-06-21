@@ -21,7 +21,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.41" />
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.43" />
     <PackageReference Include="System.Management.Automation" Version="6.0.2" />
   </ItemGroup>
   <ItemGroup>
