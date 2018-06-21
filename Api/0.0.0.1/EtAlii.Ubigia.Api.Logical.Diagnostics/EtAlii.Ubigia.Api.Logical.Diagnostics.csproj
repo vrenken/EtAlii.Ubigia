@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -11,11 +10,11 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric.Diagnostics\EtAlii.Ubigia.Api.Fabric.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj" />

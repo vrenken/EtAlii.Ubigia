@@ -1,12 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc.csproj" />
   </ItemGroup>
-
 </Project>
