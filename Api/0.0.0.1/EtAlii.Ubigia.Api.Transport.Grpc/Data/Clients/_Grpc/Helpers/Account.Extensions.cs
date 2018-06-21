@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace EtAlii.Ubigia.Api.Transport.Grpc
+﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System.Collections.Generic;
     using System.Linq;
