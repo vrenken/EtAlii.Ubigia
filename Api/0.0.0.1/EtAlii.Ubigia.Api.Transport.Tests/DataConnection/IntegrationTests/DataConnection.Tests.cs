@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    
     public class DataConnectionTests : IClassFixture<TransportUnitTestContext>, IDisposable
     {
         private readonly TransportUnitTestContext _testContext;

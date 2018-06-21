@@ -17,12 +17,14 @@
 
         public static WireProtocol.Space ToWire(this Space space)
         {
-            return new WireProtocol.Space
-            {
-                Id = space.Id.ToWire(),
-                AccountId = space.AccountId.ToWire(),
-                Name = space.Name
-            };
+            return space == null 
+                ? null
+                : new WireProtocol.Space 
+                {
+                    Id = space.Id.ToWire(),
+                    AccountId = space.AccountId.ToWire(),
+                    Name = space.Name
+                };
         }
 
         public static IEnumerable<WireProtocol.Space> ToWire(this IEnumerable<Space> spaces)
