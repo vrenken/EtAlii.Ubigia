@@ -27,7 +27,8 @@
                 Template = template.ToString()
             };
             var call = _client.PostAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Space.ToLocal();
             //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Post", space, template.Name);
@@ -40,7 +41,8 @@
                 Id = spaceId.ToWire(),
             };
             var call = _client.DeleteAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             //await _invoker.Invoke(_connection, GrpcHub.Space, "Delete", spaceId);
         }
 
@@ -57,7 +59,8 @@
                 Space = space,
             };
             var call = _client.PutAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Space.ToLocal();
             //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Put", spaceId, space);
@@ -70,7 +73,8 @@
                 Name = spaceName,
             };
             var call = _client.GetSingleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Space.ToLocal();
             //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "GetForAccount", accountId, spaceName);
@@ -83,7 +87,8 @@
                 Id = spaceId.ToWire(),
             };
             var call = _client.GetSingleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Space.ToLocal();
             //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Get", spaceId);
@@ -96,7 +101,8 @@
                 AccountId = accountId.ToWire(),
             };
             var call = _client.GetMultipleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Spaces.ToLocal();
             //return await _invoker.Invoke<IEnumerable<Api.Space>>(_connection, GrpcHub.Space, "GetAllForAccount", accountId);
