@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -7,39 +6,38 @@
     <Company>EtAlii</Company>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <OutputType>WinExe</OutputType>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47</NameOfOriginalMSBuildProject>
   </PropertyGroup>
-
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-
   <!-- anywhere in the middle -->
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
   </ItemGroup>
-
   <ItemGroup>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-
-
   <ItemGroup>
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Provisioning.Facebook.csproj" />
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Provisioning.Mail.csproj" />
@@ -51,8 +49,6 @@
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj" />
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj" />
   </ItemGroup>
-
-
   <ItemGroup>
     <!-- xaml -->
     <ApplicationDefinition Include="App.xaml">
@@ -65,7 +61,6 @@
     </Page>
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
   </ItemGroup>
-
   <ItemGroup>
     <EmbeddedResource Include="Icon-Logo-Black.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
@@ -77,18 +72,14 @@
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-
   <ItemGroup>
-
     <!-- Resources -->
     <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
     <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
-
     <!-- Settings -->
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
-
   <ItemGroup>
     <!-- Configuration elements -->
     <None Update="App.config">
@@ -98,12 +89,9 @@
       <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
-  
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics\EtAlii.Ubigia.Provisioning.Hosting.Diagnostics.csproj" />
   </ItemGroup>
-
   <!-- near the bottom -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-
 </Project>
