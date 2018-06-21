@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using Microsoft.AspNetCore.SignalR;
 
     public class RootHub : HubBase
     {

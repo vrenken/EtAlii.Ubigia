@@ -34,7 +34,7 @@
 
 	    public string AuthenticateAs(string accountName, string hostIdentifier)
 	    {
-		    Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+		    Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
 		    var authenticationToken = stringValues.Single();
 		    _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 
@@ -43,7 +43,7 @@
 
 		public Storage GetLocalStorage()
         {
-            Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+            Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
             var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);
 

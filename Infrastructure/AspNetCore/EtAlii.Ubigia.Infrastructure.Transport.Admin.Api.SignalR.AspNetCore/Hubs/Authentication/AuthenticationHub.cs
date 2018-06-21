@@ -31,7 +31,7 @@
 
         public Storage GetLocalStorage()
         {
-			var httpContext = Context.Connection.GetHttpContext();
+			var httpContext = Context.GetHttpContext();
 		    httpContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
             var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);

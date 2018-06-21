@@ -43,7 +43,7 @@
 			Account response;
 			try
 			{
-				var httpContext = Context.Connection.GetHttpContext();
+				var httpContext = Context.GetHttpContext();
 				httpContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
 				var authenticationTokenAsString = stringValues.Single();
 				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString);
