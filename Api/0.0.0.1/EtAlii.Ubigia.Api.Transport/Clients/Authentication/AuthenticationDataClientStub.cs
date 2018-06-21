@@ -11,22 +11,13 @@
         {
             await Task.Run(() => { });
         }
-
-        public async Task Authenticate(IStorageConnection connection)
-        {
-            await Task.Run(() => { });
-        }
+        
 
         public async Task<Storage> GetConnectedStorage(ISpaceConnection connection)
         {
             return await Task.FromResult<Storage>(null);
         }
-
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
-        {
-            return await Task.FromResult<Storage>(null);
-        }
-
+        
         public async Task<Account> GetAccount(ISpaceConnection connection)
         {
             return await Task.FromResult<Account>(null);
