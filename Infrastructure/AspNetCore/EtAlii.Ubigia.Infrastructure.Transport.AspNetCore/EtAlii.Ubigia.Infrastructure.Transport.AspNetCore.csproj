@@ -22,8 +22,9 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.41" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.61" />
-    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.1.0-preview2-30015" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.64" />
+    <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.1.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />

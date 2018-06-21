@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -11,13 +10,16 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Frameworks\Microsoft.AspNetCore.SignalR\src\Microsoft.AspNetCore.SignalR.Client\Microsoft.AspNetCore.SignalR.Client.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.Json" Version="1.0.1" />
   </ItemGroup>
 </Project>
