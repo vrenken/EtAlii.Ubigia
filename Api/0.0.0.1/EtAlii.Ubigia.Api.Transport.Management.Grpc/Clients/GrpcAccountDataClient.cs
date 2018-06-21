@@ -27,7 +27,8 @@
                 Template = template.ToString()
             };
             var call = _client.PostAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Account.ToLocal();
             //return await _invoker.Invoke<Api.Account>(_connection, GrpcHub.Account, "Post", account, template.Name);
@@ -40,7 +41,8 @@
                 Id = accountId.ToWire()
             };
             var call = _client.DeleteAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             //await _invoker.Invoke(_connection, GrpcHub.Account, "Delete", accountId);
         }
 
@@ -58,7 +60,8 @@
                 Account = account,
             };
             var call = _client.PutAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Account.ToLocal();
             //return await _invoker.Invoke<Api.Account>(_connection, GrpcHub.Account, "Put", accountId, account);
@@ -71,7 +74,8 @@
                 Account = account.ToWire(),
             };
             var call = _client.PutAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Account.ToLocal();
             //return await _invoker.Invoke<Api.Account>(_connection, GrpcHub.Account, "Put", account.Id, account);
@@ -84,7 +88,8 @@
                 Name = accountName,
             };
             var call = _client.GetSingleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Account.ToLocal();
             //return await _invoker.Invoke<Api.Account>(_connection, GrpcHub.Account, "GetByName", accountName);
@@ -97,7 +102,8 @@
                 Id = accountId.ToWire()
             };
             var call = _client.GetSingleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Account.ToLocal();
             //return await _invoker.Invoke<Api.Account>(_connection, GrpcHub.Account, "Get", accountId);
@@ -109,7 +115,8 @@
             {
             };
             var call = _client.GetMultipleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
 
             return response.Accounts.ToLocal();
             //return await _invoker.Invoke<IEnumerable<Api.Account>>(_connection, GrpcHub.Account, "GetAll");

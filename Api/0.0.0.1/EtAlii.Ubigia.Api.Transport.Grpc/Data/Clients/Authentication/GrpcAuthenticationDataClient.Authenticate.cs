@@ -57,7 +57,8 @@
 	        {
 	            var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
 	            var call = _client.AuthenticateAsAsync(request);
-	            var response = await call.ResponseAsync;
+	            var response = await call.ResponseAsync
+	                .ConfigureAwait(false);
 	            _account = response.Account?.ToLocal();
 	            
 	            var newAuthenticationToken = call
@@ -73,7 +74,8 @@
             {
                 var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                 var call = _client.AuthenticateAsync(request);
-                var response = await call.ResponseAsync;
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
                 _account = response.Account?.ToLocal();
                 
                 var newAuthenticationToken = call
