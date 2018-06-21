@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -8,21 +7,24 @@
     <Description>Unit test project</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ApplicationIcon />
     <OutputType>Exe</OutputType>
     <StartupObject>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47.Program</StartupObject>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47</NameOfOriginalMSBuildProject>
   </PropertyGroup>
-
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-
   <!-- anywhere in the middle -->
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
@@ -35,18 +37,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.0.2.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting\EtAlii.Ubigia.Provisioning.Hosting.csproj" />
   </ItemGroup>
-
-  
   <ItemGroup>
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Facebook\EtAlii.Ubigia.Provisioning.Facebook.csproj" />
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Providers.Mail\EtAlii.Ubigia.Provisioning.Mail.csproj" />
@@ -58,7 +56,6 @@
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Google\EtAlii.Ubigia.Provisioning.Google.csproj" />
     <ProjectReference Include="..\..\..\Providers\EtAlii.Ubigia.Provisioning.Microsoft.Graph\EtAlii.Ubigia.Provisioning.Microsoft.Graph.csproj" />
   </ItemGroup>
-
   <ItemGroup>
     <!-- Configuration elements -->
     <None Update="App.config">
@@ -68,8 +65,6 @@
       <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
-
   <!-- near the bottom -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-
 </Project>
