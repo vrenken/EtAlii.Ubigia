@@ -17,7 +17,7 @@
 
         public override Task OnConnectedAsync()
         {
-            Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
+            Context.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues);
             var authenticationToken = stringValues.Single();
             _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System);
 

@@ -2,6 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using Microsoft.AspNetCore.SignalR;
 
     public partial class EntryHub : HubBase
     {
