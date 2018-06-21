@@ -117,8 +117,8 @@
 </Target>
 
 <ItemGroup>
-  <PackageReference Include="Google.Protobuf" Version="3.5.1" />
-  <PackageReference Include="Google.Protobuf.Tools" Version="3.5.1" />
+  <PackageReference Include="Google.Protobuf" Version="3.6.0" />
+  <PackageReference Include="Google.Protobuf.Tools" Version="3.6.0" />
   <PackageReference Include="Grpc" Version="1.12.0" />
   <PackageReference Include="Grpc.Tools" Version="1.12.0" />
 </ItemGroup>
@@ -132,7 +132,7 @@
     <DependentUpon>$([System.String]::Copy('%(Filename)%(Extension)').Replace('$(GrpcSubCsFileExtension)','.proto'))</DependentUpon>
   </Compile>
 
-  <None Include="$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\3.5.1\tools\google\protobuf\*.proto" Visible="False" >
+  <None Include="$(NuGetPackageRoot)$(ProtoBufToolsPackageName)\3.6.0\tools\google\protobuf\*.proto" Visible="False" >
     <Link>Data\Clients\_Grpc\Google\Protobuf\%(Filename)%(Extension)</Link>
   </None>       
 </ItemGroup>
