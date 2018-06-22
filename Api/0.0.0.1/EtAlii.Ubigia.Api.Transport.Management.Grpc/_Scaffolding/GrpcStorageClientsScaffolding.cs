@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class GrpcStorageClientsScaffolding : IScaffolding
@@ -12,7 +11,7 @@
 
             //container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
 
-            container.Register<IAuthenticationDataClient, GrpcAuthenticationDataClient>();
+            container.Register<IAuthenticationManagementDataClient, GrpcAuthenticationManagementDataClient>();
 
             container.Register<IStorageDataClient, GrpcStorageDataClient>();
             container.Register<IAccountDataClient, GrpcAccountDataClient>();
