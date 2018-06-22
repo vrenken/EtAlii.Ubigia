@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public abstract class StorageConnection<TTransport> : IStorageConnection<TTransport>
         where TTransport : IStorageTransport
@@ -15,7 +14,7 @@
 
         public IAccountContext Accounts { get; }
 
-        private readonly IAuthenticationContext _authentication;
+        public IAuthenticationManagementContext Authentication { get; }
 
         public ISpaceContext Spaces { get; }
 
@@ -29,14 +28,14 @@
             IStorageContext storages, 
             ISpaceContext spaces,
             IAccountContext accounts,
-            IAuthenticationContext authentication)
+            IAuthenticationManagementContext authentication)
         {
             Transport = (TTransport)transport;
             Configuration = configuration;
             Storages = storages;
             Spaces = spaces;
             Accounts = accounts;
-            _authentication = authentication;
+            Authentication = authentication;
         }
 
         public async Task Close()
@@ -61,9 +60,9 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await  _authentication.Data.Authenticate(this);
+            await  Authentication.Data.Authenticate(this);
 
-            Storage = await _authentication.Data.GetConnectedStorage(this);
+            Storage = await Authentication.Data.GetConnectedStorage(this);
 
             Transport.Initialize(this, Configuration.Address);
 
