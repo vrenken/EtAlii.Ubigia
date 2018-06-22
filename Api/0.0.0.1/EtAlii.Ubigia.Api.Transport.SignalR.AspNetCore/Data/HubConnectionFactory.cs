@@ -1,33 +1,24 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
 	using System;
+	using System.Collections.Generic;
 	using System.Net.Http;
-	using Microsoft.AspNetCore.SignalR;
+	using Microsoft.AspNetCore.Http.Connections;
 	using Microsoft.AspNetCore.SignalR.Client;
-    using Microsoft.AspNetCore.Sockets;
-    using Microsoft.Extensions.Logging;
+	using Microsoft.Extensions.DependencyInjection;
 
 	public class HubConnectionFactory
     {
-	    private IHubConnectionBuilder CreateBuilder(HttpMessageHandler httpClientHandler, Uri address)
-	    {
-		    var builder = new HubConnectionBuilder()
-			    .WithUrl(address)
-			    //.WithTransport(TransportType.WebSockets) // TODO: Activate websockets based testing when it becomes supported. 
-			    .WithTransport(TransportType.LongPolling)
-			    .WithConsoleLogger(LogLevel.Debug)
-			    .WithJsonProtocol(new JsonHubProtocolOptions { PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() });
-		    if (httpClientHandler != null)
-		    {
-			    builder = builder.WithMessageHandler(httpClientHandler);
-		    }
-			return builder;
-	    }
-
 	    public HubConnection CreateForHost(HttpMessageHandler httpClientHandler, Uri address, string hostIdentifier)
 	    {
-		    var builder = CreateBuilder(httpClientHandler, address);
-		    builder = builder.WithHeader("Host-Identifier", hostIdentifier);
+		    var builder = new HubConnectionBuilder()
+		        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+				.WithUrl(address, options =>
+			    {
+				    options.HttpMessageHandlerFactory = (handler) => httpClientHandler ?? handler;
+					options.Transports = HttpTransportType.LongPolling;
+					options.Headers = new Dictionary<string, string>() {{"Host-Identifier", hostIdentifier}};
+				});		    
 			return builder.Build();
 		}
 
@@ -42,8 +33,14 @@
 
 		public HubConnection Create(HttpMessageHandler httpClientHandler, Uri address, string authenticationToken)
 	    {
-		    var builder = CreateBuilder(httpClientHandler, address);
-			builder = builder.WithHeader("Authentication-Token", authenticationToken);
+		    var builder = new HubConnectionBuilder()
+			    .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+				.WithUrl(address, options =>
+			    {
+				    options.HttpMessageHandlerFactory = (handler) => httpClientHandler ?? handler;
+					options.Transports = HttpTransportType.LongPolling;
+					options.Headers = new Dictionary<string, string>() {{"Authentication-Token", authenticationToken}};
+				});
 			return builder.Build();
         }
     }
