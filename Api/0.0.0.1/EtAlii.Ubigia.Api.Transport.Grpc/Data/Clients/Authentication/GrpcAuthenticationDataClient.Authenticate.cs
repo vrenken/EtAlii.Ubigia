@@ -15,28 +15,15 @@
             var grpcConnection = (IGrpcSpaceConnection)connection;
             
             SetClients(grpcConnection.Transport.Channel);
-            
-            var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
-            {
-                grpcConnection.Transport.AuthenticationToken = authenticationToken;
-                grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
-            }
-            else
-            {
-                grpcConnection.Transport.AuthenticationHeaders = null;
-                string message = $"Unable to authenticate on the specified storage ({grpcConnection.Configuration.Address})";
-                throw new UnauthorizedInfrastructureOperationException(message);
-            }
-        }
 
-        public async Task Authenticate(IStorageConnection connection)
-        {
-            var grpcConnection = (IGrpcStorageConnection)connection;
-
-            SetClients(grpcConnection.Transport.Channel);
-            
-            var authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
+            string authenticationToken = null;
+            try
+            {
+                authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
+            }
+            catch (global::Grpc.Core.RpcException e)
+            {
+            }
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
