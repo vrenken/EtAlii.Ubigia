@@ -12,7 +12,7 @@
 
             container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
 
-            container.Register<IAuthenticationDataClient, SignalRAuthenticationDataClient>();
+            container.Register<IAuthenticationManagementDataClient, SignalRAuthenticationManagementDataClient>();
 
             container.Register<IStorageDataClient, SignalRStorageDataClient>();
             container.Register<IAccountDataClient, SignalRAccountDataClient>();
