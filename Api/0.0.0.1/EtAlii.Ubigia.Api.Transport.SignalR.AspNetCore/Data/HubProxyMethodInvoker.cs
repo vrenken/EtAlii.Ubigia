@@ -12,14 +12,17 @@
         {
             try
             {
-                return await connection.InvokeAsync<T>(methodName, parameters);
+                return await connection.InvokeCoreAsync<T>(methodName, parameters);
             }
             catch (Exception e) when (
                 e.Message == "Invalid account" || 
                 e.Message == "Unauthorized" ||
                 e.Message == "Invalid identifier" ||
                 e.Message == "Missing Authentication-Token" ||
-                e.Message.StartsWith("Unauthorized account")) 
+                e.Message.StartsWith("Unauthorized account") ||
+                e.Message.Contains("'Authentication'") ||
+                e.Message.Contains("'Authenticate'") ||
+                e.Message.Contains("'GetLocalStorage'"))
             {
                 throw new UnauthorizedInfrastructureOperationException(e.Message, e);
             }
@@ -39,14 +42,17 @@
         {
             try
             {
-                await connection.InvokeAsync(methodName, parameters);
+                await connection.InvokeCoreAsync(methodName, parameters);
             }
             catch (Exception e) when (
                 e.Message == "Invalid account" ||
                 e.Message == "Unauthorized" ||
                 e.Message == "Invalid identifier" ||
                 e.Message == "Missing Authentication-Token" ||
-                e.Message.StartsWith("Unauthorized account"))
+                e.Message.StartsWith("Unauthorized account") ||
+                e.Message.Contains("'Authentication'") ||
+                e.Message.Contains("'Authenticate'") ||
+                e.Message.Contains("'GetLocalStorage'"))
             {
                 throw new UnauthorizedInfrastructureOperationException(e.Message, e);
             }
