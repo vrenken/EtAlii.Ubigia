@@ -1,11 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
+    using System;
     using System.Linq;
     using System.Security.Principal;
     using System.Threading;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;
@@ -74,7 +75,8 @@
         private IActionResult Challenge(HttpContext context, Controller controller)
         {
             //var host = context.Request.RequestUri.DnsSafeHost;
-            var host = context.Request.GetUri().DnsSafeHost;
+            //var host = context.Request.GetUri().DnsSafeHost;
+            var host = new Uri(context.Request.GetDisplayUrl()).DnsSafeHost;
 
             var respondWithChallenge = true;
             if (context.Request.Headers.TryGetValue("RespondWithChallenge", out StringValues challenges))
