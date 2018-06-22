@@ -28,13 +28,14 @@
                         .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
                         .AddSingleton<IStorageRepository>(infrastructure.Storages)
 
-						.AddInfrastructureSimpleAuthentication(infrastructure)
-						.AddInfrastructureSerialization()
+                        .AddInfrastructureSimpleAuthentication(infrastructure)
+                        .AddInfrastructureSerialization()
 
-	                    .AddCors()
+                        .AddCors()
                         .AddSignalR()
-		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
-				},
+                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+                        //.AddHubOptions(options => options.EnableDetailedErrors = true);
+                },
                 appBuilder =>
                 {
                     appBuilder
