@@ -22,7 +22,7 @@
 
             // Data clients.
             container.Register<IAuthenticationDataClient, SystemAuthenticationDataClient>();
-
+            
             container.Register<IEntryDataClient, SystemEntryDataClient>();
             container.Register<IEntryNotificationClient, EntryNotificationClientStub>();
 
@@ -36,6 +36,8 @@
             container.Register<IContentNotificationClient, ContentNotificationClientStub>();
 
             // Only management data clients as we do not have any management notification clients (yet).
+            container.Register<IAuthenticationManagementDataClient, SystemAuthenticationManagementDataClient>();
+
             container.Register<IStorageDataClient, SystemStorageDataClient>();
             container.Register<IAccountDataClient, SystemAccountDataClient>();
             container.Register<ISpaceDataClient, SystemSpaceDataClient>();
