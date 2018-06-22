@@ -7,12 +7,14 @@
     {
         public static Space ToLocal(this WireProtocol.Space space)
         {
-            return new Space
-            {
-                Id = space.Id.ToLocal(),
-                AccountId = space.AccountId.ToLocal(),
-                Name = space.Name
-            };
+            return space == null
+                ? null
+                : new Space
+                {
+                    Id = space.Id.ToLocal(),
+                    AccountId = space.AccountId.ToLocal(),
+                    Name = space.Name
+                };
         }
 
         public static WireProtocol.Space ToWire(this Space space)
