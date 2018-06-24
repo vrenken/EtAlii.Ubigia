@@ -32,7 +32,8 @@
 			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 			
 			var call = authenticationClient.AuthenticateAsync(authenticationRequest);
-			var authenticationResponse = await call.ResponseAsync; 
+			var authenticationResponse = await call.ResponseAsync
+				.ConfigureAwait(false); 
 			var authenticationToken = call
 				.GetTrailers()
 				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Value;

@@ -32,7 +32,8 @@
 	
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync
+			    .ConfigureAwait(false);
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -53,7 +54,8 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync
+			    .ConfigureAwait(false);
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -74,7 +76,8 @@
 
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync
+			    .ConfigureAwait(false);
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -95,7 +98,8 @@
 
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync
+			    .ConfigureAwait(false);
 		    
 		    // Assert.
 		    Assert.NotNull(response);
@@ -116,7 +120,8 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync
+			    .ConfigureAwait(false);
 		    
 		    // Assert.
 		    Assert.NotNull(response);
@@ -137,7 +142,8 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync;
+		    var response = await call.ResponseAsync
+			    .ConfigureAwait(false);
 
 		    // Assert.
 		    Assert.NotNull(response);

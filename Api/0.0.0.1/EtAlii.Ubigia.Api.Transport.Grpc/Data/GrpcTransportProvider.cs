@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
         public ISpaceTransport GetSpaceTransport()
         {
             return new GrpcSpaceTransport(
-	            _grpcChannelFactory?.Invoke(),
+	            _grpcChannelFactory,
 				v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
