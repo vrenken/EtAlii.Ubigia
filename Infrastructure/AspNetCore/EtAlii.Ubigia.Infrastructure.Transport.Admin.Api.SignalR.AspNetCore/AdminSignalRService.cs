@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore
 {
+    using System.Diagnostics;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -33,8 +34,11 @@
 
                         .AddCors()
                         .AddSignalR()
-                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
-                        //.AddHubOptions(options => options.EnableDetailedErrors = true);
+                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+                        .AddHubOptions<AuthenticationHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
+                        .AddHubOptions<StorageHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
+                        .AddHubOptions<SpaceHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
+                        .AddHubOptions<AccountHub>(options => options.EnableDetailedErrors = Debugger.IsAttached);
                 },
                 appBuilder =>
                 {
