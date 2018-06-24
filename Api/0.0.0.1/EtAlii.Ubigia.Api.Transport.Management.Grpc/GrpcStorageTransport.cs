@@ -11,24 +11,30 @@
     {
 		private bool _started;
 
-	    public Channel Channel { get; }
-	    
+	    public Channel Channel => GetChannel();
+	    private Channel _channel;
+
 	    public Metadata AuthenticationHeaders { get; set; }
 	    
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
+	    private readonly Func<Channel> _grpcChannelFactory;
 
         public GrpcStorageTransport(
-	        Channel channel, 
+	        Func<Channel> grpcChannelFactory, 
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-	        Channel = channel;
+	        _grpcChannelFactory = grpcChannelFactory;
 			_authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
-        }
+		}
 
+	    private Channel GetChannel()
+	    {
+		    return _channel ?? (_channel = _grpcChannelFactory.Invoke());
+	    }
 		public override void Initialize(IStorageConnection storageConnection, Uri address)
 		{
 			if (_started)
@@ -53,6 +59,12 @@
             }
 
             await base.Stop(storageConnection);
+
+	        if (_channel.State != ChannelState.Shutdown)
+	        {
+		        await _channel.ShutdownAsync();
+	        }
+	        _channel = null;
         }
 
         protected override IScaffolding[] CreateScaffoldingInternal()

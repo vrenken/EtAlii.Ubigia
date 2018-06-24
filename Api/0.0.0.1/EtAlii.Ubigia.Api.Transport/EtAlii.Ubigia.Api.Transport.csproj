@@ -16,7 +16,7 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.41" />
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.43" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>

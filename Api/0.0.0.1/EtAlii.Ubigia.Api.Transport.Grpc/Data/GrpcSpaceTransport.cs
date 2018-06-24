@@ -9,23 +9,30 @@
     {
 	    private bool _started;
 
-	    public Channel Channel { get; }
+	    public Channel Channel => GetChannel();
+	    private Channel _channel;
 
 	    public Metadata AuthenticationHeaders { get; set; }
 	    
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
-
+	    private readonly Func<Channel> _grpcChannelFactory;
+	    
         public GrpcSpaceTransport(
-	        Channel channel, 
+	        Func<Channel> grpcChannelFactory, 
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-	        Channel = channel;
+	        _grpcChannelFactory = grpcChannelFactory;
 			_authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
         }
+
+	    private Channel GetChannel()
+	    {
+		    return _channel ?? (_channel = _grpcChannelFactory.Invoke());
+	    }
 
 		public override void Initialize(ISpaceConnection spaceConnection, Uri address)
 		{
@@ -38,12 +45,8 @@
 		public override async Task Start(ISpaceConnection spaceConnection, Uri address)
         {
             await base.Start(spaceConnection, address);
-
+	        
 	        _started = true;
-
-	        // TODO: Dang, we do not use websockets but server-side events.... 
-	        // Could this be improved by somehow creating a autotransport with WebSocketTransport inside? 
-	        // This requires the .Start call to be made in a non-PCL project which allows instantiation of the WebSocketTransport class.
         }
 
         public override async Task Stop(ISpaceConnection spaceConnection)
@@ -54,6 +57,12 @@
             }
 
             await base.Stop(spaceConnection);
+
+	        if (_channel.State != ChannelState.Shutdown)
+	        {
+		        await _channel.ShutdownAsync();
+	        }
+	        _channel = null;
         }
 
         protected override IScaffolding[] CreateScaffoldingInternal()

@@ -25,7 +25,8 @@
                 Storage = storage,
             };
             var call = _client.PostAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             return response.Storage.ToLocal();
             //return await _invoker.Invoke<Api.Storage>(_connection, GrpcHub.Storage, "Post", storage);
         }
@@ -37,7 +38,8 @@
                 Id = storageId.ToWire(),
             };
             var call = _client.DeleteAsync(request);
-            await call.ResponseAsync;
+            await call.ResponseAsync
+                .ConfigureAwait(false);
             //return response.Storage.ToLocal();
             //await _invoker.Invoke(_connection, GrpcHub.Storage, "Delete", storageId);
         }
@@ -56,7 +58,8 @@
                 Storage = storage,
             };
             var call = _client.PutAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             return response.Storage.ToLocal();
             //return await _invoker.Invoke<Api.Storage>(_connection, GrpcHub.Storage, "Put", storageId, storage);
         }
@@ -68,7 +71,8 @@
                 Name = storageName,
             };
             var call = _client.GetSingleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             return response.Storage.ToLocal();
             //return await _invoker.Invoke<Api.Storage>(_connection, GrpcHub.Storage, "GetByName", storageName);
         }
@@ -80,7 +84,8 @@
                 Id = storageId.ToWire(),
             };
             var call = _client.GetSingleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             return response.Storage.ToLocal();
             //return await _invoker.Invoke<Api.Storage>(_connection, GrpcHub.Storage, "Get", storageId);
         }
@@ -91,7 +96,8 @@
             {
             };
             var call = _client.GetMultipleAsync(request);
-            var response = await call.ResponseAsync;
+            var response = await call.ResponseAsync
+                .ConfigureAwait(false);
             return response.Storages.ToLocal();
             //return await _invoker.Invoke<IEnumerable<Api.Storage>>(_connection, GrpcHub.Storage, "GetAll");
         }
