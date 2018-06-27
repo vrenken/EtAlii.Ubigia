@@ -11,21 +11,25 @@
     {
 		private bool _started;
 
-	    public HttpMessageHandler HttpMessageHandler { get; }
-
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
+	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
 
         public SignalRStorageTransport(
-	        HttpMessageHandler httpMessageHandler,
+	        Func<HttpMessageHandler> httpMessageHandlerFactory,
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
         {
-	        HttpMessageHandler = httpMessageHandler;
+	        _httpMessageHandlerFactory = httpMessageHandlerFactory;
 			_authenticationTokenSetter = authenticationTokenSetter;
             _authenticationTokenGetter = authenticationTokenGetter;
         }
+
+	    public HttpMessageHandler HttpMessageHandlerFactory( )
+	    {
+		    return _httpMessageHandlerFactory();
+	    }
 
 		public override void Initialize(IStorageConnection storageConnection, Uri address)
 		{

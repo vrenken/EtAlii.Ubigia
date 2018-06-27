@@ -35,7 +35,7 @@
 	        ISignalRTransport transport,
 	        Uri address)
         {
-			   var connection = new HubConnectionFactory().Create(transport.HttpMessageHandler,new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), transport.AuthenticationToken);
+			var connection = new HubConnectionFactory().Create(transport,new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), transport.AuthenticationToken);
             await connection.StartAsync();
             var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();

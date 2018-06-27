@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
         public ISpaceTransport GetSpaceTransport()
         {
             return new SignalRSpaceTransport(
-	            _httpMessageHandlerFactory?.Invoke(),
+	            _httpMessageHandlerFactory,
 				v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
