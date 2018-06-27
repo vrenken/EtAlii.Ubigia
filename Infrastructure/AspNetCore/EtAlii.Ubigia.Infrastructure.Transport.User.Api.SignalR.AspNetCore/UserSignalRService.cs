@@ -25,10 +25,10 @@
                 services =>
                 {
 	                services
-						.AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-						.AddSingleton<IAccountRepository>(infrastructure.Accounts)
-						.AddSingleton<IRootRepository>(infrastructure.Roots)
-						.AddSingleton<IEntryRepository>(infrastructure.Entries)
+		                .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
+		                .AddSingleton<IRootRepository>(infrastructure.Roots)
+		                .AddSingleton<IEntryRepository>(infrastructure.Entries)
 		                .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
 		                .AddSingleton<IContentRepository>(infrastructure.Content)
 		                .AddSingleton<IContentDefinitionRepository>(infrastructure.ContentDefinition)
@@ -37,22 +37,22 @@
 		                .AddInfrastructureSerialization()
 
 		                .AddCors()
-		                .AddSignalR()
-		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
-	                    .AddHubOptions<AuthenticationHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<AccountHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<SpaceHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<RootHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<EntryHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<PropertiesHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<ContentHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-	                    .AddHubOptions<ContentDefinitionHub>(options => options.EnableDetailedErrors = Debugger.IsAttached);
+		                .AddSignalR(options =>
+		                {
+			                if (Debugger.IsAttached)
+			                {
+				                options.EnableDetailedErrors = Debugger.IsAttached;
+			                }
+		                })
+		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
                 },
                 appBuilder =>
                 {
                     appBuilder
                         .UseCors(configuration =>
-                        {
+	                    {
+		                    configuration.AllowAnyMethod();
+		                    configuration.AllowAnyHeader();
                             configuration.AllowAnyOrigin(); 
                         })
                         .UseSignalR(routes =>

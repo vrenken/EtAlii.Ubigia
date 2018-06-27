@@ -33,19 +33,23 @@
                         .AddInfrastructureSerialization()
 
                         .AddCors()
-                        .AddSignalR()
-                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
-                        .AddHubOptions<AuthenticationHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-                        .AddHubOptions<StorageHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-                        .AddHubOptions<SpaceHub>(options => options.EnableDetailedErrors = Debugger.IsAttached)
-                        .AddHubOptions<AccountHub>(options => options.EnableDetailedErrors = Debugger.IsAttached);
+                        .AddSignalR(options => 
+                        {
+                            if (Debugger.IsAttached)
+                            {
+                                options.EnableDetailedErrors = Debugger.IsAttached;
+                            }
+                        })
+                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
                 },
                 appBuilder =>
                 {
                     appBuilder
                         .UseCors(configuration =>
                         {
-                            configuration.AllowAnyOrigin();
+                            configuration.AllowAnyMethod();
+                            configuration.AllowAnyHeader();
+                            configuration.AllowAnyOrigin(); 
                         })
                         .UseSignalR(routes =>
                         {
