@@ -39,6 +39,6 @@
     <ProjectReference Include="..\..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.68.4" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.69" />
   </ItemGroup>
 </Project>
