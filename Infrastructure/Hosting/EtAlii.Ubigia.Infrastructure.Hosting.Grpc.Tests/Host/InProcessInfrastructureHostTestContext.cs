@@ -1,8 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
+    using System.Diagnostics;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
     using global::Grpc.Core;
+    using global::Grpc.Core.Logging;
 
     public class InProcessInfrastructureHostTestContext : HostTestContext<InProcessInfrastructureTestHost>
     {
@@ -10,6 +12,14 @@
 
         public InProcessInfrastructureHostTestContext()
         {
+            if(Debugger.IsAttached)
+            {
+                // Server Startup
+                GrpcEnvironment.SetLogger(new LogLevelFilterLogger(new ConsoleLogger(), LogLevel.Debug) ); // show inner log
+                GrpcEnvironment.Logger.Info("------------------------->>>>");
+                Console.WriteLine("------------------------->>>>");
+            }
+            
             var bytes = new byte[64];
             var rnd = new Random();
             rnd.NextBytes(bytes);
