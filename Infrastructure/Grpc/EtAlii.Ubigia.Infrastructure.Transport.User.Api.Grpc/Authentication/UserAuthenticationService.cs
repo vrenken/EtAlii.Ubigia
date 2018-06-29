@@ -31,12 +31,13 @@
         public override Task<AuthenticationResponse> Authenticate(AuthenticationRequest request, ServerCallContext context)
         {
             var authenticationToken = _authenticationVerifier.Verify(request.AccountName, request.Password, request.HostIdentifier, out EtAlii.Ubigia.Api.Account account, Role.User, Role.System);
-
-            // We do not want to return the password.
-            account.Password = null;
             
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken);
             var response = new AuthenticationResponse { Account = account.ToWire() };
+
+            // We do not want to return the password.
+            response.Account.Password = "";
+            
             return Task.FromResult(response);
         }
 
@@ -47,11 +48,12 @@
 
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
 
-            // We do not want to return the password.
-            account.Password = null;
-
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, otherAccountAuthenticationToken);
             var response = new AuthenticationResponse { Account = account.ToWire() };
+            
+            // We do not want to return the password.
+            response.Account.Password = "";
+            
             return Task.FromResult(response);
         }
 //
