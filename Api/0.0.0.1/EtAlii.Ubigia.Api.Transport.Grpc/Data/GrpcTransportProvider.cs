@@ -13,14 +13,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 		    _grpcChannelFactory = grpcChannelFactory;
 	    }
 
-		public static GrpcTransportProvider Create(Func<Channel> grpcChannelFactory= null)
-        {
+		public static GrpcTransportProvider Create(Func<Channel> grpcChannelFactory = null)
+        { 
 	        return new GrpcTransportProvider(grpcChannelFactory);//new ClientHttpMessageHandler());
         }
 
-        public ISpaceTransport GetSpaceTransport()
+        public ISpaceTransport GetSpaceTransport(Uri address)
         {
             return new GrpcSpaceTransport(
+	            address,
 	            _grpcChannelFactory,
 				v => _authenticationToken = v, 
                 () => _authenticationToken);

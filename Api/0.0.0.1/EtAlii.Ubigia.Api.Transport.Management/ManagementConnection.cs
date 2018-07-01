@@ -37,7 +37,7 @@
             var account = await Accounts.Get(space.AccountId);
             return await OpenSpace(account.Name, space.Name);
         }
-
+ 
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
 			// TODO: Temporary patch to make downscaling from a management to a data connection possible.
@@ -66,11 +66,9 @@
             }
 
             var configuration = new StorageConnectionConfiguration()
-                .Use(Configuration.TransportProvider.GetStorageTransport())
-                .Use(Configuration.Address)
-                .Use(Configuration.AccountName, Configuration.Password);
+                .Use(Configuration.TransportProvider.GetStorageTransport(Configuration.Address));
             _connection = new StorageConnectionFactory().Create(configuration);
-            await _connection.Open();
+            await _connection.Open(Configuration.AccountName, Configuration.Password);
         }
         public async Task Close()
         {

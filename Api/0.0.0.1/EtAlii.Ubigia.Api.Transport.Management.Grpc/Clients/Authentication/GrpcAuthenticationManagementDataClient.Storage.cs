@@ -17,7 +17,7 @@
             var grpcConnection = (IGrpcStorageConnection) connection;
             var storage = await GetConnectedStorage(
                 grpcConnection.Transport,
-                grpcConnection.Configuration.Address);
+                grpcConnection.Transport.Address);
 
             if (storage == null)
             {
@@ -26,7 +26,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = connection.Transport.Address.ToString();
 
             return storage;
         }

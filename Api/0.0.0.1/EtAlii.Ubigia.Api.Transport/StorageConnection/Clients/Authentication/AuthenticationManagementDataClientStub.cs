@@ -7,7 +7,7 @@
     /// </summary>
     public class AuthenticationManagementDataClientStub : IAuthenticationManagementDataClient
     {
-        public async Task Authenticate(IStorageConnection connection)
+        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
             await Task.Run(() => { });
         }

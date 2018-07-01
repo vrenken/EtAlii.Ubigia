@@ -9,17 +9,20 @@
     {
         public bool IsConnected { get; private set; }
 
-        public virtual void Initialize(IStorageConnection storageConnection, Uri address)
-        {
-        }
+        public Uri Address { get; }
 
-        public virtual async Task Start(IStorageConnection storageConnection, Uri address)
+        protected StorageTransportBase(Uri address)
+        {
+            Address = address;
+        }
+        
+        public virtual async Task Start()
         {
             await Task.Run(() => { IsConnected = true; });
 
         }
 
-        public virtual async Task Stop(IStorageConnection storageConnection)
+        public virtual async Task Stop()
         {
             await Task.Run(() => { IsConnected = false; });
         }

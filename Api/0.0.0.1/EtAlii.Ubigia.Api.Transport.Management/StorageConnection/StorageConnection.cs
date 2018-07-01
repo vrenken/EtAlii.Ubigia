@@ -8,6 +8,8 @@
     {
         public Storage Storage { get; private set; }
 
+        IStorageTransport IStorageConnection.Transport => Transport;
+        
         public TTransport Transport { get; }
 
         public IStorageContext Storages { get; }
@@ -49,28 +51,26 @@
             await Storages.Close(this);
             await Spaces.Close(this);
 
-            await Transport.Stop(this);
+            await Transport.Stop();
             Storage = null;
         }
 
-        public async Task Open()
+        public async Task Open(string accountName, string password)
         {
             if (IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await  Authentication.Data.Authenticate(this);
+            await  Authentication.Data.Authenticate(this, accountName, password);
 
             Storage = await Authentication.Data.GetConnectedStorage(this);
-
-            Transport.Initialize(this, Configuration.Address);
 
             await Accounts.Open(this);
             await Storages.Open(this);
             await Spaces.Open(this);
 
-            await Transport.Start(this, Configuration.Address);
+            await Transport.Start();
 
         }
 

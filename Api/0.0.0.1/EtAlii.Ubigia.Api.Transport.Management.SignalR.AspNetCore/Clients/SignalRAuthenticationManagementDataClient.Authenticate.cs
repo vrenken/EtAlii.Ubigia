@@ -8,10 +8,10 @@
     {
         private readonly string _hostIdentifier;
 
-        public async Task Authenticate(IStorageConnection connection)
+        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
             var signalRConnection = (ISignalRStorageConnection)connection;
-            var authenticationToken = await GetAuthenticationToken(signalRConnection.Transport, signalRConnection.Configuration.AccountName, signalRConnection.Configuration.Password, signalRConnection.Configuration.Address, signalRConnection.Transport.AuthenticationToken);
+            var authenticationToken = await GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -19,24 +19,24 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({signalRConnection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
 
-        private async Task<string> GetAuthenticationToken(ISignalRTransport transport, string accountName, string password, Uri address, string authenticationToken)
+        private async Task<string> GetAuthenticationToken(ISignalRTransport transport, string accountName, string password, string authenticationToken)
         {
 	        if (password == null && authenticationToken != null)
 	        {
 		        // These lines are needed to make the downscale from admin/system to user account based authentication tokens.
-		        var connection = new HubConnectionFactory().Create(transport, new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), authenticationToken);
+		        var connection = new HubConnectionFactory().Create(transport, new Uri(transport.Address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), authenticationToken);
 		        await connection.StartAsync();
 		        authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier);
 		        await connection.DisposeAsync();
 	        }
             else if (password != null && authenticationToken == null)
 	        {
-				var connection = new HubConnectionFactory().CreateForHost(transport, new Uri(address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), _hostIdentifier);
+				var connection = new HubConnectionFactory().CreateForHost(transport, new Uri(transport.Address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), _hostIdentifier);
                 await connection.StartAsync();
                 authenticationToken = await _invoker.Invoke<string>(connection, SignalRHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
 				await connection.DisposeAsync();

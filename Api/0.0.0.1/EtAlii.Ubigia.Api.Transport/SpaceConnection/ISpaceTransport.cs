@@ -8,10 +8,11 @@
     {
         bool IsConnected { get; }
 
-        void Initialize(ISpaceConnection spaceConnection, Uri address);
-
-        Task Start(ISpaceConnection spaceConnection, Uri address);
-        Task Stop(ISpaceConnection spaceConnection);
+        Uri Address { get; }
+        
+        Task Start();
+        
+        Task Stop();
         
         IScaffolding[] CreateScaffolding();
     }

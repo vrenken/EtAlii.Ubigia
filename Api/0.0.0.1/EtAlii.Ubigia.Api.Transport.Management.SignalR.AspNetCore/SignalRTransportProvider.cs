@@ -20,17 +20,19 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 	        return new SignalRStorageTransportProvider(httpMessageHandlerFactory);
         }
 
-        public ISpaceTransport GetSpaceTransport()
+        public ISpaceTransport GetSpaceTransport(Uri address)
         {
             return new SignalRSpaceTransport(
+	            address,
 	            _httpMessageHandlerFactory,
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
 
-        public IStorageTransport GetStorageTransport()
+        public IStorageTransport GetStorageTransport(Uri address)
         {
             return new SignalRStorageTransport(
+	            address,
 				_httpMessageHandlerFactory,
                 v => _authenticationToken = v, 
                 () => _authenticationToken);

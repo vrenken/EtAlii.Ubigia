@@ -11,26 +11,25 @@
 
         private readonly IInfrastructure _infrastructure;
 
-        public SystemSpaceTransport(IInfrastructure infrastructure)
+        public Uri Address { get; }
+        
+        public SystemSpaceTransport(Uri address, IInfrastructure infrastructure)
         {
+            Address = address;
             _infrastructure = infrastructure;
         }
 
-        public void Initialize(ISpaceConnection spaceConnection, Uri address)
+        public SystemSpaceTransport(Uri address)
         {
+            Address = address;
         }
 
-        public async Task Start(ISpaceConnection spaceConnection)
-        {
-            await Task.Run(() => IsConnected = true);
-        }
-
-        public async Task Start(ISpaceConnection spaceConnection, Uri address)
+        public async Task Start()
         {
             await Task.Run(() => IsConnected = true);
         }
 
-        public async Task Stop(ISpaceConnection spaceConnection)
+        public async Task Stop()
         {
             await Task.Run(() => IsConnected = false);
         }

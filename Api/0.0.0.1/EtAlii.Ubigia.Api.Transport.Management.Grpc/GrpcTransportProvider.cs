@@ -20,17 +20,19 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 	        return new GrpcStorageTransportProvider(grpcChannelFactory);
         }
 
-        public ISpaceTransport GetSpaceTransport()
+        public ISpaceTransport GetSpaceTransport(Uri address)
         {
             return new GrpcSpaceTransport(
+	            address,
 	            _grpcChannelFactory,
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
 
-        public IStorageTransport GetStorageTransport()
+        public IStorageTransport GetStorageTransport(Uri address)
         {
             return new GrpcStorageTransport(
+	            address,
 	            _grpcChannelFactory,
                 v => _authenticationToken = v, 
                 () => _authenticationToken);

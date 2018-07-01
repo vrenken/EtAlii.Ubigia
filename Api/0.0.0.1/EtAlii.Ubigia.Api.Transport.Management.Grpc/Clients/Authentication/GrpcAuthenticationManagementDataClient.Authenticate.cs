@@ -11,7 +11,7 @@
     {
         private readonly string _hostIdentifier;
         
-        public async Task Authenticate(IStorageConnection connection)
+        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
             var grpcConnection = (IGrpcStorageConnection)connection;
 
@@ -20,7 +20,7 @@
             string authenticationToken = null;
             try
             {
-                authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
+                authenticationToken = await GetAuthenticationToken(accountName, password, grpcConnection.Transport.AuthenticationToken);
 
             }
             catch (global::Grpc.Core.RpcException e)
@@ -35,7 +35,7 @@
             else
             {
                 grpcConnection.Transport.AuthenticationHeaders = null;
-                string message = $"Unable to authenticate on the specified storage ({grpcConnection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({grpcConnection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }

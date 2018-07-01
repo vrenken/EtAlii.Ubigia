@@ -4,6 +4,7 @@
 
     public interface ISpaceConnection : IConnection, IDisposable
     {
+        ISpaceTransport Transport { get; }
         ISpaceConnectionConfiguration Configuration { get; }
         Space Space { get; }
         Account Account { get; } // TODO: Move to IConnection.
@@ -13,14 +14,11 @@
         IRootContext Roots { get; }
         IContentContext Content { get; }
         IPropertiesContext Properties { get; }
-
-
     }
 
     public interface ISpaceConnection<out TTransport> : ISpaceConnection
         where TTransport: ISpaceTransport
     {
-
-        TTransport Transport { get; }
+       new TTransport Transport { get; }
     }
 }

@@ -12,7 +12,7 @@
         private readonly ISpaceTransport _transport;
         private readonly ILogger _logger;
 
-        private Uri _address;
+        public Uri Address => _transport.Address;
 
         public LoggingSpaceTransport(
             ISpaceTransport transport, 
@@ -22,45 +22,28 @@
             _logger = logger;
         }
 
-        public void Initialize(ISpaceConnection spaceConnection, Uri address)
+        public async Task Start()
         {
-            _address = address;
-
-            var message = $"Initializing transport (Address: {_address})";
+            var message = $"Starting transport (Address: {Address})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            _transport.Initialize(spaceConnection, address);
+            await _transport.Start();
 
-            message = $"Initialized transport (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Started transport (Address: {Address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
         }
 
-        public async Task Start(ISpaceConnection spaceConnection, Uri address)
+        public async Task Stop()
         {
-            _address = address;
-
-            var message = $"Starting transport (Address: {_address})";
+            var message = $"Stopping transport (Address: {Address})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            await _transport.Start(spaceConnection, address);
+            await _transport.Stop();
 
-            message = $"Started transport (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
-
-        }
-
-        public async Task Stop(ISpaceConnection spaceConnection)
-        {
-            var message = $"Stopping transport (Address: {_address})";
-            _logger.Info(message);
-            var start = Environment.TickCount;
-
-            await _transport.Stop(spaceConnection);
-
-            message = $"Stopped transport (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Stopped transport (Address: {Address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
         }
 

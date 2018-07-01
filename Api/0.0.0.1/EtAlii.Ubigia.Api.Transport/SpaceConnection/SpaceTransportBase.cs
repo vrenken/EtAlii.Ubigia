@@ -8,16 +8,19 @@
     {
         public bool IsConnected { get; private set; }
 
-        public virtual void Initialize(ISpaceConnection spaceConnection, Uri address)
-        {
-        }
+        public Uri Address { get; private set; }
 
-        public virtual async Task Start(ISpaceConnection spaceConnection, Uri address)
+        public SpaceTransportBase(Uri address)
+        {
+            Address = address;
+        }
+        
+        public virtual async Task Start()
         {
             await Task.Run(() => { IsConnected = true; });
         }
 
-        public virtual async Task Stop(ISpaceConnection spaceConnection)
+        public virtual async Task Stop()
         {
             await Task.Run(() => { IsConnected = false; });
         }
