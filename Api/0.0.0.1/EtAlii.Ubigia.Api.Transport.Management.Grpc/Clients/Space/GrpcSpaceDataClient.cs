@@ -24,7 +24,7 @@
             var request = new AdminSpacePostSingleRequest
             {
                 Space = space,
-                Template = template.ToString()
+                Template = template.Name
             };
             var call = _client.PostAsync(request);
             var response = await call.ResponseAsync
