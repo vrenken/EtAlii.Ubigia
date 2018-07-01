@@ -2,15 +2,12 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.xTechnology.MicroContainer;
     using global::Grpc.Core;
 
 	public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
     {
-		private bool _started;
-
 	    public Channel Channel => GetChannel();
 	    private Channel _channel;
 
@@ -21,10 +18,11 @@
         private readonly Func<string> _authenticationTokenGetter;
 	    private readonly Func<Channel> _grpcChannelFactory;
 
-        public GrpcStorageTransport(
+        public GrpcStorageTransport(Uri address,
 	        Func<Channel> grpcChannelFactory, 
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
+	        : base(address)
         {
 	        _grpcChannelFactory = grpcChannelFactory;
 			_authenticationTokenSetter = authenticationTokenSetter;
@@ -35,30 +33,10 @@
 	    {
 		    return _channel ?? (_channel = _grpcChannelFactory.Invoke());
 	    }
-		public override void Initialize(IStorageConnection storageConnection, Uri address)
-		{
-			if (_started)
-			{
-				throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
-			}
-		}
 
-		public override async Task Start(IStorageConnection storageConnection, Uri address)
+        public override async Task Stop()
         {
-            await base.Start(storageConnection, address);
-
-	        _started = true;
-        }
-
-
-        public override async Task Stop(IStorageConnection storageConnection)
-        {
-            if (!_started)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToTransport);
-            }
-
-            await base.Stop(storageConnection);
+            await base.Stop();
 
 	        if (_channel.State != ChannelState.Shutdown)
 	        {

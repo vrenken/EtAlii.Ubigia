@@ -7,7 +7,7 @@
     /// </summary>
     public class AuthenticationDataClientStub : IAuthenticationDataClient
     {
-        public async Task Authenticate(ISpaceConnection connection)
+        public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
             await Task.Run(() => { });
         }
@@ -18,7 +18,7 @@
             return await Task.FromResult<Storage>(null);
         }
         
-        public async Task<Account> GetAccount(ISpaceConnection connection)
+        public async Task<Account> GetAccount(ISpaceConnection connection, string accountName)
         {
             return await Task.FromResult<Account>(null);
         }

@@ -15,7 +15,7 @@
             var signalRConnection = (ISignalRSpaceConnection) connection;
             var storage = await GetConnectedStorage(
 	            signalRConnection.Transport,
-				signalRConnection.Configuration.Address);
+				connection.Transport.Address);
 
             if (storage == null)
             {
@@ -24,7 +24,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = connection.Transport.Address.ToString();
 
             return storage;
         }
@@ -40,7 +40,7 @@
 
             var storage = await GetConnectedStorage(
 	            signalRConnection.Transport,
-				signalRConnection.Configuration.Address);
+				connection.Transport.Address);
 
             if (storage == null)
             {
@@ -49,7 +49,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = connection.Configuration.Transport.ToString();
 
             return storage;
         }

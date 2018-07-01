@@ -11,30 +11,20 @@
 
         private readonly IInfrastructure _infrastructure;
 
-        public SystemStorageTransport(IInfrastructure infrastructure)
+        public Uri Address { get; }
+        
+        public SystemStorageTransport(Uri address, IInfrastructure infrastructure)
         {
+            Address = address;
             _infrastructure = infrastructure;
         }
 
-        public void Initialize(IStorageConnection storageConnection)
-        {
-        }
-
-        public void Initialize(IStorageConnection storageConnection, Uri address)
-        {
-        }
-
-        public async Task Start(IStorageConnection storageConnection)
+        public async Task Start()
         {
             await Task.Run(() => IsConnected = true);
         }
 
-        public async Task Start(IStorageConnection storageConnection, Uri address)
-        {
-            await Task.Run(() => IsConnected = true);
-        }
-
-        public async Task Stop(IStorageConnection storageConnection)
+        public async Task Stop()
         {
             await Task.Run(() => IsConnected = false);
         }

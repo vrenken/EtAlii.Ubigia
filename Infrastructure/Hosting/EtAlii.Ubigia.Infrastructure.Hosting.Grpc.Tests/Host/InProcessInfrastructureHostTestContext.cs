@@ -27,7 +27,7 @@
         }
 
         public Channel CreateAdminGrpcInfrastructureChannel()
-        {
+        { 
             return new Channel("localhost", Host.AdminModule.Port, ChannelCredentials.Insecure);
         }
         public Channel CreateUserGrpcInfrastructureChannel()

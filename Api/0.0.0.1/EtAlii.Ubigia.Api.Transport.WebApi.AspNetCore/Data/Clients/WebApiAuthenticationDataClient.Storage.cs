@@ -12,7 +12,7 @@
             }
 
             var webApiConnection = (IWebApiConnection)connection;
-            var localAddress = webApiConnection.AddressFactory.Create(connection.Configuration.Address, RelativeUri.Data.Storages, UriParameter.Local);
+            var localAddress = webApiConnection.AddressFactory.Create(connection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
 			var storage = await webApiConnection.Client.Get<Storage>(localAddress);
 
             if (storage == null)
@@ -22,7 +22,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = connection.Transport.Address.ToString();
 
             return storage;
         }
@@ -34,7 +34,7 @@
             }
 
             var webApiConnection = (IWebApiConnection)connection;
-            var localAddress = webApiConnection.AddressFactory.Create(connection.Configuration.Address, RelativeUri.Data.Storages, UriParameter.Local);
+            var localAddress = webApiConnection.AddressFactory.Create(connection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
             var storage = await webApiConnection.Client.Get<Storage>(localAddress);
 			 
             if (storage == null)
@@ -44,7 +44,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = connection.Transport.Address.ToString();
 
             return storage;
         }

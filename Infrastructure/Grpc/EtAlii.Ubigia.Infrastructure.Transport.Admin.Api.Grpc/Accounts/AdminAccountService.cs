@@ -39,6 +39,9 @@
                 case var _ when request.Account != null: // Get Item by id
                     account = _items.Get(request.Account.Id.ToLocal());
                     break;
+                case var _ when request.Name != null: // Get Item by name
+                    account = _items.Get(request.Name);
+                    break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Account GET client request");                
             }

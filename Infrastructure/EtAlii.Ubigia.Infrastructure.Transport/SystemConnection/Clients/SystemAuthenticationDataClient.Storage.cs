@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -17,11 +18,11 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = connection.Transport.Address.ToString();
 
             return await Task.FromResult(storage);
         }
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public async Task<Storage> GetConnectedStorage(IStorageConnection connection, Uri address)
         {
             if (connection.Storage != null)
             {
@@ -32,7 +33,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Configuration.Address.ToString();
+            storage.Address = address.ToString();
 
             return await Task.FromResult(storage);
         }

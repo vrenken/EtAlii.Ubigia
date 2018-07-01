@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
+    using System;
+
     public class WebApiTransportProvider : ITransportProvider
     {
         private readonly IInfrastructureClient _infrastructureClient;
@@ -14,9 +16,9 @@ namespace EtAlii.Ubigia.Api.Transport.WebApi
 	        return new WebApiTransportProvider(infrastructureClient);
         }
 
-        public ISpaceTransport GetSpaceTransport()
+        public ISpaceTransport GetSpaceTransport(Uri address)
         {
-            return new WebApiSpaceTransport(_infrastructureClient);
+            return new WebApiSpaceTransport(address, _infrastructureClient);
         }
     }
 }

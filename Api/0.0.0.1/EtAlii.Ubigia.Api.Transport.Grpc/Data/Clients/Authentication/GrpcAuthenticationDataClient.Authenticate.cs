@@ -10,16 +10,16 @@
     {
         private readonly string _hostIdentifier;
         
-        public async Task Authenticate(ISpaceConnection connection)
+        public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
             var grpcConnection = (IGrpcSpaceConnection)connection;
-            
+             
             SetClients(grpcConnection.Transport.Channel);
 
             string authenticationToken = null;
             try
             {
-                authenticationToken = await GetAuthenticationToken(grpcConnection.Configuration.AccountName, grpcConnection.Configuration.Password, grpcConnection.Transport.AuthenticationToken);
+                authenticationToken = await GetAuthenticationToken(accountName, password, grpcConnection.Transport.AuthenticationToken);
             }
             catch (global::Grpc.Core.RpcException e)
             {
@@ -33,7 +33,7 @@
             else
             {
                 grpcConnection.Transport.AuthenticationHeaders = null;
-                string message = $"Unable to authenticate on the specified storage ({grpcConnection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
@@ -42,7 +42,7 @@
         {
 	        if (password == null && authenticationToken != null)
 	        {
-	            var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
+	            var request = new AuthenticationRequest { AccountName = accountName, Password = "", HostIdentifier = _hostIdentifier };
 	            var call = _client.AuthenticateAsAsync(request);
 	            var response = await call.ResponseAsync
 	                .ConfigureAwait(false);

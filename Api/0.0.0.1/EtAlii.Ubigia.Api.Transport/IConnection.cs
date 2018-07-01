@@ -11,6 +11,6 @@ namespace EtAlii.Ubigia.Api.Transport
         bool IsConnected { get; }
 
         Task Close();
-        Task Open();
+        Task Open(string accountName, string password);
     }
 }

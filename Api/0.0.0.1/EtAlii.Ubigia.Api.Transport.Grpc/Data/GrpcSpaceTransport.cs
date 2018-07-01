@@ -7,8 +7,6 @@
 
 	public class GrpcSpaceTransport : SpaceTransportBase, IGrpcSpaceTransport
     {
-	    private bool _started;
-
 	    public Channel Channel => GetChannel();
 	    private Channel _channel;
 
@@ -18,11 +16,13 @@
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
 	    private readonly Func<Channel> _grpcChannelFactory;
-	    
+	     
         public GrpcSpaceTransport(
+	        Uri address,
 	        Func<Channel> grpcChannelFactory, 
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
+	        : base(address)
         {
 	        _grpcChannelFactory = grpcChannelFactory;
 			_authenticationTokenSetter = authenticationTokenSetter;
@@ -34,29 +34,9 @@
 		    return _channel ?? (_channel = _grpcChannelFactory.Invoke());
 	    }
 
-		public override void Initialize(ISpaceConnection spaceConnection, Uri address)
-		{
-			if (_started)
-			{
-				throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToTransport);
-			}
-		}
-
-		public override async Task Start(ISpaceConnection spaceConnection, Uri address)
+        public override async Task Stop()
         {
-            await base.Start(spaceConnection, address);
-	        
-	        _started = true;
-        }
-
-        public override async Task Stop(ISpaceConnection spaceConnection)
-        {
-            if (!_started)
-            {
-                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToTransport);
-            }
-
-            await base.Stop(spaceConnection);
+            await base.Stop();
 
 	        if (_channel.State != ChannelState.Shutdown)
 	        {

@@ -4,14 +4,14 @@
 
     public partial class GrpcAuthenticationDataClient
     {
-        public async Task<Api.Account> GetAccount(ISpaceConnection connection)
+        public async Task<Api.Account> GetAccount(ISpaceConnection connection, string accountName)
         {
             if (connection.Account != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(connection.Configuration.AccountName, ((IGrpcSpaceConnection)connection).Transport);
+            var account = await GetAccount(accountName, ((IGrpcSpaceConnection)connection).Transport);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);

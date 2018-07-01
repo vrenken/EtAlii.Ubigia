@@ -8,11 +8,11 @@
     {
         public static Account ToLocal(this WireProtocol.Account account)
         {
-            return new Account
+            return account == null ? null : new Account
             {
                 Id = account.Id.ToLocal(),
-                Created = account.Created.ToDateTime(),
-                Updated = account.Updated.ToDateTime(),
+                Created = account.Created.ToDateTime().ToUniversalTime(),
+                Updated = account.Updated?.ToDateTime().ToUniversalTime(),
                 Name = account.Name,
                 Password = account.Password,
                 Roles = account.Roles.ToArray()
@@ -21,15 +21,15 @@
 
         public static WireProtocol.Account ToWire(this Account account)
         {
-            var result = new WireProtocol.Account
+            var result = account == null ? null : new WireProtocol.Account
             {
                 Id = account.Id.ToWire(),
-                Created = Timestamp.FromDateTime(account.Created),
-                Updated = account.Updated.HasValue ? Timestamp.FromDateTime(account.Updated.Value) : null,
+                Created = Timestamp.FromDateTime(account.Created.ToUniversalTime()),
+                Updated = account.Updated.HasValue ? Timestamp.FromDateTime(account.Updated.Value.ToUniversalTime()) : null,
                 Name = account.Name,
                 Password = account.Password,
             };
-            result.Roles.AddRange(account.Roles.ToArray());
+            result?.Roles.AddRange(account.Roles.ToArray());
             return result;
         }
 

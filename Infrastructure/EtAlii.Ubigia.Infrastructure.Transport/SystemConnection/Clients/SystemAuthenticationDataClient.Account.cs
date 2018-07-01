@@ -6,14 +6,14 @@
 
     internal partial class SystemAuthenticationDataClient
     {
-        public async Task<Account> GetAccount(ISpaceConnection connection)
+        public async Task<Account> GetAccount(ISpaceConnection connection, string accountName)
         {
             if (connection.Account != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(connection.Configuration.AccountName);
+            var account = await GetAccount(accountName);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);
