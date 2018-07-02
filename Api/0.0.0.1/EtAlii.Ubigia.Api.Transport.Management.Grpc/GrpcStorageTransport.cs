@@ -29,6 +29,10 @@
             _authenticationTokenGetter = authenticationTokenGetter;
 		}
 
+	    /// <summary>
+	    /// Gets a channel based on the specified Uri. 
+	    /// </summary>
+	    /// <returns></returns>
 	    private Channel GetChannel()
 	    {
 		    var uriAsString= _channel?.ResolvedTarget;
