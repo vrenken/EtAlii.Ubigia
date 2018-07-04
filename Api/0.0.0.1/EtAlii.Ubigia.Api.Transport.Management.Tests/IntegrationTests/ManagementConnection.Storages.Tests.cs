@@ -7,6 +7,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using global::Grpc.Core;
     using Xunit;
 
     
@@ -241,7 +242,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -257,7 +258,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Change(id, name, address));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -345,7 +346,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Add(name, address));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
     }
 }
