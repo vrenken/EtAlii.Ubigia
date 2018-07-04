@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using global::Grpc.Core;
     using Xunit;
     
     public class ManagementConnectionSpacesConfigurationTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
@@ -228,7 +229,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
 
 
@@ -245,7 +246,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Change(id, name));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); //InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -262,7 +263,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Configuration));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
     }
 }
