@@ -12,6 +12,7 @@
     public sealed class GrpcSpaceDataClient : ISpaceDataClient<IGrpcStorageTransport>
     {
         private SpaceGrpcService.SpaceGrpcServiceClient _client;
+        private IGrpcStorageTransport _transport;
 
         public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
@@ -26,7 +27,7 @@
                 Space = space,
                 Template = template.Name
             };
-            var call = _client.PostAsync(request);
+            var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
 
@@ -40,7 +41,7 @@
             {
                 Id = spaceId.ToWire(),
             };
-            var call = _client.DeleteAsync(request);
+            var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
             //await _invoker.Invoke(_connection, GrpcHub.Space, "Delete", spaceId);
@@ -58,7 +59,7 @@
             {
                 Space = space,
             };
-            var call = _client.PutAsync(request);
+            var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
 
@@ -72,7 +73,7 @@
             {
                 Name = spaceName,
             };
-            var call = _client.GetSingleAsync(request);
+            var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
 
@@ -86,7 +87,7 @@
             {
                 Id = spaceId.ToWire(),
             };
-            var call = _client.GetSingleAsync(request);
+            var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
 
@@ -100,7 +101,7 @@
             {                               
                 AccountId = accountId.ToWire(),
             };
-            var call = _client.GetMultipleAsync(request);
+            var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
 
@@ -120,13 +121,14 @@
 
         public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            var channel = storageConnection.Transport.Channel;
-            _client = new SpaceGrpcService.SpaceGrpcServiceClient(channel);
+            _transport = storageConnection.Transport;
+            _client = new SpaceGrpcService.SpaceGrpcServiceClient(storageConnection.Transport.Channel);
             return Task.CompletedTask;
       }
 
         public Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
+            _transport = null;
             _client = null;
             return Task.CompletedTask;
         }
