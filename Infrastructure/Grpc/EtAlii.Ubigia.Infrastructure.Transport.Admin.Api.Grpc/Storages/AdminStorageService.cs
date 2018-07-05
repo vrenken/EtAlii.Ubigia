@@ -38,14 +38,14 @@
             
             switch (request)
             {
-                case var _ when request.Name != null: // Get Item by name
-                    storage = _items.Get(request.Name);
-                    break;
                 case var _ when request.Id != null: // Get Item by id
                     storage = _items.Get(request.Id.ToLocal());
                     break;
                 case var _ when request.Storage != null: // Get Item by id
                     storage = _items.Get(request.Storage.Id.ToLocal());
+                    break;
+                case var _ when !String.IsNullOrWhiteSpace(request.Name): // Get Item by name
+                    storage = _items.Get(request.Name);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Storage GET client request");                
