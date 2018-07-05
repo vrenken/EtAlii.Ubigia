@@ -36,10 +36,10 @@
                 case var _ when request.Id != null: // Get Item by id
                     account = _items.Get(request.Id.ToLocal());
                     break;
-                case var _ when request.Account != null: // Get Item by id
+                case var _ when request.Account != null: // Get Item by Instance
                     account = _items.Get(request.Account.Id.ToLocal());
                     break;
-                case var _ when request.Name != null: // Get Item by name
+                case var _ when !String.IsNullOrWhiteSpace(request.Name): // Get Item by name
                     account = _items.Get(request.Name);
                     break;
                 default:
