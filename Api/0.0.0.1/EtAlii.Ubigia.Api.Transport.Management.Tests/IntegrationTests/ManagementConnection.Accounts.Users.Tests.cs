@@ -364,7 +364,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
