@@ -7,6 +7,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using global::Grpc.Core;
     using Xunit;
 
 #if GRPC
@@ -217,6 +218,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Delete()
         {
+            // Arrange.
             var connection = await _testContext.CreateManagementConnection();
 
             var name = Guid.NewGuid().ToString();
@@ -230,10 +232,12 @@
             storage = await connection.Storages.Get(storage.Id);
             Assert.NotNull(storage);
 
+            // Act.
             await connection.Storages.Remove(storage.Id);
+            var act = new Func<Task>(async () => await connection.Storages.Get(storage.Id));
 
-            storage = await connection.Storages.Get(storage.Id);
-            Assert.Null(storage);
+            // Assert.
+            await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

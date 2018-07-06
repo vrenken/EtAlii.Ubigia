@@ -6,14 +6,14 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
 	public class GrpcTransportProvider : ITransportProvider
     {
         private string _authenticationToken;
-	    private readonly Func<Channel> _grpcChannelFactory;
+	    private readonly Func<Uri, Channel> _grpcChannelFactory;
 
-	    public GrpcTransportProvider(Func<Channel> grpcChannelFactory)
+	    public GrpcTransportProvider(Func<Uri, Channel> grpcChannelFactory)
 	    {
 		    _grpcChannelFactory = grpcChannelFactory;
 	    }
 
-		public static GrpcTransportProvider Create(Func<Channel> grpcChannelFactory = null)
+		public static GrpcTransportProvider Create(Func<Uri, Channel> grpcChannelFactory = null)
         { 
 	        return new GrpcTransportProvider(grpcChannelFactory);//new ClientHttpMessageHandler());
         }

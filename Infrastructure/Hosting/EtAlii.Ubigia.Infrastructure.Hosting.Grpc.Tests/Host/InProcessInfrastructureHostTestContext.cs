@@ -16,8 +16,6 @@
             {
                 // Server Startup
                 GrpcEnvironment.SetLogger(new LogLevelFilterLogger(new ConsoleLogger(), LogLevel.Debug) ); // show inner log
-                GrpcEnvironment.Logger.Info("------------------------->>>>");
-                Console.WriteLine("------------------------->>>>");
             }
             
             var bytes = new byte[64];
@@ -33,6 +31,10 @@
         public Channel CreateUserGrpcInfrastructureChannel()
         {
             return new Channel("localhost", Host.UserModule.Port, ChannelCredentials.Insecure);
+        }
+        public Channel CreateGrpcInfrastructureChannel(Uri address)
+        {
+            return new Channel(address.DnsSafeHost, address.Port, ChannelCredentials.Insecure);
         }
         
 //        public IInfrastructureClient CreateRestInfrastructureClient()

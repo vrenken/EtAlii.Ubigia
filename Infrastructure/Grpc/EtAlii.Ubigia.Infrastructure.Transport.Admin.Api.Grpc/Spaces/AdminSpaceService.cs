@@ -41,6 +41,9 @@
                 case var _ when request.Space != null: // Get Item by id
                     space = _items.Get(request.Space.Id.ToLocal());
                     break;
+                //case var _ when !String.IsNullOrWhiteSpace(request.Name): // Get Item by id
+                //    space = _items.Get(request.a.Name);
+                //    break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Space GET client request");                
             }

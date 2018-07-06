@@ -16,10 +16,10 @@
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;
         private readonly Func<string> _authenticationTokenGetter;
-	    private readonly Func<Channel> _grpcChannelFactory;
+	    private readonly Func<Uri, Channel> _grpcChannelFactory;
 
         public GrpcStorageTransport(Uri address,
-	        Func<Channel> grpcChannelFactory, 
+	        Func<Uri, Channel> grpcChannelFactory, 
 			Action<string> authenticationTokenSetter, 
             Func<string> authenticationTokenGetter)
 	        : base(address)
@@ -29,9 +29,27 @@
             _authenticationTokenGetter = authenticationTokenGetter;
 		}
 
+	    /// <summary>
+	    /// Gets a channel based on the specified Uri. 
+	    /// </summary>
+	    /// <returns></returns>
 	    private Channel GetChannel()
 	    {
-		    return _channel ?? (_channel = _grpcChannelFactory.Invoke());
+		    var uriAsString= _channel?.ResolvedTarget;
+		    var hasAddress = !String.IsNullOrWhiteSpace(uriAsString);
+		    if (hasAddress)
+		    {
+			    var channelAddress = new Uri("http://" + uriAsString);
+
+			    var hasSameHost = String.Equals(Address.DnsSafeHost, channelAddress.DnsSafeHost, StringComparison.InvariantCultureIgnoreCase);
+			    var hasSamePort = Address.Port == channelAddress.Port;
+			    if (hasSameHost && hasSamePort)
+			    {
+				    return _channel;
+			    }
+		    }
+		     
+		    return _channel = _grpcChannelFactory.Invoke(Address);
 	    }
 
         public override async Task Stop()

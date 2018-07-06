@@ -8,6 +8,7 @@
     {
         public static Account ToLocal(this WireProtocol.Account account)
         {
+            // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
             return account == null ? null : new Account
             {
                 Id = account.Id.ToLocal(),
@@ -21,6 +22,7 @@
 
         public static WireProtocol.Account ToWire(this Account account)
         {
+            // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
             var result = account == null ? null : new WireProtocol.Account
             {
                 Id = account.Id.ToWire(),
