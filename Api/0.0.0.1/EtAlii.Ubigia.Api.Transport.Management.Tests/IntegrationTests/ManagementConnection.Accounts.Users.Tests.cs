@@ -7,6 +7,13 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     
+#if GRPC
+    using global::Grpc.Core;
+    using TransportException = global::Grpc.Core.RpcException;
+#else
+    using TransportException = InvalidInfrastructureOperationException;
+#endif
+    
     public class ManagementConnectionAccountsUsersTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
@@ -347,7 +354,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<TransportException>(act);  // InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -363,7 +370,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -380,7 +387,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.User));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<TransportException>(act);  // InvalidInfrastructureOperationExceptions
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

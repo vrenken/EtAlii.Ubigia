@@ -7,6 +7,12 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
+#if GRPC
+    using global::Grpc.Core;
+    using TransportException = global::Grpc.Core.RpcException;
+#else
+    using TransportException = InvalidInfrastructureOperationException;
+#endif
     
     public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
@@ -535,7 +541,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
 
             // Assure.
             await connection.Close();
@@ -554,7 +560,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
 
             // Assure.
             await connection.Close();
@@ -574,7 +580,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.Administrator));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
 
             // Assure.
             await connection.Close();
