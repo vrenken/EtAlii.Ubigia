@@ -11,6 +11,7 @@
     public sealed partial class GrpcStorageDataClient : IStorageDataClient<IGrpcStorageTransport>
     {
         private StorageGrpcService.StorageGrpcServiceClient _client;
+        private IGrpcStorageTransport _transport;
 
         public async Task<Api.Storage> Add(string storageName, string storageAddress)
         {
@@ -24,7 +25,7 @@
             {
                 Storage = storage,
             };
-            var call = _client.PostAsync(request);
+            var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
             return response.Storage.ToLocal();
@@ -37,7 +38,7 @@
             {
                 Id = storageId.ToWire(),
             };
-            var call = _client.DeleteAsync(request);
+            var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
             await call.ResponseAsync
                 .ConfigureAwait(false);
             //return response.Storage.ToLocal();
@@ -57,7 +58,7 @@
             {
                 Storage = storage,
             };
-            var call = _client.PutAsync(request);
+            var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
             return response.Storage.ToLocal();
@@ -70,7 +71,7 @@
             {
                 Name = storageName,
             };
-            var call = _client.GetSingleAsync(request);
+            var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
             return response.Storage.ToLocal();
@@ -83,7 +84,7 @@
             {
                 Id = storageId.ToWire(),
             };
-            var call = _client.GetSingleAsync(request);
+            var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
             return response.Storage.ToLocal();
@@ -95,7 +96,7 @@
             var request = new AdminStorageMultipleRequest
             {
             };
-            var call = _client.GetMultipleAsync(request);
+            var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
             return response.Storages.ToLocal();
@@ -114,13 +115,14 @@
 
         public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            var channel = storageConnection.Transport.Channel;
-            _client = new StorageGrpcService.StorageGrpcServiceClient(channel);
+            _transport = storageConnection.Transport;
+            _client = new StorageGrpcService.StorageGrpcServiceClient(_transport.Channel);
             return Task.CompletedTask;
         }
 
         public Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
+            _transport = null;
             _client = null;
             return Task.CompletedTask;
         }
