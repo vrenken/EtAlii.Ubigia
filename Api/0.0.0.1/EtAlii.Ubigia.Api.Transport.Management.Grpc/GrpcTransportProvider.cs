@@ -8,14 +8,14 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 	public class GrpcStorageTransportProvider : IStorageTransportProvider
     {
         private string _authenticationToken;
-	    private readonly Func<Channel> _grpcChannelFactory;
+	    private readonly Func<Uri, Channel> _grpcChannelFactory;
 
-		public GrpcStorageTransportProvider(Func<Channel> grpcChannelFactory)
+		public GrpcStorageTransportProvider(Func<Uri, Channel> grpcChannelFactory)
 		{
 			_grpcChannelFactory = grpcChannelFactory;
 		}
 
-		public static GrpcStorageTransportProvider Create(Func<Channel> grpcChannelFactory = null)
+		public static GrpcStorageTransportProvider Create(Func<Uri, Channel> grpcChannelFactory = null)
         {
 	        return new GrpcStorageTransportProvider(grpcChannelFactory);
         }

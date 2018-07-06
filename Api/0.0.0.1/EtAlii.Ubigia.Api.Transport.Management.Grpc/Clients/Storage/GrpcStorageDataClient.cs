@@ -124,6 +124,7 @@
         {
             _transport = null;
             _client = null;
+            _transport = null;
             return Task.CompletedTask;
         }
     }

@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using global::Grpc.Core;
     using Xunit;
     
 #if GRPC

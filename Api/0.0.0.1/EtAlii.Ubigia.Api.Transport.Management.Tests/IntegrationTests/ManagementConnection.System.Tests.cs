@@ -17,7 +17,6 @@
 
         public void Dispose()
         {
-
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

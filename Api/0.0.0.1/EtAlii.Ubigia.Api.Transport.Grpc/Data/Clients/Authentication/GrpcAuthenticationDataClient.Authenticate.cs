@@ -19,7 +19,7 @@
             string authenticationToken = null;
             try
             {
-                authenticationToken = await GetAuthenticationToken(accountName, password, grpcConnection.Transport.AuthenticationToken);
+                authenticationToken = await GetAuthenticationToken(grpcConnection, accountName, password, grpcConnection.Transport.AuthenticationToken);
             }
             catch (global::Grpc.Core.RpcException e)
             {
@@ -38,12 +38,13 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(string accountName, string password, string authenticationToken)
+        private async Task<string> GetAuthenticationToken(IGrpcSpaceConnection connection, string accountName, string password, string authenticationToken)
         {
 	        if (password == null && authenticationToken != null)
 	        {
 	            var request = new AuthenticationRequest { AccountName = accountName, Password = "", HostIdentifier = _hostIdentifier };
-	            var call = _client.AuthenticateAsAsync(request);
+	            // Let's add the AuthenticationToken header manually.
+	            var call = _client.AuthenticateAsAsync(request, new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } });
 	            var response = await call.ResponseAsync
 	                .ConfigureAwait(false);
 	            _account = response.Account?.ToLocal();

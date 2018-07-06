@@ -8,7 +8,8 @@
     {
         public static Account ToLocal(this WireProtocol.Account account)
         {
-            return new Account
+            // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
+            return account == null ? null : new Account
             {
                 Id = account.Id.ToLocal(),
                 Created = account.Created.ToDateTime(),
@@ -21,18 +22,19 @@
 
         public static WireProtocol.Account ToWire(this Account account)
         {
-            var result = new WireProtocol.Account
+            // TODO: We should just return a account or crash. Returning null is a small security risk as it allows for probing.
+            var result = account == null ? null : new WireProtocol.Account
             {
                 Id = account.Id.ToWire(),
                 Created = Timestamp.FromDateTime(account.Created),
                 Updated = account.Updated.HasValue ? Timestamp.FromDateTime(account.Updated.Value) : null,
                 Name = account.Name,
             };
-            if (account.Password != null)
+            if (account?.Password != null)
             {
                 result.Password = account.Password;
             }
-            result.Roles.AddRange(account.Roles.ToArray());
+            result?.Roles.AddRange(account.Roles.ToArray());
             return result;
         }
 

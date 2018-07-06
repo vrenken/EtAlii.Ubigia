@@ -43,10 +43,13 @@
 
         public override Task<AuthenticationResponse> AuthenticateAs(AuthenticationRequest request, ServerCallContext context)
         {
+            // First we authenticate as the current user (most probably the administrator).
             var currentAccountAuthenticationToken = context.RequestHeaders.Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
             _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, out EtAlii.Ubigia.Api.Account account, Role.User, Role.System);
 
+            // And next we authenticate as the other user (the user we want to authenticate as).
             var otherAccountAuthenticationToken = _authenticationBuilder.Build(request.AccountName, request.HostIdentifier);
+            _authenticationTokenVerifier.Verify(otherAccountAuthenticationToken, out account, Role.User);
 
             context.ResponseTrailers.Add(GrpcHeader.AuthenticationTokenHeaderKey, otherAccountAuthenticationToken);
             var response = new AuthenticationResponse { Account = account.ToWire() };
