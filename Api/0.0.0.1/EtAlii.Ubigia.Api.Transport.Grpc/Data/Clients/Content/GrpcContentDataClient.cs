@@ -7,20 +7,19 @@
     {
         private ContentGrpcService.ContentGrpcServiceClient _contentClient;
         private ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient _contentDefinitionClient;
-        private IGrpcSpaceConnection _connection;
+        private IGrpcSpaceTransport _transport;
 
         public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            var channel = spaceConnection.Transport.Channel;
-            _connection = (IGrpcSpaceConnection) spaceConnection;
-            _contentClient = new ContentGrpcService.ContentGrpcServiceClient(channel);
-            _contentDefinitionClient = new ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient(channel);
+            _transport = ((IGrpcSpaceConnection) spaceConnection).Transport;
+            _contentClient = new ContentGrpcService.ContentGrpcServiceClient(_transport.Channel);
+            _contentDefinitionClient = new ContentDefinitionGrpcService.ContentDefinitionGrpcServiceClient(_transport.Channel);
             return Task.CompletedTask;
         }
 
         public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            _connection = null;
+            _transport = null;
             _contentClient = null;
             _contentDefinitionClient = null;
             return Task.CompletedTask;

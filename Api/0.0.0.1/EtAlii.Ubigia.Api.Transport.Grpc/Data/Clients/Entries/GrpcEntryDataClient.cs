@@ -8,12 +8,12 @@
     internal class GrpcEntryDataClient : GrpcClientBase, IEntryDataClient<IGrpcSpaceTransport> 
     {
         private EntryGrpcService.EntryGrpcServiceClient _client;
-        private IGrpcSpaceConnection _connection;
+        private IGrpcSpaceTransport _transport;
 
         public async Task<IEditableEntry> Prepare()
         {
             var request = new EntryPutRequest { SpaceId = Connection.Space.Id.ToWire() };
-            var response = await _client.PutAsync(request, _connection.Transport.AuthenticationHeaders);
+            var response = await _client.PutAsync(request, _transport.AuthenticationHeaders);
             //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Post", Connection.Space.Id);
             return response.Entry.ToLocal();
         }
@@ -21,7 +21,7 @@
         public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
             var request = new EntryPostRequest {Entry = ((IComponentEditableEntry)entry).ToWire()};
-            var response = await _client.PostAsync(request, _connection.Transport.AuthenticationHeaders);
+            var response = await _client.PostAsync(request, _transport.AuthenticationHeaders);
             //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
 
             scope.Cache.InvalidateEntry(entry.Id);
@@ -40,7 +40,7 @@
             return await scope.Cache.GetEntry(entryIdentifier, async () =>
             {
                 var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
-                var response = await _client.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
+                var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                 //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                 return response.Entry.ToLocal();
             });
@@ -55,7 +55,7 @@
                 var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
                 {
                     var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
-                    var response = await _client.GetSingleAsync(request, _connection.Transport.AuthenticationHeaders);
+                    var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                     return response.Entry.ToLocal();
                     //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                 });
@@ -69,7 +69,7 @@
             return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
             {
                 var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire()};
-                var response = await _client.GetRelatedAsync(request, _connection.Transport.AuthenticationHeaders);
+                var response = await _client.GetRelatedAsync(request, _transport.AuthenticationHeaders);
                 return response.Entries.ToLocal();
                 //return await _invoker.Invoke<IEnumerable<Entry>>(_connection, GrpcHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
             });
@@ -77,16 +77,15 @@
 
         public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            var channel = spaceConnection.Transport.Channel;
-            _connection = (IGrpcSpaceConnection)spaceConnection;
-            _client = new EntryGrpcService.EntryGrpcServiceClient(channel);
+            _transport = ((IGrpcSpaceConnection) spaceConnection).Transport;
+            _client = new EntryGrpcService.EntryGrpcServiceClient(_transport.Channel);
             return Task.CompletedTask;
 
         }
 
         public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            _connection = null;
+            _transport = null;
             _client = null;
             return Task.CompletedTask;
         }
