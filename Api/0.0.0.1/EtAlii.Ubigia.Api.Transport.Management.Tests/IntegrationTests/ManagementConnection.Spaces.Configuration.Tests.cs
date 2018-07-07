@@ -8,7 +8,6 @@
     using Xunit;
 
 #if GRPC
-    using global::Grpc.Core;
     using TransportException = global::Grpc.Core.RpcException;
 #else
     using TransportException = InvalidInfrastructureOperationException;

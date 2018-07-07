@@ -4,13 +4,11 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
 #if GRPC
-    using global::Grpc.Core;
     using TransportException = global::Grpc.Core.RpcException;
 #else
     using TransportException = InvalidInfrastructureOperationException;
@@ -88,6 +86,22 @@
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ManagementConnection_Storages_Get_Non_Existing()
+        {
+            var connection = await _testContext.CreateManagementConnection();
+
+            var name = Guid.NewGuid().ToString();
+            var address = Guid.NewGuid().ToString();
+
+            await connection.Storages.Add(name, address);
+
+            var nonExistingStorage = await connection.Storages.Get(Guid.NewGuid());
+
+            // Assert.
+            Assert.Null(nonExistingStorage);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -233,10 +247,10 @@
 
             // Act.
             await connection.Storages.Remove(storage.Id);
-            var act = new Func<Task>(async () => await connection.Storages.Get(storage.Id));
+            var nonExistingStorage = await connection.Storages.Get(storage.Id);
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            Assert.Null(nonExistingStorage);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
