@@ -12,6 +12,5 @@
             var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
             return infrastructureClient;
         }
-
     }
 }

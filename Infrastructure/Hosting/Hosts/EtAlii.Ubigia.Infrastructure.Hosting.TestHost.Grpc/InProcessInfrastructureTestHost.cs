@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
 	using System;
-    using System.Linq;
+	using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
