@@ -74,7 +74,7 @@
             var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
-            return response.Storage.ToLocal();
+            return response.Storage?.ToLocal();
             //return await _invoker.Invoke<Api.Storage>(_connection, GrpcHub.Storage, "GetByName", storageName);
         }
 
@@ -87,7 +87,7 @@
             var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
             var response = await call.ResponseAsync
                 .ConfigureAwait(false);
-            return response.Storage.ToLocal();
+            return response.Storage?.ToLocal();
             //return await _invoker.Invoke<Api.Storage>(_connection, GrpcHub.Storage, "Get", storageId);
         }
 
