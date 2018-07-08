@@ -53,7 +53,7 @@
 
             var response = new StorageSingleResponse
             {
-                Storage = storage.ToWire()
+                Storage = storage?.ToWire()
             };
             return Task.FromResult(response);
         }
