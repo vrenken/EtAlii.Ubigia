@@ -25,7 +25,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.Grpc.Tests\EtAlii.Ubigia.Api.Transport.Management.Grpc.Tests.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Configuration" />
