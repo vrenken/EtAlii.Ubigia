@@ -13,14 +13,7 @@
     public partial class HostTestContext<TInfrastructureTestHost> 
 	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
-	    public void Start()
-	    {
-		    // We need to start each test hosting one at a time. 
-		    // Reason is that this is the only way to make sure that the ports aren't reused.
-		    HostMutex.ExecuteExclusive(() => StartExclusive(true));
-	    }
-
-	    private void StartExclusive(bool useRandomPorts)
+	    protected override void StartInternal(bool useRandomPorts)
 	    {
             //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
 
@@ -81,72 +74,16 @@
             //.UseTestHost(diagnostics);
 
             var host = new HostFactory<TInfrastructureTestHost>().Create(hostConfiguration);
-
-            Start(host, () => host.Infrastructure);
-
-        }
-        private void Start(TInfrastructureTestHost host, Func<IInfrastructure> getInfrastructure)
-        {
             Host = host;
             host.Start();
 
-            //WaitUntilHostIsRunning(host);
-
-            //WaitUntilModuleIsRunning(host.AdminModule);
-            //WaitUntilModuleIsRunning(host.UserModule);
-
-            Infrastructure = getInfrastructure();
-
-            var systemAccount = Infrastructure.Accounts.Get("System");
-            SystemAccountName = systemAccount.Name;
-            SystemAccountPassword = systemAccount.Password;
-
-            var adminAccount = Infrastructure.Accounts.Get("Administrator");
-            AdminAccountName = adminAccount.Name;
-            AdminAccountPassword = adminAccount.Password;
-
-            // TODO: Create test user account and use this instead of the admin account.
-            TestAccountName = adminAccount.Name;
-            TestAccountPassword = adminAccount.Password;
+            Infrastructure = host.Infrastructure;
         }
 
-        public void Stop()
+        protected override void StopInternal()
         {
-	        var stopAction = new Action(() =>
-	        {
-		        Host.Stop();
-		        Host = null;
-
-		        Infrastructure = null;
-
-		        SystemAccountName = null;
-		        SystemAccountPassword = null;
-		        TestAccountName = null;
-		        TestAccountPassword = null;
-	        });
-	        HostMutex.ExecuteExclusive(stopAction);
-        }
-
-        private IReadOnlyList<int> GetAvailableTcpPorts(int startingPort, int numberOfPorts)
-        {
-
-            var properties = IPGlobalProperties.GetIPGlobalProperties();
-
-            
-	        var inUsePorts = Array.Empty<int>()
-		        .Concat(properties.GetActiveTcpConnections().Select(c => c.LocalEndPoint.Port)) // Ignore active connections            
-				.Concat(properties.GetActiveTcpListeners().Select(l => l.Port)) // Ignore active tcp listners
-				.Concat(properties.GetActiveUdpListeners().Select(l => l.Port)) // Ignore active udp listeners
-				.OrderBy(p => p)
-		        .Where(p => p < startingPort);
-
-	        return Enumerable
-		        .Range(startingPort, IPEndPoint.MaxPort)
-		        .Except(inUsePorts)
-		        .Distinct()
-		        .GroupAdjacentBy((x, y) => x + 1 == y)
-		        .Select(g => g.ToArray())
-		        .FirstOrDefault(g => g.Length >= numberOfPorts);
+			Host.Stop();
+			Host = null;
         }
     }
 }

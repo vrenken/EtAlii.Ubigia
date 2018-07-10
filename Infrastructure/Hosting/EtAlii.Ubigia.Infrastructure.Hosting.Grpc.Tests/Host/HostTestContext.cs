@@ -6,7 +6,7 @@
     {
     }
 
-    public partial class HostTestContext<TInfrastructureTestHost> : IHostTestContext<TInfrastructureTestHost>
+    public partial class HostTestContext<TInfrastructureTestHost> : HostTestContextBase, IHostTestContext<TInfrastructureTestHost>
         where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
 	}

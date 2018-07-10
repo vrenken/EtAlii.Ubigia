@@ -1,10 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Net.NetworkInformation;
-	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.Extensions.Configuration;
@@ -12,14 +9,8 @@
     public partial class HostTestContext<TInfrastructureTestHost> 
 	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
-	    public void Start()
-	    {
-		    // We need to start each test hosting one at a time. 
-		    // Reason is that this is the only way to make sure that the ports aren't reused.
-		    HostMutex.ExecuteExclusive(() => StartExclusive(true));
-	    }
 
-        private void StartExclusive(bool useRandomPorts)
+	    protected override void StartInternal(bool useRandomPorts)
         {
             //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
 
@@ -79,86 +70,16 @@
 
             var host = new HostFactory<TInfrastructureTestHost>().Create(hostConfiguration);
 
-            Start(host, () => host.Infrastructure);
-
-        }
-        private void Start(TInfrastructureTestHost host, Func<IInfrastructure> getInfrastructure)
-        {
             Host = host;
             host.Start();
 
-            //WaitUntilHostIsRunning(host);
-
-            //WaitUntilModuleIsRunning(host.AdminModule);
-            //WaitUntilModuleIsRunning(host.UserModule);
-
-            Infrastructure = getInfrastructure();
-
-            var systemAccount = Infrastructure.Accounts.Get("System");
-            SystemAccountName = systemAccount.Name;
-            SystemAccountPassword = systemAccount.Password;
-
-            var adminAccount = Infrastructure.Accounts.Get("Administrator");
-            AdminAccountName = adminAccount.Name;
-            AdminAccountPassword = adminAccount.Password;
-
-            // TODO: Create test user account and use this instead of the admin account.
-            TestAccountName = adminAccount.Name;
-            TestAccountPassword = adminAccount.Password;
+            Infrastructure = host.Infrastructure;
         }
 
-        public void Stop()
+        protected override void StopInternal()
         {
             Host.Stop();
             Host = null;
-
-            Infrastructure = null;
-
-            SystemAccountName = null;
-            SystemAccountPassword = null;
-            TestAccountName = null;
-            TestAccountPassword = null;
-        }
-
-        private IReadOnlyList<int> GetAvailableTcpPorts(int startingPort, int numberOfPorts)
-        {
-            var result = new List<int>();
-
-            var portArray = new List<int>();
-
-            var properties = IPGlobalProperties.GetIPGlobalProperties();
-
-            // Ignore active connections
-            var connections = properties.GetActiveTcpConnections();
-            portArray.AddRange(from n in connections
-                               where n.LocalEndPoint.Port >= startingPort
-                               select n.LocalEndPoint.Port);
-
-            // Ignore active tcp listners
-            var endPoints = properties.GetActiveTcpListeners();
-            portArray.AddRange(from n in endPoints
-                               where n.Port >= startingPort
-                               select n.Port);
-
-            // Ignore active udp listeners
-            endPoints = properties.GetActiveUdpListeners();
-            portArray.AddRange(from n in endPoints
-                               where n.Port >= startingPort
-                               select n.Port);
-
-            portArray.Sort();
-
-            for (var i = startingPort; i < UInt16.MaxValue; i++)
-                if (!portArray.Contains(i))
-                {
-                    result.Add(i);
-                    if (--numberOfPorts == 0)
-                    {
-                        break;
-                    }
-                };
-
-            return result;
         }
     }
 }
