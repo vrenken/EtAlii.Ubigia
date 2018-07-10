@@ -27,7 +27,7 @@
                 .Distinct()
                 .GroupAdjacentBy((x, y) => x + 1 == y)
                 .Select(g => g.ToArray())
-                .FirstOrDefault(g => g.Length >= numberOfPorts);
+                .FirstOrDefault(g => g.Length >= numberOfPorts); 
         }
         
         
