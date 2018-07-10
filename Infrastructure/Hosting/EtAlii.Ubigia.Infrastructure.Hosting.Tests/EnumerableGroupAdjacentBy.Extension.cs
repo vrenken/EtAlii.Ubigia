@@ -4,7 +4,7 @@
     using System.Collections.Generic;
 
     // Source: https://stackoverflow.com/questions/4681949/use-linq-to-group-a-sequence-of-numbers-with-no-gaps
-    public static class EnumerableGroupAdjacentByExtension
+    internal static class EnumerableGroupAdjacentByExtension
     {
         public static IEnumerable<IEnumerable<T>> GroupAdjacentBy<T>(
             this IEnumerable<T> source, Func<T, T, bool> predicate)
