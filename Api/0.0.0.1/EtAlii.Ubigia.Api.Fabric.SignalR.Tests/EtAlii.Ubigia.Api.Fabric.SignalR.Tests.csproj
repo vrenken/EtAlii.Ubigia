@@ -30,4 +30,5 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
   </ItemGroup>
+  <Import Project="..\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems" Label="Shared" />
 </Project>
