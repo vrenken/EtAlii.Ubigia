@@ -9,7 +9,7 @@
 
     public abstract partial class HostTestContextBase
     {
-        protected IReadOnlyList<int> GetAvailableTcpPortsOld(int startingPort, int numberOfPorts)
+        protected IReadOnlyList<int> GetAvailableTcpPorts(int startingPort, int numberOfPorts)
         {
 
             var properties = IPGlobalProperties.GetIPGlobalProperties();
@@ -19,7 +19,7 @@
                 .Concat(properties.GetActiveTcpListeners().Select(l => l.Port)) // Ignore active tcp listners
                 .Concat(properties.GetActiveUdpListeners().Select(l => l.Port)) // Ignore active udp listeners
                 .OrderBy(p => p)
-                .Where(p => p < startingPort);
+                .Where(p => p >= startingPort);
 
             return Enumerable
                 .Range(startingPort, IPEndPoint.MaxPort)
@@ -27,11 +27,10 @@
                 .Distinct()
                 .GroupAdjacentBy((x, y) => x + 1 == y)
                 .Select(g => g.ToArray())
-                .FirstOrDefault(g => g.Length >= numberOfPorts); 
+                .First(g => g.Length >= numberOfPorts); 
         }
         
-        
-        protected IReadOnlyList<int> GetAvailableTcpPorts(int startingPort, int numberOfPorts)
+        protected IReadOnlyList<int> GetAvailableTcpPortsOld(int startingPort, int numberOfPorts)
         {
             var result = new List<int>();
 
