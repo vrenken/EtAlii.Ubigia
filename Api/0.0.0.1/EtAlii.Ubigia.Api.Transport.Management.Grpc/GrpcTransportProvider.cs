@@ -7,8 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 
 	public class GrpcStorageTransportProvider : IStorageTransportProvider
     {
-        private string _authenticationToken;
-	    private readonly Func<Uri, Channel> _grpcChannelFactory;
+        private readonly Func<Uri, Channel> _grpcChannelFactory;
 
 		public GrpcStorageTransportProvider(Func<Uri, Channel> grpcChannelFactory)
 		{
@@ -25,8 +24,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
             return new GrpcSpaceTransport(
 	            address,
 	            _grpcChannelFactory,
-                v => _authenticationToken = v, 
-                () => _authenticationToken);
+	            new AuthenticationTokenProvider());
         }
 
         public IStorageTransport GetStorageTransport(Uri address)
@@ -34,8 +32,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
             return new GrpcStorageTransport(
 	            address,
 	            _grpcChannelFactory,
-                v => _authenticationToken = v, 
-                () => _authenticationToken);
+	            new AuthenticationTokenProvider());
         }
     }
 }

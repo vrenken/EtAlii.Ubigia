@@ -12,21 +12,18 @@
 
 	    public Metadata AuthenticationHeaders { get; set; }
 	    
-		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
-        private readonly Action<string> _authenticationTokenSetter;
-        private readonly Func<string> _authenticationTokenGetter;
+	    public string AuthenticationToken { get => _authenticationTokenProvider.AuthenticationToken; set => _authenticationTokenProvider.AuthenticationToken = value; }
+	    private readonly IAuthenticationTokenProvider _authenticationTokenProvider;
 	    private readonly Func<Uri, Channel> _grpcChannelFactory;
 	     
         public GrpcSpaceTransport(
 	        Uri address,
 	        Func<Uri, Channel> grpcChannelFactory, 
-			Action<string> authenticationTokenSetter, 
-            Func<string> authenticationTokenGetter)
+	        IAuthenticationTokenProvider authenticationTokenProvider)
 	        : base(address)
         {
 	        _grpcChannelFactory = grpcChannelFactory;
-			_authenticationTokenSetter = authenticationTokenSetter;
-            _authenticationTokenGetter = authenticationTokenGetter;
+	        _authenticationTokenProvider = authenticationTokenProvider;
         }
 
 	    private Channel GetChannel()
