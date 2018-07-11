@@ -21,7 +21,7 @@
             {
                 authenticationToken = await GetAuthenticationToken(grpcConnection, accountName, password, grpcConnection.Transport.AuthenticationToken);
             }
-            catch (global::Grpc.Core.RpcException e)
+            catch (global::Grpc.Core.RpcException)
             {
             }
 

@@ -7,17 +7,17 @@
     internal class GrpcRootNotificationClient : GrpcClientBase, IRootNotificationClient<IGrpcSpaceTransport>
     {
         //private HubConnection _connection;
-        private readonly string _name;
-		private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+//        private readonly string _name;
+		private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
 		public event Action<System.Guid> Added = delegate { };
         public event Action<System.Guid> Changed = delegate { };
         public event Action<System.Guid> Removed = delegate { };
 
-        public GrpcRootNotificationClient()
-        {
-            _name = GrpcHub.Root;
-        }
+//        public GrpcRootNotificationClient()
+//        {
+//            //_name = GrpcHub.Root;
+//        }
 
         private void OnAdded(System.Guid id)
         {

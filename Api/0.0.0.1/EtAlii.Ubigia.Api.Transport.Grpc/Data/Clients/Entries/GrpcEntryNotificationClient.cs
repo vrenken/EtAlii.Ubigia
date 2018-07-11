@@ -7,16 +7,16 @@
     internal class GrpcEntryNotificationClient : GrpcClientBase, IEntryNotificationClient<IGrpcSpaceTransport>
     {
         //private HubConnection _connection;
-        private readonly string _name;
-        private IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
+//        private readonly string _name;
+        private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
         public event Action<Api.Identifier> Prepared = delegate { };
         public event Action<Api.Identifier> Stored = delegate { };
 
-        public GrpcEntryNotificationClient()
-        {
-            _name = GrpcHub.Entry;
-        }
+//        public GrpcEntryNotificationClient()
+//        {
+//            //_name = GrpcHub.Entry;
+//        }
 
         private void OnPrepared(Api.Identifier identifier)
         {
