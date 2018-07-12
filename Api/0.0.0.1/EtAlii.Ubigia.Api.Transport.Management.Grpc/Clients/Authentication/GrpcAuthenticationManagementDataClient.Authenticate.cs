@@ -13,34 +13,33 @@
         
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
-            var grpcConnection = (IGrpcStorageConnection)connection;
-
-            SetClients(grpcConnection.Transport.Channel);
-
-            string authenticationToken = null;
             try
             {
-                authenticationToken = await GetAuthenticationToken(accountName, password, grpcConnection.Transport.AuthenticationToken);
+                var grpcConnection = (IGrpcStorageConnection)connection;
+    
+                SetClients(grpcConnection.Transport.Channel);
+    
+                var authenticationToken = await Authenticate(accountName, password, grpcConnection.Transport.AuthenticationToken);
 
+                if (!String.IsNullOrWhiteSpace(authenticationToken))
+                {
+                    grpcConnection.Transport.AuthenticationToken = authenticationToken;
+                    grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
+                }
+                else
+                {
+                    grpcConnection.Transport.AuthenticationHeaders = null;
+                    string message = $"Unable to authenticate on the specified storage ({grpcConnection.Transport.Address})";
+                    throw new UnauthorizedInfrastructureOperationException(message);
+                }
             }
-            catch (global::Grpc.Core.RpcException)
-            {
-            }
- 
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
-            {
-                grpcConnection.Transport.AuthenticationToken = authenticationToken;
-                grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
-            }
-            else
-            {
-                grpcConnection.Transport.AuthenticationHeaders = null;
-                string message = $"Unable to authenticate on the specified storage ({grpcConnection.Transport.Address})";
-                throw new UnauthorizedInfrastructureOperationException(message);
+            catch (RpcException e)
+            {                
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcAuthenticationManagementDataClient)}.Authenticate()", e);
             }
         }
 
-        private async Task<string> GetAuthenticationToken(string accountName, string password, string authenticationToken)
+        private async Task<string> Authenticate(string accountName, string password, string authenticationToken)
         {
 	        if (password == null && authenticationToken != null)
 	        {
