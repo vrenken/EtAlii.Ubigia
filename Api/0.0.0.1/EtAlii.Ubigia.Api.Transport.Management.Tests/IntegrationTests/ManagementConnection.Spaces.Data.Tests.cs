@@ -7,12 +7,6 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-#if GRPC
-    using TransportException = global::Grpc.Core.RpcException;
-#else
-    using TransportException = InvalidInfrastructureOperationException;
-#endif
-    
     public class ManagementConnectionSpacesDataTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {
         private readonly StartedTransportUnitTestContext _testContext;
@@ -155,7 +149,7 @@
                 spaces.Add(space);
             }
 
-            var retrievedSpaces = await connection.Spaces.GetAll(account.Id);
+            var retrievedSpaces = (await connection.Spaces.GetAll(account.Id)).ToArray();
 
             // Each user is initialized with at least a configuration and a data space. so we need to add two to the ammount of spaces we expect.
             Assert.Equal(spaces.Count + 2, retrievedSpaces.Count());
@@ -234,7 +228,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
 
@@ -251,7 +245,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Change(id, name));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -268,7 +262,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Data));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
     }
 }

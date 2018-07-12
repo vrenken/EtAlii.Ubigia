@@ -7,12 +7,6 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     
-#if GRPC
-    using TransportException = global::Grpc.Core.RpcException;
-#else
-    using TransportException = InvalidInfrastructureOperationException;
-#endif
-    
     public class ManagementConnectionAccountsUsersTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
@@ -176,7 +170,7 @@
                 accounts.Add(account);
             }
 
-            var retrievedAccounts = await connection.Accounts.GetAll();
+            var retrievedAccounts = (await connection.Accounts.GetAll()).ToArray();
 
             // We have the system and administrator accounts, 
             // so 2 additional accounts need to be used in the equation.
@@ -353,7 +347,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act);  // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);  
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -369,7 +363,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -386,7 +380,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.User));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act);  // InvalidInfrastructureOperationExceptions
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);  
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -6,13 +6,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-
-#if GRPC
-    using global::Grpc.Core;
-    using TransportException = global::Grpc.Core.RpcException;
-#else
-    using TransportException = InvalidInfrastructureOperationException;
-#endif
     
     public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
@@ -296,7 +289,7 @@
                 accounts.Add(account);
             }
 
-            var retrievedAccounts = await connection.Accounts.GetAll();
+            var retrievedAccounts = (await connection.Accounts.GetAll()).ToArray();
 
             // We have the system and administrator accounts, 
             // so 2 additional accounts need to be used in the equation.
@@ -541,7 +534,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
 
             // Assure.
             await connection.Close();
@@ -560,7 +553,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
 
             // Assure.
             await connection.Close();
@@ -580,7 +573,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.Administrator));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
 
             // Assure.
             await connection.Close();
