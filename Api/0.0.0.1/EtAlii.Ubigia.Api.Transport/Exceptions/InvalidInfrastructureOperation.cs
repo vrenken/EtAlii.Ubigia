@@ -14,6 +14,7 @@
         public const string AlreadySubscribedToNotifications = "Already connected to the notifications system";
         public const string NotSubscribedToNotifications = "Not subscribed to the notifications system";
         public const string UnableToAthorize = "Authentication failed";
+        public const string NoWayToAuthenticate = "No way to authenticate";
 
         public const string AlreadySubscribedToTransport = "Already connected to transport";
         public const string NotSubscribedToTransport = "Not subscribed to the transport";
