@@ -8,6 +8,7 @@
     using AdminSpaceMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest;
     using IGrpcStorageTransport = EtAlii.Ubigia.Api.Transport.Grpc.IGrpcStorageTransport;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+    using global::Grpc.Core;
 
     public sealed class GrpcSpaceDataClient : ISpaceDataClient<IGrpcStorageTransport>
     {
@@ -16,97 +17,133 @@
 
         public async Task<Api.Space> Add(System.Guid accountId, string spaceName, SpaceTemplate template)
         {
-            var space = new Api.Space 
+            try
             {
-                Name = spaceName,
-                AccountId = accountId,
-            }.ToWire();
-            
-            var request = new AdminSpacePostSingleRequest
+                var space = new Api.Space 
+                {
+                    Name = spaceName,
+                    AccountId = accountId,
+                }.ToWire();
+                
+                var request = new AdminSpacePostSingleRequest
+                {
+                    Space = space,
+                    Template = template.Name
+                };
+                var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
+    
+                return response.Space.ToLocal();
+            }
+            catch (RpcException e)
             {
-                Space = space,
-                Template = template.Name
-            };
-            var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
-            var response = await call.ResponseAsync
-                .ConfigureAwait(false);
-
-            return response.Space.ToLocal();
-            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Post", space, template.Name);
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.Add()", e);
+            }
         }
 
         public async Task Remove(System.Guid spaceId)
         {
-            var request = new AdminSpaceSingleRequest
+            try
             {
-                Id = spaceId.ToWire(),
-            };
-            var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
-            var response = await call.ResponseAsync
-                .ConfigureAwait(false);
-            //await _invoker.Invoke(_connection, GrpcHub.Space, "Delete", spaceId);
+                var request = new AdminSpaceSingleRequest
+                {
+                    Id = spaceId.ToWire(),
+                };
+                var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
+            }
+            catch (RpcException e)
+            {
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.Remove()", e);
+            }
         }
 
         public async Task<Api.Space> Change(System.Guid spaceId, string spaceName)
         {
-            var space = new Api.Space
+            try
             {
-                Id = spaceId,
-                Name = spaceName,
-            }.ToWire();
-            
-            var request = new AdminSpaceSingleRequest
+                var space = new Api.Space
+                {
+                    Id = spaceId,
+                    Name = spaceName,
+                }.ToWire();
+                
+                var request = new AdminSpaceSingleRequest
+                {
+                    Space = space,
+                };
+                var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
+    
+                return response.Space.ToLocal();
+            }
+            catch (RpcException e)
             {
-                Space = space,
-            };
-            var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-            var response = await call.ResponseAsync
-                .ConfigureAwait(false);
-
-            return response.Space.ToLocal();
-            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Put", spaceId, space);
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.Change()", e);
+            }
         }
 
         public async Task<Api.Space> Get(System.Guid accountId, string spaceName)
         {
-            var request = new AdminSpaceSingleRequest
+            try
             {
-                Name = spaceName,
-            };
-            var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-            var response = await call.ResponseAsync
-                .ConfigureAwait(false);
-
-            return response.Space.ToLocal();
-            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "GetForAccount", accountId, spaceName);
+                var request = new AdminSpaceSingleRequest
+                {
+                    Name = spaceName,
+                };
+                var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
+    
+                return response.Space.ToLocal();
+            }
+            catch (RpcException e)
+            {
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.Get()", e);
+            }
         }
 
         public async Task<Api.Space> Get(System.Guid spaceId)
         {
-            var request = new AdminSpaceSingleRequest
+            try
             {
-                Id = spaceId.ToWire(),
-            };
-            var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-            var response = await call.ResponseAsync
-                .ConfigureAwait(false);
-
-            return response.Space.ToLocal();
-            //return await _invoker.Invoke<Api.Space>(_connection, GrpcHub.Space, "Get", spaceId);
+                var request = new AdminSpaceSingleRequest
+                {
+                    Id = spaceId.ToWire(),
+                };
+                var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
+    
+                return response.Space.ToLocal();
+            }
+            catch (RpcException e)
+            {
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.Get()", e);
+            }
         }
 
         public async Task<IEnumerable<Api.Space>> GetAll(System.Guid accountId)
         {
-            var request = new AdminSpaceMultipleRequest
-            {                               
-                AccountId = accountId.ToWire(),
-            };
-            var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-            var response = await call.ResponseAsync
-                .ConfigureAwait(false);
-
-            return response.Spaces.ToLocal();
-            //return await _invoker.Invoke<IEnumerable<Api.Space>>(_connection, GrpcHub.Space, "GetAllForAccount", accountId);
+            try
+            {
+                var request = new AdminSpaceMultipleRequest
+                {                               
+                    AccountId = accountId.ToWire(),
+                };
+                var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
+                var response = await call.ResponseAsync
+                    .ConfigureAwait(false);
+    
+                return response.Spaces.ToLocal();
+            }
+            catch (RpcException e)
+            {
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcSpaceDataClient)}.GetAll()", e);
+            }
         }
 
         public async Task Connect(IStorageConnection storageConnection)
