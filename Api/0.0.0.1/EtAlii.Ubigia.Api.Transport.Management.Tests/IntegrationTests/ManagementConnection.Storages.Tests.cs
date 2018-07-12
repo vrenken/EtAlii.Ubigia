@@ -7,12 +7,6 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
-
-#if GRPC
-    using TransportException = global::Grpc.Core.RpcException;
-#else
-    using TransportException = InvalidInfrastructureOperationException;
-#endif
     
     public class ManagementConnectionStoragesTests : IDisposable
     {
@@ -264,7 +258,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -280,7 +274,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Change(id, name, address));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act); // InvalidInfrastructureOperationException
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -368,7 +362,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Add(name, address));
 
             // Assert.
-            await Assert.ThrowsAsync<TransportException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
     }
 }
