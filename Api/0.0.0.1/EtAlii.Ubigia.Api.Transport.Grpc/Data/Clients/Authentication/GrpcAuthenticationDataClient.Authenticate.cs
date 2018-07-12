@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
     using System;
+    using System.Diagnostics;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
@@ -12,34 +13,39 @@
         
         public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
-            var grpcConnection = (IGrpcSpaceConnection)connection;
-             
-            SetClients(grpcConnection.Transport.Channel);
-
-            string authenticationToken = null;
             try
             {
-                authenticationToken = await GetAuthenticationToken(grpcConnection, accountName, password, grpcConnection.Transport.AuthenticationToken);
+                var grpcConnection = (IGrpcSpaceConnection)connection;
+                 
+                SetClients(grpcConnection.Transport.Channel);
+    
+                var authenticationToken = await Authenticate(grpcConnection, accountName, password, grpcConnection.Transport.AuthenticationToken);
+    
+                if (!String.IsNullOrWhiteSpace(authenticationToken))
+                {
+                    grpcConnection.Transport.AuthenticationToken = authenticationToken;
+                    grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
+                }
+                else
+                {
+                    grpcConnection.Transport.AuthenticationHeaders = null;
+                    string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                    throw new UnauthorizedInfrastructureOperationException(message);
+                }
             }
-            catch (global::Grpc.Core.RpcException)
-            {
-            }
-
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
-            {
-                grpcConnection.Transport.AuthenticationToken = authenticationToken;
-                grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
-            }
-            else
-            {
-                grpcConnection.Transport.AuthenticationHeaders = null;
-                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
-                throw new UnauthorizedInfrastructureOperationException(message);
+            catch (RpcException e)
+            {                
+                throw new InvalidInfrastructureOperationException($"{nameof(GrpcAuthenticationDataClient)}.Authenticate()", e);
             }
         }
 
-        private async Task<string> GetAuthenticationToken(IGrpcSpaceConnection connection, string accountName, string password, string authenticationToken)
+        private async Task<string> Authenticate(IGrpcSpaceConnection connection, string accountName, string password, string authenticationToken)
         {
+            if (password == null && authenticationToken == null)
+            {
+                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.NoWayToAuthenticate);
+            }
+            
 	        if (password == null && authenticationToken != null)
 	        {
 	            var request = new AuthenticationRequest { AccountName = accountName, Password = "", HostIdentifier = _hostIdentifier };
@@ -75,7 +81,7 @@
 
             if (String.IsNullOrWhiteSpace(authenticationToken))
             {
-                throw new UnableToAuthorizeInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
+                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
             }
             return authenticationToken;
         }
