@@ -1,11 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
-	using System.Net;
-	using System.Net.NetworkInformation;
-	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.Extensions.Configuration;
