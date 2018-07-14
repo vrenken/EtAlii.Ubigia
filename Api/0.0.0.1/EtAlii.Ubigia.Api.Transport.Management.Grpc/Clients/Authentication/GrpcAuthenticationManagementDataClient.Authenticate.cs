@@ -18,9 +18,36 @@
                 var grpcConnection = (IGrpcStorageConnection)connection;
     
                 SetClients(grpcConnection.Transport.Channel);
-    
-                var authenticationToken = await Authenticate(accountName, password, grpcConnection.Transport.AuthenticationToken);
 
+                var authenticationToken = grpcConnection.Transport.AuthenticationToken;
+                if (password == null && authenticationToken == null)
+                {
+                    throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.NoWayToAuthenticate);
+                }
+    
+                if (password == null)
+                {
+                    var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
+                    var call = _client.AuthenticateAsAsync(request);
+                    var response = await call.ResponseAsync;
+                    _account = response.Account?.ToLocal();
+                    
+                    authenticationToken = call
+                        .GetTrailers()
+                        .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+                }
+                if (authenticationToken == null)
+                {
+                    var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
+                    var call = _client.AuthenticateAsync(request);
+                    var response = await call.ResponseAsync;
+                    _account = response.Account?.ToLocal();
+                    
+                    authenticationToken= call
+                        .GetTrailers()
+                        .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+                }
+    
                 if (!String.IsNullOrWhiteSpace(authenticationToken))
                 {
                     grpcConnection.Transport.AuthenticationToken = authenticationToken;
@@ -29,53 +56,15 @@
                 else
                 {
                     grpcConnection.Transport.AuthenticationHeaders = null;
-                    string message = $"Unable to authenticate on the specified storage ({grpcConnection.Transport.Address})";
+                    var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                     throw new UnauthorizedInfrastructureOperationException(message);
                 }
             }
             catch (RpcException e)
             {                
-                throw new InvalidInfrastructureOperationException($"{nameof(GrpcAuthenticationManagementDataClient)}.Authenticate()", e);
+                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                throw new UnauthorizedInfrastructureOperationException(message, e);
             }
-        }
-
-        private async Task<string> Authenticate(string accountName, string password, string authenticationToken)
-        {
-	        if (password == null && authenticationToken != null)
-	        {
-	            var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
-	            var call = _client.AuthenticateAsAsync(request);
-	            var response = await call.ResponseAsync;
-	            _account = response.Account?.ToLocal();
-	            
-	            var newAuthenticationToken = call
-	                .GetTrailers()
-	                .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-	            // authenticationToken = await _invoker.Invoke<string>(connection, GrpcHub.Authentication, "AuthenticateAs", accountName, _hostIdentifier);
-	            return newAuthenticationToken;
-	            
-	            //      // These lines are needed to make the downscale from admin/system to user accoun based authentication tokens.
-	            //      var connection = new HubConnectionFactory().Create(httpMessageHandler, new Uri(address + GrpcHub.BasePath + "/" + GrpcHub.Authentication), authenticationToken);
-	        }
-            else if (password != null && authenticationToken == null)
-            {
-                var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
-                var call = _client.AuthenticateAsync(request);
-                var response = await call.ResponseAsync;
-                _account = response.Account?.ToLocal();
-                
-                var newAuthenticationToken = call
-                    .GetTrailers()
-                    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-                // authenticationToken = await _invoker.Invoke<string>(connection, GrpcHub.Authentication, "Authenticate", accountName, password, _hostIdentifier);
-                return newAuthenticationToken;
-            }
-
-            if (String.IsNullOrWhiteSpace(authenticationToken))
-            {
-                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
-            }
-            return authenticationToken;
         }
 
         private string CreateHostIdentifier()
