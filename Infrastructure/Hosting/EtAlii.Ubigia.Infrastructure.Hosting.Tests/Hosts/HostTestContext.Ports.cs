@@ -5,7 +5,6 @@
     using System.Linq;
     using System.Net;
     using System.Net.NetworkInformation;
-    using EtAlii.Ubigia.Infrastructure.Functional;
 
     public abstract partial class HostTestContextBase
     {
