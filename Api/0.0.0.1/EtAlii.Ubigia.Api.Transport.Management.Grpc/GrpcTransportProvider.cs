@@ -9,30 +9,26 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
     {
         private readonly Func<Uri, Channel> _grpcChannelFactory;
 
+	    private readonly AuthenticationTokenProvider _storageAuthenticationTokenProvider;
+	    
 		public GrpcStorageTransportProvider(Func<Uri, Channel> grpcChannelFactory)
 		{
 			_grpcChannelFactory = grpcChannelFactory;
+			_storageAuthenticationTokenProvider = new AuthenticationTokenProvider();
 		}
-
-		public static GrpcStorageTransportProvider Create(Func<Uri, Channel> grpcChannelFactory = null)
-        {
-	        return new GrpcStorageTransportProvider(grpcChannelFactory);
-        }
 
         public ISpaceTransport GetSpaceTransport(Uri address)
         {
-            return new GrpcSpaceTransport(
-	            address,
-	            _grpcChannelFactory,
-	            new AuthenticationTokenProvider());
+	        // We always use a new authenticationTokenProvider for space based access.
+	        var authenticationTokenProvider = new AuthenticationTokenProvider { AuthenticationToken = _storageAuthenticationTokenProvider.AuthenticationToken };
+            return new GrpcSpaceTransport(address, _grpcChannelFactory, authenticationTokenProvider);
         }
 
         public IStorageTransport GetStorageTransport(Uri address)
         {
-            return new GrpcStorageTransport(
-	            address,
-	            _grpcChannelFactory,
-	            new AuthenticationTokenProvider());
+	        // We always want to use the same authenticationTokenProvider for storage based access.
+	        var authenticationTokenProvider = _storageAuthenticationTokenProvider;
+            return new GrpcStorageTransport(address, _grpcChannelFactory, authenticationTokenProvider);
         }
     }
 }
