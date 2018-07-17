@@ -15,8 +15,7 @@
             
             // We need to start each test hosting one at a time. 
             // Reason is that this is the only way to make sure that the ports aren't reused.
-            StartInternal(true);
-            // HostMutex.ExecuteExclusive(() => StartInternal(true));
+            HostMutex.ExecuteExclusive(() => StartInternal(true));
             
             var systemAccount = Infrastructure.Accounts.Get("System");
             SystemAccountName = systemAccount.Name;
