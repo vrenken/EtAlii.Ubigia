@@ -13,7 +13,7 @@
 	    {
             //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
 
-            var ports = GetAvailableTcpPorts(64000, 3)
+            var ports = GetAvailableTcpPorts(64000, 2)
              .Select(p => p.ToString())
              .ToArray();
 
