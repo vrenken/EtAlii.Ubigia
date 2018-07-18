@@ -9,8 +9,9 @@
         {
             var result = new ContentDefinition
             {
+//                Name = contentDefinition.Name;
                 Stored = contentDefinition.Stored,
-                Summary = contentDefinition.Summary.ToLocal(),
+                Summary = contentDefinition.Summary?.ToLocal(),
                 TotalParts = contentDefinition.TotalParts,               
                 Checksum = contentDefinition.Checksum,
                 
@@ -28,8 +29,9 @@
         {
             var result = new WireProtocol.ContentDefinition
             {
+//                Name = contentDefinition.Name,
                 Stored = contentDefinition.Stored,
-                Summary = contentDefinition.Summary.ToWire(),
+                Summary = contentDefinition.Summary?.ToWire(),
                 TotalParts = contentDefinition.TotalParts,
                 Checksum = contentDefinition.Checksum,
                 Size = contentDefinition.Size,
