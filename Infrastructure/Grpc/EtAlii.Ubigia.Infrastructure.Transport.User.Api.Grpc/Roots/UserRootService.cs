@@ -23,35 +23,35 @@
         
 //        // Get all spaces for the specified accountid
 //        public IEnumerable<Root> GetForSpace(Guid spaceId)
-//        {
-//            IEnumerable<Root> response;
-//            try
-//            {
-//                response = _items.GetAll(spaceId);
-//            }
-//            catch (Exception e)
-//            {
-//                throw new InvalidOperationException("Unable to serve a Root GET client request", e);
-//            }
-//            return response;
-//        }
+        public override Task<RootMultipleResponse> GetMultiple(RootMultipleRequest request, ServerCallContext context)
+        {
+            var spaceId = request.SpaceId.ToLocal();
+            
+            var roots = _items
+                .GetAll(spaceId)
+                .ToWire();
+            var response = new RootMultipleResponse();
+            response.Roots.AddRange(roots);
+
+            return Task.FromResult(response);
+        }
 
         //public Root GetByName(string rootName)
         public override Task<RootSingleResponse> GetSingle(RootSingleRequest request, ServerCallContext context)
         {
             EtAlii.Ubigia.Api.Root root;
-
             var spaceId = request.SpaceId.ToLocal();
+
             switch (request)
             {
-                case var _ when request.Name != null: // Get Item by Name
-                    root = _items.Get(spaceId, request.Name);
-                    break;
                 case var _ when request.Id != null: // Get Item by id
                     root = _items.Get(spaceId, request.Id.ToLocal());
                     break;
                 case var _ when request.Root != null: // Get Item by id
                     root = _items.Get(spaceId, request.Root.Id.ToLocal());
+                    break;
+                case var _ when request.Name != null: // Get Item by Name
+                    root = _items.Get(spaceId, request.Name);
                     break;
                 default:
                     throw new InvalidOperationException("Unable to serve a Root GET client request");                
@@ -59,7 +59,7 @@
 
             var response = new RootSingleResponse
             {
-                Root = root.ToWire()
+                Root = root?.ToWire()
             };
             return Task.FromResult(response);
         }
