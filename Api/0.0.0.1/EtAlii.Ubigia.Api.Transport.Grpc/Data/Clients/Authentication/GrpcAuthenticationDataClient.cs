@@ -19,20 +19,19 @@
             _hostIdentifier = CreateHostIdentifier();
         }
 
-        public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
+            await base.Connect(spaceConnection);
             SetClients(spaceConnection.Transport.Channel);
-            return Task.CompletedTask;
         }
 
-        public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            _client = null;
+            await base.Disconnect(spaceConnection);
             _storageClient = null;
             _spaceClient = null;
-            return Task.CompletedTask;
         }
-
+        
         private void SetClients(Channel channel)
         {
             _client = new AuthenticationGrpcService.AuthenticationGrpcServiceClient(channel);

@@ -75,19 +75,19 @@
             });
         }
 
-        public override Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
-            _transport = ((IGrpcSpaceConnection) spaceConnection).Transport;
+            await base.Connect(spaceConnection);
+            
+            _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _client = new EntryGrpcService.EntryGrpcServiceClient(_transport.Channel);
-            return Task.CompletedTask;
-
         }
 
-        public override Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
+            await base.Disconnect(spaceConnection);
             _transport = null;
             _client = null;
-            return Task.CompletedTask;
         }
     }
 }
