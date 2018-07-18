@@ -55,10 +55,10 @@ message EntryMultipleResponse
 
 message EntryPostRequest
 {
-    Entry Entry = 1;
+	Guid SpaceId = 1;
 }
 
 message EntryPutRequest
 {
-	Guid SpaceId = 1;
+	Entry Entry = 1;
 }
