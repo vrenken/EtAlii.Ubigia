@@ -10,7 +10,7 @@
             return new Content
             {
                 Stored = content.Stored,
-                Summary = content.Summary.ToLocal(),
+                Summary = content.Summary?.ToLocal(),
                 TotalParts = content.TotalParts,               
             };
         }
@@ -20,7 +20,7 @@
             return new WireProtocol.Content
             {
                 Stored = content.Stored,
-                Summary = content.Summary.ToWire(),
+                Summary = content.Summary?.ToWire(),
                 TotalParts = content.TotalParts,
             };
         }
