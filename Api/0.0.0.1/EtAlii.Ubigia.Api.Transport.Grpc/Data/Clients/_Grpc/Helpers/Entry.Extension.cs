@@ -9,7 +9,8 @@
         {
             IComponentEditableEntry result = Entry.NewEntry();
             result.IdComponent = entry.Id.ToLocal();
-            
+            result.TypeComponent = entry.Type.ToLocal();
+
             result.ParentComponent = entry.Parent.ToLocal<ParentComponent>();
             foreach (var child in entry.Children)
             {
@@ -44,7 +45,8 @@
         {
             var result = new WireProtocol.Entry();
             result.Id = entry.IdComponent.ToWire();
-            
+            result.Type = entry.TypeComponent.ToWire();
+
             result.Parent = entry.ParentComponent.ToWire();
             result.Children.AddRange(entry.ChildrenComponent.ToWire());
             
