@@ -7,10 +7,11 @@
 
     public partial class UserEntryService
     {
+        // Get a new prepared entry for the specified spaceId
         public override Task<EntrySingleResponse> Post(EntryPostRequest request, ServerCallContext context)
         {
-            var entry = request.Entry.ToLocal();
-            entry = _items.Store(entry);
+            var spaceId = request.SpaceId.ToLocal();
+            var entry = _items.Prepare(spaceId);
             var response = new EntrySingleResponse
             {
                 Entry = entry.ToWire()
