@@ -5,7 +5,7 @@
 
     public abstract class GrpcManagementClientBase
     {
-        protected IStorageConnection<IGrpcStorageTransport> Connection { get; private set; }
+        //protected IStorageConnection<IGrpcStorageTransport> Connection { get; private set; }
 
         public async Task Connect(IStorageConnection storageConnection)
         {
@@ -17,14 +17,16 @@
             await Disconnect((IStorageConnection<IGrpcStorageTransport>)storageConnection);
         }
 
-        public virtual async Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public virtual Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            await Task.Run(() => Connection = storageConnection);
+            return Task.CompletedTask;
+            //await Task.Run(() => Connection = storageConnection);
         }
 
-        public virtual async Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public virtual Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
-            await Task.Run(() => Connection = null);
+            return Task.CompletedTask;
+            //await Task.Run(() => Connection = null);
         }
     }
 }
