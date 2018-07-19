@@ -24,7 +24,7 @@
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.43" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.73" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.1.1" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.2" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
     <PackageReference Include="System.Memory" Version="4.5.1" />
   </ItemGroup>
   <ItemGroup>
