@@ -43,7 +43,7 @@
             try
             {
                 var request = new ContentDefinitionGetRequest { EntryId = identifier.ToWire() };
-                var response =  await _contentDefinitionClient.GetAsync(request);
+                var response = await _contentDefinitionClient.GetAsync(request, _transport.AuthenticationHeaders);
                 return response.ContentDefinition.ToLocal();
                 //return await _invoker.Invoke<ContentDefinition>(_contentDefinitionConnection, GrpcHub.ContentDefinition, "Get", identifier);
             }
