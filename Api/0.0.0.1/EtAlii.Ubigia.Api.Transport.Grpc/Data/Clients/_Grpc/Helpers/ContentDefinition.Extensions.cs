@@ -7,36 +7,43 @@
     {
         public static ContentDefinition ToLocal(this WireProtocol.ContentDefinition contentDefinition)
         {
-            var result = new ContentDefinition
-            {
-//                Name = contentDefinition.Name;
-                Stored = contentDefinition.Stored,
-                Summary = contentDefinition.Summary?.ToLocal(),
-                TotalParts = contentDefinition.TotalParts,               
-                Checksum = contentDefinition.Checksum,
-                
-                Size = contentDefinition.Size,
-            };
-            foreach (var part in contentDefinition.Parts)
-            {
-                result.Parts.Add(part.ToLocal());
+            ContentDefinition result = null;
+            if (contentDefinition != null)
+            { 
+                result = new ContentDefinition
+                {
+    //                Name = contentDefinition.Name;
+                    Stored = contentDefinition.Stored,
+                    Summary = contentDefinition.Summary?.ToLocal(),
+                    TotalParts = contentDefinition.TotalParts,               
+                    Checksum = contentDefinition.Checksum,
+                    
+                    Size = contentDefinition.Size,
+                };
+                foreach (var part in contentDefinition?.Parts)
+                {
+                    result.Parts.Add(part.ToLocal());
+                }
             }
-                
             return result;
         }
 
         public static WireProtocol.ContentDefinition ToWire(this ContentDefinition contentDefinition)
         {
-            var result = new WireProtocol.ContentDefinition
+            WireProtocol.ContentDefinition result = null;
+            if (contentDefinition != null)
             {
+                result = new WireProtocol.ContentDefinition
+                {
 //                Name = contentDefinition.Name,
-                Stored = contentDefinition.Stored,
-                Summary = contentDefinition.Summary?.ToWire(),
-                TotalParts = contentDefinition.TotalParts,
-                Checksum = contentDefinition.Checksum,
-                Size = contentDefinition.Size,
-            };
-            result.Parts.AddRange(contentDefinition.Parts.ToWire());
+                    Stored = contentDefinition.Stored,
+                    Summary = contentDefinition.Summary?.ToWire(),
+                    TotalParts = contentDefinition.TotalParts,
+                    Checksum = contentDefinition.Checksum,
+                    Size = contentDefinition.Size,
+                };
+                result.Parts.AddRange(contentDefinition.Parts.ToWire());
+            }
 
             return result;
         }

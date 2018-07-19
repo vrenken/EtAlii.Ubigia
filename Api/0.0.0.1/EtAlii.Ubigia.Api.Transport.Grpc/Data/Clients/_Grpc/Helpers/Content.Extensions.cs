@@ -7,7 +7,7 @@
     {
         public static Content ToLocal(this WireProtocol.Content content)
         {
-            return new Content
+            return content == null ? null : new Content
             {
                 Stored = content.Stored,
                 Summary = content.Summary?.ToLocal(),
@@ -17,7 +17,7 @@
 
         public static WireProtocol.Content ToWire(this Content content)
         {
-            return new WireProtocol.Content
+            return content == null ? null : new WireProtocol.Content
             {
                 Stored = content.Stored,
                 Summary = content.Summary?.ToWire(),
