@@ -18,6 +18,7 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.NET47.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />
