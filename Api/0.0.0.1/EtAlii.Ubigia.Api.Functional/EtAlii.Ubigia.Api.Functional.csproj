@@ -26,7 +26,6 @@
     <None Include="Scripting\Roots\Handlers\Default\Media\MediaRootHandlerMapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Remotion.Linq" Version="2.2.0" />
     <PackageReference Include="Moppet.Lapa" Version="1.2.4" />
   </ItemGroup>
   <ItemGroup>

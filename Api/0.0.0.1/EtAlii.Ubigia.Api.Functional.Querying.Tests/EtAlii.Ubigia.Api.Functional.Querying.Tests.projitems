@@ -15,4 +15,17 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Tests</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.At.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Save.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Select.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.ToArray.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\UnitTests\ChangeTracker.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Linq\UnitTests\NodeSet.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
+  </ItemGroup>
 </Project>

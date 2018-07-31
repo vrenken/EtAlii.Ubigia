@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             var task = Task.Run(async () =>
             {
-                using (var userDataContext = _context.CreateDataContext(configurationSpace.Space))
+                var userDataContext = _context.CreateDataContext(configurationSpace.Space);
                 {
                     var allUserSettings = _userSettingsGetter.Get(userDataContext);
                     foreach (var userSettings in allUserSettings)

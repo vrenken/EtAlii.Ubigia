@@ -133,7 +133,7 @@
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
             var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
-            context.Dispose();
+            
             var firstSystemSettings = TestSystemSettings.Create();
             var secondSystemSettings = TestSystemSettings.Create();
             var thirdSystemSettings = TestSystemSettings.Create();
@@ -146,8 +146,7 @@
             systemSettingsSetter.Set(context, firstSystemSettings);
             var processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
-            context.Dispose();
-
+            
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
             context = new DataContextFactory().Create(connection);
@@ -155,8 +154,7 @@
             systemSettingsSetter.Set(context, secondSystemSettings);
             processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
-            context.Dispose();
-
+            
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
             context = new DataContextFactory().Create(connection);
@@ -164,9 +162,7 @@
             systemSettingsSetter.Set(context, thirdSystemSettings);
             processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();
-            context.Dispose();
-
-
+            
             // Assert.
             TestSystemSettings.AreEqual(firstSystemSettings, firstResult);
             TestSystemSettings.AreEqual(secondSystemSettings, secondResult);

@@ -22,9 +22,6 @@
             {
                 new ContextScaffolding(configuration),
                 new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
-                new IndexSetScaffolding(),
-                new NodeSetScaffolding(),
-                new RootSetScaffolding(),
                 new ScriptSetScaffolding(),
             };
 
