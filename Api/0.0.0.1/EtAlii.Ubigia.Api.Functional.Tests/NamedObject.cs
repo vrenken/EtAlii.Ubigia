@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using EtAlii.Ubigia.Api.Logical;
 

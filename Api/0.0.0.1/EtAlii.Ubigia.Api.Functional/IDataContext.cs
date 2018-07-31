@@ -1,14 +1,9 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
-    public interface IDataContext : IDisposable
+    public interface IDataContext
     {
-        INodeSet Nodes { get; }
+        IQuerySet Queries { get; }
         IScriptsSet Scripts { get; }
-        IChangeTracker ChangeTracker { get; }
-        IIndexSet Indexes { get; }
         IDataContextConfiguration Configuration { get; }
-        void SaveChanges();
     }
 }

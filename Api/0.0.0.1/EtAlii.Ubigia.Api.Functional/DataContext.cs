@@ -4,39 +4,19 @@
 
     internal class DataContext : IDataContext
     {
-        public INodeSet Nodes { get; }
-
         public IScriptsSet Scripts { get; }
-
-        public IChangeTracker ChangeTracker { get; }
-
-        public IIndexSet Indexes { get; }
+        public IQuerySet Queries { get; }
 
         public IDataContextConfiguration Configuration { get; }
 
         internal DataContext(
             IDataContextConfiguration configuration,
-            INodeSet nodes,
-            IIndexSet indexes,
             IScriptsSet scripts,
-            IChangeTracker changeTracker)
+            IQuerySet querySet)
         {
             Configuration = configuration;
-            Nodes = nodes;
             Scripts = scripts;
-            Indexes = indexes;
-            ChangeTracker = changeTracker;
+            Queries = querySet;
         }
-
-        public void Dispose()
-        {
-            ChangeTracker.Dispose();
-        }
-
-        public void SaveChanges()
-        {
-            throw new NotImplementedException();
-        }
-
     }
 }

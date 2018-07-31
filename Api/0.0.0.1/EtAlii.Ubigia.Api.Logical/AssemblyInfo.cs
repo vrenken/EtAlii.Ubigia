@@ -1,6 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Logical.Grpc.Tests")]

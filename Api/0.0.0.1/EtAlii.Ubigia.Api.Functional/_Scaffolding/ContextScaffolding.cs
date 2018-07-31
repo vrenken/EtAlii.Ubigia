@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.xTechnology.MicroContainer;
-    using Remotion.Linq.Parsing.Structure;
 
     internal class ContextScaffolding : IScaffolding
     {
@@ -18,8 +17,7 @@
             container.Register(() => _configuration.LogicalContext);
 
             container.Register<IDataContext, DataContext>();
-            container.Register<IQueryParser, QueryParser>(QueryParser.CreateDefault);
-            container.Register<IChangeTracker, ChangeTracker>();
+            container.Register<IQuerySet,QuerySet>();
         }
     }
 }
