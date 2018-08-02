@@ -1,7 +1,7 @@
-﻿using GraphQL.Types;
-
-namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
+    using global::GraphQL.Types;
+
     public class EpisodeEnum : EnumerationGraphType
     {
         public EpisodeEnum()
@@ -12,12 +12,5 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
             AddValue("EMPIRE", "Released in 1980.", 5);
             AddValue("JEDI", "Released in 1983.", 6);
         }
-    }
-
-    public enum Episodes
-    {
-        NEWHOPE  = 4,
-        EMPIRE  = 5,
-        JEDI  = 6
     }
 }

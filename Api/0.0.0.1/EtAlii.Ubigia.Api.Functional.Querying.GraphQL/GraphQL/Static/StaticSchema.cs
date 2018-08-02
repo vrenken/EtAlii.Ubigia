@@ -3,15 +3,15 @@
     using global::GraphQL;
     using global::GraphQL.Types;
 
-    public class StaticSchema : Schema
+    public class StaticSchema : Schema, IStaticSchema
     {
         public new IDependencyResolver DependencyResolver => base.DependencyResolver;
 
         public StaticSchema(IDependencyResolver resolver)
             : base(resolver)
         {
-            Query = resolver.Resolve<StaticQuery>();
-            Mutation = resolver.Resolve<StaticMutation>();
+            Query = resolver.Resolve<IStaticQuery>();
+            Mutation = resolver.Resolve<IStaticMutation>();
 
             RegisterDirectives(new DirectiveGraphType[]
             {

@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
     using global::GraphQL.Types;
 
-    public class UbigiaData
+    public class UbigiaData : IUbigiaData
     {
         private readonly List<Human> _humans = new List<Human>();
         private readonly List<Droid> _droids = new List<Droid>();

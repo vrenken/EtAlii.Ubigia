@@ -13,9 +13,9 @@
     ///   }
     /// }
     /// </example>
-    public class StaticMutation : ObjectGraphType<object>
+    public class StaticMutation : ObjectGraphType<object>, IStaticMutation
     {
-        public StaticMutation(UbigiaData data)
+        public StaticMutation(IUbigiaData data)
         {
             Name = "Mutation";
 
