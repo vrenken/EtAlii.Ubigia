@@ -3,9 +3,9 @@
     using System;
     using global::GraphQL.Types;
 
-    public class StaticQuery : ObjectGraphType<object>
+    public class StaticQuery : ObjectGraphType<object>, IStaticQuery
     {
-        public StaticQuery(UbigiaData data)
+        public StaticQuery(IUbigiaData data)
         {
             Name = "Query";
 

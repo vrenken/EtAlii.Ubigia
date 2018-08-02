@@ -28,4 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\GraphQLQueryContext.Basic.Tests.cs" />
+  </ItemGroup>
 </Project>

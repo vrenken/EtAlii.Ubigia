@@ -15,7 +15,7 @@
         private readonly ISchema _staticSchema;
         private readonly Document _document;
 
-        private DynamicSchema(StaticSchema staticSchema, Document document)
+        private DynamicSchema(IStaticSchema staticSchema, Document document)
             : base(staticSchema.DependencyResolver)
         {
             _staticSchema = staticSchema;
