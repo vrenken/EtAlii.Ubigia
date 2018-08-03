@@ -51,7 +51,7 @@
                 _dataContext = new DataContextFactory().Create(configuration);
                 _context = new GraphQLQueryContextFactory().Create(_dataContext);
                 
-                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+                var addResult = await _testContext.LogicalTestContext.AddRegions().AddContinentCountry(_logicalContext);
                 _countryPath = addResult.Path;
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);

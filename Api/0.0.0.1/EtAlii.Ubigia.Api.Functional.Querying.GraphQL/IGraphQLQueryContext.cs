@@ -1,9 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Threading.Tasks;
     using GraphQL;
-    using GraphQL.Types;
 
     public interface IGraphQLQueryContext
     {

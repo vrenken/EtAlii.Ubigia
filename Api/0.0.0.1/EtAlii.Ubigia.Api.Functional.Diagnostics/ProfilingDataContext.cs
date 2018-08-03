@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.xTechnology.Structure;
 
     public class ProfilingDataContext : IProfilingDataContext
     {

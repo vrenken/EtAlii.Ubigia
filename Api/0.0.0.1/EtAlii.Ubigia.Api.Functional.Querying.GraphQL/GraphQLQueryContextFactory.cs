@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System.Linq;
-    using System.Linq.Expressions;
     using EtAlii.xTechnology.MicroContainer;
 
     public class GraphQLQueryContextFactory

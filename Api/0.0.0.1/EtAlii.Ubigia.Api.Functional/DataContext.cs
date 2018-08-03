@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     internal class DataContext : IDataContext
     {
         public IScriptsSet Scripts { get; }

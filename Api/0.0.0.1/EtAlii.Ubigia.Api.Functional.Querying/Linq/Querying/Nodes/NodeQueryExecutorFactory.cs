@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Logical;
-
     internal class NodeQueryExecutorFactory : INodeQueryExecutorFactory
     {
         private readonly IScriptsSet _scriptsSet;
