@@ -1,12 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using System.Threading.Tasks;
     using GraphQL;
     using GraphQL.Execution;
-    using GraphQL.Http;
-    using GraphQL.Types;
 
     internal class GraphQLQueryContext : IGraphQLQueryContext
     {
