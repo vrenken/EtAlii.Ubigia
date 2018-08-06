@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System;
+    using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical.Tests;
@@ -27,6 +29,33 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             return new DataContextFactory().Create(configuration);
         }
 
+        public async Task AddJohnDoe(IDataContext context)
+        {
+            var addQueries = new[]
+            {
+                "Person:+=Doe/John",
+                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname : \'Johnny\', Lives: 9 }"
+            };
+            var addQuery = String.Join("\r\n", addQueries);
+
+
+            await context.Scripts.Process(addQuery);
+        }
+
+        
+        public async Task AddTonyStark(IDataContext context)
+        {
+            var addQueries = new[]
+            {
+                "Person:+=Stark/Tony",
+                "Person:Stark/Tony <= { Birthdate: 1976-05-12, NickName : \'Iron Man\', IntValue: 10 }"
+            };
+            var addQuery = String.Join("\r\n", addQueries);
+
+
+            await context.Scripts.Process(addQuery);
+        }
+        
         #region start/stop
         
         public async Task Start()
