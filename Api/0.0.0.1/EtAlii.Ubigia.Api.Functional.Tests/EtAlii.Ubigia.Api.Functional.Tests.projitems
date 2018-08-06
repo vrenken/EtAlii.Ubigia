@@ -34,6 +34,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionalTestContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionalUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RootHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)FunctionHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFunctionalTestContext.cs" />

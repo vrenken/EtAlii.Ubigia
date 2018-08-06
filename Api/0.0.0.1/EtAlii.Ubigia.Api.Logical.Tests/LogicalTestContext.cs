@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
                 .Use(fabric);
             return new LogicalContextFactory().Create(configuration);
         }
-
+        
         public async Task<LocationAddResult> AddContinentCountry(ILogicalContext context)
         {
             var scope = new ExecutionScope(false);
@@ -39,6 +39,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var path = $"/Locations/{continent}/{country}";
             return new LocationAddResult(path, countryEntry);
         }
+        
         public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
         {
             var timeRoot = await context.Roots.Get("Locations");
