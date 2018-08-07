@@ -6,6 +6,7 @@
     public interface IUbigiaData
     {
         IEnumerable<StarWarsCharacter> GetFriends(StarWarsCharacter character);
+        Task<Person> GetPersonByIdAsync(string id);
         Task<Human> GetHumanByIdAsync(string id);
         Task<Droid> GetDroidByIdAsync(string id);
         Human AddHuman(Human human);

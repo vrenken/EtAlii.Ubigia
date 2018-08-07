@@ -9,10 +9,27 @@
     public class UbigiaData : IUbigiaData
     {
         private readonly List<Human> _humans = new List<Human>();
+        private readonly List<Person> _persons = new List<Person>();
         private readonly List<Droid> _droids = new List<Droid>();
 
         public UbigiaData()
         {
+            _persons.Add(new Person
+            {
+                Id = "1",
+                Lastname = "Doe", Firstname = "John",
+                Nickname = "Johnny",
+                Lives = 1,
+                Birthdate = new DateTime(1978,07,28)
+            });
+            _persons.Add(new Person
+            {
+                Id = "2",
+                Lastname = "Stark", Firstname = "Tony",
+                Nickname = "Iron Man",
+                Lives = 9,
+                Birthdate = new DateTime(1976,05,12)
+            });
             _humans.Add(new Human
             {
                 Id = "1", Name = "Luke",
@@ -59,6 +76,11 @@
             return friends;
         }
 
+        public Task<Person> GetPersonByIdAsync(string id)
+        {
+            return Task.FromResult(_persons.FirstOrDefault(p => p.Id == id));
+        }
+        
         public Task<Human> GetHumanByIdAsync(string id)
         {
             return Task.FromResult(_humans.FirstOrDefault(h => h.Id == id));

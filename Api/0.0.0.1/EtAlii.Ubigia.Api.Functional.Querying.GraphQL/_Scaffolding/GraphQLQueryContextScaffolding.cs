@@ -27,7 +27,11 @@
             
             container.Register<IDependencyResolver>(() => new FuncDependencyResolver(type =>
             {
-                
+                if (type == typeof(PersonType))
+                {
+                    var data = container.GetInstance<IUbigiaData>();
+                    return new PersonType(data);
+                }
                 if (type == typeof(HumanType))
                 {
                     var data = container.GetInstance<IUbigiaData>();
