@@ -68,78 +68,104 @@
         public async Task GraphQL_Query_Select_Simple_Full()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { hero { Firstname, Lastname, Nickname, Birthdate, Lives } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""hero"": { ""Firstname"": ""Tony"", ""Lastname"": ""Stark"", ""Birthdate"": ""1978-07-28"", ""Nickname"": ""Iron Man"", ""Lives"": 9 }}", result.Data);
+            AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result.Data);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { hero { Lastname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { lastname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""hero"": { ""Lastname"": ""Stark"" }}", result.Data);
+            AssertQueryResultsAreSame(@"{ ""person"": { ""lastname"": ""Stark"" }}", result.Data);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Path_Local()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { hero { Firstname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { firstname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""hero"": { ""Firstname"": ""Tony"" }}", result.Data);
+            AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"" }}", result.Data);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { hero { Lives } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { lives } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""hero"": { ""Lives"": 9 }}", result.Data);
+            AssertQueryResultsAreSame(@"{ ""person"": { ""lives"": 9 }}", result.Data);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { hero { Nickname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { nickname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""hero"": { ""Nickname"": ""Iron Man"" }}", result.Data);
+            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+        }
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Droid()
+        {
+            // Arrange.
+            var query = @"query data { droid(id: ""4"") { id, name } }";
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+            
+            // Assert.
+            AssertQueryResultsAreSame(@"{""droid"":{""id"":""4"",""name"":""C-3PO""}}", result.Data);
+        }
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
+        {
+            // Arrange.
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { id, nickname } }";
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+            
+            // Assert.
+            AssertQueryResultsAreSame(@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result.Data);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { hero { Birthdate } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { birthdate } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""hero"": { ""Birthdate"": ""1978-07-28"" }}", result.Data);
+            AssertQueryResultsAreSame(@"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result.Data);
         }
         
         private void AssertQueryResultsAreSame(string expected, object actual)

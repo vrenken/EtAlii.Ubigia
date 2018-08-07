@@ -7,14 +7,4 @@ namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
         public string[] Friends { get; set; }
         public int[] AppearsIn { get; set; }
     }
-
-    public class Human : StarWarsCharacter
-    {
-        public string HomePlanet { get; set; }
-    }
-
-    public class Droid : StarWarsCharacter
-    {
-        public string PrimaryFunction { get; set; }
-    }
 }
