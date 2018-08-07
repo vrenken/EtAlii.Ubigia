@@ -26,7 +26,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Linq\UnitTests\NodeSet.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)NamedObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
   </ItemGroup>
   <ItemGroup>
