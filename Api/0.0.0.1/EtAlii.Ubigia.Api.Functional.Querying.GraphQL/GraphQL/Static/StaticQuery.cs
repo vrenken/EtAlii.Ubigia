@@ -6,7 +6,7 @@
     public class StaticQuery : ObjectGraphType<object>, IStaticQuery
     {
         public StaticQuery(IUbigiaData data)
-        {
+        { 
             Name = "Query";
 
             Field<CharacterInterface>(
