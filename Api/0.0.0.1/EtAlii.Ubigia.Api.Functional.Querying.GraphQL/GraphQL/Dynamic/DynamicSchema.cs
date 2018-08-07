@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using global::GraphQL;
     using global::GraphQL.Execution;
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
