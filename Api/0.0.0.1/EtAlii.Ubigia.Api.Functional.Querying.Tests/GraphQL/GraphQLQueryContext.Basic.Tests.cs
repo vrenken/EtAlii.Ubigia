@@ -1,15 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using GraphQL;
     using GraphQL.Http;
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
     using Xunit;
 

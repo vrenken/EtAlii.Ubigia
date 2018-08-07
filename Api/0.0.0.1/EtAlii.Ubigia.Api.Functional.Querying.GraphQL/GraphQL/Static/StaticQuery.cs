@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using System;
     using global::GraphQL.Types;
 
     public class StaticQuery : ObjectGraphType<object>, IStaticQuery
