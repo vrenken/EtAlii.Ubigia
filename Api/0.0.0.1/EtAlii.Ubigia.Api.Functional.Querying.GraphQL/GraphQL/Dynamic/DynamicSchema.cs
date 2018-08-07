@@ -3,9 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reactive.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL.Execution;
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
+    using ISchema = global::GraphQL.Types.ISchema;
 
     public class DynamicSchema : Schema
     {
@@ -27,22 +31,22 @@
             Directives = staticSchema.Directives;
         }
 
-        public static Schema Create(ISchema originalSchema, IScriptsSet scriptsSet, Document document)
+        public static async Task<Schema> Create(ISchema originalSchema, IScriptsSet scriptsSet, Document document)
         {
             var staticUbigiaSchema = (StaticSchema)originalSchema;
 
             var dynamicSchema = new DynamicSchema(staticUbigiaSchema, document, scriptsSet);
-            dynamicSchema.AddDynamicTypes();
+            await dynamicSchema.AddDynamicTypes();
             return dynamicSchema;
         }
 
-        public static Schema Create(ISchema originalSchema, IScriptsSet scriptsSet, string query)
+        public static async Task<Schema> Create(ISchema originalSchema, IScriptsSet scriptsSet, string query)
         {
             var document = new GraphQLDocumentBuilder().Build(query);
-            return Create(originalSchema, scriptsSet, document);
+            return await Create(originalSchema, scriptsSet, document);
         }
 
-        private void AddDynamicTypes()
+        private async Task AddDynamicTypes()
         {
             var directives = GetStartDirectives(_document);
             foreach (var directive in directives)
@@ -51,17 +55,37 @@
                 if (argument.Value is StringValue stringValue)
                 {
                     var path = stringValue.Value;
-                    var script = _scriptsSet.Parse(path);
-                    if (script.Errors.Any())
-                    {
-                        throw new InvalidOperationException("Unable to process argument 'path' of the start directive.");
-                    }
-                    var scope = new ScriptScope();
-                    //_scriptSet.Process(script, scope);
+                    var node = await GetNodeForPath(path);
+                    var properties = node.GetProperties();
                 }
             }
-
         }
+
+        private async Task<IInternalNode> GetNodeForPath(string path)
+        {
+            var scriptParseResult = _scriptsSet.Parse(path);
+            if (scriptParseResult.Errors.Any())
+            {
+                throw new InvalidOperationException("Unable to process GraphQL argument 'path' of the start directive.");
+            }
+
+            var scope = new ScriptScope();
+            var lastSequence = await _scriptsSet.Process(scriptParseResult.Script, scope);
+            var results = await lastSequence.Output.ToArray();
+            if (results.Length == 0)
+            {
+                throw new InvalidOperationException("Unable to process GraphQL query 'path' does not return any results.");
+            }
+
+            if (results.Length > 1)
+            {
+                throw new InvalidOperationException("Unable to process GraphQL query 'path' returns too many results.");
+            }
+
+            var result = (IInternalNode) results[0];
+            return result;
+        }
+
         private IEnumerable<Directive> GetStartDirectives(Document document)
         {
             return document.Operations

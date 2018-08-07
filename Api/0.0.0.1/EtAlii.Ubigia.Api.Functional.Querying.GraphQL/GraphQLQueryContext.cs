@@ -53,24 +53,29 @@
         {
             //var request = Deserialize<GraphQLRequest>(query);
 
-            var result = await _executer.ExecuteAsync(_ =>
+            var result = await _executer.ExecuteAsync(configuration =>
             {
-                // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.
-
-                // First we need to know the document to know where to start path traversal.
-                // This should not have any consequences for the further execution.
-                _.Document = _builder.Build(query);
-
-                // We do this by always returning a dynamic schema which includes everything from the static schema.
-//                _.Schema = DynamicSchema.Create(schema, request.Query);
-                _.Schema = DynamicSchema.Create(_staticSchema, _scriptsSet, _.Document);
-                _.Query = query;
-                _.OperationName = null;//operationName;//request.OperationName;
-                _.Inputs = inputs;//request.Variables.ToInputs();
-                _.UserContext = new GraphQLUserContext
+                var task = Task.Run(async () =>
                 {
-                    User = null // ctx.User
-                }; //_settings.BuildUserContext?.Invoke(context);
+                    // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.
+
+                    // First we need to know the document to know where to start path traversal.
+                    // This should not have any consequences for the further execution.
+                    configuration.Document = _builder.Build(query);
+
+                    // We do this by always returning a dynamic schema which includes everything from the static schema.
+                    //_.Schema = DynamicSchema.Create(schema, request.Query);
+                    configuration.Schema = await DynamicSchema.Create(_staticSchema, _scriptsSet, _.Document);
+                    configuration.Query = query;
+                    configuration.OperationName = null;//operationName;//request.OperationName;
+                    configuration.Inputs = inputs;//request.Variables.ToInputs();
+                    configuration.UserContext = new GraphQLUserContext
+                    {
+                        User = null // ctx.User
+                    };
+                    //_settings.BuildUserContext?.Invoke(context);
+                });
+                task.Wait();
             });
 
             return result;
