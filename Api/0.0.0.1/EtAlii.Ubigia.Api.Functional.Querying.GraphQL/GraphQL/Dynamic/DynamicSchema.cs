@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using global::GraphQL;
@@ -13,31 +14,33 @@
 
         private readonly ISchema _staticSchema;
         private readonly Document _document;
+        private readonly IScriptsSet _scriptsSet;
 
-        private DynamicSchema(IStaticSchema staticSchema, Document document)
+        private DynamicSchema(IStaticSchema staticSchema, Document document, IScriptsSet scriptsSet)
             : base(staticSchema.DependencyResolver)
         {
             _staticSchema = staticSchema;
             _document = document;
+            _scriptsSet = scriptsSet;
 
             Query = staticSchema.Query;
             Mutation = staticSchema.Mutation;
             Directives = staticSchema.Directives;
         }
 
-        public static Schema Create(ISchema originalSchema, Document document)
+        public static Schema Create(ISchema originalSchema, IScriptsSet scriptsSet, Document document)
         {
             var staticUbigiaSchema = (StaticSchema)originalSchema;
 
-            var dynamicSchema = new DynamicSchema(staticUbigiaSchema, document);
+            var dynamicSchema = new DynamicSchema(staticUbigiaSchema, document, scriptsSet);
             dynamicSchema.AddDynamicTypes();
             return dynamicSchema;
         }
 
-        public static Schema Create(ISchema originalSchema, string query)
+        public static Schema Create(ISchema originalSchema, IScriptsSet scriptsSet, string query)
         {
             var document = new GraphQLDocumentBuilder().Build(query);
-            return Create(originalSchema, document);
+            return Create(originalSchema, scriptsSet, document);
         }
 
         private void AddDynamicTypes()
@@ -46,9 +49,16 @@
             foreach (var directive in directives)
             {
                 var argument = directive.Arguments.First();
-                if (argument.GetValue() is string path)
+                if (argument.Value is StringValue stringValue)
                 {
-                    //path;
+                    var path = stringValue.Value;
+                    var script = _scriptsSet.Parse(path);
+                    if (script.Errors.Any())
+                    {
+                        throw new InvalidOperationException("Unable to process argument 'path' of the start directive.");
+                    }
+                    var scope = new ScriptScope();
+                    //_scriptSet.Process(script, scope);
                 }
             }
 

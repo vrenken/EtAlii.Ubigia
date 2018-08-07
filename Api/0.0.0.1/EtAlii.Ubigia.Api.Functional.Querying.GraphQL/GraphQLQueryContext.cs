@@ -63,7 +63,7 @@
 
                 // We do this by always returning a dynamic schema which includes everything from the static schema.
 //                _.Schema = DynamicSchema.Create(schema, request.Query);
-                _.Schema = DynamicSchema.Create(_staticSchema, _.Document);
+                _.Schema = DynamicSchema.Create(_staticSchema, _scriptsSet, _.Document);
                 _.Query = query;
                 _.OperationName = null;//operationName;//request.OperationName;
                 _.Inputs = inputs;//request.Variables.ToInputs();

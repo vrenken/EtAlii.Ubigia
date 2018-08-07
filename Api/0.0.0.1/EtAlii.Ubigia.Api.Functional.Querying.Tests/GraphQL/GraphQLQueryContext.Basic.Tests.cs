@@ -72,7 +72,7 @@
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
-            
+             
             // Assert.
             AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result.Data);
         }
