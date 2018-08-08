@@ -24,38 +24,7 @@
             container.Register<IDataContext>(() => _dataContext);
             container.Register<IScriptsSet>(() => _dataContext.Scripts);
 
-            
-            container.Register<IDependencyResolver>(() => new FuncDependencyResolver(type =>
-            {
-                if (type == typeof(PersonType))
-                {
-                    var data = container.GetInstance<IUbigiaData>();
-                    return new PersonType(data);
-                }
-                if (type == typeof(HumanType))
-                {
-                    var data = container.GetInstance<IUbigiaData>();
-                    return new HumanType(data);
-                }
-                if (type == typeof(HumanInputType))
-                {
-                    return new HumanInputType();
-                }
-                if (type == typeof(DroidType))
-                {
-                    var data = container.GetInstance<IUbigiaData>();
-                    return new DroidType(data);
-                }
-                if (type == typeof(CharacterInterface))
-                {
-                    return new CharacterInterface();
-                }
-                if (type == typeof(EpisodeEnum))
-                {
-                    return new EpisodeEnum();
-                }
-                return container.GetInstance(type);
-            }));
+            container.Register<IDependencyResolver>(() => new DependencyResolver(container));
 
             container.Register<IDocumentValidator, DocumentValidator>();
             container.Register<IDocumentBuilder, GraphQLDocumentBuilder>();
