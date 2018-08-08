@@ -65,11 +65,11 @@
 
                     // We do this by always returning a dynamic schema which includes everything from the static schema.
                     //_.Schema = DynamicSchema.Create(schema, request.Query);
-                    configuration.Schema = await DynamicSchema.Create(_staticSchema, _scriptsSet, _.Document);
+                    configuration.Schema = await DynamicSchema.Create(_staticSchema, _scriptsSet, configuration.Document);
                     configuration.Query = query;
                     configuration.OperationName = null;//operationName;//request.OperationName;
                     configuration.Inputs = inputs;//request.Variables.ToInputs();
-                    configuration.UserContext = new GraphQLUserContext
+                    configuration.UserContext = new UserContext
                     {
                         User = null // ctx.User
                     };
