@@ -114,7 +114,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { nickname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { nickname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
