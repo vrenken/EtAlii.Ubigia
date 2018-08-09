@@ -62,7 +62,7 @@
         public async Task GraphQL_Query_Select_Simple_Full()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { firstname, lastname, nickname, birthdate, lives } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -75,7 +75,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { lastname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { lastname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -88,7 +88,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Local()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { firstname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { firstname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -101,7 +101,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { lives } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { lives } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -140,7 +140,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { id, nickname } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { id, nickname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -153,7 +153,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person(id:""2"") { birthdate } }";
+            var query = @"query data @start(path:""person:Stark/Tony"") { person { birthdate } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());

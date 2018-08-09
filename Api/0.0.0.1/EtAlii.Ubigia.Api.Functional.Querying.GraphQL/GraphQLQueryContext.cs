@@ -10,49 +10,25 @@
         private readonly IDataContext _dataContext;
 
         private readonly IScriptsSet _scriptsSet;
-//        private readonly GraphQLSettings _settings;
         private readonly IDocumentExecuter _executer;
         private readonly IStaticSchema _staticSchema;
-//        private readonly IDocumentWriter _writer;
         private readonly IDocumentBuilder _builder;
 
         internal GraphQLQueryContext(IDataContext dataContext,
             IScriptsSet scriptsSet, 
             IDocumentBuilder builder, 
-//            IDocumentWriter writer, 
             IDocumentExecuter executer,
             IStaticSchema staticSchema)
         {
             _dataContext = dataContext;
             _scriptsSet = scriptsSet;
             _builder = builder;
-//            _writer = writer;
             _executer = executer;
             _staticSchema = staticSchema;
         }
         
-        
-//        public async Task Invoke(HttpContext context, ISchema schema)
-//        {
-//            if (!IsGraphQLRequest(context))
-//            {
-//                await _next(context);
-//                return;
-//            }
-//
-//            await ExecuteAsync(context, schema);
-//        }
-
-//        private bool IsGraphQLRequest(HttpContext context)
-//        {
-//            return context.Request.Path.StartsWithSegments(_settings.Path)
-//                && string.Equals(context.Request.Method, "POST", StringComparison.OrdinalIgnoreCase);
-//        }
-
         public async Task<ExecutionResult> Execute(string operationName, string query, Inputs inputs)
         {
-            //var request = Deserialize<GraphQLRequest>(query);
-
             var result = await _executer.ExecuteAsync(configuration =>
             {
                 var task = Task.Run(async () =>
@@ -73,33 +49,11 @@
                     {
                         User = null // ctx.User
                     };
-                    //_settings.BuildUserContext?.Invoke(context);
                 });
                 task.Wait();
             });
 
             return result;
-            //await WriteResponseAsync(context, result);
         }
-
-//        private async Task WriteResponseAsync(HttpContext context, ExecutionResult result)
-//        {
-//            var json = _writer.Write(result);
-//
-//            context.Response.ContentType = "application/json";
-//            context.Response.StatusCode = result.Errors?.Any() == true ? (int)HttpStatusCode.BadRequest : (int)HttpStatusCode.OK;
-//
-//            await context.Response.WriteAsync(json);
-//        }
-
-//        public static T Deserialize<T>(Stream s)
-//        {
-//            using (var reader = new StreamReader(s))
-//            using (var jsonReader = new JsonTextReader(reader))
-//            {
-//                var ser = new JsonSerializer();
-//                return ser.Deserialize<T>(jsonReader);
-//            }
-//        }
     }
 }

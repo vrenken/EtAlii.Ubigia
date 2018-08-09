@@ -13,10 +13,7 @@
             Query = resolver.Resolve<IStaticQuery>();
             Mutation = resolver.Resolve<IStaticMutation>();
  
-            RegisterDirectives(new DirectiveGraphType[]
-            {
-                new UbigiaStartDirective(),
-            });
+            RegisterDirectives(new UbigiaStartDirective());
         }
     }
 }
