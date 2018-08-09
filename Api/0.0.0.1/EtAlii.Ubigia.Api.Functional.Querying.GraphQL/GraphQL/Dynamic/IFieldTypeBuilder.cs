@@ -5,6 +5,6 @@
 
     public interface IFieldTypeBuilder
     {
-        FieldType Build(PropertyDictionary properties, string path, Directive directive);
+        FieldType Build(PropertyDictionary properties, string path, Directive directive, out DynamicObjectGraphType fieldTypeInstance);
     }
 }

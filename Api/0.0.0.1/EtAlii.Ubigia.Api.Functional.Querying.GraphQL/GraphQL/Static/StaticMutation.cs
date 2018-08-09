@@ -15,18 +15,18 @@
     /// </example>
     public class StaticMutation : ObjectGraphType<object>, IStaticMutation
     {
-        public StaticMutation(IUbigiaData data)
+        public StaticMutation()//IUbigiaData data)
         {
             Name = "Mutation";
 
-            Field<HumanType>(
-                name: "createHuman",
-                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<HumanInputType>> {Name = "human"}),
-                resolve: context =>
-                {
-                    var human = context.GetArgument<Human>("human");
-                    return data.AddHuman(human);
-                });
+//            Field<HumanType>(
+//                name: "createHuman",
+//                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<HumanInputType>> {Name = "human"}),
+//                resolve: context =>
+//                {
+//                    var human = context.GetArgument<Human>("human");
+//                    return data.AddHuman(human);
+//                });
         }
     }
 }

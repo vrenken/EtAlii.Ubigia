@@ -7,8 +7,6 @@
     using GraphQL.Validation;
     using GraphQL.Validation.Complexity;
 
-    //using GraphQL.Http;
-
     internal class GraphQLQueryContextScaffolding : IScaffolding
     {
         private readonly IDataContext _dataContext;
@@ -24,7 +22,7 @@
             container.Register<IDataContext>(() => _dataContext);
             container.Register<IScriptsSet>(() => _dataContext.Scripts);
 
-            container.Register<IDependencyResolver>(() => new DependencyResolver(container));
+            container.Register<IDependencyResolver>(() => new FuncDependencyResolver(container.GetInstance));
 
             container.Register<IDocumentValidator, DocumentValidator>();
             container.Register<IDocumentBuilder, GraphQLDocumentBuilder>();
@@ -37,15 +35,10 @@
                 var complexityAnalyzer = container.GetInstance<IComplexityAnalyzer>();
                 return new DocumentExecuter(documentBuilder, documentValidator, complexityAnalyzer);
             });
-            //container.Register<IDocumentWriter, DocumentWriter>();
-            
-            container.Register<IUbigiaData, UbigiaData>();
+
             container.Register<IStaticQuery, StaticQuery>();
             container.Register<IStaticMutation, StaticMutation>();
             container.Register<IStaticSchema, StaticSchema>();
-
-            //container.Register<IHttpContextAccessor, HttpContextAccessor>();
-
         }
     }
 }

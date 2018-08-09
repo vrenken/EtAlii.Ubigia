@@ -10,19 +10,20 @@
     public class FieldTypeBuilder : IFieldTypeBuilder
     {
         
-        public FieldType Build(PropertyDictionary properties, string path, Directive directive)
+        public FieldType Build(PropertyDictionary properties, string path, Directive directive, out DynamicObjectGraphType fieldTypeInstance)
         {
             var fieldTypeInstanceType = BuildInstanceType();
-            var fieldTypeInstance = (DynamicObjectGraphType) Activator.CreateInstance(fieldTypeInstanceType);
-            DynamicObjectGraphType.Setup(fieldTypeInstance, "Person", path, properties);
-            
+            fieldTypeInstance = (DynamicObjectGraphType)Activator.CreateInstance(fieldTypeInstanceType);
+            DynamicObjectGraphType.Setup(fieldTypeInstance, "person", path, properties);
+
+            var instance = fieldTypeInstance;
             var fieldType = new FieldType()
             {
                 Name = fieldTypeInstance.Name,
                 Description = $"Person field created for the Ubigia path: {path}",
                 Type = fieldTypeInstanceType,
                 Arguments = null,
-                Resolver = new FuncFieldResolver<object, object>(_ => fieldTypeInstance)
+                Resolver = new FuncFieldResolver<object, object>(_ => instance)
             };
             return fieldType;
         }

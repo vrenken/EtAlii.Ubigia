@@ -3,32 +3,50 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+    using global::GraphQL;
     using global::GraphQL.Execution;
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
     using ISchema = global::GraphQL.Types.ISchema;
 
-    public class DynamicSchema : Schema
+    public partial class DynamicSchema : Schema
     {
         private readonly List<IGraphType> _dynamicSchema = new List<IGraphType>();
 
-        private readonly ISchema _staticSchema;
+        private readonly IStaticSchema _staticSchema;
         private readonly Document _document;
-        private readonly IScriptsSet _scriptsSet;
+        private readonly IFieldTypeBuilder _fieldTypeBuilder;
+        private readonly INodeFetcher _nodeFetcher;
+        private readonly Dictionary<Type, DynamicObjectGraphType> _graphObjectInstances;
+                
+        private readonly Type _baseClassType = typeof(DynamicObjectGraphType);
 
         private DynamicSchema(IStaticSchema staticSchema, Document document, IScriptsSet scriptsSet)
             : base(staticSchema.DependencyResolver)
         {
             _staticSchema = staticSchema;
             _document = document;
-            _scriptsSet = scriptsSet;
-
+            _fieldTypeBuilder = new FieldTypeBuilder();
+            _nodeFetcher = new NodeFetcher(scriptsSet);
+            
+            _graphObjectInstances = new Dictionary<Type, DynamicObjectGraphType>();
+            
             Query = staticSchema.Query;
             Mutation = staticSchema.Mutation;
             Directives = staticSchema.Directives;
+
+            DependencyResolver = new FuncDependencyResolver(ResolveDynamicType);
+        }
+
+        private object ResolveDynamicType(Type type)
+        {
+            if (type.IsSubclassOf(_baseClassType))
+            {
+                return _graphObjectInstances[type];
+            }
+
+            return _staticSchema.DependencyResolver.Resolve(type);
         }
 
         public static async Task<Schema> Create(ISchema originalSchema, IScriptsSet scriptsSet, Document document)
@@ -45,54 +63,31 @@
             var document = new GraphQLDocumentBuilder().Build(query);
             return await Create(originalSchema, scriptsSet, document);
         }
-
+ 
         private async Task AddDynamicTypes()
         {
-            var directives = GetStartDirectives(_document);
+            var directives = _document.Operations
+                .Where(operation => operation.OperationType == OperationType.Query)
+                .SelectMany(operation => operation.Directives)
+                .Where(directive => directive.Name == "start")
+                .AsEnumerable();
+            
             foreach (var directive in directives)
             {
                 var argument = directive.Arguments.First();
                 if (argument.Value is StringValue stringValue)
                 {
                     var path = stringValue.Value;
-                    var node = await GetNodeForPath(path);
+                    var node = await _nodeFetcher.FetchAsync(path);
                     var properties = node.GetProperties();
+                    var fieldType = _fieldTypeBuilder.Build(properties, path, directive, out DynamicObjectGraphType fieldTypeInstance);
+
+                    _graphObjectInstances[fieldTypeInstance.GetType()] = fieldTypeInstance;
+                    
+                    var query = (ComplexGraphType<object>) Query;
+                    query.AddField(fieldType);
                 }
             }
-        }
-
-        private async Task<IInternalNode> GetNodeForPath(string path)
-        {
-            var scriptParseResult = _scriptsSet.Parse(path);
-            if (scriptParseResult.Errors.Any())
-            {
-                throw new InvalidOperationException("Unable to process GraphQL argument 'path' of the start directive.");
-            }
-
-            var scope = new ScriptScope();
-            var lastSequence = await _scriptsSet.Process(scriptParseResult.Script, scope);
-            var results = await lastSequence.Output.ToArray();
-            if (results.Length == 0)
-            {
-                throw new InvalidOperationException("Unable to process GraphQL query 'path' does not return any results.");
-            }
-
-            if (results.Length > 1)
-            {
-                throw new InvalidOperationException("Unable to process GraphQL query 'path' returns too many results.");
-            }
-
-            var result = (IInternalNode) results[0];
-            return result;
-        }
-
-        private IEnumerable<Directive> GetStartDirectives(Document document)
-        {
-            return document.Operations
-                .Where(operation => operation.OperationType == OperationType.Query)
-                .SelectMany(operation => operation.Directives)
-                .Where(directive => directive.Name == "start")
-                .AsEnumerable();
         }
     }
 }
