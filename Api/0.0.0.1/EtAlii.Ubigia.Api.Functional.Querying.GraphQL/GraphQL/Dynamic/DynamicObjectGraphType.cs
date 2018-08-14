@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
-    using System.Collections.Generic;
     using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
 
