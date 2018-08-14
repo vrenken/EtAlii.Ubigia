@@ -380,7 +380,7 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Fabric.Te
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj", "{60146C7A-1B67-4ED1-A5DB-5801AE0C5FED}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Querying.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Tests\EtAlii.Ubigia.Api.Functional.Querying.Tests.shproj", "{428597BB-50E3-4596-BC50-BF5A6D2F71CA}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Querying.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Tests\EtAlii.Ubigia.Api.Functional.Querying.Tests.shproj", "{428597BB-50E3-4596-BC50-BF5A6D2F71AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Querying.NET47.Grpc.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.NET47.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Querying.NET47.Grpc.Tests.csproj", "{3B028E9E-B5D3-4AE5-AA38-1B90A229B992}"
 EndProject
@@ -5638,6 +5638,7 @@ Global
 		{428597BB-50E3-4596-BC50-BF5A6D2F71CA} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{3B028E9E-B5D3-4AE5-AA38-1B90A229B992} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 		{DEEBA8CF-2736-47FC-8DBC-369F2E66DE3E} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
+		{428597BB-50E3-4596-BC50-BF5A6D2F71AA} = {6ADD59A9-D6F8-46BC-AA62-F287C66BB52A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {50D66465-B259-4962-95DF-D3E34F783876}
