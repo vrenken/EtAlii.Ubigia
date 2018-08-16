@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
-                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname : \'Johnny\', Lives: 1 }"
+                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQueries = new[]
             {
                 "Person:+=Stark/Tony",
-                "Person:Stark/Tony <= { Birthdate: 1976-05-12, NickName : \'Iron Man\', Lives: 9 }"
+                "Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
