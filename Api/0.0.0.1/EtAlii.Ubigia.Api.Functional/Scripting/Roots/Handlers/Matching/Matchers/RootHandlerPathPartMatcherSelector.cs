@@ -10,6 +10,8 @@
             IConstantRootHandlerPathPartMatcher constantRootHandlerPathPartMatcher,
             IIsParentOfRootHandlerPathPartMatcher isParentOfRootHandlerPathPartMatcher,
             IIsChildOfRootHandlerPathPartMatcher isChildOfRootHandlerPathPartMatcher,
+            INextOfRootHandlerPathPartMatcher nextOfRootHandlerPathPartMatcher,
+            IPreviousOfRootHandlerPathPartMatcher previousOfRootHandlerPathPartMatcher,
             IWildcardRootHandlerPathPartMatcher wildcardRootHandlerPathPartMatcher,
             IVariableRootHandlerPathPartMatcher variableRootHandlerPathPartMatcher,
             IConditionalRootHandlerPathPartMatcher conditionalRootHandlerPathPartMatcher,
@@ -22,6 +24,8 @@
                 .Register(part => part is ConstantPathSubjectPart, constantRootHandlerPathPartMatcher)
                 .Register(part => part is IsParentOfPathSubjectPart, isParentOfRootHandlerPathPartMatcher)
                 .Register(part => part is IsChildOfPathSubjectPart, isChildOfRootHandlerPathPartMatcher)
+                .Register(part => part is NextOfPathSubjectPart, nextOfRootHandlerPathPartMatcher)
+                .Register(part => part is PreviousOfPathSubjectPart, previousOfRootHandlerPathPartMatcher)
                 .Register(part => part is WildcardPathSubjectPart, wildcardRootHandlerPathPartMatcher)
                 .Register(part => part is VariablePathSubjectPart, variableRootHandlerPathPartMatcher)
                 .Register(part => part is ConditionalPathSubjectPart, conditionalRootHandlerPathPartMatcher)

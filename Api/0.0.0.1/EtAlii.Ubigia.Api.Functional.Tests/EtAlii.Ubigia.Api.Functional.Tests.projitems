@@ -122,6 +122,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.RootedPath.Parse.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Paths.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.NonRootedPath.AddItem.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.NonRootedPath.TraverseAll.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.Assign.Path.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.Assign.Variable.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.Function.File.Tests.cs" />

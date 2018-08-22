@@ -31,4 +31,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripting\1. Parsing\Subjects\Paths\Parts\Sequential" />
+  </ItemGroup>
 </Project>
