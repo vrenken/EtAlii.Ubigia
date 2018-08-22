@@ -20,7 +20,10 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Cconditional/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Chierarchical/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Cregex/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Csequential/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Ctemporal/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Ctyped/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Cpaths_005Cparts_005Cwildcard/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005C1_002E_0020parsing_005Csubjects_005Croots/@EntryIndexedValue">True</s:Boolean>
@@ -115,13 +118,18 @@
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cfinding/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cchildof/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cconditional/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cconstant/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cdowndate/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Chierarchical/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cidentifier/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cischildof/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cisparentof/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cparentof/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cregex/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Csequential/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Ctemporal/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Ctyped/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cupdate/@EntryIndexedValue">True</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeInspection/NamespaceProvider/NamespaceFoldersToSkip/=scripting_005Croots_005Chandlers_005Cmatching_005Cmatchers_005Cvariable/@EntryIndexedValue">True</s:Boolean>

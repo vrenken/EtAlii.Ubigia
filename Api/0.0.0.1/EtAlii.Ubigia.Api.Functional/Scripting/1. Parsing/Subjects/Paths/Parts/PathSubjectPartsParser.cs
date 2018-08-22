@@ -35,10 +35,13 @@
                 constantPathSubjectPartParser,
                 variablePathSubjectPartParser,
                 identifierPathSubjectPartParser,
+                
                 isParentOfPathSubjectPartParser,
                 isChildOfPathSubjectPartParser,
+                
                 downdateOfPathSubjectPartParser,
                 updatesOfPathSubjectPartParser,
+                
                 typedPathSubjectPartParser,
                 regexPathSubjectPartParser
             };

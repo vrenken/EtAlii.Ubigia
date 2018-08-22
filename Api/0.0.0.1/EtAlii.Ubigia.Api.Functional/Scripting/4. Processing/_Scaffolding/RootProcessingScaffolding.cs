@@ -25,6 +25,8 @@
             container.Register<IConstantRootHandlerPathPartMatcher, ConstantRootHandlerPathPartMatcher>();
             container.Register<IIsParentOfRootHandlerPathPartMatcher, IsParentOfRootHandlerPathPartMatcher>();
             container.Register<IIsChildOfRootHandlerPathPartMatcher, IsChildOfRootHandlerPathPartMatcher>();
+            container.Register<INextOfRootHandlerPathPartMatcher, NextOfRootHandlerPathPartMatcher>();
+            container.Register<IPreviousOfRootHandlerPathPartMatcher, PreviousOfRootHandlerPathPartMatcher>();
             container.Register<IWildcardRootHandlerPathPartMatcher, WildcardRootHandlerPathPartMatcher>();
             container.Register<IVariableRootHandlerPathPartMatcher, VariableRootHandlerPathPartMatcher>();
             container.Register<IConditionalRootHandlerPathPartMatcher, ConditionalRootHandlerPathPartMatcher>();
