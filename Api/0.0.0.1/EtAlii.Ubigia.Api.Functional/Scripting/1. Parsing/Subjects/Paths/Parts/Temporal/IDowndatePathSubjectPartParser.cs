@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    internal interface IIsParentOfPathSubjectPartParser : IPathSubjectPartParser
+    internal interface IDowndatePathSubjectPartParser : IPathSubjectPartParser
     {
         string Id { get; }
     }

@@ -41,10 +41,13 @@
             container.Register<IConstantPathSubjectPartParser, ConstantPathSubjectPartParser>();
             container.Register<IVariablePathSubjectPartParser, VariablePathSubjectPartParser>();
             container.Register<IIdentifierPathSubjectPartParser, IdentifierPathSubjectPartParser>();
-            container.Register<IIsParentOfPathSubjectPartParser, IsParentOfPathSubjectPartParser>();
-            container.Register<IIsChildOfPathSubjectPartParser, IsChildOfPathSubjectPartParser>();
-            container.Register<IDowndateOfPathSubjectPartParser, DowndateOfPathSubjectPartParser>();
-            container.Register<IUpdatesOfPathSubjectPartParser, UpdatesOfPathSubjectPartParser>();
+            
+            container.Register<IParentPathSubjectPartParser, ParentPathSubjectPartParser>();
+            container.Register<IChildPathSubjectPartParser, ChildPathSubjectPartParser>();
+            
+            container.Register<IDowndatePathSubjectPartParser, DowndatePathSubjectPartParser>();
+            container.Register<IUpdatesPathSubjectPartParser, UpdatesPathSubjectPartParser>();
+            
             container.Register<ITypedPathSubjectPartParser, TypedPathSubjectPartParser>();
             container.Register<IRegexPathSubjectPartParser, RegexPathSubjectPartParser>();
         }

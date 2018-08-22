@@ -2,44 +2,39 @@
 {
     using Moppet.Lapa;
 
-    internal class IsChildOfPathSubjectPartParser : IIsChildOfPathSubjectPartParser
+    internal class UpdatesPathSubjectPartParser : IUpdatesPathSubjectPartParser
     {
-        public string Id { get; } = "IsChildOfPathSubjectPart";
+        public string Id { get; } = "UpdatesPathSubjectPart";
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
-        private const string RelationId = @"\";
-        private const string RelationDescription = @"IS_CHILD_OF";
+        private const string RelationId = @"}";
+        private const string RelationDescription = @"UPDATES_OF";
 
-        public IsChildOfPathSubjectPartParser(
+        public UpdatesPathSubjectPartParser(
             INodeValidator nodeValidator,
             IPathRelationParserBuilder pathRelationParserBuilder)
         {
             _nodeValidator = nodeValidator;
 
             var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
-            Parser = new LpsParser(Id, true, relationParser);//.Debug("IsChildOfOfPathSubjectParser");
+            Parser = new LpsParser(Id, true, relationParser);
         }
 
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            return new IsChildOfPathSubjectPart();
+            return new UpdatesOfPathSubjectPart();
         }
 
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
-            if (before is IsChildOfPathSubjectPart ||
-               after is IsChildOfPathSubjectPart)
+            if (partIndex == 0)
             {
-                throw new ScriptParserException("Two child path separators cannot be combined.");
-            }
-            if (after is IsParentOfPathSubjectPart)
-            {
-                throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
+                throw new ScriptParserException("The updates path separator cannot be used to start a path.");
             }
         }
 
@@ -50,7 +45,7 @@
 
         public bool CanValidate(PathSubjectPart part)
         {
-            return part is IsChildOfPathSubjectPart;
+            return part is UpdatesOfPathSubjectPart;
         }
     }
 }
