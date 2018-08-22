@@ -2,10 +2,10 @@
 {
     using global::GraphQL.Types;
 
-    public class UbigiaStartDirective : DirectiveGraphType
+    public class UbigiaTraverseDirective : DirectiveGraphType
     {
-        public UbigiaStartDirective()
-            : base("start", new[]
+        public UbigiaTraverseDirective()
+            : base("traverse", new[]
             {
                 DirectiveLocation.Query,
                 DirectiveLocation.Field,
@@ -13,7 +13,7 @@
                 DirectiveLocation.InlineFragment,
             })
         {
-            Description = "Directs the executor to start at a specific location in a space";
+            Description = "Directs the executor to start querying at a specific location in a space";
             Arguments = new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>>
             {
                 Name = "path",
