@@ -2,18 +2,18 @@
 {
     using Moppet.Lapa;
 
-    internal class IsParentOfPathSubjectPartParser : IIsParentOfPathSubjectPartParser
+    internal class ParentPathSubjectPartParser : IParentPathSubjectPartParser
     {
-        public string Id { get; } = "IsParentOfPathSubjectPart";
+        public string Id { get; } = "ParentPathSubjectPart";
 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
 
         private const string RelationId = @"/";
-        private const string RelationDescription = @"IS_PARENT_OF";
+        private const string RelationDescription = @"PARENT_OF";
 
-        public IsParentOfPathSubjectPartParser(
+        public ParentPathSubjectPartParser(
             INodeValidator nodeValidator,
             IPathRelationParserBuilder pathRelationParserBuilder)
         {

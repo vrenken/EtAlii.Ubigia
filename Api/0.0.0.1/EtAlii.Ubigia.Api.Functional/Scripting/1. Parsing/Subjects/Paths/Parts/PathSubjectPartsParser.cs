@@ -19,10 +19,10 @@
             IConstantPathSubjectPartParser constantPathSubjectPartParser,
             IVariablePathSubjectPartParser variablePathSubjectPartParser,
             IIdentifierPathSubjectPartParser identifierPathSubjectPartParser,
-            IIsParentOfPathSubjectPartParser isParentOfPathSubjectPartParser,
-            IIsChildOfPathSubjectPartParser isChildOfPathSubjectPartParser,
-            IDowndateOfPathSubjectPartParser downdateOfPathSubjectPartParser,
-            IUpdatesOfPathSubjectPartParser updatesOfPathSubjectPartParser,
+            IParentPathSubjectPartParser parentPathSubjectPartParser,
+            IChildPathSubjectPartParser childPathSubjectPartParser,
+            IDowndatePathSubjectPartParser downdatePathSubjectPartParser,
+            IUpdatesPathSubjectPartParser updatesPathSubjectPartParser,
             ITypedPathSubjectPartParser typedPathSubjectPartParser,
             IRegexPathSubjectPartParser regexPathSubjectPartParser,
             INodeValidator nodeValidator)
@@ -36,11 +36,11 @@
                 variablePathSubjectPartParser,
                 identifierPathSubjectPartParser,
                 
-                isParentOfPathSubjectPartParser,
-                isChildOfPathSubjectPartParser,
+                parentPathSubjectPartParser,
+                childPathSubjectPartParser,
                 
-                downdateOfPathSubjectPartParser,
-                updatesOfPathSubjectPartParser,
+                downdatePathSubjectPartParser,
+                updatesPathSubjectPartParser,
                 
                 typedPathSubjectPartParser,
                 regexPathSubjectPartParser

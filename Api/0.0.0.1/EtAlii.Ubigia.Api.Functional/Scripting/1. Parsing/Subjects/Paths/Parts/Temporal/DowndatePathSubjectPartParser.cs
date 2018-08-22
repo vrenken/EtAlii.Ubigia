@@ -2,9 +2,9 @@
 {
     using Moppet.Lapa;
 
-    internal class DowndateOfPathSubjectPartParser : IDowndateOfPathSubjectPartParser
+    internal class DowndatePathSubjectPartParser : IDowndatePathSubjectPartParser
     {
-        public string Id { get; } = "DowndateOfPathSubjectPart";
+        public string Id { get; } = "DowndatePathSubjectPart";
 
         public LpsParser Parser { get; }
 
@@ -13,7 +13,7 @@
         private const string RelationId = @"{";
         private const string RelationDescription = @"DOWNDATE_OF";
 
-        public DowndateOfPathSubjectPartParser(
+        public DowndatePathSubjectPartParser(
             INodeValidator nodeValidator,
             IPathRelationParserBuilder pathRelationParserBuilder)
         {
