@@ -1,0 +1,75 @@
+﻿query data 
+@traverse(path:"person:Stark/Tony")
+{ 
+    person 
+    { 
+        lastname @traverse(path:""\\"") 
+    } 
+}
+
+query data 
+@traverse(path:"person:Vrenken/Peter", mode: "Union")
+@traverse(path:"person:Vrenken/Tanja")
+{ 
+    person 
+    { 
+        firstname 
+    } 
+}
+
+query data 
+@traverse(path:"location:DE/Berlin/*", mode: "Intersect")
+@traverse(path:"time:2012/*")
+@traverse(path:"person:Vrenken/Peter")
+{ 
+    person @traverse(path:"\persons\")
+    { 
+        firstname 
+        lastname @traverse(path:"\") 
+    },
+    location @traverse(path:"\locations\") 
+    { 
+        name @traverse(path:"\\"),
+    } 
+}
+
+query data 
+{ 
+    location @traverse(path:"location:DE/Berlin/*", mode: "Intersect")
+    time @traverse(path:"time:2012/*")
+    person @traverse(path:"person:Vrenken/Peter/*")
+    { 
+        firstname 
+        lastname @traverse(path:"\") 
+    },
+}
+
+query data 
+{ 
+    location @traverse(path:"location:DE/Berlin/*", mode: "Intersect")
+    time @traverse(path:"time:2012/*")
+    person @traverse(path:"person:Vrenken/Peter/*")
+    { 
+        firstname 
+        lastname @traverse(path:"\") 
+    },
+}
+
+query data 
+{ 
+    id @traverse(path:"/&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423")
+    { 
+        firstname 
+        lastname @traverse(path:"\") 
+    },
+}
+
+
+query data 
+{ 
+    id @traverse(path:"/$id")
+    { 
+        firstname 
+        lastname @traverse(path:"\") 
+    },
+}
