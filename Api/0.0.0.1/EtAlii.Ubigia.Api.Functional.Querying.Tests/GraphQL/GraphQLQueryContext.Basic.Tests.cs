@@ -62,7 +62,7 @@
         public async Task GraphQL_Query_Select_Simple_Full()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { firstname, lastname, nickname, birthdate, lives } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -75,7 +75,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { lastname } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { lastname @traverse(path:""\\"") } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -88,7 +88,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Local()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { firstname } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { firstname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -101,7 +101,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { lives } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { lives } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -111,10 +111,10 @@
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task GraphQL_Query_Select_Simple_Property_String()
+        public async Task GraphQL_Query_Select_Simple_Property_String_01()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { nickname } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { nickname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -123,6 +123,45 @@
             AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
         }
         
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Property_String_02()
+        {
+            // Arrange.
+            var query = "query data\n@traverse(path:\"person:Stark/Tony\") { person { nickname } }";
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+            
+            // Assert.
+            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+        }
+                
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Property_String_03()
+        {
+            // Arrange.
+            var query = "query data\n@traverse(path:\"person:Stark/Tony\")\n{\nperson\n{\nnickname\n}\n}";
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+            
+            // Assert.
+            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Multiple_Starts_String()
+        {
+            // Arrange.
+            var query = "query data\n@traverse(path:\"person:Stark/Tony\")\n@traverse(path:\"person:Stark/Tony\")\n{\nperson\n{\nnickname\n}\n}";
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+            
+            // Assert.
+            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Droid()
         {
@@ -140,7 +179,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { id, nickname } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { id, nickname } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -153,7 +192,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
-            var query = @"query data @start(path:""person:Stark/Tony"") { person { birthdate } }";
+            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { birthdate } }";
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());

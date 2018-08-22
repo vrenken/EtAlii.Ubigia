@@ -30,7 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\GraphQLQueryContext.Basic.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Samples 1. - Queries.txt" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 1. - Queries.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt" />
   </ItemGroup>
 </Project>
