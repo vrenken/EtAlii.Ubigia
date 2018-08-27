@@ -28,14 +28,14 @@ namespace EtAlii.Ubigia.Api.Functional
 
             var parts = new PathSubjectPart[] 
                 {
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // month
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // day
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // hour
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // minute
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // second
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // month
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // day
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // hour
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // minute
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // second
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
                 }
                 .Concat(rest)
                 .ToArray();

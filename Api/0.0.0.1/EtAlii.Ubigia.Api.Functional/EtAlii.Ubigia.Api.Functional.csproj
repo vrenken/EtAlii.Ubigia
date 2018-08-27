@@ -32,6 +32,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical\EtAlii.Ubigia.Api.Logical.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripting\1. Parsing\Subjects\Paths\Parts\Sequential" />
+    <Folder Include="Scripting\4. Processing\Subjects\Paths\Converters\PathSubjectToGraphPathParts\Sequential" />
   </ItemGroup>
 </Project>

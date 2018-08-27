@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿using System.Diagnostics;
+
+namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
     using Moppet.Lapa;
@@ -19,10 +21,22 @@
             IConstantPathSubjectPartParser constantPathSubjectPartParser,
             IVariablePathSubjectPartParser variablePathSubjectPartParser,
             IIdentifierPathSubjectPartParser identifierPathSubjectPartParser,
+            
+            IAllParentsPathSubjectPartParser allParentsPathSubjectPartParser,
             IParentPathSubjectPartParser parentPathSubjectPartParser,
-            IChildPathSubjectPartParser childPathSubjectPartParser,
+            IAllChildrenPathSubjectPartParser allChildrenPathSubjectPartParser,
+            IChildrenPathSubjectPartParser childrenPathSubjectPartParser,
+            
+            IAllDowndatesPathSubjectPartParser allDowndatesPathSubjectPartParser,
             IDowndatePathSubjectPartParser downdatePathSubjectPartParser,
+            IAllUpdatesPathSubjectPartParser allUpdatesPathSubjectPartParser,
             IUpdatesPathSubjectPartParser updatesPathSubjectPartParser,
+            
+            IAllPreviousPathSubjectPartParser allPreviousPathSubjectPartParser,
+            IPreviousPathSubjectPartParser previousPathSubjectPartParser,
+            IAllNextPathSubjectPartParser allNextPathSubjectPartParser,
+            INextPathSubjectPartParser nextPathSubjectPartParser,
+            
             ITypedPathSubjectPartParser typedPathSubjectPartParser,
             IRegexPathSubjectPartParser regexPathSubjectPartParser,
             INodeValidator nodeValidator)
@@ -36,12 +50,21 @@
                 variablePathSubjectPartParser,
                 identifierPathSubjectPartParser,
                 
+                allParentsPathSubjectPartParser,
                 parentPathSubjectPartParser,
-                childPathSubjectPartParser,
-                
+                allChildrenPathSubjectPartParser,
+                childrenPathSubjectPartParser,
+
+                allDowndatesPathSubjectPartParser,
                 downdatePathSubjectPartParser,
+                allUpdatesPathSubjectPartParser,
                 updatesPathSubjectPartParser,
-                
+
+                allPreviousPathSubjectPartParser,
+                previousPathSubjectPartParser, 
+                allNextPathSubjectPartParser,
+                nextPathSubjectPartParser,
+
                 typedPathSubjectPartParser,
                 regexPathSubjectPartParser
             };
@@ -61,6 +84,7 @@
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
+            //var parsers = _parsers.Where(p => p.CanValidate(part)).ToArray();
             var parser = _parsers.Single(p => p.CanValidate(part));
             parser.Validate(before, part, partIndex, after);
         }

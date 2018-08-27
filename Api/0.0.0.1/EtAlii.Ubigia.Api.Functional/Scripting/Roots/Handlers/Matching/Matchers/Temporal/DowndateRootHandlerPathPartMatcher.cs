@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             bool canMatch = false;
             var next = parameters.PathRest.FirstOrDefault();
-            if (next is DowndateOfPathSubjectPart)
+            if (next is DowndatePathSubjectPart)
             {
                 canMatch = true;
             }

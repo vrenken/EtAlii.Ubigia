@@ -12,17 +12,17 @@ namespace EtAlii.Ubigia.Api.Functional
             // TODO: using an empty execution scope should not be needed.
             scope = new ExecutionScope(false);
 
-            var pathToAddTo = new AbsolutePathSubject(new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time") });
+            var pathToAddTo = new AbsolutePathSubject(new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time") });
 
             var pathToAdd = new RelativePathSubject(new PathSubjectPart[] 
             {
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:HH}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:mm}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:ss}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:fff}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:HH}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:mm}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:ss}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:fff}"),
             });
 
             var leftInput = Observable.Create<object>(leftInputObserver =>

@@ -63,7 +63,7 @@
             {
                 throw new ScriptParserException("A wildcard path part cannot be combined with other constant, wildcard or string path parts.");
             }
-            else if (partIndex == 0 || (partIndex == 1 && before is IsParentOfPathSubjectPart) && (before is VariablePathSubjectPart) == false)
+            else if (partIndex == 0 || (partIndex == 1 && before is ParentPathSubjectPart) && (before is VariablePathSubjectPart) == false)
             {
                 throw new ScriptParserException("A wildcard path part cannot be used at the beginning of a graph path.");
             }

@@ -26,18 +26,18 @@
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            return new IsParentOfPathSubjectPart();
+            return new ParentPathSubjectPart();
         }
 
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
-            if (before is IsParentOfPathSubjectPart ||
-               after is IsParentOfPathSubjectPart)
+            if (before is ParentPathSubjectPart ||
+               after is ParentPathSubjectPart)
             {
                 throw new ScriptParserException("Two parent path separators cannot be combined.");
             }
-            if (after is IsChildOfPathSubjectPart)
+            if (after is ChildrenPathSubjectPart)
             {
                 throw new ScriptParserException("The parent path separator cannot be followed by a child path separator.");
             }
@@ -50,7 +50,7 @@
 
         public bool CanValidate(PathSubjectPart part)
         {
-            return part is IsParentOfPathSubjectPart;
+            return part is ParentPathSubjectPart;
         }
     }
 }

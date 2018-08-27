@@ -20,7 +20,7 @@
         {
             var outputObservable = Observable.Create<object>(outputObserver =>
             {
-                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentId, GraphRelation.Child, new GraphNode(part.Name)), scope, outputObserver);
+                _context.Logical.Nodes.SelectMany(GraphPath.Create(parentId, GraphRelation.Children, new GraphNode(part.Name)), scope, outputObserver);
 
                 return Disposable.Empty;
             }).ToHotObservable();

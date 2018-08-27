@@ -12,14 +12,14 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             Template = new PathSubjectPart[]
             {
-                new WildcardPathSubjectPart("*"), new IsParentOfPathSubjectPart(),
+                new WildcardPathSubjectPart("*"), new ParentPathSubjectPart(),
                 new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter), 
             };
         }
 
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            var parts = new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Person"), new IsParentOfPathSubjectPart() }
+            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Person"), new ParentPathSubjectPart() }
                .Concat(match)
                .Concat(rest)
                .ToArray();

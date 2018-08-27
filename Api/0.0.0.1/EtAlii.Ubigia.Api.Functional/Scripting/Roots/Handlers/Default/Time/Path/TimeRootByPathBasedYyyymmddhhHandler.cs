@@ -15,9 +15,9 @@ namespace EtAlii.Ubigia.Api.Functional
             _timePreparer = timePreparer;
 
             Template = new PathSubjectPart[] {
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new IsParentOfPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new IsParentOfPathSubjectPart(),
-                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new IsParentOfPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
+                    new TypedPathSubjectPart(TypedPathFormatter.Time.DayFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.HourFormatter)
             };
         }
@@ -34,14 +34,14 @@ namespace EtAlii.Ubigia.Api.Functional
 
             var parts = new PathSubjectPart[] 
                 {
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Time"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
-                    new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart($"{time:HH}"),
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // minute
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // second
-                    new IsParentOfPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart("Time"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:yyyy}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:MM}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:dd}"),
+                    new ParentPathSubjectPart(), new ConstantPathSubjectPart($"{time:HH}"),
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // minute
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // second
+                    new ParentPathSubjectPart(), new WildcardPathSubjectPart("*"), // millisecond
                 }
                 .Concat(rest)
                 .ToArray();

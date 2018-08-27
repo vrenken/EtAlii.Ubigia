@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 GraphPathPart[] result;
                 if (pathSubjectPartPosition == 0 ||
-                    previousPathSubjectPart is IsParentOfPathSubjectPart && pathSubjectPartPosition == 1)
+                    previousPathSubjectPart is ParentPathSubjectPart && pathSubjectPartPosition == 1)
                 {
                     var startIdentifier = ((IdentifierPathSubjectPart) pathSubjectPart).Identifier;
                     result = new GraphPathPart[] {new GraphIdentifiersStartNode(startIdentifier)};

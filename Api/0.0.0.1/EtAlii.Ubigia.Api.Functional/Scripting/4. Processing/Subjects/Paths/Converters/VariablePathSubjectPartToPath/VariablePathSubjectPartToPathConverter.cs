@@ -57,9 +57,9 @@ namespace EtAlii.Ubigia.Api.Functional
             return new PathSubjectPart[0]
                 .Concat(new PathSubjectPart[]
                 {
-                    new IsParentOfPathSubjectPart(),
+                    new ParentPathSubjectPart(),
                     new ConstantPathSubjectPart(rootedPathSubject.Root),
-                    new IsParentOfPathSubjectPart(),
+                    new ParentPathSubjectPart(),
                 })
                 .Concat(rootedPathSubject.Parts)
                 .ToArray();
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private PathSubjectPart[] ToPath(INode node)
         {
-            return new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new IdentifierPathSubjectPart(node.Id) };
+            return new PathSubjectPart[] { new ParentPathSubjectPart(), new IdentifierPathSubjectPart(node.Id) };
         }
 
         private PathSubjectPart[] ToPath(StringConstantSubject subject )

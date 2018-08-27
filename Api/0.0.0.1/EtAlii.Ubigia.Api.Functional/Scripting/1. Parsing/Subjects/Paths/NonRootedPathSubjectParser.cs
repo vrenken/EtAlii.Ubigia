@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional
             }
             else
             {
-                result = parts[0] is IsParentOfPathSubjectPart 
+                result = parts[0] is ParentPathSubjectPart 
                     ? new AbsolutePathSubject(parts) 
                     : (NonRootedPathSubject)new RelativePathSubject(parts);
             }

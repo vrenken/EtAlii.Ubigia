@@ -23,15 +23,21 @@
             container.Register<ITypedRootHandlerPathPartMatcher, TypedRootHandlerPathPartMatcher>();
             container.Register<IRegexRootHandlerPathPartMatcher, RegexRootHandlerPathPartMatcher>();
             container.Register<IConstantRootHandlerPathPartMatcher, ConstantRootHandlerPathPartMatcher>();
-            container.Register<IIsParentOfRootHandlerPathPartMatcher, IsParentOfRootHandlerPathPartMatcher>();
-            container.Register<IIsChildOfRootHandlerPathPartMatcher, IsChildOfRootHandlerPathPartMatcher>();
-            container.Register<INextOfRootHandlerPathPartMatcher, NextOfRootHandlerPathPartMatcher>();
-            container.Register<IPreviousOfRootHandlerPathPartMatcher, PreviousOfRootHandlerPathPartMatcher>();
+            container.Register<IAllParentsRootHandlerPathPartMatcher, AllParentsRootHandlerPathPartMatcher>();
+            container.Register<IParentRootHandlerPathPartMatcher, ParentRootHandlerPathPartMatcher>();
+            container.Register<IAllChildrenRootHandlerPathPartMatcher, AllChildrenRootHandlerPathPartMatcher>();
+            container.Register<IChildrenRootHandlerPathPartMatcher, ChildrenRootHandlerPathPartMatcher>();
+            container.Register<IAllNextRootHandlerPathPartMatcher, AllNextRootHandlerPathPartMatcher>();
+            container.Register<INextRootHandlerPathPartMatcher, NextRootHandlerPathPartMatcher>();
+            container.Register<IAllPreviousRootHandlerPathPartMatcher, AllPreviousRootHandlerPathPartMatcher>();
+            container.Register<IPreviousRootHandlerPathPartMatcher, PreviousRootHandlerPathPartMatcher>();
+            container.Register<IAllUpdatesRootHandlerPathPartMatcher, AllUpdatesRootHandlerPathPartMatcher>();
+            container.Register<IUpdatesRootHandlerPathPartMatcher, UpdatesRootHandlerPathPartMatcher>();
+            container.Register<IAllDowndatesRootHandlerPathPartMatcher, AllDowndatesRootHandlerPathPartMatcher>();
+            container.Register<IDowndateRootHandlerPathPartMatcher, DowndateRootHandlerPathPartMatcher>();
             container.Register<IWildcardRootHandlerPathPartMatcher, WildcardRootHandlerPathPartMatcher>();
             container.Register<IVariableRootHandlerPathPartMatcher, VariableRootHandlerPathPartMatcher>();
             container.Register<IConditionalRootHandlerPathPartMatcher, ConditionalRootHandlerPathPartMatcher>();
-            container.Register<IUpdateRootHandlerPathPartMatcher, UpdateRootHandlerPathPartMatcher>();
-            container.Register<IDowndateRootHandlerPathPartMatcher, DowndateRootHandlerPathPartMatcher>();
             container.Register<IIdentifierRootHandlerPathPartMatcher, IdentifierRootHandlerPathPartMatcher>();
 
             container.Register<IRootHandlerMapperFactory, RootHandlerMapperFactory>();

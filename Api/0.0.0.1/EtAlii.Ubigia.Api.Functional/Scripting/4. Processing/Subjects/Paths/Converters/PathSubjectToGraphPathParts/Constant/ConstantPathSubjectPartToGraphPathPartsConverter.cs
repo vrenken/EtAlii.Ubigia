@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 var name = ((ConstantPathSubjectPart)pathSubjectPart).Name;
 
                 if (pathSubjectPartPosition == 0 ||
-                    pathSubjectPartPosition == 1 && previousPathSubjectPart is IsParentOfPathSubjectPart)
+                    pathSubjectPartPosition == 1 && previousPathSubjectPart is ParentPathSubjectPart)
                 {
                     result = new GraphPathPart[] { new GraphRootStartNode(name) };
                 }
