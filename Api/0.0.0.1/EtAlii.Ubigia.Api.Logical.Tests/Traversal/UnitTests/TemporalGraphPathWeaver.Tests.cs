@@ -83,22 +83,25 @@
             var result = weaver.Weave(path);
 
             // Assert.
-            Assert.Equal(14, result.Length);
+            Assert.Equal(12, result.Length);
             Assert.Equal(path[0], result[0]);
             Assert.Equal(path[1], result[2]);
             Assert.Equal(path[2], result[4]);
             Assert.Equal(path[3], result[6]);
             Assert.Equal(path[4], result[8]);
             Assert.Equal(path[5], result[9]);
+            
             Assert.Equal(path[6], result[10]);
-            Assert.Equal(path[7], result[12]);
+            Assert.Equal(path[7], result[11]);
 
             Assert.Equal(GraphRelation.Final, result[1]);
             Assert.Equal(GraphRelation.Final, result[3]);
             Assert.Equal(GraphRelation.Final, result[5]);
             Assert.Equal(GraphRelation.Final, result[7]);
-            Assert.Equal(GraphRelation.Final, result[11]);
-            Assert.Equal(GraphRelation.Final, result[13]);
+            Assert.Equal(GraphRelation.Downdate, result[9]);
+            Assert.Equal(GraphRelation.Parent, result[10]);
+            Assert.IsType<GraphNode>(result[11]);
+            Assert.Equal("John",result[11].ToString());
         }
     }
 }
