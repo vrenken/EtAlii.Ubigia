@@ -69,7 +69,7 @@
             var directives = _document.Operations
                 .Where(operation => operation.OperationType == OperationType.Query)
                 .SelectMany(operation => operation.Directives)
-                .Where(directive => directive.Name == "start")
+                .Where(directive => directive.Name == "traverse")
                 .AsEnumerable();
             
             foreach (var directive in directives)
