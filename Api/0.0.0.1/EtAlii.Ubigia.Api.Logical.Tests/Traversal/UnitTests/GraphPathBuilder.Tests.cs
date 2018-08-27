@@ -36,7 +36,7 @@
             var builder = new GraphPathBuilder();
 
             // Act.
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Assert.
         }
@@ -61,7 +61,7 @@
         {
             // Arrange.
             var builder = new GraphPathBuilder();
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Act.
             var path = builder.ToPath();
@@ -77,7 +77,7 @@
             // Arrange.
             var builder = new GraphPathBuilder();
             builder.Add("First");
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Act.
             var path = builder.ToPath();
@@ -94,7 +94,7 @@
             // Arrange.
             var builder = new GraphPathBuilder();
             builder.Add("First");
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Act.
             builder.Clear();

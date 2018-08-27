@@ -77,7 +77,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -117,7 +117,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -162,7 +162,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -202,7 +202,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -247,7 +247,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -288,7 +288,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -335,7 +335,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
@@ -377,7 +377,7 @@
             foreach (var item in hierarchy)
             {
                 graphPathBuilder = graphPathBuilder
-                    .Add(GraphRelation.Child)
+                    .Add(GraphRelation.Children)
                     .Add(item);
             }
             var path = graphPathBuilder.ToPath();
