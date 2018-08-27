@@ -116,7 +116,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequence = script.Sequences.First();
             Assert.Equal("Files", sequence.Parts.Skip(0).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.First());
+            Assert.IsType<ParentPathSubjectPart>(sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.First());
             Assert.Equal("Images", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(1).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
@@ -170,7 +170,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = result.Script;
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
-            Assert.IsType<IsParentOfPathSubjectPart>(sequence.Parts.Skip(0).Cast<AbsolutePathSubject>().First().Parts.First());
+            Assert.IsType<ParentPathSubjectPart>(sequence.Parts.Skip(0).Cast<AbsolutePathSubject>().First().Parts.First());
             Assert.Equal("Files", sequence.Parts.Skip(0).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
             Assert.Equal("Images äëöüáéóúâêôû", sequence.Parts.Skip(2).Cast<StringConstantSubject>().First().Value);
@@ -190,19 +190,19 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
             var firstSubject = (AbsolutePathSubject)sequence.Parts.ElementAt(0);
-            Assert.IsType<IsParentOfPathSubjectPart>(firstSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(firstSubject.Parts.ElementAt(0));
             Assert.Equal("Documents", firstSubject.Parts.Skip(1).Cast<ConstantPathSubjectPart>().First().Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(firstSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(firstSubject.Parts.ElementAt(2));
             Assert.Equal("Files", firstSubject.Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(firstSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(firstSubject.Parts.ElementAt(4));
             Assert.Equal("Images", firstSubject.Parts.Skip(5).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.ElementAt(1));
             var secondSubject = sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(0));
             Assert.Equal("Vacation", secondSubject.Parts.Skip(1).Cast<ConstantPathSubjectPart>().First().Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(2));
             Assert.Equal("Italy", secondSubject.Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(4));
             Assert.Equal("Tuscany", secondSubject.Parts.Skip(5).Cast<ConstantPathSubjectPart>().First().Name);
         }
 

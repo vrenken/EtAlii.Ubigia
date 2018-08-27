@@ -82,7 +82,7 @@
             Assert.Equal("include", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -104,7 +104,7 @@
             Assert.Equal("include", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<ConstantPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
         }
 
@@ -127,9 +127,9 @@
             Assert.Equal("include", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<ConstantPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
             Assert.IsType<WildcardPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[3]);
         }
 
@@ -152,9 +152,9 @@
             Assert.Equal("include", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsChildOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ChildrenPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<ConstantPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
             Assert.IsType<WildcardPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[3]);
         }
 
@@ -177,9 +177,9 @@
             Assert.Equal("include", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsChildOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ChildrenPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.IsType<WildcardPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
             Assert.IsType<WildcardPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[3]);
         }
     }

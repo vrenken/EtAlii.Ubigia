@@ -47,11 +47,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*");
         }
@@ -72,12 +72,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "*");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
@@ -97,11 +97,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "Thi*");
         }
@@ -122,12 +122,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "Sec*");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
@@ -147,11 +147,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*ird");
         }
@@ -172,12 +172,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "*ond");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
@@ -197,11 +197,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "Thi*");
         }
@@ -222,12 +222,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "Sec*");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
@@ -247,11 +247,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*ird");
         }
@@ -272,12 +272,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "*ond");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
@@ -299,11 +299,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "Thi*");
         }
@@ -324,12 +324,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "Sec*");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 
@@ -349,11 +349,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.True(pathSubject.Parts.Skip(5).Cast<WildcardPathSubjectPart>().First().Pattern == "*ird");
         }
@@ -374,12 +374,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(6, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<WildcardPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.True(pathSubject.Parts.Skip(3).Cast<WildcardPathSubjectPart>().First().Pattern == "*ond");
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
         }
 

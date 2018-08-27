@@ -21,7 +21,7 @@
             Assert.Equal("var0", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("Files", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(4).First());
+            Assert.IsType<ParentPathSubjectPart>(sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(4).First());
             Assert.Equal("Image01", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(5).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(3).First());
             Assert.Equal("var1", sequence.Parts.Skip(4).Cast<VariableSubject>().First().Name);
@@ -41,7 +41,7 @@
             Assert.Equal("var0", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("Files", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(4).First());
+            Assert.IsType<ParentPathSubjectPart>(sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(4).First());
             Assert.Equal("Image01", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(5).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(3).First());
             Assert.Equal("var1", sequence.Parts.Skip(4).Cast<VariableSubject>().First().Name);
@@ -63,7 +63,7 @@
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
             Assert.IsType<AbsolutePathSubject>(sequence.Parts.ElementAt(2));
             var secondSubject = sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(0));
             var identifierPart = secondSubject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
@@ -89,7 +89,7 @@
             Assert.Equal("var0", sequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(sequence.Parts.ElementAt(1));
             var secondSubject = sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(0));
             var identifierPart = secondSubject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
@@ -115,7 +115,7 @@
             Assert.Equal("id", firstSequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(firstSequence.Parts.ElementAt(1));
             var secondSubject = firstSequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(0));
             var identifierPart = secondSubject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
@@ -146,7 +146,7 @@
             Assert.Equal("id", firstSequence.Parts.Skip(0).Cast<VariableSubject>().First().Name);
             Assert.IsType<AssignOperator>(firstSequence.Parts.ElementAt(1));
             var secondSubject = firstSequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(secondSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(secondSubject.Parts.ElementAt(0));
             var identifierPart = secondSubject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);

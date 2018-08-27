@@ -177,7 +177,7 @@
             Assert.Equal("id", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.Equal("Hierarchy", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]).Name);
         }
 
@@ -201,9 +201,9 @@
             Assert.Equal("id", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.Equal("Hierarchy", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]).Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
             Assert.Equal("Child", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[3]).Name);
         }
 
@@ -226,13 +226,13 @@
             Assert.Equal("id", part.Name);
             Assert.Single(part.Arguments);
             Assert.IsType<NonRootedPathFunctionSubjectArgument>(part.Arguments[0]);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[0]);
             Assert.Equal("Hierarchy", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[1]).Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[2]);
             Assert.Equal("Child", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[3]).Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[4]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[4]);
             Assert.Equal("var", ((VariablePathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[5]).Name);
-            Assert.IsType<IsParentOfPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[6]);
+            Assert.IsType<ParentPathSubjectPart>(((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[6]);
             Assert.Equal("MoreChildren", ((ConstantPathSubjectPart)((NonRootedPathFunctionSubjectArgument)part.Arguments[0]).Subject.Parts[7]).Name);
         }
 

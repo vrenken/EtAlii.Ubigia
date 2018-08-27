@@ -5,11 +5,11 @@
     using Xunit;
 
 
-    public class IsParentOfPathSubjectPartTests : IDisposable
+    public class ParentPathSubjectPartTests : IDisposable
     {
         private IScriptParser _parser;
 
-        public IsParentOfPathSubjectPartTests()
+        public ParentPathSubjectPartTests()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
@@ -23,10 +23,10 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void IsParentOfPathSubjectPart_ToString()
+        public void ParentPathSubjectPart_ToString()
         {
             // Arrange.
-            var part = new IsParentOfPathSubjectPart();
+            var part = new ParentPathSubjectPart();
 
             // Act.
             var result = part.ToString();

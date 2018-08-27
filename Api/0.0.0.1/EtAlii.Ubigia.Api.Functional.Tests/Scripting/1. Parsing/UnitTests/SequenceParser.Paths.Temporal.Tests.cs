@@ -47,13 +47,13 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(7, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+            Assert.IsType<DowndatePathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -72,14 +72,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(8, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+            Assert.IsType<DowndatePathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -98,14 +98,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(8, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(5));
+            Assert.IsType<DowndatePathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -124,14 +124,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(8, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(3));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<DowndatePathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(4));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(5));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -149,23 +149,22 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(9, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.Equal(8, pathSubject.Parts.Length);
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
-            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(7));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(8));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<AllDowndatesPathSubjectPart>(pathSubject.Parts.ElementAt(3));
+            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(5));
+            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_06()
         {
             // Arrange.
-            var text = "/First/Second/Third{{{";
+            var text = "/First/Second/Third{{";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -176,16 +175,44 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(9, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.Equal(7, pathSubject.Parts.Length);
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
-            Assert.IsType<DowndateOfPathSubjectPart>(pathSubject.Parts.ElementAt(8));
+            Assert.IsType<AllDowndatesPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+        }
+
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_07()
+        {
+            // Arrange.
+            var text = "/First/Second/Third{{{";
+
+            Sequence sequence;
+            // Act.
+            var act = new Action(() => sequence = _parser.Parse(text));
+
+            // Assert.
+            Assert.Throws<ScriptParserException>(act);
+        }
+
+        
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void SequenceParser_Parse_PathSubject_Hierarchical_Downdate_08()
+        {
+            // Arrange.
+            var text = "/First/{{{Second/Third";
+
+            // Act.
+            var act = new Action(() => _parser.Parse(text));
+
+            // Assert.
+            Assert.Throws<ScriptParserException>(act);
         }
 
 
@@ -205,13 +232,13 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(7, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+            Assert.IsType<UpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -230,14 +257,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(8, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+            Assert.IsType<UpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -256,14 +283,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(8, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(5));
+            Assert.IsType<UpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -282,14 +309,14 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
             Assert.Equal(8, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(3));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<UpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(3));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(4));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(5));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -307,23 +334,22 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(9, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.Equal(8, pathSubject.Parts.Length);
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
-            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(7));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(8));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<AllUpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(3));
+            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(5));
+            Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(6));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(7));
         }
-
+        
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void SequenceParser_Parse_PathSubject_Hierarchical_Update_06()
+        public void SequenceParser_Parse_PathSubject_Hierarchical_Update_07()
         {
             // Arrange.
-            var text = "/First/Second/Third}}}";
+            var text = "/First/Second/Third}}";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -334,16 +360,41 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var pathSubject = sequence.Parts.Skip(1).First() as AbsolutePathSubject;
             Assert.NotNull(pathSubject);
-            Assert.Equal(9, pathSubject.Parts.Length);
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(0));
+            Assert.Equal(7, pathSubject.Parts.Length);
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(0));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(1));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(2));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(3));
-            Assert.IsType<IsParentOfPathSubjectPart>(pathSubject.Parts.ElementAt(4));
+            Assert.IsType<ParentPathSubjectPart>(pathSubject.Parts.ElementAt(4));
             Assert.IsType<ConstantPathSubjectPart>(pathSubject.Parts.ElementAt(5));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(6));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(7));
-            Assert.IsType<UpdatesOfPathSubjectPart>(pathSubject.Parts.ElementAt(8));
+            Assert.IsType<AllUpdatesPathSubjectPart>(pathSubject.Parts.ElementAt(6));
         }
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void SequenceParser_Parse_PathSubject_Hierarchical_Update_08()
+        {
+            // Arrange.
+            var text = "/First/Second/Third}}}";
+
+            // Act.
+            var act = new Action(() => _parser.Parse(text));
+            
+            // Assert.
+            Assert.Throws<ScriptParserException>(act);
+        }
+                
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void SequenceParser_Parse_PathSubject_Hierarchical_Update_09()
+        {
+            // Arrange.
+            var text = "/First/}}}Second/Third";
+
+            // Act.
+            var act = new Action(() => _parser.Parse(text));
+            
+            // Assert.
+            Assert.Throws<ScriptParserException>(act);
+        }
+
     }
 }
