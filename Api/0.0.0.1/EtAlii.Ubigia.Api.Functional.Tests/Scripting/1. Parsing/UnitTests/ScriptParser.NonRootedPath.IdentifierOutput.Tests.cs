@@ -21,7 +21,7 @@
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
             var subject = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(subject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(subject.Parts.ElementAt(0));
             var identifierPart = subject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
@@ -45,7 +45,7 @@
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
             var subject = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(subject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(subject.Parts.ElementAt(0));
             var identifierPart = subject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
@@ -69,7 +69,7 @@
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
             var subject = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(subject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(subject.Parts.ElementAt(0));
             var identifierPart = subject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
@@ -93,7 +93,7 @@
             Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
             var sequence = script.Sequences.First();
             var subject = sequence.Parts.Skip(1).Cast<AbsolutePathSubject>().First();
-            Assert.IsType<IsParentOfPathSubjectPart>(subject.Parts.ElementAt(0));
+            Assert.IsType<ParentPathSubjectPart>(subject.Parts.ElementAt(0));
             var identifierPart = subject.Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);

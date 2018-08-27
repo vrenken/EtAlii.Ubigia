@@ -153,10 +153,22 @@
             // Arrange.
 
             // Act.
-            var result = _parser.Parse("First:Second//Third/Fourth");
+            var result = _parser.Parse("First:Second///Third/Fourth");
 
             // Assert.
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void ScriptParser_RootedPath_Parse_Query_Path_With_No_Separator_Error()
+        {
+            // Arrange.
+
+            // Act.
+            var result = _parser.Parse("First:Second//Third/Fourth");
+
+            // Assert.
+            Assert.DoesNotContain(result.Errors, e => e.Exception is ScriptParserException);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

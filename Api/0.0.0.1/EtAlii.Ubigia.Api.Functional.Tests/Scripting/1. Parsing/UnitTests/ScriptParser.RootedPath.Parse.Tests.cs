@@ -258,7 +258,16 @@
             var result = _parser.Parse("First:Second//Third/Fourth");
 
             // Assert.
-            Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
+            var script = result.Script;
+            Assert.False(result.Errors.Any(), result.Errors.Select(e => e.Message).FirstOrDefault());
+            var sequence = script.Sequences.First();
+            var subject = sequence.Parts.Skip(1).Cast<RootedPathSubject>().First();
+
+            Assert.IsType<ConstantPathSubjectPart>(subject.Parts.ElementAt(0));
+            Assert.IsType<AllParentsPathSubjectPart>(subject.Parts.ElementAt(1));
+            Assert.IsType<ConstantPathSubjectPart>(subject.Parts.ElementAt(2));
+            Assert.IsType<ParentPathSubjectPart>(subject.Parts.ElementAt(3));
+            Assert.IsType<ConstantPathSubjectPart>(subject.Parts.ElementAt(4));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -11,8 +11,8 @@
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
-            var template = new PathSubjectPart[] { new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(), new RegexPathSubjectPart(@"^\p{L}+$") };
-            var path = new PathSubjectPart[] { new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("John") };
+            var template = new PathSubjectPart[] { new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(), new RegexPathSubjectPart(@"^\p{L}+$") };
+            var path = new PathSubjectPart[] { new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(), new ConstantPathSubjectPart("John") };
             var rootHandler = new TestRootHandler(template);
 
             // Act.
@@ -31,12 +31,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
                 new VariablePathSubjectPart("firstNameVariable")
             };
             var rootHandler = new TestRootHandler(template);
@@ -57,12 +57,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
                 new WildcardPathSubjectPart("Jo*"),
             };
             var rootHandler = new TestRootHandler(template);
@@ -84,12 +84,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new WildcardPathSubjectPart("*"), 
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
                 new WildcardPathSubjectPart("Jo*"),
             };
             var rootHandler = new TestRootHandler(template);
@@ -110,12 +110,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new WildcardPathSubjectPart("Do*"), new IsParentOfPathSubjectPart(),
+                new WildcardPathSubjectPart("Do*"), new ParentPathSubjectPart(),
                 new ConstantPathSubjectPart("John"),
             };
             var rootHandler = new TestRootHandler(template);
@@ -136,12 +136,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new WildcardPathSubjectPart("*"), new IsParentOfPathSubjectPart(),
+                new WildcardPathSubjectPart("*"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new WildcardPathSubjectPart("Do*"), new IsParentOfPathSubjectPart(),
+                new WildcardPathSubjectPart("Do*"), new ParentPathSubjectPart(),
                 new ConstantPathSubjectPart("John"),
             };
             var rootHandler = new TestRootHandler(template);
@@ -163,12 +163,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new IsParentOfPathSubjectPart(),
+                new ParentPathSubjectPart(), new ParentPathSubjectPart(),
                 new ConstantPathSubjectPart("John"),
             };
             var rootHandler = new TestRootHandler(template);
@@ -189,13 +189,13 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
-                new IsParentOfPathSubjectPart()
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
+                new ParentPathSubjectPart()
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -214,12 +214,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"^\p{L}+$"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"^\p{L}+$"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"^\p{L}+$")
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
                 new ConstantPathSubjectPart("12")
             };
             var rootHandler = new TestRootHandler(template);
@@ -239,12 +239,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"\w"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"\w"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"\w")
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
                 new ConstantPathSubjectPart("&")
             };
             var rootHandler = new TestRootHandler(template);
@@ -265,12 +265,12 @@
             scriptscope.Variables.Add("firstNameVariable", new ScopeVariable("John", null));
             var template = new PathSubjectPart[]
             {
-                new RegexPathSubjectPart(@"\w"), new IsParentOfPathSubjectPart(),
+                new RegexPathSubjectPart(@"\w"), new ParentPathSubjectPart(),
                 new RegexPathSubjectPart(@"\w")
             };
             var path = new PathSubjectPart[]
             {
-                new ConstantPathSubjectPart("Doe"), new IsParentOfPathSubjectPart(),
+                new ConstantPathSubjectPart("Doe"), new ParentPathSubjectPart(),
                 new ConstantPathSubjectPart("*")
             };
             var rootHandler = new TestRootHandler(template);

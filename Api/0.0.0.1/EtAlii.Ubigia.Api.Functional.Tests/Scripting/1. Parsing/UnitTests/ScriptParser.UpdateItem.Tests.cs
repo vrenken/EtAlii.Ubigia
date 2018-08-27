@@ -113,6 +113,7 @@
             const string query = "$id <= /&38a52be49352453eaf975c3b448652f0.3f2504e04f8941D39a0c0305e82c3301.21ec20203aea4069a2dd08002b30309d.20.30.40\r\n/$id<=$var1";
 
             // Act.
+            var result = _parser.Parse(query);
             var script = _parser.Parse(query).Script;
 
             // Assert.

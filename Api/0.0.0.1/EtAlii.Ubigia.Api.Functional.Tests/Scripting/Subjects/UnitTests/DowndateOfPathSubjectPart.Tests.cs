@@ -27,7 +27,7 @@
         public void PreviousSubjectPart_ToString()
         {
             // Arrange.
-            var part = new DowndateOfPathSubjectPart();
+            var part = new DowndatePathSubjectPart();
 
             // Act.
             var result = part.ToString();

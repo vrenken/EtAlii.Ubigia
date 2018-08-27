@@ -1,4 +1,7 @@
 ﻿
+using System.Linq;
+using Microsoft.CSharp.RuntimeBinder;
+
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
@@ -105,12 +108,21 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(selectScript);
-            dynamic person = await lastSequence.Output.SingleOrDefaultAsync();
+            var history = await lastSequence.Output.ToArray();
 
             // Assert.
-            Assert.NotNull(person);
-            Assert.Equal("Joe", person.Nickname);
+            Assert.NotNull(history);
+            Assert.Equal(4, history.Length);
+            dynamic personHistory = history[0];
+            Assert.Equal("John", personHistory.Nickname);
+            personHistory = history[1];
+            Assert.Equal("Johnny", personHistory.Nickname);
+            personHistory = history[2];
+            Assert.Equal("Joe", personHistory.Nickname);
+            personHistory = history[3];
+            Assert.Throws<RuntimeBinderException>(() => personHistory.Nickname); // The first entry does not have a NickName assigned.
         }
+
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Temporal_Downdate_03()

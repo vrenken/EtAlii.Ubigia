@@ -15,13 +15,13 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter")
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter")
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -41,15 +41,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("0"),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -69,14 +69,14 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("0"),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -96,15 +96,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("0"),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -122,15 +122,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart(" "),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart(" "),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -148,15 +148,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("_"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("_"),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -174,15 +174,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("="),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("="),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -201,15 +201,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.WordFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("*"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("*"),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -227,15 +227,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.LastNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("0"),
             };
             var rootHandler = new TestRootHandler(template);
 
@@ -254,15 +254,15 @@
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
             var scriptscope = new ScriptScope();
             var template = new PathSubjectPart[] {
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
-                new IsParentOfPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Name.FirstNameFormatter),
+                new ParentPathSubjectPart(), new TypedPathSubjectPart(TypedPathFormatter.Text.NumberFormatter)
             };
             var path = new PathSubjectPart[]
             {
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
-                new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("0"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Vrenken"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("Peter"),
+                new ParentPathSubjectPart(), new ConstantPathSubjectPart("0"),
             };
             var rootHandler = new TestRootHandler(template);
 

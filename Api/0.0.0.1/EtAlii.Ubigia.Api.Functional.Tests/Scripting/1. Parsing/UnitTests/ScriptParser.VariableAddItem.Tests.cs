@@ -21,7 +21,7 @@
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("Files", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.Skip(3).First());
-            Assert.IsType<IsParentOfPathSubjectPart>(sequence.Parts.Skip(4).Cast<AbsolutePathSubject>().First().Parts.First());
+            Assert.IsType<ParentPathSubjectPart>(sequence.Parts.Skip(4).Cast<AbsolutePathSubject>().First().Parts.First());
             Assert.Equal("Images", sequence.Parts.Skip(4).Cast<AbsolutePathSubject>().First().Parts.Skip(1).Cast<ConstantPathSubjectPart>().First().Name);
         }
 
@@ -40,7 +40,7 @@
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
             Assert.Equal("Files", sequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(3).Cast<ConstantPathSubjectPart>().First().Name);
             Assert.IsType<AddOperator>(sequence.Parts.Skip(3).First());
-            Assert.IsType<IsParentOfPathSubjectPart>(sequence.Parts.Skip(4).Cast<AbsolutePathSubject>().First().Parts.First());
+            Assert.IsType<ParentPathSubjectPart>(sequence.Parts.Skip(4).Cast<AbsolutePathSubject>().First().Parts.First());
             Assert.Equal("Images", sequence.Parts.Skip(4).Cast<AbsolutePathSubject>().First().Parts.Skip(1).Cast<ConstantPathSubjectPart>().First().Name);
         }
     }
