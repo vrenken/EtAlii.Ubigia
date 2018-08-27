@@ -27,7 +27,7 @@
             var childNodes = node.Children ?? new LpNode[] { };
             var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
 
-            var subject = parts[0] is IsParentOfPathSubjectPart 
+            var subject = parts[0] is ParentPathSubjectPart 
                 ? new AbsolutePathSubject(parts) 
                 : (NonRootedPathSubject)new RelativePathSubject(parts);
 

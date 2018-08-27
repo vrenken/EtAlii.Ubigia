@@ -38,7 +38,7 @@
             //if (pathToAdd != null)
             //{
             //    var firstPath = pathToAdd.Parts.FirstOrDefault();
-            //    var startsWithRelation = firstPath is IsParentOfPathSubjectPart;
+            //    var startsWithRelation = firstPath is ParentPathSubjectPart;
             //    if (!startsWithRelation)
             //    {
             //        throw new ScriptParserException("The add operation requires a path to start with a relation symbol.");

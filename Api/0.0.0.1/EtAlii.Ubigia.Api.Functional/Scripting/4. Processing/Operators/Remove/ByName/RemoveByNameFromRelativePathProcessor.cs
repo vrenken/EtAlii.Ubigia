@@ -33,7 +33,7 @@
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");
             }
 
-            if (!pathToRemove.Parts.All(part => part is ConstantPathSubjectPart || part is IsParentOfPathSubjectPart))
+            if (!pathToRemove.Parts.All(part => part is ConstantPathSubjectPart || part is ParentPathSubjectPart))
             {
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a constant, hierarchical path");
             }

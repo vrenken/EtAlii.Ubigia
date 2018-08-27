@@ -81,7 +81,7 @@
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
-            if ((before == null || before is IsParentOfPathSubjectPart) && partIndex <= 1)
+            if ((before == null || before is ParentPathSubjectPart) && partIndex <= 1)
             {
             }
             else

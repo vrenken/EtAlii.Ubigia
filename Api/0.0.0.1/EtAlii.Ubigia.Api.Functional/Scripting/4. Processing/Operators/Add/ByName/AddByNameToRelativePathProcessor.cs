@@ -30,7 +30,7 @@
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor requires a path on the right side");
             }
 
-            if (!pathToAdd.Parts.All(part => part is ConstantPathSubjectPart || part is IsParentOfPathSubjectPart))
+            if (!pathToAdd.Parts.All(part => part is ConstantPathSubjectPart || part is ParentPathSubjectPart))
             {
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor requires a constant, hierarchical path");
             }

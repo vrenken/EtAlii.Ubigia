@@ -12,16 +12,16 @@ namespace EtAlii.Ubigia.Api.Functional
             // media:COMPANY/FAMILY/MODEL/NUMBER
             Template = new PathSubjectPart[]
             {
-                new TypedPathSubjectPart(TypedPathFormatter.Media.CompanyNameFormatter), new IsParentOfPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Media.ProductFamilyNameFormatter), new IsParentOfPathSubjectPart(),
-                new TypedPathSubjectPart(TypedPathFormatter.Media.ProductModelNameFormatter), new IsParentOfPathSubjectPart(),
+                new TypedPathSubjectPart(TypedPathFormatter.Media.CompanyNameFormatter), new ParentPathSubjectPart(),
+                new TypedPathSubjectPart(TypedPathFormatter.Media.ProductFamilyNameFormatter), new ParentPathSubjectPart(),
+                new TypedPathSubjectPart(TypedPathFormatter.Media.ProductModelNameFormatter), new ParentPathSubjectPart(),
                 new TypedPathSubjectPart(TypedPathFormatter.Media.ProductNumberFormatter)
             };
         }
 
         public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            var parts = new PathSubjectPart[] { new IsParentOfPathSubjectPart(), new ConstantPathSubjectPart("Media"), new IsParentOfPathSubjectPart() }
+            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Media"), new ParentPathSubjectPart() }
                .Concat(match)
                .Concat(rest)
                .ToArray();

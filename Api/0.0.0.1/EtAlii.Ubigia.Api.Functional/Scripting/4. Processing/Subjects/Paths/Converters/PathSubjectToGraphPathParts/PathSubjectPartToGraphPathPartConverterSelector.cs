@@ -8,10 +8,14 @@
             IConstantPathSubjectPartToGraphPathPartsConverter constantPathSubjectPartToGraphPathPartsConverter,
             IIdentifierPathSubjectPartToGraphPathPartsConverter identifierPathSubjectPartToGraphPathPartsConverter,
             IVariablePathSubjectPartToGraphPathPartsConverter variablePathSubjectPartToGraphPathPartsConverter,
-            IIsParentOfPathSubjectPartToGraphPathPartsConverter isParentOfPathSubjectPartToGraphPathPartsConverter,
-            IIsChildOfPathSubjectPartToGraphPathPartsConverter isChildOfPathSubjectPartToGraphPathPartsConverter,
+            IAllParentsPathSubjectPartToGraphPathPartsConverter allParentsPathSubjectPartToGraphPathPartsConverter,
+            IParentPathSubjectPartToGraphPathPartsConverter parentPathSubjectPartToGraphPathPartsConverter,
+            IAllChildrenPathSubjectPartToGraphPathPartsConverter allChildrenPathSubjectPartToGraphPathPartsConverter,
+            IChildrenPathSubjectPartToGraphPathPartsConverter childrenPathSubjectPartToGraphPathPartsConverter,
+            IAllDowndatesPathSubjectPartToGraphPathPartsConverter allDowndatesPathSubjectPartToGraphPathPartsConverter,
             IDowndatePathSubjectPartToGraphPathPartsConverter downdatePathSubjectPartToGraphPathPartsConverter,
-            IUpdatePathSubjectPartToGraphPathPartsConverter updatePathSubjectPartToGraphPathPartsConverter,
+            IAllUpdatesPathSubjectPartToGraphPathPartsConverter allUpdatesPathSubjectPartToGraphPathPartsConverter,
+            IUpdatesPathSubjectPartToGraphPathPartsConverter updatesPathSubjectPartToGraphPathPartsConverter,
             IWildcardPathSubjectPartToGraphPathPartsConverter wildcardPathSubjectPartToGraphPathPartsConverter,
             ITraversingWildcardPathSubjectPartToGraphPathPartsConverter traversingWildcardPathSubjectPartToGraphPathPartsConverter,
             IConditionalPathSubjectPartToGraphPathPartsConverter conditionalPathSubjectPartToGraphPathPartsConverter)
@@ -19,10 +23,14 @@
             Register(part => part is ConstantPathSubjectPart, constantPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is IdentifierPathSubjectPart, identifierPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is VariablePathSubjectPart, variablePathSubjectPartToGraphPathPartsConverter)
-                .Register(part => part is IsParentOfPathSubjectPart, isParentOfPathSubjectPartToGraphPathPartsConverter)
-                .Register(part => part is IsChildOfPathSubjectPart, isChildOfPathSubjectPartToGraphPathPartsConverter)
-                .Register(part => part is DowndateOfPathSubjectPart, downdatePathSubjectPartToGraphPathPartsConverter)
-                .Register(part => part is UpdatesOfPathSubjectPart, updatePathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is AllParentsPathSubjectPart, allParentsPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is ParentPathSubjectPart, parentPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is AllChildrenPathSubjectPart, allChildrenPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is ChildrenPathSubjectPart, childrenPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is AllDowndatesPathSubjectPart, allDowndatesPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is DowndatePathSubjectPart, downdatePathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is AllUpdatesPathSubjectPart, allUpdatesPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is UpdatesPathSubjectPart, updatesPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is WildcardPathSubjectPart, wildcardPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is TraversingWildcardPathSubjectPart, traversingWildcardPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is ConditionalPathSubjectPart, conditionalPathSubjectPartToGraphPathPartsConverter);

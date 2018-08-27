@@ -28,18 +28,18 @@
                 var hasParts = parts.Count > 0;
                 if (hasParts)
                 {
-                    parts.Insert(0, new IsParentOfPathSubjectPart());
+                    parts.Insert(0, new ParentPathSubjectPart());
                 }
                 parts.Insert(0, new ConstantPathSubjectPart(rootedPathSubject.Root));
-                parts.Insert(0, new IsParentOfPathSubjectPart());
+                parts.Insert(0, new ParentPathSubjectPart());
                 pathSubject = new AbsolutePathSubject(parts.ToArray());
             }
 
             var graphPath = await _pathSubjectToGraphPathConverter.Convert(pathSubject, scope);
-            // Path processing should always expect multiple results. So we should always use the Nodes.SelectMany().
-
+            
             try
             {
+                // Path processing should always expect multiple results. So we should always use the Nodes.SelectMany().
                 Context.Logical.Nodes.SelectMany(graphPath, scope, output);
             }
             catch (Exception e)

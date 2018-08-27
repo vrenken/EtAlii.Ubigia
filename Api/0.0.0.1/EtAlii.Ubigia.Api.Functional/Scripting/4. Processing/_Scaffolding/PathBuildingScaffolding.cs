@@ -26,10 +26,14 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IMoreThanOrEqualPredicateFactory, MoreThanOrEqualPredicateFactory>();
 
             container.Register<IIdentifierPathSubjectPartToGraphPathPartsConverter, IdentifierPathSubjectPartToGraphPathPartsConverter>();
-            container.Register<IIsParentOfPathSubjectPartToGraphPathPartsConverter, IsParentOfPathSubjectPartToGraphPathPartsConverter>();
-            container.Register<IIsChildOfPathSubjectPartToGraphPathPartsConverter, IsChildOfPathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IAllParentsPathSubjectPartToGraphPathPartsConverter, AllParentsPathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IParentPathSubjectPartToGraphPathPartsConverter, ParentPathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IAllChildrenPathSubjectPartToGraphPathPartsConverter, AllChildrenPathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IChildrenPathSubjectPartToGraphPathPartsConverter, ChildrenPathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IAllDowndatesPathSubjectPartToGraphPathPartsConverter, AllDowndatesPathSubjectPartToGraphPathPartsConverter>();
             container.Register<IDowndatePathSubjectPartToGraphPathPartsConverter, DowndatePathSubjectPartToGraphPathPartsConverter>();
-            container.Register<IUpdatePathSubjectPartToGraphPathPartsConverter, UpdatePathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IAllUpdatesPathSubjectPartToGraphPathPartsConverter, AllUpdatesPathSubjectPartToGraphPathPartsConverter>();
+            container.Register<IUpdatesPathSubjectPartToGraphPathPartsConverter, UpdatesPathSubjectPartToGraphPathPartsConverter>();
             container.Register<IVariablePathSubjectPartToGraphPathPartsConverter, VariablePathSubjectPartToGraphPathPartsConverter>();
             container.Register<IPathSubjectToGraphPathConverter, PathSubjectToGraphPathConverter>();
             container.Register<IPathProcessor, PathProcessor>();

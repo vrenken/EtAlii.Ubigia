@@ -38,7 +38,7 @@
                 _converter.Convert(pathSubject, scope, output);
 
             }
-            else if (parts[0] is IsParentOfPathSubjectPart)
+            else if (parts[0] is ParentPathSubjectPart)
             {
                 // Ok, we can translate the path into a rooted path. let's do so.
                 var root = _partContentGetter.GetPartContent(parts.Skip(1).First(), _processingContext.Scope); 

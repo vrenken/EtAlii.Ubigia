@@ -26,7 +26,7 @@
         public PathSubjectPart Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
-            return new DowndateOfPathSubjectPart();
+            return new DowndatePathSubjectPart();
         }
 
 
@@ -45,7 +45,7 @@
 
         public bool CanValidate(PathSubjectPart part)
         {
-            return part is DowndateOfPathSubjectPart;
+            return part is DowndatePathSubjectPart;
         }
     }
 }
