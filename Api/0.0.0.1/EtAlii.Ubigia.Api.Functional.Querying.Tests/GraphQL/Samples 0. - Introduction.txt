@@ -1,1 +1,5 @@
 ﻿
+#
+@traverse(path:"string")
+@self() 
+@parent(path:"string")

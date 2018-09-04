@@ -122,6 +122,26 @@
             // Assert.
             AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
         }
+                
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Property_String_04()
+        {
+            // Arrange.
+            var query = @"query data 
+                          @traverse(path:""person:Stark/Tony"") 
+                          { 
+                            person 
+                            { 
+                                nickname 
+                            } 
+                          }";
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+            
+            // Assert.
+            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+        }
         
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_String_02()
