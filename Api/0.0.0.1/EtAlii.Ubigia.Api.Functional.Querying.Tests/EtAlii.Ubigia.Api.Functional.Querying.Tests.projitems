@@ -16,6 +16,7 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Basic.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.At.Tests.cs" />
@@ -29,8 +30,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\GraphQLQueryContext.Basic.Tests.cs" />
     <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 1. - Queries.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 2. - Mutations.txt" />
     <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Unit tests\QueryModeller.Tests.cs" />
   </ItemGroup>
 </Project>

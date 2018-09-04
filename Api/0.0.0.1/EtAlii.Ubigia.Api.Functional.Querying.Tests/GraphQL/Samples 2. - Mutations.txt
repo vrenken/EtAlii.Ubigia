@@ -1,0 +1,35 @@
+﻿# Mutation with property assignment and new entity 
+mutation data 
+{ 
+    @traverse(path:"person:Stark/ += Tony")
+    person 
+    { 
+        nickname: "Iron Man" 
+    } 
+}
+
+# Mutation with entity convergence.
+mutation data 
+{ 
+    @traverse(path:"person:Stark/Tony")
+    @traverse(path:"time:Now")
+    @traverse(path:"location:NL/Overijssel/Enschede/Ravenhorsthoek/55")
+    data { } 
+}
+
+# Mutation with new entity and entity convergence
+mutation data 
+{ 
+    @traverse(path:"person:Stark/ += Tony")
+    @traverse(path:"time:Now")
+    @traverse(path:"location:NL/Overijssel/Enschede/Ravenhorsthoek/55")
+    data { } 
+}
+
+# Mutation with new entity, entity convergence and no data. 
+mutation data 
+{ 
+    @traverse(path:"person:Stark/ += Tony")
+    @traverse(path:"time:Now")
+    @traverse(path:"location:NL/Overijssel/Enschede/Ravenhorsthoek/55")
+}
