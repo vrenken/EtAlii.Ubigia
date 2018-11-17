@@ -62,6 +62,10 @@
         public async Task GraphQL_Query_From_Files_Execute(string title, string fileName, string query)
         {
             // Arrange.
+#pragma warning disable 1717
+            title = title;
+            fileName = fileName;
+#pragma warning restore 1717
             
             // Act.
             var result = await _context.Execute("Query", query, new Inputs());
@@ -80,7 +84,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
              
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -93,7 +97,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""lastname"": ""Stark"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""lastname"": ""Stark"" }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -106,7 +110,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -119,7 +123,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""lives"": 9 }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""lives"": 9 }}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -132,7 +136,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -152,7 +156,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -165,7 +169,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -178,7 +182,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -191,7 +195,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -204,7 +208,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{""droid"":{""id"":""4"",""name"":""C-3PO""}}", result.Data);
+            await AssertQueryResultsAreSame(@"{""droid"":{""id"":""4"",""name"":""C-3PO""}}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -217,7 +221,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -230,14 +234,20 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            AssertQueryResultsAreSame(@"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result.Data);
+            await AssertQueryResultsAreSame(@"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result);
         }
         
-        private void AssertQueryResultsAreSame(string expected, object actual)
+        private async Task AssertQueryResultsAreSame(string expected, ExecutionResult actual)
         {
-            var expectedDocument = JObject.Parse(expected);
-            var expectedString = _documentWriter.Write(expectedDocument);
-            var actualString = _documentWriter.Write(actual);
+            var expectedResult = new ExecutionResult { Data = JObject.Parse(expected) };
+            await AssertQueryResultsAreSame(expectedResult, actual);
+        }
+        
+        private async Task AssertQueryResultsAreSame(ExecutionResult expected, ExecutionResult actual)
+        {
+//            var expectedDocument = JObject.Parse(expected);
+            var expectedString = await _documentWriter.WriteToStringAsync(expected);
+            var actualString = await _documentWriter.WriteToStringAsync(actual);
             Assert.Equal(expectedString, actualString);
         }
     }
