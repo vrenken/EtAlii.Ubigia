@@ -1,5 +1,8 @@
-﻿
-#
+﻿### Traversal extension.
 @traverse(path:"string")
+
+### Self extension.
 @self() 
+
+### Parent extension.
 @parent(path:"string")
