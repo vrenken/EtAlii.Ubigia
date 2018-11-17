@@ -5,6 +5,6 @@
 
     public interface IGraphQLQueryContext
     {
-        Task<ExecutionResult> Execute(string operationName, string query, Inputs inputs);
+        Task<ExecutionResult> Execute(string query, Inputs inputs);
     }
 }

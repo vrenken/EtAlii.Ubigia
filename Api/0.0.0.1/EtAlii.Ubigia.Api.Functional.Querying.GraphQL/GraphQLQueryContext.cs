@@ -10,26 +10,26 @@
         private readonly IDataContext _dataContext;
 
         private readonly IScriptsSet _scriptsSet;
-        private readonly IDocumentExecuter _executer;
+        private readonly IDocumentExecuter _executor;
         private readonly IStaticSchema _staticSchema;
         private readonly IDocumentBuilder _builder;
 
         internal GraphQLQueryContext(IDataContext dataContext,
             IScriptsSet scriptsSet, 
             IDocumentBuilder builder, 
-            IDocumentExecuter executer,
+            IDocumentExecuter executor,
             IStaticSchema staticSchema)
         {
             _dataContext = dataContext;
             _scriptsSet = scriptsSet;
             _builder = builder;
-            _executer = executer;
+            _executor= executor;
             _staticSchema = staticSchema;
         }
         
-        public async Task<ExecutionResult> Execute(string operationName, string query, Inputs inputs)
+        public async Task<ExecutionResult> Execute(string query, Inputs inputs)
         {
-            var result = await _executer.ExecuteAsync(configuration =>
+            var result = await _executor.ExecuteAsync(configuration =>
             {
                 var task = Task.Run(async () =>
                 {
