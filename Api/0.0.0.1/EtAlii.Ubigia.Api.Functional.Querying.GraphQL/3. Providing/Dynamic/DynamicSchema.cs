@@ -66,21 +66,27 @@
  
         private async Task AddDynamicTypes()
         {
-            var directives = _document.Operations
+            var queryDirectives = _document.Operations
                 .Where(operation => operation.OperationType == OperationType.Query)
                 .SelectMany(operation => operation.Directives)
                 .Where(directive => directive.Name == "traverse")
                 .AsEnumerable();
-            
-            foreach (var directive in directives)
+
+//            var queryDirectives = _document.Operations
+//                .Where(operation => operation.OperationType == OperationType.Query)
+//                .SelectMany(operation => operation.Directives)
+//                .Where(directive => directive.Name == "traverse")
+//                .AsEnumerable();
+
+            foreach (var queryDirective in queryDirectives)
             {
-                var argument = directive.Arguments.First();
+                var argument = queryDirective.Arguments.First();
                 if (argument.Value is StringValue stringValue)
                 {
                     var path = stringValue.Value;
                     var node = await _nodeFetcher.FetchAsync(path);
                     var properties = node.GetProperties();
-                    var fieldType = _fieldTypeBuilder.Build(properties, path, directive, out DynamicObjectGraphType fieldTypeInstance);
+                    var fieldType = _fieldTypeBuilder.Build(properties, path, queryDirective, out DynamicObjectGraphType fieldTypeInstance);
 
                     _graphObjectInstances[fieldTypeInstance.GetType()] = fieldTypeInstance;
                     
