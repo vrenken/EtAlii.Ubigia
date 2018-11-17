@@ -58,6 +58,18 @@
             task.Wait();
         }
 
+        [Theory, ClassData(typeof(FileBasedScriptData))]
+        public async Task GraphQL_Query_From_Files_Execute(string title, string fileName, string query)
+        {
+            // Arrange.
+            
+            // Act.
+            var result = await _context.Execute("Query", query, new Inputs());
+             
+            // Assert.
+            Assert.NotNull(result);
+        }
+        
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Full()
         {

@@ -1,4 +1,4 @@
-﻿# Query with path at entity level and normal property
+﻿### Query with path at entity level and normal property
 query data 
 { 
     @traverse(path:"person:Stark/Tony")
@@ -8,7 +8,7 @@ query data
     } 
 }
 
-# Query with path at query level and normal property
+### Query with path at query level and normal property
 @traverse(path:"person:Stark/Tony")
 query data 
 { 
@@ -18,7 +18,7 @@ query data
     } 
 }
 
-# Query with entity path and relative property
+### Query with entity path and relative property
 query data 
 { 
     @traverse(path:"person:Stark/Tony")
@@ -28,7 +28,7 @@ query data
     } 
 }
 
-# Query with multiple entity paths unioned together returning multiple entries and a normal property
+### Query with multiple entity paths unioned together returning multiple entries and a normal property
 query data 
 { 
     @traverse(path:"person:Vrenken/Peter", mode: "Union")
@@ -39,7 +39,7 @@ query data
     } 
 }
 
-# Query with multiple entity paths unioned together returning multiple entries and a normal property
+### Query with multiple entity paths unioned together returning multiple entries and a normal property
 query data 
 { 
     @traverse(path:"person:Vrenken/Peter", mode: "Union")
@@ -51,7 +51,8 @@ query data
 }
 
 
-query data 
+### Query with multiple entity paths intersected together returning two sets of entries. 
+# The first for all persons and the second for all locations that match the intersection.
 @traverse(path:"location:DE/Berlin//", mode: "Intersect")
 @traverse(path:"time:2012//")
 @traverse(path:"person:Vrenken/Peter")
@@ -67,6 +68,7 @@ query data
     } 
 }
 
+### Unnamed query.
 query data 
 { 
     location @traverse(path:"location:DE/Berlin//", mode: "Intersect")
@@ -78,6 +80,7 @@ query data
     },
 }
 
+### Unnamed query.
 query data 
 { 
     location @traverse(path:"location:DE/Berlin/*", mode: "Intersect")
@@ -89,6 +92,7 @@ query data
     },
 }
 
+### Unnamed query.
 query data 
 { 
     id @traverse(path:"/&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423")
@@ -99,6 +103,7 @@ query data
 }
 
 
+### Unnamed query.
 query data 
 { 
     id @traverse(path:"/$id")

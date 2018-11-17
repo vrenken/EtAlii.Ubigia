@@ -1,4 +1,4 @@
-﻿# Mutation with property assignment and new entity 
+﻿### Mutation with property assignment and new entity 
 mutation data 
 { 
     @traverse(path:"person:Stark/ += Tony")
@@ -8,7 +8,7 @@ mutation data
     } 
 }
 
-# Mutation with entity convergence.
+### Mutation with entity convergence.
 mutation data 
 { 
     @traverse(path:"person:Stark/Tony")
@@ -17,7 +17,7 @@ mutation data
     data { } 
 }
 
-# Mutation with new entity and entity convergence
+### Mutation with new entity and entity convergence
 mutation data 
 { 
     @traverse(path:"person:Stark/ += Tony")
@@ -26,7 +26,7 @@ mutation data
     data { } 
 }
 
-# Mutation with new entity, entity convergence and no data. 
+### Mutation with new entity, entity convergence and no data. 
 mutation data 
 { 
     @traverse(path:"person:Stark/ += Tony")

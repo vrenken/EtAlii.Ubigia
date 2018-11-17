@@ -30,9 +30,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 1. - Queries.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 2. - Mutations.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 1. - Queries.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 2. - Mutations.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\FileBasedScriptData.cs" />
+    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Unit tests\QueryModeller.Tests.cs" />
