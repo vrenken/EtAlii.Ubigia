@@ -76,7 +76,7 @@
             var result = await _context.Execute("Query", query, new Inputs());
             
             // Assert.
-            await AssertQueryResultsAreSame(@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
     }
 }
