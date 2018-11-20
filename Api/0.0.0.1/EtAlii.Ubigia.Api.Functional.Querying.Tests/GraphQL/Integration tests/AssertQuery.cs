@@ -6,6 +6,8 @@ using Xunit;
 
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System.Linq;
+
     public static class AssertQuery
     {
         public static async Task ResultsAreSame(IDocumentWriter documentWriter, string expected, ExecutionResult actual)

@@ -17,7 +17,7 @@
             Arguments = new QueryArguments(new QueryArgument<NonNullGraphType<StringGraphType>>
             {
                 Name = "path",
-                Description = "The path at wich to start the query."
+                Description = "The path at which to start the query."
             });
         }
     }

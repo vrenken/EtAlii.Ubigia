@@ -2,7 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
-    using GraphQL;
+    using GraphQL; // TODO: These dependencies should be covered.
     using GraphQL.Http;
     using Newtonsoft.Json.Linq;
     using Xunit;
@@ -59,12 +59,11 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task GraphQL_Query_Traverse_Person()
+        public async Task GraphQL_Query_Traverse_Person_Single()
         {
             // Arrange.
             var query = @"
-                @traverse(path:""person:Stark/Tony"") 
-                query data 
+                query data @traverse(path:""person:Stark/Tony"") 
                 { 
                     person 
                     { 
@@ -73,10 +72,31 @@
                 }";
             
             // Act.
-            var result = await _context.Execute("Query", query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
+//
+//        [Fact, Trait("Category", TestAssembly.Category)]
+//        public async Task GraphQL_Query_Traverse_Person_Plural()
+//        {
+//            // Arrange.
+//            var query = @"
+//                query data @traverse(path:""person:*/*"") 
+//                { 
+//                    person 
+//                    { 
+//                        nickname 
+//                    } 
+//                }";
+//            
+//            // Act.
+//            var result = await _context.Execute(query, new Inputs());
+//            
+//            // Assert.
+//            await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+//        }
     }
 }

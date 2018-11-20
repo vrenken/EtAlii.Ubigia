@@ -39,6 +39,12 @@
             container.Register<IStaticQuery, StaticQuery>();
             container.Register<IStaticMutation, StaticMutation>();
             container.Register<IStaticSchema, StaticSchema>();
+            
+            container.Register<IOperationProcessor, OperationProcessor>();
+            container.Register<ITraverseDirectiveHandler, TraverseDirectiveHandler>();
+            container.Register<INodeFetcher, NodeFetcher>();
+            container.Register<IFieldTypeBuilder, FieldTypeBuilder>();
+
         }
     }
 }

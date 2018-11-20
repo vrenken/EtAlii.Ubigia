@@ -3,8 +3,8 @@
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
 
-    public interface IFieldTypeBuilder
+    internal interface IFieldTypeBuilder
     {
-        FieldType Build(PropertyDictionary properties, string path, Directive directive, out DynamicObjectGraphType fieldTypeInstance);
+        void Build(string path, PropertyDictionary properties, out DynamicObjectGraphType fieldTypeInstance, out FieldType fieldType);
     }
 }

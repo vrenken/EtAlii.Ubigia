@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -15,7 +16,7 @@
             _scriptsSet = scriptsSet;
         }
 
-        public async Task<IInternalNode> FetchAsync(string path)
+        public async Task<IEnumerable<IInternalNode>> FetchAsync(string path)
         {
             var scriptParseResult = _scriptsSet.Parse(path);
             if (scriptParseResult.Errors.Any())
@@ -25,19 +26,21 @@
 
             var scope = new ScriptScope();
             var lastSequence = await _scriptsSet.Process(scriptParseResult.Script, scope);
-            var results = await lastSequence.Output.ToArray();
+            var results = await lastSequence.Output
+                .Cast<IInternalNode>()
+                .ToArray();
             if (results.Length == 0)
             {
                 throw new InvalidOperationException("Unable to process GraphQL query 'path' does not return any results.");
             }
 
-            if (results.Length > 1)
-            {
-                throw new InvalidOperationException("Unable to process GraphQL query 'path' returns too many results.");
-            }
+//            if (results.Length > 1)
+//            {
+//                throw new InvalidOperationException("Unable to process GraphQL query 'path' returns too many results.");
+//            }
 
-            var result = (IInternalNode) results[0];
-            return result;
+//            var result = (IInternalNode) results[0];
+            return results;
         }
     }
 }
