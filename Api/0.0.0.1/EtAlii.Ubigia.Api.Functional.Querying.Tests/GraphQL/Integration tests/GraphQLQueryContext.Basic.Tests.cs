@@ -77,7 +77,7 @@
         public async Task GraphQL_Query_Select_Simple_Full()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { firstname, lastname, nickname, birthdate, lives } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -91,7 +91,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { lastname @traverse(path:""\\"") } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { lastname @traverse(path:""\\"") } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -105,7 +105,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Local()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { firstname } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { firstname } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -119,12 +119,13 @@
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { lives } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { lives } }";
             
             // Act.
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result);
         }
         
@@ -132,12 +133,13 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_01()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { nickname } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { nickname } }";
             
             // Act.
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
                 
@@ -146,9 +148,9 @@
         {
             // Arrange.
             var query = @"query data 
-                          @traverse(path:""person:Stark/Tony"") 
                           { 
                             person 
+                            @traverse(path:""person:Stark/Tony"") 
                             { 
                                 nickname 
                             } 
@@ -158,6 +160,7 @@
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
         
@@ -165,12 +168,13 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_02()
         {
             // Arrange.
-            var query = "query data\n@traverse(path:\"person:Stark/Tony\") { person { nickname } }";
+            var query = "query data { person\n@traverse(path:\"person:Stark/Tony\") { nickname } }";
             
             // Act.
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
                 
@@ -178,12 +182,13 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_03()
         {
             // Arrange.
-            var query = "query data\n@traverse(path:\"person:Stark/Tony\")\n{\nperson\n{\nnickname\n}\n}";
+            var query = "query data\n{\nperson\n@traverse(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
 
@@ -191,7 +196,7 @@
         public async Task GraphQL_Query_Select_Multiple_Starts_String()
         {
             // Arrange.
-            var query = "query data\n@traverse(path:\"person:Stark/Tony\")\n@traverse(path:\"person:Stark/Tony\")\n{\nperson\n{\nnickname\n}\n}";
+            var query = "query data\n{\nperson\n@traverse(path:\"person:Stark/Tony\")\n@traverse(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
             var result = await _context.Execute(query);
@@ -219,7 +224,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { id, nickname } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { id, nickname } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -233,12 +238,13 @@
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
-            var query = @"query data @traverse(path:""person:Stark/Tony"") { person { birthdate } }";
+            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { birthdate } }";
             
             // Act.
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result);
         }
     }
