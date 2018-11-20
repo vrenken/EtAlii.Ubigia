@@ -8,11 +8,12 @@
 
         public void Build(
             string path, 
+            string name,
             PropertyDictionary properties, 
             out DynamicObjectGraphType fieldTypeInstance, 
             out FieldType fieldType)
         {
-            fieldTypeInstance = DynamicObjectGraphType.Create(path, properties);
+            fieldTypeInstance = DynamicObjectGraphType.Create(path, name, properties);
 
             var fieldTypeInstanceReference = fieldTypeInstance;
             fieldType = new FieldType()

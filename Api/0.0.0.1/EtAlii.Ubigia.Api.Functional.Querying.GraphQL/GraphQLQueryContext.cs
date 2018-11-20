@@ -12,26 +12,29 @@
         private readonly IDocumentExecuter _executor;
         private readonly IStaticSchema _staticSchema;
         private readonly IOperationProcessor _operationProcessor;
+        private readonly IFieldProcessor _fieldProcessor;
         private readonly IDocumentBuilder _builder;
 
         internal GraphQLQueryContext(IDataContext dataContext,
             IDocumentBuilder builder, 
             IDocumentExecuter executor,
             IStaticSchema staticSchema,
-            IOperationProcessor operationProcessor)
+            IOperationProcessor operationProcessor, 
+            IFieldProcessor fieldProcessor)
         {
             _dataContext = dataContext;
             _builder = builder;
             _executor= executor;
             _staticSchema = staticSchema;
             _operationProcessor = operationProcessor;
+            _fieldProcessor = fieldProcessor;
         }
         
         public async Task<ExecutionResult> Execute(string query)//, Inputs inputs)
         {
             var inputs = new Inputs();
             var document = _builder.Build(query);
-            var schema = await DynamicSchema.Create(_staticSchema, _operationProcessor, document);
+            var schema = await DynamicSchema.Create(_staticSchema, _operationProcessor, _fieldProcessor, document);
             
             // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.
             var configuration = new ExecutionOptions

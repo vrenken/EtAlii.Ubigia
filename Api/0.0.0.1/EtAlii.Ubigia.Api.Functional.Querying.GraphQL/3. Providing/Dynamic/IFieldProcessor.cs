@@ -5,8 +5,8 @@
     using System.Threading.Tasks;
     using global::GraphQL.Language.AST;
 
-    internal interface ITraverseDirectiveHandler
+    internal interface IFieldProcessor
     {
-        Task<TraverseDirective> Handle(Directive directive, string name, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances);
+        Task<FieldRegistration> Process(Field field, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances);
     }
 }

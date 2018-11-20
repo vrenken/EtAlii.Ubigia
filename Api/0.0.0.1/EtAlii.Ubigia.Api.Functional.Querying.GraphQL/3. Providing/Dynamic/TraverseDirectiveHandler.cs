@@ -19,7 +19,7 @@
             _nodeFetcher = nodeFetcher;
         }
 
-        public async Task<TraverseDirective> Handle(Directive directive, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
+        public async Task<TraverseDirective> Handle(Directive directive, string name, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
         {
             var result = new TraverseDirective();
             
@@ -31,7 +31,7 @@
                 result.Path = path;
                 
                 var properties = result.Nodes.First().GetProperties();
-                _fieldTypeBuilder.Build(path, properties, out DynamicObjectGraphType fieldTypeInstance, out FieldType fieldType);
+                _fieldTypeBuilder.Build(path, name, properties, out DynamicObjectGraphType fieldTypeInstance, out FieldType fieldType);
 
                 result.FieldTypeInstance = fieldTypeInstance;
                 result.FieldType = fieldType;
