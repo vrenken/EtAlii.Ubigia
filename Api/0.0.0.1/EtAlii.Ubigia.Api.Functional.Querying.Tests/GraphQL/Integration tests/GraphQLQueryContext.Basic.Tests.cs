@@ -67,7 +67,7 @@
 #pragma warning restore 1717
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
              
             // Assert.
             Assert.NotNull(result);
@@ -80,9 +80,10 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
              
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result);
         }
 
@@ -93,9 +94,10 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { lastname @traverse(path:""\\"") } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result);
         }
 
@@ -106,9 +108,10 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { firstname } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
         }
 
@@ -119,7 +122,7 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { lives } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result);
@@ -132,7 +135,7 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { nickname } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
@@ -152,7 +155,7 @@
                           }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
@@ -165,7 +168,7 @@
             var query = "query data\n@traverse(path:\"person:Stark/Tony\") { person { nickname } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
@@ -178,7 +181,7 @@
             var query = "query data\n@traverse(path:\"person:Stark/Tony\")\n{\nperson\n{\nnickname\n}\n}";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
@@ -191,9 +194,10 @@
             var query = "query data\n@traverse(path:\"person:Stark/Tony\")\n@traverse(path:\"person:Stark/Tony\")\n{\nperson\n{\nnickname\n}\n}";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
 
@@ -204,9 +208,10 @@
             var query = @"query data { droid(id: ""4"") { id, name } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{""droid"":{""id"":""4"",""name"":""C-3PO""}}", result);
         }
         
@@ -217,9 +222,10 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { id, nickname } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result);
         }
         
@@ -230,7 +236,7 @@
             var query = @"query data @traverse(path:""person:Stark/Tony"") { person { birthdate } }";
             
             // Act.
-            var result = await _context.Execute(query, new Inputs());
+            var result = await _context.Execute(query);
             
             // Assert.
             await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result);

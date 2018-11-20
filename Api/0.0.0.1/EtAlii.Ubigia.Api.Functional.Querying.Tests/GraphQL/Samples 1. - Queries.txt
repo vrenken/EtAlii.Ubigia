@@ -1,18 +1,7 @@
 ﻿### Query with path at entity level and normal property
-query data 
+query data
 { 
-    @traverse(path:"person:Stark/Tony")
-    person 
-    { 
-        nickname
-    } 
-}
-
-### Query with path at query level and normal property
-@traverse(path:"person:Stark/Tony")
-query data 
-{ 
-    person 
+    person @traverse(path:"person:Stark/Tony") 
     { 
         nickname
     } 
@@ -21,8 +10,7 @@ query data
 ### Query with entity path and relative property
 query data 
 { 
-    @traverse(path:"person:Stark/Tony")
-    person 
+    person @traverse(path:"person:Stark/Tony")
     { 
         lastname @traverse(path:""\\"") 
     } 
@@ -31,9 +19,9 @@ query data
 ### Query with multiple entity paths unioned together returning multiple entries and a normal property
 query data 
 { 
+    person 
     @traverse(path:"person:Vrenken/Peter", mode: "Union")
     @traverse(path:"person:Vrenken/Tanja")
-    person 
     { 
         nickname 
     } 
@@ -42,9 +30,9 @@ query data
 ### Query with multiple entity paths unioned together returning multiple entries and a normal property
 query data 
 { 
+    person 
     @traverse(path:"person:Vrenken/Peter", mode: "Union")
     @traverse(path:"person:Vrenken/Tanja")
-    person 
     { 
         name @id() 
     } 
@@ -53,6 +41,7 @@ query data
 
 ### Query with multiple entity paths intersected together returning two sets of entries. 
 # The first for all persons and the second for all locations that match the intersection.
+query data
 @traverse(path:"location:DE/Berlin//", mode: "Intersect")
 @traverse(path:"time:2012//")
 @traverse(path:"person:Vrenken/Peter")

@@ -3,13 +3,31 @@
     using System;
     using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
+    using System.Reflection;
+    using System.Reflection.Emit;
 
     public class DynamicObjectGraphType : ObjectGraphType<object>
     {
-        public static void Setup(DynamicObjectGraphType instance, string name, string path, PropertyDictionary properties)
+        private static readonly Type BaseType = typeof(DynamicObjectGraphType);
+        
+        private static TypeInfo BuildInstanceType()
         {
-            instance.Name = name;
-            instance.Description = $"Dynamic {name} type created for the Ubigia path: {path}";
+            var assemblyName = new AssemblyName($"DynamicAssembly_{Guid.NewGuid():N}");
+            var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+            var moduleBuilder = assemblyBuilder.DefineDynamicModule("DynamicModule");
+            var typeName = $"{BaseType.Name}_{Guid.NewGuid():N}";
+            var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, BaseType);
+            return typeBuilder.CreateTypeInfo();
+        }
+        
+        public static DynamicObjectGraphType Create(string path, PropertyDictionary properties)
+        {
+            var fieldTypeInstanceType = BuildInstanceType();
+            
+            var instance = (DynamicObjectGraphType)Activator.CreateInstance(fieldTypeInstanceType);
+
+            instance.Name = "person";// fieldTypeInstanceType.Name; TODO: this is flawed!
+            instance.Description = $"Dynamic {instance.Name} type created for the Ubigia path: {path}";
 
             foreach (var kvp in properties)
             {
@@ -27,6 +45,8 @@
                     
                 instance.AddField(fieldType);
             }
+
+            return instance;
         }
 
         private static Type GetType(object value)
