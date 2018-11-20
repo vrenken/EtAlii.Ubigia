@@ -20,13 +20,13 @@
             return typeBuilder.CreateTypeInfo();
         }
         
-        public static DynamicObjectGraphType Create(string path, PropertyDictionary properties)
+        public static DynamicObjectGraphType Create(string path, string name, PropertyDictionary properties)
         {
             var fieldTypeInstanceType = BuildInstanceType();
             
             var instance = (DynamicObjectGraphType)Activator.CreateInstance(fieldTypeInstanceType);
 
-            instance.Name = "person";// fieldTypeInstanceType.Name; TODO: this is flawed!
+            instance.Name = name;
             instance.Description = $"Dynamic {instance.Name} type created for the Ubigia path: {path}";
 
             foreach (var kvp in properties)

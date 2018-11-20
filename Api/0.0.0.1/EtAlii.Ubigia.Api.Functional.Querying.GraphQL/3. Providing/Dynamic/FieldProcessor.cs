@@ -6,13 +6,13 @@
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
 
-    internal class OperationProcessor : IOperationProcessor
+    internal class FieldProcessor : IFieldProcessor
     {
         private readonly IFieldTypeBuilder _fieldTypeBuilder;
         private readonly INodeFetcher _nodeFetcher;
         private readonly ITraverseDirectiveHandler _traverseDirectiveHandler;
 
-        public OperationProcessor(
+        public FieldProcessor(
             IFieldTypeBuilder fieldTypeBuilder, 
             INodeFetcher nodeFetcher, 
             ITraverseDirectiveHandler traverseDirectiveHandler)
@@ -22,16 +22,16 @@
             _traverseDirectiveHandler = traverseDirectiveHandler;
         }
 
-        public async Task<OperationRegistration> Process(Operation operation, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
+        public async Task<FieldRegistration> Process(Field field, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
         {
             var directiveResults = new List<TraverseDirective>();
             
-            foreach (var directive in operation.Directives)
+            foreach (var directive in field.Directives)
             {
                 switch (directive.Name)
                 {
                     case "traverse":
-                        var directiveResult = await _traverseDirectiveHandler.Handle(directive, $"DirectiveType_{Guid.NewGuid():N}", query, graphObjectInstances);
+                        var directiveResult = await _traverseDirectiveHandler.Handle(directive, field.Name, query, graphObjectInstances);
                         directiveResults.Add(directiveResult);
                       break;
                     default:
@@ -39,7 +39,7 @@
                 }
             }
             
-            return OperationRegistration.FromDirectives(directiveResults);
+            return FieldRegistration.FromDirectives(directiveResults);
         }
     }
 }

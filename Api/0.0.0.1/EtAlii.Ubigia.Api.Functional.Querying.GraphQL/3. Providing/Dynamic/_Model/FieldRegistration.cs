@@ -5,14 +5,14 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class OperationRegistration
+    internal class FieldRegistration
     {
         public Guid Id { get; private set; }
         public TraverseDirective[] Directives { get; private set; }
 
-        public static OperationRegistration FromDirectives(IEnumerable<TraverseDirective> directives)
+        public static FieldRegistration FromDirectives(IEnumerable<TraverseDirective> directives)
         {
-            return new OperationRegistration
+            return new FieldRegistration
             {
                 Id = Guid.NewGuid(),
                 Directives = directives.ToArray()

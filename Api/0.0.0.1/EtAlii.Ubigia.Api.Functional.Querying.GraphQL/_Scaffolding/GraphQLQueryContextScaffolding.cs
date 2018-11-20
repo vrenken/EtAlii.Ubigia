@@ -41,6 +41,7 @@
             container.Register<IStaticSchema, StaticSchema>();
             
             container.Register<IOperationProcessor, OperationProcessor>();
+            container.Register<IFieldProcessor, FieldProcessor>();
             container.Register<ITraverseDirectiveHandler, TraverseDirectiveHandler>();
             container.Register<INodeFetcher, NodeFetcher>();
             container.Register<IFieldTypeBuilder, FieldTypeBuilder>();
