@@ -2,36 +2,38 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
 
     internal class FieldProcessor : IFieldProcessor
     {
-        private readonly IFieldTypeBuilder _fieldTypeBuilder;
-        private readonly INodeFetcher _nodeFetcher;
-        private readonly ITraverseDirectiveHandler _traverseDirectiveHandler;
+        private readonly INodesDirectiveHandler _nodesDirectiveHandler;
+        private readonly IQueryFieldAdder _queryFieldAdder;
 
         public FieldProcessor(
-            IFieldTypeBuilder fieldTypeBuilder, 
-            INodeFetcher nodeFetcher, 
-            ITraverseDirectiveHandler traverseDirectiveHandler)
+            INodesDirectiveHandler nodesDirectiveHandler, 
+            IQueryFieldAdder queryFieldAdder)
         {
-            _fieldTypeBuilder = fieldTypeBuilder;
-            _nodeFetcher = nodeFetcher;
-            _traverseDirectiveHandler = traverseDirectiveHandler;
+            _nodesDirectiveHandler = nodesDirectiveHandler;
+            _queryFieldAdder = queryFieldAdder;
         }
 
-        public async Task<FieldRegistration> Process(Field field, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
+        public async Task<FieldRegistration> Process(
+            Field field, 
+            Identifier[] startIdentifiers, 
+            IObjectGraphType query, 
+            Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
         {
-            var directiveResults = new List<TraverseDirective>();
+            var directiveResults = new List<NodesDirective>();
             
             foreach (var directive in field.Directives)
             {
                 switch (directive.Name)
                 {
-                    case "traverse":
-                        var directiveResult = await _traverseDirectiveHandler.Handle(directive, field.Name, query, graphObjectInstances);
+                    case "nodes":
+                        var directiveResult = await _nodesDirectiveHandler.Handle(directive, startIdentifiers);
                         directiveResults.Add(directiveResult);
                       break;
                     default:
@@ -39,7 +41,12 @@
                 }
             }
             
-            return FieldRegistration.FromDirectives(directiveResults);
+            var registration = FieldRegistration.FromDirectives(directiveResults);
+            
+             
+            _queryFieldAdder.Add(field.Name, directiveResults, registration, query, graphObjectInstances);
+
+            return registration;
         }
     }
 }

@@ -5,12 +5,9 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    internal class FieldRegistration
+    internal class FieldRegistration : Registration
     {
-        public Guid Id { get; private set; }
-        public TraverseDirective[] Directives { get; private set; }
-
-        public static FieldRegistration FromDirectives(IEnumerable<TraverseDirective> directives)
+        public static FieldRegistration FromDirectives(IEnumerable<NodesDirective> directives)
         {
             return new FieldRegistration
             {

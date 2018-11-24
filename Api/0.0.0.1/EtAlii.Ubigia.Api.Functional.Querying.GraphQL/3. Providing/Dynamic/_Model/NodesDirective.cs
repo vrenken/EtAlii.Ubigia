@@ -4,12 +4,9 @@
     using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL.Types;
 
-    internal class TraverseDirective
+    internal class NodesDirective
     {
         public string Path { get; set; }
         public IEnumerable<IInternalNode> Nodes { get; set; }
-        
-        public FieldType FieldType { get; set; }
-        public DynamicObjectGraphType FieldTypeInstance { get; set; } 
     }
 }

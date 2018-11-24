@@ -1,8 +1,11 @@
-﻿### Traversal extension.
-@traverse(path:"string")
+﻿### Nodes directive extension.
+@nodes(path:"string")
+
+### Identifier directive extension.
+@id(path:"string")
 
 ### Self extension.
-@self() 
+#@self() 
 
-### Parent extension.
-@parent(path:"string")
+## Parent extension.
+#@parent(path:"string")

@@ -2,36 +2,34 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
 
     internal class OperationProcessor : IOperationProcessor
     {
-        private readonly IFieldTypeBuilder _fieldTypeBuilder;
-        private readonly INodeFetcher _nodeFetcher;
-        private readonly ITraverseDirectiveHandler _traverseDirectiveHandler;
+        private readonly INodesDirectiveHandler _nodesDirectiveHandler;
+        private readonly IQueryFieldAdder _queryFieldAdder;
 
         public OperationProcessor(
-            IFieldTypeBuilder fieldTypeBuilder, 
-            INodeFetcher nodeFetcher, 
-            ITraverseDirectiveHandler traverseDirectiveHandler)
+            INodesDirectiveHandler nodesDirectiveHandler, 
+            IQueryFieldAdder queryFieldAdder)
         {
-            _fieldTypeBuilder = fieldTypeBuilder;
-            _nodeFetcher = nodeFetcher;
-            _traverseDirectiveHandler = traverseDirectiveHandler;
+            _nodesDirectiveHandler = nodesDirectiveHandler;
+            _queryFieldAdder = queryFieldAdder;
         }
 
         public async Task<OperationRegistration> Process(Operation operation, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
         {
-            var directiveResults = new List<TraverseDirective>();
+            var directiveResults = new List<NodesDirective>();
             
             foreach (var directive in operation.Directives)
             {
                 switch (directive.Name)
                 {
-                    case "traverse":
-                        var directiveResult = await _traverseDirectiveHandler.Handle(directive, $"DirectiveType_{Guid.NewGuid():N}", query, graphObjectInstances);
+                    case "nodes":     
+                        var directiveResult = await _nodesDirectiveHandler.Handle(directive);
                         directiveResults.Add(directiveResult);
                       break;
                     default:
@@ -39,7 +37,11 @@
                 }
             }
             
-            return OperationRegistration.FromDirectives(directiveResults);
+            var registration = OperationRegistration.FromDirectives(directiveResults);
+            
+            _queryFieldAdder.Add($"DirectiveType_{Guid.NewGuid():N}", directiveResults, registration, query, graphObjectInstances);
+            
+            return registration;
         }
     }
 }

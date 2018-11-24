@@ -77,7 +77,7 @@
         public async Task GraphQL_Query_Select_Simple_Full()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -91,7 +91,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { lastname @traverse(path:""\\"") } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\"") } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -105,7 +105,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Local()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { firstname } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -119,7 +119,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { lives } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lives } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -133,7 +133,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_01()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { nickname } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -149,8 +149,7 @@
             // Arrange.
             var query = @"query data 
                           { 
-                            person 
-                            @traverse(path:""person:Stark/Tony"") 
+                            person @nodes(path:""person:Stark/Tony"") 
                             { 
                                 nickname 
                             } 
@@ -168,7 +167,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_02()
         {
             // Arrange.
-            var query = "query data { person\n@traverse(path:\"person:Stark/Tony\") { nickname } }";
+            var query = "query data { person\n@nodes(path:\"person:Stark/Tony\") { nickname } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -182,7 +181,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_03()
         {
             // Arrange.
-            var query = "query data\n{\nperson\n@traverse(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
+            var query = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
             var result = await _context.Execute(query);
@@ -196,7 +195,7 @@
         public async Task GraphQL_Query_Select_Multiple_Starts_String()
         {
             // Arrange.
-            var query = "query data\n{\nperson\n@traverse(path:\"person:Stark/Tony\")\n@traverse(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
+            var query = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
             var result = await _context.Execute(query);
@@ -224,7 +223,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { id, nickname } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { id, nickname } }";
             
             // Act.
             var result = await _context.Execute(query);
@@ -238,7 +237,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
-            var query = @"query data { person @traverse(path:""person:Stark/Tony"") { birthdate } }";
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { birthdate } }";
             
             // Act.
             var result = await _context.Execute(query);

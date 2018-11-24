@@ -1,17 +1,25 @@
 ﻿### Query with paths at query level
 # This is nested traversal. 
 # Developer notice: Currently the traversal at the query level can never be typed.
-query data @traverse(path:"person:Stark/Tony") 
+query data  
 { 
-    friends @traverse(path:"/Friends") 
-    { 
-        nickname
-    } 
+    person @nodes(path:"person:Stark/Tony")
+    {
+        friends @nodes(path:"/Friends") 
+        { 
+            name @id()
+            nickname
+        } 
+    }
 }
 
 ### Query with paths at query level
-query data @traverse(path:"location:NL/Overijssel/")
+query data 
 { 
-    @traverse(path:"Enschede/Ravenhorsthoek/55")
-    data { } 
+    region @nodes(path:"location:NL/Overijssel/")
+    {
+        house @nodes(path:"Enschede/Ravenhorsthoek/55")
+        {
+        } 
+    }
 }

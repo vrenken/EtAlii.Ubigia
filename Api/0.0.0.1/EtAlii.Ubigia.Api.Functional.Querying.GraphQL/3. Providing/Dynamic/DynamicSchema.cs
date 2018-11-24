@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL;
     using global::GraphQL.Execution;
     using global::GraphQL.Language.AST;
@@ -75,7 +76,7 @@
                 switch (operation.OperationType)
                 {
                     case OperationType.Query:
-                        await AddDynamicTypesForQuery(operation);
+                        await AddDynamicTypes(operation);
                         break;
                     default:
                         throw new NotSupportedException();
@@ -83,19 +84,30 @@
                 
             }
         }
-
-        private async Task AddDynamicTypesForQuery(Operation queryOperation)
+               
+        private async Task AddDynamicTypes(Operation queryOperation)
         {
-            var operationRegistration = await _operationProcessor.Process(queryOperation, Query, _graphObjectInstances);
-            foreach (var selection in queryOperation.SelectionSet.Selections)
+            var registration = await _operationProcessor.Process(queryOperation, Query, _graphObjectInstances);
+
+            await AddDynamicTypes(queryOperation.SelectionSet, registration);
+            
+        }
+
+        private async Task AddDynamicTypes(SelectionSet selectionSet, Registration parentRegistration)
+        {
+            foreach (var selection in selectionSet.Selections)
             {
                 switch (selection)
                 {
-                    case Field field: 
-                        var fieldRegistration = await _fieldProcessor.Process(field, Query, _graphObjectInstances);
+                    case Field field:
+                        var nodes = parentRegistration.Directives
+                            .SelectMany(directive => directive.Nodes)
+                            .Select(node => node.Id)
+                            .ToArray();
+                        var fieldRegistration = await _fieldProcessor.Process(field, nodes, Query, _graphObjectInstances);
+                        await AddDynamicTypes(field.SelectionSet, fieldRegistration);
                         break;
                 }
-                //selection.SourceLocation
             }
         }
     }

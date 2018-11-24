@@ -13,7 +13,8 @@
             Query = resolver.Resolve<IStaticQuery>();
             Mutation = resolver.Resolve<IStaticMutation>();
  
-            RegisterDirectives(new UbigiaTraverseDirective());
+            RegisterDirectives(new UbigiaNodesDirective());
+            //RegisterDirectives(new UbigiaIdDirective());
         }
     }
 }
