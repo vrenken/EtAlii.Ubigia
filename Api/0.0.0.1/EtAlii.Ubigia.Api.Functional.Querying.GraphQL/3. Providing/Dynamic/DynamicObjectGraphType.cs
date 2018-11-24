@@ -19,7 +19,7 @@
             var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, BaseType);
             return typeBuilder.CreateTypeInfo();
         }
-        
+                    
         public static DynamicObjectGraphType Create(string path, string name, PropertyDictionary properties)
         {
             var fieldTypeInstanceType = BuildInstanceType();
