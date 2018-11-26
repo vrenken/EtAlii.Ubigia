@@ -30,7 +30,7 @@
             Field field, 
             Identifier[] startIdentifiers, 
             ComplexGraphType<object> parent, 
-            Dictionary<System.Type, GraphType> graphObjectInstances)
+            Dictionary<System.Type, GraphType> graphTypes)
         {
             FieldRegistration registration = null;
             
@@ -66,14 +66,14 @@
                 var results = nodesDirectiveResults.ToArray();
             
                 registration = FieldRegistration.FromDirectives(results);
-                _nodesFieldAdder.Add(field.Name, results, registration, parent, graphObjectInstances);
+                _nodesFieldAdder.Add(field.Name, results, registration, parent, graphTypes);
             }
             else if (hasIdDirectives)
             {
                 var result = idDirectiveResults.Single();
             
                 registration = FieldRegistration.FromDirectives(Array.Empty<NodesDirectiveResult>());
-                _idFieldAdder.Add(field.Name, result, registration, parent, graphObjectInstances);
+                _idFieldAdder.Add(field.Name, result, registration, parent, graphTypes);
             }
 
             return registration;

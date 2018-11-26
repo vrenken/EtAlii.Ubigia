@@ -49,7 +49,7 @@
             container.Register<IIdFieldAdder, IdFieldAdder>();
             
             container.Register<INodeFetcher, NodeFetcher>();
-            container.Register<IFieldTypeBuilder, FieldTypeBuilder>();
+            container.Register<IGraphTypeBuilder, GraphTypeBuilder>();
 
         }
     }

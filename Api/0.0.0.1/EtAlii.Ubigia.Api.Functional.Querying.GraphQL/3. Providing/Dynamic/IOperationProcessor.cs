@@ -10,6 +10,6 @@
         Task<OperationRegistration> Process(
             Operation operation, 
             ComplexGraphType<object> query, 
-            Dictionary<System.Type, GraphType> graphObjectInstances);
+            Dictionary<System.Type, GraphType> graphTypes);
     }
 }

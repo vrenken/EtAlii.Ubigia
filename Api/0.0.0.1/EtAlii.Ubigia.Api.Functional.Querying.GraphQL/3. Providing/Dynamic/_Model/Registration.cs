@@ -9,6 +9,6 @@
         public NodesDirectiveResult[] NodesDirectiveResults { get; protected set; }
                 
         public FieldType FieldType { get; set; }
-        public GraphType FieldTypeInstance { get; set; } 
+        public GraphType GraphType { get; set; } 
     }
 }
