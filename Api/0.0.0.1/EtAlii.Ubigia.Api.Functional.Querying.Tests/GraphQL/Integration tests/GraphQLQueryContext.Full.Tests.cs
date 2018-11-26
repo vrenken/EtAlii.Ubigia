@@ -37,8 +37,8 @@
                 _dataContext = await _testContext.FunctionalTestContext.CreateFunctionalContext(true);
                 _context = new GraphQLQueryContextFactory().Create(_dataContext);
                 
-                await _testContext.FunctionalTestContext.AddJohnDoe(_dataContext);
-                await _testContext.FunctionalTestContext.AddTonyStark(_dataContext);
+                await _testContext.FunctionalTestContext.AddPeople(_dataContext);
+                await _testContext.FunctionalTestContext.AddAddresses(_dataContext);
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -63,9 +63,9 @@
         {
             // Arrange.
             var query = @"
-                query data @nodes(path:""person:Stark/Tony"") 
+                query data @nodes(path:""/person/Stark/"") 
                 { 
-                    person 
+                    person @nodes(path:""Tony"")
                     { 
                         nickname 
                     } 

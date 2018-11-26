@@ -40,7 +40,7 @@
                 .ToArray();
             foreach (var nodesDirective in nodesDirectives)
             {
-                var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective);
+                var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective, startIdentifiers);
                 nodesDirectiveResults.Add(directiveResult);
             }
             

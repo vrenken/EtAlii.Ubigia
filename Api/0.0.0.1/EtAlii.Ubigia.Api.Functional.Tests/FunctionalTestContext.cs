@@ -29,12 +29,47 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             return new DataContextFactory().Create(configuration);
         }
 
+        public async Task AddPeople(IDataContext context)
+        {
+            await AddJohnDoe(context);
+            await AddJaneDoe(context);
+            await AddTonyStark(context);
+        }
+
+        public async Task AddAddresses(IDataContext context)
+        {
+            var addQueries = new[]
+            {
+                "Location:+=Europe/NL/Overijssel/Enschede/Ravenhorsthoek/55",
+                "Location:+=Europe/NL/Overijssel/Enschede/Beltstraat/80",
+                "Location:+=Europe/NL/Overijssel/Enschede/\"van Loenshof\"/32",
+                "Location:+=Europe/DE/\"Nordrhein-Westfalen\"/Ahlen/\"Luise-Hensel-Strasse\"/12",
+            };
+            var addQuery = String.Join("\r\n", addQueries);
+
+
+            await context.Scripts.Process(addQuery);
+        }
+
         public async Task AddJohnDoe(IDataContext context)
         {
             var addQueries = new[]
             {
                 "Person:+=Doe/John",
                 "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }"
+            };
+            var addQuery = String.Join("\r\n", addQueries);
+
+
+            await context.Scripts.Process(addQuery);
+        }
+        
+        public async Task AddJaneDoe(IDataContext context)
+        {
+            var addQueries = new[]
+            {
+                "Person:+=Doe/Jane",
+                "Person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 

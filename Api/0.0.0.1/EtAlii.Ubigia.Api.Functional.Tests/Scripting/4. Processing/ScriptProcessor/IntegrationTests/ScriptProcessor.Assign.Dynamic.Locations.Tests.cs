@@ -46,11 +46,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Locations+=/Europe",
-                "/Locations/Europe+=/NL",
-                "/Locations/Europe/NL+=/Overijssel",
-                "/Locations/Europe/NL/Overijssel+=/Enschede",
-                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
+                "/Location+=/Europe",
+                "/Location/Europe+=/NL",
+                "/Location/Europe/NL+=/Overijssel",
+                "/Location/Europe/NL/Overijssel+=/Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             dynamic data = new
@@ -60,8 +60,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
+            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -99,11 +99,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Locations+=/Europe",
-                "/Locations/Europe+=/NL",
-                "/Locations/Europe/NL+=/Overijssel",
-                "/Locations/Europe/NL/Overijssel+=/Enschede",
-                "<= /Locations/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
+                "/Location+=/Europe",
+                "/Location/Europe+=/NL",
+                "/Location/Europe/NL+=/Overijssel",
+                "/Location/Europe/NL/Overijssel+=/Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
             };
 
             dynamic data = new
@@ -111,8 +111,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
+            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -146,11 +146,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Locations += /Europe",
-                "/Locations/Europe += /NL",
-                "/Locations/Europe/NL += /Overijssel",
-                "/Locations/Europe/NL/Overijssel += /Enschede",
-                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += /Europe",
+                "/Location/Europe += /NL",
+                "/Location/Europe/NL += /Overijssel",
+                "/Location/Europe/NL/Overijssel += /Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             dynamic data = new
@@ -160,8 +160,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
+            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -198,11 +198,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Locations += /Europe",
-                "/Locations/Europe += /NL",
-                "/Locations/Europe/NL += /Overijssel",
-                "/Locations/Europe/NL/Overijssel += /Enschede",
-                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += /Europe",
+                "/Location/Europe += /NL",
+                "/Location/Europe/NL += /Overijssel",
+                "/Location/Europe/NL/Overijssel += /Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Local);
@@ -215,8 +215,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
+            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -254,11 +254,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Locations += /Europe",
-                "/Locations/Europe += /NL",
-                "/Locations/Europe/NL += /Overijssel",
-                "/Locations/Europe/NL/Overijssel += /Enschede",
-                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += /Europe",
+                "/Location/Europe += /NL",
+                "/Location/Europe/NL += /Overijssel",
+                "/Location/Europe/NL/Overijssel += /Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Utc);
@@ -271,8 +271,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
+            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;
@@ -310,11 +310,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Locations += /Europe",
-                "/Locations/Europe += /NL",
-                "/Locations/Europe/NL += /Overijssel",
-                "/Locations/Europe/NL/Overijssel += /Enschede",
-                "<= /Locations/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += /Europe",
+                "/Location/Europe += /NL",
+                "/Location/Europe/NL += /Overijssel",
+                "/Location/Europe/NL/Overijssel += /Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Unspecified);
@@ -327,8 +327,8 @@
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var updateQuery = "<= /Locations/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
-            var selectQuery = "/Locations/Europe/NL/Overijssel/Enschede/Helmerhoek";
+            var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
+            var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
             var addScript = _parser.Parse(addQuery).Script;
             var updateScript = _parser.Parse(updateQuery).Script;

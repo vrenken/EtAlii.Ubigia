@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     {
         Task<IDataContext> CreateFunctionalContext(bool openOnCreation);
 
-        Task AddJohnDoe(IDataContext context);
-        Task AddTonyStark(IDataContext context);
-            
+        Task AddPeople(IDataContext context);
+        Task AddAddresses(IDataContext context);
+
         Task Start();
         Task Stop();
     }

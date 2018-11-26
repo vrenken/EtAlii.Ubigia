@@ -51,7 +51,7 @@ query data
         firstname @id()
         lastname @id(path:"\") 
     },
-    location @nodes(path:"\locations\") 
+    location @nodes(path:"\Location\") 
     { 
         name @id(path:"\\"),
     } 
