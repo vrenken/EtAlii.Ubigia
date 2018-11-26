@@ -23,15 +23,18 @@
             Dictionary<System.Type, GraphType> graphTypes)
         {
         
-            var id = idDirectiveResult.Id;
-            _graphTypeBuilder.Build(idDirectiveResult.Path, name, id, out ScalarGraphType graphType, out FieldType fieldType);
+            var id = idDirectiveResult.Id.SingleOrDefault();
+            if (id != null)
+            {
+                _graphTypeBuilder.Build(idDirectiveResult.Path, name, id, out ScalarGraphType graphType, out FieldType fieldType);
 
-            registration.GraphType = graphType;
-            registration.FieldType = fieldType;
-            
-            graphTypes[graphType.GetType()] = graphType;
-            
-            parent.AddField(fieldType);
+                registration.GraphType = graphType;
+                registration.FieldType = fieldType;
+
+                graphTypes[graphType.GetType()] = graphType;
+
+                parent.AddField(fieldType);
+            }
         }
     }
 }

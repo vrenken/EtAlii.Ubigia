@@ -21,7 +21,9 @@
             var scriptParseResult = _scriptsSet.Parse(path);
             if (scriptParseResult.Errors.Any())
             {
-                throw new InvalidOperationException("Unable to process GraphQL argument 'path' of the start directive.");
+                var errorsString = String.Join(Environment.NewLine, scriptParseResult.Errors.Select(error => error.Message));
+                
+                throw new InvalidOperationException($"Unable to process GraphQL argument 'path' of the start directive:{Environment.NewLine}{errorsString}");
             }
 
             var scope = new ScriptScope();
@@ -29,10 +31,11 @@
             var results = await lastSequence.Output
                 .Cast<IInternalNode>()
                 .ToArray();
-            if (results.Length == 0)
-            {
-                throw new InvalidOperationException("Unable to process GraphQL query 'path' does not return any results.");
-            }
+            
+//            if (results.Length == 0)
+//            {
+//                throw new InvalidOperationException($"Unable to process GraphQL query 'path' does not return any results: {path}");
+//            }
 
 //            if (results.Length > 1)
 //            {

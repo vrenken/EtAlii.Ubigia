@@ -63,12 +63,12 @@
         {
             // Arrange.
             var query = @"
-                query data @nodes(path:""/person/Stark/"") 
+                query data @nodes(path:""/person/Stark/"")  
                 { 
                     person @nodes(path:""Tony"")
                     { 
                         nickname 
-                    } 
+                    }
                 }";
             
             // Act.
@@ -78,7 +78,110 @@
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
-//
+
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Single_Nested_01()
+        {
+            // Arrange.
+            var query = @"
+                query data  
+                { 
+                    data2 @nodes(path:""/person/Stark/"")
+                    {
+                        person @nodes(path:""Tony"")
+                        { 
+                            nickname 
+                        }
+                    }
+                     
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""data2"": { ""person"": { ""nickname"": ""Iron Man"" }}}", result);
+        }
+
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Single_Nested_02()
+        {
+            // Arrange.
+            var query = @"
+                query data  
+                { 
+                    stark @nodes(path:""/person/Stark/"")
+                    {
+                        tony @nodes(path:""Tony"")
+                        { 
+                            nickname 
+                        }
+                    }
+                     
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""stark"": { ""tony"": { ""nickname"": ""Iron Man"" }}}", result);
+        }
+
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Multiple_Nested_01()
+        {
+            // Arrange.
+            var query = @"
+                query data  
+                { 
+                    data2 @nodes(path:""/person"")
+                    {
+                        person1 @nodes(path:""/Stark/Tony"")
+                        { 
+                            nickname 
+                        }
+                        person2 @nodes(path:""/Doe/John"")
+                        { 
+                            nickname 
+                        }
+                    }
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""data2"": { ""person1"": { ""nickname"": ""Iron Man"" }, ""person2"": { ""nickname"": ""Johnny"" }}}", result);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Multiple_01()
+        {
+            // Arrange.
+            var query = @"
+                query data  
+                { 
+                    person @nodes(path:""/person/*/*"")
+                    {
+                        nickname 
+                    }
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""data2"": { ""person1"": { ""nickname"": ""Iron Man"" }, ""person2"": { ""nickname"": ""Johnny"" }}}", result);
+        }
+
+        //
 //        [Fact, Trait("Category", TestAssembly.Category)]
 //        public async Task GraphQL_Query_Traverse_Person_Plural()
 //        {
