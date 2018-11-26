@@ -5,6 +5,6 @@
 
     internal interface INodesDirectiveHandler
     {
-        Task<NodesDirective> Handle(Directive directive, Identifier[] startIdentifiers = null);
+        Task<NodesDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers = null);
     }
 }

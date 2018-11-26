@@ -42,8 +42,12 @@
             
             container.Register<IOperationProcessor, OperationProcessor>();
             container.Register<IFieldProcessor, FieldProcessor>();
+            
             container.Register<INodesDirectiveHandler, NodesDirectiveHandler>();
-            container.Register<IQueryFieldAdder, QueryFieldAdder>();
+            container.Register<INodesFieldAdder, NodesFieldAdder>();
+            container.Register<IIdDirectiveHandler, IdDirectiveHandler>();
+            container.Register<IIdFieldAdder, IdFieldAdder>();
+            
             container.Register<INodeFetcher, NodeFetcher>();
             container.Register<IFieldTypeBuilder, FieldTypeBuilder>();
 

@@ -17,9 +17,9 @@
             _nodeFetcher = nodeFetcher;
         }      
 
-        public async Task<NodesDirective> Handle(Directive directive, Identifier[] startIdentifiers = null)
+        public async Task<NodesDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers = null)
         {
-            var result = new NodesDirective();
+            var result = new NodesDirectiveResult();
             
             var argument = directive.Arguments.First();
             if (argument.Value is StringValue stringValue)

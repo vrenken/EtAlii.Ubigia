@@ -5,13 +5,13 @@
     using System.Threading.Tasks;
     using global::GraphQL.Language.AST;
 
-    internal interface IQueryFieldAdder
+    internal interface INodesFieldAdder
     {
         void Add(
             string name,
-            IEnumerable<NodesDirective> directives, 
+            NodesDirectiveResult[] nodesDirectiveResults, 
             Registration registration, 
-            IObjectGraphType query, 
-            Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances);
+            ComplexGraphType<object> parent, 
+            Dictionary<System.Type, GraphType> graphObjectInstances);
     }
 }

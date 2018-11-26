@@ -10,41 +10,71 @@
     internal class FieldProcessor : IFieldProcessor
     {
         private readonly INodesDirectiveHandler _nodesDirectiveHandler;
-        private readonly IQueryFieldAdder _queryFieldAdder;
+        private readonly IIdDirectiveHandler _idDirectiveHandler;
+        private readonly INodesFieldAdder _nodesFieldAdder;
+        private readonly IIdFieldAdder _idFieldAdder;
 
         public FieldProcessor(
             INodesDirectiveHandler nodesDirectiveHandler, 
-            IQueryFieldAdder queryFieldAdder)
+            INodesFieldAdder nodesFieldAdder, 
+            IIdDirectiveHandler idDirectiveHandler, 
+            IIdFieldAdder idFieldAdder)
         {
             _nodesDirectiveHandler = nodesDirectiveHandler;
-            _queryFieldAdder = queryFieldAdder;
+            _nodesFieldAdder = nodesFieldAdder;
+            _idDirectiveHandler = idDirectiveHandler;
+            _idFieldAdder = idFieldAdder;
         }
 
         public async Task<FieldRegistration> Process(
             Field field, 
             Identifier[] startIdentifiers, 
-            IObjectGraphType query, 
-            Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
+            ComplexGraphType<object> parent, 
+            Dictionary<System.Type, GraphType> graphObjectInstances)
         {
-            var directiveResults = new List<NodesDirective>();
+            FieldRegistration registration = null;
             
-            foreach (var directive in field.Directives)
+            var nodesDirectiveResults = new List<NodesDirectiveResult>();
+            var nodesDirectives = field.Directives
+                .Where(directive => directive.Name == "nodes")
+                .ToArray();
+            foreach (var nodesDirective in nodesDirectives)
             {
-                switch (directive.Name)
-                {
-                    case "nodes":
-                        var directiveResult = await _nodesDirectiveHandler.Handle(directive, startIdentifiers);
-                        directiveResults.Add(directiveResult);
-                      break;
-                    default:
-                        throw new NotSupportedException($"Unable to process directive '{directive.Name ?? "NULL"}'");
-                }
+                var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective);
+                nodesDirectiveResults.Add(directiveResult);
             }
             
-            var registration = FieldRegistration.FromDirectives(directiveResults);
+            var idDirectiveResults = new List<IdDirectiveResult>();
+            var idDirectives = field.Directives
+                .Where(directive => directive.Name == "id")
+                .ToArray();
+            foreach (var idDirective in idDirectives)
+            {
+                var idDirectiveResult = await _idDirectiveHandler.Handle(idDirective, startIdentifiers);
+                idDirectiveResults.Add(idDirectiveResult);
+            }
+            var hasNodesDirectives = nodesDirectiveResults.Any();
+            var hasIdDirectives = idDirectiveResults.Any();
             
-             
-            _queryFieldAdder.Add(field.Name, directiveResults, registration, query, graphObjectInstances);
+            if (hasNodesDirectives && hasIdDirectives)
+            {
+                throw new NotSupportedException($"Nodes and id directives cannot be combined on the same field");    
+            }
+            
+            if (hasNodesDirectives)
+            {
+                var results = nodesDirectiveResults.ToArray();
+            
+                registration = FieldRegistration.FromDirectives(results);
+                _nodesFieldAdder.Add(field.Name, results, registration, parent, graphObjectInstances);
+            }
+            else if (hasIdDirectives)
+            {
+                var result = idDirectiveResults.Single();
+            
+                registration = FieldRegistration.FromDirectives(Array.Empty<NodesDirectiveResult>());
+                _idFieldAdder.Add(field.Name, result, registration, parent, graphObjectInstances);
+            }
 
             return registration;
         }

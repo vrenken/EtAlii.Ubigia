@@ -6,9 +6,9 @@
     internal class Registration
     {
         public Guid Id { get; protected set; }
-        public NodesDirective[] Directives { get; protected set; }
+        public NodesDirectiveResult[] NodesDirectiveResults { get; protected set; }
                 
         public FieldType FieldType { get; set; }
-        public DynamicObjectGraphType FieldTypeInstance { get; set; } 
+        public GraphType FieldTypeInstance { get; set; } 
     }
 }

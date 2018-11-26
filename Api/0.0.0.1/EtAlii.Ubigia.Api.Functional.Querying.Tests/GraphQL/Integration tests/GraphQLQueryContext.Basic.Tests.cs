@@ -58,7 +58,7 @@
         }
 
         [Theory, ClassData(typeof(FileBasedScriptData))]
-        public async Task GraphQL_Query_From_Files_Execute(string title, string fileName, string query)
+        public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string query)
         {
             // Arrange.
 #pragma warning disable 1717
@@ -74,7 +74,7 @@
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task GraphQL_Query_Select_Simple_Full()
+        public async Task GraphQL_Query_Select_Simple_Full_Local()
         {
             // Arrange.
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
@@ -83,12 +83,26 @@
             var result = await _context.Execute(query);
              
             // Assert.
+            Assert.NotNull(result.Errors);
+        }
+        
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Full_Relative()
+        {
+            // Arrange.
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\""), nickname, birthdate, lives } }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+             
+            // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""lastname"": ""Stark"", ""nickname"": ""Iron Man"", ""birthdate"": ""1976-05-12"", ""lives"": 9 }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task GraphQL_Query_Select_Simple_Path_Relative()
+        public async Task GraphQL_Query_Select_Simple_Path_Relative_01()
         {
             // Arrange.
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\"") } }";
@@ -98,7 +112,21 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"" }}", result);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Path_Relative_02()
+        {
+            // Arrange.
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -111,10 +139,25 @@
             var result = await _context.Execute(query);
             
             // Assert.
-            Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
+            Assert.NotNull(result.Errors);
         }
 
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Path_Relative()
+        {
+            // Arrange.
+            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"" }}", result);
+        }
+
+        
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
@@ -126,7 +169,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lives"": 9 }}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -140,7 +183,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -160,7 +203,49 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+        }
+                
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Property_String_And_Non_Argumented_Id()
+        {
+            // Arrange.
+            var query = @"query data 
+                          { 
+                            person @nodes(path:""person:Stark/Tony"") 
+                            {
+                                firstname @id 
+                                nickname 
+                            } 
+                          }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""firstname"": ""Tony"", ""nickname"": ""Iron Man"" }}", result);
+        }
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Select_Simple_Property_String_And_Argumented_Id()
+        {
+            // Arrange.
+            var query = @"query data 
+                          { 
+                            person @nodes(path:""person:Stark/Tony"") 
+                            {
+                                lastname @id(path:""\\"")
+                                nickname 
+                            } 
+                          }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""lastname"": ""Stark"", ""nickname"": ""Iron Man"" }}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -174,7 +259,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
                 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -188,7 +273,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -201,8 +286,7 @@
             var result = await _context.Execute(query);
             
             // Assert.
-            Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            Assert.NotNull(result.Errors);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -215,8 +299,7 @@
             var result = await _context.Execute(query);
             
             // Assert.
-            Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{""droid"":{""id"":""4"",""name"":""C-3PO""}}", result);
+            Assert.NotNull(result.Errors);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -229,8 +312,8 @@
             var result = await _context.Execute(query);
             
             // Assert.
-            Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter,@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result);
+            Assert.NotNull(result.Errors);
+            await AssertQuery.ResultsAreNotEqual(_documentWriter,@"{ ""person"": { ""id"":""2"", ""nickname"": ""Iron Man"" }}", result);
         }
         
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -244,7 +327,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""birthdate"": ""1976-05-12"" }}", result);
         }
     }
 }

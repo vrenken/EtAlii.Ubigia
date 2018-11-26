@@ -14,7 +14,7 @@
             Mutation = resolver.Resolve<IStaticMutation>();
  
             RegisterDirectives(new UbigiaNodesDirective());
-            //RegisterDirectives(new UbigiaIdDirective());
+            RegisterDirectives(new UbigiaIdDirective());
         }
     }
 }

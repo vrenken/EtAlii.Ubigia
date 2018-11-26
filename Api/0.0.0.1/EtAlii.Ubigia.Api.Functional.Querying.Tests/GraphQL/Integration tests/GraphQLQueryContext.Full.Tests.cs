@@ -63,7 +63,7 @@
         {
             // Arrange.
             var query = @"
-                query data @traverse(path:""person:Stark/Tony"") 
+                query data @nodes(path:""person:Stark/Tony"") 
                 { 
                     person 
                     { 
@@ -76,7 +76,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreSame(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""person"": { ""nickname"": ""Iron Man"" }}", result);
         }
 //
 //        [Fact, Trait("Category", TestAssembly.Category)]
@@ -84,7 +84,7 @@
 //        {
 //            // Arrange.
 //            var query = @"
-//                query data @traverse(path:""person:*/*"") 
+//                query data @nodes(path:""person:*/*"") 
 //                { 
 //                    person 
 //                    { 

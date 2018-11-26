@@ -7,12 +7,12 @@
 
     internal class FieldRegistration : Registration
     {
-        public static FieldRegistration FromDirectives(IEnumerable<NodesDirective> directives)
+        public static FieldRegistration FromDirectives(NodesDirectiveResult[] nodesDirectiveResults)
         {
             return new FieldRegistration
             {
                 Id = Guid.NewGuid(),
-                Directives = directives.ToArray()
+                NodesDirectiveResults = nodesDirectiveResults
             };
         }
     }

@@ -7,12 +7,12 @@
 
     internal class OperationRegistration : Registration
     {
-        public static OperationRegistration FromDirectives(IEnumerable<NodesDirective> directives)
+        public static OperationRegistration FromDirectives(NodesDirectiveResult[] nodesDirectiveResults)
         {
             return new OperationRegistration
             {
                 Id = Guid.NewGuid(),
-                Directives = directives.ToArray()
+                NodesDirectiveResults = nodesDirectiveResults
             };
         }
     }
