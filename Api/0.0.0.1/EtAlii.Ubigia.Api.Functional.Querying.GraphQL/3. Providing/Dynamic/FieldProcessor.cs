@@ -28,12 +28,18 @@
 
         public async Task<FieldRegistration> Process(
             Field field, 
-            Identifier[] startIdentifiers, 
-            ComplexGraphType<object> parent, 
+            Registration parentRegistration, 
             Dictionary<System.Type, GraphType> graphTypes)
         {
             FieldRegistration registration = null;
-            
+
+            var parent = (ComplexGraphType<object>) parentRegistration.GraphType; 
+
+            var startIdentifiers = parentRegistration.NodesDirectiveResults
+                .SelectMany(directive => directive.Nodes)
+                .Select(node => node.Id)
+                .ToArray();
+
             var nodesDirectiveResults = new List<NodesDirectiveResult>();
             var nodesDirectives = field.Directives
                 .Where(directive => directive.Name == "nodes")
@@ -64,14 +70,12 @@
             if (hasNodesDirectives)
             {
                 var results = nodesDirectiveResults.ToArray();
-            
                 registration = FieldRegistration.FromDirectives(results);
                 _nodesFieldAdder.Add(field.Name, results, registration, parent, graphTypes);
             }
             else if (hasIdDirectives)
             {
                 var result = idDirectiveResults.Single();
-            
                 registration = FieldRegistration.FromDirectives(Array.Empty<NodesDirectiveResult>());
                 _idFieldAdder.Add(field.Name, result, registration, parent, graphTypes);
             }

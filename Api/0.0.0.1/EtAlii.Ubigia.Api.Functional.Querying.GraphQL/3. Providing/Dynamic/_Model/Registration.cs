@@ -9,6 +9,7 @@
         public NodesDirectiveResult[] NodesDirectiveResults { get; protected set; }
                 
         public FieldType FieldType { get; set; }
-        public GraphType GraphType { get; set; } 
+        public GraphType GraphType { get; set;} 
+//        public ComplexGraphType<object> Parent { get; protected set;}
     }
 }

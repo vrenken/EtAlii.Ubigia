@@ -18,7 +18,7 @@
         public void Add(
             string name,
             IdDirectiveResult idDirectiveResult, 
-            Registration registration, 
+            Registration registration,
             ComplexGraphType<object> parent, 
             Dictionary<System.Type, GraphType> graphTypes)
         {

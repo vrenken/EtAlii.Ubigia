@@ -1,17 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.Linq;
 
     internal class FieldRegistration : Registration
     {
-        public static FieldRegistration FromDirectives(NodesDirectiveResult[] nodesDirectiveResults)
+        public static FieldRegistration FromDirectives(NodesDirectiveResult[] nodesDirectiveResults)//, ComplexGraphType<object> parent)
         {
             return new FieldRegistration
             {
                 Id = Guid.NewGuid(),
+//                Parent = parent,
                 NodesDirectiveResults = nodesDirectiveResults
             };
         }

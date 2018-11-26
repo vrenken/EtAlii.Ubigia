@@ -9,8 +9,7 @@
     {
         Task<FieldRegistration> Process(
             Field field, 
-            Identifier[] startIdentifiers, 
-            ComplexGraphType<object> parent, 
+            Registration parentRegistration, 
             Dictionary<System.Type, GraphType> graphTypes);
     }
 }

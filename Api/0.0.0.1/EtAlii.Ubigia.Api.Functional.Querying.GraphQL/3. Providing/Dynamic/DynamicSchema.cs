@@ -86,9 +86,7 @@
         private async Task AddDynamicTypes(Operation queryOperation)
         {
             var registration = await _operationProcessor.Process(queryOperation, (ComplexGraphType<object>)Query, _graphTypes);
-
             await AddDynamicTypes(queryOperation.SelectionSet, registration);
-            
         }
 
         private async Task AddDynamicTypes(SelectionSet selectionSet, Registration parentRegistration)
@@ -98,12 +96,7 @@
                 switch (selection)
                 {
                     case Field field:
-                        var nodes = parentRegistration.NodesDirectiveResults
-                            .SelectMany(directive => directive.Nodes)
-                            .Select(node => node.Id)
-                            .ToArray();
-                        var parent = (ComplexGraphType<object>)parentRegistration?.GraphType ?? (ComplexGraphType<object>)Query;
-                        var fieldRegistration = await _fieldProcessor.Process(field, nodes, parent, _graphTypes);
+                        var fieldRegistration = await _fieldProcessor.Process(field, parentRegistration, _graphTypes);
                         if (field.SelectionSet != null && fieldRegistration != null)
                         {
                             await AddDynamicTypes(field.SelectionSet, fieldRegistration);
