@@ -24,16 +24,21 @@
             var pathArgument = directive.Arguments.SingleOrDefault(d => d.Name == "path");
             var pathArgumentValue = pathArgument?.Value as StringValue;
 
-            var startIdentifier = startIdentifiers.Single();
+            var ids = new List<string>();
+
+            foreach (var startIdentifier in startIdentifiers)
+            {
+                var path = pathArgumentValue != null
+                    ? $"/&{startIdentifier.ToDotSeparatedString()}{pathArgumentValue.Value}"
+                    : $"/&{startIdentifier.ToDotSeparatedString()}";
+                var subSet = await _nodeFetcher.FetchAsync(path);
+                var node = subSet?.SingleOrDefault();
+                ids.Add(node?.Type); 
+            }
             
-            var path = pathArgumentValue != null
-                ? $"/&{startIdentifier.ToDotSeparatedString()}{pathArgumentValue.Value}"
-                : $"/&{startIdentifier.ToDotSeparatedString()}";
-            var subSet = await _nodeFetcher.FetchAsync(path);
-            var node = subSet.Single();
-            result.Id = node.Type; 
-            result.Path = path;    
-            
+            result.Id = ids.ToArray(); 
+            result.Path = pathArgumentValue?.Value ?? String.Empty;    
+
             return result;
         }
     }

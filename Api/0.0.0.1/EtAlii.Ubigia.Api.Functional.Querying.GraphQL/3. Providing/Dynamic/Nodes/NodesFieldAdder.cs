@@ -25,7 +25,9 @@
             var nodesDirectiveResult = nodesDirectiveResults.FirstOrDefault();
             if (nodesDirectiveResult != null)
             {
-                var properties = nodesDirectiveResult.Nodes.First().GetProperties();
+                var properties = nodesDirectiveResult.Nodes
+                    .FirstOrDefault()?
+                    .GetProperties() ?? new PropertyDictionary();
                 _graphTypeBuilder.Build(nodesDirectiveResult.Path, name, properties, out DynamicObjectGraphType graphType, out FieldType fieldType);
 
                 registration.GraphType = graphType;

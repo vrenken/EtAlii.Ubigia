@@ -1,4 +1,4 @@
-﻿### Query with paths at query level
+﻿### 01 Query with paths at query level
 # This is nested traversal. 
 # Developer notice: Currently the traversal at the query level can never be typed.
 query data  
@@ -7,19 +7,22 @@ query data
     {
         friends @nodes(path:"/Friends") 
         { 
-            name @id()
+            name @id
             nickname
         } 
     }
 }
 
-### Query with paths at query level
-query data 
-{ 
-    region @nodes(path:"location:NL/Overijssel/")
-    {
-        house @nodes(path:"Enschede/Ravenhorsthoek/55")
-        {
-        } 
-    }
-}
+## 02 Query with paths at query level
+#query data 
+#{ 
+#    region @nodes(path:"location:NL/Overijssel/")
+#    {
+#        house @nodes(path:"Enschede/Ravenhorsthoek/55")
+#        {
+#            number @id
+#            street @id(path:"\\")
+#            city @id(path:"\\\\")
+#        } 
+#    }
+#}
