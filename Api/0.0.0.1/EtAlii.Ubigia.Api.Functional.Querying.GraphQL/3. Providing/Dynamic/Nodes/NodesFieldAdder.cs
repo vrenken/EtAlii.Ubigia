@@ -8,11 +8,11 @@
 
     class NodesFieldAdder : INodesFieldAdder
     {
-        private readonly IFieldTypeBuilder _fieldTypeBuilder;
+        private readonly IGraphTypeBuilder _graphTypeBuilder;
 
-        public NodesFieldAdder(IFieldTypeBuilder fieldTypeBuilder)
+        public NodesFieldAdder(IGraphTypeBuilder graphTypeBuilder)
         {
-            _fieldTypeBuilder = fieldTypeBuilder;
+            _graphTypeBuilder = graphTypeBuilder;
         }
 
         public void Add(
@@ -20,18 +20,18 @@
             NodesDirectiveResult[] nodesDirectiveResults, 
             Registration registration, 
             ComplexGraphType<object> parent, 
-            Dictionary<System.Type, GraphType> graphObjectInstances)
+            Dictionary<System.Type, GraphType> graphTypes)
         {
             var nodesDirectiveResult = nodesDirectiveResults.FirstOrDefault();
             if (nodesDirectiveResult != null)
             {
                 var properties = nodesDirectiveResult.Nodes.First().GetProperties();
-                _fieldTypeBuilder.Build(nodesDirectiveResult.Path, name, properties, out DynamicObjectGraphType fieldTypeInstance, out FieldType fieldType);
+                _graphTypeBuilder.Build(nodesDirectiveResult.Path, name, properties, out DynamicObjectGraphType graphType, out FieldType fieldType);
 
-                registration.FieldTypeInstance = fieldTypeInstance;
+                registration.GraphType = graphType;
                 registration.FieldType = fieldType;
                 
-                graphObjectInstances[fieldTypeInstance.GetType()] = fieldTypeInstance;
+                graphTypes[graphType.GetType()] = graphType;
                 
                 parent.AddField(fieldType);
             }

@@ -23,7 +23,7 @@
         public async Task<OperationRegistration> Process(
             Operation operation, 
             ComplexGraphType<object> query, 
-            Dictionary<System.Type, GraphType> graphObjectInstances)
+            Dictionary<System.Type, GraphType> graphTypes)
         {
             var nodesDirectiveResults = new List<NodesDirectiveResult>();
             var nodesDirectives = operation.Directives
@@ -37,7 +37,7 @@
 
             var results = nodesDirectiveResults.ToArray();
             var registration = OperationRegistration.FromDirectives(results);
-            _nodesFieldAdder.Add($"DirectiveType_{Guid.NewGuid():N}", results, registration, query, graphObjectInstances);
+            _nodesFieldAdder.Add($"DirectiveType_{Guid.NewGuid():N}", results, registration, query, graphTypes);
             
             return registration;
         }

@@ -19,10 +19,8 @@
         private readonly Document _document;
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
-        private readonly Dictionary<Type, GraphType> _graphObjectInstances;
+        private readonly Dictionary<Type, GraphType> _graphTypes;
                 
-        private readonly Type _baseClassType = typeof(DynamicObjectGraphType);
-
         private DynamicSchema(
             IStaticSchema staticSchema, 
             Document document, 
@@ -35,7 +33,7 @@
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
 
-            _graphObjectInstances = new Dictionary<Type, GraphType>();
+            _graphTypes = new Dictionary<Type, GraphType>();
             
             Query = staticSchema.Query;
             Mutation = staticSchema.Mutation;
@@ -46,9 +44,9 @@
 
         private object ResolveDynamicType(Type type)
         {
-            if (type.IsSubclassOf(_baseClassType))
+            if (_graphTypes.TryGetValue(type, out var graphType))
             {
-                return _graphObjectInstances[type];
+                return graphType;
             }
 
             return _staticSchema.DependencyResolver.Resolve(type);
@@ -87,7 +85,7 @@
                
         private async Task AddDynamicTypes(Operation queryOperation)
         {
-            var registration = await _operationProcessor.Process(queryOperation, (ComplexGraphType<object>)Query, _graphObjectInstances);
+            var registration = await _operationProcessor.Process(queryOperation, (ComplexGraphType<object>)Query, _graphTypes);
 
             await AddDynamicTypes(queryOperation.SelectionSet, registration);
             
@@ -104,8 +102,8 @@
                             .SelectMany(directive => directive.Nodes)
                             .Select(node => node.Id)
                             .ToArray();
-                        var parent = (ComplexGraphType<object>)parentRegistration?.FieldTypeInstance ?? (ComplexGraphType<object>)Query;
-                        var fieldRegistration = await _fieldProcessor.Process(field, nodes, parent, _graphObjectInstances);
+                        var parent = (ComplexGraphType<object>)parentRegistration?.GraphType ?? (ComplexGraphType<object>)Query;
+                        var fieldRegistration = await _fieldProcessor.Process(field, nodes, parent, _graphTypes);
                         if (field.SelectionSet != null && fieldRegistration != null)
                         {
                             await AddDynamicTypes(field.SelectionSet, fieldRegistration);

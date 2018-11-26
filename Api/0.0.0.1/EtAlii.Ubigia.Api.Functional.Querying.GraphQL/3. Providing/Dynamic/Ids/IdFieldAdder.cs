@@ -8,11 +8,11 @@
 
     class IdFieldAdder : IIdFieldAdder
     {
-        private readonly IFieldTypeBuilder _fieldTypeBuilder;
+        private readonly IGraphTypeBuilder _graphTypeBuilder;
 
-        public IdFieldAdder(IFieldTypeBuilder fieldTypeBuilder)
+        public IdFieldAdder(IGraphTypeBuilder graphTypeBuilder)
         {
-            _fieldTypeBuilder = fieldTypeBuilder;
+            _graphTypeBuilder = graphTypeBuilder;
         }
 
         public void Add(
@@ -20,16 +20,16 @@
             IdDirectiveResult idDirectiveResult, 
             Registration registration, 
             ComplexGraphType<object> parent, 
-            Dictionary<System.Type, GraphType> graphObjectInstances)
+            Dictionary<System.Type, GraphType> graphTypes)
         {
         
             var id = idDirectiveResult.Id;
-            _fieldTypeBuilder.Build(idDirectiveResult.Path, name, id, out ScalarGraphType fieldTypeInstance, out FieldType fieldType);
+            _graphTypeBuilder.Build(idDirectiveResult.Path, name, id, out ScalarGraphType graphType, out FieldType fieldType);
 
-            registration.FieldTypeInstance = fieldTypeInstance;
+            registration.GraphType = graphType;
             registration.FieldType = fieldType;
             
-            graphObjectInstances[fieldTypeInstance.GetType()] = fieldTypeInstance;
+            graphTypes[graphType.GetType()] = graphType;
             
             parent.AddField(fieldType);
         }

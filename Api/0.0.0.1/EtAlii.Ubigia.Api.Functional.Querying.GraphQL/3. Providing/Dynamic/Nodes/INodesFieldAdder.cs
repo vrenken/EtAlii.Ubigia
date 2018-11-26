@@ -12,6 +12,6 @@
             NodesDirectiveResult[] nodesDirectiveResults, 
             Registration registration, 
             ComplexGraphType<object> parent, 
-            Dictionary<System.Type, GraphType> graphObjectInstances);
+            Dictionary<System.Type, GraphType> graphTypes);
     }
 }

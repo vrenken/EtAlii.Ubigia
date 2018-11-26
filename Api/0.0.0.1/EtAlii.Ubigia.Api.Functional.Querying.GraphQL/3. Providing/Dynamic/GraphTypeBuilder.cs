@@ -3,24 +3,24 @@
     using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
 
-    internal class FieldTypeBuilder : IFieldTypeBuilder
+    internal class GraphTypeBuilder : IGraphTypeBuilder
     {
 
         public void Build(
             string path, 
             string name,
             PropertyDictionary properties, 
-            out DynamicObjectGraphType fieldTypeInstance, 
+            out DynamicObjectGraphType graphType, 
             out FieldType fieldType)
         {
-            fieldTypeInstance = DynamicObjectGraphType.Create(path, name, properties);
+            graphType = DynamicObjectGraphType.Create(path, name, properties);
 
-            var fieldTypeInstanceReference = fieldTypeInstance;
+            var fieldTypeInstanceReference = graphType;
             fieldType = new FieldType()
             {
-                Name = fieldTypeInstance.Name,
+                Name = graphType.Name,
                 Description = $"Field created for the Ubigia path: {path}",
-                Type = fieldTypeInstance.GetType(),
+                Type = graphType.GetType(),
                 Arguments = null,
                 Resolver = new FuncFieldResolver<object, object>(_ => fieldTypeInstanceReference)
             };
@@ -30,10 +30,10 @@
             string path, 
             string name,
             object value,
-            out ScalarGraphType fieldTypeInstance,
+            out ScalarGraphType graphType,
             out FieldType fieldType)
         {
-            fieldTypeInstance = DynamicObjectGraphType.GetScalarGraphType(value);
+            graphType = DynamicObjectGraphType.GetScalarGraphType(value);
             
             fieldType = new FieldType()
             {
