@@ -24,25 +24,25 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             var scope = new ExecutionScope(false);
             // Root.
-            // Locations.
+            // Location.
             // [LINK]
             // yyyy
             // [LINK]
             // mm
 
-            var locationsRoot = await context.Roots.Get("Locations");
+            var locationRoot = await context.Roots.Get("Location");
             var continent = "Europe";
             var country = "NL";
 
-            var continentEntry = await context.Nodes.Add(locationsRoot.Identifier, continent, scope);
+            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope);
             var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
-            var path = $"/Locations/{continent}/{country}";
+            var path = $"/Location/{continent}/{country}";
             return new LocationAddResult(path, countryEntry);
         }
         
         public async Task<string> AddContinentCountryRegionCityLocation(ILogicalContext context)
         {
-            var timeRoot = await context.Roots.Get("Locations");
+            var locationRoot = await context.Roots.Get("Location");
             string continent = "Europe";
             string country = "NL";
             string region = "Overijssel";
@@ -51,12 +51,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
 
             var scope = new ExecutionScope(false);
 
-            var continentEntry = await context.Nodes.Add(timeRoot.Identifier, continent, scope);
+            var continentEntry = await context.Nodes.Add(locationRoot.Identifier, continent, scope);
             var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
             var regionEntry = (IEditableEntry)await context.Nodes.Add(countryEntry.Id, region, scope);
             var cityEntry = (IEditableEntry)await context.Nodes.Add(regionEntry.Id, city, scope);
             var locationEntry = (IEditableEntry)await context.Nodes.Add(cityEntry.Id, location, scope);
-            return $"/Locations/{continent}/{country}/{region}/{city}/{location}";
+            return $"/Location/{continent}/{country}/{region}/{city}/{location}";
         }
 
         public async Task AddRegions(ILogicalContext context, IEditableEntry countryEntry, int regions)

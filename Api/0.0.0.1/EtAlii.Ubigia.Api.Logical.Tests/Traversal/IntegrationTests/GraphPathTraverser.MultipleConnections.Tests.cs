@@ -44,7 +44,7 @@
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
 
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -85,7 +85,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -131,7 +131,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -172,7 +172,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -219,7 +219,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -261,7 +261,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -307,7 +307,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
@@ -350,7 +350,7 @@
             const int depth = 5;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);

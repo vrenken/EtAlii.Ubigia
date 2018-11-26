@@ -17,7 +17,7 @@
             var traverserFactory = new GraphPathTraverserFactory();
             var composer = new GraphComposerFactory(traverserFactory).Create(fabric);
 
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var personRoot = await fabric.Roots.Get("Person");

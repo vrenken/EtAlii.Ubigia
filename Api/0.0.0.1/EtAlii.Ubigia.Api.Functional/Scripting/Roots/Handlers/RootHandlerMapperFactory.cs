@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 new TimeRootHandlerMapper(),
                 new PersonRootHandlerMapper(),
                 new ProvidersRootHandlerMapper(),
-                new LocationsRootHandlerMapper(),
+                new LocationRootHandlerMapper(),
                 //new ObjectHandlerMapper(),
                 //new StringHandlerMapper(),
             };

@@ -273,10 +273,10 @@
         {
             // Arrange.
             var executionScope = new ExecutionScope(false);
-            var locationsRoot = await _logicalContext.Roots.Get("Locations");
-            var locations = await _logicalContext.Nodes.Select(GraphPath.Create(locationsRoot.Identifier), executionScope);
-            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)locations, "Europe", "NL", "Overijssel");
-            var path = $"/Locations/Europe/NL/Overijssel";
+            var locationRoot = await _logicalContext.Roots.Get("Location");
+            var locationEntry = await _logicalContext.Nodes.Select(GraphPath.Create(locationRoot.Identifier), executionScope);
+            await _testContext.LogicalTestContext.CreateHierarchy(_logicalContext, (IEditableEntry)locationEntry, "Europe", "NL", "Overijssel");
+            var path = $"/Location/Europe/NL/Overijssel";
             var items = _context.Nodes.Select(path);
 
             // Act.

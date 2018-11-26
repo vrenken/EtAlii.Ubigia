@@ -49,12 +49,12 @@
             // Arrange.
             var addQueries = new[]
             {
-                $"/Locations+=/{continent}",
-                $"<= /Locations/{continent}"
+                $"/Location+=/{continent}",
+                $"<= /Location/{continent}"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery = $"<= /Locations/{continent}";
+            var selectQuery = $"<= /Location/{continent}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -90,15 +90,15 @@
 
             var addQueries = new[]
             {
-                $"/Locations+=/{continent}",
-                $"/Locations/{continent}+=/{country}",
-                $"/Locations/{continent}/{country}+=/{region}",
-                $"/Locations/{continent}/{country}/{region}+=/{city}",
-                $"<= /Locations/{continent}/{country}/{region}/{city}+=/{location}"
+                $"/Location+=/{continent}",
+                $"/Location/{continent}+=/{country}",
+                $"/Location/{continent}/{country}+=/{region}",
+                $"/Location/{continent}/{country}/{region}+=/{city}",
+                $"<= /Location/{continent}/{country}/{region}/{city}+=/{location}"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery = $"<= /Locations/{continent}/{country}/{region}/{city}/{location}";
+            var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -251,11 +251,11 @@
 
             var addQueries = new[]
             {
-                $"<= /Locations+=/{continent}/{country}/{region}/{city}/{location}"
+                $"<= /Location+=/{continent}/{country}/{region}/{city}/{location}"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery = $"<= /Locations/{continent}/{country}/{region}/{city}/{location}";
+            var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -395,15 +395,15 @@
 
             var addQueries = new[]
             {
-                $"/Locations +=/{continent}",
-                $"/Locations/{continent} +=/{country}",
-                $"/Locations/{continent}/{country} +=/{region}",
-                $"/Locations/{continent}/{country}/{region} +=/{city}",
-                $"<= /Locations/{continent}/{country}/{region}/{city} +=/{location}",
+                $"/Location +=/{continent}",
+                $"/Location/{continent} +=/{country}",
+                $"/Location/{continent}/{country} +=/{region}",
+                $"/Location/{continent}/{country}/{region} +=/{city}",
+                $"<= /Location/{continent}/{country}/{region}/{city} +=/{location}",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery = $"/Locations/{continent}/{country}/{region}/{city}/{location}";
+            var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -438,15 +438,15 @@
 
             var addQueries = new[]
             {
-                $"/Locations+= /{continent}",
-                $"/Locations/{continent}+= /{country}",
-                $"/Locations/{continent}/{country}+= /{region}",
-                $"/Locations/{continent}/{country}/{region}+= /{city}",
-                $"<= /Locations/{continent}/{country}/{region}/{city}+= /{location}",
+                $"/Location+= /{continent}",
+                $"/Location/{continent}+= /{country}",
+                $"/Location/{continent}/{country}+= /{region}",
+                $"/Location/{continent}/{country}/{region}+= /{city}",
+                $"<= /Location/{continent}/{country}/{region}/{city}+= /{location}",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
-            var selectQuery = $"/Locations/{continent}/{country}/{region}/{city}/{location}";
+            var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
