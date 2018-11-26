@@ -1,11 +1,17 @@
 ﻿### Nodes directive extension.
-@nodes(path:"string")
-
+query
+{
+    data @nodes(path:"string")
+    {
+        field
+    }
+}
+        
 ### Identifier directive extension.
-@id(path:"string")
-
-### Self extension.
-#@self() 
-
-## Parent extension.
-#@parent(path:"string")
+query
+{
+    data
+    {
+        field @id(path:"string")
+    }
+}

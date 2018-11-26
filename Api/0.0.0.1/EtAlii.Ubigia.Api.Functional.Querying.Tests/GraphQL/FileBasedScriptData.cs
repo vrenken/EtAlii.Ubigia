@@ -20,7 +20,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var folder = Directory.GetCurrentDirectory();
             folder = Path.Combine(folder, "GraphQL");
-            var files = Directory.GetFiles(folder);
+            var files = Directory.GetFiles(folder)
+                .Where(fileName => !fileName.EndsWith("Samples 0. - Introduction.txt"));
 
             foreach (var file in files)
             {
