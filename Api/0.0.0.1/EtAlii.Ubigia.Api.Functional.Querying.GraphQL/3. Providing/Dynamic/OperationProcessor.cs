@@ -10,14 +10,11 @@
     internal class OperationProcessor : IOperationProcessor
     {
         private readonly INodesDirectiveHandler _nodesDirectiveHandler;
-        private readonly INodesFieldAdder _nodesFieldAdder;
 
         public OperationProcessor(
-            INodesDirectiveHandler nodesDirectiveHandler, 
-            INodesFieldAdder nodesFieldAdder)
+            INodesDirectiveHandler nodesDirectiveHandler)
         {
             _nodesDirectiveHandler = nodesDirectiveHandler;
-            _nodesFieldAdder = nodesFieldAdder;
         }
 
         public async Task<OperationRegistration> Process(
@@ -37,7 +34,7 @@
 
             var results = nodesDirectiveResults.ToArray();
             var registration = OperationRegistration.FromDirectives(results);
-            _nodesFieldAdder.Add($"DirectiveType_{Guid.NewGuid():N}", results, registration, query, graphTypes);
+            registration.GraphType = query;
             
             return registration;
         }
