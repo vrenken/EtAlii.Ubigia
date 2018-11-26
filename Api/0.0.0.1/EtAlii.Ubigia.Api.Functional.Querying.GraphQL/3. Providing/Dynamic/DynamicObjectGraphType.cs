@@ -8,15 +8,13 @@
 
     public class DynamicObjectGraphType : ObjectGraphType<object>
     {
-        private static readonly Type BaseType = typeof(DynamicObjectGraphType);
-        
         private static TypeInfo BuildInstanceType()
         {
             var assemblyName = new AssemblyName($"DynamicAssembly_{Guid.NewGuid():N}");
             var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var moduleBuilder = assemblyBuilder.DefineDynamicModule("DynamicModule");
-            var typeName = $"{BaseType.Name}_{Guid.NewGuid():N}";
-            var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, BaseType);
+            var typeName = $"{typeof(DynamicObjectGraphType).Name}_{Guid.NewGuid():N}";
+            var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(DynamicObjectGraphType));
             return typeBuilder.CreateTypeInfo();
         }
         
