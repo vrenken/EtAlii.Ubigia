@@ -5,11 +5,12 @@
     using System.Threading.Tasks;
     using global::GraphQL.Language.AST;
 
-    internal interface IFieldProcessor
+    internal interface IIdFieldAdder
     {
-        Task<FieldRegistration> Process(
-            Field field, 
-            Identifier[] startIdentifiers, 
+        void Add(
+            string name,
+            IdDirectiveResult idDirectiveResult, 
+            Registration registration, 
             ComplexGraphType<object> parent, 
             Dictionary<System.Type, GraphType> graphObjectInstances);
     }

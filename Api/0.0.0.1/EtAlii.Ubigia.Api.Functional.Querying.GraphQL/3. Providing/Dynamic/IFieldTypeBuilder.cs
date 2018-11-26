@@ -6,5 +6,7 @@
     internal interface IFieldTypeBuilder
     {
         void Build(string path, string name, PropertyDictionary properties, out DynamicObjectGraphType fieldTypeInstance, out FieldType fieldType);
+
+        void Build(string path, string name, object value, out ScalarGraphType fieldTypeInstance, out FieldType fieldType);
     }
 }

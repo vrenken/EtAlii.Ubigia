@@ -25,5 +25,24 @@
                 Resolver = new FuncFieldResolver<object, object>(_ => fieldTypeInstanceReference)
             };
         }
+        
+        public void Build(
+            string path, 
+            string name,
+            object value,
+            out ScalarGraphType fieldTypeInstance,
+            out FieldType fieldType)
+        {
+            fieldTypeInstance = DynamicObjectGraphType.GetScalarGraphType(value);
+            
+            fieldType = new FieldType()
+            {
+                Name = name,
+                Description = $"Field created for the Ubigia path: {path}",
+                Type = DynamicObjectGraphType.GetType(value),
+                Arguments = null,
+                Resolver = DynamicObjectGraphType.GetResolver(value)
+            };
+        }
     }
 }

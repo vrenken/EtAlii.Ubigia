@@ -19,7 +19,7 @@
             var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, BaseType);
             return typeBuilder.CreateTypeInfo();
         }
-                    
+        
         public static DynamicObjectGraphType Create(string path, string name, PropertyDictionary properties)
         {
             var fieldTypeInstanceType = BuildInstanceType();
@@ -28,7 +28,7 @@
 
             instance.Name = name;
             instance.Description = $"Dynamic {instance.Name} type created for the Ubigia path: {path}";
-
+            
             foreach (var kvp in properties)
             {
                 var propertyName = kvp.Key.ToLower();
@@ -49,7 +49,7 @@
             return instance;
         }
 
-        private static Type GetType(object value)
+        public static Type GetType(object value)
         {
             switch (value)
             {
@@ -57,20 +57,31 @@
                 case int _: return typeof(IntGraphType);
                 case float _: return typeof(FloatGraphType);
                 case decimal _: return typeof(DecimalGraphType);
-                case DateTime dateTime: return GetDateTimeType(dateTime);
+                case DateTime dateTime: return dateTime.TimeOfDay == TimeSpan.Zero
+                    ? typeof(DateGraphType)
+                    : typeof(DateTimeGraphType);
                 case TimeSpan _: return typeof(TimeSpanMillisecondsGraphType);
                 default: throw new NotSupportedException();
             }
         }
-
-        private static Type GetDateTimeType(DateTime value)
+        
+        public static ScalarGraphType GetScalarGraphType(object value)
         {
-            return value.TimeOfDay == TimeSpan.Zero
-                ? typeof(DateGraphType)
-                : typeof(DateTimeGraphType);
+            switch (value)
+            {
+                case string _: return new StringGraphType();
+                case int _: return new IntGraphType();
+                case float _: return new FloatGraphType();
+                case decimal _: return new DecimalGraphType();
+                case DateTime dateTime: return dateTime.TimeOfDay == TimeSpan.Zero
+                        ? (ScalarGraphType)new DateGraphType()
+                        : new DateTimeGraphType();
+                case TimeSpan _: return new TimeSpanMillisecondsGraphType();
+                default: throw new NotSupportedException();
+            }
         }
         
-        private static IFieldResolver GetResolver(object value)
+        public static IFieldResolver GetResolver(object value)
         {
             switch (value)
             {

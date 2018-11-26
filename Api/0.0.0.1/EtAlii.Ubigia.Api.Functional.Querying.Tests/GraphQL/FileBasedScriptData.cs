@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                     {
                         var title = lines[0];
                         var query = String.Join("\n", lines.Skip(1).ToArray());
-                        Add(title, fileName, query);
+                        Add(fileName, title, query);
                     }
                 }
             }

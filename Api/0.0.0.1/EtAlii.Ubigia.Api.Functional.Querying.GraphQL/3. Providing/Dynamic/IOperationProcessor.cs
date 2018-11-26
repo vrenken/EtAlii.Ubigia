@@ -7,6 +7,9 @@
 
     internal interface IOperationProcessor
     {
-        Task<OperationRegistration> Process(Operation operation, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances);
+        Task<OperationRegistration> Process(
+            Operation operation, 
+            ComplexGraphType<object> query, 
+            Dictionary<System.Type, GraphType> graphObjectInstances);
     }
 }

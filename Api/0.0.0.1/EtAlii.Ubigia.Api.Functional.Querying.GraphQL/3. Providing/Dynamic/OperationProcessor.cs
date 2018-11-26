@@ -10,36 +10,34 @@
     internal class OperationProcessor : IOperationProcessor
     {
         private readonly INodesDirectiveHandler _nodesDirectiveHandler;
-        private readonly IQueryFieldAdder _queryFieldAdder;
+        private readonly INodesFieldAdder _nodesFieldAdder;
 
         public OperationProcessor(
             INodesDirectiveHandler nodesDirectiveHandler, 
-            IQueryFieldAdder queryFieldAdder)
+            INodesFieldAdder nodesFieldAdder)
         {
             _nodesDirectiveHandler = nodesDirectiveHandler;
-            _queryFieldAdder = queryFieldAdder;
+            _nodesFieldAdder = nodesFieldAdder;
         }
 
-        public async Task<OperationRegistration> Process(Operation operation, IObjectGraphType query, Dictionary<System.Type, DynamicObjectGraphType> graphObjectInstances)
+        public async Task<OperationRegistration> Process(
+            Operation operation, 
+            ComplexGraphType<object> query, 
+            Dictionary<System.Type, GraphType> graphObjectInstances)
         {
-            var directiveResults = new List<NodesDirective>();
-            
-            foreach (var directive in operation.Directives)
+            var nodesDirectiveResults = new List<NodesDirectiveResult>();
+            var nodesDirectives = operation.Directives
+                .Where(directive => directive.Name == "nodes")
+                .ToArray();
+            foreach (var nodesDirective in nodesDirectives)
             {
-                switch (directive.Name)
-                {
-                    case "nodes":     
-                        var directiveResult = await _nodesDirectiveHandler.Handle(directive);
-                        directiveResults.Add(directiveResult);
-                      break;
-                    default:
-                        throw new NotSupportedException($"Unable to process directive '{directive.Name ?? "NULL"}'");
-                }
+                var directiveResult = await _nodesDirectiveHandler.Handle(nodesDirective);
+                nodesDirectiveResults.Add(directiveResult);
             }
-            
-            var registration = OperationRegistration.FromDirectives(directiveResults);
-            
-            _queryFieldAdder.Add($"DirectiveType_{Guid.NewGuid():N}", directiveResults, registration, query, graphObjectInstances);
+
+            var results = nodesDirectiveResults.ToArray();
+            var registration = OperationRegistration.FromDirectives(results);
+            _nodesFieldAdder.Add($"DirectiveType_{Guid.NewGuid():N}", results, registration, query, graphObjectInstances);
             
             return registration;
         }
