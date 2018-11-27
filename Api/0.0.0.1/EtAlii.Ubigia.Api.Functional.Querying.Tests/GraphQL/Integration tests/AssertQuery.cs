@@ -1,12 +1,10 @@
-﻿using System.Threading.Tasks;
-using GraphQL;
-using GraphQL.Http;
-using Newtonsoft.Json.Linq;
-using Xunit;
-
-namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System.Linq;
+    using System.Threading.Tasks;
+    using GraphQL;
+    using GraphQL.Http;
+    using Newtonsoft.Json.Linq;
+    using Xunit;
 
     public static class AssertQuery
     {
@@ -18,7 +16,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         
         public static async Task ResultsAreEqual(IDocumentWriter documentWriter, ExecutionResult expected, ExecutionResult actual)
         {
-//            var expectedDocument = JObject.Parse(expected);
             var expectedString = await documentWriter.WriteToStringAsync(expected);
             var actualString = await documentWriter.WriteToStringAsync(actual);
             Assert.Equal(expectedString, actualString);
