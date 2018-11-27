@@ -11,7 +11,8 @@
             string path,
             string name,
             PropertyDictionary properties,
-            Dictionary<System.Type, GraphType> graphTypes, out GraphType graphType)
+            Dictionary<System.Type, GraphType> graphTypes, 
+            out GraphType graphType)
         {
             graphType = DynamicObjectGraphType.Create(path, name, properties);
             graphTypes[graphType.GetType()] = graphType;
