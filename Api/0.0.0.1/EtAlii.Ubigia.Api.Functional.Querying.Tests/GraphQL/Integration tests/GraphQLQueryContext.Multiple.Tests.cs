@@ -118,6 +118,7 @@
             var result = await _context.Execute(query);
             
             // Assert.
+            Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [ { nickname: 'Johnny' }, { nickname: 'Janey'} ] }", result);
         }
     }
