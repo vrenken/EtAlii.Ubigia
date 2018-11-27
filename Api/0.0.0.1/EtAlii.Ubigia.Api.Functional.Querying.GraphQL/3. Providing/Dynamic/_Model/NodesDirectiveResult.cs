@@ -6,6 +6,6 @@
 
     internal class NodesDirectiveResult : DirectiveResult
     {
-        public IEnumerable<IInternalNode> Nodes { get; set; }
+        public IInternalNode[] Nodes { get; set; }
     }
 }

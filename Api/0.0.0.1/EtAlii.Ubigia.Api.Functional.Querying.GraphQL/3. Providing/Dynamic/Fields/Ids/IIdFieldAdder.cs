@@ -11,7 +11,7 @@
             string name,
             IdDirectiveResult idDirectiveResult, 
             Registration registration, 
-            ComplexGraphType<object> parent, 
+            GraphType parent,
             Dictionary<System.Type, GraphType> graphTypes);
     }
 }

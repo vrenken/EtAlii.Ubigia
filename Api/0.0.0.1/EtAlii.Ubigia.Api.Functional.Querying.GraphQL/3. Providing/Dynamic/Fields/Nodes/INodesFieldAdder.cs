@@ -11,7 +11,7 @@
             string name,
             NodesDirectiveResult[] nodesDirectiveResults, 
             Registration registration, 
-            ComplexGraphType<object> parent, 
+            GraphType parent, 
             Dictionary<System.Type, GraphType> graphTypes);
     }
 }

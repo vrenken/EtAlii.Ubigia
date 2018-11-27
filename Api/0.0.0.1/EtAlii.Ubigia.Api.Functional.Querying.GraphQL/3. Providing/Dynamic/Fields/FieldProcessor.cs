@@ -28,14 +28,14 @@
 
         public async Task<FieldRegistration> Process(
             Field field, 
-            Registration parentRegistration, 
+            Registration parentContext, 
             Dictionary<System.Type, GraphType> graphTypes)
         {
             FieldRegistration registration = null;
 
-            var parent = (ComplexGraphType<object>) parentRegistration.GraphType; 
+            var parent = parentContext.GraphType; 
 
-            var startIdentifiers = parentRegistration.NodesDirectiveResults
+            var startIdentifiers = parentContext.NodesDirectiveResults
                 .SelectMany(directive => directive.Nodes)
                 .Select(node => node.Id)
                 .ToArray();

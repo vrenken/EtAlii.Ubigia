@@ -33,15 +33,13 @@
                         var subSet = await _nodeFetcher.FetchAsync(path);
                         nodes.AddRange(subSet);
                     }
-
-                    result.Nodes = nodes; 
-                    result.Path = stringValue.Value;    
+                    result.Nodes = nodes.ToArray(); 
                 }
                 else
                 {
                     result.Nodes = await _nodeFetcher.FetchAsync(stringValue.Value);
-                    result.Path = stringValue.Value;    
                 }
+                result.Path = stringValue.Value;    
             }
             return result;
         }
