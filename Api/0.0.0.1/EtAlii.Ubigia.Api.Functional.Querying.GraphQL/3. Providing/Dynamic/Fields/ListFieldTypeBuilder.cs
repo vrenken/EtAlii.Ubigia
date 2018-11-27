@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System.Collections.Generic;
+    using System.Dynamic;
     using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Collections;
@@ -19,50 +20,34 @@
                 .Select(node => node.GetProperties())
                 .ToArray();
 
-            var itemGraphTypes = DynamicObjectGraphType.Create(path, name, propertiesCollection);
-            
             var listItemProperties = MergeProperties(propertiesCollection);
-
             var listItemGraphType = DynamicObjectGraphType.CreateShallow(path, name, listItemProperties);
-
             graphType = listItemGraphType;
-            
+
+            var dynamicObjects = propertiesCollection
+                .Select(DynamicObject.CreateInstance)
+                .ToArray();
+                
             var result = new FieldType
             {
                 Name = name,
                 ResolvedType = new ListGraphType(listItemGraphType),
-                Resolver = new FuncFieldResolver<object, object>(context => propertiesCollection),
+                Resolver = new FuncFieldResolver<object, object>(context => dynamicObjects),
             };
 
-//            
-//            var itemFieldTypes = new List<FieldType>();
-//            GraphType firstGraphType = null;
-//            
-//            foreach (var properties in propertiesCollection)
-//            {
-//                var itemFieldType = _complexFieldTypeBuilder.Build(path, name, properties, graphTypes, out var graphType);
-//                itemFieldTypes.Add(itemFieldType);
-//                if (firstGraphType == null)
-//                {
-//                    firstGraphType = graphType;
-//                }
-//            }
-//            
-//            var listGraphType = new ListGraphType(firstGraphType);
-//            //graphTypes[listGraphType.GetType()] = listGraphType;
-//
-//            var listFieldType = new FieldType
-//            {
-//                Name = name,
-//                Description = $"Array field created for the Ubigia path: {path}",
-//                Type = listGraphType.GetType(),
-//                Arguments = null,
-//                Resolver = new FuncFieldResolver<object, object[]>(context => itemFieldTypes.Cast<object>().ToArray())
-//            };
-//            return listFieldType;
             return result;
-        }    
-        
+        }
+
+        private ExpandoObject ToDynamicObject(PropertyDictionary properties)
+        {           
+            var result = new ExpandoObject();
+            var dictionary = result as IDictionary<string, object>;
+            foreach (var kvp in properties)
+            {
+                dictionary.Add(kvp.Key, kvp.Value);
+            }
+            return result;
+        }
         
         private PropertyDictionary MergeProperties(PropertyDictionary[] propertiesCollection)
         {
