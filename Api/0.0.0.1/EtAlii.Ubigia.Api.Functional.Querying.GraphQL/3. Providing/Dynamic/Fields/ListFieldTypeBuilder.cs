@@ -14,7 +14,8 @@
             string path, 
             string name,
             IInternalNode[] nodes,
-            Dictionary<System.Type, GraphType> graphTypes, out GraphType graphType)
+            Dictionary<System.Type, GraphType> graphTypes, 
+            out GraphType graphType)
         {
             var propertiesCollection = nodes
                 .Select(node => node.GetProperties())
@@ -35,17 +36,6 @@
                 Resolver = new FuncFieldResolver<object, object>(context => dynamicObjects),
             };
 
-            return result;
-        }
-
-        private ExpandoObject ToDynamicObject(PropertyDictionary properties)
-        {           
-            var result = new ExpandoObject();
-            var dictionary = result as IDictionary<string, object>;
-            foreach (var kvp in properties)
-            {
-                dictionary.Add(kvp.Key, kvp.Value);
-            }
             return result;
         }
         
