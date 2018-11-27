@@ -11,13 +11,19 @@
 
     public class DynamicObjectGraphType : ObjectGraphType<object>
     {
-        private static TypeInfo BuildInstanceType()
+        private static readonly ModuleBuilder ModuleBuilder; 
+
+        static DynamicObjectGraphType()
         {
             var assemblyName = new AssemblyName($"DynamicAssembly_{Guid.NewGuid():N}");
             var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
-            var moduleBuilder = assemblyBuilder.DefineDynamicModule("DynamicModule");
+            ModuleBuilder = assemblyBuilder.DefineDynamicModule($"DynamicModule_{nameof(DynamicObjectGraphType)}");
+        }
+
+        private static TypeInfo BuildInstanceType()
+        {
             var typeName = $"{typeof(DynamicObjectGraphType).Name}_{Guid.NewGuid():N}";
-            var typeBuilder = moduleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(DynamicObjectGraphType));
+            var typeBuilder = ModuleBuilder.DefineType(typeName, TypeAttributes.Public, typeof(DynamicObjectGraphType));
             return typeBuilder.CreateTypeInfo();
         }
         
