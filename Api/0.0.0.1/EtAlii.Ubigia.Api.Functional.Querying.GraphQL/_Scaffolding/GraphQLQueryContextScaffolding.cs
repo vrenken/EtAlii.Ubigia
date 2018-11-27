@@ -4,6 +4,7 @@
     using EtAlii.xTechnology.MicroContainer;
     using GraphQL;
     using GraphQL.Execution;
+    using GraphQL.Types;
     using GraphQL.Validation;
     using GraphQL.Validation.Complexity;
 
@@ -49,7 +50,9 @@
             container.Register<IIdFieldAdder, IdFieldAdder>();
             
             container.Register<INodeFetcher, NodeFetcher>();
-            container.Register<IGraphTypeBuilder, GraphTypeBuilder>();
+            container.Register<IComplexFieldTypeBuilder, ComplexFieldTypeBuilder>();
+            container.Register<IScalarFieldTypeBuilder, ScalarFieldTypeBuilder>();
+            container.Register<IListFieldTypeBuilder, ListFieldTypeBuilder>();
 
         }
     }

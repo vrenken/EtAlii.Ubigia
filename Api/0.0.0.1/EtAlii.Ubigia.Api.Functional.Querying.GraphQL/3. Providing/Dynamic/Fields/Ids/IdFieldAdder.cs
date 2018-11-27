@@ -8,32 +8,27 @@
 
     class IdFieldAdder : IIdFieldAdder
     {
-        private readonly IGraphTypeBuilder _graphTypeBuilder;
+        private readonly IScalarFieldTypeBuilder _scalarFieldTypeBuilder;
 
-        public IdFieldAdder(IGraphTypeBuilder graphTypeBuilder)
+        public IdFieldAdder(IScalarFieldTypeBuilder scalarFieldTypeBuilder)
         {
-            _graphTypeBuilder = graphTypeBuilder;
+            _scalarFieldTypeBuilder = scalarFieldTypeBuilder;
         }
 
         public void Add(
             string name,
             IdDirectiveResult idDirectiveResult, 
             Registration registration,
-            ComplexGraphType<object> parent, 
+            GraphType parent,
             Dictionary<System.Type, GraphType> graphTypes)
         {
         
             var id = idDirectiveResult.Id.SingleOrDefault();
             if (id != null)
             {
-                _graphTypeBuilder.Build(idDirectiveResult.Path, name, id, out ScalarGraphType graphType, out FieldType fieldType);
-
+                var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, id, graphTypes, out var graphType);
                 registration.GraphType = graphType;
-                registration.FieldType = fieldType;
-
-                graphTypes[graphType.GetType()] = graphType;
-
-                parent.AddField(fieldType);
+                ((ComplexGraphType<object>)parent).AddField(fieldType);
             }
         }
     }

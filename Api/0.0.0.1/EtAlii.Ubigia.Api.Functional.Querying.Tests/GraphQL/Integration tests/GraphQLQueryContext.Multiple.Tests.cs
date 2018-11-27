@@ -74,7 +74,7 @@
             // Act.
             var result = await _context.Execute(query);
             
-            // Assert.
+            // Assert.                           {"data":{"person":[{"nickname":"Johnny"},{"nickname":"Johnny"},{"nickname":"Johnny"}]}}
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [ { nickname: 'Iron Man' }, { nickname: 'Johnny' }, { nickname: 'Janey'} ] }", result);
         }
