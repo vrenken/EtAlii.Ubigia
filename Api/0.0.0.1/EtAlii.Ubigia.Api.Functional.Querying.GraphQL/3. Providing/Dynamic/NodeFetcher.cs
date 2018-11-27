@@ -16,7 +16,7 @@
             _scriptsSet = scriptsSet;
         }
 
-        public async Task<IEnumerable<IInternalNode>> FetchAsync(string path)
+        public async Task<IInternalNode[]> FetchAsync(string path)
         {
             var scriptParseResult = _scriptsSet.Parse(path);
             if (scriptParseResult.Errors.Any())

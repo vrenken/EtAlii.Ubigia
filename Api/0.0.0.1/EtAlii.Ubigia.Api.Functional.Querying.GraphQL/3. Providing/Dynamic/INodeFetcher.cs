@@ -6,6 +6,6 @@
 
     internal interface INodeFetcher
     {
-        Task<IEnumerable<IInternalNode>> FetchAsync(string path);
+        Task<IInternalNode[]> FetchAsync(string path);
     }
 }
