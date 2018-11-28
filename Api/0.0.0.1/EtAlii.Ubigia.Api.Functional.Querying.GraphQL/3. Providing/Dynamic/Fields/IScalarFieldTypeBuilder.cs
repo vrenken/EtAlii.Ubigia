@@ -9,6 +9,6 @@
             string path, 
             string name, 
             object value, 
-            Dictionary<System.Type, GraphType> graphTypes, out GraphType graphType);
+            out GraphType graphType);
     }
 }

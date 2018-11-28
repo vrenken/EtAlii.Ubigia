@@ -10,6 +10,6 @@
             string path,
             string name,
             IInternalNode[] nodes,
-            Dictionary<System.Type, GraphType> graphTypes, out GraphType graphType);
+            out GraphType graphType);
     }
 }

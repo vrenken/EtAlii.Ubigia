@@ -26,9 +26,14 @@
             var id = idDirectiveResult.Id.SingleOrDefault();
             if (id != null)
             {
-                var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, id, graphTypes, out var graphType);
-                context.GraphType = graphType;
+                var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, id, out var graphType);
                 ((ComplexGraphType<object>)parent).AddField(fieldType);
+                
+                if (graphType != null)
+                {
+                    context.GraphType = graphType;
+                    graphTypes[graphType.GetType()] = graphType;
+                }
             }
         }
     }

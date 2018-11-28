@@ -41,19 +41,24 @@
                 switch (nodeCount)
                 {
                     case 0: 
-                        fieldType = _complexFieldTypeBuilder.Build(path, name, null, graphTypes, out graphType);
+                        fieldType = _complexFieldTypeBuilder.Build(path, name, null, out graphType);
                         break;
                     case 1: 
                         var node = nodesDirectiveResult.Nodes.Single();
-                        fieldType = _complexFieldTypeBuilder.Build(path, name, node, graphTypes, out graphType);
+                        fieldType = _complexFieldTypeBuilder.Build(path, name, node, out graphType);
                         break;
                     default:
                         var nodes = nodesDirectiveResult.Nodes;
-                        fieldType = _listFieldTypeBuilder.Build(path, name, nodes, graphTypes, out graphType);
+                        fieldType = _listFieldTypeBuilder.Build(path, name, nodes, out graphType);
                         break;
                 }
-                context.GraphType = graphType;
                 ((ComplexGraphType<object>)parent).AddField(fieldType);        
+
+                if (graphType != null)
+                {
+                    context.GraphType = graphType;
+                    graphTypes[graphType.GetType()] = graphType;
+                }
             }
         }
     }
