@@ -26,12 +26,12 @@
             _idFieldAdder = idFieldAdder;
         }
 
-        public async Task<FieldRegistration> Process(
+        public async Task<FieldContext> Process(
             Field field, 
-            Registration parentContext, 
+            Context parentContext, 
             Dictionary<System.Type, GraphType> graphTypes)
         {
-            FieldRegistration registration = null;
+            FieldContext context = null;
 
             var parent = parentContext.GraphType; 
 
@@ -70,17 +70,17 @@
             if (hasNodesDirectives)
             {
                 var results = nodesDirectiveResults.ToArray();
-                registration = FieldRegistration.FromDirectives(results);
-                _nodesFieldAdder.Add(field.Name, results, registration, parent, graphTypes);
+                context = FieldContext.FromDirectives(results);
+                _nodesFieldAdder.Add(field.Name, results, context, parent, graphTypes);
             }
             else if (hasIdDirectives)
             {
                 var result = idDirectiveResults.Single();
-                registration = FieldRegistration.FromDirectives(Array.Empty<NodesDirectiveResult>());
-                _idFieldAdder.Add(field.Name, result, registration, parent, graphTypes);
+                context = FieldContext.FromDirectives(Array.Empty<NodesDirectiveResult>());
+                _idFieldAdder.Add(field.Name, result, context, parent, graphTypes);
             }
 
-            return registration;
+            return context;
         }
     }
 }

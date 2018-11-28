@@ -7,9 +7,9 @@
 
     internal interface IFieldProcessor
     {
-        Task<FieldRegistration> Process(
+        Task<FieldContext> Process(
             Field field, 
-            Registration parentRegistration, 
+            Context parentContext, 
             Dictionary<System.Type, GraphType> graphTypes);
     }
 }

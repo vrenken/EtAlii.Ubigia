@@ -10,7 +10,7 @@
         void Add(
             string name,
             NodesDirectiveResult[] nodesDirectiveResults, 
-            Registration registration, 
+            Context context, 
             GraphType parent, 
             Dictionary<System.Type, GraphType> graphTypes);
     }

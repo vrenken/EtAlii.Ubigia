@@ -26,7 +26,7 @@
         public void Add(
             string name,
             NodesDirectiveResult[] nodesDirectiveResults, 
-            Registration registration, 
+            Context context, 
             GraphType parent, 
             Dictionary<System.Type, GraphType> graphTypes)
         {
@@ -41,17 +41,18 @@
                 switch (nodeCount)
                 {
                     case 0: 
-                        fieldType = _complexFieldTypeBuilder.Build(path, name, new PropertyDictionary(), graphTypes, out graphType);
+                        fieldType = _complexFieldTypeBuilder.Build(path, name, null, graphTypes, out graphType);
                         break;
                     case 1: 
-                        var singleItemProperties = nodesDirectiveResult.Nodes.Single().GetProperties();
-                        fieldType = _complexFieldTypeBuilder.Build(path, name, singleItemProperties, graphTypes, out graphType);
+                        var node = nodesDirectiveResult.Nodes.Single();
+                        fieldType = _complexFieldTypeBuilder.Build(path, name, node, graphTypes, out graphType);
                         break;
                     default:
-                        fieldType = _listFieldTypeBuilder.Build(path, name, nodesDirectiveResult.Nodes, graphTypes, out graphType);
+                        var nodes = nodesDirectiveResult.Nodes;
+                        fieldType = _listFieldTypeBuilder.Build(path, name, nodes, graphTypes, out graphType);
                         break;
                 }
-                registration.GraphType = graphType;
+                context.GraphType = graphType;
                 ((ComplexGraphType<object>)parent).AddField(fieldType);        
             }
         }

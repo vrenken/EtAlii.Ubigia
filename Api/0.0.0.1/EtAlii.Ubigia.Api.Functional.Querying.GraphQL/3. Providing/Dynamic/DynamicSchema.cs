@@ -89,14 +89,14 @@
             await AddDynamicTypes(queryOperation.SelectionSet, registration);
         }
 
-        private async Task AddDynamicTypes(SelectionSet selectionSet, Registration parentRegistration)
+        private async Task AddDynamicTypes(SelectionSet selectionSet, Context parentContext)
         {
             foreach (var selection in selectionSet.Selections)
             {
                 switch (selection)
                 {
                     case Field field:
-                        var fieldRegistration = await _fieldProcessor.Process(field, parentRegistration, _graphTypes);
+                        var fieldRegistration = await _fieldProcessor.Process(field, parentContext, _graphTypes);
                         if (field.SelectionSet != null && fieldRegistration != null)
                         {
                             await AddDynamicTypes(field.SelectionSet, fieldRegistration);

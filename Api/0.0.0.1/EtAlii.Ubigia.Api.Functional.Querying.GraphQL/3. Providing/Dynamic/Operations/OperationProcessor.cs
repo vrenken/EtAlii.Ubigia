@@ -17,7 +17,7 @@
             _nodesDirectiveHandler = nodesDirectiveHandler;
         }
 
-        public async Task<OperationRegistration> Process(
+        public async Task<OperationContext> Process(
             Operation operation, 
             ComplexGraphType<object> query, 
             Dictionary<System.Type, GraphType> graphTypes)
@@ -33,7 +33,7 @@
             }
 
             var results = nodesDirectiveResults.ToArray();
-            var registration = OperationRegistration.FromDirectives(results);
+            var registration = OperationContext.FromDirectives(results);
             registration.GraphType = query;
             
             return registration;

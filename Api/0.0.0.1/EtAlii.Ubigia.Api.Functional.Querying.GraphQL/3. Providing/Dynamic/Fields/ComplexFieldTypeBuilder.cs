@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
 
@@ -10,11 +11,15 @@
         public FieldType Build(
             string path,
             string name,
-            PropertyDictionary properties,
+            IInternalNode node,
             Dictionary<System.Type, GraphType> graphTypes, 
             out GraphType graphType)
         {
+            var properties = node?.GetProperties() ?? new PropertyDictionary();
+            
             graphType = DynamicObjectGraphType.Create(path, name, properties);
+            //graphType.Metadata["EtAlii_Identifier"] = node?.Id ?? Identifier.Empty;
+            
             graphTypes[graphType.GetType()] = graphType;
 
             var scopedgraphType = graphType;
