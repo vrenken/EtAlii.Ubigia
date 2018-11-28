@@ -11,19 +11,17 @@
             string path, 
             string name,
             object value, 
-            Dictionary<System.Type, GraphType> graphTypes, 
             out GraphType graphType)
         {
-            graphType = DynamicObjectGraphType.GetScalarGraphType(value);
-            graphTypes[graphType.GetType()] = graphType;
+            graphType = null;// We cannot continue traversal beyond this level.
             
             var result = new FieldType
             {
                 Name = name,
                 Description = $"Field created for the Ubigia path: {path}",
-                Type = DynamicObjectGraphType.GetType(value),
+                Type = GraphTypeConverter.ToGraphType(value),
                 Arguments = null,
-                Resolver = DynamicObjectGraphType.GetResolver(value)
+                Resolver = new InstanceFieldResolver(value)
             };
             return result;
         }

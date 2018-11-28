@@ -14,26 +14,24 @@
             string path, 
             string name,
             IInternalNode[] nodes,
-            Dictionary<System.Type, GraphType> graphTypes, 
             out GraphType graphType)
         {
-            var propertiesCollection = nodes
+            var propertiesCollections = nodes
                 .Select(node => node.GetProperties())
                 .ToArray();
 
-            var listItemProperties = MergeProperties(propertiesCollection);
-            var listItemGraphType = DynamicObjectGraphType.CreateShallow(path, name, listItemProperties);
-            graphType = listItemGraphType;
+            var listItemProperties = MergeProperties(propertiesCollections);
+            graphType = DynamicObjectGraphType.CreateShallow(path, name, listItemProperties);
 
-            var dynamicObjects = propertiesCollection
+            var dynamicObjects = propertiesCollections
                 .Select(DynamicObject.CreateInstance)
                 .ToArray();
                 
             var result = new FieldType
             {
                 Name = name,
-                ResolvedType = new ListGraphType(listItemGraphType),
-                Resolver = new FuncFieldResolver<object, object>(context => dynamicObjects),
+                ResolvedType = new ListGraphType(graphType),
+                Resolver = new InstanceFieldResolver(dynamicObjects),
             };
 
             return result;
