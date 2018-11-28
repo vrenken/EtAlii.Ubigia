@@ -10,7 +10,7 @@
         void Add(
             string name,
             IdDirectiveResult idDirectiveResult, 
-            Registration registration, 
+            Context context, 
             GraphType parent,
             Dictionary<System.Type, GraphType> graphTypes);
     }
