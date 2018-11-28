@@ -81,6 +81,29 @@
         
         
         [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Multiple_With_Nested_Id()
+        {
+            // Arrange.
+            var query = @"
+                query data  
+                { 
+                    person @nodes(path:""/person/*/*"")
+                    {
+                        firstname @id
+                        nickname 
+                    }
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.                           
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'firstname': 'John', 'nickname': 'Johnny'} , { 'firstname': 'Jane', 'nickname': 'Janey'} , { 'firstname': 'Tony', 'nickname': 'Iron Man'}]}", result);
+        }
+        
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Multiple_02()
         {
             // Arrange.
