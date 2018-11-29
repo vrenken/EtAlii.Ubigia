@@ -10,28 +10,50 @@
 
     internal class ListFieldTypeBuilder : IListFieldTypeBuilder
     {
+        public const string DynamicObjectsMetadataKey = "DynamicObjects";
+        
         public FieldType Build(
             string path, 
             string name,
             IInternalNode[] nodes,
             out GraphType graphType)
         {
-            var propertiesCollections = nodes
-                .Select(node => node.GetProperties())
+            var dynamicObjects = nodes
+                .Select(node => new DynamicObjectTuple
+                {
+                    Identifier = node.Id,
+                    Properties = node.GetProperties(),
+                })
+                .Select(m =>
+                {
+                    m.Instance = DynamicObject.CreateInstance(m.Properties);
+                    return m;
+                })
+                .ToDictionary(m => m.Identifier, m => m);
+         
+            var propertiesCollections = dynamicObjects.Values
+                .Select(m => m.Properties)
                 .ToArray();
 
             var listItemProperties = MergeProperties(propertiesCollections);
-            graphType = DynamicObjectGraphType.CreateShallow(path, name, listItemProperties);
+            var listGraphType = DynamicObjectGraphType.CreateShallow(path, name, listItemProperties);
 
-            var dynamicObjects = propertiesCollections
-                .Select(DynamicObject.CreateInstance)
-                .ToArray();
-                
+//            var dynamicObjects = propertiesCollections
+//                .Select(DynamicObject.CreateInstance)
+//                .ToArray();
+
+
+
+            graphType = new ListGraphType(listGraphType)
+            {
+                Metadata = {["DynamicObjects"] = dynamicObjects}
+            };
+
             var result = new FieldType
             {
                 Name = name,
-                ResolvedType = new ListGraphType(graphType),
-                Resolver = new InstanceFieldResolver(dynamicObjects),
+                ResolvedType = graphType,
+                Resolver = new FuncFieldResolver<object>(context => dynamicObjects.Values.Select(v => v.Instance)),
             };
 
             return result;

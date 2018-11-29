@@ -23,17 +23,40 @@
             Dictionary<System.Type, GraphType> graphTypes)
         {
         
-            var id = idDirectiveResult.Id.SingleOrDefault();
-            if (id != null)
+            var mappings = idDirectiveResult.Mappings;
+            
+            if(!parent.Metadata.TryGetValue(ListFieldTypeBuilder.DynamicObjectsMetadataKey, out var value))
             {
-                var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, id, out var graphType);
-                ((ComplexGraphType<object>)parent).AddField(fieldType);
-                
-                if (graphType != null)
+                if (mappings.Single() is var mapping)
                 {
-                    context.GraphType = graphType;
-                    graphTypes[graphType.GetType()] = graphType;
+                    var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, mapping.Id, out var graphType);
+                    ((ComplexGraphType<object>)parent).AddField(fieldType);
+            
+                    if (graphType != null)
+                    {
+                        context.GraphType = graphType;
+                        graphTypes[graphType.GetType()] = graphType;
+                    }    
                 }
+            }
+            else
+            {
+                var dynamicObjects = (IDictionary<Identifier, DynamicObjectTuple>) value;
+                foreach (var mapping in mappings)
+                {
+                    if (dynamicObjects.TryGetValue(mapping.Identifier, out var matchingTuple))
+                    {
+                        var properties = matchingTuple.Properties;
+                        var clonedProperties = new PropertyDictionary(properties) { {name, mapping.Id } };
+                        matchingTuple.Properties = clonedProperties;
+                        matchingTuple.Instance = DynamicObject.CreateInstance(clonedProperties);
+                    }
+                }
+            
+                var fieldType = _scalarFieldTypeBuilder.BuildShallow(idDirectiveResult.Path, name, String.Empty);
+                
+                var listGraphType = (ComplexGraphType<object>)((ListGraphType)parent).ResolvedType;
+                listGraphType.AddField(fieldType);
             }
         }
     }

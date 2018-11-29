@@ -25,5 +25,20 @@
             };
             return result;
         }
+
+        public FieldType BuildShallow(
+            string path, 
+            string name,
+            object value)
+        {
+            var field = new FieldType
+            {
+                Name = name,
+                Description = $"Shallow field created for the Ubigia path: {path}",
+                ResolvedType = GraphTypeConverter.ToScalarGraphType(value),
+                Resolver = null,
+            };
+            return field;
+        }
     }
 }
