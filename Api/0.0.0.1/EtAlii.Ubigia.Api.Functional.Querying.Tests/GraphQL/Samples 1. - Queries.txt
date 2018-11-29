@@ -32,7 +32,7 @@ query data
 { 
     person 
     @nodes(path:"person:Vrenken/Peter", mode: "Union")
-    @nodes(path:"person:Vrenken/Tanja")
+    #@nodes(path:"person:Vrenken/Tanja")
     { 
         name @id 
     } 
@@ -60,9 +60,9 @@ query data
 ### 06 Unnamed query.
 query data 
 { 
-    location @nodes(path:"location:DE/Berlin//", mode: "Intersect")
-    time @nodes(path:"time:2012//")
-    person @nodes(path:"person:Vrenken/Peter//")
+    #location @nodes(path:"location:DE/Berlin//", mode: "Intersect")
+    #time @nodes(path:"time:2012//")
+    person @nodes(path:"person:Vrenken/Peter")
     { 
         firstname 
         lastname @id(path:"\\") 
@@ -72,9 +72,9 @@ query data
 ### 07 Unnamed query.
 query data 
 { 
-    location @nodes(path:"location:DE/Berlin/*", mode: "Intersect")
-    time @nodes(path:"time:2012/*")
-    person @nodes(path:"person:Vrenken/Peter/*")
+    #location @nodes(path:"location:DE/Berlin/*", mode: "Intersect")
+    #time @nodes(path:"time:2012/*")
+    person @nodes(path:"person:Vrenken/*")
     { 
         firstname 
         lastname @id(path:"\\") 
