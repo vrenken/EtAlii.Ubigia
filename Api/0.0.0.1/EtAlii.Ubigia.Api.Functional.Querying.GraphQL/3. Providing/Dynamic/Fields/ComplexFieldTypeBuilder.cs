@@ -8,6 +8,8 @@
 
     internal class ComplexFieldTypeBuilder : IComplexFieldTypeBuilder
     {
+        public const string NodeMetadataKey = "Node";
+
         public FieldType Build(
             string path,
             string name,
@@ -16,7 +18,8 @@
         {
             var properties = node?.GetProperties() ?? new PropertyDictionary();
             graphType = DynamicObjectGraphType.Create(path, name, properties);
-         
+            graphType.Metadata[NodeMetadataKey] = node; 
+            
             var result = new FieldType
             {
                 Name = graphType.Name,

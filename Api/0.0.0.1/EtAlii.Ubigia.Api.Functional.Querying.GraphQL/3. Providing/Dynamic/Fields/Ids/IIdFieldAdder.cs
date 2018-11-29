@@ -7,10 +7,10 @@
 
     internal interface IIdFieldAdder
     {
-        void Add(
+        Task Add(
             string name,
             IdDirectiveResult idDirectiveResult, 
-            Context context, 
+            FieldContext context, 
             GraphType parent,
             Dictionary<System.Type, GraphType> graphTypes);
     }

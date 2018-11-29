@@ -10,7 +10,7 @@
         void Add(
             string name,
             NodesDirectiveResult[] nodesDirectiveResults, 
-            Context context, 
+            FieldContext context, 
             GraphType parent, 
             Dictionary<System.Type, GraphType> graphTypes);
     }
