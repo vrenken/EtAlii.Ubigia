@@ -189,6 +189,43 @@
             Assert.Equal(3, personsAfter.Length);
         }
 
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ScriptProcessor_RootedPath_Parent_Should_Return_Same_Node()
+        {
+            // Arrange.
+            var logicalContext = await _testContext.CreateLogicalContext(true);
+            var addQueries = new[]
+            {
+                "Person:+=Doe/John",
+                "Person:+=Doe/Jane",
+                "Person:+=Doe/Johnny",
+            };
+
+            var addQuery = String.Join("\r\n", addQueries);
+            var selectQuery = "Person:Doe/John\\";
+            
+            var addScript = _parser.Parse(addQuery).Script;
+            var selectScript = _parser.Parse(selectQuery).Script;
+            
+            var scope = new ScriptScope();
+            var configuration = new ScriptProcessorConfiguration()
+                .Use(_diagnostics)
+                .Use(scope)
+                .Use(logicalContext);
+            var processor = new ScriptProcessorFactory().Create(configuration);
+
+            // Act.
+            var lastSequence = await processor.Process(addScript);
+            await lastSequence.Output.ToArray();
+            lastSequence = await processor.Process(selectScript);
+            var parents = await lastSequence.Output.ToArray();
+            
+            // Assert.
+            Assert.Equal(1, parents.Length);
+            Assert.Equal("Doe", ((INode)parents.First()).Type);
+        }
+
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Assign_To_Variable_And_Then_ReUse_01()
