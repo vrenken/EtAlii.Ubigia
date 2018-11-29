@@ -217,9 +217,18 @@
             // Act.
             var result = await _context.Execute(query);
             
-            // Assert.    { 'person': { 'nickname': 'Pete', 'firstname': 'Peter', 'lastname': 'Vrenken'} }
+            // Assert.    
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"
+                {
+                    'person':
+                    [
+                        {'nickname':'Pete','firstname':'Peter','lastname':'Vrenken'},
+                        {'nickname':'LadyL','firstname':'Tanja','lastname':'Vrenken'},
+                        {'nickname':'Bengel','firstname':'Arjan','lastname':'Vrenken'},
+                        {'nickname':'Scheetje','firstname':'Ida','lastname':'Vrenken'}
+                    ]
+                }", result);
             
         }
     }

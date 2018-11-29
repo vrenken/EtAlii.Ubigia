@@ -147,7 +147,14 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
+            var query = @"
+                query data 
+                { 
+                    person @nodes(path:""person:Stark/Tony"") 
+                    { 
+                        firstname @id(path:"""") 
+                    } 
+                }";
             
             // Act.
             var result = await _context.Execute(query);

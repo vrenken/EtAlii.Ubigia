@@ -38,16 +38,7 @@
             var listItemProperties = MergeProperties(propertiesCollections);
             var listGraphType = DynamicObjectGraphType.CreateShallow(path, name, listItemProperties);
 
-//            var dynamicObjects = propertiesCollections
-//                .Select(DynamicObject.CreateInstance)
-//                .ToArray();
-
-
-
-            graphType = new ListGraphType(listGraphType)
-            {
-                Metadata = {["DynamicObjects"] = dynamicObjects}
-            };
+            graphType = new ListGraphType(listGraphType) { Metadata = {[DynamicObjectsMetadataKey] = dynamicObjects} };
 
             var result = new FieldType
             {

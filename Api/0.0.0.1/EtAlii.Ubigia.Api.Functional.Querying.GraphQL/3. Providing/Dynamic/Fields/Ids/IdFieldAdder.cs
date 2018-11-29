@@ -4,60 +4,87 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL.Types;
 
     class IdFieldAdder : IIdFieldAdder
     {
         private readonly IScalarFieldTypeBuilder _scalarFieldTypeBuilder;
+        private readonly INodeFetcher _nodeFetcher;
 
-        public IdFieldAdder(IScalarFieldTypeBuilder scalarFieldTypeBuilder)
+        public IdFieldAdder(
+            IScalarFieldTypeBuilder scalarFieldTypeBuilder, 
+            INodeFetcher nodeFetcher)
         {
             _scalarFieldTypeBuilder = scalarFieldTypeBuilder;
+            _nodeFetcher = nodeFetcher;
         }
 
-        public void Add(
+        public async Task Add(
             string name,
             IdDirectiveResult idDirectiveResult, 
-            Context context,
+            FieldContext context,
             GraphType parent,
             Dictionary<System.Type, GraphType> graphTypes)
+        {   
+            if(parent.Metadata.TryGetValue(ComplexFieldTypeBuilder.NodeMetadataKey, out var node))
+            {
+                await AddIdToInstance(name, idDirectiveResult, context, parent, graphTypes, (IInternalNode)node);
+            }
+            else if(parent.Metadata.TryGetValue(ListFieldTypeBuilder.DynamicObjectsMetadataKey, out var dynamicObjects))
+            {
+                AddIdToList(name, idDirectiveResult, parent, (IDictionary<Identifier, DynamicObjectTuple>)dynamicObjects);
+            }
+        }
+
+        private async Task AddIdToInstance(
+            string name, 
+            IdDirectiveResult idDirectiveResult, 
+            FieldContext context, 
+            GraphType parent,
+            Dictionary<Type, GraphType> graphTypes, 
+            IInternalNode node)
         {
-        
-            var mappings = idDirectiveResult.Mappings;
+            var idValue = await GetId(node.Id, idDirectiveResult.Path);
             
-            if(!parent.Metadata.TryGetValue(ListFieldTypeBuilder.DynamicObjectsMetadataKey, out var value))
+            var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, idValue, out var graphType);
+            ((ComplexGraphType<object>) parent).AddField(fieldType);
+
+            if (graphType != null)
             {
-                if (mappings.Single() is var mapping)
-                {
-                    var fieldType = _scalarFieldTypeBuilder.Build(idDirectiveResult.Path, name, mapping.Id, out var graphType);
-                    ((ComplexGraphType<object>)parent).AddField(fieldType);
-            
-                    if (graphType != null)
-                    {
-                        context.GraphType = graphType;
-                        graphTypes[graphType.GetType()] = graphType;
-                    }    
-                }
+                context.GraphType = graphType;
+                graphTypes[graphType.GetType()] = graphType;
             }
-            else
+        }
+
+        private void AddIdToList(
+            string name, 
+            IdDirectiveResult idDirectiveResult, 
+            GraphType parent, 
+            IDictionary<Identifier, DynamicObjectTuple> dynamicObjects)
+        {
+            foreach (var dynamicObject in dynamicObjects.Values)
             {
-                var dynamicObjects = (IDictionary<Identifier, DynamicObjectTuple>) value;
-                foreach (var mapping in mappings)
-                {
-                    if (dynamicObjects.TryGetValue(mapping.Identifier, out var matchingTuple))
-                    {
-                        var properties = matchingTuple.Properties;
-                        var clonedProperties = new PropertyDictionary(properties) { {name, mapping.Id } };
-                        matchingTuple.Properties = clonedProperties;
-                        matchingTuple.Instance = DynamicObject.CreateInstance(clonedProperties);
-                    }
-                }
-            
-                var fieldType = _scalarFieldTypeBuilder.BuildShallow(idDirectiveResult.Path, name, String.Empty);
+                var idValue = GetId(dynamicObject.Identifier, idDirectiveResult.Path);
                 
-                var listGraphType = (ComplexGraphType<object>)((ListGraphType)parent).ResolvedType;
-                listGraphType.AddField(fieldType);
+                var properties = dynamicObject.Properties;
+                var clonedProperties = new PropertyDictionary(properties) {{name, idValue}};
+                dynamicObject.Properties = clonedProperties;
+                dynamicObject.Instance = DynamicObject.CreateInstance(clonedProperties);
             }
+
+            var fieldType = _scalarFieldTypeBuilder.BuildShallow(idDirectiveResult.Path, name, String.Empty);
+
+            var listGraphType = (ComplexGraphType<object>) ((ListGraphType) parent).ResolvedType;
+            listGraphType.AddField(fieldType);
+        }
+
+        private async Task<string> GetId(Identifier startIdentifier, string path)
+        {
+            path = $"/&{startIdentifier.ToDotSeparatedString()}{path ?? String.Empty}";
+            var subSet = await _nodeFetcher.FetchAsync(path);
+            return subSet.SingleOrDefault()?.Type;
         }
     }
 }
