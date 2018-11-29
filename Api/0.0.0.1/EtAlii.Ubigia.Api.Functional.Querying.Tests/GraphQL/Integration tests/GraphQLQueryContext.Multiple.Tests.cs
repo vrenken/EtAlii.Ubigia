@@ -76,7 +76,19 @@
             
             // Assert.                           
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} , { 'nickname': 'Iron Man'}]}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"
+                {
+                    'person':
+                    [
+                        { 'nickname':'Johnny' },
+                        { 'nickname':'Janey' },
+                        { 'nickname':'Iron Man' },
+                        { 'nickname':'Pete' },
+                        { 'nickname':'LadyL' },
+                        { 'nickname':'Bengel' },
+                        { 'nickname':'Scheetje' }
+                    ]
+                }", result);
         }
         
         
@@ -99,7 +111,19 @@
             
             // Assert.                           
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'firstname': 'John', 'nickname': 'Johnny'} , { 'firstname': 'Jane', 'nickname': 'Janey'} , { 'firstname': 'Tony', 'nickname': 'Iron Man'}]}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"
+                {
+                    'person':
+                    [
+                        { 'firstname':'John', 'nickname':'Johnny' },
+                        { 'firstname':'Jane', 'nickname':'Janey' },
+                        { 'firstname':'Tony', 'nickname':'Iron Man' },
+                        { 'firstname':'Peter', 'nickname':'Pete' },
+                        { 'firstname':'Tanja', 'nickname':'LadyL' },
+                        { 'firstname':'Arjan', 'nickname':'Bengel' },
+                        { 'firstname':'Ida', 'nickname':'Scheetje' }
+                    ]
+                }", result);
         }
         
         
@@ -125,7 +149,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task GraphQL_Query_Traverse_Person_Plural()
+        public async Task GraphQL_Query_Traverse_Person_Plural_01()
         {
             // Arrange.
             var query = @"
@@ -143,6 +167,60 @@
             // Assert.
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
+        }
+        
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Plural_02()
+        {
+            // Arrange.
+            var query = @"
+                query data 
+                { 
+                    #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
+                    #time @nodes(path:""time:2012//"")
+                    person @nodes(path:""person:Vrenken/Peter"")
+                    { 
+                        nickname
+                        firstname @id
+                        lastname @id(path:""\\"") 
+                    }
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.    
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': { 'nickname': 'Pete', 'firstname': 'Peter', 'lastname': 'Vrenken'} }", result);
+            
+        }
+        
+                
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Plural_03()
+        {
+            // Arrange.
+            var query = @"
+                query data 
+                { 
+                    #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
+                    #time @nodes(path:""time:2012//"")
+                    person @nodes(path:""person:Vrenken/*"")
+                    { 
+                        nickname
+                        firstname @id
+                        lastname @id(path:""\\"") 
+                    }
+                }";
+            
+            // Act.
+            var result = await _context.Execute(query);
+            
+            // Assert.    { 'person': { 'nickname': 'Pete', 'firstname': 'Peter', 'lastname': 'Vrenken'} }
+            Assert.Null(result.Errors);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
+            
         }
     }
 }
