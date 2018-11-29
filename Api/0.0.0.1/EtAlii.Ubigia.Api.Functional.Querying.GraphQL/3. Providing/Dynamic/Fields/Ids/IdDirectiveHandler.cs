@@ -31,17 +31,26 @@
                     ? $"/&{startIdentifier.ToDotSeparatedString()}{pathArgumentValue.Value}"
                     : $"/&{startIdentifier.ToDotSeparatedString()}";
                 var subSet = await _nodeFetcher.FetchAsync(path);
-                var node = subSet?.SingleOrDefault();
+//                var node = subSet?.SingleOrDefault();
 
-                if (node != null)
+                foreach (var node in subSet)
                 {
                     var mapping = new IdMapping
                     {
                         Id = node.Type,
                         Identifier = node.Id,
                     };
-                    mappings.Add(mapping);
+                    mappings.Add(mapping); 
                 }
+//                if (node != null)
+//                {
+//                    var mapping = new IdMapping
+//                    {
+//                        Id = node.Type,
+//                        Identifier = node.Id,
+//                    };
+//                    mappings.Add(mapping);
+//                }
             }
             
             return new IdDirectiveResult
