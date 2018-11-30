@@ -222,7 +222,7 @@
             var parents = await lastSequence.Output.ToArray();
             
             // Assert.
-            Assert.Equal(1, parents.Length);
+            Assert.Single(parents);
             Assert.Equal("Doe", ((INode)parents.First()).Type);
         }
 
