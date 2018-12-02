@@ -171,6 +171,46 @@
         
         
         [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task GraphQL_Query_Traverse_Person_Multiple_Friends()
+        {
+            // Arrange.
+            var query = @"
+                query data  
+                { 
+                    person @nodes(path:""person:Stark/Tony"")
+                    {
+                        name @id,
+                        friends @nodes(path:""/Friends/"") 
+                        { 
+                            name @id
+                            nickname
+                        } 
+                    }
+                }";
+                    
+        // Act.
+        var result = await _context.Execute(query);
+            
+        // Assert.
+        Assert.Null(result.Errors);
+//      var actual = await _documentWriter.WriteToStringAsync(result);
+        await AssertQuery.ResultsAreEqual(_documentWriter, @"
+            {
+                'person':
+                {
+                    'name':'Tony',
+                    'friends':
+                    [
+                        {'name':'John','nickname':'Johnny'},
+                        {'name':'Jane','nickname':'Janey'},
+                        {'name':'Peter','nickname':'Pete'}
+                    ]
+                }
+            }", result);
+    }
+        
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Plural_02()
         {
             // Arrange.
