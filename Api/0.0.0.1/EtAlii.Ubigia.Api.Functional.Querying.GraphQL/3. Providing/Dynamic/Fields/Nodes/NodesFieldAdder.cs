@@ -52,8 +52,16 @@
                         fieldType = _listFieldTypeBuilder.Build(path, name, nodes, out graphType);
                         break;
                 }
-                ((ComplexGraphType<object>)parent).AddField(fieldType);        
 
+                if (parent is ListGraphType listGraphType)
+                {
+                    ((ComplexGraphType<object>)listGraphType.ResolvedType).AddField(fieldType);        
+                }
+                else
+                {
+                    ((ComplexGraphType<object>)parent).AddField(fieldType);        
+                }
+                
                 if (graphType != null)
                 {
                     context.GraphType = graphType;
