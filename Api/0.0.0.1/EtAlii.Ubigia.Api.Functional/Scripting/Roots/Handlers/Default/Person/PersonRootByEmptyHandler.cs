@@ -17,7 +17,11 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var hasMatch = match.Any();
             var hasRest = rest.Any();
-            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Person") }.AsQueryable();
+            var parts = new PathSubjectPart[]
+            {
+                new ParentPathSubjectPart(), 
+                new ConstantPathSubjectPart("Person")
+            }.AsQueryable();
 
             // We only add the isparentof separator when no match or rest is available.
             if (hasMatch || hasRest)
