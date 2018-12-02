@@ -158,45 +158,66 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "$arjan <= Person:Vrenken/Arjan",
                 "$ida <= Person:Vrenken/Ida",
                 
-                "Person:Stark/Tony/ += Friends",
+                "Person:Vrenken/Tanja += Friends",
+                "Person:Vrenken/Peter += Friends",
+                "Person:Vrenken/Ida += Friends",
+                "Person:Doe/Jane += Friends",
+                "Person:Doe/John += Friends",
+                "Person:Stark/Tony += Friends",
+                
                 "Person:Stark/Tony/Friends += $john",
                 "Person:Stark/Tony/Friends += $jane",
                 "Person:Stark/Tony/Friends += $peter",
                 
-                "Person:Doe/John/ += Friends",
                 "Person:Doe/John/Friends += $tony",
                 "Person:Doe/John/Friends += $jane",
                 
-                "Person:Doe/Jane/ += Friends",
                 "Person:Doe/Jane/Friends += $john",
                 "Person:Doe/Jane/Friends += $tony",
 
-                "Person:Vrenken/Peter/ += Friends",
-                "Person:Vrenken/Peter/Friends += $tanja",
-                "Person:Vrenken/Peter/Friends += $arjan",
-                "Person:Vrenken/Peter/Friends += $ida",
-                "Person:Vrenken/Peter/Friends += $tony",
-
-                "Person:Vrenken/Tanja/ += Friends",
-                "Person:Vrenken/Tanja/Friends += $peter",
-                "Person:Vrenken/Tanja/Friends += $arjan",
-                "Person:Vrenken/Tanja/Friends += $ida",
-
-                "Person:Vrenken/Arjan/ += Friends",
+                "Person:Vrenken/Arjan += Friends",
                 "Person:Vrenken/Arjan/Friends += $tanja",
                 "Person:Vrenken/Arjan/Friends += $peter",
                 "Person:Vrenken/Arjan/Friends += $ida",
 
-                "Person:Vrenken/Ida/ += Friends",
                 "Person:Vrenken/Ida/Friends += $tanja",
                 "Person:Vrenken/Ida/Friends += $arjan",
                 "Person:Vrenken/Ida/Friends += $peter",
+
+                "Person:Vrenken/Peter/Friends += $tanja",
+                "Person:Vrenken/Peter/Friends += $arjan",
+                "Person:Vrenken/Peter/Friends += $ida",
+                "Person:Vrenken/Peter/Friends += $tony",
+                
+                "Person:Vrenken/Tanja/Friends += $peter",
+                "Person:Vrenken/Tanja/Friends += $arjan",
+                "Person:Vrenken/Tanja/Friends += $ida",
+
+//                "Person:Vrenken/Ida/Friends/",
+//                "Person:Vrenken/Arjan/Friends/",
+//                "Person:Vrenken/Tanja/Friends/",
+//                "Person:Vrenken/Peter/Friends/",
+//                "Person:Stark/Tony/Friends/",
+//                "Person:Doe/Jane/Friends/",
+//                "Person:Doe/John/Friends/",
+//                "Person:Stark/Tony",
             };
             var addQuery = String.Join("\r\n", addQueries);
 
 
             await context.Scripts.Process(addQuery);
-            
+//            var result = context.Scripts.Process(addQuery);
+//
+//            var list = await result.ToArray();
+//
+//            var ida = await list[list.Length - 6].Output.ToArray();
+//            var arjan = await list[list.Length - 5].Output.ToArray();
+//            var tanja = await list[list.Length - 4].Output.ToArray();
+//            var peter = await list[list.Length - 3].Output.ToArray();
+//            var tony = await list[list.Length - 3].Output.ToArray();
+//            var jane = await list[list.Length - 2].Output.ToArray();
+//            var john = await list[list.Length - 1].Output.ToArray();
+//            var tonyNode = await list[list.Length - 1].Output.ToArray();
         }
 
         #region start/stop
