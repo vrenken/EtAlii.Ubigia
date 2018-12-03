@@ -42,7 +42,7 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.SfChart.WPF46" Version="15.3.0.33" />
     <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="15.3.0.33" />
-    <PackageReference Include="System.Reactive.Windows.Threading" Version="4.1.0" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="4.1.2" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
   </ItemGroup>
   <!-- 

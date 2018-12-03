@@ -24,15 +24,10 @@
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.45" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.74" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.1.1" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.2.4" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.3.0" />
     <PackageReference Include="System.Memory" Version="4.5.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.AspNet.SignalR.Core">
-      <HintPath>..\..\..\..\..\..\Users\vrenk\.nuget\packages\microsoft.aspnet.signalr.core\2.2.2\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
