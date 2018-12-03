@@ -22,10 +22,10 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Fabric.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.44" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.44" />
-    <PackageReference Include="xunit" Version="2.4.0" />
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.45" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.45" />
+    <PackageReference Include="xunit" Version="2.4.1" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj" />
