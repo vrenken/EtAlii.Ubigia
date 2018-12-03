@@ -31,10 +31,7 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Grpc.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.Grpc"
-                  },
-                  {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Grpc.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.Grpc"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc"
                   }
                 ]
               },
@@ -61,10 +58,7 @@
                 "Name": "Api",
                 "Services": [
                   {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Grpc.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.Grpc"
-                  },
-                  {
-                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.Grpc.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.Grpc"
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc"
                   }
                 ]
               },

@@ -12,9 +12,13 @@
     <Content Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Grpc" Version="1.0.73" />
+    <Content Update="settings.*.json" DependentUpon="settings.json" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Grpc" Version="1.0.74" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.1.1" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
-    <Content Update="settings.*.json" DependentUpon="settings.json" />
+    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.csproj" />
+    <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.csproj" />
   </ItemGroup>
 </Project>

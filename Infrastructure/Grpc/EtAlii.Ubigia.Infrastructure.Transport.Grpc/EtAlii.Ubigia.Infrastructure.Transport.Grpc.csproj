@@ -21,8 +21,8 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.44" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Grpc" Version="1.0.73" />
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.45" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Grpc" Version="1.0.74" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />
