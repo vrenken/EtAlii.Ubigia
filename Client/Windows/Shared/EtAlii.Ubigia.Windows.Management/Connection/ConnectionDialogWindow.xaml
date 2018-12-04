@@ -125,10 +125,10 @@
                                  Converter={StaticResource enumConverter},
                                  ConverterParameter=Grpc}"  />
             <RadioButton 
-                GroupName="Transport"  Content="Rest" 
+                GroupName="Transport"  Content="Web Api" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
-                                 ConverterParameter=Rest}"  />
+                                 ConverterParameter=WebApi}"  />
 
         </StackPanel>
 
