@@ -63,28 +63,22 @@
             IDataConnection connection = null;
             if (tryReturnConnection == true)
             {
-				var address = new Uri(viewModel.Address, UriKind.Absolute);
-
-				// We need to provide a clean configuration. else the factoryextension func will be called over and over. 
-				configuration = new DataConnectionConfiguration()
-				    .Use(SignalRTransportProvider.Create())
-                    .Use(address)
-                    .Use(viewModel.Account, viewModel.Space, window.PasswordBox.Password)
-                    .Use(configuration.Extensions);
-
-                connection = new DataConnectionFactory().Create(configuration);
-                try
+                var connectionSucceeded = false;
+                switch (viewModel.Transport)
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        await connection.Open();
-                    });
-                    task.Wait();
+                    case TransportType.SignalR:
+                        connection = new SignalRConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        break;
+                    case TransportType.Grpc:
+                        connection = new GrpcConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        break;
+                    case TransportType.WebApi:
+                        connection = new WebApiConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        break;
                 }
-                catch (Exception)
+                if(!connectionSucceeded)
                 {
-                    MessageBox.Show(window, "Connection failed", "Connection", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                    MessageBox.Show(window, $"{viewModel.Transport} Connection failed", "Connection", MessageBoxButton.OK, MessageBoxImage.Error);
                     connection = null;
                 }
             }
