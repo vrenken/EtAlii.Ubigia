@@ -26,7 +26,7 @@
 
 	    public HttpMessageHandler HttpMessageHandlerFactory()
 	    {
-		    return _httpMessageHandlerFactory();
+		    return _httpMessageHandlerFactory?.Invoke();
 	    }
 
         protected override IScaffolding[] CreateScaffoldingInternal()
