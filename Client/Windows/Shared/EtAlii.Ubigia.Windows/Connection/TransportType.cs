@@ -7,6 +7,6 @@
     {
         Grpc,
         SignalR,
-        Rest
+        WebApi
     }
 }
