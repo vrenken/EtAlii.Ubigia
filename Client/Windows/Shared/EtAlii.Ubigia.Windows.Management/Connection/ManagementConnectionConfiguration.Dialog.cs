@@ -60,26 +60,22 @@
             IManagementConnection connection = null;
             if (tryReturnConnection == true)
             {
-	            var address = new Uri(viewModel.Address, UriKind.Absolute);
-
-				configuration = new ManagementConnectionConfiguration()
-				    .Use(SignalRStorageTransportProvider.Create())
-                    .Use(configuration.Extensions)
-                    .Use(address)
-                    .Use(viewModel.Account, window.PasswordBox.Password);
-
-                connection = new ManagementConnectionFactory().Create(configuration);
-                try
+                var connectionSucceeded = false;
+                switch (viewModel.Transport)
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        await connection.Open();
-                    });
-                    task.Wait();
+                    case TransportType.SignalR:
+                        connection = new SignalRConnector().Connect(window, viewModel, out connectionSucceeded);
+                        break;
+                    case TransportType.Grpc:
+                        connection = new GrpcConnector().Connect(window, viewModel, out connectionSucceeded);
+                        break;
+                    case TransportType.WebApi:
+                        connection = new WebApiConnector().Connect(window, viewModel, out connectionSucceeded);
+                        break;
                 }
-                catch (Exception)
+                if(!connectionSucceeded)
                 {
-                    MessageBox.Show(window, "Connection failed", "Connection", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(window, $"{viewModel.Transport} Connection failed", "Connection", MessageBoxButton.OK, MessageBoxImage.Error);
                     connection = null;
                 }
             }

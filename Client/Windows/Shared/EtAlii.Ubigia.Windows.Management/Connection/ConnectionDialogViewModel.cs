@@ -85,12 +85,12 @@
         {
             switch (e.PropertyName)
             {
-                case "Address":
-                case "Account":
-                case "Space":
+                case nameof(Transport):
+                case nameof(Address):
+                case nameof(Account):
                     IsTested = false;
                     break;
-                case "CurrentSettings":
+                case nameof(CurrentSettings):
                     if (CurrentSettings != null)
                     {
                         Address = CurrentSettings.Address;
