@@ -64,7 +64,6 @@
                 <Setter Property="VerticalContentAlignment" Value="Center" />
             </Style>
             <Style TargetType="{x:Type RadioButton}">
-                <Setter Property="Width" />
                 <Setter Property="Height" Value="25" />
                 <Setter Property="Margin" Value="10, 5" />
                 <Setter Property="BorderBrush" Value="{StaticResource CommonBorderColor}"/>
@@ -129,10 +128,10 @@
                                  Converter={StaticResource enumConverter},
                                  ConverterParameter=Grpc}"  />
             <RadioButton 
-                GroupName="Transport"  Content="Rest" 
+                GroupName="Transport"  Content="Web Api" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
                                  Converter={StaticResource enumConverter},
-                                 ConverterParameter=Rest}"  />
+                                 ConverterParameter=WebApi}"  />
 
         </StackPanel>
 
