@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Api.Transport.Management.SignalR;
 
     public static class ManagementConnectionConfigurationExtension
     {
@@ -62,7 +63,7 @@
 	            var address = new Uri(viewModel.Address, UriKind.Absolute);
 
 				configuration = new ManagementConnectionConfiguration()
-                    .Use(configuration.TransportProvider)
+				    .Use(SignalRStorageTransportProvider.Create())
                     .Use(configuration.Extensions)
                     .Use(address)
                     .Use(viewModel.Account, window.PasswordBox.Password);
