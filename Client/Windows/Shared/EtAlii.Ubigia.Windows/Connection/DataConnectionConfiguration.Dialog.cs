@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.SignalR;
 
     public static class DataConnectionConfigurationExtension
     {
@@ -66,8 +67,7 @@
 
 				// We need to provide a clean configuration. else the factoryextension func will be called over and over. 
 				configuration = new DataConnectionConfiguration()
-                    .Use(configuration.TransportProvider)
-                    //.Use(configuration.Diagnostics)
+				    .Use(SignalRTransportProvider.Create())
                     .Use(address)
                     .Use(viewModel.Account, viewModel.Space, window.PasswordBox.Password)
                     .Use(configuration.Extensions);
