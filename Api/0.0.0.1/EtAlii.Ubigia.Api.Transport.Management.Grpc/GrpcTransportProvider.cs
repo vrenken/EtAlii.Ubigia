@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 
 	    private readonly AuthenticationTokenProvider _storageAuthenticationTokenProvider;
 	    
-		public GrpcStorageTransportProvider(Func<Uri, Channel> grpcChannelFactory)
+		private GrpcStorageTransportProvider(Func<Uri, Channel> grpcChannelFactory)
 		{
 			_grpcChannelFactory = grpcChannelFactory;
 			_storageAuthenticationTokenProvider = new AuthenticationTokenProvider();
@@ -30,5 +30,17 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 	        var authenticationTokenProvider = _storageAuthenticationTokenProvider;
             return new GrpcStorageTransport(address, _grpcChannelFactory, authenticationTokenProvider);
         }
+	    
+	    
+	    public static GrpcStorageTransportProvider Create(Func<Uri, Channel> channelFactory)
+	    {
+		    return new GrpcStorageTransportProvider(channelFactory);
+	    }
+
+	    public static GrpcStorageTransportProvider Create()
+	    {
+		    var channelFactory = new Func<Uri, Channel>((channelAddress) => new Channel(channelAddress.DnsSafeHost, channelAddress.Port, ChannelCredentials.Insecure));
+		    return new GrpcStorageTransportProvider(channelFactory);
+	    }
     }
 }
