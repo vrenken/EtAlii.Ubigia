@@ -2,6 +2,7 @@
 {
     using EtAlii.Ubigia.Windows.Management;
     using System;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport.Management;
@@ -20,6 +21,15 @@
         {
             DispatcherUnhandledException += (sender, e) =>
             {
+                if (Debugger.IsAttached)
+                {
+                    MessageBox.Show($"Unhandled exception: {Environment.NewLine} " +
+                                    $"{Environment.NewLine}" +
+                                    $"{e.Exception.Message}{Environment.NewLine}" +
+                                    $"{Environment.NewLine}" +
+                                    $"{e.Exception.StackTrace}", "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
                 //Logger.ReportUnhandledException(e.Exception); // Disabled because of performance loss.
                 e.Handled = true;
             };
@@ -40,7 +50,6 @@
                 String.IsNullOrWhiteSpace(password))
             {
                 var configuration = new ManagementConnectionConfiguration()
-                    .Use(SignalRStorageTransportProvider.Create())
                     .Use(diagnostics)
                     .UseDialog(ConnectionDialogOptions.ShowAlways, address, account, password);
                 connection = factory.Create(configuration);
@@ -48,7 +57,6 @@
             else
             {
                 var configuration = new ManagementConnectionConfiguration()
-                    .Use(SignalRStorageTransportProvider.Create())
                     .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, password)
                     .Use(diagnostics);
