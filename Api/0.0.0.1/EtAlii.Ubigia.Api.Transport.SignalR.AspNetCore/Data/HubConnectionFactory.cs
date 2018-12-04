@@ -25,7 +25,7 @@
 				.WithUrl(address, options =>
 			    {
 				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
-					options.Transports = HttpTransportType.LongPolling;
+				    options.Transports = HttpTransportType.LongPolling;
 					options.Headers = new Dictionary<string, string>() {{"Host-Identifier", hostIdentifier}};
 				});		    
 			return builder.Build();
@@ -55,7 +55,7 @@
 			    .WithUrl(address, options =>
 			    {
 				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
-					options.Transports = HttpTransportType.LongPolling;
+				    options.Transports = HttpTransportType.LongPolling;
 					options.Headers = new Dictionary<string, string>() {{"Authentication-Token", authenticationToken}};
 				});
 			return builder.Build();
