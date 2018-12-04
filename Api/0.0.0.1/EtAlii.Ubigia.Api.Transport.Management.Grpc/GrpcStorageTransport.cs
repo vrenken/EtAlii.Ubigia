@@ -32,7 +32,7 @@
 	    /// <returns></returns>
 	    private Channel GetChannel()
 	    {
-		    var uriAsString= _channel?.ResolvedTarget;
+		    var uriAsString = _channel?.ResolvedTarget;
 		    var hasAddress = !String.IsNullOrWhiteSpace(uriAsString);
 		    if (hasAddress)
 		    {

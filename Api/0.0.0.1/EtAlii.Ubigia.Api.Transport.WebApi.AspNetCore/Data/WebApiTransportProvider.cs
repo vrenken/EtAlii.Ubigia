@@ -11,6 +11,13 @@ namespace EtAlii.Ubigia.Api.Transport.WebApi
             _infrastructureClient = infrastructureClient;
         }
 
+        public static WebApiTransportProvider Create()
+        {
+            var httpClientFactory = new DefaultHttpClientFactory();
+            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
+            return new WebApiTransportProvider(infrastructureClient);
+        }
+        
         public static WebApiTransportProvider Create(IInfrastructureClient infrastructureClient)
         {
 	        return new WebApiTransportProvider(infrastructureClient);

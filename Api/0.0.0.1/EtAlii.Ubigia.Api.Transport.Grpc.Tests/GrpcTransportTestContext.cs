@@ -20,7 +20,7 @@
 			var grpcChannelFactory = new Func<Uri, Channel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
             
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            .Use(new GrpcTransportProvider(grpcChannelFactory))
+	            .Use(GrpcTransportProvider.Create(grpcChannelFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);
@@ -49,7 +49,7 @@
             var grpcChannelFactory = new Func<Uri, Channel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
 
             var connectionConfiguration = new ManagementConnectionConfiguration()
-				.Use(new GrpcStorageTransportProvider(grpcChannelFactory))
+				.Use(GrpcStorageTransportProvider.Create(grpcChannelFactory))
 				.Use(address)
                 .Use(account, password)
                 .Use(diagnostics);
