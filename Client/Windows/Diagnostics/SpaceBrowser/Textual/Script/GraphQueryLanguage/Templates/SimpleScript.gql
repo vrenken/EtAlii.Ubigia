@@ -1,0 +1,12 @@
+﻿query data  
+{ 
+    person @nodes(path:""person:Stark/Tony"")
+    {
+        name @id,
+        friends @nodes(path:""/Friends/"") 
+        { 
+            name @id
+            nickname
+        } 
+    }
+}

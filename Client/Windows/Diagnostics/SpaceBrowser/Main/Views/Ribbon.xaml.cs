@@ -39,7 +39,7 @@
                 ribbon.SelectedTabItem = ribbon.CodeRibbonTabItem;
                 ribbon.SelectedTabItem.DataContext = newValue;
             }
-            else if (newValue is IScriptViewModel)
+            else if (newValue is IGraphScriptLanguageViewModel)
             {
                 ribbon.SelectedTabItem = ribbon.QueryRibbonTabItem;
                 ribbon.SelectedTabItem.DataContext = newValue;

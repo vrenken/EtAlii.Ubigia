@@ -17,18 +17,18 @@
 
         public ObservableCollection<IDocumentViewModel> Documents => _documentsProvider.Documents;
 
-        public ICommand CloseCommand { get { return _closeCommand; } set { SetProperty(ref _closeCommand, value); } }
+        public ICommand CloseCommand { get => _closeCommand;set => SetProperty(ref _closeCommand, value); }
         private ICommand _closeCommand;
 
         public INewDocumentCommand[] NewBlankDocumentCommands { get; }
 
-        public INewDocumentCommand[] NewDocumentFromTemplateCommands { get { return _newDocumentFromTemplateCommands; } set { SetProperty(ref _newDocumentFromTemplateCommands, value); } }
+        public INewDocumentCommand[] NewDocumentFromTemplateCommands { get => _newDocumentFromTemplateCommands; set => SetProperty(ref _newDocumentFromTemplateCommands, value); }
         private INewDocumentCommand[] _newDocumentFromTemplateCommands;
 
-        public ICommand[] OpenDocumentFromFileCommands { get { return _openDocumentFromFileCommands; } set { SetProperty(ref _openDocumentFromFileCommands, value); } }
+        public ICommand[] OpenDocumentFromFileCommands { get => _openDocumentFromFileCommands; set => SetProperty(ref _openDocumentFromFileCommands, value); }
         private ICommand[] _openDocumentFromFileCommands;
 
-        public ICommand[] OpenDocumentFromSpaceCommands { get { return _openDocumentFromSpaceCommands; } set { SetProperty(ref _openDocumentFromSpaceCommands, value); } }
+        public ICommand[] OpenDocumentFromSpaceCommands { get => _openDocumentFromSpaceCommands; set => SetProperty(ref _openDocumentFromSpaceCommands, value); }
         private ICommand[] _openDocumentFromSpaceCommands;
 
         public MainWindowViewModel(
@@ -40,9 +40,9 @@
             INewTreeDocumentCommand newTreeDocumentCommand,
             INewSequentialDocumentCommand newSequentialDocumentCommand,
             INewTemporalDocumentCommand newTemporalDocumentCommand,
-            INewScriptDocumentCommand newScriptDocumentCommand,
+            INewGraphScriptLanguageDocumentCommand newScriptLanguageDocumentCommand,
             INewCodeDocumentCommand newCodeDocumentCommand,
-            INewGraphQlDocumentCommand newGraphQlDocumentCommand,
+            INewGraphQueryLanguageDocumentCommand newGraphQueryLanguageDocumentCommand,
             INewProfilingDocumentCommand newProfilingDocumentCommand)
         {
             _documentsProvider = documentsProvider;
@@ -56,8 +56,8 @@
                 newTreeDocumentCommand,
                 newSequentialDocumentCommand,
                 newTemporalDocumentCommand,
-                newScriptDocumentCommand,
-                newGraphQlDocumentCommand,
+                newScriptLanguageDocumentCommand,
+                newGraphQueryLanguageDocumentCommand,
                 newCodeDocumentCommand,
                 newProfilingDocumentCommand
             };

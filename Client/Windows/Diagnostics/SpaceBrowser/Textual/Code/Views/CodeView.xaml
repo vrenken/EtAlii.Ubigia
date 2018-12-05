@@ -14,7 +14,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <views:ScriptEditor
+        <views:GraphScriptLanguageEditor
             Grid.Row="0"
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             FontFamily="Consolas"
