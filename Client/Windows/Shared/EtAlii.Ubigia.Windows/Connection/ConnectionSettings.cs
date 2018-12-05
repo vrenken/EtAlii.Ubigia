@@ -9,5 +9,6 @@
         public string Account { get; set; }
         public string Password { get; set; }
         public string Space { get; set; }
+        public string TransportType { get; set; }
     }
 }

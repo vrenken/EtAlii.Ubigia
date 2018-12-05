@@ -95,6 +95,7 @@
                     {
                         Address = CurrentSettings.Address;
                         Account = CurrentSettings.Account;
+                        Transport = (TransportType) Enum.Parse(typeof(TransportType), CurrentSettings.TransportType);
                         _window.PasswordBox.Password = CurrentSettings.Password;
                         IsTested =
                             !String.IsNullOrWhiteSpace(Address) &&
