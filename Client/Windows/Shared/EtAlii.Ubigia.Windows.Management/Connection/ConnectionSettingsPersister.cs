@@ -25,6 +25,7 @@
             var currentSettings = (ConnectionSettings)formatter.Deserialize(reader.BaseStream);
             _viewModel.Address = currentSettings.Address;
             _viewModel.Account = currentSettings.Account;
+            _viewModel.Transport = (TransportType)Enum.Parse(typeof(TransportType), currentSettings.TransportType);
             password = currentSettings.Password;
             _viewModel.IsTested = reader.ReadBoolean();
             _viewModel.RememberPassword = reader.ReadBoolean();
@@ -62,6 +63,7 @@
                 Address = _viewModel.Address,
                 Account = _viewModel.Account,
                 Password = _viewModel.RememberPassword ? password : null,
+                TransportType = _viewModel.Transport.ToString(),
             };
             return currentSettings;
         }

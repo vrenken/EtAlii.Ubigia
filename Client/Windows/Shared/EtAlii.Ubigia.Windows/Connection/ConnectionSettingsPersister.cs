@@ -26,6 +26,7 @@
             _viewModel.Address = currentSettings.Address;
             _viewModel.Account = currentSettings.Account;
             _viewModel.Space = currentSettings.Space;
+            _viewModel.Transport = (TransportType)Enum.Parse(typeof(TransportType), currentSettings.TransportType);
             password = currentSettings.Password;
             _viewModel.IsTested = reader.ReadBoolean();
             _viewModel.RememberPassword = reader.ReadBoolean();
@@ -64,6 +65,7 @@
                 Account = _viewModel.Account,
                 Password = _viewModel.RememberPassword ? password : null,
                 Space = _viewModel.Space,
+                TransportType = _viewModel.Transport.ToString(),
             };
             return currentSettings;
         }
