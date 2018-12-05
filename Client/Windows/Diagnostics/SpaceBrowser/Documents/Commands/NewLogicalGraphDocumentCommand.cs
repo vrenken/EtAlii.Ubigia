@@ -27,7 +27,7 @@
             Icon = @"pack://siteoforigin:,,,/Images/Nodes.png";
             TitleFormat = "Logical graph view {0}";
             InfoLine = "Create a document that shows a information stored in a space using a logical graph";
-            InfoTip1 = "Usefull for change analysis";
+            InfoTip1 = "Useful for change analysis";
             InfoTip2 = "Shows temporal information";
         }
     }

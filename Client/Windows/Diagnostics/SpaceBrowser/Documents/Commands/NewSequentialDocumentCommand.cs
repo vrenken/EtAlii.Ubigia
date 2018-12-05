@@ -27,7 +27,7 @@
             Icon = @"pack://siteoforigin:,,,/Images/View-Details.png";
             TitleFormat = "Sequential view {0}";
             InfoLine = "Create a document to show information stored in a space sequentially";
-            InfoTip1 = "Usefull for order analysis";
+            InfoTip1 = "Useful for order analysis";
             InfoTip2 = "Does not show temporal information";
         }
     }

@@ -42,6 +42,7 @@
             INewTemporalDocumentCommand newTemporalDocumentCommand,
             INewScriptDocumentCommand newScriptDocumentCommand,
             INewCodeDocumentCommand newCodeDocumentCommand,
+            INewGraphQlDocumentCommand newGraphQlDocumentCommand,
             INewProfilingDocumentCommand newProfilingDocumentCommand)
         {
             _documentsProvider = documentsProvider;
@@ -56,6 +57,7 @@
                 newSequentialDocumentCommand,
                 newTemporalDocumentCommand,
                 newScriptDocumentCommand,
+                newGraphQlDocumentCommand,
                 newCodeDocumentCommand,
                 newProfilingDocumentCommand
             };

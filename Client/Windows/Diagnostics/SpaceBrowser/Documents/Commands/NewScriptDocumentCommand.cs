@@ -28,7 +28,7 @@
             TitleFormat = "Query view {0}";
             InfoLine = "Create a document to invoke scripts on a space";
             InfoTip1 = "Allows execution scripts written in the GQL script language";
-            InfoTip2 = "Usefull for advanced space operations";
+            InfoTip2 = "Useful for advanced space operations";
         }
     }
 }

@@ -51,6 +51,7 @@
 
             container.Register<ICodeDocumentFactory, CodeDocumentFactory>();
             container.Register<INewCodeDocumentCommand, NewCodeDocumentCommand>();
+            container.Register<INewGraphQlDocumentCommand, NewGraphQlDocumentCommand>();
 
             container.Register<IProfilingDocumentFactory, ProfilingDocumentFactory>();
             container.Register<INewProfilingDocumentCommand, NewProfilingDocumentCommand>();
