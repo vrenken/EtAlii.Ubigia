@@ -27,7 +27,7 @@
             Icon = @"pack://siteoforigin:,,,/Images/Tree.png";
             TitleFormat = "Tree view {0}";
             InfoLine = "Create a document that shows information stored in a space hierarchically";
-            InfoTip1 = "Usefull for tree structure analysis";
+            InfoTip1 = "Useful for tree structure analysis";
             InfoTip2 = "Does not show temporal information";
         }
     }

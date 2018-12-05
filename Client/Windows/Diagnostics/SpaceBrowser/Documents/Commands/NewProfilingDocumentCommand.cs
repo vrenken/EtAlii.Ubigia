@@ -28,7 +28,7 @@
             TitleFormat = "Profiler view {0}";
             InfoLine = "Create a profiling document";
             InfoTip1 = "Shows profiling details of all API access to a space";
-            InfoTip2 = "Usefull for advanced query optimization";
+            InfoTip2 = "Useful for advanced query optimization";
         }
     }
 }
