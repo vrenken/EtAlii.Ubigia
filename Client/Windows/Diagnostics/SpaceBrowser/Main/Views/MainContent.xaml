@@ -54,8 +54,8 @@
                 <xcad:DockingManager.LayoutItemTemplateSelector>
                     <mvvm:ListBasedTemplateSelector>
                         <mvvm:ListBasedTemplateSelector.Templates>
-                            <DataTemplate DataType="{x:Type ubigia:ScriptViewModel}">
-                                <views:ScriptView DataContext="{Binding}" />
+                            <DataTemplate DataType="{x:Type ubigia:GraphScriptLanguageViewModel}">
+                                <views:GraphScriptLanguageView DataContext="{Binding}" />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type ubigia:CodeViewModel}">
                                 <views:CodeView DataContext="{Binding}" />

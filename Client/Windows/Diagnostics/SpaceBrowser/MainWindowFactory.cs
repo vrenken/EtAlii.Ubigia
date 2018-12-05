@@ -46,12 +46,14 @@
             container.Register<ITemporalDocumentFactory, TemporalDocumentFactory>();
             container.Register<INewTemporalDocumentCommand, NewTemporalDocumentCommand>();
 
-            container.Register<IScriptDocumentFactory, ScriptDocumentFactory>();
-            container.Register<INewScriptDocumentCommand, NewScriptDocumentCommand>();
+            container.Register<IGraphScriptLanguageDocumentFactory, GraphScriptLanguageDocumentFactory>();
+            container.Register<INewGraphScriptLanguageDocumentCommand, NewGraphScriptLanguageDocumentCommand>();
+
+            container.Register<IGraphQueryLanguageDocumentFactory, GraphQueryLanguageDocumentFactory>();
+            container.Register<INewGraphQueryLanguageDocumentCommand, NewGraphQueryLanguageDocumentCommand>();
 
             container.Register<ICodeDocumentFactory, CodeDocumentFactory>();
             container.Register<INewCodeDocumentCommand, NewCodeDocumentCommand>();
-            container.Register<INewGraphQlDocumentCommand, NewGraphQlDocumentCommand>();
 
             container.Register<IProfilingDocumentFactory, ProfilingDocumentFactory>();
             container.Register<INewProfilingDocumentCommand, NewProfilingDocumentCommand>();
