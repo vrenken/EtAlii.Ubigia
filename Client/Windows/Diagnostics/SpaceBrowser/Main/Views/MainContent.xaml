@@ -112,13 +112,13 @@
                                 </xcad:LayoutAnchorable>
                                 <xcad:LayoutAnchorable ContentId="scriptStatus" Title="Script status">
                                     <views:ScriptExecutionView
-                                            Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
-                                            ExecutionStatus="{Binding ExecutionStatus}"/>
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                        ExecutionStatus="{Binding ExecutionStatus}"/>
                                 </xcad:LayoutAnchorable>
                                 <xcad:LayoutAnchorable ContentId="scriptErrors" Title="Script errors">
                                     <views:ScriptErrorsView 
-                                            Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
-                                            ItemsSource="{Binding Errors}" />
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                        ItemsSource="{Binding Errors}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
 

@@ -23,12 +23,8 @@
         public Script Script { get { return _script; } set { SetProperty(ref _script, value); } }
         private Script _script;
 
-        public ObservableCollection<Result> ScriptVariables { get { return _scriptVariables; } set { SetProperty(ref _scriptVariables, value); } }
-        private ObservableCollection<Result> _scriptVariables;
-
-        public ObservableCollection<Result> ScriptResults { get { return _scriptResults; } set { SetProperty(ref _scriptResults, value); } }
-        private ObservableCollection<Result> _scriptResults;
-
+        public ObservableCollection<Result> ScriptVariables { get; } = new ObservableCollection<Result>();
+        public ObservableCollection<Result> ScriptResults { get; } = new ObservableCollection<Result>();
         public ObservableCollection<string> ExecutionStatus { get; } = new ObservableCollection<string>();
 
         public event Action CodeChanged = delegate { };

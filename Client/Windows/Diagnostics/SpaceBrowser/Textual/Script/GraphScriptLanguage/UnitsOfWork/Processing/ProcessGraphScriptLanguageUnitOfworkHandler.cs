@@ -48,7 +48,7 @@
                 {
                     viewModel.CanExecute = false;
                     viewModel.CanStop = true;
-                    viewModel.ScriptResults = new ObservableCollection<Result>();
+                    viewModel.ScriptResults.Clear();
                     Task.Delay(100).Wait();
                 });
 

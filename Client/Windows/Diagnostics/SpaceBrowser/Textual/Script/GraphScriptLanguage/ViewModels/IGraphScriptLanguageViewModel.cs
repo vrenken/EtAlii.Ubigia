@@ -13,9 +13,9 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         string Code { get; set; }
         Script Script { get; set; }
 
-        ObservableCollection<Result> ScriptVariables { get; set; }
+        ObservableCollection<Result> ScriptVariables { get; }
 
-        ObservableCollection<Result> ScriptResults { get; set; }
+        ObservableCollection<Result> ScriptResults { get; }
 
         IEnumerable<TextualError> Errors { get; set; }
         bool CanExecute { get; set; }
