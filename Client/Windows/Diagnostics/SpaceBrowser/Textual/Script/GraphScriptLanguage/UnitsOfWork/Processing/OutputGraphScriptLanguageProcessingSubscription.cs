@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
             results.Subscribe(
                     onError: e => { },
-                    onFirst: () => viewModel.ScriptResults = new ObservableCollection<Result>(),
+                    onFirst: () => viewModel.ScriptResults.Clear(),
                     onNext: o =>
                     {
                         var outputGroup = $"{outputIndex++:000}: {o.Sequence.ToString()}";
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     },
                     onCompleted: () =>
                     {
-                        viewModel.ScriptVariables = new ObservableCollection<Result>();
+                        viewModel.ScriptVariables.Clear();
                         foreach (var kvp in viewModel.Scope.Variables)
                         {
                             kvp.Value.Value
