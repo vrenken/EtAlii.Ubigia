@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using GraphQL;
     using GraphQL.Execution;
+    using GraphQL.Http;
 
     internal class GraphQLQueryContext : IGraphQLQueryContext
     {
@@ -14,9 +15,12 @@
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
         private readonly IDocumentBuilder _builder;
+        private readonly IDocumentWriter _documentWriter;
 
-        internal GraphQLQueryContext(IDataContext dataContext,
-            IDocumentBuilder builder, 
+        internal GraphQLQueryContext(
+            IDataContext dataContext,
+            IDocumentBuilder builder,
+            IDocumentWriter documentWriter,
             IDocumentExecuter executor,
             IStaticSchema staticSchema,
             IOperationProcessor operationProcessor, 
@@ -24,13 +28,14 @@
         {
             _dataContext = dataContext;
             _builder = builder;
+            _documentWriter = documentWriter;
             _executor= executor;
             _staticSchema = staticSchema;
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
         }
         
-        public async Task<ExecutionResult> Execute(string query)//, Inputs inputs)
+        public async Task<QueryExecutionResult> Execute(string query)//, Inputs inputs)
         {
             var inputs = new Inputs();
             var document = _builder.Build(query);
@@ -52,9 +57,11 @@
                 UserContext = new UserContext {User = null} // ctx.User ;
             };
 
-            var result = await _executor.ExecuteAsync(configuration);
+            var executionResult = await _executor.ExecuteAsync(configuration);
 
-            return result;
+            var dataAsString = await _documentWriter.WriteToStringAsync(executionResult);
+                
+            return new QueryExecutionResult(executionResult, dataAsString);
         }
     }
 }
