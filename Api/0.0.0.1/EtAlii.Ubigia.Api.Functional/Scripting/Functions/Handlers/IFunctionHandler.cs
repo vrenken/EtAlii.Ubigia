@@ -7,6 +7,13 @@ namespace EtAlii.Ubigia.Api.Functional
         ParameterSet[] ParameterSets { get; }
         string Name { get; }
 
-        void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject);
+        void Process(
+            IFunctionContext context, 
+            ParameterSet parameterSet, 
+            ArgumentSet argumentSet, 
+            IObservable<object> input, 
+            ExecutionScope scope, 
+            IObserver<object> output, 
+            bool processAsSubject);
     }
 }

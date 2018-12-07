@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 
         public IProfiler Profiler { get; }
         public IScriptsSet Scripts => _decoree.Scripts;
-        public IQuerySet Queries => _decoree.Queries;
         public IDataContextConfiguration Configuration => _decoree.Configuration;
 
         public ProfilingDataContext(

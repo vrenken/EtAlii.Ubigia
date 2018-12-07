@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.xTechnology.MicroContainer;
 
     internal class ScriptsSet : IScriptsSet
     {
@@ -12,6 +13,7 @@
         private readonly IScriptParserFactory _scriptParserFactory;
         private readonly ILogicalContext _logicalContext;
 
+        internal Container Container { get; }
         protected internal ScriptsSet(
             IFunctionHandlersProvider functionHandlersProvider,
             IRootHandlerMappersProvider rootHandlerMappersProvider,
