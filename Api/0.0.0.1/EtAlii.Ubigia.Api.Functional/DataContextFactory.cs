@@ -22,7 +22,6 @@
             {
                 new ContextScaffolding(configuration),
                 new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
-                new ScriptSetScaffolding(),
             };
 
             foreach (var scaffolding in scaffoldings)

@@ -17,7 +17,7 @@
             container.Register(() => _configuration.LogicalContext);
 
             container.Register<IDataContext, DataContext>();
-            container.Register<IQuerySet,QuerySet>();
+            container.Register<IScriptsSet, ScriptsSet>();
         }
     }
 }

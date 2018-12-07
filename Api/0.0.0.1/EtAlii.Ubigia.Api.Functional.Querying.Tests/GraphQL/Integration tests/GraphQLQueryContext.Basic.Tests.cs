@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Querying;
     using GraphQL;
     using GraphQL.Http;
     using Xunit;
@@ -34,7 +35,7 @@
                 var start = Environment.TickCount;
 
                 _dataContext = await _testContext.FunctionalTestContext.CreateFunctionalContext(true);
-                _context = new GraphQLQueryContextFactory().Create(_dataContext);
+                _context = _dataContext.CreateGraphQLQueryContext();
 
                 await _testContext.FunctionalTestContext.AddPeople(_dataContext);
                 await _testContext.FunctionalTestContext.AddAddresses(_dataContext);
