@@ -1,12 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL.Language.AST;
-    using global::GraphQL.Types;
 
     internal class IdDirectiveHandler : IIdDirectiveHandler
     {
@@ -19,7 +16,7 @@
 
         public async Task<IdDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers)
         {
-            var result = new IdDirectiveResult();
+//            var result = new IdDirectiveResult();
             
             var pathArgument = directive.Arguments.SingleOrDefault(d => d.Name == "path");
             var pathArgumentValue = pathArgument?.Value as StringValue;
@@ -53,11 +50,11 @@
 ////                }
 //            }
             
-            return new IdDirectiveResult
+            return await Task.FromResult(new IdDirectiveResult
             {
                 //Mappings = mappings.ToArray(),
                 Path = pathArgumentValue?.Value ?? String.Empty,    
-            };;
+            });
         }
     }
 }
