@@ -4,6 +4,7 @@
     using EtAlii.xTechnology.MicroContainer;
     using GraphQL;
     using GraphQL.Execution;
+    using GraphQL.Http;
     using GraphQL.Types;
     using GraphQL.Validation;
     using GraphQL.Validation.Complexity;
@@ -29,6 +30,8 @@
             container.Register<IDocumentBuilder, GraphQLDocumentBuilder>();
             container.Register<IComplexityAnalyzer>(() => new ComplexityAnalyzer());
 
+            container.Register<IDocumentWriter>(() => new DocumentWriter(indent: true));
+            
             container.Register<IDocumentExecuter>(() =>
             {
                 var documentBuilder = container.GetInstance<IDocumentBuilder>();
