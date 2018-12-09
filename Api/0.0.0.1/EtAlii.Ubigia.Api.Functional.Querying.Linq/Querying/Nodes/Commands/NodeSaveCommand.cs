@@ -8,11 +8,11 @@
 
     internal class NodeSaveCommand : INodeSaveCommand
     {
-        private readonly IScriptsSet _scriptsSet;
+        private readonly IGraphSLScriptContext _scriptContext;
 
-        internal NodeSaveCommand(IScriptsSet scriptsSet)
+        internal NodeSaveCommand(IGraphSLScriptContext scriptContext)
         {
-            _scriptsSet = scriptsSet;
+            _scriptContext = scriptContext;
         }
         
         public void Execute(INode node)
@@ -27,10 +27,10 @@
                 scope.Variables.Add(updateVariableName, new ScopeVariable(node, "updateVariableName"));
                 scriptAggregator.AddUpdateItem(node.Id, updateVariableName);
                 var scriptText = scriptAggregator.GetScript();
-                var scriptParseResult = _scriptsSet.Parse(scriptText);
+                var scriptParseResult = _scriptContext.Parse(scriptText);
 
                 // TODO: Attempt to make Linq async.
-                var lastSequence = _scriptsSet
+                var lastSequence = _scriptContext
                     .Process(scriptParseResult.Script, scope)
                     .ToEnumerable()
                     .Last();

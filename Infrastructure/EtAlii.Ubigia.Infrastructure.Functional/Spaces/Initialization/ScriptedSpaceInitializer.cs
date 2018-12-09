@@ -24,13 +24,15 @@
                 var spaceConnection = await managementConnection.OpenSpace(space);
                 var dataContext = new DataContextFactory().Create(spaceConnection);
 
+                var scriptContext = dataContext.CreateGraphSLScriptContext();
+                
                 var rootsToCreate = template.RootsToCreate;
 
                 foreach (var rootToCreate in rootsToCreate)
                 {
                     var scope = new ScriptScope();
-                    var createScript = dataContext.Scripts.Parse($"root:{rootToCreate} <= Object");
-                    var processingResult = await dataContext.Scripts.Process(createScript.Script, scope);
+                    var createScript = scriptContext.Parse($"root:{rootToCreate} <= Object");
+                    var processingResult = await scriptContext.Process(createScript.Script, scope);
                     await processingResult.Output.LastOrDefaultAsync();
                 }
             });

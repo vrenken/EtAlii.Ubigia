@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        public void Set(IDataContext context, Person person)
+        public void Set(IGraphSLScriptContext context, Person person)
         {
 	        var name = GetName(person.Names) ??
 	                   //GetName(person.ContactEntry.Name) ??

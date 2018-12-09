@@ -7,14 +7,13 @@
 
     public class ParseGraphScriptLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphScriptLanguageUnitOfwork>, IParseGraphScriptLanguageUnitOfworkHandler
     {
-        private readonly IDataContext _dataContext;
+        private readonly IGraphSLScriptContext _scriptContext;
 
 //        private readonly object _lockObject = new object();
 
-        public ParseGraphScriptLanguageUnitOfworkHandler(
-            IDataContext dataContext)
+        public ParseGraphScriptLanguageUnitOfworkHandler(IGraphSLScriptContext scriptContext)
         {
-            _dataContext = dataContext;
+            _scriptContext = scriptContext;
         }
 
         protected override void Handle(ParseGraphScriptLanguageUnitOfwork unitOfWork)
@@ -22,7 +21,7 @@
             var viewModel = unitOfWork.ScriptViewModel;
 
                 viewModel.Errors = new TextualError[] {};
-                var result = _dataContext.Scripts.Parse(viewModel.Code);
+                var result = _scriptContext.Parse(viewModel.Code);
                 viewModel.Script = result.Script;
                 viewModel.Errors = result.Errors.Select(error => new TextualError { Text = error.Message, Line = error.Line, Column = error.Column });
             viewModel.CanExecute = !viewModel.Errors.Any() && !String.IsNullOrWhiteSpace(viewModel.Code);

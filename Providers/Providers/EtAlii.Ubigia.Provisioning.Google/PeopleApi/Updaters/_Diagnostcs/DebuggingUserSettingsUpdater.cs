@@ -16,11 +16,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        public async Task Update(UserSettings userSettings, SystemSettings systemSettings, IDataContext userDataContext, TimeSpan thresholdBeforeExpiration)
+        public async Task Update(UserSettings userSettings, SystemSettings systemSettings, IGraphSLScriptContext userDataScriptContext, TimeSpan thresholdBeforeExpiration)
         {
             _logger.Info($"Updating: {userSettings.Email} ({userSettings.Updated})");
 
-            await _decoree.Update(userSettings, systemSettings, userDataContext, thresholdBeforeExpiration);
+            await _decoree.Update(userSettings, systemSettings, userDataScriptContext, thresholdBeforeExpiration);
 
             _logger.Info($"Updated: {userSettings.Email} ({userSettings.Updated})");
         }

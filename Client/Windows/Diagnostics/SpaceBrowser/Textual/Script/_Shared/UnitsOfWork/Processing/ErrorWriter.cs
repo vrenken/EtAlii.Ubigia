@@ -12,9 +12,9 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             _statusWriter = statusWriter;
         }
 
-        public void Write(IGraphScriptLanguageViewModel viewModel, Exception e, List<TextualError> errors)
+        public void Write(IExecutionStatusProvider statusProvider, Exception e, List<TextualError> errors)
         {
-            _statusWriter.Write(viewModel, $"Execution failed: {e.Message}");
+            _statusWriter.Write(statusProvider, $"Execution failed: {e.Message}");
             errors.Add(new TextualError { Text = e.Message, Line = 0, Column = 0 });
         }
     }

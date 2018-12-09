@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public interface IPersonSetter
     {
-        void Set(IDataContext context, Person person);
+        void Set(IGraphSLScriptContext context, Person person);
     }
 }

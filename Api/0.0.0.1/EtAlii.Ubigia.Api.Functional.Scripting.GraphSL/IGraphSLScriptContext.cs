@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Threading.Tasks;
 
-    public interface IGraphSLContext
+    public interface IGraphSLScriptContext
     {
         ScriptParseResult Parse(string text);
 

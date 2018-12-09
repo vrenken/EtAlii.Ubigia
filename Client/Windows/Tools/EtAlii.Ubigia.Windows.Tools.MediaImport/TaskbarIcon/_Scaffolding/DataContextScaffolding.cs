@@ -23,9 +23,18 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
         {
             // This should actually not be needed anymore because the datacontext should be the sole entry point for an application.
             // However, I have no good idea on how to redesign it that way. All other solutions have disadvantages as well.  
-            container.Register(() => _connection);
+            container.Register<IDataConnection>(() => _connection);
 
-            container.Register(() =>
+            container.Register<IGraphSLScriptContext>(() =>
+            {
+                var dataContext = container.GetInstance<IDataContext>();
+                
+                var configuration = new GraphSLScriptContextConfiguration()
+                    .Use(dataContext)
+                    .UseNET47();
+                return dataContext.CreateGraphSLScriptContext(configuration);
+            });
+            container.Register<IDataContext>(() =>
             {
                 var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
                 var fabricContextConfiguration = new FabricContextConfiguration()
@@ -39,8 +48,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 
                 var dataContextConfiguration = new DataContextConfiguration()
                                     .Use(diagnostics)
-                                    .Use(logicalContext)
-                                    .UseNET47();
+                                    .Use(logicalContext);
                 return new DataContextFactory().Create(dataContextConfiguration);
             });
         }

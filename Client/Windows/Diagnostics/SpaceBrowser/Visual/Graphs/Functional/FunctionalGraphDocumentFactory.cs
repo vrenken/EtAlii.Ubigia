@@ -11,6 +11,7 @@
     public class FunctionalGraphDocumentFactory : IFunctionalGraphDocumentFactory
     {
         public IDocumentViewModel Create(
+            IGraphSLScriptContext graphSlScriptContext,
             IDataContext dataContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
@@ -34,6 +35,7 @@
 
             container.Register(() => fabricContext);
             container.Register(() => dataContext);
+            container.Register<IGraphSLScriptContext>(() => graphSlScriptContext);
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();

@@ -9,9 +9,9 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             _dispatcherInvoker = dispatcherInvoker;
         }
 
-        public void Write(IGraphScriptLanguageViewModel viewModel, string message)
+        public void Write(IExecutionStatusProvider statusProvider, string message)
         {
-            _dispatcherInvoker.SafeInvoke(() => viewModel.ExecutionStatus.Add(message));
+            _dispatcherInvoker.SafeInvoke(() => statusProvider.ExecutionStatus.Add(message));
 
         }
     }

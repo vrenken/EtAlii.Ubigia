@@ -22,8 +22,8 @@
     <Folder Include="$(MSBuildThisFileDirectory)Scripting\" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\DataContextFactory.RootHandlers.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\DataContextFactory.FunctionHandlers.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\GraphSLScriptContextFactory.RootHandlers.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\GraphSLScriptContextFactory.FunctionHandlers.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\Diagnostics\IntegrationTests\ProfilingDataContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\TestRoot2HandlerMapper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\TestRootHandlerMapper.cs" />

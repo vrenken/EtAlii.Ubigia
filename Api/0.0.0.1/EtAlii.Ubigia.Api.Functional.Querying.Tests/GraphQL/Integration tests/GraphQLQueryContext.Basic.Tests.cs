@@ -11,7 +11,9 @@
     public class GraphQLQueryContextBasicTests : IClassFixture<QueryingUnitTestContext>, IDisposable
     {
         private IDataContext _dataContext;
-        private IGraphQLQueryContext _context;
+        private IGraphSLScriptContext _scriptContext;
+        private IGraphQLQueryContext _queryContext;
+        
         private readonly QueryingUnitTestContext _testContext;
         private readonly IDocumentWriter _documentWriter;
 
@@ -35,10 +37,11 @@
                 var start = Environment.TickCount;
 
                 _dataContext = await _testContext.FunctionalTestContext.CreateFunctionalContext(true);
-                _context = _dataContext.CreateGraphQLQueryContext();
+                _queryContext = _dataContext.CreateGraphQLQueryContext();
+                _scriptContext = _dataContext.CreateGraphSLScriptContext();
 
-                await _testContext.FunctionalTestContext.AddPeople(_dataContext);
-                await _testContext.FunctionalTestContext.AddAddresses(_dataContext);
+                await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
+                await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -51,7 +54,9 @@
             {
                 var start = Environment.TickCount;
 
-                _context = null;
+                _dataContext = null;
+                _scriptContext = null;
+                _queryContext = null;
 
                 Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -68,7 +73,7 @@
 #pragma warning restore 1717
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
              
             // Assert.
             Assert.NotNull(result);
@@ -81,7 +86,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
              
             // Assert.
             Assert.NotNull(result.Errors);
@@ -95,7 +100,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\""), nickname, birthdate, lives } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
              
             // Assert.
             Assert.Null(result.Errors);
@@ -109,7 +114,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\"") } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -123,7 +128,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -137,7 +142,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -158,7 +163,7 @@
                 }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -173,7 +178,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lives } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -187,7 +192,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -207,7 +212,7 @@
                           }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -228,7 +233,7 @@
                           }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -249,7 +254,7 @@
                           }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -263,7 +268,7 @@
             var query = "query data { person\n@nodes(path:\"person:Stark/Tony\") { nickname } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -277,7 +282,7 @@
             var query = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -291,7 +296,7 @@
             var query = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -304,7 +309,7 @@
             var query = @"query data { droid(id: ""4"") { id, name } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -317,7 +322,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { id, nickname } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -331,7 +336,7 @@
             var query = @"query data { person @nodes(path:""person:Stark/Tony"") { birthdate } }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);

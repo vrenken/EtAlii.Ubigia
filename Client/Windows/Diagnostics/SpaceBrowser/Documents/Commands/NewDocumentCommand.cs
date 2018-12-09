@@ -13,6 +13,7 @@
     {
         private readonly IFabricContext _fabricContext;
         private readonly IDataConnection _connection;
+        private readonly IGraphSLScriptContext _graphSlScriptContext;
         private readonly IDataContext _dataContext;
         private readonly ILogicalContext _logicalContext;
         private readonly ILogger _logger;
@@ -38,6 +39,7 @@
         public IDocumentFactory DocumentFactory { get; protected set; }
 
         public NewDocumentCommandBase(
+            IGraphSLScriptContext graphSlScriptContext,
             IDataContext dataContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
@@ -48,6 +50,7 @@
             IJournalViewModel journal, 
             IGraphContextFactory graphContextFactory)
         {
+            _graphSlScriptContext = graphSlScriptContext;
             _dataContext = dataContext;
             _logicalContext = logicalContext;
             _fabricContext = fabricContext;
@@ -74,7 +77,7 @@
         {
             var title = DetermineTitle();
 
-            var documentViewModel = DocumentFactory.Create(_dataContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal, _graphContextFactory);
+            var documentViewModel = DocumentFactory.Create(_graphSlScriptContext, _dataContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal, _graphContextFactory);
             documentViewModel.Title = title;
             _mainWindowViewModel.Documents.Add(documentViewModel);
         }

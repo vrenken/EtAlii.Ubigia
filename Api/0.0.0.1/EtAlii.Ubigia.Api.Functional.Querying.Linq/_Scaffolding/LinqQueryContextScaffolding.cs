@@ -15,7 +15,7 @@
         {
             container.Register<ILinqQueryContext, LinqQueryContext>();
 
-            container.Register<IScriptsSet>(() => _dataContext.Scripts);
+            container.Register<IGraphSLScriptContext>(() => _dataContext.CreateGraphSLScriptContext());
             container.Register<IChangeTracker, ChangeTracker>();
             
             container.Register<IIndexSet, IndexSet>();

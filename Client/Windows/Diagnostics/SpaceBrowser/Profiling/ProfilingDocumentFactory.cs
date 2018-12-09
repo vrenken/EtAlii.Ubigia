@@ -16,6 +16,7 @@
     public class ProfilingDocumentFactory : IProfilingDocumentFactory
     {
         public IDocumentViewModel Create(
+            IGraphSLScriptContext graphSlScriptContext,
             IDataContext dataContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,

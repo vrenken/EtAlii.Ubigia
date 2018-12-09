@@ -57,6 +57,9 @@
                             <DataTemplate DataType="{x:Type ubigia:GraphScriptLanguageViewModel}">
                                 <views:GraphScriptLanguageView DataContext="{Binding}" />
                             </DataTemplate>
+                            <DataTemplate DataType="{x:Type ubigia:GraphQueryLanguageViewModel}">
+                                <views:GraphQueryLanguageView DataContext="{Binding}" />
+                            </DataTemplate>
                             <DataTemplate DataType="{x:Type ubigia:CodeViewModel}">
                                 <views:CodeView DataContext="{Binding}" />
                             </DataTemplate>
@@ -119,6 +122,10 @@
                                     <views:ScriptErrorsView 
                                         Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding Errors}" />
+                                </xcad:LayoutAnchorable>
+                                <xcad:LayoutAnchorable ContentId="queryOutput" Title="Query result">
+                                    <views:QueryResultView 
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
 

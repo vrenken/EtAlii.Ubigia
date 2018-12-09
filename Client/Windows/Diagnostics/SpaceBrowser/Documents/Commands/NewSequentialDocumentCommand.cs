@@ -10,6 +10,7 @@
     public class NewSequentialDocumentCommand : NewDocumentCommandBase, INewSequentialDocumentCommand
     {
         public NewSequentialDocumentCommand(
+            IGraphSLScriptContext graphSlScriptContext,
             ISequentialDocumentFactory factory,
             IDataContext dataContext, 
             ILogicalContext logicalContext, 
@@ -20,7 +21,7 @@
             IDiagnosticsConfiguration diagnostics,
             IJournalViewModel journal,
             IGraphContextFactory graphContextFactory) 
-            : base(dataContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+            : base(graphSlScriptContext, dataContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
         {
             DocumentFactory = factory;
             Header = "Sequential";

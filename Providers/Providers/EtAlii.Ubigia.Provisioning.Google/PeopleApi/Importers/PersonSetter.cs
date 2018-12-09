@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public class PersonSetter : IPersonSetter
     {
-        public void Set(IDataContext context, Person person)
+        public void Set(IGraphSLScriptContext context, Person person)
         {
             if (person == null)
             {
@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                 {
                     var scope = new ScriptScope();
                     scope.Variables.Add("details", new ScopeVariable(details, "Value"));
-                    var lastSequence = await context.Scripts.Process(script, scope);
+                    var lastSequence = await context.Process(script, scope);
                     await lastSequence.Output.SingleOrDefaultAsync();
 
                     //var lastSequence2 = await context.Scripts.Process($"<= /Person/\"{familyName}\"/\"{givenName}\"");

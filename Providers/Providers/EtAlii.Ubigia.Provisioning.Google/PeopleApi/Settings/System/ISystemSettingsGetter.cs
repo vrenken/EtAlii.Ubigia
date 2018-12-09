@@ -4,6 +4,6 @@
 
     public interface ISystemSettingsGetter
     {
-        SystemSettings Get(IDataContext context);
+        SystemSettings Get(IGraphSLScriptContext context);
     }
 }

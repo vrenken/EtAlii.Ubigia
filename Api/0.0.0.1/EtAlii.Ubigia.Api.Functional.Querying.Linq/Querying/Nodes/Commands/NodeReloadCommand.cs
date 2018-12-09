@@ -8,11 +8,11 @@
 
     internal class NodeReloadCommand : INodeReloadCommand
     {
-        private readonly IScriptsSet _scriptsSet;
+        private readonly IGraphSLScriptContext _scriptContext;
         
-        internal NodeReloadCommand(IScriptsSet scriptsSet)
+        internal NodeReloadCommand(IGraphSLScriptContext scriptContext)
         {
-            _scriptsSet = scriptsSet;
+            _scriptContext = scriptContext;
         }
 
         public void Execute(INode node)//, bool updateToLatest = false)
@@ -24,10 +24,10 @@
                 var scope = new ScriptScope();
                 scriptAggregator.AddGetItem(node.Id);
                 var scriptText = scriptAggregator.GetScript();
-                var scriptParseResult = _scriptsSet.Parse(scriptText);
+                var scriptParseResult = _scriptContext.Parse(scriptText);
 
                 // TODO: Attempt to make Linq async.
-                var lastSequence = _scriptsSet
+                var lastSequence = _scriptContext
                     .Process(scriptParseResult.Script, scope)
                     .ToEnumerable()
                     .Last();

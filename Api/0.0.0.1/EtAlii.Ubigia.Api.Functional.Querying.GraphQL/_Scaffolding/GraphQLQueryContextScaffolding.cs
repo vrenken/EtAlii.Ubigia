@@ -22,7 +22,7 @@
             container.Register<IGraphQLQueryContext, GraphQLQueryContext>();
 
             container.Register<IDataContext>(() => _dataContext);
-            container.Register<IScriptsSet>(() => _dataContext.Scripts);
+            container.Register<IGraphSLScriptContext>(() => _dataContext.CreateGraphSLScriptContext());
 
             container.Register<IDependencyResolver>(() => new FuncDependencyResolver(container.GetInstance));
 

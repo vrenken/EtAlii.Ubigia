@@ -96,15 +96,25 @@
 
             container.Register<IDataContext>(() =>
             {
+                var logicalContext = container.GetInstance<ILogicalContext>();
+                
                 // And finally, the functional context.
                 var dataContextConfiguration = new DataContextConfiguration()
                                     .Use(diagnostics)
-                                    .Use(container.GetInstance<ILogicalContext>())
-                                    .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
-                                    .UseNET47();
+                                    .Use(logicalContext);
                 return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
             });
             container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
+            
+            container.Register<IGraphSLScriptContext>(() =>
+            {
+                var dataContext = container.GetInstance<IDataContext>();
+                var configuration = new GraphSLScriptContextConfiguration()
+                    .Use(dataContext)
+                    .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
+                    .UseNET47();
+                return new GraphSLScriptContextFactory().Create(configuration);
+            });
         }
 
         private void RegisterDiagnostics(Container container, IDiagnosticsConfiguration diagnostics)
@@ -135,7 +145,7 @@
         //            @"pack://siteoforigin:,,,/Images/Nodes.png",
         //            "Graph view {0}",
         //            "Create a document that shows a information stored in a space using a functional graph",
-        //            "Usefull for current state analysis",
+        //            "Useful for current state analysis",
         //            "Does not show temporal information"),
         //        CreateNewDocumentCommand(container,
         //            new LogicalGraphDocumentFactory(),
@@ -143,7 +153,7 @@
         //            @"pack://siteoforigin:,,,/Images/Nodes.png",
         //            "Graph view {0}",
         //            "Create a document that shows a information stored in a space using a logical graph",
-        //            "Usefull for change analysis",
+        //            "Useful for change analysis",
         //            "Shows temporal information"),
         //        CreateNewDocumentCommand(container,
         //            new TreeDocumentFactory(),
@@ -151,7 +161,7 @@
         //            @"pack://siteoforigin:,,,/Images/Tree.png",
         //            "Tree view {0}",
         //            "Create a document that shows information stored in a space hierarchically",
-        //            "Usefull for tree structure analysis",
+        //            "Useful for tree structure analysis",
         //            "Does not show temporal information"),
         //        CreateNewDocumentCommand(container,
         //            new SequentialDocumentFactory(),
@@ -159,7 +169,7 @@
         //            @"pack://siteoforigin:,,,/Images/View-Details.png",
         //            "Sequential view {0}",
         //            "Create a document to show information stored in a space sequentially",
-        //            "Usefull for order analysis",
+        //            "Useful for order analysis",
         //            "Does not show temporal information"),
         //        CreateNewDocumentCommand(container,
         //            new TemporalDocumentFactory(),
@@ -167,7 +177,7 @@
         //            @"pack://siteoforigin:,,,/Images/Clock-01.png",
         //            "Temporal view {0}",
         //            "Create a document to show information stored in a space temporal",
-        //            "Usefull for temporal analysis",
+        //            "Useful for temporal analysis",
         //            null),
         //        CreateNewDocumentCommand(container,
         //            new CodeDocumentFactory(),
@@ -175,7 +185,7 @@
         //            @"pack://siteoforigin:,,,/Images/File-Format-CSharp.png",
         //            "Code view {0}",
         //            "Create a document to interact with a space programmatically",
-        //            "Usefull for complex iterative or recursive activities",
+        //            "Useful for complex iterative or recursive activities",
         //            "Allows C# code to be tested"),
         //        CreateNewDocumentCommand(container,
         //            new ScriptDocumentFactory(),
@@ -184,7 +194,7 @@
         //            "Query view {0}",
         //            "Create a document to invoke scripts on a space",
         //            "Allows execution scripts written in the GQL script language",
-        //            "Usefull for advanced space operations"),
+        //            "Useful for advanced space operations"),
         //        CreateNewDocumentCommand(container,
         //            new ProfilingDocumentFactory(),
         //            "Profiling",
@@ -192,7 +202,7 @@
         //            "Profiler view {0}",
         //            "Create a profiling document",
         //            "Shows profiling details of all API access to a space",
-        //            "Usefull for advanced query optimization"),
+        //            "Useful for advanced query optimization"),
         //    };
         //}
 

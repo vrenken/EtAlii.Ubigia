@@ -11,6 +11,7 @@
     public class GraphQueryLanguageDocumentFactory : IGraphQueryLanguageDocumentFactory
     {
         public IDocumentViewModel Create(
+            IGraphSLScriptContext graphSlScriptContext,
             IDataContext dataContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
@@ -28,6 +29,7 @@
 
             container.Register(() => fabricContext);
             container.Register(() => dataContext);
+            container.Register<IGraphSLScriptContext>(() => graphSlScriptContext);
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
@@ -35,18 +37,18 @@
             });
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
-            container.Register<IGraphScriptLanguageViewModel, GraphScriptLanguageViewModel>();
+            container.Register<IGraphQueryLanguageViewModel, GraphQueryLanguageViewModel>();
             container.Register(() => journal);
 
-            container.Register<IScriptButtonsViewModel, ScriptButtonsViewModel>();
+//            container.Register<IQueryButtonsViewModel, QueryButtonsViewModel>();
 
-            container.Register<IParseGraphScriptLanguageUnitOfworkHandler, ParseGraphScriptLanguageUnitOfworkHandler>();
-            container.Register<IProcessGraphScriptLanguageUnitOfworkHandler, ProcessGraphScriptLanguageUnitOfworkHandler>();
+            container.Register<IParseGraphQueryLanguageUnitOfworkHandler, ParseGraphQueryLanguageUnitOfworkHandler>();
+            container.Register<IProcessGraphQueryLanguageUnitOfworkHandler, ProcessGraphQueryLanguageUnitOfworkHandler>();
             container.Register<IErrorWriter, ErrorWriter>();
             container.Register<IStatusWriter, StatusWriter>();
-            container.Register<IOutputGraphScriptLanguageProcessingSubscription, OutputGraphScriptLanguageProcessingSubscription>();
-            container.Register<IStatusGraphScriptLanguageProcessingSubscription, StatusGraphScriptLanguageProcessingSubscription>();
-            container.Register<IDiagnosticsGraphScriptLanguageProcessingSubscription, DiagnosticsGraphScriptLanguageProcessingSubscription>();
+            container.Register<IOutputGraphQueryLanguageProcessingSubscription, OutputGraphQueryLanguageProcessingSubscription>();
+            container.Register<IStatusGraphQueryLanguageProcessingSubscription, StatusGraphQueryLanguageProcessingSubscription>();
+            container.Register<IDiagnosticsGraphQueryLanguageProcessingSubscription, DiagnosticsGraphQueryLanguageProcessingSubscription>();
 
 
             container.Register<ITextTemplateQueryHandler, TextTemplateQueryHandler>();
@@ -54,7 +56,7 @@
             container.Register<IResultFactory, ResultFactory>();
             container.Register<IMultiResultFactory, MultiResultFactory>();
 
-            var documentViewModel = container.GetInstance<IGraphScriptLanguageViewModel>();
+            var documentViewModel = container.GetInstance<IGraphQueryLanguageViewModel>();
             var documentViewModelProvider = container.GetInstance<IDocumentViewModelProvider>();
             documentViewModelProvider.SetInstance(documentViewModel);
 

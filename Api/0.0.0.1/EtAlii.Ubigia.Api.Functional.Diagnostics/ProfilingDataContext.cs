@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
         private readonly IDataContext _decoree;
 
         public IProfiler Profiler { get; }
-        public IScriptsSet Scripts => _decoree.Scripts;
         public IDataContextConfiguration Configuration => _decoree.Configuration;
 
         public ProfilingDataContext(

@@ -10,6 +10,7 @@
     public interface IDocumentFactory
     {
         IDocumentViewModel Create(
+            IGraphSLScriptContext graphSlScriptContext,
             IDataContext dataContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,

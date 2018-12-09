@@ -48,7 +48,7 @@
                 <Grid Margin="35,0,0,0">
                     <StackPanel>
                         <fluent:SeparatorTabItem Header="From template" />
-                        <ItemsControl ItemsSource="{Binding TemplateDocumentCommands}">
+                        <ItemsControl ItemsSource="{Binding NewDocumentFromTemplateCommands}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <u:DocumentDataTemplateContent />

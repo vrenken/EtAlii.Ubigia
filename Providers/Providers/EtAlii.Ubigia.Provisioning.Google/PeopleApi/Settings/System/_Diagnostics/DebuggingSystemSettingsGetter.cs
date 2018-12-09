@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        SystemSettings ISystemSettingsGetter.Get(IDataContext context)
+        SystemSettings ISystemSettingsGetter.Get(IGraphSLScriptContext context)
         {
             _logger.Info($"Getting PeopleApi system settings");
 

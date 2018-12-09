@@ -8,18 +8,18 @@
 
     internal class ItemRenameHandler : IItemRenameHandler
     {
-        private readonly IDataContext _context;
+        private readonly IGraphSLScriptContext _scriptContext;
         private readonly IStringEscaper _stringEscaper;
         private readonly ILocalPathSplitter _localPathSplitter;
 
         public ItemRenameHandler(
-            IDataContext context,
             IStringEscaper stringEscaper, 
-            ILocalPathSplitter localPathSplitter)
+            ILocalPathSplitter localPathSplitter, 
+            IGraphSLScriptContext scriptContext)
         {
-            _context = context;
             _stringEscaper = stringEscaper;
             _localPathSplitter = localPathSplitter;
+            _scriptContext = scriptContext;
         }
 
         public void Handle(ItemCheckAction action, string localStart, string remoteStart)
@@ -46,7 +46,7 @@
             // We lack the opportunity for now. We need to be able to change the type of the entry for that. 
             var task = Task.Run(async () =>
             {
-                var lastSequence = await _context.Scripts.Process("$source <= /{0}{1}/{2}\r\n/{0}{1} -= {2}\r\n/{0}{3} += {4}", remoteStart, sourceRemotePath, sourceRemoteItem, targetRemotePath, targetRemoteItem);
+                var lastSequence = await _scriptContext.Process("$source <= /{0}{1}/{2}\r\n/{0}{1} -= {2}\r\n/{0}{3} += {4}", remoteStart, sourceRemotePath, sourceRemoteItem, targetRemotePath, targetRemoteItem);
                 await lastSequence.Output.LastOrDefaultAsync();
             });
             task.Wait();
