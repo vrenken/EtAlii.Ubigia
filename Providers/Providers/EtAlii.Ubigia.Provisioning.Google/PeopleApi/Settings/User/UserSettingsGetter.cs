@@ -9,7 +9,7 @@
 
     public class UserSettingsGetter : IUserSettingsGetter
     {
-        public UserSettings[] Get(IDataContext context)
+        public UserSettings[] Get(IGraphSLScriptContext context)
         {
             var script = new[]
             {
@@ -20,7 +20,7 @@
             DynamicNode[] result = null;
             var task = Task.Run(async () =>
             {
-                var lastSequence = await context.Scripts.Process(script);
+                var lastSequence = await context.Process(script);
                 result = lastSequence.Output
                     .ToEnumerable()
                     .Cast<DynamicNode>()

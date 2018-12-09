@@ -10,6 +10,8 @@
     {
         public IDataContext SystemDataContext { get; }
 
+        public IGraphSLScriptContext SystemScriptContext { get; }
+
         public IManagementConnection ManagementConnection { get; }
 
         private readonly IProviderConfiguration _configuration;
@@ -20,6 +22,8 @@
             IProviderConfiguration configuration)
         {
             SystemDataContext = systemDataContext;
+            SystemScriptContext = systemDataContext.CreateGraphSLScriptContext();
+            
             ManagementConnection = managementConnection;
             _configuration = configuration;
         }
@@ -44,6 +48,18 @@
             });
             task.Wait();
             return _configuration.CreateDataContext(dataConnection);
+        }
+
+        public IGraphSLScriptContext CreateScriptContext(string accountName, string spaceName)
+        {
+            var dataContext = CreateDataContext(accountName, spaceName);
+            return dataContext.CreateGraphSLScriptContext();
+        }
+
+        public IGraphSLScriptContext CreateScriptContext(Space space)
+        {
+            var dataContext = CreateDataContext(space);
+            return dataContext.CreateGraphSLScriptContext();   
         }
     }
 }

@@ -5,6 +5,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public interface IErrorWriter
     {
-        void Write(IGraphScriptLanguageViewModel viewModel, Exception e, List<TextualError> errors);
+        void Write(IExecutionStatusProvider statusProvider, Exception e, List<TextualError> errors);
     }
 }

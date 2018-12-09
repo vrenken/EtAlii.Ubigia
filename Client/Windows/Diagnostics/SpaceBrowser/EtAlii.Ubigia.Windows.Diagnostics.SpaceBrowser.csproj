@@ -46,7 +46,7 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="16.1.0.26" />
     <PackageReference Include="Syncfusion.SfChart.WPF46" Version="16.1.0.26" />
     <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="System.Reactive.Windows.Threading" Version="4.1.2" />
+    <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
   </ItemGroup>
   <!-- 
   Interesting link:
@@ -65,7 +65,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </ApplicationDefinition>
-    <EmbeddedResource Include="Textual\Script\GraphQueryLanguage\Templates\SimpleScript.gql">
+    <EmbeddedResource Include="Textual\Script\GraphQueryLanguage\Templates\SimpleQuery.gql">
       <TransformOnBuild>false</TransformOnBuild>
       <Link></Link>
       <CopyToOutputDirectory></CopyToOutputDirectory>
@@ -87,6 +87,7 @@
     </Content>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj" />
@@ -98,6 +99,18 @@
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
     <Compile Update="Textual\Script\GraphScriptLanguage\Views\GraphScriptLanguageView.xaml.cs">
       <DependentUpon>GraphScriptLanguageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Textual\Script\GraphQueryLanguage\Views\GraphQueryLanguageView.xaml.cs">
+      <DependentUpon>GraphQueryLanguageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Textual\Script\GraphQueryLanguage\Views\Ribbon\ExecuteQueryRibbonGroupBox.xaml.cs">
+      <DependentUpon>ExecuteQueryRibbonGroupBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Textual\Script\GraphQueryLanguage\Views\Ribbon\QueryMaintenanceRibbonGroupBox.xaml.cs">
+      <DependentUpon>QueryMaintenanceRibbonGroupBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Textual\Script\GraphQueryLanguage\Views\Content\QueryResultView.xaml.cs">
+      <DependentUpon>QueryResultView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -7,7 +7,7 @@
 
     public class SystemSettingsGetter : ISystemSettingsGetter
     {
-        public SystemSettings Get(IDataContext context)
+        public SystemSettings Get(IGraphSLScriptContext context)
         {
             var settings = new SystemSettings();
 
@@ -20,7 +20,7 @@
             DynamicNode result = null;
             var task = Task.Run(async () =>
             {
-                var lastSequence = await context.Scripts.Process(script);
+                var lastSequence = await context.Process(script);
                 result = await lastSequence.Output.Cast<DynamicNode>();
             });
             task.Wait();

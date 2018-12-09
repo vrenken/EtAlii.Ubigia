@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
+    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;
     using global::Google.Apis.PeopleService.v1;
     using global::Google.Apis.Services;
@@ -30,8 +31,10 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         public void Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
 	        var userConfigurationContext = _context.CreateDataContext(configurationSpace.Space);
-            {
-                var allUserSettings = _userSettingsGetter.Get(userConfigurationContext);
+	        {
+		        var userConfigurationScriptContext = userConfigurationContext.CreateGraphSLScriptContext();
+		        
+                var allUserSettings = _userSettingsGetter.Get(userConfigurationScriptContext);
                 foreach (var userSettings in allUserSettings)
                 {
                     // We don't want to update using deprecated settings, so let's only use them when they are still fresh.
@@ -46,13 +49,15 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         private void UpdateDataSpace(ConfigurationSpace configurationSpace, SystemSettings systemSettings, UserSettings userSettings)
         {
 	        var userDataContext = _context.CreateDataContext(configurationSpace.Account.Name, SpaceName.Data);
-            {
+	        {
+		        var userDataScriptContext = userDataContext.CreateGraphSLScriptContext();
+		        
                 var request = CreateRequest(systemSettings, userSettings);
 	            var feed = request.Execute();//.GetContacts();
                 //feed.AutoPaging = true;
                 foreach (var person in feed.Connections)//.Entries)
                 {
-		            _personSetter.Set(userDataContext, person);
+		            _personSetter.Set(userDataScriptContext, person);
 				}
             }
         }

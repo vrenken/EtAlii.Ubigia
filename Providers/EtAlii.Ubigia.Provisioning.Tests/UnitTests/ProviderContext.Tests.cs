@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
+    using System;
     using Xunit;
 
     public class ProviderContextTests
@@ -10,10 +11,13 @@
             // Arrange.
 
             // Act.
-            var context = new ProviderContext(null, null, null);
+            var act = new Action(() =>
+            {
+                var context = new ProviderContext(null, null, null);
+            });
 
             // Assert.
-            Assert.NotNull(context);
+            Assert.Throws<InvalidOperationException>(act);
         }
     }
 }

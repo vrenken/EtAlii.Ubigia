@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -9,16 +8,16 @@
 
     internal class NodeFetcher : INodeFetcher
     {
-        private readonly IScriptsSet _scriptsSet;
+        private readonly IGraphSLScriptContext _scriptContext;
 
-        public NodeFetcher(IScriptsSet scriptsSet)
+        public NodeFetcher(IGraphSLScriptContext scriptContext)
         {
-            _scriptsSet = scriptsSet;
+            _scriptContext = scriptContext;
         }
 
         public async Task<IInternalNode[]> FetchAsync(string path)
         {
-            var scriptParseResult = _scriptsSet.Parse(path);
+            var scriptParseResult = _scriptContext.Parse(path);
             if (scriptParseResult.Errors.Any())
             {
                 var errorsString = String.Join(Environment.NewLine, scriptParseResult.Errors.Select(error => error.Message));
@@ -27,7 +26,7 @@
             }
 
             var scope = new ScriptScope();
-            var lastSequence = await _scriptsSet.Process(scriptParseResult.Script, scope);
+            var lastSequence = await _scriptContext.Process(scriptParseResult.Script, scope);
             var results = await lastSequence.Output
                 .Cast<IInternalNode>()
                 .ToArray();

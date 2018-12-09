@@ -12,7 +12,9 @@
     public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IDisposable
     {
         private IDataContext _dataContext;
-        private IGraphQLQueryContext _context;
+        private IGraphSLScriptContext _scriptContext;
+        private IGraphQLQueryContext _queryContext;
+        
         private readonly QueryingUnitTestContext _testContext;
         private readonly IDocumentWriter _documentWriter;
 
@@ -36,10 +38,11 @@
                 var start = Environment.TickCount;
 
                 _dataContext = await _testContext.FunctionalTestContext.CreateFunctionalContext(true);
-                _context = _dataContext.CreateGraphQLQueryContext();
-                
-                await _testContext.FunctionalTestContext.AddPeople(_dataContext);
-                await _testContext.FunctionalTestContext.AddAddresses(_dataContext);
+                _queryContext = _dataContext.CreateGraphQLQueryContext();
+                _scriptContext = _dataContext.CreateGraphSLScriptContext();
+        
+                await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
+                await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
                 Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -52,7 +55,9 @@
             {
                 var start = Environment.TickCount;
 
-                _context = null;
+                _dataContext = null;
+                _scriptContext = null;
+                _queryContext = null;
 
                 Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
@@ -73,7 +78,7 @@
                 }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -99,7 +104,7 @@
                 }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -125,7 +130,7 @@
                 }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -154,7 +159,7 @@
                 }";
             
             // Act.
-            var result = await _context.Execute(query);
+            var result = await _queryContext.Execute(query);
             
             // Assert.
             Assert.Null(result.Errors);

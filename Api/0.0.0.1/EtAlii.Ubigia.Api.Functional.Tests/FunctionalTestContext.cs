@@ -29,7 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             return new DataContextFactory().Create(configuration);
         }
 
-        public async Task AddPeople(IDataContext context)
+        public async Task AddPeople(IGraphSLScriptContext context)
         {
             await AddJohnDoe(context);
             await AddJaneDoe(context);
@@ -42,7 +42,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             await AddFriends(context);
         }
 
-        public async Task AddAddresses(IDataContext context)
+        public async Task AddAddresses(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -54,10 +54,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQuery = String.Join("\r\n", addQueries);
 
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
 
-        public async Task AddPeterVrenken(IDataContext context)
+        public async Task AddPeterVrenken(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -67,10 +67,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQuery = String.Join("\r\n", addQueries);
 
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
 
-        public async Task AddTanjaVrenken(IDataContext context)
+        public async Task AddTanjaVrenken(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -79,10 +79,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             };
             var addQuery = String.Join("\r\n", addQueries);
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
 
-        public async Task AddArjanVrenken(IDataContext context)
+        public async Task AddArjanVrenken(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -91,11 +91,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             };
             var addQuery = String.Join("\r\n", addQueries);
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
         
         
-        public async Task AddIdaVrenken(IDataContext context)
+        public async Task AddIdaVrenken(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -104,10 +104,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             };
             var addQuery = String.Join("\r\n", addQueries);
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
         
-        public async Task AddJohnDoe(IDataContext context)
+        public async Task AddJohnDoe(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -117,10 +117,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQuery = String.Join("\r\n", addQueries);
 
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
         
-        public async Task AddJaneDoe(IDataContext context)
+        public async Task AddJaneDoe(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -130,10 +130,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQuery = String.Join("\r\n", addQueries);
 
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
 
-        public async Task AddTonyStark(IDataContext context)
+        public async Task AddTonyStark(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -143,10 +143,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQuery = String.Join("\r\n", addQueries);
 
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
         }
 
-        public async Task AddFriends(IDataContext context)
+        public async Task AddFriends(IGraphSLScriptContext context)
         {
             var addQueries = new[]
             {
@@ -205,7 +205,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var addQuery = String.Join("\r\n", addQueries);
 
 
-            await context.Scripts.Process(addQuery);
+            await context.Process(addQuery);
 //            var result = context.Scripts.Process(addQuery);
 //
 //            var list = await result.ToArray();

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         }
 
 
-        public UserSettings[] Get(IDataContext context)
+        public UserSettings[] Get(IGraphSLScriptContext context)
         {
             _logger.Info($"Getting all PeopleApi user settings");
 

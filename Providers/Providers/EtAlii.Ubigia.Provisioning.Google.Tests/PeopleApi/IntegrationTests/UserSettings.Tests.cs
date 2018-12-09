@@ -44,7 +44,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
 
             // Act.
             var act = new Action(() =>
@@ -68,14 +68,14 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var userSettings = TestUserSettings.Create(email);
 
             // Act.
             userSettingsSetter.Set(context, email, userSettings);
 
             // Assert.
-            var processingResult = await context.Scripts.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
+            var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic result = await processingResult.Output.LastOrDefaultAsync();
             TestUserSettings.AreEqual(userSettings, result);
         }
@@ -93,16 +93,16 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
             userSettingsSetter.Set(context, email, firstUserSettings);
-            var processingResult = await context.Scripts.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
+            var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
             userSettingsSetter.Set(context, email, secondUserSettings);
-            processingResult = await context.Scripts.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
+            processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -122,14 +122,14 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
             userSettingsSetter.Set(context, email, firstUserSettings);
             userSettingsSetter.Set(context, email, secondUserSettings);
-            var processingResult = await context.Scripts.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
+            var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -149,7 +149,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 
@@ -177,7 +177,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.User);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.Configuration);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var firstUserSettings = TestUserSettings.Create(email);
             var secondUserSettings = TestUserSettings.Create(email);
 

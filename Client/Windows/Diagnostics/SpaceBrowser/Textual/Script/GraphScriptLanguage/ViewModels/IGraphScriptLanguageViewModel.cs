@@ -5,9 +5,8 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Functional;
 
-    public interface IGraphScriptLanguageViewModel : IDocumentViewModel
+    public interface IGraphScriptLanguageViewModel : IDocumentViewModel, IExecutionStatusProvider
     {
-        ObservableCollection<string> ExecutionStatus { get; }
         IScriptScope Scope { get; }
         IScriptButtonsViewModel Buttons { get; }
         string Code { get; set; }

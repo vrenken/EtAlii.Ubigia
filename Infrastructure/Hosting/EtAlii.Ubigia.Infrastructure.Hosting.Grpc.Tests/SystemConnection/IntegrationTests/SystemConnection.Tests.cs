@@ -94,6 +94,8 @@
 
             var dataContext = new DataContextFactory().Create(dataContextconfiguration);
 
+            var scriptContext = dataContext.CreateGraphSLScriptContext();
+            
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -104,14 +106,14 @@
             var addQuery = String.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
-            var addScript = dataContext.Scripts.Parse(addQuery).Script;
-            var selectScript = dataContext.Scripts.Parse(selectQuery).Script;
+            var addScript = scriptContext.Parse(addQuery).Script;
+            var selectScript = scriptContext.Parse(selectQuery).Script;
             var scope = new ScriptScope();
 
             // Act.
-            var lastSequence = await dataContext.Scripts.Process(addScript, scope);
+            var lastSequence = await scriptContext.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await dataContext.Scripts.Process(selectScript, scope);
+            lastSequence = await scriptContext.Process(selectScript, scope);
             var personsAfter = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -138,13 +140,15 @@
 
             var dataContext = new DataContextFactory().Create(dataContextconfiguration);
 
+            var scriptContext = dataContext.CreateGraphSLScriptContext();
+            
             var selectQuery = "<= /Person";
 
-            var selectScript = dataContext.Scripts.Parse(selectQuery).Script;
+            var selectScript = scriptContext.Parse(selectQuery).Script;
             var scope = new ScriptScope();
 
             // Act.
-            var lastSequence = await dataContext.Scripts.Process(selectScript, scope);
+            var lastSequence = await scriptContext.Process(selectScript, scope);
             var item = await lastSequence.Output.ToArray();
 
             // Assert.

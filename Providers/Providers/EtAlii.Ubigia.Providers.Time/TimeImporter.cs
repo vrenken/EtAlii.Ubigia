@@ -79,7 +79,7 @@
 
                 var task = Task.Run(async () =>
                 {
-                    var sequenceResult = await _context.SystemDataContext.Scripts.Process(datePath);
+                    var sequenceResult = await _context.SystemScriptContext.Process(datePath);
                     await sequenceResult.Output.LastOrDefaultAsync();
                 });
                 task.Wait();

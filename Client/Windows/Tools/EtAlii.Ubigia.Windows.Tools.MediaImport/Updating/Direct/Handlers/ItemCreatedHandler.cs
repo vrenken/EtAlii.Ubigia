@@ -11,22 +11,22 @@
     {
         private readonly ILogger _logger;
         private readonly IDirectoryHelper _directoryHelper;
-        private readonly IDataContext _context;
+        private readonly IGraphSLScriptContext _scriptContext;
         private readonly IStringEscaper _stringEscaper;
         private readonly ILocalPathSplitter _localPathSplitter;
 
         public ItemCreatedHandler(
-            IDataContext context, 
             ILogger logger,
             IDirectoryHelper directoryHelper,
             IStringEscaper stringEscaper,
-            ILocalPathSplitter localPathSplitter)
+            ILocalPathSplitter localPathSplitter, 
+            IGraphSLScriptContext scriptContext)
         {
-            _context = context;
             _logger = logger;
             _directoryHelper = directoryHelper;
             _stringEscaper = stringEscaper;
             _localPathSplitter = localPathSplitter;
+            _scriptContext = scriptContext;
         }
 
 
@@ -44,7 +44,7 @@
 
             var task = Task.Run(async () =>
             {
-                var lastSequence = await _context.Scripts.Process("/{0}{1} += {2}", remoteStart, remotePath, remoteItem);
+                var lastSequence = await _scriptContext.Process("/{0}{1} += {2}", remoteStart, remotePath, remoteItem);
                 await lastSequence.Output.LastOrDefaultAsync();
             });
             task.Wait();

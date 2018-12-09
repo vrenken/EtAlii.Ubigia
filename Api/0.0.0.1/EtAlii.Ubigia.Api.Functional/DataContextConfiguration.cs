@@ -12,32 +12,14 @@
 
         public IDataContextExtension[] Extensions { get; private set; }
 
-        public IFunctionHandlersProvider FunctionHandlersProvider { get; private set; }
-
-        public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
-
         public DataContextConfiguration()
         {
             Extensions = new IDataContextExtension[0];
-            FunctionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
-            RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
         }
 
         public IDataContextConfiguration Use(ILogicalContext logicalContext)
         {
             LogicalContext = logicalContext;
-            return this;
-        }
-
-        public IDataContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
-        {
-            FunctionHandlersProvider = new FunctionHandlersProvider(functionHandlersProvider.FunctionHandlers, FunctionHandlersProvider.FunctionHandlers);
-            return this;
-        }
-
-        public IDataContextConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
-        {
-            RootHandlerMappersProvider = rootHandlerMappersProvider;
             return this;
         }
 

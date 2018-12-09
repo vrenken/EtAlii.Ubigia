@@ -29,32 +29,36 @@
 
         private static void Update(Ribbon ribbon, object newValue)
         {
-            if (newValue is IGraphDocumentViewModel) // || e.NewValue is TreeView)
+            switch (newValue)
             {
-                ribbon.SelectedTabItem = ribbon.GraphRibbonTabItem;
-                ribbon.SelectedTabItem.DataContext = newValue;
-            }
-            else if (newValue is ICodeViewModel)
-            {
-                ribbon.SelectedTabItem = ribbon.CodeRibbonTabItem;
-                ribbon.SelectedTabItem.DataContext = newValue;
-            }
-            else if (newValue is IGraphScriptLanguageViewModel)
-            {
-                ribbon.SelectedTabItem = ribbon.QueryRibbonTabItem;
-                ribbon.SelectedTabItem.DataContext = newValue;
-            }
-            else if (newValue is IProfilingViewModel)
-            {
-                ribbon.SelectedTabItem = ribbon.ProfilingRibbonTabItem;
-                ribbon.SelectedTabItem.DataContext = newValue;
-            }
-            else if (newValue == null)
-            {
-                var backstage = (Fluent.Backstage) ribbon.Menu;
-                backstage.IsOpen = true;
+                case IGraphDocumentViewModel _:
+                    ribbon.SelectedTabItem = ribbon.GraphRibbonTabItem;
+                    ribbon.SelectedTabItem.DataContext = newValue;
+                    break;
+                case ICodeViewModel _:
+                    ribbon.SelectedTabItem = ribbon.CodeRibbonTabItem;
+                    ribbon.SelectedTabItem.DataContext = newValue;
+                    break;
+                case IGraphScriptLanguageViewModel _:
+                    ribbon.SelectedTabItem = ribbon.ScriptRibbonTabItem;
+                    ribbon.SelectedTabItem.DataContext = newValue;
+                    break;
+                case IGraphQueryLanguageViewModel _:
+                    ribbon.SelectedTabItem = ribbon.QueryRibbonTabItem;
+                    ribbon.SelectedTabItem.DataContext = newValue;
+                    break;
+                case IProfilingViewModel _:
+                    ribbon.SelectedTabItem = ribbon.ProfilingRibbonTabItem;
+                    ribbon.SelectedTabItem.DataContext = newValue;
+                    break;
+                default:
+                    if (newValue == null)
+                    {
+                        var backstage = (Fluent.Backstage) ribbon.Menu;
+                        backstage.IsOpen = true;
+                    }
+                    break;
             }
         }
-
     }
 }

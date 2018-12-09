@@ -2,18 +2,18 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class NodeQueryExecutorFactory : INodeQueryExecutorFactory
     {
-        private readonly IScriptsSet _scriptsSet;
+        private readonly IGraphSLScriptContext _scriptContext;
 
-        public NodeQueryExecutorFactory(IScriptsSet scriptsSet)
+        public NodeQueryExecutorFactory(IGraphSLScriptContext scriptContext)
         {
-            _scriptsSet = scriptsSet;
+            _scriptContext = scriptContext;
         }
 
         public INodeQueryExecutor Create()
         {
             var scriptAggregator = new ScriptAggregator();
             var nodeQueryModelVisitor = new NodeQueryModelVisitor(scriptAggregator);
-            return new NodeQueryExecutor(nodeQueryModelVisitor, _scriptsSet);
+            return new NodeQueryExecutor(nodeQueryModelVisitor, _scriptContext);
         }
     }
 }

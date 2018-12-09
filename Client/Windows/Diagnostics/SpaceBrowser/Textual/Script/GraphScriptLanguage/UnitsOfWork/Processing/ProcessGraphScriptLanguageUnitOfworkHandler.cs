@@ -2,7 +2,6 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Workflow;
@@ -10,7 +9,7 @@
     public class ProcessGraphScriptLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ProcessGraphScriptLanguageUnitOfwork>, IProcessGraphScriptLanguageUnitOfworkHandler
     {
         private readonly IGraphContext _graphContext;
-        private readonly IDataContext _dataContext;
+        private readonly IGraphSLScriptContext _scriptContext;
         private readonly IMainDispatcherInvoker _dispatcherInvoker;
         private readonly IStatusGraphScriptLanguageProcessingSubscription _statusGraphScriptLanguageProcessingSubscription;
         private readonly IOutputGraphScriptLanguageProcessingSubscription _outputGraphScriptLanguageProcessingSubscription;
@@ -18,22 +17,22 @@
         private readonly IParseGraphScriptLanguageUnitOfworkHandler _parseScriptUnitOfworkHandler;
 
         public ProcessGraphScriptLanguageUnitOfworkHandler(
-            IDataContext dataContext,
             IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusGraphScriptLanguageProcessingSubscription statusGraphScriptLanguageProcessingSubscription, 
             IDiagnosticsGraphScriptLanguageProcessingSubscription diagnosticsGraphScriptLanguageProcessingSubscription, 
             IOutputGraphScriptLanguageProcessingSubscription outputGraphScriptLanguageProcessingSubscription, 
             IParseGraphScriptLanguageUnitOfworkHandler parseScriptUnitOfworkHandler, 
-            IGraphContext graphContext) 
+            IGraphContext graphContext, 
+            IGraphSLScriptContext scriptContext) 
         {
-            _dataContext = dataContext;
             _dispatcherInvoker = dispatcherInvoker;
             _statusGraphScriptLanguageProcessingSubscription = statusGraphScriptLanguageProcessingSubscription;
             _diagnosticsGraphScriptLanguageProcessingSubscription = diagnosticsGraphScriptLanguageProcessingSubscription;
             _outputGraphScriptLanguageProcessingSubscription = outputGraphScriptLanguageProcessingSubscription;
             _parseScriptUnitOfworkHandler = parseScriptUnitOfworkHandler;
             _graphContext = graphContext;
+            _scriptContext = scriptContext;
         }
 
         protected override void Handle(ProcessGraphScriptLanguageUnitOfwork unitOfWork)
@@ -56,7 +55,7 @@
                 {
                     var start = DateTime.Now;
                     var errors = new List<TextualError>();
-                    var results = _dataContext.Scripts.Process(viewModel.Script, viewModel.Scope);
+                    var results = _scriptContext.Process(viewModel.Script, viewModel.Scope);
 
                     // First we subscribe our diagnostics observable hierarchy
                     //_diagnosticsGraphScriptLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);

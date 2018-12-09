@@ -6,8 +6,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     {
         Task<IDataContext> CreateFunctionalContext(bool openOnCreation);
 
-        Task AddPeople(IDataContext context);
-        Task AddAddresses(IDataContext context);
+        Task AddPeople(IGraphSLScriptContext context);
+        Task AddAddresses(IGraphSLScriptContext context);
 
         Task Start();
         Task Stop();

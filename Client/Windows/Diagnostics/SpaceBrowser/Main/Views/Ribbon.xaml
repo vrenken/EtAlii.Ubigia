@@ -84,14 +84,22 @@
     </fluent:RibbonTabItem>
 
     <fluent:RibbonTabItem
+        x:Name="ScriptRibbonTabItem"
+        Header="Script"
+        fluent:KeyTip.Keys="S" >
+        <ubigia:EditRibbonGroupBox />
+        <ubigia:ExecuteScriptRibbonGroupBox />
+        <ubigia:ScriptMaintenanceRibbonGroupBox />
+    </fluent:RibbonTabItem>
+    
+    <fluent:RibbonTabItem
         x:Name="QueryRibbonTabItem"
         Header="Query"
         fluent:KeyTip.Keys="Q" >
         <ubigia:EditRibbonGroupBox />
-        <ubigia:ExecuteRibbonGroupBox />
+        <ubigia:ExecuteQueryRibbonGroupBox />
         <ubigia:QueryMaintenanceRibbonGroupBox />
     </fluent:RibbonTabItem>
-
 
     <fluent:RibbonTabItem
         x:Name="ProfilingRibbonTabItem"

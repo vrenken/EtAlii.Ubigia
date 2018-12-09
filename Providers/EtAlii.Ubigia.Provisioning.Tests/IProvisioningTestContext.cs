@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName);
 
-        Task<IDataContext> CreateDataContext(string accountName, string accountPassword, string spaceName);
+        Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string accountPassword, string spaceName);
 
         Task<IManagementConnection> OpenManagementConnection();
 

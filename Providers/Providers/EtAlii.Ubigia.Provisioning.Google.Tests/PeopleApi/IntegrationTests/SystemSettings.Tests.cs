@@ -55,7 +55,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
 
             // Act.
             var act = new Action(() =>
@@ -78,14 +78,14 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var systemSettings = TestSystemSettings.Create();
 
             // Act.
             systemSettingsSetter.Set(context, systemSettings);
 
             // Assert.
-            var processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
+            var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic result = await processingResult.Output.LastOrDefaultAsync();
             TestSystemSettings.AreEqual(systemSettings, result);
         }
@@ -102,16 +102,16 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             var firstSystemSettings = TestSystemSettings.Create();
             var secondSystemSettings = TestSystemSettings.Create();
 
             // Act.
             systemSettingsSetter.Set(context, firstSystemSettings);
-            var processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
+            var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
             systemSettingsSetter.Set(context, secondSystemSettings);
-            processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
+            processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
 
@@ -132,7 +132,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateDataContext(accountName, password, spaceName);
+            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             
             var firstSystemSettings = TestSystemSettings.Create();
             var secondSystemSettings = TestSystemSettings.Create();
@@ -141,26 +141,26 @@
             // Act.
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new DataContextFactory().Create(connection);
+            context = new DataContextFactory().Create(connection).CreateGraphSLScriptContext();
 
             systemSettingsSetter.Set(context, firstSystemSettings);
-            var processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
+            var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new DataContextFactory().Create(connection);
+            context = new DataContextFactory().Create(connection).CreateGraphSLScriptContext();
 
             systemSettingsSetter.Set(context, secondSystemSettings);
-            processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
+            processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new DataContextFactory().Create(connection);
+            context = new DataContextFactory().Create(connection).CreateGraphSLScriptContext();
 
             systemSettingsSetter.Set(context, thirdSystemSettings);
-            processingResult = await context.Scripts.Process("<= /Providers/Google/PeopleApi");
+            processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();
             
             // Assert.

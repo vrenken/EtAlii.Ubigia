@@ -2,16 +2,11 @@
 {
     internal class DataContext : IDataContext
     {
-        public IScriptsSet Scripts { get; }
-
         public IDataContextConfiguration Configuration { get; }
 
-        internal DataContext(
-            IDataContextConfiguration configuration,
-            IScriptsSet scripts)
+        internal DataContext(IDataContextConfiguration configuration)
         {
             Configuration = configuration;
-            Scripts = scripts;
         }
     }
 }
