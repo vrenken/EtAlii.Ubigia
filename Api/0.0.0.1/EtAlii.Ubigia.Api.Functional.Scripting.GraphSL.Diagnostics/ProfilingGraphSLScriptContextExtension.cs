@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class ProfilingGraphSLScriptContextExtension : IDataContextExtension
+    public class ProfilingGraphSLScriptContextExtension : IGraphSLScriptContextExtension
     {
         public void Initialize(Container container)
         {

@@ -21,13 +21,9 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
 
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext);
+                .Use(logicalContext);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -41,13 +37,9 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
             
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext);
+                .Use(logicalContext);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -63,13 +55,9 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
 
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(functionHandlersProvider);
 
             // Act.
@@ -86,13 +74,9 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
 
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(functionHandlersProvider);
             // Act.
             var act = new Action(() =>
@@ -116,13 +100,8 @@
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(functionHandlersProvider);
             
             // Act.
@@ -143,13 +122,9 @@
                 new TestRenameFunctionHandler()
             };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
 
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(functionHandlersProvider);
 
             // Act.

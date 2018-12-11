@@ -4,13 +4,13 @@
 
     public class GraphQLQueryContextFactory
     {
-        public IGraphQLQueryContext Create(IDataContext dataContext)
+        public IGraphQLQueryContext Create(IGraphQLQueryContextConfiguration configuration)
         {
             var container = new Container();
             
             var scaffoldings = new IScaffolding[]
             {
-                new GraphQLQueryContextScaffolding(dataContext), 
+                new GraphQLQueryContextScaffolding(configuration), 
             };
 
             foreach (var scaffolding in scaffoldings)
@@ -18,6 +18,11 @@
                 scaffolding.Register(container);
             }
             
+            foreach (var extension in configuration.Extensions)
+            {
+                extension.Initialize(container);
+            }
+
             return container.GetInstance<IGraphQLQueryContext>();
         }
     }

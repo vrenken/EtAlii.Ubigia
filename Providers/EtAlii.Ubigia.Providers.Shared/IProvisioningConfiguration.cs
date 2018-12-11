@@ -25,11 +25,11 @@
 
         IDataConnectionConfiguration CreateDataConnectionConfiguration();
         IManagementConnectionConfiguration CreateManagementConnectionConfiguration();
-        IDataContext CreateDataContext(IDataConnection connection, bool useCaching = true);
+        IGraphSLScriptContext CreateScriptContext(IDataConnection connection, bool useCaching = true);
 
         IProvisioningConfiguration Use(Action<IManagementConnectionConfiguration> managementConnectionConfigurationFactoryExtension);
         IProvisioningConfiguration Use(Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension);
-        IProvisioningConfiguration Use(Action<IDataContextConfiguration> dataContextConfigurationFactoryExtension);
+        IProvisioningConfiguration Use(Action<IGraphSLScriptContextConfiguration> scriptContextConfigurationFactoryExtension);
         IProvisioningConfiguration Use(Func<IStorageTransportProvider> storageTransportProviderFactory);
         IProvisioningConfiguration Use(Func<ITransportProvider> transportProviderFactory);
 

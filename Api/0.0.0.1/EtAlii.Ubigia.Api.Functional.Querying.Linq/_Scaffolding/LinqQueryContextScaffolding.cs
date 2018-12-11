@@ -5,17 +5,22 @@
 
     internal class LinqQueryContextScaffolding : IScaffolding
     {
-        private readonly IDataContext _dataContext;
+        private readonly ILinqQueryContextConfiguration _configuration;
 
-        public LinqQueryContextScaffolding(IDataContext dataContext)
+        public LinqQueryContextScaffolding(ILinqQueryContextConfiguration configuration)
         {
-            _dataContext = dataContext;
+            _configuration = configuration;
         }
         public void Register(Container container)
         {
             container.Register<ILinqQueryContext, LinqQueryContext>();
 
-            container.Register<IGraphSLScriptContext>(() => _dataContext.CreateGraphSLScriptContext());
+            container.Register<IGraphSLScriptContext>(() =>
+            {
+                var configuration = new GraphSLScriptContextConfiguration()
+                    .Use(_configuration.LogicalContext);
+                return new GraphSLScriptContextFactory().Create(configuration);
+            });
             container.Register<IChangeTracker, ChangeTracker>();
             
             container.Register<IIndexSet, IndexSet>();

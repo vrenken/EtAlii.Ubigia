@@ -32,11 +32,10 @@
             var countryEntry = addResult.Entry;
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 1);
             var path = $"{countryPath}/";
-            var configuration = new DataContextConfiguration()
+            var configuration = new LinqQueryContextConfiguration()
                                 .Use(logicalContext)
                                 .Use(_testContext.Diagnostics);
-            var dataContext = new DataContextFactory().Create(configuration);
-            var context = new LinqQueryContextFactory().Create(dataContext);
+            var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
 
             // Act.
@@ -56,11 +55,10 @@
             var countryEntry = addResult.Entry;
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
             var path = $"{countryPath}/";
-            var configuration = new DataContextConfiguration()
+            var configuration = new LinqQueryContextConfiguration()
                 .Use(_testContext.Diagnostics)
                 .Use(logicalContext);
-            var dataContext = new DataContextFactory().Create(configuration);
-            var context = new LinqQueryContextFactory().Create(dataContext);
+            var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
 
             // Act.
@@ -81,11 +79,10 @@
             var countryEntry = addResult.Entry;
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
             var path = $"{countryPath}/";
-            var configuration = new DataContextConfiguration()
+            var configuration = new LinqQueryContextConfiguration()
                 .Use(_testContext.Diagnostics)
                 .Use(logicalContext);
-            var dataContext = new DataContextFactory().Create(configuration);
-            var context = new LinqQueryContextFactory().Create(dataContext);
+            var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
 
             // Act.

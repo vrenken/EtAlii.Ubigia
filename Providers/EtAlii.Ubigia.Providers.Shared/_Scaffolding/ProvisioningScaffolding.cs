@@ -8,19 +8,19 @@
     public class ProvisioningScaffolding : IScaffolding
     {
         private readonly IProviderConfiguration[] _providerConfigurations;
-        private readonly Func<IDataConnection, IDataContext> _dataContextFactory;
+        private readonly Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
 
-        public ProvisioningScaffolding(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IDataContext> dataContextFactory)
+        public ProvisioningScaffolding(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
         {
             _providerConfigurations = providerConfigurations;
-            _dataContextFactory = dataContextFactory;
+            _scriptContextFactory = scriptContextFactory;
         }
 
         public void Register(Container container)
         {
             container.Register<IProviderManager, ProviderManager>();
             container.Register<IProvidersContext, ProvidersContext>();
-            container.RegisterInitializer<IProvidersContext>(context => context.Initialize(_providerConfigurations, _dataContextFactory));
+            container.RegisterInitializer<IProvidersContext>(context => context.Initialize(_providerConfigurations, _scriptContextFactory));
             container.Register(() => new SerializerFactory().Create());
         }
     }

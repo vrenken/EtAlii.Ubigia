@@ -1,10 +1,13 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
 
     public interface IFunctionalTestContext
     {
-        Task<IDataContext> CreateFunctionalContext(bool openOnCreation);
+        Task<ILogicalContext> CreateLogicalContext(bool openOnCreation);
+        IGraphSLScriptContext CreateGraphSLScriptContext(ILogicalContext logicalContext);
+        IGraphQLQueryContext CreateGraphQLQueryContext(ILogicalContext logicalContext);
 
         Task AddPeople(IGraphSLScriptContext context);
         Task AddAddresses(IGraphSLScriptContext context);

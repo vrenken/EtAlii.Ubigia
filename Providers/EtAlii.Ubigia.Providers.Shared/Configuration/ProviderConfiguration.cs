@@ -9,7 +9,7 @@
 
     public class ProviderConfiguration : IProviderConfiguration
     {
-        public IDataContext SystemDataContext { get; private set; }
+        public IGraphSLScriptContext SystemScriptContext { get; private set; }
 
         public IManagementConnection ManagementConnection { get; private set; }
 
@@ -19,7 +19,7 @@
 
         public ILogFactory LogFactory { get; private set; }
 
-        private Func<IDataConnection, IDataContext> _dataContextFactory;
+        private Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
 
         public ProviderConfiguration()
         {
@@ -72,14 +72,14 @@
             return this;
         }
 
-        public IProviderConfiguration Use(IDataContext systemDataContext)
+        public IProviderConfiguration Use(IGraphSLScriptContext systemScriptContext)
         {
-            if (systemDataContext == null)
+            if (systemScriptContext == null)
             {
-                throw new ArgumentException(nameof(systemDataContext));
+                throw new ArgumentException(nameof(systemScriptContext));
             }
 
-            SystemDataContext = systemDataContext;
+            SystemScriptContext = systemScriptContext;
 
             return this;
         }
@@ -96,21 +96,21 @@
             return this;
         }
 
-        public IProviderConfiguration Use(Func<IDataConnection, IDataContext> dataContextFactory)
+        public IProviderConfiguration Use(Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
         {
-            if (dataContextFactory == null)
+            if (scriptContextFactory == null)
             {
-                throw new ArgumentException(nameof(dataContextFactory));
+                throw new ArgumentException(nameof(scriptContextFactory));
             }
 
-            _dataContextFactory = dataContextFactory;
+            _scriptContextFactory = scriptContextFactory;
 
             return this;
         }
 
-        public IDataContext CreateDataContext(IDataConnection connection)
+        public IGraphSLScriptContext CreateScriptContext(IDataConnection connection)
         {
-            return _dataContextFactory(connection);
+            return _scriptContextFactory(connection);
         }
     }
 }

@@ -16,8 +16,8 @@
     public class ProfilingDocumentFactory : IProfilingDocumentFactory
     {
         public IDocumentViewModel Create(
-            IGraphSLScriptContext graphSlScriptContext,
-            IDataContext dataContext,
+            IGraphSLScriptContext scriptContext,
+            IGraphQLQueryContext queryContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
             IDataConnection connection,
@@ -35,7 +35,10 @@
             container.Register<IProfilingViewModel, ProfilingViewModel>();
             container.Register<IProfilingAspectsViewModel, ProfilingAspectsViewModel>();
 
-            container.Register(() => (IProfilingDataContext)dataContext);
+            container.Register(() => (IProfilingGraphSLScriptContext)scriptContext);
+            container.Register(() => (IProfilingGraphQLQueryContext)queryContext);
+            //container.Register(() => (IProfilingLinqQueryContext)linqContext);
+
             container.Register(() => (IProfilingLogicalContext)logicalContext);
             container.Register(() => (IProfilingFabricContext)fabricContext);
             container.Register(() => (IProfilingDataConnection)connection);
@@ -50,7 +53,9 @@
 
             container.Register<IProfileComposer>(() => 
             new ProfileComposer(
-                ((IProfilingDataContext)dataContext).Profiler,
+                ((IProfilingGraphSLScriptContext)scriptContext).Profiler,
+                ((IProfilingGraphQLQueryContext)queryContext).Profiler,
+                //((IProfilingLinqQueryContext)linqContext).Profiler,
                 ((IProfilingLogicalContext)logicalContext).Profiler,
                 ((IProfilingFabricContext)fabricContext).Profiler,
                 ((IProfilingDataConnection)connection).Profiler

@@ -7,36 +7,36 @@
 
     public class ProvidersContext : IProvidersContext
     {
-        public IDataContext SystemDataContext { get; }
+        public IGraphSLScriptContext SystemScriptContext { get; }
 
         public IManagementConnection ManagementConnection { get; }
 
         public IProviderConfiguration[] ProviderConfigurations { get; private set; }
 
-        private Func<IDataConnection, IDataContext> _dataContextFactory;
+        private Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
 
         public ProvidersContext(
-            IDataContext systemDataContext,
+            IGraphSLScriptContext systemScriptContext,
             IManagementConnection managementConnection)
         {
-            SystemDataContext = systemDataContext;
+            SystemScriptContext = systemScriptContext;
             ManagementConnection = managementConnection;
         }
 
-        public void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IDataContext> dataContextFactory)
+        public void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
         {
-            if (ProviderConfigurations != null || _dataContextFactory != null)
+            if (ProviderConfigurations != null || _scriptContextFactory != null)
             {
                 throw new InvalidOperationException("ProviderContext has already been initialized");
             }
-            _dataContextFactory = dataContextFactory;
+            _scriptContextFactory = scriptContextFactory;
             ProviderConfigurations = providerConfigurations;
         }
 
 
-        public IDataContext CreateDataContext(IDataConnection connection)
+        public IGraphSLScriptContext CreateScriptContext(IDataConnection connection)
         {
-            return _dataContextFactory(connection);
+            return _scriptContextFactory(connection);
         }
     }
 }

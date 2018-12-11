@@ -13,8 +13,8 @@
     {
         private readonly IFabricContext _fabricContext;
         private readonly IDataConnection _connection;
-        private readonly IGraphSLScriptContext _graphSlScriptContext;
-        private readonly IDataContext _dataContext;
+        private readonly IGraphQLQueryContext _queryContext;
+        private readonly IGraphSLScriptContext _scriptContext;
         private readonly ILogicalContext _logicalContext;
         private readonly ILogger _logger;
         private readonly ILogFactory _logFactory;
@@ -39,8 +39,8 @@
         public IDocumentFactory DocumentFactory { get; protected set; }
 
         public NewDocumentCommandBase(
-            IGraphSLScriptContext graphSlScriptContext,
-            IDataContext dataContext,
+            IGraphSLScriptContext scriptContext,
+            IGraphQLQueryContext queryContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
             IDataConnection connection,
@@ -50,8 +50,8 @@
             IJournalViewModel journal, 
             IGraphContextFactory graphContextFactory)
         {
-            _graphSlScriptContext = graphSlScriptContext;
-            _dataContext = dataContext;
+            _scriptContext = scriptContext;
+            _queryContext = queryContext;
             _logicalContext = logicalContext;
             _fabricContext = fabricContext;
             _connection = connection;
@@ -77,7 +77,7 @@
         {
             var title = DetermineTitle();
 
-            var documentViewModel = DocumentFactory.Create(_graphSlScriptContext, _dataContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal, _graphContextFactory);
+            var documentViewModel = DocumentFactory.Create(_scriptContext, _queryContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal, _graphContextFactory);
             documentViewModel.Title = title;
             _mainWindowViewModel.Documents.Add(documentViewModel);
         }

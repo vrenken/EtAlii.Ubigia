@@ -13,7 +13,7 @@
     public class ProcessGraphQueryLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ProcessGraphQueryLanguageUnitOfwork>, IProcessGraphQueryLanguageUnitOfworkHandler
     {
         private readonly IGraphContext _graphContext;
-        private readonly IDataContext _dataContext;
+        private readonly IGraphQLQueryContext _queryContext;
         private readonly IMainDispatcherInvoker _dispatcherInvoker;
         private readonly IStatusGraphQueryLanguageProcessingSubscription _statusGraphQueryLanguageProcessingSubscription;
         private readonly IOutputGraphQueryLanguageProcessingSubscription _outputGraphQueryLanguageProcessingSubscription;
@@ -21,7 +21,7 @@
         private readonly IParseGraphQueryLanguageUnitOfworkHandler _parseQueryUnitOfworkHandler;
 
         public ProcessGraphQueryLanguageUnitOfworkHandler(
-            IDataContext dataContext,
+            IGraphQLQueryContext queryContext,
             IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusGraphQueryLanguageProcessingSubscription statusGraphQueryLanguageProcessingSubscription, 
@@ -30,7 +30,7 @@
             IParseGraphQueryLanguageUnitOfworkHandler parseQueryUnitOfworkHandler, 
             IGraphContext graphContext) 
         {
-            _dataContext = dataContext;
+            _queryContext = queryContext;
             _dispatcherInvoker = dispatcherInvoker;
             _statusGraphQueryLanguageProcessingSubscription = statusGraphQueryLanguageProcessingSubscription;
             _diagnosticsGraphQueryLanguageProcessingSubscription = diagnosticsGraphQueryLanguageProcessingSubscription;
@@ -60,9 +60,7 @@
                 
                 var results = Observable.Create<QueryExecutionResult>(async output =>
                 {
-                    var queryContext = _dataContext.CreateGraphQLQueryContext();
-
-                    var queryExecutionResults = await queryContext.Execute(viewModel.Code);//, viewModel.Scope);
+                    var queryExecutionResults = await _queryContext.Execute(viewModel.Code);//, viewModel.Scope);
 
                     output.OnNext(queryExecutionResults);
                     return System.Reactive.Disposables.Disposable.Empty;

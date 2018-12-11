@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
             var container = new Container();
 
             container.Register(() => configuration);
-            container.Register(() => configuration.SystemDataContext);
+            container.Register(() => configuration.SystemScriptContext);
             container.Register(() => configuration.ManagementConnection);
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, GoogleProvider>();
@@ -23,7 +23,6 @@ namespace EtAlii.Ubigia.Provisioning.Google
 
             container.Register<IUserSettingsSetter, UserSettingsSetter>();
             container.Register<IUserSettingsGetter, UserSettingsGetter>();
-            //container.Register<IDataContext>(() => configuration.);
 
             container.Register<IMailImporter, MailImporter>();
             container.Register<ICalendarImporter, CalendarImporter>();

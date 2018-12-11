@@ -8,8 +8,6 @@
 
     public class ProviderContext : IProviderContext
     {
-        public IDataContext SystemDataContext { get; }
-
         public IGraphSLScriptContext SystemScriptContext { get; }
 
         public IManagementConnection ManagementConnection { get; }
@@ -17,29 +15,17 @@
         private readonly IProviderConfiguration _configuration;
 
         public ProviderContext(
-            IDataContext systemDataContext, 
+            IGraphSLScriptContext systemScriptContext,
             IManagementConnection managementConnection,
             IProviderConfiguration configuration)
         {
-            SystemDataContext = systemDataContext;
-            SystemScriptContext = systemDataContext.CreateGraphSLScriptContext();
+            SystemScriptContext = systemScriptContext;
             
             ManagementConnection = managementConnection;
             _configuration = configuration;
         }
 
-        public IDataContext CreateDataContext(Space space)
-        {
-            IDataConnection dataConnection = null;
-            var task = Task.Run(async () =>
-            {
-                dataConnection = await ManagementConnection.OpenSpace(space);
-            });
-            task.Wait();
-            return _configuration.CreateDataContext(dataConnection);
-        }
-
-        public IDataContext CreateDataContext(string accountName, string spaceName)
+        public IGraphSLScriptContext CreateScriptContext(string accountName, string spaceName)
         {
             IDataConnection dataConnection = null;
             var task = Task.Run(async () =>
@@ -47,19 +33,18 @@
                 dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
             });
             task.Wait();
-            return _configuration.CreateDataContext(dataConnection);
-        }
-
-        public IGraphSLScriptContext CreateScriptContext(string accountName, string spaceName)
-        {
-            var dataContext = CreateDataContext(accountName, spaceName);
-            return dataContext.CreateGraphSLScriptContext();
+            return _configuration.CreateScriptContext(dataConnection);
         }
 
         public IGraphSLScriptContext CreateScriptContext(Space space)
         {
-            var dataContext = CreateDataContext(space);
-            return dataContext.CreateGraphSLScriptContext();   
+            IDataConnection dataConnection = null;
+            var task = Task.Run(async () =>
+            {
+                dataConnection = await ManagementConnection.OpenSpace(space);
+            });
+            task.Wait();
+            return _configuration.CreateScriptContext(dataConnection);
         }
     }
 }

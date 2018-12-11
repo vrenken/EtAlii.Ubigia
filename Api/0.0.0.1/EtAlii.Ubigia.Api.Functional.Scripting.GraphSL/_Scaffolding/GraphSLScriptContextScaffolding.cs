@@ -14,9 +14,7 @@
         public void Register(Container container)
         {
             container.Register(() => _configuration);
-            container.Register(() => _configuration.DataContext.Configuration.LogicalContext);
-
-            container.Register<IDataContext, DataContext>();
+            container.Register(() => _configuration.LogicalContext);
         }
     }
 }

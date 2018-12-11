@@ -11,8 +11,8 @@
     public class TemporalDocumentFactory : ITemporalDocumentFactory
     {
         public IDocumentViewModel Create(
-            IGraphSLScriptContext graphSlScriptContext,
-            IDataContext dataContext,
+            IGraphSLScriptContext scriptContext,
+            IGraphQLQueryContext queryContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
             IDataConnection connection,
@@ -28,8 +28,7 @@
             new StructureScaffolding().Register(container);
 
             container.Register(() => fabricContext);
-            container.Register(() => dataContext);
-            container.Register<IGraphSLScriptContext>(() => graphSlScriptContext);
+            container.Register<IGraphSLScriptContext>(() => scriptContext);
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();

@@ -22,10 +22,8 @@
                 var systemConnection = _systemConnectionCreationProxy.Request();
                 var managementConnection = await systemConnection.OpenManagementConnection();
                 var spaceConnection = await managementConnection.OpenSpace(space);
-                var dataContext = new DataContextFactory().Create(spaceConnection);
+                var scriptContext = new GraphSLScriptContextFactory().Create(spaceConnection);
 
-                var scriptContext = dataContext.CreateGraphSLScriptContext();
-                
                 var rootsToCreate = template.RootsToCreate;
 
                 foreach (var rootToCreate in rootsToCreate)

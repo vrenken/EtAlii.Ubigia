@@ -14,7 +14,6 @@
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
-        private IDataContext _dataContext;
         private ILinqQueryContext _context;
         private string _countryPath;
         private readonly LogicalUnitTestContext _testContext;
@@ -39,11 +38,10 @@
 
                 _diagnostics = TestDiagnostics.Create();
                 _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-                var configuration = new DataContextConfiguration()
+                var configuration = new LinqQueryContextConfiguration()
                     .Use(_diagnostics)
                     .Use(_logicalContext);
-                _dataContext = new DataContextFactory().Create(configuration);
-                _context = new LinqQueryContextFactory().Create(_dataContext);
+                _context = new LinqQueryContextFactory().Create(configuration);
                 
                 var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
                 _countryPath = addResult.Path;
@@ -191,11 +189,10 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
-            var configuration = new DataContextConfiguration()
+            var configuration = new LinqQueryContextConfiguration()
                 .Use(_diagnostics)
                 .Use(_logicalContext);
-            _dataContext = new DataContextFactory().Create(configuration);
-            _context = new LinqQueryContextFactory().Create(_dataContext);
+            _context = new LinqQueryContextFactory().Create(configuration);
             items = _context.Nodes.Select(_countryPath);
 
             // Act.
@@ -214,11 +211,10 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
-            configuration = new DataContextConfiguration()
+            configuration = new LinqQueryContextConfiguration()
                 .Use(_diagnostics)
                 .Use(_logicalContext);
-            _dataContext = new DataContextFactory().Create(configuration);
-            _context = new LinqQueryContextFactory().Create(_dataContext);
+            _context = new LinqQueryContextFactory().Create(configuration);
             items = _context.Nodes.Select(_countryPath);
 
             // Act.
