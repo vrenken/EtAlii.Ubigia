@@ -16,7 +16,6 @@
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
-        private IDataContext _dataContext;
         private string _countryPath;
 
         public LinqQueryContextNodesSaveTests(LogicalUnitTestContext testContext)
@@ -27,11 +26,10 @@
 
                 _diagnostics = TestDiagnostics.Create();
                 _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
-                var configuration = new DataContextConfiguration()
+                var configuration = new LinqQueryContextConfiguration()
                     .Use(_diagnostics)
                     .Use(_logicalContext);
-                _dataContext = new DataContextFactory().Create(configuration);
-                _context = new LinqQueryContextFactory().Create(_dataContext);
+                _context = new LinqQueryContextFactory().Create(configuration);
                 var addResult = await testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
                 _countryPath = addResult.Path;
 
@@ -49,12 +47,11 @@
                 _countryPath = null;
                 _context.Dispose();
                 _context = null;
-                _dataContext = null;
                 _logicalContext.Dispose();
                 _logicalContext = null;
                 _diagnostics = null;
 
-                Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+                Console.WriteLine("LinqContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             });
             task.Wait();
         }

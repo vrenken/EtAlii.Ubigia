@@ -2,8 +2,16 @@
 {
     using System;
 
+    /// <summary>
+    /// A <see cref="GraphSLScriptContext"/> can be used to execute GSL scripts on a Ubigia space. 
+    /// </summary>
     public interface IGraphSLScriptContext
     {
+        /// <summary>
+        /// Parse the specified text into a GSL script. 
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
         ScriptParseResult Parse(string text);
 
         // TODO: Add non-async methods.

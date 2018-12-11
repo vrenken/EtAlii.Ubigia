@@ -8,8 +8,6 @@
 
     internal class GraphQLQueryContext : IGraphQLQueryContext
     {
-        private readonly IDataContext _dataContext;
-
         private readonly IDocumentExecuter _executor;
         private readonly IStaticSchema _staticSchema;
         private readonly IOperationProcessor _operationProcessor;
@@ -18,7 +16,6 @@
         private readonly IDocumentWriter _documentWriter;
 
         internal GraphQLQueryContext(
-            IDataContext dataContext,
             IDocumentBuilder builder,
             IDocumentWriter documentWriter,
             IDocumentExecuter executor,
@@ -26,7 +23,6 @@
             IOperationProcessor operationProcessor, 
             IFieldProcessor fieldProcessor)
         {
-            _dataContext = dataContext;
             _builder = builder;
             _documentWriter = documentWriter;
             _executor= executor;

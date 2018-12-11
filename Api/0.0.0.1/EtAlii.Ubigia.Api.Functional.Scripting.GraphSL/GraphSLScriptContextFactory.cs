@@ -29,6 +29,11 @@
                 scaffolding.Register(container);
             }
             
+            foreach (var extension in configuration.Extensions)
+            {
+                extension.Initialize(container);
+            }
+            
             return container.GetInstance<IGraphSLScriptContext>();
         }
     }

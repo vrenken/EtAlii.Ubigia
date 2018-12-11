@@ -141,7 +141,7 @@
             // Act.
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new DataContextFactory().Create(connection).CreateGraphSLScriptContext();
+            context = new GraphSLScriptContextFactory().Create(connection);
 
             systemSettingsSetter.Set(context, firstSystemSettings);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -149,16 +149,16 @@
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new DataContextFactory().Create(connection).CreateGraphSLScriptContext();
-
+            context = new GraphSLScriptContextFactory().Create(connection);
+            
             systemSettingsSetter.Set(context, secondSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new DataContextFactory().Create(connection).CreateGraphSLScriptContext();
-
+            context = new GraphSLScriptContextFactory().Create(connection);
+            
             systemSettingsSetter.Set(context, thirdSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();

@@ -89,13 +89,11 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName);
 
-            var dataContextconfiguration = new DataContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .Use(dataConnection);
 
-            var dataContext = new DataContextFactory().Create(dataContextconfiguration);
+            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
 
-            var scriptContext = dataContext.CreateGraphSLScriptContext();
-            
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
@@ -135,12 +133,10 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName);
 
-            var dataContextconfiguration = new DataContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .Use(dataConnection);
 
-            var dataContext = new DataContextFactory().Create(dataContextconfiguration);
-
-            var scriptContext = dataContext.CreateGraphSLScriptContext();
+            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
             
             var selectQuery = "<= /Person";
 

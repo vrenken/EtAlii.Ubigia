@@ -8,11 +8,11 @@
 
     public class ParseGraphQueryLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphQueryLanguageUnitOfwork>, IParseGraphQueryLanguageUnitOfworkHandler
     {
-        private readonly IDataContext _dataContext;
+        private readonly IGraphQLQueryContext _queryContext;
 
-        public ParseGraphQueryLanguageUnitOfworkHandler(IDataContext dataContext)
+        public ParseGraphQueryLanguageUnitOfworkHandler(IGraphQLQueryContext queryContext)
         {
-            _dataContext = dataContext;
+            _queryContext = queryContext;
         }
 
         protected override void Handle(ParseGraphQueryLanguageUnitOfwork unitOfWork)
@@ -21,7 +21,7 @@
 
             viewModel.Errors = new TextualError[] {};
             
-            var queryContext = _dataContext.CreateGraphQLQueryContext();
+            //var queryContext = _queryContext;
             //var result = _dataContext.Queries.Parse(viewModel.Code);
             //viewModel.Query = result.Query;
             //viewModel.Errors = result.Errors.Select(error => new TextualError { Text = error.Message, Line = error.Line, Column = error.Column });

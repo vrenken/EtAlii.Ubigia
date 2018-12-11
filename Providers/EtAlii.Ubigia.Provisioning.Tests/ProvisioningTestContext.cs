@@ -25,19 +25,22 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         {
             _testHostFactory = testHostFactory;
         }
-
-        public async Task<IDataContext> CreateDataContext(string accountName, string accountPassword, string spaceName)
-        {
-            var connection = await CreateDataConnection(accountName, accountPassword, spaceName);
-            return new DataContextFactory().Create(connection);
-        }
+//
+//        public async Task<IGraphSLScriptContext> CreateDataContext(string accountName, string accountPassword, string spaceName)
+//        {
+//            var connection = await CreateDataConnection(accountName, accountPassword, spaceName);
+//            return new GraphSLScriptContextFactory().Create(connection);
+//        }
 
 
         public async Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string accountPassword, string spaceName)
         {
-            var dataContext = await CreateDataContext(accountName, accountPassword, spaceName);
-
-            return dataContext.CreateGraphSLScriptContext();
+            var connection = await CreateDataConnection(accountName, accountPassword, spaceName);
+            return new GraphSLScriptContextFactory().Create(connection);
+//            
+//            var dataContext = await CreateDataContext(accountName, accountPassword, spaceName);
+//
+//            return dataContext.CreateGraphSLScriptContext();
         }
 
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)

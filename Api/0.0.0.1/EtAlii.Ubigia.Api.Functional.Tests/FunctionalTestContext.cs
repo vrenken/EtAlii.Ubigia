@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
 
@@ -20,15 +21,38 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             _diagnostics = diagnostics;
         }
 
-        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
+//        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
+//        {
+//            var logicalContext = await _logical.CreateLogicalContext(openOnCreation);
+//            var configuration = new DataContextConfiguration()
+//                .Use(_diagnostics)
+//                .Use(logicalContext);
+//            return new DataContextFactory().Create(configuration);
+//        }
+
+        
+        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
-            var logicalContext = await _logical.CreateLogicalContext(openOnCreation);
-            var configuration = new DataContextConfiguration()
-                .Use(_diagnostics)
-                .Use(logicalContext);
-            return new DataContextFactory().Create(configuration);
+            return await _logical.CreateLogicalContext(openOnCreation);
         }
 
+        public IGraphSLScriptContext CreateGraphSLScriptContext(ILogicalContext logicalContext)
+        {
+            var configuration = new GraphSLScriptContextConfiguration()
+                .Use(logicalContext)
+                .Use(_diagnostics);
+            return new GraphSLScriptContextFactory().Create(configuration);
+        }
+        
+        public IGraphQLQueryContext CreateGraphQLQueryContext(ILogicalContext logicalContext)
+        {
+            var configuration = new GraphQLQueryContextConfiguration()
+                .Use(logicalContext)
+                .Use(_diagnostics);
+            return new GraphQLQueryContextFactory().Create(configuration);
+        }
+        
+        
         public async Task AddPeople(IGraphSLScriptContext context)
         {
             await AddJohnDoe(context);

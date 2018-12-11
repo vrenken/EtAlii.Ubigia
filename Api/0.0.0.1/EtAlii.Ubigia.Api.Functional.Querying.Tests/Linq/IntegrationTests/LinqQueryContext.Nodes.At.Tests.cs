@@ -16,7 +16,6 @@
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
-        private IDataContext _dataContext;
 
         private string _countryPath;
 
@@ -28,11 +27,11 @@
 
                 _diagnostics = TestDiagnostics.Create();
                 _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
-                var configuration = new DataContextConfiguration()
+                var configuration = new LinqQueryContextConfiguration()
                     .Use(_diagnostics)
                     .Use(_logicalContext);
-                _dataContext = new DataContextFactory().Create(configuration);
-                _context = new LinqQueryContextFactory().Create(_dataContext);
+                _context = new LinqQueryContextFactory().Create(configuration);
+                
                 var addResult = await testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
                 _countryPath = addResult.Path;
 

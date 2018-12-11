@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Provisioning.Diagnostics
                 .Use(extensions)
                 .Use((IDataConnectionConfiguration c) => c.Use(diagnostics))
                 .Use((IManagementConnectionConfiguration c) => c.Use(diagnostics))
-                .Use((IDataContextConfiguration c) => c.Use(diagnostics));
+                .Use((IGraphSLScriptContextConfiguration c) => c.Use(diagnostics));
         }
     }
 }

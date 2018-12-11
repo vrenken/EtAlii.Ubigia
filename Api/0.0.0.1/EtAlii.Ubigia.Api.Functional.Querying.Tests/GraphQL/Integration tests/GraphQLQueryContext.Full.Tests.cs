@@ -2,16 +2,14 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Querying;
-    using GraphQL; // TODO: These dependencies should be covered.
+    using EtAlii.Ubigia.Api.Logical;
     using GraphQL.Http;
-    using Newtonsoft.Json.Linq;
     using Xunit;
 
 
     public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IDisposable
     {
-        private IDataContext _dataContext;
+        private ILogicalContext _logicalContext;
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
         
@@ -37,9 +35,9 @@
             {
                 var start = Environment.TickCount;
 
-                _dataContext = await _testContext.FunctionalTestContext.CreateFunctionalContext(true);
-                _queryContext = _dataContext.CreateGraphQLQueryContext();
-                _scriptContext = _dataContext.CreateGraphSLScriptContext();
+                _logicalContext = await _testContext.FunctionalTestContext.CreateLogicalContext(true);
+                _queryContext = _testContext.FunctionalTestContext.CreateGraphQLQueryContext(_logicalContext);
+                _scriptContext = _testContext.FunctionalTestContext.CreateGraphSLScriptContext(_logicalContext);
         
                 await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
                 await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
@@ -55,7 +53,7 @@
             {
                 var start = Environment.TickCount;
 
-                _dataContext = null;
+                _logicalContext = null;
                 _scriptContext = null;
                 _queryContext = null;
 

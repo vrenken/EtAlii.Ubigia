@@ -11,18 +11,22 @@
 
     internal class GraphQLQueryContextScaffolding : IScaffolding
     {
-        private readonly IDataContext _dataContext;
+        private readonly IGraphQLQueryContextConfiguration _configuration;
 
-        public GraphQLQueryContextScaffolding(IDataContext dataContext)
+        public GraphQLQueryContextScaffolding(IGraphQLQueryContextConfiguration configuration)
         {
-            _dataContext = dataContext;
+            _configuration = configuration;
         }
         public void Register(Container container)
         {
             container.Register<IGraphQLQueryContext, GraphQLQueryContext>();
-
-            container.Register<IDataContext>(() => _dataContext);
-            container.Register<IGraphSLScriptContext>(() => _dataContext.CreateGraphSLScriptContext());
+            container.Register<IGraphSLScriptContext>(() =>
+            {
+                var configuration = new GraphSLScriptContextConfiguration()
+                    .Use(_configuration.LogicalContext);
+                
+                return new GraphSLScriptContextFactory().Create(configuration);
+            });
 
             container.Register<IDependencyResolver>(() => new FuncDependencyResolver(container.GetInstance));
 

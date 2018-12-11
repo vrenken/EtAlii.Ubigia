@@ -11,8 +11,8 @@
     public class LogicalGraphDocumentFactory : ILogicalGraphDocumentFactory
     {
         public IDocumentViewModel Create(
-            IGraphSLScriptContext graphSlScriptContext,
-            IDataContext dataContext,
+            IGraphSLScriptContext scriptContext,
+            IGraphQLQueryContext queryContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
             IDataConnection connection,
@@ -34,8 +34,7 @@
             container.Register<IGraphContextMenuViewModel, GraphContextMenuViewModel>();
 
             container.Register(() => fabricContext);
-            container.Register(() => dataContext);
-            container.Register<IGraphSLScriptContext>(() => graphSlScriptContext);
+            container.Register<IGraphSLScriptContext>(() => scriptContext);
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();

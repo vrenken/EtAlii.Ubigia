@@ -30,10 +30,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public void Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-	        var userConfigurationContext = _context.CreateDataContext(configurationSpace.Space);
+	        var userConfigurationScriptContext = _context.CreateScriptContext(configurationSpace.Space);
 	        {
-		        var userConfigurationScriptContext = userConfigurationContext.CreateGraphSLScriptContext();
-		        
                 var allUserSettings = _userSettingsGetter.Get(userConfigurationScriptContext);
                 foreach (var userSettings in allUserSettings)
                 {
@@ -48,10 +46,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         private void UpdateDataSpace(ConfigurationSpace configurationSpace, SystemSettings systemSettings, UserSettings userSettings)
         {
-	        var userDataContext = _context.CreateDataContext(configurationSpace.Account.Name, SpaceName.Data);
+	        var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data);
 	        {
-		        var userDataScriptContext = userDataContext.CreateGraphSLScriptContext();
-		        
                 var request = CreateRequest(systemSettings, userSettings);
 	            var feed = request.Execute();//.GetContacts();
                 //feed.AutoPaging = true;

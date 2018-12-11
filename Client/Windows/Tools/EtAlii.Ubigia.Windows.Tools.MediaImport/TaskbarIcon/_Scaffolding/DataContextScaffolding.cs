@@ -25,16 +25,8 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
             // However, I have no good idea on how to redesign it that way. All other solutions have disadvantages as well.  
             container.Register<IDataConnection>(() => _connection);
 
+            
             container.Register<IGraphSLScriptContext>(() =>
-            {
-                var dataContext = container.GetInstance<IDataContext>();
-                
-                var configuration = new GraphSLScriptContextConfiguration()
-                    .Use(dataContext)
-                    .UseNET47();
-                return dataContext.CreateGraphSLScriptContext(configuration);
-            });
-            container.Register<IDataContext>(() =>
             {
                 var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
                 var fabricContextConfiguration = new FabricContextConfiguration()
@@ -46,10 +38,11 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
                     .Use(diagnostics);
                 var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-                var dataContextConfiguration = new DataContextConfiguration()
-                                    .Use(diagnostics)
-                                    .Use(logicalContext);
-                return new DataContextFactory().Create(dataContextConfiguration);
+                var configuration = new GraphSLScriptContextConfiguration()
+                    .Use(diagnostics)
+                    .Use(logicalContext)
+                    .UseNET47();
+                return new GraphSLScriptContextFactory().Create(configuration);
             });
         }
     }

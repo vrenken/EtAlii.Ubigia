@@ -10,8 +10,8 @@
     public interface IDocumentFactory
     {
         IDocumentViewModel Create(
-            IGraphSLScriptContext graphSlScriptContext,
-            IDataContext dataContext,
+            IGraphSLScriptContext scriptContext,
+            IGraphQLQueryContext queryContext,
             ILogicalContext logicalContext,
             IFabricContext fabricContext,
             IDataConnection connection,

@@ -7,7 +7,7 @@
             var container = new xTechnology.MicroContainer.Container();
 
             container.Register(() => configuration);
-            container.Register(() => configuration.SystemDataContext);
+            container.Register(() => configuration.SystemScriptContext);
             container.Register<IProviderContext, ProviderContext>();
             container.Register<IProvider, TwitterProvider>();
             container.Register<ITweetImporter, TweetImporter>();

@@ -20,12 +20,9 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-
+            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext);
+                .Use(logicalContext);
             
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -39,12 +36,9 @@
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-
+            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext);
+                .Use(logicalContext);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -60,13 +54,9 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var rootHandlerMappers = new IRootHandlerMapper[] { new TestRootHandlerMapper() };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-
+            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(rootHandlerMappersProvider);
             
             // Act.
@@ -83,13 +73,9 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var rootHandlerMappers = new IRootHandlerMapper[] { new InvalidTestRootHandlerMapper() };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-
+            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(rootHandlerMappersProvider);
 
             // Act.
@@ -114,13 +100,8 @@
             };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
 
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(rootHandlerMappersProvider);
 
             // Act.
@@ -141,13 +122,9 @@
                 new TestRootHandlerMapper()
             };
             var rootHandlerMappersProvider = new RootHandlerMappersProvider(rootHandlerMappers);
-            var dataContextConfiguration = new DataContextConfiguration()
-                .Use(logicalContext);
-
-            var dataContext = new DataContextFactory().Create(dataContextConfiguration);
-
+            
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(dataContext)
+                .Use(logicalContext)
                 .Use(rootHandlerMappersProvider);
             
             // Act.

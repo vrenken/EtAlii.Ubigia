@@ -49,7 +49,7 @@
                 });
                 task.Wait();
 
-                return _configuration.CreateDataContext(connection);
+                return _configuration.CreateScriptContext(connection);
             });
         }
     }

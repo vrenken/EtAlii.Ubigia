@@ -94,27 +94,50 @@
             container.Register<ISpaceBrowserFunctionHandlersProvider, SpaceBrowserFunctionHandlersProvider>();
             container.Register<IViewFunctionHandler, ViewFunctionHandler>();
 
-            container.Register<IDataContext>(() =>
-            {
-                var logicalContext = container.GetInstance<ILogicalContext>();
-                
-                // And finally, the functional context.
-                var dataContextConfiguration = new DataContextConfiguration()
-                                    .Use(diagnostics)
-                                    .Use(logicalContext);
-                return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
-            });
-            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
-            
+//            container.Register<IDataContext>(() =>
+//            {
+//                var logicalContext = container.GetInstance<ILogicalContext>();
+//                
+//                // And finally, the functional context.
+//                var dataContextConfiguration = new DataContextConfiguration()
+//                                    .Use(diagnostics)
+//                                    .Use(logicalContext);
+//                return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
+//            });
+//            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
+
             container.Register<IGraphSLScriptContext>(() =>
             {
-                var dataContext = container.GetInstance<IDataContext>();
+                var logicalContext = container.GetInstance<ILogicalContext>();
                 var configuration = new GraphSLScriptContextConfiguration()
-                    .Use(dataContext)
+                    .Use(logicalContext)
+                    .Use(diagnostics)
                     .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
                     .UseNET47();
-                return new GraphSLScriptContextFactory().Create(configuration);
+                return new GraphSLScriptContextFactory().CreateForProfiling(configuration);
             });
+            container.Register(() => (IProfilingGraphSLScriptContext)container.GetInstance<IGraphSLScriptContext>());
+
+            container.Register<IGraphQLQueryContext>(() =>
+            {
+                var logicalContext = container.GetInstance<ILogicalContext>();
+                var configuration = new GraphQLQueryContextConfiguration()
+                    .Use(logicalContext)
+                    .Use(diagnostics);
+                return new GraphQLQueryContextFactory().CreateForProfiling(configuration);
+            });
+            container.Register(() => (IProfilingGraphQLQueryContext)container.GetInstance<IGraphQLQueryContext>());
+            
+            container.Register<ILinqQueryContext>(() =>
+            {
+                var logicalContext = container.GetInstance<ILogicalContext>();
+                var configuration = new LinqQueryContextConfiguration()
+                    .Use(logicalContext)
+                    .Use(diagnostics);
+                return new LinqQueryContextFactory().CreateForProfiling(configuration);
+            });
+            container.Register(() => (IProfilingLinqQueryContext)container.GetInstance<ILinqQueryContext>());
+
         }
 
         private void RegisterDiagnostics(Container container, IDiagnosticsConfiguration diagnostics)
