@@ -60,7 +60,7 @@
                 
                 var results = Observable.Create<QueryExecutionResult>(async output =>
                 {
-                    var queryExecutionResults = await _queryContext.Execute(viewModel.Code);//, viewModel.Scope);
+                    var queryExecutionResults = await _queryContext.Process(viewModel.Code);//, viewModel.Scope);
 
                     output.OnNext(queryExecutionResults);
                     return System.Reactive.Disposables.Disposable.Empty;

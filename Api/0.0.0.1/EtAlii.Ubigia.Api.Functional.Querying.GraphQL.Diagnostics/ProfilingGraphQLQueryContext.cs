@@ -19,12 +19,12 @@
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptSet);
         }
 
-        public async Task<QueryExecutionResult> Execute(string query)
+        public async Task<QueryExecutionResult> Process(string query)
         {
             dynamic profile = Profiler.Begin("Execution");
             profile.Query = query;
             
-            var result = await _decoree.Execute(query);
+            var result = await _decoree.Process(query);
 
             Profiler.End(profile);
 
