@@ -39,7 +39,7 @@
             text = text.Replace("\r\n", "\n");
             text = text.Replace("\t", " ");
 
-            var errors = new ScriptParserError[] { };
+            var errors = Array.Empty<ScriptParserError>();
             Script script = null;
 
             try

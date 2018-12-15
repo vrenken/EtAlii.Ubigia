@@ -66,7 +66,7 @@
         public async Task GraphQL_Query_Traverse_Person_Multiple_01()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     person @nodes(path:""/person/*/*"")
@@ -76,7 +76,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.                           
             Assert.Null(result.Errors);
@@ -100,7 +101,7 @@
         public async Task GraphQL_Query_Traverse_Person_Multiple_With_Nested_Id()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     person @nodes(path:""/person/*/*"")
@@ -111,7 +112,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.                           
             Assert.Null(result.Errors);
@@ -135,7 +137,7 @@
         public async Task GraphQL_Query_Traverse_Person_Multiple_02()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     person @nodes(path:""/person/Doe/*"")
@@ -145,7 +147,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -156,7 +159,7 @@
         public async Task GraphQL_Query_Traverse_Person_Plural_01()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data @nodes(path:""person:Doe/*"") 
                 { 
                     person 
@@ -166,7 +169,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -178,7 +182,7 @@
         public async Task GraphQL_Query_Traverse_Person_Multiple_Friends()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     person @nodes(path:""person:Stark/Tony"")
@@ -193,7 +197,8 @@
                 }";
                     
         // Act.
-        var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+        var result = await _queryContext.Process(parseResult.Query);
             
         // Assert.
         Assert.Null(result.Errors);
@@ -218,7 +223,7 @@
         public async Task GraphQL_Query_Traverse_Person_Plural_02()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data 
                 { 
                     #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
@@ -232,7 +237,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.    
             Assert.Null(result.Errors);
@@ -245,7 +251,7 @@
         public async Task GraphQL_Query_Traverse_Person_Plural_03()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data 
                 { 
                     #location @nodes(path:""location:DE/Berlin//"", mode: ""Intersect"")
@@ -259,7 +265,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.    
             Assert.Null(result.Errors);

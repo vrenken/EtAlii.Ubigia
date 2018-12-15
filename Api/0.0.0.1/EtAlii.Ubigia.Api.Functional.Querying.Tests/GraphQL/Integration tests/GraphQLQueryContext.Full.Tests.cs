@@ -66,7 +66,7 @@
         public async Task GraphQL_Query_Traverse_Person_Single()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data @nodes(path:""/person/Stark/"")  
                 { 
                     person @nodes(path:""Tony"")
@@ -76,7 +76,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -88,7 +89,7 @@
         public async Task GraphQL_Query_Traverse_Person_Single_Nested_01()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     data2 @nodes(path:""/person/Stark/"")
@@ -102,7 +103,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -114,7 +116,7 @@
         public async Task GraphQL_Query_Traverse_Person_Single_Nested_02()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     stark @nodes(path:""/person/Stark/"")
@@ -128,7 +130,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -140,7 +143,7 @@
         public async Task GraphQL_Query_Traverse_Person_Multiple_Nested_01()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data  
                 { 
                     data2 @nodes(path:""/person"")
@@ -157,7 +160,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);

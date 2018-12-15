@@ -5,6 +5,8 @@
 
     public interface IGraphQLQueryContext
     {
-        Task<QueryExecutionResult> Process(string query);//, Inputs inputs);
+        Task<QueryParseResult> Parse(string text);
+        
+        Task<QueryProcessingResult> Process(Query query);
     }
 }

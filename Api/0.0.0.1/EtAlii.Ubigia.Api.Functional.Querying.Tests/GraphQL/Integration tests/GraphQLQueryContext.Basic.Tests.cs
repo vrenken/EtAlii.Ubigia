@@ -62,7 +62,7 @@
         }
 
         [Theory, ClassData(typeof(FileBasedScriptData))]
-        public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string query)
+        public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string queryText)
         {
             // Arrange.
 #pragma warning disable 1717
@@ -71,7 +71,8 @@
 #pragma warning restore 1717
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
              
             // Assert.
             Assert.NotNull(result);
@@ -81,10 +82,11 @@
         public async Task GraphQL_Query_Select_Simple_Full_Local()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname, lastname, nickname, birthdate, lives } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
              
             // Assert.
             Assert.NotNull(result.Errors);
@@ -95,10 +97,11 @@
         public async Task GraphQL_Query_Select_Simple_Full_Relative()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\""), nickname, birthdate, lives } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\""), nickname, birthdate, lives } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
              
             // Assert.
             Assert.Null(result.Errors);
@@ -109,10 +112,11 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative_01()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\"") } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\"") } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -123,10 +127,11 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative_02()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:"""") } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -137,10 +142,11 @@
         public async Task GraphQL_Query_Select_Simple_Path_Local()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -151,7 +157,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative()
         {
             // Arrange.
-            var query = @"
+            var queryText = @"
                 query data 
                 { 
                     person @nodes(path:""person:Stark/Tony"") 
@@ -161,7 +167,8 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -173,10 +180,11 @@
         public async Task GraphQL_Query_Select_Simple_Property_Integer()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { lives } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lives } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -187,10 +195,11 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_01()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { nickname } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -201,7 +210,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_04()
         {
             // Arrange.
-            var query = @"query data 
+            var queryText = @"query data 
                           { 
                             person @nodes(path:""person:Stark/Tony"") 
                             { 
@@ -210,7 +219,8 @@
                           }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -221,7 +231,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_And_Non_Argumented_Id()
         {
             // Arrange.
-            var query = @"query data 
+            var queryText = @"query data 
                           { 
                             person @nodes(path:""person:Stark/Tony"") 
                             {
@@ -231,7 +241,8 @@
                           }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -242,7 +253,7 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_And_Argumented_Id()
         {
             // Arrange.
-            var query = @"query data 
+            var queryText = @"query data 
                           { 
                             person @nodes(path:""person:Stark/Tony"") 
                             {
@@ -252,7 +263,8 @@
                           }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -263,10 +275,11 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_02()
         {
             // Arrange.
-            var query = "query data { person\n@nodes(path:\"person:Stark/Tony\") { nickname } }";
+            var queryText = "query data { person\n@nodes(path:\"person:Stark/Tony\") { nickname } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -277,10 +290,11 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_03()
         {
             // Arrange.
-            var query = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
+            var queryText = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -291,10 +305,11 @@
         public async Task GraphQL_Query_Select_Multiple_Starts_String()
         {
             // Arrange.
-            var query = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
+            var queryText = "query data\n{\nperson\n@nodes(path:\"person:Stark/Tony\")\n@nodes(path:\"person:Stark/Tony\")\n{\nnickname\n}\n}";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -304,10 +319,11 @@
         public async Task GraphQL_Query_Select_Droid()
         {
             // Arrange.
-            var query = @"query data { droid(id: ""4"") { id, name } }";
+            var queryText = @"query data { droid(id: ""4"") { id, name } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -317,10 +333,11 @@
         public async Task GraphQL_Query_Select_Simple_Property_String_Temp()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { id, nickname } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { id, nickname } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.NotNull(result.Errors);
@@ -331,10 +348,11 @@
         public async Task GraphQL_Query_Select_Simple_Property_Date()
         {
             // Arrange.
-            var query = @"query data { person @nodes(path:""person:Stark/Tony"") { birthdate } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { birthdate } }";
             
             // Act.
-            var result = await _queryContext.Process(query);
+            var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
             
             // Assert.
             Assert.Null(result.Errors);
