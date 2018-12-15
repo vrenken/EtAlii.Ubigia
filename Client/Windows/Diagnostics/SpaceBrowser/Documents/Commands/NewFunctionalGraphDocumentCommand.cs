@@ -9,19 +9,8 @@
 
     public class NewFunctionalGraphDocumentCommand : NewDocumentCommandBase, INewFunctionalGraphDocumentCommand
     {
-        public NewFunctionalGraphDocumentCommand(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            IFunctionalGraphDocumentFactory factory,
-            ILogicalContext logicalContext, 
-            IFabricContext fabricContext, 
-            IDataConnection connection, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory) 
-            : base(scriptContext, queryContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+        public NewFunctionalGraphDocumentCommand(IDocumentContext documentContext, IFunctionalGraphDocumentFactory factory) 
+            : base(documentContext)
         {
             DocumentFactory = factory;
             Header = "Functional graph";

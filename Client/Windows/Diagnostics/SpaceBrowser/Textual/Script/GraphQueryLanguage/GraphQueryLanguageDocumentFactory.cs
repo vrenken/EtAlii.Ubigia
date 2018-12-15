@@ -10,34 +10,25 @@
 
     public class GraphQueryLanguageDocumentFactory : IGraphQueryLanguageDocumentFactory
     {
-        public IDocumentViewModel Create(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            ILogicalContext logicalContext,
-            IFabricContext fabricContext,
-            IDataConnection connection,
-            IDiagnosticsConfiguration diagnostics,
-            ILogger logger,
-            ILogFactory logFactory,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory)
+        public IDocumentViewModel Create(IDocumentContext documentContext)
         {
             var container = new Container();
 
-            new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
+            new DiagnosticsScaffolding().Register(container, documentContext.Diagnostics, documentContext.Logger, documentContext.LogFactory);
             new StructureScaffolding().Register(container);
 
-            container.Register(() => fabricContext);
-            container.Register<IGraphSLScriptContext>(() => scriptContext);
+            container.Register(() => documentContext.FabricContext);
+            container.Register<IGraphQLQueryContext>(() => documentContext.QueryContext);
+            
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
-                return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
+                return documentContext.GraphContextFactory.Create(documentContext.Logger, documentContext.Journal, documentContext.FabricContext, dvmp);
             });
 
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
             container.Register<IGraphQueryLanguageViewModel, GraphQueryLanguageViewModel>();
-            container.Register(() => journal);
+            container.Register(() => documentContext.Journal);
 
 //            container.Register<IQueryButtonsViewModel, QueryButtonsViewModel>();
 

@@ -9,19 +9,8 @@
 
     public class NewCodeDocumentCommand : NewDocumentCommandBase, INewCodeDocumentCommand
     {
-        public NewCodeDocumentCommand(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            ICodeDocumentFactory factory,
-            ILogicalContext logicalContext, 
-            IFabricContext fabricContext, 
-            IDataConnection connection, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory) 
-            : base(scriptContext, queryContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+        public NewCodeDocumentCommand(IDocumentContext documentContext, ICodeDocumentFactory factory) 
+            : base(documentContext)
         {
             DocumentFactory = factory;
             Header = "Code";

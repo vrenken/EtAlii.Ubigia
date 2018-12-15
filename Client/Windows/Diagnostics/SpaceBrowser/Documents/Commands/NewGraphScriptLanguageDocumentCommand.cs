@@ -9,19 +9,8 @@
 
     public class NewGraphScriptLanguageDocumentCommand : NewDocumentCommandBase, INewGraphScriptLanguageDocumentCommand 
     {
-        public NewGraphScriptLanguageDocumentCommand(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            IGraphScriptLanguageDocumentFactory factory,
-            ILogicalContext logicalContext, 
-            IFabricContext fabricContext, 
-            IDataConnection connection, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory) 
-            : base(scriptContext, queryContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+        public NewGraphScriptLanguageDocumentCommand(IDocumentContext documentContext, IGraphScriptLanguageDocumentFactory factory) 
+            : base(documentContext)
         {
             DocumentFactory = factory;
             Header = "Script";
