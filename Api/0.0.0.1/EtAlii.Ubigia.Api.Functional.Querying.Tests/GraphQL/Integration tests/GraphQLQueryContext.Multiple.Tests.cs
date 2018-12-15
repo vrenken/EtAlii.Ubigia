@@ -76,7 +76,7 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Execute(query);
+            var result = await _queryContext.Process(query);
             
             // Assert.                           
             Assert.Null(result.Errors);
@@ -111,7 +111,7 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Execute(query);
+            var result = await _queryContext.Process(query);
             
             // Assert.                           
             Assert.Null(result.Errors);
@@ -145,7 +145,7 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Execute(query);
+            var result = await _queryContext.Process(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -166,7 +166,7 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Execute(query);
+            var result = await _queryContext.Process(query);
             
             // Assert.
             Assert.Null(result.Errors);
@@ -193,7 +193,7 @@
                 }";
                     
         // Act.
-        var result = await _queryContext.Execute(query);
+        var result = await _queryContext.Process(query);
             
         // Assert.
         Assert.Null(result.Errors);
@@ -232,7 +232,7 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Execute(query);
+            var result = await _queryContext.Process(query);
             
             // Assert.    
             Assert.Null(result.Errors);
@@ -259,7 +259,7 @@
                 }";
             
             // Act.
-            var result = await _queryContext.Execute(query);
+            var result = await _queryContext.Process(query);
             
             // Assert.    
             Assert.Null(result.Errors);

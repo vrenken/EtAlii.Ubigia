@@ -31,7 +31,7 @@
             _fieldProcessor = fieldProcessor;
         }
         
-        public async Task<QueryExecutionResult> Execute(string query)//, Inputs inputs)
+        public async Task<QueryExecutionResult> Process(string query)//, Inputs inputs)
         {
             var inputs = new Inputs();
             var document = _builder.Build(query);
