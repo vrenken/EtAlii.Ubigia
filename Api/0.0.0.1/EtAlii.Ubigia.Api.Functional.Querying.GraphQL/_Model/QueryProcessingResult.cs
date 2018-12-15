@@ -8,7 +8,7 @@
     using GraphQL.Language.AST;
 
     [JsonConverter(typeof(ExecutionResultJsonConverter))]
-    public class QueryExecutionResult
+    public class QueryProcessingResult
     {
         // TODO: Remove everything we don't need. This will be most of the GraphQL specific typed properties.
         public object Data { get; set; }
@@ -30,13 +30,13 @@
 
         public Dictionary<string, object> Extensions { get; }
 
-        public QueryExecutionResult(object data, string dataAsString)
+        public QueryProcessingResult(object data, string dataAsString)
         {
             Data = data;
         }
 
         
-        public QueryExecutionResult(ExecutionResult result, string dataAsString)
+        public QueryProcessingResult(ExecutionResult result, string dataAsString)
         {
             if (result == null)
                 throw new ArgumentNullException(nameof(result));
@@ -50,18 +50,18 @@
             this.Extensions = result.Extensions;
         }
 
-        public static ExecutionResult ToGraphQlExecutionResult(QueryExecutionResult queryExecutionResult)
+        public static ExecutionResult ToGraphQlExecutionResult(QueryProcessingResult queryProcessingResult)
         {
             return new ExecutionResult
             {
-                Data = queryExecutionResult.Data,
-                Errors = queryExecutionResult.Errors,
-                Query = queryExecutionResult.Query,
-                Operation = queryExecutionResult.Operation,
-                Document = queryExecutionResult.Document,
-                Perf = queryExecutionResult.Perf,
-                ExposeExceptions = queryExecutionResult.ExposeExceptions,
-                Extensions = queryExecutionResult.Extensions,
+                Data = queryProcessingResult.Data,
+                Errors = queryProcessingResult.Errors,
+                Query = queryProcessingResult.Query,
+                Operation = queryProcessingResult.Operation,
+                Document = queryProcessingResult.Document,
+                Perf = queryProcessingResult.Perf,
+                ExposeExceptions = queryProcessingResult.ExposeExceptions,
+                Extensions = queryProcessingResult.Extensions,
             };
         }
 

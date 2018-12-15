@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System;
+    using System.Collections.Generic;
     using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using System.Threading.Tasks;
     using GraphQL;
@@ -30,13 +32,32 @@
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
         }
-        
-        public async Task<QueryExecutionResult> Process(string query)//, Inputs inputs)
+
+        public async Task<QueryParseResult> Parse(string text)
         {
-            var inputs = new Inputs();
-            var document = _builder.Build(query);
+            GraphQL.Language.AST.Document document = null;
+            var errors = Array.Empty<QueryParserError>();
+            try
+            {
+                document = _builder.Build(text);
+            }
+            catch (Exception e)
+            {
+                errors = new[] { new QueryParserError(e, e.Message, 0, 0) };
+            }
+            
+            var query = new Query(document, text);
+            var result = new QueryParseResult(text, query, errors);
+            return await Task.FromResult(result);
+        }
+        
+        public async Task<QueryProcessingResult> Process(Query query) 
+        {
+            var document = query.Document;
             var schema = await DynamicSchema.Create(_staticSchema, _operationProcessor, _fieldProcessor, document);
             
+            var inputs = new Inputs();
+
             // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.
             var configuration = new ExecutionOptions
             {
@@ -47,7 +68,7 @@
                 // We do this by always returning a dynamic schema which includes everything from the static schema.
                 //_.Schema = DynamicSchema.Create(schema, request.Query);
                 Schema = schema,
-                Query = query,
+                Query = query.Text,
                 OperationName = null, //operationName;//request.OperationName;
                 Inputs = inputs, //request.Variables.ToInputs();
                 UserContext = new UserContext {User = null} // ctx.User ;
@@ -57,7 +78,7 @@
 
             var dataAsString = await _documentWriter.WriteToStringAsync(executionResult);
                 
-            return new QueryExecutionResult(executionResult, dataAsString);
+            return new QueryProcessingResult(executionResult, dataAsString);
         }
     }
 }
