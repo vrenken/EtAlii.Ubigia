@@ -9,19 +9,8 @@
 
     public class NewProfilingDocumentCommand : NewDocumentCommandBase, INewProfilingDocumentCommand
     {
-        public NewProfilingDocumentCommand(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            IProfilingDocumentFactory factory,
-            ILogicalContext logicalContext, 
-            IFabricContext fabricContext, 
-            IDataConnection connection, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory) 
-            : base(scriptContext, queryContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+        public NewProfilingDocumentCommand(IDocumentContext documentContext, IProfilingDocumentFactory factory) 
+            : base(documentContext)
         {
             DocumentFactory = factory;
             Header = "Profiling";

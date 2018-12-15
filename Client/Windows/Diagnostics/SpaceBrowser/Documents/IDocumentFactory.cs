@@ -9,16 +9,6 @@
 
     public interface IDocumentFactory
     {
-        IDocumentViewModel Create(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            ILogicalContext logicalContext,
-            IFabricContext fabricContext,
-            IDataConnection connection,
-            IDiagnosticsConfiguration diagnostics, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory);
+        IDocumentViewModel Create(IDocumentContext documentContext);
     }
 }

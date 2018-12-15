@@ -31,6 +31,8 @@
             container.Register<IRootsViewModel, RootsViewModel>();
             container.Register<IJournalViewModel, JournalViewModel>();
 
+            container.Register<IDocumentContext, DocumentContext>();
+
             container.Register<IFunctionalGraphDocumentFactory, FunctionalGraphDocumentFactory>();
             container.Register<INewFunctionalGraphDocumentCommand, NewFunctionalGraphDocumentCommand>();
 

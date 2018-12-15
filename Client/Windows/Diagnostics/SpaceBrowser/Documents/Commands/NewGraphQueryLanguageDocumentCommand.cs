@@ -9,19 +9,8 @@
 
     public class NewGraphQueryLanguageDocumentCommand : NewDocumentCommandBase, INewGraphQueryLanguageDocumentCommand
     {
-        public NewGraphQueryLanguageDocumentCommand(
-            IGraphSLScriptContext scriptContext,
-            IGraphQLQueryContext queryContext,
-            IGraphQueryLanguageDocumentFactory factory,
-            ILogicalContext logicalContext, 
-            IFabricContext fabricContext, 
-            IDataConnection connection, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory) 
-            : base(scriptContext, queryContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+        public NewGraphQueryLanguageDocumentCommand(IDocumentContext documentContext, IGraphQueryLanguageDocumentFactory factory) 
+            : base(documentContext)
         {
             DocumentFactory = factory;
             Header = "GraphQL";
