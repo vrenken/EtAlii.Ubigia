@@ -26,12 +26,25 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         {
             // We want to show all errors and all results.
             results.Subscribe(
-                onError: e => _errorWriter.Write(viewModel, e, errors),
+                onError: e =>
+                {
+                    _errorWriter.Write(viewModel, e, errors);
+                    Task.Delay(500).Wait();
+                    viewModel.CanStop = false;
+                    viewModel.CanExecute = true;
+                },
                 onNext: o =>
                 {
                     _statusWriter.Write(viewModel, $"Executing: {o.Sequence} (step {o.Step + 1}/{o.Total})");
                     o.Output.Subscribe(
-                        onError: e2 => _errorWriter.Write(viewModel, e2, errors),
+                        onError: e2 =>
+                        {
+                            _errorWriter.Write(viewModel, e2, errors);
+                            Task.Delay(500).Wait();
+                            viewModel.CanStop = false;
+                            viewModel.CanExecute = true;
+                            
+                        },
                         onNext: o2 => { });
                 });
 

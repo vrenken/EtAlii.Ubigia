@@ -14,6 +14,6 @@
     <fluent:Button 
         Header="Clear current code"
         Command="{Binding ClearCommand}"
-        CommandParameter="{Binding Code}"
+        CommandParameter="{Binding Source}"
         LargeIcon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" />
 </fluent:RibbonGroupBox>

@@ -13,13 +13,6 @@
         }
         public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register("ItemsSource", typeof(IEnumerable), typeof(ScriptResultView), new PropertyMetadata(null, OnItemsSourceChanged));
 
-        public object Source
-        {
-            get { return GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ScriptResultView), new PropertyMetadata(null, OnSourceChanged));
-
         public GridVirtualizingCollectionView ItemsSourceView 
         {
             get { return (GridVirtualizingCollectionView)GetValue(ItemsSourceViewProperty); }
@@ -30,25 +23,35 @@
         public ScriptResultView()
         {
             InitializeComponent();
+            DataContextChanged += OnDataContextChanged;
         }
 
-        private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue is IGraphScriptLanguageViewModel)
+            Visibility = DataContext is IGraphScriptLanguageViewModel 
+                ? Visibility.Visible 
+                : Visibility.Hidden;
+            
+            if (!DataGrid.IsInitialized)
             {
-                var srv = (ScriptResultView)d;
-                srv.DataContext = e.NewValue;
-                if (!srv.DataGrid.IsInitialized)
-                {
-                    srv.DataGrid.BeginInit();
-                }
+                DataGrid.BeginInit();
             }
         }
+
         private static void OnItemsSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var view = new GridVirtualizingCollectionView(e.NewValue as IEnumerable);
-            var srv = (ScriptResultView)d;
-            srv.ItemsSourceView = view;
+            var scriptResultView = (ScriptResultView)d;
+
+            if (e.NewValue is IEnumerable enumerable)
+            {
+                var view = new GridVirtualizingCollectionView(enumerable);
+                scriptResultView.ItemsSourceView = view;    
+            }
+            else
+            {
+                scriptResultView.ItemsSourceView = null;
+            }
+            
         }
     }
 }

@@ -103,17 +103,21 @@
 
                             <xcad:LayoutAnchorablePane 
                                 DockHeight="400">
-                                <xcad:LayoutAnchorable ContentId="scriptOutput" Title="Script results">
-                                    <views:ScriptResultView 
-                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
-                                        ItemsSource="{Binding ScriptResults}" />
+                                <xcad:LayoutAnchorable ContentId="results" Title="Results">
+                                    <Grid>
+                                        <views:ScriptResultView 
+                                            DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                            ItemsSource="{Binding ScriptResults}" />
+                                        <views:QueryResultView 
+                                            DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />    
+                                    </Grid>
                                 </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="scriptVariables" Title="Script variables">
+                                <xcad:LayoutAnchorable ContentId="variables" Title="Variables">
                                     <views:ScriptResultView 
-                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                        DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding ScriptVariables}" />
                                 </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="scriptStatus" Title="Script status">
+                                <xcad:LayoutAnchorable ContentId="scriptStatus" Title="Status">
                                     <views:ScriptExecutionView
                                         Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ExecutionStatus="{Binding ExecutionStatus}"/>
@@ -122,10 +126,6 @@
                                     <views:ErrorsView 
                                         Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding Errors}" />
-                                </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="queryOutput" Title="Query result">
-                                    <views:QueryResultView 
-                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
 

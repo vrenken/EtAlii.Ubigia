@@ -39,10 +39,10 @@
 
         private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue is IGraphScriptLanguageViewModel)
-            {
-                ((ResultsView) d).DataContext = e.NewValue;
-            }
+            var resultsView = (ResultsView) d;
+            var scriptViewModel = e.NewValue as IGraphScriptLanguageViewModel;
+            resultsView.Visibility = scriptViewModel != null ? Visibility.Visible : Visibility.Hidden;
+            resultsView.DataContext = scriptViewModel != null ? e.NewValue : null;
         }
     }
 }

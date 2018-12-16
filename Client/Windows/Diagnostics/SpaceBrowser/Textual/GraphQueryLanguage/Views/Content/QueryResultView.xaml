@@ -18,7 +18,8 @@
         BorderThickness="0" 
         FontFamily="Consolas"
         FontSize="10pt"
-        Source="{Binding QueryResult, Mode=TwoWay}" >
+        x:Name="Editor"
+        Source="{Binding QueryResult, Mode=OneWay}" >
         <!--SyntaxHighlighting="C#"-->
         <!--<i:Interaction.Triggers>
                 <i:EventTrigger EventName="KeyUp">
