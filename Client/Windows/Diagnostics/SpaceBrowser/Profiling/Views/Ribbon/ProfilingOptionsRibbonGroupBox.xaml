@@ -14,7 +14,7 @@
     <fluent:Button 
         Header="Scroll to entries"
         Command="{Binding ClearCommand}"
-        CommandParameter="{Binding Code}"
+        CommandParameter="{Binding Source}"
         LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Down.png" />
     <fluent:ToggleButton 
         IsChecked="{Binding AutoExpandNodes}"

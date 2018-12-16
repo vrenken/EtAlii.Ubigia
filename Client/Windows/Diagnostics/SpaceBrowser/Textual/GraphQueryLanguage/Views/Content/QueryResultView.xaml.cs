@@ -1,30 +1,24 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using System.Collections;
     using System.Windows;
-    using Syncfusion.UI.Xaml.Grid;
 
     public partial class QueryResultView
     {
-        public object Source
-        {
-            get { return GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
-        }
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(QueryResultView), new PropertyMetadata(null, OnSourceChanged));
- 
         public QueryResultView()
         {
             InitializeComponent();
+            DataContextChanged += OnDataContextChanged;
         }
 
-        private static void OnSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            if (e.NewValue is IGraphQueryLanguageViewModel)
+            Visibility = DataContext is IGraphQueryLanguageViewModel 
+                ? Visibility.Visible 
+                : Visibility.Hidden;
+            
+            if (!Editor.IsInitialized)
             {
-                var srv = (QueryResultView)d;
-                srv.DataContext = e.NewValue;
-                
+                Editor.BeginInit();
             }
         }
     }
