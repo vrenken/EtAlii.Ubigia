@@ -3,6 +3,7 @@
     person @nodes(path:"person:Stark/Tony")
     {
         name @id,
+        lastName @id(path:"\\.Type=FamilyName")
         friends @nodes(path:"/Friends/") 
         { 
             name @id

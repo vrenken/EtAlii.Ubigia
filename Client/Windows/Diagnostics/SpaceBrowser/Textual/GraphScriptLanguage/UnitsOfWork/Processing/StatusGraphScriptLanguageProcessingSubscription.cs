@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                                 {
                                     var duration = DateTime.Now - start;
                                     Task.Delay(200).Wait();
-                                    _statusWriter.Write(viewModel, "Script execution finished successfull.");
+                                    _statusWriter.Write(viewModel, "Script execution finished successful.");
                                     _statusWriter.Write(viewModel,
                                         $"Total run time: {duration:hh}:{duration:mm}:{duration:ss}.{duration:fff}");
                                 }
