@@ -65,12 +65,8 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </ApplicationDefinition>
-    <EmbeddedResource Include="Textual\Script\GraphQueryLanguage\Templates\SimpleQuery.gql">
-      <TransformOnBuild>false</TransformOnBuild>
-      <Link></Link>
-      <CopyToOutputDirectory></CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Textual\Script\GraphScriptLanguage\Templates\SimpleScript.gsl" />
+    <EmbeddedResource Include="Textual\GraphQueryLanguage\Templates\SimpleQuery.gql" />
+    <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript.gsl" />
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
       <SubType>Designer</SubType>
@@ -100,24 +96,6 @@
     <!-- Settings -->
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
-    <Compile Update="Textual\Script\GraphScriptLanguage\Views\GraphScriptLanguageView.xaml.cs">
-      <DependentUpon>GraphScriptLanguageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Textual\Script\GraphQueryLanguage\Views\GraphQueryLanguageView.xaml.cs">
-      <DependentUpon>GraphQueryLanguageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Textual\Script\GraphQueryLanguage\Views\Ribbon\ExecuteQueryRibbonGroupBox.xaml.cs">
-      <DependentUpon>ExecuteQueryRibbonGroupBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Textual\Script\GraphQueryLanguage\Views\Ribbon\QueryMaintenanceRibbonGroupBox.xaml.cs">
-      <DependentUpon>QueryMaintenanceRibbonGroupBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Textual\Script\GraphQueryLanguage\Views\Content\QueryResultView.xaml.cs">
-      <DependentUpon>QueryResultView.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Textual\Script\_Shared" />
   </ItemGroup>
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
   <!-- near the bottom -->
