@@ -33,6 +33,7 @@
         public QueryProcessingResult(object data, string dataAsString)
         {
             Data = data;
+            DataAsString = dataAsString;
         }
 
         
@@ -48,6 +49,8 @@
             this.Perf = result.Perf;
             this.ExposeExceptions = result.ExposeExceptions;
             this.Extensions = result.Extensions;
+            
+            DataAsString = dataAsString;
         }
 
         public static ExecutionResult ToGraphQlExecutionResult(QueryProcessingResult queryProcessingResult)
