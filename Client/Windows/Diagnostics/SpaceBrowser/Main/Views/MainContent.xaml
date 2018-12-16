@@ -118,8 +118,8 @@
                                         Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ExecutionStatus="{Binding ExecutionStatus}"/>
                                 </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="scriptErrors" Title="Script errors">
-                                    <views:ScriptErrorsView 
+                                <xcad:LayoutAnchorable ContentId="textErrors" Title="Errors">
+                                    <views:ErrorsView 
                                         Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding Errors}" />
                                 </xcad:LayoutAnchorable>
