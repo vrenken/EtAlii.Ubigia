@@ -232,7 +232,7 @@
                     { 
                         nickname
                         firstname @id
-                        lastname @id(path:""\\"") 
+                        lastname @id(path:""\\.Type='FamilyName'"") 
                     }
                 }";
             
@@ -260,7 +260,7 @@
                     { 
                         nickname
                         firstname @id
-                        lastname @id(path:""\\"") 
+                        lastname @id(path:""\\.Type='FamilyName'"") 
                     }
                 }";
             
