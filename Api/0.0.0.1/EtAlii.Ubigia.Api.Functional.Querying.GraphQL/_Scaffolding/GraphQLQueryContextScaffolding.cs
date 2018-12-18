@@ -43,10 +43,6 @@
                 var complexityAnalyzer = container.GetInstance<IComplexityAnalyzer>();
                 return new DocumentExecuter(documentBuilder, documentValidator, complexityAnalyzer);
             });
-
-            container.Register<IStaticQuery, StaticQuery>();
-            container.Register<IStaticMutation, StaticMutation>();
-            container.Register<IStaticSchema, StaticSchema>();
             
             container.Register<IOperationProcessor, OperationProcessor>();
             container.Register<IFieldProcessor, FieldProcessor>();

@@ -13,9 +13,9 @@
     ///   }
     /// }
     /// </example>
-    public class StaticMutation : ObjectGraphType<object>, IStaticMutation
+    public class UbigiaMutation : ObjectGraphType<object>, IObjectGraphType, IComplexGraphType, IGraphType, IProvideMetadata, INamedType, IImplementInterfaces
     {
-        public StaticMutation()//IUbigiaData data)
+        public UbigiaMutation()
         {
             Name = "Mutation";
 

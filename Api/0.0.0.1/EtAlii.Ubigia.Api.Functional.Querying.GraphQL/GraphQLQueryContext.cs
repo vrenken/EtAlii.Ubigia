@@ -11,7 +11,7 @@
     internal class GraphQLQueryContext : IGraphQLQueryContext
     {
         private readonly IDocumentExecuter _executor;
-        private readonly IStaticSchema _staticSchema;
+        private readonly IDependencyResolver _dependencyResolver;
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
         private readonly IDocumentBuilder _builder;
@@ -21,14 +21,14 @@
             IDocumentBuilder builder,
             IDocumentWriter documentWriter,
             IDocumentExecuter executor,
-            IStaticSchema staticSchema,
+            IDependencyResolver dependencyResolver,
             IOperationProcessor operationProcessor, 
             IFieldProcessor fieldProcessor)
         {
             _builder = builder;
             _documentWriter = documentWriter;
             _executor= executor;
-            _staticSchema = staticSchema;
+            _dependencyResolver = dependencyResolver;
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
         }
@@ -54,8 +54,7 @@
         public async Task<QueryProcessingResult> Process(Query query) 
         {
             var document = query.Document;
-            var schema = await DynamicSchema.Create(_staticSchema, _operationProcessor, _fieldProcessor, document);
-            
+            var schema = await DynamicSchema.Create(_dependencyResolver, _operationProcessor, _fieldProcessor, document);
             var inputs = new Inputs();
 
             // The current thinking is to make these dependent of some of the Ubigia directives provided by the query.

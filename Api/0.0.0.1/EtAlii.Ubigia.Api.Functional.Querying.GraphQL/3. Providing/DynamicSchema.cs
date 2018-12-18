@@ -15,30 +15,30 @@
     {
         private readonly List<IGraphType> _dynamicSchema = new List<IGraphType>();
 
-        private readonly IStaticSchema _staticSchema;
         private readonly Document _document;
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
         private readonly Dictionary<Type, GraphType> _graphTypes;
                 
         private DynamicSchema(
-            IStaticSchema staticSchema, 
+            IDependencyResolver dependencyResolver,
             Document document, 
             IOperationProcessor operationProcessor, 
             IFieldProcessor fieldProcessor)
-            : base(staticSchema.DependencyResolver)
+            : base(dependencyResolver)
         {
-            _staticSchema = staticSchema;
             _document = document;
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
 
             _graphTypes = new Dictionary<Type, GraphType>();
             
-            Query = staticSchema.Query;
-            Mutation = staticSchema.Mutation;
-            Directives = staticSchema.Directives;
-
+            Query = new UbigiaQuery();
+            Mutation = new UbigiaMutation();
+ 
+            RegisterDirectives(new UbigiaNodesDirective());
+            RegisterDirectives(new UbigiaIdDirective());
+            
             DependencyResolver = new FuncDependencyResolver(ResolveDynamicType);
         }
 
@@ -49,22 +49,20 @@
                 return graphType;
             }
 
-            return _staticSchema.DependencyResolver.Resolve(type);
+            return DependencyResolver.Resolve(type);
         }
 
-        internal static async Task<Schema> Create(ISchema originalSchema, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, Document document)
+        internal static async Task<Schema> Create(IDependencyResolver dependencyResolver, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, Document document)
         {
-            var staticUbigiaSchema = (StaticSchema)originalSchema;
-
-            var dynamicSchema = new DynamicSchema(staticUbigiaSchema, document, operationProcessor, fieldProcessor);
+            var dynamicSchema = new DynamicSchema(dependencyResolver, document, operationProcessor, fieldProcessor);
             await dynamicSchema.AddDynamicTypes();
             return dynamicSchema;
         }
 
-        internal static async Task<Schema> Create(ISchema originalSchema, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, string query)
+        internal static async Task<Schema> Create(IDependencyResolver dependencyResolver, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, string query)
         {
             var document = new GraphQLDocumentBuilder().Build(query);
-            return await Create(originalSchema, operationProcessor, fieldProcessor, document);
+            return await Create(dependencyResolver, operationProcessor, fieldProcessor, document);
         }
  
         private async Task AddDynamicTypes()

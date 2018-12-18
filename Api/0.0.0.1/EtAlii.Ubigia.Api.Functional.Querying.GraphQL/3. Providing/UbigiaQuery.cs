@@ -2,12 +2,12 @@
 {
     using global::GraphQL.Types;
 
-    public class StaticQuery : ObjectGraphType<object>, IStaticQuery
+    public class UbigiaQuery : ObjectGraphType<object>, IObjectGraphType, IComplexGraphType, IGraphType, IProvideMetadata, INamedType, IImplementInterfaces
     {
-        public StaticQuery()//IUbigiaData data)
+        public UbigiaQuery()
         { 
             Name = "Query";
-            
+
 //            Field<CharacterInterface>(
 //                name: "hero",
 //                resolve: context => data.GetDroidByIdAsync("3"));
