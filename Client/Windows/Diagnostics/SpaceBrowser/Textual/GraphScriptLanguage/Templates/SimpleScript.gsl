@@ -9,7 +9,7 @@ Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }
 Person:Stark/Tony += Friends
 
 Person:Doe.Type <= "FamilyName"
-#SPerson:Doe/John.Type <= "FirstName"
+#Person:Doe/John.Type <= "FirstName"
 #Person:Doe/Jane.Type <= "FirstName"
 Person:Stark.Type <= "FamilyName"
 #Person:Stark/Tony.Type <= "FirstName"
