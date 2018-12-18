@@ -172,5 +172,6 @@
     <Content Include="$(MSBuildThisFileDirectory)Scripting\Samples 7. - Roots.Definitions.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Scripting\Samples 6. - Roots.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Scripting\Samples 8. - Technical.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Scripting\Samples 9. - Tags.txt" />
   </ItemGroup>
 </Project>

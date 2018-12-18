@@ -1,0 +1,18 @@
+﻿#Tag assignment.
+Person:Doe% <= FamilyName
+/Person/Doe% <= FamilyName
+Person:Doe/John% <= FirstName
+/Person/Doe/John% <= FirstName
+
+#Tag query.
+Person:Doe%
+/Person/Doe%
+Person:Doe/John%
+/Person/Doe/John%
+
+#Filter query
+Person:%FamilyName
+/Person/%FamilyName
+Person:Doe/*\%FamilyName
+/Person/Doe/*\%FamilyName
+
