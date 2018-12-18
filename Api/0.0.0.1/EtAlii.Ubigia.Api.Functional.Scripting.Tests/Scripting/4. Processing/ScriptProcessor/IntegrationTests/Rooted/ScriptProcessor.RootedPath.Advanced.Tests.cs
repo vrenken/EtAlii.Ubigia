@@ -584,14 +584,17 @@
             var addQueries = new []
             {
                 "Person:+=Doe/John",
-                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }",
+                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: 'Johnny', Lives: 1 }",
                 "Person:Doe/John += Friends",
                 "Person:+=Doe/Jane",
-                "Person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }",
+                "Person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: 'Janey', Lives: 2 }",
                 "Person:Doe/Jane += Friends",
                 "Person:+=Stark/Tony",
-                "Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
+                "Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: 'Iron Man', Lives: 9 }",
                 "Person:Stark/Tony += Friends",
+                
+                "Person:Doe <= { Type: 'FamilyName' }",
+                "Person:Stark <= { Type: 'FamilyName' }",
             };
             
             var linkQueries = new[]
