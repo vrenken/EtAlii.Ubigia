@@ -85,8 +85,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Vrenken/Peter",
-                "Person:Vrenken/Peter <= { Birthdate: 1978-07-28, Nickname: \'Pete\', Lives: 1 }"
+                "person:+=Vrenken/Peter",
+                "person:Vrenken/Peter <= { Birthdate: 1978-07-28, Nickname: \'Pete\', Lives: 1 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -98,8 +98,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Vrenken/Tanja",
-                "Person:Vrenken/Tanja <= { Birthdate: 1980-03-04, Nickname: \'LadyL\', Lives: 1 }"
+                "person:+=Vrenken/Tanja",
+                "person:Vrenken/Tanja <= { Birthdate: 1980-03-04, Nickname: \'LadyL\', Lives: 1 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -110,8 +110,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Vrenken/Arjan",
-                "Person:Vrenken/Arjan <= { Birthdate: 2015-08-13, Nickname: \'Bengel\', Lives: 1 }"
+                "person:+=Vrenken/Arjan",
+                "person:Vrenken/Arjan <= { Birthdate: 2015-08-13, Nickname: \'Bengel\', Lives: 1 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -123,8 +123,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Vrenken/Ida",
-                "Person:Vrenken/Ida <= { Birthdate: 2018-11-07, Nickname: \'Scheetje\', Lives: 1 }"
+                "person:+=Vrenken/Ida",
+                "person:Vrenken/Ida <= { Birthdate: 2018-11-07, Nickname: \'Scheetje\', Lives: 1 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -135,8 +135,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Doe/John",
-                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }"
+                "person:+=Doe/John",
+                "person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -148,8 +148,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Doe/Jane",
-                "Person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }"
+                "person:+=Doe/Jane",
+                "person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }"
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -161,8 +161,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "Person:+=Stark/Tony",
-                "Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
+                "person:+=Stark/Tony",
+                "person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
             };
             var addQuery = String.Join("\r\n", addQueries);
 
@@ -174,62 +174,62 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var addQueries = new[]
             {
-                "$john <= Person:Doe/John",
-                "$jane <= Person:Doe/Jane",
-                "$tony <= Person:Stark/Tony",
-                "$peter <= Person:Vrenken/Peter",
-                "$tanja <= Person:Vrenken/Tanja",
-                "$arjan <= Person:Vrenken/Arjan",
-                "$ida <= Person:Vrenken/Ida",
-                
-                "Person:Vrenken/Tanja += Friends",
-                "Person:Vrenken/Peter += Friends",
-                "Person:Vrenken/Ida += Friends",
-                "Person:Doe/Jane += Friends",
-                "Person:Doe/John += Friends",
-                "Person:Stark/Tony += Friends",
-                
-                "Person:Stark/Tony/Friends += $john",
-                "Person:Stark/Tony/Friends += $jane",
-                "Person:Stark/Tony/Friends += $peter",
-                
-                "Person:Doe/John/Friends += $tony",
-                "Person:Doe/John/Friends += $jane",
-                
-                "Person:Doe/Jane/Friends += $john",
-                "Person:Doe/Jane/Friends += $tony",
+                "person:Doe <= { Type: 'FamilyName' }",
+                "person:Stark <= { Type: 'FamilyName' }",
+                "person:Vrenken <= { Type: 'FamilyName' }",
 
-                "Person:Vrenken/Arjan += Friends",
-                "Person:Vrenken/Arjan/Friends += $tanja",
-                "Person:Vrenken/Arjan/Friends += $peter",
-                "Person:Vrenken/Arjan/Friends += $ida",
-
-                "Person:Vrenken/Ida/Friends += $tanja",
-                "Person:Vrenken/Ida/Friends += $arjan",
-                "Person:Vrenken/Ida/Friends += $peter",
-
-                "Person:Vrenken/Peter/Friends += $tanja",
-                "Person:Vrenken/Peter/Friends += $arjan",
-                "Person:Vrenken/Peter/Friends += $ida",
-                "Person:Vrenken/Peter/Friends += $tony",
+                "person:Vrenken/Tanja += Friends",
+                "person:Vrenken/Peter += Friends",
+                "person:Vrenken/Ida += Friends",
+                "person:Doe/Jane += Friends",
+                "person:Doe/John += Friends",
+                "person:Stark/Tony += Friends",
                 
-                "Person:Vrenken/Tanja/Friends += $peter",
-                "Person:Vrenken/Tanja/Friends += $arjan",
-                "Person:Vrenken/Tanja/Friends += $ida",
+                "person:Stark/Tony/Friends += person:Doe/John",
+                "person:Stark/Tony/Friends += person:Doe/Jane",
+                "person:Stark/Tony/Friends += person:Vrenken/Peter",
+                
+                "person:Doe/John/Friends += person:Stark/Tony",
+                "person:Doe/John/Friends += person:Doe/Jane",
+                
+                "person:Doe/Jane/Friends += person:Doe/John",
+                "person:Doe/Jane/Friends += person:Stark/Tony",
 
-//                "Person:Vrenken/Ida/Friends/",
-//                "Person:Vrenken/Arjan/Friends/",
-//                "Person:Vrenken/Tanja/Friends/",
-//                "Person:Vrenken/Peter/Friends/",
-//                "Person:Stark/Tony/Friends/",
-//                "Person:Doe/Jane/Friends/",
-//                "Person:Doe/John/Friends/",
-//                "Person:Stark/Tony",
+                "person:Vrenken/Arjan += Friends",
+                "person:Vrenken/Arjan/Friends += person:Vrenken/Tanja",
+                "person:Vrenken/Arjan/Friends += person:Vrenken/Peter",
+                "person:Vrenken/Arjan/Friends += person:Vrenken/Ida",
+
+                "person:Vrenken/Ida/Friends += person:Vrenken/Tanja",
+                "person:Vrenken/Ida/Friends += person:Vrenken/Arjan",
+                "person:Vrenken/Ida/Friends += person:Vrenken/Peter",
+
+                "person:Vrenken/Peter/Friends += person:Vrenken/Tanja",
+                "person:Vrenken/Peter/Friends += person:Vrenken/Arjan",
+                "person:Vrenken/Peter/Friends += person:Vrenken/Ida",
+                "person:Vrenken/Peter/Friends += person:Stark/Tony",
+                
+                "person:Vrenken/Tanja/Friends += person:Vrenken/Peter",
+                "person:Vrenken/Tanja/Friends += person:Vrenken/Arjan",
+                "person:Vrenken/Tanja/Friends += person:Vrenken/Ida",
+
+//                "person:Vrenken/Ida/Friends/",
+//                "person:Vrenken/Arjan/Friends/",
+//                "person:Vrenken/Tanja/Friends/",
+//                "person:Vrenken/Peter/Friends/",
+//                "person:Stark/Tony/Friends/",
+//                "person:Doe/Jane/Friends/",
+//                "person:Doe/John/Friends/",
+//                "person:Stark/Tony",
             };
             var addQuery = String.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);
+
+//            var testQuery = context.Parse("person:Stark/Tony");
+//            var testResult = await context.Process(testQuery.Script, new ScriptScope());
+//            var result = await testResult.Output.ToArray();
 //            var result = context.Scripts.Process(addQuery);
 //
 //            var list = await result.ToArray();
