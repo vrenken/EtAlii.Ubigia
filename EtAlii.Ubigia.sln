@@ -128,7 +128,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructur
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Hosting", "1. Hosting", "{E715DBF2-CDBF-4521-908F-4806A66891E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests.csproj", "{C47AAE22-60A5-4BDD-850F-3A488F788A39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests", "Infrastructure\Hosting\EtAlii.Ubigia.Hosting.Local.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Local.Tests.csproj", "{C47AAE22-60A5-4BDD-850F-3A488F788A39}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Tests", "_Tests", "{D6148CAE-B71D-4B81-B1DA-AD57E5585A88}"
 EndProject
@@ -471,7 +471,6 @@ Global
 		{3F498635-614C-4B1F-8B10-44AC098A3411}.Trial|x64.ActiveCfg = Release|Any CPU
 		{3F498635-614C-4B1F-8B10-44AC098A3411}.Trial|x86.ActiveCfg = Release|Any CPU
 		{AA412A14-F497-4875-B76A-14217089A9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AA412A14-F497-4875-B76A-14217089A9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA412A14-F497-4875-B76A-14217089A9EA}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{AA412A14-F497-4875-B76A-14217089A9EA}.Debug|ARM.Build.0 = Debug|Any CPU
 		{AA412A14-F497-4875-B76A-14217089A9EA}.Debug|Compact.ActiveCfg = Debug|Any CPU
