@@ -66,7 +66,17 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </ApplicationDefinition>
     <EmbeddedResource Include="Textual\GraphQueryLanguage\Templates\SimpleQuery.gql" />
+    <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\OldScript.gsl">
+      <TransformOnBuild>false</TransformOnBuild>
+      <Link></Link>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </EmbeddedResource>
     <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript.gsl" />
+    <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript2.gsl">
+      <TransformOnBuild>false</TransformOnBuild>
+      <Link></Link>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </EmbeddedResource>
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
       <SubType>Designer</SubType>

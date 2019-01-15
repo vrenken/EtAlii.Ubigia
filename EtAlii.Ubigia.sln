@@ -386,22 +386,22 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj", "{F455D882-D963-45A0-B6C8-8C369DAFE6AA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics.csproj", "{F80F58CB-71C8-4F25-8889-B2C542D53C68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics.csproj", "{F80F58CB-71C8-4F25-8889-B2C542D53C68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj", "{7B953599-D961-45A8-8453-2A029DCF71A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj", "{7B953599-D961-45A8-8453-2A029DCF71A4}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Scripting.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.Tests\EtAlii.Ubigia.Api.Functional.Scripting.Tests.shproj", "{428597BB-50E3-4596-BC50-BF5A6D2F71CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests.csproj", "{7737274F-100E-4A20-8B7C-36EB2DDED499}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests.csproj", "{7737274F-100E-4A20-8B7C-36EB2DDED499}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests.csproj", "{B617E2C2-8C88-4647-9972-98C6E47EFEB3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests.csproj", "{B617E2C2-8C88-4647-9972-98C6E47EFEB3}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems*{40f79fc3-6dd4-41c6-92ea-b62392b77935}*SharedItemsImports = 4
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Tests\EtAlii.Ubigia.Api.Functional.Querying.Tests.projitems*{428597bb-50e3-4596-bc50-bf5a6d2f71aa}*SharedItemsImports = 13
-		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Tests\EtAlii.Ubigia.Api.Functional.Tests.projitems*{428597bb-50e3-4596-bc50-bf5a6d2f71ca}*SharedItemsImports = 13
+		Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.Tests\EtAlii.Ubigia.Api.Functional.Scripting.Tests.projitems*{428597bb-50e3-4596-bc50-bf5a6d2f71ca}*SharedItemsImports = 13
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{43519cad-f917-4cf3-b9cb-2f84bbcaf2e0}*SharedItemsImports = 13
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Tests\EtAlii.Ubigia.Api.Transport.Tests.projitems*{47a68414-4d71-4a8c-9f8e-3bc54dd497e4}*SharedItemsImports = 4
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Fabric.Tests\EtAlii.Ubigia.Api.Fabric.Tests.projitems*{85e9cf67-c4a5-47e0-ae62-f8430fdcc498}*SharedItemsImports = 13
@@ -436,7 +436,6 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3F498635-614C-4B1F-8B10-44AC098A3411}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F498635-614C-4B1F-8B10-44AC098A3411}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F498635-614C-4B1F-8B10-44AC098A3411}.Debug|ARM.ActiveCfg = Debug|Any CPU
 		{3F498635-614C-4B1F-8B10-44AC098A3411}.Debug|ARM.Build.0 = Debug|Any CPU
 		{3F498635-614C-4B1F-8B10-44AC098A3411}.Debug|Compact.ActiveCfg = Debug|Any CPU
