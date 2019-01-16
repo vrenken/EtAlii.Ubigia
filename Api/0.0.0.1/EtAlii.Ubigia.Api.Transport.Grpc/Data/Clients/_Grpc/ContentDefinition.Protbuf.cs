@@ -98,7 +98,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentDefinitionGetRequest(ContentDefinitionGetRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -233,7 +233,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentDefinitionGetResponse(ContentDefinitionGetResponse other) : this() {
-      ContentDefinition = other.contentDefinition_ != null ? other.ContentDefinition.Clone() : null;
+      contentDefinition_ = other.contentDefinition_ != null ? other.contentDefinition_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -368,8 +368,8 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentDefinitionPostRequest(ContentDefinitionPostRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
-      ContentDefinition = other.contentDefinition_ != null ? other.ContentDefinition.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
+      contentDefinition_ = other.contentDefinition_ != null ? other.contentDefinition_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -638,9 +638,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentDefinitionPartPostRequest(ContentDefinitionPartPostRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       contentDefinitionPartId_ = other.contentDefinitionPartId_;
-      ContentDefinitionPart = other.contentDefinitionPart_ != null ? other.ContentDefinitionPart.Clone() : null;
+      contentDefinitionPart_ = other.contentDefinitionPart_ != null ? other.contentDefinitionPart_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

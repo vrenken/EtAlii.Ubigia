@@ -104,7 +104,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentGetRequest(ContentGetRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -239,7 +239,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentGetResponse(ContentGetResponse other) : this() {
-      Content = other.content_ != null ? other.Content.Clone() : null;
+      content_ = other.content_ != null ? other.content_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -374,7 +374,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentPartGetRequest(ContentPartGetRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       contentPartId_ = other.contentPartId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -537,7 +537,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentPartGetResponse(ContentPartGetResponse other) : this() {
-      ContentPart = other.contentPart_ != null ? other.ContentPart.Clone() : null;
+      contentPart_ = other.contentPart_ != null ? other.contentPart_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -672,8 +672,8 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentPostRequest(ContentPostRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
-      Content = other.content_ != null ? other.Content.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
+      content_ = other.content_ != null ? other.content_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -942,9 +942,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public ContentPartPostRequest(ContentPartPostRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       contentPartId_ = other.contentPartId_;
-      ContentPart = other.contentPart_ != null ? other.ContentPart.Clone() : null;
+      contentPart_ = other.contentPart_ != null ? other.contentPart_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AccountRequest(AccountRequest other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -207,7 +207,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AccountResponse(AccountResponse other) : this() {
-      Account = other.account_ != null ? other.Account.Clone() : null;
+      account_ = other.account_ != null ? other.account_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

@@ -262,7 +262,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public AuthenticationResponse(AuthenticationResponse other) : this() {
-      Account = other.account_ != null ? other.Account.Clone() : null;
+      account_ = other.account_ != null ? other.account_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

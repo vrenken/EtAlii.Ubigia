@@ -19,15 +19,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountRequest> __Marshaller_AccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountResponse> __Marshaller_AccountResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AccountRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AccountResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AccountResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Get",
-        __Marshaller_AccountRequest,
-        __Marshaller_AccountResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AccountRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AccountResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -97,6 +97,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Get, serviceImpl.Get).Build();
+    }
+
+    /// <summary>Register service method implementations with a service binder. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, AccountGrpcServiceBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_Get, serviceImpl.Get);
     }
 
   }

@@ -19,55 +19,55 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest> __Marshaller_EntrySingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse> __Marshaller_EntrySingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest> __Marshaller_EntryMultipleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse> __Marshaller_EntryMultipleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelatedRequest> __Marshaller_EntryRelatedRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelatedRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest> __Marshaller_EntryPostRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest> __Marshaller_EntryPutRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryMultipleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryMultipleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelatedRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryRelatedRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelatedRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryPostRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryPutRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse> __Method_GetSingle = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetSingle",
-        __Marshaller_EntrySingleRequest,
-        __Marshaller_EntrySingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse> __Method_GetMultiple = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetMultiple",
-        __Marshaller_EntryMultipleRequest,
-        __Marshaller_EntryMultipleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryMultipleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryMultipleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelatedRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse> __Method_GetRelated = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelatedRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryMultipleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetRelated",
-        __Marshaller_EntryRelatedRequest,
-        __Marshaller_EntryMultipleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryRelatedRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryMultipleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPostRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Post",
-        __Marshaller_EntryPostRequest,
-        __Marshaller_EntrySingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryPostRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryPutRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Put",
-        __Marshaller_EntryPutRequest,
-        __Marshaller_EntrySingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntryPutRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntrySingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Delete",
-        __Marshaller_EntrySingleRequest,
-        __Marshaller_EntrySingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_EntrySingleResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -247,6 +247,20 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           .AddMethod(__Method_Post, serviceImpl.Post)
           .AddMethod(__Method_Put, serviceImpl.Put)
           .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
+    }
+
+    /// <summary>Register service method implementations with a service binder. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, EntryGrpcServiceBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_GetSingle, serviceImpl.GetSingle);
+      serviceBinder.AddMethod(__Method_GetMultiple, serviceImpl.GetMultiple);
+      serviceBinder.AddMethod(__Method_GetRelated, serviceImpl.GetRelated);
+      serviceBinder.AddMethod(__Method_Post, serviceImpl.Post);
+      serviceBinder.AddMethod(__Method_Put, serviceImpl.Put);
+      serviceBinder.AddMethod(__Method_Delete, serviceImpl.Delete);
     }
 
   }

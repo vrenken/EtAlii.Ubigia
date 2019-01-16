@@ -515,7 +515,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Storage(Storage other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
       name_ = other.name_;
       address_ = other.address_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -706,9 +706,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Space(Space other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
       name_ = other.name_;
-      AccountId = other.accountId_ != null ? other.AccountId.Clone() : null;
+      accountId_ = other.accountId_ != null ? other.accountId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -903,12 +903,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Account(Account other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
       name_ = other.name_;
       password_ = other.password_;
       roles_ = other.roles_.Clone();
-      Created = other.created_ != null ? other.Created.Clone() : null;
-      Updated = other.updated_ != null ? other.Updated.Clone() : null;
+      created_ = other.created_ != null ? other.created_.Clone() : null;
+      updated_ = other.updated_ != null ? other.updated_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1182,9 +1182,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Root(Root other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
       name_ = other.name_;
-      Identifier = other.identifier_ != null ? other.Identifier.Clone() : null;
+      identifier_ = other.identifier_ != null ? other.identifier_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1379,9 +1379,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Identifier(Identifier other) : this() {
-      Storage = other.storage_ != null ? other.Storage.Clone() : null;
-      Account = other.account_ != null ? other.Account.Clone() : null;
-      Space = other.space_ != null ? other.Space.Clone() : null;
+      storage_ = other.storage_ != null ? other.storage_.Clone() : null;
+      account_ = other.account_ != null ? other.account_.Clone() : null;
+      space_ = other.space_ != null ? other.space_.Clone() : null;
       era_ = other.era_;
       period_ = other.period_;
       moment_ = other.moment_;
@@ -1666,17 +1666,17 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Entry(Entry other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
-      Type = other.type_ != null ? other.Type.Clone() : null;
-      Parent = other.parent_ != null ? other.Parent.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
+      type_ = other.type_ != null ? other.type_.Clone() : null;
+      parent_ = other.parent_ != null ? other.parent_.Clone() : null;
       children_ = other.children_.Clone();
-      Parent2 = other.parent2_ != null ? other.Parent2.Clone() : null;
+      parent2_ = other.parent2_ != null ? other.parent2_.Clone() : null;
       children2_ = other.children2_.Clone();
-      Downdate = other.downdate_ != null ? other.Downdate.Clone() : null;
+      downdate_ = other.downdate_ != null ? other.downdate_.Clone() : null;
       updates_ = other.updates_.Clone();
-      Previous = other.previous_ != null ? other.Previous.Clone() : null;
-      Next = other.next_ != null ? other.Next.Clone() : null;
-      Indexed = other.indexed_ != null ? other.Indexed.Clone() : null;
+      previous_ = other.previous_ != null ? other.previous_.Clone() : null;
+      next_ = other.next_ != null ? other.next_.Clone() : null;
+      indexed_ = other.indexed_ != null ? other.indexed_.Clone() : null;
       indexes_ = other.indexes_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2120,7 +2120,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public IdentifierComponent(IdentifierComponent other) : this() {
       stored_ = other.stored_;
-      Identifier = other.identifier_ != null ? other.Identifier.Clone() : null;
+      identifier_ = other.identifier_ != null ? other.identifier_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2452,7 +2452,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RelationComponent(RelationComponent other) : this() {
       stored_ = other.stored_;
-      Relation = other.relation_ != null ? other.Relation.Clone() : null;
+      relation_ = other.relation_ != null ? other.relation_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2806,7 +2806,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public Relation(Relation other) : this() {
-      Id = other.id_ != null ? other.Id.Clone() : null;
+      id_ = other.id_ != null ? other.id_.Clone() : null;
       moment_ = other.moment_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -3149,7 +3149,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     public Content(Content other) : this() {
       stored_ = other.stored_;
       name_ = other.name_;
-      Summary = other.summary_ != null ? other.Summary.Clone() : null;
+      summary_ = other.summary_ != null ? other.summary_.Clone() : null;
       totalParts_ = other.totalParts_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -3593,7 +3593,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     public ContentDefinition(ContentDefinition other) : this() {
       stored_ = other.stored_;
       name_ = other.name_;
-      Summary = other.summary_ != null ? other.Summary.Clone() : null;
+      summary_ = other.summary_ != null ? other.summary_.Clone() : null;
       totalParts_ = other.totalParts_;
       size_ = other.size_;
       checksum_ = other.checksum_;

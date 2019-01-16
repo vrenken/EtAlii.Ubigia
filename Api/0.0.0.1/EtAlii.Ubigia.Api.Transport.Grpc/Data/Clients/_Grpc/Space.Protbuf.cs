@@ -331,7 +331,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SpacePostSingleRequest(SpacePostSingleRequest other) : this() {
-      Space = other.space_ != null ? other.Space.Clone() : null;
+      space_ = other.space_ != null ? other.space_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -567,7 +567,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public SpaceSingleResponse(SpaceSingleResponse other) : this() {
-      Space = other.space_ != null ? other.Space.Clone() : null;
+      space_ = other.space_ != null ? other.space_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
