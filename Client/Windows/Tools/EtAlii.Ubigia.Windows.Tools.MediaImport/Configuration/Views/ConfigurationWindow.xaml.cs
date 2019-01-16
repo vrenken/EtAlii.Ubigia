@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using Fluent;
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    internal partial class ConfigurationWindow : RibbonWindow, IConfigurationWindow
+    internal partial class ConfigurationWindow : IConfigurationWindow
     {
         public ConfigurationWindow()
         {

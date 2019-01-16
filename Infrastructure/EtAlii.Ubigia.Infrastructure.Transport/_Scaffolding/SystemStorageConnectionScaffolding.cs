@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SystemStorageConnectionScaffolding : xTechnology.MicroContainer.IScaffolding
+    internal class SystemStorageConnectionScaffolding : IScaffolding
     {
         private readonly ISystemStorageTransport _transport;
 

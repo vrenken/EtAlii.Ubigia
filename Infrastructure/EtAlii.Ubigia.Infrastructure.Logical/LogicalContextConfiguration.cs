@@ -12,7 +12,7 @@
 
         public string Name { get; private set; }
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         //public ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
         //{
@@ -28,32 +28,17 @@
         //    return this;
         //}
 
-        public ILogicalContextConfiguration Use(string name, string address)
+        public ILogicalContextConfiguration Use(string name, Uri address)
         {
-            if (name == null)
-            {
-                throw new ArgumentException(nameof(name));
-            }
-
-            if (address == null)
-            {
-                throw new ArgumentException(nameof(address));
-            }
-
-            Name = name;
-            Address = address;
+			Name = name ?? throw new ArgumentNullException(nameof(name));
+            Address = address ?? throw new ArgumentNullException(nameof(address));
 
             return this;
         }
 
         public ILogicalContextConfiguration Use(IFabricContext fabric)
         {
-            if (fabric == null)
-            {
-                throw new ArgumentException(nameof(fabric));
-            }
-
-            Fabric = fabric;
+			Fabric = fabric ?? throw new ArgumentException(nameof(fabric));
 
             return this;
         }

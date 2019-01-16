@@ -4,16 +4,15 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
-
     
-    public class ManagementConnection_Storages_Tests : IDisposable
+    public class ManagementConnectionStoragesTests : IDisposable
     {
-        private static ITransportTestContext _testContext;
+        private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
 
-        public ManagementConnection_Storages_Tests()
+        public ManagementConnectionStoragesTests()
         {
             var task = Task.Run(async () =>
             {
@@ -84,6 +83,22 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task ManagementConnection_Storages_Get_Non_Existing()
+        {
+            var connection = await _testContext.CreateManagementConnection();
+
+            var name = Guid.NewGuid().ToString();
+            var address = Guid.NewGuid().ToString();
+
+            await connection.Storages.Add(name, address);
+
+            var nonExistingStorage = await connection.Storages.Get(Guid.NewGuid());
+
+            // Assert.
+            Assert.Null(nonExistingStorage);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Get_Multiple()
         {
             var connection = await _testContext.CreateManagementConnection();
@@ -140,8 +155,8 @@
             var retrievedStorages = await connection.Storages.GetAll();
             var retrievedStorage = retrievedStorages.SingleOrDefault();
             Assert.NotNull(retrievedStorage);
-            Assert.Equal(_testContext.Context.Host.Infrastructure.Configuration.Address, retrievedStorage.Address);
-            Assert.Equal(_testContext.Context.Host.Infrastructure.Configuration.Name, retrievedStorage.Name);
+            Assert.Equal(_testContext.Context.HostAddress, new Uri(retrievedStorage.Address, UriKind.Absolute));
+            Assert.Equal(_testContext.Context.HostName, retrievedStorage.Name);
         }
 
         //[Fact, Trait("Category", TestAssembly.Category)]
@@ -180,11 +195,11 @@
         public async Task ManagementConnection_Storages_Change()
         {
             var connection = await _testContext.CreateManagementConnection();
-
+	        var index = 10;
             var name = Guid.NewGuid().ToString();
-            var address = Guid.NewGuid().ToString();
+            var address = $"http://www.host{++index}.com";
 
-            var storage = await connection.Storages.Add(name, address);
+			var storage = await connection.Storages.Add(name, address);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
             Assert.Equal(address, storage.Address);
@@ -195,7 +210,7 @@
             Assert.Equal(address, storage.Address);
 
             name = Guid.NewGuid().ToString();
-            address = Guid.NewGuid().ToString();
+	        address = $"http://www.host{++index}.com";
             storage = await connection.Storages.Change(storage.Id, name, address);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);
@@ -210,6 +225,7 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Delete()
         {
+            // Arrange.
             var connection = await _testContext.CreateManagementConnection();
 
             var name = Guid.NewGuid().ToString();
@@ -223,10 +239,12 @@
             storage = await connection.Storages.Get(storage.Id);
             Assert.NotNull(storage);
 
+            // Act.
             await connection.Storages.Remove(storage.Id);
+            var nonExistingStorage = await connection.Storages.Get(storage.Id);
 
-            storage = await connection.Storages.Get(storage.Id);
-            Assert.Null(storage);
+            // Assert.
+            Assert.Null(nonExistingStorage);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -240,7 +258,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -256,7 +274,7 @@
             var act = new Func<Task>(async () => await connection.Storages.Change(id, name, address));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -335,7 +353,6 @@
         {
             // Arrange.
             var connection = await _testContext.CreateManagementConnection();
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var address = Guid.NewGuid().ToString();
             var storage = await connection.Storages.Add(name, address);

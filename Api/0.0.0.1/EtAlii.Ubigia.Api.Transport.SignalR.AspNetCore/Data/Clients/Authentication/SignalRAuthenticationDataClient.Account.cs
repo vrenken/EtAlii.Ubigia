@@ -2,16 +2,16 @@
 {
     using System.Threading.Tasks;
 
-    public partial class SignalRAuthenticationDataClient : SignalRClientBase, IAuthenticationDataClient<ISignalRSpaceTransport>
+    public partial class SignalRAuthenticationDataClient
     {
-        public async Task<Account> GetAccount(ISpaceConnection connection)
+        public async Task<Account> GetAccount(ISpaceConnection connection, string accountName)
         {
             if (connection.Account != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(connection.Configuration.AccountName);
+            var account = await GetAccount(accountName);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);
@@ -21,7 +21,7 @@
 
         private async Task<Account> GetAccount(string accountName)
         {
-            var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetByName", accountName);
+			var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetForAuthenticationToken");
             if (account == null)
             {
                 string message = $"Unable to connect using the specified account ({accountName})";

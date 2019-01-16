@@ -12,6 +12,7 @@
 
         public Account Account { get; private set; }
 
+        ISpaceTransport ISpaceConnection.Transport => Transport;
         public TTransport Transport { get; }
 
         public bool IsConnected => Storage != null && Space != null;
@@ -59,39 +60,37 @@
             await Roots.Close(this);
             await Authentication.Close(this);
 
-            await Transport.Stop(this);
+            await Transport.Stop();
             Storage = null;
             Space = null;
         }
 
-        public async Task Open()
+        public async Task Open(string accountName, string password)
         {
             if (IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await Authentication.Data.Authenticate(this);
+            await Authentication.Data.Authenticate(this, accountName, password);
 
             Storage = await Authentication.Data.GetConnectedStorage(this);
-
-            Transport.Initialize(this, Configuration.Address);
-
+           
             await Authentication.Open(this);
             await Roots.Open(this);
             await Entries.Open(this);
             await Properties.Open(this);
             await Content.Open(this);
 
-            await Transport.Start(this, Configuration.Address);
+            await Transport.Start();
 
-            Account = await Authentication.Data.GetAccount(this);
-            Space = await Authentication.Data.GetSpace(this);
+			Account = await Authentication.Data.GetAccount(this, accountName);
+	        Space = await Authentication.Data.GetSpace(this);
         }
-        
-        #region Disposable
 
-        private bool _disposed = false;
+		#region Disposable
+
+		private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()

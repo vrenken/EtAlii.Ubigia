@@ -18,7 +18,7 @@
             container.Register<IAddressFactory, AddressFactory>();
             container.Register<IStorageConnection, WebApiStorageConnection>();
 
-            container.Register<IAuthenticationDataClient, WebApiAuthenticationDataClient>();
+            container.Register<IAuthenticationManagementDataClient, WebApiAuthenticationManagementDataClient>();
 
             container.Register<IStorageDataClient, WebApiStorageDataClient>();
             container.Register<IAccountDataClient, WebApiAccountDataClient>();

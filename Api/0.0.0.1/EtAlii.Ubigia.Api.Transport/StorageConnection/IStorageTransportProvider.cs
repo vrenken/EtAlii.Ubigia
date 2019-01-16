@@ -1,7 +1,9 @@
 namespace EtAlii.Ubigia.Api.Transport
 {
+    using System;
+
     public interface IStorageTransportProvider : ITransportProvider
     {
-        IStorageTransport GetStorageTransport();
+        IStorageTransport GetStorageTransport(Uri address);
     }
 }

@@ -1,19 +1,18 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.PowerShell.Tests;
     using Xunit;
     using System;
     using System.Collections.Generic;
 
 
-    public class Space_Test : IDisposable
+    public class SpaceTest : IDisposable
     {
         private PowerShellTestContext _testContext;
 
 
-        public Space_Test()
+        public SpaceTest()
         {
             TestInitialize();
         }
@@ -44,24 +43,33 @@
         [Fact]
         public void PowerShell_Spaces_Get()
         {
+            // Arrange.
+            
+            // Act.
             var result = _testContext.InvokeGetSpaces();
             var spaces = _testContext.ToAssertedResult<List<Space>>(result);
+            
+            // Assert.
+            Assert.NotEmpty(spaces);
         }
 
         [Fact]
         public void PowerShell_Space_Add()
         {
+            // Arrange.
             var result = _testContext.InvokeGetSpaces();
             var spaces = _testContext.ToAssertedResult<List<Space>>(result);
             var firstCount = spaces.Count;
 
+            // Act.
             var name = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
-
+             
+            
+            // Assert.
             result = _testContext.InvokeGetSpaces();
             spaces = _testContext.ToAssertedResult<List<Space>>(result);
             var secondCount = spaces.Count;
-
             Assert.True(secondCount == firstCount + 1);
         }
 
@@ -92,7 +100,7 @@
             var result = _testContext.InvokeGetRootByName(rootName);
             var root = _testContext.ToAssertedResult<Root>(result);
             Assert.NotNull(root);
-            Assert.Equal(root.Name, rootName);
+            Assert.Equal(rootName, root.Name);
         }
 
         private void Check_Root_Entry(string rootName)
@@ -100,22 +108,22 @@
             var result = _testContext.InvokeGetRootByName(rootName);
             var root = _testContext.ToAssertedResult<Root>(result);
             Assert.NotNull(root);
-            Assert.Equal(root.Name, rootName);
+            Assert.Equal(rootName, root.Name);
             //result = Invokeget
         }
 
         [Fact]
         public void PowerShell_Space_Update()
         {
-            var result = _testContext.InvokeGetSpaces();
+            _testContext.InvokeGetSpaces();
 
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddSpace(firstName, SpaceTemplate.Data);
 
-            result = _testContext.InvokeGetSpaceByName(firstName);
+            var result = _testContext.InvokeGetSpaceByName(firstName);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, firstName);
+            Assert.Equal(firstName, space.Name);
 
             var secondName = Guid.NewGuid().ToString();
 
@@ -126,7 +134,7 @@
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetSpaceByName(firstName);
+                _testContext.InvokeGetSpaceByName(firstName);
             }
             catch (Exception e)
             {
@@ -137,7 +145,7 @@
             result = _testContext.InvokeGetSpaceByName(secondName);
             space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, secondName);
+            Assert.Equal(secondName, space.Name);
         }
 
 
@@ -150,7 +158,7 @@
             var result = _testContext.InvokeGetSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
         }
 
         [Fact]
@@ -164,7 +172,7 @@
             var result = _testContext.InvokeGetSpaceByInstance();
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
         }
 
 
@@ -178,14 +186,14 @@
             var result = _testContext.InvokeGetSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
 
             _testContext.InvokeRemoveSpaceByName(name);
 
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetSpaceByName(name);
+                _testContext.InvokeGetSpaceByName(name);
             }
             catch (Exception e)
             {
@@ -226,7 +234,7 @@
             var result = _testContext.InvokeSelectSpaceByName(name);
             var space = _testContext.ToAssertedResult<Space>(result);
 
-            Assert.Equal(space.Name, name);
+            Assert.Equal(name, space.Name);
         }
 
     }

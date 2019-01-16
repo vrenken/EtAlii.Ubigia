@@ -16,6 +16,7 @@
             var converter = new PropertyDictionaryJSonConverter();
 
             // Assert.
+            Assert.NotNull(converter);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -131,7 +132,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Int32)123;
+            properties["Hello"] = 123;
 
             // Act.
             var result = WriteJSon(properties);
@@ -552,7 +553,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Double)123.456;
+            properties["Hello"] = 123.456;
 
             // Act.
             var result = WriteJSon(properties);
@@ -779,7 +780,7 @@
             // Arrange.
             var properties = new PropertyDictionary();
             properties["Hello"] = "World";
-            properties["Int32"] = (Int32)1234;
+            properties["Int32"] = 1234;
             properties["Boolean"] = true;
             properties["Null"] = null;
             properties["Int16"] = (Int16)1234;

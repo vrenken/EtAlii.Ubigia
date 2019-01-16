@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     /// <summary>
     /// Interaction logic for Backstage.xaml
     /// </summary>
-    public partial class OpenBackstageTabItem : Fluent.BackstageTabItem
+    public partial class OpenBackstageTabItem
     {
         public OpenBackstageTabItem()
         {

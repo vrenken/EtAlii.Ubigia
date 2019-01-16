@@ -1,19 +1,19 @@
-﻿namespace EtAlii.Ubigia.PowerShell
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using EtAlii.Ubigia.Api;
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Entry)]
-    public class Get_Entry : Cmdlet
+    public class GetEntry : Cmdlet
     {
         [Parameter(Mandatory = false, Position = 0)]
-        public Identifier identifier;
+        public Identifier Identifier;
 
         [Parameter(Mandatory = false, Position = 1)]
-        public bool newest;
+        public bool Newest;
 
         [Parameter(Mandatory = false, Position = 2)]
-        public bool oldest;
+        public bool Oldest;
 
         protected override void BeginProcessing()
         {

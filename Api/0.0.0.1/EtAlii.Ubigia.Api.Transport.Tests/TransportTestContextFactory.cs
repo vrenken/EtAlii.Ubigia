@@ -1,20 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using EtAlii.Ubigia.Api.Tests;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class TransportTestContextFactory
     {
-        public ITransportTestContext Create<TTransportTestContext>()
-            where TTransportTestContext : ITransportTestContext
+        public TTransportTestContext Create<TTransportTestContext>()
+            where TTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, new()
         {
-            var container = new Container();
+            return new TTransportTestContext();
+            //var container = new Container();
 
-            container.Register<ITransportTestContext, TTransportTestContext>();
-            container.Register<IHostTestContextFactory, HostTestContextFactory>();
+            //container.Register<ITransportTestContext, TTransportTestContext>();
+            //container.Register<IHostTestContextFactory, TransportHostTestContextFactory>();
 
-            return container.GetInstance<ITransportTestContext>();
+            //return container.GetInstance<ITransportTestContext>();
         }
     }
 }

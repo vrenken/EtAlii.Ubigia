@@ -8,6 +8,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public interface IUserSettingsUpdater
     {
-        Task Update(UserSettings userSettings, SystemSettings systemSettings, IDataContext userDataContext, TimeSpan thresholdBeforeExpiration);
+        Task Update(UserSettings userSettings, SystemSettings systemSettings, IGraphSLScriptContext userDataContext, TimeSpan thresholdBeforeExpiration);
     }
 }

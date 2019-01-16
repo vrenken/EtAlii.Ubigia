@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Input;
     using EtAlii.Ubigia.Windows;
@@ -38,6 +39,11 @@
 
         private readonly ConnectionSettingsPersister _connectionSettingsPersister;
         private readonly ConnectionDialogWindow _window;
+
+        public TransportType Transport{ get { return _transport; } set { SetProperty(ref _transport, value); } }
+        private TransportType _transport = TransportType.Grpc;
+        
+        public bool ShowTransportSelection => Debugger.IsAttached;
 
         public ConnectionDialogViewModel(ConnectionDialogWindow window, string defaultServer, string defaultLogin, string defaultPassword)
         {
@@ -79,16 +85,17 @@
         {
             switch (e.PropertyName)
             {
-                case "Address":
-                case "Account":
-                case "Space":
+                case nameof(Transport):
+                case nameof(Address):
+                case nameof(Account):
                     IsTested = false;
                     break;
-                case "CurrentSettings":
+                case nameof(CurrentSettings):
                     if (CurrentSettings != null)
                     {
                         Address = CurrentSettings.Address;
                         Account = CurrentSettings.Account;
+                        Transport = (TransportType) Enum.Parse(typeof(TransportType), CurrentSettings.TransportType);
                         _window.PasswordBox.Password = CurrentSettings.Password;
                         IsTested =
                             !String.IsNullOrWhiteSpace(Address) &&

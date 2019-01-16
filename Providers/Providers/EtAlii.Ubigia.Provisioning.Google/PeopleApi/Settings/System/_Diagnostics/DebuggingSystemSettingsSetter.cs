@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        public void Set(IDataContext context, SystemSettings settings)
+        public void Set(IGraphSLScriptContext context, SystemSettings settings)
         {
             _logger.Info($"Setting PeopleApi system settings");
 

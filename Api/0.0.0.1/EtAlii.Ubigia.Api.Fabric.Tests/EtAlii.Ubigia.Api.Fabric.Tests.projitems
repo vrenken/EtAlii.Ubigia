@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>53C63FB0-B01B-426F-98E8-169C1603F1A0</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Api.Fabric.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\CachingContentContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.Content.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.ContentDefinition.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\IntegrationTests\FabricContext.Properties.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentCacheHelper.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entries\IntegrationTests\CachingEntryContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entries\IntegrationTests\FabricContext.Entries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Entries\UnitTests\EntryCacheHelper.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FabricTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FabricTestContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FabricUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IFabricTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Roots\IntegrationTests\FabricContext.Roots.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
+  </ItemGroup>
+</Project>

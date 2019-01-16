@@ -1,9 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
     // Origin: EtAlii.Ubigia.Api.Transport.WebApi
+    // TODO: Merge with RelativeUri in transport.
 
     public static class RelativeUri
     {
+        //public static string ApiRest = "Api/Rest/";
+        public const string Authenticate = "authenticate";
+
         // TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
         public static class Admin
@@ -25,6 +29,7 @@
                 public const string Accounts = "account";
                 public const string Storages = "storage";
                 public const string Spaces = "space";
+                public const string Roots = "root";
             }
         }
 
@@ -38,7 +43,11 @@
 
             public static class Api
             {
-                public const string Entry = "entry";
+	            public const string Storages = "storage";
+	            public const string Accounts = "account";
+	            public const string Spaces = "space";
+
+				public const string Entry = "entry";
                 public const string RelatedEntries = "relatedentries";
                 public const string Entries = "entries";
 
@@ -48,7 +57,5 @@
                 public const string ContentDefinition = "contentdefinition";
             }
         }
-
-        public const string Authenticate = "authenticate";
     }
 }

@@ -9,7 +9,7 @@
 
     [Cmdlet(VerbsCommon.Get, Nouns.Roots, DefaultParameterSetName = "BySpaceName")]
     [Description("Gets the roots for the specified space")]
-    public class Get_Roots : SpaceTargetingCmdlet
+    public class GetRoots : SpaceTargetingCmdlet
     {
         protected override void ProcessRecord()
         {

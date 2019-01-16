@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
+﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 //{
 //    using Xunit;
 //    using System;

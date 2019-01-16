@@ -10,8 +10,7 @@
         IEnumerable<Space> GetAll(Guid accountId);
         Space Get(Guid accountId, string spaceName);
 
-
-        IEnumerable<Space> GetAll();
+		IEnumerable<Space> GetAll();
         Space Get(Guid itemId);
 
         Space Add(Space item, SpaceTemplate template);

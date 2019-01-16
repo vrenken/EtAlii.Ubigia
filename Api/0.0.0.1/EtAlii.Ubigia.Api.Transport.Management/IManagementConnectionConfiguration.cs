@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     public interface IManagementConnectionConfiguration
     {
         IStorageTransportProvider TransportProvider { get; }
-        string Address { get; }
+	    Uri Address { get; }
         string AccountName { get; }
         string Password { get; }
         IManagementConnectionExtension[] Extensions { get; }
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         IManagementConnectionConfiguration Use(IStorageTransportProvider transportProvider);
         IManagementConnectionConfiguration Use(IManagementConnectionExtension[] extensions);
         IManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension);
-        IManagementConnectionConfiguration Use(string address);
+        IManagementConnectionConfiguration Use(Uri address);
         IManagementConnectionConfiguration Use(string accountName, string password);
     }
 }

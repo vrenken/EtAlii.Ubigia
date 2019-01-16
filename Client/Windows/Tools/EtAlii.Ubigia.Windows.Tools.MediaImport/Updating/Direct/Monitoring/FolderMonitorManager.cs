@@ -4,7 +4,6 @@
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
     using System.ComponentModel;
-    using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
@@ -15,8 +14,6 @@
     {
         private readonly Container _container;
         private readonly ILogger _logger;
-
-        private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         public ObservableCollection<IFolderMonitor> Monitors { get; } = new ObservableCollection<IFolderMonitor>();
 
@@ -47,15 +44,14 @@
             ILogger logger)
         {
             _container = container;
-            _folderSyncConfigurations = folderSyncConfigurations;
             _logger = logger;
 
 
-            foreach (var folderSyncConfiguration in _folderSyncConfigurations)
+            foreach (var folderSyncConfiguration in folderSyncConfigurations)
             {
                 AddMonitor(folderSyncConfiguration);
             }
-            _folderSyncConfigurations.CollectionChanged += FolderSyncConfigurationsChanged;
+            folderSyncConfigurations.CollectionChanged += FolderSyncConfigurationsChanged;
             Monitors.CollectionChanged += MonitorsChanged;
         }
 
@@ -181,23 +177,23 @@
             switch (e.PropertyName)
             {
                 case "IsRunning":
-                    NotifyPropertyChanged(this, null, null, "AllMonitorsAreRunning");
+                    NotifyPropertyChanged(this, null, null, nameof(AllMonitorsAreRunning));
                     break;
                 case "HasManagerError":
                 case "HasError":
-                    NotifyPropertyChanged(this, null, null, "HasError");
+                    NotifyPropertyChanged(this, null, null, nameof(HasError));
                     break;
             }
         }
-
-        private void OnError(object sender, ErrorEventArgs e)
-        {
-            Stop();
-            Start();
-        }
-
-        private void OnChanged(object sender, FileSystemEventArgs e)
-        {
-        }
+//
+//        private void OnError(object sender, ErrorEventArgs e)
+//        {
+//            Stop();
+//            Start();
+//        }
+//
+//        private void OnChanged(object sender, FileSystemEventArgs e)
+//        {
+//        }
     }
 }

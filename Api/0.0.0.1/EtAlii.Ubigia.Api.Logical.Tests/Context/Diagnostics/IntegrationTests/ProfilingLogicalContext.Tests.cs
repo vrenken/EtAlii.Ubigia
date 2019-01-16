@@ -9,20 +9,17 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ProfilingLogicalContext_Tests : IClassFixture<FabricUnitTestContext>, IDisposable
+    public class ProfilingLogicalContextTests : IClassFixture<FabricUnitTestContext>, IDisposable
     {
         private IDiagnosticsConfiguration _diagnostics;
         private IFabricContext _fabricContext;
-        private readonly FabricUnitTestContext _testContext;
 
-        public ProfilingLogicalContext_Tests(FabricUnitTestContext testContext)
+        public ProfilingLogicalContextTests(FabricUnitTestContext testContext)
         {
-            _testContext = testContext;
-
             var task = Task.Run(async () =>
             {
                 _diagnostics = TestDiagnostics.Create();
-                _fabricContext = await _testContext.FabricTestContext.CreateFabricContext(true);
+                _fabricContext = await testContext.FabricTestContext.CreateFabricContext(true);
             });
             task.Wait();
 

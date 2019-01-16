@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class SystemClientsScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class SystemClientsScaffolding : IScaffolding
     {
         private readonly IInfrastructure _infrastructure;
 
@@ -22,7 +22,7 @@
 
             // Data clients.
             container.Register<IAuthenticationDataClient, SystemAuthenticationDataClient>();
-
+            
             container.Register<IEntryDataClient, SystemEntryDataClient>();
             container.Register<IEntryNotificationClient, EntryNotificationClientStub>();
 
@@ -36,6 +36,8 @@
             container.Register<IContentNotificationClient, ContentNotificationClientStub>();
 
             // Only management data clients as we do not have any management notification clients (yet).
+            container.Register<IAuthenticationManagementDataClient, SystemAuthenticationManagementDataClient>();
+
             container.Register<IStorageDataClient, SystemStorageDataClient>();
             container.Register<IAccountDataClient, SystemAccountDataClient>();
             container.Register<ISpaceDataClient, SystemSpaceDataClient>();

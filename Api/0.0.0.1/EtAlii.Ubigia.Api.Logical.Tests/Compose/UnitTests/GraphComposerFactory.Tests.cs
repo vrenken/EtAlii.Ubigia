@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class GraphComposerFactory_Tests
+    public class GraphComposerFactoryTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void GraphComposerFactory_New()
@@ -15,6 +15,7 @@
             var factory = new GraphComposerFactory(traverserFactory);
 
             // Assert.
+            Assert.NotNull(factory );
         }
     }
 }

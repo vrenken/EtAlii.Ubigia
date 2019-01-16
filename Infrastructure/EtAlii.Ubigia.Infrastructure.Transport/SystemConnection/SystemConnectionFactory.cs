@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
 
     public sealed class SystemConnectionFactory : ISystemConnectionFactory
@@ -28,10 +29,10 @@
 
             var container = new Container();
 
-            var transport = configuration.TransportProvider.GetStorageTransport();
+            var transport = configuration.TransportProvider.GetStorageTransport(configuration.Infrastructure.Configuration.Address);
             var scaffoldings = transport
                 .CreateScaffolding()
-                .Concat(new EtAlii.xTechnology.MicroContainer.IScaffolding[]
+                .Concat(new IScaffolding[]
             {
                 new SystemConnectionScaffolding(configuration),
                 new SystemInfrastructureScaffolding(), 

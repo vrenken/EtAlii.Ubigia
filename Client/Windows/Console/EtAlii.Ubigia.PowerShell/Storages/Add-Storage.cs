@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Storage, DefaultParameterSetName = "byStorage")]
-    public class Add_Storage : StorageCmdlet, IStorageInfoProvider
+    public class AddStorage : StorageCmdlet, IStorageInfoProvider
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The name of the storage that should be added.")]
         public string Name { get; set; }

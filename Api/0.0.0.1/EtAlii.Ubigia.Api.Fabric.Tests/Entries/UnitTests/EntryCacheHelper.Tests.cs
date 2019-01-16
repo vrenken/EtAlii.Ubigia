@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Fabric;
     using Xunit;
 
-    public class EntryCacheHelper_Tests
+    public class EntryCacheHelperTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void EntryCacheHelper_Create()

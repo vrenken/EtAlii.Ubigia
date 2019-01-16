@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Collections.Generic;
@@ -6,10 +6,9 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Media;
 
-    public partial class GraphViewBase : UserControl
+    public partial class GraphViewBase
     {
         private DependencyObject _watermark;
         private IDisposable _watermarkFinder;
@@ -81,7 +80,7 @@
                     DependencyObject child = VisualTreeHelper.GetChild(depObj, i);
                     if (child != null && child.GetType().Name == typeName)
                     {
-                        yield return (DependencyObject)child;
+                        yield return child;
                     }
 
                     foreach (DependencyObject childOfChild in FindVisualChildren(child, typeName))

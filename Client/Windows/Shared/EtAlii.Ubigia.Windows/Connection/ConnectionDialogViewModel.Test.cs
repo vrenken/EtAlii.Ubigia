@@ -1,20 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Windows
 {
     using System;
-    using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.xTechnology.Mvvm;
 
-    internal partial class ConnectionDialogViewModel : BindableBase
+    internal partial class ConnectionDialogViewModel
     {
         private bool CanTest(object parameter)
         {
             var result = false;
 
-            var window = parameter as ConnectionDialogWindow;
-            if (window != null)
+            if (parameter is ConnectionDialogWindow window)
             {
                 var passwordBox = window.PasswordBox;
                 result = !String.IsNullOrEmpty(passwordBox.Password) &&
@@ -27,35 +22,31 @@
 
         private void Test(object parameter)
         {
-            var window = parameter as ConnectionDialogWindow;
-            if (window != null)
+            if (parameter is ConnectionDialogWindow window)
             {
-                var passwordBox = window.PasswordBox;
-                var password = passwordBox.Password;
-
-                try
+                var connectionSucceeded = false;
+                switch (Transport)
                 {
-                    var connectionConfiguration = new DataConnectionConfiguration()
-                        .Use(SignalRTransportProvider.Create())
-                        .Use(Address)
-                        .Use(Account, Space, password);
-
-                    var connection = new DataConnectionFactory().Create(connectionConfiguration);
-
-                    var task = Task.Run(async () =>
-                    {
-                        await connection.Open();
-                    });
-                    task.Wait();
-
-                    MessageBox.Show(window, "Connection succeeded", "Connection test", MessageBoxButton.OK, MessageBoxImage.None);
-                    IsTested = true;
+                    case TransportType.SignalR:
+                        new SignalRConnector().Connect(window, this, out connectionSucceeded);
+                        break;
+                    case TransportType.Grpc:
+                        new GrpcConnector().Connect(window, this, out connectionSucceeded);
+                        break;
+                    case TransportType.WebApi:
+                        new WebApiConnector().Connect(window, this, out connectionSucceeded);
+                        break;
                 }
-                catch (Exception)
-                {
-                    MessageBox.Show(window, "Connection failed", "Connection test", MessageBoxButton.OK, MessageBoxImage.Error);
-                    IsTested = false;
-                }
+
+                var message = connectionSucceeded
+                    ? $"{Transport} connection succeeded"
+                    : $"{Transport} connection failed";
+                var icon = connectionSucceeded
+                    ? MessageBoxImage.None
+                    : MessageBoxImage.Error;
+                MessageBox.Show(window, message, "Connection test", MessageBoxButton.OK, icon);
+
+                IsTested = connectionSucceeded;
             }
         }
     }

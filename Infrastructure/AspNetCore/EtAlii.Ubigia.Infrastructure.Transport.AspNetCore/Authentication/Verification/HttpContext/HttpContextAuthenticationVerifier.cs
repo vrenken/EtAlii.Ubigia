@@ -6,7 +6,7 @@
     using System.Threading;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.ApplicationInsights.AspNetCore.Extensions;
+    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;
@@ -15,16 +15,16 @@
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IHttpContextAuthenticationIdentityProvider _authenticationIdentityProvider;
-        private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
+	    private readonly IHttpContextResponseBuilder _responseBuilder;
 
-        public HttpContextAuthenticationVerifier(
+		public HttpContextAuthenticationVerifier(
             IAccountRepository accountRepository,
             IHttpContextAuthenticationIdentityProvider authenticationIdentityProvider,
-            IAuthenticationTokenConverter authenticationTokenConverter)
+            IHttpContextResponseBuilder responseBuilder)
         {
             _accountRepository = accountRepository;
             _authenticationIdentityProvider = authenticationIdentityProvider;
-            _authenticationTokenConverter = authenticationTokenConverter;
+	        _responseBuilder = responseBuilder;
         }
 
         public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
@@ -51,7 +51,7 @@
 
 			var accountName = account.Name;
 
-            var response = CreateResponse(context, controller, accountName);
+            var response = _responseBuilder.Build(context, controller, accountName);
 
             var principal = new GenericPrincipal(identity, null);
 
@@ -75,7 +75,8 @@
         private IActionResult Challenge(HttpContext context, Controller controller)
         {
             //var host = context.Request.RequestUri.DnsSafeHost;
-            var host = context.Request.GetUri().DnsSafeHost;
+            //var host = context.Request.GetUri().DnsSafeHost;
+            var host = new Uri(context.Request.GetDisplayUrl()).DnsSafeHost;
 
             var respondWithChallenge = true;
             if (context.Request.Headers.TryGetValue("RespondWithChallenge", out StringValues challenges))
@@ -88,43 +89,6 @@
                 context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{host}\"");
             }
             return controller.Unauthorized();
-        }
-
-        private IActionResult CreateResponse(HttpContext context, Controller controller, string accountName)
-        {
-            IActionResult response;
-            try
-            {
-                var success = context.Request.Headers.TryGetValue("Host-Identifier", out StringValues values);
-                if (success)
-                {
-                    var hostIdentifier = values.First();
-
-                    var authenticationToken = new AuthenticationToken
-                    {
-                        Name = accountName,
-                        Address = hostIdentifier,
-                        Salt = DateTime.UtcNow.ToBinary(),
-                    };
-
-                    var authenticationTokenAsBytes = _authenticationTokenConverter.ToBytes(authenticationToken);
-                    authenticationTokenAsBytes = Aes.Encrypt(authenticationTokenAsBytes);
-                    var authenticationTokenAsString = Convert.ToBase64String(authenticationTokenAsBytes);
-
-                    response = controller.Ok(authenticationTokenAsString);
-                }
-                else
-                {
-                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed;
-                }
-            }
-            catch (Exception ex)
-            {
-                response = controller.BadRequest(ex.Message);
-                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk");
-            }
-            return response;
-
         }
     }
 }

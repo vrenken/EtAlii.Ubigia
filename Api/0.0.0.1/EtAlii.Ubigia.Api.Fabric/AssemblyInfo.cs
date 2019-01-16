@@ -1,4 +1,5 @@
 ﻿using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Diagnostics")]
-[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.SignalR.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Fabric.Grpc.Tests")]
 

@@ -3,7 +3,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsData.Initialize, Nouns.Space, DefaultParameterSetName = "bySpaceName")]
-    public class Initialize_Space : SpaceTargetingCmdlet
+    public class InitializeSpace : SpaceTargetingCmdlet
     {
         protected override void ProcessRecord()
         {

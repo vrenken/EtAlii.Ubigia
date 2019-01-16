@@ -7,8 +7,8 @@
 
     public interface IAccountRepository 
     {
-        Account Get(string accountName);
-        Account Get(string accountName, string password);
+		Account Get(string accountName);
+		Account Get(string accountName, string password);
 
         IEnumerable<Account> GetAll();
         Account Get(Guid itemId);

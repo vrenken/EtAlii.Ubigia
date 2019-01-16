@@ -7,7 +7,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
     
     public sealed class FabricContextRootsTests : IClassFixture<TransportUnitTestContext>, IDisposable
@@ -405,7 +404,6 @@
         public async Task FabricContext_Roots_Add_Already_Existing_Storage()
         {
             // Arrange.
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var root = await _fabric.Roots.Add(name);
             Assert.NotNull(root);

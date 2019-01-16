@@ -15,7 +15,7 @@
 
         public List<DataTemplate> Templates { get; set; }
 
-        public override System.Windows.DataTemplate SelectTemplate(object item, System.Windows.DependencyObject container)
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             var match = Templates.Where(t => (t.DataType as Type).IsAssignableFrom(item.GetType())).FirstOrDefault();
             if (match != null)

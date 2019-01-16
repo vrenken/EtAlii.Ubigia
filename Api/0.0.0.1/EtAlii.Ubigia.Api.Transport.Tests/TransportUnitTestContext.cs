@@ -3,12 +3,13 @@
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.Ubigia.Tests;
 
     public class TransportUnitTestContext : IDisposable
     {
-        public ITransportTestContext TransportTestContext { get; private set; }
+        public ITransportTestContext<InProcessInfrastructureHostTestContext> TransportTestContext { get; private set; }
         public IDiagnosticsConfiguration DiagnosticsConfiguration { get; private set; }
 
         public ByteArrayComparer ByteArrayComparer { get; }

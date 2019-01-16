@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Local
 {
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
 
     public partial class LocalContentDataClient : LocalDataClientBase<IDataConnection>, IContentDataClient
     {

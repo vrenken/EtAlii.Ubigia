@@ -4,7 +4,7 @@
 
     public class Provisioning : IProvisioning
     {
-        public IDataContext Data { get; }
+        public IGraphSLScriptContext Data { get; }
 
         private readonly IProviderManager _providerManager;
 
@@ -13,7 +13,7 @@
         public string Status => _providerManager.Status;
 
         protected Provisioning(
-            IDataContext data,
+            IGraphSLScriptContext data,
             IProvisioningConfiguration configuration,
             IProviderManager providerManager)
         {

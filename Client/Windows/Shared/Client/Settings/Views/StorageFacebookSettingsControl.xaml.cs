@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for StorageFacebookSettingsControl.xaml
     /// </summary>
-    public partial class StorageFacebookSettingsControl : UserControl
+    public partial class StorageFacebookSettingsControl
     {
         public StorageFacebookSettingsControl()
         {

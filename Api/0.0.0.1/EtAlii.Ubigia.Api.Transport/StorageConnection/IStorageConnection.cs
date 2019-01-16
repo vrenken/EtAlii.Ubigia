@@ -4,6 +4,7 @@
 
     public interface IStorageConnection : IConnection, IDisposable
     {
+        IStorageTransport Transport { get; }
         IStorageContext Storages { get; }
         IAccountContext Accounts { get; }
         ISpaceContext Spaces { get; }
@@ -14,6 +15,6 @@
     public interface IStorageConnection<out TTransport> : IStorageConnection
         where TTransport: IStorageTransport
     {
-        TTransport Transport { get; }
+        new TTransport Transport { get; }
     }
 }

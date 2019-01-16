@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 {
     using System;
     using System.Globalization;
@@ -8,7 +8,7 @@
     internal static class SignalRHttpRuleParser
     {
         private static readonly bool[] tokenChars;
-        private const int maxNestedCount = 5;
+//        private const int maxNestedCount = 5;
         private static readonly string[] dateFormats;
         internal const char CR = '\r';
         internal const char LF = '\n';
@@ -90,9 +90,9 @@
 
         private static bool IsTokenChar(char character)
         {
-            if ((int)character > (int)sbyte.MaxValue)
+            if (character > sbyte.MaxValue)
                 return false;
-            return tokenChars[(int)character];
+            return tokenChars[character];
         }
 
         internal static int GetTokenLength(string input, int startIndex)
@@ -121,7 +121,7 @@
                         ++index;
                         continue;
                     case '\r':
-                        if (index + 2 < input.Length && (int)input[index + 1] == 10)
+                        if (index + 2 < input.Length && input[index + 1] == 10)
                         {
                             switch (input[index + 2])
                             {
@@ -147,10 +147,10 @@
         {
             for (int index1 = startIndex; index1 < value.Length; ++index1)
             {
-                if ((int)value[index1] == 13)
+                if (value[index1] == 13)
                 {
                     int index2 = index1 + 1;
-                    if (index2 < value.Length && (int)value[index2] == 10)
+                    if (index2 < value.Length && value[index2] == 10)
                     {
                         index1 = index2 + 1;
                         if (index1 == value.Length)
@@ -173,14 +173,14 @@
         {
             int index = startIndex;
             bool flag = !allowDecimal;
-            if ((int)input[index] == 46)
+            if (input[index] == 46)
                 return 0;
             while (index < input.Length)
             {
                 char ch = input[index];
-                if ((int)ch >= 48 && (int)ch <= 57)
+                if (ch >= 48 && ch <= 57)
                     ++index;
-                else if (!flag && (int)ch == 46)
+                else if (!flag && ch == 46)
                 {
                     flag = true;
                     ++index;
@@ -193,7 +193,7 @@
 
         internal static int GetHostLength(string input, int startIndex, bool allowToken, out string host)
         {
-            host = (string)null;
+            host = null;
             if (startIndex >= input.Length)
                 return 0;
             int index = startIndex;
@@ -241,9 +241,9 @@
         private static HttpParseResult GetQuotedPairLength(string input, int startIndex, out int length)
         {
             length = 0;
-            if ((int)input[startIndex] != 92)
+            if (input[startIndex] != 92)
                 return HttpParseResult.NotParsed;
-            if (startIndex + 2 > input.Length || (int)input[startIndex + 1] > (int)sbyte.MaxValue)
+            if (startIndex + 2 > input.Length || input[startIndex + 1] > sbyte.MaxValue)
                 return HttpParseResult.InvalidFormat;
             length = 2;
             return HttpParseResult.Parsed;
@@ -251,38 +251,36 @@
 
         internal static string DateToString(DateTimeOffset dateTime)
         {
-            return dateTime.ToUniversalTime().ToString("r", (IFormatProvider)CultureInfo.InvariantCulture);
+            return dateTime.ToUniversalTime().ToString("r", CultureInfo.InvariantCulture);
         }
 
         internal static bool TryStringToDate(string input, out DateTimeOffset result)
         {
-            return DateTimeOffset.TryParseExact(input, dateFormats, (IFormatProvider)DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result);
+            return DateTimeOffset.TryParseExact(input, dateFormats, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result);
         }
 
         private static HttpParseResult GetExpressionLength(string input, int startIndex, char openChar, char closeChar, bool supportsNesting, ref int nestedCount, out int length)
         {
             length = 0;
-            if ((int)input[startIndex] != (int)openChar)
+            if (input[startIndex] != openChar)
                 return HttpParseResult.NotParsed;
             int startIndex1 = startIndex + 1;
             while (startIndex1 < input.Length)
             {
-                int length1 = 0;
-                if (startIndex1 + 2 < input.Length && GetQuotedPairLength(input, startIndex1, out length1) == HttpParseResult.Parsed)
+                if (startIndex1 + 2 < input.Length && GetQuotedPairLength(input, startIndex1, out var length1) == HttpParseResult.Parsed)
                 {
                     startIndex1 += length1;
                 }
                 else
                 {
-                    if (supportsNesting && (int)input[startIndex1] == (int)openChar)
+                    if (supportsNesting && input[startIndex1] == openChar)
                     {
                         ++nestedCount;
                         try
                         {
                             if (nestedCount > 5)
                                 return HttpParseResult.InvalidFormat;
-                            int length2 = 0;
-                            switch (GetExpressionLength(input, startIndex1, openChar, closeChar, supportsNesting, ref nestedCount, out length2))
+                            switch (GetExpressionLength(input, startIndex1, openChar, closeChar, supportsNesting, ref nestedCount, out var length2))
                             {
                                 case HttpParseResult.Parsed:
                                     startIndex1 += length2;
@@ -296,7 +294,7 @@
                             --nestedCount;
                         }
                     }
-                    if ((int)input[startIndex1] == (int)closeChar)
+                    if (input[startIndex1] == closeChar)
                     {
                         length = startIndex1 - startIndex + 1;
                         return HttpParseResult.Parsed;

@@ -1,0 +1,212 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "Google/Protobuf/Timestamp.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+   
+message Guid
+{
+	fixed64 Data1 = 1;
+	fixed64 Data2 = 2;
+	fixed64 Data3 = 3;
+	fixed64 Data4 = 4;
+}  
+message IpAddress
+{
+	fixed64 Data = 1;
+}
+
+message Storage
+{
+	Guid Id = 1;
+	string Name = 2;
+	string Address = 3;
+}
+
+message Space 
+{
+	Guid Id = 1;
+	string Name = 2;
+	Guid AccountId = 3;
+}
+
+message Account
+{
+	Guid Id = 1;
+	string Name = 2;
+	string Password = 3;
+	repeated string Roles = 4;
+	google.protobuf.Timestamp Created = 5;
+	google.protobuf.Timestamp Updated = 6;
+}
+
+message Root
+{
+	Guid Id = 1;
+	string Name = 2;
+	Identifier Identifier = 3;
+}
+
+message Identifier
+{
+	Guid Storage = 1;
+	Guid Account = 2;
+	Guid Space = 3;
+
+	fixed64 Era = 4;
+	fixed64 Period = 5;
+	fixed64 Moment = 6;
+}
+
+message Entry
+{
+    IdentifierComponent Id = 1;
+    TypeComponent Type = 2;
+    
+    RelationComponent Parent = 3;
+    repeated RelationsComponent Children = 4;
+
+    RelationComponent Parent2 = 5;
+    repeated RelationsComponent Children2 = 6;
+
+    RelationComponent Downdate = 7;
+    repeated RelationsComponent Updates = 8;
+
+    RelationComponent Previous = 9;
+    RelationComponent Next = 10;
+
+    RelationComponent Indexed = 11;
+    repeated RelationsComponent Indexes = 12;
+}
+
+message IdentifierComponent
+{
+    // All.
+    bool Stored = 1;
+    //string Name = 2;
+
+    // Noncomposite.
+
+    // Specific.
+    Identifier Identifier = 2;
+}
+
+message TypeComponent
+{
+    // All.
+    bool Stored = 1;
+    //string Name = 2;
+
+    // Noncomposite.
+
+    // Specific.
+    string Type = 2;
+}
+
+message RelationComponent
+{
+	// All.
+	bool Stored = 1;
+    //string Name = 2;
+
+	// Noncomposite.
+	
+	// Specific.
+	Relation Relation = 2;
+}
+
+message RelationsComponent
+{
+	// All.
+	bool Stored = 1;
+	//string Name = 2;
+
+	// Composite.
+	fixed64 Id = 2;
+
+	// Specific.
+	repeated Relation Relations = 3;
+}
+
+message Relation
+{
+    Identifier Id = 1;
+    fixed64 Moment = 2;
+}
+
+enum EntryRelation
+{
+	None = 0;
+	Parent = 1;
+	Child = 2;
+	Previous = 4;
+	Next = 8;
+	Downdate = 16;
+	Update = 32;
+	Index = 64;
+	Indexed = 128;
+	All = 255;
+
+}
+
+message BlobSummary
+{
+	bool IsComplete = 1;
+	repeated fixed64 AvailableParts = 2;
+	uint64 TotalParts = 3;
+}
+
+message Content
+{
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	BlobSummary Summary = 3;
+	uint64 TotalParts = 4;
+}
+
+message ContentPart
+{
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	uint64 Id = 3;
+
+	bytes Data = 4;
+}
+
+
+message ContentDefinition
+{
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	BlobSummary Summary = 3;
+	uint64 TotalParts = 4;
+
+	uint64 Size = 5;
+	fixed64 Checksum = 6;
+	repeated ContentDefinitionPart Parts = 7;
+}
+
+message ContentDefinitionPart
+{
+	bool Stored = 1; // Needed?
+	string Name = 2; // Needed?
+	uint64 Id = 3;
+
+	uint64 Size = 4;
+	fixed64 Checksum = 5;
+}
+
+message PropertyDictionary
+{
+	string Data = 1;
+}

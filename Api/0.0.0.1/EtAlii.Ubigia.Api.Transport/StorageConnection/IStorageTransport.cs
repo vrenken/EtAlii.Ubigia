@@ -1,17 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public interface IStorageTransport
     {
         bool IsConnected { get; }
 
-        void Initialize(IStorageConnection storageConnection, string address);
+        Uri Address { get; }
 
-        Task Start(IStorageConnection storageConnection, string address);
-
-        Task Stop(IStorageConnection storageConnection);
+        Task Start();
+        Task Stop();
         
         IScaffolding[] CreateScaffolding();
     }

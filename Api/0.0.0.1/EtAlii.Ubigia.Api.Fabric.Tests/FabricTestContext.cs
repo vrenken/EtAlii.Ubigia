@@ -4,12 +4,13 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class FabricTestContext : IFabricTestContext
     {
-        public ITransportTestContext Transport { get; }
+        public ITransportTestContext<InProcessInfrastructureHostTestContext> Transport { get; }
 
-        public FabricTestContext(ITransportTestContext transport)
+        public FabricTestContext(ITransportTestContext<InProcessInfrastructureHostTestContext> transport)
         {
             Transport = transport;
         }

@@ -1,10 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.AspNetCore
 {
+    using System.Diagnostics;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -28,19 +29,27 @@
                         .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
                         .AddSingleton<IStorageRepository>(infrastructure.Storages)
 
-						.AddInfrastructureSimpleAuthentication(infrastructure)
-						.AddInfrastructureSerialization()
+                        .AddInfrastructureSimpleAuthentication(infrastructure)
+                        .AddInfrastructureSerialization()
 
-	                    .AddCors()
-                        .AddSignalR()
-		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
-				},
+                        .AddCors()
+                        .AddSignalR(options => 
+                        {
+                            if (Debugger.IsAttached)
+                            {
+                                options.EnableDetailedErrors = Debugger.IsAttached;
+                            }
+                        })
+                        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+                },
                 appBuilder =>
                 {
                     appBuilder
                         .UseCors(configuration =>
                         {
-                            configuration.AllowAnyOrigin();
+                            configuration.AllowAnyMethod();
+                            configuration.AllowAnyHeader();
+                            configuration.AllowAnyOrigin(); 
                         })
                         .UseSignalR(routes =>
                         {

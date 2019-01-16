@@ -9,7 +9,7 @@
         private readonly ISpaceConnection _connection;
         private readonly ILogger _logger;
 
-        private string _address;
+        private Uri _address;
 
         public Account Account => _connection.Account;
         public Space Space => _connection.Space;
@@ -32,15 +32,15 @@
             _logger = logger;
         }
 
-        public async Task Open()
+        public async Task Open(string accountName, string password)
         {
-            _address = _connection.Configuration.Address;
+            _address = _connection.Transport.Address;
 
             var message = $"Opening space connection (Address: {_address}";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            await _connection.Open();
+            await _connection.Open(accountName, password);
 
             message = $"Opened space connection (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
@@ -61,7 +61,7 @@
 
         #region Disposable
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()

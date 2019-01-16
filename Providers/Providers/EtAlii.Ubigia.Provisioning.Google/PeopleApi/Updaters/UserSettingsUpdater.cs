@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _userSettingsSetter = userSettingsSetter;
         }
 
-        public async Task Update(UserSettings userSettings, SystemSettings systemSettings, IDataContext userDataContext, TimeSpan thresholdBeforeExpiration)
+        public async Task Update(UserSettings userSettings, SystemSettings systemSettings, IGraphSLScriptContext userDataContext, TimeSpan thresholdBeforeExpiration)
         {
             var clientSecrets = new ClientSecrets();
             clientSecrets.ClientSecret = systemSettings.ClientSecret;

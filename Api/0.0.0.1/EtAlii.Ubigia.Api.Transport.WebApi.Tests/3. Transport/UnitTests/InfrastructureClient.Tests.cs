@@ -1,7 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Transport.Tests
+﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
     
@@ -21,7 +21,6 @@
         public void InfrastructureClient_New()
         {
             // Arrange.
-            var jsonSerializer = new SerializerFactory().Create();
             var httpClientFactory = new DefaultHttpClientFactory();
 
             // Act.
@@ -35,7 +34,6 @@
         public void InfrastructureClient_New_Has_No_AuthenticationToken()
         {
             // Arrange.
-            var jsonSerializer = new SerializerFactory().Create();
             var httpClientFactory = new DefaultHttpClientFactory();
             var client = new DefaultInfrastructureClient(httpClientFactory);
 

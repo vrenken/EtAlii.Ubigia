@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
@@ -9,15 +9,6 @@
 
     public interface IDocumentFactory
     {
-        IDocumentViewModel Create(
-            IDataContext dataContext,
-            ILogicalContext logicalContext,
-            IFabricContext fabricContext,
-            IDataConnection connection,
-            IDiagnosticsConfiguration diagnostics, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory);
+        IDocumentViewModel Create(IDocumentContext documentContext);
     }
 }

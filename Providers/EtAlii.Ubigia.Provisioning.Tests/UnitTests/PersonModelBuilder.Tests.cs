@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Provisioning.UnitTests
+﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
     using System.Linq;
     using Xunit;
 
-    public class PersonModelBuilder_Tests
+    public class PersonModelBuilderTests
     {
         [Fact]
         public void PersonModelBuilder_Create()
@@ -34,13 +34,9 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -85,15 +81,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First1", "first1.last@nomail.com", "+316343434");
             builder.Add("Last", "First2", "first2.last@nomail.com", "+316343435");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);

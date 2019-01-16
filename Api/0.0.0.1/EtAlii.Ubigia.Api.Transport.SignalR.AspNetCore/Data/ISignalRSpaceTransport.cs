@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    public interface ISignalRSpaceTransport : ISignalRTransport, ISpaceTransport
+	public interface ISignalRSpaceTransport : ISignalRTransport, ISpaceTransport
     {
-    }
+	}
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Workflow;
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Client.Windows.Diagnostics
 
         public override string ToString()
         {
-            return $"{base.GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}, Time:{Time}";
+            return $"{GetType()} - Id: {Entry.Id.ToTimeString()}, Reason: {ProcessReason}, Time:{Time}";
         }
     }
 }

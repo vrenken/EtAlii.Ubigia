@@ -9,7 +9,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Storage)]
-    public class Select_Storage : StorageCmdlet
+    public class SelectStorage : StorageCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The address of the storage that should be selected.")]
         public string Address { get; set; }
@@ -38,7 +38,8 @@
             {
                 var task = Task.Run(async () =>
                 {
-                    await PowerShellClient.Current.OpenManagementConnection(Address, AccountName, Password);
+	                var address = new Uri(Address, UriKind.Absolute);
+                    await PowerShellClient.Current.OpenManagementConnection(address, AccountName, Password);
                 });
                 task.Wait();
                 WriteDebug($"Using storage at {Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");

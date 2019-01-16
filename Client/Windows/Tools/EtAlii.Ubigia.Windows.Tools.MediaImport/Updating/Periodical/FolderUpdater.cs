@@ -13,17 +13,17 @@
     internal class FolderUpdater : IFolderUpdater
     {
         private readonly ILogger _logger;
-        private readonly IDataContext _context;
+        private readonly IGraphSLScriptContext _scriptContext;
         private readonly IStringEscaper _stringEscaper;
 
         public FolderUpdater(
-            IDataContext context,
             ILogger logger,
-            IStringEscaper stringEscaper)
+            IStringEscaper stringEscaper, 
+            IGraphSLScriptContext scriptContext)
         {
             _logger = logger;
             _stringEscaper = stringEscaper;
-            _context = context;
+            _scriptContext = scriptContext;
         }
 
         public void Handle(string folder, string localStart, string remoteStart)
@@ -42,7 +42,7 @@
             DynamicNode[] remoteItems = null;
             var task = Task.Run(async () =>
             {
-                var lastSequence = await _context.Scripts.Process("/{0}/{1}", remoteStart, remotePath);
+                var lastSequence = await _scriptContext.Process("/{0}/{1}", remoteStart, remotePath);
                 remoteItems = ((IEnumerable<DynamicNode>)await lastSequence.Output).ToArray();
             });
             task.Wait();

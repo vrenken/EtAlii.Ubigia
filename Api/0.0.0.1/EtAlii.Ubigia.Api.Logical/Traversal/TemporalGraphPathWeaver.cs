@@ -16,17 +16,29 @@
 
                 result.Add(currentPart);
 
-                if (currentPart != GraphRelation.Downdate &&
-                    currentPart != GraphRelation.Update &&
-                    currentPart != GraphRelation.Original &&
+                if (currentPart != GraphRelation.Original &&
+                    currentPart != GraphRelation.AllDowndates &&
+                    currentPart != GraphRelation.Downdate &&
+                    currentPart != GraphRelation.Updates &&
+                    currentPart != GraphRelation.AllUpdates &&
                     currentPart != GraphRelation.Final &&
-                    nextPart != GraphRelation.Downdate &&
-                    nextPart != GraphRelation.Update &&
                     nextPart != GraphRelation.Original &&
+                    nextPart != GraphRelation.AllDowndates &&
+                    nextPart != GraphRelation.Downdate &&
+                    nextPart != GraphRelation.Updates &&
+                    nextPart != GraphRelation.AllUpdates &&
                     nextPart != GraphRelation.Final)
                 {
                     result.Add(GraphRelation.Final);
                 }
+                else
+                {
+                    // TODO: BIG TODO: Improve the Temporal Weaver so that it weaves in temporal 'last' relations
+                    // until the first temporal directive is spotted.
+                    result.AddRange(path.Skip(i + 1));
+                    break;
+                }
+                
             }
 
             return new GraphPath(result.ToArray());

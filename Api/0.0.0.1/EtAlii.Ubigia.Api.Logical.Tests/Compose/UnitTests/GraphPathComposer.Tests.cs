@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class GraphPathComposer_UnitTests
+    public class GraphPathComposerUnitTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void GraphPathComposer_Create()
@@ -24,6 +24,7 @@
             var composer = new GraphComposer(graphAdder, graphRemover, graphLinker, graphUnlinker, graphRenamer); 
 
             // Assert.
+            Assert.NotNull(composer);
         }
     }
 }

@@ -2,30 +2,36 @@
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class SimpleAuthenticationVerifier : ISimpleAuthenticationVerifier
     {
         private readonly IAccountRepository _accountRepository;
-        private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
+        private readonly ISimpleAuthenticationBuilder _authenticationBuilder;
 
         public SimpleAuthenticationVerifier(
             IAccountRepository accountRepository,
-            IAuthenticationTokenConverter authenticationTokenConverter)
+            ISimpleAuthenticationBuilder authenticationBuilder)
         {
             _accountRepository = accountRepository;
-            _authenticationTokenConverter = authenticationTokenConverter;
+	        _authenticationBuilder = authenticationBuilder;
         }
 
         public string Verify(string accountName, string password, string hostIdentifier, params string[] requiredRoles)
+        {
+            return Verify(accountName, password, hostIdentifier, out _, requiredRoles);
+        }
+
+        public string Verify(string accountName, string password, string hostIdentifier, out Account account, params string[] requiredRoles)
         {
             if (String.IsNullOrWhiteSpace(accountName) || String.IsNullOrWhiteSpace(password))
             {
                 throw new InvalidInfrastructureOperationException("Unauthorized");
             }
 
-            var account = _accountRepository.Get(accountName, password);
+            account = _accountRepository.Get(accountName, password);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException("Invalid account");
@@ -40,39 +46,9 @@
 		        }
 	        }
 
-			var authenticationToken = CreateAuthenticationToken(accountName, hostIdentifier);
+			var authenticationToken = _authenticationBuilder.Build(accountName, hostIdentifier);
 
             return authenticationToken;
-        }
-
-        private string CreateAuthenticationToken(string accountName, string hostIdentifier)
-        {
-            try
-            {
-                var success = !String.IsNullOrWhiteSpace(hostIdentifier);
-                if (success)
-                {
-                    var authenticationToken = new AuthenticationToken
-                    {
-                        Name = accountName,
-                        Address = hostIdentifier,
-                        Salt = DateTime.UtcNow.ToBinary(),
-                    };
-
-                    var authenticationTokenAsBytes = _authenticationTokenConverter.ToBytes(authenticationToken);
-                    authenticationTokenAsBytes = Aes.Encrypt(authenticationTokenAsBytes);
-                    var authenticationTokenAsString = Convert.ToBase64String(authenticationTokenAsBytes);
-                    return authenticationTokenAsString;
-                }
-                else
-                {
-                    throw new UnauthorizedInfrastructureOperationException("Invalid identifier");
-                }
-            }
-            catch (Exception e)
-            {
-                throw new UnauthorizedInfrastructureOperationException("Unauthorized", e);
-            }
         }
     }
 }

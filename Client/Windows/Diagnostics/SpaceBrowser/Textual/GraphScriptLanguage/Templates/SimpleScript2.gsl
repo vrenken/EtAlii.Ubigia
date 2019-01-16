@@ -1,0 +1,70 @@
+﻿person:+=Vrenken/Peter
+person:Vrenken/Peter <= { Birthdate: 1978-07-28, Nickname: 'Pete', Lives: 1 }
+person:+=Vrenken/Tanja
+person:Vrenken/Tanja <= { Birthdate: 1980-03-04, Nickname: 'LadyL', Lives: 1 }
+person:+=Vrenken/Arjan
+person:Vrenken/Arjan <= { Birthdate: 2015-08-13, Nickname: 'Bengel', Lives: 1 }
+person:+=Vrenken/Ida
+person:Vrenken/Ida <= { Birthdate: 2018-11-07, Nickname: 'Scheetje', Lives: 1 }
+person:+=Doe/John
+person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: 'Johnny', Lives: 1 }
+person:+=Doe/Jane
+person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: 'Janey', Lives: 2 }
+person:+=Stark/Tony
+person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: 'Iron Man', Lives: 9 }
+
+person:Doe <= { Type: "FamilyName" }
+person:Stark <= { Type: "FamilyName" }
+person:Vrenken <= { Type: "FamilyName" }
+
+$john <= person:Doe/John
+$jane <= person:Doe/Jane
+$tony <= person:Stark/Tony
+$peter <= person:Vrenken/Peter
+$tanja <= person:Vrenken/Tanja
+$arjan <= person:Vrenken/Arjan
+$ida <= person:Vrenken/Ida
+
+person:Vrenken/Tanja += Friends
+person:Vrenken/Peter += Friends
+person:Vrenken/Ida += Friends
+person:Doe/Jane += Friends
+person:Doe/John += Friends
+person:Stark/Tony += Friends
+
+person:Stark/Tony/Friends += $john
+person:Stark/Tony/Friends += $jane
+person:Stark/Tony/Friends += $peter
+
+person:Doe/John/Friends += $tony
+person:Doe/John/Friends += $jane
+
+person:Doe/Jane/Friends += $john
+person:Doe/Jane/Friends += $tony
+
+person:Vrenken/Arjan += Friends
+person:Vrenken/Arjan/Friends += $tanja
+person:Vrenken/Arjan/Friends += $peter
+person:Vrenken/Arjan/Friends += $ida
+
+person:Vrenken/Ida/Friends += $tanja
+person:Vrenken/Ida/Friends += $arjan
+person:Vrenken/Ida/Friends += $peter
+
+person:Vrenken/Peter/Friends += $tanja
+person:Vrenken/Peter/Friends += $arjan
+person:Vrenken/Peter/Friends += $ida
+person:Vrenken/Peter/Friends += $tony
+
+person:Vrenken/Tanja/Friends += $peter
+person:Vrenken/Tanja/Friends += $arjan
+person:Vrenken/Tanja/Friends += $ida
+
+person:Vrenken/Ida/Friends/
+person:Vrenken/Arjan/Friends/
+person:Vrenken/Tanja/Friends/
+person:Vrenken/Peter/Friends/
+person:Stark/Tony/Friends/
+person:Doe/Jane/Friends/
+person:Doe/John/Friends/
+person:Stark/Tony

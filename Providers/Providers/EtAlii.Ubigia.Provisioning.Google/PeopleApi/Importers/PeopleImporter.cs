@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         protected override void Run()
         {
-            var systemSettings = _systemSettingsGetter.Get(_context.SystemDataContext);
+            var systemSettings = _systemSettingsGetter.Get(_context.SystemScriptContext);
 
             // Fetch all configuration spaces.
             var configurationSpaces = _configurationSpaceGetter.GetAll();

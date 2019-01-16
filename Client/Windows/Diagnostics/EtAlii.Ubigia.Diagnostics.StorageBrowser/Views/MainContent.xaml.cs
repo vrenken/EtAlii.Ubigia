@@ -1,11 +1,9 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using System.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for MainContent.xaml
     /// </summary>
-    public partial class MainContent : UserControl
+    public partial class MainContent
     {
         public MainContent()
         {

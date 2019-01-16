@@ -11,8 +11,7 @@
 
         public PropertyDictionary GetProperties(Identifier identifier)
         {
-            PropertyDictionary properties = null;
-            _cacheProvider.Cache.TryGetValue(identifier, out properties);
+            _cacheProvider.Cache.TryGetValue(identifier, out var properties);
             return properties;
         }
 
@@ -20,15 +19,15 @@
         {
             _cacheProvider.Cache[identifier] = properties;
         }
-
-        private void Invalidate(Identifier identifier)
-        {
-            PropertyDictionary properties;
-            if (_cacheProvider.Cache.TryGetValue(identifier, out properties))
-            {
-                // Yup, we got a cache hit.
-                _cacheProvider.Cache.Remove(identifier);
-            }
-        }
+//
+//        private void Invalidate(Identifier identifier)
+//        {
+//            PropertyDictionary properties;
+//            if (_cacheProvider.Cache.TryGetValue(identifier, out properties))
+//            {
+//                // Yup, we got a cache hit.
+//                _cacheProvider.Cache.Remove(identifier);
+//            }
+//        }
     }
 }

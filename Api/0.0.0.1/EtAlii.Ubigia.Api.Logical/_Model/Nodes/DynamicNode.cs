@@ -3,7 +3,7 @@
     using System;
     using System.Dynamic;
 
-    public partial class DynamicNode : DynamicObject, IInternalNode, INode, IEquatable<DynamicNode>
+    public partial class DynamicNode : DynamicObject, IInternalNode
     {
         private const string NotSupportedErrorMessage = "This action is not supported on DynamicNode instances";
 
@@ -43,12 +43,12 @@
         {
             if (properties == null)
             {
-                throw new ArgumentNullException("properties");
+                throw new ArgumentNullException(nameof(properties));
             }
 
             if (entry == null)
             {
-                throw new ArgumentNullException("entry");
+                throw new ArgumentNullException(nameof(entry));
             }
 
             _entry = entry;

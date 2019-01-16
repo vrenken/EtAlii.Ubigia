@@ -7,6 +7,7 @@
     using Microsoft.AspNetCore.Mvc;
 
     //[RequiresAuthenticationToken]
+    //[Authorize]
     [Route(RelativeUri.Admin.Api.Storages)]
     public class StorageController : RestController
     {
@@ -108,7 +109,7 @@
 
         // Update Item by id
         [HttpPut]
-        public IActionResult Put([RequiredFromQuery]Guid storageId, Storage storage)
+        public IActionResult Put([RequiredFromQuery]Guid storageId, [FromBody]Storage storage)
         {
             IActionResult response;
             try

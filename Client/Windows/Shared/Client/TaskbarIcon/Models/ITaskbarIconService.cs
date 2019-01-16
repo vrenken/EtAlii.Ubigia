@@ -1,7 +1,5 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using EtAlii.Ubigia.Client.Windows.Shared;
-
     public interface ITaskbarIconService : IApplicationService
     {
         Hardcodet.Wpf.TaskbarNotification.TaskbarIcon TaskbarIcon { get; }

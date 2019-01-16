@@ -38,7 +38,7 @@
             {
                 var results = Observable.Create<IReadOnlyEntry>(output =>
                 {
-                    graphPathTraverser.Traverse(GraphPath.Create(entry.Id, GraphRelation.Child, new GraphNode(itemName)), Traversal.DepthFirst, scope, output);
+                    graphPathTraverser.Traverse(GraphPath.Create(entry.Id, GraphRelation.Children, new GraphNode(itemName)), Traversal.DepthFirst, scope, output);
                     return Disposable.Empty;
                 }).ToHotObservable();
                 result = await results.SingleOrDefaultAsync();
@@ -54,7 +54,7 @@
             {
                 var results = Observable.Create<IReadOnlyEntry>(output =>
                 {
-                    graphPathTraverser.Traverse(GraphPath.Create(entry.Id, GraphRelation.Child, new GraphWildcard("*")), Traversal.DepthFirst, scope, output);
+                    graphPathTraverser.Traverse(GraphPath.Create(entry.Id, GraphRelation.Children, new GraphWildcard("*")), Traversal.DepthFirst, scope, output);
                     return Disposable.Empty;
                 }).ToHotObservable();
                 result = await results.SingleOrDefaultAsync(e => e.Id == item);

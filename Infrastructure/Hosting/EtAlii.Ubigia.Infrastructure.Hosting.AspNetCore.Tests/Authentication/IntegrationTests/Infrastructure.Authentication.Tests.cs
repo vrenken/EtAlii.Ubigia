@@ -1,63 +1,292 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using System;
     using System.Net;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+    using EtAlii.Ubigia.Api.Transport.WebApi;
     using Xunit;
+    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
-    
-    public class Infrastructure_Authentication_Tests : IClassFixture<HostUnitTestContext>
+	[Trait("Technology", "AspNetCore")]
+	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public Infrastructure_Authentication_Tests(HostUnitTestContext testContext)
+        public InfrastructureAuthenticationTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task Infrastructure_Get_Authentication_Url()
-        {
-	        var context = _testContext.HostTestContext;
-            var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
-            string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
-            var token = await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials);
-            Assert.True(!String.IsNullOrWhiteSpace(token));
-        }
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task Infrastructure_Get_Authentication_Url_Invalid_Password()
-        {
-            // Arrange.
-	        var context = _testContext.HostTestContext;
-            var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
-            string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+		    // Act.
+		    var token = await client.Get<string>(address, credentials);
 
-            // Act
-            var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
+		    // Assert.
+		    Assert.True(!String.IsNullOrWhiteSpace(token));
+	    }
 
-            // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
-        }
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_System()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 
-        [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task Infrastructure_Get_Authentication_Url_Invalid_Account()
-        {
-			// Arrange.
-			var context = _testContext.HostTestContext;
-            var configuration = _testContext.HostTestContext.Host.Infrastructure.Configuration;
-            var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
-            string address = _testContext.HostTestContext.Host.AddressFactory.CreateFullAddress(configuration.Address, RelativeUri.Authenticate);
+		    // Act.
+		    var token = await client.Get<string>(address, credentials);
 
-            // Act
-            var act = new Func<Task>(async () => await _testContext.HostTestContext.Host.Client.Get<string>(address, credentials));
+		    // Assert.
+		    Assert.True(!String.IsNullOrWhiteSpace(token));
+	    }
 
-            // Assert.
-            await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
-        }
-    }
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_Admin()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act.
+		    var token = await client.Get<string>(address, credentials);
+
+		    // Assert.
+		    Assert.True(!String.IsNullOrWhiteSpace(token));
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_TestUser()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act.
+		    var token = await client.Get<string>(address, credentials);
+
+		    // Assert.
+		    Assert.True(!String.IsNullOrWhiteSpace(token));
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_System()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act.
+		    var token = await client.Get<string>(address, credentials);
+
+		    // Assert.
+		    Assert.True(!String.IsNullOrWhiteSpace(token));
+	    }
+
+		[Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act.
+		    var token = await client.Get<string>(address, credentials);
+
+		    // Assert.
+		    Assert.True(!String.IsNullOrWhiteSpace(token));
+	    }
+
+		[Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser_Invalid_Password()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.TestAccountName, context.TestAccountPassword + "BAAD");
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_System_Invalid_Password()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword + "BAAD");
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_Admin_Invalid_Password()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword + "BAAD");
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_System_Invalid_Password()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.SystemAccountName, context.SystemAccountPassword + "BAAD");
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Password()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.AdminAccountName, context.AdminAccountPassword + "BAAD");
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+		[Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser_Invalid_Account()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.TestAccountName + "BAAD", context.TestAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_System_Invalid_Account()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.SystemAccountName + "BAAD", context.SystemAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_User_Admin_Invalid_Account()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.AdminAccountName + "BAAD", context.AdminAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.DataServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_System_Invalid_Account()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.SystemAccountName + "BAAD", context.SystemAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+
+	    [Fact, Trait("Category", TestAssembly.Category)]
+	    public async Task Infrastructure_Get_Authentication_Url_Admin_Admin_Invalid_Account()
+	    {
+		    // Arrange.
+		    var context = _testContext.HostTestContext;
+		    var credentials = new NetworkCredential(context.AdminAccountName + "BAAD", context.AdminAccountPassword);
+		    var addressFactory = new AddressFactory();
+		    var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
+		    var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
+
+		    // Act
+		    var act = new Func<Task>(async () => await client.Get<string>(address, credentials));
+
+		    // Assert.
+		    await Assert.ThrowsAsync<UnauthorizedInfrastructureOperationException>(act);
+	    }
+	}
 }

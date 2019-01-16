@@ -11,15 +11,13 @@
 
         public IReadOnlyContentDefinition Get(Identifier identifier)
         {
-            ContentCacheEntry cacheEntry = null;
-            _cacheProvider.Cache.TryGetValue(identifier, out cacheEntry);
+            _cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry);
             return cacheEntry != null ? cacheEntry.ContentDefinition : null;
         }
 
         public void Store(Identifier identifier, IReadOnlyContentDefinition definition)
         {
-            ContentCacheEntry cacheEntry = null;
-            if (!_cacheProvider.Cache.TryGetValue(identifier, out cacheEntry))
+            if (!_cacheProvider.Cache.TryGetValue(identifier, out var cacheEntry))
             {
                 cacheEntry = new ContentCacheEntry();
                 _cacheProvider.Cache[identifier] = cacheEntry;

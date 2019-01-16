@@ -2,11 +2,11 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
-    using System.Linq;
+	using System.Collections.Generic;
+	using System.Linq;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
-    using global::Google.Contacts;
-    using global::Google.GData.Extensions;
+    using global::Google.Apis.PeopleService.v1.Data;
 
     public class DebuggingPersonSetter : IPersonSetter
     {
@@ -15,27 +15,28 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public DebuggingPersonSetter(IPersonSetter decoree, ILogger logger)
         {
-            _decoree = decoree;
+			_decoree = decoree;
             _logger = logger;
         }
 
-        public void Set(IDataContext context, Contact person)
+        public void Set(IGraphSLScriptContext context, Person person)
         {
-            var name = GetName(person.Name) ??
-                       GetName(person.ContactEntry.Name) ??
-                       GetEmail(person.PrimaryEmail) ??
-                       GetEmail(person.ContactEntry.PrimaryEmail) ??
-                       GetEmail(person.Emails) ?? GetEmail(person.ContactEntry.Emails);
+	        var name = GetName(person.Names) ??
+	                   //GetName(person.ContactEntry.Name) ??
+	                   GetEmail(person.EmailAddresses);
+					   //GetEmail(person.PrimaryEmail) ??
+        //               GetEmail(person.ContactEntry.PrimaryEmail) ??
+        //               GetEmail(person.Emails) ?? GetEmail(person.ContactEntry.Emails);
 
             _logger.Info($"Setting contact: {name}");
 
             _decoree.Set(context, person);
         }
 
-        private string GetName(Name name)
+        private string GetName(IList<Name> names)
         {
-            var familyName = name?.FamilyName;
-            var givenName = name?.GivenName;
+            var familyName = names.FirstOrDefault()?.FamilyName;
+            var givenName = names.FirstOrDefault()?.GivenName;
             if (familyName != null && givenName != null)
             {
                 return $"{givenName} {familyName}";
@@ -43,15 +44,15 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             else return null;
         }
 
-        private string GetEmail(EMail email)
-        {
-            return email?.Address;
-        }
+//        private string GetEmail(EmailAddress email)
+//        {
+//            return email?.Value;
+//        }
 
-        private string GetEmail(ExtensionCollection<EMail> emails)
+        private string GetEmail(IList<EmailAddress> emails)
         {
             var email = emails.FirstOrDefault();
-            return email?.Address;
+            return email?.Value;
         }
     }
 }

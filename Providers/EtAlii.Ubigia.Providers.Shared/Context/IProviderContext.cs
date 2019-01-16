@@ -6,11 +6,12 @@
 
     public interface IProviderContext
     {
-        IDataContext SystemDataContext { get; }
+        IGraphSLScriptContext SystemScriptContext { get; }
 
         IManagementConnection ManagementConnection { get; }
+       
+        IGraphSLScriptContext CreateScriptContext(string accountName, string spaceName);
+        IGraphSLScriptContext CreateScriptContext(Space space);
 
-        IDataContext CreateDataContext(string accountName, string spaceName);
-        IDataContext CreateDataContext(Space space);
     }
 }

@@ -18,7 +18,7 @@
         {
             if (properties == null)
             {
-                throw new ArgumentNullException("properties");
+                throw new ArgumentNullException(nameof(properties));
             }
 
             await _connection.Properties.Data.Store(identifier, properties, scope);

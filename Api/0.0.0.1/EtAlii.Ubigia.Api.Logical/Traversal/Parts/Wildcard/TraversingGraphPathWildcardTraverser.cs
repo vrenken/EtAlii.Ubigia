@@ -7,14 +7,14 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class TraversingGraphPathWildcardTraverser : ITraversingGraphPathWildcardTraverser
     {
-        private readonly IGraphPathChildRelationTraverser _graphPathChildRelationTraverser;
+        private readonly IGraphPathChildrenRelationTraverser _graphPathChildrenRelationTraverser;
         private readonly IGraphPathFinalRelationTraverser _graphPathFinalRelationTraverser;
 
         public TraversingGraphPathWildcardTraverser(
-            IGraphPathChildRelationTraverser graphPathChildRelationTraverser, 
+            IGraphPathChildrenRelationTraverser graphPathChildrenRelationTraverser, 
             IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser)
         {
-            _graphPathChildRelationTraverser = graphPathChildRelationTraverser;
+            _graphPathChildrenRelationTraverser = graphPathChildrenRelationTraverser;
             _graphPathFinalRelationTraverser = graphPathFinalRelationTraverser;
         }
 
@@ -83,12 +83,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
             if (limit > 1)
             {
-                var subItems = (await _graphPathChildRelationTraverser.Traverse(null, start, context, scope))
+                var subItems = (await _graphPathChildrenRelationTraverser.Traverse(null, start, context, scope))
                     .ToArray();
 
                 foreach (var subItem in subItems)
                 {
-                    var subEntry = await context.Entries.Get(subItem, scope);
                     await TraverseChildren(result, subItem, context, scope, entryRelation, limit - 1);
                 }
             }

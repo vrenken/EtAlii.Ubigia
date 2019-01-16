@@ -11,7 +11,7 @@
     public class MailImporter : IMailImporter
     {
         private readonly ILogger _logger;
-        private readonly IDataContext _context;
+        private readonly IGraphSLScriptContext _scriptContext;
 
         private Imap4Client _imap;
         private readonly string username = "vrenken.test@gmail.com";
@@ -23,10 +23,10 @@
 
         public MailImporter(
             ILogger logger,
-            IDataContext context)
+            IGraphSLScriptContext scriptContext)
         {
             _logger = logger;
-            _context = context;
+            _scriptContext = scriptContext;
         }
 
         public void Start()
@@ -108,14 +108,14 @@
                     {
                         var safeTitle = message.Subject.Select(c => char.IsLetterOrDigit(c) || char.IsWhiteSpace(c)).ToArray();
                         
-                        var lastSequence = await _context.Scripts.Process("/Communications += \"{0}\"", safeTitle);
-                        var result = await lastSequence.Output.ToArray();
+                        var lastSequence = await _scriptContext.Process("/Communications += \"{0}\"", safeTitle);
+                        await lastSequence.Output.ToArray();
 
                         var scope = new ScriptScope();
                         scope.Variables.Add("content", new ScopeVariable(message.BodyText.Text, "Mail"));
                         
-                        lastSequence = await _context.Scripts.Process("/Communications/\"{0}\" <= $content", safeTitle);
-                        result = await lastSequence.Output.ToArray();
+                        lastSequence = await _scriptContext.Process("/Communications/\"{0}\" <= $content", safeTitle);
+                        await lastSequence.Output.ToArray();
 
                     });
                     task.Wait();

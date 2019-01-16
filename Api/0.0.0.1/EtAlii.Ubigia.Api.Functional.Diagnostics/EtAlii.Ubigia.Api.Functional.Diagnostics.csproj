@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -11,19 +10,21 @@
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
     <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
-
   <ItemGroup>
     <Compile Remove="Scripting\Roots\**" />
     <EmbeddedResource Remove="Scripting\Roots\**" />
     <None Remove="Scripting\Roots\**" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripting" />
   </ItemGroup>
 </Project>

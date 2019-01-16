@@ -1,11 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
-    using EtAlii.Ubigia.Infrastructure.Fabric;
+	using System;
+	using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public interface ILogicalContextConfiguration
     {
         string Name { get; }
-        string Address { get; }
+	    Uri Address { get; }
 
         IFabricContext Fabric { get; }
 
@@ -13,7 +14,7 @@
 
         //ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions);
 
-        ILogicalContextConfiguration Use(string name, string address);
+        ILogicalContextConfiguration Use(string name, Uri address);
 
         ILogicalContextConfiguration Use(IFabricContext fabricContext);
     }

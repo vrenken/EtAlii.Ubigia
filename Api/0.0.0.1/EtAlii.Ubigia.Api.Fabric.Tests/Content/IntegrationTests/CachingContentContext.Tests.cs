@@ -27,7 +27,7 @@
             var context = new CachingContentContext(contentCacheContextProvider, contentCacheRetrieveDefinitionHandler, contentCacheStoreDefinitionHandler, contentCacheRetrieveHandler, contentCacheRetrievePartHandler, contentCacheStoreHandler, contentCacheStorePartHandler);
 
             // Assert.
-            //Assert.NotNull(context);
+            Assert.NotNull(context);
         }
     }
 }

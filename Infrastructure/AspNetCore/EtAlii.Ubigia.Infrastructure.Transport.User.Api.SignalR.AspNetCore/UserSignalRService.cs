@@ -1,10 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.AspNetCore
 {
+    using System.Diagnostics;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,8 @@
                 services =>
                 {
 	                services
+		                .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
 		                .AddSingleton<IRootRepository>(infrastructure.Roots)
 		                .AddSingleton<IEntryRepository>(infrastructure.Entries)
 		                .AddSingleton<IPropertiesRepository>(infrastructure.Properties)
@@ -34,21 +37,32 @@
 		                .AddInfrastructureSerialization()
 
 		                .AddCors()
-		                .AddSignalR()
+		                .AddSignalR(options =>
+		                {
+			                if (Debugger.IsAttached)
+			                {
+				                options.EnableDetailedErrors = Debugger.IsAttached;
+			                }
+		                })
 		                .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
                 },
                 appBuilder =>
                 {
                     appBuilder
                         .UseCors(configuration =>
-                        {
+	                    {
+		                    configuration.AllowAnyMethod();
+		                    configuration.AllowAnyHeader();
                             configuration.AllowAnyOrigin(); 
                         })
                         .UseSignalR(routes =>
                         {
                             routes.MapHub<AuthenticationHub>(SignalRHub.Authentication);
 
-                            routes.MapHub<RootHub>(SignalRHub.Root);
+							routes.MapHub<AccountHub>(SignalRHub.Account);
+							routes.MapHub<SpaceHub>(SignalRHub.Space);
+
+							routes.MapHub<RootHub>(SignalRHub.Root);
                             routes.MapHub<EntryHub>(SignalRHub.Entry);
                             routes.MapHub<PropertiesHub>(SignalRHub.Property);
                             routes.MapHub<ContentHub>(SignalRHub.Content);

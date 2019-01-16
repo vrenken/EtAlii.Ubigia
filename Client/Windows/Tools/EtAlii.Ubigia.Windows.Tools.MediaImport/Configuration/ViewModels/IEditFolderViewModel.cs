@@ -1,4 +1,5 @@
-﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
+﻿// ReSharper disable UnusedMember.Global
+namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.ComponentModel;
     using System.Windows.Input;

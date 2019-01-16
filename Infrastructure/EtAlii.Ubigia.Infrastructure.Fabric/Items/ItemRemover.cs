@@ -24,7 +24,7 @@
         {
             if (itemToRemove == null)
             {
-                throw new ArgumentNullException("No item specified");
+                throw new ArgumentNullException(nameof(itemToRemove),"No item specified");
             }
 
             itemToRemove = items.SingleOrDefault(item => item.Id == itemToRemove.Id);

@@ -8,18 +8,18 @@
 
     internal class ItemDestroyedHandler : IItemDestroyedHandler
     {
-        private readonly IDataContext _context;
+        private readonly IGraphSLScriptContext _scriptContext;
         private readonly IStringEscaper _stringEscaper;
         private readonly ILocalPathSplitter _localPathSplitter;
 
         public ItemDestroyedHandler(
-            IDataContext context,
             IStringEscaper stringEscaper, 
-            ILocalPathSplitter localPathSplitter)
+            ILocalPathSplitter localPathSplitter, 
+            IGraphSLScriptContext scriptContext)
         {
-            _context = context;
             _stringEscaper = stringEscaper;
             _localPathSplitter = localPathSplitter;
+            _scriptContext = scriptContext;
         }
 
         public void Handle(ItemCheckAction action, string localStart, string remoteStart)
@@ -36,7 +36,7 @@
 
             var task = Task.Run(async () =>
             {
-                var lastSequence = await _context.Scripts.Process("/{0}{1} -= {2}", remoteStart, remotePath, remoteItem);
+                var lastSequence = await _scriptContext.Process("/{0}{1} -= {2}", remoteStart, remotePath, remoteItem);
                 await lastSequence.Output.LastOrDefaultAsync();
             });
             task.Wait();

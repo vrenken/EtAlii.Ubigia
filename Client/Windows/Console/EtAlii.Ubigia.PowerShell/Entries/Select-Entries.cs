@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.PowerShell
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Find, Nouns.Entries)]
-    public class Select_Entries : Cmdlet
+    public class SelectEntries : Cmdlet
     {
         protected override void BeginProcessing()
         {

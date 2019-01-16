@@ -1,10 +1,10 @@
 ﻿
-namespace EtAlii.Ubigia.Client.Windows.TaskbarIcon
+namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for TaskbarIcon.xaml
     /// </summary>
-    public partial class TaskbarIcon : Hardcodet.Wpf.TaskbarNotification.TaskbarIcon
+    public partial class TaskbarIcon
     {
         public TaskbarIcon()
         {

@@ -5,10 +5,9 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Account, DefaultParameterSetName = "byStorage")]
-    public class Select_Account : AccountTargetingCmdlet, IAccountInfoProvider
+    public class SelectAccount : AccountTargetingCmdlet
     {
         protected override void BeginProcessing()
         {

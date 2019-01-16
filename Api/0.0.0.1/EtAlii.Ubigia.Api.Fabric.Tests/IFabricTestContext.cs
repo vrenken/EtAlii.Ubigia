@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Tests
+namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
     using System;
     using System.Threading.Tasks;

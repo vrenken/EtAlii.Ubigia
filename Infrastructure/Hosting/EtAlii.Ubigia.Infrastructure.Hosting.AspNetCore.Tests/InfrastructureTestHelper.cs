@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using System;
     using EtAlii.Ubigia.Api;

@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial class Node : IInternalNode, INode, IEquatable<Node>
+    public partial class Node : IInternalNode
     {
         // TODO: There should be no properties on the Node base class.
 
@@ -37,12 +37,12 @@
         {
             if (properties == null)
             {
-                throw new ArgumentNullException("properties");
+                throw new ArgumentNullException(nameof(properties));
             }
 
             if (entry == null)
             {
-                throw new ArgumentNullException("entry");
+                throw new ArgumentNullException(nameof(entry));
             }
 
             _entry = entry;

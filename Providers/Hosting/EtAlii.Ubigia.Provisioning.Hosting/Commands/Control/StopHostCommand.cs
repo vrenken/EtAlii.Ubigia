@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting
 {
-    using System;
     using EtAlii.xTechnology.Hosting;
 
     class StopHostCommand : HostCommandBase, IStopHostCommand

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
-    using EtAlii.xTechnology.Logging;
     using System;
     using System.Collections.Generic;
     using System.Text;
@@ -43,9 +42,9 @@
                 try
                 {
                     var copiedProviderConfiguration = new ProviderConfiguration(configuration)
-                        .Use(connection => _context.CreateDataContext(connection))
+                        .Use(connection => _context.CreateScriptContext(connection))
                         .Use(_context.ManagementConnection)
-                        .Use(_context.SystemDataContext);
+                        .Use(_context.SystemScriptContext);
                         //.Use(_logFactory);
                     provider = copiedProviderConfiguration.Factory.Create(copiedProviderConfiguration);
                 }

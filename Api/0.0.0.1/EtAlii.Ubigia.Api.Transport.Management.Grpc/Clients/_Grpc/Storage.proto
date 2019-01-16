@@ -1,0 +1,50 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+
+// The Storage Grpc service definition.
+service StorageGrpcService  
+{
+    rpc GetSingle (StorageSingleRequest) returns (StorageSingleResponse) {}
+    rpc GetMultiple (StorageMultipleRequest) returns (StorageMultipleResponse) {}
+	rpc GetLocal (StorageSingleRequest) returns (StorageSingleResponse) {}
+	rpc Post (StorageSingleRequest) returns (StorageSingleResponse) {}
+	rpc Put (StorageSingleRequest) returns (StorageSingleResponse) {}
+	rpc Delete (StorageSingleRequest) returns (StorageSingleResponse) {}
+}
+
+message StorageSingleRequest
+{
+    oneof Selection 
+    {
+        Guid Id = 1;
+        string Name = 2;
+        Storage Storage = 3;        
+    }
+}
+
+message StorageMultipleRequest
+{
+}
+
+message StorageSingleResponse
+{
+	Storage Storage = 1;
+}
+
+message StorageMultipleResponse
+{
+    repeated Storage Storages = 1;
+}

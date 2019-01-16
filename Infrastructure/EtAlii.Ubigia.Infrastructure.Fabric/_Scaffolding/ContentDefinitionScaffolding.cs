@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
 
-    internal class ContentDefinitionScaffolding : EtAlii.xTechnology.MicroContainer.IScaffolding
+    internal class ContentDefinitionScaffolding : xTechnology.MicroContainer.IScaffolding
     {
-        public void Register(EtAlii.xTechnology.MicroContainer.Container container)
+        public void Register(xTechnology.MicroContainer.Container container)
         {
             container.Register<IContentDefinitionSet, ContentDefinitionSet>();
 

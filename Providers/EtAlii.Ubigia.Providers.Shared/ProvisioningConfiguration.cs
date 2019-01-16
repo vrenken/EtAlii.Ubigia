@@ -17,7 +17,7 @@
         //public IStorage Storage { get { return _storage; } }
         //private IStorage _storage;
 
-        public string Address { get; private set; }
+        public Uri Address { get; private set; }
 
         public string Account { get; private set; }
 
@@ -25,7 +25,7 @@
 
         private Action<IManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;
         private Action<IDataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions;
-        private Action<IDataContextConfiguration>[] _dataContextConfigurationFactoryExtensions;
+        private Action<IGraphSLScriptContextConfiguration>[] _scriptContextConfigurationFactoryExtensions;
 
         private Func<ITransportProvider> _transportProviderFactory;
         private Func<IStorageTransportProvider> _storageTransportProviderFactory;
@@ -36,7 +36,7 @@
             ProviderConfigurations = new IProviderConfiguration[0];
             _dataConnectionConfigurationFactoryExtensions = new Action<IDataConnectionConfiguration>[0];
             _managementConnectionConfigurationFactoryExtensions = new Action<IManagementConnectionConfiguration>[0];
-            _dataContextConfigurationFactoryExtensions = new Action<IDataContextConfiguration>[0];
+            _scriptContextConfigurationFactoryExtensions = new Action<IGraphSLScriptContextConfiguration>[0];
         }
 
         public IStorageTransportProvider CreateStorageTransportProvider()
@@ -63,13 +63,9 @@
             return this;
         }
 
-        public IProvisioningConfiguration Use(string address, string account, string password)
+        public IProvisioningConfiguration Use(Uri address, string account, string password)
         {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (String.IsNullOrWhiteSpace(account))
+			if (String.IsNullOrWhiteSpace(account))
             {
                 throw new ArgumentException(nameof(account));
             }
@@ -78,7 +74,7 @@
                 throw new ArgumentException(nameof(password));
             }
 
-            Address = address;
+            Address = address ?? throw new ArgumentNullException(nameof(address));
             Account = account;
             Password = password;
             return this;
@@ -116,7 +112,7 @@
             return configuration;
         }
 
-        public IDataContext CreateDataContext(IDataConnection connection, bool useCaching = true)
+        public IGraphSLScriptContext CreateScriptContext(IDataConnection connection, bool useCaching = true)
         {
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .UseTraversalCaching(useCaching)
@@ -129,14 +125,14 @@
                 .Use(fabricContext);
             var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-            var configuration = new DataContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .Use(logicalContext);
-            foreach (var extension in _dataContextConfigurationFactoryExtensions)
+            foreach (var extension in _scriptContextConfigurationFactoryExtensions)
             {
                 extension(configuration);
             }
 
-            return new DataContextFactory().Create(configuration);
+            return new GraphSLScriptContextFactory().Create(configuration);
         }
 
         public IProvisioningConfiguration Use(Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
@@ -167,15 +163,15 @@
             return this;
         }
 
-        public IProvisioningConfiguration Use(Action<IDataContextConfiguration> dataContextConfigurationFactoryExtension)
+        public IProvisioningConfiguration Use(Action<IGraphSLScriptContextConfiguration> scriptContextConfigurationFactoryExtension)
         {
-            if (dataContextConfigurationFactoryExtension == null)
+            if (scriptContextConfigurationFactoryExtension == null)
             {
-                throw new ArgumentException(nameof(dataContextConfigurationFactoryExtension));
+                throw new ArgumentException(nameof(scriptContextConfigurationFactoryExtension));
             }
 
-            _dataContextConfigurationFactoryExtensions = new[] { dataContextConfigurationFactoryExtension }
-                .Concat(_dataContextConfigurationFactoryExtensions)
+            _scriptContextConfigurationFactoryExtensions = new[] { scriptContextConfigurationFactoryExtension }
+                .Concat(_scriptContextConfigurationFactoryExtensions)
                 .Distinct()
                 .ToArray();
             return this;

@@ -1,19 +1,18 @@
-﻿namespace EtAlii.Ubigia.PowerShell.IntegrationTests
+﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Tests;
-    using Xunit;
+    using EtAlii.Ubigia.Api.Transport;
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Transport;
+    using System.Management.Automation;
+    using Xunit;
 
-    
-    public class Root_Test : IDisposable
+
+    public class RootTest : IDisposable
     {
-        private Guid _spaceId;
         private PowerShellTestContext _testContext;
 
-        public Root_Test()
+        public RootTest()
         {
             TestInitialize();
         }
@@ -38,8 +37,7 @@
 
             _testContext.InvokeAddSpace(name, SpaceTemplate.Data);
             var result = _testContext.InvokeSelectSpaceByName(name);
-            var space = _testContext.ToAssertedResult<Space>(result);
-            _spaceId = space.Id;
+            _testContext.ToAssertedResult<Space>(result);
         }
 
         private void TestCleanup()
@@ -66,9 +64,10 @@
 
             // Act.
             var result = _testContext.InvokeGetRoots();
+            var roots = _testContext.ToAssertedResult<List<Root>>(result);
 
             // Assert.
-            var roots = _testContext.ToAssertedResult<List<Root>>(result);
+            Assert.NotEmpty(roots);
         }
 
         [Fact]
@@ -94,37 +93,26 @@
         [Fact]
         public void PowerShell_Root_Update()
         {
-            var result = _testContext.InvokeGetRoots();
-
+            // Arrange.
+            //var result = _testContext.InvokeGetRoots();
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddRoot(firstName);
-
+            var result = _testContext.InvokeGetRootByName(firstName);
+            var originalRoot = _testContext.ToAssertedResult<Root>(result);
             result = _testContext.InvokeGetRootByName(firstName);
-            var root = _testContext.ToAssertedResult<Root>(result);
-
-            Assert.Equal(root.Name, firstName);
-
+            var updatedRoot = _testContext.ToAssertedResult<Root>(result);
             var secondName = Guid.NewGuid().ToString();
+            updatedRoot.Name = secondName;
 
-            root.Name = secondName;
-
-            _testContext.InvokeUpdateRoot(root);
-
-            Exception exceptedException = null;
-            try
-            {
-                result = _testContext.InvokeGetRootByName(firstName);
-            }
-            catch (Exception e)
-            {
-                exceptedException = e;
-            }
-            Assert.NotNull(exceptedException);
-
+            // Act.
+            _testContext.InvokeUpdateRoot(updatedRoot);
+            Assert.Throws<CmdletInvocationException>(() => { result = _testContext.InvokeGetRootByName(firstName); });
             result = _testContext.InvokeGetRootByName(secondName);
-            root = _testContext.ToAssertedResult<Root>(result);
+            updatedRoot = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, secondName);
+            // Assert.
+            Assert.Equal(firstName, originalRoot.Name);
+            Assert.Equal(secondName, updatedRoot.Name);
         }
 
 
@@ -173,7 +161,7 @@
             var result = _testContext.InvokeGetRootByInstance();
             var root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, name);
+            Assert.Equal(name, root.Name);
         }
 
 
@@ -187,14 +175,14 @@
             var result = _testContext.InvokeGetRootByName(name);
             var root = _testContext.ToAssertedResult<Root>(result);
 
-            Assert.Equal(root.Name, name);
+            Assert.Equal(name, root.Name);
 
             _testContext.InvokeRemoveRootByName(name);
 
             Exception exceptedException = null;
             try
             {
-                result = _testContext.InvokeGetRootByName(name);
+                _testContext.InvokeGetRootByName(name);
             }
             catch (Exception e)
             {
@@ -234,8 +222,8 @@
 
             var result = _testContext.InvokeSelectRootByName(name);
             var root = _testContext.ToAssertedResult<Root>(result);
-
-            Assert.Equal(root.Name, name);
+             
+            Assert.Equal(name, root.Name);
         }
     }
 }

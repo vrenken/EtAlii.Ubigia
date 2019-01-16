@@ -1,3 +1,5 @@
+// ReSharper disable All
+
 using System;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.AspNetCore.SignalR.Internal.Protocol;

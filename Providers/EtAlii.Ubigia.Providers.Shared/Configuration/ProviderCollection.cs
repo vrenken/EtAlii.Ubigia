@@ -4,19 +4,19 @@ namespace EtAlii.Ubigia.Provisioning
     using System.Configuration;
 
     [ConfigurationCollection(typeof(ProviderElement), AddItemName = "add", CollectionType=ConfigurationElementCollectionType.BasicMap)]
-    public sealed class ProviderCollection : System.Configuration.ConfigurationElementCollection
+    public sealed class ProviderCollection : ConfigurationElementCollection
     {
-        protected override System.Configuration.ConfigurationElement CreateNewElement()
+        protected override ConfigurationElement CreateNewElement()
         {
             return new ProviderElement();
         }
 
-        protected override object GetElementKey(System.Configuration.ConfigurationElement element)
+        protected override object GetElementKey(ConfigurationElement element)
         {
             return ((ProviderElement)element).Type;
         }
 
-        public override System.Configuration.ConfigurationElementCollectionType CollectionType => System.Configuration.ConfigurationElementCollectionType.BasicMap;
+        public override ConfigurationElementCollectionType CollectionType => ConfigurationElementCollectionType.BasicMap;
 
         protected override string ElementName => "add";
 

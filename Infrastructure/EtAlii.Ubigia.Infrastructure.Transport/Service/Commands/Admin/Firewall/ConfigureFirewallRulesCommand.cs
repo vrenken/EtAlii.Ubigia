@@ -33,7 +33,7 @@
             {
                 var scriptFullPath = Path.GetTempFileName();
                 scriptFullPath = Path.ChangeExtension(scriptFullPath, "ps1");
-                var type = this.GetType();
+                var type = GetType();
                 var assembly = type.Assembly;
                 var assemblyName = assembly.GetName().Name;
 

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.ComponentModel;
     using System.Runtime.CompilerServices;
@@ -16,7 +16,7 @@
         /// </summary>
         /// <typeparam name="T">Type of the property.</typeparam>
         /// <param name="storage">Reference to a property with both getter and setter.</param>
-        /// <param name="value">Desired value for the property.</param>
+        /// <param name="newValue">Desired value for the property.</param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers that
         /// support CallerMemberName.</param>
@@ -24,11 +24,11 @@
         /// desired value.</returns>
         protected bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
         {
-            if (object.Equals(storage, newValue)) return false;
+            if (Equals(storage, newValue)) return false;
 
             var oldValue = storage;
             storage = newValue;
-            NotifyPropertyChanged(this, storage, newValue, propertyName);
+            NotifyPropertyChanged(this, oldValue, newValue, propertyName);
 
             return true;
         }
@@ -36,9 +36,12 @@
         /// <summary>
         /// Notifies listeners that a property value has changed.
         /// </summary>
+        /// <param name="newValue"></param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        /// <param name="sender"></param>
+        /// <param name="oldValue"></param>
         protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
             var eventHandler = PropertyChanged;

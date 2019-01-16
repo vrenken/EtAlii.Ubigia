@@ -2,20 +2,21 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public abstract class StorageConnection<TTransport> : IStorageConnection<TTransport>
         where TTransport : IStorageTransport
     {
         public Storage Storage { get; private set; }
 
+        IStorageTransport IStorageConnection.Transport => Transport;
+        
         public TTransport Transport { get; }
 
         public IStorageContext Storages { get; }
 
         public IAccountContext Accounts { get; }
 
-        private readonly IAuthenticationContext _authentication;
+        public IAuthenticationManagementContext Authentication { get; }
 
         public ISpaceContext Spaces { get; }
 
@@ -29,14 +30,14 @@
             IStorageContext storages, 
             ISpaceContext spaces,
             IAccountContext accounts,
-            IAuthenticationContext authentication)
+            IAuthenticationManagementContext authentication)
         {
             Transport = (TTransport)transport;
             Configuration = configuration;
             Storages = storages;
             Spaces = spaces;
             Accounts = accounts;
-            _authentication = authentication;
+            Authentication = authentication;
         }
 
         public async Task Close()
@@ -50,34 +51,32 @@
             await Storages.Close(this);
             await Spaces.Close(this);
 
-            await Transport.Stop(this);
+            await Transport.Stop();
             Storage = null;
         }
 
-        public async Task Open()
+        public async Task Open(string accountName, string password)
         {
             if (IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            await  _authentication.Data.Authenticate(this);
+            await  Authentication.Data.Authenticate(this, accountName, password);
 
-            Storage = await _authentication.Data.GetConnectedStorage(this);
-
-            Transport.Initialize(this, Configuration.Address);
+            Storage = await Authentication.Data.GetConnectedStorage(this);
 
             await Accounts.Open(this);
             await Storages.Open(this);
             await Spaces.Open(this);
 
-            await Transport.Start(this, Configuration.Address);
+            await Transport.Start();
 
         }
 
         #region Disposable
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()

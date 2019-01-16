@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
     public interface IDataConnectionConfiguration
     {
-        string Address { get; }
+        Uri Address { get; }
         string AccountName { get; }
         string Password { get; }
         string Space { get; }
@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Transport
         IDataConnectionConfiguration Use(IDataConnectionExtension[] extensions);
         IDataConnectionConfiguration Use(Func<IDataConnection> factoryExtension);
         IDataConnectionConfiguration Use(ITransportProvider transportProvider);
-        IDataConnectionConfiguration Use(string address);
+        IDataConnectionConfiguration Use(Uri address);
         IDataConnectionConfiguration Use(string accountName, string space, string password);
 
     }

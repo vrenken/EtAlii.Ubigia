@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Linq;
@@ -11,15 +11,7 @@
 
     public class NewDocumentCommandBase : INewDocumentCommand
     {
-        private readonly IFabricContext _fabricContext;
-        private readonly IDataConnection _connection;
-        private readonly IDataContext _dataContext;
-        private readonly ILogicalContext _logicalContext;
-        private readonly ILogger _logger;
-        private readonly ILogFactory _logFactory;
-        private readonly IDiagnosticsConfiguration _diagnostics;
-        private readonly IJournalViewModel _journal;
-        private readonly IGraphContextFactory _graphContextFactory;
+        private readonly IDocumentContext _documentContext;
 
         private IMainWindowViewModel _mainWindowViewModel;
 
@@ -37,26 +29,9 @@
 
         public IDocumentFactory DocumentFactory { get; protected set; }
 
-        public NewDocumentCommandBase(
-            IDataContext dataContext,
-            ILogicalContext logicalContext,
-            IFabricContext fabricContext,
-            IDataConnection connection,
-            ILogger logger,
-            ILogFactory logFactory,
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal, 
-            IGraphContextFactory graphContextFactory)
+        public NewDocumentCommandBase(IDocumentContext documentContext)
         {
-            _dataContext = dataContext;
-            _logicalContext = logicalContext;
-            _fabricContext = fabricContext;
-            _connection = connection;
-            _logger = logger;
-            _logFactory = logFactory;
-            _diagnostics = diagnostics;
-            _journal = journal;
-            _graphContextFactory = graphContextFactory;
+            _documentContext = documentContext;
         }
 
         public void Initialize(IMainWindowViewModel mainWindowViewModel)
@@ -74,7 +49,7 @@
         {
             var title = DetermineTitle();
 
-            var documentViewModel = DocumentFactory.Create(_dataContext, _logicalContext, _fabricContext, _connection, _diagnostics, _logger, _logFactory, _journal, _graphContextFactory);
+            var documentViewModel = DocumentFactory.Create(_documentContext);
             documentViewModel.Title = title;
             _mainWindowViewModel.Documents.Add(documentViewModel);
         }

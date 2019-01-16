@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.PowerShell
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Spaces;
     using System.Management.Automation;
 
     [Cmdlet(VerbsData.Update, Nouns.Entry)]
-    public class Update_Entry : SpaceTargetingCmdlet
+    public class UpdateEntry : SpaceTargetingCmdlet
     {
         [Parameter(Mandatory = false, Position = 60, ParameterSetName = "byTextContent", HelpMessage = "The text content that should be added to the entry as content.")]
         public string Text { get; set; }

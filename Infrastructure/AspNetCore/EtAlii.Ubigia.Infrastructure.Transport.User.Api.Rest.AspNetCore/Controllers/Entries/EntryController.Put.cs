@@ -7,7 +7,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    public partial class EntryController : RestController
+    public partial class EntryController
     {
         // Update Item by id
         [HttpPut]

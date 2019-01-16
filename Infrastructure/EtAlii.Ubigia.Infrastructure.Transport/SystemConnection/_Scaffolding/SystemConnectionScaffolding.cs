@@ -1,8 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class SystemConnectionScaffolding : xTechnology.MicroContainer.IScaffolding
+    public class SystemConnectionScaffolding : IScaffolding
     {
         private readonly ISystemConnectionConfiguration _configuration;
 

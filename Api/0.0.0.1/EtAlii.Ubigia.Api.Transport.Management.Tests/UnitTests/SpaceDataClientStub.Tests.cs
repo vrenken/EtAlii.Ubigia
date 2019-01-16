@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
-    public class SpaceDataClientStub_Tests
+    public class SpaceDataClientStubTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void SpaceDataClientStub_Create()
@@ -16,6 +16,7 @@
             var spaceDataClientStub = new SpaceDataClientStub();
 
             // Assert.
+            Assert.NotNull(spaceDataClientStub);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -1,44 +1,63 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-	using Microsoft.AspNetCore.SignalR;
+	using System;
+	using System.Collections.Generic;
+	using System.Diagnostics;
+	using Microsoft.AspNetCore.Http.Connections;
 	using Microsoft.AspNetCore.SignalR.Client;
-    using Microsoft.AspNetCore.Sockets;
-    using Microsoft.Extensions.Logging;
-    using Newtonsoft.Json;
+	using Microsoft.Extensions.DependencyInjection;
+	using Microsoft.Extensions.Logging;
 
-    public class HubConnectionFactory
+	public class HubConnectionFactory
     {
-	    private IHubConnectionBuilder CreateBuilder(string address)
+	    public HubConnection CreateForHost(ISignalRTransport transport, Uri address, string hostIdentifier)
 	    {
 		    var builder = new HubConnectionBuilder()
-			    .WithUrl(address)
-			    .WithTransport(TransportType.WebSockets)
-			    //.WithMessageHandler(httpClientHandler)
-			    .WithConsoleLogger(LogLevel.Debug)
-			    .WithJsonProtocol(new JsonHubProtocolOptions { PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() });
-		    return builder;
-	    }
-
-	    public HubConnection CreateForHost(string address, string hostIdentifier)
-	    {
-		    var builder = CreateBuilder(address);
-		    builder = builder.WithHeader("Host-Identifier", hostIdentifier);
+		        .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+			    .ConfigureLogging(options =>
+			    {
+				    if (Debugger.IsAttached)
+				    {
+					    options.AddDebug();
+					    options.SetMinimumLevel(LogLevel.Trace);
+				    }
+			    })
+				.WithUrl(address, options =>
+			    {
+				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
+				    options.Transports = HttpTransportType.LongPolling;
+					options.Headers = new Dictionary<string, string>() {{"Host-Identifier", hostIdentifier}};
+				});		    
 			return builder.Build();
 		}
 
-	    public HubConnection Create(string address, ISignalRSpaceTransport transport)
+	    public HubConnection Create(ISignalRSpaceTransport transport, Uri address)
 	    {
-		    return Create(address, transport.AuthenticationToken);
+		    return Create(transport, address, transport.AuthenticationToken);
 	    }
-	    public HubConnection Create(string address, ISignalRStorageTransport transport)
+	    public HubConnection Create(ISignalRStorageTransport transport, Uri address)
 	    {
-		    return Create(address, transport.AuthenticationToken);
+		    return Create(transport, address, transport.AuthenticationToken);
 	    }
 
-		public HubConnection Create(string address, string authenticationToken)
+		public HubConnection Create(ISignalRTransport transport, Uri address, string authenticationToken)
 	    {
-		    var builder = CreateBuilder(address);
-			builder = builder.WithHeader("Authentication-Token", authenticationToken);
+		    var builder = new HubConnectionBuilder()
+			    .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
+			    .ConfigureLogging(options =>
+			    {
+				    if (Debugger.IsAttached)
+				    {
+					    options.AddDebug();
+					    options.SetMinimumLevel(LogLevel.Trace);
+				    }
+			    })
+			    .WithUrl(address, options =>
+			    {
+				    options.HttpMessageHandlerFactory = (handler) => transport.HttpMessageHandlerFactory() ?? handler;
+				    options.Transports = HttpTransportType.LongPolling;
+					options.Headers = new Dictionary<string, string>() {{"Authentication-Token", authenticationToken}};
+				});
 			return builder.Build();
         }
     }

@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Win32;
+    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
@@ -23,9 +23,10 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
         {
             // This should actually not be needed anymore because the datacontext should be the sole entry point for an application.
             // However, I have no good idea on how to redesign it that way. All other solutions have disadvantages as well.  
-            container.Register(() => _connection);
+            container.Register<IDataConnection>(() => _connection);
 
-            container.Register(() =>
+            
+            container.Register<IGraphSLScriptContext>(() =>
             {
                 var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
                 var fabricContextConfiguration = new FabricContextConfiguration()
@@ -37,11 +38,11 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
                     .Use(diagnostics);
                 var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-                var dataContextConfiguration = new DataContextConfiguration()
-                                    .Use(diagnostics)
-                                    .Use(logicalContext)
-                                    .UseWin32();
-                return new DataContextFactory().Create(dataContextConfiguration);
+                var configuration = new GraphSLScriptContextConfiguration()
+                    .Use(diagnostics)
+                    .Use(logicalContext)
+                    .UseNET47();
+                return new GraphSLScriptContextFactory().Create(configuration);
             });
         }
     }

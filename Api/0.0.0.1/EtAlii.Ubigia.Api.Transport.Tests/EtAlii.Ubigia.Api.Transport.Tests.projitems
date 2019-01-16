@@ -22,10 +22,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Properties_\UnitTests\PropertyDictionaryJSonConverter.WriteJSon.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DataConnection\IntegrationTests\DataConnection.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextBase.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TransportTestContextFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootDataClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\RootNotificationClientStub.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Roots\UnitTests\SerializerFactory.Tests.cs" />

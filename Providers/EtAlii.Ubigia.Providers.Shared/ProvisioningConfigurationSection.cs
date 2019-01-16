@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
-    using System.Configuration;
+	using System;
+	using System.Configuration;
 
     public class ProvisioningConfigurationSection : ConfigurationSection, IProvisioningConfigurationSection
     {
@@ -19,8 +20,9 @@
 
         public IProvisioningConfiguration ToProvisioningConfiguration()
         {
+			var address = new Uri(Address, UriKind.Absolute);
             var configuration = new ProvisioningConfiguration()
-                .Use(Address, Account, Password);
+                .Use(address, Account, Password);
 
             return configuration;
         }

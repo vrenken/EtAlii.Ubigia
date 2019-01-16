@@ -8,7 +8,7 @@
 
     public interface IProviderConfiguration
     {
-        IDataContext SystemDataContext { get; }
+        IGraphSLScriptContext SystemScriptContext { get; }
 
         IManagementConnection ManagementConnection { get; }
 
@@ -21,9 +21,9 @@
         IProviderConfiguration Use(IProviderExtension[] extensions);
         IProviderConfiguration Use(ILogFactory logFactory);
         IProviderConfiguration Use(IManagementConnection managementConnection);
-        IProviderConfiguration Use(IDataContext systemDataContext);
+        IProviderConfiguration Use(IGraphSLScriptContext systemScriptContext );
 
-        IProviderConfiguration Use(Func<IDataConnection, IDataContext> dataConnectionFactory);
-        IDataContext CreateDataContext(IDataConnection connection);
+        IProviderConfiguration Use(Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory);
+        IGraphSLScriptContext CreateScriptContext(IDataConnection connection);
     }
 }

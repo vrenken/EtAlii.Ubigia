@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -10,37 +11,27 @@
 
         private readonly IInfrastructure _infrastructure;
 
-        public SystemStorageTransport(IInfrastructure infrastructure)
+        public Uri Address { get; }
+        
+        public SystemStorageTransport(Uri address, IInfrastructure infrastructure)
         {
+            Address = address;
             _infrastructure = infrastructure;
         }
 
-        public void Initialize(IStorageConnection storageConnection)
-        {
-        }
-
-        public void Initialize(IStorageConnection storageConnection, string address)
-        {
-        }
-
-        public async Task Start(IStorageConnection storageConnection)
+        public async Task Start()
         {
             await Task.Run(() => IsConnected = true);
         }
 
-        public async Task Start(IStorageConnection storageConnection, string address)
-        {
-            await Task.Run(() => IsConnected = true);
-        }
-
-        public async Task Stop(IStorageConnection storageConnection)
+        public async Task Stop()
         {
             await Task.Run(() => IsConnected = false);
         }
 
-        EtAlii.xTechnology.MicroContainer.IScaffolding[] IStorageTransport.CreateScaffolding()
+        xTechnology.MicroContainer.IScaffolding[] IStorageTransport.CreateScaffolding()
         {
-            return new EtAlii.xTechnology.MicroContainer.IScaffolding[]
+            return new xTechnology.MicroContainer.IScaffolding[]
             {
                 new SystemClientsScaffolding(_infrastructure)
             };

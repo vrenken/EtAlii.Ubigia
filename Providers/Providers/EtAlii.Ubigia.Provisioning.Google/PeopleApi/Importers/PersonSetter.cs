@@ -3,22 +3,23 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
+    using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
-    using global::Google.Contacts;
+    using global::Google.Apis.PeopleService.v1.Data;
 
     public class PersonSetter : IPersonSetter
     {
-        public void Set(IDataContext context, Contact person)
+        public void Set(IGraphSLScriptContext context, Person person)
         {
             if (person == null)
             {
                 throw new ArgumentNullException(nameof(person));
             }
 
-            var familyName = person.Name?.FamilyName ?? person.ContactEntry.Name?.FamilyName;
-            var givenName = person.Name?.GivenName ?? person.ContactEntry.Name?.GivenName;
+            var familyName = person.Names.FirstOrDefault()?.FamilyName ?? person.Names.FirstOrDefault()?.FamilyName;
+            var givenName = person.Names.FirstOrDefault()?.GivenName ?? person.Names.FirstOrDefault()?.GivenName;
 
             if (givenName != null && familyName != null)
             {
@@ -30,19 +31,19 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
                 dynamic details = new
                 {
-                    Birthday = person.ContactEntry.Birthday,
+                    Birthday = person.Birthdays.FirstOrDefault(),
                     //Birthday = context.Indexes.GetTime(contact.ContactEntry.Birthday),
-                    NickName = person.ContactEntry.Nickname,
-                    Initials = person.ContactEntry.Initials,
-                    PrimaryEmail = person.PrimaryEmail?.Address ?? person.ContactEntry.PrimaryEmail?.Address,
-                    PrimaryPhonenumber = person.PrimaryPhonenumber?.Uri ?? person.ContactEntry.PrimaryPhonenumber?.Uri,
+                    NickName = person.Nicknames.FirstOrDefault(),
+                    //Initials = person..ContactEntry.Initials,
+                    PrimaryEmail = person.EmailAddresses.FirstOrDefault()?.Value,
+                    PrimaryPhonenumber = person.PhoneNumbers.FirstOrDefault()?.Value,
                 };
 
                 var task = Task.Run(async () =>
                 {
                     var scope = new ScriptScope();
                     scope.Variables.Add("details", new ScopeVariable(details, "Value"));
-                    var lastSequence = await context.Scripts.Process(script, scope);
+                    var lastSequence = await context.Process(script, scope);
                     await lastSequence.Output.SingleOrDefaultAsync();
 
                     //var lastSequence2 = await context.Scripts.Process($"<= /Person/\"{familyName}\"/\"{givenName}\"");

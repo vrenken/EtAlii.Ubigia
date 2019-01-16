@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Collections.ObjectModel;
@@ -17,7 +17,7 @@
 
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
 
-        private int _currentId = 0;
+        private int _currentId;
 
         public JournalViewModel(
             IFabricContext fabric,

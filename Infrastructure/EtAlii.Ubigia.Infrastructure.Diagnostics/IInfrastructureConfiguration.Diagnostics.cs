@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Infrastructure
+namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Diagnostics;

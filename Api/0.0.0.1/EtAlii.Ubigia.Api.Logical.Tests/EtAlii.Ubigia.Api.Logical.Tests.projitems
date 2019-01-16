@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>C858CED1-3369-4ACF-A163-26CB060A4866</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Api.Logical.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\GraphPathAssigner.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\GraphPathAssignerFactory.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Add.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Link.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Remove.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Unlink.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\UnitTests\GraphComposerFactory.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\UnitTests\GraphPathComposer.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Compose\UnitTests\HierarchicalRelationDuplicator.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentPartCalculator.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\Diagnostics\IntegrationTests\ProfilingLogicalContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Context\UnitTests\LogicalContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILogicalTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContextFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)LogicalUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\IntegrationTests\GraphPathTraverser.MultipleConnections.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\IntegrationTests\GraphPathTraverser.SingleConnection.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\UnitTests\GraphPathBuilder.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\UnitTests\GraphPathTraverserFactory.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Traversal\UnitTests\TemporalGraphPathWeaver.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)_Model\LocationAddResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)_Model\TimeAddResult.cs" />
+  </ItemGroup>
+</Project>

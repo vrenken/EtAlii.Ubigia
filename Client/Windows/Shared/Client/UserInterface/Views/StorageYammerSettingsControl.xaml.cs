@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for StorageYammerSettingsControl.xaml
     /// </summary>
-    public partial class StorageYammerSettingsControl : UserControl
+    public partial class StorageYammerSettingsControl
     {
         public StorageYammerSettingsControl()
         {

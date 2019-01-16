@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for StorageTwitterSettingsControl.xaml
     /// </summary>
-    public partial class StorageTwitterSettingsControl : UserControl
+    public partial class StorageTwitterSettingsControl
     {
         public StorageTwitterSettingsControl()
         {

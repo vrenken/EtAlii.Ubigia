@@ -1,0 +1,55 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+
+
+// The Account Grpc service definition.
+service AccountGrpcService
+{
+	rpc GetSingle (AccountSingleRequest) returns (AccountSingleResponse) {}
+	rpc GetMultiple (AccountMultipleRequest) returns (AccountMultipleResponse) {}
+	rpc Post (AccountPostSingleRequest) returns (AccountSingleResponse) {}
+	rpc Put (AccountSingleRequest) returns (AccountSingleResponse) {}
+	rpc Delete (AccountSingleRequest) returns (AccountSingleResponse) {}
+}
+
+message AccountSingleRequest
+{
+	oneof Selection
+	{
+		Guid Id = 1;
+		string Name = 2;
+		Account Account = 3;
+	}
+}
+message AccountPostSingleRequest
+{
+	Account Account = 1;
+	string Template = 2;
+}
+
+message AccountMultipleRequest
+{
+}
+
+message AccountSingleResponse
+{
+	Account Account = 1;
+}
+
+message AccountMultipleResponse
+{
+	repeated Account Accounts = 1;
+}

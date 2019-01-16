@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -7,11 +7,12 @@
     using System.Linq;
 
 
-    public class AccountRepository_User_Tests : IClassFixture<HostUnitTestContext>
+	[Trait("Technology", "AspNetCore")]
+    public class AccountRepositoryUserTests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public AccountRepository_User_Tests(HostUnitTestContext testContext)
+        public AccountRepositoryUserTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -19,7 +20,9 @@
         [Fact]
         public void AccountRepository_Add_User()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -31,7 +34,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_Id()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -48,7 +53,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_Invalid_Id()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -61,7 +68,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_AccountName()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -78,7 +87,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_Invalid_AccountName()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -91,7 +102,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_AccountName_And_Password()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -108,7 +121,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_AccountName_And_Invalid_Password()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -121,7 +136,9 @@
         [Fact]
         public void AccountRepository_Get_User_By_Invalid_AccountName_And_Password()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -134,7 +151,9 @@
         [Fact]
         public void AccountRepository_Remove_User_By_Id()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -152,7 +171,9 @@
         [Fact]
         public void AccountRepository_Remove_User_By_Instance()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             Assert.NotNull(addedAccount);
@@ -170,7 +191,9 @@
         [Fact]
         public void AccountRepository_Get_User_Null()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = repository.Get(Guid.NewGuid());
             Assert.Null(account);
         }
@@ -178,7 +201,9 @@
         [Fact]
         public void AccountRepository_GetAll_Users()
         {
-            var repository = _testContext.HostTestContext.Host.Infrastructure.Accounts;
+			// Arrange.
+	        var context = _testContext.HostTestContext;
+            var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
             var addedAccount = repository.Add(account, AccountTemplate.User);
             account = CreateAccount();

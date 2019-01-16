@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.PowerShell
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.WebApi;
@@ -17,6 +18,6 @@
         IFabricContext Fabric { get; set; }
         IInfrastructureClient Client { get; }
 
-        Task OpenManagementConnection(string address, string accountName, string password);
+        Task OpenManagementConnection(Uri address, string accountName, string password);
     }
 }

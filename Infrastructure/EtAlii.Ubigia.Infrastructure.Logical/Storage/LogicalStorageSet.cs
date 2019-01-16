@@ -12,17 +12,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
         private readonly ILocalStorageGetter _localStorageGetter;
         private readonly ILogicalContextConfiguration _configuration;
-        private readonly object _lockObject = new object();
+//        private readonly object _lockObject = new object();
 
-        private const string _folder = "Storages";
+        private const string Folder = "Storages";
 
         private ObservableCollection<Storage> Items { get; set; }
 
-        public event EventHandler<Storage> Initialized { add { _initialized += value; } remove { var initialized = _initialized; if (initialized != null) initialized -= value; } }
-        private EventHandler<Storage> _initialized;
-
-        public event EventHandler<Storage> Added { add { _added += value; } remove { var added = _added; if (added != null) added -= value; } }
-        private EventHandler<Storage> _added;
+	    public event EventHandler<Storage> Initialized;
+	    public event EventHandler<Storage> Added;
 
         public LogicalStorageSet(
             ILocalStorageGetter localStorageGetter, 
@@ -40,14 +37,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
             if (storage != null)
             {
-                _added?.Invoke(this, storage);
+                Added?.Invoke(this, storage);
             }
             return storage;
         }
 
         public void Start()
         {
-            var items = _fabric.Items.GetItems<Storage>(_folder);
+            var items = _fabric.Items.GetItems<Storage>(Folder);
 
             // TODO: This test to see if the local storage has already been added is not very stable. 
             // Please find another way to determine that the local storage needs initialization.
@@ -57,7 +54,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 var storage = _localStorageGetter.GetLocal(items);
                 items.Add(storage);
 
-                _initialized?.Invoke(this, storage);
+                Initialized?.Invoke(this, storage);
             }
 
             Items = items;
@@ -79,7 +76,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             if (item == null)
             {
-                throw new ArgumentNullException("No item specified");
+                throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
             var canAdd = !String.IsNullOrWhiteSpace(item.Name);
@@ -116,7 +113,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public ObservableCollection<Storage> GetItems()
         {
-            return _fabric.Items.GetItems<Storage>(_folder);
+            return _fabric.Items.GetItems<Storage>(Folder);
         }
 
         public void Remove(Guid itemId)
@@ -131,7 +128,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Storage Update(Guid itemId, Storage updatedItem)
         {
-            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }
     }
 }

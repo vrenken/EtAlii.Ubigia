@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR.Client;
 
     internal partial class SignalRContentDataClient : SignalRClientBase, IContentDataClient<ISignalRSpaceTransport>
@@ -20,8 +21,8 @@
             
             var factory = new HubConnectionFactory();
 
-	        _contentConnection = factory.Create(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Content, spaceConnection.Transport);
-            _contentDefinitionConnection = factory.Create(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.ContentDefinition, spaceConnection.Transport);
+	        _contentConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Content, UriKind.Absolute));
+            _contentDefinitionConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.ContentDefinition, UriKind.Absolute));
 
 	        await _contentConnection.StartAsync();
 	        await _contentDefinitionConnection.StartAsync();

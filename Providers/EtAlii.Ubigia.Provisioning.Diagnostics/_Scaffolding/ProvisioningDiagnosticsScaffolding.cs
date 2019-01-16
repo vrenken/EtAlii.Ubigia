@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Provisioning
+﻿namespace EtAlii.Ubigia.Provisioning.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
