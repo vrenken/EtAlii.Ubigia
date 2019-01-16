@@ -18,6 +18,9 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="System.Memory" Version="4.5.1" />

@@ -19,6 +19,9 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
+    <ApplicationIcon />
+    <OutputType>Library</OutputType>
+    <StartupObject />
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />
