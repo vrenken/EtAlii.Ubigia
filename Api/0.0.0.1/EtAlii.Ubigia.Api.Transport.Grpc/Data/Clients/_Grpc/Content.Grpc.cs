@@ -19,42 +19,42 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest> __Marshaller_ContentGetRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse> __Marshaller_ContentGetResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest> __Marshaller_ContentPartGetRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse> __Marshaller_ContentPartGetResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest> __Marshaller_ContentPostRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse> __Marshaller_ContentPostResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest> __Marshaller_ContentPartPostRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse> __Marshaller_ContentPartPostResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentGetRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentGetResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartGetRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartGetResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPostRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPostResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartPostRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartPostResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse> __Method_Get = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGetResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Get",
-        __Marshaller_ContentGetRequest,
-        __Marshaller_ContentGetResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentGetRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentGetResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse> __Method_GetPart = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartGetResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetPart",
-        __Marshaller_ContentPartGetRequest,
-        __Marshaller_ContentPartGetResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartGetRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartGetResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPostResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Post",
-        __Marshaller_ContentPostRequest,
-        __Marshaller_ContentPostResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPostRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPostResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse> __Method_PostPart = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentPartPostResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "PostPart",
-        __Marshaller_ContentPartPostRequest,
-        __Marshaller_ContentPartPostResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartPostRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_ContentPartPostResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -190,6 +190,18 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           .AddMethod(__Method_GetPart, serviceImpl.GetPart)
           .AddMethod(__Method_Post, serviceImpl.Post)
           .AddMethod(__Method_PostPart, serviceImpl.PostPart).Build();
+    }
+
+    /// <summary>Register service method implementations with a service binder. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, ContentGrpcServiceBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_Get, serviceImpl.Get);
+      serviceBinder.AddMethod(__Method_GetPart, serviceImpl.GetPart);
+      serviceBinder.AddMethod(__Method_Post, serviceImpl.Post);
+      serviceBinder.AddMethod(__Method_PostPart, serviceImpl.PostPart);
     }
 
   }

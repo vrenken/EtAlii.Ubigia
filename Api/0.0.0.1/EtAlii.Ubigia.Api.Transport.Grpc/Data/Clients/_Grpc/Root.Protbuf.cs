@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RootSingleRequest(RootSingleRequest other) : this() {
-      SpaceId = other.spaceId_ != null ? other.SpaceId.Clone() : null;
+      spaceId_ = other.spaceId_ != null ? other.spaceId_.Clone() : null;
       switch (other.SelectionCase) {
         case SelectionOneofCase.Id:
           Id = other.Id.Clone();
@@ -369,8 +369,8 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RootPostSingleRequest(RootPostSingleRequest other) : this() {
-      SpaceId = other.spaceId_ != null ? other.SpaceId.Clone() : null;
-      Root = other.root_ != null ? other.Root.Clone() : null;
+      spaceId_ = other.spaceId_ != null ? other.spaceId_.Clone() : null;
+      root_ = other.root_ != null ? other.root_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -538,7 +538,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RootMultipleRequest(RootMultipleRequest other) : this() {
-      SpaceId = other.spaceId_ != null ? other.SpaceId.Clone() : null;
+      spaceId_ = other.spaceId_ != null ? other.spaceId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -673,7 +673,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public RootSingleResponse(RootSingleResponse other) : this() {
-      Root = other.root_ != null ? other.Root.Clone() : null;
+      root_ = other.root_ != null ? other.root_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

@@ -19,15 +19,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleRequest> __Marshaller_StorageSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleResponse> __Marshaller_StorageSingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_StorageSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_StorageSingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleResponse> __Method_GetLocal = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.StorageSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetLocal",
-        __Marshaller_StorageSingleRequest,
-        __Marshaller_StorageSingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_StorageSingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_StorageSingleResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -97,6 +97,15 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_GetLocal, serviceImpl.GetLocal).Build();
+    }
+
+    /// <summary>Register service method implementations with a service binder. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, StorageGrpcServiceBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_GetLocal, serviceImpl.GetLocal);
     }
 
   }

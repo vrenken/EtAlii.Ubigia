@@ -19,22 +19,22 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest> __Marshaller_AuthenticationRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse> __Marshaller_AuthenticationResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AuthenticationRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AuthenticationResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse.Parser.ParseFrom);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse> __Method_Authenticate = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Authenticate",
-        __Marshaller_AuthenticationRequest,
-        __Marshaller_AuthenticationResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AuthenticationRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AuthenticationResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse> __Method_AuthenticateAs = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "AuthenticateAs",
-        __Marshaller_AuthenticationRequest,
-        __Marshaller_AuthenticationResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AuthenticationRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Grpc_WireProtocol_AuthenticationResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -194,6 +194,16 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Authenticate, serviceImpl.Authenticate)
           .AddMethod(__Method_AuthenticateAs, serviceImpl.AuthenticateAs).Build();
+    }
+
+    /// <summary>Register service method implementations with a service binder. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, AuthenticationGrpcServiceBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_Authenticate, serviceImpl.Authenticate);
+      serviceBinder.AddMethod(__Method_AuthenticateAs, serviceImpl.AuthenticateAs);
     }
 
   }

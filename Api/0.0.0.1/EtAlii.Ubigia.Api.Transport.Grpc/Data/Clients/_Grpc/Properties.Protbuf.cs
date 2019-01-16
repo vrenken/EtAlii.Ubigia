@@ -84,7 +84,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PropertiesGetRequest(PropertiesGetRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -219,7 +219,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PropertiesGetResponse(PropertiesGetResponse other) : this() {
-      PropertyDictionary = other.propertyDictionary_ != null ? other.PropertyDictionary.Clone() : null;
+      propertyDictionary_ = other.propertyDictionary_ != null ? other.propertyDictionary_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -354,8 +354,8 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public PropertiesPostRequest(PropertiesPostRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
-      PropertyDictionary = other.propertyDictionary_ != null ? other.PropertyDictionary.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
+      propertyDictionary_ = other.propertyDictionary_ != null ? other.propertyDictionary_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

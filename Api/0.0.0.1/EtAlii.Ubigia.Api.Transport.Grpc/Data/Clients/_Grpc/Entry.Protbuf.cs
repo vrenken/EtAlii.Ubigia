@@ -113,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntrySingleRequest(EntrySingleRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       entryRelations_ = other.entryRelations_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -425,7 +425,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntryRelatedRequest(EntryRelatedRequest other) : this() {
-      EntryId = other.entryId_ != null ? other.EntryId.Clone() : null;
+      entryId_ = other.entryId_ != null ? other.entryId_.Clone() : null;
       entryRelations_ = other.entryRelations_;
       entriesWithRelation_ = other.entriesWithRelation_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -616,7 +616,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntrySingleResponse(EntrySingleResponse other) : this() {
-      Entry = other.entry_ != null ? other.Entry.Clone() : null;
+      entry_ = other.entry_ != null ? other.entry_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -872,7 +872,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntryPostRequest(EntryPostRequest other) : this() {
-      SpaceId = other.spaceId_ != null ? other.SpaceId.Clone() : null;
+      spaceId_ = other.spaceId_ != null ? other.spaceId_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1007,7 +1007,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public EntryPutRequest(EntryPutRequest other) : this() {
-      Entry = other.entry_ != null ? other.Entry.Clone() : null;
+      entry_ = other.entry_ != null ? other.entry_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

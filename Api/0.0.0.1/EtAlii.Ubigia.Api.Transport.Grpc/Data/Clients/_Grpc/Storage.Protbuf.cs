@@ -310,7 +310,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public StorageSingleResponse(StorageSingleResponse other) : this() {
-      Storage = other.storage_ != null ? other.Storage.Clone() : null;
+      storage_ = other.storage_ != null ? other.storage_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 

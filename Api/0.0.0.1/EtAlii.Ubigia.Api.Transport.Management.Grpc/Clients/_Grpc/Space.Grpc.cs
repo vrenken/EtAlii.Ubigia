@@ -6,7 +6,7 @@
 //
 // Copyright 2018 Peter Vrenken.
 //
-#pragma warning disable 1591
+#pragma warning disable 0414, 1591
 #region Designer generated code
 
 using grpc = global::Grpc.Core;
@@ -19,46 +19,46 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
   {
     static readonly string __ServiceName = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceGrpcService";
 
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest> __Marshaller_SpaceSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse> __Marshaller_SpaceSingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest> __Marshaller_SpaceMultipleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse> __Marshaller_SpaceMultipleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse.Parser.ParseFrom);
-    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest> __Marshaller_SpacePostSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceMultipleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse> __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceMultipleResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest> __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpacePostSingleRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse> __Method_GetSingle = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetSingle",
-        __Marshaller_SpaceSingleRequest,
-        __Marshaller_SpaceSingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse> __Method_GetMultiple = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "GetMultiple",
-        __Marshaller_SpaceMultipleRequest,
-        __Marshaller_SpaceMultipleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceMultipleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceMultipleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse> __Method_Post = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Post",
-        __Marshaller_SpacePostSingleRequest,
-        __Marshaller_SpaceSingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpacePostSingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse> __Method_Put = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Put",
-        __Marshaller_SpaceSingleRequest,
-        __Marshaller_SpaceSingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleResponse);
 
     static readonly grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse> __Method_Delete = new grpc::Method<global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest, global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleResponse>(
         grpc::MethodType.Unary,
         __ServiceName,
         "Delete",
-        __Marshaller_SpaceSingleRequest,
-        __Marshaller_SpaceSingleResponse);
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleRequest,
+        __Marshaller_EtAlii_Ubigia_Api_Transport_Management_Grpc_WireProtocol_SpaceSingleResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -216,6 +216,19 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
           .AddMethod(__Method_Post, serviceImpl.Post)
           .AddMethod(__Method_Put, serviceImpl.Put)
           .AddMethod(__Method_Delete, serviceImpl.Delete).Build();
+    }
+
+    /// <summary>Register service method implementations with a service binder. Useful when customizing the service binding logic.
+    /// Note: this method is part of an experimental API that can change or be removed without any prior notice.</summary>
+    /// <param name="serviceBinder">Service methods will be bound by calling <c>AddMethod</c> on this object.</param>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static void BindService(grpc::ServiceBinderBase serviceBinder, SpaceGrpcServiceBase serviceImpl)
+    {
+      serviceBinder.AddMethod(__Method_GetSingle, serviceImpl.GetSingle);
+      serviceBinder.AddMethod(__Method_GetMultiple, serviceImpl.GetMultiple);
+      serviceBinder.AddMethod(__Method_Post, serviceImpl.Post);
+      serviceBinder.AddMethod(__Method_Put, serviceImpl.Put);
+      serviceBinder.AddMethod(__Method_Delete, serviceImpl.Delete);
     }
 
   }
