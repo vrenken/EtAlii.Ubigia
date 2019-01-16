@@ -52,8 +52,7 @@ namespace EtAlii.Ubigia.Api.Functional
             ExecutionScope scope)
         {
             var variableName = ((VariablePathSubjectPart)pathSubjectPart).Name;
-            ScopeVariable variable;
-            if (!_context.Scope.Variables.TryGetValue(variableName, out variable))
+            if (!_context.Scope.Variables.TryGetValue(variableName, out var variable))
             {
                 throw new ScriptProcessingException($"Variable {variableName} not set");
             }

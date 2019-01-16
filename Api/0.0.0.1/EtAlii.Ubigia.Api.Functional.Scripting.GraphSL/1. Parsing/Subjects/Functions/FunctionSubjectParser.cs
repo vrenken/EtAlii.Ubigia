@@ -5,7 +5,7 @@
 
     internal class FunctionSubjectParser : IFunctionSubjectParser
     {
-        public string Id { get; } = "FunctionSubject";
+        public string Id { get; } = nameof(FunctionSubject);
 
         public LpsParser Parser { get; }
 

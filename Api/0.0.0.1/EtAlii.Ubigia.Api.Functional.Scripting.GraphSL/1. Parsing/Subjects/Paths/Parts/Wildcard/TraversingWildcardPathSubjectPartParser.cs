@@ -4,7 +4,7 @@
 
     internal class TraversingWildcardPathSubjectPartParser : ITraversingWildcardPathSubjectPartParser
     {
-        public string Id { get; } = "TraversingWildcardPathSubjectPart";
+        public string Id { get; } = nameof(TraversingWildcardPathSubjectPart);
 
         public LpsParser Parser { get; }
 

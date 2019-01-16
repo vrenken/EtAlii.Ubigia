@@ -5,7 +5,7 @@
 
     internal class ObjectConstantSubjectParser : IObjectConstantSubjectParser
     {
-        public string Id { get; } = "ObjectConstantSubject";
+        public string Id { get; } = nameof(ObjectConstantSubject);
 
         public LpsParser Parser { get; }
 

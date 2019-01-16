@@ -29,14 +29,12 @@
             {
                 var currentPosition = count - i;
 
-                bool skipNext;
-
                 var currentPart = parts[currentPosition];
                 var currentPartExecutionPlanner = _sequencePartExecutionPlannerSelector.Select(currentPart);
                 var currentPartExecutionPlanCombiner = _executionPlanCombinerSelector.Select(currentPartExecutionPlanner);
 
-                var nextpart = currentPosition >= 1 ? parts[currentPosition - 1] : null;
-                var currentPartExecutionPlan = currentPartExecutionPlanCombiner.Combine(currentPartExecutionPlanner, currentPart, nextpart, previousPartExecutionPlan, out skipNext);
+                var nextPart = currentPosition >= 1 ? parts[currentPosition - 1] : null;
+                var currentPartExecutionPlan = currentPartExecutionPlanCombiner.Combine(currentPartExecutionPlanner, currentPart, nextPart, previousPartExecutionPlan, out var skipNext);
                 i = skipNext ? i + 1 : i;
 
                 previousPartExecutionPlan = currentPartExecutionPlan;

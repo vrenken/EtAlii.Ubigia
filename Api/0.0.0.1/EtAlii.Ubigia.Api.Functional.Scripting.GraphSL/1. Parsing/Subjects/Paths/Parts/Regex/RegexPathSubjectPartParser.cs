@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RegexPathSubjectPartParser : IRegexPathSubjectPartParser
     {
-        public string Id { get; } = "RegexPathSubjectPart";
+        public string Id { get; } = nameof(RegexPathSubjectPart);
 
         public LpsParser Parser { get; }
 

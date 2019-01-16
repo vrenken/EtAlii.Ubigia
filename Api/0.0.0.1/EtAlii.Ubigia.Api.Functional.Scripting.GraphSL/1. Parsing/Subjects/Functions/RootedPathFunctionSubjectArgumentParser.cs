@@ -5,7 +5,7 @@
 
     internal class RootedPathFunctionSubjectArgumentParser : IRootedPathFunctionSubjectArgumentParser
     {
-        public string Id { get; } = "RootedPathFunctionSubjectArgument";
+        public string Id { get; } = nameof(RootedPathFunctionSubjectArgument);
 
         public LpsParser Parser { get; }
 

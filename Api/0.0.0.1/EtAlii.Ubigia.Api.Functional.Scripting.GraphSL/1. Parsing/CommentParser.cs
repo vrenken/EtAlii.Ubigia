@@ -4,7 +4,7 @@
 
     internal class CommentParser : ICommentParser
     {
-        public string Id { get; } = "Comment";
+        public string Id { get; } = nameof(Comment);
 
         public LpsParser Parser { get; }
 

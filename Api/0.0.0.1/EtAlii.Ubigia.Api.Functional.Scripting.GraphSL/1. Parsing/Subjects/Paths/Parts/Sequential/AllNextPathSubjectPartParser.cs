@@ -4,7 +4,7 @@
 
     internal class AllNextPathSubjectPartParser : IAllNextPathSubjectPartParser
     {
-        public string Id { get; } = "AllNextPathSubjectPart";
+        public string Id { get; } = nameof(AllNextPathSubjectPart);
 
         public LpsParser Parser { get; }
 

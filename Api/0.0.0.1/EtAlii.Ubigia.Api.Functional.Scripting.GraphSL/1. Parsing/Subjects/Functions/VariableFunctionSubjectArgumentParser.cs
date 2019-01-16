@@ -4,7 +4,7 @@
 
     internal class VariableFunctionSubjectArgumentParser : IVariableFunctionSubjectArgumentParser
     {
-        public string Id { get; } = "VariableFunctionSubjectArgument";
+        public string Id { get; } = nameof(VariableFunctionSubjectArgument);
 
         public LpsParser Parser { get; }
 

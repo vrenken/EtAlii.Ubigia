@@ -4,7 +4,7 @@
 
     internal class AllDowndatesPathSubjectPartParser : IAllDowndatesPathSubjectPartParser
     {
-        public string Id { get; } = "AllDowndatesPathSubjectPart";
+        public string Id { get; } = nameof(AllDowndatesPathSubjectPart);
 
         public LpsParser Parser { get; }
 

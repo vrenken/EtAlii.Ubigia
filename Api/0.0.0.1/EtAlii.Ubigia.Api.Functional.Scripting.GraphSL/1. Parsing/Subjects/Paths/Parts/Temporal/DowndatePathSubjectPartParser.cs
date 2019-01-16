@@ -4,7 +4,7 @@
 
     internal class DowndatePathSubjectPartParser : IDowndatePathSubjectPartParser
     {
-        public string Id { get; } = "DowndatePathSubjectPart";
+        public string Id { get; } = nameof(DowndatePathSubjectPart);
 
         public LpsParser Parser { get; }
 

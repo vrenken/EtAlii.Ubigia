@@ -12,7 +12,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = "Condition";
+        public string Id { get; } = nameof(Condition);
 
         private const string PropertyId = "Property";
         private const string ConditionId = "ConditionType";

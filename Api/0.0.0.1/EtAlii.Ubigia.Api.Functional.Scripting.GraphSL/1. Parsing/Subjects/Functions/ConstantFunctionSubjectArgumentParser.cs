@@ -4,7 +4,7 @@
 
     internal class ConstantFunctionSubjectArgumentParser : IConstantFunctionSubjectArgumentParser
     {
-        public string Id { get; } = "ConstantFunctionSubjectArgument";
+        public string Id { get; } = nameof(ConstantFunctionSubjectArgument);
 
         public LpsParser Parser { get; }
 

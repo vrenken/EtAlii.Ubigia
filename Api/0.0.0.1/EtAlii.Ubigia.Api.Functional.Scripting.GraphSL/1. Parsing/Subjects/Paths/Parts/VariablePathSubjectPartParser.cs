@@ -4,7 +4,7 @@
 
     internal class VariablePathSubjectPartParser : IVariablePathSubjectPartParser
     {
-        public string Id { get; } = "VariablePathSubjectPart";
+        public string Id { get; } = nameof(VariablePathSubjectPart);
 
         public LpsParser Parser { get; }
 

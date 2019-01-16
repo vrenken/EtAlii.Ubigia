@@ -6,7 +6,7 @@
 
     internal class IdentifierPathSubjectPartParser : IIdentifierPathSubjectPartParser
     {
-        public string Id { get; } = "IdentifierPathSubjectPart";
+        public string Id { get; } = nameof(IdentifierPathSubjectPart);
 
         public LpsParser Parser { get; }
 

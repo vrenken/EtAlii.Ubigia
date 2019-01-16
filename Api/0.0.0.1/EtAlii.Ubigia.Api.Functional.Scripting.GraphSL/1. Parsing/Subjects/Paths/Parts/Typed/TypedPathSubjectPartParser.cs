@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class TypedPathSubjectPartParser : ITypedPathSubjectPartParser
     {
-        public string Id { get; } = "TypedPathSubjectPart";
+        public string Id { get; } = nameof(TypedPathSubjectPart);
 
         public LpsParser Parser { get; }
 
