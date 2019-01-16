@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class StringConstantSubjectParser : IStringConstantSubjectParser
     {
-        public string Id { get; } = "StringConstantSubject";
+        public string Id { get; } = nameof(StringConstantSubject);
 
         public LpsParser Parser { get; }
 

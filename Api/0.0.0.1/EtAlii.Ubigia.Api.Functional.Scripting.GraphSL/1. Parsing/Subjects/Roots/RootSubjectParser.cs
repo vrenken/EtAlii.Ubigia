@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RootSubjectParser : IRootSubjectParser
     {
-        public string Id { get; } = "RootSubject";
+        public string Id { get; } = nameof(RootSubject);
 
         public LpsParser Parser { get; }
 

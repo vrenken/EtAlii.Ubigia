@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class ConstantPathSubjectPartParser : IConstantPathSubjectPartParser
     {
-        public string Id { get; } = "ConstantPathSubjectPart";
+        public string Id { get; } = nameof(ConstantPathSubjectPart);
 
         public LpsParser Parser { get; }
 

@@ -5,7 +5,7 @@
 
     internal class WildcardPathSubjectPartParser : IWildcardPathSubjectPartParser
     {
-        public string Id { get; } = "WildcardPathSubjectPart";
+        public string Id { get; } = nameof(WildcardPathSubjectPart);
 
         public LpsParser Parser { get; }
 

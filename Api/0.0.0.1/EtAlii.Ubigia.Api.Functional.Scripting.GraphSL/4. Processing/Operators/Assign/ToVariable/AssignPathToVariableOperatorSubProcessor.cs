@@ -15,6 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var variableSubject = (VariableSubject)parameters.LeftSubject;
             var subject = parameters.RightSubject;
+            
             var source = subject.ToString();
 
             var variableName = variableSubject.Name;

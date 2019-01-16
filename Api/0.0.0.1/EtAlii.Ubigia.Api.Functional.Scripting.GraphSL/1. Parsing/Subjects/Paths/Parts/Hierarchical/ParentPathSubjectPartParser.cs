@@ -4,7 +4,7 @@
 
     internal class ParentPathSubjectPartParser : IParentPathSubjectPartParser
     {
-        public string Id { get; } = "ParentPathSubjectPart";
+        public string Id { get; } = nameof(ParentPathSubjectPart);
 
         public LpsParser Parser { get; }
 

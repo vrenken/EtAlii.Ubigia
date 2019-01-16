@@ -14,9 +14,8 @@
         public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var variableName = ((VariableSubject)subject).Name;
-            ScopeVariable variable;
 
-            if (_context.Scope.Variables.TryGetValue(variableName, out variable))
+            if (_context.Scope.Variables.TryGetValue(variableName, out var variable))
             {
                 variable.Value.Subscribe(
                     onError: output.OnError,

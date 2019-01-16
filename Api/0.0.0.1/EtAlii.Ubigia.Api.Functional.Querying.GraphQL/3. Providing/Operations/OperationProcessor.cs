@@ -11,8 +11,7 @@
     {
         private readonly INodesDirectiveHandler _nodesDirectiveHandler;
 
-        public OperationProcessor(
-            INodesDirectiveHandler nodesDirectiveHandler)
+        public OperationProcessor(INodesDirectiveHandler nodesDirectiveHandler)
         {
             _nodesDirectiveHandler = nodesDirectiveHandler;
         }

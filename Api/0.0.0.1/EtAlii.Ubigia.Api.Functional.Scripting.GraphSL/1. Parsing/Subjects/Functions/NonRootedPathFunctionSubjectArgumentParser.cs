@@ -5,7 +5,7 @@
 
     internal class NonRootedPathFunctionSubjectArgumentParser : INonRootedPathFunctionSubjectArgumentParser
     {
-        public string Id { get; } = "NonRootedPathFunctionSubjectArgument";
+        public string Id { get; } = nameof(NonRootedPathFunctionSubjectArgument);
 
         public LpsParser Parser { get; }
 
