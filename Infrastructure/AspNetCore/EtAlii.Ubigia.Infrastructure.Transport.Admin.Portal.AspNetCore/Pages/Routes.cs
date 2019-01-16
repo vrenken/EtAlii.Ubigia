@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Newtonsoft.Json;
-using Microsoft.AspNetCore.Mvc.ActionConstraints;
 
-namespace RouteDebugging.Pages
+namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.AspNetCore
 {
     public class RoutesModel : PageModel
     {
@@ -15,7 +12,7 @@ namespace RouteDebugging.Pages
 
         public RoutesModel(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
         {
-            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+            _actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
         }
 
         public List<RouteInfo> Routes { get; set; }

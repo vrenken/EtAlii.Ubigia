@@ -6,14 +6,14 @@
     internal class ItemChangedHandler : IItemChangedHandler
     {
         private readonly ILogger _logger;
-        private readonly IDataContext _context;
+        private readonly IGraphSLScriptContext _scriptContext;
 
         public ItemChangedHandler(
-            IDataContext context,
+            IGraphSLScriptContext scriptContext,
             ILogger logger)
         {
             _logger = logger;
-            _context = context;
+            _scriptContext = scriptContext;
         }
 
         public void Handle(ItemCheckAction action, string localStart, string remoteStart)

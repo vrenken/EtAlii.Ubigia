@@ -19,7 +19,7 @@
 
         public void Update()
         {
-            SystemSettings = _getter.Get(_context.SystemDataContext);
+            SystemSettings = _getter.Get(_context.SystemScriptContext);
         }
     }
 }

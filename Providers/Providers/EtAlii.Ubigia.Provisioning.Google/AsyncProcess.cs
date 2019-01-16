@@ -1,6 +1,6 @@
 // Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
+namespace EtAlii.Ubigia.Provisioning.Google
 {
     using System;
     using System.Threading;
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         public event Action<Exception> Error { add { _error += value; } remove { _error -= value; } }
         private Action<Exception> _error;
 
-        private static readonly object _lockObject = new object();
+        private static readonly object LockObject = new object();
 
         protected AsyncProcess()
         {
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             {
                 throw new NotSupportedException($"The {GetType().Name} has already been started.");
             }
-            _task = Task.Factory.StartNew((Action)RunInternal);
+            _task = Task.Factory.StartNew(RunInternal);
         }
 
         public void Stop()
@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             {
                 try
                 {
-                    lock (_lockObject)
+                    lock (LockObject)
                     {
                         Run();
                     }

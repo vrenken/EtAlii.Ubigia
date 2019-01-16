@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class GraphPathBuilder_Tests
+    public class GraphPathBuilderTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void GraphPathBuilder_Create()
@@ -14,6 +14,7 @@
             var builder = new GraphPathBuilder();
 
             // Assert.
+            Assert.NotNull(builder);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -35,7 +36,7 @@
             var builder = new GraphPathBuilder();
 
             // Act.
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Assert.
         }
@@ -60,7 +61,7 @@
         {
             // Arrange.
             var builder = new GraphPathBuilder();
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Act.
             var path = builder.ToPath();
@@ -76,7 +77,7 @@
             // Arrange.
             var builder = new GraphPathBuilder();
             builder.Add("First");
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Act.
             var path = builder.ToPath();
@@ -93,7 +94,7 @@
             // Arrange.
             var builder = new GraphPathBuilder();
             builder.Add("First");
-            builder.Add(GraphRelation.Child);
+            builder.Add(GraphRelation.Children);
 
             // Act.
             builder.Clear();

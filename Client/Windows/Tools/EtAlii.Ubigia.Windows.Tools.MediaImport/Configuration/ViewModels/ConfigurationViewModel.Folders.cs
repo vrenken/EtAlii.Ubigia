@@ -1,10 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.Windows.Input;
-    using EtAlii.xTechnology.Mvvm;
     using Fluent;
 
-    internal partial class ConfigurationViewModel : BindableBase
+    internal partial class ConfigurationViewModel
     {
         public ICommand AddFolderCommand { get; }
 

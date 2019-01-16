@@ -32,10 +32,7 @@
         public void Update(ItemCheckAction action)
         {
             var handler = _selector.TrySelect(action);
-            if (handler != null)
-            {
-                handler.Handle(action, _localStart, _remoteStart);
-            }
+            handler?.Handle(action, _localStart, _remoteStart);
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)

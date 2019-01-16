@@ -35,14 +35,11 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.ConnectionAlreadyOpen);
             }
 
-            //await _connection.Open(address, accountName, password);
             var configuration = new SpaceConnectionConfiguration()
-                .Use(Configuration.TransportProvider.GetSpaceTransport())
-                .Use(Configuration.Address)
-                .Use(Configuration.AccountName, Configuration.Space, Configuration.Password);
+                .Use(Configuration.TransportProvider.GetSpaceTransport(Configuration.Address))
+                .Use(Configuration.Space);
             _connection = new SpaceConnectionFactory().Create(configuration);
-            await _connection.Open();
-            //await OpenSpace();
+            await _connection.Open(Configuration.AccountName, Configuration.Password);
         }
 
         public async Task Close()

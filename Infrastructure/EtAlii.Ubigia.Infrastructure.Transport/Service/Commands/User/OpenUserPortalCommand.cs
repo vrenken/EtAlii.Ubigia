@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System;
-    using System.Runtime.CompilerServices;
     using EtAlii.xTechnology.Hosting;
 
     class OpenUserPortalCommand : SystemCommandBase, IOpenUserPortalCommand

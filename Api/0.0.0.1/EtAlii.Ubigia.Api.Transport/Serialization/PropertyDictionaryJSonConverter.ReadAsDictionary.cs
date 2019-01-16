@@ -3,7 +3,7 @@
     using System;
     using Newtonsoft.Json;
 
-    public partial class PropertyDictionaryJSonConverter : JsonConverter
+    public partial class PropertyDictionaryJSonConverter
     {
         private void ReadAsDictionary(JsonReader reader, Type objectType, PropertyDictionary properties, JsonSerializer serializer)
         {

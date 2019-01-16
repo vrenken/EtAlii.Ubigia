@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
 
-    public partial class EntryHub : HubBase
+    public partial class EntryHub
     {
         // Update Item by id
         public Entry Put(Entry entry)

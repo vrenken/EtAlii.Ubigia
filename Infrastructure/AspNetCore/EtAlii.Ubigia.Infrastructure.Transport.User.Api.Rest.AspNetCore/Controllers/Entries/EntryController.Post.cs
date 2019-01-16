@@ -7,7 +7,7 @@
 
     //[RequiresAuthenticationToken]
     [Authorize]
-    public partial class EntryController : RestController
+    public partial class EntryController
     {
         // Get a new prepared entry for the specified spaceId
         [HttpPost]

@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Ubigia.Client.Windows
+namespace EtAlii.Ubigia.Windows.Settings
 {
     public class Settings
     {

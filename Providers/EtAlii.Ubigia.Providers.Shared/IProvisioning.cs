@@ -6,7 +6,7 @@
     {
         string Status { get; }
 
-        IDataContext Data { get; }
+        IGraphSLScriptContext Data { get; }
         IProvisioningConfiguration Configuration { get; }
         void Stop();
         void Start();

@@ -1,29 +1,26 @@
-﻿<Fluent:RibbonGroupBox 
-    x:Class="EtAlii.Ubigia.Client.Windows.Diagnostics.RelationsRibbonGroupBox"
+﻿<fluent:RibbonGroupBox 
+    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.RelationsRibbonGroupBox"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
-    xmlns:s="clr-namespace:System;assembly=mscorlib"  
-    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views"
-    xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300"
-    Fluent:KeyTip.Keys="C"
+    fluent:KeyTip.Keys="C"
     DataContext="{Binding Configuration}"
     Header="Relations">
 
-    <Fluent:ToggleButton 
+    <fluent:ToggleButton 
         Header="Hierarchical"
         IsChecked="{Binding ShowHierarchical}"
         LargeIcon="pack://siteoforigin:,,,/Images/Graph-Diagram.png" />
-    <Fluent:ToggleButton 
+    <fluent:ToggleButton 
         Header="Sequential"
         IsChecked="{Binding ShowSequential}"
         LargeIcon="pack://siteoforigin:,,,/Images/Arrow-Expand.png" />
-    <Fluent:ToggleButton 
+    <fluent:ToggleButton 
         Header="Temporal"
         IsChecked="{Binding ShowTemporal}"
         LargeIcon="pack://siteoforigin:,,,/Images/Clock-01.png" />
-</Fluent:RibbonGroupBox>
+</fluent:RibbonGroupBox>

@@ -1,15 +1,15 @@
-﻿namespace EtAlii.Ubigia.PowerShell
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Select, Nouns.Entry)]
-    public class Select_Entry : Cmdlet
+    public class SelectEntry : Cmdlet
     {
         [Parameter(Mandatory = false, Position = 1)]
-        public bool newest;
+        public bool Newest;
 
         [Parameter(Mandatory = false, Position = 2)]
-        public bool oldest;
+        public bool Oldest;
 
         protected override void BeginProcessing()
         {

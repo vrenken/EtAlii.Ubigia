@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Remove, Nouns.Storage, DefaultParameterSetName = "byStorage", SupportsShouldProcess = true)]
-    public class Remove_Storage : StorageCmdlet, IStorageInfoProvider
+    public class RemoveStorage : StorageCmdlet, IStorageInfoProvider
     {
         [Parameter(Mandatory = false, Position = 0, ParameterSetName = "byStorage", HelpMessage = "The storage that should be removed.")]
         public Storage Storage { get; set; }

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,10 @@
         private IEnumerable<TextualError> _errors = new TextualError[] { };
 
         public bool CanExecute { get { return _canExecute; } set { SetProperty(ref _canExecute, value); } }
-        private bool _canExecute = false;
+        private bool _canExecute;
 
         public bool CanStop { get { return _canStop; } set { SetProperty(ref _canStop, value); } }
-        private bool _canStop = false;
+        private bool _canStop;
 
         public ICommand ClearCommand { get; }
 

@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Windows.Threading;
-    using EtAlii.Ubigia.Client.Windows.Shared;
 
     public class MainDispatcherInvoker : IMainDispatcherInvoker
     {

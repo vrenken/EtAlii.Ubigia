@@ -1,0 +1,55 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+
+// The Space Grpc service definition.
+service SpaceGrpcService  
+{
+	rpc GetSingle (SpaceSingleRequest) returns (SpaceSingleResponse) {}
+	rpc GetMultiple (SpaceMultipleRequest) returns (SpaceMultipleResponse) {}
+	rpc Post (SpacePostSingleRequest) returns (SpaceSingleResponse) {}
+	rpc Put (SpaceSingleRequest) returns (SpaceSingleResponse) {}
+	rpc Delete (SpaceSingleRequest) returns (SpaceSingleResponse) {}
+}
+
+
+message SpaceSingleRequest
+{
+	oneof Selection
+	{
+		Guid Id = 2;
+		string Name = 3;
+		Space Space = 4;
+	}
+}
+
+message SpacePostSingleRequest
+{
+	Space Space = 2;
+}
+
+message SpaceMultipleRequest
+{
+}
+
+message SpaceSingleResponse
+{
+	Space Space = 1;
+}
+
+message SpaceMultipleResponse
+{
+	repeated Space Spaces = 1;
+}

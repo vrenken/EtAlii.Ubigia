@@ -14,7 +14,7 @@
 
             var container = new Container();
 
-            var scaffoldings = new EtAlii.xTechnology.MicroContainer.IScaffolding[]
+            var scaffoldings = new IScaffolding[]
             {
                 new FabricContextScaffolding(configuration.Storage),
                 new ItemsScaffolding(),

@@ -63,12 +63,12 @@
             _logicalContext.Storages.Remove(itemToRemove);
         }
 
-        private void OnLocalStorageInitialized(object sender, Api.Storage localStorage)
+        private void OnLocalStorageInitialized(object sender, Storage localStorage)
         {
             _localStorageInitializer.Initialize(localStorage);
         }
 
-        private void OnStorageAdded(object sender, Api.Storage storage)
+        private void OnStorageAdded(object sender, Storage storage)
         {
             _storageInitializer.Initialize(storage);
         }

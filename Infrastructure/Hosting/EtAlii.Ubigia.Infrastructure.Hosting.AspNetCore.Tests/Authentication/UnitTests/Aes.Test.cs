@@ -1,6 +1,5 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-    using EtAlii.Ubigia.Tests;
     using Xunit;
     using System;
     using System.Collections.Generic;
@@ -8,7 +7,8 @@
 
 
 	// TODO: Move all instances of this test class to single testproject
-    public class Aes_Test
+    [Trait("Technology", "AspNetCore")]
+    public class AesTest
     {
         [Fact]
         public void Aes_Encrypt_With_Few_Bytes()

@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for StorageGeneralSettingsControl .xaml
     /// </summary>
-    public partial class StorageGeneralSettingsControl  : UserControl
+    public partial class StorageGeneralSettingsControl
     {
         public StorageGeneralSettingsControl()
         {

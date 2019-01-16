@@ -29,7 +29,7 @@
         {
             if (contentDefinition == null)
             {
-                throw new ArgumentNullException("contentDefinition");
+                throw new ArgumentNullException(nameof(contentDefinition));
             }
 
             await _connection.Content.Data.StoreDefinition(identifier, contentDefinition);
@@ -39,7 +39,7 @@
         {
             if (contentDefinitionPart == null)
             {
-                throw new ArgumentNullException("contentDefinitionPart");
+                throw new ArgumentNullException(nameof(contentDefinitionPart));
             }
 
             await _connection.Content.Data.StoreDefinition(identifier, contentDefinitionPart);
@@ -50,7 +50,7 @@
         {
             if (content == null)
             {
-                throw new ArgumentNullException("content");
+                throw new ArgumentNullException(nameof(content));
             }
 
             await _connection.Content.Data.Store(identifier, content);
@@ -60,7 +60,7 @@
         {
             if (contentPart == null)
             {
-                throw new ArgumentNullException("contentPart");
+                throw new ArgumentNullException(nameof(contentPart));
             }
 
             await _connection.Content.Data.Store(identifier, contentPart);

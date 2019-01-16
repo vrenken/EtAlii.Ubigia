@@ -2,7 +2,7 @@
 {
     using System;
 
-    public partial class Node : IInternalNode, INode, IEquatable<Node>
+    public partial class Node : IEquatable<Node>
     {
         public override bool Equals(object obj)
         {

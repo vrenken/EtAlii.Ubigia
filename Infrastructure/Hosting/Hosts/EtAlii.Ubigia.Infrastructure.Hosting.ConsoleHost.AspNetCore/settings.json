@@ -5,20 +5,20 @@
         "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
         "Services": [
           {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
             "Name": "Debug storage",
             "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
           },
           {
             "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
             "Name": "Debug storage",
-            "Address": "http://+:64000"
-          },
-          {
-            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
-            "IpAddress": "0.0.0.0",
-            "Port": "64002"
-          }
+            "Address": "http://127.0.0.1"
+          }//,
+          //{
+          //  "Factory": "EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.AspNetCore",
+          //  "IpAddress": "0.0.0.0",
+          //  "Port": "64002"
+          //}
         ],
         "Modules": [
           {

@@ -1,27 +1,39 @@
 namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
-    using EtAlii.Ubigia.Api.Transport;
+	using System;
+	using System.Net.Http;
+	using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
 
     public class SignalRStorageTransportProvider : IStorageTransportProvider
     {
         private string _authenticationToken;
+	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;
 
-        public static SignalRStorageTransportProvider Create()
+		public SignalRStorageTransportProvider(Func<HttpMessageHandler> httpMessageHandlerFactory)
+		{
+			_httpMessageHandlerFactory = httpMessageHandlerFactory;
+		}
+
+		public static SignalRStorageTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
         {
-	        return new SignalRStorageTransportProvider();
+	        return new SignalRStorageTransportProvider(httpMessageHandlerFactory);
         }
 
-        public ISpaceTransport GetSpaceTransport()
+        public ISpaceTransport GetSpaceTransport(Uri address)
         {
             return new SignalRSpaceTransport(
+	            address,
+	            _httpMessageHandlerFactory,
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }
 
-        public IStorageTransport GetStorageTransport()
+        public IStorageTransport GetStorageTransport(Uri address)
         {
             return new SignalRStorageTransport(
+	            address,
+				_httpMessageHandlerFactory,
                 v => _authenticationToken = v, 
                 () => _authenticationToken);
         }

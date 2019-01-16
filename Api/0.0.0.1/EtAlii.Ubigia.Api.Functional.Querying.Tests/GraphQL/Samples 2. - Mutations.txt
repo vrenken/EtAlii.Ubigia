@@ -1,0 +1,51 @@
+﻿### 01 Mutation with property assignment and new entity 
+mutation data 
+{ 
+    @nodes(path:"person:Stark/ += Tony")
+    person 
+    { 
+        nickname: "Iron Man" 
+    } 
+}
+
+### 02 Mutation with entity convergence.
+mutation data 
+{ 
+    @nodes(path:"person:Stark/Tony")
+    @nodes(path:"time:Now")
+    @nodes(path:"location:NL/Overijssel/Enschede/Ravenhorsthoek/55")
+    entry 
+    { 
+        number @id
+        street @id(path:"\\")
+        city @id(path:"\\\\")
+    } 
+}
+
+### 03 Mutation with new entity and entity convergence
+mutation data 
+{ 
+    @nodes(path:"person:Stark/ += Tony")
+    @nodes(path:"time:Now")
+    @nodes(path:"location:NL/Overijssel/Enschede/Ravenhorsthoek/55")
+    entry 
+    {
+        number @id
+        street @id(path:"\\")
+        city @id(path:"\\\\")
+    } 
+}
+
+### 04 Mutation with new entity, entity convergence and no data. 
+mutation data 
+{ 
+    @nodes(path:"person:Stark/ += Tony")
+    @nodes(path:"time:Now")
+    @nodes(path:"location:NL/Overijssel/Enschede/Ravenhorsthoek/55")
+    entry 
+    {
+            number @id
+            street @id(path:"\\")
+            city @id(path:"\\\\")
+    }
+}

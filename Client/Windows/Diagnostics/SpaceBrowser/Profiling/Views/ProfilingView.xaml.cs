@@ -1,13 +1,12 @@
-﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Reactive.Linq;
     using System.Windows;
-    using System.Windows.Controls;
     using System.Windows.Input;
     using Syncfusion.Windows.Controls.Grid;
 
-    public partial class ProfilingView : UserControl//, IProfilingView
+    public partial class ProfilingView //, IProfilingView
     {
         public bool AutoExpandNodes
         {
@@ -27,7 +26,7 @@
             //    gridTreeControl.Model.
             //}
             _expandAllAtTheEndSubscription = Observable
-                .FromEventPattern<GridTreeCreatingNodeEventArgs>(gridTreeControl, "CreatingTreeNode")
+                .FromEventPattern<GridTreeCreatingNodeEventArgs>(GridTreeControl, "CreatingTreeNode")
                 .Throttle(TimeSpan.FromSeconds(2))
                 .ObserveOnDispatcher()
                 .Subscribe(e =>
@@ -36,7 +35,7 @@
                     {
                         try
                         {
-                            gridTreeControl.Dispatcher.Invoke(gridTreeControl.ExpandAllNodes);
+                            GridTreeControl.Dispatcher.Invoke(GridTreeControl.ExpandAllNodes);
                         }
                         catch (Exception)
                         {
@@ -46,7 +45,7 @@
                 });
 
             _expandAlwaysSubscription = Observable
-                .FromEventPattern<GridTreeCreatingNodeEventArgs>(gridTreeControl, "CreatingTreeNode")
+                .FromEventPattern<GridTreeCreatingNodeEventArgs>(GridTreeControl, "CreatingTreeNode")
                 .ObserveOnDispatcher()
                 .Subscribe(e =>
                 {
@@ -59,16 +58,16 @@
 
         private void GridTreeControl_OnPreviewKeyUp(object sender, KeyEventArgs e)
         {
-            var selectedNode = gridTreeControl.SelectedNode as GridTreeNode; 
+            var selectedNode = GridTreeControl.SelectedNode as GridTreeNode; 
             if (selectedNode != null)
             {
                 switch (e.Key)
                 {
                     case Key.Left:
-                        gridTreeControl.CollapseNode(selectedNode);
+                        GridTreeControl.CollapseNode(selectedNode);
                         break;
                     case Key.Right:
-                        gridTreeControl.ExpandNode(selectedNode);
+                        GridTreeControl.ExpandNode(selectedNode);
                         break;
                 }
             }

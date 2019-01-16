@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Collections.Concurrent;
@@ -30,7 +30,7 @@
                 _enqueuedEvent,
                 _stopEvent,
             };
-            Task.Factory.StartNew((Action)Dequeue);
+            Task.Factory.StartNew(Dequeue);
         }
 
         private void Dequeue()

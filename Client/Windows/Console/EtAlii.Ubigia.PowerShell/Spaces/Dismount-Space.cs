@@ -3,7 +3,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsData.Dismount, Nouns.Space, DefaultParameterSetName = "SpaceAccountSpaceCmdlet")]
-    public class Dismount_Space : SpaceTargetingCmdlet
+    public class DismountSpace : SpaceTargetingCmdlet
     {
     }
 }

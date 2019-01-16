@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
     /// <summary>
     /// Interaction logic for ComponentStatusControl.xaml
     /// </summary>
-    public partial class ComponentStatusControl : UserControl
+    public partial class ComponentStatusControl
     {
         public ComponentStatusControl()
         {

@@ -9,7 +9,7 @@
 
     [Cmdlet(VerbsCommon.Get, Nouns.Accounts, DefaultParameterSetName = "byStorage")]
     [Description("Gets the accounts for the specified storage")]
-    public class Get_Accounts : StorageTargetingCmdlet
+    public class GetAccounts : StorageTargetingCmdlet
     {
         protected override void ProcessRecord()
         {

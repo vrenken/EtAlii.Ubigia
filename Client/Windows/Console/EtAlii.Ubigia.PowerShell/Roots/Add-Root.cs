@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Root, DefaultParameterSetName = "bySpaceName")]
-    public class Add_Root : SpaceTargetingCmdlet
+    public class AddRoot : SpaceTargetingCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The name of the root that should be added.")]
         public string RootName { get; set; }

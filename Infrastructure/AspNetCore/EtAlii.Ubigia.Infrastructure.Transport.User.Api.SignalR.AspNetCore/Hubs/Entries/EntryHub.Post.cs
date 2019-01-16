@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
 
-    public partial class EntryHub : HubBase
+    public partial class EntryHub
     {
         // Get a new prepared entry for the specified spaceId
         public Entry Post(Guid spaceId)

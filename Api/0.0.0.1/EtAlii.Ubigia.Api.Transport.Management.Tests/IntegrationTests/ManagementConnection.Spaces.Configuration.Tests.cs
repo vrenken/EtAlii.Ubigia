@@ -6,12 +6,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-    
-    public class ManagementConnection_Spaces_Configuration_Tests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
+
+    public class ManagementConnectionSpacesConfigurationTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
     {
         private readonly StartedTransportUnitTestContext _testContext;
 
-        public ManagementConnection_Spaces_Configuration_Tests(StartedTransportUnitTestContext testContext)
+        public ManagementConnectionSpacesConfigurationTests(StartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -149,7 +149,7 @@
                 spaces.Add(space);
             }
 
-            var retrievedSpaces = await connection.Spaces.GetAll(account.Id);
+            var retrievedSpaces = (await connection.Spaces.GetAll(account.Id)).ToArray();
 
             // Each user is initialized with at least a configuration and a data space. so we need to add two to the ammount of spaces we expect.
             Assert.Equal(spaces.Count + 2, retrievedSpaces.Count());
@@ -228,7 +228,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
 
@@ -245,7 +245,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Change(id, name));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -254,7 +254,6 @@
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
             var account = await _testContext.TransportTestContext.AddUserAccount(connection);
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var space = await connection.Spaces.Add(account.Id, name, SpaceTemplate.Configuration);
             Assert.NotNull(space);
@@ -263,7 +262,7 @@
             var act = new Func<Task>(async () => await connection.Spaces.Add(account.Id, name, SpaceTemplate.Configuration));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
         }
     }
 }

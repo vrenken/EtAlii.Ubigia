@@ -13,7 +13,6 @@
             ITaskbarIcon taskbarIcon,
             ITaskbarIconViewModel taskbarIconViewModel,
             IFolderMonitorManager folderMonitorManager)
-            : base()
         {
             TaskbarIcon = taskbarIcon;
             _folderMonitorManager = folderMonitorManager;

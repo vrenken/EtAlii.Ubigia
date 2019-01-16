@@ -1,11 +1,9 @@
-﻿using Fluent;
-
-namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     /// <summary>
     /// Interaction logic for MaintenanceRibbonGroupBox.xaml
     /// </summary>
-    public partial class ProfilingFiltersRibbonGroupBox : RibbonGroupBox
+    public partial class ProfilingFiltersRibbonGroupBox
     {
         public ProfilingFiltersRibbonGroupBox()
         {

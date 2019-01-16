@@ -2,10 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    
     public class DataConnectionTests : IClassFixture<TransportUnitTestContext>, IDisposable
     {
         private readonly TransportUnitTestContext _testContext;
@@ -64,7 +62,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task DataConnection_Open_Twice()
+        public async Task DataConnection_Open_Twice_Same()
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateDataConnection(
@@ -77,6 +75,26 @@
 
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+        }
+        
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task DataConnection_Open_Twice_New()
+        {
+            // Arrange.
+            var connection1 = await _testContext.TransportTestContext.CreateDataConnection(
+                _testContext.TransportTestContext.Context.SystemAccountName,
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+            await connection1.Open();
+
+            // Act.
+            var connection2 = await _testContext.TransportTestContext.CreateDataConnection(
+                _testContext.TransportTestContext.Context.SystemAccountName,
+                _testContext.TransportTestContext.Context.SystemAccountPassword, SpaceName.System, false, false);
+            await connection2.Open();
+
+            // Assert.
+            Assert.True(connection1.IsConnected);
+            Assert.True(connection2.IsConnected);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -1,0 +1,54 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+
+// The ContentDefinition Grpc service definition.
+service ContentDefinitionGrpcService 
+{
+	rpc Get (ContentDefinitionGetRequest) returns (ContentDefinitionGetResponse) {}
+	rpc Post (ContentDefinitionPostRequest) returns (ContentDefinitionPostResponse) {}
+	rpc PostPart (ContentDefinitionPartPostRequest) returns (ContentDefinitionPartPostResponse) {}
+}
+
+message ContentDefinitionGetRequest
+{
+	Identifier EntryId = 1;
+}
+
+message ContentDefinitionGetResponse
+{
+	ContentDefinition ContentDefinition = 1;
+}
+
+message ContentDefinitionPostRequest
+{
+	Identifier EntryId = 1;
+	ContentDefinition ContentDefinition = 2;
+}
+
+message ContentDefinitionPostResponse
+{
+}
+
+message ContentDefinitionPartPostRequest
+{
+	Identifier EntryId = 1;
+	fixed64 ContentDefinitionPartId = 2;
+	ContentDefinitionPart ContentDefinitionPart = 3;
+}
+
+message ContentDefinitionPartPostResponse
+{
+}

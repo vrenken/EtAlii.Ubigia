@@ -4,13 +4,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
 
-    internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
+    internal partial class SystemAuthenticationDataClient
     {
         private string _authenticationToken;
 
-        public async Task Authenticate(ISpaceConnection connection)
+        public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
-            string authenticationToken = await GetAuthenticationToken(connection.Configuration.AccountName, connection.Configuration.Password, connection.Configuration.Address);
+            string authenticationToken = await GetAuthenticationToken(accountName, password);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -18,14 +18,14 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({connection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
 
-        public async Task Authenticate(IStorageConnection connection)
+        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
-            string authenticationToken = await GetAuthenticationToken(connection.Configuration.AccountName, connection.Configuration.Password, connection.Configuration.Address);
+            string authenticationToken = await GetAuthenticationToken(accountName, password);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -33,12 +33,12 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({connection.Configuration.Address})";
+                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }
 
-        private async Task<string> GetAuthenticationToken(string accountName, string password, string address)
+        private async Task<string> GetAuthenticationToken(string accountName, string password)
         {
             string authenticationToken;
             if (password == null && _authenticationToken != null)
@@ -52,7 +52,7 @@
 
             if (String.IsNullOrWhiteSpace(authenticationToken))
             {
-                throw new UnableToAuthorizeInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
+                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
             }
             return await Task.FromResult(authenticationToken);
         }

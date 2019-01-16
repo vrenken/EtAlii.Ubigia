@@ -1,11 +1,9 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.UserInterface
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using System.Windows.Controls;
-
     /// <summary>
     /// Interaction logic for StorageBlueKiwiSettingsControl.xaml
     /// </summary>
-    public partial class StorageBlueKiwiSettingsControl : UserControl
+    public partial class StorageBlueKiwiSettingsControl
     {
         public StorageBlueKiwiSettingsControl()
         {

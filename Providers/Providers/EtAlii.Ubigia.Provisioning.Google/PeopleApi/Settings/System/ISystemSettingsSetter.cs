@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public interface ISystemSettingsSetter
     {
-        void Set(IDataContext context, SystemSettings settings);
+        void Set(IGraphSLScriptContext context, SystemSettings settings);
     }
 }

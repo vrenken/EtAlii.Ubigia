@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Transport;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Account, DefaultParameterSetName = "byStorage")]
-    public class Add_Account : StorageTargetingCmdlet
+    public class AddAccount : StorageTargetingCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The name of the account that should be added.")]
         public string AccountName { get; set; }

@@ -4,6 +4,6 @@
 
     public interface IUserSettingsGetter
     {
-        UserSettings[] Get(IDataContext context);
+        UserSettings[] Get(IGraphSLScriptContext context);
     }
 }

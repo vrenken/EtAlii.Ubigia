@@ -5,7 +5,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Api;
 
-    public partial class EntryHub : HubBase
+    public partial class EntryHub
     {
         public Entry GetSingle(Identifier entryId, EntryRelation entryRelations = EntryRelation.None)
         {

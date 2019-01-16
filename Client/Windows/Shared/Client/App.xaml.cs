@@ -1,16 +1,12 @@
-﻿namespace EtAlii.Ubigia.Client.Windows
+﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using EtAlii.Ubigia.Client.Windows.Shared;
-    using EtAlii.Ubigia.Client.Windows.TaskbarIcon;
-    using EtAlii.Ubigia.Client.Windows.UserInterface;
     using System.Diagnostics;
     using System.Reflection;
-    using System.Windows;
 
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : EtAlii.Ubigia.Client.Windows.Shared.App
+    public partial class App : EtAlii.Ubigia.Windows.Shared.App
     {
         public new static App Current => System.Windows.Application.Current as App;
 
@@ -45,26 +41,26 @@
                 return alreadyRunning;
             }
         }
-
-        private void OnApplicationStartup(object sender, StartupEventArgs e)
-        {
-            if (AlreadyRunning)
-            {
-                Current.Shutdown();
-            }
-            else
-            {
-                RegisterKnownTypes();
-                //Container.Verify();
-
-                StartServices();
-            }
-        }
-
-        private void OnApplicationExit(object sender, ExitEventArgs e)
-        {
-            StopServices();
-        }
+//
+//        private void OnApplicationStartup(object sender, StartupEventArgs e)
+//        {
+//            if (AlreadyRunning)
+//            {
+//                Current.Shutdown();
+//            }
+//            else
+//            {
+//                RegisterKnownTypes();
+//                //Container.Verify();
+//
+//                StartServices();
+//            }
+//        }
+//
+//        private void OnApplicationExit(object sender, ExitEventArgs e)
+//        {
+//            StopServices();
+//        }
 
         private void StartServices()
         {
@@ -95,7 +91,7 @@
 
             Container.RegisterInitializer<MainWindow>(window => window.DataContext = Container.GetInstance<MainWindowViewModel>());
             Container.RegisterInitializer<StorageWindow>(window => window.DataContext = Container.GetInstance<StorageSettingsViewModel>());
-            Container.RegisterInitializer<TaskbarIcon.TaskbarIcon>(window => window.DataContext = Container.GetInstance<TaskbarIconViewModel>());
+            Container.RegisterInitializer<TaskbarIcon>(window => window.DataContext = Container.GetInstance<TaskbarIconViewModel>());
 
             Container.Register<IShellExtensionService, ShellExtensionService>();
             Container.Register<ITaskbarIconService, TaskbarIconService>();

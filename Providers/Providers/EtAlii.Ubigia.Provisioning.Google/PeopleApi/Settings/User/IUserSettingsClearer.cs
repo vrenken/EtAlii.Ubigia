@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public interface IUserSettingsClearer
     {
-        void Clear(IDataContext context, string account);
+        void Clear(IGraphSLScriptContext context, string account);
     }
 }

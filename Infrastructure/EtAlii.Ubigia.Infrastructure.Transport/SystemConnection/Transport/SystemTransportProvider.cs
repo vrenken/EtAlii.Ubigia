@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -17,14 +18,19 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             return new SystemTransportProvider(infrastructure);
         }
 
-        public ISpaceTransport GetSpaceTransport()
+        public ISpaceTransport GetSpaceTransport(Uri address)
         {
-            return new SystemSpaceTransport(_infrastructure);
+            return new SystemSpaceTransport(address, _infrastructure);
         }
 
+        public IStorageTransport GetStorageTransport(Uri address)
+        {
+            return new SystemStorageTransport(address, _infrastructure);
+        }
+        
         public IStorageTransport GetStorageTransport()
         {
-            return new SystemStorageTransport(_infrastructure);
+            return new SystemStorageTransport(_infrastructure.Configuration.Address, _infrastructure);
         }
     }
 }

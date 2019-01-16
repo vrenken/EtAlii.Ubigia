@@ -3,7 +3,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-    using EtAlii.xTechnology.Hosting;
+    using EtAlii.xTechnology.Hosting.AspNetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -22,15 +22,25 @@
             applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Rest.BaseUrl,
                 services =>
                 {
-                    services
-                        .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-                        .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-                        .AddSingleton<IStorageRepository>(infrastructure.Storages)
-                        .AddMvcForTypedController<RestController>(options =>
-                        {
-                            //options.InputFormatters.Add();
-                        });
-                },
+	                services
+		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
+		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
+	                    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+
+	                    .AddSingleton<IRootRepository>(infrastructure.Roots) // We wand the management portal to manage the roots as well.
+
+                        //.AddInfrastructureSimpleAuthentication(infrastructure)
+                        .AddInfrastructureHttpContextAuthentication(infrastructure)
+		                .AddInfrastructureSerialization()
+
+						.AddMvcForTypedController<RestController>(options =>
+						{
+							options.InputFormatters.Clear();
+							options.InputFormatters.Add(new PayloadMediaTypeInputFormatter());
+							options.OutputFormatters.Clear();
+							options.OutputFormatters.Add(new PayloadMediaTypeOutputFormatter());
+						});
+				},
                 appBuilder =>
                 {
                     appBuilder.UseMvc();

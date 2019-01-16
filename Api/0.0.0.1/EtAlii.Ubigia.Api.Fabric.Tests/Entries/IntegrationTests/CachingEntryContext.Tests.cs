@@ -24,7 +24,7 @@
             var context = new CachingEntryContext(entryCacheContextProvider, entryCacheChangeHandler, entryCacheGetHandler, entryCacheGetRelatedHandler, entryCacheStoreHandler);
 
             // Assert.
-            //Assert.NotNull(context);
+            Assert.NotNull(context);
         }
     }
 }

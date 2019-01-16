@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
             IStorageContext storages, 
             ISpaceContext spaces, 
             IAccountContext accounts,
-            IAuthenticationContext authentication) 
+            IAuthenticationManagementContext authentication) 
             : base(transport, configuration, storages, spaces, accounts, authentication)
         {
         }

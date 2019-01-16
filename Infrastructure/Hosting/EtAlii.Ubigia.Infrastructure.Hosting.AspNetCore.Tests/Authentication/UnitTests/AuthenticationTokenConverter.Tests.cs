@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.UnitTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using Xunit;
     using Newtonsoft.Json;
@@ -7,7 +7,8 @@
     using EtAlii.Ubigia.Infrastructure.Transport;
 
 	// TODO: Move all instances of this test class to single testproject
-    public class AuthenticationTokenConverter_Tests
+    [Trait("Technology", "AspNetCore")]
+    public class AuthenticationTokenConverterTests
     {
         [Fact]
         public void AuthenticationTokenConverter_Converter_Token()

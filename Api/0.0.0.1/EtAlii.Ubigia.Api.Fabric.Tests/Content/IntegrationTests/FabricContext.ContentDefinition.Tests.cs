@@ -5,7 +5,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     
@@ -142,6 +141,7 @@
             var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
+            Assert.NotNull(contentDefinition);
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
 

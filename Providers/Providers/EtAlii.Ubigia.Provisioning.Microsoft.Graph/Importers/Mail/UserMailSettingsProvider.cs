@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
 {
-    public interface UserMailSettingsProvider
+    public interface IUserMailSettingsProvider
     {
         void Update();
     }

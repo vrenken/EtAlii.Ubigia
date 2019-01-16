@@ -1,23 +1,21 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
-    using EtAlii.Ubigia.Infrastructure.Transport;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
-
     
-    public class SystemConnection_DataConnection_Tests : IClassFixture<HostUnitTestContext>, IDisposable
+    [Trait("Technology", "AspNetCore")]
+    public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
         private string _accountName;
         private string _password;
         private string[] _spaceNames;
         private ISystemConnection _systemConnection;
 
-        public SystemConnection_DataConnection_Tests(HostUnitTestContext testContext)
+        public SystemConnectionDataConnectionTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
             var task = Task.Run(async () =>

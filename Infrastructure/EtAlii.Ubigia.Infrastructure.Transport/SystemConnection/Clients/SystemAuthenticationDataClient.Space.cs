@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
 
-    internal partial class SystemAuthenticationDataClient : IAuthenticationDataClient
+    internal partial class SystemAuthenticationDataClient
     {
         public async Task<Space> GetSpace(ISpaceConnection connection)
         {
@@ -25,8 +24,8 @@
 
         private async Task<Space> GetSpace(Account currentAccount, string spaceName)
         {
-            var spaces = _infrastructure.Spaces.GetAll(currentAccount.Id);
-            return await Task.FromResult(spaces.FirstOrDefault(s => s.Name == spaceName));
+            var space = _infrastructure.Spaces.Get(currentAccount.Id, spaceName);
+            return await Task.FromResult(space);
         }
     }
 }

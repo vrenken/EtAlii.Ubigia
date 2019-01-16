@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
-    public class LogicalContext_Tests
+    public class LogicalContextTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void LogicalContext_Create()

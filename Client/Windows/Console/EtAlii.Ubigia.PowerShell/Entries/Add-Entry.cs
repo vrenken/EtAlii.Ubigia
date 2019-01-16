@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.PowerShell
+﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Spaces;
@@ -6,7 +6,7 @@
     using System.Management.Automation;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Entry)]
-    public class Add_Entry : SpaceCmdlet
+    public class AddEntry : SpaceCmdlet
     {
         #region Content related properties
 

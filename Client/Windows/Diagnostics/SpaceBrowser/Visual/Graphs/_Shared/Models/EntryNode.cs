@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.Ubigia.Api;
     using Northwoods.GoXam.Model;
@@ -11,7 +11,7 @@
             get { return _entry; }
             set { if (_entry != value) { var old = _entry; _entry = value; RaisePropertyChanged("Entry", old, value); } }
         }
-        private IReadOnlyEntry _entry = null;
+        private IReadOnlyEntry _entry;
 
         public EntryNode(IReadOnlyEntry entry)
         {

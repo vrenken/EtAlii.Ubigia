@@ -15,8 +15,8 @@
         public void Set(IDisposable disposable)
         {
             if (disposable == null)
-                throw new ArgumentNullException("disposable");
-            object obj = Interlocked.CompareExchange(ref _disposable, (object)disposable, (object)null);
+                throw new ArgumentNullException(nameof(disposable));
+            object obj = Interlocked.CompareExchange(ref _disposable, disposable, null);
             if (obj == null || obj != _disposedSentinel)
                 return;
             disposable.Dispose();

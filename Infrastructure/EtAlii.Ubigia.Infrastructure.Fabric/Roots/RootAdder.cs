@@ -34,7 +34,7 @@
         {
             if (item == null)
             {
-                throw new ArgumentNullException("No item specified");
+                throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
             var canAdd = !String.IsNullOrWhiteSpace(item.Name);

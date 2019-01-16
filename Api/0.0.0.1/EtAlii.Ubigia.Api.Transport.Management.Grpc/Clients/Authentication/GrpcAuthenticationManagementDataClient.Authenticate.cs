@@ -1,0 +1,78 @@
+﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
+{
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+    using global::Grpc.Core;
+
+    public partial class GrpcAuthenticationManagementDataClient
+    {
+        private readonly string _hostIdentifier;
+        
+        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
+        {
+            try
+            {
+                var grpcConnection = (IGrpcStorageConnection)connection;
+    
+                SetClients(grpcConnection.Transport.Channel);
+
+                var authenticationToken = grpcConnection.Transport.AuthenticationToken;
+                if (password == null && authenticationToken == null)
+                {
+                    throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.NoWayToAuthenticate);
+                }
+    
+                if (password == null)
+                {
+                    var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
+                    var call = _client.AuthenticateAsAsync(request);
+                    var response = await call.ResponseAsync;
+                    _account = response.Account?.ToLocal();
+                    
+                    authenticationToken = call
+                        .GetTrailers()
+                        .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+                }
+                if (authenticationToken == null)
+                {
+                    var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
+                    var call = _client.AuthenticateAsync(request);
+                    var response = await call.ResponseAsync;
+                    _account = response.Account?.ToLocal();
+                    
+                    authenticationToken= call
+                        .GetTrailers()
+                        .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
+                }
+    
+                if (!String.IsNullOrWhiteSpace(authenticationToken))
+                {
+                    grpcConnection.Transport.AuthenticationToken = authenticationToken;
+                    grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };
+                }
+                else
+                {
+                    grpcConnection.Transport.AuthenticationHeaders = null;
+                    var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                    throw new UnauthorizedInfrastructureOperationException(message);
+                }
+            }
+            catch (RpcException e)
+            {                
+                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                throw new UnauthorizedInfrastructureOperationException(message, e);
+            }
+        }
+
+        private string CreateHostIdentifier()
+        {
+            var bytes = new byte[64];
+            var rnd = new Random();
+            rnd.NextBytes(bytes);
+            return Convert.ToBase64String(bytes);
+        }
+    }
+}

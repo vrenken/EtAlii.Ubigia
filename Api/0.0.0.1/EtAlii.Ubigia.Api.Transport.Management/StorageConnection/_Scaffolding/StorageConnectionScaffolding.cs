@@ -17,7 +17,7 @@
             container.Register(() => _configuration.Transport);
             container.Register(() => _configuration);
 
-            container.Register<IAuthenticationContext, AuthenticationContext>();
+            container.Register<IAuthenticationManagementContext, AuthenticationManagementContext>();
             container.Register<IStorageContext, StorageContext>();
             container.Register<IAccountContext, AccountContext>();
             container.Register<ISpaceContext, SpaceContext>();

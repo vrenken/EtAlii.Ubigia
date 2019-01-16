@@ -17,7 +17,7 @@
             var traverserFactory = new GraphPathTraverserFactory();
             var composer = new GraphComposerFactory(traverserFactory).Create(fabric);
 
-            var communicationsRoot = await fabric.Roots.Get("Communications");
+            var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
 
             var personRoot = await fabric.Roots.Get("Person");
@@ -25,11 +25,11 @@
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var firstEntry = hierarchyResult.Item1;
-            var communicationsHierarchy = hierarchyResult.Item2;
+//            var communicationsHierarchy = hierarchyResult.Item2;
 
             hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, personEntry, depth);
             var secondEntry = hierarchyResult.Item1;
-            var personHierarchy = hierarchyResult.Item2;
+//            var personHierarchy = hierarchyResult.Item2;
 
             string linkItem = Guid.NewGuid().ToString();
 

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
@@ -15,33 +15,27 @@
 
     public class ProfilingDocumentFactory : IProfilingDocumentFactory
     {
-        public IDocumentViewModel Create(
-            IDataContext dataContext,
-            ILogicalContext logicalContext,
-            IFabricContext fabricContext,
-            IDataConnection connection,
-            IDiagnosticsConfiguration diagnostics, 
-            ILogger logger, 
-            ILogFactory logFactory,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory)
+        public IDocumentViewModel Create(IDocumentContext documentContext)
         {
             var container = new Container();
 
-            new DiagnosticsScaffolding().Register(container, diagnostics, logger, logFactory);
+            new DiagnosticsScaffolding().Register(container, documentContext.Diagnostics, documentContext.Logger, documentContext.LogFactory);
             new StructureScaffolding().Register(container);
 
             container.Register<IProfilingViewModel, ProfilingViewModel>();
             container.Register<IProfilingAspectsViewModel, ProfilingAspectsViewModel>();
 
-            container.Register(() => (IProfilingDataContext)dataContext);
-            container.Register(() => (IProfilingLogicalContext)logicalContext);
-            container.Register(() => (IProfilingFabricContext)fabricContext);
-            container.Register(() => (IProfilingDataConnection)connection);
+            container.Register(() => (IProfilingGraphSLScriptContext)documentContext.ScriptContext);
+            container.Register(() => (IProfilingGraphQLQueryContext)documentContext.QueryContext);
+            //container.Register(() => (IProfilingLinqQueryContext)linqContext);
+
+            container.Register(() => (IProfilingLogicalContext)documentContext.LogicalContext);
+            container.Register(() => (IProfilingFabricContext)documentContext.FabricContext);
+            container.Register(() => (IProfilingDataConnection)documentContext.Connection);
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();
-                return graphContextFactory.Create(logger, journal, fabricContext, dvmp);
+                return documentContext.GraphContextFactory.Create(documentContext.Logger, documentContext.Journal, documentContext.FabricContext, dvmp);
             });
 
             //container.Register<IProfilingView, ProfilingView>();
@@ -49,10 +43,12 @@
 
             container.Register<IProfileComposer>(() => 
             new ProfileComposer(
-                ((IProfilingDataContext)dataContext).Profiler,
-                ((IProfilingLogicalContext)logicalContext).Profiler,
-                ((IProfilingFabricContext)fabricContext).Profiler,
-                ((IProfilingDataConnection)connection).Profiler
+                ((IProfilingGraphSLScriptContext)documentContext.ScriptContext).Profiler,
+                ((IProfilingGraphQLQueryContext)documentContext.QueryContext).Profiler,
+                //((IProfilingLinqQueryContext)linqContext).Profiler,
+                ((IProfilingLogicalContext)documentContext.LogicalContext).Profiler,
+                ((IProfilingFabricContext)documentContext.FabricContext).Profiler,
+                ((IProfilingDataConnection)documentContext.Connection).Profiler
                 ));
 
             var documentViewModel = container.GetInstance<IProfilingViewModel>();

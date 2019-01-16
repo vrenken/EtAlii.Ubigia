@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
@@ -9,25 +9,15 @@
 
     public class NewFunctionalGraphDocumentCommand : NewDocumentCommandBase, INewFunctionalGraphDocumentCommand
     {
-        public NewFunctionalGraphDocumentCommand(
-            IFunctionalGraphDocumentFactory factory,
-            IDataContext dataContext, 
-            ILogicalContext logicalContext, 
-            IFabricContext fabricContext, 
-            IDataConnection connection, 
-            ILogger logger, 
-            ILogFactory logFactory, 
-            IDiagnosticsConfiguration diagnostics,
-            IJournalViewModel journal,
-            IGraphContextFactory graphContextFactory) 
-            : base(dataContext, logicalContext, fabricContext, connection, logger, logFactory, diagnostics, journal, graphContextFactory)
+        public NewFunctionalGraphDocumentCommand(IDocumentContext documentContext, IFunctionalGraphDocumentFactory factory) 
+            : base(documentContext)
         {
             DocumentFactory = factory;
             Header = "Functional graph";
             Icon = @"pack://siteoforigin:,,,/Images/Nodes.png";
             TitleFormat = "Functional graph view {0}";
             InfoLine = "Create a document that shows a information stored in a space using a functional graph";
-            InfoTip1 = "Usefull for current state analysis";
+            InfoTip1 = "Useful for current state analysis";
             InfoTip2 = "Does not show temporal information";
         }
     }

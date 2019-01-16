@@ -1,0 +1,59 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+
+
+
+// The Root Grpc service definition.
+service RootGrpcService
+{
+	rpc GetSingle (RootSingleRequest) returns (RootSingleResponse) {}
+	rpc GetMultiple (RootMultipleRequest) returns (RootMultipleResponse) {}
+	rpc Post (RootPostSingleRequest) returns (RootSingleResponse) {}
+	rpc Put (RootSingleRequest) returns (RootSingleResponse) {}
+	rpc Delete (RootSingleRequest) returns (RootSingleResponse) {}
+}
+
+message RootSingleRequest
+{
+	Guid SpaceId = 1;
+	oneof Selection
+	{
+		Guid Id = 2;
+		string Name = 3;
+		Root Root = 4;
+	}
+}
+
+message RootPostSingleRequest
+{
+	Guid SpaceId = 1;
+	Root Root = 2;
+}
+
+message RootMultipleRequest
+{
+	Guid SpaceId = 1;
+}
+
+message RootSingleResponse
+{
+	Root Root = 1;
+}
+
+message RootMultipleResponse
+{
+	repeated Root Roots = 1;
+}

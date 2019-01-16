@@ -1,14 +1,14 @@
 ﻿<UserControl 
-    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views.MainContent"
+    x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.MainContent"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Views"
+    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
     xmlns:xcad="http://schemas.xceed.com/wpf/xaml/avalondock"
-    xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
-    xmlns:ubigia="clr-namespace:EtAlii.Ubigia.Client.Windows.Diagnostics"
+    xmlns:fluent="clr-namespace:Fluent;assembly=Fluent"
+    xmlns:ubigia="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:mvvm="clr-namespace:EtAlii.Ubigia.Windows.Mvvm;assembly=EtAlii.Ubigia.Windows.Mvvm"
     xmlns:sf="http://schemas.syncfusion.com/wpf"
     mc:Ignorable="d" 
@@ -26,7 +26,7 @@
 
         <ubigia:Ribbon 
             Grid.Row="0" 
-            LastFocusedDocument="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}" />
+            LastFocusedDocument="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />
 
         <DockPanel
             Grid.Row="1" 
@@ -54,8 +54,11 @@
                 <xcad:DockingManager.LayoutItemTemplateSelector>
                     <mvvm:ListBasedTemplateSelector>
                         <mvvm:ListBasedTemplateSelector.Templates>
-                            <DataTemplate DataType="{x:Type ubigia:ScriptViewModel}">
-                                <views:ScriptView DataContext="{Binding}" />
+                            <DataTemplate DataType="{x:Type ubigia:GraphScriptLanguageViewModel}">
+                                <views:GraphScriptLanguageView DataContext="{Binding}" />
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type ubigia:GraphQueryLanguageViewModel}">
+                                <views:GraphQueryLanguageView DataContext="{Binding}" />
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type ubigia:CodeViewModel}">
                                 <views:CodeView DataContext="{Binding}" />
@@ -76,7 +79,7 @@
                     </mvvm:ListBasedTemplateSelector>
                 </xcad:DockingManager.LayoutItemTemplateSelector>
 
-                <xcad:LayoutRoot x:Name="layoutRoot">
+                <xcad:LayoutRoot x:Name="LayoutRoot">
                     <xcad:LayoutPanel Orientation="Horizontal">
                         <xcad:LayoutAnchorablePane DockWidth="200">
 
@@ -90,7 +93,7 @@
 
                                 <xctk:PropertyGrid
                                 NameColumnWidth="110"
-                                SelectedObject="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content.SelectedObject}"/>
+                                SelectedObject="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content.SelectedObject}"/>
                             </xcad:LayoutAnchorable>
                         </xcad:LayoutAnchorablePane>
                         <xcad:LayoutPanel Orientation="Vertical" >
@@ -100,25 +103,29 @@
 
                             <xcad:LayoutAnchorablePane 
                                 DockHeight="400">
-                                <xcad:LayoutAnchorable ContentId="scriptOutput" Title="Script results">
-                                    <views:ScriptResultView 
-                                        Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
-                                        ItemsSource="{Binding ScriptResults}" />
+                                <xcad:LayoutAnchorable ContentId="results" Title="Results">
+                                    <Grid>
+                                        <views:ScriptResultView 
+                                            DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                            ItemsSource="{Binding ScriptResults}" />
+                                        <views:QueryResultView 
+                                            DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />    
+                                    </Grid>
                                 </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="scriptVariables" Title="Script variables">
+                                <xcad:LayoutAnchorable ContentId="variables" Title="Variables">
                                     <views:ScriptResultView 
-                                        Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
+                                        DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding ScriptVariables}" />
                                 </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="scriptStatus" Title="Script status">
+                                <xcad:LayoutAnchorable ContentId="scriptStatus" Title="Status">
                                     <views:ScriptExecutionView
-                                            Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
-                                            ExecutionStatus="{Binding ExecutionStatus}"/>
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                        ExecutionStatus="{Binding ExecutionStatus}"/>
                                 </xcad:LayoutAnchorable>
-                                <xcad:LayoutAnchorable ContentId="scriptErrors" Title="Script errors">
-                                    <views:ScriptErrorsView 
-                                            Source="{Binding ElementName=layoutRoot, Path=LastFocusedDocument.Content}"
-                                            ItemsSource="{Binding Errors}" />
+                                <xcad:LayoutAnchorable ContentId="textErrors" Title="Errors">
+                                    <views:ErrorsView 
+                                        Source="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
+                                        ItemsSource="{Binding Errors}" />
                                 </xcad:LayoutAnchorable>
                             </xcad:LayoutAnchorablePane>
 
@@ -165,22 +172,22 @@
                 </xcad:LayoutRoot>
         </xcad:DockingManager>
     </DockPanel>
-        <Fluent:StatusBar 
+        <fluent:StatusBar 
             HorizontalAlignment="Stretch"
             VerticalAlignment="Bottom"
             Grid.Row="2" >
-            <Fluent:StatusBar.Resources>
+            <fluent:StatusBar.Resources>
                 <ResourceDictionary>
-                    <Style TargetType="{x:Type Fluent:StatusBarItem}" >
+                    <Style TargetType="{x:Type fluent:StatusBarItem}" >
                         <Setter Property="Foreground" Value="White" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                     </Style>
                 </ResourceDictionary>
-            </Fluent:StatusBar.Resources>
-            <Fluent:StatusBarItem
+            </fluent:StatusBar.Resources>
+            <fluent:StatusBarItem
                 Title="Status" 
                 Value="Online" 
                 HorizontalAlignment="Left"/>
-        </Fluent:StatusBar>
+        </fluent:StatusBar>
     </Grid>
 </UserControl>

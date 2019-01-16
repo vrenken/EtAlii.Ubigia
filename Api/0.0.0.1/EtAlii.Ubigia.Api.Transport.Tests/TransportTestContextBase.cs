@@ -4,17 +4,18 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
-    public abstract class TransportTestContextBase : ITransportTestContext
+    public abstract class TransportTestContextBase<THostTestContext> : ITransportTestContext<THostTestContext>
+        where THostTestContext: class, IHostTestContext, new()
     {
-        public IHostTestContext Context { get; private set; }
+        public THostTestContext Context { get; private set; }
 
         private readonly IHostTestContextFactory _testHostFactory;
 
-        protected TransportTestContextBase(IHostTestContextFactory testHostFactory)
+        protected TransportTestContextBase()//IHostTestContextFactory testHostFactory)
         {
-            _testHostFactory = testHostFactory;
+            _testHostFactory = new HostTestContextFactory();
         }
 
         public async Task<IDataConnection> CreateDataConnection(bool openOnCreation = true)
@@ -22,23 +23,21 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-            return await CreateDataConnection(Context.Host.Infrastructure.Configuration.Address, accountName, password, spaceName, openOnCreation, true, null);
-        }
+	        return await CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true, null);
+		}
 
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {
-            return await CreateDataConnection(Context.Host.Infrastructure.Configuration.Address, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
+			return await CreateDataConnection(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
         }
-        public abstract Task<IDataConnection> CreateDataConnection(string address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
+		public abstract Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
 
         public async Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true)
         {
-            var configuration = Context.Host.Infrastructure.Configuration;
-
-            return await CreateManagementConnection(configuration.Address, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
+			return await CreateManagementConnection(Context.ManagementServiceAddress, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
         }
 
-        public abstract Task<IManagementConnection> CreateManagementConnection(string address, string account, string password, bool openOnCreation = true);
+		public abstract Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true);
 
         public async Task<Account> AddUserAccount(IManagementConnection connection)
         {
@@ -53,7 +52,7 @@
         {
             await Task.Run(() =>
             {
-                Context = _testHostFactory.Create();
+                Context = _testHostFactory.Create<THostTestContext>();
                 Context.Start();
             });
         }

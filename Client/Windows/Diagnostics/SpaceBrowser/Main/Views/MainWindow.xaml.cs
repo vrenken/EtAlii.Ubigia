@@ -1,13 +1,12 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using Fluent;
     using System;
     using Settings = EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties.Settings;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : RibbonWindow, IMainWindow
+    public partial class MainWindow : IMainWindow
     {
         public new IMainWindowViewModel DataContext
         {

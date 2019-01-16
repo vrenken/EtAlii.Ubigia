@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel;
+    using System.Diagnostics;
     using System.Windows;
     using System.Windows.Input;
     using EtAlii.xTechnology.Mvvm;
@@ -41,14 +42,26 @@
         private readonly ConnectionSettingsPersister _connectionSettingsPersister;
         private readonly ConnectionDialogWindow _window;
 
+        public TransportType Transport{ get { return _transport; } set { SetProperty(ref _transport, value); } }
+        private TransportType _transport = TransportType.Grpc;
+        
+        public bool ShowTransportSelection => Debugger.IsAttached;
+
         public ConnectionDialogViewModel(ConnectionDialogWindow window, string defaultServer, string defaultLogin, string defaultPassword, string defaultSpace)
         {
             _window = window;
-            string password;
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
-            _connectionSettingsPersister.Load(out password);
+            _connectionSettingsPersister.Load(out string password);
 
-            SetDefaults(defaultServer, defaultSpace, defaultLogin, defaultPassword, password);
+			if (System.Diagnostics.Debugger.IsAttached)
+			{
+				defaultServer = "http://localhost:64000/user";
+				defaultLogin = "Administrator";
+				defaultPassword = password = "administrator123";
+				defaultSpace = "Data";
+			}
+
+			SetDefaults(defaultServer, defaultSpace, defaultLogin, defaultPassword, password);
 
             SaveAndCloseCommand = new RelayCommand(SaveAndClose, CanSaveAndClose);
             TestCommand = new RelayCommand(Test, CanTest);
@@ -80,17 +93,19 @@
         {
             switch (e.PropertyName)
             {
-                case "Address":
-                case "Account":
-                case "Space":
+                case nameof(Transport):
+                case nameof(Address):
+                case nameof(Account):
+                case nameof(Space):
                     IsTested = false;
                     break;
-                case "CurrentSettings":
+                case nameof(CurrentSettings):
                     if (CurrentSettings != null)
                     {
                         Address = CurrentSettings.Address;
                         Account = CurrentSettings.Account;
                         Space = CurrentSettings.Space;
+                        Transport = (TransportType)Enum.Parse(typeof(TransportType), CurrentSettings.TransportType);
                         _window.PasswordBox.Password = CurrentSettings.Password;
                         IsTested =
                             !String.IsNullOrWhiteSpace(Address) &&

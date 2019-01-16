@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsData.Update, Nouns.Space, DefaultParameterSetName = "bySpace")]
-    public class Update_Space : AccountTargetingCmdlet
+    public class UpdateSpace : AccountTargetingCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "bySpace")]
         public Space Space { get; set; }

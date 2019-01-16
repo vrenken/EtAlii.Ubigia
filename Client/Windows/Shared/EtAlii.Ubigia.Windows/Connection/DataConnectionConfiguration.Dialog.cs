@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia.Windows
 {
     using System;
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Windows;
+    using EtAlii.Ubigia.Api.Transport.SignalR;
 
     public static class DataConnectionConfigurationExtension
     {
@@ -63,27 +63,22 @@
             IDataConnection connection = null;
             if (tryReturnConnection == true)
             {
-                // We need to provide a clean configuration. else the factoryextension func will be called over and over. 
-                configuration = new DataConnectionConfiguration()
-                    .Use(configuration.TransportProvider)
-                    //.Use(configuration.Diagnostics)
-                    .Use(viewModel.Address)
-                    .Use(viewModel.Account, viewModel.Space, window.PasswordBox.Password)
-                    .Use(configuration.Extensions);
-
-                connection = new DataConnectionFactory().Create(configuration);
-                try
+                var connectionSucceeded = false;
+                switch (viewModel.Transport)
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        await connection.Open();
-                    });
-                    task.Wait();
+                    case TransportType.SignalR:
+                        connection = new SignalRConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        break;
+                    case TransportType.Grpc:
+                        connection = new GrpcConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        break;
+                    case TransportType.WebApi:
+                        connection = new WebApiConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        break;
                 }
-                catch (Exception)
+                if(!connectionSucceeded)
                 {
-                    MessageBox.Show(window, "Connection failed", "Connection", MessageBoxButton.OK,
-                        MessageBoxImage.Error);
+                    MessageBox.Show(window, $"{viewModel.Transport} Connection failed", "Connection", MessageBoxButton.OK, MessageBoxImage.Error);
                     connection = null;
                 }
             }

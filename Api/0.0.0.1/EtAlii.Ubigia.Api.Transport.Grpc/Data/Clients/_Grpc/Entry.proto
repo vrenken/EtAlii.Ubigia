@@ -1,0 +1,64 @@
+﻿//
+// Copyright 2018 Peter Vrenken.
+
+syntax = "proto3";
+
+import "_Model.proto";
+
+option java_multiple_files = true;
+option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+option java_outer_classname = "Ubigia";
+option objc_class_prefix = "Ubigia";
+option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+
+package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
+
+// The Entry Grpc service definition.
+service EntryGrpcService
+{
+	rpc GetSingle (EntrySingleRequest) returns (EntrySingleResponse) {}
+    rpc GetMultiple (EntryMultipleRequest) returns (EntryMultipleResponse) {}
+    rpc GetRelated (EntryRelatedRequest) returns (EntryMultipleResponse) {}
+    rpc Post (EntryPostRequest) returns (EntrySingleResponse) {}
+	rpc Put (EntryPutRequest) returns (EntrySingleResponse) {}
+	rpc Delete (EntrySingleRequest) returns (EntrySingleResponse) {}
+}
+
+message EntrySingleRequest
+{
+	Identifier EntryId = 1;
+	EntryRelation EntryRelations = 2;
+}
+
+message EntryMultipleRequest
+{
+    repeated Identifier EntryIds = 1;
+    EntryRelation EntryRelations = 2;
+}
+message EntryRelatedRequest
+{
+    Identifier EntryId = 1;
+    EntryRelation EntryRelations = 2;
+    EntryRelation EntriesWithRelation = 3;
+}
+
+message EntrySingleResponse
+{
+	Entry Entry = 1;
+}
+
+message EntryMultipleResponse
+{
+	repeated Entry Entries = 1;
+}
+
+message EntryPostRequest
+{
+	Guid SpaceId = 1;
+}
+
+message EntryPutRequest
+{
+	Entry Entry = 1;
+}

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.UnitTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
     using System;
     using System.Collections.Generic;
@@ -8,7 +8,7 @@
     using Xunit;
 
     
-    public sealed class ItemAdder_Tests
+    public sealed class ItemAdderTests
     {
         [Fact]
         public void ItemAdder_Add()

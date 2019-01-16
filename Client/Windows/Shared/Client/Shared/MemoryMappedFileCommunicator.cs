@@ -18,8 +18,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO.MemoryMappedFiles;
 using System.Threading;
+// ReSharper disable all
 
-namespace EtAlii.Ubigia.Client.Windows.Shared
+namespace EtAlii.Ubigia.Windows.Client
 {
     public class MemoryMappedFileCommunicator : IDisposable
     {

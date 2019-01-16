@@ -7,7 +7,7 @@
     using System.Threading.Tasks;
 
     [Cmdlet(VerbsData.Update, Nouns.Root, DefaultParameterSetName = "byRoot")]
-    public class Update_Space : SpaceTargetingCmdlet
+    public class UpdateSpace : SpaceTargetingCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, ParameterSetName = "byRoot")]
         public Root Root { get; set; }

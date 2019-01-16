@@ -7,12 +7,12 @@
 
     public interface IProvidersContext
     {
-        IDataContext SystemDataContext { get; }
+        IGraphSLScriptContext SystemScriptContext { get; }
         IManagementConnection ManagementConnection { get; }
         IProviderConfiguration[] ProviderConfigurations { get; }
 
-        void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IDataContext> dataContextFactory);
+        void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory);
 
-        IDataContext CreateDataContext(IDataConnection connection);
+        IGraphSLScriptContext CreateScriptContext(IDataConnection connection);
     }
 }

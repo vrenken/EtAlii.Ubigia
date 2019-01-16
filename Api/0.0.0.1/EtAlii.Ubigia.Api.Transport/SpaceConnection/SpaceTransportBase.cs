@@ -1,22 +1,26 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    using System.Threading.Tasks;
+	using System;
+	using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public abstract class SpaceTransportBase : ISpaceTransport
     {
         public bool IsConnected { get; private set; }
 
-        public virtual void Initialize(ISpaceConnection spaceConnection, string address)
-        {
-        }
+        public Uri Address { get; private set; }
 
-        public virtual async Task Start(ISpaceConnection spaceConnection, string address)
+        public SpaceTransportBase(Uri address)
+        {
+            Address = address;
+        }
+        
+        public virtual async Task Start()
         {
             await Task.Run(() => { IsConnected = true; });
         }
 
-        public virtual async Task Stop(ISpaceConnection spaceConnection)
+        public virtual async Task Stop()
         {
             await Task.Run(() => { IsConnected = false; });
         }

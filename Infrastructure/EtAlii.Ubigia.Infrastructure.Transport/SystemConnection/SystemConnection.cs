@@ -4,6 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Infrastructure.Functional;
 
     internal class SystemConnection : ISystemConnection
     {
@@ -16,9 +17,11 @@
 
         public async Task<IDataConnection> OpenSpace(string accountName, string spaceName)
         {
+	        var address = _configuration.Infrastructure.Configuration.Address;
+
             var connectionConfiguration = new DataConnectionConfiguration()
                 .Use(_configuration.TransportProvider)
-                .Use(_configuration.Infrastructure.Configuration.Address)
+                .Use(address)
                 .Use(accountName, spaceName, null);
             var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
             await dataConnection.Open();
@@ -27,9 +30,11 @@
 
         public async Task<IManagementConnection> OpenManagementConnection()
         {
-            var connectionConfiguration = new ManagementConnectionConfiguration()
+	        var address = _configuration.Infrastructure.Configuration.Address;
+
+	        var connectionConfiguration = new ManagementConnectionConfiguration()
                 .Use(_configuration.TransportProvider)
-                .Use(_configuration.Infrastructure.Configuration.Address);
+                .Use(address);
             var managementConnection = new ManagementConnectionFactory().Create(connectionConfiguration);
             await managementConnection.Open();
             return managementConnection;
@@ -37,7 +42,7 @@
 
         #region Disposable
 
-        private bool _disposed = false;
+        private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()

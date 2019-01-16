@@ -1,5 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net471</TargetFramework>
     <Authors>Peter Vrenken</Authors>
@@ -8,11 +7,16 @@
     <Description>StorageBrowser</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl></PackageProjectUrl>
-    <PackageIconUrl></PackageIconUrl>
-    <PackageReleaseNotes></PackageReleaseNotes>
-    <PackageTags></PackageTags>
+    <PackageLicenseUrl>
+    </PackageLicenseUrl>
+    <PackageProjectUrl>
+    </PackageProjectUrl>
+    <PackageIconUrl>
+    </PackageIconUrl>
+    <PackageReleaseNotes>
+    </PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <OutputType>WinExe</OutputType>
@@ -20,16 +24,12 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</NameOfOriginalMSBuildProject>
   </PropertyGroup>
-
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-
   <!-- anywhere in the middle -->
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
-
-
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="AvalonDock" Version="2.0.2000" />
@@ -38,16 +38,16 @@
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
     <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
-    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.0.61" />
+    <PackageReference Include="Grpc" Version="1.17.0" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.1.66" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
-    <PackageReference Include="Syncfusion.Grid.Base46" Version="15.3.0.33" />
-    <PackageReference Include="Syncfusion.Grid.WPF46" Version="15.3.0.33" />
-    <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="15.3.0.33" />
-    <PackageReference Include="Syncfusion.SfChart.WPF46" Version="15.3.0.33" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="15.3.0.33" />
-    <PackageReference Include="System.Reactive.Windows.Threading" Version="3.1.1" />
+    <PackageReference Include="Syncfusion.Grid.Base46" Version="16.1.0.26" />
+    <PackageReference Include="Syncfusion.Grid.WPF46" Version="16.1.0.26" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="16.1.0.26" />
+    <PackageReference Include="Syncfusion.SfChart.WPF46" Version="16.1.0.26" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="16.1.0.26" />
+    <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
   </ItemGroup>
-
   <!-- 
   Interesting link:
   https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
@@ -59,51 +59,55 @@
     <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
-
   <ItemGroup>
     <!-- App.xaml -->
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </ApplicationDefinition>
-
+    <EmbeddedResource Include="Textual\GraphQueryLanguage\Templates\SimpleQuery.gql" />
+    <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\OldScript.gsl">
+      <TransformOnBuild>false</TransformOnBuild>
+      <Link></Link>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript.gsl" />
+    <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript2.gsl">
+      <TransformOnBuild>false</TransformOnBuild>
+      <Link></Link>
+      <CopyToOutputDirectory></CopyToOutputDirectory>
+    </EmbeddedResource>
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-    
-    <Compile Remove="Textual\Script\Templates\SimpleScript.cs" />
-    
+    <Compile Remove="Textual\Script\Templates\SimpleScript.gsl" />
     <Content Include="Icon.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-
     <None Remove="Images\**" />
     <Content Include="Images\**">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-
-    <EmbeddedResource Include="Textual\Script\Templates\SimpleScript.cs" />
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.Win32\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj" />
-
     <!-- Resources -->
     <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
     <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
-
     <!-- Settings -->
     <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
     <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
-
   <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
   <!-- near the bottom -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>
-

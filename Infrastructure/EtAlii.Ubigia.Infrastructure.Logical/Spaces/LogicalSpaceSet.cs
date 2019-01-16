@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
         private readonly object _lockObject = new object();
 
-        private const string _folder = "Spaces";
+        private const string Folder = "Spaces";
 
         private ObservableCollection<Space> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
         private ObservableCollection<Space> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             if (item == null)
             {
-                throw new ArgumentNullException("No item specified");
+                throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
             var canAdd = !String.IsNullOrWhiteSpace(item.Name);
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private ObservableCollection<Space> InitializeItems()
         {
-            var items = _fabric.Items.GetItems<Space>(_folder);
+            var items = _fabric.Items.GetItems<Space>(Folder);
             return items;
         }
 
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public ObservableCollection<Space> GetItems()
         {
-            return _fabric.Items.GetItems<Space>(_folder);
+            return _fabric.Items.GetItems<Space>(Folder);
         }
 
         public void Remove(Guid itemId)
@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         public Space Update(Guid itemId, Space updatedItem)
         {
-            return _fabric.Items.Update(Items, UpdateFunction, _folder, itemId, updatedItem);
+            return _fabric.Items.Update(Items, UpdateFunction, Folder, itemId, updatedItem);
         }
     }
 }

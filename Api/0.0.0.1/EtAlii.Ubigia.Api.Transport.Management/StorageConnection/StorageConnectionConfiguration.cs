@@ -8,12 +8,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management
     {
         public IStorageTransport Transport { get; private set; }
 
-        public string Address { get; private set; }
-
-        public string AccountName { get; private set; }
-
-        public string Password { get; private set; }
-
         public IStorageConnectionExtension[] Extensions { get; private set; }
 
         public StorageConnectionConfiguration()
@@ -47,44 +41,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             }
 
             Transport = transport;
-            return this;
-        }
-
-        public IStorageConnectionConfiguration Use(string address)
-        {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (Address != null)
-            {
-                throw new InvalidOperationException("An address has already been assigned to this StorageConnectionConfiguration");
-            }
-
-            Address = address;
-            return this;
-        }
-        public IStorageConnectionConfiguration Use(string accountName, string password)
-        {
-            //if (String.IsNullOrWhiteSpace(accountName))
-            //{
-            //    throw new ArgumentException(nameof(accountName));
-            //}
-            if (AccountName != null)
-            {
-                throw new InvalidOperationException("An accountName has already been assigned to this StorageConnectionConfiguration");
-            }
-            //if (String.IsNullOrWhiteSpace(password))
-            //{
-            //    throw new ArgumentException(nameof(password));
-            //}
-            if (Password != null)
-            {
-                throw new InvalidOperationException("A password has already been assigned to this StorageConnectionConfiguration");
-            }
-
-            AccountName = accountName;
-            Password = password;
             return this;
         }
     }

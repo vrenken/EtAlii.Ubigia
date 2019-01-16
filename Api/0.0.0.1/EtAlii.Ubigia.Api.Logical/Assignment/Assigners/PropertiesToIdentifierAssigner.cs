@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Logical
             if (!nodeShouldBeUpdated)
             {
                 // The two propertydictionaries are the same. Let's return the old node.
-                return (IInternalNode)new DynamicNode((IReadOnlyEntry)entry, oldProperties);
+                return new DynamicNode(entry, oldProperties);
             }
             else
             {
@@ -60,7 +60,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
                 else
                 {
-                    return (IInternalNode)new DynamicNode((IReadOnlyEntry)entry, properties);
+                    return new DynamicNode(entry, properties);
                 }
             }
         }

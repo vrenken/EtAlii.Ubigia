@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System;
     using EtAlii.xTechnology.Hosting;
 
     // ReSharper disable once ClassNeverInstantiated.Global

@@ -7,12 +7,6 @@ namespace EtAlii.Ubigia.Api.Transport
     {
         public ISpaceTransport Transport { get; private set; }
 
-        public string Address { get; private set; }
-
-        public string AccountName { get; private set; }
-
-        public string Password { get; private set; }
-
         public string Space { get; private set; }
 
         public ISpaceConnectionExtension[] Extensions { get; private set; }
@@ -50,40 +44,9 @@ namespace EtAlii.Ubigia.Api.Transport
             Transport = transport;
             return this;
         }
-
-        public ISpaceConnectionConfiguration Use(string address)
+        
+        public ISpaceConnectionConfiguration Use(string space)
         {
-            if (String.IsNullOrWhiteSpace(address))
-            {
-                throw new ArgumentException(nameof(address));
-            }
-            if (Address != null)
-            {
-                throw new InvalidOperationException("An address has already been assigned to this SpaceConnectionConfiguration");
-            }
-
-            Address = address;
-            return this;
-        }
-
-        public ISpaceConnectionConfiguration Use(string accountName, string space, string password)
-        {
-            if (String.IsNullOrWhiteSpace(accountName))
-            {
-                throw new ArgumentException(nameof(accountName));
-            }
-            if (AccountName != null)
-            {
-                throw new InvalidOperationException("An accountName has already been assigned to this SpaceConnectionConfiguration");
-            }
-            //if (String.IsNullOrWhiteSpace(password))
-            //{
-            //    throw new ArgumentException(nameof(password));
-            //}
-            if (Password != null)
-            {
-                throw new InvalidOperationException("A password has already been assigned to this SpaceConnectionConfiguration");
-            }
             if (String.IsNullOrWhiteSpace(space))
             {
                 throw new ArgumentException(nameof(space));
@@ -93,11 +56,8 @@ namespace EtAlii.Ubigia.Api.Transport
                 throw new InvalidOperationException("A space has already been assigned to this SpaceConnectionConfiguration");
             }
 
-            AccountName = accountName;
-            Password = password;
             Space = space;
             return this;
         }
-
     }
 }

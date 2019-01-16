@@ -14,8 +14,7 @@
 
         public IReadOnlyEntry Get(Identifier identifier)
         {
-            IReadOnlyEntry entry = null;
-            _cacheProvider.Cache.TryGetValue(identifier, out entry);
+            _cacheProvider.Cache.TryGetValue(identifier, out var entry);
             return entry;
         }
 

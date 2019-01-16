@@ -7,7 +7,7 @@
 
     public class SystemSettingsSetter : ISystemSettingsSetter
     {
-        public void Set(IDataContext context, SystemSettings settings)
+        public void Set(IGraphSLScriptContext context, SystemSettings settings)
         {
             if (settings == null)
             {
@@ -35,7 +35,7 @@
             {
                 var scope = new ScriptScope();
                 scope.Variables.Add("settings", new ScopeVariable(settingsToStore, "Value"));
-                var lastSequence = await context.Scripts.Process(script, scope);
+                var lastSequence = await context.Process(script, scope);
                 await lastSequence.Output.SingleOrDefaultAsync();
             });
             task.Wait();

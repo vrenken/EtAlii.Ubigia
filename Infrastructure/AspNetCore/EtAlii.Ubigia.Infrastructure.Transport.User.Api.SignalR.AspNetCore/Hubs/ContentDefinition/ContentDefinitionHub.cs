@@ -3,6 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using Microsoft.AspNetCore.SignalR;
 
     public class ContentDefinitionHub : HubBase
     {
@@ -76,10 +77,10 @@
             //Clients.All.updated(identifier);
         }
 
-        private void SignalStored(Identifier identifier)
-        {
-            Clients.All.SendAsync("stored", new object[] { identifier });
-            //Clients.All.stored(identifier);
-        }
+//        private void SignalStored(Identifier identifier)
+//        {
+//            Clients.All.SendAsync("stored", new object[] { identifier });
+//            //Clients.All.stored(identifier);
+//        }
     }
 }

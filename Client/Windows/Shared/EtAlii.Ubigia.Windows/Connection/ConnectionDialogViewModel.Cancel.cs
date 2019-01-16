@@ -1,8 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows
 {
-    using EtAlii.xTechnology.Mvvm;
-
-    internal partial class ConnectionDialogViewModel : BindableBase
+    internal partial class ConnectionDialogViewModel
     {
         private bool CanCancel(object parameter)
         {

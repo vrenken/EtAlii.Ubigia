@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.UnitTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Fabric.Tests
 {
-    public sealed class ItemGetter_Tests
+    public sealed class ItemGetterTests
     {
         //[Fact]
         //public void ItemGetter_Get()

@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
-    using System.Dynamic;
 
-    public partial class DynamicNode : DynamicObject, IInternalNode, INode, IEquatable<DynamicNode>
+    public partial class DynamicNode : IEquatable<DynamicNode>
     {
         public override bool Equals(object obj)
         {

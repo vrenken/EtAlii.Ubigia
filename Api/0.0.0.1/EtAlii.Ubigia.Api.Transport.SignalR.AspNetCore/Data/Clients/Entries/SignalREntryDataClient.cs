@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System.Collections.Generic;
+	using System;
+	using System.Collections.Generic;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR.Client;
 
@@ -69,7 +70,7 @@
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Entry, spaceConnection.Transport);//spaceConnection.Transport.HttpClientHandler);
+			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Entry, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
 	        await _connection.StartAsync();
 
         }

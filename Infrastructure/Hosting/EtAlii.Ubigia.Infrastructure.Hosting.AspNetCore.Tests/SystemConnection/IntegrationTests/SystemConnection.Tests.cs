@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.IntegrationTests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
     using System;
     using System.Linq;
@@ -6,16 +6,14 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.Ubigia.Infrastructure.Hosting;
     using Xunit;
-    using TestAssembly = EtAlii.Ubigia.Infrastructure.Hosting.TestAssembly;
-
     
-    public class SystemConnection_Tests : IClassFixture<HostUnitTestContext>
+    [Trait("Technology", "AspNetCore")]
+    public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
     {
-        private readonly HostUnitTestContext _testContext;
+        private readonly InfrastructureUnitTestContext _testContext;
 
-        public SystemConnection_Tests(HostUnitTestContext testContext)
+        public SystemConnectionTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -91,10 +89,10 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName);
 
-            var dataContextconfiguration = new DataContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .Use(dataConnection);
 
-            var dataContext = new DataContextFactory().Create(dataContextconfiguration);
+            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
 
             var addQueries = new[]
             {
@@ -106,14 +104,14 @@
             var addQuery = String.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
-            var addScript = dataContext.Scripts.Parse(addQuery).Script;
-            var selectScript = dataContext.Scripts.Parse(selectQuery).Script;
+            var addScript = scriptContext.Parse(addQuery).Script;
+            var selectScript = scriptContext.Parse(selectQuery).Script;
             var scope = new ScriptScope();
 
             // Act.
-            var lastSequence = await dataContext.Scripts.Process(addScript, scope);
+            var lastSequence = await scriptContext.Process(addScript, scope);
             await lastSequence.Output.ToArray();
-            lastSequence = await dataContext.Scripts.Process(selectScript, scope);
+            lastSequence = await scriptContext.Process(selectScript, scope);
             var personsAfter = await lastSequence.Output.ToArray();
 
             // Assert.
@@ -135,18 +133,18 @@
 
             var dataConnection = await systemConnection.OpenSpace(accountName, spaceName);
 
-            var dataContextconfiguration = new DataContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .Use(dataConnection);
 
-            var dataContext = new DataContextFactory().Create(dataContextconfiguration);
-
+            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
+            
             var selectQuery = "<= /Person";
 
-            var selectScript = dataContext.Scripts.Parse(selectQuery).Script;
+            var selectScript = scriptContext.Parse(selectQuery).Script;
             var scope = new ScriptScope();
 
             // Act.
-            var lastSequence = await dataContext.Scripts.Process(selectScript, scope);
+            var lastSequence = await scriptContext.Process(selectScript, scope);
             var item = await lastSequence.Output.ToArray();
 
             // Assert.

@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public class DiagnosticsLogicalContextExtension : ILogicalContextExtension
     {
-        private readonly EtAlii.xTechnology.Diagnostics.IDiagnosticsConfiguration _diagnostics;
+        private readonly IDiagnosticsConfiguration _diagnostics;
 
         internal DiagnosticsLogicalContextExtension(IDiagnosticsConfiguration diagnostics)
         {

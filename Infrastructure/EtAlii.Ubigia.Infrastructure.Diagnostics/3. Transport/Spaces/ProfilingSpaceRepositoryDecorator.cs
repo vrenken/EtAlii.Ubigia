@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure
+﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
     using System;
     using System.Collections.Generic;
@@ -12,36 +12,36 @@
         private readonly ISpaceRepository _repository;
         private readonly IProfiler _profiler;
 
-        private const string _getAllCounter = "SpaceRepository.Get.All";
-        private const string _getAllByAccountCounter = "SpaceRepository.Get.AllByAccount";
-        private const string _getByNameCounter = "SpaceRepository.Get.ByName";
-        private const string _getByIdCounter = "SpaceRepository.Get.ById";
-        private const string _addCounter = "SpaceRepository.Add";
-        private const string _removeByIdCounter = "SpaceRepository.Remove.ById";
-        private const string _removeByInstanceCounter = "SpaceRepository.Remove.ByInstance";
-        private const string _updateCounter = "SpaceRepository.Update";
+        private const string GetAllCounter = "SpaceRepository.Get.All";
+        private const string GetAllByAccountCounter = "SpaceRepository.Get.AllByAccount";
+        private const string GetByNameCounter = "SpaceRepository.Get.ByName";
+        private const string GetByIdCounter = "SpaceRepository.Get.ById";
+        private const string AddCounter = "SpaceRepository.Add";
+        private const string RemoveByIdCounter = "SpaceRepository.Remove.ById";
+        private const string RemoveByInstanceCounter = "SpaceRepository.Remove.ByInstance";
+        private const string UpdateCounter = "SpaceRepository.Update";
 
         public ProfilingSpaceRepositoryDecorator(ISpaceRepository spaceRepository, IProfiler profiler)
         {
             _repository = spaceRepository;
             _profiler = profiler;
 
-            profiler.Register(_getAllCounter, SamplingType.RawCount, "Milliseconds", "Get all spaces", "The time it takes for the GetAll method to execute");
-            profiler.Register(_getAllByAccountCounter, SamplingType.RawCount, "Milliseconds", "Get all spaces by account id", "The time it takes for the GetAll (by account id) method to execute");
-            profiler.Register(_getByNameCounter, SamplingType.RawCount, "Milliseconds", "Get space by name", "The time it takes for the Get (by name) method to execute");
-            profiler.Register(_getByIdCounter, SamplingType.RawCount, "Milliseconds", "Get space by id", "The time it takes for the Get (by id) method to execute");
+            profiler.Register(GetAllCounter, SamplingType.RawCount, "Milliseconds", "Get all spaces", "The time it takes for the GetAll method to execute");
+            profiler.Register(GetAllByAccountCounter, SamplingType.RawCount, "Milliseconds", "Get all spaces by account id", "The time it takes for the GetAll (by account id) method to execute");
+            profiler.Register(GetByNameCounter, SamplingType.RawCount, "Milliseconds", "Get space by name", "The time it takes for the Get (by name) method to execute");
+            profiler.Register(GetByIdCounter, SamplingType.RawCount, "Milliseconds", "Get space by id", "The time it takes for the Get (by id) method to execute");
 
-            profiler.Register(_addCounter, SamplingType.RawCount, "Milliseconds", "Add space", "The time it takes for the Add method to execute");
-            profiler.Register(_removeByInstanceCounter, SamplingType.RawCount, "Milliseconds", "Remove space by instance", "The time it takes for the Remove (by instance) method to execute");
-            profiler.Register(_removeByIdCounter, SamplingType.RawCount, "Milliseconds", "Remove space by id", "The time it takes for the Remove (by id) method to execute");
-            profiler.Register(_updateCounter, SamplingType.RawCount, "Milliseconds", "Update space", "The time it takes for the Update method to execute");
+            profiler.Register(AddCounter, SamplingType.RawCount, "Milliseconds", "Add space", "The time it takes for the Add method to execute");
+            profiler.Register(RemoveByInstanceCounter, SamplingType.RawCount, "Milliseconds", "Remove space by instance", "The time it takes for the Remove (by instance) method to execute");
+            profiler.Register(RemoveByIdCounter, SamplingType.RawCount, "Milliseconds", "Remove space by id", "The time it takes for the Remove (by id) method to execute");
+            profiler.Register(UpdateCounter, SamplingType.RawCount, "Milliseconds", "Update space", "The time it takes for the Update method to execute");
         }
 
         public IEnumerable<Space> GetAll(Guid accountId)
         {
             var start = Environment.TickCount;
             var spaces = _repository.GetAll(accountId);
-            _profiler.WriteSample(_getAllByAccountCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetAllByAccountCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return spaces;        
         }
 
@@ -49,7 +49,7 @@
         {
             var start = Environment.TickCount;
             var spaces = _repository.Get(accountId, spaceName);
-            _profiler.WriteSample(_getByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetByNameCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return spaces;        
         }
 
@@ -57,7 +57,7 @@
         {
             var start = Environment.TickCount;
             var spaces = _repository.GetAll();
-            _profiler.WriteSample(_getAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetAllCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return spaces;        
         }
 
@@ -65,7 +65,7 @@
         {
             var start = Environment.TickCount;
             var space = _repository.Get(spaceId);
-            _profiler.WriteSample(_getByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return space;   
         }
 
@@ -73,7 +73,7 @@
         {
             var start = Environment.TickCount;
             space = _repository.Add(space, template);
-            _profiler.WriteSample(_addCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return space;   
         }
 
@@ -81,21 +81,21 @@
         {
             var start = Environment.TickCount;
             _repository.Remove(spaceId);
-            _profiler.WriteSample(_removeByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public void Remove(Space space)
         {
             var start = Environment.TickCount;
             _repository.Remove(space);
-            _profiler.WriteSample(_removeByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public Space Update(Guid spaceId, Space space)
         {
             var start = Environment.TickCount;
             space = _repository.Update(spaceId, space);
-            _profiler.WriteSample(_updateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return space;   
         }
     }

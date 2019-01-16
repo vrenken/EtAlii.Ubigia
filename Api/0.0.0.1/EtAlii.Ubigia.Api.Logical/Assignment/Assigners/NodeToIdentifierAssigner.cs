@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Logical
             if (oldProperties.CompareTo(newProperties) == 0)
             {
                 // The two propertydictionaries are the same. Let's return the old node.
-                return (IInternalNode)new DynamicNode((IReadOnlyEntry)entry, oldProperties);
+                return new DynamicNode(entry, oldProperties);
             }
             else
             {

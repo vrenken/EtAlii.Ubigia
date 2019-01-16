@@ -13,7 +13,6 @@
         public RootRepository(
             ILogicalContext logicalContext, 
             IRootInitializer rootInitializer)
-            : base()
         {
             _rootInitializer = rootInitializer;
             _logicalContext = logicalContext;

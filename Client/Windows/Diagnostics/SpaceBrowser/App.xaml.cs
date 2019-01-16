@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Client.Windows.Diagnostics
+﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
+    using System.Diagnostics;
     using System.Threading.Tasks;
     using System.Windows;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.SignalR;
@@ -13,7 +12,7 @@
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         public new static App Current => Application.Current as App;
 
@@ -21,11 +20,19 @@
 
         public App()
         {
-            DispatcherUnhandledException += (sender, e) =>
+            if (!Debugger.IsAttached)
             {
-                //Logger.ReportUnhandledException(e.Exception); // Disabled because of performance loss.
-                e.Handled = true;
-            };
+                DispatcherUnhandledException += (sender, e) =>
+                {
+                    MessageBox.Show($"Unhandled exception: {Environment.NewLine} " +
+                                    $"{Environment.NewLine}" +
+                                    $"{e.Exception.Message}{Environment.NewLine}" +
+                                    $"{Environment.NewLine}" +
+                                    $"{e.Exception.StackTrace}", "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //Logger.ReportUnhandledException(e.Exception); // Disabled because of performance loss.
+                    //e.Handled = true;
+                };
+            }
         }
 
         private void OnApplicationStartup(object sender, StartupEventArgs e)
@@ -45,7 +52,6 @@
                 String.IsNullOrWhiteSpace(space))
             {
                 var connectionConfiguration = new DataConnectionConfiguration()
-                    .Use(SignalRTransportProvider.Create())
                     .Use(diagnostics)
                     .UseDialog(ConnectionDialogOptions.ShowAlways, address, account, password, space);
                 connection = factory.CreateForProfiling(connectionConfiguration);
@@ -53,9 +59,8 @@
             else
             {
                 var connectionConfiguration = new DataConnectionConfiguration()
-                    .Use(SignalRTransportProvider.Create())
                     .Use(diagnostics)
-                    .Use(address)
+                    .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, space, password);
                 connection = factory.CreateForProfiling(connectionConfiguration);
                 try

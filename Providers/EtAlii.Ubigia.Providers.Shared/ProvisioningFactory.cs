@@ -11,7 +11,7 @@
             var scaffoldings = new IScaffolding[]
             {
                 new ProvisioningScaffolding2(configuration),
-                new ProvisioningScaffolding(configuration.ProviderConfigurations, connection => configuration.CreateDataContext(connection)),
+                new ProvisioningScaffolding(configuration.ProviderConfigurations, connection => configuration.CreateScriptContext(connection)),
             };
 
             foreach (var scaffolding in scaffoldings)

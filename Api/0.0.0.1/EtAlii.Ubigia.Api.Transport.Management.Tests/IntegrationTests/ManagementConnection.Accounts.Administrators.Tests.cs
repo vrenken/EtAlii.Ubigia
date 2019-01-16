@@ -6,13 +6,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-
     
-    public class ManagementConnection_Accounts_Administrators_Tests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
 
-        public ManagementConnection_Accounts_Administrators_Tests(NotStartedTransportUnitTestContext testContext)
+        public ManagementConnectionAccountsAdministratorsTests(NotStartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
 
@@ -290,7 +289,7 @@
                 accounts.Add(account);
             }
 
-            var retrievedAccounts = await connection.Accounts.GetAll();
+            var retrievedAccounts = (await connection.Accounts.GetAll()).ToArray();
 
             // We have the system and administrator accounts, 
             // so 2 additional accounts need to be used in the equation.
@@ -535,7 +534,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Remove(id));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
 
             // Assure.
             await connection.Close();
@@ -554,7 +553,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Change(id, name, password));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
 
             // Assure.
             await connection.Close();
@@ -565,7 +564,6 @@
         {
             // Arrange.
             var connection = await _testContext.TransportTestContext.CreateManagementConnection();
-            var id = Guid.NewGuid();
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var account = await connection.Accounts.Add(name, password, AccountTemplate.Administrator);
@@ -575,7 +573,7 @@
             var act = new Func<Task>(async () => await connection.Accounts.Add(name, password, AccountTemplate.Administrator));
 
             // Assert.
-            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
+            await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act); 
 
             // Assure.
             await connection.Close();
