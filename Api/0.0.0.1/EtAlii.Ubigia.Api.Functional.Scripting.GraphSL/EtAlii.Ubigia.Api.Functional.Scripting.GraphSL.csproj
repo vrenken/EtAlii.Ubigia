@@ -14,6 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <ProjectGuid>2b5ae699-2720-45aa-84c6-0c07933a205b</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />

@@ -22,6 +22,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <ProjectGuid>f55ab32c-a592-43cd-8d31-5edf2512c7b6</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />
