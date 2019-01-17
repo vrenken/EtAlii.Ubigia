@@ -14,6 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <ProjectGuid>bcbeb89d-9c8f-4e4e-9685-a31d2a6c52cf</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\Roots\Handlers\Default\Media\MediaByCompanyFamilyModelHandler.cs" />
