@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
     using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Functional;

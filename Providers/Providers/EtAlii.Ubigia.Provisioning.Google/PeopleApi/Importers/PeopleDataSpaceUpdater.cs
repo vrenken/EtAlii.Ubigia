@@ -3,7 +3,6 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;
     using global::Google.Apis.PeopleService.v1;
     using global::Google.Apis.Services;

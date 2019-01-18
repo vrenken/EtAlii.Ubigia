@@ -2,8 +2,6 @@
 {
     using System.Collections.Generic;
     using global::GraphQL.Types;
-    using System.Threading.Tasks;
-    using global::GraphQL.Language.AST;
 
     internal interface INodesFieldAdder
     {
