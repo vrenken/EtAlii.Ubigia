@@ -13,7 +13,7 @@
 
         public async Task Remove(Guid id)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<Account> Change(Guid rootId, string accountName, string password)
@@ -43,12 +43,12 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }

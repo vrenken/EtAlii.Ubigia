@@ -6,7 +6,7 @@
     {
         public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
@@ -16,12 +16,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }

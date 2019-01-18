@@ -25,11 +25,11 @@
 
         public async Task Open()
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
         public async Task Close()
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public DataConnectionStub()
