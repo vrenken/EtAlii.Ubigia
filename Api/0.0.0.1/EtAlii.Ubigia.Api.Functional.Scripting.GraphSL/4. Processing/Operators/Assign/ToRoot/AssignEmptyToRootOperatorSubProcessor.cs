@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             parameters.RightInput
                 .ToEnumerable()
@@ -40,6 +40,8 @@ namespace EtAlii.Ubigia.Api.Functional
                         parameters.Output.OnError(e);
                     }
                 });
+
+            await Task.CompletedTask;
         }
     }
 }

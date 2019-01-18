@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     internal class AssignVariableToPathOperatorSubProcessor : IAssignVariableToPathOperatorSubProcessor
     {
@@ -16,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             var value = parameters.RightInput
                 .ToEnumerable()
@@ -38,6 +39,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     //var result = await assigner.Assign(value, o, parameters.Scope);
                     parameters.Output.OnNext(result);
                 });
+
+            await Task.CompletedTask;
         }
     }
 }

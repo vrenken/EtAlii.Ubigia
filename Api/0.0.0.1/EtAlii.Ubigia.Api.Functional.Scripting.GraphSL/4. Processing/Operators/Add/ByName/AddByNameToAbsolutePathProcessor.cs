@@ -22,7 +22,7 @@
             _context = context;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var pathToAdd = GetPathToAdd(parameters);
             if (pathToAdd == null)
@@ -40,11 +40,7 @@
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor cannot handle empty parts");
             }
 
-            var task = Task.Run(async () =>
-            {
-                await Add(pathToAdd, parameters.Scope, parameters.Output);
-            });
-            task.Wait();
+            await Add(pathToAdd, parameters.Scope, parameters.Output);
         }
 
         private PathSubject GetPathToAdd(OperatorParameters parameters)

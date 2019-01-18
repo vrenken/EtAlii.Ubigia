@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal class AddOperatorProcessor : IAddOperatorProcessor
     {
         private readonly IAddOperatorSelector _selector;
@@ -9,10 +11,10 @@
             _selector = selector;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var addOperator = _selector.Select(parameters);
-            addOperator.Process(parameters);
+            await addOperator.Process(parameters);
         }
     }
 }

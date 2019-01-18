@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             var value = parameters.RightInput
                 .ToEnumerable()
@@ -41,6 +41,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     //var result = await assigner.Assign(value, o, parameters.Scope);
                     parameters.Output.OnNext(result);
                 });
+
+            await Task.CompletedTask;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             parameters.RightInput
                 .ToEnumerable()
@@ -32,6 +32,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     var createdRoot = await _context.Logical.Roots.Add(root.Name);
                     parameters.Output.OnNext(createdRoot.Identifier);
                 });
+
+            await Task.CompletedTask;
         }
     }
 }

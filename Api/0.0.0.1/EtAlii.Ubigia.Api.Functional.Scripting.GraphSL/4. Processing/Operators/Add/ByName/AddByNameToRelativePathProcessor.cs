@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Reactive.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
@@ -22,7 +23,7 @@
             _recursiveAdder = recursiveAdder;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var pathToAdd = GetPathToAdd(parameters);
             if (pathToAdd == null)
@@ -40,14 +41,18 @@
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor cannot handle empty parts");
             }
 
-            parameters.LeftInput.SubscribeAsync(
+            parameters.LeftInput.SubscribeAsync
+            (
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
                     var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
                     await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
-                });
+                }
+            );
+            
+            await Task.CompletedTask;
         }
 
         private PathSubject GetPathToAdd(OperatorParameters parameters)

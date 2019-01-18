@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Register((c, f, s) => true, (f, s) => { throw new ScriptProcessingException("Unable to convert name input for Rename function processing"); });
         }
 
-        public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
+        public async Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
         {
             if (processAsSubject)
             {
@@ -72,6 +72,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     throw new ScriptProcessingException("Unable to convert arguments and input for rename function processing");
                 }
             }
+
+            await Task.CompletedTask;
         }
 
         private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)

@@ -32,11 +32,11 @@ namespace EtAlii.Ubigia.Api.Functional
                 return Disposable.Empty;
             }).ToHotObservable();
 
-            var outputObservable = Observable.Create<object>(outputObserver =>
+            var outputObservable = Observable.Create<object>(async outputObserver =>
             {
                 var rightInput = Observable.Empty<object>();
                 var parameters = new OperatorParameters(scope, pathToAddTo, pathToAdd, leftInput, rightInput, outputObserver);
-                context.AddByNameToRelativePathProcessor.Process(parameters);
+                await context.AddByNameToRelativePathProcessor.Process(parameters);
 
                 return Disposable.Empty;
             }).ToHotObservable();

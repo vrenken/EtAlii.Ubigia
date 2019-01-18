@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     internal class IdFunctionHandler : FunctionHandlerBase, IFunctionHandler
     {
@@ -20,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Name = "Id";
         }
 
-        public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
+        public async Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
         {
             if (processAsSubject)
             {
@@ -46,6 +47,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     throw new ScriptProcessingException("Unable to convert arguments and input for Id function processing");
                 }
             }
+
+            await Task.CompletedTask;
         }
 
         private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
