@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             // ReSharper disable once UnusedVariable
             var definition = parameters.RightInput
@@ -33,6 +33,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     await _context.Logical.Roots.Add(root.Name);
                     parameters.Output.OnNext(root.Name);
                 });
+
+            await Task.CompletedTask;
         }
     }
 }

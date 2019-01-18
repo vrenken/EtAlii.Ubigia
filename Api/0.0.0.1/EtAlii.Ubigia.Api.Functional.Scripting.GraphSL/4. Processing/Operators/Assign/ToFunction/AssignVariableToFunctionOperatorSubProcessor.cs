@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal class AssignVariableToFunctionOperatorSubProcessor : IAssignVariableToFunctionOperatorSubProcessor
     {
         private readonly IFunctionContext _functionContext;
@@ -19,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _argumentSetFinder = argumentSetFinder;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             var functionSubject = (FunctionSubject)parameters.LeftSubject;
 
@@ -30,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Functional
             // And one single parameter set with the exact same parameters.
             var parameterSet = _parameterSetFinder.Find(functionSubject, functionHandler, argumentSet);
 
-            functionHandler.Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false);
+            await functionHandler.Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false);
         }
     }
 }

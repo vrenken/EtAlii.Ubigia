@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal interface IAssignOperatorSubProcessor
     {
-        void Assign(OperatorParameters parameters);
+        Task Assign(OperatorParameters parameters);
     }
 }

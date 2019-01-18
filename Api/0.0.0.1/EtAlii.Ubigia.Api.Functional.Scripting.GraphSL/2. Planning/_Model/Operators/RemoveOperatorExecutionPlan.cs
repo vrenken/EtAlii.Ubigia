@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class RemoveOperatorExecutionPlan : OperatorExecutionPlanBase
     {
@@ -20,7 +21,7 @@
             return typeof(Identifier);
         }
 
-        protected override void Execute(OperatorParameters parameters)
+        protected override async Task Execute(OperatorParameters parameters)
         {
             _processor.Process(parameters);
         }

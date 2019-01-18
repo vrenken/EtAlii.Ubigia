@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal class AssignCombinedToFunctionOperatorSubProcessor : IAssignCombinedToFunctionOperatorSubProcessor
     {
         private readonly IFunctionContext _functionContext;
@@ -19,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _argumentSetFinder = argumentSetFinder;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             var functionSubject = (FunctionSubject)parameters.LeftSubject;
 

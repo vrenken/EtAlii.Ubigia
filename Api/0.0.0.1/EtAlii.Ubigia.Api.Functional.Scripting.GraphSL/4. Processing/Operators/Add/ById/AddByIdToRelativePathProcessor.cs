@@ -2,6 +2,7 @@
 {
     using System;
     using System.Reactive.Linq;
+    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
@@ -19,7 +20,7 @@
         }
 
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var idToAdd = GetIdToAdd(parameters);
             if (idToAdd == Identifier.Empty)
@@ -35,6 +36,8 @@
                     var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
                     await Add(leftId, idToAdd, parameters.Scope, parameters.Output);
                 });
+
+            await Task.CompletedTask;
         }
 
         private Identifier GetIdToAdd(OperatorParameters parameters)

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
+    using System.Threading.Tasks;
 
     public class TestFunctionHandler : IFunctionHandler
     {
@@ -23,7 +24,7 @@
             Name = "Function";
         }
 
-        public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
+        public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
         {
             throw new NotImplementedException();
         }
