@@ -1,9 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using System.Collections.Generic;
-    using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
-    using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
 
     internal class ComplexFieldTypeBuilder : IComplexFieldTypeBuilder

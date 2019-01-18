@@ -2,7 +2,6 @@
 {
     using System;
     using System.Reactive.Linq;
-    using System.Runtime.CompilerServices;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 

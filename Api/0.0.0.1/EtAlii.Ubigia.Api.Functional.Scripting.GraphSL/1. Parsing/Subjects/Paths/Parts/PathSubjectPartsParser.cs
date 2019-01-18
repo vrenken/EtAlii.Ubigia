@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
     using Moppet.Lapa;
