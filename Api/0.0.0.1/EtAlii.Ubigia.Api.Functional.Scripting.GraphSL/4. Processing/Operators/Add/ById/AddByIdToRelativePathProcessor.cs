@@ -27,17 +27,13 @@
                 throw new ScriptProcessingException("The AddByIdToRelativePathProcessor requires a identifier to add");
             }
 
-            parameters.LeftInput.Subscribe(
+            parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task2 = Task.Run(async () =>
-                    {
-                        var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
-                        await Add(leftId, idToAdd, parameters.Scope, parameters.Output);
-                    });
-                    task2.Wait();
+                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    await Add(leftId, idToAdd, parameters.Scope, parameters.Output);
                 });
         }
 

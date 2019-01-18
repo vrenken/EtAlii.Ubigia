@@ -24,17 +24,13 @@ namespace EtAlii.Ubigia.Api.Functional
 
             parameters.LeftInput
                 .Cast<RootSubject>()
-                .Subscribe(
+                .SubscribeAsync(
                 onError: (e) => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: (root) =>
+                onNext: async (root) =>
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        var createdRoot = await _context.Logical.Roots.Add(root.Name);
-                        parameters.Output.OnNext(createdRoot.Identifier);
-                    });
-                    task.Wait();
+                    var createdRoot = await _context.Logical.Roots.Add(root.Name);
+                    parameters.Output.OnNext(createdRoot.Identifier);
                 });
         }
     }

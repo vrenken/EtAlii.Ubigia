@@ -26,23 +26,19 @@ namespace EtAlii.Ubigia.Api.Functional
 
             parameters.LeftInput
                 .Select(o => _toIdentifierConverter.Convert(o))
-                .Subscribe(
+                .SubscribeAsync(
                 onError: (e) => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: (o) =>
+                onNext:  async (o) =>
                 {
                     //var assigner = _toIdentifierAssignerSelector.TrySelect(value);
                     //if (assigner == null)
                     //{
                     //    throw new ScriptProcessingException("Object not supported for assignment operations: " + (value != null ? value.ToString() : "NULL"));
                     //}
-                    var task = Task.Run(async () =>
-                    {
-                        var result = await _context.Logical.Nodes.Assign(o, value, parameters.Scope);
-                        //var result = await assigner.Assign(value, o, parameters.Scope);
-                        parameters.Output.OnNext(result);
-                    });
-                    task.Wait();
+                    var result = await _context.Logical.Nodes.Assign(o, value, parameters.Scope);
+                    //var result = await assigner.Assign(value, o, parameters.Scope);
+                    parameters.Output.OnNext(result);
                 });
         }
     }
