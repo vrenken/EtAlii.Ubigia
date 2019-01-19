@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal interface IRootHandlerPathMatcher
     {
-        MatchResult Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path);
+        Task<MatchResult> Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path);
     }
 }

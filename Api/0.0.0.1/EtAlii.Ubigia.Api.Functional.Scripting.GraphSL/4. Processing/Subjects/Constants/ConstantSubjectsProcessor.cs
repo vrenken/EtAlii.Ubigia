@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Structure;
 
     internal class ConstantSubjectsProcessor : IConstantSubjectsProcessor
@@ -12,7 +13,7 @@
             _selector = selector;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var constantSubject = (ConstantSubject)subject;
             var processor = _selector.Select(constantSubject);
@@ -25,7 +26,7 @@
             //    RightResult = parameters.RightResult,
             //    LeftResult = parameters.LeftResult,
             //};
-            processor.Process(constantSubject, scope, output);
+            await processor.Process(constantSubject, scope, output);
         }
     }
 }

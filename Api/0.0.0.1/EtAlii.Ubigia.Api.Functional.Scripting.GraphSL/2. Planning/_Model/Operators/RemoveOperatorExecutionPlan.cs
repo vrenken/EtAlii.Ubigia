@@ -23,7 +23,7 @@
 
         protected override async Task Execute(OperatorParameters parameters)
         {
-            _processor.Process(parameters);
+            await _processor.Process(parameters);
         }
 
         public override string ToString()

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class VariableSubjectProcessor : IVariableSubjectProcessor
     {
@@ -11,12 +12,11 @@
             _context = context;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var variableName = ((VariableSubject)subject).Name;
-            ScopeVariable variable;
 
-            if (_context.Scope.Variables.TryGetValue(variableName, out variable))
+            if (_context.Scope.Variables.TryGetValue(variableName, out var variable))
             {
                 variable.Value.Subscribe(
                     onError: output.OnError,
@@ -29,6 +29,8 @@
                 //string message = String.Format("Variable {0} not set (subject: {0})", variableName, parameters.Target.ToString());
                 //throw new ScriptParserException(message);
             }
+
+            await Task.CompletedTask;
         }
     }
 }

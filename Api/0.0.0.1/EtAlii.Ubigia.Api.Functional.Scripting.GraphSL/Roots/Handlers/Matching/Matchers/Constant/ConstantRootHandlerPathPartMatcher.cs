@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     class ConstantRootHandlerPathPartMatcher : IConstantRootHandlerPathPartMatcher
     {
@@ -19,14 +20,14 @@
             return new[] { new MatchResult(null, match, rest) };
         }
 
-        public bool CanMatch(MatchParameters parameters)
+        public async Task<bool> CanMatch(MatchParameters parameters)
         {
             bool canMatch = false;
 
             var next = parameters.PathRest.FirstOrDefault();
             if (next != null)
             {
-                var content = _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
+                var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
                 if (content != null)
                 {
                     var requiredName = ((ConstantPathSubjectPart) parameters.CurrentTemplatePart).Name;
