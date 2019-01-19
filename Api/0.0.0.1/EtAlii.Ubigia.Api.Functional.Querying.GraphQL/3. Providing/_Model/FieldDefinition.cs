@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-
-    using System.Collections.Generic;
     using System;
 
     public class FieldDefinition

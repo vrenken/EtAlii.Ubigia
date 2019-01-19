@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Register((c, f, s) => true, (f, s) => { throw new ScriptProcessingException("Unable to convert name input for Rename function processing"); });
         }
 
-        public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
+        public async Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
         {
             if (processAsSubject)
             {
@@ -72,6 +72,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     throw new ScriptProcessingException("Unable to convert arguments and input for rename function processing");
                 }
             }
+
+            await Task.CompletedTask;
         }
 
         private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
@@ -87,23 +89,19 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Rename function processing");
             }
-            input.Subscribe(
+            input.SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
+                    var converter = _toIdentifierConverterSelector.Select(o);
+                    var results = converter(context, o, scope);
+                    foreach (var result in results.ToEnumerable())
                     {
-                        var converter = _toIdentifierConverterSelector.Select(o);
-                        var results = converter(context, o, scope);
-                        foreach (var result in results.ToEnumerable())
-                        {
 
-                            var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
-                            output.OnNext(renamedItem);
-                        }
-                    });
-                    task.Wait();
+                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
+                        output.OnNext(renamedItem);
+                    }
                 });
         }
 
@@ -111,22 +109,18 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var newName = (string)(argumentSet.Arguments.Length == 2 ? argumentSet.Arguments[1] : argumentSet.Arguments[0]);
 
-            input.Subscribe(
+            input.SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
+                    var converter = _toIdentifierConverterSelector.Select(o);
+                    var results = converter(context, o, scope);
+                    foreach (var result in results.ToEnumerable())
                     {
-                        var converter = _toIdentifierConverterSelector.Select(o);
-                        var results = converter(context, o, scope);
-                        foreach (var result in results.ToEnumerable())
-                        {
-                            var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
-                            output.OnNext(renamedItem);
-                        }
-                    });
-                    task.Wait();
+                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
+                        output.OnNext(renamedItem);
+                    }
                 });
         }
 

@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
 

@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Name = "Include";
         }
 
-        public void Process(
+        public async Task Process(
             IFunctionContext context, 
             ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                    await ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
                 }
                 else
                 {
@@ -79,7 +79,7 @@ namespace EtAlii.Ubigia.Api.Functional
         //        });
         //}
 
-        private void ProcessByInput(
+        private async Task ProcessByInput(
             IFunctionContext context, 
             ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
@@ -97,13 +97,9 @@ namespace EtAlii.Ubigia.Api.Functional
                     throw new ScriptProcessingException("Unable to convert arguments for Include function processing");
                 }
 
-                var task = Task.Run(async () =>
-                {
-                    pathSubject = await argumentInput
-                        .Cast<PathSubject>()
-                        .SingleAsync();
-                });
-                task.Wait();
+                pathSubject = await argumentInput
+                    .Cast<PathSubject>()
+                    .SingleAsync();
             }
             if (pathSubject == null)
             {

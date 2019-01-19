@@ -16,7 +16,7 @@
 
         public async Task Remove(Guid id)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<Root> Change(Guid rootId, string rootName)
@@ -41,12 +41,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }

@@ -3,6 +3,7 @@
     using System;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     public abstract class SubjectExecutionPlanBase : ISubjectExecutionPlan
@@ -21,15 +22,15 @@
 
         public IObservable<object> Execute(ExecutionScope scope)
         {
-            var outputObservable = Observable.Create<object>(outputObserver =>
+            var outputObservable = Observable.Create<object>(async outputObserver =>
             {
-                Execute(scope, outputObserver);
+                await Execute(scope, outputObserver);
 
                 return Disposable.Empty;
             }).ToHotObservable();
 
             return outputObservable;
         }
-        protected abstract void Execute(ExecutionScope scope, IObserver<object> output);
+        protected abstract Task Execute(ExecutionScope scope, IObserver<object> output);
     }
 }

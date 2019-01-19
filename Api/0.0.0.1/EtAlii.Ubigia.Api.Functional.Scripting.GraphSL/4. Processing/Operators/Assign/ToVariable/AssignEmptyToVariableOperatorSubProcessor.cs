@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     public class AssignEmptyToVariableOperatorSubProcessor : IAssignEmptyToVariableOperatorSubProcessor
     {
@@ -11,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             var variableSubject = (VariableSubject)parameters.LeftSubject;
             //var subject = parameters.RightSubject;
@@ -25,6 +26,8 @@ namespace EtAlii.Ubigia.Api.Functional
                 onError: (e) => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: o => parameters.Output.OnNext(o));
+
+            await Task.CompletedTask;
         }
     }
 }

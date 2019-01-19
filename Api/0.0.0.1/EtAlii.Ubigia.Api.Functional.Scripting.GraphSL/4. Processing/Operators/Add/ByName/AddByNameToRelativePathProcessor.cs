@@ -22,7 +22,7 @@
             _recursiveAdder = recursiveAdder;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var pathToAdd = GetPathToAdd(parameters);
             if (pathToAdd == null)
@@ -40,18 +40,18 @@
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor cannot handle empty parts");
             }
 
-            parameters.LeftInput.Subscribe(
+            parameters.LeftInput.SubscribeAsync
+            (
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task2 = Task.Run(async () =>
-                    {
-                        var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
-                        await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
-                    });
-                    task2.Wait();
-                });
+                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
+                }
+            );
+            
+            await Task.CompletedTask;
         }
 
         private PathSubject GetPathToAdd(OperatorParameters parameters)

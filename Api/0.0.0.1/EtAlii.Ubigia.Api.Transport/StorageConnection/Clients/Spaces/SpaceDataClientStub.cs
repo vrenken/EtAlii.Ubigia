@@ -13,7 +13,7 @@
 
         public async Task Remove(Guid spaceId)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<Space> Change(Guid spaceId, string spaceName)
@@ -38,12 +38,12 @@
 
         public async Task Connect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }

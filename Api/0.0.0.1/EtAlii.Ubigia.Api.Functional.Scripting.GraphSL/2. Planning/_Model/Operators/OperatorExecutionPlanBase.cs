@@ -3,6 +3,7 @@
     using System;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     public abstract class OperatorExecutionPlanBase : IOperatorExecutionPlan
@@ -27,13 +28,13 @@
 
         public IObservable<object> Execute(ExecutionScope scope)
         {
-            var outputObservable = Observable.Create<object>(outputObserver =>
+            var outputObservable = Observable.Create<object>(async outputObserver =>
             {
                 var leftInput = Left.Execute(scope);
                 var rightInput = Right.Execute(scope);
 
                 var parameters = new OperatorParameters(scope, Left.Subject, Right.Subject, leftInput, rightInput, outputObserver);
-                Execute(parameters);
+                await Execute(parameters);
 
                 return Disposable.Empty;
             }).ToHotObservable();
@@ -41,6 +42,6 @@
             return outputObservable;
         }
 
-        protected abstract void Execute(OperatorParameters parameters);
+        protected abstract Task Execute(OperatorParameters parameters);
     }
 }

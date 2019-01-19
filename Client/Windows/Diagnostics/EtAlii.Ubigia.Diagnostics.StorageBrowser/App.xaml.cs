@@ -7,7 +7,6 @@
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.xTechnology.Diagnostics;
 
     /// <summary>

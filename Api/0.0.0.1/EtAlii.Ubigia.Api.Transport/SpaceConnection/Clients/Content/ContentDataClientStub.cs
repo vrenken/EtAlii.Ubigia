@@ -6,12 +6,12 @@
     {
         public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
@@ -21,12 +21,12 @@
 
         public async Task Store(Identifier identifier, Content content)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
@@ -41,12 +41,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }

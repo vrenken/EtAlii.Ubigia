@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     class WildcardRootHandlerPathPartMatcher : IWildcardRootHandlerPathPartMatcher
     {
@@ -11,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
             return new[] { new MatchResult(null, match, rest) };
         }
 
-        public bool CanMatch(MatchParameters parameters)
+        public async Task<bool> CanMatch(MatchParameters parameters)
         {
             bool canMatch = false;
 
@@ -24,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 //TODO: Currently a wildcard path always matches. We might want to change this in the future.
                 canMatch = pathPattern != null;
             }
-            return canMatch;
+            return await Task.FromResult(canMatch);
         }
 
     }
