@@ -21,7 +21,7 @@
 
         public async Task Process(OperatorParameters parameters)
         {
-            var idToAdd = GetIdToAdd(parameters);
+            var idToAdd = await GetIdToAdd(parameters);
             if (idToAdd == Identifier.Empty)
             {
                 throw new ScriptProcessingException("The AddByIdToRelativePathProcessor requires a identifier to add");
@@ -35,20 +35,12 @@
                     var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
                     await Add(leftId, idToAdd, parameters.Scope, parameters.Output);
                 });
-
-            await Task.CompletedTask;
         }
 
-        private Identifier GetIdToAdd(OperatorParameters parameters)
+        private async Task<Identifier> GetIdToAdd(OperatorParameters parameters)
         {
-            var idToAdd = Identifier.Empty;
-            var task = Task.Run(async () =>
-            {
-                var rightResult = await parameters.RightInput.SingleAsync();
-                idToAdd = await _itemToIdentifierConverter.Convert(rightResult, parameters.Scope);
-            });
-            task.Wait();
-
+            var rightResult = await parameters.RightInput.SingleAsync();
+            var idToAdd = await _itemToIdentifierConverter.Convert(rightResult, parameters.Scope);
             return idToAdd;
         }
 

@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Linq;
@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _itemToPathSubjectConverter = itemToPathSubjectConverter;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var pathToRemove = await GetPathToRemove(parameters);
             if (pathToRemove == null)
@@ -60,6 +60,7 @@ namespace EtAlii.Ubigia.Api.Functional
             //{
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part");
             //}
+            await Task.CompletedTask;
         }
 
         private async Task<PathSubject> GetPathToRemove(OperatorParameters parameters)

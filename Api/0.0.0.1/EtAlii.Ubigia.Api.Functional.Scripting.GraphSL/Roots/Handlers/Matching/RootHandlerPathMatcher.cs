@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     class RootHandlerPathMatcher : IRootHandlerPathMatcher
     {
@@ -12,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _rootHandlerPathPartMatcherSelector = rootHandlerPathPartMatcherSelector;
         }
 
-        public MatchResult Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
+        public async Task<MatchResult> Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
             var matches = new[] { new MatchResult(rootHandler, new PathSubjectPart[0], path) };
@@ -47,14 +48,14 @@ namespace EtAlii.Ubigia.Api.Functional
                 }
                 else
                 {
-                    match = FindFirstMatchingResult(rootHandler, matches, templatePart, matcher, scope);
+                    match = await FindFirstMatchingResult(rootHandler, matches, templatePart, matcher, scope);
                     result.AddRange(match.Match);
                 }
                 rest = match.Rest;
 
                 // 3. Get all matches + rests
                 var parameters = new MatchParameters(rootHandler, templatePart, rest, scope);
-                if (matcher.CanMatch(parameters))
+                if (await matcher.CanMatch(parameters))
                 {
                     matches = matcher.Match(parameters);
                 }
@@ -84,21 +85,24 @@ namespace EtAlii.Ubigia.Api.Functional
             }
         }
 
-        private MatchResult FindFirstMatchingResult(
+        private async Task<MatchResult> FindFirstMatchingResult(
             IRootHandler rootHandler,
             MatchResult[] matches, 
             PathSubjectPart templatePart, 
             IRootHandlerPathPartMatcher matcher, 
             IScriptScope scope)
         {
-            return matches
-                .Where(m =>
+            foreach (var match in matches)
+            {
+                var parameters = new MatchParameters(rootHandler, templatePart, match.Rest, scope);
+                var canMatch = await matcher.CanMatch(parameters);
+                if (canMatch)
                 {
-                    var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
-                    var canMatch = matcher.CanMatch(parameters);
-                    return canMatch;
-                })
-                .FirstOrDefault() ?? MatchResult.NoMatch;
+                    return match;
+                }
+            }
+
+            return MatchResult.NoMatch;
         }
     }
 }

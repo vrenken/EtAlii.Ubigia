@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var parameterSet = _parameterSetFinder.Find(functionSubject, functionHandler, argumentSet);
 
 
-            functionHandler.Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false);
+            await functionHandler.Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false);
         }
     }
 }
