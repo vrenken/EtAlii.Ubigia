@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class ConstantSubjectExecutionPlan : SubjectExecutionPlanBase
     {
@@ -19,9 +20,9 @@ namespace EtAlii.Ubigia.Api.Functional
             return Subject.GetType();
         }
 
-        protected override void Execute(ExecutionScope scope, IObserver<object> output)
+        protected override async Task Execute(ExecutionScope scope, IObserver<object> output)
         {
-            _processor.Process(Subject, scope, output);
+            await _processor.Process(Subject, scope, output);
         }
 
         public override string ToString()
