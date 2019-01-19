@@ -1,6 +1,4 @@
-﻿
-using System.Linq;
-using Microsoft.CSharp.RuntimeBinder;
+﻿using Microsoft.CSharp.RuntimeBinder;
 
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {

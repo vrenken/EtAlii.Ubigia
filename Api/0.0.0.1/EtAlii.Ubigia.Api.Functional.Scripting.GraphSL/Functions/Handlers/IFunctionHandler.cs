@@ -1,13 +1,14 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     public interface IFunctionHandler
     {
         ParameterSet[] ParameterSets { get; }
         string Name { get; }
 
-        void Process(
+        Task Process(
             IFunctionContext context, 
             ParameterSet parameterSet, 
             ArgumentSet argumentSet, 

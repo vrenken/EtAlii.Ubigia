@@ -1,7 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Linq;
+    using System.Threading.Tasks;
 
     class RootPathProcessor : IRootPathProcessor
     {
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _rootHandlerPathMatcher = rootHandlerPathMatcher;
         }
 
-        public void Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output, IScriptScope scriptScope)
+        public async Task Process(string root, PathSubjectPart[] path, ExecutionScope scope, IObserver<object> output, IScriptScope scriptScope)
         {
             // Find root handler mapper.
             var rootHandlerMapper = _rootHandlerMapperFinder.Find(root);
@@ -29,9 +29,18 @@ namespace EtAlii.Ubigia.Api.Functional
             }
             // Find the matching root handler.
             //var scriptScope = new ScriptScope();
-            var match = rootHandlerMapper.AllowedRootHandlers
-                .Select(rh => _rootHandlerPathMatcher.Match(scriptScope, rh, path))
-                .FirstOrDefault(m => m != MatchResult.NoMatch);
+
+            MatchResult match = null;
+
+            foreach (var rh in rootHandlerMapper.AllowedRootHandlers)
+            {
+                var result = await _rootHandlerPathMatcher.Match(scriptScope, rh, path);
+                if (result != MatchResult.NoMatch)
+                {
+                    match = result;
+                    break;
+                }
+            }
             if (match == null)
             {
                 throw new InvalidOperationException("No matching root handler found.");

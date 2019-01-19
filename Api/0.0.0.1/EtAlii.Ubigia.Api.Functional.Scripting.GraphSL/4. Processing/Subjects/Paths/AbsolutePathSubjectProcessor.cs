@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class AbsolutePathSubjectProcessor : IAbsolutePathSubjectProcessor
     {
@@ -25,7 +26,7 @@
             _processingContext = processingContext;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var pathSubject = (AbsolutePathSubject)subject;
 
@@ -41,12 +42,12 @@
             else
             {
                 // Ok, we can translate the path into a rooted path. let's do so.
-                var root = _partContentGetter.GetPartContent(parts.Skip(1).First(), _processingContext.Scope); 
+                var root = await _partContentGetter.GetPartContent(parts.Skip(1).First(), _processingContext.Scope); 
                 var path = parts.Length > 3
                     ? parts.Skip(3).ToArray()
                     : new PathSubjectPart[0];
 
-                _rootPathProcessor.Process(root, path, scope, output, _processingContext.Scope);
+                await _rootPathProcessor.Process(root, path, scope, output, _processingContext.Scope);
             }
         }
     }

@@ -13,12 +13,12 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public async Task Open(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Close(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
     }

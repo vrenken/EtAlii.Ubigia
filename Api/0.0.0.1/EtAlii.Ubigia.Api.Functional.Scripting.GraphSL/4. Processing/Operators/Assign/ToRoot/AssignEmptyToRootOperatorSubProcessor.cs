@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
             parameters.RightInput
                 .ToEnumerable()
@@ -24,26 +24,24 @@ namespace EtAlii.Ubigia.Api.Functional
 
             parameters.LeftInput
                 .Cast<RootSubject>()
-                .Subscribe(
+                .SubscribeAsync(
                 onError: (e) => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: (root) =>
+                onNext: async (root) =>
                 {
-                    var task = Task.Run(async () =>
+                    try
                     {
-                        try
-                        {
-                            var r = await _context.Logical.Roots.Get(root.Name);
-                            await _context.Logical.Roots.Remove(r.Id);
-                            parameters.Output.OnNext(root.Name);
-                        }
-                        catch (Exception e)
-                        {
-                            parameters.Output.OnError(e);
-                        }
-                    });
-                    task.Wait();
+                        var r = await _context.Logical.Roots.Get(root.Name);
+                        await _context.Logical.Roots.Remove(r.Id);
+                        parameters.Output.OnNext(root.Name);
+                    }
+                    catch (Exception e)
+                    {
+                        parameters.Output.OnError(e);
+                    }
                 });
+
+            await Task.CompletedTask;
         }
     }
 }

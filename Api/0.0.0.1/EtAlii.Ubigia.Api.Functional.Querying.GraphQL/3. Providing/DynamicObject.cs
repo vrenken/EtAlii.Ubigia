@@ -1,13 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using global::GraphQL.Resolvers;
-    using global::GraphQL.Types;
     using System.Reflection;
     using System.Reflection.Emit;
-    using EtAlii.Ubigia.Api.Logical;
 
     public class DynamicObject
     {

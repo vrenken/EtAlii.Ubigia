@@ -17,32 +17,22 @@
             _itemToIdentifierConverter = itemToIdentifierConverter;
             _context = context;
         }
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
-            var rightId = Identifier.Empty;
-
-            var task = Task.Run(async () =>
+            var rightResult = parameters.RightInput.ToEnumerable();
+            var rightId = await _itemToIdentifierConverter.Convert(rightResult, parameters.Scope);
+            if (rightId == Identifier.Empty)
             {
-                var rightResult = parameters.RightInput.ToEnumerable();
-                rightId = await _itemToIdentifierConverter.Convert(rightResult, parameters.Scope);
-                if (rightId == Identifier.Empty)
-                {
-                    throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires a identifier to add");
-                }
-            });
-            task.Wait();
+                throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires a identifier to add");
+            }
 
-            parameters.LeftInput.Subscribe(
+            parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task2 = Task.Run(async () =>
-                    {
-                        var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
-                        await Remove(leftId, rightId, parameters.Scope, parameters.Output);
-                    });
-                    task2.Wait();
+                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    await Remove(leftId, rightId, parameters.Scope, parameters.Output);
                 });
 
             //if (leftIds == null || !leftIds.Any())

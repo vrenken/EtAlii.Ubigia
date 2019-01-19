@@ -6,7 +6,6 @@
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.xTechnology.Diagnostics;
 
     /// <summary>

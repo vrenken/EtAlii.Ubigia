@@ -3,7 +3,6 @@
     using System;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
-    using System.Threading.Tasks;
 
     internal class PathSubjectForOutputConverter : IPathSubjectForOutputConverter
     {
@@ -30,17 +29,13 @@
                 return Disposable.Empty;
             });
 
-            outputObservable.Subscribe(
+            outputObservable.SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope);
-                        output.OnNext(entry);
-                    });
-                    task.Wait();
+                    var entry = await _entriesToDynamicNodesConverter.Convert((IReadOnlyEntry)o, scope);
+                    output.OnNext(entry);
                 });
         }
     }

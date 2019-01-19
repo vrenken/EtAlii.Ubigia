@@ -1,16 +1,9 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
-using System.Reflection;
 
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using System.Collections;
-    using System.Threading.Tasks;
-    using GraphQL;
-    using GraphQL.Http;
-    using Newtonsoft.Json.Linq;
     using Xunit;
 
 

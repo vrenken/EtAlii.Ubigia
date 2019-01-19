@@ -1,12 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-    using System.Collections.Generic;
-    using GraphQL;
-    using GraphQL.Instrumentation;
-    using Newtonsoft.Json;
-    using GraphQL.Language.AST;
-
     public class QueryParseResult
     {
         public string Source { get; }

@@ -25,9 +25,9 @@
             _itemToPathSubjectConverter = itemToPathSubjectConverter;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
-            var pathToRemove = GetPathToRemove(parameters);
+            var pathToRemove = await GetPathToRemove(parameters);
             if (pathToRemove == null)
             {
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");
@@ -43,17 +43,13 @@
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a single constant path part");
             }
 
-            parameters.LeftInput.Subscribe(
+            parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task2 = Task.Run(async () =>
-                    {
-                        var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
-                        await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
-                    });
-                    task2.Wait();
+                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
                 });
 
             //if (leftResult == null)
@@ -64,26 +60,23 @@
             //{
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part");
             //}
+            await Task.CompletedTask;
         }
 
-        private PathSubject GetPathToRemove(OperatorParameters parameters)
+        private async Task<PathSubject> GetPathToRemove(OperatorParameters parameters)
         {
             PathSubject pathToAdd = null;
 
-            var task = Task.Run(async () =>
+            if (parameters.RightSubject is PathSubject subject)
             {
-                if (parameters.RightSubject is PathSubject)
-                {
-                    pathToAdd = (PathSubject)parameters.RightSubject;
-                }
-                else
-                {
-                    var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+                pathToAdd = subject;
+            }
+            else
+            {
+                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
-                    _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-                }
-            });
-            task.Wait();
+                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
+            }
 
             return pathToAdd;
         }

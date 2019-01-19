@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     class VariableRootHandlerPathPartMatcher : IVariableRootHandlerPathPartMatcher
     {
         public MatchResult[] Match(MatchParameters parameters)
@@ -7,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional
             throw new System.NotImplementedException();
         }
 
-        public bool CanMatch(MatchParameters parameters)
+        public Task<bool> CanMatch(MatchParameters parameters)
         {
             throw new System.NotImplementedException();
         }

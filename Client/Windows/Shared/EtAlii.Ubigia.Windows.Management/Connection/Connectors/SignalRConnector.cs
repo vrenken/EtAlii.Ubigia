@@ -2,8 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using System.Windows;
-    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
 

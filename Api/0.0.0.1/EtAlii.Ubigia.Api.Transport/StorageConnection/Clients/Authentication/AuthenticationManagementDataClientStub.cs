@@ -9,7 +9,7 @@
     {
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
@@ -19,12 +19,12 @@
         
         public async Task Connect(IStorageConnection connection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(IStorageConnection connection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }

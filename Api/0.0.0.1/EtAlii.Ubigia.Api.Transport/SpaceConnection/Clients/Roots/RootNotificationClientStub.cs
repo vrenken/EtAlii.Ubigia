@@ -11,12 +11,12 @@
 
         public async Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
 
         public async Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            await Task.CompletedTask;
         }
     }
 }
