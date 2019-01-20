@@ -14,13 +14,13 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public async Task Assign(OperatorParameters parameters)
         {
-            parameters.RightInput.Subscribe(
+            parameters.RightInput.SubscribeAsync(
                 onError: (e) => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: o =>
+                onNext: async o =>
                 {
                     var outputConverter = _resultConverterSelector.Select(o);
-                    outputConverter(o, parameters.Scope, parameters.Output);
+                    await outputConverter(o, parameters.Scope, parameters.Output);
                 });
 
             await Task.CompletedTask;
