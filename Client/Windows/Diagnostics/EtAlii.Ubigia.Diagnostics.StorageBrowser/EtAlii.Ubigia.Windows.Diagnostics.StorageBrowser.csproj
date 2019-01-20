@@ -24,6 +24,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <Win32Resource />
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser</NameOfOriginalMSBuildProject>
+    <ProjectGuid>aed6d071-19c7-415d-a902-a2d1d3e471f9</ProjectGuid>
   </PropertyGroup>
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />

@@ -23,6 +23,7 @@
     <AssemblyName>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</AssemblyName>
     <ApplicationIcon>Icon.ico</ApplicationIcon>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser</NameOfOriginalMSBuildProject>
+    <ProjectGuid>0d5eba7f-6dd4-4893-9128-6d3e973394ca</ProjectGuid>
   </PropertyGroup>
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />

@@ -19,6 +19,7 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ProjectGuid>46aa9b7a-44d5-4b5a-946b-41ea0a781dc0</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.45" />

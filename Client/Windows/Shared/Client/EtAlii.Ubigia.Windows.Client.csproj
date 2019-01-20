@@ -9,6 +9,7 @@
     <Version>1.0.19.0</Version>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
+    <ProjectGuid>63725d1d-ed0b-4a2f-917a-41fff24765e9</ProjectGuid>
   </PropertyGroup>
 
   <ItemGroup>

@@ -22,6 +22,7 @@
     <OutputType>Exe</OutputType>
     <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Tools.MediaImport</NameOfOriginalMSBuildProject>
+    <ProjectGuid>2cf4499f-d4f4-4132-9e10-9d1daebdf255</ProjectGuid>
   </PropertyGroup>
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
