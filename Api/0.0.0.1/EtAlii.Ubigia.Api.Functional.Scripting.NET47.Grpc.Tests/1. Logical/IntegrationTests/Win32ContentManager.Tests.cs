@@ -9,7 +9,7 @@
     using Xunit;
 
     
-    public class NET47ContentManagerTests : IClassFixture<NET47LogicalUnitTestContext>, IDisposable
+    public class NET47ContentManagerTests : IClassFixture<NET47LogicalUnitTestContext>, IAsyncLifetime
     {
 
         private readonly NET47LogicalUnitTestContext _testContext;
@@ -34,21 +34,16 @@
         public NET47ContentManagerTests(NET47LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-
-            var task = Task.Run(async () =>
-            {
-                await _testContext.LogicalTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await _testContext.LogicalTestContext.Stop();
-            });
-            task.Wait();
+            await _testContext.LogicalTestContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await _testContext.LogicalTestContext.Stop();
         }
 
         [Fact]
@@ -303,6 +298,5 @@
                 File.Delete(retrievedFilePath);
             }
         }
-
     }
 }
