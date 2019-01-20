@@ -19,6 +19,7 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222056</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Clients\**" />

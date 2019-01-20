@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
+    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222017</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore.csproj" />

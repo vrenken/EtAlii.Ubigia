@@ -19,6 +19,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <OutputType>WinExe</OutputType>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47</NameOfOriginalMSBuildProject>
+    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222041</ProjectGuid>
   </PropertyGroup>
   <!-- near the top -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />

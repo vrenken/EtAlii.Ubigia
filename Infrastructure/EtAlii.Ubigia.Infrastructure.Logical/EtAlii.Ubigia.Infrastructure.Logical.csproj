@@ -19,6 +19,7 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222034</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Fabric\EtAlii.Ubigia.Infrastructure.Fabric.csproj" />
