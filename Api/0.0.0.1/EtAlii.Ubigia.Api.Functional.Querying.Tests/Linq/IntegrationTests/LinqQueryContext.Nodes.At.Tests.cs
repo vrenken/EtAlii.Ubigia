@@ -8,20 +8,22 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
+    using Xunit.Abstractions;
 
-    
+
     public class LinqQueryContextNodesAddAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
+        private readonly ITestOutputHelper _output;
         private readonly LogicalUnitTestContext _testContext;
 
         private string _countryPath;
 
-        public LinqQueryContextNodesAddAddTests(LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesAddAddTests(ITestOutputHelper output, LogicalUnitTestContext testContext)
         {
+            _output = output;
             _testContext = testContext;
         }
 
@@ -39,7 +41,7 @@
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
 
-            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public async Task DisposeAsync()
@@ -53,7 +55,7 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
 
             await Task.CompletedTask;
         }

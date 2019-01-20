@@ -20,7 +20,7 @@
 //			//	}
 //			//}
 
-//			//Console.WriteLine("Starting Ubigia infrastructure...");
+//			//Console. WriteLine("Starting Ubigia infrastructure...");
 
 //			var host = new HostFactory<TestHost>().Create(configuration);
 

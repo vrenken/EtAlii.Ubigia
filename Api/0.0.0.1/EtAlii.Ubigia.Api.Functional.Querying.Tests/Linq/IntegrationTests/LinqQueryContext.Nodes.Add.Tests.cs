@@ -8,6 +8,7 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
+    using Xunit.Abstractions;
 
 
     public class LinqQueryContextNodesAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
@@ -16,10 +17,12 @@
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
         private string _countryPath;
+        private readonly ITestOutputHelper _output;
         private readonly LogicalUnitTestContext _testContext;
 
-        public LinqQueryContextNodesAddTests(LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesAddTests(ITestOutputHelper output, LogicalUnitTestContext testContext)
         {
+            _output = output;
             _testContext = testContext;
         }
 
@@ -37,7 +40,7 @@
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
 
-            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public async Task DisposeAsync()
@@ -51,7 +54,7 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
 
             await Task.CompletedTask;
         }
@@ -92,13 +95,13 @@
 
             var items = _context.Nodes.Select(_countryPath);
 
-            Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            _output.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
             dynamic single = items.Add("Overijssel_01").Single();
 
-            Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            _output.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -115,13 +118,13 @@
 
             var items = _context.Nodes.Select(_countryPath);
 
-            Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            _output.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
             dynamic single = items.Add("Overijssel_01").Single();
 
-            Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            _output.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -138,13 +141,13 @@
 
             var items = _context.Nodes.Select(_countryPath);
 
-            Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            _output.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
             dynamic single = items.Add("Overijssel_01").Single();
 
-            Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            _output.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
