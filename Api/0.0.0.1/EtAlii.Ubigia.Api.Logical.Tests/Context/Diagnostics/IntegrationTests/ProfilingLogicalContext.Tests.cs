@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Tests;
@@ -9,31 +8,30 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ProfilingLogicalContextTests : IClassFixture<FabricUnitTestContext>, IDisposable
+    public class ProfilingLogicalContextTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
+        private readonly FabricUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
         private IFabricContext _fabricContext;
 
         public ProfilingLogicalContextTests(FabricUnitTestContext testContext)
         {
-            var task = Task.Run(async () =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                _fabricContext = await testContext.FabricTestContext.CreateFabricContext(true);
-            });
-            task.Wait();
-
+            _testContext = testContext;
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _fabricContext.Dispose();
-                _fabricContext = null;
-                _diagnostics = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            _fabricContext = await _testContext.FabricTestContext.CreateFabricContext(true);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _fabricContext.Dispose();
+            _fabricContext = null;
+            _diagnostics = null;
+
+            await Task.CompletedTask;
         }
 
         [Fact]

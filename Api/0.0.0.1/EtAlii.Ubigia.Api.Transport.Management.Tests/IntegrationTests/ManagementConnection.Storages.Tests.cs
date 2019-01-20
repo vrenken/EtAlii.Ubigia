@@ -8,28 +8,24 @@
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
     
-    public class ManagementConnectionStoragesTests : IDisposable
+    public class ManagementConnectionStoragesTests : IAsyncLifetime
     {
-        private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
+        private ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
 
         public ManagementConnectionStoragesTests()
         {
-            var task = Task.Run(async () =>
-            {
-                _testContext = new TransportTestContext().Create();
-                await _testContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await _testContext.Stop();
-                _testContext = null;
-            });
-            task.Wait();
+            _testContext = new TransportTestContext().Create();
+            await _testContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await _testContext.Stop();
+            _testContext = null;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

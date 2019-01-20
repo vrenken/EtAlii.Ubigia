@@ -7,28 +7,23 @@
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
     
-    public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IAsyncLifetime
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
 
         public ManagementConnectionAccountsAdministratorsTests(NotStartedTransportUnitTestContext testContext)
         {
             _testContext = testContext;
-
-            var task = Task.Run(async () =>
-            {
-                await _testContext.TransportTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await _testContext.TransportTestContext.Stop();
-            });
-            task.Wait();
+            await _testContext.TransportTestContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await _testContext.TransportTestContext.Stop();
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
