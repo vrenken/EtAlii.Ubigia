@@ -24,7 +24,7 @@
 
         public async Task Process(OperatorParameters parameters)
         {
-            var pathToAdd = GetPathToAdd(parameters);
+            var pathToAdd = await GetPathToAdd(parameters);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor requires a path on the right side");
@@ -54,23 +54,19 @@
             await Task.CompletedTask;
         }
 
-        private PathSubject GetPathToAdd(OperatorParameters parameters)
+        private async Task<PathSubject> GetPathToAdd(OperatorParameters parameters)
         {
             PathSubject pathToAdd = null;
 
-            if (parameters.RightSubject is PathSubject)
+            if (parameters.RightSubject is PathSubject subject)
             {
-                pathToAdd = (PathSubject)parameters.RightSubject;
+                pathToAdd = subject;
             }
             else
             {
-                var task = Task.Run(async () =>
-                {
-                    var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
-                    _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-                });
-                task.Wait();
+                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
             }
 
             return pathToAdd;

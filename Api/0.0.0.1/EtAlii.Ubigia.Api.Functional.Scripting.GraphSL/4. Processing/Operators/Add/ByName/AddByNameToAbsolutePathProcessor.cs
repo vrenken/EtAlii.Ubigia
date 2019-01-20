@@ -24,7 +24,7 @@
 
         public async Task Process(OperatorParameters parameters)
         {
-            var pathToAdd = GetPathToAdd(parameters);
+            var pathToAdd = await GetPathToAdd(parameters);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor requires a path on the right side");
@@ -43,25 +43,22 @@
             await Add(pathToAdd, parameters.Scope, parameters.Output);
         }
 
-        private PathSubject GetPathToAdd(OperatorParameters parameters)
+        private async Task<PathSubject> GetPathToAdd(OperatorParameters parameters)
         {
             PathSubject pathToAdd = null;
 
-            var task = Task.Run(async () =>
+        
+            if (parameters.RightSubject is PathSubject subject)
             {
-                if (parameters.RightSubject is PathSubject)
-                {
-                    pathToAdd = (PathSubject)parameters.RightSubject;
-                }
-                else
-                {
-                    var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+                pathToAdd = subject;
+            }
+            else
+            {
+                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
-                    _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-                }
-            });
-            task.Wait();
-
+                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
+            }
+            
             return pathToAdd;
         }
 
