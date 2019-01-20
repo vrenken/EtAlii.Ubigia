@@ -11,53 +11,54 @@
     
 
     
-    public class LinqQueryContextNodesAddAddTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class LinqQueryContextNodesAddAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
+        private readonly LogicalUnitTestContext _testContext;
 
         private string _countryPath;
 
         public LinqQueryContextNodesAddAddTests(LogicalUnitTestContext testContext)
         {
-            var task = Task.Run(async () =>
-            {
-                var start = Environment.TickCount;
-
-                _diagnostics = TestDiagnostics.Create();
-                _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
-                var configuration = new LinqQueryContextConfiguration()
-                    .Use(_diagnostics)
-                    .Use(_logicalContext);
-                _context = new LinqQueryContextFactory().Create(configuration);
-                
-                var addResult = await testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
-                _countryPath = addResult.Path;
-
-                Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            });
-            task.Wait();
+            _testContext = testContext;
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                var start = Environment.TickCount;
+            var start = Environment.TickCount;
 
-                _countryPath = null;
-                _context.Dispose();
-                _context = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-                _diagnostics = null;
+            _diagnostics = TestDiagnostics.Create();
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var configuration = new LinqQueryContextConfiguration()
+                .Use(_diagnostics)
+                .Use(_logicalContext);
+            _context = new LinqQueryContextFactory().Create(configuration);
+                
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            _countryPath = addResult.Path;
 
-                Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            });
-            task.Wait();
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
+        public async Task DisposeAsync()
+        {
+            var start = Environment.TickCount;
+
+            _countryPath = null;
+            _context.Dispose();
+            _context = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+            _diagnostics = null;
+
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+
+            await Task.CompletedTask;
+        }
+        
+        
         [Fact(Skip="Not working yet"), Trait("Category", TestAssembly.Category)]
         public void Linq_Nodes_Select_Add_At()
         {

@@ -16,23 +16,20 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _context = context;
         }
 
-        public ConfigurationSpace[] GetAll()
+        public async Task<ConfigurationSpace[]> GetAll()
         {
             var result = new List<ConfigurationSpace>();
 
-            var task = Task.Run(async () =>
+            var accounts = await _context.ManagementConnection.Accounts.GetAll();
+            foreach (var account in accounts)
             {
-                var accounts = await _context.ManagementConnection.Accounts.GetAll();
-                foreach (var account in accounts)
-                {
-                    var spaces = await _context.ManagementConnection.Spaces.GetAll(account.Id);
-                    var configurationsToAdd = spaces
-                        .Where(s => s.Name == SpaceName.Configuration)
-                        .Select(s => new ConfigurationSpace {Account = account, Space = s});
-                    result.AddRange(configurationsToAdd);
-                }
-            });
-            task.Wait();
+                var spaces = await _context.ManagementConnection.Spaces.GetAll(account.Id);
+                var configurationsToAdd = spaces
+                    .Where(s => s.Name == SpaceName.Configuration)
+                    .Select(s => new ConfigurationSpace {Account = account, Space = s});
+                result.AddRange(configurationsToAdd);
+            }
+
             return result.ToArray();
         }
     }

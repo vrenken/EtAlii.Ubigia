@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
 
         protected TimeSpan Interval { get; set; } = TimeSpan.FromMinutes(1);
 
-        public event Action<Exception> Error { add { _error += value; } remove { _error -= value; } }
+        public event Action<Exception> Error { add => _error += value; remove => _error -= value; }
         private Action<Exception> _error;
 
         private static readonly object LockObject = new object();
@@ -47,16 +47,17 @@ namespace EtAlii.Ubigia.Provisioning.Google
             _task = null;
         }
 
-        private void RunInternal()
+        private async Task RunInternal()
         {
             while (true)
             {
                 try
                 {
-                    lock (LockObject)
-                    {
-                        Run();
-                    }
+                    //lock (LockObject)
+                    //{
+                        await Run();
+                    //    task.Wait();
+                    //}
                 }
                 catch (Exception e)
                 {
@@ -73,6 +74,6 @@ namespace EtAlii.Ubigia.Provisioning.Google
             }
         }
 
-        protected abstract void Run();
+        protected abstract Task Run();
     }
 }
