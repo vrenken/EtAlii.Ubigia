@@ -576,7 +576,7 @@
         
         
         
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Blocking the build server"), Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
