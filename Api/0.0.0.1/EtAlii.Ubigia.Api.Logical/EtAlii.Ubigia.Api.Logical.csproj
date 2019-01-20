@@ -14,6 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <ProjectGuid>f4d0ff49-6564-47b4-a962-fee1f27323e9</ProjectGuid> 
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Collections" Version="1.0.4" />

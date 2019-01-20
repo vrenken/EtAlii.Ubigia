@@ -21,6 +21,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <ProjectGuid>cd7afa68-0b10-44dc-aae7-be1e41cf3b0e</ProjectGuid>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>TRACE;DEBUG;NETCOREAPP;NETCOREAPP2_1;GRPC</DefineConstants>
