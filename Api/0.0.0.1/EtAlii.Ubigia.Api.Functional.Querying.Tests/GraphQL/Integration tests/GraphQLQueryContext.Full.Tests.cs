@@ -7,7 +7,7 @@
     using Xunit;
 
 
-    public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IDisposable
+    public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext _logicalContext;
         private IGraphSLScriptContext _scriptContext;
@@ -20,47 +20,36 @@
         {
             _testContext = testContext;
             _documentWriter = new DocumentWriter(indent: false);
-                
-            TestInitialize();
         }
 
-        public void Dispose()
-        {
-            TestCleanup();
-        }
-
-        private void TestInitialize()
-        {
-            var task = Task.Run(async () =>
-            {
-                var start = Environment.TickCount;
-
-                _logicalContext = await _testContext.FunctionalTestContext.CreateLogicalContext(true);
-                _queryContext = _testContext.FunctionalTestContext.CreateGraphQLQueryContext(_logicalContext);
-                _scriptContext = _testContext.FunctionalTestContext.CreateGraphSLScriptContext(_logicalContext);
         
-                await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
-                await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
-
-                Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            });
-            task.Wait();
-        }
-
-        private void TestCleanup()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                var start = Environment.TickCount;
+            var start = Environment.TickCount;
 
-                _logicalContext = null;
-                _scriptContext = null;
-                _queryContext = null;
+            _logicalContext = await _testContext.FunctionalTestContext.CreateLogicalContext(true);
+            _queryContext = _testContext.FunctionalTestContext.CreateGraphQLQueryContext(_logicalContext);
+            _scriptContext = _testContext.FunctionalTestContext.CreateGraphSLScriptContext(_logicalContext);
+        
+            await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
+            await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
-                Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            });
-            task.Wait();
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
+
+        public async Task DisposeAsync()
+        {
+            var start = Environment.TickCount;
+
+            _logicalContext = null;
+            _scriptContext = null;
+            _queryContext = null;
+
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+
+            await Task.CompletedTask;
+        }
+        
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Single()
@@ -167,5 +156,6 @@
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""data2"": { ""person1"": { ""nickname"": ""Iron Man"" }, ""person2"": { ""nickname"": ""Johnny"" }}}", result);
         }
+
     }
 }

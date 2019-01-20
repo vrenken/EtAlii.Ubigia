@@ -9,7 +9,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
     
-    public class ScriptProcessorRootedPathMediaPathTests : IDisposable
+    public class ScriptProcessorRootedPathMediaPathTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -17,29 +17,25 @@
 
         public ScriptProcessorRootedPathMediaPathTests()
         {
-            var task = Task.Run(async () =>
-            {
-                _testContext = new LogicalTestContextFactory().Create();
-                await _testContext.Start();
-
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                _parser = null;
+            _testContext = new LogicalTestContextFactory().Create();
+            await _testContext.Start();
 
-                await _testContext.Stop();
-                _testContext = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _parser = null;
+
+            await _testContext.Stop();
+            _testContext = null;
         }
 
         [Fact(Skip="No root handlers registered yet")]
@@ -82,7 +78,5 @@
             Assert.Equal(addResult.Id, firstResult.Id);
             Assert.Equal(addResult.Id, secondResult.Id);
         }
-
-
     }
 }

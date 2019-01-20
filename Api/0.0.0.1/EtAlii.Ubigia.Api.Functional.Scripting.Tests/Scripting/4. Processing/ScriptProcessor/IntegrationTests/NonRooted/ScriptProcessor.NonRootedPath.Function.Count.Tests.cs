@@ -8,10 +8,8 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-
-
     
-    public class ScriptProcessorNonRootedPathFunctionCountTests : IDisposable
+    public class ScriptProcessorNonRootedPathFunctionCountTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -19,29 +17,25 @@
 
         public ScriptProcessorNonRootedPathFunctionCountTests()
         {
-            var task = Task.Run(async () =>
-            {
-                _testContext = new LogicalTestContextFactory().Create();
-                await _testContext.Start();
-
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                _parser = null;
+            _testContext = new LogicalTestContextFactory().Create();
+            await _testContext.Start();
 
-                await _testContext.Stop();
-                _testContext = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _parser = null;
+
+            await _testContext.Stop();
+            _testContext = null;
         }
 
 

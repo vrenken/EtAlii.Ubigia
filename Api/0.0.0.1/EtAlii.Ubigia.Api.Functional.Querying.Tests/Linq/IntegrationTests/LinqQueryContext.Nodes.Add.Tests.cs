@@ -10,7 +10,7 @@
     using Xunit;
 
 
-    public class LinqQueryContextNodesAddTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class LinqQueryContextNodesAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
@@ -21,54 +21,41 @@
         public LinqQueryContextNodesAddTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-
-            TestInitialize();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            TestCleanup();
-        }
+            var start = Environment.TickCount;
 
-        private void TestInitialize()
-        {
-            var task = Task.Run(async () =>
-            {
-                var start = Environment.TickCount;
-
-                _diagnostics = TestDiagnostics.Create();
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-                var configuration = new LinqQueryContextConfiguration()
-                    .Use(_diagnostics)
-                    .Use(_logicalContext);
-                _context = new LinqQueryContextFactory().Create(configuration);
+            _diagnostics = TestDiagnostics.Create();
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var configuration = new LinqQueryContextConfiguration()
+                .Use(_diagnostics)
+                .Use(_logicalContext);
+            _context = new LinqQueryContextFactory().Create(configuration);
                 
-                var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
-                _countryPath = addResult.Path;
+            var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
+            _countryPath = addResult.Path;
 
-                Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            });
-            task.Wait();
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        private void TestCleanup()
+        public async Task DisposeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                var start = Environment.TickCount;
+            var start = Environment.TickCount;
 
-                _countryPath = null;
-                _context.Dispose();
-                _context = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-                _diagnostics = null;
+            _countryPath = null;
+            _context.Dispose();
+            _context = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+            _diagnostics = null;
 
-                Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            });
-            task.Wait();
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+
+            await Task.CompletedTask;
         }
-
+        
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Linq_Nodes_Select_Add_Cast_Single()
         {
@@ -181,8 +168,8 @@
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
-            TestCleanup();
-            TestInitialize();
+            await DisposeAsync();
+            await InitializeAsync();
 
             // Arrange.
             start = Environment.TickCount;
@@ -203,8 +190,8 @@
             duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
-            TestCleanup();
-            TestInitialize();
+            await DisposeAsync();
+            await InitializeAsync();
 
             // Arrange.
             start = Environment.TickCount;

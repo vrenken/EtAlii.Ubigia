@@ -1,40 +1,39 @@
 ﻿
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorAssignStringIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
+        private readonly LogicalUnitTestContext _testContext;
         private IScriptParser _parser;
         private ILogicalContext _logicalContext;
 
         public ScriptProcessorAssignStringIntegrationTests(LogicalUnitTestContext testContext)
         {
-            var task = Task.Run(async () =>
-            {
-                var diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-                _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
-            });
-            task.Wait();
+            _testContext = testContext;
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-            });
-            task.Wait();
+            var diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _parser = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+
+            await Task.CompletedTask;
         }
     }
 }

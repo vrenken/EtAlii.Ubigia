@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
@@ -10,7 +9,7 @@
     using Xunit;
 
     
-    public class ScriptProcessorLogicalRemoveTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorLogicalRemoveTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -20,26 +19,24 @@
         public ScriptProcessorLogicalRemoveTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(async () =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _parser = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+            
+            await Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

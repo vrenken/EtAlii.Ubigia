@@ -10,7 +10,7 @@
     using Xunit;
 
     
-    public class ScriptProcessorAssignDynamic2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorAssignDynamic2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -20,27 +20,24 @@
         public ScriptProcessorAssignDynamic2IntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-
-            var task = Task.Run(async () =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _parser = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+
+            await Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -474,6 +471,5 @@
             //Assert.Equal(null, result2.Code);
             Assert.Equal(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
         }
-
     }
 }
