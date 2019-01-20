@@ -16,6 +16,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
     <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows</NameOfOriginalMSBuildProject>
+    <ProjectGuid>42cdaf5a-937d-4806-a054-4724c967f311</ProjectGuid>
   </PropertyGroup>
 
   <!-- near the top -->
