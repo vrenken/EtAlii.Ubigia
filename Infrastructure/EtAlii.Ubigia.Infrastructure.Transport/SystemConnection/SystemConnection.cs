@@ -60,7 +60,7 @@
                     // Free other state (managed objects).
                     //if (_status.IsConnected)
                     //{
-                        //var task = Task.Run(async () =>
+                        //var task = Task. Run(async () =>
                         //{
                         //    await Close();
                         //});

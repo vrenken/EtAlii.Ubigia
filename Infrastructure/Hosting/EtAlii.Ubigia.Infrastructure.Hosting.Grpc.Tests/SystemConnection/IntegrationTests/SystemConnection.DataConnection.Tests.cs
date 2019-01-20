@@ -7,7 +7,7 @@
     using Xunit;
     
     [Trait("Technology", "Grpc")]
-    public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
+    public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private string _accountName;
@@ -18,32 +18,30 @@
         public SystemConnectionDataConnectionTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(async () =>
-            {
-                _accountName = Guid.NewGuid().ToString();
-                _password = Guid.NewGuid().ToString();
-                _spaceNames = new[]
-                {
-                    Guid.NewGuid().ToString(),
-                    Guid.NewGuid().ToString()
-                };
-                _systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-                await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames );
-
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
+            _accountName = Guid.NewGuid().ToString();
+            _password = Guid.NewGuid().ToString();
+            _spaceNames = new[]
             {
-                _systemConnection = null;
-                _accountName = null;
-                _spaceNames = null;
-                _password = null;
-            });
-            task.Wait();
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
+            };
+            _systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames );
+        }
+
+        public async Task DisposeAsync()
+        {
+            _systemConnection.Dispose();
+            _systemConnection = null;
+            _accountName = null;
+            _spaceNames = null;
+            _password = null;
+
+            await Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
