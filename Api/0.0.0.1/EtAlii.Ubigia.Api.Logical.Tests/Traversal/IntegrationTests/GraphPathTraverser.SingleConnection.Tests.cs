@@ -12,7 +12,7 @@
     using Xunit;
 
     
-    public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IDisposable
+    public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private readonly FabricUnitTestContext _testContext;
         private IFabricContext _fabric;
@@ -20,22 +20,19 @@
         public GraphPathTraverserSingleConnectionTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
-
-            var task = Task.Run(async () =>
-            {
-                _fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _fabric.Dispose();
-                _fabric = null;
-            });
-            task.Wait();
+            _fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+        }
+
+        public async Task DisposeAsync()
+        {
+            _fabric.Dispose();
+            _fabric = null;
+            
+            await Task.CompletedTask;
         }
 
         [Fact]
