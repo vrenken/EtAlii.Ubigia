@@ -36,9 +36,9 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            Console.WriteLine("Seed: " + seed);
-            Console.WriteLine("Template: " + String.Join("", template.Select(t => t.ToString())));
-            Console.WriteLine("Path: " + String.Join("", path.Select(t => t.ToString())));
+            _output.WriteLine("Seed: " + seed);
+            _output.WriteLine("Template: " + String.Join("", template.Select(t => t.ToString())));
+            _output.WriteLine("Path: " + String.Join("", path.Select(t => t.ToString())));
 
             var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 

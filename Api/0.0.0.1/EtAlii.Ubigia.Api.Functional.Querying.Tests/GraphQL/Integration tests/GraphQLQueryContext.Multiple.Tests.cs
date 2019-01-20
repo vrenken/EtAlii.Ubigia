@@ -5,6 +5,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using GraphQL.Http;
     using Xunit;
+    using Xunit.Abstractions;
 
 
     public class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
@@ -12,12 +13,14 @@
         private ILogicalContext  _logicalContext;
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-        
+
+        private readonly ITestOutputHelper _output;
         private readonly QueryingUnitTestContext _testContext;
         private readonly IDocumentWriter _documentWriter;
 
-        public GraphQLQueryContextMultipleTests(QueryingUnitTestContext testContext)
+        public GraphQLQueryContextMultipleTests(ITestOutputHelper output, QueryingUnitTestContext testContext)
         {
+            _output = output;
             _testContext = testContext;
             _documentWriter = new DocumentWriter(indent: false);
         }
@@ -33,7 +36,7 @@
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
-            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
         public async Task DisposeAsync()
@@ -44,7 +47,7 @@
             _scriptContext = null;
             _queryContext = null;
 
-            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
 
             await Task.CompletedTask;
         }

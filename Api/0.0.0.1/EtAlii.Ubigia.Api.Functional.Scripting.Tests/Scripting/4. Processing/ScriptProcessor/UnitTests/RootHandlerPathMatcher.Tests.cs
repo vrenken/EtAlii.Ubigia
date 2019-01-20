@@ -2,10 +2,18 @@
 {
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
+    using Xunit.Abstractions;
 
 
     public partial class RootHandlerPathMatcherTests
     {
+        private readonly ITestOutputHelper _output;
+
+        public RootHandlerPathMatcherTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+        
         [Fact, Trait("Category", TestAssembly.Category)]
         public void RootHandlerPathMatcher_New()
         {

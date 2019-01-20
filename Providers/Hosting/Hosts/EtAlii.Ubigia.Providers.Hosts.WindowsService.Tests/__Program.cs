@@ -18,7 +18,7 @@
 //            //var startupDelay = args.Length > 0 ? Int32.Parse(args[0]) * 1000 : 0;
 //            //System.Threading.Thread.Sleep(startupDelay);
 
-//            Console.WriteLine("Starting Ubigia provider...");
+//            Console. WriteLine("Starting Ubigia provider...");
 
 
 //            // TODO: Should be removed.
@@ -49,10 +49,10 @@
 //            var host = new ProviderHostFactory<ConsoleHost>().Create(hostConfiguration);
 //            host.Start();
 
-//            Console.WriteLine("All OK. Ubigia is providing the storage specified below.");
-//            Console.WriteLine("Address: " + hostConfiguration.Address);
-//            Console.WriteLine();
-//            Console.WriteLine("- Press any key to stop - ");
+//            Console. WriteLine("All OK. Ubigia is providing the storage specified below.");
+//            Console. WriteLine("Address: " + hostConfiguration.Address);
+//            Console. WriteLine();
+//            Console. WriteLine("- Press any key to stop - ");
 //            Console.ReadKey();
 
 //            host.Stop();
