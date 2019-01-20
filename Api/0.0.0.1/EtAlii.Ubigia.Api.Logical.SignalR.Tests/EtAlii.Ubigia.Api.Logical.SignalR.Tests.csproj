@@ -21,6 +21,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
+    <ProjectGuid>d002f507-6776-4ee6-92e4-41a62ab2ebf2</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="xunit" Version="2.4.1" />

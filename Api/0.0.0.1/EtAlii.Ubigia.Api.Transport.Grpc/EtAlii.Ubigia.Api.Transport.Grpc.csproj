@@ -14,6 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <ProjectGuid>99b09e6d-5158-49cc-b744-9ac329c740d4</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <!--<ProjectReference Include="..\..\..\Frameworks\Microsoft.AspNetCore.SignalR\src\Microsoft.AspNetCore.SignalR.Client\Microsoft.AspNetCore.SignalR.Client.csproj" />-->

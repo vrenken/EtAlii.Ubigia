@@ -15,6 +15,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <LangVersion>7.2</LangVersion>
+    <ProjectGuid>c75d091e-1321-4da5-904e-be41ad870355</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />

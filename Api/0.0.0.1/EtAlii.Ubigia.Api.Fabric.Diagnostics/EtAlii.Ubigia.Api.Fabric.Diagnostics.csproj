@@ -14,6 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <ProjectGuid>8ac4dc67-7f92-419f-87c7-3d10e84753f5</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
