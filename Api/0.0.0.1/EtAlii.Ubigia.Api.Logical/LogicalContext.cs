@@ -28,6 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void Dispose()
         {
+            // Dispose the LogicalContext.
         }
     }
 }
