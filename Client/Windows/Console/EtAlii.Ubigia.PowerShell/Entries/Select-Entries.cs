@@ -7,10 +7,12 @@
     {
         protected override void BeginProcessing()
         {
+            // Do stuff before processing has started.
         }
 
         protected override void EndProcessing()
         {
+            // Do stuff after processing has started.
         }
     }
 }
