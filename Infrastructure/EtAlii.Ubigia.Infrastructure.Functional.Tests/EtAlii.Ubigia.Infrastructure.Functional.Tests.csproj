@@ -21,6 +21,7 @@
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222032</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="coverlet.msbuild" Version="2.5.1" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.45" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.45" />
     <PackageReference Include="xunit" Version="2.4.1" />
