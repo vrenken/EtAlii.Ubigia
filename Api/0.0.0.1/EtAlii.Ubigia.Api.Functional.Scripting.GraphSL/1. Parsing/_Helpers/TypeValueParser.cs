@@ -26,7 +26,7 @@
                     Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)) +
                     (Lp.Char('.') + Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c))).ZeroOrMore()
                 )
-            );//.Debug("TypeValueParser", true);
+            );
         }
 
 

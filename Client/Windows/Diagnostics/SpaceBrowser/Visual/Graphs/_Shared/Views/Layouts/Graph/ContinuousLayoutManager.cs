@@ -13,8 +13,7 @@
         {
             var diagram = Diagram;
             if (diagram == null) return;
-            var layout = diagram.Layout as ContinuousForceDirectedLayout;
-            if (layout != null)
+            if (diagram.Layout is ContinuousForceDirectedLayout layout)
             {
                 // assume there are no Groups with their own Layout
                 if (!layout.ValidLayout)
@@ -66,8 +65,7 @@
             if (SkipsInvalidate) return;
             if (Diagram == null) return;
             if (p == null || p.Layer == null || p.Layer.IsTemporary) return;
-            var layout = Diagram.Layout as ContinuousForceDirectedLayout;
-            if (layout != null &&
+            if (Diagram.Layout is ContinuousForceDirectedLayout layout &&
                 (change == LayoutChange.NodeAdded || change == LayoutChange.NodeRemoved ||
                  change == LayoutChange.LinkAdded || change == LayoutChange.LinkRemoved))
             {

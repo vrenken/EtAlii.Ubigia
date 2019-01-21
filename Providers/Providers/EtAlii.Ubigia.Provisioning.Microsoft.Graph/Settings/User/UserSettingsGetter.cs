@@ -30,8 +30,7 @@
             return result.Select(n =>
             {
                 var settings = new UserSettings();
-                object value;
-                if (n.TryGetValue("PrivateKey", out value))
+                if (n.TryGetValue("PrivateKey", out var value))
                 {
                     settings.PrivateKey = (string)value;
                 }

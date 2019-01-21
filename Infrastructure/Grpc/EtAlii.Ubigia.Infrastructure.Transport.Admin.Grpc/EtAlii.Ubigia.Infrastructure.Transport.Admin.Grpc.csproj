@@ -3,6 +3,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222021</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Grpc.csproj" />

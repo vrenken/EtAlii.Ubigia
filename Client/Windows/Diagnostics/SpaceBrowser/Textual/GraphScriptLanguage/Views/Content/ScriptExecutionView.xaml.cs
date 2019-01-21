@@ -38,13 +38,12 @@
         {
             var scriptExecutionView = (ScriptExecutionView) d;
 
-            var oldValue = e.OldValue as ObservableCollection<string>;
-            if (oldValue != null)
+            if (e.OldValue is ObservableCollection<string> oldValue)
             {
                 oldValue.CollectionChanged -= scriptExecutionView.UpdateExecutionStatusTextBox;
             }
-            var newValue = e.NewValue as ObservableCollection<string>;
-            if (newValue != null)
+
+            if (e.NewValue is ObservableCollection<string> newValue)
             {
                 newValue.CollectionChanged += scriptExecutionView.UpdateExecutionStatusTextBox;
             }

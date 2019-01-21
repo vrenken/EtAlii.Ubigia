@@ -1,0 +1,11 @@
+{
+  "ServerUri": "http://vrenken.duckdns.org:54001",
+  "Organization": null,
+  "ProjectKey": "EtAlii.Ubigia",
+  "Profiles": {
+    "CSharp": {
+      "ProfileKey": "AWhTOi44H2yeKLQdHtst",
+      "ProfileTimestamp": "2019-01-15T21:35:48+01:00"
+    }
+  }
+}

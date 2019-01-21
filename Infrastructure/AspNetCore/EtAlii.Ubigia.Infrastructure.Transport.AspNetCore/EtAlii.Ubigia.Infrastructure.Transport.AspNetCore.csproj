@@ -21,6 +21,12 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222015</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.45" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.75" />

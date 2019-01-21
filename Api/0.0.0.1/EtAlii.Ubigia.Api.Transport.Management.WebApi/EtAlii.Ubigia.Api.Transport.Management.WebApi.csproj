@@ -16,6 +16,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>475a1ecf-59cb-470f-9896-ec9be857a6bd</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Transport.Management.WebApi.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Transport.Management.WebApi.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />

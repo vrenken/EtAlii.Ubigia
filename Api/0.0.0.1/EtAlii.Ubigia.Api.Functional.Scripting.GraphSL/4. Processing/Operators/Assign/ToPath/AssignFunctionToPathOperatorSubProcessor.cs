@@ -30,13 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async (o) => 
                 {
-                    //var assigner = _toIdentifierAssignerSelector.TrySelect(value);
-                    //if (assigner == null)
-                    //{
-                    //    throw new ScriptProcessingException("Object not supported for assignment operations: " + (value != null ? value.ToString() : "NULL"));
-                    //}
                     var result = await _context.Logical.Nodes.Assign(o, value, parameters.Scope);
-                    //var result = await assigner.Assign(value, o, parameters.Scope);
                     parameters.Output.OnNext(result);
                 });
 

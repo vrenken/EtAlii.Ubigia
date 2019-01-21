@@ -53,8 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
         {
-            var input = argumentSet.Arguments[0] as IObservable<object>;
-            if (input == null)
+            if (!(argumentSet.Arguments[0] is IObservable<object> input))
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Id function processing");
             }

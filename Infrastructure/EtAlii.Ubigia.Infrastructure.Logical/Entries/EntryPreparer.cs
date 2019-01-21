@@ -14,8 +14,7 @@
 
         public Entry Prepare(Guid spaceId)
         {
-            Identifier previousHeadIdentifier;
-            var currentHeadidentifier = _context.Identifiers.GetNextHead(spaceId, out previousHeadIdentifier);
+            var currentHeadidentifier = _context.Identifiers.GetNextHead(spaceId, out var previousHeadIdentifier);
 
             //var relation = Relation.NewRelation(previousHeadIdentifier);
             var entry = Entry.NewEntry(currentHeadidentifier);//, relation);

@@ -21,12 +21,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
             foreach (var part in path)
             {
-                var variablePart = part as VariablePathSubjectPart;
-                if (variablePart != null)
+                if (part is VariablePathSubjectPart variablePart)
                 {
                     var variableName = variablePart.Name;
-                    ScopeVariable variable;
-                    if (!_context.Scope.Variables.TryGetValue(variableName, out variable))
+                    if (!_context.Scope.Variables.TryGetValue(variableName, out var variable))
                     {
                         throw new ScriptProcessingException($"Variable {variableName} not set");
                     }

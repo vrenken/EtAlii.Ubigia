@@ -18,12 +18,10 @@ namespace EtAlii.Ubigia.Provisioning.Time
 
         public void Stop()
         {
-            //_timeImporter.Stop();
         }
 
         public void Start()
         {
-            //_timeImporter.Start();
         }
     }
 }

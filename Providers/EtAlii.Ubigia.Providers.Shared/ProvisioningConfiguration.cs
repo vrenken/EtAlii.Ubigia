@@ -14,9 +14,6 @@
 
         public IProviderConfiguration[] ProviderConfigurations { get; private set; }
 
-        //public IStorage Storage { get { return _storage; } }
-        //private IStorage _storage;
-
         public Uri Address { get; private set; }
 
         public string Account { get; private set; }

@@ -11,10 +11,5 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         {
             ProcessReason = processReason;
         }
-        
-        //public override string ToString()
-        //{
-        //    return String.Format("{0} - Id: {1}, Reason: {2}", base.GetType(), Vertex.Entry.Id.ToTimeString(), ProcessReason);
-        //}
     }
 }

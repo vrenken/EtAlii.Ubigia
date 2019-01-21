@@ -87,12 +87,9 @@ namespace EtAlii.Ubigia.Api.Functional
             ExecutionScope scope, 
             IObserver<object> output)
         {
-            PathSubject pathSubject = argumentSet.Arguments[0] as PathSubject;
-
-            if (pathSubject == null)
+            if (!(argumentSet.Arguments[0] is PathSubject pathSubject))
             {
-                var argumentInput = argumentSet.Arguments[0] as IObservable<object>;
-                if (argumentInput == null)
+                if (!(argumentSet.Arguments[0] is IObservable<object> argumentInput))
                 {
                     throw new ScriptProcessingException("Unable to convert arguments for Include function processing");
                 }

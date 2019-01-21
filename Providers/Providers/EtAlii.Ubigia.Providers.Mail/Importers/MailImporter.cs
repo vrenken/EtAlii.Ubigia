@@ -94,8 +94,6 @@
 
             try
             {
-                //_imap.StopIdle();
-
                 _inbox = _imap.ExamineMailbox("INBOX");
 
                 var newMessageCount = _inbox.MessageCount;

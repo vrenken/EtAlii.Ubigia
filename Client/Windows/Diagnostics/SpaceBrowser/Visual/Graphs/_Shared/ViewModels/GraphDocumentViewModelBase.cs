@@ -60,11 +60,7 @@
 
             Modifiable = true;
         }
-
-        //private void OnEntryPrepared(Identifier identifier)
-        //{
-        //}
-
+        
         protected virtual void OnEntryStored(Identifier id)
         {
         }

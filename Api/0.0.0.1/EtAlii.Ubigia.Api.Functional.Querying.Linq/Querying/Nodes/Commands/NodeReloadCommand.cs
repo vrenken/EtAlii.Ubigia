@@ -39,8 +39,7 @@
 
         private void UpdateOriginalNode(INode node, IEnumerable<object> output)
         {
-            var updatedNode = output.Single() as IInternalNode;
-            if (updatedNode == null)
+            if (!(output.Single() is IInternalNode updatedNode))
             {
                 throw new InvalidOperationException("Unable to update node");
             }

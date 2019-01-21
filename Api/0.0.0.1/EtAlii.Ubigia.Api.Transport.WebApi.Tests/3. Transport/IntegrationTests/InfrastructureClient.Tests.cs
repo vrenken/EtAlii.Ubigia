@@ -67,11 +67,6 @@
             var client = new DefaultInfrastructureClient(httpClientFactory);
 
             await client.Post(new Uri(_url + identifier), testMessage);
-
-            //var result = infrastructureClient.Get<TestMessage>(_url + identifier);
-            //Assert.NotNull(result);
-            //Assert.Equal(result.Name, testMessage.Name);
-            //Assert.Equal(result.Value, testMessage.Value);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

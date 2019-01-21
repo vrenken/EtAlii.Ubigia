@@ -31,8 +31,7 @@
             return result.Select(n =>
             {
                 var settings = new UserSettings();
-                object value;
-                if (n.TryGetValue("Id", out value))
+                if (n.TryGetValue("Id", out var value))
                 {
                     settings.Id = (string)value;
                 }

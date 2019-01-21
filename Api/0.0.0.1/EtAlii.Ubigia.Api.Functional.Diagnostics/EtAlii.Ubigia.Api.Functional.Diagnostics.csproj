@@ -16,16 +16,19 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>7652591c-522e-4eb4-a6a5-349107e481cc</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Diagnostics.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Diagnostics.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Scripting\Roots\**" />
-    <EmbeddedResource Remove="Scripting\Roots\**" />
-    <None Remove="Scripting\Roots\**" />
+    <Compile Remove="Scripting\**" />
+    <EmbeddedResource Remove="Scripting\**" />
+    <None Remove="Scripting\**" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Diagnostics\EtAlii.Ubigia.Api.Logical.Diagnostics.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripting" />
   </ItemGroup>
 </Project>

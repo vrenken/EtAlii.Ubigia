@@ -307,8 +307,7 @@
 
         private static bool IsValidHostName(string host)
         {
-            Uri result;
-            return Uri.TryCreate("http://u@" + host + "/", UriKind.Absolute, out result);
+            return Uri.TryCreate("http://u@" + host + "/", UriKind.Absolute, out var result);
         }
     }
 }

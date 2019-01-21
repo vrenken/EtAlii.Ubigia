@@ -18,8 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<Root> Get(string rootName)
         {
-            Root result;
-            if (!_cache.TryGetValue(rootName, out result))
+            if (!_cache.TryGetValue(rootName, out var result))
             {
                 _cache[rootName] = result = await _fabricContext.Roots.Get(rootName);
             }

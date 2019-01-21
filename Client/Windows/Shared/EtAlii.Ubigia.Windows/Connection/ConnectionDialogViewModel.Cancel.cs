@@ -4,14 +4,12 @@
     {
         private bool CanCancel(object parameter)
         {
-            var window = parameter as ConnectionDialogWindow;
-            return window != null;
+            return parameter is ConnectionDialogWindow window;
         }
 
         private void Cancel(object parameter)
         {
-            var window = parameter as ConnectionDialogWindow;
-            if (window != null)
+            if (parameter is ConnectionDialogWindow window)
             {
                 window.DialogResult = false;
             }

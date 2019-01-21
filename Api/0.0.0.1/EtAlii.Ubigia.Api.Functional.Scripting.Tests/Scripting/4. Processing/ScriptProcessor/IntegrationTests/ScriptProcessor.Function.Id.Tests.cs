@@ -58,7 +58,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
         }
 
 
@@ -81,7 +80,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -103,7 +101,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
         }
 
 
@@ -149,7 +146,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -171,7 +167,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -217,7 +212,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
         }
     }
 }

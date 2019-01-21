@@ -98,8 +98,7 @@ namespace EtAlii.Ubigia.Api.Functional
             // A static path cannot have GraphRootStartNodes.
             for (int i = 0; i < result.Length; i++)
             {
-                var graphRootStartNode = result[i] as GraphRootStartNode;
-                if (graphRootStartNode != null)
+                if (result[i] is GraphRootStartNode graphRootStartNode)
                 {
                     var root = graphRootStartNode.Root;
                     result[i] = new GraphNode(root);

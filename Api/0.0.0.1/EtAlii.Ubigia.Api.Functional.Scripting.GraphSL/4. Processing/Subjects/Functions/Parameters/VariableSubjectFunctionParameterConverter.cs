@@ -17,8 +17,7 @@
 
             object result = Observable.Empty<object>();
             var variableName = variableSubjectArgument.Name;
-            ScopeVariable variable;
-            if (_context.Scope.Variables.TryGetValue(variableName, out variable))
+            if (_context.Scope.Variables.TryGetValue(variableName, out var variable))
             {
                 result = variable.Value;
             }

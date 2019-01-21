@@ -23,7 +23,7 @@
                     Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
                     Lp.Char(':') +
                     _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path")
-                );//.Debug("RootedPathFunctionSubjectArgumentParser", true); ;
+                );
         }
 
         public FunctionSubjectArgument Parse(LpNode node)

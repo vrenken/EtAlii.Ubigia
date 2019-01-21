@@ -30,8 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public override void VisitResultOperator(ResultOperatorBase resultOperator, QueryModel queryModel, int index)
         {
-            var nodeOperator = resultOperator as INodeOperator;
-            if (nodeOperator != null)
+            if (resultOperator is INodeOperator nodeOperator)
             {
                 nodeOperator.Operate(queryModel, index, _scriptAggregator);
             }
@@ -53,11 +52,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public override void VisitMainFromClause(MainFromClause fromClause, QueryModel queryModel)
         {
-            var constantExpression = fromClause.FromExpression as ConstantExpression;
-            if(constantExpression != null)
+            if(fromClause.FromExpression is ConstantExpression constantExpression)
             {
-                var queryable = constantExpression.Value as NodeQueryable<INode>;
-                if(queryable != null)
+                if(constantExpression.Value is NodeQueryable<INode> queryable)
                 {
                     _scriptAggregator.AddVariableAssignment(queryable);
                 }

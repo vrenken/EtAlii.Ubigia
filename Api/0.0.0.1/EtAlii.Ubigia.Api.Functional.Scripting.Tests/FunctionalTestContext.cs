@@ -20,16 +20,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             _logical = logical;
             _diagnostics = diagnostics;
         }
-
-//        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
-//        {
-//            var logicalContext = await _logical.CreateLogicalContext(openOnCreation);
-//            var configuration = new DataContextConfiguration()
-//                .Use(_diagnostics)
-//                .Use(logicalContext);
-//            return new DataContextFactory().Create(configuration);
-//        }
-
         
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {

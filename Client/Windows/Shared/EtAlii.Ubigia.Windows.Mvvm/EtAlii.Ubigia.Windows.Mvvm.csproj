@@ -18,6 +18,14 @@
     <ProjectGuid>9b6839e1-3949-4039-9409-ebcf7c896fab</ProjectGuid>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Mvvm.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Mvvm.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <!-- 
   Interesting link:
   https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
