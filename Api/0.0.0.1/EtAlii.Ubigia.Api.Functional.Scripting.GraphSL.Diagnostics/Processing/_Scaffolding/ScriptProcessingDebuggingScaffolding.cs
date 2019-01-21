@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class ScriptProcessingDebuggingScaffolding : IScaffolding
