@@ -56,6 +56,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after)
         {
+            // Validate the string constant subject for better parsed results.
         }
 
         public bool CanValidate(ConstantSubject constantSubject)

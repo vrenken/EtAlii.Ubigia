@@ -34,6 +34,7 @@
 
         public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
         {
+            // Validate the remove operation.
         }
     }
 }
