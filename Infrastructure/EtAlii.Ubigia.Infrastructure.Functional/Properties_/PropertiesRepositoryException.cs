@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class PropertiesRepositoryException : Exception
     {
         public PropertiesRepositoryException(string message)

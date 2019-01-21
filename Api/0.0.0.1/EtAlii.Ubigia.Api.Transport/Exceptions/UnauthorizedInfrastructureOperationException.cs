@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class UnauthorizedInfrastructureOperationException : Exception
     {
         public UnauthorizedInfrastructureOperationException(string message)

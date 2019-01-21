@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class EntryRepositoryException : Exception
     {
         public EntryRepositoryException(string message)

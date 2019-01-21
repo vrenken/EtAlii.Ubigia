@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
 
+    [Serializable]
     public class GraphTraversalException : Exception
     {
         public GraphTraversalException(string message) 
