@@ -21,7 +21,6 @@
             _nodeFinder = nodeFinder;
 
             Parser = new LpsParser(Id, true,
-                //(Lp.One(c => _constantHelper.IsValidConstantCharacter(c)).OneOrMore().Id(TextId)) |
                 (Lp.One(c => c == '\"') +
                  Lp.One(c => constantHelper.IsValidQuotedConstantCharacter(c, '\"')).OneOrMore().Id(TextId) +
                  Lp.One(c => c == '\"')) |
@@ -45,6 +44,7 @@
 
         public void Validate(FunctionSubjectArgument before, FunctionSubjectArgument argument, int parameterIndex, FunctionSubjectArgument after)
         {
+            // Validate the constant function subject for better parsed results.
         }
 
         public bool CanValidate(FunctionSubjectArgument argument)

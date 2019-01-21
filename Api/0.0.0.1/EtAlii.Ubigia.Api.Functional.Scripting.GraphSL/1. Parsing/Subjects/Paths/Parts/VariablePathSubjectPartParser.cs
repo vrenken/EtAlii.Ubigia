@@ -30,6 +30,7 @@
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
+            // Validate the variable path subject for better parsed results.
         }
 
         public bool CanParse(LpNode node)
