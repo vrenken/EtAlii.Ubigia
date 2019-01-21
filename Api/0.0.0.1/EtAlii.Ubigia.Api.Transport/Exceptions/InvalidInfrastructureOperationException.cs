@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class InvalidInfrastructureOperationException : Exception
     {
         public InvalidInfrastructureOperationException(string message)

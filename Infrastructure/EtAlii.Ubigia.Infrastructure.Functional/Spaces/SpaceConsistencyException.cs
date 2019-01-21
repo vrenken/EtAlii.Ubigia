@@ -3,6 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
 
+    [Serializable]
     public class SpaceConsistencyException : Exception
     {
         public SpaceConsistencyException(Identifier source, Identifier target, string message)

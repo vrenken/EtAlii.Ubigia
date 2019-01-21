@@ -3,6 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api;
 
+    [Serializable]
     public class SpaceFabricException : Exception
     {
         public SpaceFabricException(string message)

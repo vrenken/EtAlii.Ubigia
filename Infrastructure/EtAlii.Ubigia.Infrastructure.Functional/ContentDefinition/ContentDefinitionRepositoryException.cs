@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class ContentDefinitionRepositoryException : Exception
     {
         public ContentDefinitionRepositoryException(string message)

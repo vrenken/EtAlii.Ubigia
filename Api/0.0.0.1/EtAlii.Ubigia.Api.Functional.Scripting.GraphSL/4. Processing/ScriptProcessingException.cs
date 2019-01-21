@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class ScriptProcessingException : Exception
     {
         public ScriptProcessingException()

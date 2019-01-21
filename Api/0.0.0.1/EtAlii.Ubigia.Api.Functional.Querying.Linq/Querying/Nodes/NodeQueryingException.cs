@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class NodeQueryingException : Exception
     {
         private ScriptParseResult ParseResult { get; }

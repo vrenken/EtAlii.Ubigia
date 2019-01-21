@@ -2,6 +2,7 @@
 {
     using System;
 
+    [Serializable]
     public class ScriptParserException : Exception
     {
         public ScriptParserException()
