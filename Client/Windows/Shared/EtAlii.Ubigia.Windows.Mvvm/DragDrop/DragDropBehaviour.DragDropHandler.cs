@@ -74,8 +74,7 @@
             /// <param name="newValue"></param>
             protected override void AdjustEventHandlers(DependencyObject sender, object oldValue, object newValue)
             {
-                var element = sender as UIElement;
-                if (element == null) { return; }
+                if (!(sender is UIElement element)) { return; }
 
                 if (oldValue != null)
                 {
@@ -93,14 +92,12 @@
             /// </summary>
             private void ReceiveDrop(object sender, DragEventArgs e)
             {
-                var dp = sender as DependencyObject;
-                if (dp == null)
+                if (!(sender is DependencyObject dp))
                 {
                     return;
                 }
 
-                var action = dp.GetValue(Property) as IDragDropHandler;
-                if (action == null)
+                if (!(dp.GetValue(Property) is IDragDropHandler action))
                 {
                     return;
                 }

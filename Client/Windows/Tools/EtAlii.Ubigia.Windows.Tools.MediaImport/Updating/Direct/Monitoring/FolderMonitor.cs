@@ -137,9 +137,6 @@
         {
             _logger.Info("Error in folder monitoring");
             Error(this, e);
-
-            //Stop();
-            //Start();
         }
 
         private void OnDeleted(object sender, FileSystemEventArgs e)

@@ -521,8 +521,8 @@
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.Null(firstJohnEntry);//, "First entry is not null");
-            Assert.NotNull(secondJohnEntry);//, "Second entry is null");
+            Assert.Null(firstJohnEntry);
+            Assert.NotNull(secondJohnEntry);
             Assert.Equal("John", secondJohnEntry.ToString());
         }
 
@@ -549,8 +549,8 @@
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.Null(firstJohnEntry);//, "First entry is not null");
-            Assert.NotNull(secondJohnEntry);//, "Second entry is null");
+            Assert.Null(firstJohnEntry);
+            Assert.NotNull(secondJohnEntry);
             Assert.Equal("John", secondJohnEntry.ToString());
         }
 

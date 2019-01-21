@@ -16,6 +16,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>9920aa3d-4e90-4562-a00e-cddb71345ba9</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Fabric.Management.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Fabric.Management.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Fabric\EtAlii.Ubigia.Api.Fabric.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />

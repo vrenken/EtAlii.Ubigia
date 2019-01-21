@@ -19,8 +19,7 @@
         {
             await Task.Run(() =>
             {
-                IReadOnlyEntry entry;
-                if (_cacheProvider.Cache.TryGetValue(identifier, out entry))
+                if (_cacheProvider.Cache.TryGetValue(identifier, out var entry))
                 {
                     // Yup, we got a cache hit.
                     _cacheProvider.Cache.Remove(identifier);

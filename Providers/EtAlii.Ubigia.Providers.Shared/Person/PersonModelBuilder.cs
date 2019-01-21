@@ -144,11 +144,6 @@
                 fn.Persons.Add(p);
             }
             return fn.Persons;
-
-            //return _lastNames
-            //    .SingleOrDefault(ln => ln.Name == lastName)?
-            //    .FirstNames.SingleOrDefault(fn => fn.Name == firstName)
-            //    ?.Persons;
         }
 
         private string CleanupPhone(string phone)

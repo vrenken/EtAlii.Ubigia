@@ -12,29 +12,12 @@
         private readonly ILogger _logger;
         private readonly IProviderContext _context;
 
-        //private readonly List<IReadOnlyEntry> _yearEntries;
-        //private readonly List<IReadOnlyEntry> _monthEntries;
-        //private readonly List<IReadOnlyEntry> _dayEntries;
-        //private readonly List<IReadOnlyEntry> _hourEntries;
-        //private readonly List<IReadOnlyEntry> _minuteEntries;
-        //private readonly List<IReadOnlyEntry> _secondEntries;
-        //private DateTime _lastTime;
         private readonly bool addEachTenSeconds = false;
 
         public TimeImporter(ILogger logger, IProviderContext context)
         {
             _logger = logger;
             _context = context;
-
-            //_yearEntries = new List<IReadOnlyEntry>();
-            //_monthEntries = new List<IReadOnlyEntry>();
-            //_dayEntries = new List<IReadOnlyEntry>();
-            //_hourEntries = new List<IReadOnlyEntry>();
-            //_minuteEntries = new List<IReadOnlyEntry>();
-            //if (addEachTenSeconds)
-            //{
-            //    _secondEntries = new List<IReadOnlyEntry>();
-            //}
         }
 
         public void Start()
@@ -83,9 +66,6 @@
                     await sequenceResult.Output.LastOrDefaultAsync();
                 });
                 task.Wait();
-
-                //_lastTime = utcNow;
-
             }
             catch (Exception e)
             {
@@ -93,11 +73,6 @@
             }
 
         }
-
-//        private string GetType(DateTime utcTime, string format)
-//        {
-//            return utcTime.ToString(format);
-//        }
 
         private void Setup()
         {

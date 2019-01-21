@@ -16,6 +16,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>6aac5c9e-ef7e-4658-967a-335cf05bad41</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Scripting.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Scripting.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />
     <EmbeddedResource Remove="Scripting\**" />

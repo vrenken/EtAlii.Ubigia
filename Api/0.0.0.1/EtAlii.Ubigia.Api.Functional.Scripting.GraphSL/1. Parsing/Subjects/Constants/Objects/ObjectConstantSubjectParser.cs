@@ -24,17 +24,17 @@
             _nodeFinder = nodeFinder;
             _keyValuePairParser = keyValuePairParser;
 
-            var start = Lp.One(c => c == '{'); //.Debug("StartBracket");
-            var end = Lp.One(c => c == '}'); //.Debug("EndBracket");
+            var start = Lp.One(c => c == '{'); 
+            var end = Lp.One(c => c == '}'); 
 
-            var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + newLineParser.OptionalMultiple);//; //.Debug("Comma");
+            var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + newLineParser.OptionalMultiple);
             Parser = new LpsParser(Id, true,
                 Lp.InBrackets(
                 start,
                 newLineParser.OptionalMultiple +
                 Lp.List(_keyValuePairParser.Parser, separator, Lp.ZeroOrMore(' ')).Maybe() + newLineParser.OptionalMultiple,
                 end)
-                );//.Debug("ObjectConstant");
+                );
         }
 
         public ConstantSubject Parse(LpNode node)

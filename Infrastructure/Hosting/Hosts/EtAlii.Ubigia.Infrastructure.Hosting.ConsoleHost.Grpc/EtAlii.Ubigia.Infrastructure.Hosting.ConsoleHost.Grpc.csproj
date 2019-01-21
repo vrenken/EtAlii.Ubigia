@@ -6,6 +6,12 @@
     <StartupObject />
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222006</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="settings.json" />
   </ItemGroup>

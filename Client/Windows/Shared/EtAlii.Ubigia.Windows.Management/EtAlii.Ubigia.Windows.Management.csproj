@@ -26,6 +26,12 @@
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Management.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Management.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
 
 
   <!-- 

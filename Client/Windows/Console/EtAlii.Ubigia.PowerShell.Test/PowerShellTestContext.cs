@@ -136,12 +136,10 @@
 
         public Collection<PSObject> InvokeSelectStorage()
         {
-            //var configuration = Context.Infrastructure.Configuration;
             PowerShell.Commands.Clear();
 	        PowerShell
 	            .AddCommand("Select-Storage")
-				.AddArgument(Context.ManagementServiceAddress)//configuration.Address)
-				//.AddArgument($"{Context.ManagementServiceAddress}")
+				.AddArgument(Context.ManagementServiceAddress)
                 .AddArgument(Context.AdminAccountName)
                 .AddArgument(Context.AdminAccountPassword);
             return PowerShell.Invoke();

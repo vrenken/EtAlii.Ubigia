@@ -605,8 +605,7 @@
 
         private static void SetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
-            AggregateException aggregateException = e as AggregateException;
-            if (aggregateException != null)
+            if (e is AggregateException aggregateException)
                 tcs.SetException(aggregateException.InnerExceptions);
             else
                 tcs.SetException(e);
@@ -614,8 +613,7 @@
 
         private static bool TrySetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
-            AggregateException aggregateException = e as AggregateException;
-            if (aggregateException != null)
+            if (e is AggregateException aggregateException)
                 return tcs.TrySetException(aggregateException.InnerExceptions);
             return tcs.TrySetException(e);
         }

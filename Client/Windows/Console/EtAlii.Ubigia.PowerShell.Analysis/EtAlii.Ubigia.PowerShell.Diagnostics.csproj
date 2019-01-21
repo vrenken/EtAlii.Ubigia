@@ -19,4 +19,10 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ProjectGuid>210090c7-1cbf-44a3-a685-96310723bb42</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.PowerShell.Diagnostics.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.PowerShell.Diagnostics.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
 </Project>

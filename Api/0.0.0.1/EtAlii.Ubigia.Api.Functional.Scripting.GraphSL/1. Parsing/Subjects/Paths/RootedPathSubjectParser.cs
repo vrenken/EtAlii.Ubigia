@@ -25,10 +25,9 @@ namespace EtAlii.Ubigia.Api.Functional
                     Id, true,
                     Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Id("root") +
                     Lp.Char(':') +
-                    //_pathSubjectPartsParser.Parser.OneOrMore().Id("path") +
                     _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path") +
                     Lp.Lookahead(Lp.Not("."))
-                );//.Debug("RootedPathSubjectParser", true);
+                );
         }
 
         public Subject Parse(LpNode node)

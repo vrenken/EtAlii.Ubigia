@@ -27,14 +27,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
             Parser = new LpsParser
                 (
-                    Id, true,
-                    //Lp.Char('/').Not().Debug("Start", true) + 
-                    (Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Wrap(TextId) | 
-                    //new LpsParser("Start", false, Lp.Char('/')).Not().Debug("Bracket-Start", true) + 
-                    _quotedTextParser.Parser) + //.Debug("Content", true)) + //.Look(c => c != '/', c => c != '/').Debug("Look", true)
-                    //new LpsParser(Lp.Char('/').Not().Debug("Stop", true) | Lp.End)
+                    Id, true, (Lp.OneOrMore(c => constantHelper.IsValidConstantCharacter(c)).Wrap(TextId) | _quotedTextParser.Parser) + //.Debug("Content", true)) + //.Look(c => c != '/', c => c != '/').Debug("Look", true)
                     Lp.End
-                );//.Debug("StringConstantSubjectParser", true);
+                );
         }
 
         public ConstantSubject Parse(LpNode node)

@@ -58,8 +58,7 @@
 
         private void GridTreeControl_OnPreviewKeyUp(object sender, KeyEventArgs e)
         {
-            var selectedNode = GridTreeControl.SelectedNode as GridTreeNode; 
-            if (selectedNode != null)
+            if (GridTreeControl.SelectedNode is GridTreeNode selectedNode)
             {
                 switch (e.Key)
                 {

@@ -17,6 +17,14 @@
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222007</ProjectGuid>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Hosting.InProcessHost.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Clients\Content\LocalContentDataClient.Content.cs" />
     <Compile Remove="Clients\Content\LocalContentDataClient.ContentDefinition.cs" />

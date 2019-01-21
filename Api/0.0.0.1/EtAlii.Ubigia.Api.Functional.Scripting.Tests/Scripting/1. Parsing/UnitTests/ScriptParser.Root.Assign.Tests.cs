@@ -121,7 +121,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void ScriptParser_Root_Assign_Object_Root_Under_Other_Name_And_Schema()
         {
             // Arrange.
-            const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";//":/[Words]/[Number]";
+            const string query = "root:projects <= EtAlii.Ubigia.Roots.Object";
 
             // Act.
             var result = _parser.Parse(query);

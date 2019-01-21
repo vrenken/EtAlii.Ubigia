@@ -31,6 +31,12 @@
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="AvalonDock" Version="2.0.2000" />

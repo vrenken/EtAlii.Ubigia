@@ -16,6 +16,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>52ac12f6-929f-4dba-b145-09de1613c4f7</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Querying.GraphQL.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Querying.GraphQL.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />
     <EmbeddedResource Remove="Scripting\**" />
@@ -31,5 +37,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="2. Processing" />
+    <Folder Include="3. Providing\Types\" />
   </ItemGroup>
 </Project>

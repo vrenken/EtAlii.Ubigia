@@ -94,7 +94,6 @@
         public void PowerShell_Root_Update()
         {
             // Arrange.
-            //var result = _testContext.InvokeGetRoots();
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddRoot(firstName);
             var result = _testContext.InvokeGetRootByName(firstName);

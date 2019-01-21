@@ -89,8 +89,6 @@
             Assert.NotNull(selectResult);
             Assert.Equal("Test1", selectResult.StringValue);
             Assert.Equal(12, selectResult.IntValue);
-            //Assert.NotEqual(addResult.Id, updateResult.Id);
-            //Assert.NotEqual(updateResult.Id, selectResult.Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

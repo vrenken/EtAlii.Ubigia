@@ -84,8 +84,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var nameConverter = _toNameConverterSelector.Select(c, f, s);
             var newName = nameConverter(f, s);
 
-            var input = argumentSet.Arguments[0] as IObservable<object>;
-            if (input == null)
+            if (!(argumentSet.Arguments[0] is IObservable<object> input))
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Rename function processing");
             }

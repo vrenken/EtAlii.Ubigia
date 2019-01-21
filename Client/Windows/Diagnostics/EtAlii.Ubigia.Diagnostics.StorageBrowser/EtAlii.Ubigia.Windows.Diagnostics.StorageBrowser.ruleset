@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RuleSet Name="SonarQube - EtAlii.Ubigia Sonar way" ToolsVersion="15.0">
+  <Include Path="..\..\..\..\.sonarlint\etalii.ubigiacsharp.ruleset" Action="Default" />
+</RuleSet>

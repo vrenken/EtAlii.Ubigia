@@ -26,8 +26,7 @@
         {
             if (!disposing)
                 return;
-            IDisposable disposable = Interlocked.Exchange<object>(ref _disposable, _disposedSentinel) as IDisposable;
-            if (disposable == null)
+            if (!(Interlocked.Exchange<object>(ref _disposable, _disposedSentinel) is IDisposable disposable))
                 return;
             disposable.Dispose();
         }

@@ -3,6 +3,12 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222022</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Pages\Routes.cshtml" />
   </ItemGroup>

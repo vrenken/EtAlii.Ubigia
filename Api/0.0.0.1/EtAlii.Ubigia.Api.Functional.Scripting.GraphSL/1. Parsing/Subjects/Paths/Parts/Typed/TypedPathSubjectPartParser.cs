@@ -30,10 +30,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
             Parser = new LpsParser
                 (Id, true, 
-                    Lp.One(c => c == '[') + //.Debug("Bracket-Open", true) + 
-                    Lp.Any(true, types).Id(TextId) + //.Debug("Content", true) + 
-                    Lp.One(c => c == ']')//.Debug("Bracket-Close", true)
-                );//.Debug("TypedPathSubjectPartParser", true);
+                    Lp.One(c => c == '[') +  
+                    Lp.Any(true, types).Id(TextId) +  
+                    Lp.One(c => c == ']')
+                );
         }
 
         public bool CanParse(LpNode node)

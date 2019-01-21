@@ -18,8 +18,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<PropertyDictionary> Retrieve(Identifier entryIdentifier, ExecutionScope scope)
         {
-            PropertyDictionary result;
-            if (!_cache.TryGetValue(entryIdentifier, out result))
+            if (!_cache.TryGetValue(entryIdentifier, out var result))
             {
                 _cache[entryIdentifier] = result = await _context.Properties.Retrieve(entryIdentifier, scope);
             }

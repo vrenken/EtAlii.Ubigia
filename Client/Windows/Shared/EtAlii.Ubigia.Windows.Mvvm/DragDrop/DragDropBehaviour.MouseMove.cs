@@ -42,8 +42,7 @@
             protected override void AdjustEventHandlers(DependencyObject sender, 
                                                         object oldValue, object newValue)
             {
-                var element = sender as UIElement;
-                if (element == null) 
+                if (!(sender is UIElement element)) 
                     return;
 
                 if (oldValue != null)

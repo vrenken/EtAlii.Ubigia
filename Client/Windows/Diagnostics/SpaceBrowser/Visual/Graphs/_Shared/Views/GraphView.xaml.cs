@@ -6,10 +6,5 @@
         {
             InitializeComponent();
         }
-
-//        private void OnContextMenuOpened(object sender, System.Windows.RoutedEventArgs e)
-//        {
-//            //((ContextMenu)sender).DataContext = this.DataContext;
-//        }
     }
 }

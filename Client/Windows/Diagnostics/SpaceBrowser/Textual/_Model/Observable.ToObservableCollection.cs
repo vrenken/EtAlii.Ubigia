@@ -12,16 +12,10 @@
             observable
                 .Subscribe(o =>
             { 
-                //try
-                //{
-                    dispatcherInvoker.Invoke(() =>
-                    {
-                        result.Add(o);
-                    });
-                //}
-                //catch (Exception e)
-                //{
-                //}
+                dispatcherInvoker.Invoke(() =>
+                {
+                    result.Add(o);
+                });
             });
 
             return result;

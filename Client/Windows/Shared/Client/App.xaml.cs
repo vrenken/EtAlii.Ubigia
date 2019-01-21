@@ -41,50 +41,7 @@
                 return alreadyRunning;
             }
         }
-//
-//        private void OnApplicationStartup(object sender, StartupEventArgs e)
-//        {
-//            if (AlreadyRunning)
-//            {
-//                Current.Shutdown();
-//            }
-//            else
-//            {
-//                RegisterKnownTypes();
-//                //Container.Verify();
-//
-//                StartServices();
-//            }
-//        }
-//
-//        private void OnApplicationExit(object sender, ExitEventArgs e)
-//        {
-//            StopServices();
-//        }
-
-        private void StartServices()
-        {
-            _services = new IApplicationService[]
-            {
-                Container.GetInstance<IShellExtensionService>(),
-                Container.GetInstance<ITaskbarIconService>()
-            };
-            foreach (var service in _services)
-            {
-                service.Start();
-            }
-        }
-
-        private void StopServices()
-        {
-            foreach (var service in _services)
-            {
-                service.Stop();
-            }
-
-            _services = null;
-        }
-
+        
         protected override void RegisterKnownTypes()
         {
             base.RegisterKnownTypes();
@@ -95,7 +52,6 @@
 
             Container.Register<IShellExtensionService, ShellExtensionService>();
             Container.Register<ITaskbarIconService, TaskbarIconService>();
-            //Container.RegisterCollection<IApplicationService>(new [] { typeof(ShellExtensionService), typeof(TaskbarIconService) });
         }
     }
 }

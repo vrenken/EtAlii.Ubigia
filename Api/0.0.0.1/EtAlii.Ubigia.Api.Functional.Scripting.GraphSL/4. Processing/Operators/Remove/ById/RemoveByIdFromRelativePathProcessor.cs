@@ -34,11 +34,6 @@
                     var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
                     await Remove(leftId, rightId, parameters.Scope, parameters.Output);
                 });
-
-            //if (leftIds == null || !leftIds.Any())
-            //{
-            //    throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires queryable ids from the previous path part");
-            //}
         }
 
         private async Task Remove(

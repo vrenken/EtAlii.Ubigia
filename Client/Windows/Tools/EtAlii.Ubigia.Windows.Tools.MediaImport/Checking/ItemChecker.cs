@@ -85,8 +85,7 @@
                 }
                 if (evt == _enqueuedEvent)
                 {
-                    ItemCheckAction action;
-                    while (_queue.TryDequeue(out action))
+                    while (_queue.TryDequeue(out var action))
                     {
                         _itemUpdater.Update(action);
                     }

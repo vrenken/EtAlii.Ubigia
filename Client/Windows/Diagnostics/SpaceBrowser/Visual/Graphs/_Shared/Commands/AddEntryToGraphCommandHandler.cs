@@ -11,14 +11,11 @@
         private readonly IFabricContext _fabric;
         private readonly IGraphConfiguration _configuration;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
-        //protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
-        //private readonly IDocumentViewModelProvider _documentViewModelProvider;
-
+        
         private readonly object _lockObject = new object();
 
         public AddEntryToGraphCommandHandler(
             IFabricContext fabric,
-            //IDocumentViewModelProvider documentViewModelProvider,
             IGraphConfiguration configuration,
             IMainDispatcherInvoker mainDispatcherInvoker)
         {

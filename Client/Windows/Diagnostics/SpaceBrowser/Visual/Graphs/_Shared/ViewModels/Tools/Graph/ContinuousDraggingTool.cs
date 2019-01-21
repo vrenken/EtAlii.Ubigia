@@ -12,8 +12,7 @@
             base.DoMouseMove();
             if (Active)
             {
-                var cfdlayout = Diagram.Layout as ContinuousForceDirectedLayout;
-                if (cfdlayout != null)
+                if (Diagram.Layout is ContinuousForceDirectedLayout cfdlayout)
                 {
                     LayoutManager mgr = Diagram.LayoutManager;
                     int olditer = cfdlayout.MaxIterations;

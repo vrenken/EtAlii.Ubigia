@@ -16,6 +16,12 @@
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <ProjectGuid>d2a852e2-0c13-41b2-ac72-f05722d008be</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Transport.Management.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Transport.Management.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport\EtAlii.Ubigia.Api.Transport.csproj" />

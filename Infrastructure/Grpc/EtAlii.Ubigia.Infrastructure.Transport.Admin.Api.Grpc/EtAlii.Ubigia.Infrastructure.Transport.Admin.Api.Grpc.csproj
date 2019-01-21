@@ -4,6 +4,12 @@
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222020</ProjectGuid>
     <LangVersion>7.2</LangVersion>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.csproj" />
   </ItemGroup>

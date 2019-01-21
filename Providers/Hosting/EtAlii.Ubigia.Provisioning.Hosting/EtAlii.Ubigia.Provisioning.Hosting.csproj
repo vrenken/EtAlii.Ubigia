@@ -21,6 +21,12 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222043</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Hosting.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Hosting.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Clients\**" />
     <Compile Remove="Transports\**" />
@@ -41,5 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.75" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+    <Folder Include="_Scaffolding\" />
   </ItemGroup>
 </Project>

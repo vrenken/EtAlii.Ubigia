@@ -21,6 +21,12 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222047</ProjectGuid>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Gis.Google.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Gis.Google.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Clients\**" />
     <Compile Remove="Transports\**" />

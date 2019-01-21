@@ -7,11 +7,6 @@
     {
         public void Register(Container container)
         {
-            var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
-
-            if (diagnostics.EnableDebugging) // diagnostics is enabled
-            {
-            }
         }
     }
 }

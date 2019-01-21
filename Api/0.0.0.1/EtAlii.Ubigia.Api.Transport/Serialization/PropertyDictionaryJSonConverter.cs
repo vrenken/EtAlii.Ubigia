@@ -19,9 +19,7 @@
                 return null;
             }
 
-            var properties = existingValue as PropertyDictionary;
-
-            if (properties == null)
+            if (!(existingValue is PropertyDictionary properties))
             {
                 properties = (objectType == typeof(PropertyDictionary))
                     ? new PropertyDictionary()

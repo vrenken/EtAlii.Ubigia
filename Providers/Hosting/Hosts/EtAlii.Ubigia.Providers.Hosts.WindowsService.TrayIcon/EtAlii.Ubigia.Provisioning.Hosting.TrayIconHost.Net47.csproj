@@ -27,6 +27,12 @@
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
     <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />

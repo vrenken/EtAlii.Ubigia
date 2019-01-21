@@ -19,8 +19,7 @@
         {
             await Task.Run(() =>
             {
-                PropertyDictionary properties;
-                if (_cacheProvider.Cache.TryGetValue(identifier, out properties))
+                if (_cacheProvider.Cache.TryGetValue(identifier, out var properties))
                 {
                     // Yup, we got a cache hit.
                     _cacheProvider.Cache.Remove(identifier);
