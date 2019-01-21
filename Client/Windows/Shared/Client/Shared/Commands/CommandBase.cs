@@ -138,15 +138,13 @@
     public static DependencyObject GetParentObject(DependencyObject child)
     {
       if (child == null) return null;
-      ContentElement contentElement = child as ContentElement;
 
-      if (contentElement != null)
+      if (child is ContentElement contentElement)
       {
         DependencyObject parent = ContentOperations.GetParent(contentElement);
         if (parent != null) return parent;
 
-        FrameworkContentElement fce = contentElement as FrameworkContentElement;
-        return fce != null ? fce.Parent : null;
+        return contentElement is FrameworkContentElement fce ? fce.Parent : null;
       }
 
       //if it's not a ContentElement, rely on VisualTreeHelper

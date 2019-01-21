@@ -28,7 +28,7 @@
         public ObservableCollection<string> ExecutionStatus { get; } = new ObservableCollection<string>();
 
         public event Action SourceChanged = delegate { };
-        private IDisposable _queryChangedSubscription;
+        private readonly IDisposable _queryChangedSubscription;
 
         private readonly IProcessGraphQueryLanguageUnitOfworkHandler _processQueryUnitOfworkHandler;
 

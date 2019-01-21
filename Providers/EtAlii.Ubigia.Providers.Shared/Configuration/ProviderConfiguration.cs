@@ -50,60 +50,35 @@
 
         public IProviderConfiguration Use(IProviderFactory factory)
         {
-            if (factory == null)
-            {
-                throw new ArgumentException(nameof(factory));
-            }
-
-            Factory = factory;
+            Factory = factory ?? throw new ArgumentException(nameof(factory));
 
             return this;
         }
 
         public IProviderConfiguration Use(IManagementConnection managementConnection)
         {
-            if (managementConnection == null)
-            {
-                throw new ArgumentException(nameof(managementConnection));
-            }
-
-            ManagementConnection = managementConnection;
+            ManagementConnection = managementConnection ?? throw new ArgumentException(nameof(managementConnection));
 
             return this;
         }
 
         public IProviderConfiguration Use(IGraphSLScriptContext systemScriptContext)
         {
-            if (systemScriptContext == null)
-            {
-                throw new ArgumentException(nameof(systemScriptContext));
-            }
-
-            SystemScriptContext = systemScriptContext;
+            SystemScriptContext = systemScriptContext ?? throw new ArgumentException(nameof(systemScriptContext));
 
             return this;
         }
 
         public IProviderConfiguration Use(ILogFactory logFactory)
         {
-            if (logFactory == null)
-            {
-                throw new ArgumentException(nameof(logFactory));
-            }
-
-            LogFactory = logFactory;
+            LogFactory = logFactory ?? throw new ArgumentException(nameof(logFactory));
 
             return this;
         }
 
         public IProviderConfiguration Use(Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
         {
-            if (scriptContextFactory == null)
-            {
-                throw new ArgumentException(nameof(scriptContextFactory));
-            }
-
-            _scriptContextFactory = scriptContextFactory;
+            _scriptContextFactory = scriptContextFactory ?? throw new ArgumentException(nameof(scriptContextFactory));
 
             return this;
         }

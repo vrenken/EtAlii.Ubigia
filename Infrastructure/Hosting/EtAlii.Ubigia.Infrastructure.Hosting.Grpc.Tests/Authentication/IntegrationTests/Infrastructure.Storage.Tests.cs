@@ -180,7 +180,7 @@
 		}
 
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
-		public async void Infrastructure_Get_Storage_Delayed_Without_Authentication_01()
+		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_01()
 		{
 			// Arrange.
 			var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();
@@ -196,7 +196,7 @@
 		}
 		
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]
-		public async void Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
+		public async Task Infrastructure_Get_Storage_Delayed_Without_Authentication_02()
 		{
 			// Arrange.
 			var channel = _testContext.HostTestContext.CreateAdminGrpcInfrastructureChannel();

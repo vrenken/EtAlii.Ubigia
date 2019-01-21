@@ -11,11 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public FunctionHandlersProvider(IFunctionHandler[] functionHandlers)
         {
-            if (functionHandlers == null)
-            {
-                throw new ArgumentException(nameof(functionHandlers));
-            }
-            FunctionHandlers = functionHandlers;
+            FunctionHandlers = functionHandlers ?? throw new ArgumentException(nameof(functionHandlers));
         }
 
         public FunctionHandlersProvider(IFunctionHandler[] functionHandlers1, IFunctionHandler[] functionHandlers2)

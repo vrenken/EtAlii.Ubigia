@@ -8,6 +8,11 @@ namespace EtAlii.Ubigia.Provisioning.Hosting.Tests
         [Fact]
         public void TestMethod1()
         {
+            // Arrange.
+
+            // Act.
+
+            // Assert.
         }
     }
 }

@@ -33,9 +33,6 @@
 
 	            var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credentials.UserName + ":" + credentials.Password));
 	            request.Headers.Add("Authorization", "Basic " + encoded);
-
-                //request.Headers.Add("Test-UserName", credentials.UserName);
-                //request.Headers.Add("Test-Password", credentials.Password);
             }
 
             request.Headers.Add("Host-Identifier", _hostIdentifier);

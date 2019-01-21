@@ -14,7 +14,7 @@
 
     internal class EditFolderViewModel : BindableBase, IEditFolderViewModel
     {
-        private IDataConnection _connection;
+        private readonly IDataConnection _connection;
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         public ICommand SaveChangesCommand { get; }
@@ -126,9 +126,10 @@
             }
             else
             {
-                var folderSyncConfiguration = new FolderSyncConfiguration(_folderSyncConfigurations);
-                folderSyncConfiguration.LocalFolder = LocalFolder;
-                folderSyncConfiguration.RemoteName = RemoteName;
+                var folderSyncConfiguration = new FolderSyncConfiguration(_folderSyncConfigurations)
+                {
+                    LocalFolder = LocalFolder, RemoteName = RemoteName
+                };
                 folderSyncConfiguration.Save();
             }
             window.DialogResult = false;

@@ -30,15 +30,16 @@
         {
             _logger = logger;
             _itemChecker = itemChecker;
-            _watcher = new FileSystemWatcher();
+            _watcher = new FileSystemWatcher
+            {
+                IncludeSubdirectories = true,
+                NotifyFilter = NotifyFilters.Size |
+                               NotifyFilters.LastWrite |
+                               NotifyFilters.FileName |
+                               NotifyFilters.DirectoryName |
+                               NotifyFilters.CreationTime
+            };
 
-            _watcher.IncludeSubdirectories = true;
-            _watcher.NotifyFilter =
-                NotifyFilters.Size |
-                NotifyFilters.LastWrite |
-                NotifyFilters.FileName |
-                NotifyFilters.DirectoryName |
-                NotifyFilters.CreationTime;
 
             PropertyChanged += OnPropertyChanged;
         }

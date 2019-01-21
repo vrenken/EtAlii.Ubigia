@@ -41,12 +41,8 @@
             {
                 throw new ArgumentException("A TransportProvider has already been assigned to this SystemConnectionConfiguration", nameof(transportProvider));
             }
-            if (transportProvider == null)
-            {
-                throw new ArgumentNullException(nameof(transportProvider));
-            }
 
-            TransportProvider = transportProvider;
+            TransportProvider = transportProvider ?? throw new ArgumentNullException(nameof(transportProvider));
 
             return this;
         }

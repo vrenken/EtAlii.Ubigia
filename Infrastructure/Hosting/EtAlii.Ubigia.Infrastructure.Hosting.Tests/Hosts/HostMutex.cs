@@ -15,9 +15,6 @@
         public static void ExecuteExclusive(Action action)
         {
             // get application GUID as defined in AssemblyInfo.cs
-            //var appGuid = ((GuidAttribute)Assembly.GetExecutingAssembly()
-            //    .GetCustomAttributes(typeof(GuidAttribute), false)
-            //    .GetValue(0)).Value.ToString();
             var appGuid = HostId;
             
             // unique id for global mutex - Global prefix means it is global to the machine
@@ -46,7 +43,6 @@
                     {
                         // note, you may want to time out here instead of waiting forever
                         // edited by acidzombie24
-                        // mutex.WaitOne(Timeout.Infinite, false);
                         hasHandle = mutex.WaitOne(Timeout, false);
                         if (hasHandle == false)
                             throw new TimeoutException("Timeout waiting for exclusive access");
