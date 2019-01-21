@@ -17,8 +17,6 @@ namespace EtAlii.Ubigia.Provisioning.Google
         public event Action<Exception> Error { add => _error += value; remove => _error -= value; }
         private Action<Exception> _error;
 
-        private static readonly object LockObject = new object();
-
         protected AsyncProcess()
         {
             _events = new WaitHandle[]
@@ -53,11 +51,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
             {
                 try
                 {
-                    //lock (LockObject)
-                    //{
-                        await Run();
-                    //    task.Wait();
-                    //}
+                    await Run();
                 }
                 catch (Exception e)
                 {
