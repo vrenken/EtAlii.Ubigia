@@ -21,12 +21,12 @@ namespace EtAlii.Ubigia.Api.Functional
             }
         }
 
-        public void Visit(GraphQL.Language.AST.Document visitableDocument)
+        public void Visit(GraphQL.Language.AST.Document document)
         {
             Document = new Document();
             Stack.Push(Document);
             
-            foreach (var operation in visitableDocument.Operations)
+            foreach (var operation in document.Operations)
             {
                 operation.Accept(this);
             }

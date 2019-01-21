@@ -10,9 +10,9 @@
     {
         public new static App Current => System.Windows.Application.Current as App;
 
-        public new MainWindow MainWindow { get { return base.MainWindow as MainWindow; } set { base.MainWindow = value; } }
+        public new MainWindow MainWindow { get => base.MainWindow as MainWindow; set => base.MainWindow = value; }
 
-        private IApplicationService[] _services;
+//        private IApplicationService[] _services;
 
         public static bool AlreadyRunning
         {

@@ -12,7 +12,6 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IKeyValuePairParser _keyValuePairParser;
-//        private const string _textId = "Text";
 
         public ObjectConstantSubjectParser(
             INodeValidator nodeValidator,
@@ -59,6 +58,7 @@
 
         public void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after)
         {
+            // Validate the object constant subject.
         }
 
         public bool CanValidate(ConstantSubject constantSubject)

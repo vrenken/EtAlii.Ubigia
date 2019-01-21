@@ -12,13 +12,13 @@
         {
         }
 
-        public Task InitializeAsync()
+        public async Task InitializeAsync()
         {
             ProvisioningTestContext = new ProvisioningTestContextFactory().Create();
             await ProvisioningTestContext.Start();
         }
 
-        public Task DisposeAsync()
+        public async Task DisposeAsync()
         {
             await ProvisioningTestContext.Stop();
             ProvisioningTestContext = null;
