@@ -4,7 +4,7 @@
     {
 		// TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
-		public static string ApiRest = "Api/Rest/";
+		public const string ApiRest = "Api/Rest/";
 	    public const string Authenticate = "authenticate";
 
 		public static class Admin
