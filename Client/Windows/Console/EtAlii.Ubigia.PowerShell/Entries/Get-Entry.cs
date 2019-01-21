@@ -7,13 +7,13 @@
     public class GetEntry : Cmdlet
     {
         [Parameter(Mandatory = false, Position = 0)]
-        public Identifier Identifier;
+        public Identifier Identifier { get; set; }
 
         [Parameter(Mandatory = false, Position = 1)]
-        public bool Newest;
+        public bool Newest { get; set; }
 
         [Parameter(Mandatory = false, Position = 2)]
-        public bool Oldest;
+        public bool Oldest { get; set; }
 
         protected override void BeginProcessing()
         {
