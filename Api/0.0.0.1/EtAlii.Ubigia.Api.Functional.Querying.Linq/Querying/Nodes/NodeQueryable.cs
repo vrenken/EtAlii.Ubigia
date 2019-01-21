@@ -29,21 +29,13 @@
         internal NodeQueryable(IQueryProvider queryProvider, Root startRoot, string startPath)
             : this(queryProvider, startPath)
         {
-            if (startRoot == null)
-            {
-                throw new ArgumentNullException(nameof(startRoot));
-            }
-            StartRoot = startRoot;
+            StartRoot = startRoot ?? throw new ArgumentNullException(nameof(startRoot));
         }
 
         internal NodeQueryable(IQueryProvider queryProvider, Root startRoot)
             : base(queryProvider)
         {
-            if (startRoot == null)
-            {
-                throw new ArgumentNullException(nameof(startRoot));
-            }
-            StartRoot = startRoot;
+            StartRoot = startRoot ?? throw new ArgumentNullException(nameof(startRoot));
         }
 
         internal NodeQueryable(IQueryProvider queryProvider, Identifier startIdentifier)

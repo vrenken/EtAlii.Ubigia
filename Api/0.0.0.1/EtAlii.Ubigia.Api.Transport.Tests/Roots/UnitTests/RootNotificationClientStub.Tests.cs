@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
@@ -18,25 +19,25 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootNotificationClientStub_Connect()
+        public async Task RootNotificationClientStub_Connect()
         {
             // Arrange.
             var rootNotificationClientStub = new RootNotificationClientStub();
 
             // Act.
-            rootNotificationClientStub.Connect(null);
+            await rootNotificationClientStub.Connect(null);
             
             // Assert.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootNotificationClientStub_Disconnect()
+        public async Task RootNotificationClientStub_Disconnect()
         {
             // Arrange.
             var rootNotificationClientStub = new RootNotificationClientStub();
 
             // Act.
-            rootNotificationClientStub.Disconnect(null);
+            await rootNotificationClientStub.Disconnect(null);
             
             // Assert.
         }

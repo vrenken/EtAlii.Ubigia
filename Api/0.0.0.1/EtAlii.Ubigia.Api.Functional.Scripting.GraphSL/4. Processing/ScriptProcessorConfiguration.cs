@@ -40,12 +40,7 @@
 
         public IScriptProcessorConfiguration Use(ILogicalContext logicalContext)
         {
-            if (logicalContext == null)
-            {
-                throw new ArgumentException("logicalContext");
-            }
-
-            LogicalContext = logicalContext;
+            LogicalContext = logicalContext ?? throw new ArgumentException("logicalContext");
             return this;
         }
 

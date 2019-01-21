@@ -58,14 +58,16 @@ namespace EtAlii.Ubigia.Windows.Shared
 
         private static void Execute(string fileName, string arguments = null)
         {
-            var processStartInfo = new ProcessStartInfo(fileName);
-            processStartInfo.CreateNoWindow = true;
-            processStartInfo.UseShellExecute = false;
-            processStartInfo.Verb = "runas";
-            processStartInfo.RedirectStandardOutput = true;
-            processStartInfo.RedirectStandardInput = true;
-            processStartInfo.RedirectStandardError = true;
-            processStartInfo.Arguments = arguments;
+            var processStartInfo = new ProcessStartInfo(fileName)
+            {
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                Verb = "runas",
+                RedirectStandardOutput = true,
+                RedirectStandardInput = true,
+                RedirectStandardError = true,
+                Arguments = arguments
+            };
             var process = Process.Start(processStartInfo);
             process.WaitForExit();
         }

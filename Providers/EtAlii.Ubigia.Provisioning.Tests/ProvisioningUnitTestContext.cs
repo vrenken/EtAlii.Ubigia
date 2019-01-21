@@ -2,30 +2,26 @@
 {
     using System;
     using System.Threading.Tasks;
+    using Xunit;
 
-    public class ProvisioningUnitTestContext : IDisposable
+    public class ProvisioningUnitTestContext : IAsyncLifetime
     {
         public IProvisioningTestContext ProvisioningTestContext { get; private set; }
 
         public ProvisioningUnitTestContext()
         {
-            var task = Task.Run(async () =>
-            {
-                ProvisioningTestContext = new ProvisioningTestContextFactory().Create();
-                await ProvisioningTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await ProvisioningTestContext.Stop();
-                ProvisioningTestContext = null;
-            });
-            task.Wait();
+            ProvisioningTestContext = new ProvisioningTestContextFactory().Create();
+            await ProvisioningTestContext.Start();
         }
 
+        public Task DisposeAsync()
+        {
+            await ProvisioningTestContext.Stop();
+            ProvisioningTestContext = null;
+        }
     }
 }

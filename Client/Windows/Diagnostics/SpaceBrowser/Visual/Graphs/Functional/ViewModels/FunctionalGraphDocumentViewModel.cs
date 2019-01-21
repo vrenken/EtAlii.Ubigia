@@ -32,6 +32,7 @@
 
         protected override void SelectEntry(object parameter)
         {
+            // Select the correct entry.
         }
 
         protected override void DiscoverEntry(object parameter)

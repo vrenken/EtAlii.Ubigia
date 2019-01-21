@@ -13,8 +13,10 @@
         {
             var window = App.Current.MainWindow;
 
-            var storageSettings = new StorageSettings(Guid.NewGuid().ToString());
-            storageSettings.Name = $"Unnamed {App.StorageNaming}";
+            var storageSettings = new StorageSettings(Guid.NewGuid().ToString())
+            {
+                Name = $"Unnamed {App.StorageNaming}"
+            };
 
             var storageWindow = Container.GetInstance<StorageWindow>();
             storageWindow.Owner = window;

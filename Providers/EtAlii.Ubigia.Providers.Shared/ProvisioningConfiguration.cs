@@ -79,11 +79,7 @@
 
         public IProvisioningConfiguration Use(IProviderConfiguration[] providerConfigurations)
         {
-            if (providerConfigurations == null)
-            {
-                throw new ArgumentException(nameof(providerConfigurations));
-            }
-            ProviderConfigurations = providerConfigurations;
+            ProviderConfigurations = providerConfigurations ?? throw new ArgumentException(nameof(providerConfigurations));
 
             return this;
         }

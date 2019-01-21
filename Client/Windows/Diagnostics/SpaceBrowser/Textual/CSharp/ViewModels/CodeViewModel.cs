@@ -16,7 +16,7 @@
         private string _source;
 
         public event Action SourceChanged = delegate { };
-        private IDisposable _codeChangedSubscription;
+        private readonly IDisposable _codeChangedSubscription;
 
         private readonly IExecuteCodeUnitOfworkHandler _executeCodeUnitOfworkHandler;
 
