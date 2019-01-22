@@ -40,7 +40,18 @@ namespace EtAlii.Ubigia.Api.Functional
                 var matcher = _rootHandlerPathPartMatcherSelector.Select(templatePart);
 
                 // 2. Find first matching rest.
-                rest = await FindFirstMatchingRest(scope, rootHandler, matches, templatePart, matcher, result);
+                MatchResult match;
+                if (isFirst)
+                {
+                    match = matches[0];
+                    isFirst = false;
+                }
+                else
+                {
+                    match = await FindFirstMatchingResult(rootHandler, matches, templatePart, matcher, scope);
+                    result.AddRange(match.Match);
+                }
+                rest = match.Rest;
 
                 // 3. Get all matches + rests
                 var parameters = new MatchParameters(rootHandler, templatePart, rest, scope);
@@ -62,16 +73,6 @@ namespace EtAlii.Ubigia.Api.Functional
                     .ToArray();
             }
 
-            return DetermineMatchResult(rootHandler, templateParts, result, isFirst, rest);
-        }
-
-        private MatchResult DetermineMatchResult(
-            IRootHandler rootHandler, 
-            Queue<PathSubjectPart> templateParts, 
-            List<PathSubjectPart> result, 
-            bool isFirst, 
-            PathSubjectPart[] rest)
-        {
             if (templateParts.Count == 0 && (result.Count > 0 || isFirst))
             {
                 // 5. if we do have matches: Add match to result.
@@ -82,30 +83,6 @@ namespace EtAlii.Ubigia.Api.Functional
                 // 6. If we do not have matches: fail.
                 return MatchResult.NoMatch;
             }
-        }
-
-        private async Task<PathSubjectPart[]> FindFirstMatchingRest(
-            IScriptScope scope, 
-            IRootHandler rootHandler, 
-            MatchResult[] matches,
-            PathSubjectPart templatePart, 
-            IRootHandlerPathPartMatcher matcher, 
-            List<PathSubjectPart> result)
-        {
-            bool isFirst;
-            MatchResult match;
-            if (isFirst)
-            {
-                match = matches[0];
-                isFirst = false;
-            }
-            else
-            {
-                match = await FindFirstMatchingResult(rootHandler, matches, templatePart, matcher, scope);
-                result.AddRange(match.Match);
-            }
-
-            return match.Rest;
         }
 
         private async Task<MatchResult> FindFirstMatchingResult(
