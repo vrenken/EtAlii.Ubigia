@@ -3,10 +3,8 @@
     internal interface IInternalNode : INode
     {
         PropertyDictionary GetProperties();
-        //void SetProperties(IPropertiesDictionary properties);
         
-        IReadOnlyEntry Entry { get; } //set; }
-        //void ClearIsModified();
+        IReadOnlyEntry Entry { get; }
 
         void Update(PropertyDictionary properties, IReadOnlyEntry entry);
     }

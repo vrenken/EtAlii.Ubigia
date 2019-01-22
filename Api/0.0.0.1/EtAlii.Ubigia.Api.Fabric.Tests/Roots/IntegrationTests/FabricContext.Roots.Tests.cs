@@ -271,25 +271,6 @@
             Assert.Null(root);
         }
 
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_Roots_Event_Removed()
-        //{
-        //    var name = Guid.NewGuid().ToString();
-
-        //    var root = await connection.Roots.Add(name);
-
-        //    var removedEvent = new ManualResetEvent(false);
-        //    var removedId = Guid.Empty; 
-
-        //    connection.Roots.Removed += (id) => { removedId = id; removedEvent.Set(); };
-        //    await connection.Roots.Remove(root.Id);
-
-        //    removedEvent.WaitOne(TimeSpan.FromSeconds(10));
-
-        //    Assert.NotEqual(Guid.Empty, removedId);
-        //    Assert.NotEqual(root.Id, removedId);
-        //}
-
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Delete_Non_Existing()
         {
@@ -316,88 +297,7 @@
             // Assert.
             await Assert.ThrowsAsync<InvalidInfrastructureOperationException>(act);
         }
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_Roots_Add_With_Closed_Connection()
-        //{
-        //    // Arrange.
-        //    var connection = await _testContext.CreateDataConnection(false);
-        //    var fabricContextConfiguration = new FabricContextConfiguration()
-        //        .Use(connection);
-
-
-        //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); });
-        //    //var act = fabric.Roots.Add(Guid.NewGuid().ToString());
-
-        //    // Assert.
-        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
-        //}
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_Roots_Get_With_Closed_Connection()
-        //{
-        //    // Arrange.
-        //    var connection = await _testContext.CreateDataConnection(false);
-        //    var fabricContextConfiguration = new FabricContextConfiguration()
-        //        .Use(connection);
-
-        //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); });
-        //    //var act = fabric.Roots.Get(Guid.NewGuid());
-
-        //    // Assert.
-        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
-        //}
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_Roots_Remove_With_Closed_Connection()
-        //{
-        //    // Arrange.
-        //    var connection = await _testContext.CreateDataConnection(false);
-        //    var fabricContextConfiguration = new FabricContextConfiguration()
-        //        .Use(connection);
-
-        //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); });
-        //    //var act = fabric.Roots.Remove(Guid.NewGuid());
-
-        //    // Assert.
-        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
-        //}
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_Roots_GetAll_With_Closed_Connection()
-        //{
-        //    // Arrange.
-        //    var connection = await _testContext.CreateDataConnection(false);
-        //    var fabricContextConfiguration = new FabricContextConfiguration()
-        //        .Use(connection);
-
-        //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); });
-        //    //var act = fabric.Roots.GetAll();
-
-        //    // Assert.
-        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
-        //}
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_Roots_Change_With_Closed_Connection()
-        //{
-        //    // Arrange.
-        //    var connection = await _testContext.CreateDataConnection(false);
-        //    var fabricContextConfiguration = new FabricContextConfiguration()
-        //        .Use(connection);
-
-        //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); });
-        //    //act = fabric.Roots.Change(Guid.NewGuid(), Guid.NewGuid().ToString());
-
-        //    // Assert.
-        //    Assert.Throws<InvalidInfrastructureOperationException>(act);
-        //}
-
+        
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Add_Already_Existing_Storage()
         {

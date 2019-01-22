@@ -60,14 +60,13 @@
 
                     var results = Observable.Create<QueryProcessingResult>(async output =>
                     {
-                        var queryExecutionResults = await _queryContext.Process(viewModel.Query); //, viewModel.Scope);
+                        var queryExecutionResults = await _queryContext.Process(viewModel.Query);
 
                         output.OnNext(queryExecutionResults);
                         return System.Reactive.Disposables.Disposable.Empty;
                     }).ToHotObservable();
 
                     // First we subscribe our diagnostics observable hierarchy
-                    //_diagnosticsGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
                     _outputGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
                     _statusGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
                 });

@@ -118,8 +118,6 @@
                     });
                     task.Wait();
                 }
-
-                //_imap.StartIdle();
             }
             catch (Exception exception)
             {

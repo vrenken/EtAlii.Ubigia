@@ -133,7 +133,6 @@
             var entry = await _fabric.Entries.Get(root.Identifier, scope);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create();
             var contentDefinitionPart = _testContext.TestContentDefinitionFactory.CreatePart(0);
-            //connection.Content.StoreDefinition(entry.Id, contentDefinition);
 
             var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
@@ -154,7 +153,6 @@
             await _fabric.Content.StoreDefinition(entry.Id, contentDefinition);
 
             // Act.
-            //await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart);
             var act = new Func<Task>(async () => await _fabric.Content.StoreDefinition(entry.Id, contentDefinitionPart));
 
             // Assert.
@@ -261,59 +259,5 @@
             Assert.Single(retrievedContentDefinition.Summary.AvailableParts);
             Assert.Equal((UInt64)2, retrievedContentDefinition.Summary.AvailableParts.First());
         }
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public async Task FabricContext_ContentDefinition_Store_And_Retrieve_Check_Size()
-        //{
-        //    var connection = CreateFabricContext();
-
-        //    var root = await connection.Roots.Get("Hierarchy");
-        //    var entry = await connection.Entries.Get(root.Identifier);
-
-        //    var contentDefinition = Create();
-        //    await connection.Content.StoreDefinition(entry.Id, contentDefinition);
-
-        //    var retrievedContentDefinition = await connection.Content.RetrieveDefinition(entry.Id);
-
-        //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size);
-        //}
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public void DataConnection_ContentDefinition_Store_And_Retrieve_Check_Checksum()
-        //{
-        //    var connection = CreateFabricContext();
-
-        //    var root = await connection.Roots.Get("Hierarchy");
-        //    var entry = await connection.Entries.Get(root.Identifier);
-
-        //    var contentDefinition = Create();
-        //    await connection.Content.StoreDefinition(entry.Id, contentDefinition);
-
-        //    var retrievedContentDefinition = await connection.Content.RetrieveDefinition(entry.Id);
-
-        //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
-        //}
-
-
-        //[Fact, Trait("Category", TestAssembly.Category)]
-        //public void DataConnection_ContentDefinition_Store_And_Retrieve_Check_Parts()
-        //{
-        //    var connection = CreateFabricContext();
-
-        //    var root = await connection.Roots.Get("Hierarchy");
-        //    var entry = await connection.Entries.Get(root.Identifier);
-
-        //    var contentDefinition = Create();
-        //    await connection.Content.StoreDefinition(entry.Id, contentDefinition);
-
-        //    var retrievedContentDefinition = await connection.Content.RetrieveDefinition(entry.Id);
-
-        //    Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count());
-        //    for (int i = 0; i < contentDefinition.Parts.Count; i++)
-        //    {
-        //        Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum);
-        //        Assert.Equal(contentDefinition.Parts[i].Size, retrievedContentDefinition.Parts.ElementAt(i).Size);
-        //    }
-        //}
     }
 }

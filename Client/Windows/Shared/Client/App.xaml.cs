@@ -12,8 +12,6 @@
 
         public new MainWindow MainWindow { get => base.MainWindow as MainWindow; set => base.MainWindow = value; }
 
-//        private IApplicationService[] _services;
-
         public static bool AlreadyRunning
         {
             get

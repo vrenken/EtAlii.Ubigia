@@ -7,7 +7,6 @@
     {
         public TreeLayout()
         {
-            //Angle = 180;
             BreadthLimit = 1000;
             Alignment = TreeAlignment.Start;
         }

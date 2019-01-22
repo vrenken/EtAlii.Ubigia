@@ -26,9 +26,6 @@
         public bool AutoExpandNodes { get { return _autoExpandNodes; } set { SetProperty(ref _autoExpandNodes, value); } }
         private bool _autoExpandNodes;
 
-        //public ScriptButtonsViewModel Buttons { get { return _buttons; } }
-        //private readonly ScriptButtonsViewModel _buttons;
-
         public ProfilingViewModel(
             IGraphContext graphContext,
             IProfileComposer profileComposer,

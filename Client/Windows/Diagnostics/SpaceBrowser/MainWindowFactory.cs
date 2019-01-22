@@ -64,7 +64,6 @@
 
             var window = container.GetInstance<IMainWindow>();
             var viewModel = container.GetInstance<IMainWindowViewModel>();
-            //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container);
             window.DataContext = viewModel;
             return window;
         }
@@ -95,18 +94,6 @@
             // Function handling
             container.Register<ISpaceBrowserFunctionHandlersProvider, SpaceBrowserFunctionHandlersProvider>();
             container.Register<IViewFunctionHandler, ViewFunctionHandler>();
-
-//            container.Register<IDataContext>(() =>
-//            {
-//                var logicalContext = container.GetInstance<ILogicalContext>();
-//                
-//                // And finally, the functional context.
-//                var dataContextConfiguration = new DataContextConfiguration()
-//                                    .Use(diagnostics)
-//                                    .Use(logicalContext);
-//                return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
-//            });
-//            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
 
             container.Register<IGraphSLScriptContext>(() =>
             {
@@ -151,106 +138,6 @@
                 var factory = container.GetInstance<ILogFactory>();
                 return container.GetInstance<IDiagnosticsConfiguration>().CreateLogger(factory);
             });
-            //container.Register<IProfilerFactory>(
-            //    () => container.GetInstance<IDiagnosticsConfiguration>().CreateProfilerFactory());
-            //container.Register<IProfiler>(() =>
-            //{
-            //    var factory = container.GetInstance<IProfilerFactory>();
-            //    return container.GetInstance<IDiagnosticsConfiguration>().CreateProfiler(factory);
-            //});
         }
-
-        //private NewDocumentCommand[] CreateNewBlankDocumentCommands(Container container)
-        //{
-        //    return new[]
-        //    {
-        //        CreateNewDocumentCommand(container,
-        //            new FunctionalGraphDocumentFactory(),
-        //            "Functional graph",
-        //            @"pack://siteoforigin:,,,/Images/Nodes.png",
-        //            "Graph view {0}",
-        //            "Create a document that shows a information stored in a space using a functional graph",
-        //            "Useful for current state analysis",
-        //            "Does not show temporal information"),
-        //        CreateNewDocumentCommand(container,
-        //            new LogicalGraphDocumentFactory(),
-        //            "Logical graph",
-        //            @"pack://siteoforigin:,,,/Images/Nodes.png",
-        //            "Graph view {0}",
-        //            "Create a document that shows a information stored in a space using a logical graph",
-        //            "Useful for change analysis",
-        //            "Shows temporal information"),
-        //        CreateNewDocumentCommand(container,
-        //            new TreeDocumentFactory(),
-        //            "Hierarchical",
-        //            @"pack://siteoforigin:,,,/Images/Tree.png",
-        //            "Tree view {0}",
-        //            "Create a document that shows information stored in a space hierarchically",
-        //            "Useful for tree structure analysis",
-        //            "Does not show temporal information"),
-        //        CreateNewDocumentCommand(container,
-        //            new SequentialDocumentFactory(),
-        //            "Sequential",
-        //            @"pack://siteoforigin:,,,/Images/View-Details.png",
-        //            "Sequential view {0}",
-        //            "Create a document to show information stored in a space sequentially",
-        //            "Useful for order analysis",
-        //            "Does not show temporal information"),
-        //        CreateNewDocumentCommand(container,
-        //            new TemporalDocumentFactory(),
-        //            "Temporal",
-        //            @"pack://siteoforigin:,,,/Images/Clock-01.png",
-        //            "Temporal view {0}",
-        //            "Create a document to show information stored in a space temporal",
-        //            "Useful for temporal analysis",
-        //            null),
-        //        CreateNewDocumentCommand(container,
-        //            new CodeDocumentFactory(),
-        //            "Code",
-        //            @"pack://siteoforigin:,,,/Images/File-Format-CSharp.png",
-        //            "Code view {0}",
-        //            "Create a document to interact with a space programmatically",
-        //            "Useful for complex iterative or recursive activities",
-        //            "Allows C# code to be tested"),
-        //        CreateNewDocumentCommand(container,
-        //            new ScriptDocumentFactory(),
-        //            "Query",
-        //            @"pack://siteoforigin:,,,/Images/File-Format-GraphQuery.png",
-        //            "Query view {0}",
-        //            "Create a document to invoke scripts on a space",
-        //            "Allows execution scripts written in the GQL script language",
-        //            "Useful for advanced space operations"),
-        //        CreateNewDocumentCommand(container,
-        //            new ProfilingDocumentFactory(),
-        //            "Profiling",
-        //            @"pack://siteoforigin:,,,/Images/Arrow.png",
-        //            "Profiler view {0}",
-        //            "Create a profiling document",
-        //            "Shows profiling details of all API access to a space",
-        //            "Useful for advanced query optimization"),
-        //    };
-        //}
-
-        //private NewDocumentCommand CreateNewDocumentCommand(
-        //    Container container, 
-        //    IDocumentFactory factory, 
-        //    string header, 
-        //    string icon, 
-        //    string titleFormat, 
-        //    string infoLine, 
-        //    string infoTip1, 
-        //    string infoTip2)
-        //{
-        //    var command = container.GetInstance<NewDocumentCommand>(); 
-        //    command.DocumentFactory = factory;
-        //    command.Header = header;
-        //    command.Icon = icon;
-        //    command.TitleFormat = titleFormat;
-        //    command.InfoLine = infoLine;
-        //    command.InfoTip1 = infoTip1;
-        //    command.InfoTip2 = infoTip2;
-        //    return command;
-        //}
-
     }
 }

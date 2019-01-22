@@ -75,12 +75,7 @@
 
         private bool CanClearGraph(object parameter)
         {
-            var graphViewModel = parameter as IGraphDocumentViewModel;
-            var canExecute = false;
-            if (graphViewModel != null)
-            {
-                canExecute = true;// graphViewModel.NodesSource.Count() != 0;
-            }
+            var canExecute = parameter is IGraphDocumentViewModel;
             return canExecute;
         }
 

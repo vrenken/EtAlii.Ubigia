@@ -20,8 +20,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public override void VisitQueryModel(QueryModel queryModel)
         {
-            //_scriptAggregator.Clear();
-
             queryModel.SelectClause.Accept(this, queryModel);
             queryModel.MainFromClause.Accept(this, queryModel);
             VisitBodyClauses(queryModel.BodyClauses, queryModel);

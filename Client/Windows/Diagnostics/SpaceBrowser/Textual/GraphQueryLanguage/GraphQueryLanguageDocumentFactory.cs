@@ -25,8 +25,6 @@
             container.Register<IGraphQueryLanguageViewModel, GraphQueryLanguageViewModel>();
             container.Register(() => documentContext.Journal);
 
-//            container.Register<IQueryButtonsViewModel, QueryButtonsViewModel>();
-
             container.Register<IParseGraphQueryLanguageUnitOfworkHandler, ParseGraphQueryLanguageUnitOfworkHandler>();
             container.Register<IProcessGraphQueryLanguageUnitOfworkHandler, ProcessGraphQueryLanguageUnitOfworkHandler>();
             container.Register<IErrorWriter, ErrorWriter>();

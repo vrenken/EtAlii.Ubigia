@@ -9,8 +9,6 @@
     {
         private readonly IGraphSLScriptContext _scriptContext;
 
-//        private readonly object _lockObject = new object();
-
         public ParseGraphScriptLanguageUnitOfworkHandler(IGraphSLScriptContext scriptContext)
         {
             _scriptContext = scriptContext;

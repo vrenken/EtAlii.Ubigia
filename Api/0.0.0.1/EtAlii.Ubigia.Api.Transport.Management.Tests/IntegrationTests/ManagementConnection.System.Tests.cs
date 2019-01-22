@@ -61,7 +61,6 @@
 
             // Assert.
             Assert.Equal(2, spaces.Count());
-            //Assert.True(spaces.SingleOrDefault(s => s.Name == "System") != null, "System space not found");
             Assert.True(spaces.SingleOrDefault(s => s.Name == "Configuration") != null, "Configuration space not found");
             Assert.True(spaces.SingleOrDefault(s => s.Name == "Data") != null, "Data space not found");
         }

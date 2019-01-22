@@ -20,11 +20,7 @@
         public ProfilingView()
         {
             InitializeComponent();
-
-            //gridTreeControl.ModelLoaded += (sender, args) =>
-            //{
-            //    gridTreeControl.Model.
-            //}
+            
             _expandAllAtTheEndSubscription = Observable
                 .FromEventPattern<GridTreeCreatingNodeEventArgs>(GridTreeControl, "CreatingTreeNode")
                 .Throttle(TimeSpan.FromSeconds(2))

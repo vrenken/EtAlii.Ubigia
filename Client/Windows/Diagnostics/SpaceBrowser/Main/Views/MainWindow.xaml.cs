@@ -21,12 +21,12 @@
 
         private void OnWindowInitialized(object sender, EventArgs e)
         {
-            //LoadLayoutSettings();
+            //LoadLayoutSettings()
         }
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //SaveLayoutSettings();
+            //SaveLayoutSettings()
             Settings.Default.Save();
         }
     }
