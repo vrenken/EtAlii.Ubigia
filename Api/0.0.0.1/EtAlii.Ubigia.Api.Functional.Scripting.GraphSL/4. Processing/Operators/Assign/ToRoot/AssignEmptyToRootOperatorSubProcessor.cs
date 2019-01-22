@@ -11,17 +11,20 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public AssignEmptyToRootOperatorSubProcessor(
             IProcessingContext context)
-        {
+        { 
             _context = context;
         }
 
         public async Task Assign(OperatorParameters parameters)
         {
-            parameters.RightInput
+            var rightInput = parameters.RightInput
                 .ToEnumerable()
                 .Cast<RootDefinitionSubject>()
-                .SingleOrDefault(); // We do not support multiple definitions, should be null
-
+                .SingleOrDefault(); 
+            if (rightInput != null)
+            {
+                // We do not support multiple definitions, should be null
+            }
             parameters.LeftInput
                 .Cast<RootSubject>()
                 .SubscribeAsync(
