@@ -5,6 +5,10 @@
     [Serializable]
     public class EntryRepositoryException : Exception
     {
+        public EntryRepositoryException()
+        {
+        }
+
         public EntryRepositoryException(string message)
             : base(message)
         {

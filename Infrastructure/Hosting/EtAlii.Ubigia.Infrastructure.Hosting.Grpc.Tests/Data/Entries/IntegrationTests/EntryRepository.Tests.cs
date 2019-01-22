@@ -534,6 +534,9 @@
 
             // Act.
             entry = context.Host.Infrastructure.Entries.Store(entry);
+
+            // Assert.
+            Assert.NotNull(entry);
         }
     }
 }

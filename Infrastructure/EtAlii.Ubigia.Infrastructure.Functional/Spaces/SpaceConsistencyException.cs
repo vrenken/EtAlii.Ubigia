@@ -6,6 +6,10 @@
     [Serializable]
     public class SpaceConsistencyException : Exception
     {
+        public SpaceConsistencyException()
+        {
+        }
+
         public SpaceConsistencyException(Identifier source, Identifier target, string message)
             : base(message)
         {

@@ -5,6 +5,10 @@
     [Serializable]
     public class ContentManagerException : Exception
     {
+        public ContentManagerException()
+        {
+        }
+
         public ContentManagerException(string message)
             : base(message)
         {

@@ -98,11 +98,15 @@
 			// Arrange.
 	        var context = _testContext.HostTestContext;
             var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var addedSpace1 = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var addedSpace2 = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
 
             var spaces = context.Host.Infrastructure.Spaces.GetAll();
+
+            // Assert.
+            Assert.NotNull(addedSpace1);
+            Assert.NotNull(addedSpace2);
             Assert.NotNull(spaces);
             Assert.True(spaces.Count() >= 4);
         }

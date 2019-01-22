@@ -17,7 +17,7 @@
 
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            var match = Templates.FirstOrDefault(t => (t.DataType as Type).IsAssignableFrom(item.GetType()));
+            var match = Templates.FirstOrDefault(t => (t.DataType as Type).IsInstanceOfType(item));
             if (match != null)
             {
                 return match;
