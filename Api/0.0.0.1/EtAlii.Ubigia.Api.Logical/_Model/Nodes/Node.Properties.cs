@@ -12,15 +12,6 @@
             return _properties;
         }
 
-        //void IInternalNode.SetProperties(IPropertiesDictionary properties)
-        //{
-        //    if (properties == null)
-        //    {
-        //        throw new ArgumentNullException("properties");
-        //    }
-        //    _properties = properties;
-        //}
-
         /// <summary>
         /// Multicast event for property change notifications.
         /// </summary>
@@ -77,7 +68,7 @@
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
         /// <param name="sender"></param>
         /// <param name="oldValue"></param>
-        protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
+        protected void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
             var eventHandler = PropertyChanged;
             if (eventHandler != null)

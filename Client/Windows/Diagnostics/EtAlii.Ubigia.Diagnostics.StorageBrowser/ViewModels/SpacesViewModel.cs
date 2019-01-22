@@ -43,11 +43,8 @@
         public SpaceTemplate SelectedSpaceTemplate { get { return _selectedSpaceTemplate; } set { SetProperty(ref _selectedSpaceTemplate, value); } }
         private SpaceTemplate _selectedSpaceTemplate;
 
-        private readonly ILogger _logger;
-
-        public SpacesViewModel(IManagementConnection connection, ILogger logger)
+        public SpacesViewModel(IManagementConnection connection)
         {
-            _logger = logger;   
             Connection = connection;
             AddCommand = new RelayCommand(AddSpace, CanAddSpace);
             SaveCommand = new RelayCommand(SaveSpace, CanSaveSpace);

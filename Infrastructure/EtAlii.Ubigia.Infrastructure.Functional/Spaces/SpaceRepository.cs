@@ -56,9 +56,9 @@
             return _logicalContext.Spaces.GetAll(accountId);
         }
 
-        public Space Update(Guid itemId, Space updatedItem)
+        public Space Update(Guid itemId, Space item)
         {
-            return _logicalContext.Spaces.Update(itemId, updatedItem);
+            return _logicalContext.Spaces.Update(itemId, item);
         }
 
 

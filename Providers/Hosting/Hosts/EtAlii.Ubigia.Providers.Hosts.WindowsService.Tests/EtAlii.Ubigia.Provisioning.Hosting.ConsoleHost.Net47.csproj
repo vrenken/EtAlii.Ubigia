@@ -72,6 +72,9 @@
       <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_Scaffolding\" />
+  </ItemGroup>
   <!-- near the bottom -->
   <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>

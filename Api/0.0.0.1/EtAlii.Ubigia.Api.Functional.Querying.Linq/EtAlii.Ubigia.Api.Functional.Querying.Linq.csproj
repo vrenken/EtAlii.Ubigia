@@ -31,4 +31,7 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Querying\Nodes\Queries\" />
+  </ItemGroup>
 </Project>

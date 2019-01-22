@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
     using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
     using System;
     using System.Collections.Generic;
@@ -36,11 +35,8 @@
         public string RoleName { get { return _roleName; } set { SetProperty(ref _roleName, value); } }
         private string _roleName;
 
-        private readonly ILogger _logger;
-
-        public RolesViewModel(IManagementConnection connection, ILogger logger)
+        public RolesViewModel(IManagementConnection connection)
         {
-            _logger = logger;   
             Connection = connection;
             AddCommand = new RelayCommand(AddRole, CanAddRole);
             SaveCommand = new RelayCommand(SaveRole, CanSaveRole);

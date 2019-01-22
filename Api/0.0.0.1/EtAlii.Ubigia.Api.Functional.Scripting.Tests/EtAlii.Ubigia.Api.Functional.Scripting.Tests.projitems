@@ -106,8 +106,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.Object.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\UnitTests\ScriptProcessor.Assign.String.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\UnitTests\_Model\TestRootHandler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\UnitTests\__SequenceProcessor.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\UnitTests\__TestableSequencePartProcessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\Helpers\RootDefinitionSubjectParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\Helpers\TypeValueParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\Helpers\BooleanValueParser.Tests.cs" />

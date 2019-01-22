@@ -49,9 +49,9 @@
             _logicalContext.Roots.Remove(spaceId, root);
         }
 
-        public Root Update(Guid spaceId, Guid rootId, Root updatedRoot)
+        public Root Update(Guid spaceId, Guid rootId, Root root)
         {
-            return _logicalContext.Roots.Update(spaceId, rootId, updatedRoot);
+            return _logicalContext.Roots.Update(spaceId, rootId, root);
         }
 
         private void OnRootAdded(object sender, RootAddedEventArgs e)

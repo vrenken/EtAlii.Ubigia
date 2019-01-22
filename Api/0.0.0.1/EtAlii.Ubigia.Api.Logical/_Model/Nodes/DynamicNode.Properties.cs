@@ -56,7 +56,7 @@
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
+        private bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, newValue)) return false;
 
@@ -82,7 +82,7 @@
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
-        protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
+        private void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
             var eventHandler = PropertyChanged;
             if (eventHandler != null)
