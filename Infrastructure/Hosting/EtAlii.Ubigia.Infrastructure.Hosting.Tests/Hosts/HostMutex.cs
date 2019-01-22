@@ -5,7 +5,7 @@
     using System.Security.Principal;
     using System.Threading;
 
-    public class HostMutex
+    public static class HostMutex
     {
         // Code originated from:
         // https://stackoverflow.com/questions/229565/what-is-a-good-pattern-for-using-a-global-mutex-in-c

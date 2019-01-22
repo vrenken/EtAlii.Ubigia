@@ -17,7 +17,7 @@
 
         public override DataTemplate SelectTemplate(object item, ItemsControl parentItemsControl)
         {
-            var match = Templates.Where(t => (t.DataType as Type).IsAssignableFrom(item.GetType())).FirstOrDefault();
+            var match = Templates.FirstOrDefault(t => (t.DataType as Type).IsAssignableFrom(item.GetType()));
             if (match != null)
             {
                 return match;

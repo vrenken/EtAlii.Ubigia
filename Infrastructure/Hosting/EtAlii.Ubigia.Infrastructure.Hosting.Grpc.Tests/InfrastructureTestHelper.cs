@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
-    public class InfrastructureTestHelper
+    public static class InfrastructureTestHelper
     {
         public static IEditableEntry[] CreateSequence(int count, IInfrastructure infrastructure)
         {

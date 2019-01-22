@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Owin.Tests
 {
     //you have to label the class with this or it is never scanned for methods
-    public class TestAssembly
+    public static class TestAssembly
     {
         ///// 
         ///// Our one-time initialization method called at the very start of running unit tests in this assembly
