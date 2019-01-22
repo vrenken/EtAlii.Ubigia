@@ -14,14 +14,14 @@
             _connection.Properties.Notifications.Stored += OnStored;
         }
 
-        public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
+        public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
             if (properties == null)
             {
                 throw new ArgumentNullException(nameof(properties));
             }
 
-            await _connection.Properties.Data.Store(identifier, properties, scope);
+            return _connection.Properties.Data.Store(identifier, properties, scope);
         }
 
         public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)

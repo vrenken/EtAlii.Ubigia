@@ -25,45 +25,45 @@
             return await _connection.Content.Data.Retrieve(identifier, contentPartId);
         }
 
-        public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
+        public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
             if (contentDefinition == null)
             {
                 throw new ArgumentNullException(nameof(contentDefinition));
             }
 
-            await _connection.Content.Data.StoreDefinition(identifier, contentDefinition);
+            return _connection.Content.Data.StoreDefinition(identifier, contentDefinition);
         }
 
-        public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             if (contentDefinitionPart == null)
             {
                 throw new ArgumentNullException(nameof(contentDefinitionPart));
             }
 
-            await _connection.Content.Data.StoreDefinition(identifier, contentDefinitionPart);
+            return _connection.Content.Data.StoreDefinition(identifier, contentDefinitionPart);
         }
 
 
-        public async Task Store(Identifier identifier, Content content)
+        public Task Store(Identifier identifier, Content content)
         {
             if (content == null)
             {
                 throw new ArgumentNullException(nameof(content));
             }
 
-            await _connection.Content.Data.Store(identifier, content);
+            return _connection.Content.Data.Store(identifier, content);
         }
 
-        public async Task Store(Identifier identifier, ContentPart contentPart)
+        public Task Store(Identifier identifier, ContentPart contentPart)
         {
             if (contentPart == null)
             {
                 throw new ArgumentNullException(nameof(contentPart));
             }
 
-            await _connection.Content.Data.Store(identifier, contentPart);
+            return _connection.Content.Data.Store(identifier, contentPart);
         }
 
         public async Task<IReadOnlyContent> Retrieve(Identifier identifier)

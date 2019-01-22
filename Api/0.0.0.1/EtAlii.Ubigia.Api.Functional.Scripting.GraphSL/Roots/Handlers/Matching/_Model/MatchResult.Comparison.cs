@@ -27,10 +27,10 @@
             return Equals((MatchResult)obj);
         }
 
-        public bool Equals(MatchResult match)
+        public bool Equals(MatchResult other)
         {
             // If parameter is null, return false. 
-            if (ReferenceEquals(match, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
@@ -51,25 +51,25 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (match.RootHandler != RootHandler)
+            if (other.RootHandler != RootHandler)
             {
                 return false;
             }
 
 
-            if (match.Match.Length != Match.Length)
+            if (other.Match.Length != Match.Length)
             {
                 return false;
             }
 
-            if (match.Rest.Length != Rest.Length)
+            if (other.Rest.Length != Rest.Length)
             {
                 return false;
             }
 
             for (int i = 0; i < Match.Length; i++)
             {
-                if (Match[i].ToString() != match.Match[i].ToString())
+                if (Match[i].ToString() != other.Match[i].ToString())
                 {
                     return false;
                 }
@@ -77,7 +77,7 @@
 
             for (int i = 0; i < Rest.Length; i++)
             {
-                if (Rest[i].ToString() != match.Rest[i].ToString())
+                if (Rest[i].ToString() != other.Rest[i].ToString())
                 {
                     return false;
                 }

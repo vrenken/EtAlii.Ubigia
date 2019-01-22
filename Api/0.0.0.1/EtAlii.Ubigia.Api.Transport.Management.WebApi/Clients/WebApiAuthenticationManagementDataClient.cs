@@ -7,14 +7,14 @@
     {
         private IWebApiStorageConnection _connection;
 
-        public async Task Connect(IStorageConnection storageConnection)
+        public async Task Connect(IStorageConnection connection)
         {
-            await Connect((IWebApiStorageConnection) storageConnection);
+            await Connect((IWebApiStorageConnection) connection);
         }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
+        public async Task Disconnect(IStorageConnection connection)
         {
-            await Disconnect((IWebApiStorageConnection) storageConnection);
+            await Disconnect((IWebApiStorageConnection) connection);
         }
 
         private async Task Connect(IWebApiStorageConnection connection)
