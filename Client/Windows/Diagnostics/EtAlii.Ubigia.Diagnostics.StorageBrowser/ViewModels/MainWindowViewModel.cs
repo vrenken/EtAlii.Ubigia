@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.Mvvm;
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
@@ -16,17 +15,13 @@
 
         protected IManagementConnection Connection { get; }
 
-        private readonly ILogger _logger;
-
         public MainWindowViewModel(
             IManagementConnection connection, 
             IStoragesViewModel storagesViewModel,
             IAccountsViewModel accountsViewModel, 
             ISpacesViewModel spacesViewModel, 
-            IRolesViewModel rolesViewModel,
-            ILogger logger)
+            IRolesViewModel rolesViewModel)
         {
-            _logger = logger;   
             Connection = connection;
             Storages = storagesViewModel;
             Accounts = accountsViewModel;

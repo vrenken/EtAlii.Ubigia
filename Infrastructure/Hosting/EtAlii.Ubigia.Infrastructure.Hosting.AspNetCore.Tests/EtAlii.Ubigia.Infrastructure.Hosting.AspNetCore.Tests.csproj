@@ -33,4 +33,10 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Hosting.Tests\EtAlii.Ubigia.Infrastructure.Hosting.Tests.csproj" />
     <ProjectReference Include="..\Hosts\EtAlii.Ubigia.Infrastructure.Hosting.TestHost\EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Data\Content\UnitTests\" />
+    <Folder Include="Data\Entries\UnitTests\" />
+    <Folder Include="Data\Roots\UnitTests\" />
+    <Folder Include="Management\UnitTests\" />
+  </ItemGroup>
 </Project>

@@ -11,81 +11,67 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is Identifier)
+            var result = new StringBuilder();
+
+            switch (value)
             {
-                return ((Identifier)value).ToTimeString();
+                case Identifier identifier:
+                    return identifier.ToTimeString();
+                case IEnumerable<Identifier> identifiers:
+                    foreach (var id in identifiers)
+                    {
+                        var itemRepresentation = Convert(id, targetType, parameter, culture);
+                        result.Append(itemRepresentation);
+                        result.AppendLine();
+                    }
+                    break;
+                case DynamicNode dn:
+                    var node = (IInternalNode)dn;
+                    var properties = node.GetProperties();
+                    foreach (var kvp in properties)
+                    {
+                        result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
+                        result.AppendLine();
+                    }
+                    break;
+                case IEnumerable<DynamicNode> dynamicNodes:
+                    foreach (var dynamicNode in dynamicNodes)
+                    {
+                        var itemRepresentation = Convert(dynamicNode, targetType, parameter, culture);
+                        result.Append(itemRepresentation);
+                        result.AppendLine();
+                    }
+                    break;
+                case IPropertyDictionary propertyDictionary:
+                    foreach (var kvp in propertyDictionary)
+                    {
+                        result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
+                        result.AppendLine();
+                    }
+                    break;
+                case IEnumerable<IPropertyDictionary> propertyDictionaries:
+                    foreach (var pd in propertyDictionaries)
+                    {
+                        var itemRepresentation = Convert(pd, targetType, parameter, culture);
+                        result.Append(itemRepresentation);
+                        result.AppendLine();
+                    }
+                    break;
+                case int i:
+                    result.Append(i.ToString());
+                    break;
+                case DateTime dateTime:
+                    result.Append(dateTime.ToString());
+                    break;
+                case string s:
+                    result.Append(s);
+                    break;
+                default:
+                    result.Append("Unknown");
+                    break;
             }
-            else if (value is IEnumerable<Identifier>)
-            {
-                var result = new StringBuilder();
-                foreach (var v in (IEnumerable<Identifier>)value)
-                {
-                    var itemRepresentation = Convert(v, targetType, parameter, culture);
-                    result.Append(itemRepresentation);
-                    result.AppendLine();
-                }
-                return result.ToString();
-            }
-            else if (value is DynamicNode)
-            {
-                var node = (IInternalNode) value;
-                var properties = node.GetProperties();
-                var result = new StringBuilder();
-                foreach (var kvp in properties)
-                {
-                    result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
-                    result.AppendLine();
-                }
-                return result.ToString();
-            }
-            else if (value is IEnumerable<DynamicNode>)
-            {
-                var result = new StringBuilder();
-                foreach (var v in (IEnumerable<DynamicNode>)value)
-                {
-                    var itemRepresentation = Convert(v, targetType, parameter, culture);
-                    result.Append(itemRepresentation);
-                    result.AppendLine();
-                }
-                return result.ToString();
-            }
-            else if (value is IPropertyDictionary)
-            {
-                var result = new StringBuilder();
-                foreach (var kvp in (IPropertyDictionary)value)
-                {
-                    result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
-                    result.AppendLine();
-                }
-                return result.ToString();
-            }
-            else if (value is IEnumerable<IPropertyDictionary>)
-            {
-                var result = new StringBuilder();
-                foreach (var v in (IEnumerable<IPropertyDictionary>)value)
-                {
-                    var itemRepresentation = Convert(v, targetType, parameter, culture);
-                    result.Append(itemRepresentation);
-                    result.AppendLine();
-                }
-                return result.ToString();
-            }
-            else if (value is int)
-            {
-                return ((int) value).ToString();
-            }
-            else if (value is DateTime)
-            {
-                return ((DateTime) value).ToString();
-            }
-            else if (value is string)
-            {
-                return (string) value;
-            }
-            else
-            {
-                return "Unknown";
-            }
+
+            return result.ToString();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -43,9 +43,9 @@
             return _logicalContext.Storages.Get(id);
         }
 
-        public Storage Update(Guid itemId, Storage updatedItem)
+        public Storage Update(Guid itemId, Storage item)
         {
-            return _logicalContext.Storages.Update(itemId, updatedItem);
+            return _logicalContext.Storages.Update(itemId, item);
         }
 
         public Storage Add(Storage item)
