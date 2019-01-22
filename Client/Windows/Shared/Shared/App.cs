@@ -25,8 +25,6 @@
         protected App()
         {
             Container = new Container();
-            //Container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
-
             Directory.CreateDirectory(ShellExtensionsDirectory);
         }
 

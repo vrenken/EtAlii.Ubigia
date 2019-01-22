@@ -192,7 +192,6 @@
             
         // Assert.
         Assert.Null(result.Errors);
-//      var actual = await _documentWriter.WriteToStringAsync(result);
         await AssertQuery.ResultsAreEqual(_documentWriter, @"
             {
                 'person':

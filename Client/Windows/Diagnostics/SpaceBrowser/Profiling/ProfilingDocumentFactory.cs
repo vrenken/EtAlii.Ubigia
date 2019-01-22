@@ -32,14 +32,12 @@
                 return documentContext.GraphContextFactory.Create(documentContext.Logger, documentContext.Journal, documentContext.FabricContext, dvmp);
             });
 
-            //container.Register<IProfilingView, ProfilingView>();
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
 
             container.Register<IProfileComposer>(() => 
             new ProfileComposer(
                 ((IProfilingGraphSLScriptContext)documentContext.ScriptContext).Profiler,
                 ((IProfilingGraphQLQueryContext)documentContext.QueryContext).Profiler,
-                //((IProfilingLinqQueryContext)linqContext).Profiler,
                 ((IProfilingLogicalContext)documentContext.LogicalContext).Profiler,
                 ((IProfilingFabricContext)documentContext.FabricContext).Profiler,
                 ((IProfilingDataConnection)documentContext.Connection).Profiler

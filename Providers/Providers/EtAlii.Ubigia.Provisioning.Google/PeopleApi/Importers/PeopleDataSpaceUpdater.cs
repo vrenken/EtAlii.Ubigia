@@ -48,26 +48,14 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 	        var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data);
 	        {
                 var request = CreateRequest(systemSettings, userSettings);
-	            var feed = request.Execute();//.GetContacts();
-                //feed.AutoPaging = true;
-                foreach (var person in feed.Connections)//.Entries)
+	            var feed = request.Execute();
+                foreach (var person in feed.Connections)
                 {
 		            _personSetter.Set(userDataScriptContext, person);
 				}
             }
         }
-
-	    //private ContactsRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
-	    //{
-		   // var parameters = new OAuth2Parameters();
-		   // parameters.AccessToken = userSettings.AccessToken;
-		   // parameters.RefreshToken = userSettings.RefreshToken;
-
-		   // var settings = new RequestSettings(systemSettings.ClientId, parameters);
-		   // var request = new ContactsRequest(settings);
-		   // return request;
-	    //}
-
+        
 		private PeopleResource.ConnectionsResource.ListRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
         {
 			var parameters = new global::Google.Apis.Auth.OAuth2.JsonCredentialParameters
@@ -79,16 +67,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
 	        var initializer = new BaseClientService.Initializer();
 			var service = new PeopleServiceService(initializer);
-			//var builder = new global::Google.Apis.Requests.RequestBuilder();
 	        return new PeopleResource.ConnectionsResource.ListRequest(service, "people/me");
-			//builder.
-			//var parameters = new OAuth2Parameters();
-			//         parameters.AccessToken = userSettings.AccessToken;
-			//         parameters.RefreshToken = userSettings.RefreshToken;
-
-			//var settings = new RequestSettings(systemSettings.ClientId, parameters);
-            //var request = new ContactsRequest(settings);
-            //return request;
         }
 	}
 }

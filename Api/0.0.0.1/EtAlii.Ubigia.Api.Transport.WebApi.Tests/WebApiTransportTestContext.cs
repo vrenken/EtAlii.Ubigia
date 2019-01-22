@@ -17,7 +17,6 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
 	        var client = Context.CreateRestInfrastructureClient();
 
 			var connectionConfiguration = new DataConnectionConfiguration()

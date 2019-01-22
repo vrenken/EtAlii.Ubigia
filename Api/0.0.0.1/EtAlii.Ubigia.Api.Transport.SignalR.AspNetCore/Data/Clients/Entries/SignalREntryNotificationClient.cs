@@ -33,7 +33,7 @@
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + _name, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
+			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + UriConstant.PathSeparator + _name, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
 	        await _connection.StartAsync();
 
 	        _subscriptions = new[]

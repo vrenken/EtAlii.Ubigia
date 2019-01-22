@@ -11,8 +11,6 @@
         private CompilerResults _compilerResults;
         private readonly ICodeCompilerResultsParser _codeCompilerResultsParser;
 
-//        private readonly object _lockObject = new object();
-
         public CompileCodeUnitOfworkHandler(
             ICodeCompiler codeCompiler,
             ICodeCompilerResultsParser codeCompilerResultsParser)

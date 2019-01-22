@@ -22,19 +22,6 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
             container.Register<IBreadthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
 
-            //if (_useParallelization)
-            //{
-            //    // Parallel algorithms
-            //    container.Register<IDepthFirstTraversalAlgorithm, ParallelDepthFirstTraversalAlgorithm>();
-            //    container.Register<IBreadthFirstTraversalAlgorithm, ParallelBreadthFirstTraversalAlgorithm>();
-            //}
-            //else
-            //{
-            //    // Sequential algorithms
-            //    container.Register<IDepthFirstTraversalAlgorithm, DepthFirstTraversalAlgorithm>();
-            //    container.Register<IBreadthFirstTraversalAlgorithm, BreadthFirstTraversalAlgorithm>();
-            //}
-
             container.Register<IGraphPathNodeTraverser, GraphPathNodeTraverser>();
             container.Register<IGraphPathIdentifiersStartNodeTraverser, GraphPathIdentifiersStartNodeTraverser>();
             container.Register<IGraphPathRootStartNodeTraverser, GraphPathRootStartNodeTraverser>();

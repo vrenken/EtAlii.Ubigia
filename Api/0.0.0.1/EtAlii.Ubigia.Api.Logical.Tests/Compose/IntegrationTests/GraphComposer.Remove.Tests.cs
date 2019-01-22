@@ -83,7 +83,6 @@
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
-//            var hierarchy = hierarchyResult.Item2;
             string item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
@@ -118,7 +117,6 @@
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
-//            var hierarchy = hierarchyResult.Item2;
             string item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()

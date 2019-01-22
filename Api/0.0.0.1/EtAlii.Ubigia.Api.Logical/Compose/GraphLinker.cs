@@ -60,8 +60,6 @@
             }
 
             throw new NotImplementedException();
-
-            //return locationResult;
         }
     }
 }

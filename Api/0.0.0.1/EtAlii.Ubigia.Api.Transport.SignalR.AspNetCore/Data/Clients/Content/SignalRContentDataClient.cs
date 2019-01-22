@@ -21,8 +21,8 @@
             
             var factory = new HubConnectionFactory();
 
-	        _contentConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Content, UriKind.Absolute));
-            _contentDefinitionConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.ContentDefinition, UriKind.Absolute));
+	        _contentConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + UriConstant.PathSeparator + SignalRHub.Content, UriKind.Absolute));
+            _contentDefinitionConnection = factory.Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + UriConstant.PathSeparator + SignalRHub.ContentDefinition, UriKind.Absolute));
 
 	        await _contentConnection.StartAsync();
 	        await _contentDefinitionConnection.StartAsync();

@@ -24,8 +24,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             IGraphQueryLanguageViewModel viewModel, 
             List<TextualError> errors, DateTime start)
         {
-            //var outputIndex = 1;
-
             results.Subscribe(
                     onError: e => viewModel.QueryResult = e.Message,
                     onFirst: () => viewModel.QueryResult = String.Empty,
