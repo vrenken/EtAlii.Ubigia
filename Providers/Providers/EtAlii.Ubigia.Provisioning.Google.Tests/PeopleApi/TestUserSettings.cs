@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
     using Xunit;
 
-    public class TestUserSettings
+    public static class TestUserSettings
     {
         public static UserSettings Create()
         {

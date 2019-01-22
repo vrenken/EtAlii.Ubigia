@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
-    public class TestAssembly
+    public static class TestAssembly
     {
         ///// 
         ///// Our one-time initialization method called at the very start of running unit tests in this assembly

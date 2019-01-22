@@ -4,14 +4,14 @@
 
     public interface IStorageTransportClient
     {
-        Task Connect(IStorageConnection storageConnection);
-        Task Disconnect(IStorageConnection storageConnection);
+        Task Connect(IStorageConnection connection);
+        Task Disconnect(IStorageConnection connection);
     }
 
     public interface IStorageTransportClient<in TTransport> : IStorageTransportClient
         where TTransport : IStorageTransport
     {
-        Task Connect(IStorageConnection<TTransport> storageConnection);
-        Task Disconnect(IStorageConnection<TTransport> storageConnection);
+        Task Connect(IStorageConnection<TTransport> connection);
+        Task Disconnect(IStorageConnection<TTransport> connection);
     }
 }

@@ -5,7 +5,7 @@
     using EtAlii.xTechnology.Hosting.ConsoleHost;
 
 
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application. 

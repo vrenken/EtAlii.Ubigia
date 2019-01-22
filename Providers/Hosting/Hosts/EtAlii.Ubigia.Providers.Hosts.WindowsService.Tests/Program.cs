@@ -3,7 +3,7 @@
     using EtAlii.xTechnology.Hosting;
     using global::Microsoft.Extensions.Configuration;
 
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application. 
