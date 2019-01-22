@@ -55,16 +55,14 @@
         public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string queryText)
         {
             // Arrange.
-#pragma warning disable 1717
-            title = title;
-            fileName = fileName;
-#pragma warning restore 1717
-            
+
             // Act.
             var parseResult = await _queryContext.Parse(queryText);
             var result = await _queryContext.Process(parseResult.Query);
-             
+
             // Assert.
+            Assert.NotNull(fileName);
+            Assert.NotNull(title);
             Assert.NotNull(result);
         }
         

@@ -5,6 +5,10 @@ namespace EtAlii.Ubigia.Api.Logical
     [Serializable]
     public class GraphTraversalException : Exception
     {
+        public GraphTraversalException()
+        {
+        }
+
         public GraphTraversalException(string message) 
             : base(message)
         {

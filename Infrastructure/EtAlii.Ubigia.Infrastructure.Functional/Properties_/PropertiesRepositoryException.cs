@@ -5,6 +5,10 @@
     [Serializable]
     public class PropertiesRepositoryException : Exception
     {
+        public PropertiesRepositoryException()
+        {
+        }
+
         public PropertiesRepositoryException(string message)
             : base(message)
         {

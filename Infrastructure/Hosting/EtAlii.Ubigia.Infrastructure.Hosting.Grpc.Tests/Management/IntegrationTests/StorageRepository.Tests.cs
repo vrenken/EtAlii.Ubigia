@@ -121,15 +121,17 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage1 = repository.Add(storage);
             storage = CreateStorage();
-            addedStorage = repository.Add(storage);
+            var addedStorage2 = repository.Add(storage);
 
 			// Act.
             var storages = repository.GetAll();
 
-	        // Assert.
-	        Assert.NotNull(storages);
+            // Assert.
+            Assert.NotNull(addedStorage1);
+            Assert.NotNull(addedStorage2);
+            Assert.NotNull(storages);
             Assert.True(storages.Count() >= 2);
         }
 

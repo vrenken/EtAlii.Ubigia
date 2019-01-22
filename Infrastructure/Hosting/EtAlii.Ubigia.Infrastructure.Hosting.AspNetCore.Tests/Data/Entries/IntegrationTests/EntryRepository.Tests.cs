@@ -112,9 +112,10 @@
 
             // Act.
             entry2.Previous = Relation.NewRelation(entry1.Id);
-            entry2 = context.Host.Infrastructure.Entries.Store(entry2);
+            var entry3 = context.Host.Infrastructure.Entries.Store(entry2);
 
-            // Arrange.
+            // Assert.
+            Assert.NotNull(entry3);
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry1.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
             Assert.True(context.Host.Storage.FolderManager.Exists(folder));
@@ -534,6 +535,9 @@
 
             // Act.
             entry = context.Host.Infrastructure.Entries.Store(entry);
+
+            // Assert.
+            Assert.NotNull(entry);
         }
     }
 }

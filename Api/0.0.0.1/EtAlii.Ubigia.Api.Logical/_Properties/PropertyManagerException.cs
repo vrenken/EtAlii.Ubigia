@@ -5,6 +5,10 @@
     [Serializable]
     public class PropertyManagerException : Exception
     {
+        public PropertyManagerException()
+        {
+        }
+
         public PropertyManagerException(string message)
             : base(message)
         {

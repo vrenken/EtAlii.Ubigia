@@ -6,6 +6,10 @@
     [Serializable]
     public class SpaceFabricException : Exception
     {
+        public SpaceFabricException()
+        {
+        }
+
         public SpaceFabricException(string message)
             : base(message)
         {

@@ -5,6 +5,10 @@
     [Serializable]
     public class NodeQueryingException : Exception
     {
+        public NodeQueryingException()
+        {
+        }
+
         private ScriptParseResult ParseResult { get; }
 
         public NodeQueryingException(string message)

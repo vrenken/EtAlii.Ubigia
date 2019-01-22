@@ -5,6 +5,9 @@ namespace EtAlii.Ubigia.Api.Logical
     [Serializable]
     public class AssignmentException : Exception
     {
+        public AssignmentException()
+        {
+        }
         public AssignmentException(string message)
             : base(message)
         {

@@ -5,6 +5,10 @@
     [Serializable]
     public class ContentRepositoryException : Exception
     {
+        public ContentRepositoryException()
+        {
+        }
+
         public ContentRepositoryException(string message)
             : base(message)
         {

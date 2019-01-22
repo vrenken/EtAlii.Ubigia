@@ -45,8 +45,7 @@
                 }
                 if (evt == _enqueuedEvent)
                 {
-                    Tuple<ICommand, ICommandHandler> action;
-                    while (_queue.TryDequeue(out action))
+                    while (_queue.TryDequeue(out var action))
                     {
                         var command = action.Item1;
                         var handler = action.Item2;

@@ -5,6 +5,10 @@
     [Serializable]
     public class UnauthorizedInfrastructureOperationException : Exception
     {
+        public UnauthorizedInfrastructureOperationException()
+        {
+        }
+
         public UnauthorizedInfrastructureOperationException(string message)
             : base(message)
         {

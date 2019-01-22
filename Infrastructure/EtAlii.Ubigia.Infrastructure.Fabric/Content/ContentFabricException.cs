@@ -5,6 +5,10 @@
     [Serializable]
     public class ContentFabricException : Exception
     {
+        public ContentFabricException()
+        {
+        }
+
         public ContentFabricException(string message)
             : base(message)
         {

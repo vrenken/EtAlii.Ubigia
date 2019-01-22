@@ -4,13 +4,6 @@
     [Route("[controller]")]
     public class DashboardDataController : AdminPortalController
     {
-        //private IHiService _adminService;
-
-        //public AdminDataController(IHiService adminService)
-        //{
-        //    _adminService = adminService;
-        //}
-
         [HttpGet("dashboard")]
         public string Get()
         {

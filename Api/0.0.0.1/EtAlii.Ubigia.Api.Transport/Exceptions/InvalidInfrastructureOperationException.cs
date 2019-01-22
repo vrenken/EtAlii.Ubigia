@@ -5,6 +5,10 @@
     [Serializable]
     public class InvalidInfrastructureOperationException : Exception
     {
+        public InvalidInfrastructureOperationException()
+        {
+        }
+
         public InvalidInfrastructureOperationException(string message)
             : base(message)
         {

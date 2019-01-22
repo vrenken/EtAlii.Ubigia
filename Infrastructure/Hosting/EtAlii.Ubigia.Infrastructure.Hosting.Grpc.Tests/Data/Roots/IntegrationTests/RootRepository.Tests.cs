@@ -122,11 +122,15 @@
 	        var context = _testContext.HostTestContext;
             var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
-            var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot1 = context.Host.Infrastructure.Roots.Add(space.Id, root);
             root = InfrastructureTestHelper.CreateRoot();
-            addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
+            var addedRoot2 = context.Host.Infrastructure.Roots.Add(space.Id, root);
 
             var roots = context.Host.Infrastructure.Roots.GetAll(space.Id);
+
+            // Assert.
+            Assert.NotNull(addedRoot1);
+            Assert.NotNull(addedRoot2);
             Assert.NotNull(roots);
             Assert.True(roots.Count() >= 2);
         }
