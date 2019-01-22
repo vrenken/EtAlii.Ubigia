@@ -30,7 +30,7 @@
             _contentNewQueryHandler = contentNewQueryHandler;
         }
 
-        public async Task Upload(Stream stream, UInt64 sizeInBytes, Identifier identifier)
+        public async Task Upload(Stream localDatastream, UInt64 sizeInBytes, Identifier identifier)
         {
             if (identifier == Identifier.Empty)
             {
@@ -43,7 +43,7 @@
             var contentDefinition = await _contentDefinitionQueryHandler.Execute(new ContentDefinitionQuery(identifier, sizeInBytes, requiredParts, partSize));
             var content = await _contentNewQueryHandler.Execute(new ContentNewQuery(identifier, sizeInBytes, requiredParts, partSize));
 
-            await _contentPartStoreCommandHandler.Execute(new ContentPartStoreCommand(stream, sizeInBytes, requiredParts, partSize, identifier, contentDefinition, content));
+            await _contentPartStoreCommandHandler.Execute(new ContentPartStoreCommand(localDatastream, sizeInBytes, requiredParts, partSize, identifier, contentDefinition, content));
         }
 
         public async Task Download(Stream stream, Identifier identifier, bool validateChecksum = false)

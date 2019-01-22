@@ -146,24 +146,24 @@
             }
         }
 
-        public async Task Connect(IStorageConnection storageConnection)
+        public async Task Connect(IStorageConnection connection)
         {
-            await Connect((IStorageConnection<IGrpcStorageTransport>) storageConnection);
+            await Connect((IStorageConnection<IGrpcStorageTransport>) connection);
         }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
+        public async Task Disconnect(IStorageConnection connection)
         {
-            await Disconnect((IStorageConnection<IGrpcStorageTransport>) storageConnection);
+            await Disconnect((IStorageConnection<IGrpcStorageTransport>) connection);
         }
 
-        public Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public Task Connect(IStorageConnection<IGrpcStorageTransport> connection)
         {
-            _transport = storageConnection.Transport;
+            _transport = connection.Transport;
             _client = new SpaceGrpcService.SpaceGrpcServiceClient(_transport.Channel);
             return Task.CompletedTask;
         }
 
-        public Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
+        public Task Disconnect(IStorageConnection<IGrpcStorageTransport> connection)
         {
             _transport = null;
             _client = null;

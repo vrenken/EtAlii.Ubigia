@@ -57,23 +57,23 @@
             return await _invoker.Invoke<IEnumerable<Space>>(_connection, SignalRHub.Space, "GetAllForAccount", accountId);
         }
 
-        public async Task Connect(IStorageConnection storageConnection)
+        public async Task Connect(IStorageConnection connection)
         {
-            await Connect((IStorageConnection<ISignalRStorageTransport>) storageConnection);
+            await Connect((IStorageConnection<ISignalRStorageTransport>) connection);
         }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
+        public async Task Disconnect(IStorageConnection connection)
         {
-            await Disconnect((IStorageConnection<ISignalRStorageTransport>) storageConnection);
+            await Disconnect((IStorageConnection<ISignalRStorageTransport>) connection);
         }
 
-        public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+        public async Task Connect(IStorageConnection<ISignalRStorageTransport> connection)
         {
-            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + UriConstant.PathSeparator + SignalRHub.Space, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(connection.Transport, new Uri(connection.Storage.Address + SignalRHub.BasePath + UriConstant.PathSeparator + SignalRHub.Space, UriKind.Absolute));
 			await _connection.StartAsync();
         }
 
-        public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+        public async Task Disconnect(IStorageConnection<ISignalRStorageTransport> connection)
         {
             await _connection.DisposeAsync();
             _connection = null;
