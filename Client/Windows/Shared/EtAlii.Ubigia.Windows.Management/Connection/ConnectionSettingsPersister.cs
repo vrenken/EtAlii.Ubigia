@@ -142,10 +142,10 @@
 
         private Stream ToEncryptedStream(Stream stream, CryptoStreamMode mode)
         {
-            var cryptic = new DESCryptoServiceProvider
+            var cryptic = new AesCryptoServiceProvider
             {
-                Key = Encoding.ASCII.GetBytes("baadfood"),
-                IV = Encoding.ASCII.GetBytes("foodbaad"),
+                Key = Encoding.ASCII.GetBytes("BadFoodManagement"),
+                IV = Encoding.ASCII.GetBytes("DeadBeefManagement"),
             };
 
             return new CryptoStream(stream, mode == CryptoStreamMode.Read ? cryptic.CreateDecryptor() : cryptic.CreateEncryptor(), mode);
