@@ -12,7 +12,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private readonly IFabricContext _fabric;
         private readonly ILocalStorageGetter _localStorageGetter;
         private readonly ILogicalContextConfiguration _configuration;
-//        private readonly object _lockObject = new object();
 
         private const string Folder = "Storages";
 

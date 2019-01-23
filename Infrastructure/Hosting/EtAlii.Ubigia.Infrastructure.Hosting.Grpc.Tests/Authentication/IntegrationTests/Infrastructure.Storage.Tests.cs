@@ -192,7 +192,7 @@
 			var act = new Func<Task>(async () => await client.GetLocalAsync(request));
 
 			// Assert.
-			var exception = await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
+			await Assert.ThrowsAsync<RpcException>(act); // InvalidInfrastructureOperationException
 		}
 		
 		[Fact(Skip = "Not working (yet)"), Trait("Category", TestAssembly.Category)]

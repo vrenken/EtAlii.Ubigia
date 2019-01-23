@@ -70,7 +70,7 @@
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("PathSubjectParts", true);
+            Parser = new LpsParser(Id, true, lpsParsers);
         }
 
         public PathSubjectPart Parse(LpNode node)
