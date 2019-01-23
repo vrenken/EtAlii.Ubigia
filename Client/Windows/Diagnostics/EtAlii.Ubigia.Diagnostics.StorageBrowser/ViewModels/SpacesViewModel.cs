@@ -73,7 +73,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions caused during space adding.
+            }
             finally
             {
                 ReloadAvailableSpaces();
@@ -97,13 +100,13 @@
         {
             try
             {
-                var task = Task.Run(async () =>
-                {
-                    await Connection.Spaces.Change(SelectedSpace.Id, SpaceName);
-                });
+                var task = Task.Run(async () => { await Connection.Spaces.Change(SelectedSpace.Id, SpaceName); });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions caused during changing a space.
+            }
             finally
             {
                 ReloadAvailableSpaces();
@@ -123,13 +126,13 @@
         {
             try
             {
-                var task = Task.Run(async () =>
-                {
-                    await Connection.Spaces.Remove(SelectedSpace.Id);
-                });
+                var task = Task.Run(async () => { await Connection.Spaces.Remove(SelectedSpace.Id); });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions caused during space removal.
+            }
             finally
             {
                 ReloadAvailableSpaces();

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    public enum ItemChange : int
+    public enum ItemChange
     {
         Unknown = 0,
         Created,
