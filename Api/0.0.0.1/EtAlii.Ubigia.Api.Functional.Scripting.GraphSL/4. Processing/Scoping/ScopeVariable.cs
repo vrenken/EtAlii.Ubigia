@@ -30,8 +30,8 @@
 
             Value = Observable.Create<object>(observer =>
             {
-                IEnumerable enumerable;// = new object[] {};
-                if (value is string || (value is IEnumerable) == false)
+                IEnumerable enumerable;
+                if (value is string || !(value is IEnumerable))
                 {
                     enumerable = new[] { value };
                 }

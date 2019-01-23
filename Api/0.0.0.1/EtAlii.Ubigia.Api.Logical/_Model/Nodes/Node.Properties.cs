@@ -54,7 +54,6 @@
 
         private void MarkAsModified()
         {
-            var wasModified = _isModified;
             _isModified = true;
             NotifyPropertyChanged(this, _isModified, _isModified, "IsModified");
         }

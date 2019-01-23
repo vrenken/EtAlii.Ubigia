@@ -49,8 +49,7 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+                itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 
             // Assert.
@@ -76,8 +75,7 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" });
+                itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" });
             });
 
             // Assert.
@@ -103,8 +101,7 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, null);
+                itemAdder.Add(items, null);
             });
 
             // Assert.
@@ -131,7 +128,6 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
                 var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 
