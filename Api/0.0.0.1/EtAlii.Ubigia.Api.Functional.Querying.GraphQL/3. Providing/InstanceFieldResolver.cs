@@ -3,7 +3,7 @@
     using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
 
-    public class InstanceFieldResolver : IFieldResolver<object>, IFieldResolver
+    public class InstanceFieldResolver : IFieldResolver<object>
     {
         private readonly object _instance;
 
