@@ -218,7 +218,10 @@ namespace EtAlii.Ubigia.Windows.Client
                     view.Dispose();
                     view = null;
                 }
-                catch { }
+                catch
+                {
+                    // We catch all exceptions involved in disposing the view.
+                }
             }
 
             if (MappedFile != null)
@@ -228,7 +231,10 @@ namespace EtAlii.Ubigia.Windows.Client
                     MappedFile.Dispose();
                     MappedFile = null;
                 }
-                catch { }
+                catch
+                {
+                    // We catch all exceptions involved in disposing the mapped file.
+                }
             }
 
             disposed = true;

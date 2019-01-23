@@ -7,6 +7,7 @@
 	{
 		public void Register(Container container)
 		{
+            // Register all relevant TestHost scaffolding.
 		}
 	}
 }

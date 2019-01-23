@@ -17,6 +17,7 @@
 
         public void Dispose()
         {
+            // Dispose the ChangeTracker.
         }
     }
 }

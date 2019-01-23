@@ -63,12 +63,15 @@
                     SelectedAccount.Roles = SelectedAccount.Roles
                         .Union(new[] {RoleName})
                         .ToArray();
-                    
+
                     await Connection.Accounts.Change(SelectedAccount);
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions involved in changing a role.
+            }
             finally
             {
                 ReloadAvailableRoles();
@@ -94,14 +97,17 @@
                 var task = Task.Run(async () =>
                 {
                     SelectedAccount.Roles = SelectedAccount.Roles
-                        .Except(new[] { SelectedRole.Name })
-                        .Union(new[] { RoleName })
+                        .Except(new[] {SelectedRole.Name})
+                        .Union(new[] {RoleName})
                         .ToArray();
                     await Connection.Accounts.Change(SelectedAccount);
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions involved in changing the roles on an account.
+            }
             finally
             {
                 ReloadAvailableRoles();
@@ -123,13 +129,16 @@
                 var task = Task.Run(async () =>
                 {
                     SelectedAccount.Roles = SelectedAccount.Roles
-                        .Except(new[] { SelectedRole.Name })
+                        .Except(new[] {SelectedRole.Name})
                         .ToArray();
                     await Connection.Accounts.Change(SelectedAccount);
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions involved in changing the roles on an account.
+            }
             finally
             {
                 ReloadAvailableRoles();

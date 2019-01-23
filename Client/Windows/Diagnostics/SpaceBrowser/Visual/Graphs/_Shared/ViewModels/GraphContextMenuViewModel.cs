@@ -104,6 +104,7 @@
 
         private void ShowNext(object obj)
         {
+            // Show Next node.
         }
 
         private bool CanShowNext(object obj)
@@ -125,6 +126,7 @@
 
         private void ShowPrevious(object obj)
         {
+            // Show previous node.
         }
 
         private bool CanShowPrevious(object obj)
@@ -146,6 +148,7 @@
 
         private void ShowParent(object obj)
         {
+            // Show the parent entry.
         }
 
         private bool CanShowParent(object obj)
@@ -167,6 +170,7 @@
 
         private void ShowChildren(object obj)
         {
+            // Show child entries.
         }
 
         private bool CanShowChildren(object obj)
