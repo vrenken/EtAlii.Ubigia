@@ -64,40 +64,28 @@
                 }
             }
 
-            if (entriesWithRelation.HasFlag(EntryRelation.Indexed))
+            if (entriesWithRelation.HasFlag(EntryRelation.Indexed) && entry.Indexed != Relation.None)
             {
-                if (entry.Indexed != Relation.None)
-                {
-                    var indexedEntry = Get(entry.Parent.Id, entryRelations);
-                    entries.Add(indexedEntry);
-                }
+                var indexedEntry = Get(entry.Parent.Id, entryRelations);
+                entries.Add(indexedEntry);
             }
 
-            if (entriesWithRelation.HasFlag(EntryRelation.Previous))
+            if (entriesWithRelation.HasFlag(EntryRelation.Previous) && entry.Previous != Relation.None)
             {
-                if (entry.Previous != Relation.None)
-                {
-                    var previousEntry = Get(entry.Previous.Id, entryRelations);
-                    entries.Add(previousEntry);
-                }
+                var previousEntry = Get(entry.Previous.Id, entryRelations);
+                entries.Add(previousEntry);
             }
 
-            if (entriesWithRelation.HasFlag(EntryRelation.Next))
+            if (entriesWithRelation.HasFlag(EntryRelation.Next) && entry.Next != Relation.None)
             {
-                if (entry.Next != Relation.None)
-                {
-                    var nextEntry = Get(entry.Next.Id, entryRelations);
-                    entries.Add(nextEntry);
-                }
+                var nextEntry = Get(entry.Next.Id, entryRelations);
+                entries.Add(nextEntry);
             }
 
-            if (entriesWithRelation.HasFlag(EntryRelation.Downdate))
+            if (entriesWithRelation.HasFlag(EntryRelation.Downdate) && entry.Downdate != Relation.None)
             {
-                if (entry.Downdate != Relation.None)
-                {
-                    var downdateEntry = Get(entry.Downdate.Id, entryRelations);
-                    entries.Add(downdateEntry);
-                }
+                var downdateEntry = Get(entry.Downdate.Id, entryRelations);
+                entries.Add(downdateEntry);
             }
 
             if (entriesWithRelation.HasFlag(EntryRelation.Update))

@@ -25,10 +25,22 @@
 
         public void Dispose()
         {
-            if (Directory.Exists(_testFolderSimple))
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing && Directory.Exists(_testFolderSimple))
             {
                 Directory.Delete(_testFolderSimple, true);
             }
+        }
+
+        ~NET47HierarchicalContentManagerTests()
+        {
+            Dispose(false);
         }
 
         [Fact]

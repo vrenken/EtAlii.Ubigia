@@ -74,17 +74,14 @@
         {
             if (!_disposed)
             {
-                if (disposing)
+                if (disposing && IsConnected)
                 {
                     // Free other state (managed objects).
-                    if (IsConnected)
+                    var task = Task.Run(async () =>
                     {
-                        var task = Task.Run(async () =>
-                        {
-                            await Close();
-                        });
-                        task.Wait();
-                    }
+                        await Close();
+                    });
+                    task.Wait();
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
