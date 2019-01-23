@@ -62,7 +62,7 @@
 
             if (typeof(T) == typeof(bool))
             {
-                value = productKey.GetValue(propertyName, (bool)(object)defaultValue == true ? 1 : 0);
+                value = productKey.GetValue(propertyName, (bool)(object)defaultValue ? 1 : 0);
                 value = (int)value == 1 ? true : false;
             }
             else if (typeof(T) == typeof(int))

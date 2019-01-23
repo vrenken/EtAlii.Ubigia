@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 throw new ScriptParserException("A root subject can only be used as first subject.");
             }
-            if (after is AssignOperator == false)
+            if (!(after is AssignOperator))
             {
                 throw new ScriptParserException("Root subjects can only be modified using the assignment operator.");
             }

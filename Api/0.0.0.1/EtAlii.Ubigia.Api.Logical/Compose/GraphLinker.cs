@@ -46,7 +46,7 @@
                 graphPathTraverser.Traverse(GraphPath.Create(item), Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
-            var itemEntry = await itemEntries.SingleAsync(); // The GraphComposer cannot handle multiple updates yet.
+            await itemEntries.SingleAsync(); // The GraphComposer cannot handle multiple updates yet.
 
             // Let's check if a path already exists.
             var linkAddResult = await _graphLinkAdder.GetLink(itemName, locationEntry, graphPathTraverser, locationResult, scope);

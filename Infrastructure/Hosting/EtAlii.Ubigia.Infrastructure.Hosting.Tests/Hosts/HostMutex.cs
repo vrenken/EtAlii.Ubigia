@@ -44,7 +44,7 @@
                         // note, you may want to time out here instead of waiting forever
                         // edited by acidzombie24
                         hasHandle = mutex.WaitOne(Timeout, false);
-                        if (hasHandle == false)
+                        if (!hasHandle)
                             throw new TimeoutException("Timeout waiting for exclusive access");
                     }
                     catch (AbandonedMutexException)

@@ -16,7 +16,6 @@
 
         public IProfilingAspectsViewModel Aspects { get; }
 
-        private readonly IGraphContext _graphContext;
         private readonly IProfileComposer _profileComposer;
         private readonly IMainDispatcherInvoker _dispatcher;
         private readonly ObservableCollection<ProfilingResult> _items;
@@ -27,13 +26,11 @@
         private bool _autoExpandNodes;
 
         public ProfilingViewModel(
-            IGraphContext graphContext,
             IProfileComposer profileComposer,
             IMainDispatcherInvoker dispatcher,
             IProfilingAspectsViewModel aspects
             )
         {
-            _graphContext = graphContext;
             _profileComposer = profileComposer;
             _dispatcher = dispatcher;
             Aspects = aspects;
