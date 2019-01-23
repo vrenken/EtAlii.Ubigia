@@ -30,7 +30,7 @@
         {
             var missingAssemblies = new List<Guid>();
 
-            var assemblies = Directory.GetFiles(App.ShellExtensionsDirectory, "*.dll");
+            //var assemblies = Directory.GetFiles(App.ShellExtensionsDirectory, "*.dll")
 
             foreach (var storageSettings in globalSettings.Storage)
             {

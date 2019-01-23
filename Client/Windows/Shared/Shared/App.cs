@@ -30,18 +30,6 @@
 
         protected virtual void RegisterKnownTypes()
         {
-            var typesToInclude = new[]
-            {
-                typeof(BindableBase),
-            };
-
-            var typesToExclude = new[]
-            {
-                typeof(IGlobalSettings),
-                typeof(StorageSettings),
-                typeof(ILogger),
-            };
-
             Container.Register<IGlobalSettings, GlobalSettings>();
             Container.Register<ILogFactory, DisabledLogFactory>();
             Container.Register(GetLogger);

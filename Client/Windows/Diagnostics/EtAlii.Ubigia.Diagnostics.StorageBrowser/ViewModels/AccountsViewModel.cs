@@ -77,7 +77,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions involved in adding an account.
+            }
             finally
             {
                 ReloadAvailableAccounts();
@@ -109,7 +112,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions involved in changing an account.
+            }
             finally
             {
                 ReloadAvailableAccounts();
@@ -131,13 +137,13 @@
             {
                 _logger.Verbose("Removing account: {0}", SelectedAccount.Name);
 
-                var task = Task.Run(async () =>
-                {
-                    await Connection.Accounts.Remove(SelectedAccount.Id);
-                });
+                var task = Task.Run(async () => { await Connection.Accounts.Remove(SelectedAccount.Id); });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We catch all exceptions involved in removing an account.
+            }
             finally
             {
                 ReloadAvailableAccounts();

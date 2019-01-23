@@ -72,7 +72,7 @@
     }
 
 
-    public static bool IsDesignMode => (bool)
+    public bool IsDesignMode => (bool)
         DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement))
             .Metadata.DefaultValue;
 

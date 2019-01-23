@@ -27,6 +27,7 @@
             }
             if (Configuration.ExpandNewEntries)
             {
+                
             }
         }
 
