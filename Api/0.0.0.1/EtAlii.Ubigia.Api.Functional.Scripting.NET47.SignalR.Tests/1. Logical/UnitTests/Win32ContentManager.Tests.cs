@@ -18,10 +18,25 @@
 
         public void Dispose()
         {
-            if (File.Exists(_testImageFileName))
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
             {
-                File.Delete(_testImageFileName);
+                if (File.Exists(_testImageFileName))
+                {
+                    File.Delete(_testImageFileName);
+                }
             }
+        }
+
+        ~NET47ContentManager2Tests()
+        {
+            Dispose(false);
         }
 
         //    [Fact]

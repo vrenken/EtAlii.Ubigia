@@ -19,8 +19,23 @@
 
         public void Dispose()
         {
-            _factory = null;
-            _storage = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _factory = null;
+                _storage = null;
+            }
+        }
+
+        ~AddressFactoryTests()
+        {
+            Dispose(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
