@@ -19,7 +19,22 @@
 
         public void Dispose()
         {
-            TestCleanup();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                TestCleanup();
+            }
+        }
+
+        ~RootTest()
+        {
+            Dispose(false);
         }
 
         private void TestInitialize()

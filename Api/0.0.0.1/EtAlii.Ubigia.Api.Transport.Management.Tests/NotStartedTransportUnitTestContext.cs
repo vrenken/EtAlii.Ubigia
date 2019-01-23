@@ -18,8 +18,23 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
 
         public void Dispose()
         {
-            TransportTestContext = null;
-            Diagnostics = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                TransportTestContext = null;
+                Diagnostics = null;
+            }
+        }
+
+        ~NotStartedTransportUnitTestContext()
+        {
+            Dispose(false);
         }
     }
 }

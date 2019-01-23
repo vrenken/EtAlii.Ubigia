@@ -25,15 +25,12 @@
                 foreach (var process in processes)
                 {
                     //Ignore the current process 
-                    if (process.Id != current.Id)
+                    if (process.Id != current.Id && 
+                        Assembly.GetExecutingAssembly().Location.Replace("/", "\\") == current.MainModule.FileName)
                     {
                         //Make sure that the process is running from the exe file. 
-                        if (Assembly.GetExecutingAssembly().Location.
-                             Replace("/", "\\") == current.MainModule.FileName)
-                        {
-                            alreadyRunning = true;
-                            break;
-                        }
+                        alreadyRunning = true;
+                        break;
                     }
                 }
                 return alreadyRunning;

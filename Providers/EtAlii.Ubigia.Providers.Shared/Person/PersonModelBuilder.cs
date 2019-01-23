@@ -80,12 +80,10 @@
         {
             if(emailInstance != null)
             {
-                if (namePerson == phoneInstance?.Person)
+                if (namePerson == phoneInstance?.Person && 
+                    !namePerson.Emails.Any(e => e.Address == emailInstance.Address))
                 {
-                    if (!namePerson.Emails.Any(e => e.Address == emailInstance.Address))
-                    {
-                        namePerson.Emails.Add(emailInstance);
-                    }
+                    namePerson.Emails.Add(emailInstance);
                 }
             }
             else
@@ -100,12 +98,10 @@
         {
             if (phoneInstance != null)
             {
-                if (namePerson == emailInstance?.Person)
+                if (namePerson == emailInstance?.Person && 
+                    !namePerson.Phones.Any(p => p.Number == phoneInstance.Number))
                 {
-                    if (!namePerson.Phones.Any(p => p.Number == phoneInstance.Number))
-                    {
-                        namePerson.Phones.Add(phoneInstance);
-                    }
+                    namePerson.Phones.Add(phoneInstance);
                 }
             }
             else

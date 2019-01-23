@@ -12,10 +12,6 @@
     {
         private ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
 
-        public ManagementConnectionStoragesTests()
-        {
-        }
-
         public async Task InitializeAsync()
         {
             _testContext = new TransportTestContext().Create();

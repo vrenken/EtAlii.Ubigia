@@ -114,13 +114,10 @@
                     TaskCompletionSource<object> tcs = new TaskCompletionSource<object>();
                     ContinueWithPreservedCulture(task, t =>
                     {
-                        if (!t.IsFaulted)
+                        if (!t.IsFaulted && !t.IsCanceled)
                         {
-                            if (!t.IsCanceled)
-                            {
-                                tcs.TrySetResult(null);
-                                return;
-                            }
+                            tcs.TrySetResult(null);
+                            return;
                         }
                         try
                         {

@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public class ManagementConnectionSystemTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
+    public class ManagementConnectionSystemTests : IClassFixture<StartedTransportUnitTestContext>
     {
         private readonly StartedTransportUnitTestContext _testContext;
 
@@ -13,10 +13,6 @@
         {
             _testContext = testContext;
 
-        }
-
-        public void Dispose()
-        {
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

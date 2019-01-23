@@ -25,12 +25,9 @@
         protected virtual void Dispose(bool disposing)
         {
             // Cleanup
-            if (disposing)
+            if (disposing && File.Exists(_testImageFileName))
             {
-                if (File.Exists(_testImageFileName))
-                {
-                    File.Delete(_testImageFileName);
-                }
+                File.Delete(_testImageFileName);
             }
         }
 
