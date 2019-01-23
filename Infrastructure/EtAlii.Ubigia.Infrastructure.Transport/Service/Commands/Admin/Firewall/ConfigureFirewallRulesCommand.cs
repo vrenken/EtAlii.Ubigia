@@ -60,7 +60,6 @@
                 var process = StartElevatedPowerShellScript(scriptFullPath, scriptArgs);
                 process.WaitForExit();
 
-                //Debug.WriteLine($"[{GetType().Name}] Firewall configuration script exit code: {process.ExitCode}");
                 ProcessLogFile(logFile);
 
                 taskCompletionSource.SetResult(process.ExitCode == 0);
@@ -82,8 +81,6 @@
             }.Concat(scriptArgs).Select(QuoteArgument);
 
             var psArgumentsLine = string.Join(" ", arguments);
-
-            //Debug.WriteLine($"[{GetType().Name}] Starting elevated process: {powershell} {psArgumentsLine}");
 
             var startInfo = new ProcessStartInfo
             {

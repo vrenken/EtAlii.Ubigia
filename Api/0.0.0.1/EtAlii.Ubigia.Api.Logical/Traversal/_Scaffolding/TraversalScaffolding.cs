@@ -5,8 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     internal class TraversalScaffolding : IScaffolding
     {
         private readonly IGraphPathTraverserConfiguration _configuration;
-        //private readonly bool _useParallelization = false;
-
+        
         public TraversalScaffolding(IGraphPathTraverserConfiguration configuration)
         {
             _configuration = configuration;

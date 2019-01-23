@@ -128,7 +128,7 @@
             // Act.
             var act = new Action(() =>
             {
-                var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+                itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 
             // Assert.

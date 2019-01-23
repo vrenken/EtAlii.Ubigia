@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Net;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
@@ -48,13 +49,12 @@
                 }
                 else
                 {
-                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed;
+                    response = new StatusCodeResult((int)HttpStatusCode.MethodNotAllowed); //405
                 }
             }
             catch (Exception ex)
             {
                 response = controller.BadRequest(ex.Message);
-                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk");
             }
             return response;
 

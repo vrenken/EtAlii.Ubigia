@@ -24,11 +24,6 @@
         {
             _spaceInitializer.Initialize(e.Space, e.Template);
         }
-//
-//        private ObservableCollection<Space> GetItems()
-//        {
-//            return _logicalContext.Spaces.GetItems();
-//        }
 
         public Space Add(Space item, SpaceTemplate template)
         {

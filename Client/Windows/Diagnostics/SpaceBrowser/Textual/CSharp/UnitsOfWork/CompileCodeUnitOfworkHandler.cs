@@ -8,7 +8,6 @@
     public class CompileCodeUnitOfworkHandler : UnitOfWorkHandlerBase<CompileCodeUnitOfwork>, ICompileCodeUnitOfworkHandler
     {
         private readonly ICodeCompiler _codeCompiler;
-        private CompilerResults _compilerResults;
         private readonly ICodeCompilerResultsParser _codeCompilerResultsParser;
 
         public CompileCodeUnitOfworkHandler(
@@ -23,8 +22,8 @@
         {
             var viewModel = unitOfWork.CodeViewModel;
 
-            _compilerResults = _codeCompiler.Compile(viewModel.Source);
-            viewModel.Errors = _codeCompilerResultsParser.Parse(_compilerResults);
+            var compilerResults = _codeCompiler.Compile(viewModel.Source);
+            viewModel.Errors = _codeCompilerResultsParser.Parse(compilerResults);
             viewModel.CanExecute = !viewModel.Errors.Any() && !String.IsNullOrWhiteSpace(viewModel.Source);
         }
 
