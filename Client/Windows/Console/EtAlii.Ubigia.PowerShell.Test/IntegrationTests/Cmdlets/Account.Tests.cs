@@ -18,7 +18,22 @@
 
         public void Dispose()
         {
-            TestCleanup();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                TestCleanup();
+            }
+        }
+
+        ~AccountTest()
+        {
+            Dispose(false);
         }
 
         private void TestInitialize()
@@ -26,6 +41,7 @@
             _testContext = new PowerShellTestContext();
             _testContext.Start();
         }
+
         private void TestCleanup()
         {
             _testContext.Stop();
