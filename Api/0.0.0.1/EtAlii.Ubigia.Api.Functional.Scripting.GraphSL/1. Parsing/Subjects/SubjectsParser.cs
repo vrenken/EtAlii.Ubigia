@@ -14,6 +14,8 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly ISubjectParser[] _parsers;
 
+        // Warning S107 Constructor has 8 parameters, which is greater than the 7 authorized.
+        #pragma warning disable S107
         public SubjectsParser(
             IFunctionSubjectParser functionSubjectParser,
             IVariableSubjectParser variableSubjectParser,

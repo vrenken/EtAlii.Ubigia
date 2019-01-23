@@ -14,8 +14,9 @@
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableDebugging) // diagnostics is enabled
+            if (_diagnostics.EnableDebugging) 
             {
+                // diagnostics is enabled
             }
         }
     }

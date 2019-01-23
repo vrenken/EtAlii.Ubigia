@@ -2,7 +2,7 @@
 {
     // Origin: EtAlii.Ubigia.Api.Transport.WebApi
 
-    // TODO: These parameters should be used in the RequiredRequiredFromQueryAttribute usages.
+    // Idea: These parameters should be used in the RequiredRequiredFromQueryAttribute usages.
     public static class UriParameter 
     {
         public const string EntryId = "entryId";

@@ -20,8 +20,10 @@
         private const string ValueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
-        private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector; 
+        private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
 
+// Warning S107 Constructor has 8 parameters, which is greater than the 7 authorized.
+#pragma warning disable S107 
         public KeyValuePairParser(
             INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,

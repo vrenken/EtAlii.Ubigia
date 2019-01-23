@@ -41,7 +41,7 @@
 
         public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            // TODO: this can be improved by using one single Web API call.
+            // Idea: this can be improved by using one single Web API call.
             var result = new List<IReadOnlyEntry>();
             foreach (var entryIdentifier in entryIdentifiers)
             {

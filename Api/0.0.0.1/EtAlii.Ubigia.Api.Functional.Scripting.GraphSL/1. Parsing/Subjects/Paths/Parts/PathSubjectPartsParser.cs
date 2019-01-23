@@ -12,6 +12,8 @@
         private readonly INodeValidator _nodeValidator;
         private readonly IPathSubjectPartParser[] _parsers;
 
+        // Warning S107 Constructor has 21 parameters, which is greater than the 7 authorized.
+        #pragma warning disable S107
         public PathSubjectPartsParser(
             ITraversingWildcardPathSubjectPartParser traversingWildcardPathSubjectPartParser,
             IWildcardPathSubjectPartParser wildcardPathSubjectPartParser,

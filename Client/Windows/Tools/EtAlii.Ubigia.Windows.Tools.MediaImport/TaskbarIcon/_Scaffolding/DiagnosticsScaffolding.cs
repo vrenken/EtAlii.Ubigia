@@ -19,18 +19,21 @@
 
             container.Register(() => _diagnostics.CreateProfilerFactory());
             container.Register(() => _diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-            if (_diagnostics.EnableProfiling) // profiling is enabled
+            if (_diagnostics.EnableProfiling) 
             {
+                // profiling is enabled
             }
 
             container.Register(() => _diagnostics.CreateLogFactory());
             container.Register(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
-            if (_diagnostics.EnableLogging) // logging is enabled
+            if (_diagnostics.EnableLogging) 
             {
+                // logging is enabled
             }
 
-            if (_diagnostics.EnableDebugging) // debugging is enabled
+            if (_diagnostics.EnableDebugging) 
             {
+                // debugging is enabled
             }
         }
     }

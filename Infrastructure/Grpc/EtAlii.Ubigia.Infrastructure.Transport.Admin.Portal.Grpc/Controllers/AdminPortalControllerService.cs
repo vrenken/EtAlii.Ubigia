@@ -13,17 +13,7 @@
 
         protected override void OnConfigureServices(Server.ServiceDefinitionCollection serviceDefinitions)
         {
-            // TODO: GRPC
-            //applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
-            //    services =>
-            //    {
-            //        services.AddMvcForTypedController<AdminPortalController>();
-            //        //.AddRazorOptions(options =>
-            //        //{
-            //        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
-            //        //});
-            //    },
-            //    appBuilder => appBuilder.UseWelcomePage().UseMvc());
+            // Here we should implement the admin portal GRPC controller.
         }
     }
 }
