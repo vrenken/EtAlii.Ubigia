@@ -18,8 +18,9 @@
             container.Register(() => _diagnostics.CreateLogFactory());
             container.Register(() => _diagnostics.CreateLogger(container.GetInstance<ILogFactory>()));
 
-            if (_diagnostics.EnableLogging) // logging is enabled.
+            if (_diagnostics.EnableLogging) 
             {
+                // logging is enabled.
             }
         }
     }

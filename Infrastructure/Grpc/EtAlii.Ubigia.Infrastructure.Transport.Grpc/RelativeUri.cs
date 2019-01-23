@@ -1,14 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 {
     // Origin: EtAlii.Ubigia.Api.Transport.WebApi
-    // TODO: Merge with RelativeUri in transport.
+    // Idea: Merge with RelativeUri in transport.
 
     public static class RelativeUri
     {
         //public static string ApiRest = "Api/Rest/";
         public const string Authenticate = "authenticate";
 
-        // TODO: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
+        // Idea: refactor to RelativeUri.Admin.*, RelativeUri.Data.* and RelativeUri.User.*
 
         public static class Admin
         {

@@ -49,7 +49,7 @@
                 throw new NodeQueryingException("Unable to parse script needed to return a collection", scriptParseResult);
             }
 
-            // TODO: Attempt to make Linq async.
+            // Idea: Attempt to make Linq async.
             var scriptResult = _scriptContext
                 .Process(scriptParseResult.Script, scope)
                 .ToEnumerable();

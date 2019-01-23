@@ -12,8 +12,9 @@
 
             container.Register(() => diagnostics.CreateProfilerFactory());
             container.Register(() => diagnostics.CreateProfiler(container.GetInstance<IProfilerFactory>()));
-            if (diagnostics.EnableProfiling) // profiling is enabled
+            if (diagnostics.EnableProfiling) 
             {
+                // profiling is enabled
             }
 
         }

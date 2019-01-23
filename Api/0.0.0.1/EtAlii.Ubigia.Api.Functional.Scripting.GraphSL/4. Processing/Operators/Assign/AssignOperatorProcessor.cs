@@ -7,6 +7,8 @@
     {
         private readonly ISelector<Subject, Subject, IAssignOperatorSubProcessor> _selector;
 
+// Warning S107 Constructor has 27 parameters, which is greater than the 7 authorized.
+#pragma warning disable S107
         public AssignOperatorProcessor(
             IAssignPathToVariableOperatorSubProcessor assignPathToVariableOperatorSubProcessor, 
             IAssignFunctionToVariableOperatorSubProcessor assignFunctionToVariableOperatorSubProcessor, 

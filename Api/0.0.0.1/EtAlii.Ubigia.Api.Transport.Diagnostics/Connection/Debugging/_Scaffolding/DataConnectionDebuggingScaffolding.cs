@@ -9,8 +9,9 @@
         {
             var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
 
-            if (diagnostics.EnableDebugging) // diagnostics is enabled
+            if (diagnostics.EnableDebugging) 
             {
+                // diagnostics is enabled
             }
         }
     }

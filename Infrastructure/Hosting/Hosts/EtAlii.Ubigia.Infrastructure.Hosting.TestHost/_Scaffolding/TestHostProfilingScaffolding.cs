@@ -14,8 +14,9 @@
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableProfiling) // profiling is enabled
+            if (_diagnostics.EnableProfiling) 
             {
+                // profiling is enabled
             }
         }
     }

@@ -14,8 +14,9 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 
         public void Register(Container container)
         {
-            if (_diagnostics.EnableDebugging) // diagnostics is enabled
+            if (_diagnostics.EnableDebugging) 
             {
+                // diagnostics is enabled
             }
         }
     }

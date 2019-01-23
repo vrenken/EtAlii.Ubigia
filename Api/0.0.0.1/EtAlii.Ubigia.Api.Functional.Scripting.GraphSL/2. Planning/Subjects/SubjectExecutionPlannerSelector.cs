@@ -6,6 +6,8 @@
     {
         private readonly ISelector<Subject, ISubjectExecutionPlanner> _selector;
 
+        // Warning S107 Constructor has 8 parameters, which is greater than the 7 authorized.
+        #pragma warning disable S107
         public SubjectExecutionPlannerSelector(
             IAbsolutePathSubjectExecutionPlanner absolutePathSubjectExecutionPlanner,
             IRelativePathSubjectExecutionPlanner relativePathSubjectExecutionPlanner,
