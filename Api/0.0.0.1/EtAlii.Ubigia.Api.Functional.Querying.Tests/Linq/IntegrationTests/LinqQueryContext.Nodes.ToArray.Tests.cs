@@ -9,17 +9,13 @@
     
 
     
-    public class LinqQueryContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class LinqQueryContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>
     {
         private readonly LogicalUnitTestContext _testContext;
 
         public LinqQueryContextNodesToArrayTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public void Dispose()
-        {
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

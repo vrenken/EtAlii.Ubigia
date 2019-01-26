@@ -4,6 +4,7 @@
     {
         public void Handle()
         {
+            // Reconnect the Entry cache on startup.
         }
     }
 }

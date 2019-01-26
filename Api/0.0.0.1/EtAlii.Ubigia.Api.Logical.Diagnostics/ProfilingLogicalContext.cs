@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
+    using System;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Logical;
 
@@ -23,7 +24,22 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
         public void Dispose()
         {
-            _decoree.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _decoree.Dispose();
+            }
+        }
+
+        ~ProfilingLogicalContext()
+        {
+            Dispose(false);
         }
     }
 }

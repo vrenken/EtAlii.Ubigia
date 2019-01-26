@@ -27,11 +27,13 @@
             }
             if (Configuration.ExpandNewEntries)
             {
+                // Show any new entries.
             }
         }
 
         protected override void SelectEntry(object parameter)
         {
+            // Select an entry.
         }
 
         protected override void DiscoverEntry(object parameter)

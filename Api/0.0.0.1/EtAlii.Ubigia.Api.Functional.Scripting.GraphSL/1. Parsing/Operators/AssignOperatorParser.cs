@@ -41,10 +41,7 @@
         public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
         {
             var validation = _validationSelector.TrySelect(before, after);
-            if (validation != null)
-            {
-                validation();
-            }
+            validation?.Invoke();
         }
     }
 }

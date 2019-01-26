@@ -18,7 +18,7 @@
             var result = storageWindow.ShowDialog();
             if (result == true)
             {
-
+                // Handle.
             }
 
             CommandManager.InvalidateRequerySuggested();

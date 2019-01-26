@@ -28,28 +28,21 @@
 
         protected InfrastructureBase(
             IInfrastructureConfiguration configuration,
-            ISpaceRepository spaces,
-            IIdentifierRepository identifiers,
-            IEntryRepository entries,
-            IRootRepository roots,
-            IAccountRepository accounts,
-            IContentRepository content,
-            IContentDefinitionRepository contentDefinition,
-            IPropertiesRepository properties,
-            IStorageRepository storages,
+            IInfrastructureDataContext dataContext,
+            IInfrastructureManagementContext managementContext,
             ILogicalContext logicalContext)
         {
             Configuration = configuration;
-            Identifiers = identifiers;
-            Entries = entries;
-            Roots = roots;
-            Content = content;
-            ContentDefinition = contentDefinition;
-            Properties = properties;
+            Identifiers = dataContext.Identifiers;
+            Entries = dataContext.Entries;
+            Roots = dataContext.Roots;
+            Content = dataContext.Content;
+            ContentDefinition = dataContext.ContentDefinition;
+            Properties = dataContext.Properties;
 
-            Spaces = spaces;
-            Accounts = accounts;
-            Storages = storages;
+            Spaces = managementContext.Spaces;
+            Accounts = managementContext.Accounts;
+            Storages = managementContext.Storages;
             _logicalContext = logicalContext;
         }
 

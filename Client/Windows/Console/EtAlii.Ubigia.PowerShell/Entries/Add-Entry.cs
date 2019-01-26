@@ -72,14 +72,17 @@
 
         protected override void BeginProcessing()
         {
+            // Begin the process of adding an entry.
         }
 
         protected override void EndProcessing()
         {
+            // End the process of adding an entry.
         }
 
         protected override void ProcessRecord()
         {
+            // Process a record to add an entry.
         }
     }
 }

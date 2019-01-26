@@ -27,7 +27,7 @@
             }
             if (Configuration.ExpandNewEntries)
             {
-                
+                // Show any new entries.
             }
         }
 

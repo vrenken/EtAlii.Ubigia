@@ -23,12 +23,28 @@
             NET47TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
         }
 
+
         public void Dispose()
         {
-            if (Directory.Exists(_testFolderSimple))
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
             {
-                Directory.Delete(_testFolderSimple, true);
+                if (Directory.Exists(_testFolderSimple))
+                {
+                    Directory.Delete(_testFolderSimple, true);
+                }
             }
+        }
+
+        ~NET47HierarchicalContentManagerTests()
+        {
+            Dispose(false);
         }
 
         [Fact]

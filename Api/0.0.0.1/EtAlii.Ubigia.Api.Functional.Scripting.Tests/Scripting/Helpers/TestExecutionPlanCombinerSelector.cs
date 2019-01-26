@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    internal class TestExecutionPlanCombinerSelector
+    internal static class TestExecutionPlanCombinerSelector
     {
         public static IExecutionPlanCombinerSelector Create(
             ISequencePartExecutionPlannerSelector sequencePartExecutionPlannerSelector)

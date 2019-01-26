@@ -18,10 +18,12 @@ namespace EtAlii.Ubigia.Provisioning.Time
 
         public void Stop()
         {
+            // Stop the subprocesses related to importing time information.
         }
 
         public void Start()
         {
+            // Start the subprocesses related to importing time information.
         }
     }
 }

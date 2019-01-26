@@ -13,6 +13,8 @@
 
         public void Register(Container container)
         {
+            container.Register<IInfrastructureManagementContext, InfrastructureManagementContext>();
+            container.Register<IInfrastructureDataContext, InfrastructureDataContext>();
             container.Register(() => _configuration);
             container.Register(() => _configuration.Logical);
             container.Register(() => _configuration.SystemConnectionCreationProxy);

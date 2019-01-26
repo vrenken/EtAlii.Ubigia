@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
+    using System;
+
     internal class LogicalContext : ILogicalContext
     {
         public ILogicalContextConfiguration Configuration { get; }
@@ -28,7 +30,22 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public void Dispose()
         {
-            // Dispose the LogicalContext.
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                // Dispose the LogicalContext.
+            }
+        }
+
+        ~LogicalContext()
+        {
+            Dispose(false);
         }
     }
 }

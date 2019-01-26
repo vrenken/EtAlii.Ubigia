@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class TestSequencePartExecutionPlannerSelector
+    internal static class TestSequencePartExecutionPlannerSelector
     {
         public static ISequencePartExecutionPlannerSelector Create()
         {

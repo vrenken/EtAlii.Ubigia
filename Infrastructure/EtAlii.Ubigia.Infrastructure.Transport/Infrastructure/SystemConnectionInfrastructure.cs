@@ -7,17 +7,10 @@
     {
         public SystemConnectionInfrastructure(
             IInfrastructureConfiguration configuration,
-            ISpaceRepository spaces,
-            IIdentifierRepository identifiers,
-            IEntryRepository entries,
-            IRootRepository roots,
-            IAccountRepository accounts,
-            IContentRepository content,
-            IContentDefinitionRepository contentDefinition,
-            IPropertiesRepository properties,
-            IStorageRepository storages,
+            IInfrastructureDataContext dataContext,
+            IInfrastructureManagementContext managementContext,
             ILogicalContext logicalContext)
-            : base(configuration, spaces, identifiers, entries, roots, accounts, content, contentDefinition, properties, storages, logicalContext)
+            : base(configuration, dataContext, managementContext, logicalContext)
         {
         }
 

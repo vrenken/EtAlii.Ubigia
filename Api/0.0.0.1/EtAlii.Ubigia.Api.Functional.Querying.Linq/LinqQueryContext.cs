@@ -19,15 +19,29 @@
             ChangeTracker = changeTracker;
         }
 
-        public void Dispose()
-        {
-            ChangeTracker.Dispose();
-        }
-
         public void SaveChanges()
         {
             throw new NotImplementedException();
         }
 
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                ChangeTracker.Dispose();
+            }
+        }
+
+        ~LinqQueryContext()
+        {
+            Dispose(false);
+        }
     }
 }
