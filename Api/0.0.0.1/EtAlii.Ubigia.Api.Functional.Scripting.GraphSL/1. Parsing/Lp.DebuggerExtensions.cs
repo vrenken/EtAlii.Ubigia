@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Text;
     using Moppet.Lapa;
 
     internal static class LpDebuggerExtensions
@@ -10,12 +11,12 @@
         {
             return new LpsParser(text =>
             {
-                var spaces = "";
+                var sb = new StringBuilder();
                 for (int i = 0; i < _indention; i++)
                 {
-                    spaces += "\t";
+                    sb.Append("\t");
                 }
-
+                var spaces = sb.ToString();
                 System.Diagnostics.Debug.WriteLine($"{spaces}+ {debugId} - Input: {text}");
                 _indention += 1;
                 var result = parser.Do(text);

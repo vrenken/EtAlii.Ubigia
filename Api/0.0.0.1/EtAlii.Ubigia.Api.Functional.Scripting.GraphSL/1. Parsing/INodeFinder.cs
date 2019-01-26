@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional
         IEnumerable<LpNode> FindAll(IEnumerable<LpNode> nodes, string id);
         IEnumerable<LpNode> FindAll(LpNode node, string id);
 
-        //LpNode FindFirst(LpNode node);
         LpNode FindFirst(IEnumerable<LpNode> nodes);
 
         LpNode FindFirst(LpNode node, string id);

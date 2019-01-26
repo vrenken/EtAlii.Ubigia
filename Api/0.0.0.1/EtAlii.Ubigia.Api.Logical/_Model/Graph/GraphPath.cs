@@ -52,8 +52,7 @@
 
         public static GraphPath Create(IEnumerable<Identifier> startIdentifiers, params GraphPathPart[] parts)
         {
-            var list = new List<GraphPathPart>();
-            list.Add(new GraphIdentifiersStartNode(startIdentifiers));
+            var list = new List<GraphPathPart> {new GraphIdentifiersStartNode(startIdentifiers)};
             list.AddRange(parts);
             return new GraphPath(list.ToArray());
         }

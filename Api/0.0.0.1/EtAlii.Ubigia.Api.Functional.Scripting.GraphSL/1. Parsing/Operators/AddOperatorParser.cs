@@ -13,7 +13,7 @@
         public AddOperatorParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("+=") + Lp.ZeroOrMore(' '));//.Debug("AddOperatorParser", true);
+            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("+=") + Lp.ZeroOrMore(' '));
         }
 
         public bool CanParse(LpNode node)

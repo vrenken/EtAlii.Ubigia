@@ -103,9 +103,9 @@
                 }
                 catch (Exception e)
                 {
-                    while (e is AggregateException)
+                    while (e is AggregateException exception)
                     {
-                        e = ((AggregateException)e).InnerException;
+                        e = exception.InnerException;
                     }
 
                     // An exception on this level should be propagated to the script output observer.

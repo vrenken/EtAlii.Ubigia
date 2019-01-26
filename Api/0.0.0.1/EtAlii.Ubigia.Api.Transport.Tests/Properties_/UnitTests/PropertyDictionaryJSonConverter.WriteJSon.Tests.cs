@@ -75,8 +75,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_String()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = "World";
+            var properties = new PropertyDictionary {["Hello"] = "World"};
 
             // Act.
             var result = WriteJSon(properties);
@@ -89,8 +88,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int16()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = (Int16)123;
+            var properties = new PropertyDictionary {["Hello"] = (Int16) 123};
 
             // Act.
             var result = WriteJSon(properties);
@@ -103,8 +101,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int16_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = Int16.MaxValue;
+            var properties = new PropertyDictionary {["Hello"] = Int16.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -117,8 +114,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int16_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = Int16.MinValue;
+            var properties = new PropertyDictionary {["Hello"] = Int16.MinValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -131,8 +127,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int32()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = 123;
+            var properties = new PropertyDictionary {["Hello"] = 123};
 
             // Act.
             var result = WriteJSon(properties);
@@ -145,8 +140,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Int32_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = Int32.MaxValue;
+            var properties = new PropertyDictionary {["Hello"] = Int32.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -510,8 +504,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Single()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = (Single)123.456;
+            var properties = new PropertyDictionary {["Hello"] = (Single) 123.456};
 
             // Act.
             var result = WriteJSon(properties);
@@ -706,8 +699,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = TimeSpan.FromSeconds(10);
+            var properties = new PropertyDictionary {["Hello"] = TimeSpan.FromSeconds(10)};
 
             // Act.
             var result = WriteJSon(properties);
@@ -720,8 +712,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_TimeSpan_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = TimeSpan.MaxValue;
+            var properties = new PropertyDictionary {["Hello"] = TimeSpan.MaxValue};
 
             // Act.
             var result = WriteJSon(properties);
@@ -778,12 +769,14 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Complex_01()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = "World";
-            properties["Int32"] = 1234;
-            properties["Boolean"] = true;
-            properties["Null"] = null;
-            properties["Int16"] = (Int16)1234;
+            var properties = new PropertyDictionary
+            {
+                ["Hello"] = "World",
+                ["Int32"] = 1234,
+                ["Boolean"] = true,
+                ["Null"] = null,
+                ["Int16"] = (Int16) 1234
+            };
 
             // Act.
             var result = WriteJSon(properties);

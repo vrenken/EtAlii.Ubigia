@@ -16,11 +16,18 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public async Task Assign(OperatorParameters parameters)
         {
-            parameters.RightInput
+            var result = parameters.RightInput
                 .ToEnumerable()
                 .Cast<RootDefinitionSubject>()
-                .Single(); // We do not support multiple definitions
-
+                .Count();
+            if (result > 1)
+            {
+                throw new ScriptProcessingException("Unable to assign: Multiple roots specified.");
+            }
+            if (result == 0)
+            {
+                throw new ScriptProcessingException("Unable to assign: No root specified.");
+            }
             parameters.LeftInput
                 .Cast<RootSubject>()
                 .SubscribeAsync(

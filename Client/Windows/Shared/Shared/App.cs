@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Shared
 {
     using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.MicroContainer;
     using System;
     using System.IO;

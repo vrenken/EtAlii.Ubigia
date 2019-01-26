@@ -7,9 +7,6 @@
     internal class ScriptParser : IScriptParser
     {
         private const string Id = "Script";
-
-//        private static readonly string[] _separators = new[] { "\n", "\r\n" };
-
         private readonly ISequenceParser _sequenceParser;
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
@@ -48,8 +45,6 @@
 
                 _nodeValidator.EnsureSuccess(node, Id, false);
 
-                //var sequences = node.Children
-                //    .Where(n => n.Id == SequenceParser.Id)
                 var sequences = _nodeFinder.FindAll(node, _sequenceParser.Id)
                     .Select(n => n.Match.ToString())
                     .Select(t => _sequenceParser.Parse(t))

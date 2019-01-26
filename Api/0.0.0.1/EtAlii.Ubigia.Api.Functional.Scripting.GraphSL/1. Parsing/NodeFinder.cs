@@ -62,11 +62,6 @@
             return result;
         }
 
-        //public LpNode FindFirst(LpNode node)
-        //{
-        //    return FindFirst(new LpNode[] { node });
-        //}
-
         public LpNode FindFirst(IEnumerable<LpNode> nodes)
         {
             LpNode result = null;
