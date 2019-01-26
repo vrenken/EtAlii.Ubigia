@@ -52,8 +52,7 @@ namespace EtAlii.Ubigia.Api.Logical
             ITraversalContext context,
             ExecutionScope scope) 
         {
-            var result = new List<Identifier>();
-            result.Add(start);
+            var result = new List<Identifier> {start};
             var subItems = (await GetNextRecursion(start, context, scope))
                 .ToArray();
 
