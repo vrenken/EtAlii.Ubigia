@@ -82,10 +82,12 @@
 
         private void ShowAbout(object obj)
         {
+            // Show the about information for the hosting environment and its subsystems.
         }
 
         private void ShowStatus(object obj)
         {
+            // Show the status of the hosting environment and its subsystems.
         }
 
         private void ShowConfiguration(object obj)

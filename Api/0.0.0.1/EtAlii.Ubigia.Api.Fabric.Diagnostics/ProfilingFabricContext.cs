@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
+    using System;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Transport;
@@ -29,7 +30,22 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 
         public void Dispose()
         {
-            _decoree.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _decoree.Dispose();
+            }
+        }
+
+        ~ProfilingFabricContext()
+        {
+            Dispose(false);
         }
     }
 }

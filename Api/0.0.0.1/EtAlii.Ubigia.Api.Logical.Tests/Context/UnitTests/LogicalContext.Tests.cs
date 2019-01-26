@@ -27,6 +27,7 @@
             // Act.
             using (var context = new LogicalContextFactory().Create(configuration))
             {
+                // Implicit dispose.
             }
 
             // Assert.

@@ -10,7 +10,7 @@
 
         public Uri Address { get; private set; }
 
-        public SpaceTransportBase(Uri address)
+        protected SpaceTransportBase(Uri address)
         {
             Address = address;
         }

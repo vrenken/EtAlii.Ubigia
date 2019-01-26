@@ -29,8 +29,23 @@
 
         public void Dispose()
         {
-            HostTestContext.Stop();
-            HostTestContext = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                HostTestContext.Stop();
+                HostTestContext = null;
+            }
+        }
+
+        ~InfrastructureUnitTestContext()
+        {
+            Dispose(false);
         }
     }
 }

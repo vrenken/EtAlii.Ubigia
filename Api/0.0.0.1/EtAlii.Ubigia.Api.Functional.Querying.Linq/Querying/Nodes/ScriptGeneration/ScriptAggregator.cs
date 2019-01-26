@@ -54,6 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void AddVariableAssignment(IQuerySource querySource)
         {
+            // Add a variable assignment for the given querySource.
         }
 
         private string CreateVariableName(int count)

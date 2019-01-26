@@ -6,6 +6,7 @@
     {
         public void Register(Container container)
         {
+            // Register all of the class/interface instances related to the SystemInfrastructure.
         }
     }
 }

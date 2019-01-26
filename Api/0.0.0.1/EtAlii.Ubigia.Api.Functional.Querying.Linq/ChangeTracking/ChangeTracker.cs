@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System;
     using System.Collections.Generic;
 
     public class ChangeTracker : IChangeTracker
@@ -17,7 +18,22 @@
 
         public void Dispose()
         {
-            // Dispose the ChangeTracker.
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+               // Dispose...
+            }
+        }
+
+        ~ChangeTracker()
+        {
+            Dispose(false);
         }
     }
 }

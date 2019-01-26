@@ -39,8 +39,7 @@
         public Root Get(Guid spaceId, string name)
         {
             var roots = GetAll(spaceId);
-            var root = roots.Where(r => r.Name == name)
-                            .SingleOrDefault();
+            var root = roots.SingleOrDefault(r => r.Name == name);
             return root;
         }
     }

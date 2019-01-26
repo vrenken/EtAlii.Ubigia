@@ -63,13 +63,14 @@
             {
                 _logger.Verbose("Adding storage: {0}", StorageName);
 
-                var task = Task.Run(async () =>
-                {
-                    await Connection.Storages.Add(StorageName, StorageAddress);
-                });
+                var task = Task.Run(async () => { await Connection.Storages.Add(StorageName, StorageAddress); });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We explicit catch all exceptions as we currently haven't
+                // got a deep exception handling system in place.
+            }
             finally
             {
                 ReloadAvailableStorages();
@@ -101,7 +102,11 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We explicit catch all exceptions as we currently haven't
+                // got a deep exception handling system in place.
+            }
             finally
             {
                 ReloadAvailableStorages();
@@ -122,13 +127,14 @@
             {
                 _logger.Verbose("Removing storage: {0}", SelectedStorage.Name);
 
-                var task = Task.Run(async () =>
-                {
-                    await Connection.Storages.Remove(SelectedStorage.Id);
-                });
+                var task = Task.Run(async () => { await Connection.Storages.Remove(SelectedStorage.Id); });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // We explicit catch all exceptions as we currently haven't
+                // got a deep exception handling system in place.
+            }
             finally
             {
                 ReloadAvailableStorages();

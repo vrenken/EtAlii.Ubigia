@@ -4,17 +4,13 @@
     using System.Threading.Tasks;
     using Xunit;
 
-    public class DataConnectionTests : IClassFixture<TransportUnitTestContext>, IDisposable
+    public class DataConnectionTests : IClassFixture<TransportUnitTestContext>
     {
         private readonly TransportUnitTestContext _testContext;
 
         public DataConnectionTests(TransportUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public void Dispose()
-        {
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
