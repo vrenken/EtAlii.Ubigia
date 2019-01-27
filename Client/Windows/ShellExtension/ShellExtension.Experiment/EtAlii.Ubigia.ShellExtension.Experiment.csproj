@@ -53,6 +53,7 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.ShellExtension.Experiment.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -72,6 +73,7 @@
     <DebugType>none</DebugType>
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisRuleSet>EtAlii.Ubigia.ShellExtension.Experiment.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -126,6 +128,7 @@
       <Link>ShellRegistration.snk</Link>
     </None>
     <None Include="app.config" />
+    <None Include="EtAlii.Ubigia.ShellExtension.Experiment.ruleset" />
     <None Include="RegisterExtensionDotNet40.exe">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
