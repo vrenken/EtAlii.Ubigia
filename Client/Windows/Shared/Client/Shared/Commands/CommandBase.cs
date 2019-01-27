@@ -19,7 +19,7 @@
     /// <summary>
     /// A singleton instance.
     /// </summary>
-    private static T command;
+    private static readonly Lazy<T> Command = new Lazy<T>(() => new T());
 
     protected Container Container { get; }
 
@@ -32,8 +32,7 @@
     /// </summary>
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
-      if (command == null) command = new T();
-      return command;
+      return Command.Value;
     }
 
     /// <summary>
