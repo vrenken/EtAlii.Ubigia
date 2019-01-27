@@ -30,7 +30,7 @@
 			};
 
 			builder.Path = builder.Path.TrimEnd('/') + "/" + RelativeUri.ApiRest + relativeAddress.TrimStart('/');
-			return builder.Uri;//ToString();
+			return builder.Uri;
 		}
 
 		public Uri Create(Storage storage, string relativeAddress, params string[] parameters)

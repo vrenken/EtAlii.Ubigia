@@ -21,8 +21,6 @@
 				.AddSingleton<IHttpContextAuthenticationTokenVerifier, HttpContextAuthenticationTokenVerifier>()
 				.AddSingleton<IHttpContextAuthenticationIdentityProvider, DefaultHttpContextAuthenticationIdentityProvider>();
 
-			//AddJwtBearer(services);
-
 			return services;
 		}
 
@@ -31,15 +29,11 @@
 		    services
 			    .TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
 			    .TryAddSingleton<IStorageRepository>(infrastructure.Storages)
-				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver);
-				//.AddSingleton<IParameterResolver, SignalRParameterResolver>()
 				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
 			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 			    .AddSingleton<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>()
 			    .AddSingleton<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>()
 			    .AddSingleton<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>();
-
-			//AddJwtBearer(services);
 
 			return services;
 	    }

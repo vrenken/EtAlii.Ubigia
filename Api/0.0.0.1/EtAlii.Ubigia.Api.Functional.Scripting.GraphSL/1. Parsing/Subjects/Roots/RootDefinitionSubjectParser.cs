@@ -13,15 +13,11 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly ITypeValueParser _typeValueParser;
-//        private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
-//        private const string _textId = "Text";
-//        private const string _pathId = "SchemaPath";
 
         public RootDefinitionSubjectParser(
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             ITypeValueParser typeValueParser 
-//            IPathSubjectPartsParser pathSubjectPartsParser
             )
         {
             _nodeValidator = nodeValidator;
@@ -57,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 throw new ScriptParserException("A root definition subject can not be used as first subject.");
             }
-            if (before is AssignOperator == false)
+            if (!(before is AssignOperator))
             {
                 throw new ScriptParserException("Root definition subjects can only be used with the assignment operator.");
             }

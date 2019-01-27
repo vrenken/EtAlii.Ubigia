@@ -14,7 +14,6 @@
         public IEntryRepository Entries => _decoree.Entries;
         public IPropertiesRepository Properties => _decoree.Properties;
         public IRootRepository Roots => _decoree.Roots;
-        //public IRootInitializer RootInitializer { get { return _decoree.RootInitializer; } }
         public IAccountRepository Accounts => _decoree.Accounts;
         public IContentRepository Content => _decoree.Content;
         public IContentDefinitionRepository ContentDefinition => _decoree.ContentDefinition;

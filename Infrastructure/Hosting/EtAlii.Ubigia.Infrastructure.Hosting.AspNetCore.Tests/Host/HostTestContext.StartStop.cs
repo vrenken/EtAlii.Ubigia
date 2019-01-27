@@ -11,8 +11,6 @@
     {
 	    protected override void StartInternal(bool useRandomPorts)
 	    {
-            //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
-
             var ports = GetAvailableTcpPorts(64000, 2)
              .Select(p => p.ToString())
              .ToArray();
@@ -67,8 +65,7 @@
 
             var hostConfiguration = new HostConfigurationBuilder()
                 .Build(applicationConfiguration);
-            //.UseTestHost(diagnostics);
-
+            
             var host = new HostFactory<TInfrastructureTestHost>().Create(hostConfiguration);
             Host = host;
             host.Start();

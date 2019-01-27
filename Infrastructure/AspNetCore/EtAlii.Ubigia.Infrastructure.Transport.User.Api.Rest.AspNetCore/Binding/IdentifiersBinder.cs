@@ -11,7 +11,6 @@
         private readonly string[] _locationSplitCharacters = new[] { IdentifierSplitter.Location };
         private readonly string[] _timeSplitCharacters = new[] { IdentifierSplitter.Time };
         private readonly string[] _partSplitCharacters = new[] { IdentifierSplitter.Part };
-//        private readonly string[] _identifierSplitCharacters = new[] { IdentifierSplitter.Separator };
 
         public Task BindModelAsync(ModelBindingContext bindingContext)
         {
@@ -22,7 +21,6 @@
 
             var value = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
 
-            //string rawValue = value.RawValue as string;
             var rawValue = value.FirstValue;
             if (rawValue == null)
             {

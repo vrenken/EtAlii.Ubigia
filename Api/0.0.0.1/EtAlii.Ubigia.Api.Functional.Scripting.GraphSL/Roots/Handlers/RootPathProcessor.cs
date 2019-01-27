@@ -28,8 +28,6 @@ namespace EtAlii.Ubigia.Api.Functional
                 throw new InvalidOperationException("No matching root handler mapper found.");
             }
             // Find the matching root handler.
-            //var scriptScope = new ScriptScope();
-
             MatchResult match = null;
 
             foreach (var rh in rootHandlerMapper.AllowedRootHandlers)

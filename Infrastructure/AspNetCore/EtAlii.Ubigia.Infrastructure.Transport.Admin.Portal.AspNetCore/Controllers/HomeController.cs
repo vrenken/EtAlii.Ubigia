@@ -5,13 +5,6 @@
     [Route("[controller]")]
     public class HomeController : AdminPortalController
     {
-        //private IHiService _adminService;
-
-        //public AdminDataController(IHiService adminService)
-        //{
-        //    _adminService = adminService;
-        //}
-
         [HttpGet]
         public string Get()
         {

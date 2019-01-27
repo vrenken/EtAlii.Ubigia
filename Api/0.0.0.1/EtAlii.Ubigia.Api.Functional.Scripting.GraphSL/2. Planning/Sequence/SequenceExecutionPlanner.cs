@@ -21,7 +21,7 @@
 
             // We are not interested in planning execution of comment parts, so let's exclude them.
             var parts = sequence.Parts
-                .Where(p => p is Comment == false)
+                .Where(p => !(p is Comment))
                 .ToArray();
             var count = parts.Length;
 

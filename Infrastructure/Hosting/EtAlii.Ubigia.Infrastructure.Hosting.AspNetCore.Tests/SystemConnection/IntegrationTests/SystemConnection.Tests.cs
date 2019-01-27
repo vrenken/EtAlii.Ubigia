@@ -56,7 +56,7 @@
         public async Task SystemConnection_Create_ManagementConnection()
         {
             // Arrange.
-            var userName = Guid.NewGuid().ToString();// "TestUser";
+            var userName = Guid.NewGuid().ToString();
             var password = "123";
             var spaceName = "TestSpace";
             var systemConnection = await _testContext.HostTestContext.CreateSystemConnection();

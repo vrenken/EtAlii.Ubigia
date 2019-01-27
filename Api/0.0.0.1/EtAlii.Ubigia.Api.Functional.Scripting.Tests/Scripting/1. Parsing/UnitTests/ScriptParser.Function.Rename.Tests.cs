@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
 
@@ -38,8 +39,7 @@
 
             // Assert.
             Assert.NotNull(script);
-            //Assert.NotNull(script);
-            //Assert.True(script.Sequences.Count() == 1);
+            Assert.True(script.Sequences.Count() == 3);
         }
     }
 }

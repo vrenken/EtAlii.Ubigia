@@ -16,7 +16,8 @@
         {
             if (_diagnostics.EnableLogging) // logging is enabled.
             {
-                //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton);
+                // Register the interface/class singletons needed for logging.
+                // Most of the time this will be decorators in the container.RegisterDecorator pattern.
             }
         }
     }

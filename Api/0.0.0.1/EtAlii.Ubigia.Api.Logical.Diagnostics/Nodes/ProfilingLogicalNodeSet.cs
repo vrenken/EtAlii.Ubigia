@@ -28,18 +28,6 @@
             return result;
         }
 
-        //public async Task<IEnumerable<IReadOnlyEntry>> SelectMany(GraphPath path, ExecutionScope scope)
-        //{
-        //    dynamic profile = _profiler.Begin("SelectMany: " + path);
-        //    profile.Path = path.ToString();
-
-        //    var result = await _decoree.SelectMany(path, scope);
-
-        //    _profiler.End(profile);
-
-        //    return result;
-        //}
-
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)
         {
             dynamic profile = _profiler.Begin("SelectMany: " + path);

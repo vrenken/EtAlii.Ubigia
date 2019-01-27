@@ -21,9 +21,7 @@
             }
 
             var container = new Container(true); // TODO: Injecting the container itself should not be done.
-            //container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.FullName); };
             
-
             var scaffoldings = new IScaffolding[]
             {
                 new InfrastructureScaffolding(configuration), 

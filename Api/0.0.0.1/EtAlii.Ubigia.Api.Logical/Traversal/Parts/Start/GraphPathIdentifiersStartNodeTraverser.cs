@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     }
                     parameters.Output.OnCompleted();
                 },
-                onCompleted: () => { });// parameters.Output.OnCompleted()});
+                onCompleted: () => { });
         }
 
         public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)

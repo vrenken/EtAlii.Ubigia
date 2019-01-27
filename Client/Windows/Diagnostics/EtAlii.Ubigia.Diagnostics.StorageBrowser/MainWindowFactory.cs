@@ -17,8 +17,6 @@
             container.RegisterInitializer<IMainWindow>(window => window.DataContext = container.GetInstance<IMainWindowViewModel>());
 
             container.Register(() => connection);
-            //container.RegisterInitializer<IManagementConnection>(connection => connection.Open(App.Current.Address, App.Current.Account, App.Current.Password));
-
             container.Register<IStoragesViewModel, StoragesViewModel>();
             container.Register< IAccountsViewModel , AccountsViewModel >();
             container.Register<IRolesViewModel, RolesViewModel>();

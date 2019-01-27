@@ -74,8 +74,6 @@
         /// <param name="controller"></param>
         private IActionResult Challenge(HttpContext context, Controller controller)
         {
-            //var host = context.Request.RequestUri.DnsSafeHost;
-            //var host = context.Request.GetUri().DnsSafeHost;
             var host = new Uri(context.Request.GetDisplayUrl()).DnsSafeHost;
 
             var respondWithChallenge = true;

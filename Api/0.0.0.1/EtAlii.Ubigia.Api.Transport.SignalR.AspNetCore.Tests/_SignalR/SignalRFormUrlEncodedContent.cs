@@ -68,9 +68,5 @@
             }
             return sb.ToString();
         }
-        //private static string EscapeDataString(string data)
-        //{
-        //    return Uri.EscapeDataString(data);
-        //}
     }
 }

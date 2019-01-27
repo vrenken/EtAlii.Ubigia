@@ -19,7 +19,6 @@
                 reader.TokenType == JsonToken.String)
             {
                 var bytes = serializer.Deserialize<byte[]>(reader);
-                //var bytes = reader.ReadAsBytes();
                 result = BitConverter.ToUInt64(bytes, 0);
             }
             return result;

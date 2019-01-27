@@ -74,13 +74,6 @@
         private void SignalUpdated(Identifier identifier)
         {
             Clients.All.SendAsync("updated", new object[] { identifier });
-            //Clients.All.updated(identifier);
         }
-
-//        private void SignalStored(Identifier identifier)
-//        {
-//            Clients.All.SendAsync("stored", new object[] { identifier });
-//            //Clients.All.stored(identifier);
-//        }
     }
 }

@@ -27,7 +27,6 @@
             IProfilingDataConnection connection)
         {
             Functional = Create(ProfilingAspects.Functional.All, scriptContext, () => Functional);
-            //Functional = Create(ProfilingAspects.Functional.All, scriptContext, queryContext, () => Functional);
             Logical = Create(ProfilingAspects.Logical.All, logicalContext, () => Logical);
             Fabric = Create(ProfilingAspects.Fabric.All, fabricContext, () => Fabric);
             Transport = Create(ProfilingAspects.Transport.All, connection, () => Transport);

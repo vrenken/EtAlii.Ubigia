@@ -4,6 +4,5 @@
 
     public interface ISystemSpaceTransport : ISpaceTransport
     {
-        //Task Start(ISpaceConnection spaceConnection);
     }
 }

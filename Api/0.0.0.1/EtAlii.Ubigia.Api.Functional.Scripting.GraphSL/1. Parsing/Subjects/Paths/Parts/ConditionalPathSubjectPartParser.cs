@@ -49,7 +49,7 @@
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
-            if (partIndex == 0 || partIndex == 1 && (before is VariablePathSubjectPart) == false)
+            if (partIndex == 0 || partIndex == 1 && !(before is VariablePathSubjectPart))
             {
                 throw new ScriptParserException("A conditional path part cannot be used at the beginning of a graph path.");
             }

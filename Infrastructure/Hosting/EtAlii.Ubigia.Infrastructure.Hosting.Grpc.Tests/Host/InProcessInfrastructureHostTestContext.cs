@@ -36,13 +36,5 @@
         {
             return new Channel(address.DnsSafeHost, address.Port, ChannelCredentials.Insecure);
         }
-        
-//        public IInfrastructureClient CreateRestInfrastructureClient()
-//        {
-//            var httpClientFactory = new TestHttpClientFactory(Host.Server);
-//            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory);
-//            return infrastructureClient;
-//        }
-
     }
 }

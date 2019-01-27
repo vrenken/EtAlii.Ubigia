@@ -117,17 +117,5 @@ namespace EtAlii.Ubigia.Api.Logical
                 }
             }
         }
-
-        //private void Remove(List<Identifier> list, IEnumerable<Relation> relations)
-        //{
-        //    var ids = relations
-        //        .Select(c => c.Id)
-        //        .AsEnumerable();
-        //    var toRemove = ids.SelectMany(id => _context.Fabric.Entries
-        //        .GetRelated(id, EntryRelation.Downdate)
-        //        .Select(c => c.Id));
-        //    list.RemoveRange(toRemove);
-        //}
-
     }
 }

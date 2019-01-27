@@ -5,47 +5,32 @@
 
     internal partial class SystemContentDataClient
     {
-        public async Task Store(Identifier identifier, Content content)
+        public Task Store(Identifier identifier, Content content)
         {
-            await Task.Run(() => { _infrastructure.Content.Store(identifier, content); });
+            _infrastructure.Content.Store(identifier, content);
             BlobHelper.SetStored(content, true);
 
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString());
-            //await _client.Post(address, content);
-
-            //// TODO: Should this call be replaced by get instead? 
-            //BlobHelper.SetStored(content, true);
+            return Task.CompletedTask;
         }
 
-        public async Task Store(Identifier identifier, ContentPart contentPart)
+        public Task Store(Identifier identifier, ContentPart contentPart)
         {
-            await Task.Run(() => { _infrastructure.Content.Store(identifier, contentPart); });
+            _infrastructure.Content.Store(identifier, contentPart);
             BlobPartHelper.SetStored(contentPart, true);
 
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPart.Id.ToString());
-            //await _client.Post(address, contentPart);
-
-            //BlobPartHelper.SetStored(contentPart, true);
+            return Task.CompletedTask;
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
         {
             var result = _infrastructure.Content.Get(identifier);
-            return await Task.FromResult(result);
-
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString());
-            //var content = await _client.Get<Content>(address);
-            //return content;
+            return Task.FromResult(result);
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
             var result = _infrastructure.Content.Get(identifier, contentPartId);
-            return await Task.FromResult(result);
-
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.Content, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentPartId, contentPartId.ToString());
-            //var contentPart = await _client.Get<ContentPart>(address);
-            //return contentPart;
+            return Task.FromResult(result);
         }
     }
 }

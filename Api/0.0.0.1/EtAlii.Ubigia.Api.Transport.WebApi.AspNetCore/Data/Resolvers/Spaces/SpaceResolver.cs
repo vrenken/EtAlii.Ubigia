@@ -47,7 +47,6 @@
             }
 
             return space ?? currentSpace;
-            //return space ?? SpaceCmdlet.Current;
         }
     }
 }

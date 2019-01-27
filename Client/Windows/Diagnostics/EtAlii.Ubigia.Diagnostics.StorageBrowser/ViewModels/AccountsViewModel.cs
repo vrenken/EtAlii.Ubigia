@@ -31,13 +31,12 @@
 
         public string AccountName { get => _accountName; set => SetProperty(ref _accountName, value); }
         private string _accountName;
-        public const string AccountNameProperty = "AccountName";
+        private const string AccountNameProperty = "AccountName";
 
         public string AccountPassword { get => _accountPassword; set => SetProperty(ref _accountPassword, value); }
         private string _accountPassword;
-
         #pragma warning disable S2068 // These cause false positives in SonarQube: no password is hard coded here.
-        public const string AccountPasswordProperty = "AccountPassword";
+        private const string AccountPasswordProperty = "AccountPassword";
         #pragma warning restore S2068
 
         public AccountTemplate[] AvailableAccountTemplates => AccountTemplate.All;
