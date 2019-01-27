@@ -16,8 +16,8 @@
             IHubProxyMethodInvoker invoker)
         {
             _invoker = invoker;
-            _hostIdentifier = CreateHostIdentifier();
             _random = RandomNumberGenerator.Create();
+            _hostIdentifier = CreateHostIdentifier();
         }
 
         public override async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
