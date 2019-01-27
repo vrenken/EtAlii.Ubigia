@@ -12,10 +12,13 @@
         private readonly IAccountRepository _repository;
         private readonly IProfiler _profiler;
 
+        #pragma warning disable S2068 // These cause false positives in SonarQube: no password is hard coded here.
         private const string GetByNameNoPasswordCounter = "AccountRepository.Get.ByName.NoPassword";
         private const string GetByNamePasswordCounter = "AccountRepository.Get.ByName.Password";
-        private const string GetAllCounter = "AccountRepository.Get.All";
         private const string GetByIdNoPasswordCounter = "AccountRepository.Get.ByName.NoPassword";
+        #pragma warning restore S2068
+
+        private const string GetAllCounter = "AccountRepository.Get.All";
         private const string AddCounter = "AccountRepository.Add";
         private const string RemoveByIdCounter = "AccountRepository.Remove.ByInstance";
         private const string RemoveByInstanceCounter = "AccountRepository.Remove.ByItem";
