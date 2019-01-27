@@ -10,25 +10,27 @@
 
     internal partial class ConnectionDialogViewModel : BindableBase
     {
-        public IEnumerable<ConnectionSettings> PreviousSettings { get { return _previousSettings; } set { SetProperty(ref _previousSettings, value); } }
+        public IEnumerable<ConnectionSettings> PreviousSettings { get => _previousSettings; set => SetProperty(ref _previousSettings, value); }
         private IEnumerable<ConnectionSettings> _previousSettings;
 
-        public ConnectionSettings CurrentSettings { get { return _currentSettings; } set { SetProperty(ref _currentSettings, value); } }
+        public ConnectionSettings CurrentSettings { get => _currentSettings; set => SetProperty(ref _currentSettings, value); }
         private ConnectionSettings _currentSettings;
 
-        public string Address { get { return _address; } set { SetProperty(ref _address, value); } }
+        public string Address { get => _address; set => SetProperty(ref _address, value); }
         private string _address;
 
-        public string Account { get { return _account; } set { SetProperty(ref _account, value); } }
+        public string Account { get => _account; set => SetProperty(ref _account, value); }
         private string _account;
 
-        public string Space { get { return _space; } set { SetProperty(ref _space, value); } }
+        public string Space { get => _space;
+            set => SetProperty(ref _space, value);
+        }
         private string _space;
 
-        public bool IsTested { get { return _isTested; } set { SetProperty(ref _isTested, value); } }
+        public bool IsTested { get => _isTested; set => SetProperty(ref _isTested, value); }
         private bool _isTested;
 
-        public bool RememberPassword { get { return _rememberPassword; } set { SetProperty(ref _rememberPassword, value); } }
+        public bool RememberPassword { get => _rememberPassword; set => SetProperty(ref _rememberPassword, value); }
         private bool _rememberPassword;
 
         public ICommand SaveAndCloseCommand { get; }
@@ -42,7 +44,7 @@
         private readonly ConnectionSettingsPersister _connectionSettingsPersister;
         private readonly ConnectionDialogWindow _window;
 
-        public TransportType Transport{ get { return _transport; } set { SetProperty(ref _transport, value); } }
+        public TransportType Transport{ get => _transport; set => SetProperty(ref _transport, value); }
         private TransportType _transport = TransportType.Grpc;
         
         public bool ShowTransportSelection => Debugger.IsAttached;
@@ -57,8 +59,10 @@
 			{
 				defaultServer = "http://localhost:64000/user";
 				defaultLogin = "Administrator";
-				defaultPassword = password = "administrator123";
-				defaultSpace = "Data";
+                defaultSpace = "Data";
+                #pragma warning disable S2068 // This password is just enabled for testing and won't be used without a debugger attached. 
+                defaultPassword = password = "administrator123";
+                #pragma warning restore S2068
 			}
 
 			SetDefaults(defaultServer, defaultSpace, defaultLogin, defaultPassword, password);
