@@ -13,7 +13,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConstantSubjectParser[] _parsers;
-//        private const string _textId = "Text";
 
         public ConstantSubjectsParser(
             IStringConstantSubjectParser stringConstantSubjectParser,

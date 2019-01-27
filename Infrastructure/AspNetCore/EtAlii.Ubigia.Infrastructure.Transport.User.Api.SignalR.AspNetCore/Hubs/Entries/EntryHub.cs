@@ -21,13 +21,11 @@
         private void SignalPrepared(Identifier identifier)
         {
             Clients.All.SendAsync("prepared", new object[] { identifier });
-            //Clients.All.prepared(identifier);
         }
 
         private void SignalStored(Identifier identifier)
         {
             Clients.All.SendAsync("stored", new object[] { identifier });
-            //Clients.All.stored(identifier);
         }
 
     }

@@ -17,7 +17,6 @@
             {
                 var request = new EntryPostRequest { SpaceId = Connection.Space.Id.ToWire() };
                 var response = await _client.PostAsync(request, _transport.AuthenticationHeaders);
-                //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Post", Connection.Space.Id);
                 return response.Entry.ToLocal();
             }
             catch (RpcException e)
@@ -32,7 +31,6 @@
             {
                 var request = new EntryPutRequest {Entry = ((IComponentEditableEntry)entry).ToWire()};
                 var response = await _client.PutAsync(request, _transport.AuthenticationHeaders);
-                //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry);
     
                 scope.Cache.InvalidateEntry(entry.Id);
                 // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
@@ -58,7 +56,6 @@
                 {
                     var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
                     var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                    //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                     return response.Entry.ToLocal();
                 });
             }
@@ -81,7 +78,6 @@
                         var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
                         var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                         return response.Entry.ToLocal();
-                        //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations);
                     });
                     result.Add(entry);
                 }
@@ -102,7 +98,6 @@
                     var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire()};
                     var response = await _client.GetRelatedAsync(request, _transport.AuthenticationHeaders);
                     return response.Entries.ToLocal();
-                    //return await _invoker.Invoke<IEnumerable<Entry>>(_connection, GrpcHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations);
                 });
             }
             catch (RpcException e)

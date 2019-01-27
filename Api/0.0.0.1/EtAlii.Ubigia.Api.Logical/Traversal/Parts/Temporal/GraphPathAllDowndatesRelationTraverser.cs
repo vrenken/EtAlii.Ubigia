@@ -6,11 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class GraphPathAllDowndatesRelationTraverser : RecursiveGraphPathTraverserBase, IGraphPathAllDowndatesRelationTraverser
     {
-//        public GraphPathAllDowndatesRelationTraverser(IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser) 
-//            : base(graphPathFinalRelationTraverser)
-//        {
-//        }
-//        
         protected override async Task<IEnumerable<Identifier>> GetNextRecursion(Identifier start, ITraversalContext context, ExecutionScope scope)
         {
             var entries = await context.Entries

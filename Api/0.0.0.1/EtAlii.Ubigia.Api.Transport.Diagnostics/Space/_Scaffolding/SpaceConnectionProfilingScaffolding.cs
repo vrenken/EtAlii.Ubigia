@@ -15,7 +15,8 @@
 
             if (diagnostics.EnableProfiling) // profiling is enabled
             {
-                //container.RegisterDecorator(typeof(IDataConnection), typeof(ProfilingDataConnection));
+                // Register the interface/class singletons needed for profiling.
+                // Most of the time this will be decorators in the container.RegisterDecorator pattern.
             }
         }
     }

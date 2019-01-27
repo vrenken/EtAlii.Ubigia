@@ -19,10 +19,5 @@
             : base(message, innerException)
         {
         }
-        
-        public override void GetObjectData(SerializationInfo info, StreamingContext context)
-        {
-            base.GetObjectData(info, context);
-        }
     }
 }

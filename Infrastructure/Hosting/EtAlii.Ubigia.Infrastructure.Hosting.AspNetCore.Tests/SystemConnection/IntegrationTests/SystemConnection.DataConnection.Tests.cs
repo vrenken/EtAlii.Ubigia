@@ -54,10 +54,10 @@
 
             // Assert.
             Assert.NotNull(connection);
-            Assert.NotNull(connection.Storage);//, "connection.Storage");
-            Assert.NotNull(connection.Account);//, "connection.Account");
+            Assert.NotNull(connection.Storage);
+            Assert.NotNull(connection.Account);
             Assert.Equal(_accountName, connection.Account.Name);
-            Assert.NotNull(connection.Space);//, "connection.Space");
+            Assert.NotNull(connection.Space);
             Assert.Equal(_spaceNames[0], connection.Space.Name);
         }
 

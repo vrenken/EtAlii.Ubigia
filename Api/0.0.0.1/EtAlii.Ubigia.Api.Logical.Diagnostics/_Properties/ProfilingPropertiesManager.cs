@@ -47,7 +47,7 @@
             var result = await _decoree.HasProperties(identifier, scope);
 
             profile.Result = result;
-            profile.Action = "Checking for properties: " + identifier.ToTimeString() + (result == false ? "" : " - AVAILABLE");
+            profile.Action = "Checking for properties: " + identifier.ToTimeString() + (!result ? "" : " - AVAILABLE");
             _profiler.End(profile);
 
             return result;

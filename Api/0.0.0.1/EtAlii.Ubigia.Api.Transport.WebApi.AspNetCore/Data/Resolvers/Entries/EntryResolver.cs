@@ -29,7 +29,6 @@
             }
 
             return entry ?? currentEntry;
-            //return entry ?? EntryCmdlet.Current;
         }
     }
 }

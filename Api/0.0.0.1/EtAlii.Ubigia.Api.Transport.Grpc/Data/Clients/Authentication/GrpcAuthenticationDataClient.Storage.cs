@@ -55,7 +55,6 @@
             var request = new StorageSingleRequest{ };
             var response = await _storageClient.GetLocalAsync(request, transport.AuthenticationHeaders);
             var storage = response.Storage.ToLocal();
-            //var storage = await _invoker.Invoke<Storage>(connection, GrpcHub.Authentication, "GetLocalStorage");
             return storage;
         }
     }

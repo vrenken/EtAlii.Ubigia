@@ -28,7 +28,6 @@
             }
             catch (Exception ex)
             {
-                //Logger.Critical("Unable to serve a Storage GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;

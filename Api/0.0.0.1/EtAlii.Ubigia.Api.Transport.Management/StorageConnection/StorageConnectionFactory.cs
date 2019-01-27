@@ -29,11 +29,10 @@
                 scaffolding.Register(container);
             }
 
-            // No extensions on the Storage connection (yet).
-            //foreach (var extension in configuration.Extensions)
-            //{
-            //    extension.Initialize(container);
-            //}
+            foreach (var extension in configuration.Extensions)
+            {
+                extension.Initialize(container);
+            }
 
             var connection = container.GetInstance<IStorageConnection>();
             return connection;

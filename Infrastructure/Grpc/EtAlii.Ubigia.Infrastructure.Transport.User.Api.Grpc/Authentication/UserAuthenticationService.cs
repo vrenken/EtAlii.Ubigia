@@ -59,19 +59,5 @@
             
             return Task.FromResult(response);
         }
-//
-//        public override Task<LocalStorageResponse> GetLocalStorage(LocalStorageRequest request, ServerCallContext context)
-//        {
-//            var currentAccountAuthenticationToken = context.RequestHeaders.Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-//            _authenticationTokenVerifier.Verify(currentAccountAuthenticationToken, Role.User, Role.System);
-//
-//            var storage = _storageRepository.GetLocal();
-//
-//            var response = new LocalStorageResponse
-//            {
-//                Storage = storage.ToWire()
-//            };
-//            return Task.FromResult(response);
-//        }
     }
 }

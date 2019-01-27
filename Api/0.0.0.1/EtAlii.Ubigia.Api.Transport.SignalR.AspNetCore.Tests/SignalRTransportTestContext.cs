@@ -17,11 +17,9 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler); 
 			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
 	            .Use(SignalRTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
@@ -47,12 +45,9 @@
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
             var diagnostics = TestDiagnostics.Create();
-	        //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler());
 	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()
-				//.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
-				//.Use(SignalRStorageTransportProvider.Create())
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
 				.Use(address)
                 .Use(account, password)

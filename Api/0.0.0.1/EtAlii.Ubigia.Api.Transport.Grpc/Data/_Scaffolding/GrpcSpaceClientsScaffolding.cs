@@ -8,8 +8,6 @@
         {
             container.Register<ISpaceConnection, GrpcSpaceConnection>();
 
-            //container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
-
             container.Register<IAuthenticationDataClient, GrpcAuthenticationDataClient>();
 
             container.Register<IEntryDataClient, GrpcEntryDataClient>();

@@ -62,9 +62,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             originalItem.Password = updatedItem.Password;
             originalItem.Roles = updatedItem.Roles;
 
-            // We should not update the created date of the account.
-            //originalItem.Created = updatedItem.Created;
-
             // Whenever we touch the account we also register the updated time.
             originalItem.Updated = DateTime.UtcNow;
 

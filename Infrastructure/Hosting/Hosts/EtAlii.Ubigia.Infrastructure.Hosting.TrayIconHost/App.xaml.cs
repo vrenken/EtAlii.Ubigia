@@ -15,13 +15,7 @@
 		        .AddJsonFile("settings.json")
 		        .Build();
 
-	        var hostConfiguration = new HostConfiguration();// HostConfigurationBuilder()
-		        //.Build(applicationConfiguration)
-                //.UseTrayIconHost(
-                //    this,
-                //    "Icon-Logo-White-Shaded.ico",
-                //    "Icon-Logo-Black.ico",
-                //    "Icon-Logo-Red.ico");
+	        var hostConfiguration = new HostConfiguration();
 
             TrayIconHost.Start(hostConfiguration);
         }

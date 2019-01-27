@@ -20,7 +20,6 @@
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _fabric = fabric;
-            //_documentViewModelProvider = documentViewModelProvider;
             _configuration = configuration;
             _mainDispatcherInvoker = mainDispatcherInvoker;
         }

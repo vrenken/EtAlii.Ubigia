@@ -8,12 +8,6 @@
             where TTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, new()
         {
             return new TTransportTestContext();
-            //var container = new Container();
-
-            //container.Register<ITransportTestContext, TTransportTestContext>();
-            //container.Register<IHostTestContextFactory, TransportHostTestContextFactory>();
-
-            //return container.GetInstance<ITransportTestContext>();
         }
     }
 }

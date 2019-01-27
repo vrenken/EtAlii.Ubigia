@@ -63,7 +63,6 @@
             {
                 Context.Stop();
                 Context = null;
-                //SpaceName = null;
             });
         }
 

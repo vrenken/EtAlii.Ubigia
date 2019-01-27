@@ -37,7 +37,6 @@
             }
             catch (Exception ex)
             {
-                //Logger.Critical("Unable to serve a Account GET client request", ex);
                 response = BadRequest(ex.Message);
             }
             return response;

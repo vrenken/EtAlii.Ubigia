@@ -9,7 +9,7 @@
             IRemoveByNameFromRelativePathProcessor removeByNameFromRelativePathProcessor)
         {
             Register(p => (p.LeftSubject is EmptySubject), removeByNameFromAbsolutePathProcessor)
-                .Register(p => (p.LeftSubject is EmptySubject) == false, removeByNameFromRelativePathProcessor);
+                .Register(p => !(p.LeftSubject is EmptySubject), removeByNameFromRelativePathProcessor);
         }
     }
 }

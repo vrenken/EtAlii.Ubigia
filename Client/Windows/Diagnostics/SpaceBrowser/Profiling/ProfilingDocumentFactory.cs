@@ -21,7 +21,6 @@
 
             container.Register(() => (IProfilingGraphSLScriptContext)documentContext.ScriptContext);
             container.Register(() => (IProfilingGraphQLQueryContext)documentContext.QueryContext);
-            //container.Register(() => (IProfilingLinqQueryContext)linqContext);
 
             container.Register(() => (IProfilingLogicalContext)documentContext.LogicalContext);
             container.Register(() => (IProfilingFabricContext)documentContext.FabricContext);

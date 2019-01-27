@@ -20,7 +20,7 @@
             _nodeValidator = nodeValidator;
 
             var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId);
-            Parser = new LpsParser(Id, true, relationParser);//.Debug("IsParentOfPathSubjectParser");
+            Parser = new LpsParser(Id, true, relationParser);
         }
 
         public PathSubjectPart Parse(LpNode node)

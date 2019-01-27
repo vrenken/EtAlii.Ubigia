@@ -43,7 +43,6 @@
             var rootInitializer = new RootInitializer(logical);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root);
             rootInitializer.Initialize(space.Id, root);
 
             // Assert.
@@ -74,7 +73,6 @@
             var rootInitializer = new RootInitializer(logical);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root);
             rootInitializer.Initialize(space.Id, root);
 
             // Assert.

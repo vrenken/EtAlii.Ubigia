@@ -12,7 +12,6 @@
             {
                 var request = new ContentDefinitionPostRequest {EntryId = identifier.ToWire(), ContentDefinition = contentDefinition.ToWire()};
                 await _contentDefinitionClient.PostAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_contentDefinitionConnection, GrpcHub.ContentDefinition, "Post", identifier, contentDefinition);
     
                 MarkAsStored(contentDefinition);
             }
@@ -45,7 +44,6 @@
                 var request = new ContentDefinitionGetRequest { EntryId = identifier.ToWire() };
                 var response = await _contentDefinitionClient.GetAsync(request, _transport.AuthenticationHeaders);
                 return response.ContentDefinition.ToLocal();
-                //return await _invoker.Invoke<ContentDefinition>(_contentDefinitionConnection, GrpcHub.ContentDefinition, "Get", identifier);
             }
             catch (RpcException e)
             {

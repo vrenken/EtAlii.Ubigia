@@ -6,16 +6,9 @@
 
     internal class GrpcPropertiesNotificationClient : GrpcClientBase, IPropertiesNotificationClient<IGrpcSpaceTransport>
     {
-        //private HubConnection _connection;
-//        private readonly string _name;
 		private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
 		public event Action<Api.Identifier> Stored = delegate { };
-
-//        public GrpcPropertiesNotificationClient()
-//        {
-//            //_name = GrpcHub.Property;
-//        }
 
         private void OnStored(Api.Identifier identifier)
         {

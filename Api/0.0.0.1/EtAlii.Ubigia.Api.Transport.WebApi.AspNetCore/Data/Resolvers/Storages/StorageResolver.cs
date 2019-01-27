@@ -18,8 +18,6 @@
         {
             Uri address = null;
 
-            //var currentStorage = StorageCmdlet.Current;
-
             if (storageInfoProvider.Storage != null)
             {
                 address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.Storage.Id.ToString());

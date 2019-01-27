@@ -5,8 +5,6 @@
 
     internal class RootDefinitionSubjectProcessor : IRootDefinitionSubjectProcessor
     {
-        //private readonly IPathSubjectForOutputConverter _converter;
-
         public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var rootDefinitionSubject = (RootDefinitionSubject) subject;
