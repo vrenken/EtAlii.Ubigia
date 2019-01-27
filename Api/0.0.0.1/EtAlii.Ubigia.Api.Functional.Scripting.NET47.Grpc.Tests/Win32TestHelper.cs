@@ -3,6 +3,7 @@
     using System;
     using System.IO;
     using System.Reflection;
+    using System.Threading.Tasks;
     using Xunit;
     using Path = System.IO.Path;
 
@@ -32,7 +33,7 @@
             return folderName;
         }
 
-        public static void SaveResourceTestImage(string fileName)
+        public static async Task SaveResourceTestImage(string fileName)
         {
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetAssembly(typeof(NET47TestHelper));
@@ -40,12 +41,12 @@
             using (Stream stream = assembly.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.NET47.Tests.TestImage_01.jpg"))
             {
                 var bytes = new byte[stream.Length];
-                stream.Read(bytes, 0, (int)stream.Length);
-                File.WriteAllBytes(fileName, bytes);
+                await stream.ReadAsync(bytes, 0, (int)stream.Length);
+                await File.WriteAllBytesAsync(fileName, bytes);
             }
         }
 
-        public static void SaveTestFolder(string folderName, int depth, int foldersPerFolder, int filesPerFolder, float fileMinSize, float fileMaxSize)
+        public static async Task SaveTestFolder(string folderName, int depth, int foldersPerFolder, int filesPerFolder, float fileMinSize, float fileMaxSize)
         {
             Directory.CreateDirectory(folderName);
 
@@ -54,7 +55,7 @@
                 for (int folder = 0; folder < foldersPerFolder; folder++)
                 {
                     var subFolder = Path.Combine(folderName, Guid.NewGuid().ToString());
-                    SaveTestFolder(subFolder, depth - 1, foldersPerFolder, filesPerFolder, fileMinSize, fileMaxSize);
+                    await SaveTestFolder(subFolder, depth - 1, foldersPerFolder, filesPerFolder, fileMinSize, fileMaxSize);
                 }
             }
 
@@ -62,11 +63,11 @@
             {
                 var fileName = $"{Guid.NewGuid()}.bin";
                 fileName = Path.Combine(folderName, fileName);
-                SaveTestFile(fileName, fileMinSize, fileMaxSize);
+                await SaveTestFile(fileName, fileMinSize, fileMaxSize);
             }
         }
 
-        public static void SaveTestFile(string fileName, int megaBytes)
+        public static async Task SaveTestFile(string fileName, int megaBytes)
         {
             const int bytesInMegaByte = 1024 * 1024;
             var data = new byte[bytesInMegaByte];
@@ -77,12 +78,12 @@
                 for (int megaByte = 0; megaByte < megaBytes; megaByte++)
                 {
                     rnd.NextBytes(data);
-                    stream.Write(data, 0, bytesInMegaByte);
+                    await stream.WriteAsync(data, 0, bytesInMegaByte);
                 }
             }
         }
 
-        private static void SaveTestFile(string fileName, float megaBytesMin, float megaBytesMax)
+        private static async Task SaveTestFile(string fileName, float megaBytesMin, float megaBytesMax)
         {
             const int bytesInKiloByte = 1024;
             var data = new byte[bytesInKiloByte];
@@ -95,7 +96,7 @@
                 for (int kiloByte = 0; kiloByte < kiloBytes; kiloByte++)
                 {
                     rnd.NextBytes(data);
-                    stream.Write(data, 0, bytesInKiloByte);
+                    await stream.WriteAsync(data, 0, bytesInKiloByte);
                 }
             }
         }

@@ -81,10 +81,8 @@
 
         public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
         {
-            if ((before == null || before is ParentPathSubjectPart) && partIndex <= 1)
-            {
-            }
-            else
+            var isValid = (before == null || before is ParentPathSubjectPart) && partIndex <= 1;
+            if (!isValid)
             {
                 throw new ScriptParserException("A identifier path part can only be used at the start of a path");
             }
