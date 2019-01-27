@@ -12,7 +12,7 @@
 
     public class AccountsViewModel : BindableBase, IAccountsViewModel
     {
-        public IEnumerable<Account> AvailableAccounts { get { return _availableAccounts; } private set { SetProperty(ref _availableAccounts, value); } }
+        public IEnumerable<Account> AvailableAccounts { get => _availableAccounts; private set => SetProperty(ref _availableAccounts, value); }
         private IEnumerable<Account> _availableAccounts;
 
         protected IManagementConnection Connection { get; }
@@ -25,15 +25,15 @@
 
         public ICommand ClearCommand { get; }
 
-        public Account SelectedAccount { get { return _selectedAccount; } set { SetProperty(ref _selectedAccount, value); } }
+        public Account SelectedAccount { get => _selectedAccount; set => SetProperty(ref _selectedAccount, value); }
         private Account _selectedAccount;
         public const string SelectedAccountProperty = "SelectedAccount";
 
-        public string AccountName { get { return _accountName; } set { SetProperty(ref _accountName, value); } }
+        public string AccountName { get => _accountName; set => SetProperty(ref _accountName, value); }
         private string _accountName;
         public const string AccountNameProperty = "AccountName";
 
-        public string AccountPassword { get { return _accountPassword; } set { SetProperty(ref _accountPassword, value); } }
+        public string AccountPassword { get => _accountPassword; set => SetProperty(ref _accountPassword, value); }
         private string _accountPassword;
 
         #pragma warning disable S2068 // These cause false positives in SonarQube: no password is hard coded here.
@@ -42,7 +42,7 @@
 
         public AccountTemplate[] AvailableAccountTemplates => AccountTemplate.All;
 
-        public AccountTemplate SelectedAccountTemplate { get { return _selectedAccountTemplate; } set { SetProperty(ref _selectedAccountTemplate, value); } }
+        public AccountTemplate SelectedAccountTemplate { get => _selectedAccountTemplate; set => SetProperty(ref _selectedAccountTemplate, value); }
         private AccountTemplate _selectedAccountTemplate;
 
         private readonly ILogger _logger;
