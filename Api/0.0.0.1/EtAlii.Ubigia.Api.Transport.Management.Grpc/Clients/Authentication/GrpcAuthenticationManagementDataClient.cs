@@ -14,8 +14,8 @@
 
         public GrpcAuthenticationManagementDataClient()
         {
-            _hostIdentifier = CreateHostIdentifier();
             _random = RandomNumberGenerator.Create();
+            _hostIdentifier = CreateHostIdentifier();
         }
 
         public override Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
