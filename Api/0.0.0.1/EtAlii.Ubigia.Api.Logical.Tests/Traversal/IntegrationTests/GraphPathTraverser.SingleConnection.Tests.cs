@@ -319,8 +319,7 @@
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
-            var newHierarchy = new List<string>(hierarchy);
-            newHierarchy.Add(Guid.NewGuid().ToString());
+            var newHierarchy = new List<string>(hierarchy) {Guid.NewGuid().ToString()};
             hierarchy = newHierarchy.ToArray();
             foreach (var item in hierarchy)
             {
@@ -360,8 +359,7 @@
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
-            var newHierarchy = new List<string>(hierarchy);
-            newHierarchy.Add(Guid.NewGuid().ToString());
+            var newHierarchy = new List<string>(hierarchy) {Guid.NewGuid().ToString()};
             hierarchy = newHierarchy.ToArray();
             foreach (var item in hierarchy)
             {
