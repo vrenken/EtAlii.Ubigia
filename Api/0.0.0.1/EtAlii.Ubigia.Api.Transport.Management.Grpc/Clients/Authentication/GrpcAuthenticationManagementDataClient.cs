@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
@@ -14,6 +15,7 @@
         public GrpcAuthenticationManagementDataClient()
         {
             _hostIdentifier = CreateHostIdentifier();
+            _random = RandomNumberGenerator.Create();
         }
 
         public override Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)

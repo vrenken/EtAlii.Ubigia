@@ -1,12 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
     using System;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.SignalR;
 
     public partial class SignalRAuthenticationManagementDataClient
     {
         private readonly string _hostIdentifier;
+        private readonly RandomNumberGenerator _random;
 
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
@@ -52,8 +54,7 @@
         private string CreateHostIdentifier()
         {
             var bytes = new byte[64];
-            var rnd = new Random();
-            rnd.NextBytes(bytes);
+            _random.GetBytes(bytes);
             return Convert.ToBase64String(bytes);
         }
     }

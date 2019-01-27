@@ -1,7 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
 	using System;
-	using System.Threading.Tasks;
+    using System.Security.Cryptography;
+    using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.SignalR;
 	using Microsoft.AspNetCore.SignalR.Client;
 
@@ -16,7 +17,7 @@
         {
             _invoker = invoker;
             _hostIdentifier = CreateHostIdentifier();
-
+            _random = RandomNumberGenerator.Create();
         }
 
         public override async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
