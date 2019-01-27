@@ -38,7 +38,8 @@
                         MessageBoxResult.Yes);
                     if (dr == MessageBoxResult.Yes)
                     {
-                        Process.Start(Application.ResourceAssembly.Location, "10");
+                        var startInfo = new ProcessStartInfo(Application.ResourceAssembly.Location, "10");
+                        Process.Start(startInfo);
                         Application.Current.Shutdown();
                     }
                 }
