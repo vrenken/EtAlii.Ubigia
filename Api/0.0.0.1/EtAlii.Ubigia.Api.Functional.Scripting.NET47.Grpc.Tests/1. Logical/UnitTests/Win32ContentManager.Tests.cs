@@ -2,9 +2,11 @@
 {
     using System;
     using System.IO;
+    using System.Threading.Tasks;
+    using Xunit;
 
-    
-    public class NET47ContentManager2Tests : IDisposable
+
+    public class NET47ContentManager2Tests : IAsyncLifetime
     {
         private readonly string _testImageFileName;
 
@@ -12,17 +14,22 @@
         {
             // Getting Temp file name to use
             _testImageFileName = NET47TestHelper.CreateTemporaryFileName();
-
-            NET47TestHelper.SaveResourceTestImage(_testImageFileName);
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
+        {
+            await NET47TestHelper.SaveResourceTestImage(_testImageFileName);
+        }
+
+        public Task DisposeAsync()
         {
             if (File.Exists(_testImageFileName))
             {
                 File.Delete(_testImageFileName);
             }
+            return Task.CompletedTask;
         }
+        
 
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Create()
@@ -81,5 +88,6 @@
         //        // Assert.
         //        Assert.Throws<ContentManagerException>(act);
         //    }
+        
     }
 }

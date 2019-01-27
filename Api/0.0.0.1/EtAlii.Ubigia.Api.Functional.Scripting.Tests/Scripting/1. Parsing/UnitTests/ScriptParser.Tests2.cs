@@ -23,8 +23,24 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
         public void Dispose()
         {
-            _parser = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _parser = null;
+            }
+        }
+
+        ~ScriptParserTests2()
+        {
+            Dispose(false);
+        }
+
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_Parse_Single_Line_01()

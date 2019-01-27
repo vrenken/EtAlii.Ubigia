@@ -20,8 +20,24 @@
 
         public void Dispose()
         {
-            _parser = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _parser = null;
+            }
+        }
+
+        ~ScriptParserFunctionIncludeTests()
+        {
+            Dispose(false);
+        }
+
 
         [Fact(Skip = "Unable to validate functions during parsing (yet)"), Trait("Category", TestAssembly.Category)]
         public void ScriptParser_Function_Include_Invalid_01()
