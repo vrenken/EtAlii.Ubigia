@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
@@ -10,7 +11,8 @@
     public partial class GrpcAuthenticationManagementDataClient
     {
         private readonly string _hostIdentifier;
-        
+        private readonly RandomNumberGenerator _random;
+
         public async Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
             try
@@ -70,8 +72,7 @@
         private string CreateHostIdentifier()
         {
             var bytes = new byte[64];
-            var rnd = new Random();
-            rnd.NextBytes(bytes);
+            _random.GetBytes(bytes);
             return Convert.ToBase64String(bytes);
         }
     }
