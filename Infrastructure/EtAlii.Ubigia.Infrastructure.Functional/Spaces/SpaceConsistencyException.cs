@@ -1,12 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Runtime.Serialization;
     using EtAlii.Ubigia.Api;
 
     [Serializable]
-    public class SpaceConsistencyException : Exception
+    public sealed class SpaceConsistencyException : Exception
     {
-        public SpaceConsistencyException()
+        private SpaceConsistencyException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

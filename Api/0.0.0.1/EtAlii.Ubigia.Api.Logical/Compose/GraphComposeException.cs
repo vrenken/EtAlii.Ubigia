@@ -1,11 +1,13 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class GraphComposeException : Exception
+    public sealed class GraphComposeException : Exception
     {
-        public GraphComposeException()
+        private GraphComposeException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

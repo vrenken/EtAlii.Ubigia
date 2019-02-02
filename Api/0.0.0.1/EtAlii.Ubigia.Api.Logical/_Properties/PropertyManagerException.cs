@@ -1,11 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class PropertyManagerException : Exception
+    public sealed class PropertyManagerException : Exception
     {
-        public PropertyManagerException()
+        private PropertyManagerException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

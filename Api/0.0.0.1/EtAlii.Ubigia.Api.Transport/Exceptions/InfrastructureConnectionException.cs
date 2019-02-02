@@ -4,9 +4,9 @@
     using System.Runtime.Serialization;
 
     [Serializable]
-    public class InfrastructureConnectionException : Exception
+    public sealed class InfrastructureConnectionException : Exception
     {
-        public InfrastructureConnectionException(SerializationInfo info, StreamingContext context)
+        private InfrastructureConnectionException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

@@ -1,11 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class NodeQueryingException : Exception
+    public sealed class NodeQueryingException : Exception
     {
-        public NodeQueryingException()
+        private NodeQueryingException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

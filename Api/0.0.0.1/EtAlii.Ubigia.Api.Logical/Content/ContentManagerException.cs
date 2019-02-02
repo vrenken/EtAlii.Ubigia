@@ -1,11 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class ContentManagerException : Exception
+    public sealed class ContentManagerException : Exception
     {
-        public ContentManagerException()
+        private ContentManagerException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

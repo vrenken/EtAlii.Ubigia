@@ -1,11 +1,13 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class GraphTraversalException : Exception
+    public sealed class GraphTraversalException : Exception
     {
-        public GraphTraversalException()
+        private GraphTraversalException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

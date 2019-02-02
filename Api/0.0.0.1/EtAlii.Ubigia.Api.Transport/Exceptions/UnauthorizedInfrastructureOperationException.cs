@@ -1,11 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class UnauthorizedInfrastructureOperationException : Exception
+    public sealed class UnauthorizedInfrastructureOperationException : Exception
     {
-        public UnauthorizedInfrastructureOperationException()
+        private UnauthorizedInfrastructureOperationException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

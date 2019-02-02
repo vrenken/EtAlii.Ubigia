@@ -1,12 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using System.Runtime.Serialization;
     using EtAlii.Ubigia.Api;
 
     [Serializable]
-    public class SpaceFabricException : Exception
+    public sealed class SpaceFabricException : Exception
     {
-        public SpaceFabricException()
+        private SpaceFabricException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
