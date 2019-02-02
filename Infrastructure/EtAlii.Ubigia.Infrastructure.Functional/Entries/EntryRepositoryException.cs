@@ -1,11 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class EntryRepositoryException : Exception
+    public sealed class EntryRepositoryException : Exception
     {
-        public EntryRepositoryException()
+        private EntryRepositoryException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

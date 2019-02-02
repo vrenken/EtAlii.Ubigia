@@ -1,13 +1,16 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class AssignmentException : Exception
+    public sealed class AssignmentException : Exception
     {
-        public AssignmentException()
+        private AssignmentException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
+
         public AssignmentException(string message)
             : base(message)
         {

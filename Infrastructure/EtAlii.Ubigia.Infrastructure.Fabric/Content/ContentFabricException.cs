@@ -1,11 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Fabric
 {
     using System;
+    using System.Runtime.Serialization;
 
     [Serializable]
-    public class ContentFabricException : Exception
+    public sealed class ContentFabricException : Exception
     {
-        public ContentFabricException()
+        private ContentFabricException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
