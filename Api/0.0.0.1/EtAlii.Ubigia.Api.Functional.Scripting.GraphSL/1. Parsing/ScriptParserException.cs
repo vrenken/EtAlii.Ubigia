@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Runtime.Serialization;
 
     [Serializable]
     public sealed class ScriptParserException : Exception

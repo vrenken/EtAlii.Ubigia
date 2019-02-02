@@ -28,7 +28,7 @@
     <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Fabric.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.40" />
+    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.50" />
     <PackageReference Include="HashLib" Version="2.1.0.2" />
   </ItemGroup>
   <ItemGroup>
