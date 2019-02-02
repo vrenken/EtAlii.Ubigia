@@ -28,7 +28,7 @@
     <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Diagnostics.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.45" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.50" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Functional\EtAlii.Ubigia.Infrastructure.Functional.csproj" />
