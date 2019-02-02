@@ -16,9 +16,12 @@
         IReadOnlyEntry IInternalNode.Entry => _entry;
         private IReadOnlyEntry _entry;
 
+        private readonly int _uniqueHashCode;
+
         public Node(IReadOnlyEntry entry)
         {
             _entry = entry;
+            _uniqueHashCode = _entry.Id.GetHashCode(); // We want a unique, never changing hash for the node.
         }
 
         void IInternalNode.Update(PropertyDictionary properties, IReadOnlyEntry entry)
