@@ -81,9 +81,15 @@
 
         #region Hashing
 
-        public override int GetHashCode()
+        public override int GetHashCode() 
         {
-            return _entry.Id.GetHashCode();
+            // Using the hash code of the original entry ID the Node is created with is valid:
+            // https://docs.microsoft.com/en-us/dotnet/api/system.object.gethashcode?view=netframework-4.7.2
+            // Below a sentence to strengthen this argument.
+            // - If two objects compare as equal, the GetHashCode() method for each object must return the same value.
+            // However, if two objects do not compare as equal, the GetHashCode() methods for the two objects do not
+            // have to return different values.
+            return _uniqueHashCode;
         }
 
         #endregion Hashing

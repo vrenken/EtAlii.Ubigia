@@ -17,15 +17,19 @@
         bool INode.IsModified => _isModified;
         private bool _isModified;
 
+        private readonly int _uniqueHashCode;
+
         internal DynamicNode(IReadOnlyEntry entry, PropertyDictionary properties)
         {
             _entry = entry;
             _properties = properties;
+            _uniqueHashCode = _entry.Id.GetHashCode(); // We want a unique, never changing hash for the node.
         }
 
         public DynamicNode(IReadOnlyEntry entry)
         {
             _entry = entry;
+            _uniqueHashCode = _entry.Id.GetHashCode(); // We want a unique, never changing hash for the node.
         }
 
         IReadOnlyEntry IInternalNode.Entry => _entry;
