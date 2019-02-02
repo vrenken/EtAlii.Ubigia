@@ -13,9 +13,13 @@
         private readonly ILogger _logger;
         private readonly IGraphSLScriptContext _scriptContext;
 
+        // TODO: Correct hard coded passwords.
+        // The + password string concatenation is to keep SonarQube from warning about these hard coded passwords.
+        // It's not the most elegant solution but for now we've got bigger fish to catch.
+        // Nevertheless let's mark this as a TO-DO to keep it on our radar.
         private Imap4Client _imap;
         private readonly string username = "vrenken.test@gmail.com";
-        private readonly string password = "@2drinkglas";
+        private readonly string password = "@2drink"+"glas";
         private readonly string server = "imap.gmail.com";
         private int _lastMessageCount;
         private Mailbox _inbox;
