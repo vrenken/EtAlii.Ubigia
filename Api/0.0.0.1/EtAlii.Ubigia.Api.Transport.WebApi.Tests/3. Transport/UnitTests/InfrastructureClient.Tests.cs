@@ -9,12 +9,27 @@
     {
         public InfrastructureClientUnitTests()
         {
-            new DefaultInfrastructureClient(null).AuthenticationToken = null;
+            new DefaultInfrastructureClient(null).AuthenticationToken = null; // No idea why this is done.
         }
 
         public void Dispose()
         {
-            new DefaultInfrastructureClient(null).AuthenticationToken = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                new DefaultInfrastructureClient(null).AuthenticationToken = null; // No idea why this is done.
+            }
+        }
+
+        ~InfrastructureClientUnitTests()
+        {
+            Dispose(false);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
