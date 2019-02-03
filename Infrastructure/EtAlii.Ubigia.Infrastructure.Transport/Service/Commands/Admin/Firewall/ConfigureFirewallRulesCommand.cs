@@ -37,14 +37,27 @@
                 var assembly = type.Assembly;
                 var assemblyName = assembly.GetName().Name;
 
-                using (var resourceStream = assembly.GetManifestResourceStream(type, "Commands.Admin.Firewall.ConfigureFirewall.ps1"))
-                using (var fileStream = File.Create(scriptFullPath))
-                using (var reader = new StreamReader(resourceStream))
-                using (var writer = new StreamWriter(fileStream))
+                Stream resourceStream = null; 
+                FileStream fileStream = null;
+                try
                 {
-                    var content = reader.ReadToEnd();
-                    writer.Write(content);
+                    resourceStream = assembly.GetManifestResourceStream(type, "Commands.Admin.Firewall.ConfigureFirewall.ps1");
+                    fileStream = File.Create(scriptFullPath);
+                    using (var reader = new StreamReader(resourceStream))
+                    using (var writer = new StreamWriter(fileStream))
+                    {
+                        resourceStream = null;
+                        fileStream = null;
+                        var content = reader.ReadToEnd();
+                        writer.Write(content);
+                    }
                 }
+                finally
+                {
+                    resourceStream?.Dispose();
+                    fileStream?.Dispose();
+                }
+                
 
                 var logFile = Path.GetTempFileName();
                 var scriptArgs = new[]

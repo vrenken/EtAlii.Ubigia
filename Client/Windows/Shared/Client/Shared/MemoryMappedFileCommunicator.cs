@@ -210,35 +210,49 @@ namespace EtAlii.Ubigia.Windows.Client
 
         public void Dispose()
         {
-            started = false;
-            if (view != null)
-            {
-                try
-                {
-                    view.Dispose();
-                    view = null;
-                }
-                catch
-                {
-                    // We catch all exceptions involved in disposing the view.
-                }
-            }
-
-            if (MappedFile != null)
-            {
-                try
-                {
-                    MappedFile.Dispose();
-                    MappedFile = null;
-                }
-                catch
-                {
-                    // We catch all exceptions involved in disposing the mapped file.
-                }
-            }
-
-            disposed = true;
+            Dispose(true);
             GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                started = false;
+                if (view != null)
+                {
+                    try
+                    {
+                        view.Dispose();
+                        view = null;
+                    }
+                    catch
+                    {
+                        // We catch all exceptions involved in disposing the view.
+                    }
+                }
+
+                if (MappedFile != null)
+                {
+                    try
+                    {
+                        MappedFile.Dispose();
+                        MappedFile = null;
+                    }
+                    catch
+                    {
+                        // We catch all exceptions involved in disposing the mapped file.
+                    }
+                }
+
+                disposed = true;
+            }
+        }
+
+        ~MemoryMappedFileCommunicator()
+        {
+            Dispose(false);
         }
 
         #endregion

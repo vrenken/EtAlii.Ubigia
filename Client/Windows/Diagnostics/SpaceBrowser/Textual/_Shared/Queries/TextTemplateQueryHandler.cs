@@ -16,13 +16,19 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetExecutingAssembly();
             // Get the stream (embedded resource) - be sure to wrap in a using block
-            using (var stream = assembly.GetManifestResourceStream(query.Name))
+            Stream stream = null;
+            try
             {
+                stream = assembly.GetManifestResourceStream(query.Name);
                 using (var reader = new StreamReader(stream))
                 {
                     var template = reader.ReadToEnd();
                     result.Add(template);
                 }
+            }
+            finally
+            {
+                stream?.Dispose();
             }
             return result.AsQueryable();
         }
