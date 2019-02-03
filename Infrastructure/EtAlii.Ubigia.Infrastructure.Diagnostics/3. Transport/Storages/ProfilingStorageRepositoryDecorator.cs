@@ -68,12 +68,12 @@
             return storage;
         }
 
-        public Storage Add(Storage storage)
+        public Storage Add(Storage item)
         {
             var start = Environment.TickCount;
-            storage = _repository.Add(storage);
+            item = _repository.Add(item);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return storage;
+            return item;
         }
 
         public void Remove(Guid itemId)
@@ -83,19 +83,19 @@
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Storage storage)
+        public void Remove(Storage item)
         {
             var start = Environment.TickCount;
-            _repository.Remove(storage);
+            _repository.Remove(item);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Storage Update(Guid itemId, Storage storage)
+        public Storage Update(Guid itemId, Storage item)
         {
             var start = Environment.TickCount;
-            storage = _repository.Update(itemId, storage);
+            item = _repository.Update(itemId, item);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return storage;
+            return item;
         }
     }
 }

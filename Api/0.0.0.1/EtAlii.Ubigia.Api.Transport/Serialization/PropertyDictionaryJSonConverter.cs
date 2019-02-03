@@ -35,11 +35,11 @@
 
             if (reader.TokenType == JsonToken.StartArray)
             {
-                ReadAsArray(reader, objectType, properties, serializer);
+                ReadAsArray(reader, properties, serializer);
             }
             else
             {
-                ReadAsDictionary(reader, objectType, properties, serializer);
+                ReadAsDictionary(reader, properties, serializer);
             }
 
             return properties;
@@ -168,25 +168,28 @@
 
         private TypeId ToTypeId(object value)
         {
-            if (value == null) return TypeId.None;
-            if (value is String) return TypeId.String;
-            if (value is Char) return TypeId.Char;
-            if (value is Boolean) return TypeId.Boolean;
-            if (value is SByte) return TypeId.SByte;
-            if (value is Byte) return TypeId.Byte;
-            if (value is Int16) return TypeId.Int16;
-            if (value is Int32) return TypeId.Int32;
-            if (value is Int64) return TypeId.Int64;
-            if (value is UInt16) return TypeId.UInt16;
-            if (value is UInt32) return TypeId.UInt32;
-            if (value is UInt64) return TypeId.UInt64;
-            if (value is Single) return TypeId.Single;
-            if (value is Double) return TypeId.Double;
-            if (value is Decimal) return TypeId.Decimal;
-            if (value is DateTime) return TypeId.DateTime;
-            if (value is TimeSpan) return TypeId.TimeSpan;
-            if (value is Guid) return TypeId.Guid;
-            if (value is Version) return TypeId.Version;
+            switch (value)
+            {
+                case null: return TypeId.None;
+                case String _: return TypeId.String;
+                case Char _: return TypeId.Char;
+                case Boolean _:return TypeId.Boolean;
+                case SByte _:return TypeId.SByte;
+                case Byte _:return TypeId.Byte;
+                case Int16 _:return TypeId.Int16;
+                case Int32 _:return TypeId.Int32;
+                case Int64 _:return TypeId.Int64;
+                case UInt16 _:return TypeId.UInt16;
+                case UInt32 _:return TypeId.UInt32;
+                case UInt64 _:return TypeId.UInt64;
+                case Single _:return TypeId.Single;
+                case Double _:return TypeId.Double;
+                case Decimal _:return TypeId.Decimal;
+                case DateTime _:return TypeId.DateTime;
+                case TimeSpan _:return TypeId.TimeSpan;
+                case Guid _:return TypeId.Guid;
+                case Version _:return TypeId.Version;
+            }
 
             throw new NotSupportedException("Type is not supported: " + value.GetType().Name);
         }

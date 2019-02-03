@@ -61,10 +61,10 @@
             return entry;
         }
 
-        public Entry Prepare(Guid spaceId, Identifier identifier)
+        public Entry Prepare(Guid spaceId, Identifier id)
         {
             var start = Environment.TickCount;
-            var entry = _repository.Prepare(spaceId, identifier);
+            var entry = _repository.Prepare(spaceId, id);
             _profiler.WriteSample(PrepareCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return entry;
         }

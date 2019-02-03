@@ -6,17 +6,17 @@
 
     public sealed class AccountDataClientStub : IAccountDataClient 
     {
-        public async Task<Account> Add(string name, string password, AccountTemplate template)
+        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             return await Task.FromResult<Account>(null);
         }
 
-        public async Task Remove(Guid id)
+        public async Task Remove(Guid accountId)
         {
             await Task.CompletedTask;
         }
 
-        public async Task<Account> Change(Guid rootId, string accountName, string password)
+        public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
         {
             return await Task.FromResult<Account>(null);
         }

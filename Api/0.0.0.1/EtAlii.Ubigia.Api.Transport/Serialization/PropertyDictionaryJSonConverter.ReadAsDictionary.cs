@@ -5,7 +5,7 @@
 
     public partial class PropertyDictionaryJSonConverter
     {
-        private void ReadAsDictionary(JsonReader reader, Type objectType, PropertyDictionary properties, JsonSerializer serializer)
+        private void ReadAsDictionary(JsonReader reader, PropertyDictionary properties, JsonSerializer serializer)
         {
             while (reader.TokenType == JsonToken.PropertyName)
             {

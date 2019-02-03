@@ -12,24 +12,12 @@
     public class NET47ContentManagerTests : IClassFixture<NET47LogicalUnitTestContext>, IAsyncLifetime
     {
 
+        /// <summary>
+        /// The test context which provides
+        /// information about and functionality for the current test run.
+        ///</summary>
         private readonly NET47LogicalUnitTestContext _testContext;
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        //public TestContext TestContext
-        //{
-        //    get
-        //    {
-        //        return _testContext;
-        //    }
-        //    set
-        //    {
-        //        _testContext = value;
-        //    }
-        //}
-        //private TestContext _testContext;
 
         public NET47ContentManagerTests(NET47LogicalUnitTestContext testContext)
         {
