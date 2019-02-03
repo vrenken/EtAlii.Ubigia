@@ -19,9 +19,25 @@
 
         public void Dispose()
         {
-            _parser = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
- 
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _parser = null;
+            }
+        }
+
+        ~RootDefinitionSubjectParserTests()
+        {
+            Dispose(false);
+        }
+
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void RootDefinitionSubject_Parse_01()
         {

@@ -28,8 +28,24 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
         public void Dispose()
         {
-            _parser = null;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
+            if (disposing)
+            {
+                _parser = null;
+            }
+        }
+
+        ~SequenceParserPathsConditionalTests()
+        {
+            Dispose(false);
+        }
+
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void SequenceParser_Parse_PathSubject_Conditional_01()
