@@ -24,7 +24,10 @@
     <ProjectGuid>d002f507-6776-4ee6-92e4-41a62ab2ebf2</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="coverlet.msbuild" Version="2.5.1" />
+    <PackageReference Include="coverlet.msbuild" Version="2.5.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>
