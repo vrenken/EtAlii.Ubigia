@@ -49,14 +49,14 @@
             return await _getHandler.Handle(identifier, scope);
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
+        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope)
         {
-            return await _getHandler.Handle(identifiers, scope);
+            return await _getHandler.Handle(entryIdentifiers, scope);
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier identifier, EntryRelation relations, ExecutionScope scope)
+        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation relations, ExecutionScope scope)
         {
-            return await _getRelatedHandler.Handle(identifier, relations, scope);
+            return await _getRelatedHandler.Handle(entryIdentifier, relations, scope);
         }
 
         public event Action<Identifier> Prepared = delegate { };

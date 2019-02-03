@@ -56,9 +56,9 @@
             return entry;
         }
 
-        public Entry Prepare(Guid spaceId, Identifier identifier)
+        public Entry Prepare(Guid spaceId, Identifier id)
         {
-            var entry = _repository.Prepare(spaceId, identifier);
+            var entry = _repository.Prepare(spaceId, id);
             return entry;
         }
 

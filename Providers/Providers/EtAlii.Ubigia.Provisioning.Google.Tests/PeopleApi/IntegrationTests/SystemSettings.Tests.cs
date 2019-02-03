@@ -132,7 +132,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            var firstContext = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
             
             var firstSystemSettings = TestSystemSettings.Create();
             var secondSystemSettings = TestSystemSettings.Create();
@@ -141,7 +141,7 @@
             // Act.
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var connection = await managementConnection.OpenSpace(accountName, SpaceName.System);
-            context = new GraphSLScriptContextFactory().Create(connection);
+            var context = new GraphSLScriptContextFactory().Create(connection);
 
             systemSettingsSetter.Set(context, firstSystemSettings);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -162,8 +162,10 @@
             systemSettingsSetter.Set(context, thirdSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();
-            
+
             // Assert.
+            Assert.NotNull(firstContext);
+            Assert.NotNull(context);
             TestSystemSettings.AreEqual(firstSystemSettings, firstResult);
             TestSystemSettings.AreEqual(secondSystemSettings, secondResult);
             TestSystemSettings.AreEqual(thirdSystemSettings, thirdResult);

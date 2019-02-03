@@ -119,6 +119,7 @@
             // Assert.
             var firstSequence = script.Sequences.First();
             var identifierPart = firstSequence.Parts.Skip(2).Cast<AbsolutePathSubject>().First().Parts.Skip(1).Cast<IdentifierPathSubjectPart>().First();
+            Assert.NotNull(result);
             Assert.Equal(Guid.Parse("38A52BE4-9352-453E-AF97-5C3B448652F0"), identifierPart.Identifier.Storage);
             Assert.Equal(Guid.Parse("3F2504E0-4F89-41D3-9A0C-0305E82C3301"), identifierPart.Identifier.Account);
             Assert.Equal(Guid.Parse("21EC2020-3AEA-4069-A2DD-08002B30309D"), identifierPart.Identifier.Space);

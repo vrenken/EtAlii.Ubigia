@@ -75,18 +75,18 @@
             return storage;
         }
 
-        public Storage Add(Storage storage)
+        public Storage Add(Storage item)
         {
-            var message = $"Adding storage (Id: {storage.Id})";
+            var message = $"Adding storage (Id: {item.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            storage = _repository.Add(storage);
+            item = _repository.Add(item);
 
-            message = $"Added storage (Id: {storage.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Added storage (Id: {item.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
-            return storage;
+            return item;
         }
 
         public void Remove(Guid itemId)
@@ -101,30 +101,30 @@
             _logger.Info(message);
         }
 
-        public void Remove(Storage storage)
+        public void Remove(Storage item)
         {
-            var message = $"Removing storage (Id: {storage.Id})";
+            var message = $"Removing storage (Id: {item.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            _repository.Remove(storage);
+            _repository.Remove(item);
 
-            message = $"Removed storage (Id: {storage.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Removed storage (Id: {item.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
         }
 
-        public Storage Update(Guid itemId, Storage storage)
+        public Storage Update(Guid itemId, Storage item)
         {
             var message = $"Updating storage (Id: {itemId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            storage = _repository.Update(itemId, storage);
+            item = _repository.Update(itemId, item);
 
             message = $"Updated storage (Id: {itemId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
-            return storage;
+            return item;
         }
     }
 }

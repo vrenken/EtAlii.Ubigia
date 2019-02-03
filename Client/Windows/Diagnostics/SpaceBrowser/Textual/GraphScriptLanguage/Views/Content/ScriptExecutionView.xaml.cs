@@ -65,7 +65,7 @@
                         }
                         else
                         {
-                            ExecutionStatusTextBox.Text += Environment.NewLine + line;
+                            ExecutionStatusTextBox.Text += $"{Environment.NewLine}{line}";
                         }
                     }
                     if (isAtEnd)

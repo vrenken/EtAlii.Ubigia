@@ -67,43 +67,43 @@
             return accounts;
         }
 
-        public Account Get(Guid spaceId)
+        public Account Get(Guid itemId)
         {
             var start = Environment.TickCount;
-            var account = _repository.Get(spaceId);
+            var account = _repository.Get(itemId);
             _profiler.WriteSample(GetByIdNoPasswordCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return account;
             
         }
 
-        public Account Add(Account account, AccountTemplate template)
+        public Account Add(Account item, AccountTemplate template)
         {
             var start = Environment.TickCount;
-            account = _repository.Add(account, template);
+            item = _repository.Add(item, template);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return account;
+            return item;
         }
 
-        public void Remove(Guid accountId)
+        public void Remove(Guid itemId)
         {
             var start = Environment.TickCount;
-            _repository.Remove(accountId);
+            _repository.Remove(itemId);
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Account account)
+        public void Remove(Account item)
         {
             var start = Environment.TickCount;
-            _repository.Remove(account);
+            _repository.Remove(item);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Account Update(Guid accountId, Account account)
+        public Account Update(Guid itemId, Account item)
         {
             var start = Environment.TickCount;
-            account = _repository.Update(accountId, account);
+            item = _repository.Update(itemId, item);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return account;
+            return item;
         }
     }
 }
