@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Reactive.Linq;
@@ -13,7 +12,7 @@
     
 
     
-    public class ScriptProcessorNonRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorNonRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -22,23 +21,21 @@
         public ScriptProcessorNonRootedPathGetTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(() =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            return Task.CompletedTask;
+        }
+
+        public Task DisposeAsync()
+        {
+            _parser = null;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

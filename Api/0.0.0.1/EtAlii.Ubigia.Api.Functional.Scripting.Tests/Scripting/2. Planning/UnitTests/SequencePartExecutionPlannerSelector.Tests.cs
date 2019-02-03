@@ -2,28 +2,30 @@
 
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
 
 
     
-    public class SequenceExecutionPlannerTests : IDisposable
+    public class SequenceExecutionPlannerTests : IAsyncLifetime
     {
         private IScriptParser _parser;
 
-        public SequenceExecutionPlannerTests()
+        public Task InitializeAsync()
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .Use(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            return Task.CompletedTask;
         }
 
-        public void Dispose()
+        public Task DisposeAsync()
         {
             _parser = null;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
