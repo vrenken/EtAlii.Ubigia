@@ -1,9 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
-    using System.Threading.Tasks;
-    using GraphQL;
-    using GraphQL.Execution;
     using GraphQL.Language.AST;
 
     internal static class GraphQLAstVisitableExtensions
