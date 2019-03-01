@@ -1,11 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
-    using global::GraphQL.Resolvers;
     using global::GraphQL.Types;
 
     class NodesFieldAdder : INodesFieldAdder

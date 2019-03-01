@@ -5,7 +5,6 @@
     using GraphQL;
     using GraphQL.Execution;
     using GraphQL.Http;
-    using GraphQL.Types;
     using GraphQL.Validation;
     using GraphQL.Validation.Complexity;
 

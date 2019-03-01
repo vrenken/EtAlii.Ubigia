@@ -2,14 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
     using global::GraphQL;
     using global::GraphQL.Execution;
     using global::GraphQL.Language.AST;
     using global::GraphQL.Types;
-    using ISchema = global::GraphQL.Types.ISchema;
 
     public partial class DynamicSchema : Schema
     {
