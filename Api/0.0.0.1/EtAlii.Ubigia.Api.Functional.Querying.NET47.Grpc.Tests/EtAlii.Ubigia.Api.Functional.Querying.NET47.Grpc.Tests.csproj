@@ -37,9 +37,5 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Grpc.Tests\EtAlii.Ubigia.Api.Logical.Grpc.Tests.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
-  </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Querying.Tests\EtAlii.Ubigia.Api.Functional.Querying.Tests.projitems" Label="Shared" />
 </Project>

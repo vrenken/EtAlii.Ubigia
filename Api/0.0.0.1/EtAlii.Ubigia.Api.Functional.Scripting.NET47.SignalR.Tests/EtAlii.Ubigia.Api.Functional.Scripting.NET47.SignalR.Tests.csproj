@@ -40,9 +40,6 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.SignalR.Tests\EtAlii.Ubigia.Api.Logical.SignalR.Tests.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Configuration" />
-  </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Scripting.Tests\EtAlii.Ubigia.Api.Functional.Scripting.Tests.projitems" Label="Shared" />
+
 </Project>
