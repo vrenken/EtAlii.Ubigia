@@ -11,13 +11,10 @@
             // Arrange.
 
             // Act.
-            var act = new Action(() =>
-            {
-                var context = new ProviderContext(null, null, null);
-            });
+            var context = new ProviderContext(null, null, null);
 
             // Assert.
-            Assert.Throws<InvalidOperationException>(act);
+            Assert.NotNull(context);
         }
     }
 }
