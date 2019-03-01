@@ -20,5 +20,11 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Grpc\EtAlii.Ubigia.Api.Transport.Grpc.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management\EtAlii.Ubigia.Api.Transport.Management.csproj" />
   </ItemGroup>
-  <Import Project="Grpc.Targets" />
+  <ItemGroup>
+    <PackageReference Include="EtAlii.xTechnology.Grpc.Tools" Version="1.0.7" />
+    <PackageReference Include="Grpc" Version="1.19.0" />
+    <PackageReference Include="Grpc.Tools" Version="1.19.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.6.1" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.6.1" />
+  </ItemGroup>
 </Project>
