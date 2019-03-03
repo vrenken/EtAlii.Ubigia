@@ -46,7 +46,7 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="16.1.0.26" />
     <PackageReference Include="Syncfusion.SfChart.WPF46" Version="16.1.0.26" />
     <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
+    <PackageReference Include="System.Reactive.Core" Version="4.1.3" />
   </ItemGroup>
   <!-- 
   Interesting link:
