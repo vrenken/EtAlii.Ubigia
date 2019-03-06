@@ -7,7 +7,9 @@
     using Xunit;
 
 
-    public class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+// TODO: ENABLE FOR GraphQL
+#pragma warning disable xUnit1000
+    internal class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext  _logicalContext;
         private IGraphSLScriptContext _scriptContext;
