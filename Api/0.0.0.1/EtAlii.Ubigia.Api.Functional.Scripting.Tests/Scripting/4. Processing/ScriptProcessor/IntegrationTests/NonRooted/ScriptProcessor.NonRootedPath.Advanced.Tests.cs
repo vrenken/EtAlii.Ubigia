@@ -456,9 +456,10 @@
             Assert.Equal(1, afterCount1);
             Assert.Equal(2, afterCount2);
         }
-        
-        
-        [Fact, Trait("Category", TestAssembly.Category)]
+
+
+        // TODO: ENABLE FOR GraphQL
+        [Fact(Skip = "Disabled for GraphQL implementation"), Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
@@ -577,8 +578,9 @@
             Assert.Equal(1, afterFriendCount3);
 
         }
-        
-        [Fact, Trait("Category", TestAssembly.Category)]
+
+        // TODO: ENABLE FOR GraphQL
+        [Fact(Skip = "Disabled for GraphQL implementation"), Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.

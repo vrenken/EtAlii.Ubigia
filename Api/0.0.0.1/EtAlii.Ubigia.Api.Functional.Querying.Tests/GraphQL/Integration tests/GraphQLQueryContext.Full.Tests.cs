@@ -7,7 +7,9 @@
     using Xunit;
 
 
-    public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IDisposable
+// TODO: ENABLE FOR GraphQL
+#pragma warning disable xUnit1000
+    internal class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IDisposable
     {
         private ILogicalContext _logicalContext;
         private IGraphSLScriptContext _scriptContext;
