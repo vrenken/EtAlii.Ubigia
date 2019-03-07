@@ -139,7 +139,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("#thislineissafe").Script;
+            var script = _parser.Parse("--thislineissafe").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -151,7 +151,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("#thislineissafe #and this line also").Script;
+            var script = _parser.Parse("--thislineissafe --and this line also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -161,7 +161,7 @@
         public void ScriptParser_NonRootedPath_Parse_Comment_3()
         {
             // Arrange.
-            var query = "/this/line/is/safe\r\n#and this line also";
+            var query = "/this/line/is/safe\r\n--and this line also";
 
             // Act.
             var result = _parser.Parse(query);
@@ -179,7 +179,7 @@
         public void ScriptParser_NonRootedPath_Parse_Comment_4()
         {
             // Arrange.
-            const string query = "#this line is safe\r\n/and/this/line/also";
+            const string query = "--this line is safe\r\n/and/this/line/also";
 
             // Act.
             var result = _parser.Parse(query);
@@ -198,7 +198,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("/this/line/is/safe #and this comment also").Script;
+            var script = _parser.Parse("/this/line/is/safe --and this comment also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -212,7 +212,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("/this/line/is/safe   #and this comment also").Script;
+            var script = _parser.Parse("/this/line/is/safe   --and this comment also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -226,7 +226,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("/this/line/is/safe#and this comment also").Script;
+            var script = _parser.Parse("/this/line/is/safe--and this comment also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -240,7 +240,7 @@
             // Arrange.
 
             // Act.
-            var result = _parser.Parse("thislineisbad #and this should be ok");
+            var result = _parser.Parse("thislineisbad --and this should be ok");
 
             // Assert.
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
@@ -264,7 +264,7 @@
             // Arrange.
 
             // Act.
-            var result = _parser.Parse("#ThisLineIsOk\r\nButThisLineIsBad");
+            var result = _parser.Parse("--ThisLineIsOk\r\nButThisLineIsBad");
 
             // Assert.
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
@@ -276,7 +276,7 @@
             // Arrange.
 
             // Act.
-            var result = _parser.Parse("#ThisLineIsBad\r\nButThisLineIsOk");
+            var result = _parser.Parse("--ThisLineIsBad\r\nButThisLineIsOk");
 
             // Assert.
             Assert.Contains(result.Errors, e => e.Exception is ScriptParserException);
@@ -288,7 +288,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("#ThisLineIsOk\r\n#AndThisLineAlso").Script;
+            var script = _parser.Parse("--ThisLineIsOk\r\n--AndThisLineAlso").Script;
 
             // Assert.
             Assert.Equal(2, script.Sequences.Count());

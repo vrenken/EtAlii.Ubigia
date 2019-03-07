@@ -138,7 +138,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken/Tanja <= $var2 #These are comments");
+            var parseResult = _parser.Parse("$var1 <= /Person/Vrenken/Tanja <= $var2 --These are comments");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -192,7 +192,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("/Person/Vrenken -= NoOne #These are comments");
+            var parseResult = _parser.Parse("/Person/Vrenken -= NoOne --These are comments");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -210,7 +210,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("#These are comments");
+            var parseResult = _parser.Parse("--These are comments");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
@@ -227,7 +227,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var sequencePartExecutionPlannerSelector = TestSequencePartExecutionPlannerSelector.Create();
             var executionPlanCombinerSelector = TestExecutionPlanCombinerSelector.Create(sequencePartExecutionPlannerSelector);
             var sequencePlanner = new SequenceExecutionPlanner(sequencePartExecutionPlannerSelector, executionPlanCombinerSelector);
-            var parseResult = _parser.Parse("#These are comments");
+            var parseResult = _parser.Parse("--These are comments");
 
             // Act.
             var executionPlan = sequencePlanner.Plan(parseResult.Script.Sequences.First());
