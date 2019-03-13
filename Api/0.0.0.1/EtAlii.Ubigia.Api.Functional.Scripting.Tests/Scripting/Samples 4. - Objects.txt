@@ -1,4 +1,4 @@
-﻿# Property assignment
+﻿-- Property assignment
 
 /Document/story.Name <= peter
 /Document/story.Name <= "peter"
@@ -8,7 +8,7 @@ $story.Name <= peter
 $story.Name <= "peter"
 $story.Number <= 42
 
-# JSON Based property assignment.
+-- JSON Based property assignment.
 
 $story <= { Name: 'peter', Number: 42
 }
