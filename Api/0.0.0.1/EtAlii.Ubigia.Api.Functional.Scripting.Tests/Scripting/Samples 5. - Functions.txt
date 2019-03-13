@@ -1,30 +1,30 @@
-﻿# Clear the cache.
+﻿-- Clear the cache.
 clr()
 
-# Function call
+-- Function call
 $v1 <= testfunction()
 
-#Get the full identifier for an item.
+--Get the full identifier for an item.
 $id <= id(/Persons/Doe/John)
 $id <= id($johnDoe)
 $id <= id() <= /Persons/Doe/John
 $id <= id() <= $johnDoe
 
 
-#Output format function.
+-- Output format function.
 $person <= /Person/
 <= format($person, "{item} {parent}")
-<= format($person, "{item} [{branch}]") # add additional characters.
+<= format($person, "{item} [{branch}]") -- add additional characters.
 
 <= format("{item} {parent}") <= $person
-<= format("{item} [{branch}]") <= $person # add additional characters.
+<= format("{item} [{branch}]") <= $person -- add additional characters.
 
-# Output the nodes into the specified Space browser view:
+-- Output the nodes into the specified Space browser view:
 <= view("Graph view 2") <= /Person/*/*/Emails/.IsPrimary=true 
 
-# Output the nodes into the specified Space browser view, but include the path 
+-- Output the nodes into the specified Space browser view, but include the path 
 <= view("Graph view 2") <= include(\*\*) <= /Person/*/*/Emails/.IsPrimary=true 
 
-# Add multiple closely related nodes to the output.
+-- Add multiple closely related nodes to the output.
 <= include(\\02/*) <= time:"2017-02-20 20:06:02.123"
 <= include(\\02/*) <= /time/"2017-02-20 20:06:02.123"
