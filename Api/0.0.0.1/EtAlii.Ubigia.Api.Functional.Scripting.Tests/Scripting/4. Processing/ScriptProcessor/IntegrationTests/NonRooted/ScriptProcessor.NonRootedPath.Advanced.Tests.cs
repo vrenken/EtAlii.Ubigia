@@ -12,37 +12,29 @@
 
 
     
-    public class ScriptProcessorNonRootedPathAdvancedTests : IDisposable
+    public class ScriptProcessorNonRootedPathAdvancedTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
-        private static ILogicalTestContext _testContext;
+        private ILogicalTestContext _testContext;
 
-        public ScriptProcessorNonRootedPathAdvancedTests()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                _testContext = new LogicalTestContextFactory().Create();
-                await _testContext.Start();
+            _testContext = new LogicalTestContextFactory().Create();
+            await _testContext.Start();
 
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
         }
 
-        public void Dispose()
+        public async Task DisposeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                _parser = null;
+            _parser = null;
 
-                await _testContext.Stop();
-                _testContext = null;
-            });
-            task.Wait();
+            await _testContext.Stop();
+            _testContext = null;
         }
 
         [Fact]
@@ -695,6 +687,5 @@
             Assert.Equal(1, afterFriendCount3);
 
         }
-
     }
 }
