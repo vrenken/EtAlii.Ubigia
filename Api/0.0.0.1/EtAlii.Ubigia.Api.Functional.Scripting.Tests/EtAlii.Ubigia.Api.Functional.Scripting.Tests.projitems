@@ -12,7 +12,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)0. Functional\" />
     <Folder Include="$(MSBuildThisFileDirectory)Context\Diagnostics\IntegrationTests\" />
     <Folder Include="$(MSBuildThisFileDirectory)Context\Diagnostics\UnitTests\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Scripting\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Context\IntegrationTests\GraphSLScriptContextFactory.RootHandlers.Tests.cs" />
@@ -46,6 +45,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.RootedPath.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\2. Planning\UnitTests\SequencePartExecutionPlannerSelector.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Tag.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Function.Include.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Advanced.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Assign.Anonymous2.Tests.cs" />
@@ -59,6 +59,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Temporal.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.TraversingWildcard.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\NonRooted\ScriptProcessor.NonRootedPath.Query.Wildcard.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Assign.Tag.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Function.Include.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.RootedPath.Media.Path.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\4. Processing\ScriptProcessor\IntegrationTests\Rooted\ScriptProcessor.Root.Assign.Tests.cs" />
