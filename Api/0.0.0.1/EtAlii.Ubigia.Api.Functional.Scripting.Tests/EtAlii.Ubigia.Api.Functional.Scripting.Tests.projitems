@@ -31,6 +31,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)FunctionHandlerFactory.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)IFunctionalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\RegexPathSubjectPartParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.NonRootedPath.Tags.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.RootedPath.Tags.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.Function.Include.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\TypedPathSubjectPartParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scripting\1. Parsing\UnitTests\ScriptParser.Root.Add.Time.FormattedString.SingleQuotes.Tests.cs" />

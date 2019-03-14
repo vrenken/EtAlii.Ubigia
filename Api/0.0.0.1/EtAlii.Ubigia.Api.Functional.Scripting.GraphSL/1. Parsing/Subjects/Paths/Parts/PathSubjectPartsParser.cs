@@ -17,6 +17,8 @@ namespace EtAlii.Ubigia.Api.Functional
         public PathSubjectPartsParser(
             ITraversingWildcardPathSubjectPartParser traversingWildcardPathSubjectPartParser,
             IWildcardPathSubjectPartParser wildcardPathSubjectPartParser,
+            ITaggedPathSubjectPartParser taggedPathSubjectPartParser,
+            
             IConditionalPathSubjectPartParser conditionalPathSubjectPartParser,
             IConstantPathSubjectPartParser constantPathSubjectPartParser,
             IVariablePathSubjectPartParser variablePathSubjectPartParser,
@@ -45,6 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 traversingWildcardPathSubjectPartParser,
                 wildcardPathSubjectPartParser,
+                taggedPathSubjectPartParser,
                 conditionalPathSubjectPartParser, 
                 constantPathSubjectPartParser,
                 variablePathSubjectPartParser,
