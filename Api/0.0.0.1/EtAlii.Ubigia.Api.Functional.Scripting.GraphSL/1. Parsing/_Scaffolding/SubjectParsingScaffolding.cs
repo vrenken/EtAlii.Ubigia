@@ -32,6 +32,7 @@
             container.Register<INonRootedPathSubjectParser, NonRootedPathSubjectParser>();
             container.Register<IRootedPathSubjectParser, RootedPathSubjectParser>();
             container.Register<IPathSubjectPartsParser, PathSubjectPartsParser>();
+            container.Register<ITaggedPathSubjectPartParser, TaggedPathSubjectPartParser>();
             container.Register<IWildcardPathSubjectPartParser, WildcardPathSubjectPartParser>();
             container.Register<ITraversingWildcardPathSubjectPartParser, TraversingWildcardPathSubjectPartParser>();
 

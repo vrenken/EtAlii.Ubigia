@@ -59,9 +59,10 @@
         {
             if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart ||
                 before is WildcardPathSubjectPart || after is WildcardPathSubjectPart ||
+                before is TaggedPathSubjectPart || after is TaggedPathSubjectPart ||
                 before is TraversingWildcardPathSubjectPart || after is TraversingWildcardPathSubjectPart)
             {
-                throw new ScriptParserException("A wildcard path part cannot be combined with other constant, wildcard or string path parts.");
+                throw new ScriptParserException("A wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
             }
             else if (partIndex == 0 || (partIndex == 1 && before is ParentPathSubjectPart) && (before is VariablePathSubjectPart) == false)
             {
