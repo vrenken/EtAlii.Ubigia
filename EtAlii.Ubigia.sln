@@ -396,6 +396,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.SignalR.Tests.csproj", "{B617E2C2-8C88-4647-9972-98C6E47EFEB3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_Global", "_Global", "{C9537D00-7881-4ACB-9111-9439363F658D}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		NuGet.config = NuGet.config
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Api\0.0.0.1\EtAlii.Ubigia.Api.Logical.Tests\EtAlii.Ubigia.Api.Logical.Tests.projitems*{286d29ed-cb37-4ebe-b605-6a89f7aa5c1e}*SharedItemsImports = 13

@@ -22,8 +22,8 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Fabric.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.50" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.50" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.54" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.54" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>

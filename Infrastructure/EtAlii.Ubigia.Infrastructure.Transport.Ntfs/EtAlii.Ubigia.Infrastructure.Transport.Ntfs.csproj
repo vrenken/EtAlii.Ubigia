@@ -17,7 +17,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.50" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.54" />
   </ItemGroup>
 
   <ItemGroup>
