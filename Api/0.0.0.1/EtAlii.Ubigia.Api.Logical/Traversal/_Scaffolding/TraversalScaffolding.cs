@@ -52,6 +52,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IGraphPathDowndateRelationTraverser, GraphPathDowndateRelationTraverser>();
             container.Register<IGraphPathFinalRelationTraverser, GraphPathFinalRelationTraverser>();
             container.Register<IGraphPathOriginalRelationTraverser, GraphPathOriginalRelationTraverser>();
+            container.Register<IGraphPathTaggedNodeTraverser, GraphPathTaggedNodeTraverser>();
             container.Register<IGraphPathWildcardTraverser, GraphPathWildcardTraverser>();
             container.Register<ITraversingGraphPathWildcardTraverser, TraversingGraphPathWildcardTraverser>();
             container.Register<IGraphPathConditionalTraverser, GraphPathConditionalTraverser>();

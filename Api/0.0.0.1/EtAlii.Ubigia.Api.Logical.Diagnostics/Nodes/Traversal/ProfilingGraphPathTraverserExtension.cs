@@ -39,6 +39,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             container.RegisterDecorator(typeof(IGraphPathOriginalRelationTraverser), typeof(ProfilingGraphPathOriginalRelationTraverser));
             container.RegisterDecorator(typeof(IGraphPathWildcardTraverser), typeof(ProfilingGraphPathWildcardTraverser));
             container.RegisterDecorator(typeof(IGraphPathConditionalTraverser), typeof(ProfilingGraphPathConditionalTraverser));
+            container.RegisterDecorator(typeof(IGraphPathTaggedNodeTraverser), typeof(ProfilingGraphPathTaggedNodeTraverser));
         }
     }
 }
