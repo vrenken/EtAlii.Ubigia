@@ -21,7 +21,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.54" />
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.55" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.Grpc" Version="1.0.75" />
   </ItemGroup>
   <ItemGroup>
