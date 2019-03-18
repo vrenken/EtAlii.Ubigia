@@ -30,10 +30,5 @@
             
             return result;
         }
-
-        public static IEnumerable<WireProtocol.Content> ToWire(this IEnumerable<Content> contents)
-        {
-            return contents.Select(s => s.ToWire());
-        }
     }
 }
