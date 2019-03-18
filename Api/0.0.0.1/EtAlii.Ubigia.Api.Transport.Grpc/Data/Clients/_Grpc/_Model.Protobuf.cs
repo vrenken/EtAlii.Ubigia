@@ -48,62 +48,64 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5H",
             "dWlkEkIKBVNwYWNlGAMgASgLMjMuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
             "b3J0LkdycGMuV2lyZVByb3RvY29sLkd1aWQSCwoDRXJhGAQgASgGEg4KBlBl",
-            "cmlvZBgFIAEoBhIOCgZNb21lbnQYBiABKAYi5gcKBUVudHJ5Ek4KAklkGAEg",
+            "cmlvZBgFIAEoBhIOCgZNb21lbnQYBiABKAYisAgKBUVudHJ5Ek4KAklkGAEg",
             "ASgLMkIuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVBy",
             "b3RvY29sLklkZW50aWZpZXJDb21wb25lbnQSSgoEVHlwZRgCIAEoCzI8LkV0",
             "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5U",
-            "eXBlQ29tcG9uZW50ElAKBlBhcmVudBgDIAEoCzJALkV0QWxpaS5VYmlnaWEu",
-            "QXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbkNvbXBv",
-            "bmVudBJTCghDaGlsZHJlbhgEIAMoCzJBLkV0QWxpaS5VYmlnaWEuQXBpLlRy",
-            "YW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbnNDb21wb25lbnQS",
-            "UQoHUGFyZW50MhgFIAEoCzJALkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9y",
-            "dC5HcnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbkNvbXBvbmVudBJUCglDaGls",
-            "ZHJlbjIYBiADKAsyQS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3Jw",
-            "Yy5XaXJlUHJvdG9jb2wuUmVsYXRpb25zQ29tcG9uZW50ElIKCERvd25kYXRl",
-            "GAcgASgLMkAuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2ly",
-            "ZVByb3RvY29sLlJlbGF0aW9uQ29tcG9uZW50ElIKB1VwZGF0ZXMYCCADKAsy",
+            "eXBlQ29tcG9uZW50EkgKA1RhZxgDIAEoCzI7LkV0QWxpaS5VYmlnaWEuQXBp",
+            "LlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5UYWdDb21wb25lbnQSUAoG",
+            "UGFyZW50GAQgASgLMkAuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0Lkdy",
+            "cGMuV2lyZVByb3RvY29sLlJlbGF0aW9uQ29tcG9uZW50ElMKCENoaWxkcmVu",
+            "GAUgAygLMkEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2ly",
+            "ZVByb3RvY29sLlJlbGF0aW9uc0NvbXBvbmVudBJRCgdQYXJlbnQyGAYgASgL",
+            "MkAuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3Rv",
+            "Y29sLlJlbGF0aW9uQ29tcG9uZW50ElQKCUNoaWxkcmVuMhgHIAMoCzJBLkV0",
+            "QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5S",
+            "ZWxhdGlvbnNDb21wb25lbnQSUgoIRG93bmRhdGUYCCABKAsyQC5FdEFsaWku",
+            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUmVsYXRp",
+            "b25Db21wb25lbnQSUgoHVXBkYXRlcxgJIAMoCzJBLkV0QWxpaS5VYmlnaWEu",
+            "QXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbnNDb21w",
+            "b25lbnQSUgoIUHJldmlvdXMYCiABKAsyQC5FdEFsaWkuVWJpZ2lhLkFwaS5U",
+            "cmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUmVsYXRpb25Db21wb25lbnQS",
+            "TgoETmV4dBgLIAEoCzJALkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5H",
+            "cnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbkNvbXBvbmVudBJRCgdJbmRleGVk",
+            "GAwgASgLMkAuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2ly",
+            "ZVByb3RvY29sLlJlbGF0aW9uQ29tcG9uZW50ElIKB0luZGV4ZXMYDSADKAsy",
             "QS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9j",
-            "b2wuUmVsYXRpb25zQ29tcG9uZW50ElIKCFByZXZpb3VzGAkgASgLMkAuRXRB",
-            "bGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29sLlJl",
-            "bGF0aW9uQ29tcG9uZW50Ek4KBE5leHQYCiABKAsyQC5FdEFsaWkuVWJpZ2lh",
-            "LkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUmVsYXRpb25Db21w",
-            "b25lbnQSUQoHSW5kZXhlZBgLIAEoCzJALkV0QWxpaS5VYmlnaWEuQXBpLlRy",
-            "YW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbkNvbXBvbmVudBJS",
-            "CgdJbmRleGVzGAwgAygLMkEuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0",
-            "LkdycGMuV2lyZVByb3RvY29sLlJlbGF0aW9uc0NvbXBvbmVudCJ0ChNJZGVu",
-            "dGlmaWVyQ29tcG9uZW50Eg4KBlN0b3JlZBgBIAEoCBJNCgpJZGVudGlmaWVy",
-            "GAIgASgLMjkuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2ly",
-            "ZVByb3RvY29sLklkZW50aWZpZXIiLQoNVHlwZUNvbXBvbmVudBIOCgZTdG9y",
-            "ZWQYASABKAgSDAoEVHlwZRgCIAEoCSJuChFSZWxhdGlvbkNvbXBvbmVudBIO",
-            "CgZTdG9yZWQYASABKAgSSQoIUmVsYXRpb24YAiABKAsyNy5FdEFsaWkuVWJp",
-            "Z2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUmVsYXRpb24i",
-            "fAoSUmVsYXRpb25zQ29tcG9uZW50Eg4KBlN0b3JlZBgBIAEoCBIKCgJJZBgC",
-            "IAEoBhJKCglSZWxhdGlvbnMYAyADKAsyNy5FdEFsaWkuVWJpZ2lhLkFwaS5U",
-            "cmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuUmVsYXRpb24iYQoIUmVsYXRp",
-            "b24SRQoCSWQYASABKAsyOS5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQu",
-            "R3JwYy5XaXJlUHJvdG9jb2wuSWRlbnRpZmllchIOCgZNb21lbnQYAiABKAYi",
-            "TQoLQmxvYlN1bW1hcnkSEgoKSXNDb21wbGV0ZRgBIAEoCBIWCg5BdmFpbGFi",
-            "bGVQYXJ0cxgCIAMoBhISCgpUb3RhbFBhcnRzGAMgASgEIogBCgdDb250ZW50",
-            "Eg4KBlN0b3JlZBgBIAEoCBIMCgROYW1lGAIgASgJEksKB1N1bW1hcnkYAyAB",
-            "KAsyOi5FdEFsaWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJv",
-            "dG9jb2wuQmxvYlN1bW1hcnkSEgoKVG90YWxQYXJ0cxgEIAEoBCJFCgtDb250",
-            "ZW50UGFydBIOCgZTdG9yZWQYASABKAgSDAoETmFtZRgCIAEoCRIKCgJJZBgD",
-            "IAEoBBIMCgREYXRhGAQgASgMIocCChFDb250ZW50RGVmaW5pdGlvbhIOCgZT",
-            "dG9yZWQYASABKAgSDAoETmFtZRgCIAEoCRJLCgdTdW1tYXJ5GAMgASgLMjou",
-            "RXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3RvY29s",
-            "LkJsb2JTdW1tYXJ5EhIKClRvdGFsUGFydHMYBCABKAQSDAoEU2l6ZRgFIAEo",
-            "BBIQCghDaGVja3N1bRgGIAEoBhJTCgVQYXJ0cxgHIAMoCzJELkV0QWxpaS5V",
-            "YmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5Db250ZW50",
-            "RGVmaW5pdGlvblBhcnQiYQoVQ29udGVudERlZmluaXRpb25QYXJ0Eg4KBlN0",
-            "b3JlZBgBIAEoCBIMCgROYW1lGAIgASgJEgoKAklkGAMgASgEEgwKBFNpemUY",
-            "BCABKAQSEAoIQ2hlY2tzdW0YBSABKAYiIgoSUHJvcGVydHlEaWN0aW9uYXJ5",
-            "EgwKBERhdGEYASABKAkqhQEKDUVudHJ5UmVsYXRpb24SCAoETm9uZRAAEgoK",
-            "BlBhcmVudBABEgkKBUNoaWxkEAISDAoIUHJldmlvdXMQBBIICgROZXh0EAgS",
-            "DAoIRG93bmRhdGUQEBIKCgZVcGRhdGUQIBIJCgVJbmRleBBAEgwKB0luZGV4",
-            "ZWQQgAESCAoDQWxsEP8BQnIKLUV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9y",
-            "dC5HcnBjLldpcmVQcm90b2NvbEIGVWJpZ2lhUAGiAgZVYmlnaWGqAi1FdEFs",
-            "aWkuVWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2xiBnBy",
-            "b3RvMw=="));
+            "b2wuUmVsYXRpb25zQ29tcG9uZW50InQKE0lkZW50aWZpZXJDb21wb25lbnQS",
+            "DgoGU3RvcmVkGAEgASgIEk0KCklkZW50aWZpZXIYAiABKAsyOS5FdEFsaWku",
+            "VWJpZ2lhLkFwaS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuSWRlbnRp",
+            "ZmllciItCg1UeXBlQ29tcG9uZW50Eg4KBlN0b3JlZBgBIAEoCBIMCgRUeXBl",
+            "GAIgASgJIisKDFRhZ0NvbXBvbmVudBIOCgZTdG9yZWQYASABKAgSCwoDVGFn",
+            "GAIgASgJIm4KEVJlbGF0aW9uQ29tcG9uZW50Eg4KBlN0b3JlZBgBIAEoCBJJ",
+            "CghSZWxhdGlvbhgCIAEoCzI3LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9y",
+            "dC5HcnBjLldpcmVQcm90b2NvbC5SZWxhdGlvbiJ8ChJSZWxhdGlvbnNDb21w",
+            "b25lbnQSDgoGU3RvcmVkGAEgASgIEgoKAklkGAIgASgGEkoKCVJlbGF0aW9u",
+            "cxgDIAMoCzI3LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldp",
+            "cmVQcm90b2NvbC5SZWxhdGlvbiJhCghSZWxhdGlvbhJFCgJJZBgBIAEoCzI5",
+            "LkV0QWxpaS5VYmlnaWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2Nv",
+            "bC5JZGVudGlmaWVyEg4KBk1vbWVudBgCIAEoBiJNCgtCbG9iU3VtbWFyeRIS",
+            "CgpJc0NvbXBsZXRlGAEgASgIEhYKDkF2YWlsYWJsZVBhcnRzGAIgAygGEhIK",
+            "ClRvdGFsUGFydHMYAyABKAQiiAEKB0NvbnRlbnQSDgoGU3RvcmVkGAEgASgI",
+            "EgwKBE5hbWUYAiABKAkSSwoHU3VtbWFyeRgDIAEoCzI6LkV0QWxpaS5VYmln",
+            "aWEuQXBpLlRyYW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbC5CbG9iU3VtbWFy",
+            "eRISCgpUb3RhbFBhcnRzGAQgASgEIkUKC0NvbnRlbnRQYXJ0Eg4KBlN0b3Jl",
+            "ZBgBIAEoCBIMCgROYW1lGAIgASgJEgoKAklkGAMgASgEEgwKBERhdGEYBCAB",
+            "KAwihwIKEUNvbnRlbnREZWZpbml0aW9uEg4KBlN0b3JlZBgBIAEoCBIMCgRO",
+            "YW1lGAIgASgJEksKB1N1bW1hcnkYAyABKAsyOi5FdEFsaWkuVWJpZ2lhLkFw",
+            "aS5UcmFuc3BvcnQuR3JwYy5XaXJlUHJvdG9jb2wuQmxvYlN1bW1hcnkSEgoK",
+            "VG90YWxQYXJ0cxgEIAEoBBIMCgRTaXplGAUgASgEEhAKCENoZWNrc3VtGAYg",
+            "ASgGElMKBVBhcnRzGAcgAygLMkQuRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNw",
+            "b3J0LkdycGMuV2lyZVByb3RvY29sLkNvbnRlbnREZWZpbml0aW9uUGFydCJh",
+            "ChVDb250ZW50RGVmaW5pdGlvblBhcnQSDgoGU3RvcmVkGAEgASgIEgwKBE5h",
+            "bWUYAiABKAkSCgoCSWQYAyABKAQSDAoEU2l6ZRgEIAEoBBIQCghDaGVja3N1",
+            "bRgFIAEoBiIiChJQcm9wZXJ0eURpY3Rpb25hcnkSDAoERGF0YRgBIAEoCSqF",
+            "AQoNRW50cnlSZWxhdGlvbhIICgROb25lEAASCgoGUGFyZW50EAESCQoFQ2hp",
+            "bGQQAhIMCghQcmV2aW91cxAEEggKBE5leHQQCBIMCghEb3duZGF0ZRAQEgoK",
+            "BlVwZGF0ZRAgEgkKBUluZGV4EEASDAoHSW5kZXhlZBCAARIICgNBbGwQ/wFC",
+            "cgotRXRBbGlpLlViaWdpYS5BcGkuVHJhbnNwb3J0LkdycGMuV2lyZVByb3Rv",
+            "Y29sQgZVYmlnaWFQAaICBlViaWdpYaoCLUV0QWxpaS5VYmlnaWEuQXBpLlRy",
+            "YW5zcG9ydC5HcnBjLldpcmVQcm90b2NvbGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.TimestampReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryRelation), }, new pbr::GeneratedClrTypeInfo[] {
@@ -114,9 +116,10 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account.Parser, new[]{ "Id", "Name", "Password", "Roles", "Created", "Updated" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root.Parser, new[]{ "Id", "Name", "Identifier" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier.Parser, new[]{ "Storage", "Account", "Space", "Era", "Period", "Moment" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry.Parser, new[]{ "Id", "Type", "Parent", "Children", "Parent2", "Children2", "Downdate", "Updates", "Previous", "Next", "Indexed", "Indexes" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Entry.Parser, new[]{ "Id", "Type", "Tag", "Parent", "Children", "Parent2", "Children2", "Downdate", "Updates", "Previous", "Next", "Indexed", "Indexes" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.IdentifierComponent), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.IdentifierComponent.Parser, new[]{ "Stored", "Identifier" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent.Parser, new[]{ "Stored", "Type" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent.Parser, new[]{ "Stored", "Tag" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent.Parser, new[]{ "Stored", "Relation" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser, new[]{ "Stored", "Id", "Relations" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Relation), global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Relation.Parser, new[]{ "Id", "Moment" }, null, null, null),
@@ -1668,6 +1671,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     public Entry(Entry other) : this() {
       id_ = other.id_ != null ? other.id_.Clone() : null;
       type_ = other.type_ != null ? other.type_.Clone() : null;
+      tag_ = other.tag_ != null ? other.tag_.Clone() : null;
       parent_ = other.parent_ != null ? other.parent_.Clone() : null;
       children_ = other.children_.Clone();
       parent2_ = other.parent2_ != null ? other.parent2_.Clone() : null;
@@ -1708,8 +1712,19 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
     }
 
+    /// <summary>Field number for the "Tag" field.</summary>
+    public const int TagFieldNumber = 3;
+    private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent tag_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent Tag {
+      get { return tag_; }
+      set {
+        tag_ = value;
+      }
+    }
+
     /// <summary>Field number for the "Parent" field.</summary>
-    public const int ParentFieldNumber = 3;
+    public const int ParentFieldNumber = 4;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent parent_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent Parent {
@@ -1720,9 +1735,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Children" field.</summary>
-    public const int ChildrenFieldNumber = 4;
+    public const int ChildrenFieldNumber = 5;
     private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> _repeated_children_codec
-        = pb::FieldCodec.ForMessage(34, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
+        = pb::FieldCodec.ForMessage(42, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
     private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> children_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> Children {
@@ -1730,7 +1745,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Parent2" field.</summary>
-    public const int Parent2FieldNumber = 5;
+    public const int Parent2FieldNumber = 6;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent parent2_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent Parent2 {
@@ -1741,9 +1756,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Children2" field.</summary>
-    public const int Children2FieldNumber = 6;
+    public const int Children2FieldNumber = 7;
     private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> _repeated_children2_codec
-        = pb::FieldCodec.ForMessage(50, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
+        = pb::FieldCodec.ForMessage(58, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
     private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> children2_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> Children2 {
@@ -1751,7 +1766,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Downdate" field.</summary>
-    public const int DowndateFieldNumber = 7;
+    public const int DowndateFieldNumber = 8;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent downdate_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent Downdate {
@@ -1762,9 +1777,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Updates" field.</summary>
-    public const int UpdatesFieldNumber = 8;
+    public const int UpdatesFieldNumber = 9;
     private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> _repeated_updates_codec
-        = pb::FieldCodec.ForMessage(66, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
+        = pb::FieldCodec.ForMessage(74, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
     private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> updates_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> Updates {
@@ -1772,7 +1787,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Previous" field.</summary>
-    public const int PreviousFieldNumber = 9;
+    public const int PreviousFieldNumber = 10;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent previous_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent Previous {
@@ -1783,7 +1798,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Next" field.</summary>
-    public const int NextFieldNumber = 10;
+    public const int NextFieldNumber = 11;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent next_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent Next {
@@ -1794,7 +1809,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Indexed" field.</summary>
-    public const int IndexedFieldNumber = 11;
+    public const int IndexedFieldNumber = 12;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent indexed_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent Indexed {
@@ -1805,9 +1820,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     }
 
     /// <summary>Field number for the "Indexes" field.</summary>
-    public const int IndexesFieldNumber = 12;
+    public const int IndexesFieldNumber = 13;
     private static readonly pb::FieldCodec<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> _repeated_indexes_codec
-        = pb::FieldCodec.ForMessage(98, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
+        = pb::FieldCodec.ForMessage(106, global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent.Parser);
     private readonly pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> indexes_ = new pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public pbc::RepeatedField<global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationsComponent> Indexes {
@@ -1829,6 +1844,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (!object.Equals(Id, other.Id)) return false;
       if (!object.Equals(Type, other.Type)) return false;
+      if (!object.Equals(Tag, other.Tag)) return false;
       if (!object.Equals(Parent, other.Parent)) return false;
       if(!children_.Equals(other.children_)) return false;
       if (!object.Equals(Parent2, other.Parent2)) return false;
@@ -1847,6 +1863,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       int hash = 1;
       if (id_ != null) hash ^= Id.GetHashCode();
       if (type_ != null) hash ^= Type.GetHashCode();
+      if (tag_ != null) hash ^= Tag.GetHashCode();
       if (parent_ != null) hash ^= Parent.GetHashCode();
       hash ^= children_.GetHashCode();
       if (parent2_ != null) hash ^= Parent2.GetHashCode();
@@ -1878,31 +1895,35 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
         output.WriteRawTag(18);
         output.WriteMessage(Type);
       }
-      if (parent_ != null) {
+      if (tag_ != null) {
         output.WriteRawTag(26);
+        output.WriteMessage(Tag);
+      }
+      if (parent_ != null) {
+        output.WriteRawTag(34);
         output.WriteMessage(Parent);
       }
       children_.WriteTo(output, _repeated_children_codec);
       if (parent2_ != null) {
-        output.WriteRawTag(42);
+        output.WriteRawTag(50);
         output.WriteMessage(Parent2);
       }
       children2_.WriteTo(output, _repeated_children2_codec);
       if (downdate_ != null) {
-        output.WriteRawTag(58);
+        output.WriteRawTag(66);
         output.WriteMessage(Downdate);
       }
       updates_.WriteTo(output, _repeated_updates_codec);
       if (previous_ != null) {
-        output.WriteRawTag(74);
+        output.WriteRawTag(82);
         output.WriteMessage(Previous);
       }
       if (next_ != null) {
-        output.WriteRawTag(82);
+        output.WriteRawTag(90);
         output.WriteMessage(Next);
       }
       if (indexed_ != null) {
-        output.WriteRawTag(90);
+        output.WriteRawTag(98);
         output.WriteMessage(Indexed);
       }
       indexes_.WriteTo(output, _repeated_indexes_codec);
@@ -1919,6 +1940,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (type_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Type);
+      }
+      if (tag_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Tag);
       }
       if (parent_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Parent);
@@ -1964,6 +1988,12 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           type_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent();
         }
         Type.MergeFrom(other.Type);
+      }
+      if (other.tag_ != null) {
+        if (tag_ == null) {
+          tag_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent();
+        }
+        Tag.MergeFrom(other.Tag);
       }
       if (other.parent_ != null) {
         if (parent_ == null) {
@@ -2031,60 +2061,67 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           }
           case 26: {
+            if (tag_ == null) {
+              tag_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent();
+            }
+            input.ReadMessage(tag_);
+            break;
+          }
+          case 34: {
             if (parent_ == null) {
               parent_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
             input.ReadMessage(parent_);
             break;
           }
-          case 34: {
+          case 42: {
             children_.AddEntriesFrom(input, _repeated_children_codec);
             break;
           }
-          case 42: {
+          case 50: {
             if (parent2_ == null) {
               parent2_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
             input.ReadMessage(parent2_);
             break;
           }
-          case 50: {
+          case 58: {
             children2_.AddEntriesFrom(input, _repeated_children2_codec);
             break;
           }
-          case 58: {
+          case 66: {
             if (downdate_ == null) {
               downdate_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
             input.ReadMessage(downdate_);
             break;
           }
-          case 66: {
+          case 74: {
             updates_.AddEntriesFrom(input, _repeated_updates_codec);
             break;
           }
-          case 74: {
+          case 82: {
             if (previous_ == null) {
               previous_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
             input.ReadMessage(previous_);
             break;
           }
-          case 82: {
+          case 90: {
             if (next_ == null) {
               next_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
             input.ReadMessage(next_);
             break;
           }
-          case 90: {
+          case 98: {
             if (indexed_ == null) {
               indexed_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
             input.ReadMessage(indexed_);
             break;
           }
-          case 98: {
+          case 106: {
             indexes_.AddEntriesFrom(input, _repeated_indexes_codec);
             break;
           }
@@ -2426,6 +2463,169 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
   }
 
+  public sealed partial class TagComponent : pb::IMessage<TagComponent> {
+    private static readonly pb::MessageParser<TagComponent> _parser = new pb::MessageParser<TagComponent>(() => new TagComponent());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<TagComponent> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[10]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TagComponent() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TagComponent(TagComponent other) : this() {
+      stored_ = other.stored_;
+      tag_ = other.tag_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public TagComponent Clone() {
+      return new TagComponent(this);
+    }
+
+    /// <summary>Field number for the "Stored" field.</summary>
+    public const int StoredFieldNumber = 1;
+    private bool stored_;
+    /// <summary>
+    /// All.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Stored {
+      get { return stored_; }
+      set {
+        stored_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "Tag" field.</summary>
+    public const int TagFieldNumber = 2;
+    private string tag_ = "";
+    /// <summary>
+    /// Specific.
+    /// </summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Tag {
+      get { return tag_; }
+      set {
+        tag_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as TagComponent);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(TagComponent other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Stored != other.Stored) return false;
+      if (Tag != other.Tag) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Stored != false) hash ^= Stored.GetHashCode();
+      if (Tag.Length != 0) hash ^= Tag.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Stored != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(Stored);
+      }
+      if (Tag.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Tag);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Stored != false) {
+        size += 1 + 1;
+      }
+      if (Tag.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tag);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(TagComponent other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Stored != false) {
+        Stored = other.Stored;
+      }
+      if (other.Tag.Length != 0) {
+        Tag = other.Tag;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Stored = input.ReadBool();
+            break;
+          }
+          case 18: {
+            Tag = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
   public sealed partial class RelationComponent : pb::IMessage<RelationComponent> {
     private static readonly pb::MessageParser<RelationComponent> _parser = new pb::MessageParser<RelationComponent>(() => new RelationComponent());
     private pb::UnknownFieldSet _unknownFields;
@@ -2434,7 +2634,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[10]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2603,7 +2803,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[11]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2789,7 +2989,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[12]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2952,7 +3152,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[13]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3130,7 +3330,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[14]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3355,7 +3555,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[15]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3574,7 +3774,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[16]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3875,7 +4075,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[17]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4122,7 +4322,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[18]; }
+      get { return global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ModelReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
