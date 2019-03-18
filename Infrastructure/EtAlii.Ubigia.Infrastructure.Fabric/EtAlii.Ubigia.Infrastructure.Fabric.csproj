@@ -21,7 +21,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.54" />
+    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.55" />
     <PackageReference Include="HashLib" Version="2.1.0.2" />
   </ItemGroup>
   <ItemGroup>
