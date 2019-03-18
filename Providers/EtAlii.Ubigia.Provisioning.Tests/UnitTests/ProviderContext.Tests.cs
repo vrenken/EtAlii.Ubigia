@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
-    using System;
     using Xunit;
 
     public class ProviderContextTests

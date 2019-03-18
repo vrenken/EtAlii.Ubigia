@@ -4,7 +4,6 @@
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Querying;
 
     public class ParseGraphQueryLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphQueryLanguageUnitOfwork>, IParseGraphQueryLanguageUnitOfworkHandler
     {
