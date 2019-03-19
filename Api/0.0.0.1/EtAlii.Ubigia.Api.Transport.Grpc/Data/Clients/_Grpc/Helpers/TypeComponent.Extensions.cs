@@ -1,8 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-    using System.Collections.Generic;
-    using System.Linq;
-
     public static class TypeComponentExtensions
     {
         public static TypeComponent ToLocal(this WireProtocol.TypeComponent typeComponent)
