@@ -22,14 +22,17 @@ namespace EtAlii.Ubigia.Api.Logical
                             {
                                 throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
                             }
-                            else
+                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+
+                            if (name != String.Empty && name != entry.Type)
                             {
-                                var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
-                                if (entry.Type == name && entry.Tag == tag)
-                                {
-                                    parameters.Output.OnNext(entry.Id);
-                                }
+                                return;
                             }
+                            if (tag != String.Empty && tag == entry.Tag)
+                            {
+                                return;
+                            }
+                            parameters.Output.OnNext(entry.Id);
                         });
                         task.Wait();
                     },
@@ -42,6 +45,8 @@ namespace EtAlii.Ubigia.Api.Logical
             var result = new List<Identifier>();
 
             var graphTaggedNode = (GraphTaggedNode)part;
+            var name = graphTaggedNode.Name;
+            var tag = graphTaggedNode.Tag;
 
             //var regex = scope.GetWildCardRegex(pattern);
 
@@ -49,19 +54,16 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
             }
-            else
+            var entry = await context.Entries.Get(start, scope);
+            if (name != String.Empty && name != entry.Type)
             {
-                var entry = await context.Entries.Get(start, scope);
-                if (graphTaggedNode.Name != String.Empty && graphTaggedNode.Name != entry.Type)
-                {
-                    return result;
-                }
-                if (graphTaggedNode.Tag != String.Empty && graphTaggedNode.Tag == entry.Tag)
-                {
-                    return result;
-                }
-                result.Add(entry.Id);
+                return result;
             }
+            if (tag != String.Empty && tag == entry.Tag)
+            {
+                return result;
+            }
+            result.Add(entry.Id);
             return result;
         }
 
