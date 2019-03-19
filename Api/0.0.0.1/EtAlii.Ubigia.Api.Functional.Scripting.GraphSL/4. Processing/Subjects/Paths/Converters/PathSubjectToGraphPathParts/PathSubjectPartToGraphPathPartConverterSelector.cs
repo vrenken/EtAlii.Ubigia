@@ -17,6 +17,7 @@
             IAllUpdatesPathSubjectPartToGraphPathPartsConverter allUpdatesPathSubjectPartToGraphPathPartsConverter,
             IUpdatesPathSubjectPartToGraphPathPartsConverter updatesPathSubjectPartToGraphPathPartsConverter,
             IWildcardPathSubjectPartToGraphPathPartsConverter wildcardPathSubjectPartToGraphPathPartsConverter,
+            ITaggedPathSubjectPartToGraphPathPartsConverter taggedPathSubjectPartToGraphPathPartsConverter,
             ITraversingWildcardPathSubjectPartToGraphPathPartsConverter traversingWildcardPathSubjectPartToGraphPathPartsConverter,
             IConditionalPathSubjectPartToGraphPathPartsConverter conditionalPathSubjectPartToGraphPathPartsConverter)
         {
@@ -31,6 +32,7 @@
                 .Register(part => part is DowndatePathSubjectPart, downdatePathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is AllUpdatesPathSubjectPart, allUpdatesPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is UpdatesPathSubjectPart, updatesPathSubjectPartToGraphPathPartsConverter)
+                .Register(part => part is TaggedPathSubjectPart, taggedPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is WildcardPathSubjectPart, wildcardPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is TraversingWildcardPathSubjectPart, traversingWildcardPathSubjectPartToGraphPathPartsConverter)
                 .Register(part => part is ConditionalPathSubjectPart, conditionalPathSubjectPartToGraphPathPartsConverter);
