@@ -15,6 +15,7 @@
         {
             var updateEntry = await _context.Fabric.Entries.Prepare();
             updateEntry.Type = newType;
+            updateEntry.Tag = entry.Tag;
             updateEntry.Downdate = Relation.NewRelation(entry.Id);
             updateEntry = (IEditableEntry)await _context.Fabric.Entries.Change(updateEntry, scope);
             return updateEntry;
