@@ -65,6 +65,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 var updatedChild = await _context.Fabric.Entries.Prepare();
                 updatedChild.Parent = Relation.NewRelation(location);
                 updatedChild.Type = originalChild.Type;
+                updatedChild.Tag = originalChild.Tag;
                 updatedChild.Downdate = Relation.NewRelation(originalChild.Id);
                 child = await _context.Fabric.Entries.Change(updatedChild, scope);
             }
