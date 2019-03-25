@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
     
