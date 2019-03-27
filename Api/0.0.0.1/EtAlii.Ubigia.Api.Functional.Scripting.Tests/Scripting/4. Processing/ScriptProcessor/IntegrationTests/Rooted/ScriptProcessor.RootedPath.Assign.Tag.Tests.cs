@@ -120,9 +120,9 @@
             // Assert.
             Assert.NotNull(lastSequence);
             Assert.Single(tag1Result);
-            Assert.Contains("FamilyName", tag1Result);
+            Assert.Equal("FamilyName", tag1Result[0]);
             Assert.Single(tag2Result);
-            Assert.Contains("FirstName", tag2Result);
+            Assert.Equal("FirstName", tag2Result[0]);
             Assert.Equal(3, people.Length);
         }
 
