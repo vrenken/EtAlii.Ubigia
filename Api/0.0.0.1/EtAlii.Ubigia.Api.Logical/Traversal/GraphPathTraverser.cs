@@ -23,7 +23,17 @@
             _depthFirstTraversalAlgorithm = depthFirstTraversalAlgorithm;
             _temporalGraphPathWeaver = temporalGraphPathWeaver;
         }
-        
+
+        public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
+        {
+            var results = Observable.Create<IReadOnlyEntry>(output =>
+            {
+                Traverse(GraphPath.Create(identifier), Traversal.DepthFirst, scope, output, traverseToFinal);
+                return Disposable.Empty;
+            }).ToHotObservable();
+            return await results.SingleAsync();
+        }
+
         public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)
         {
             if (traverseToFinal)

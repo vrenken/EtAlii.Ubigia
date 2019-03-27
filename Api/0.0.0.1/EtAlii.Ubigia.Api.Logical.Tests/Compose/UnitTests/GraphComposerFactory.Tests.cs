@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
@@ -9,10 +10,13 @@
         public void GraphComposerFactory_New()
         {
             // Arrange.
-            var traverserFactory = new GraphPathTraverserFactory();
-
+            IFabricContext fabric = null;
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserFactory = new GraphPathTraverserFactory();
+            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            
             // Act.
-            var factory = new GraphComposerFactory(traverserFactory);
+            var factory = new GraphComposerFactory(graphPathTraverser);
 
             // Assert.
             Assert.NotNull(factory );

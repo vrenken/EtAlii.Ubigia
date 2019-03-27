@@ -6,31 +6,20 @@
 
     internal class GraphRenamer : IGraphRenamer
     {
-        private readonly IComposeContext _context;
-        private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;
         private readonly IGraphUpdater _graphUpdater;
+        private readonly IGraphPathTraverser _graphPathTraverser;
 
         public GraphRenamer(
-            IComposeContext context,
-            IGraphPathTraverserFactory graphPathTraverserFactory,
-            IGraphUpdater graphUpdater)
+            IGraphUpdater graphUpdater, 
+            IGraphPathTraverser graphPathTraverser)
         {
-            _context = context;
-            _graphPathTraverserFactory = graphPathTraverserFactory;
             _graphUpdater = graphUpdater;
+            _graphPathTraverser = graphPathTraverser;
         }
 
         public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
         {
-            var configuration = new GraphPathTraverserConfiguration()
-                .Use(_context.Fabric);
-            var graphPathTraverser = _graphPathTraverserFactory.Create(configuration);
-            var results = Observable.Create<IReadOnlyEntry>(output =>
-            {
-                graphPathTraverser.Traverse(GraphPath.Create(item), Traversal.DepthFirst, scope, output);
-                return Disposable.Empty;
-            }).ToHotObservable();
-            var result = await results.SingleAsync();
+            var result = await _graphPathTraverser.TraverseToSingle(item, scope);
 
             if (result.Type != newName)
             {
