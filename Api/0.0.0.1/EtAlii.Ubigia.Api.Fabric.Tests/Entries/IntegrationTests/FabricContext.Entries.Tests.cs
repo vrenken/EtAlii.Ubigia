@@ -127,6 +127,25 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
+        public async Task FabricContext_Entries_Change_Add_Tag()
+        {
+            // Arrange.
+            var tag = Guid.NewGuid().ToString();
+            var scope = new ExecutionScope(false);
+            var entry = await _fabric.Entries.Prepare();
+            entry.Tag = tag;
+
+            // Act.
+            entry = (IEditableEntry)await _fabric.Entries.Change(entry, scope);
+
+            // Assert.
+            var retrievedEntry = await _fabric.Entries.Get(entry.Id, scope);
+            Assert.NotNull(retrievedEntry);
+            Assert.NotEqual(Identifier.Empty, retrievedEntry.Id);
+            Assert.Equal(tag, retrievedEntry.Tag);
+        }
+
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Entries_Change_Multiple()
         {
             // Arrange.
