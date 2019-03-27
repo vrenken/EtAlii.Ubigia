@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Logical
                             {
                                 return;
                             }
-                            if (tag != String.Empty && tag == entry.Tag)
+                            if (tag != String.Empty && tag != entry.Tag)
                             {
                                 return;
                             }
@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Logical
             {
                 return result;
             }
-            if (tag != String.Empty && tag == entry.Tag)
+            if (tag != String.Empty && tag != entry.Tag)
             {
                 return result;
             }

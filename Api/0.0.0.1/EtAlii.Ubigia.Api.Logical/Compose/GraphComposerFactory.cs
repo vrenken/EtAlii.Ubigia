@@ -5,12 +5,11 @@
 
     public class GraphComposerFactory : IGraphComposerFactory
     {
-        private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;
+        private readonly IGraphPathTraverser _graphPathTraverser;
 
-        public GraphComposerFactory(
-            IGraphPathTraverserFactory graphPathTraverserFactory)
+        public GraphComposerFactory(IGraphPathTraverser graphPathTraverser)
         {
-            _graphPathTraverserFactory = graphPathTraverserFactory;
+            _graphPathTraverser = graphPathTraverser;
         }
 
         public IGraphComposer Create(IFabricContext fabric)
@@ -19,7 +18,7 @@
 
             container.Register(() => fabric);
             container.Register<IGraphComposer, GraphComposer>();
-            container.Register(() => _graphPathTraverserFactory);
+            container.Register(() => _graphPathTraverser);
 
             // Helpers:
             container.Register<IHierarchicalRelationDuplicator, HierarchicalRelationDuplicator>();
@@ -34,8 +33,6 @@
             container.Register<IGraphLinkAdder, GraphLinkAdder>();
 
             container.Register<IGraphRenamer, GraphRenamer>();
-
-            container.Register<IComposeContext, ComposeContext>();
 
             return container.GetInstance<IGraphComposer>();
         }

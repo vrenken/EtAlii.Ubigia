@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
@@ -9,16 +10,21 @@
         public void GraphPathComposer_Create()
         {
             // Arrange.
-            var context = new ComposeContext(null);
+
+            IFabricContext fabric = null;
+
+            var configuration = new GraphPathTraverserConfiguration();
             var traverserFactory = new GraphPathTraverserFactory();
-            var graphChildAdder = new GraphChildAdder(context, traverserFactory);
-            var graphLinkAdder = new GraphLinkAdder(context, graphChildAdder);
-            var graphUpdater = new GraphUpdater(context);
-            var graphAdder = new GraphAdder(context, traverserFactory, graphChildAdder, graphLinkAdder, graphUpdater);
-            var graphRemover = new GraphRemover(context, traverserFactory, graphChildAdder, graphLinkAdder, graphUpdater);
-            var graphLinker = new GraphLinker(context, traverserFactory, graphChildAdder, graphLinkAdder, graphUpdater);
-            var graphUnlinker = new GraphUnlinker(context, traverserFactory, graphChildAdder, graphLinkAdder);
-            var graphRenamer = new GraphRenamer(context, traverserFactory, graphUpdater);
+            var graphPathTraverser = traverserFactory.Create(configuration);
+            
+            var graphChildAdder = new GraphChildAdder(graphPathTraverser, fabric);
+            var graphLinkAdder = new GraphLinkAdder(graphChildAdder, graphPathTraverser, fabric);
+            var graphUpdater = new GraphUpdater(fabric);
+            var graphAdder = new GraphAdder(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
+            var graphRemover = new GraphRemover(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
+            var graphLinker = new GraphLinker(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
+            var graphUnlinker = new GraphUnlinker(graphChildAdder, graphLinkAdder);
+            var graphRenamer = new GraphRenamer(graphUpdater, graphPathTraverser);
 
             // Act.
             var composer = new GraphComposer(graphAdder, graphRemover, graphLinker, graphUnlinker, graphRenamer); 

@@ -5,45 +5,36 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
 
     internal class GraphChildAdder : IGraphChildAdder
     {
-        private readonly IComposeContext _context;
-        private readonly IGraphPathTraverserFactory _graphPathTraverserFactory;
+        private readonly IFabricContext _fabric;
+        private readonly IGraphPathTraverser _graphPathTraverser;
 
-
-        public GraphChildAdder(
-            IComposeContext context,
-            IGraphPathTraverserFactory graphPathTraverserFactory)
+        public GraphChildAdder(IGraphPathTraverser graphPathTraverser, IFabricContext fabric)
         {
-            _context = context;
-            _graphPathTraverserFactory = graphPathTraverserFactory;
+            _fabric = fabric;
+            _graphPathTraverser = graphPathTraverser;
         }
 
         public async Task<IReadOnlyEntry> TryAddChild(Identifier location, ExecutionScope scope)
         {
-            var entries = await _context.Fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
+            var entries = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
             var entry = entries
                 .SingleOrDefault(); // We do not support multiple empty childs yet.
 
             if (entry != null)
             {
-                var traversedEntries = Observable.Create<IReadOnlyEntry>(output =>
-                {
-                    var configuration = new GraphPathTraverserConfiguration()
-                        .Use(_context.Fabric);
-                    var traverser = _graphPathTraverserFactory.Create(configuration);
-                    traverser.Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
-                    return Disposable.Empty;
-                }).ToHotObservable();
 
-                entry = await traversedEntries.SingleAsync(); // We do not support multiple empty childs yet.
+                // We do not support multiple empty childs yet.
+                entry = await _graphPathTraverser.TraverseToSingle(entry.Id, scope);
             }
             else
             {
-                var newEntry = await _context.Fabric.Entries.Prepare();
+                var newEntry = await _fabric.Entries.Prepare();
                 newEntry.Parent = Relation.NewRelation(location);
-                entry = await _context.Fabric.Entries.Change(newEntry, scope);
+                entry = await _fabric.Entries.Change(newEntry, scope);
             }
             return entry;
         }
@@ -52,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             if (childId == Identifier.Empty) throw new ArgumentException("childId");
 
-            var related = await _context.Fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
+            var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
             var child = related.SingleOrDefault(e => e.Id == childId);
             if (child != null)
             {
@@ -61,13 +52,13 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             else
             {
-                var originalChild = await _context.Fabric.Entries.Get(childId, scope);
-                var updatedChild = await _context.Fabric.Entries.Prepare();
+                var originalChild = await _fabric.Entries.Get(childId, scope);
+                var updatedChild = await _fabric.Entries.Prepare();
                 updatedChild.Parent = Relation.NewRelation(location);
                 updatedChild.Type = originalChild.Type;
                 updatedChild.Tag = originalChild.Tag;
                 updatedChild.Downdate = Relation.NewRelation(originalChild.Id);
-                child = await _context.Fabric.Entries.Change(updatedChild, scope);
+                child = await _fabric.Entries.Change(updatedChild, scope);
             }
             return child;
         }
@@ -76,7 +67,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
-            var related = await _context.Fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
+            var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
 
             var entry = related.SingleOrDefault(e => e.Type == name);
 
@@ -86,11 +77,11 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new GraphComposeException(message);
             }
             else
-            {
-                var newEntry = await _context.Fabric.Entries.Prepare();
+            { 
+                var newEntry = await _fabric.Entries.Prepare();
                 newEntry.Parent = Relation.NewRelation(location);
                 newEntry.Type = name;
-                entry = await _context.Fabric.Entries.Change(newEntry, scope);
+                entry = await _fabric.Entries.Change(newEntry, scope);
             }
             return entry;
 
