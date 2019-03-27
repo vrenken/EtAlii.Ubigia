@@ -36,7 +36,7 @@
     <Compile Remove="LocalInfrastructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.55" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.56" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
