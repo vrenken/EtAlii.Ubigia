@@ -43,12 +43,12 @@
             return new TraversingWildcardPathSubjectPart(limit);
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart ||
-                before is WildcardPathSubjectPart || after is WildcardPathSubjectPart ||
-                before is TaggedPathSubjectPart || after is TaggedPathSubjectPart ||
-                before is TraversingWildcardPathSubjectPart || after is TraversingWildcardPathSubjectPart)
+            if (arguments.Before is ConstantPathSubjectPart || arguments.After is ConstantPathSubjectPart ||
+                arguments.Before is WildcardPathSubjectPart || arguments.After is WildcardPathSubjectPart ||
+                arguments.Before is TaggedPathSubjectPart || arguments.After is TaggedPathSubjectPart ||
+                arguments.Before is TraversingWildcardPathSubjectPart || arguments.After is TraversingWildcardPathSubjectPart)
             {
                 throw new ScriptParserException("A traversing wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
             }

@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             return new TypedPathSubjectPart(formatter);
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
             //if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart)
             //{
