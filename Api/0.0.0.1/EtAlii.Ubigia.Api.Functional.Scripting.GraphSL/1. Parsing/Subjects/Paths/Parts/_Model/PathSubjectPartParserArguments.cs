@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using Moppet.Lapa;
-
     internal class PathSubjectPartParserArguments
     {
         public Subject Subject { get; }
