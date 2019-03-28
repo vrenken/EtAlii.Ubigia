@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System.Reactive.Disposables;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
 
     internal class GraphRemover : IGraphRemover
