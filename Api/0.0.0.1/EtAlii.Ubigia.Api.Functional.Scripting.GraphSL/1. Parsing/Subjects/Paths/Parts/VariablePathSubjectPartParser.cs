@@ -28,7 +28,7 @@
             return new VariablePathSubjectPart(text);
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
         }
 

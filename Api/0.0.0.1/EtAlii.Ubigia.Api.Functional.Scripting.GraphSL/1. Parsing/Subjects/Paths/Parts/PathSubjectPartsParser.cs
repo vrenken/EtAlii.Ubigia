@@ -83,11 +83,11 @@
             return result;
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
             //var parsers = _parsers.Where(p => p.CanValidate(part)).ToArray();
-            var parser = _parsers.Single(p => p.CanValidate(part));
-            parser.Validate(before, part, partIndex, after);
+            var parser = _parsers.Single(p => p.CanValidate(arguments.Part));
+            parser.Validate(arguments);
         }
     }
 }

@@ -79,9 +79,9 @@
             return identifier;
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if ((before == null || before is ParentPathSubjectPart) && partIndex <= 1)
+            if ((arguments.Before == null || arguments.Before is ParentPathSubjectPart) && arguments.PartIndex <= 1)
             {
             }
             else
