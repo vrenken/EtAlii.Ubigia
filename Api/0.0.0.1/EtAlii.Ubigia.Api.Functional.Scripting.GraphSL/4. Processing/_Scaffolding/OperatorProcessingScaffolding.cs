@@ -14,6 +14,7 @@
             container.Register<IAssignConstantToVariableOperatorSubProcessor, AssignConstantToVariableOperatorSubProcessor>();
             container.Register<IAssignVariableToVariableOperatorSubProcessor, AssignVariableToVariableOperatorSubProcessor>();
             container.Register<IAssignCombinedToVariableOperatorSubProcessor, AssignCombinedToVariableOperatorSubProcessor>();
+            container.Register<IAssignTagToVariableOperatorSubProcessor, AssignTagToVariableOperatorSubProcessor>();
             container.Register<IAssignEmptyToVariableOperatorSubProcessor, AssignEmptyToVariableOperatorSubProcessor>();
 
             container.Register<IAssignVariableToPathOperatorSubProcessor, AssignVariableToPathOperatorSubProcessor>();
@@ -28,6 +29,7 @@
             container.Register<IAssignConstantToFunctionOperatorSubProcessor, AssignConstantToFunctionOperatorSubProcessor>();
             container.Register<IAssignVariableToFunctionOperatorSubProcessor, AssignVariableToFunctionOperatorSubProcessor>();
             container.Register<IAssignCombinedToFunctionOperatorSubProcessor, AssignCombinedToFunctionOperatorSubProcessor>();
+            container.Register<IAssignTagToFunctionOperatorSubProcessor, AssignTagToFunctionOperatorSubProcessor>();
             container.Register<IAssignEmptyToFunctionOperatorSubProcessor, AssignEmptyToFunctionOperatorSubProcessor>();
 
             container.Register<IAssignPathToOutputOperatorSubProcessor, AssignPathToOutputOperatorSubProcessor>();
@@ -36,6 +38,7 @@
             container.Register<IAssignVariableToOutputOperatorSubProcessor, AssignVariableToOutputOperatorSubProcessor>();
             container.Register<IAssignCombinedToOutputOperatorSubProcessor, AssignCombinedToOutputOperatorSubProcessor>();
             container.Register<IAssignRootToOutputOperatorSubProcessor, AssignRootToOutputOperatorSubProcessor>();
+            container.Register<IAssignTagToOutputOperatorSubProcessor, AssignTagToOutputOperatorSubProcessor>();
             container.Register<IAssignEmptyToOutputOperatorSubProcessor, AssignEmptyToOutputOperatorSubProcessor>();
 
 
