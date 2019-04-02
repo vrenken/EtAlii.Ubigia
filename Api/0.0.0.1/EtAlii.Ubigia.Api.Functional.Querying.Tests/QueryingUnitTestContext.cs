@@ -1,30 +1,26 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Threading.Tasks;
+    using Xunit;
 
-    public class QueryingUnitTestContext : IDisposable
+    public class QueryingUnitTestContext : IAsyncLifetime
     {
         public IFunctionalTestContext FunctionalTestContext { get; private set; }
 
         public QueryingUnitTestContext()
         {
-            var task = Task.Run(async () =>
-            {
-                FunctionalTestContext = new FunctionalTestContextFactory().Create();
-                await FunctionalTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await FunctionalTestContext.Stop();
-                FunctionalTestContext = null;
-            });
-            task.Wait();
+            FunctionalTestContext = new FunctionalTestContextFactory().Create();
+            await FunctionalTestContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await FunctionalTestContext.Stop();
+            FunctionalTestContext = null;
         }
     }
 }
