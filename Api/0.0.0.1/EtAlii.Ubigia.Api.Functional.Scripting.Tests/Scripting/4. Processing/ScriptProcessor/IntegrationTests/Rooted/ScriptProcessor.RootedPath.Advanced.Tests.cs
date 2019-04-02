@@ -10,8 +10,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-
-    
     public class ScriptProcessorRootedPathAdvancedTests : IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -151,7 +149,7 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/";
-            var assignQuery = "Person:Doe <= { Type: 'Family' }";
+            var assignQuery = "Person:Doe# <= FamilyName";
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -454,8 +452,8 @@
                 "Person:+=Doe/Johnny",
             };
             var addQuery2 = String.Join("\r\n", addQueries2);
-            var selectQuery = "Person:Doe";
-            var assignQuery = "Person:Doe <= { ObjectType: 'Family' }";
+            var selectQuery = "Person:Doe#";
+            var assignQuery = "Person:Doe# <= FamilyName";
 
             var addScript1 = _parser.Parse(addQuery1).Script;
             var addScript2 = _parser.Parse(addQuery2).Script;
@@ -477,18 +475,18 @@
             lastSequence = await processor.Process(assignScript);
             var result = await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(selectScript);
-            dynamic familyBefore = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic tagBefore = await lastSequence.Output.SingleOrDefaultAsync();
             lastSequence = await processor.Process(addScript2);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(selectScript);
-            dynamic familyAfter = await lastSequence.Output.SingleOrDefaultAsync();
+            dynamic tagAfter = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
             Assert.NotEmpty(result);
-            Assert.NotNull(familyBefore);
-            Assert.NotNull(familyAfter);
-            Assert.Equal("Family", familyBefore.ObjectType);
-            Assert.Equal("Family", familyAfter.ObjectType);
+            Assert.NotNull(tagBefore);
+            Assert.NotNull(tagAfter);
+            Assert.NotEqual("FamilyName", tagBefore);
+            Assert.Equal("FamilyName", tagAfter);
         }
 
 
@@ -568,8 +566,7 @@
 
 
 
-        // TODO: ENABLE FOR GraphQL
-        [Fact(Skip = "Disabled for GraphQL implementation"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
@@ -577,17 +574,20 @@
             var addQueries = new []
             {
                 "Person:+=Doe/John",
-                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: 'Johnny', Lives: 1 }",
+                "Person:Doe/John# <= FirstName",
+                "Person:Doe/John <= { Birthdate: 1978-07-28, Nickname: 'Johnny', Lives: 1 }",
                 "Person:Doe/John += Friends",
                 "Person:+=Doe/Jane",
+                "Person:Doe/Jane# <= FirstName",
                 "Person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: 'Janey', Lives: 2 }",
                 "Person:Doe/Jane += Friends",
                 "Person:+=Stark/Tony",
+                "Person:Stark/Tony# <= FirstName",
                 "Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: 'Iron Man', Lives: 9 }",
                 "Person:Stark/Tony += Friends",
                 
-                "Person:Doe <= { Type: 'FamilyName' }",
-                "Person:Stark <= { Type: 'FamilyName' }",
+                "Person:Doe# <= FamilyName",
+                "Person:Stark# <= FamilyName",
             };
             
             var linkQueries = new[]
@@ -608,9 +608,9 @@
             var nodeSelectQuery2 = "Person:Doe/Jane";
             var nodeSelectQuery3 = "Person:Stark/Tony";
 
-            var friendsSelectQuery1 = "Person:Doe/John/Friends/";
-            var friendsSelectQuery2 = "Person:Doe/Jane/Friends/";
-            var friendsSelectQuery3 = "Person:Stark/Tony/Friends/";
+            var friendsSelectQuery1 = "Person:Doe/John/Friends/#FirstName";
+            var friendsSelectQuery2 = "Person:Doe/Jane/Friends/#FirstName";
+            var friendsSelectQuery3 = "Person:Stark/Tony/Friends/#FirstName";
 
             var addScript = _parser.Parse(addQuery).Script;
             var linkScript = _parser.Parse(linkQuery).Script;
@@ -692,8 +692,7 @@
 
         }
 
-        // TODO: ENABLE FOR GraphQL
-        [Fact(Skip = "Disabled for GraphQL implementation"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.
@@ -701,17 +700,20 @@
             var addQueries = new []
             {
                 "Person:+=Doe/John",
-                "Person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: 'Johnny', Lives: 1 }",
+                "Person:Doe/John# <= FirstName",
+                "Person:Doe/John <= { Birthdate: 1978-07-28, Nickname: 'Johnny', Lives: 1 }",
                 "Person:Doe/John += Friends",
                 "Person:+=Doe/Jane",
+                "Person:Doe/Jane# <= FirstName",
                 "Person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: 'Janey', Lives: 2 }",
                 "Person:Doe/Jane += Friends",
                 "Person:+=Stark/Tony",
+                "Person:Stark/Tony# <= FirstName",
                 "Person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: 'Iron Man', Lives: 9 }",
                 "Person:Stark/Tony += Friends",
                 
-                "Person:Doe <= { Type: 'FamilyName' }",
-                "Person:Stark <= { Type: 'FamilyName' }",
+                "Person:Doe# <= FamilyName",
+                "Person:Stark# <= FamilyName",
             };
             
             var linkQueries = new[]
@@ -728,9 +730,9 @@
             var nodeSelectQuery2 = "Person:Doe/Jane";
             var nodeSelectQuery3 = "Person:Stark/Tony";
 
-            var friendsSelectQuery1 = "Person:Doe/John/Friends/";
-            var friendsSelectQuery2 = "Person:Doe/Jane/Friends/";
-            var friendsSelectQuery3 = "Person:Stark/Tony/Friends/";
+            var friendsSelectQuery1 = "Person:Doe/John/Friends/#FirstName";
+            var friendsSelectQuery2 = "Person:Doe/Jane/Friends/#FirstName";
+            var friendsSelectQuery3 = "Person:Stark/Tony/Friends/#FirstName";
 
             var addScript = _parser.Parse(addQuery).Script;
             var linkScript = _parser.Parse(linkQuery).Script;
@@ -809,7 +811,6 @@
             Assert.Equal(2, afterFriendCount1);
             Assert.Equal(1, afterFriendCount2);
             Assert.Equal(1, afterFriendCount3);
-
         }
     }
 }
