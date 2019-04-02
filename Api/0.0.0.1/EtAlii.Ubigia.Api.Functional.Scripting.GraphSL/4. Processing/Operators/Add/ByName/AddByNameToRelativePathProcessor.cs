@@ -35,22 +35,18 @@
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor requires a constant, hierarchical path");
             }
 
-            if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart && String.IsNullOrWhiteSpace(((ConstantPathSubjectPart)part).Name)))
+            if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart constantPathSubjectPart && String.IsNullOrWhiteSpace(constantPathSubjectPart.Name)))
             {
                 throw new ScriptProcessingException("The AddByNameToRelativePathProcessor cannot handle empty parts");
             }
 
-            parameters.LeftInput.Subscribe(
+            parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task2 = Task.Run(async () =>
-                    {
-                        var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
-                        await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
-                    });
-                    task2.Wait();
+                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
                 });
         }
 
@@ -58,9 +54,9 @@
         {
             PathSubject pathToAdd = null;
 
-            if (parameters.RightSubject is PathSubject)
+            if (parameters.RightSubject is PathSubject pathSubject)
             {
-                pathToAdd = (PathSubject)parameters.RightSubject;
+                pathToAdd = pathSubject;
             }
             else
             {

@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.Collections.Generic;
+    using System.Reactive.Linq;
     using System.Threading.Tasks;
 
     internal class GraphPathTaggedNodeTraverser : IGraphPathTaggedNodeTraverser
@@ -12,31 +13,55 @@ namespace EtAlii.Ubigia.Api.Logical
             var name = graphTaggedNode.Name;
             var tag = graphTaggedNode.Tag;
 
-            parameters.Input.Subscribe(
-                    onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+            parameters.Input
+                .Select(start => Observable.FromAsync(async () =>
+                {
+                    if (start == Identifier.Empty)
                     {
-                        var task = Task.Run(async () =>
-                        {
-                            if (start == Identifier.Empty)
-                            {
-                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
-                            }
-                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
-
-                            if (name != String.Empty && name != entry.Type)
-                            {
-                                return;
-                            }
-                            if (tag != String.Empty && tag != entry.Tag)
-                            {
-                                return;
-                            }
-                            parameters.Output.OnNext(entry.Id);
-                        });
-                        task.Wait();
-                    },
-                    onCompleted: () => parameters.Output.OnCompleted());
+                        throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
+                    }
+    
+                    var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+    
+                    if (name != String.Empty && name != entry.Type)
+                    {
+                        return;
+                    }
+    
+                    if (tag != String.Empty && tag != entry.Tag)
+                    {
+                        return;
+                    }
+    
+                    parameters.Output.OnNext(entry.Id);
+                }))
+                .Concat() // one item at a time
+                .Subscribe(onNext: o => {}, onError: parameters.Output.OnError, onCompleted: parameters.Output.OnCompleted);
+//            parameters.Input.Subscribe(
+//                    onError: e => parameters.Output.OnError(e),
+//                    onNext: start =>
+//                    {
+//                        var task = Task.Run(async () =>
+//                        {
+//                            if (start == Identifier.Empty)
+//                            {
+//                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
+//                            }
+//                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+//
+//                            if (name != String.Empty && name != entry.Type)
+//                            {
+//                                return;
+//                            }
+//                            if (tag != String.Empty && tag != entry.Tag)
+//                            {
+//                                return;
+//                            }
+//                            parameters.Output.OnNext(entry.Id);
+//                        });
+//                        task.Wait();
+//                    },
+//                    onCompleted: () => parameters.Output.OnCompleted());
 
         }
 

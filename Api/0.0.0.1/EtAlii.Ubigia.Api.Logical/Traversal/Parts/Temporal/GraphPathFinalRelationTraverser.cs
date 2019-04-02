@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -9,34 +8,30 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public void Configure(TraversalParameters parameters)
         {
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
+                        Identifier[] results = new[] { start };
+                        Identifier[] previousResults;
+
+                        do
                         {
-                            Identifier[] results = new[] { start };
-                            Identifier[] previousResults;
-
-                            do
+                            previousResults = results;
+                            var nextResult = new List<Identifier>();
+                            foreach (var result in results)
                             {
-                                previousResults = results;
-                                var nextResult = new List<Identifier>();
-                                foreach (var result in results)
-                                {
-                                    var newResults = await parameters.Context.Entries.GetRelated(result, EntryRelation.Update, parameters.Scope);
-                                    nextResult.AddRange(newResults.Select(e => e.Id));
-                                }
-                                results = nextResult.ToArray();
+                                var newResults = await parameters.Context.Entries.GetRelated(result, EntryRelation.Update, parameters.Scope);
+                                nextResult.AddRange(newResults.Select(e => e.Id));
                             }
-                            while (results.Any());
+                            results = nextResult.ToArray();
+                        }
+                        while (results.Any());
 
-                            foreach (var previousResult in previousResults)
-                            {
-                                parameters.Output.OnNext(previousResult);
-                            }
-                        });
-                        task.Wait();
+                        foreach (var previousResult in previousResults)
+                        {
+                            parameters.Output.OnNext(previousResult);
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
 

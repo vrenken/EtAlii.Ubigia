@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Api.Logical
     using System.Collections.Generic;
     using System.Text.RegularExpressions;
     using System.Threading.Tasks;
-    using System;
 
     internal class GraphPathConditionalTraverser : IGraphPathConditionalTraverser
     {
@@ -11,12 +10,12 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var predicate = ((GraphCondition)parameters.Part).Predicate;
 
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
-                        {
+//                        var task = Task.Run(async () =>
+//                        {
                             if (start == Identifier.Empty)
                             {
                                 throw new GraphTraversalException("Conditional traversal cannot be done at the root of a graph");
@@ -33,8 +32,8 @@ namespace EtAlii.Ubigia.Api.Logical
                                     }
                                 }
                             }
-                        });
-                        task.Wait();
+//                        });
+//                        task.Wait();
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
         }

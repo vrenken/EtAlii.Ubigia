@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Linq;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
 
@@ -87,23 +86,19 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Rename function processing");
             }
-            input.Subscribe(
+            input.SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
+                    var converter = _toIdentifierConverterSelector.Select(o);
+                    var results = converter(context, o, scope);
+                    foreach (var result in results.ToEnumerable())
                     {
-                        var converter = _toIdentifierConverterSelector.Select(o);
-                        var results = converter(context, o, scope);
-                        foreach (var result in results.ToEnumerable())
-                        {
 
-                            var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
-                            output.OnNext(renamedItem);
-                        }
-                    });
-                    task.Wait();
+                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
+                        output.OnNext(renamedItem);
+                    }
                 });
         }
 
@@ -111,22 +106,18 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var newName = (string)(argumentSet.Arguments.Length == 2 ? argumentSet.Arguments[1] : argumentSet.Arguments[0]);
 
-            input.Subscribe(
+            input.SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
+                    var converter = _toIdentifierConverterSelector.Select(o);
+                    var results = converter(context, o, scope);
+                    foreach (var result in results.ToEnumerable())
                     {
-                        var converter = _toIdentifierConverterSelector.Select(o);
-                        var results = converter(context, o, scope);
-                        foreach (var result in results.ToEnumerable())
-                        {
-                            var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
-                            output.OnNext(renamedItem);
-                        }
-                    });
-                    task.Wait();
+                        var renamedItem = await context.PathProcessor.Context.Logical.Nodes.Rename(result, newName, scope);
+                        output.OnNext(renamedItem);
+                    }
                 });
         }
 

@@ -23,33 +23,29 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var limit = ((GraphTraversingWildcard)parameters.Part).Limit;
 
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
+                        var results = new List<Identifier>();
+
+                        if (limit == 0)
                         {
-                            var results = new List<Identifier>();
+                            throw new NotSupportedException("not-limited wildcard traversal is not yet supported: The Traversers archictecture needs to be changed to allow for this.");
+                        }
 
-                            if (limit == 0)
-                            {
-                                throw new NotSupportedException("not-limited wildcard traversal is not yet supported: The Traversers archictecture needs to be changed to allow for this.");
-                            }
-
-                            if (start == Identifier.Empty)
-                            {
-                                throw new GraphTraversalException("Wildcard traversal cannot be done at the root of a graph");
-                            }
-                            else
-                            {
-                                await TraverseChildren(results, start, parameters.Context, parameters.Scope, EntryRelation.Child, limit);
-                            }
-                            foreach (var result in results.Distinct())
-                            {
-                                parameters.Output.OnNext(result);
-                            }
-                        });
-                        task.Wait();
+                        if (start == Identifier.Empty)
+                        {
+                            throw new GraphTraversalException("Wildcard traversal cannot be done at the root of a graph");
+                        }
+                        else
+                        {
+                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, EntryRelation.Child, limit);
+                        }
+                        foreach (var result in results.Distinct())
+                        {
+                            parameters.Output.OnNext(result);
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
         }

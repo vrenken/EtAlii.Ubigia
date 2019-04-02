@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -9,12 +8,12 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public void Configure(TraversalParameters parameters)
         {
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
-                        {
+//                        var task = Task.Run(async () =>
+//                        {
                             if (start == Identifier.Empty)
                             {
                                 throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
@@ -25,8 +24,8 @@ namespace EtAlii.Ubigia.Api.Logical
                             {
                                 parameters.Output.OnNext(result);
                             }
-                        });
-                        task.Wait();
+//                        });
+//                        task.Wait();
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
         }
