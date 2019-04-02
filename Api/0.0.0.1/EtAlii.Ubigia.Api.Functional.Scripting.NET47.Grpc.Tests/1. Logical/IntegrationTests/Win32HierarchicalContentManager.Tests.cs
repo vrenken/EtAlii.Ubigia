@@ -3,13 +3,11 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-
-    public class NET47HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class NET47HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly string _testFolderSimple;
         private readonly LogicalUnitTestContext _testContext;
@@ -20,15 +18,20 @@
 
             // Getting Temp folder names to use
             _testFolderSimple = NET47TestHelper.CreateTemporaryFolderName();
-            NET47TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
+        {
+            await NET47TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
+        }
+
+        public Task DisposeAsync()
         {
             if (Directory.Exists(_testFolderSimple))
             {
                 Directory.Delete(_testFolderSimple, true);
             }
+            return Task.CompletedTask;
         }
 
         [Fact]
