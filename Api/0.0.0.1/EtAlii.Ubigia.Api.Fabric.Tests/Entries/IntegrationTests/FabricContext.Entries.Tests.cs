@@ -6,31 +6,30 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
-    
-    public class FabricContextEntriesTests : IClassFixture<TransportUnitTestContext>, IDisposable
+
+    public class FabricContextEntriesTests : IClassFixture<TransportUnitTestContext>, IAsyncLifetime
     {
+        private readonly TransportUnitTestContext _testContext;
         private IFabricContext _fabric;
 
         public FabricContextEntriesTests(TransportUnitTestContext testContext)
         {
-            var task = Task.Run(async () =>
-            {
-                var connection = await testContext.TransportTestContext.CreateDataConnection();
-                var fabricContextConfiguration = new FabricContextConfiguration()
-                    .Use(connection);
-                _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
-            });
-            task.Wait();
+            _testContext = testContext;
+        }
+        
+        public async Task InitializeAsync()
+        {
+            var connection = await _testContext.TransportTestContext.CreateDataConnection();
+            var fabricContextConfiguration = new FabricContextConfiguration()
+                .Use(connection);
+            _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
-        public void Dispose()
+        public Task DisposeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _fabric.Dispose();
-                _fabric = null;
-            });
-            task.Wait();
+            _fabric.Dispose();
+            _fabric = null;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

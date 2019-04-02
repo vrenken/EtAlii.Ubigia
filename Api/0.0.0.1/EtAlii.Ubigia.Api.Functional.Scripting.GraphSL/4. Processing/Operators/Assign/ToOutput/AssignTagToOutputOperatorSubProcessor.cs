@@ -5,13 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class AssignTagToOutputOperatorSubProcessor : IAssignTagToOutputOperatorSubProcessor
     {
-        private readonly IResultConverterSelector _resultConverterSelector;
-
-        public AssignTagToOutputOperatorSubProcessor(IResultConverterSelector resultConverterSelector)
-        {
-            _resultConverterSelector = resultConverterSelector;
-        }
-
         public void Assign(OperatorParameters parameters)
         {
             parameters.RightInput.Subscribe(
