@@ -33,21 +33,22 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Single(); // We do not support multiple constants (yet)
 
             parameters.LeftInput
-                .Select(o => _toIdentifierConverter.Convert(o))
-                .Subscribe(
+//                .Select(o => _toIdentifierConverter.Convert(o))
+                .SubscribeAsync(
                     onError: (e) => parameters.Output.OnError(e),
                     onCompleted: () => parameters.Output.OnCompleted(),
-                    onNext: (o) =>
+                    onNext: async (o) =>
                     {
-                        var task = Task.Run(async () =>
-                        {
+//                        var task = Task.Run(async () =>
+//                        {
+                        var identifier = _toIdentifierConverter.Convert(o);
                             var leftPathSubject = (PathSubject)parameters.LeftSubject;
                             var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope);
-                            var result = await Assign(graphPath, o, value, parameters.Scope);
+                            var result = await Assign(graphPath, identifier, value, parameters.Scope);
                             //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope);
                             parameters.Output.OnNext(result);
-                        });
-                        task.Wait();
+//                        });
+//                        task.Wait();
                     });
         }
 

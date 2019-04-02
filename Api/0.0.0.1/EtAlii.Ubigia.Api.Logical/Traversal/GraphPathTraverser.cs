@@ -64,17 +64,17 @@
             // we do not want a cold observable. This should work out of the box as well.
             //innerObservable = ToHotObservable(innerObservable);
 
-            innerObservable.Distinct().Subscribe(
+            innerObservable.Distinct().SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
-                    {
+//                    var task = Task.Run(async () =>
+//                    {
                         var entry = await context.Entries.Get(o, scope);
                         output.OnNext(entry);
-                    });
-                    task.Wait();
+//                    });
+//                    task.Wait();
                 });
         }
     }

@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -8,26 +7,22 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public void Configure(TraversalParameters parameters)
         {
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
+                        Relation downDate;
+                        Identifier previousResult;
+                        Identifier result = start;
+                        do
                         {
-                            Relation downDate;
-                            Identifier previousResult;
-                            Identifier result = start;
-                            do
-                            {
-                                previousResult = result;
-                                downDate = (await parameters.Context.Entries.Get(previousResult, parameters.Scope)).Downdate;
-                                result = downDate.Id;
-                            }
-                            while (downDate != Relation.None);
+                            previousResult = result;
+                            downDate = (await parameters.Context.Entries.Get(previousResult, parameters.Scope)).Downdate;
+                            result = downDate.Id;
+                        }
+                        while (downDate != Relation.None);
 
-                            parameters.Output.OnNext(previousResult);
-                        });
-                        task.Wait();
+                        parameters.Output.OnNext(previousResult);
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
 

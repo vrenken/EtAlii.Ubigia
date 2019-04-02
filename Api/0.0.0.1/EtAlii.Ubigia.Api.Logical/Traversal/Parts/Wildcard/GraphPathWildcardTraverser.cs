@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -10,12 +9,12 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var pattern = ((GraphWildcard)parameters.Part).Pattern;
 
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
-                        {
+//                        var task = Task.Run(async () =>
+//                        {
                             var regex = parameters.Scope.GetWildCardRegex(pattern);
 
                             if (start == Identifier.Empty)
@@ -30,8 +29,8 @@ namespace EtAlii.Ubigia.Api.Logical
                                     parameters.Output.OnNext(entry.Id);
                                 }
                             }
-                        });
-                        task.Wait();
+//                        });
+//                        task.Wait();
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
 

@@ -43,17 +43,13 @@
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a single constant path part");
             }
 
-            parameters.LeftInput.Subscribe(
+            parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task2 = Task.Run(async () =>
-                    {
-                        var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
-                        await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
-                    });
-                    task2.Wait();
+                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
                 });
 
             //if (leftResult == null)
@@ -72,9 +68,9 @@
 
             var task = Task.Run(async () =>
             {
-                if (parameters.RightSubject is PathSubject)
+                if (parameters.RightSubject is PathSubject pathSubject)
                 {
-                    pathToAdd = (PathSubject)parameters.RightSubject;
+                    pathToAdd = pathSubject;
                 }
                 else
                 {

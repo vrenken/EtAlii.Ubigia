@@ -1,9 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
-    using System.Threading.Tasks;
 
     internal class AssignStringConstantToRootOperatorSubProcessor : IAssignStringConstantToRootOperatorSubProcessor
     {
@@ -25,17 +23,17 @@ namespace EtAlii.Ubigia.Api.Functional
 
             parameters.LeftInput
                 .Cast<RootSubject>()
-                .Subscribe(
+                .SubscribeAsync(
                 onError: (e) => parameters.Output.OnError(e),
                 onCompleted: () => parameters.Output.OnCompleted(),
-                onNext: (root) =>
+                onNext: async (root) =>
                 {
-                    var task = Task.Run(async () =>
-                    {
+//                    var task = Task.Run(async () =>
+//                    {
                         await _context.Logical.Roots.Add(root.Name);
                         parameters.Output.OnNext(root.Name);
-                    });
-                    task.Wait();
+//                    });
+//                    task.Wait();
                 });
         }
     }
