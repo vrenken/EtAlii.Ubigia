@@ -2,16 +2,16 @@
 {
 	using System;
 	using System.Collections.Generic;
-    using System.IO;
-    using System.Reflection;
+	using System.IO;
+	using System.Reflection;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using Microsoft.AspNetCore.Mvc.Formatters;
-    using Microsoft.Net.Http.Headers;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Bson;
+	using Microsoft.Net.Http.Headers;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Bson;
 
-    public class PayloadMediaTypeOutputFormatter : OutputFormatter
+	public class PayloadMediaTypeOutputFormatter : OutputFormatter
 	{
         public static readonly MediaTypeHeaderValue MediaType = new MediaTypeHeaderValue("application/bson");
 		private readonly ISerializer _serializer;
@@ -28,11 +28,11 @@
 			return true;
 		}
 
-		public override async Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
+		public override Task WriteResponseBodyAsync(OutputFormatterWriteContext context)
 		{
 			var response = context.HttpContext.Response;
 			WriteToStream(context.ObjectType, context.Object, response.Body);
-			await Task.CompletedTask;
+			return Task.CompletedTask;
 		}
 
 		public void WriteToStream(Type type, object value, Stream writeStream)
