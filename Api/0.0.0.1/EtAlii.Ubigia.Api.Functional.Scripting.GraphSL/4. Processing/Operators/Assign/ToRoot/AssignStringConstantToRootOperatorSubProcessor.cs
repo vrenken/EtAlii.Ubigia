@@ -28,12 +28,8 @@ namespace EtAlii.Ubigia.Api.Functional
                 onCompleted: () => parameters.Output.OnCompleted(),
                 onNext: async (root) =>
                 {
-//                    var task = Task.Run(async () =>
-//                    {
-                        await _context.Logical.Roots.Add(root.Name);
-                        parameters.Output.OnNext(root.Name);
-//                    });
-//                    task.Wait();
+                    await _context.Logical.Roots.Add(root.Name);
+                    parameters.Output.OnNext(root.Name);
                 });
         }
     }
