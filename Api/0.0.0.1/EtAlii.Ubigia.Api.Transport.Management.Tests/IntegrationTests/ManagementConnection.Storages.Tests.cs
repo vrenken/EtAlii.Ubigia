@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
-
+    
     public class ManagementConnectionStoragesTests : IAsyncLifetime
     {
         private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;

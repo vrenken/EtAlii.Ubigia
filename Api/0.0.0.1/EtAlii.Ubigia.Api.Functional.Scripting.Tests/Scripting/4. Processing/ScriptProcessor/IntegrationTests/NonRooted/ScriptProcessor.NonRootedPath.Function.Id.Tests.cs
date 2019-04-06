@@ -11,6 +11,8 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+
+    
     public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;

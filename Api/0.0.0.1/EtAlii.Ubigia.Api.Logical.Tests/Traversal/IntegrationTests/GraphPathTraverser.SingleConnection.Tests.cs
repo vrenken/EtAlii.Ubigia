@@ -6,11 +6,12 @@
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Tests;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
 
+    
     public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private readonly FabricUnitTestContext _testContext;

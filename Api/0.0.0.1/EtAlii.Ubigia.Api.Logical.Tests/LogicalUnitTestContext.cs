@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Tests;
     using EtAlii.xTechnology.Diagnostics;
+    using Ubigia.Tests;
     using Xunit;
 
     public class LogicalUnitTestContext : IAsyncLifetime

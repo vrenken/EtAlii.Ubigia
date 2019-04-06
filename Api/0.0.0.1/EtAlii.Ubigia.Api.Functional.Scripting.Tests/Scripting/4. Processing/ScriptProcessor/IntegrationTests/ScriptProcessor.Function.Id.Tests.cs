@@ -8,6 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+    
     public class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
     {
         private IScriptParser _parser;

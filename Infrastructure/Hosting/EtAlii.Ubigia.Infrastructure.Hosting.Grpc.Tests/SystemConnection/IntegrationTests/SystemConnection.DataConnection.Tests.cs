@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Xunit;
-
+    
     [Trait("Technology", "Grpc")]
     public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
     {
