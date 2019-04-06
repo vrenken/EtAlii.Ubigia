@@ -6,7 +6,7 @@
 
     internal partial class SystemAuthenticationManagementDataClient
     {
-        public async Task<Storage> GetConnectedStorage(ISpaceConnection connection, string address)
+        public Task<Storage> GetConnectedStorage(ISpaceConnection connection, string address)
         {
             if (connection.Storage != null)
             {
@@ -19,9 +19,9 @@
             // If we get here then we already know how to contact the server. 
             storage.Address = address.ToString();
 
-            return await Task.FromResult(storage);
+            return Task.FromResult(storage);
         }
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
             if (connection.Storage != null)
             {
@@ -34,7 +34,7 @@
             // If we get here then we already know how to contact the server. 
             storage.Address = connection.Transport.Address.ToString();
 
-            return await Task.FromResult(storage);
+            return Task.FromResult(storage);
         }
     }
 }

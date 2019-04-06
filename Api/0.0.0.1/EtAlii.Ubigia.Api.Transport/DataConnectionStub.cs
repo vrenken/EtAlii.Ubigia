@@ -23,13 +23,13 @@
 
         public IDataConnectionConfiguration Configuration { get; }
 
-        public async Task Open()
+        public Task Open()
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
-        public async Task Close()
+        public Task Close()
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
         public DataConnectionStub()

@@ -6,13 +6,12 @@
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using Xunit;
 
-    
-    public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IDisposable
+    public class GraphPathTraverserSingleConnectionTests : IClassFixture<FabricUnitTestContext>, IAsyncLifetime
     {
         private readonly FabricUnitTestContext _testContext;
         private IFabricContext _fabric;
@@ -20,22 +19,18 @@
         public GraphPathTraverserSingleConnectionTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
-
-            var task = Task.Run(async () =>
-            {
-                _fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _fabric.Dispose();
-                _fabric = null;
-            });
-            task.Wait();
+            _fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
+        }
+
+        public Task DisposeAsync()
+        {
+            _fabric.Dispose();
+            _fabric = null;
+            return Task.CompletedTask;
         }
 
         [Fact]

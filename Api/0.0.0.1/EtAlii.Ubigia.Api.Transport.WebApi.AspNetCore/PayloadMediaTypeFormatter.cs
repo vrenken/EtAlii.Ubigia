@@ -1,19 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Net;
-    using System.Net.Http;
-    using System.Net.Http.Formatting;
-    using System.Net.Http.Headers;
-    using System.Reflection;
-    using System.Threading.Tasks;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Bson;
+	using System;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Net;
+	using System.Net.Http;
+	using System.Net.Http.Formatting;
+	using System.Net.Http.Headers;
+	using System.Reflection;
+	using System.Threading.Tasks;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Bson;
 
-    public class PayloadMediaTypeFormatter : MediaTypeFormatter
+	public class PayloadMediaTypeFormatter : MediaTypeFormatter
     {
         private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
         private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
@@ -40,7 +40,7 @@
 		    return true;
 	    }
 
-	    public override async Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+	    public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
 	    {
 		    if (type == null)
             {
@@ -84,7 +84,7 @@
                     if (dictionary.Count == 1 && (item.Key as string) == "Value")
                     {
                         // Success
-                        return await Task.FromResult(item.Value);
+                        return Task.FromResult(item.Value);
                     }
                     else
                     {
@@ -105,7 +105,7 @@
             else
             {
 				var result = ReadFromStreamInternal(type, readStream);
-	            return await Task.FromResult(result);
+	            return Task.FromResult(result);
             }
         }
 

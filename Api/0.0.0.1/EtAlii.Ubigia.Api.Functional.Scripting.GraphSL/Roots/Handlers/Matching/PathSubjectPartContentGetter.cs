@@ -27,8 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var variablePathSubjectPart = (VariablePathSubjectPart)part;
             ScopeVariable variable;
-            if (scope.Variables.TryGetValue(variablePathSubjectPart.Name,
-                out variable))
+            if (scope.Variables.TryGetValue(variablePathSubjectPart.Name, out variable))
             {
                 object variableValue = null;
                 var task = Task.Run(async () =>

@@ -16,12 +16,9 @@
             _graphLinkAdder = graphLinkAdder;
         }
 
-        public async Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
+        public Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
-            return await Task.Run((Func<IReadOnlyEntry>)(() =>
-            {
-                throw new NotImplementedException();
-            }));
+            return Task.FromException<IReadOnlyEntry>(new NotImplementedException());
         }
     }
 }

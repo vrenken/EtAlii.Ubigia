@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using GraphQL;
     using GraphQL.Execution;
     using GraphQL.Http;
@@ -32,7 +32,7 @@
             _fieldProcessor = fieldProcessor;
         }
 
-        public async Task<QueryParseResult> Parse(string text)
+        public Task<QueryParseResult> Parse(string text)
         {
             GraphQL.Language.AST.Document document = null;
             var errors = Array.Empty<QueryParserError>();
@@ -47,7 +47,7 @@
             
             var query = new Query(document, text);
             var result = new QueryParseResult(text, query, errors);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
         
         public async Task<QueryProcessingResult> Process(Query query) 

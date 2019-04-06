@@ -1,34 +1,30 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric.Tests
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Diagnostics;
+    using Xunit;
 
-    public class FabricUnitTestContext : IDisposable
+    public class FabricUnitTestContext : IAsyncLifetime
     {
         public IFabricTestContext FabricTestContext { get; private set; }
         public IDiagnosticsConfiguration DiagnosticsConfiguration { get; private set; }
 
         public FabricUnitTestContext()
         {
-            var task = Task.Run(async () =>
-            {
-                DiagnosticsConfiguration = TestDiagnostics.Create();
-                FabricTestContext = new FabricTestContextFactory().Create();
-                await FabricTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await FabricTestContext.Stop();
-                FabricTestContext = null;
-                DiagnosticsConfiguration = null;
-            });
-            task.Wait();
+            DiagnosticsConfiguration = TestDiagnostics.Create();
+            FabricTestContext = new FabricTestContextFactory().Create();
+            await FabricTestContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await FabricTestContext.Stop();
+            FabricTestContext = null;
+            DiagnosticsConfiguration = null;
         }
     }
 }

@@ -14,15 +14,16 @@
             _infrastructure = infrastructure;
         }
 
-        public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
+        public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await Task.Run(() => { _infrastructure.Properties.Store(identifier, properties); });
+            _infrastructure.Properties.Store(identifier, properties);
+            return Task.CompletedTask;
         }
 
-        public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
+        public Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
             var result = _infrastructure.Properties.Get(identifier);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
     }
 }

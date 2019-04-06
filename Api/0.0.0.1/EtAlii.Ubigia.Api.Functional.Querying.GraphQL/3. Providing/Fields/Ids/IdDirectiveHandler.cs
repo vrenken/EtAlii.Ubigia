@@ -14,7 +14,7 @@
             _nodeFetcher = nodeFetcher;
         }      
 
-        public async Task<IdDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers)
+        public Task<IdDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers)
         {
 //            var result = new IdDirectiveResult();
             
@@ -50,7 +50,7 @@
 ////                }
 //            }
             
-            return await Task.FromResult(new IdDirectiveResult
+            return Task.FromResult(new IdDirectiveResult
             {
                 //Mappings = mappings.ToArray(),
                 Path = pathArgumentValue?.Value ?? String.Empty,    

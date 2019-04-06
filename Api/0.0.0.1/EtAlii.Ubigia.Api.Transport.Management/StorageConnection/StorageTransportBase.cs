@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
-	using System;
-	using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    using System;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public abstract class StorageTransportBase : IStorageTransport
@@ -16,15 +15,16 @@
             Address = address;
         }
         
-        public virtual async Task Start()
+        public virtual Task Start()
         {
-            await Task.Run(() => { IsConnected = true; });
-
+            IsConnected = true;
+            return Task.CompletedTask;
         }
 
-        public virtual async Task Stop()
+        public virtual Task Stop()
         {
-            await Task.Run(() => { IsConnected = false; });
+            IsConnected = false; 
+            return Task.CompletedTask;
         }
 
         protected abstract IScaffolding[] CreateScaffoldingInternal();

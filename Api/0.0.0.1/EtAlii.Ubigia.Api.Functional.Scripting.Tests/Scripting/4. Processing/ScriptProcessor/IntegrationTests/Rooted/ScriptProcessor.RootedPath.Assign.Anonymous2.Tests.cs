@@ -8,10 +8,8 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
 
-    
-    public class ScriptProcessorRootedPathAssignAnonymous2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathAssignAnonymous2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -21,26 +19,23 @@
         public ScriptProcessorRootedPathAssignAnonymous2IntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(async () =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+        }
+
+        public Task DisposeAsync()
+        {
+            _parser = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

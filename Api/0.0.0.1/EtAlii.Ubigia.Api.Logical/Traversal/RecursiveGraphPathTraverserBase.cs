@@ -12,20 +12,16 @@ namespace EtAlii.Ubigia.Api.Logical
                     onError: e => parameters.Output.OnError(e),
                     onNext: async start =>
                     {
-//                        var task = Task.Run(async () =>
-//                        {
-                            if (start == Identifier.Empty)
-                            {
-                                throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
-                            }
+                        if (start == Identifier.Empty)
+                        {
+                            throw new GraphTraversalException("Recursive traversal cannot be done at the root of a graph");
+                        }
 
-                            var results = await TraverseRecursive(start, parameters.Context, parameters.Scope);
-                            foreach (var result in results.Distinct())
-                            {
-                                parameters.Output.OnNext(result);
-                            }
-//                        });
-//                        task.Wait();
+                        var results = await TraverseRecursive(start, parameters.Context, parameters.Scope);
+                        foreach (var result in results.Distinct())
+                        {
+                            parameters.Output.OnNext(result);
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
         }

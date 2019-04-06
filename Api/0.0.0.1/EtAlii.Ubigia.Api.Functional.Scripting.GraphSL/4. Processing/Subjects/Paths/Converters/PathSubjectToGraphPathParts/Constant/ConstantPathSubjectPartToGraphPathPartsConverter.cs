@@ -14,22 +14,19 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
-            return Task.Run(() =>
-            {
-                GraphPathPart[] result;
-                var name = ((ConstantPathSubjectPart)pathSubjectPart).Name;
+            GraphPathPart[] result;
+            var name = ((ConstantPathSubjectPart)pathSubjectPart).Name;
 
-                if (pathSubjectPartPosition == 0 ||
-                    pathSubjectPartPosition == 1 && previousPathSubjectPart is ParentPathSubjectPart)
-                {
-                    result = new GraphPathPart[] { new GraphRootStartNode(name) };
-                }
-                else
-                {
-                    result = new GraphPathPart[] { new GraphNode(name) };
-                }
-                return result;
-            });
+            if (pathSubjectPartPosition == 0 ||
+                pathSubjectPartPosition == 1 && previousPathSubjectPart is ParentPathSubjectPart)
+            {
+                result = new GraphPathPart[] { new GraphRootStartNode(name) };
+            }
+            else
+            {
+                result = new GraphPathPart[] { new GraphNode(name) };
+            }
+            return Task.FromResult(result);
         }
     }
 }

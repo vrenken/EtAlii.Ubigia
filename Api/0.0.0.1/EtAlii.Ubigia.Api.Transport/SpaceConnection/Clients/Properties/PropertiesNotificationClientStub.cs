@@ -7,14 +7,14 @@
     {
         public event Action<Identifier> Stored = delegate { };
 
-        public async Task Connect(ISpaceConnection spaceConnection)
+        public Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
     }
 }

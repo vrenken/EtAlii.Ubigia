@@ -7,9 +7,7 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
 
-    
     public class ScriptProcessorRootUnassignTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
@@ -19,23 +17,14 @@
         public ScriptProcessorRootUnassignTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(() =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
         }
-
         public void Dispose()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-            });
-            task.Wait();
+            _parser = null;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

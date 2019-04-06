@@ -16,22 +16,23 @@
             _infrastructure = infrastructure;
         }
 
-        public async Task<Root> Add(string name)
+        public Task<Root> Add(string name)
         {
             var root = new Root
             {
                 Name = name,
             };
             var result = _infrastructure.Roots.Add(Connection.Space.Id, root);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
 
-        public async Task Remove(Guid id)
+        public Task Remove(Guid id)
         {
-            await Task.Run(() => { _infrastructure.Roots.Remove(Connection.Space.Id, id); });
+            _infrastructure.Roots.Remove(Connection.Space.Id, id);
+            return Task.CompletedTask;
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public Task<Root> Change(Guid rootId, string rootName)
         {
             var root = new Root
             {
@@ -40,25 +41,25 @@
             };
 
             var result = _infrastructure.Roots.Update(Connection.Space.Id, rootId, root);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
 
-        public async Task<Root> Get(string rootName)
+        public Task<Root> Get(string rootName)
         {
             var result = _infrastructure.Roots.Get(Connection.Space.Id, rootName);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
 
-        public async Task<Root> Get(Guid rootId)
+        public Task<Root> Get(Guid rootId)
         {
             var result = _infrastructure.Roots.Get(Connection.Space.Id, rootId);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public Task<IEnumerable<Root>> GetAll()
         {
             var result = _infrastructure.Roots.GetAll(Connection.Space.Id);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
         }
     }
 }

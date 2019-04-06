@@ -16,7 +16,7 @@
             _infrastructure = infrastructure;
         }
 
-        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        public Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             // TODO: This is where the template functionality should continue.
             var account = new Account
@@ -26,15 +26,16 @@
             };
 
             account = _infrastructure.Accounts.Add(account, template);
-            return await Task.FromResult(account);
+            return Task.FromResult(account);
         }
 
-        public async Task Remove(Guid accountId)
+        public Task Remove(Guid accountId)
         {
-            await Task.Run(() => _infrastructure.Accounts.Remove(accountId));
+            _infrastructure.Accounts.Remove(accountId);
+            return Task.CompletedTask;
         }
 
-        public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
+        public Task<Account> Change(Guid accountId, string accountName, string accountPassword)
         {
             var account = new Account
             {
@@ -43,31 +44,31 @@
                 Password = accountPassword,
             };
             account = _infrastructure.Accounts.Update(accountId, account);
-            return await Task.FromResult(account);
+            return Task.FromResult(account);
         }
 
-        public async Task<Account> Change(Account account)
+        public Task<Account> Change(Account account)
         {
             account = _infrastructure.Accounts.Update(account.Id, account);
-            return await Task.FromResult(account);
+            return Task.FromResult(account);
         }
 
-        public async Task<Account> Get(string accountName)
+        public Task<Account> Get(string accountName)
         {
             var account = _infrastructure.Accounts.Get(accountName);
-            return await Task.FromResult(account);
+            return Task.FromResult(account);
         }
 
-        public async Task<Account> Get(Guid accountId)
+        public Task<Account> Get(Guid accountId)
         {
             var account = _infrastructure.Accounts.Get(accountId);
-            return await Task.FromResult(account);
+            return Task.FromResult(account);
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public Task<IEnumerable<Account>> GetAll()
         {
             var accounts = _infrastructure.Accounts.GetAll();
-            return await Task.FromResult(accounts);
+            return Task.FromResult(accounts);
         }
     }
 }

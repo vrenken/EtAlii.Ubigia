@@ -1,13 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Diagnostics;
+    using Xunit;
 
-    public class TransportUnitTestContext : IDisposable
+    public class TransportUnitTestContext : IAsyncLifetime
     {
         public ITransportTestContext<InProcessInfrastructureHostTestContext> TransportTestContext { get; private set; }
         public IDiagnosticsConfiguration DiagnosticsConfiguration { get; private set; }
@@ -31,23 +31,18 @@
             ByteArrayComparer = new ByteArrayComparer();
             ContentComparer = new ContentComparer(ByteArrayComparer);
             PropertyDictionaryComparer = new PropertyDictionaryComparer();
-
-            var task = Task.Run(async () =>
-            {
-                TransportTestContext = new TransportTestContext().Create();
-                await TransportTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await TransportTestContext.Stop();
-                TransportTestContext = null;
-            });
-            task.Wait();
+            TransportTestContext = new TransportTestContext().Create();
+            await TransportTestContext.Start();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await TransportTestContext.Stop();
+            TransportTestContext = null;
         }
     }
 }

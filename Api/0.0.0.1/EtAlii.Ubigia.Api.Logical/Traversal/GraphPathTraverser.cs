@@ -69,12 +69,8 @@
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-//                    var task = Task.Run(async () =>
-//                    {
-                        var entry = await context.Entries.Get(o, scope);
-                        output.OnNext(entry);
-//                    });
-//                    task.Wait();
+                    var entry = await context.Entries.Get(o, scope);
+                    output.OnNext(entry);
                 });
         }
     }

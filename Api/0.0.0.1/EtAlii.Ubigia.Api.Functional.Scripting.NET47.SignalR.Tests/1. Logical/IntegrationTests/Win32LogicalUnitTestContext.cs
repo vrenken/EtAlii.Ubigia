@@ -2,9 +2,8 @@
 {
     using System;
     using System.IO;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using Ubigia.Tests;
+    using EtAlii.Ubigia.Tests;
 
     public class NET47LogicalUnitTestContext : IDisposable
     {
@@ -35,25 +34,21 @@
 
         public void Dispose()
         {
-            var task = Task.Run(() =>
+            if (File.Exists(TestFile2MImage))
             {
-                if (File.Exists(TestFile2MImage))
-                {
-                    File.Delete(TestFile2MImage);
-                }
+                File.Delete(TestFile2MImage);
+            }
 
-                if (File.Exists(TestFile10MRaw))
-                {
-                    File.Delete(TestFile10MRaw);
-                }
+            if (File.Exists(TestFile10MRaw))
+            {
+                File.Delete(TestFile10MRaw);
+            }
 
-                if (File.Exists(TestFile100MRaw))
-                {
-                    File.Delete(TestFile100MRaw);
-                }
-                LogicalTestContext = null;
-            });
-            task.Wait();
+            if (File.Exists(TestFile100MRaw))
+            {
+                File.Delete(TestFile100MRaw);
+            }
+            LogicalTestContext = null;
         }
     }
 }

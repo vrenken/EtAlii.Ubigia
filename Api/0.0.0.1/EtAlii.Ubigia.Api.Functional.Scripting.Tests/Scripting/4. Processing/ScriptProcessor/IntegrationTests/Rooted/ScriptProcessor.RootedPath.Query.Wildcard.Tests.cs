@@ -8,10 +8,8 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
-    
 
-    
-    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ScriptProcessorRootedPathQueryWildcardIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
         private ILogicalContext _logicalContext;
@@ -20,27 +18,24 @@
         public ScriptProcessorRootedPathQueryWildcardIntegrationTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(async () =>
-            {
-                var scriptParserConfiguration = new ScriptParserConfiguration()
-                    .Use(_testContext.Diagnostics);
-                _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-                _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _parser = null;
-                _logicalContext.Dispose();
-                _logicalContext = null;
-            });
-            task.Wait();
+            var scriptParserConfiguration = new ScriptParserConfiguration()
+                .Use(_testContext.Diagnostics);
+            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
+        public Task DisposeAsync()
+        {
+            _parser = null;
+            _logicalContext.Dispose();
+            _logicalContext = null;
+            return Task.CompletedTask;
+        }
+        
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Wildcard_01()
         {

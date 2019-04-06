@@ -5,44 +5,44 @@
 
     public class EntryDataClientStub : IEntryDataClient 
     {
-        public async Task<IEditableEntry> Prepare()
+        public Task<IEditableEntry> Prepare()
         {
-            return await Task.FromResult<IEditableEntry>(null);
+            return Task.FromResult<IEditableEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
+        public Task<IReadOnlyEntry> Change(IEditableEntry entry, ExecutionScope scope)
         {
-            return await Task.FromResult<IReadOnlyEntry>(null);
+            return Task.FromResult<IReadOnlyEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public Task<IReadOnlyEntry> Get(Root root, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await Task.FromResult<IReadOnlyEntry>(null);
+            return Task.FromResult<IReadOnlyEntry>(null);
         }
 
-        public async Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await Task.FromResult<IReadOnlyEntry>(null);
+            return Task.FromResult<IReadOnlyEntry>(null);
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await Task.FromResult<IEnumerable<IReadOnlyEntry>>(new IReadOnlyEntry[] { });
+            return Task.FromResult<IEnumerable<IReadOnlyEntry>>(new IReadOnlyEntry[] { });
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
+        public Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            return await Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
+            return Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
         }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
+        public Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
     }
 }
