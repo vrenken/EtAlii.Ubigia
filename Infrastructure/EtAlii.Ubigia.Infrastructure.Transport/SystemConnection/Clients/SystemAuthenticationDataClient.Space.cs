@@ -22,10 +22,10 @@
             return space;
         }
 
-        private async Task<Space> GetSpace(Account currentAccount, string spaceName)
+        private Task<Space> GetSpace(Account currentAccount, string spaceName)
         {
             var space = _infrastructure.Spaces.Get(currentAccount.Id, spaceName);
-            return await Task.FromResult(space);
+            return Task.FromResult(space);
         }
     }
 }

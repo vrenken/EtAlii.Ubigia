@@ -14,12 +14,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
-            return Task.Run(() =>
-            {
-                var taggedPathSubjectPart = (TaggedPathSubjectPart) pathSubjectPart;
+            var taggedPathSubjectPart = (TaggedPathSubjectPart) pathSubjectPart;
 
-                return new GraphPathPart[] { new GraphTaggedNode(taggedPathSubjectPart.Name, taggedPathSubjectPart.Tag),  };
-            });
+            var result = new GraphPathPart[] { new GraphTaggedNode(taggedPathSubjectPart.Name, taggedPathSubjectPart.Tag),  };
+            return Task.FromResult(result);
         }
     }
 }

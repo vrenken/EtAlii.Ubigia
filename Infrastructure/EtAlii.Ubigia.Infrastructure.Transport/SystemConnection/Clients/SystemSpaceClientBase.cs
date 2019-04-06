@@ -7,14 +7,16 @@
     {
         protected ISpaceConnection Connection { get; private set; }
 
-        public virtual async Task Connect(ISpaceConnection spaceConnection)
+        public virtual Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => Connection = spaceConnection);
+            Connection = spaceConnection;
+            return Task.CompletedTask;
         }
 
-        public virtual async Task Disconnect(ISpaceConnection spaceConnection)
+        public virtual Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => Connection = null);
+            Connection = null;
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,38 +1,35 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    public class ProfilingGraphSLScriptContextTests : IClassFixture<LogicalUnitTestContext>, IDisposable
+    public class ProfilingGraphSLScriptContextTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
+        private readonly LogicalUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
 
         public ProfilingGraphSLScriptContextTests(LogicalUnitTestContext testContext)
         {
-            var task = Task.Run(async () =>
-            {
-                _diagnostics = TestDiagnostics.Create();
-                _logicalContext = await testContext.LogicalTestContext.CreateLogicalContext(true);
-            });
-            task.Wait();
+            _testContext = testContext;
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _logicalContext.Dispose();
-                _logicalContext = null;
-                _diagnostics = null;
-            });
-            task.Wait();
+            _diagnostics = TestDiagnostics.Create();
+            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+        }
+
+        public Task DisposeAsync()
+        {
+            _logicalContext.Dispose();
+            _logicalContext = null;
+            _diagnostics = null;
+            return Task.CompletedTask;
         }
 
         [Fact]

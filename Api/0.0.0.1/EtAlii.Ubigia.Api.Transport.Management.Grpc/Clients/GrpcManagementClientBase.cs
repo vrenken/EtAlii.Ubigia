@@ -19,14 +19,14 @@
 
         public virtual Task Connect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
+            //Connection = storageConnection;
             return Task.CompletedTask;
-            //await Task.Run(() => Connection = storageConnection);
         }
 
         public virtual Task Disconnect(IStorageConnection<IGrpcStorageTransport> storageConnection)
         {
+            //Connection = null;
             return Task.CompletedTask;
-            //await Task.Run(() => Connection = null);
         }
     }
 }

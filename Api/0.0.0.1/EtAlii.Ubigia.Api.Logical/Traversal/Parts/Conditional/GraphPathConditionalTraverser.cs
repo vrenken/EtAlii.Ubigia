@@ -14,26 +14,22 @@ namespace EtAlii.Ubigia.Api.Logical
                     onError: e => parameters.Output.OnError(e),
                     onNext: async start =>
                     {
-//                        var task = Task.Run(async () =>
-//                        {
-                            if (start == Identifier.Empty)
+                        if (start == Identifier.Empty)
+                        {
+                            throw new GraphTraversalException("Conditional traversal cannot be done at the root of a graph");
+                        }
+                        else
+                        {
+                            var properties = await parameters.Context.Properties.Retrieve(start, parameters.Scope);
+                            if (properties != null)
                             {
-                                throw new GraphTraversalException("Conditional traversal cannot be done at the root of a graph");
-                            }
-                            else
-                            {
-                                var properties = await parameters.Context.Properties.Retrieve(start, parameters.Scope);
-                                if (properties != null)
+                                var shouldAdd = predicate(properties);
+                                if (shouldAdd)
                                 {
-                                    var shouldAdd = predicate(properties);
-                                    if (shouldAdd)
-                                    {
-                                        parameters.Output.OnNext(start);
-                                    }
+                                    parameters.Output.OnNext(start);
                                 }
                             }
-//                        });
-//                        task.Wait();
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
         }

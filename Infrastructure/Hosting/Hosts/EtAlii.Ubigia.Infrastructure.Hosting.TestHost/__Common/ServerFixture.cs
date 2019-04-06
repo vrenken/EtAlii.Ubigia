@@ -45,7 +45,7 @@
 //                .UseContentRoot(Directory.GetCurrentDirectory())
 //                .Build();
 
-//            var t = Task.Run(() => _host.Start());
+//            var t = Task .Run(() => _host.Start());
 //            _logger.LogInformation("Starting test server...");
 //            _lifetime = _host.Services.GetRequiredService<IApplicationLifetime>();
 //            if (!_lifetime.ApplicationStarted.WaitHandle.WaitOne(TimeSpan.FromSeconds(5)))

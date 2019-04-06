@@ -14,13 +14,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 onError: e => parameters.Output.OnError(e),
                 onNext: async o =>
                 {
-//                    var task = Task.Run(async () =>
-//                    {
-                        var root = await parameters.Context.Roots.Get(rootName);
-                        parameters.Output.OnNext(root.Identifier);
-                        parameters.Output.OnCompleted();
-//                    });
-//                    task.Wait();
+                    var root = await parameters.Context.Roots.Get(rootName);
+                    parameters.Output.OnNext(root.Identifier);
+                    parameters.Output.OnCompleted();
                 },
                 onCompleted: () => { });// parameters.Output.OnCompleted()});
         }

@@ -16,7 +16,7 @@
             _infrastructure = infrastructure;
         }
 
-        public async Task<Storage> Add(string storageName, string storageAddress)
+        public Task<Storage> Add(string storageName, string storageAddress)
         {
             var storage = new Storage
             {
@@ -25,18 +25,16 @@
             };
 
             storage = _infrastructure.Storages.Add(storage);
-            return await Task.FromResult(storage);
+            return Task.FromResult(storage);
         }
 
-        public async Task Remove(Guid storageId)
+        public Task Remove(Guid storageId)
         {
-            await Task.Run(() =>
-            {
-                _infrastructure.Storages.Remove(storageId);
-            });
+            _infrastructure.Storages.Remove(storageId);
+            return Task.CompletedTask;
         }
 
-        public async Task<Storage> Change(Guid storageId, string storageName, string storageAddress)
+        public Task<Storage> Change(Guid storageId, string storageName, string storageAddress)
         {
             var storage = new Storage
             {
@@ -45,25 +43,25 @@
                 Address = storageAddress,
             };
             storage = _infrastructure.Storages.Update(storageId, storage);
-            return await Task.FromResult(storage);
+            return Task.FromResult(storage);
         }
 
-        public async Task<Storage> Get(string storageName)
+        public Task<Storage> Get(string storageName)
         {
             var storage = _infrastructure.Storages.Get(storageName);
-            return await Task.FromResult(storage);
+            return Task.FromResult(storage);
         }
 
-        public async Task<Storage> Get(Guid storageId)
+        public Task<Storage> Get(Guid storageId)
         {
             var storage = _infrastructure.Storages.Get(storageId);
-            return await Task.FromResult(storage);
+            return Task.FromResult(storage);
         }
 
-        public async Task<IEnumerable<Storage>> GetAll()
+        public Task<IEnumerable<Storage>> GetAll()
         {
             var storages = _infrastructure.Storages.GetAll();
-            return await Task.FromResult(storages);
+            return Task.FromResult(storages);
         }
     }
 }

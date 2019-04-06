@@ -53,9 +53,9 @@
 
             var task = Task.Run(async () =>
             {
-                if (parameters.RightSubject is PathSubject)
+                if (parameters.RightSubject is PathSubject pathSubject)
                 {
-                    pathToAdd = (PathSubject)parameters.RightSubject;
+                    pathToAdd = pathSubject;
                 }
                 else
                 {

@@ -1,31 +1,26 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Tests
 {
-    using System;
     using System.Threading.Tasks;
+    using Xunit;
 
-    public class ProvisioningUnitTestContext : IDisposable
+    public class ProvisioningUnitTestContext : IAsyncLifetime
     {
         public IProvisioningTestContext ProvisioningTestContext { get; private set; }
 
         public ProvisioningUnitTestContext()
         {
-            var task = Task.Run(async () =>
-            {
-                ProvisioningTestContext = new ProvisioningTestContextFactory().Create();
-                await ProvisioningTestContext.Start();
-            });
-            task.Wait();
         }
 
-        public void Dispose()
+        public async Task InitializeAsync()
         {
-            var task = Task.Run(async () =>
-            {
-                await ProvisioningTestContext.Stop();
-                ProvisioningTestContext = null;
-            });
-            task.Wait();
+            ProvisioningTestContext = new ProvisioningTestContextFactory().Create();
+            await ProvisioningTestContext.Start();
         }
 
+        public async Task DisposeAsync()
+        {
+            await ProvisioningTestContext.Stop();
+            ProvisioningTestContext = null;
+        }
     }
 }

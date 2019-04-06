@@ -17,14 +17,16 @@
             await Disconnect((IStorageConnection<ISignalRStorageTransport>)storageConnection);
         }
 
-        public virtual async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+        public virtual Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await Task.Run(() => Connection = storageConnection);
+            Connection = storageConnection;
+            return Task.CompletedTask;
         }
 
-        public virtual async Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
+        public virtual Task Disconnect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            await Task.Run(() => Connection = null);
+            Connection = null;
+            return Task.CompletedTask;
         }
     }
 }

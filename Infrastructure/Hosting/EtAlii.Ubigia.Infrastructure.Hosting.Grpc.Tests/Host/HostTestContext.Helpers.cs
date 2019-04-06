@@ -9,13 +9,13 @@
     public partial class HostTestContext<TInfrastructureTestHost> 
         where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
-        public async Task<ISystemConnection> CreateSystemConnection()
+        public Task<ISystemConnection> CreateSystemConnection()
         {
             var connectionConfiguration = new SystemConnectionConfiguration()
                 .Use(Infrastructure)
                 .Use(SystemTransportProvider.Create(Infrastructure));
             var connection = new SystemConnectionFactory().Create(connectionConfiguration);
-            return await Task.FromResult(connection);
+            return Task.FromResult(connection);
         }
 
 

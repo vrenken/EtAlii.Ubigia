@@ -48,7 +48,7 @@
             await base.Disconnect(spaceConnection);
 
             // TODO: GRPC
-            //return await Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
+            //return await Task .FromResult<IEnumerable<IReadOnlyEntry>>(null);
             //await _connection.DisposeAsync();
             //_connection = null;
 

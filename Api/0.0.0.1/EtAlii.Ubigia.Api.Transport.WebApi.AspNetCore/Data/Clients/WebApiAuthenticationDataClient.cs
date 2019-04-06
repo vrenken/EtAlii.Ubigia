@@ -16,14 +16,16 @@
             await Disconnect((IWebApiSpaceConnection) spaceConnection);
         }
 
-        private async Task Connect(IWebApiSpaceConnection connection)
+        private Task Connect(IWebApiSpaceConnection connection)
         {
-            await Task.Run(() => { _connection = connection; });
+            _connection = connection;
+            return Task.CompletedTask;
         }
 
-        private async Task Disconnect(IWebApiSpaceConnection connection)
+        private Task Disconnect(IWebApiSpaceConnection connection)
         {
-            await Task.Run(() => { _connection = null; });
+            _connection = null;
+            return Task.CompletedTask;
         }
     }
 }

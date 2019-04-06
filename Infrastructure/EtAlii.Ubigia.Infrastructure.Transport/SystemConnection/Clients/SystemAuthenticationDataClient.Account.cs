@@ -21,7 +21,7 @@
             return account;
         }
 
-        private async Task<Account> GetAccount(string accountName)
+        private Task<Account> GetAccount(string accountName)
         {
             var account = _infrastructure.Accounts.Get(accountName);
             if (account == null)
@@ -29,7 +29,7 @@
                 string message = $"Unable to connect using the specified account ({accountName})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
-            return await Task.FromResult(account);
+            return Task.FromResult(account);
         }
     }
 }

@@ -7,14 +7,16 @@
     {
         protected IStorageConnection Connection { get; private set; }
 
-        public virtual async Task Connect(IStorageConnection storageConnection)
+        public virtual Task Connect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => Connection = storageConnection);
+            Connection = storageConnection;
+            return Task.CompletedTask;
         }
 
-        public virtual async Task Disconnect(IStorageConnection storageConnection)
+        public virtual Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => Connection = null);
+            Connection = null;
+            return Task.CompletedTask;
         }
     }
 }

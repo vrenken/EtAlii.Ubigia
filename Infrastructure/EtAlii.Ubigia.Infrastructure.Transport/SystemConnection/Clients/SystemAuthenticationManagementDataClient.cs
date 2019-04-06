@@ -13,14 +13,14 @@
             _infrastructure = infrastructure;
         }
 
-        public async Task Connect(IStorageConnection storageConnection)
+        public Task Connect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(IStorageConnection storageConnection)
+        public Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
     }
 }

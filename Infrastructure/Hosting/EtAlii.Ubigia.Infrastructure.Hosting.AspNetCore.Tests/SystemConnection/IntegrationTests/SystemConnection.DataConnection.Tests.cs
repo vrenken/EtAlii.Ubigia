@@ -5,9 +5,9 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Xunit;
-    
+
     [Trait("Technology", "AspNetCore")]
-    public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IDisposable
+    public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
     {
         private readonly InfrastructureUnitTestContext _testContext;
         private string _accountName;
@@ -18,32 +18,27 @@
         public SystemConnectionDataConnectionTests(InfrastructureUnitTestContext testContext)
         {
             _testContext = testContext;
-            var task = Task.Run(async () =>
+        }
+        public async Task InitializeAsync()
+        {
+            _accountName = Guid.NewGuid().ToString();
+            _password = Guid.NewGuid().ToString();
+            _spaceNames = new[]
             {
-                _accountName = Guid.NewGuid().ToString();
-                _password = Guid.NewGuid().ToString();
-                _spaceNames = new[]
-                {
-                    Guid.NewGuid().ToString(),
-                    Guid.NewGuid().ToString()
-                };
-                _systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
-                await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames );
-
-            });
-            task.Wait();
+                Guid.NewGuid().ToString(),
+                Guid.NewGuid().ToString()
+            };
+            _systemConnection = await _testContext.HostTestContext.CreateSystemConnection();
+            await _testContext.HostTestContext.AddUserAccountAndSpaces(_systemConnection, _accountName, _password, _spaceNames );
         }
 
-        public void Dispose()
+        public Task DisposeAsync()
         {
-            var task = Task.Run(() =>
-            {
-                _systemConnection = null;
-                _accountName = null;
-                _spaceNames = null;
-                _password = null;
-            });
-            task.Wait();
+            _systemConnection = null;
+            _accountName = null;
+            _spaceNames = null;
+            _password = null;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

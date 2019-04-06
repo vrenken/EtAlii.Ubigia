@@ -37,12 +37,10 @@ namespace EtAlii.Ubigia.Api.Logical
                 }))
                 .Concat() // one item at a time
                 .Subscribe(onNext: o => {}, onError: parameters.Output.OnError, onCompleted: parameters.Output.OnCompleted);
-//            parameters.Input.Subscribe(
+//            parameters.Input.SubscribeAsync(
 //                    onError: e => parameters.Output.OnError(e),
-//                    onNext: start =>
+//                    onNext: async start =>
 //                    {
-//                        var task = Task.Run(async () =>
-//                        {
 //                            if (start == Identifier.Empty)
 //                            {
 //                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
@@ -58,8 +56,6 @@ namespace EtAlii.Ubigia.Api.Logical
 //                                return;
 //                            }
 //                            parameters.Output.OnNext(entry.Id);
-//                        });
-//                        task.Wait();
 //                    },
 //                    onCompleted: () => parameters.Output.OnCompleted());
 

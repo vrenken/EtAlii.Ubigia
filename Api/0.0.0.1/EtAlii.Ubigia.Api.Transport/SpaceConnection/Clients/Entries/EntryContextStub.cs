@@ -14,14 +14,14 @@
             Data = new EntryDataClientStub();
         }
 
-        public async Task Open(ISpaceConnection spaceConnection)
+        public Task Open(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
-        public async Task Close(ISpaceConnection spaceConnection)
+        public Task Close(ISpaceConnection spaceConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
     }
 }

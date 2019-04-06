@@ -5,32 +5,34 @@
 
     internal partial class SystemContentDataClient
     {
-        public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
+        public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            await Task.Run(() => { _infrastructure.ContentDefinition.Store(identifier, contentDefinition); });
+            _infrastructure.ContentDefinition.Store(identifier, contentDefinition);
             MarkAsStored(contentDefinition);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             //await _client.Post(address, contentDefinition);
 
             //MarkAsStored(contentDefinition);
+            return Task.CompletedTask;
         }
 
-        public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await Task.Run(() => { _infrastructure.ContentDefinition.Store(identifier, contentDefinitionPart); });
+            _infrastructure.ContentDefinition.Store(identifier, contentDefinitionPart); 
             MarkAsStored(contentDefinitionPart);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
             //await _client.Post(address, contentDefinitionPart);
 
             //MarkAsStored(contentDefinitionPart);
+            return Task.CompletedTask;
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
             var result = _infrastructure.ContentDefinition.Get(identifier);
-            return await Task.FromResult(result);
+            return Task.FromResult(result);
 
             //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
             //var contentDefinition = await _client.Get<ContentDefinition>(address);

@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Api.Transport
             Data = new AuthenticationManagementDataClientStub();
         }
 
-        public async Task Open(IStorageConnection storageConnection)
+        public Task Open(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
-        public async Task Close(IStorageConnection storageConnection)
+        public Task Close(IStorageConnection storageConnection)
         {
-            await Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
     }
