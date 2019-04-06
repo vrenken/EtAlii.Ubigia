@@ -1,12 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
 {
+    using EtAlii.Ubigia.Api;
     using System;
     using System.IO;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
+    
     public class NET47ContentManagerTests : IClassFixture<NET47LogicalUnitTestContext>, IAsyncLifetime
     {
 

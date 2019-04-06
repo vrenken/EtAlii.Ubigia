@@ -5,6 +5,7 @@
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
 
     public class TimeImporter : ITimeImporter
     {
@@ -59,7 +60,7 @@
             _logger.Info("Stopped time provider");
         }
 
-        private void Add(long time)
+        private async Task Add(long time)
         {
             _logger.Info("Adding time to space");
 
@@ -77,12 +78,8 @@
                     datePath = String.Format("/{0} += {1:yyyy}/{1:MM}/{1:dd}/{1:HH}/{1:mm}", "Time", utcNow);
                 }
 
-                var task = Task.Run(async () =>
-                {
-                    var sequenceResult = await _context.SystemScriptContext.Process(datePath);
-                    await sequenceResult.Output.LastOrDefaultAsync();
-                });
-                task.Wait();
+                var sequenceResult = await _context.SystemScriptContext.Process(datePath);
+                await sequenceResult.Output.LastOrDefaultAsync();
 
                 //_lastTime = utcNow;
 
@@ -104,12 +101,12 @@
             if (addEachTenSeconds)
             {
                 _subscription = Observable.Interval(TimeSpan.FromSeconds(10))
-                                          .Subscribe(Add);
+                                          .SubscribeAsync(Add);
             }
             else
             {
                 _subscription = Observable.Interval(TimeSpan.FromMinutes(1))
-                                          .Subscribe(Add);
+                                          .SubscribeAsync(Add);
             }
         }
     }

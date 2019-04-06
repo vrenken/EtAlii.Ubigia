@@ -9,6 +9,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+    
     public class ScriptProcessorAssignDynamic2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;

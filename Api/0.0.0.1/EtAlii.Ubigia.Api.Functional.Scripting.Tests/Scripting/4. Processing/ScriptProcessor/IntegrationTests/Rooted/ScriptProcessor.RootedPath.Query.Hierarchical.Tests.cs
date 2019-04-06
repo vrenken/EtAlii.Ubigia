@@ -10,6 +10,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+    
     public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;

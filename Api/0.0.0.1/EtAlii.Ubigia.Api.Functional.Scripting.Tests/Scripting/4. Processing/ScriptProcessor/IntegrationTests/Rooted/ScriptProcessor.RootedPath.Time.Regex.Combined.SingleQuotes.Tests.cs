@@ -9,6 +9,8 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+
+    
     public class ScriptProcessorRootedPathTimeRegexCombinedSingleQuotesTests : IAsyncLifetime
     {
         private IScriptParser _parser;

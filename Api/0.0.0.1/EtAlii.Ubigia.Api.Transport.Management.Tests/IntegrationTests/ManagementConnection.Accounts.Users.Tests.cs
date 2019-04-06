@@ -4,8 +4,9 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-
+    
     public class ManagementConnectionAccountsUsersTests : IClassFixture<NotStartedTransportUnitTestContext>, IAsyncLifetime
     {
         private readonly NotStartedTransportUnitTestContext _testContext;

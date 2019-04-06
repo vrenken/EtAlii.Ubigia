@@ -8,6 +8,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+    
     public class ScriptProcessorLogicalRemoveTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;

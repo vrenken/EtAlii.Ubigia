@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using Xunit;
-
+    
     [Trait("Technology", "AspNetCore")]
     public class SystemConnectionDataConnectionTests : IClassFixture<InfrastructureUnitTestContext>, IAsyncLifetime
     {

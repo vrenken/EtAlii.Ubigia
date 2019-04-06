@@ -9,6 +9,7 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+    
     public class ScriptProcessorAssignDynamicLocationsIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;

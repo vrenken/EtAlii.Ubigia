@@ -3,7 +3,7 @@
     using System;
     using System.IO;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using EtAlii.Ubigia.Tests;
+    using Ubigia.Tests;
 
     public class NET47LogicalUnitTestContext : IDisposable
     {

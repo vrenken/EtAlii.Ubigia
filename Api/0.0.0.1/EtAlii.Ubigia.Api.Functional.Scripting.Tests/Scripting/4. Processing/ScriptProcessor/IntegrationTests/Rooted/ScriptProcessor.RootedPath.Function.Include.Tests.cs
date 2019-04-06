@@ -9,6 +9,8 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
+
+    
     public class ScriptProcessorRootedPathFunctionIncludeTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;

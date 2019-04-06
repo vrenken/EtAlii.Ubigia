@@ -19,15 +19,13 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
-            return Task.Run(() =>
-            {
-                var conditions = ((ConditionalPathSubjectPart) pathSubjectPart).Conditions;
+            var conditions = ((ConditionalPathSubjectPart) pathSubjectPart).Conditions;
 
-                return conditions
-                    .Select(CreateGraphCondition)
-                    .Cast<GraphPathPart>()
-                    .ToArray();
-            });
+            var result = conditions
+                .Select(CreateGraphCondition)
+                .Cast<GraphPathPart>()
+                .ToArray();
+            return Task.FromResult(result);
         }
 
         private GraphCondition CreateGraphCondition(Condition condition)

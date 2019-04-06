@@ -1,4 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿using Microsoft.CSharp.RuntimeBinder;
+
+namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
     using System.Reactive.Linq;
@@ -7,9 +9,10 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
-    using Microsoft.CSharp.RuntimeBinder;
     using Xunit;
+    
 
+    
     public class ScriptProcessorNonRootedPathQueryTemporalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;

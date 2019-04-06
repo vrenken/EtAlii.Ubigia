@@ -51,7 +51,8 @@
                 if (disposing)
                 {
                     // Free other state (managed objects).
-                    Connection.Close();
+                    var task = Connection.Close();
+                    //task.Wait(); // TODO: Refactor the dispose into a Disconnect or something similar.
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.

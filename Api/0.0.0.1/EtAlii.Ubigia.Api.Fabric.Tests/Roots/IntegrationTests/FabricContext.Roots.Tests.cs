@@ -8,7 +8,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
-
+    
     public sealed class FabricContextRootsTests : IClassFixture<TransportUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;

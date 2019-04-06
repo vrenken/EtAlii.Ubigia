@@ -30,7 +30,7 @@
 //                    .Use(_configuration.Address)
 //                    .Use(_configuration.Account, _configuration.Password);
 //                var connection = new ManagementConnectionFactory().Create(configuration);
-//                var task = Task.Run(async () =>
+//                var task = Task. Run(async () =>
 //                {
 //                    await connection.Open();
 //                });
@@ -45,7 +45,7 @@
 //                    .Use(_configuration.Account, SpaceName.System, _configuration.Password);
 //                var connection = new DataConnectionFactory().Create(configuration);
 
-//                var task = Task.Run(async () =>
+//                var task = Task. Run(async () =>
 //                {
 //                    await connection.Open();
 //                });

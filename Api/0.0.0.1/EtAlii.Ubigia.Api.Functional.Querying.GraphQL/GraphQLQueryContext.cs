@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
+    using System.Threading.Tasks;
     using GraphQL;
     using GraphQL.Execution;
     using GraphQL.Http;
