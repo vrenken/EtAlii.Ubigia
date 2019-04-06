@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using EtAlii.Ubigia.Tests;
+    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class TransportUnitTestContext : IAsyncLifetime
