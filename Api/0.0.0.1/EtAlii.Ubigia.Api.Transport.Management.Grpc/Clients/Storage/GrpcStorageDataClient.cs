@@ -2,12 +2,11 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using AdminStorageSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
-    using AdminStorageMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleRequest;
-    using IGrpcStorageTransport = EtAlii.Ubigia.Api.Transport.Grpc.IGrpcStorageTransport;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
     using global::Grpc.Core;
+    using AdminStorageSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
+    using AdminStorageMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleRequest;
 
     public sealed partial class GrpcStorageDataClient : IStorageDataClient<IGrpcStorageTransport>
     {
@@ -18,19 +17,18 @@
         {
             try
             {
-                var storage = new Api.Storage
+                var storage = StorageExtension.ToWire(new Api.Storage
                 {
                     Name = storageName,
                     Address = storageAddress,
-                }.ToWire();
+                });
     
                 var request = new AdminStorageSingleRequest
                 {
                     Storage = storage,
                 };
                 var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
                 return response.Storage.ToLocal();
             }
             catch (RpcException e)
@@ -45,11 +43,10 @@
             {
                 var request = new AdminStorageSingleRequest
                 {
-                    Id = storageId.ToWire(),
+                    Id = GuidExtension.ToWire(storageId),
                 };
                 var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
-                await call.ResponseAsync
-                    .ConfigureAwait(false);
+                await call.ResponseAsync;
             }
             catch (RpcException e)
             {
@@ -61,20 +58,19 @@
         {
             try
             {
-                var storage = new Api.Storage
+                var storage = StorageExtension.ToWire(new Api.Storage
                 {
                     Id = storageId,
                     Name = storageName,
                     Address = storageAddress,
-                }.ToWire();
+                });
                 
                 var request = new AdminStorageSingleRequest
                 {
                     Storage = storage,
                 };
                 var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
                 return response.Storage.ToLocal();
             }
             catch (RpcException e)
@@ -92,8 +88,7 @@
                     Name = storageName,
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
                 return response.Storage?.ToLocal();
             }
             catch (RpcException e)
@@ -108,11 +103,10 @@
             {
                 var request = new AdminStorageSingleRequest
                 {
-                    Id = storageId.ToWire(),
+                    Id = GuidExtension.ToWire(storageId),
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
                 return response.Storage?.ToLocal();
             }
             catch (RpcException e)
@@ -129,8 +123,7 @@
                 {
                 };
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
                 return response.Storages.ToLocal();
             }
             catch (RpcException e)

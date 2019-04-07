@@ -29,8 +29,7 @@
                     var request = new AuthenticationRequest { AccountName = accountName, Password = "", HostIdentifier = _hostIdentifier };
                     // Let's add the AuthenticationToken header manually.
                     var call = _client.AuthenticateAsAsync(request, new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } });
-                    var response = await call.ResponseAsync
-                        .ConfigureAwait(false);
+                    var response = await call.ResponseAsync;
                     _account = response.Account?.ToLocal();
                     
                     authenticationToken = call
@@ -41,8 +40,7 @@
                 {
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsync(request);
-                    var response = await call.ResponseAsync
-                        .ConfigureAwait(false);
+                    var response = await call.ResponseAsync;
                     _account = response.Account?.ToLocal();
                     
                     authenticationToken = call

@@ -1,22 +1,22 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
-    using System;
-    using System.Linq;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
-    using EtAlii.Ubigia.Api.Transport.Management.Grpc;
-    using global::Grpc.Core;
-    using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
+	using System;
+	using System.Linq;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api.Transport.Grpc;
+	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+	using global::Grpc.Core;
+	using Xunit;
+	using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
     using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
     using AdminStorageClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageGrpcService.StorageGrpcServiceClient;
     using AdminStorageRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
-    using Xunit;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
-	[Trait("Technology", "Grpc")]
+    [Trait("Technology", "Grpc")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
 	{
 	    private readonly InfrastructureUnitTestContext _testContext;
@@ -32,8 +32,7 @@
 			var authenticationRequest = new AdminAuthenticationRequest { AccountName = context.TestAccountName, Password = context.TestAccountPassword, HostIdentifier = context.HostIdentifier };
 			
 			var call = authenticationClient.AuthenticateAsync(authenticationRequest);
-			var authenticationResponse = await call.ResponseAsync
-				.ConfigureAwait(false); 
+			var authenticationResponse = await call.ResponseAsync; 
 			var authenticationToken = call
 				.GetTrailers()
 				.SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Value;
