@@ -2,13 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+    using global::Grpc.Core;
     using AdminAccountPostSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountPostSingleRequest;
     using AdminAccountSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountSingleRequest;
     using AdminAccountMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AccountMultipleRequest;
-    using IGrpcStorageTransport = EtAlii.Ubigia.Api.Transport.Grpc.IGrpcStorageTransport;
-    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-    using global::Grpc.Core;
 
     public class GrpcAccountDataClient : IAccountDataClient<IGrpcStorageTransport>
     {
@@ -19,11 +18,11 @@
         {
             try
             {
-                var account = new Api.Account
+                var account = AccountExtension.ToWire(new Api.Account
                 {
                     Name = accountName,
                     Password = accountPassword,
-                }.ToWire();
+                });
     
                 var request = new AdminAccountPostSingleRequest
                 {
@@ -31,8 +30,7 @@
                     Template = template.Name
                 };
                 var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Account.ToLocal();
             }
@@ -48,11 +46,10 @@
             {
                 var request = new AdminAccountSingleRequest
                 {
-                    Id = accountId.ToWire()
+                    Id = GuidExtension.ToWire(accountId)
                 };
                 var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
             }
             catch (RpcException e)
             {
@@ -64,20 +61,19 @@
         {
             try
             {
-                var account = new Api.Account
+                var account = AccountExtension.ToWire(new Api.Account
                 {
                     Id = accountId,
                     Name = accountName,
                     Password = accountPassword,
-                }.ToWire();
+                });
     
                 var request = new AdminAccountSingleRequest
                 {
                     Account = account,
                 };
                 var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Account.ToLocal();
             }
@@ -93,11 +89,10 @@
             {
                 var request = new AdminAccountSingleRequest
                 {
-                    Account = account.ToWire(),
+                    Account = AccountExtension.ToWire(account),
                 };
                 var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Account.ToLocal();
             }
@@ -116,8 +111,7 @@
                     Name = accountName,
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Account.ToLocal();
             }
@@ -133,11 +127,10 @@
             {
                 var request = new AdminAccountSingleRequest
                 {
-                    Id = accountId.ToWire()
+                    Id = GuidExtension.ToWire(accountId)
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Account.ToLocal();
             }
@@ -155,8 +148,7 @@
                 {
                 };
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Accounts.ToLocal();
             }
