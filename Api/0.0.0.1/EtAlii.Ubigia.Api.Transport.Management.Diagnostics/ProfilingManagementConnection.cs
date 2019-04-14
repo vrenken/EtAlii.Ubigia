@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Logging;
 
     public class ProfilingManagementConnection : IManagementConnection
@@ -70,11 +69,8 @@
                     // Free other state (managed objects).
                     if (_decoree.IsConnected)
                     {
-                        var task = Task.Run(async () =>
-                        {
-                            await Close();
-                        });
-                        task.Wait();
+                        var task = Close();
+                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
                     }
                 }
                 // Free your own state (unmanaged objects).
