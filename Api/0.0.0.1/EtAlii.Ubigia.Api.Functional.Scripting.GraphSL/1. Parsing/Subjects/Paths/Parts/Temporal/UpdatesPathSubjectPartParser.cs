@@ -30,9 +30,9 @@
         }
 
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (partIndex == 0)
+            if (arguments.PartIndex == 0)
             {
                 throw new ScriptParserException("The updates path separator cannot be used to start a path.");
             }

@@ -7,35 +7,35 @@
     /// </summary>
     public class AuthenticationDataClientStub : IAuthenticationDataClient
     {
-        public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
+        public Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
         
 
-        public async Task<Storage> GetConnectedStorage(ISpaceConnection connection)
+        public Task<Storage> GetConnectedStorage(ISpaceConnection connection)
         {
-            return await Task.FromResult<Storage>(null);
+            return Task.FromResult<Storage>(null);
         }
         
-        public async Task<Account> GetAccount(ISpaceConnection connection, string accountName)
+        public Task<Account> GetAccount(ISpaceConnection connection, string accountName)
         {
-            return await Task.FromResult<Account>(null);
+            return Task.FromResult<Account>(null);
         }
 
-        public async Task<Space> GetSpace(ISpaceConnection connection)
+        public Task<Space> GetSpace(ISpaceConnection connection)
         {
-            return await Task.FromResult<Space>(null);
+            return Task.FromResult<Space>(null);
         }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
+        public Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

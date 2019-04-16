@@ -8,8 +8,6 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using Xunit.Abstractions;
-
 
     public class LinqQueryContextNodesSelectTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
@@ -18,12 +16,10 @@
         private ILinqQueryContext _context;
         private string _countryPath;
         private IEditableEntry _countryEntry;
-        private readonly ITestOutputHelper _output;
         private readonly LogicalUnitTestContext _testContext;
 
-        public LinqQueryContextNodesSelectTests(ITestOutputHelper output, LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesSelectTests(LogicalUnitTestContext testContext)
         {
-            _output = output;
             _testContext = testContext;
         }
 
@@ -41,10 +37,10 @@
             _countryPath = addResult.Path;
             _countryEntry = addResult.Entry;
 
-            _output.WriteLine("LinqContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
@@ -56,9 +52,8 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            _output.WriteLine("LinqContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-
-            await Task.CompletedTask;
+            Console.WriteLine("LinqContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

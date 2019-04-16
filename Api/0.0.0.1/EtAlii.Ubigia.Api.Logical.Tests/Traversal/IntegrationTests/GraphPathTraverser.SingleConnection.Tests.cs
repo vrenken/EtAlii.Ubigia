@@ -27,12 +27,11 @@
             _fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _fabric.Dispose();
             _fabric = null;
-            
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact]
@@ -62,6 +61,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -101,6 +101,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -144,6 +145,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -183,6 +185,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -227,6 +230,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -267,6 +271,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -311,6 +316,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -319,7 +325,8 @@
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
-            var newHierarchy = new List<string>(hierarchy) {Guid.NewGuid().ToString()};
+            var newHierarchy = new List<string>(hierarchy);
+            newHierarchy.Add(Guid.NewGuid().ToString());
             hierarchy = newHierarchy.ToArray();
             foreach (var item in hierarchy)
             {
@@ -351,6 +358,7 @@
             var communicationsEntry = (IEditableEntry)await _fabric.Entries.Get(communicationsRoot, scope);
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(_fabric, communicationsEntry, depth);
+//            var entry = hierarchyResult.Item1;
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
@@ -359,7 +367,8 @@
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
             graphPathBuilder.Add(communicationsEntry.Id);
-            var newHierarchy = new List<string>(hierarchy) {Guid.NewGuid().ToString()};
+            var newHierarchy = new List<string>(hierarchy);
+            newHierarchy.Add(Guid.NewGuid().ToString());
             hierarchy = newHierarchy.ToArray();
             foreach (var item in hierarchy)
             {

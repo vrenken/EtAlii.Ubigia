@@ -25,9 +25,9 @@
             _itemToPathSubjectConverter = itemToPathSubjectConverter;
         }
 
-        public async Task Process(OperatorParameters parameters)
+        public void Process(OperatorParameters parameters)
         {
-            var pathToRemove = await GetPathToRemove(parameters);
+            var pathToRemove = GetPathToRemove(parameters);
             if (pathToRemove == null)
             {
                 throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires a path on the right side");
@@ -60,23 +60,26 @@
             //{
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part");
             //}
-            await Task.CompletedTask;
         }
 
-        private async Task<PathSubject> GetPathToRemove(OperatorParameters parameters)
+        private PathSubject GetPathToRemove(OperatorParameters parameters)
         {
             PathSubject pathToAdd = null;
 
-            if (parameters.RightSubject is PathSubject subject)
+            var task = Task.Run(async () =>
             {
-                pathToAdd = subject;
-            }
-            else
-            {
-                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+                if (parameters.RightSubject is PathSubject pathSubject)
+                {
+                    pathToAdd = pathSubject;
+                }
+                else
+                {
+                    var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
-                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-            }
+                    _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
+                }
+            });
+            task.Wait();
 
             return pathToAdd;
         }

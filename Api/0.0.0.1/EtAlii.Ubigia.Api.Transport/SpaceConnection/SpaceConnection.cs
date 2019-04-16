@@ -75,7 +75,7 @@
             await Authentication.Data.Authenticate(this, accountName, password);
 
             Storage = await Authentication.Data.GetConnectedStorage(this);
-           
+
             await Authentication.Open(this);
             await Roots.Open(this);
             await Entries.Open(this);
@@ -88,9 +88,9 @@
 	        Space = await Authentication.Data.GetSpace(this);
         }
 
-		#region Disposable
+        #region Disposable
 
-		private bool _disposed;
+        private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()
@@ -103,15 +103,15 @@
         {
             if (!_disposed)
             {
-                if (disposing && IsConnected)
+                if (disposing)
                 {
                     // Free other state (managed objects).
-                    var task = Task.Run(async () =>
+                    if (IsConnected)
                     {
-                        await Close();
-                    });
-                    task.Wait();
-                    Storage = null;
+                        var task = Close();
+                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                        Storage = null;
+                    }
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.

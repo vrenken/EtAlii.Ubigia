@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -89,13 +90,13 @@
 
         // Add item
         [HttpPost]
-        public IActionResult Post([FromBody]Space item, string spaceTemplate)
+        public async Task<IActionResult> Post([FromBody]Space item, string spaceTemplate)
         {
             IActionResult response;
             try
             {
                 var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
-                item = _items.Add(item, template);
+                item = await _items.Add(item, template);
                 response = Ok(item);
             }
             catch (Exception ex)

@@ -7,24 +7,24 @@
     /// </summary>
     public class AuthenticationManagementDataClientStub : IAuthenticationManagementDataClient
     {
-        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
+        public Task Authenticate(IStorageConnection connection, string accountName, string password)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public Task<Storage> GetConnectedStorage(IStorageConnection connection)
         {
-            return await Task.FromResult<Storage>(null);
+            return Task.FromResult<Storage>(null);
         }
         
-        public async Task Connect(IStorageConnection connection)
+        public Task Connect(IStorageConnection connection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(IStorageConnection connection)
+        public Task Disconnect(IStorageConnection connection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

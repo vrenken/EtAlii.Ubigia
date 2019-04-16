@@ -6,17 +6,24 @@
 
     internal class GrpcEntryNotificationClient : GrpcClientBase, IEntryNotificationClient<IGrpcSpaceTransport>
     {
+        //private HubConnection _connection;
+//        private readonly string _name;
         private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-        public event Action<Api.Identifier> Prepared = delegate { };
-        public event Action<Api.Identifier> Stored = delegate { };
+        public event Action<Identifier> Prepared = delegate { };
+        public event Action<Identifier> Stored = delegate { };
 
-        private void OnPrepared(Api.Identifier identifier)
+//        public GrpcEntryNotificationClient()
+//        {
+//            //_name = GrpcHub.Entry;
+//        }
+
+        private void OnPrepared(Identifier identifier)
         {
             Prepared(identifier);
         }
 
-        private void OnStored(Api.Identifier identifier)
+        private void OnStored(Identifier identifier)
         {
             Stored(identifier);
         }
@@ -41,7 +48,7 @@
             await base.Disconnect(spaceConnection);
 
             // TODO: GRPC
-            //return await Task.FromResult<IEnumerable<IReadOnlyEntry>>(null);
+            //return await Task .FromResult<IEnumerable<IReadOnlyEntry>>(null);
             //await _connection.DisposeAsync();
             //_connection = null;
 

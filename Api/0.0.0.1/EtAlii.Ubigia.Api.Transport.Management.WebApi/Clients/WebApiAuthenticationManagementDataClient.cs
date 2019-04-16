@@ -17,14 +17,16 @@
             await Disconnect((IWebApiStorageConnection) connection);
         }
 
-        private async Task Connect(IWebApiStorageConnection connection)
+        private Task Connect(IWebApiStorageConnection connection)
         {
-            await Task.Run(() => { _connection = connection; });
+            _connection = connection;
+            return Task.CompletedTask;
         }
 
-        private async Task Disconnect(IWebApiStorageConnection connection)
+        private Task Disconnect(IWebApiStorageConnection connection)
         {
-            await Task.Run(() => { _connection = null; });
+            _connection = null;
+            return Task.CompletedTask;
         }
     }
 }

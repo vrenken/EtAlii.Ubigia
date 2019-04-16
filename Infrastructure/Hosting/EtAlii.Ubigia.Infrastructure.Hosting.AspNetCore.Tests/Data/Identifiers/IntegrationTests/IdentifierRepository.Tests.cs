@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
     
@@ -15,22 +17,22 @@
         }
 
         [Fact]
-        public void IdentifierRepository_Get_Current_Head()
+        public async Task IdentifierRepository_Get_Current_Head()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             var identifier = context.Host.Infrastructure.Identifiers.GetCurrentHead(space.Id);
             Assert.NotEqual(identifier, Identifier.Empty);
         }
 
         [Fact]
-        public void IdentifierRepository_Get_Next_Head()
+        public async Task IdentifierRepository_Get_Next_Head()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             var identifier = context.Host.Infrastructure.Identifiers.GetNextHead(space.Id, out Identifier previousHeadIdentifier);
             Assert.NotEqual(identifier, Identifier.Empty);
@@ -39,11 +41,11 @@
         }
 
         [Fact]
-        public void IdentifierRepository_Get_Current_Tail()
+        public async Task IdentifierRepository_Get_Current_Tail()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
 
             var identifier = context.Host.Infrastructure.Identifiers.GetTail(space.Id);
             Assert.NotEqual(identifier, Identifier.Empty);

@@ -9,8 +9,8 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Logical.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\GraphPathAssigner.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\GraphPathAssignerFactory.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\__GraphPathAssigner.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Assignment\UnitTests\__GraphPathAssignerFactory.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Link.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Compose\IntegrationTests\GraphComposer.Remove.Tests.cs" />
@@ -22,6 +22,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Content\UnitTests\ContentPartCalculator.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\Diagnostics\IntegrationTests\ProfilingLogicalContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Context\UnitTests\LogicalContext.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ILogicalNodeSet.Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ILogicalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)LogicalTestContextFactory.cs" />

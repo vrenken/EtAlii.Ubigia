@@ -30,22 +30,22 @@
         }
 
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if(partIndex == 0)
+            if(arguments.PartIndex == 0)
             {
                 throw new ScriptParserException("The all updates path separator cannot be used to start a path.");
             }
-            if (before is UpdatesPathSubjectPart || after is UpdatesPathSubjectPart || 
-                before is AllUpdatesPathSubjectPart || after is AllUpdatesPathSubjectPart)
+            if (arguments.Before is UpdatesPathSubjectPart || arguments.After is UpdatesPathSubjectPart || 
+                arguments.Before is AllUpdatesPathSubjectPart || arguments.After is AllUpdatesPathSubjectPart)
             {
                 throw new ScriptParserException("The all updates path separator cannot be combined.");
             }
-            if (after is DowndatePathSubjectPart)
+            if (arguments.After is DowndatePathSubjectPart)
             {
                 throw new ScriptParserException("The all updates path separator cannot be followed by a downdate path separator.");
             }
-            if (after is AllDowndatesPathSubjectPart)
+            if (arguments.After is AllDowndatesPathSubjectPart)
             {
                 throw new ScriptParserException("The all updates path separator cannot be followed by an all downdates path separator.");
             }

@@ -47,13 +47,13 @@
             var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
 
             // Act.
-            var act = new Action(() =>
+            var act = new Func<Task>(async() =>
             {
-                userSettingsSetter.Set(context, email, null);
+                await userSettingsSetter.Set(context, email, null);
             });
 
             // Assert.
-            Assert.Throws<ArgumentNullException>(act);
+            await Assert.ThrowsAsync<ArgumentNullException>(act);
         }
 
         [Fact]
@@ -72,7 +72,7 @@
             var userSettings = TestUserSettings.Create(email);
 
             // Act.
-            userSettingsSetter.Set(context, email, userSettings);
+            await userSettingsSetter.Set(context, email, userSettings);
 
             // Assert.
             var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
@@ -98,10 +98,10 @@
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            userSettingsSetter.Set(context, email, firstUserSettings);
+            await userSettingsSetter.Set(context, email, firstUserSettings);
             var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic firstResult = await processingResult.Output.LastOrDefaultAsync();
-            userSettingsSetter.Set(context, email, secondUserSettings);
+            await userSettingsSetter.Set(context, email, secondUserSettings);
             processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
@@ -127,8 +127,8 @@
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            userSettingsSetter.Set(context, email, firstUserSettings);
-            userSettingsSetter.Set(context, email, secondUserSettings);
+            await userSettingsSetter.Set(context, email, firstUserSettings);
+            await userSettingsSetter.Set(context, email, secondUserSettings);
             var processingResult = await context.Process($"<= /Providers/Google/PeopleApi/\"{email}\"");
             dynamic secondResult = await processingResult.Output.LastOrDefaultAsync();
 
@@ -154,10 +154,10 @@
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            userSettingsSetter.Set(context, email, firstUserSettings);
-            var firstResult = userSettingsGetter.Get(context).Single(s => s.Email == email);
-            userSettingsSetter.Set(context, email, secondUserSettings);
-            var secondResult = userSettingsGetter.Get(context).Single(s => s.Email == email);
+            await userSettingsSetter.Set(context, email, firstUserSettings);
+            var firstResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
+            await userSettingsSetter.Set(context, email, secondUserSettings);
+            var secondResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
 
             // Assert.
             TestUserSettings.AreEqual(firstUserSettings, firstResult);
@@ -182,9 +182,9 @@
             var secondUserSettings = TestUserSettings.Create(email);
 
             // Act.
-            userSettingsSetter.Set(context, email, firstUserSettings);
-            userSettingsSetter.Set(context, email, secondUserSettings);
-            var secondResult = userSettingsGetter.Get(context).Single(s => s.Email == email);
+            await userSettingsSetter.Set(context, email, firstUserSettings);
+            await userSettingsSetter.Set(context, email, secondUserSettings);
+            var secondResult = (await userSettingsGetter.Get(context)).Single(s => s.Email == email);
 
             // Assert.
             TestUserSettings.AreEqual(secondUserSettings, secondResult);

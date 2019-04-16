@@ -7,6 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional
         string Id { get; }
         LpsParser Parser { get; }
         PathSubjectPart Parse(LpNode node);
-        void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after);
+        void Validate(PathSubjectPartParserArguments arguments);
     }
 }

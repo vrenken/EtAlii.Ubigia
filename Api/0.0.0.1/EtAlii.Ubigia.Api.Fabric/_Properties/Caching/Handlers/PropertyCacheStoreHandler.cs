@@ -19,7 +19,7 @@
         {
             await Task.Run(() =>
             {
-                if (_cacheProvider.Cache.TryGetValue(identifier, out var properties))
+                if (_cacheProvider.Cache.TryGetValue(identifier, out _))
                 {
                     // Yup, we got a cache hit.
                     _cacheProvider.Cache.Remove(identifier);

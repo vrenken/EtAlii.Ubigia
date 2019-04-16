@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 
@@ -14,11 +15,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        SystemSettings ISystemSettingsGetter.Get(IGraphSLScriptContext context)
+        async Task<SystemSettings> ISystemSettingsGetter.Get(IGraphSLScriptContext context)
         {
             _logger.Info($"Getting PeopleApi system settings");
 
-            var result = _decoree.Get(context);
+            var result = await _decoree.Get(context);
 
             _logger.Info($"Finished getting PeopleApi system settings");
 

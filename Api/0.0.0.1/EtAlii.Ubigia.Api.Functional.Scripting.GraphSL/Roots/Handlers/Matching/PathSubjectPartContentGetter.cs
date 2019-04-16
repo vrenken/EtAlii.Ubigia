@@ -7,37 +7,43 @@ namespace EtAlii.Ubigia.Api.Functional
 
     class PathSubjectPartContentGetter : IPathSubjectPartContentGetter
     {
-        private readonly ISelector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, Task<string>>> _selector;
+        private readonly ISelector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, string>> _selector;
 
         public PathSubjectPartContentGetter()
         {
-            _selector = new Selector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, Task<string>>>()
+            _selector = new Selector<PathSubjectPart, Func<PathSubjectPart, IScriptScope, string>>()
                 .Register(part => part is ConstantPathSubjectPart, GetConstantPathSubjectPartContent)
                 .Register(part => part is VariablePathSubjectPart, GetVariablePathSubjectPartContent)
-                .Register(part => true, (part, scope) => Task.FromResult<string>(null));
+                .Register(part => true, (part, scope) => null);
         }
 
-        public async Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope)
+        public string GetPartContent(PathSubjectPart part, IScriptScope scope)
         {
             var getter = _selector.Select(part);
-            return await getter(part, scope);
+            return getter(part, scope);
         }
 
-        private async Task<string> GetVariablePathSubjectPartContent(PathSubjectPart part, IScriptScope scope)
+        private string GetVariablePathSubjectPartContent(PathSubjectPart part, IScriptScope scope)
         {
             var variablePathSubjectPart = (VariablePathSubjectPart)part;
-            if (scope.Variables.TryGetValue(variablePathSubjectPart.Name, out var variable))
+            ScopeVariable variable;
+            if (scope.Variables.TryGetValue(variablePathSubjectPart.Name, out variable))
             {
-                var variableValue = await variable.Value.SingleAsync();
+                object variableValue = null;
+                var task = Task.Run(async () =>
+                {
+                    variableValue = await variable.Value.SingleAsync();
+                });
+                task.Wait();
                 return variableValue?.ToString();
             }
             return null;
         }
 
-        private async Task<string> GetConstantPathSubjectPartContent(PathSubjectPart part, IScriptScope scope)
+        private string GetConstantPathSubjectPartContent(PathSubjectPart part, IScriptScope scope)
         {
             var constantPathSubjectPart = (ConstantPathSubjectPart)part;
-            return await Task.FromResult(constantPathSubjectPart.Name);
+            return constantPathSubjectPart.Name;
         }
 
     }

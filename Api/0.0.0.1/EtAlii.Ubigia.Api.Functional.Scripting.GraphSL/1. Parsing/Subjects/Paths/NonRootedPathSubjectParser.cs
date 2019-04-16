@@ -72,7 +72,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     var beforePathPart = i > 0 ? parts[i - 1] : null;
                     var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
                     var part = parts[i];
-                    _pathSubjectPartsParser.Validate(beforePathPart, part, i, afterPathPart);
+                    var arguments = new PathSubjectPartParserArguments(subject, beforePathPart, part, i, afterPathPart);
+                    _pathSubjectPartsParser.Validate(arguments);
                 }
 
                 if (subjectIndex == 0 && pathSubject.Parts.FirstOrDefault() is ConstantPathSubjectPart)

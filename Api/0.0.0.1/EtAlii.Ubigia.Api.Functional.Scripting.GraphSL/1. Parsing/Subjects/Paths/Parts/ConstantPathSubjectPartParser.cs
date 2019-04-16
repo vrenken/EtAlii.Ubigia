@@ -42,23 +42,23 @@ namespace EtAlii.Ubigia.Api.Functional
             return new ConstantPathSubjectPart(text);
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart)
+            if (arguments.Before is ConstantPathSubjectPart || arguments.After is ConstantPathSubjectPart)
             {
                 throw new ScriptParserException("Two constant path parts cannot be combined.");
             }
-            if (partIndex != 0 || after == null)
+            if (arguments.PartIndex != 0 || arguments.After == null)
             {
-                var constant = (ConstantPathSubjectPart)part;
+                var constant = (ConstantPathSubjectPart)arguments.Part;
                 if (constant.Name == String.Empty)
                 {
                     throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
                 }
             }
-            if (partIndex == 0 && after != null)
+            if (arguments.PartIndex == 0 && arguments.After != null)
             {
-                var constant = (ConstantPathSubjectPart)part;
+                var constant = (ConstantPathSubjectPart)arguments.Part;
                 if (constant.Name == String.Empty)
                 {
                     throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");

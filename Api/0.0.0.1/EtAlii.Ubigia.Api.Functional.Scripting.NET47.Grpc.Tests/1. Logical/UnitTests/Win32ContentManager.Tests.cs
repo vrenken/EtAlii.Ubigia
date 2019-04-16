@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using Xunit;
 
-
     public class NET47ContentManager2Tests : IAsyncLifetime
     {
         private readonly string _testImageFileName;
@@ -14,7 +13,6 @@
             // Getting Temp file name to use
             _testImageFileName = NET47TestHelper.CreateTemporaryFileName();
         }
-
         public async Task InitializeAsync()
         {
             await NET47TestHelper.SaveResourceTestImage(_testImageFileName);
@@ -28,7 +26,6 @@
             }
             return Task.CompletedTask;
         }
-        
 
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Create()
@@ -87,6 +84,5 @@
         //        // Assert.
         //        Assert.Throws<ContentManagerException>(act);
         //    }
-        
     }
 }

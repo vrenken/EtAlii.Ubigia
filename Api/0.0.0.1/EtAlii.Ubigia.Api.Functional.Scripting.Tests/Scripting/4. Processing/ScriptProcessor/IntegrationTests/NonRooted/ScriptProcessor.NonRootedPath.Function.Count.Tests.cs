@@ -8,6 +8,8 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
+
+
     
     public class ScriptProcessorNonRootedPathFunctionCountTests : IAsyncLifetime
     {
@@ -148,5 +150,6 @@
             Assert.Single(personsAfter);
             Assert.Equal(3, personsAfter.Single());
         }
+
     }
 }

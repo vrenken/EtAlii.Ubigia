@@ -2,13 +2,12 @@
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Grpc;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
+    using global::Grpc.Core;
     using AdminSpacePostSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpacePostSingleRequest;
     using AdminSpaceSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceSingleRequest;
     using AdminSpaceMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.SpaceMultipleRequest;
-    using IGrpcStorageTransport = EtAlii.Ubigia.Api.Transport.Grpc.IGrpcStorageTransport;
-    using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-    using global::Grpc.Core;
 
     public sealed class GrpcSpaceDataClient : ISpaceDataClient<IGrpcStorageTransport>
     {
@@ -19,11 +18,11 @@
         {
             try
             {
-                var space = new Api.Space 
+                var space = SpaceExtension.ToWire(new Api.Space 
                 {
                     Name = spaceName,
                     AccountId = accountId,
-                }.ToWire();
+                });
                 
                 var request = new AdminSpacePostSingleRequest
                 {
@@ -31,8 +30,7 @@
                     Template = template.Name
                 };
                 var call = _client.PostAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Space.ToLocal();
             }
@@ -48,11 +46,10 @@
             {
                 var request = new AdminSpaceSingleRequest
                 {
-                    Id = spaceId.ToWire(),
+                    Id = GuidExtension.ToWire(spaceId),
                 };
                 var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
             }
             catch (RpcException e)
             {
@@ -64,19 +61,18 @@
         {
             try
             {
-                var space = new Api.Space
+                var space = SpaceExtension.ToWire(new Api.Space
                 {
                     Id = spaceId,
                     Name = spaceName,
-                }.ToWire();
+                });
                 
                 var request = new AdminSpaceSingleRequest
                 {
                     Space = space,
                 };
                 var call = _client.PutAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Space.ToLocal();
             }
@@ -95,8 +91,7 @@
                     Name = spaceName,
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Space.ToLocal();
             }
@@ -112,11 +107,10 @@
             {
                 var request = new AdminSpaceSingleRequest
                 {
-                    Id = spaceId.ToWire(),
+                    Id = GuidExtension.ToWire(spaceId),
                 };
                 var call = _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Space.ToLocal();
             }
@@ -132,11 +126,10 @@
             {
                 var request = new AdminSpaceMultipleRequest
                 {                               
-                    AccountId = accountId.ToWire(),
+                    AccountId = GuidExtension.ToWire(accountId),
                 };
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync
-                    .ConfigureAwait(false);
+                var response = await call.ResponseAsync;
     
                 return response.Spaces.ToLocal();
             }

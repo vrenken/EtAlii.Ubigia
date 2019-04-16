@@ -15,10 +15,10 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     
     public class ScriptProcessorNonRootedPathQueryTemporalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
-        private readonly LogicalUnitTestContext _testContext;
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
+        private readonly LogicalUnitTestContext _testContext;
 
         public ScriptProcessorNonRootedPathQueryTemporalIntegrationTests(LogicalUnitTestContext testContext)
         {
@@ -34,13 +34,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _parser = null;
             _logicalContext.Dispose();
             _logicalContext = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

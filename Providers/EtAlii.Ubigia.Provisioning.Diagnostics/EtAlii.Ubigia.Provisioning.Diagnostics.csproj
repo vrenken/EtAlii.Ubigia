@@ -19,13 +19,6 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222057</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Diagnostics.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Provisioning.Diagnostics.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Clients\**" />
@@ -43,7 +36,7 @@
     <Compile Remove="LocalInfrastructure.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.50" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.56" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />

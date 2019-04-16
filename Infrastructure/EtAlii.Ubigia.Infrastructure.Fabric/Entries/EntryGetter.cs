@@ -108,6 +108,7 @@
 
             RetrieveAndAdd<IdentifierComponent>(containerId, selectedComponents);
             RetrieveAndAdd<TypeComponent>(containerId, selectedComponents);
+            RetrieveAndAdd<TagComponent>(containerId, selectedComponents);
 
             if (entryRelations.HasFlag(EntryRelation.Previous))
             {

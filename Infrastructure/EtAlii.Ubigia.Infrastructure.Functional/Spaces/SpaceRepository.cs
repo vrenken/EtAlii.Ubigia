@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -17,17 +18,17 @@
         {
             _spaceInitializer = spaceInitializer;
             _logicalContext = logicalContext;
-            _logicalContext.Spaces.Added += OnSpaceAdded;
         }
 
-        private void OnSpaceAdded(object sender, SpaceAddedEventArgs e)
+        public async Task<Space> Add(Space item, SpaceTemplate template)
         {
-            _spaceInitializer.Initialize(e.Space, e.Template);
-        }
+            var addedSpace = _logicalContext.Spaces.Add(item, template, out bool isAdded);
+            if (isAdded)
+            {
+                await _spaceInitializer.Initialize(addedSpace, template);
+            }
 
-        public Space Add(Space item, SpaceTemplate template)
-        {
-            return _logicalContext.Spaces.Add(item, template);
+            return addedSpace;
         }
 
         public Space Get(Guid accountId, string spaceName)

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Logging;
 
     public class LoggingManagementConnection : IManagementConnection
@@ -121,14 +120,14 @@
         {
             if (!_disposed)
             {
-                if (disposing && _decoree.IsConnected)
+                if (disposing)
                 {
                     // Free other state (managed objects).
-                    var task = Task.Run(async () =>
+                    if (_decoree.IsConnected)
                     {
-                        await Close();
-                    });
-                    task.Wait();
+                        var task = Close();
+                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                    }
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.

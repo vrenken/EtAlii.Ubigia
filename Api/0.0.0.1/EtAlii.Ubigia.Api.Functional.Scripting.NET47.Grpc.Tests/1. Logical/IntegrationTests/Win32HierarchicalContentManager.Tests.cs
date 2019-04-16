@@ -3,11 +3,9 @@
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
-
 
     public class NET47HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
@@ -17,6 +15,7 @@
         public NET47HierarchicalContentManagerTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
+
             // Getting Temp folder names to use
             _testFolderSimple = NET47TestHelper.CreateTemporaryFolderName();
         }

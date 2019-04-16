@@ -18,9 +18,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private ObservableCollection<Space> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
         private ObservableCollection<Space> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
 
-        public event EventHandler<SpaceAddedEventArgs> Added { add { _added += value; } remove { var added = _added; if (added != null) added -= value; } }
-        private EventHandler<SpaceAddedEventArgs> _added;
-
         public LogicalSpaceSet(
             IFabricContext fabric)
         {
@@ -69,14 +66,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return items;
         }
 
-        public Space Add(Space item, SpaceTemplate template)
+        public Space Add(Space item, SpaceTemplate template, out bool isAdded)
         {
             var space = _fabric.Items.Add(Items, CannAddFunction, item);
-            if (space != null)
-            {
-                var e =  new SpaceAddedEventArgs(space, template);
-                _added?.Invoke(this, e);
-            }
+            isAdded = space != null;
             return space;
         }
 

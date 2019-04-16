@@ -4,49 +4,49 @@
 
     public class ContentDataClientStub : IContentDataClient 
     {
-        public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
+        public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            return await Task.FromResult<IReadOnlyContentDefinition>(null);
+            return Task.FromResult<IReadOnlyContentDefinition>(null);
         }
 
-        public async Task Store(Identifier identifier, Content content)
+        public Task Store(Identifier identifier, Content content)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Store(Identifier identifier, ContentPart contentPart)
+        public Task Store(Identifier identifier, ContentPart contentPart)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
         {
-            return await Task.FromResult<IReadOnlyContent>(null);
+            return Task.FromResult<IReadOnlyContent>(null);
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
+        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, ulong contentPartId)
         {
-            return await Task.FromResult<IReadOnlyContentPart>(null);
+            return Task.FromResult<IReadOnlyContentPart>(null);
         }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
+        public Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

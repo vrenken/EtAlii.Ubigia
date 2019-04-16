@@ -19,16 +19,9 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222036</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Fabric.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Infrastructure.Fabric.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.50" />
+    <PackageReference Include="EtAlii.Ubigia.Storage" Version="1.0.55" />
     <PackageReference Include="HashLib" Version="2.1.0.2" />
   </ItemGroup>
   <ItemGroup>

@@ -8,22 +8,18 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using Xunit.Abstractions;
-
 
     public class LinqQueryContextNodesAddAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
+        private readonly LogicalUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
-        private readonly ITestOutputHelper _output;
-        private readonly LogicalUnitTestContext _testContext;
 
         private string _countryPath;
 
-        public LinqQueryContextNodesAddAddTests(ITestOutputHelper output, LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesAddAddTests(LogicalUnitTestContext testContext)
         {
-            _output = output;
             _testContext = testContext;
         }
 
@@ -41,10 +37,10 @@
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
 
-            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
@@ -55,12 +51,10 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-
-            await Task.CompletedTask;
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return Task.CompletedTask;
         }
-        
-        
+
         [Fact(Skip="Not working yet"), Trait("Category", TestAssembly.Category)]
         public void Linq_Nodes_Select_Add_At()
         {

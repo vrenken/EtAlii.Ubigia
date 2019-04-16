@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
 
@@ -14,11 +16,11 @@
         }
 
         [Fact]
-        public void PropertiesRepository_Store_Properties()
+        public async Task PropertiesRepository_Store_Properties()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var properties = _testContext.TestPropertiesFactory.Create();
 
@@ -30,11 +32,11 @@
         }
 
         [Fact]
-        public void PropertiesRepository_Retrieve_Properties()
+        public async Task PropertiesRepository_Retrieve_Properties()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var properties = _testContext.TestPropertiesFactory.CreateComplete();
             context.Host.Infrastructure.Properties.Store(entry.Id, properties);

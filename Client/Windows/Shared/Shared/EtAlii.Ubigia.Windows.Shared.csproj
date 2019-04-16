@@ -19,13 +19,6 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <ProjectGuid>ffdbeb1f-714d-40a0-92c0-b9d64ca1efa6</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Shared.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Windows.Shared.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <!-- 
   Interesting link:
@@ -60,7 +53,7 @@
     <EmbeddedResource Include="Icon-Logo-White.ico" />
     <EmbeddedResource Include="Icon-Logo.ico" />
     <EmbeddedResource Include="Icon-Logo.png" />
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.50" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.56" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />

@@ -67,7 +67,6 @@
             var entryId = _testIdentifierFactory.Create();
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
-            
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             for (int i = 0; i < count; i++)
             {
@@ -99,7 +98,6 @@
             var entryId = _testIdentifierFactory.Create();
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
-            
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             var idToExclude = Identifier.Empty;
             for (int i = 0; i < count; i++)
@@ -137,7 +135,6 @@
             var entryId = _testIdentifierFactory.Create();
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
-            
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             var idToExclude = Identifier.Empty;
             for (int i = 0; i < count; i++)
@@ -175,7 +172,6 @@
             var entryId = _testIdentifierFactory.Create();
             var previousEntryId = _testIdentifierFactory.Create();
             var previousEntryRelation = Relation.NewRelation(previousEntryId);
-            
             var first = (IEditableEntry)Entry.NewEntry(entryId, previousEntryRelation);
             for (int i = 0; i < count; i++)
             {

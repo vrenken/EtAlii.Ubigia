@@ -22,6 +22,7 @@
             IGraphPathDowndateRelationTraverser graphPathDowndateRelationTraverser,
             IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser,
             IGraphPathOriginalRelationTraverser graphPathOriginalRelationTraverser,
+            IGraphPathTaggedNodeTraverser graphPathTaggedNodeTraverser,
             IGraphPathWildcardTraverser graphPathWildcardTraverser,
             ITraversingGraphPathWildcardTraverser traversingGraphPathWildcardTraverser,
             IGraphPathConditionalTraverser graphPathConditionalTraverser)
@@ -43,6 +44,7 @@
                 .Register(part => part == GraphRelation.Downdate, graphPathDowndateRelationTraverser)
                 .Register(part => part == GraphRelation.Final, graphPathFinalRelationTraverser)
                 .Register(part => part == GraphRelation.Original, graphPathOriginalRelationTraverser)
+                .Register(part => part is GraphTaggedNode, graphPathTaggedNodeTraverser)
                 .Register(part => part is GraphWildcard, graphPathWildcardTraverser)
                 .Register(part => part is GraphTraversingWildcard, traversingGraphPathWildcardTraverser)
                 .Register(part => part is GraphCondition, graphPathConditionalTraverser);

@@ -2,16 +2,14 @@
 {
     using System;
     using System.IO;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Ubigia.Tests;
-    using Xunit;
 
-    public class NET47LogicalUnitTestContext : IAsyncLifetime
+    public class NET47LogicalUnitTestContext : IDisposable
     {
-        public readonly string TestFile2MImage;
-        public readonly string TestFile10MRaw;
-        public readonly string TestFile100MRaw;
+        public string TestFile2MImage;
+        public string TestFile10MRaw;
+        public string TestFile100MRaw;
 
         public FileComparer FileComparer { get; }
         public FolderComparer FolderComparer { get; }
@@ -28,16 +26,13 @@
             TestFile2MImage = NET47TestHelper.CreateTemporaryFileName();
             TestFile10MRaw = NET47TestHelper.CreateTemporaryFileName();
             TestFile100MRaw = NET47TestHelper.CreateTemporaryFileName();
+
+            NET47TestHelper.SaveResourceTestImage(TestFile2MImage);
+            NET47TestHelper.SaveTestFile(TestFile10MRaw, 10);
+            NET47TestHelper.SaveTestFile(TestFile100MRaw, 100);
         }
 
-        public async Task InitializeAsync()
-        {
-            await NET47TestHelper.SaveResourceTestImage(TestFile2MImage);
-            await NET47TestHelper.SaveTestFile(TestFile10MRaw, 10);
-            await NET47TestHelper.SaveTestFile(TestFile100MRaw, 100);
-        }
-
-        public Task DisposeAsync()
+        public void Dispose()
         {
             if (File.Exists(TestFile2MImage))
             {
@@ -54,7 +49,6 @@
                 File.Delete(TestFile100MRaw);
             }
             LogicalTestContext = null;
-            return Task.CompletedTask;
         }
     }
 }

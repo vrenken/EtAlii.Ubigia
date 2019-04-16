@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    
     public class FabricContextContentTests : IClassFixture<TransportUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;
@@ -23,12 +22,11 @@
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _fabric.Dispose();
             _fabric = null;
-            
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -113,5 +111,60 @@
             Assert.Equal(content.TotalParts, retrievedContent.Summary.TotalParts);
             Assert.True(retrievedContent.Summary.IsComplete);
         }
+
+        //[Fact, Trait("Category", TestAssembly.Category)]
+        //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Size()
+        //{
+        //    var connection = CreateFabricContext();
+
+        //    var root = connection.Roots.Get("Hierarchy");
+        //    var entry = connection.Entries.Get(root.Identifier);
+
+        //    var contentDefinition = Create();
+        //    connection.Content.StoreDefinition(entry.Id, contentDefinition);
+
+        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id);
+
+        //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size);
+        //}
+
+        //[Fact, Trait("Category", TestAssembly.Category)]
+        //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Checksum()
+        //{
+        //    var connection = CreateFabricContext();
+
+        //    var root = connection.Roots.Get("Hierarchy");
+        //    var entry = connection.Entries.Get(root.Identifier);
+
+        //    var contentDefinition = Create();
+        //    connection.Content.StoreDefinition(entry.Id, contentDefinition);
+
+        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id);
+
+        //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
+        //}
+
+
+        //[Fact, Trait("Category", TestAssembly.Category)]
+        //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Parts()
+        //{
+        //    var connection = CreateFabricContext();
+
+        //    var root = connection.Roots.Get("Hierarchy");
+        //    var entry = connection.Entries.Get(root.Identifier);
+
+        //    var contentDefinition = Create();
+        //    connection.Content.StoreDefinition(entry.Id, contentDefinition);
+
+        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id);
+
+        //    Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count());
+        //    for (int i = 0; i < contentDefinition.Parts.Count; i++)
+        //    {
+        //        Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum);
+        //        Assert.Equal(contentDefinition.Parts[i].Size, retrievedContentDefinition.Parts.ElementAt(i).Size);
+        //    }
+        //}
+
     }
 }

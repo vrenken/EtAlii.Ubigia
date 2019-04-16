@@ -9,7 +9,7 @@
         PathSubjectPart Parse(LpNode node);
 
         bool CanValidate(PathSubjectPart part);
-        void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after);
+        void Validate(PathSubjectPartParserArguments arguments);
 
     }
 }

@@ -19,7 +19,7 @@
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Char('#') + Lp.ZeroOrMore(c => c != '\n').Id(TextId));
+            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Char('-') + Lp.Char('-') + Lp.ZeroOrMore(c => c != '\n').Id(TextId));
         }
 
         public bool CanParse(LpNode node)

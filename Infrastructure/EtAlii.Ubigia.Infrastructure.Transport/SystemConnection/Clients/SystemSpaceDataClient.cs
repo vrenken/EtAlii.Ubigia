@@ -25,19 +25,17 @@
                 AccountId = accountId,
             };
 
-            space = _infrastructure.Spaces.Add(space, template);
-            return await Task.FromResult(space);
+            space = await _infrastructure.Spaces.Add(space, template);
+            return space;
         }
 
-        public async Task Remove(Guid spaceId)
+        public Task Remove(Guid spaceId)
         {
-            await Task.Run(() =>
-            {
-                _infrastructure.Spaces.Remove(spaceId);
-            });
+            _infrastructure.Spaces.Remove(spaceId);
+            return Task.CompletedTask;
         }
 
-        public async Task<Space> Change(Guid spaceId, string spaceName)
+        public Task<Space> Change(Guid spaceId, string spaceName)
         {
             var space = new Space
             {
@@ -46,25 +44,25 @@
             };
 
             space = _infrastructure.Spaces.Update(spaceId, space);
-            return await Task.FromResult(space);
+            return Task.FromResult(space);
         }
 
-        public async Task<Space> Get(Guid accountId, string spaceName)
+        public Task<Space> Get(Guid accountId, string spaceName)
         {
             var space = _infrastructure.Spaces.Get(accountId, spaceName);
-            return await Task.FromResult(space);
+            return Task.FromResult(space);
         }
 
-        public async Task<Space> Get(Guid spaceId)
+        public Task<Space> Get(Guid spaceId)
         {
             var space = _infrastructure.Spaces.Get(spaceId);
-            return await Task.FromResult(space);
+            return Task.FromResult(space);
         }
 
-        public async Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public Task<IEnumerable<Space>> GetAll(Guid accountId)
         {
             var spaces = _infrastructure.Spaces.GetAll(accountId);
-            return await Task.FromResult(spaces);
+            return Task.FromResult(spaces);
         }
     }
 }

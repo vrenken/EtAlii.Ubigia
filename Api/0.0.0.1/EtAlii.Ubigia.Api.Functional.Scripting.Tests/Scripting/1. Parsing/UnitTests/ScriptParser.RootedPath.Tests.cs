@@ -4,8 +4,6 @@
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
-
-
     
     public partial class ScriptParserRootedPathTests : IDisposable
     {
@@ -186,7 +184,7 @@
         public void ScriptParser_RootedPath_Parse_Comment_3()
         {
             // Arrange.
-            var query = "this:line/is/safe\r\n#and this line also";
+            var query = "this:line/is/safe\r\n--and this line also";
 
             // Act.
             var result = _parser.Parse(query);
@@ -204,7 +202,7 @@
         public void ScriptParser_RootedPath_Parse_Comment_4()
         {
             // Arrange.
-            const string query = "#this line is safe\r\nand:this/line/also";
+            const string query = "--this line is safe\r\nand:this/line/also";
 
             // Act.
             var result = _parser.Parse(query);
@@ -223,7 +221,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("this:line/is/safe #and this comment also").Script;
+            var script = _parser.Parse("this:line/is/safe --and this comment also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -237,7 +235,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("this:line/is/safe   #and this comment also").Script;
+            var script = _parser.Parse("this:line/is/safe   --and this comment also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);
@@ -251,7 +249,7 @@
             // Arrange.
 
             // Act.
-            var script = _parser.Parse("this:line/is/safe#and this comment also").Script;
+            var script = _parser.Parse("this:line/is/safe--and this comment also").Script;
 
             // Assert.
             Assert.Single(script.Sequences);

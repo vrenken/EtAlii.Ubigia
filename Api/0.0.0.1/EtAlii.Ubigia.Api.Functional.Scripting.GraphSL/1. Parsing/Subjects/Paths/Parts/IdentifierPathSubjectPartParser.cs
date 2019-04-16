@@ -79,10 +79,12 @@
             return identifier;
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            var isValid = (before == null || before is ParentPathSubjectPart) && partIndex <= 1;
-            if (!isValid)
+            if ((arguments.Before == null || arguments.Before is ParentPathSubjectPart) && arguments.PartIndex <= 1)
+            {
+            }
+            else
             {
                 throw new ScriptParserException("A identifier path part can only be used at the start of a path");
             }

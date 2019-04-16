@@ -1,17 +1,17 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
-    using global::Grpc.Core;
-    using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
+	using System;
+	using System.Linq;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api.Transport.Grpc;
+	using global::Grpc.Core;
+	using Xunit;
+	using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;
     using AdminAuthenticationClient = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using AdminAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.AuthenticationRequest;
-    using Xunit;
 
-	[Trait("Technology", "Grpc")]
+    [Trait("Technology", "Grpc")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
@@ -32,8 +32,7 @@
 	
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync
-			    .ConfigureAwait(false);
+		    var response = await call.ResponseAsync;
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -54,8 +53,7 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync
-			    .ConfigureAwait(false);
+		    var response = await call.ResponseAsync;
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -76,8 +74,7 @@
 
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync
-			    .ConfigureAwait(false);
+		    var response = await call.ResponseAsync;
 		        
 		    // Assert.
 		    Assert.NotNull(response);
@@ -98,8 +95,7 @@
 
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync
-			    .ConfigureAwait(false);
+		    var response = await call.ResponseAsync;
 		    
 		    // Assert.
 		    Assert.NotNull(response);
@@ -120,8 +116,7 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync
-			    .ConfigureAwait(false);
+		    var response = await call.ResponseAsync;
 		    
 		    // Assert.
 		    Assert.NotNull(response);
@@ -142,8 +137,7 @@
 		    
 		    // Act.
 		    var call = client.AuthenticateAsync(request);
-		    var response = await call.ResponseAsync
-			    .ConfigureAwait(false);
+		    var response = await call.ResponseAsync;
 
 		    // Assert.
 		    Assert.NotNull(response);

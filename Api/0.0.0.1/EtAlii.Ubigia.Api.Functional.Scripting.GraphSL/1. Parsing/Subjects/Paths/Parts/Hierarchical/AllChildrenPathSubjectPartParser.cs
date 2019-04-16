@@ -30,18 +30,18 @@
         }
 
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (before is ChildrenPathSubjectPart || after is ChildrenPathSubjectPart ||
-                before is AllChildrenPathSubjectPart || after is AllChildrenPathSubjectPart)
+            if (arguments.Before is ChildrenPathSubjectPart || arguments.After is ChildrenPathSubjectPart ||
+                arguments.Before is AllChildrenPathSubjectPart || arguments.After is AllChildrenPathSubjectPart)
             {
                 throw new ScriptParserException("The all children path separator cannot be combined.");
             }
-            if (after is ParentPathSubjectPart)
+            if (arguments.After is ParentPathSubjectPart)
             {
                 throw new ScriptParserException("The all children path separator cannot be followed by a parent path separator.");
             }
-            if (after is AllParentsPathSubjectPart)
+            if (arguments.After is AllParentsPathSubjectPart)
             {
                 throw new ScriptParserException("The all children path separator cannot be followed by an all parents path separator.");
             }

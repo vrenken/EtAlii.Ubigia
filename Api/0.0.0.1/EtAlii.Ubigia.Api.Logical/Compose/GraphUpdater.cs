@@ -1,22 +1,24 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
 
     internal class GraphUpdater : IGraphUpdater
     {
-        private readonly IComposeContext _context;
+        private readonly IFabricContext _fabric;
 
-        public GraphUpdater(IComposeContext context)        
+        public GraphUpdater(IFabricContext fabric)
         {
-            _context = context;
+            _fabric = fabric;
         }
-
+         
         public async Task<IEditableEntry> Update(IReadOnlyEntry entry, string newType, ExecutionScope scope)
         {
-            var updateEntry = await _context.Fabric.Entries.Prepare();
+            var updateEntry = await _fabric.Entries.Prepare();
             updateEntry.Type = newType;
+            updateEntry.Tag = entry.Tag;
             updateEntry.Downdate = Relation.NewRelation(entry.Id);
-            updateEntry = (IEditableEntry)await _context.Fabric.Entries.Change(updateEntry, scope);
+            updateEntry = (IEditableEntry)await _fabric.Entries.Change(updateEntry, scope);
             return updateEntry;
         }
 

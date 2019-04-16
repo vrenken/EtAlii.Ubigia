@@ -32,13 +32,12 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _parser = null;
             _logicalContext.Dispose();
             _logicalContext = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -521,8 +520,8 @@
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.Null(firstJohnEntry);
-            Assert.NotNull(secondJohnEntry);
+            Assert.Null(firstJohnEntry);//, "First entry is not null");
+            Assert.NotNull(secondJohnEntry);//, "Second entry is null");
             Assert.Equal("John", secondJohnEntry.ToString());
         }
 
@@ -549,8 +548,8 @@
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.Null(firstJohnEntry);
-            Assert.NotNull(secondJohnEntry);
+            Assert.Null(firstJohnEntry);//, "First entry is not null");
+            Assert.NotNull(secondJohnEntry);//, "Second entry is null");
             Assert.Equal("John", secondJohnEntry.ToString());
         }
 

@@ -16,18 +16,6 @@
             _profiler = profiler.Create(ProfilingAspects.Logical.NodeSet);
         }
 
-        public async Task<IReadOnlyEntry> Select(GraphPath path, ExecutionScope scope)
-        {
-            dynamic profile = _profiler.Begin("Select: " + path);
-            profile.Path = path.ToString();
-
-            var result = await _decoree.Select(path, scope);
-
-            _profiler.End(profile);
-
-            return result;
-        }
-
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)
         {
             dynamic profile = _profiler.Begin("SelectMany: " + path);
@@ -38,12 +26,56 @@
             _profiler.End(profile);
         }
 
-        public async Task<INode> Assign(Identifier location, object item, ExecutionScope scope)
+
+        public async Task<INode> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
-            dynamic profile = _profiler.Begin("Assign");
+            dynamic profile = _profiler.Begin("Assign properties");
+            profile.Properties = properties.ToString();
             profile.Location = location.ToString();
 
-            var result = await _decoree.Assign(location, item, scope);
+            var result = await _decoree.AssignProperties(location, properties, scope);
+
+            _profiler.End(profile);
+
+            return result;
+        }
+
+        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
+        public async Task<INode> AssignTag(Identifier location, string tag, ExecutionScope scope)
+        {
+            dynamic profile = _profiler.Begin("Assign tag");
+            profile.Tag = tag;
+            profile.Location = location.ToString();
+
+            var result = await _decoree.AssignTag(location, tag, scope);
+
+            _profiler.End(profile);
+
+            return result;
+        }
+
+        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
+        public async Task<INode> AssignNode(Identifier location, INode node, ExecutionScope scope)
+        {
+            dynamic profile = _profiler.Begin("Assign node");
+            profile.Node = node;
+            profile.Location = location.ToString();
+
+            var result = await _decoree.AssignNode(location, node, scope);
+
+            _profiler.End(profile);
+
+            return result;
+        }
+
+        // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
+        public async Task<INode> AssignDynamic(Identifier location, object o, ExecutionScope scope)
+        {
+            dynamic profile = _profiler.Begin("Assign dynamic");
+            profile.Object = o.ToString();
+            profile.Location = location.ToString();
+
+            var result = await _decoree.AssignDynamic(location, o, scope);
 
             _profiler.End(profile);
 

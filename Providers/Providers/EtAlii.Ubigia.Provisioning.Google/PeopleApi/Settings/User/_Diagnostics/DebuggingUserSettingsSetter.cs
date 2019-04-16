@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 
@@ -14,11 +15,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        public void Set(IGraphSLScriptContext context, string account, UserSettings settings)
+        public async Task Set(IGraphSLScriptContext context, string account, UserSettings settings)
         {
             _logger.Info($"Setting PeopleApi user settings for account: {account}");
 
-            _decoree.Set(context, account, settings);
+            await _decoree.Set(context, account, settings);
 
             _logger.Info($"Finished setting PeopleApi user settings for account: {account}");
         }

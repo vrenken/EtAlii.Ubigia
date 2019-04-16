@@ -4,24 +4,24 @@
 
     public class PropertiesDataClientStub : IPropertiesDataClient 
     {
-        public async Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
+        public Task Store(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
+        public Task<PropertyDictionary> Retrieve(Identifier identifier, ExecutionScope scope)
         {
-            return await Task.FromResult<PropertyDictionary>(null);
+            return Task.FromResult<PropertyDictionary>(null);
         }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
+        public Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

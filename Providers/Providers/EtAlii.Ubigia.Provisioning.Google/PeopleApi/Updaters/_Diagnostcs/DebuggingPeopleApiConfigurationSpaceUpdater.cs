@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
 
     public class DebuggingPeopleApiConfigurationSpaceUpdater : IPeopleApiConfigurationSpaceUpdater
@@ -15,11 +16,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        public void Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
+        public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
             _logger.Info($"Processing space: {configurationSpace.Account.Name}/{configurationSpace.Space.Name}");
 
-            _decoree.Update(configurationSpace, systemSettings);
+            await _decoree.Update(configurationSpace, systemSettings);
 
             _logger.Info($"Processed space: {configurationSpace.Account.Name}/{configurationSpace.Space.Name}");
         }

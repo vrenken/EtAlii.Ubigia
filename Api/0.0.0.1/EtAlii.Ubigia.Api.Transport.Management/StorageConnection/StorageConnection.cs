@@ -89,15 +89,15 @@
         {
             if (!_disposed)
             {
-                if (disposing && IsConnected)
+                if (disposing)
                 {
                     // Free other state (managed objects).
-                    var task = Task.Run(async () =>
+                    if (IsConnected)
                     {
-                        await Close();
-                    });
-                    task.Wait();
-                    Storage = null;
+//                        var task = Close();
+//                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                        Storage = null;
+                    }
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.

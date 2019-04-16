@@ -38,6 +38,7 @@
             return Task.CompletedTask;
         }
 
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Get_GetItem()
         {

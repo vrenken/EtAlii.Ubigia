@@ -18,14 +18,16 @@
             await Connect((IStorageConnection<IWebApiStorageTransport>)storageConnection);
         }
 
-        public virtual async Task Connect(IStorageConnection<IWebApiStorageTransport> storageConnection)
+        public virtual Task Connect(IStorageConnection<IWebApiStorageTransport> storageConnection)
         {
-            await Task.Run(() => Connection = (IWebApiStorageConnection)storageConnection);
+            Connection = (IWebApiStorageConnection)storageConnection;
+            return Task.CompletedTask;
         }
 
-        public virtual async Task Disconnect(IStorageConnection<IWebApiStorageTransport> storageConnection)
+        public virtual Task Disconnect(IStorageConnection<IWebApiStorageTransport> storageConnection)
         {
-            await Task.Run(() => Connection = null);
+            Connection = null;
+            return Task.CompletedTask;
         }
     }
 }

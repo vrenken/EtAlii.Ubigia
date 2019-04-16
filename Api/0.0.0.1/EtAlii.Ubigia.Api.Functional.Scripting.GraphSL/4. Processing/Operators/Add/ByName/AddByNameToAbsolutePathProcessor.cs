@@ -22,9 +22,9 @@
             _context = context;
         }
 
-        public async Task Process(OperatorParameters parameters)
+        public void Process(OperatorParameters parameters)
         {
-            var pathToAdd = await GetPathToAdd(parameters);
+            var pathToAdd = GetPathToAdd(parameters);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor requires a path on the right side");
@@ -40,25 +40,32 @@
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor cannot handle empty parts");
             }
 
-            await Add(pathToAdd, parameters.Scope, parameters.Output);
+            var task = Task.Run(async () =>
+            {
+                await Add(pathToAdd, parameters.Scope, parameters.Output);
+            });
+            task.Wait();
         }
 
-        private async Task<PathSubject> GetPathToAdd(OperatorParameters parameters)
+        private PathSubject GetPathToAdd(OperatorParameters parameters)
         {
             PathSubject pathToAdd = null;
 
-        
-            if (parameters.RightSubject is PathSubject subject)
+            var task = Task.Run(async () =>
             {
-                pathToAdd = subject;
-            }
-            else
-            {
-                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+                if (parameters.RightSubject is PathSubject pathSubject)
+                {
+                    pathToAdd = pathSubject;
+                }
+                else
+                {
+                    var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
-                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-            }
-            
+                    _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
+                }
+            });
+            task.Wait();
+
             return pathToAdd;
         }
 

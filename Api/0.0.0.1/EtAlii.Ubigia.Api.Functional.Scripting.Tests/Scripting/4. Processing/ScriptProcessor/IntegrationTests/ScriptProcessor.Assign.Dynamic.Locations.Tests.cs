@@ -31,13 +31,12 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _parser = null;
             _logicalContext.Dispose();
             _logicalContext = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -89,6 +88,8 @@
             Assert.NotNull(selectResult);
             Assert.Equal("Test1", selectResult.StringValue);
             Assert.Equal(12, selectResult.IntValue);
+            //Assert.NotEqual(addResult.Id, updateResult.Id);
+            //Assert.NotEqual(updateResult.Id, selectResult.Id);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

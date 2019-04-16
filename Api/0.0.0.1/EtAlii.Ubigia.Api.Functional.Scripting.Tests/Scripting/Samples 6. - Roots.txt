@@ -1,6 +1,6 @@
-﻿# Proposal for root registration (already implemented in unit tests).
+﻿-- Proposal for root registration (already implemented in unit tests).
 
-#Assign
+-- Assign
 root:time <= EtAlii.Ubigia.Roots.Time
 root:time <= Time
 root:specialtime <= EtAlii.Ubigia.Roots.Time
@@ -10,12 +10,12 @@ root:projects2 <= Object
 root:projects3 <= EtAlii.Ubigia.Roots.Object
 root:projects4 <= Object
 
-# Unassign
+-- Unassign
 root:time <= 
 root:specialtime <= 
 root:projects <= 
 
-# Proposal for root registration.
+-- Proposal for root registration.
 root:[ROOT] <= [ROOT_TYPE]
 root:time <= EtAlii.Api.Roots.Time
 root:text <= EtAlii.Api.Roots.Text
@@ -23,18 +23,18 @@ root:location <= EtAlii.Api.Roots.Location
 root:incidents <= EtAlii.Api.Roots.Text
 root:emailtext <= EtAlii.Api.Roots.Text
 
-# Proposal for root unregistration.
+-- Proposal for root unregistration.
 root:time <=
 
-# Proposal for root relation (indexing) registration.
-#root:[ROOT] += /[PATH].[PROPERTY]
-#root:text += /incidents/Incident.Id
-#root:time += /incidents/Incident.Created
-#root:time += /incidents/Incident.Added
-#root:location += /incidents/Incident.Location
-#root:time += /*.*
-#root:time += /Incidents/Incident.*
-#root:emailtext += /Documents/Email.Text
+-- Proposal for root relation (indexing) registration.
+--root:[ROOT] += /[PATH].[PROPERTY]
+--root:text += /incidents/Incident.Id
+--root:time += /incidents/Incident.Created
+--root:time += /incidents/Incident.Added
+--root:location += /incidents/Incident.Location
+--root:time += /*.*
+--root:time += /Incidents/Incident.*
+--root:emailtext += /Documents/Email.Text
 root:projects3 += /[Words]/[Number]
 root:projects4 += /[Words]/[Number]
 root:time += /[yyyy]/[mm]/[dd]/[HH]/[MM]/[SS]
@@ -47,11 +47,11 @@ root:time += "NOW"
 root:time += now
 root:time += NOW
 root:person += ["FIRST LAST"]
-root:person += /[LAST]/[FIRST]  #Returns multiple records so translates to /LAST/FIRST/NUMBER. 
+root:person += /[LAST]/[FIRST]  --Returns multiple records so translates to /LAST/FIRST/NUMBER. 
 root:person += /[LAST]/[FIRST] 
 root:person += /[LAST]/[FIRST]/
 
-# Root usage
+-- Root usage
 time:"23:54 12-08-2016"
 time:201608122354
 time:now
@@ -60,10 +60,10 @@ person:"Peter Vrenken"
 person:Vrenken/Peter/1
 person:Vrenken/Peter
 
-# Proposal for root relation (indexing) registration removal#
-#root:text-=/incidents/Incident.Id
+-- Proposal for root relation (indexing) registration removal--
+--root:text-=/incidents/Incident.Id
 
-# Find incidents using a root as an index.
+-- Find incidents using a root as an index.
 incidents:*.Id=text:GER164235
 incidents:*.Id=text:GER*
 incidents:*.Id=incidents:GER*
@@ -82,7 +82,7 @@ incidents:*.Id=text:GER164235&Added=2014-08-26/Location
 incidents:*.Added=2014-08-26|Removed>2014-08-26/Location
 incidents:*.Location <= $location
 
-# Find incidents without using a root as an index. Remark: this method will be slow.
+-- Find incidents without using a root as an index. Remark: this method will be slow.
 incidents:*.Id=GER164235
 incidents:*.Id="GER164235"
 incidents:*.Id=GER*
@@ -99,7 +99,7 @@ incidents:*.Version=3/2/123/234
 incidents:*.Version=3.2.123.*
 incidents:*.Version=3/2/123/*
 
-# use a root for discovery
+-- use a root for discovery
 time:2014/08/12/15/15
 time:2014-08-12T15:15
 time:2014/08/12/15/15/34
@@ -116,16 +116,16 @@ location:NL/Enschede/Ravenhorsthoek/55
 location:52.2167/6.9000
 incidents:GER164235
 
-# Find incidents based on the time root as an index.
-#incidents:*=time:2014-08-26T11:12:23
+-- Find incidents based on the time root as an index.
+--incidents:*=time:2014-08-26T11:12:23
 
 
-# Possible roots
-# - root
-# - time
-# - location
-# - text
-# - version
-# - person
+-- Possible roots
+-- - root
+-- - time
+-- - location
+-- - text
+-- - version
+-- - person
 
 

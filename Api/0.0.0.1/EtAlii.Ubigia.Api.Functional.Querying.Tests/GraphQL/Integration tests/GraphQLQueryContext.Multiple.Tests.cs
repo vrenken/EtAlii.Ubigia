@@ -5,22 +5,21 @@
     using EtAlii.Ubigia.Api.Logical;
     using GraphQL.Http;
     using Xunit;
-    using Xunit.Abstractions;
 
 
-    public class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+// TODO: ENABLE FOR GraphQL
+#pragma warning disable xUnit1000
+    internal class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext  _logicalContext;
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-
-        private readonly ITestOutputHelper _output;
+        
         private readonly QueryingUnitTestContext _testContext;
         private readonly IDocumentWriter _documentWriter;
 
-        public GraphQLQueryContextMultipleTests(ITestOutputHelper output, QueryingUnitTestContext testContext)
+        public GraphQLQueryContextMultipleTests(QueryingUnitTestContext testContext)
         {
-            _output = output;
             _testContext = testContext;
             _documentWriter = new DocumentWriter(indent: false);
         }
@@ -32,14 +31,14 @@
             _logicalContext = await _testContext.FunctionalTestContext.CreateLogicalContext(true);
             _queryContext = _testContext.FunctionalTestContext.CreateGraphQLQueryContext(_logicalContext);
             _scriptContext = _testContext.FunctionalTestContext.CreateGraphSLScriptContext(_logicalContext);
-        
+
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
-            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
@@ -47,9 +46,9 @@
             _scriptContext = null;
             _queryContext = null;
 
-            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
 
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -145,7 +144,7 @@
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
         }
 
-        [Fact(Skip = "Blocking the build server"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Plural_01()
         {
             // Arrange.
@@ -168,7 +167,7 @@
         }
         
         
-        [Fact(Skip = "Blocking the build server"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Multiple_Friends()
         {
             // Arrange.
@@ -185,28 +184,29 @@
                         } 
                     }
                 }";
-                    
-        // Act.
-            var parseResult = await _queryContext.Parse(queryText);
-        var result = await _queryContext.Process(parseResult.Query);
-            
-        // Assert.
-        Assert.Null(result.Errors);
-        await AssertQuery.ResultsAreEqual(_documentWriter, @"
-            {
-                'person':
+                        
+            // Act.
+                var parseResult = await _queryContext.Parse(queryText);
+            var result = await _queryContext.Process(parseResult.Query);
+                
+            // Assert.
+            Assert.Null(result.Errors);
+    //      var actual = await _documentWriter.WriteToStringAsync(result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"
                 {
-                    'name':'Tony',
-                    'friends':
-                    [
-                        {'name':'John','nickname':'Johnny'},
-                        {'name':'Jane','nickname':'Janey'},
-                        {'name':'Peter','nickname':'Pete'}
-                    ]
-                }
-            }", result);
-    }
-        
+                    'person':
+                    {
+                        'name':'Tony',
+                        'friends':
+                        [
+                            {'name':'John','nickname':'Johnny'},
+                            {'name':'Jane','nickname':'Janey'},
+                            {'name':'Peter','nickname':'Pete'}
+                        ]
+                    }
+                }", result);
+        }
+            
         
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Plural_02()

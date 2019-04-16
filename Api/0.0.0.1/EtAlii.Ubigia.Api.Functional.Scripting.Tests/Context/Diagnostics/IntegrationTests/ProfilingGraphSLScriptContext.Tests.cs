@@ -25,13 +25,12 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _logicalContext.Dispose();
             _logicalContext = null;
             _diagnostics = null;
-            
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact]

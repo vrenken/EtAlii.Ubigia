@@ -19,12 +19,11 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <ProjectGuid>6bf312f3-f71f-48c6-9cb2-000111222009</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.50" />
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.50" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.50" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.56" />
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.55" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.55" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.Grpc" Version="1.0.75" />
   </ItemGroup>
   <ItemGroup>

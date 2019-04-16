@@ -2,8 +2,8 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
     using System.Collections.Generic;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Logical;
 
     public class DiagnosticsGraphQueryLanguageProcessingSubscription : IDiagnosticsGraphQueryLanguageProcessingSubscription
     {

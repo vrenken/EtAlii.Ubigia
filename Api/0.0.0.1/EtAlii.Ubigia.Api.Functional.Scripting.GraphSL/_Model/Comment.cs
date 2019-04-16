@@ -11,7 +11,7 @@
 
         public override string ToString()
         {
-            return $"#{_text}";
+            return $"--{_text}";
         }
     }
 }

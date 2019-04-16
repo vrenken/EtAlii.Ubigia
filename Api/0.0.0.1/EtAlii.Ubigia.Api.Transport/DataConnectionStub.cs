@@ -23,26 +23,21 @@
 
         public IDataConnectionConfiguration Configuration { get; }
 
-        public async Task Open()
+        public Task Open()
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
-        public async Task Close()
+        public Task Close()
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public DataConnectionStub()
         {
             Configuration = new DataConnectionConfiguration();
 
-            // TODO: Correct hard coded passwords.
-            // The + password string concatenation is to keep SonarQube from warning about these hard coded passwords.
-            // It's not the most elegant solution but for now we've got bigger fish to catch.
-            // Nevertheless let's mark this as a TO-DO to keep it on our radar.
-
             Storage = new Storage { Id = Guid.NewGuid(), Address = "http://localhost", Name = "Data connection stub storage" };
-            Account = new Account { Id = Guid.NewGuid(), Name = "test", Password = "1"+"2"+"3" };
+            Account = new Account { Id = Guid.NewGuid(), Name = "test", Password = "123" };
             Space = new Space { Id = Guid.NewGuid(), AccountId = Account.Id, Name = "Data connection stub test space"};
 
             Entries = new EntryContextStub();

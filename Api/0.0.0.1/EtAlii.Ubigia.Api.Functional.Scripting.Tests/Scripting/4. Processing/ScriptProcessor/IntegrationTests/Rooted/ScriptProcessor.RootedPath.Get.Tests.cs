@@ -12,7 +12,7 @@
     using Xunit;
 
     
-    public class ScriptProcessorRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -21,21 +21,14 @@
         public ScriptProcessorRootedPathGetTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public Task InitializeAsync()
-        {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .Use(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            return Task.CompletedTask;
         }
-
-        public Task DisposeAsync()
+        public void Dispose()
         {
             _parser = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

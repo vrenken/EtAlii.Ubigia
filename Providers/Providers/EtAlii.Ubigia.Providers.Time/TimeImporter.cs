@@ -5,6 +5,7 @@
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
 
     public class TimeImporter : ITimeImporter
     {
@@ -12,12 +13,29 @@
         private readonly ILogger _logger;
         private readonly IProviderContext _context;
 
+        //private readonly List<IReadOnlyEntry> _yearEntries;
+        //private readonly List<IReadOnlyEntry> _monthEntries;
+        //private readonly List<IReadOnlyEntry> _dayEntries;
+        //private readonly List<IReadOnlyEntry> _hourEntries;
+        //private readonly List<IReadOnlyEntry> _minuteEntries;
+        //private readonly List<IReadOnlyEntry> _secondEntries;
+        //private DateTime _lastTime;
         private readonly bool addEachTenSeconds = false;
 
         public TimeImporter(ILogger logger, IProviderContext context)
         {
             _logger = logger;
             _context = context;
+
+            //_yearEntries = new List<IReadOnlyEntry>();
+            //_monthEntries = new List<IReadOnlyEntry>();
+            //_dayEntries = new List<IReadOnlyEntry>();
+            //_hourEntries = new List<IReadOnlyEntry>();
+            //_minuteEntries = new List<IReadOnlyEntry>();
+            //if (addEachTenSeconds)
+            //{
+            //    _secondEntries = new List<IReadOnlyEntry>();
+            //}
         }
 
         public void Start()
@@ -42,7 +60,7 @@
             _logger.Info("Stopped time provider");
         }
 
-        private void Add(long time)
+        private async Task Add(long time)
         {
             _logger.Info("Adding time to space");
 
@@ -60,12 +78,11 @@
                     datePath = String.Format("/{0} += {1:yyyy}/{1:MM}/{1:dd}/{1:HH}/{1:mm}", "Time", utcNow);
                 }
 
-                var task = Task.Run(async () =>
-                {
-                    var sequenceResult = await _context.SystemScriptContext.Process(datePath);
-                    await sequenceResult.Output.LastOrDefaultAsync();
-                });
-                task.Wait();
+                var sequenceResult = await _context.SystemScriptContext.Process(datePath);
+                await sequenceResult.Output.LastOrDefaultAsync();
+
+                //_lastTime = utcNow;
+
             }
             catch (Exception e)
             {
@@ -74,17 +91,22 @@
 
         }
 
+//        private string GetType(DateTime utcTime, string format)
+//        {
+//            return utcTime.ToString(format);
+//        }
+
         private void Setup()
         {
             if (addEachTenSeconds)
             {
                 _subscription = Observable.Interval(TimeSpan.FromSeconds(10))
-                                          .Subscribe(Add);
+                                          .SubscribeAsync(Add);
             }
             else
             {
                 _subscription = Observable.Interval(TimeSpan.FromMinutes(1))
-                                          .Subscribe(Add);
+                                          .SubscribeAsync(Add);
             }
         }
     }

@@ -14,8 +14,10 @@ namespace EtAlii.Ubigia.Provisioning.Google
 
         protected TimeSpan Interval { get; set; } = TimeSpan.FromMinutes(1);
 
-        public event Action<Exception> Error { add => _error += value; remove => _error -= value; }
+        public event Action<Exception> Error { add { _error += value; } remove { _error -= value; } }
         private Action<Exception> _error;
+
+        private static readonly object LockObject = new object();
 
         protected AsyncProcess()
         {
@@ -45,13 +47,17 @@ namespace EtAlii.Ubigia.Provisioning.Google
             _task = null;
         }
 
-        private async Task RunInternal()
+        private void RunInternal()
         {
             while (true)
             {
                 try
                 {
-                    await Run();
+                    lock (LockObject)
+                    {
+                        var task = Run();
+                        task.Wait();
+                    }
                 }
                 catch (Exception e)
                 {

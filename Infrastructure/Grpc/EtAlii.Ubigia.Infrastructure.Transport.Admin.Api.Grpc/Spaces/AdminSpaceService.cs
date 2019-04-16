@@ -70,19 +70,19 @@
         }
 
         // Add item
-        public override Task<SpaceSingleResponse> Post(SpacePostSingleRequest request, ServerCallContext context)
+        public override async Task<SpaceSingleResponse> Post(SpacePostSingleRequest request, ServerCallContext context)
         {
             var space = request.Space.ToLocal();
             var spaceTemplate = request.Template;
             var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
             
-            space = _items.Add(space, template);
+            space = await _items.Add(space, template);
 
             var response = new SpaceSingleResponse
             {
                 Space = space.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Update item

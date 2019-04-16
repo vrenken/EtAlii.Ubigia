@@ -6,49 +6,49 @@
 
     public sealed class AccountDataClientStub : IAccountDataClient 
     {
-        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        public Task<Account> Add(string name, string password, AccountTemplate template)
         {
-            return await Task.FromResult<Account>(null);
+            return Task.FromResult<Account>(null);
         }
 
-        public async Task Remove(Guid accountId)
+        public Task Remove(Guid id)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<Account> Change(Guid accountId, string accountName, string accountPassword)
+        public Task<Account> Change(Guid rootId, string accountName, string password)
         {
-            return await Task.FromResult<Account>(null);
+            return Task.FromResult<Account>(null);
         }
 
-        public async Task<Account> Change(Account account)
+        public Task<Account> Change(Account account)
         {
-            return await Task.FromResult<Account>(null);
+            return Task.FromResult<Account>(null);
         }
 
-        public async Task<Account> Get(string accountName)
+        public Task<Account> Get(string accountName)
         {
-            return await Task.FromResult<Account>(null);
+            return Task.FromResult<Account>(null);
         }
 
-        public async Task<Account> Get(Guid rootId)
+        public Task<Account> Get(Guid rootId)
         {
-            return await Task.FromResult<Account>(null);
+            return Task.FromResult<Account>(null);
         }
 
-        public async Task<IEnumerable<Account>> GetAll()
+        public Task<IEnumerable<Account>> GetAll()
         {
-            return await Task.FromResult<IEnumerable<Account>>(null);
+            return Task.FromResult<IEnumerable<Account>>(null);
         }
 
-        public async Task Connect(IStorageConnection connection)
+        public Task Connect(IStorageConnection storageConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(IStorageConnection connection)
+        public Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

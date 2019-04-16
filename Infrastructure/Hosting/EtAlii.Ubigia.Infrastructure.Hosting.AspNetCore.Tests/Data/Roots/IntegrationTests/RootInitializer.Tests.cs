@@ -3,8 +3,10 @@
     using EtAlii.Ubigia.Api;
     using Xunit;
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     
@@ -19,11 +21,11 @@
         }
 
         [Fact]
-        public void RootInitializer_Initialize()
+        public async Task RootInitializer_Initialize()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
 
             Assert.Equal(root.Identifier, Identifier.Empty);
@@ -49,11 +51,11 @@
         }
 
         [Fact]
-        public void RootInitializer_Initialize_Check_Resulting_Root()
+        public async Task RootInitializer_Initialize_Check_Resulting_Root()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
 
             Assert.Equal(root.Identifier, Identifier.Empty);
@@ -82,11 +84,11 @@
         }
 
         [Fact]
-        public void RootInitializer_Initialize_Check_Resulting_Entry()
+        public async Task RootInitializer_Initialize_Check_Resulting_Entry()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
 
             Assert.Equal(root.Identifier, Identifier.Empty);

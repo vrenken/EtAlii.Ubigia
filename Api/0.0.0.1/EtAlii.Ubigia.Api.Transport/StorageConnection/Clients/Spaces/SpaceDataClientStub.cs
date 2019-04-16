@@ -6,44 +6,44 @@
 
     public sealed class SpaceDataClientStub : ISpaceDataClient 
     {
-        public async Task <Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
+        public Task <Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
         {
-            return await Task.FromResult<Space>(null);
+            return Task.FromResult<Space>(null);
         }
 
-        public async Task Remove(Guid spaceId)
+        public Task Remove(Guid spaceId)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<Space> Change(Guid spaceId, string spaceName)
+        public Task<Space> Change(Guid spaceId, string spaceName)
         {
-            return await Task.FromResult<Space>(null);
+            return Task.FromResult<Space>(null);
         }
 
-        public async Task<Space> Get(Guid accountId, string spaceName)
+        public Task<Space> Get(Guid accountId, string spaceName)
         {
-            return await Task.FromResult<Space>(null);
+            return Task.FromResult<Space>(null);
         }
 
-        public async Task<Space> Get(Guid spaceId)
+        public Task<Space> Get(Guid spaceId)
         {
-            return await Task.FromResult<Space>(null);
+            return Task.FromResult<Space>(null);
         }
 
-        public async Task<IEnumerable<Space>> GetAll(Guid accountId)
+        public Task<IEnumerable<Space>> GetAll(Guid accountId)
         {
-            return await Task.FromResult<IEnumerable<Space>>(null);
+            return Task.FromResult<IEnumerable<Space>>(null);
         }
 
-        public async Task Connect(IStorageConnection connection)
+        public Task Connect(IStorageConnection storageConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(IStorageConnection connection)
+        public Task Disconnect(IStorageConnection storageConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

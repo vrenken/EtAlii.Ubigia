@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    
     public class FabricContextPropertiesTests : IClassFixture<TransportUnitTestContext>, IAsyncLifetime
     {
         private IFabricContext _fabric;
@@ -14,7 +13,6 @@
         {
             _testContext = testContext;
         }
-
         public async Task InitializeAsync()
         {
             var connection = await _testContext.TransportTestContext.CreateDataConnection(true);
@@ -23,13 +21,13 @@
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _fabric.Dispose();
             _fabric = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
+
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Properties_Store()

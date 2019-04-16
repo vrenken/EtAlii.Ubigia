@@ -55,15 +55,17 @@
             return new WildcardPathSubjectPart(pattern);
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart ||
-                before is WildcardPathSubjectPart || after is WildcardPathSubjectPart ||
-                before is TraversingWildcardPathSubjectPart || after is TraversingWildcardPathSubjectPart)
+            if (arguments.Before is ConstantPathSubjectPart || arguments.After is ConstantPathSubjectPart ||
+                arguments.Before is WildcardPathSubjectPart || arguments.After is WildcardPathSubjectPart ||
+                arguments.Before is TaggedPathSubjectPart || arguments.After is TaggedPathSubjectPart ||
+                arguments.Before is TraversingWildcardPathSubjectPart || arguments.After is TraversingWildcardPathSubjectPart)
             {
-                throw new ScriptParserException("A wildcard path part cannot be combined with other constant, wildcard or string path parts.");
+                throw new ScriptParserException("A wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
             }
-            else if (partIndex == 0 || (partIndex == 1 && before is ParentPathSubjectPart) && !(before is VariablePathSubjectPart))
+            else if ((arguments.PartIndex == 0 && arguments.Subject is NonRootedPathSubject) || 
+                     (arguments.PartIndex == 1 && arguments.Before is ParentPathSubjectPart) && arguments.Before is VariablePathSubjectPart == false)
             {
                 throw new ScriptParserException("A wildcard path part cannot be used at the beginning of a graph path.");
             }

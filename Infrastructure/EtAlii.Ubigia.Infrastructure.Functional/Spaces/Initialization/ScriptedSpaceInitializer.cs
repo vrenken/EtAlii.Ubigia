@@ -15,27 +15,22 @@
             _systemConnectionCreationProxy = systemConnectionCreationProxy;
         }
 
-        public void Initialize(Space space, SpaceTemplate template)
+        public async Task Initialize(Space space, SpaceTemplate template)
         {
-            var task = Task.Run(async () =>
+            var systemConnection = _systemConnectionCreationProxy.Request();
+            var managementConnection = await systemConnection.OpenManagementConnection();
+            var spaceConnection = await managementConnection.OpenSpace(space);
+            var scriptContext = new GraphSLScriptContextFactory().Create(spaceConnection);
+
+            var rootsToCreate = template.RootsToCreate;
+
+            foreach (var rootToCreate in rootsToCreate)
             {
-                var systemConnection = _systemConnectionCreationProxy.Request();
-                var managementConnection = await systemConnection.OpenManagementConnection();
-                var spaceConnection = await managementConnection.OpenSpace(space);
-                var scriptContext = new GraphSLScriptContextFactory().Create(spaceConnection);
-
-                var rootsToCreate = template.RootsToCreate;
-
-                foreach (var rootToCreate in rootsToCreate)
-                {
-                    var scope = new ScriptScope();
-                    var createScript = scriptContext.Parse($"root:{rootToCreate} <= Object");
-                    var processingResult = await scriptContext.Process(createScript.Script, scope);
-                    await processingResult.Output.LastOrDefaultAsync();
-                }
-            });
-            task.Wait();
-
+                var scope = new ScriptScope();
+                var createScript = scriptContext.Parse($"root:{rootToCreate} <= Object");
+                var processingResult = await scriptContext.Process(createScript.Script, scope);
+                await processingResult.Output.LastOrDefaultAsync();
+            }
         }
     }
 }
