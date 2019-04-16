@@ -18,8 +18,10 @@
             const int depth = 3;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var traverserFactory = new GraphPathTraverserFactory();
-            var composer = new GraphComposerFactory(traverserFactory).Create(fabric);
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserFactory = new GraphPathTraverserFactory();
+            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
@@ -36,7 +38,7 @@
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                traverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
+                graphPathTraverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
             var updatedEntry = await results.SingleAsync();
@@ -76,8 +78,10 @@
             const int depth = 3;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var traverserFactory = new GraphPathTraverserFactory();
-            var composer = new GraphComposerFactory(traverserFactory).Create(fabric);
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserFactory = new GraphPathTraverserFactory();
+            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
@@ -91,7 +95,7 @@
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                traverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope,output);
+                graphPathTraverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope,output);
                 return Disposable.Empty;
             }).ToHotObservable();
             var updatedEntry = await results.SingleAsync();
@@ -110,8 +114,10 @@
             const int depth = 3;
             var scope = new ExecutionScope(false);
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var traverserFactory = new GraphPathTraverserFactory();
-            var composer = new GraphComposerFactory(traverserFactory).Create(fabric);
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserFactory = new GraphPathTraverserFactory();
+            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
             var communicationsRoot = await fabric.Roots.Get("Communication");
             var communicationsEntry = (IEditableEntry)await fabric.Entries.Get(communicationsRoot, scope);
@@ -125,7 +131,7 @@
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                traverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
+                graphPathTraverserFactory.Create(configuration).Traverse(GraphPath.Create(entry.Id), Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
             var updatedEntry = await results.SingleAsync();

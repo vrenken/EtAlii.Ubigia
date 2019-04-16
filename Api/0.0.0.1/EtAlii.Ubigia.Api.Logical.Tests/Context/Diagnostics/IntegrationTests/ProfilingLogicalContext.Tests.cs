@@ -25,13 +25,12 @@
             _fabricContext = await _testContext.FabricTestContext.CreateFabricContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _fabricContext.Dispose();
             _fabricContext = null;
             _diagnostics = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact]
@@ -77,5 +76,6 @@
             // Assert.
             Assert.NotNull(context);
         }
+
     }
 }

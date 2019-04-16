@@ -14,13 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <ProjectGuid>2b5ae699-2720-45aa-84c6-0c07933a205b</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />

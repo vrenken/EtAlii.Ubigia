@@ -78,20 +78,20 @@
         }
 
         // Add item
-        public override Task<SpaceSingleResponse> Post(SpacePostSingleRequest request, ServerCallContext context)
+        public override async Task<SpaceSingleResponse> Post(SpacePostSingleRequest request, ServerCallContext context)
         {
             var space = request.Space.ToLocal();
 
             // A user can only create data spaces.
             var template = SpaceTemplate.Data;
             
-            space = _items.Add(space, template);
+            space = await _items.Add(space, template);
 
             var response = new SpaceSingleResponse
             {
                 Space = space.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Update item

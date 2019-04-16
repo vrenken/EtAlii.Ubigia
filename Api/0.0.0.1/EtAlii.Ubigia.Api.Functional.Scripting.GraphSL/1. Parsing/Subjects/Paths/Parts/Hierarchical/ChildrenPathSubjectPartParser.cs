@@ -30,14 +30,13 @@
         }
 
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (before is ChildrenPathSubjectPart ||
-               after is ChildrenPathSubjectPart)
+            if (arguments.Before is ChildrenPathSubjectPart || arguments.After is ChildrenPathSubjectPart)
             {
                 throw new ScriptParserException("Two child path separators cannot be combined.");
             }
-            if (after is ParentPathSubjectPart)
+            if (arguments.After is ParentPathSubjectPart)
             {
                 throw new ScriptParserException("The child path separator cannot be followed by a parent path separator.");
             }

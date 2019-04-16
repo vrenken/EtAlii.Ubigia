@@ -17,30 +17,28 @@
 
             Register(o => o is IEnumerable<INode>, (o, s, output) => Convert(((IEnumerable<INode>)o).Cast<IInternalNode>(), s, output))
                 .Register(o => o is INode[], (o, s, output) => Convert(((INode[])o).Cast<IInternalNode>(), s, output))
-                .Register(o => o is INode, (o, s, output) => OnNext(output, o))
+                .Register(o => o is INode, OnNext)
                 .Register(o => o is IEnumerable<IReadOnlyEntry>, (o, s, output) => Convert<IReadOnlyEntry>(o, output))
                 .Register(o => o is IReadOnlyEntry[], (o, s, output) => Convert<IReadOnlyEntry>(o, output))
-                .Register(o => o is IReadOnlyEntry, (o, s, output) => OnNext(output, o))
+                .Register(o => o is IReadOnlyEntry, OnNext)
                 .Register(o => o is IEnumerable<Identifier>, (o, s, output) => Convert<Identifier>(o, output))
                 .Register(o => o is Identifier[], (o, s, output) => Convert<Identifier>(o, output))
-                .Register(o => o is Identifier, (o, s, output) => OnNext(output, o))
-                .Register(o => o is string, (o, s, output) => OnNext(output, o))
-                .Register(o => o is int, (o, s, output) => OnNext(output, o))
-                .Register(o => o is float, (o, s, output) => OnNext(output, o))
-                .Register(o => o is bool, (o, s, output) => OnNext(output, o))
-                .Register(o => o is DateTime, (o, s, output) => OnNext(output, o))
-                .Register(o => o is TimeSpan, (o, s, output) => OnNext(output, o))
-                .Register(o => o == null, (o, s, output) => OnNext(output, o))
-                .Register(o => true, (o, s, output) => OnNext(output, o));
+                .Register(o => o is Identifier, OnNext)
+                .Register(o => o is string, OnNext)
+                .Register(o => o is int, OnNext)
+                .Register(o => o is float, OnNext)
+                .Register(o => o is bool, OnNext)
+                .Register(o => o is DateTime, OnNext)
+                .Register(o => o is TimeSpan, OnNext)
+                .Register(o => o == null, OnNext)
+                .Register(o => true, OnNext);
         }
 
-        private async Task OnNext(IObserver<object> output, object o)
+        private Task OnNext(object o, ExecutionScope scope, IObserver<object> output)
         {
             output.OnNext(o);
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
-        
         private async Task Convert(IEnumerable<IInternalNode> nodes, ExecutionScope scope, IObserver<object> output)
         {
             foreach (var node in nodes)
@@ -52,15 +50,14 @@
             }
         }
 
-        private async Task Convert<T>(object enumerable, IObserver<object> output)
+        private Task Convert<T>(object enumerable, IObserver<object> output)
         {
             var items = (IEnumerable<T>)enumerable;
             foreach (var item in items)
             {
                 output.OnNext(item);
             }
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

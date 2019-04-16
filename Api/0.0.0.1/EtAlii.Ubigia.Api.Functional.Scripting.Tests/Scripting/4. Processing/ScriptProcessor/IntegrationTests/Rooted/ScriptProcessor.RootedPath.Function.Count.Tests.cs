@@ -40,7 +40,6 @@
             _testContext = null;
         }
 
-
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Function_Count_01()
         {

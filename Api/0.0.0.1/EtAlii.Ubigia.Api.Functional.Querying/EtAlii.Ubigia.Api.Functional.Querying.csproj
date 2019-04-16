@@ -14,13 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <ProjectGuid>f30cf8fb-c265-433d-9519-f29202f039a8</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Querying.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Querying.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />

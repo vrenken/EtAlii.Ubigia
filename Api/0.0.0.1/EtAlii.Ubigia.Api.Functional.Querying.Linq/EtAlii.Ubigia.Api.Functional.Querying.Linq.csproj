@@ -14,13 +14,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <ProjectGuid>52f94e82-7f65-47e8-9cab-435d77615702</ProjectGuid>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Querying.Linq.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <CodeAnalysisRuleSet>EtAlii.Ubigia.Api.Functional.Querying.Linq.ruleset</CodeAnalysisRuleSet>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />
@@ -30,8 +24,5 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Querying\Nodes\Queries\" />
   </ItemGroup>
 </Project>

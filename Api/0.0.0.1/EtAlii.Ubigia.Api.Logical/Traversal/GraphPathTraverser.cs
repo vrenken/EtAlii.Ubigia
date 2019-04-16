@@ -23,7 +23,17 @@
             _depthFirstTraversalAlgorithm = depthFirstTraversalAlgorithm;
             _temporalGraphPathWeaver = temporalGraphPathWeaver;
         }
-        
+
+        public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
+        {
+            var results = Observable.Create<IReadOnlyEntry>(output =>
+            {
+                Traverse(GraphPath.Create(identifier), Traversal.DepthFirst, scope, output, traverseToFinal);
+                return Disposable.Empty;
+            }).ToHotObservable();
+            return await results.SingleAsync();
+        }
+
         public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)
         {
             if (traverseToFinal)
@@ -54,17 +64,13 @@
             // we do not want a cold observable. This should work out of the box as well.
             //innerObservable = ToHotObservable(innerObservable);
 
-            innerObservable.Distinct().Subscribe(
+            innerObservable.Distinct().SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: output.OnCompleted,
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        var entry = await context.Entries.Get(o, scope);
-                        output.OnNext(entry);
-                    });
-                    task.Wait();
+                    var entry = await context.Entries.Get(o, scope);
+                    output.OnNext(entry);
                 });
         }
     }

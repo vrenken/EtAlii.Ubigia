@@ -19,10 +19,12 @@
         {
             // Arrange.
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
-            var traverserFactory = new GraphPathTraverserFactory();
-
+            var graphPathTraverserConfiguration = new GraphPathTraverserConfiguration().Use(fabric);
+            var graphPathTraverserFactory = new GraphPathTraverserFactory();
+            var graphPathTraverser = graphPathTraverserFactory.Create(graphPathTraverserConfiguration);
+            
             // Act.
-            var composer = new GraphComposerFactory(traverserFactory).Create(fabric);
+            var composer = new GraphComposerFactory(graphPathTraverser).Create(fabric);
 
             // Assert.
             Assert.NotNull(composer);

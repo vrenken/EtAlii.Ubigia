@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -61,42 +62,42 @@
             return spaces;        
         }
 
-        public Space Get(Guid itemId)
+        public Space Get(Guid spaceId)
         {
             var start = Environment.TickCount;
-            var item = _repository.Get(itemId);
+            var space = _repository.Get(spaceId);
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return item;   
+            return space;   
         }
 
-        public Space Add(Space item, SpaceTemplate template)
+        public async Task<Space> Add(Space space, SpaceTemplate template)
         {
             var start = Environment.TickCount;
-            item = _repository.Add(item, template);
+            space = await _repository.Add(space, template);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return item;   
+            return space;   
         }
 
-        public void Remove(Guid itemId)
+        public void Remove(Guid spaceId)
         {
             var start = Environment.TickCount;
-            _repository.Remove(itemId);
+            _repository.Remove(spaceId);
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Space item)
+        public void Remove(Space space)
         {
             var start = Environment.TickCount;
-            _repository.Remove(item);
+            _repository.Remove(space);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Space Update(Guid itemId, Space item)
+        public Space Update(Guid spaceId, Space space)
         {
             var start = Environment.TickCount;
-            item = _repository.Update(itemId, item);
+            space = _repository.Update(spaceId, space);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return item;   
+            return space;   
         }
     }
 }

@@ -3,7 +3,7 @@
     using System;
     using System.Reactive.Linq;
 
-    public static class IObservableToHotObservableExtension
+    public static class ObservableToHotObservableExtension
     {
         public static IObservable<T> ToHotObservable<T>(this IObservable<T> observable)
         {

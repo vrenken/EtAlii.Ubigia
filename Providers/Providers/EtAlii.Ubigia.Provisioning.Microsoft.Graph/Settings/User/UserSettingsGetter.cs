@@ -8,7 +8,7 @@
 
     public class UserSettingsGetter : IUserSettingsGetter
     {
-        public UserSettings[] Get(IGraphSLScriptContext context)
+        public async Task<UserSettings[]> Get(IGraphSLScriptContext context)
         {
             var script = new[]
             {
@@ -16,16 +16,11 @@
                 "<= /Providers/Microsoft/Graph/"
             };
 
-            DynamicNode[] result = null;
-            var task = Task.Run(async () =>
-            {
-                var lastSequence = await context.Process(script);
-                result = lastSequence.Output
-                    .ToEnumerable()
-                    .Cast<DynamicNode>()
-                    .ToArray();
-            });
-            task.Wait();
+            var lastSequence = await context.Process(script);
+            DynamicNode[] result = lastSequence.Output
+                .ToEnumerable()
+                .Cast<DynamicNode>()
+                .ToArray();
 
             return result.Select(n =>
             {

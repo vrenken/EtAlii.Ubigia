@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         {
             var clientSecrets = new ClientSecrets
             {
-                ClientSecret = systemSettings.ClientSecret,
+                ClientSecret = systemSettings.ClientSecret, 
                 ClientId = systemSettings.ClientId
             };
 
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                 userSettings.AccessToken = result.AccessToken;
                 userSettings.ExpiresIn = TimeSpan.FromSeconds(result.ExpiresInSeconds ?? thresholdBeforeExpiration.TotalSeconds);
                 userSettings.Updated = DateTime.UtcNow;
-                _userSettingsSetter.Set(userDataContext, userSettings.Email, userSettings);
+                await _userSettingsSetter.Set(userDataContext, userSettings.Email, userSettings);
             }
         }
     }

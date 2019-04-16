@@ -72,21 +72,22 @@ message Entry
 {
     IdentifierComponent Id = 1;
     TypeComponent Type = 2;
-    
-    RelationComponent Parent = 3;
-    repeated RelationsComponent Children = 4;
+    TagComponent Tag = 3;
 
-    RelationComponent Parent2 = 5;
-    repeated RelationsComponent Children2 = 6;
+    RelationComponent Parent = 4;
+    repeated RelationsComponent Children = 5;
 
-    RelationComponent Downdate = 7;
-    repeated RelationsComponent Updates = 8;
+    RelationComponent Parent2 = 6;
+    repeated RelationsComponent Children2 = 7;
 
-    RelationComponent Previous = 9;
-    RelationComponent Next = 10;
+    RelationComponent Downdate = 8;
+    repeated RelationsComponent Updates = 9;
 
-    RelationComponent Indexed = 11;
-    repeated RelationsComponent Indexes = 12;
+    RelationComponent Previous = 10;
+    RelationComponent Next = 11;
+
+    RelationComponent Indexed = 12;
+    repeated RelationsComponent Indexes = 13;
 }
 
 message IdentifierComponent
@@ -103,14 +104,26 @@ message IdentifierComponent
 
 message TypeComponent
 {
-    // All.
-    bool Stored = 1;
-    //string Name = 2;
+	// All.
+	bool Stored = 1;
+	//string Name = 2;
 
-    // Noncomposite.
+	// Noncomposite.
 
-    // Specific.
-    string Type = 2;
+	// Specific.
+	string Type = 2;
+}
+
+message TagComponent
+{
+	// All.
+	bool Stored = 1;
+	//string Name = 2;
+
+	// Noncomposite.
+
+	// Specific.
+	string Tag = 2;
 }
 
 message RelationComponent

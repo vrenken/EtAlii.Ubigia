@@ -23,11 +23,12 @@
             _conditionParser = conditionParser;
             _nodeFinder = nodeFinder;
 
-            var separator = Lp.Char('&');
+            var separator = Lp.Char('&');//.Debug("Separator", true);
             Parser = new LpsParser(Id, true,
-                Lp.One(c => c == '.') +  
-                newLineParser.OptionalMultiple + 
+                Lp.One(c => c == '.') + //.Debug("Point") + 
+                newLineParser.OptionalMultiple + //.Debug("NL1") +  
                 Lp.List(_conditionParser.Parser, separator, newLineParser.OptionalMultiple));
+                //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")));
         }
 
         public bool CanParse(LpNode node)
@@ -47,9 +48,9 @@
             return new ConditionalPathSubjectPart(conditions);
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if (partIndex == 0 || partIndex == 1 && !(before is VariablePathSubjectPart))
+            if (arguments.PartIndex == 0 || arguments.PartIndex == 1 && (arguments.Before is VariablePathSubjectPart) == false)
             {
                 throw new ScriptParserException("A conditional path part cannot be used at the beginning of a graph path.");
             }

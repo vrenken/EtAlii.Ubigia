@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -11,17 +10,13 @@ namespace EtAlii.Ubigia.Api.Logical
             var rootStartNode = (GraphRootStartNode)parameters.Part;
             var rootName = rootStartNode.Root;
 
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                 onError: e => parameters.Output.OnError(e),
-                onNext: o =>
+                onNext: async o =>
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        var root = await parameters.Context.Roots.Get(rootName);
-                        parameters.Output.OnNext(root.Identifier);
-                        parameters.Output.OnCompleted();
-                    });
-                    task.Wait();
+                    var root = await parameters.Context.Roots.Get(rootName);
+                    parameters.Output.OnNext(root.Identifier);
+                    parameters.Output.OnCompleted();
                 },
                 onCompleted: () => { });// parameters.Output.OnCompleted()});
         }

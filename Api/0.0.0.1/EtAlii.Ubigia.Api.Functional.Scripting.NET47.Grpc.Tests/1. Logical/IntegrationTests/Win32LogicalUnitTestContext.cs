@@ -3,14 +3,14 @@
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical.Tests;
-    using Ubigia.Tests;
+    using EtAlii.Ubigia.Tests;
     using Xunit;
 
     public class NET47LogicalUnitTestContext : IAsyncLifetime
     {
-        public string TestFile2MImage;
-        public string TestFile10MRaw;
-        public string TestFile100MRaw;
+        public string TestFile2MImage { get; }
+        public string TestFile10MRaw { get; }
+        public string TestFile100MRaw { get; }
 
         public FileComparer FileComparer { get; }
         public FolderComparer FolderComparer { get; }
@@ -28,7 +28,7 @@
             TestFile10MRaw = NET47TestHelper.CreateTemporaryFileName();
             TestFile100MRaw = NET47TestHelper.CreateTemporaryFileName();
         }
-        
+
         public async Task InitializeAsync()
         {
             await NET47TestHelper.SaveResourceTestImage(TestFile2MImage);

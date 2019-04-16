@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Linq;
     using System.Reactive.Linq;
-    using System.Threading.Tasks;
 
     internal class AssignEmptyToRootOperatorSubProcessor : IAssignEmptyToRootOperatorSubProcessor
     {

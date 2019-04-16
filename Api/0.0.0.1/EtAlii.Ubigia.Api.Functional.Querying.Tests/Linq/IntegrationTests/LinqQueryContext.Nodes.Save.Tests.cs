@@ -8,21 +8,17 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using Xunit.Abstractions;
 
-
-    public class LinqQueryContextNodesSaveTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime 
+    public class LinqQueryContextNodesSaveTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
+        private readonly LogicalUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
         private string _countryPath;
-        private readonly ITestOutputHelper _output;
-        private readonly LogicalUnitTestContext _testContext;
 
-        public LinqQueryContextNodesSaveTests(ITestOutputHelper output, LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesSaveTests(LogicalUnitTestContext testContext)
         {
-            _output = output;
             _testContext = testContext;
         }
 
@@ -39,10 +35,10 @@
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
 
-            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
@@ -53,9 +49,8 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            _output.WriteLine("LinqContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-
-            await Task.CompletedTask;
+            Console.WriteLine("LinqContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

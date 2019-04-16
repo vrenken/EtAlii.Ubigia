@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -10,7 +11,7 @@
 
 
     
-    public class ScriptProcessorRootedPathFunctionRenameTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class ScriptProcessorRootedPathFunctionRenameTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
@@ -19,21 +20,14 @@
         public ScriptProcessorRootedPathFunctionRenameTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
-        }
-
-        public Task InitializeAsync()
-        {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
                 .Use(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-            return Task.CompletedTask;
         }
-
-        public Task DisposeAsync()
+        public void Dispose()
         {
             _parser = null;
-            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

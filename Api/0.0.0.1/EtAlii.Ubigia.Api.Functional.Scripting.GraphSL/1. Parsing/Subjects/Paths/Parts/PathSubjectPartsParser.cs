@@ -12,11 +12,11 @@
         private readonly INodeValidator _nodeValidator;
         private readonly IPathSubjectPartParser[] _parsers;
 
-        // Warning S107 Constructor has 21 parameters, which is greater than the 7 authorized.
-        #pragma warning disable S107
         public PathSubjectPartsParser(
             ITraversingWildcardPathSubjectPartParser traversingWildcardPathSubjectPartParser,
             IWildcardPathSubjectPartParser wildcardPathSubjectPartParser,
+            ITaggedPathSubjectPartParser taggedPathSubjectPartParser,
+            
             IConditionalPathSubjectPartParser conditionalPathSubjectPartParser,
             IConstantPathSubjectPartParser constantPathSubjectPartParser,
             IVariablePathSubjectPartParser variablePathSubjectPartParser,
@@ -45,6 +45,7 @@
             {
                 traversingWildcardPathSubjectPartParser,
                 wildcardPathSubjectPartParser,
+                taggedPathSubjectPartParser,
                 conditionalPathSubjectPartParser, 
                 constantPathSubjectPartParser,
                 variablePathSubjectPartParser,
@@ -70,7 +71,7 @@
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            Parser = new LpsParser(Id, true, lpsParsers);
+            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("PathSubjectParts", true);
         }
 
         public PathSubjectPart Parse(LpNode node)
@@ -82,10 +83,11 @@
             return result;
         }
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            var parser = _parsers.Single(p => p.CanValidate(part));
-            parser.Validate(before, part, partIndex, after);
+            //var parsers = _parsers.Where(p => p.CanValidate(part)).ToArray();
+            var parser = _parsers.Single(p => p.CanValidate(arguments.Part));
+            parser.Validate(arguments);
         }
     }
 }

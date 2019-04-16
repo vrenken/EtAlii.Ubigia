@@ -21,9 +21,8 @@
         public async Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output)
         {
             // TODO: Continue here to root processing logical implementation. 
-            if (pathSubject is RootedPathSubject)
+            if (pathSubject is RootedPathSubject rootedPathSubject)
             {
-                var rootedPathSubject = pathSubject as RootedPathSubject;
                 var parts = new List<PathSubjectPart>(rootedPathSubject.Parts);
                 var hasParts = parts.Count > 0;
                 if (hasParts)

@@ -22,9 +22,9 @@ namespace EtAlii.Ubigia.Api.Logical
                 onCompleted: () => { });
         }
 
-        public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
+        public Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
         {
-            return await Task.FromResult(((GraphIdentifiersStartNode)part).Identifiers);
+            return Task.FromResult(((GraphIdentifiersStartNode)part).Identifiers);
         }
     }
 }

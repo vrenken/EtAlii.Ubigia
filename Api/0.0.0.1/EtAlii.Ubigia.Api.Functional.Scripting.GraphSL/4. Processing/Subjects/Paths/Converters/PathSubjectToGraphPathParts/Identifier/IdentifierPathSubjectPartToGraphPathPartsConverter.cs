@@ -7,22 +7,19 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
-            return Task.Run(() =>
+            GraphPathPart[] result;
+            if (pathSubjectPartPosition == 0 ||
+                previousPathSubjectPart is ParentPathSubjectPart && pathSubjectPartPosition == 1)
             {
-                GraphPathPart[] result;
-                if (pathSubjectPartPosition == 0 ||
-                    previousPathSubjectPart is ParentPathSubjectPart && pathSubjectPartPosition == 1)
-                {
-                    var startIdentifier = ((IdentifierPathSubjectPart) pathSubjectPart).Identifier;
-                    result = new GraphPathPart[] {new GraphIdentifiersStartNode(startIdentifier)};
-                }
-                else
-                {
-                    throw new ScriptProcessingException(
-                        "The IdentifierPathSubjectPartProcessor should always be the first path part");
-                }
-                return result;
-            });
+                var startIdentifier = ((IdentifierPathSubjectPart) pathSubjectPart).Identifier;
+                result = new GraphPathPart[] {new GraphIdentifiersStartNode(startIdentifier)};
+            }
+            else
+            {
+                throw new ScriptProcessingException(
+                    "The IdentifierPathSubjectPartProcessor should always be the first path part");
+            }
+            return Task.FromResult(result);
         }
     }
 }

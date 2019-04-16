@@ -10,7 +10,11 @@
     
     public class ManagementConnectionStoragesTests : IAsyncLifetime
     {
-        private ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
+        private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
+
+        public ManagementConnectionStoragesTests()
+        {
+        }
 
         public async Task InitializeAsync()
         {

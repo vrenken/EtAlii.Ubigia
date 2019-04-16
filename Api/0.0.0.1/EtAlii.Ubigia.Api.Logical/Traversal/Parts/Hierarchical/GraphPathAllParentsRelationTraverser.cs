@@ -11,46 +11,42 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         public void Configure(TraversalParameters parameters)
         {
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
+                        var results = new List<Identifier>();
+                        var path = new List<IReadOnlyEntry>();
+
+                        var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+
+                        do
                         {
-                            var results = new List<Identifier>();
-                            var path = new List<IReadOnlyEntry>();
-
-                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
-
-                            do
+                            path.Add(entry);
+                            var entries = await parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope);
+                            if (entries.Multiple())
                             {
-                                path.Add(entry);
-                                var entries = await parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Downdate, parameters.Scope);
-                                if (entries.Multiple())
-                                {
-                                    throw new NotSupportedException("The GraphPathAllParentsRelationTraverser is not able to process splitted temporal paths.");
-                                }
-                                entry = entries.SingleOrDefault();
-
-                            } while (entry != null);
-
-                            for (int i = path.Count; i > 0; i--)
-                            {
-                                entry = path[i - 1];
-
-                                var children = await parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Parent, parameters.Scope);
-                                foreach (var child in children)
-                                {
-                                    await Update(results, child, parameters.Context, parameters.Scope);
-                                }
+                                throw new NotSupportedException("The GraphPathAllParentsRelationTraverser is not able to process splitted temporal paths.");
                             }
+                            entry = entries.SingleOrDefault();
 
-                            foreach (var result in results)
+                        } while (entry != null);
+
+                        for (int i = path.Count; i > 0; i--)
+                        {
+                            entry = path[i - 1];
+
+                            var children = await parameters.Context.Entries.GetRelated(entry.Id, EntryRelation.Parent, parameters.Scope);
+                            foreach (var child in children)
                             {
-                                parameters.Output.OnNext(result);
+                                await Update(results, child, parameters.Context, parameters.Scope);
                             }
-                        });
-                        task.Wait();
+                        }
+
+                        foreach (var result in results)
+                        {
+                            parameters.Output.OnNext(result);
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
 

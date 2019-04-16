@@ -33,14 +33,14 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _parser = null;
             _logicalContext.Dispose();
             _logicalContext = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
+
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Wildcard_01()

@@ -9,44 +9,44 @@
     /// </summary>
     public class RootDataClientStub : IRootDataClient 
     {
-        public async Task<Root> Add(string name)
+        public Task<Root> Add(string name)
         {
-            return await Task.FromResult<Root>(null);
+            return Task.FromResult<Root>(null);
         }
 
-        public async Task Remove(Guid id)
+        public Task Remove(Guid id)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task<Root> Change(Guid rootId, string rootName)
+        public Task<Root> Change(Guid rootId, string rootName)
         {
-            return await Task.FromResult<Root>(null);
+            return Task.FromResult<Root>(null);
         }
 
-        public async Task<Root> Get(string rootName)
+        public Task<Root> Get(string rootName)
         {
-            return await Task.FromResult<Root>(null);
+            return Task.FromResult<Root>(null);
         }
 
-        public async Task<Root> Get(Guid rootId)
+        public Task<Root> Get(Guid rootId)
         {
-            return await Task.FromResult<Root>(null);
+            return Task.FromResult<Root>(null);
         }
 
-        public async Task<IEnumerable<Root>> GetAll()
+        public Task<IEnumerable<Root>> GetAll()
         {
-            return await Task.FromResult<IEnumerable<Root>>(null);
+            return Task.FromResult<IEnumerable<Root>>(null);
         }
 
-        public async Task Connect(ISpaceConnection spaceConnection)
+        public Task Connect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect(ISpaceConnection spaceConnection)
         {
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
     }
 }

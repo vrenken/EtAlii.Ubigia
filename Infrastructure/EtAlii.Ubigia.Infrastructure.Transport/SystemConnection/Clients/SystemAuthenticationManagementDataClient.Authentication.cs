@@ -38,7 +38,7 @@
             }
         }
 
-        private async Task<string> GetAuthenticationToken(string accountName, string password)
+        private Task<string> GetAuthenticationToken(string accountName, string password)
         {
             string authenticationToken;
             if (password == null && _authenticationToken != null)
@@ -54,7 +54,7 @@
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
             }
-            return await Task.FromResult(authenticationToken);
+            return Task.FromResult(authenticationToken);
         }
     }
 }

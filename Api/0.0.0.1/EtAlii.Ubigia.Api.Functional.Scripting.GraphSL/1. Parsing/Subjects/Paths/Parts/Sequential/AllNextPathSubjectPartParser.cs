@@ -30,22 +30,22 @@
         }
 
 
-        public void Validate(PathSubjectPart before, PathSubjectPart part, int partIndex, PathSubjectPart after)
+        public void Validate(PathSubjectPartParserArguments arguments)
         {
-            if(partIndex == 0)
+            if(arguments.PartIndex == 0)
             {
                 throw new ScriptParserException("The all next path separator cannot be used to start a path.");
             }
-            if (before is NextPathSubjectPart || after is NextPathSubjectPart || 
-                before is AllNextPathSubjectPart || after is AllNextPathSubjectPart)
+            if (arguments.Before is NextPathSubjectPart || arguments.After is NextPathSubjectPart || 
+                arguments.Before is AllNextPathSubjectPart || arguments.After is AllNextPathSubjectPart)
             {
                 throw new ScriptParserException("The all next path separator cannot be combined.");
             }
-            if (after is PreviousPathSubjectPart)
+            if (arguments.After is PreviousPathSubjectPart)
             {
                 throw new ScriptParserException("The all next path separator cannot be followed by a previous path separator.");
             }
-            if (after is AllPreviousPathSubjectPart)
+            if (arguments.After is AllPreviousPathSubjectPart)
             {
                 throw new ScriptParserException("The all next path separator cannot be followed by an all previous path separator.");
             }

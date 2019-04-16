@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -10,28 +9,24 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var pattern = ((GraphWildcard)parameters.Part).Pattern;
 
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
-                        {
-                            var regex = parameters.Scope.GetWildCardRegex(pattern);
+                        var regex = parameters.Scope.GetWildCardRegex(pattern);
 
-                            if (start == Identifier.Empty)
+                        if (start == Identifier.Empty)
+                        {
+                            throw new GraphTraversalException("Wildcard traversal cannot be done at the root of a graph");
+                        }
+                        else
+                        {
+                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+                            if (regex.IsMatch(entry.Type))
                             {
-                                throw new GraphTraversalException("Wildcard traversal cannot be done at the root of a graph");
+                                parameters.Output.OnNext(entry.Id);
                             }
-                            else
-                            {
-                                var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
-                                if (regex.IsMatch(entry.Type))
-                                {
-                                    parameters.Output.OnNext(entry.Id);
-                                }
-                            }
-                        });
-                        task.Wait();
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
 

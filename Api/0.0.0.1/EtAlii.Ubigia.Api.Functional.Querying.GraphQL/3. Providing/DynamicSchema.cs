@@ -10,8 +10,6 @@
 
     public partial class DynamicSchema : Schema
     {
-        private readonly List<IGraphType> _dynamicSchema = new List<IGraphType>();
-
         private readonly Document _document;
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
@@ -69,18 +67,13 @@
                 switch (operation.OperationType)
                 {
                     case OperationType.Query:
-                        await AddDynamicTypes(operation);
+                        var registration = await _operationProcessor.Process(operation, (ComplexGraphType<object>)Query, _graphTypes);
+                        await AddDynamicTypes(operation.SelectionSet, registration);
                         break;
                     default:
                         throw new NotSupportedException();
                 }
             }
-        }
-               
-        private async Task AddDynamicTypes(Operation queryOperation)
-        {
-            var registration = await _operationProcessor.Process(queryOperation, (ComplexGraphType<object>)Query, _graphTypes);
-            await AddDynamicTypes(queryOperation.SelectionSet, registration);
         }
 
         private async Task AddDynamicTypes(SelectionSet selectionSet, Context parentContext)

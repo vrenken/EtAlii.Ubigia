@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net471</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -45,7 +45,8 @@
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
     <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
-    <PackageReference Include="Grpc" Version="1.17.0" />
+    <PackageReference Include="Grpc" Version="1.19.0" />
+    <PackageReference Include="Grpc.Core" Version="1.19.0" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.1.66" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
     <PackageReference Include="Syncfusion.Grid.Base46" Version="16.1.0.26" />
@@ -53,7 +54,7 @@
     <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="16.1.0.26" />
     <PackageReference Include="Syncfusion.SfChart.WPF46" Version="16.1.0.26" />
     <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="System.Reactive.Core" Version="4.1.2" />
+    <PackageReference Include="System.Reactive.Core" Version="4.1.3" />
   </ItemGroup>
   <!-- 
   Interesting link:

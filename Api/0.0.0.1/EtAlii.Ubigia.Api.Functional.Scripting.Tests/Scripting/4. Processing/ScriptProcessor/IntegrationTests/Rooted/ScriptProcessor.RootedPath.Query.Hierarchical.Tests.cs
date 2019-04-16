@@ -11,7 +11,7 @@
     using Xunit;
 
     
-    public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime 
+    public class ScriptProcessorRootedPathQueryHierarchicalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;
         private IScriptParser _parser;
@@ -32,13 +32,12 @@
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             _parser = null;
             _logicalContext.Dispose();
             _logicalContext = null;
-
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
-    using System;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Functional;
 
@@ -20,6 +19,11 @@
             _decoree = decoree;
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptSet);
         }
+
+        public void Dispose()
+        {
+            _decoree.Dispose();
+        }
         
         public void SaveChanges()
         {
@@ -28,27 +32,6 @@
             _decoree.SaveChanges();
 
             Profiler.End(profile);
-        }
-
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            // Cleanup
-            if (disposing)
-            {
-                _decoree.Dispose();
-            }
-        }
-
-        ~ProfilingLinqQueryContext()
-        {
-            Dispose(false);
         }
     }
 }

@@ -66,22 +66,18 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 
         #region start/stop
 
-        public async Task Start()
+        public Task Start()
         {
-            await Task.Run(() =>
-            {
-                Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
-                Context.Start();
-            });
+            Context = _testHostFactory.Create<InProcessInfrastructureHostTestContext>();
+            Context.Start();
+            return Task.CompletedTask;
         }
 
-        public async Task Stop()
+        public Task Stop()
         {
-            await Task.Run(() =>
-            {
-                Context.Stop();
-                Context = null;
-            });
+            Context.Stop();
+            Context = null;
+            return Task.CompletedTask;
         }
 
         #endregion start/stop

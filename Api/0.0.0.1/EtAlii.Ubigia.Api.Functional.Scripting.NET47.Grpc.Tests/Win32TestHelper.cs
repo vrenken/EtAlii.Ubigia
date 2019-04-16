@@ -5,7 +5,6 @@
     using System.Reflection;
     using System.Threading.Tasks;
     using Xunit;
-    using Path = System.IO.Path;
 
     public static class NET47TestHelper
     {
@@ -101,10 +100,10 @@
             }
         }
 
-        public static void AssertFilesAreEqual(string expectedFile, string actualFile)
+        public static async Task AssertFilesAreEqual(string expectedFile, string actualFile)
         {
-            var expectedBytes = File.ReadAllBytes(expectedFile);
-            var actualBytes = File.ReadAllBytes(actualFile);
+            var expectedBytes = await File.ReadAllBytesAsync(expectedFile);
+            var actualBytes = await File.ReadAllBytesAsync(actualFile);
             Assert.Equal(expectedBytes.Length, actualBytes.Length);
             for (int i = 0; i < expectedBytes.Length; i++)
             {

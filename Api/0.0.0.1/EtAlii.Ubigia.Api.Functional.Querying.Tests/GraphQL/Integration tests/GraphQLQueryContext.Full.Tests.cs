@@ -5,27 +5,24 @@
     using EtAlii.Ubigia.Api.Logical;
     using GraphQL.Http;
     using Xunit;
-    using Xunit.Abstractions;
 
-
-    public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+// TODO: ENABLE FOR GraphQL
+#pragma warning disable xUnit1000
+    internal class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext _logicalContext;
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
-
-        private readonly ITestOutputHelper _output;
+        
         private readonly QueryingUnitTestContext _testContext;
         private readonly IDocumentWriter _documentWriter;
 
-        public GraphQLQueryContextFullTests(ITestOutputHelper output, QueryingUnitTestContext testContext)
+        public GraphQLQueryContextFullTests(QueryingUnitTestContext testContext)
         {
-            _output = output;
             _testContext = testContext;
             _documentWriter = new DocumentWriter(indent: false);
         }
 
-        
         public async Task InitializeAsync()
         {
             var start = Environment.TickCount;
@@ -37,10 +34,10 @@
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
 
-            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task DisposeAsync()
+        public Task DisposeAsync()
         {
             var start = Environment.TickCount;
 
@@ -48,11 +45,9 @@
             _scriptContext = null;
             _queryContext = null;
 
-            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-
-            await Task.CompletedTask;
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return Task.CompletedTask;
         }
-        
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Single()
@@ -159,6 +154,5 @@
             Assert.Null(result.Errors);
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ ""data2"": { ""person1"": { ""nickname"": ""Iron Man"" }, ""person2"": { ""nickname"": ""Johnny"" }}}", result);
         }
-
     }
 }

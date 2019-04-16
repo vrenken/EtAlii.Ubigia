@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
 
@@ -10,27 +9,23 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             var name = ((GraphNode)parameters.Part).Name;
 
-            parameters.Input.Subscribe(
+            parameters.Input.SubscribeAsync(
                     onError: e => parameters.Output.OnError(e),
-                    onNext: start =>
+                    onNext: async start =>
                     {
-                        var task = Task.Run(async () =>
+                        if (start == Identifier.Empty)
                         {
-                            if (start == Identifier.Empty)
+                            var root = await parameters.Context.Roots.Get(name);
+                            parameters.Output.OnNext(root.Identifier);
+                        }
+                        else
+                        {
+                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+                            if (entry.Type == name)
                             {
-                                var root = await parameters.Context.Roots.Get(name);
-                                parameters.Output.OnNext(root.Identifier);
+                                parameters.Output.OnNext(entry.Id);
                             }
-                            else
-                            {
-                                var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
-                                if (entry.Type == name)
-                                {
-                                    parameters.Output.OnNext(entry.Id);
-                                }
-                            }
-                        });
-                        task.Wait();
+                        }
                     },
                     onCompleted: () => parameters.Output.OnCompleted());
 

@@ -24,14 +24,16 @@
             Address = address;
         }
 
-        public async Task Start()
+        public Task Start()
         {
-            await Task.Run(() => IsConnected = true);
+            IsConnected = true;
+            return Task.CompletedTask;
         }
 
-        public async Task Stop()
+        public Task Stop()
         {
-            await Task.Run(() => IsConnected = false);
+            IsConnected = false;
+            return Task.CompletedTask;
         }
 
         xTechnology.MicroContainer.IScaffolding[] ISpaceTransport.CreateScaffolding()

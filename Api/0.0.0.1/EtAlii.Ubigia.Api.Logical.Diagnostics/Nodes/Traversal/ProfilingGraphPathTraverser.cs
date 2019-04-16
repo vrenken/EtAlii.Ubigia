@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Logical;
 
@@ -14,6 +15,19 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
         {
             _decoree = decoree;
             Profiler = profiler.Create(ProfilingAspects.Logical.Traversal);
+        }
+
+        public async Task<IReadOnlyEntry> TraverseToSingle(Identifier identifier, ExecutionScope scope, bool traverseToFinal = true)
+        {
+            dynamic profile = Profiler.Begin("TraverseToSingle: " + identifier + " (to final: " + traverseToFinal + ")");
+            profile.Identifier = identifier.ToString();
+            profile.TraverseToFinal = traverseToFinal;
+
+            var result = await _decoree.TraverseToSingle(identifier, scope, traverseToFinal);
+
+            Profiler.End(profile);
+
+            return result;
         }
 
         public void Traverse(GraphPath path, Traversal traversal, ExecutionScope scope, IObserver<IReadOnlyEntry> output, bool traverseToFinal = true)

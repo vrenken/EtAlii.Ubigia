@@ -8,8 +8,6 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    using Xunit.Abstractions;
-
 
     public class LinqQueryContextNodesAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
@@ -17,16 +15,24 @@
         private ILogicalContext _logicalContext;
         private ILinqQueryContext _context;
         private string _countryPath;
-        private readonly ITestOutputHelper _output;
         private readonly LogicalUnitTestContext _testContext;
 
-        public LinqQueryContextNodesAddTests(ITestOutputHelper output, LogicalUnitTestContext testContext)
+        public LinqQueryContextNodesAddTests(LogicalUnitTestContext testContext)
         {
-            _output = output;
             _testContext = testContext;
         }
 
         public async Task InitializeAsync()
+        {
+            await TestInitialize();
+        }
+
+        public async Task DisposeAsync()
+        {
+            await TestCleanup();
+        }
+
+        private async Task TestInitialize()
         {
             var start = Environment.TickCount;
 
@@ -36,14 +42,14 @@
                 .Use(_diagnostics)
                 .Use(_logicalContext);
             _context = new LinqQueryContextFactory().Create(configuration);
-                
+            
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
 
-            _output.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            Console.WriteLine("DataContext_Nodes.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public async Task DisposeAsync()
+        private Task TestCleanup()
         {
             var start = Environment.TickCount;
 
@@ -54,11 +60,10 @@
             _logicalContext = null;
             _diagnostics = null;
 
-            _output.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-
-            await Task.CompletedTask;
+            Console.WriteLine("DataContext_Nodes.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
+            return Task.CompletedTask;
         }
-        
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Linq_Nodes_Select_Add_Cast_Single()
         {
@@ -95,13 +100,13 @@
 
             var items = _context.Nodes.Select(_countryPath);
 
-            _output.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
             dynamic single = items.Add("Overijssel_01").Single();
 
-            _output.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -118,13 +123,13 @@
 
             var items = _context.Nodes.Select(_countryPath);
 
-            _output.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
             dynamic single = items.Add("Overijssel_01").Single();
 
-            _output.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -141,13 +146,13 @@
 
             var items = _context.Nodes.Select(_countryPath);
 
-            _output.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            Console.WriteLine("context.Nodes.Select: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
             delta = Environment.TickCount;
 
             // Act.
             dynamic single = items.Add("Overijssel_01").Single();
 
-            _output.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
+            Console.WriteLine("items.Add: {0}ms", TimeSpan.FromTicks(Environment.TickCount - delta).TotalMilliseconds);
 
             // Assert.
             Assert.Equal("Overijssel_01", single.ToString());
@@ -160,6 +165,7 @@
             var start = Environment.TickCount;
 
             // Arrange.
+            //var scope = new ExecutionScope(false);
             var items = _context.Nodes.Select(_countryPath);
 
             // Act.
@@ -170,8 +176,8 @@
             var duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
-            await DisposeAsync();
-            await InitializeAsync();
+            await TestCleanup();
+            await TestInitialize();
 
             // Arrange.
             start = Environment.TickCount;
@@ -192,8 +198,8 @@
             duration = TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds;
             Assert.True(3000 > duration, "Execution took longer than: " + duration + "ms");
 
-            await DisposeAsync();
-            await InitializeAsync();
+            await TestCleanup();
+            await TestInitialize();
 
             // Arrange.
             start = Environment.TickCount;
