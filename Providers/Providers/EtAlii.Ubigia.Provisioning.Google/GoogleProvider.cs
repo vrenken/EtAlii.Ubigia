@@ -48,8 +48,9 @@
 
         public void Start()
         {
-            _systemSettingsProvider.Update();
-
+            var task = _systemSettingsProvider.Update();
+            task.Wait();
+            
             foreach (var updater in _updaters)
             {
                 updater.Start();

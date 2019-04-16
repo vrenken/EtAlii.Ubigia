@@ -55,7 +55,8 @@ namespace EtAlii.Ubigia.Provisioning.Google
                 {
                     lock (LockObject)
                     {
-                        Run();
+                        var task = Run();
+                        task.Wait();
                     }
                 }
                 catch (Exception e)
@@ -73,6 +74,6 @@ namespace EtAlii.Ubigia.Provisioning.Google
             }
         }
 
-        protected abstract void Run();
+        protected abstract Task Run();
     }
 }
