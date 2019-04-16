@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
     public interface IUserSettingsGetter
     {
-        UserSettings[] Get(IGraphSLScriptContext context);
+        Task<UserSettings[]> Get(IGraphSLScriptContext context);
     }
 }

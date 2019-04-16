@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
+    using System.Threading.Tasks;
 
     public class PeopleImporter : AsyncProcess, IPeopleImporter
     {
@@ -25,18 +26,17 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             Interval = TimeSpan.FromMinutes(1);
         }
 
-        protected override void Run()
+        protected override async Task Run()
         {
-            var systemSettings = _systemSettingsGetter.Get(_context.SystemScriptContext);
+            var systemSettings = await _systemSettingsGetter.Get(_context.SystemScriptContext);
 
             // Fetch all configuration spaces.
             var configurationSpaces = _configurationSpaceGetter.GetAll();
             foreach (var configurationSpace in configurationSpaces)
             {
                 // If so, update the people for this user.
-                _spaceUpdater.Update(configurationSpace, systemSettings);
+                await _spaceUpdater.Update(configurationSpace, systemSettings);
             }
-
         }
     }
 }

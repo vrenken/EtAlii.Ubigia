@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -15,7 +16,7 @@
             _context = context;
         }
 
-        public void Initialize(Space space, SpaceTemplate template)
+        public Task Initialize(Space space, SpaceTemplate template)
         {
             var storageId = _context.Storages.GetLocal().Id;
             var accountId = space.AccountId;
@@ -58,6 +59,8 @@
             {
                 AddRoot(storageId, accountId, spaceId, rootEntry.Type, rootEntry.Id);
             }
+
+            return Task.CompletedTask;
         }
 
         private void AddRoot(Guid storageId, Guid accountId, Guid spaceId, string name, Identifier identifier)

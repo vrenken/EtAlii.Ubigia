@@ -1,9 +1,10 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
     public interface ISystemSettingsSetter
     {
-        void Set(IGraphSLScriptContext context, SystemSettings settings);
+        Task Set(IGraphSLScriptContext context, SystemSettings settings);
     }
 }

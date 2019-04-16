@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -69,10 +70,10 @@
             return space;   
         }
 
-        public Space Add(Space space, SpaceTemplate template)
+        public async Task<Space> Add(Space space, SpaceTemplate template)
         {
             var start = Environment.TickCount;
-            space = _repository.Add(space, template);
+            space = await _repository.Add(space, template);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return space;   
         }

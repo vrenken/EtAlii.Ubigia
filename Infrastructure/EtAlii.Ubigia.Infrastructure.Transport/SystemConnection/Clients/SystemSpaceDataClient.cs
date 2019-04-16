@@ -16,7 +16,7 @@
             _infrastructure = infrastructure;
         }
 
-        public Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
+        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
         {
             // TODO: This is where the template functionality should continue.
             var space = new Space
@@ -25,8 +25,8 @@
                 AccountId = accountId,
             };
 
-            space = _infrastructure.Spaces.Add(space, template);
-            return Task.FromResult(space);
+            space = await _infrastructure.Spaces.Add(space, template);
+            return space;
         }
 
         public Task Remove(Guid spaceId)

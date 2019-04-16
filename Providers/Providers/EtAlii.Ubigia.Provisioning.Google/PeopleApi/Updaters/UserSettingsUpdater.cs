@@ -20,9 +20,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Update(UserSettings userSettings, SystemSettings systemSettings, IGraphSLScriptContext userDataContext, TimeSpan thresholdBeforeExpiration)
         {
-            var clientSecrets = new ClientSecrets();
-            clientSecrets.ClientSecret = systemSettings.ClientSecret;
-            clientSecrets.ClientId = systemSettings.ClientId;
+            var clientSecrets = new ClientSecrets
+            {
+                ClientSecret = systemSettings.ClientSecret, 
+                ClientId = systemSettings.ClientId
+            };
 
             var initializer = new GoogleAuthorizationCodeFlow.Initializer
             {
@@ -37,7 +39,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                 userSettings.AccessToken = result.AccessToken;
                 userSettings.ExpiresIn = TimeSpan.FromSeconds(result.ExpiresInSeconds ?? thresholdBeforeExpiration.TotalSeconds);
                 userSettings.Updated = DateTime.UtcNow;
-                _userSettingsSetter.Set(userDataContext, userSettings.Email, userSettings);
+                await _userSettingsSetter.Set(userDataContext, userSettings.Email, userSettings);
             }
         }
     }
