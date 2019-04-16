@@ -12,7 +12,7 @@
 
         IEnumerable<Space> GetAll(Guid accountId);
 
-        Space Add(Space item, SpaceTemplate template);
+        Space Add(Space item, SpaceTemplate template, out bool isAdded);
 
         IEnumerable<Space> GetAll();
 
@@ -25,7 +25,5 @@
         void Remove(Space itemToRemove);
 
         Space Update(Guid itemId, Space updatedItem);
-
-        event EventHandler<SpaceAddedEventArgs> Added;
     }
 }

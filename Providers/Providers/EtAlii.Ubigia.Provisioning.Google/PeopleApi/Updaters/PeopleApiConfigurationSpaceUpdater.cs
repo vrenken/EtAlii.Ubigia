@@ -23,26 +23,22 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _userSettingsUpdater = userSettingsUpdater;
         }
 
-        public void Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
+        public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-            var task = Task.Run(async () =>
+            var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Space);
             {
-                var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Space);
+                var allUserSettings = await _userSettingsGetter.Get(userDataScriptContext);
+                foreach (var userSettings in allUserSettings)
                 {
-                    var allUserSettings = _userSettingsGetter.Get(userDataScriptContext);
-                    foreach (var userSettings in allUserSettings)
+                    var duration = userSettings.ExpiresIn - _thresholdBeforeExpiration;
+                    duration = duration.TotalMilliseconds > 0 ? duration : userSettings.ExpiresIn;
+                    //var duration = TimeSpan.FromMinutes(2); 
+                    if (userSettings.Updated + duration < DateTime.UtcNow)
                     {
-                        var duration = userSettings.ExpiresIn - _thresholdBeforeExpiration;
-                        duration = duration.TotalMilliseconds > 0 ? duration : userSettings.ExpiresIn;
-                        //var duration = TimeSpan.FromMinutes(2); 
-                        if (userSettings.Updated + duration < DateTime.UtcNow)
-                        {
-                            await _userSettingsUpdater.Update(userSettings, systemSettings, userDataScriptContext, _thresholdBeforeExpiration);
-                        }
+                        await _userSettingsUpdater.Update(userSettings, systemSettings, userDataScriptContext, _thresholdBeforeExpiration);
                     }
                 }
-            });
-            task.Wait();
+            }
         }
 
     }

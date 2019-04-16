@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
 
     public class SystemSettingsProvider : ISystemSettingsProvider
     {
@@ -17,9 +18,9 @@
             _getter = getter;
         }
 
-        public void Update()
+        public async Task Update()
         {
-            SystemSettings = _getter.Get(_context.SystemScriptContext);
+            SystemSettings = await _getter.Get(_context.SystemScriptContext);
         }
     }
 }

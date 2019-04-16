@@ -39,7 +39,7 @@
             foreach (var spaceToCreate in template.SpacesToCreate)
             {
                 // ReSharper disable once UnusedVariable
-                var space = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate);
+                var space = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out bool _);
             }
         }
     }

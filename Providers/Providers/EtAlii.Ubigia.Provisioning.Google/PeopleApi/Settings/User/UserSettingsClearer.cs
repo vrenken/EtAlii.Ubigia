@@ -6,7 +6,7 @@
 
     public class UserSettingsClearer : IUserSettingsClearer
     {
-        public void Clear(IGraphSLScriptContext context, string account)
+        public async Task Clear(IGraphSLScriptContext context, string account)
         {
             var script = new[]
             {
@@ -14,12 +14,8 @@
                 $"/Providers/Google/PeopleApi -= \"{account}\""
             };
 
-            var task = Task.Run(async () =>
-            {
-                var lastSequence = await context.Process(script);
-                await lastSequence.Output.SingleOrDefaultAsync();
-            });
-            task.Wait();
+            var lastSequence = await context.Process(script);
+            await lastSequence.Output.SingleOrDefaultAsync();
         }
     }
 }

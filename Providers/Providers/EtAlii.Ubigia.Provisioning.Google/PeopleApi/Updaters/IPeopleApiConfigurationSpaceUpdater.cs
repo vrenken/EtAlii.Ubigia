@@ -2,8 +2,10 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
+
     public interface IPeopleApiConfigurationSpaceUpdater
     {
-        void Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings);
+        Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings);
     }
 }

@@ -3,7 +3,9 @@
     using EtAlii.Ubigia.Api;
     using Xunit;
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     [Trait("Technology", "Grpc")]
     public sealed class ContentRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
@@ -16,11 +18,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Store_Content()
+        public async Task ContentRepository_Store_Content()
         {
 			// Arrange.
 			var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var content = _testContext.TestContentFactory.Create();
 
@@ -32,11 +34,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Store_ContentPart()
+        public async Task ContentRepository_Store_ContentPart()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var data = _testContext.TestContentFactory.CreateData(100, 500);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
@@ -55,11 +57,11 @@
 
 
         [Fact]
-        public void ContentRepository_Store_ContentPart_Out_Of_Bounds()
+        public async Task ContentRepository_Store_ContentPart_Out_Of_Bounds()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var content = _testContext.TestContentFactory.Create(3);
             var contentPart = _testContext.TestContentFactory.CreatePart(6);
@@ -76,11 +78,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Store_ContentPart_Before_Content()
+        public async Task ContentRepository_Store_ContentPart_Before_Content()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var content = _testContext.TestContentFactory.Create(1);
             var contentPart = _testContext.TestContentFactory.CreatePart(0);
@@ -97,11 +99,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Retrieve_Content()
+        public async Task ContentRepository_Retrieve_Content()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var data = _testContext.TestContentFactory.CreateData(100, 500);
             var contentDefinition = _testContext.TestContentDefinitionFactory.Create(data);
@@ -120,11 +122,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Store_ContentDefinition_Null_Content()
+        public async Task ContentRepository_Store_ContentDefinition_Null_Content()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var content = (Content)null;
 
@@ -139,11 +141,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Store_ContentDefinition_No_Identifier()
+        public async Task ContentRepository_Store_ContentDefinition_No_Identifier()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var content = _testContext.TestContentFactory.Create();
 
@@ -159,11 +161,11 @@
         }
 
         [Fact]
-        public void ContentRepository_Get_Content()
+        public async Task ContentRepository_Get_Content()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
             var content = _testContext.TestContentFactory.Create();
 

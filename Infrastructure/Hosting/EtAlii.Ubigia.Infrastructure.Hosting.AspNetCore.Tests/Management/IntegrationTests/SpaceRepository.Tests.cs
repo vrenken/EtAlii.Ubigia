@@ -3,10 +3,12 @@
     using Xunit;
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
 
-	[Trait("Technology", "AspNetCore")]
+    [Trait("Technology", "AspNetCore")]
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
@@ -17,23 +19,23 @@
         }
 
         [Fact]
-        public void SpaceRepository_Add()
+        public async Task SpaceRepository_Add()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
+            var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
         }
 
         [Fact]
-        public void SpaceRepository_Get()
+        public async Task SpaceRepository_Get()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
+            var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
@@ -46,12 +48,12 @@
         }
 
         [Fact]
-        public void SpaceRepository_Remove_By_Id()
+        public async Task SpaceRepository_Remove_By_Id()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
+            var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
@@ -65,12 +67,12 @@
         }
 
         [Fact]
-        public void SpaceRepository_Remove_By_Instance()
+        public async Task SpaceRepository_Remove_By_Instance()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
+            var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             Assert.NotNull(addedSpace);
             Assert.NotEqual(addedSpace.Id, Guid.Empty);
 
@@ -93,14 +95,14 @@
         }
 
         [Fact]
-        public void SpaceRepository_GetAll()
+        public async Task SpaceRepository_GetAll()
         {
 			// Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
-            space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            addedSpace = context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
+            var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
+            addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
 
             var spaces = context.Host.Infrastructure.Spaces.GetAll();
             Assert.NotNull(spaces);

@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
+
     public class PeopleApiUpdater : AsyncProcess, IPeopleApiUpdater
     {
         private readonly IConfigurationSpaceGetter _configurationSpaceGetter;
@@ -21,16 +23,16 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _context = context;
         }
 
-        protected override void Run()
+        protected override async Task Run()
         {
-            var systemSettings = _systemSettingsGetter.Get(_context.SystemScriptContext);
+            var systemSettings = await _systemSettingsGetter.Get(_context.SystemScriptContext);
 
             // Fetch all configuration spaces.
             var configurationSpaces = _configurationSpaceGetter.GetAll();
             foreach (var configurationSpace in configurationSpaces)
             {
                 // If so, update the People Api in this space.
-                _peopleApiConfigurationSpaceUpdater.Update(configurationSpace, systemSettings);
+                await _peopleApiConfigurationSpaceUpdater.Update(configurationSpace, systemSettings);
             }
         }
     }

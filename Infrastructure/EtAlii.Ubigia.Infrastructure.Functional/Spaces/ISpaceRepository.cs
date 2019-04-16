@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
 
@@ -13,7 +14,7 @@
 		IEnumerable<Space> GetAll();
         Space Get(Guid itemId);
 
-        Space Add(Space item, SpaceTemplate template);
+        Task<Space> Add(Space item, SpaceTemplate template);
 
         void Remove(Guid itemId);
         void Remove(Space item);

@@ -75,7 +75,7 @@
             await Authentication.Data.Authenticate(this, accountName, password);
 
             Storage = await Authentication.Data.GetConnectedStorage(this);
-           
+
             await Authentication.Open(this);
             await Roots.Open(this);
             await Entries.Open(this);
@@ -88,9 +88,9 @@
 	        Space = await Authentication.Data.GetSpace(this);
         }
 
-		#region Disposable
+        #region Disposable
 
-		private bool _disposed;
+        private bool _disposed;
 
         //Implement IDisposable.
         public void Dispose()

@@ -1,15 +1,16 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class InfrastructureTestHelper
     {
-        public static IEditableEntry[] CreateSequence(int count, IInfrastructure infrastructure)
+        public static async Task<IEditableEntry[]> CreateSequence(int count, IInfrastructure infrastructure)
         {
-            var space = CreateSpace(infrastructure);
+            var space = await CreateSpace(infrastructure);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry previousEntry = null;
             for (int i = 0; i < count; i++)
@@ -26,9 +27,9 @@
             return createdEntries;
         }
 
-        public static IEditableEntry[] CreateFirstTypeHierarchy(int count, IInfrastructure infrastructure)
+        public static async Task<IEditableEntry[]> CreateFirstTypeHierarchy(int count, IInfrastructure infrastructure)
         {
-            var space = CreateSpace(infrastructure);
+            var space = await CreateSpace(infrastructure);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parentEntry = null;
             for (int i = 0; i < count; i++)
@@ -44,9 +45,9 @@
             return createdEntries;
         }
 
-        public static IEditableEntry[] CreateSecondTypeHierarchy(int count, IInfrastructure infrastructure)
+        public static async Task<IEditableEntry[]> CreateSecondTypeHierarchy(int count, IInfrastructure infrastructure)
         {
-            var space = CreateSpace(infrastructure);
+            var space = await CreateSpace(infrastructure);
             var createdEntries = new IEditableEntry[count];
             IEditableEntry parent2Entry = null;
             for (int i = 0; i < count; i++)
@@ -70,7 +71,7 @@
             };
         }
 
-        public static Space CreateSpace(IInfrastructure infrastructure, bool addToRepository = true)
+        public static async Task<Space> CreateSpace(IInfrastructure infrastructure, bool addToRepository = true)
         {
             var space = new Space
             {
@@ -81,7 +82,7 @@
 
             if (addToRepository)
             {
-                space = infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+                space = await infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             }
             return space;
         }

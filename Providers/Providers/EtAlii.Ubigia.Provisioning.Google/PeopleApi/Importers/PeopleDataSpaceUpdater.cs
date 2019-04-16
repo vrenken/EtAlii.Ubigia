@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using global::Google.Apis.PeopleService.v1;
     using global::Google.Apis.Services;
@@ -27,11 +28,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _context = context;
         }
 
-        public void Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
+        public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
 	        var userConfigurationScriptContext = _context.CreateScriptContext(configurationSpace.Space);
 	        {
-                var allUserSettings = _userSettingsGetter.Get(userConfigurationScriptContext);
+                var allUserSettings = await _userSettingsGetter.Get(userConfigurationScriptContext);
                 foreach (var userSettings in allUserSettings)
                 {
                     // We don't want to update using deprecated settings, so let's only use them when they are still fresh.

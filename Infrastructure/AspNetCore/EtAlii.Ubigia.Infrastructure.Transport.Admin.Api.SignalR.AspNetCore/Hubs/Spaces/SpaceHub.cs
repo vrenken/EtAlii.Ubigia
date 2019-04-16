@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -108,13 +109,13 @@
         }
 
         // Add item
-        public Space Post(Space item, string spaceTemplate)
+        public async Task<Space> Post(Space item, string spaceTemplate)
         {
             Space response;
             try
             {
                 var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate);
-                response = _items.Add(item, template);
+                response = await _items.Add(item, template);
             }
             catch (Exception e)
             {

@@ -3,8 +3,10 @@
 	using Xunit;
     using System;
     using System.Linq;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
-    
+
 	[Trait("Technology", "Grpc")]
     public class RootRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -16,11 +18,11 @@
         }
 
         [Fact]
-        public void RootRepository_Add()
+        public async Task RootRepository_Add()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
             var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
             Assert.NotNull(addedRoot);
@@ -28,11 +30,11 @@
         }
 
         [Fact]
-        public void RootRepository_Get_By_Id()
+        public async Task RootRepository_Get_By_Id()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
             var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
             Assert.NotNull(addedRoot);
@@ -47,11 +49,11 @@
         }
 
         [Fact]
-        public void RootRepository_Get_By_Name()
+        public async Task RootRepository_Get_By_Name()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
             var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
             Assert.NotNull(addedRoot);
@@ -66,11 +68,11 @@
         }
 
         [Fact]
-        public void RootRepository_Remove_By_Id()
+        public async Task RootRepository_Remove_By_Id()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
             var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
             Assert.NotNull(addedRoot);
@@ -86,11 +88,11 @@
         }
 
         [Fact]
-        public void RootRepository_Remove_By_Instance()
+        public async Task RootRepository_Remove_By_Instance()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
             var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
             Assert.NotNull(addedRoot);
@@ -106,21 +108,21 @@
         }
 
         [Fact]
-        public void RootRepository_Get_Null()
+        public async Task RootRepository_Get_Null()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-			var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+			var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = context.Host.Infrastructure.Roots.Get(space.Id, Guid.NewGuid());
             Assert.Null(root);
         }
 
         [Fact]
-        public void RootRepository_GetAll()
+        public async Task RootRepository_GetAll()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
-            var space = InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
+            var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var root = InfrastructureTestHelper.CreateRoot();
             var addedRoot = context.Host.Infrastructure.Roots.Add(space.Id, root);
             root = InfrastructureTestHelper.CreateRoot();

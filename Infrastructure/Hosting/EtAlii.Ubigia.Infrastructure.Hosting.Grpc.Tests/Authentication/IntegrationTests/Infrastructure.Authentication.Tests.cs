@@ -22,7 +22,7 @@
         }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
-	    public async void Infrastructure_Get_Authentication_Url_User_TestUser()
+	    public async Task Infrastructure_Get_Authentication_Url_User_TestUser()
 	    {
 		    // Arrange.
 		    var context = _testContext.HostTestContext;

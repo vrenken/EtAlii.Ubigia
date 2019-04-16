@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 
@@ -15,11 +16,11 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         }
 
 
-        public UserSettings[] Get(IGraphSLScriptContext context)
+        public async Task<UserSettings[]> Get(IGraphSLScriptContext context)
         {
             _logger.Info($"Getting all PeopleApi user settings");
 
-            var result = _decoree.Get(context);
+            var result = await _decoree.Get(context);
 
             _logger.Info($"Finished getting all PeopleApi user settings: {result.Length}");
 
