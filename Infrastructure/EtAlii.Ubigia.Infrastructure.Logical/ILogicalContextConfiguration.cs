@@ -3,7 +3,7 @@
 	using System;
 	using EtAlii.Ubigia.Infrastructure.Fabric;
 
-    public interface ILogicalContextConfiguration
+	public interface ILogicalContextConfiguration
     {
         string Name { get; }
 	    Uri Address { get; }
@@ -16,6 +16,6 @@
 
         ILogicalContextConfiguration Use(string name, Uri address);
 
-        ILogicalContextConfiguration Use(IFabricContext fabricContext);
+        ILogicalContextConfiguration Use(IFabricContext fabric);
     }
 }

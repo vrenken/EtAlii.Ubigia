@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Api.Logical
 
     public interface IDynamicObjectToIdentifierAssigner
     {
-        Task<INode> Assign(object o, Identifier id, ExecutionScope scope);
+        Task<INode> Assign(object dynamicObject, Identifier id, ExecutionScope scope);
     }
 }
