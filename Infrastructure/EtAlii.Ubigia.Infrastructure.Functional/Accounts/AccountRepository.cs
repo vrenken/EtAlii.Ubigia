@@ -40,15 +40,15 @@
             return _logicalContext.Accounts.GetAll();
         }
 
-        public Account Get(Guid id)
+        public Account Get(Guid itemId)
         {
-            return _logicalContext.Accounts.Get(id);
+            return _logicalContext.Accounts.Get(itemId);
         }
 
 
-        public Account Update(Guid itemId, Account updatedItem)
+        public Account Update(Guid itemId, Account item)
         {
-            return _logicalContext.Accounts.Update(itemId, updatedItem);
+            return _logicalContext.Accounts.Update(itemId, item);
         }
 
         public Account Add(Account item, AccountTemplate template)
@@ -68,9 +68,9 @@
             _logicalContext.Accounts.Remove(itemId);
         }
 
-        public void Remove(Account itemToRemove)
+        public void Remove(Account item)
         {
-            _logicalContext.Accounts.Remove(itemToRemove);
+            _logicalContext.Accounts.Remove(item);
         }
     }
 }

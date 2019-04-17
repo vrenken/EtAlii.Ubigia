@@ -36,9 +36,9 @@
             return _logicalContext.Spaces.Get(accountId, spaceName);
         }
 
-        public Space Get(Guid id)
+        public Space Get(Guid itemId)
         {
-            return _logicalContext.Spaces.Get(id);
+            return _logicalContext.Spaces.Get(itemId);
         }
 
         public IEnumerable<Space> GetAll()
@@ -64,9 +64,9 @@
             _logicalContext.Spaces.Remove(itemId);
         }
 
-        public void Remove(Space itemToRemove)
+        public void Remove(Space item)
         {
-            _logicalContext.Spaces.Remove(itemToRemove);
+            _logicalContext.Spaces.Remove(item);
         }
     }
 }

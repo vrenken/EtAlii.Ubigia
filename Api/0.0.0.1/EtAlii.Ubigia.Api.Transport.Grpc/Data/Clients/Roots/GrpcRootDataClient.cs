@@ -25,11 +25,11 @@
             }
         }
 
-        public async Task Remove(System.Guid rootId)
+        public async Task Remove(System.Guid id)
         {
             try
             {
-                var request = new RootSingleRequest { Id = rootId.ToWire(), SpaceId = Connection.Space.Id.ToWire() }; 
+                var request = new RootSingleRequest { Id = id.ToWire(), SpaceId = Connection.Space.Id.ToWire() }; 
                 await _client.DeleteAsync(request, _transport.AuthenticationHeaders);
             }
             catch (RpcException e)

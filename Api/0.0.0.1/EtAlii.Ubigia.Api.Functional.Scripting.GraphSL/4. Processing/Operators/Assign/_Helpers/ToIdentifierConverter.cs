@@ -18,10 +18,10 @@
                 .Register(item => item is INode, item => ((INode)item).Id);
         }
 
-        public Identifier Convert(object o)
+        public Identifier Convert(object criteria)
         {
-            var converter = _selector.Select(o);
-            return converter(o);
+            var converter = _selector.Select(criteria);
+            return converter(criteria);
         }
     }
 }

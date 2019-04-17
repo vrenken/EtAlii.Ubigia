@@ -21,11 +21,11 @@ namespace EtAlii.Ubigia.Api.Functional
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
 
-            var startDoubleQuote = Lp.Term("[\"");
-            var endDoubleQuote = Lp.Term("\"]");
+            var startDoubleQuote = Lp.Term("[\"");//.Debug("StartBracket")
+            var endDoubleQuote = Lp.Term("\"]");//.Debug("EndBracket")
 
-            var startSingleQuote = Lp.Term("[\'");
-            var endSingleQuote = Lp.Term("\']");
+            var startSingleQuote = Lp.Term("[\'");//.Debug("StartBracket")
+            var endSingleQuote = Lp.Term("\']");//.Debug("EndBracket")
 
             Parser = new LpsParser
                 (Id, true,
@@ -50,25 +50,25 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Validate(PathSubjectPartParserArguments arguments)
         {
             //if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart)
-            //{
-            //    throw new ScriptParserException("Two constant path parts cannot be combined.");
-            //}
+            //
+            //    throw new ScriptParserException("Two constant path parts cannot be combined.")
+            //
             //if (partIndex != 0 || after == null)
-            //{
-            //    var constant = (ConstantPathSubjectPart)part;
+            //
+            //    var constant = (ConstantPathSubjectPart)part
             //    if (constant.Name == String.Empty)
-            //    {
-            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-            //    }
-            //}
+            //    
+            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
+            //    
+            //
             //if (partIndex == 0 && after != null)
-            //{
-            //    var constant = (ConstantPathSubjectPart)part;
+            //
+            //    var constant = (ConstantPathSubjectPart)part
             //    if (constant.Name == String.Empty)
-            //    {
-            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
-            //    }
-            //}
+            //    
+            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
+            //    
+            //
         }
 
         public bool CanValidate(PathSubjectPart part)
