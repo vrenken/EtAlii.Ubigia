@@ -40,18 +40,24 @@
 		    return true;
 	    }
 
-	    public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+	    public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
+		    IFormatterLogger formatterLogger)
 	    {
 		    if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
+		    {
+			    throw new ArgumentNullException(nameof(type));
+		    }
 
-            if (readStream == null)
-            {
-                throw new ArgumentNullException(nameof(readStream));
-            }
+		    if (readStream == null)
+		    {
+			    throw new ArgumentNullException(nameof(readStream));
+		    }
+		    
+		    return ReadFromStreamInternalAsync(type, readStream, content, formatterLogger);
+	    }
 
+	    private Task<object> ReadFromStreamInternalAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+	    {
             // Special-case for simple types: Deserialize a Dictionary with a single element named Value.
             // Serialization created this Dictionary<string, object> to work around BSON restrictions: BSON cannot
             // handle a top-level simple type.  NewtonSoft.Json throws a JsonWriterException with message "Error
@@ -148,7 +154,23 @@
             return reader;
         }
 
+
 	    public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+	    {
+		    if (type == null)
+		    {
+			    throw new ArgumentNullException(nameof(type));
+		    }
+
+		    if (writeStream == null)
+		    {
+			    throw new ArgumentNullException(nameof(writeStream));
+		    }
+		    
+		    return WriteToStreamInternalAsync(type, value, writeStream, content, transportContext);
+	    }
+
+	    private Task WriteToStreamInternalAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
 	    {
             if (type == null)
             {

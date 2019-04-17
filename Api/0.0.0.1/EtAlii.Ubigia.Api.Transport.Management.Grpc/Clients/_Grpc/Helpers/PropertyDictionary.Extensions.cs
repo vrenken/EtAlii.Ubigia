@@ -8,12 +8,7 @@
 
     public static class PropertyDictionaryExtension
     {
-        private static readonly ISerializer Serializer;
-
-        static PropertyDictionaryExtension()
-        {
-            Serializer = new SerializerFactory().Create();
-        }
+        private static readonly ISerializer Serializer = new SerializerFactory().Create();
         
         public static PropertyDictionary ToLocal(this WireProtocol.PropertyDictionary propertyDictionary)
         {
