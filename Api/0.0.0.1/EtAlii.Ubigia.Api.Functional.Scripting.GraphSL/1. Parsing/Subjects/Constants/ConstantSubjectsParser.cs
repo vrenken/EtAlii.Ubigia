@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("ConstantSubjectsParser", true);
+            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("ConstantSubjectsParser", true)
         }
 
         public Subject Parse(LpNode node)
