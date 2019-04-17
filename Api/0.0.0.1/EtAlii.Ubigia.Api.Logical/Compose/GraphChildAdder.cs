@@ -37,10 +37,15 @@ namespace EtAlii.Ubigia.Api.Logical
             return entry;
         }
 
-        public async Task<IReadOnlyEntry> AddChild(Identifier location, Identifier childId, ExecutionScope scope)
+        public Task<IReadOnlyEntry> AddChild(Identifier location, Identifier childId, ExecutionScope scope)
         {
             if (childId == Identifier.Empty) throw new ArgumentException(nameof(childId));
+            
+            return AddChildInternal(location, childId, scope);
+        }
 
+        private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, Identifier childId, ExecutionScope scope)
+        {
             var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
             var child = related.SingleOrDefault(e => e.Id == childId);
             if (child != null)
@@ -61,10 +66,15 @@ namespace EtAlii.Ubigia.Api.Logical
             return child;
         }
 
-        public async Task<IReadOnlyEntry> AddChild(Identifier location, string name, ExecutionScope scope)
+        public Task<IReadOnlyEntry> AddChild(Identifier location, string name, ExecutionScope scope)
         {
             if (name == null) throw new ArgumentNullException(nameof(name));
 
+            return AddChildInternal(location, name, scope);
+        }
+
+        private async Task<IReadOnlyEntry> AddChildInternal(Identifier location, string name, ExecutionScope scope)
+        {
             var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
 
             var entry = related.SingleOrDefault(e => e.Type == name);

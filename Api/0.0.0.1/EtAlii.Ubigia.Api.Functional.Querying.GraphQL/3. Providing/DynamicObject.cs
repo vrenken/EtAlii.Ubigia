@@ -6,13 +6,13 @@
 
     public class DynamicObject
     {
-        private static readonly ModuleBuilder ModuleBuilder; 
+        private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder(); 
 
-        static DynamicObject()
+        private static ModuleBuilder CreateModuleBuilder()
         {
             var assemblyName = new AssemblyName($"DynamicAssembly_{Guid.NewGuid():N}");
             var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
-            ModuleBuilder = assemblyBuilder.DefineDynamicModule($"DynamicModule_{nameof(DynamicObject)}");
+            return assemblyBuilder.DefineDynamicModule($"DynamicModule_{nameof(DynamicObject)}");
         }
 
         public static object CreateInstance(PropertyDictionary properties)

@@ -2,19 +2,19 @@
 {
     using System;
     using System.Linq;
-    using global::GraphQL.Types;
     using System.Reflection;
     using System.Reflection.Emit;
+    using global::GraphQL.Types;
 
     public class DynamicObjectGraphType : ObjectGraphType<object>
     {
-        private static readonly ModuleBuilder ModuleBuilder; 
+        private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder(); 
 
-        static DynamicObjectGraphType()
+        private static ModuleBuilder CreateModuleBuilder()
         {
             var assemblyName = new AssemblyName($"DynamicAssembly_{Guid.NewGuid():N}");
             var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
-            ModuleBuilder = assemblyBuilder.DefineDynamicModule($"DynamicModule_{nameof(DynamicObjectGraphType)}");
+            return assemblyBuilder.DefineDynamicModule($"DynamicModule_{nameof(DynamicObjectGraphType)}");
         }
 
         private static TypeInfo BuildInstanceType()

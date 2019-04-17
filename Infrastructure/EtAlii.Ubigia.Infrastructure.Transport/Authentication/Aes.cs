@@ -4,13 +4,14 @@
 
     public class Aes
     {
-        private static readonly SymmetricAlgorithm Algorithm;
+        private static readonly SymmetricAlgorithm Algorithm = CreateAesCryptoServiceProvider();
 
-        static Aes()
+        private static SymmetricAlgorithm CreateAesCryptoServiceProvider()
         {
-            Algorithm = new AesCryptoServiceProvider();
-            Algorithm.GenerateKey();
-            Algorithm.GenerateIV();
+            var algorithm = new AesCryptoServiceProvider();
+            algorithm.GenerateKey();
+            algorithm.GenerateIV();
+            return algorithm;
         }
 
         public static byte[] Encrypt(byte[] bytes)

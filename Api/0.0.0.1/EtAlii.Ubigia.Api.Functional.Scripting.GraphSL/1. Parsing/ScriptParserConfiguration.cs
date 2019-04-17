@@ -31,11 +31,7 @@
 
         public IScriptParserConfiguration Use(ILogicalContextConfiguration parentConfiguration)
         {
-            if (parentConfiguration == null)
-            {
-                throw new ArgumentException(nameof(parentConfiguration));
-            }
-            _parentConfiguration = parentConfiguration;
+            _parentConfiguration = parentConfiguration ?? throw new ArgumentException(nameof(parentConfiguration));
             return this;
         }
 
