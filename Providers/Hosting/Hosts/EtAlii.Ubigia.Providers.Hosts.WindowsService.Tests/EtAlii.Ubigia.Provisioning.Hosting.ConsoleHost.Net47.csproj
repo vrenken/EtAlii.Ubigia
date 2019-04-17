@@ -40,7 +40,7 @@
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost" Version="1.0.2.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.1.66" />
+    <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Provisioning.Hosting\EtAlii.Ubigia.Provisioning.Hosting.csproj" />
