@@ -4,6 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal interface ITimePreparer
     {
-        void Prepare(IRootContext context, ExecutionScope scope, DateTime dateTime);
+        void Prepare(IRootContext context, ExecutionScope scope, DateTime time);
     }
 }

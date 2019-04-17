@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         Task<IReadOnlyEntry> TryAddChild(Identifier location, ExecutionScope scope);
         Task<IReadOnlyEntry> AddChild(Identifier location, string name, ExecutionScope scope);
-        Task<IReadOnlyEntry> AddChild(Identifier location, Identifier child, ExecutionScope scope);
+        Task<IReadOnlyEntry> AddChild(Identifier location, Identifier childId, ExecutionScope scope);
     }
 }

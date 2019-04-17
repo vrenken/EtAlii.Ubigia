@@ -18,11 +18,10 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private ObservableCollection<Account> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
         private ObservableCollection<Account> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
 
-        public event EventHandler<AccountAddedEventArgs> Added { add { _added += value; } remove { var added = _added; if (added != null) added -= value; } }
+        public event EventHandler<AccountAddedEventArgs> Added { add => _added += value; remove { var added = _added; if (added != null) added -= value; } }
         private EventHandler<AccountAddedEventArgs> _added;
 
-        public LogicalAccountSet(
-            IFabricContext fabric)
+        public LogicalAccountSet(IFabricContext fabric)
         {
             _fabric = fabric;
         }

@@ -24,9 +24,9 @@
             return await _invoker.Invoke<Root>(_connection, SignalRHub.Root, "Post", Connection.Space.Id, root);
         }
 
-        public async Task Remove(Guid rootId)
+        public async Task Remove(Guid id)
         {
-            await _invoker.Invoke(_connection, SignalRHub.Root, "Delete", Connection.Space.Id, rootId);
+            await _invoker.Invoke(_connection, SignalRHub.Root, "Delete", Connection.Space.Id, id);
         }
 
         public async Task<Root> Change(Guid rootId, string rootName)
