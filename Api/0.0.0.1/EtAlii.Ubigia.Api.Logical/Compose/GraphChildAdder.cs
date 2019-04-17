@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
         public async Task<IReadOnlyEntry> AddChild(Identifier location, Identifier childId, ExecutionScope scope)
         {
-            if (childId == Identifier.Empty) throw new ArgumentException("childId");
+            if (childId == Identifier.Empty) throw new ArgumentException(nameof(childId));
 
             var related = await _fabric.Entries.GetRelated(location, EntryRelation.Child, scope);
             var child = related.SingleOrDefault(e => e.Id == childId);

@@ -13,7 +13,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private readonly INodeValidator _nodeValidator;
         private readonly IConstantSubjectParser[] _parsers;
-//        private const string _textId = "Text";
 
         public ConstantSubjectsParser(
             IStringConstantSubjectParser stringConstantSubjectParser,
@@ -27,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("ConstantSubjectsParser", true);
+            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("ConstantSubjectsParser", true)
         }
 
         public Subject Parse(LpNode node)

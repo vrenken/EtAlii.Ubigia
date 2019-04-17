@@ -38,9 +38,9 @@
             return _logicalContext.Storages.GetAll();
         }
 
-        public Storage Get(Guid id)
+        public Storage Get(Guid itemId)
         {
-            return _logicalContext.Storages.Get(id);
+            return _logicalContext.Storages.Get(itemId);
         }
 
         public Storage Update(Guid itemId, Storage updatedItem)
@@ -58,9 +58,9 @@
             _logicalContext.Storages.Remove(itemId);
         }
 
-        public void Remove(Storage itemToRemove)
+        public void Remove(Storage item)
         {
-            _logicalContext.Storages.Remove(itemToRemove);
+            _logicalContext.Storages.Remove(item);
         }
 
         private void OnLocalStorageInitialized(object sender, Storage localStorage)

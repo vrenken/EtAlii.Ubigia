@@ -11,7 +11,7 @@
         Task<Account> Change(Guid accountId, string accountName, string accountPassword);
         Task<Account> Change(Account account);
         Task<Account> Get(string accountName);
-        Task<Account> Get(Guid rootId);
+        Task<Account> Get(Guid accountId);
         Task<IEnumerable<Account>> GetAll();
     }
 
