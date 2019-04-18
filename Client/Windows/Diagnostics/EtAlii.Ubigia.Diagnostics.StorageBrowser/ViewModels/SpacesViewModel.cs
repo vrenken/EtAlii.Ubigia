@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using Space = EtAlii.Ubigia.Api.Space;
+    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Mvvm;
 
     public class SpacesViewModel : BindableBase, ISpacesViewModel
     {
@@ -76,7 +75,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableSpaces();
@@ -106,7 +108,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableSpaces();
@@ -132,7 +137,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableSpaces();

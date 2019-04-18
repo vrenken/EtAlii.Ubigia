@@ -1,14 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Mvvm;
 
     public class RolesViewModel : BindableBase, IRolesViewModel
     {
@@ -67,12 +67,15 @@
                     SelectedAccount.Roles = SelectedAccount.Roles
                         .Union(new[] {RoleName})
                         .ToArray();
-                    
+
                     await Connection.Accounts.Change(SelectedAccount);
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableRoles();
@@ -105,7 +108,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableRoles();
@@ -133,7 +139,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableRoles();
