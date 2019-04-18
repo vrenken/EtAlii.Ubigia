@@ -29,14 +29,14 @@
         // Executes a query with a collection result.
         public IEnumerable<T> ExecuteCollection<T>(QueryModel queryModel)
         {
-            //var visitor = new NodeQueryModelVisitor();
-            //visitor.VisitQueryModel(queryModel);
-            //var commandData = visitor.GetGqlCommand();
+            //var visitor = new NodeQueryModelVisitor()
+            //visitor.VisitQueryModel(queryModel)
+            //var commandData = visitor.GetGqlCommand()
 
-            //var script = commandData.CreateScript(_fabric);
+            //var script = commandData.CreateScript(_fabric)
             var output = new List<T>();
-            //var scriptProcessor = _scriptProcessorFactory.Create(, new ScriptScope(o => output.Add((T) o)), _fabric);
-            //scriptProcessor.Process(script);
+            //var scriptProcessor = _scriptProcessorFactory.Create(, new ScriptScope(o => output.Add((T) o)), _fabric)
+            //scriptProcessor.Process(script)
             return output;
         }
     }

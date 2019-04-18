@@ -10,9 +10,9 @@
             var container = new Container();
             container.Register<IManagementFabricContext, ManagementFabricContext>();
 
-            //container.RegisterSingle<IStorageContext, StorageContext>();
-            //container.RegisterSingle<IAccountContext, AccountContext>();
-            //container.RegisterSingle<ISpaceContext, SpaceContext>();
+            //container.RegisterSingle<IStorageContext, StorageContext>()
+            //container.RegisterSingle<IAccountContext, AccountContext>()
+            //container.RegisterSingle<ISpaceContext, SpaceContext>()
 
             return container.GetInstance<IManagementFabricContext>();
         }

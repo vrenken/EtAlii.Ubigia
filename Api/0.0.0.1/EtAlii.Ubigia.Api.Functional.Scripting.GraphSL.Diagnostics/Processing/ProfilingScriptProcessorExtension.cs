@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingScriptProcessorExtension : IScriptProcessorExtension
@@ -17,11 +16,11 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
         {
             container.Register(() => _profiler);
             container.RegisterDecorator(typeof(IScriptProcessor), typeof(ProfilingScriptProcessor));
-            //container.RegisterDecorator(typeof(ISequenceProcessor), typeof(ProfilingSequenceProcessor));
+            //container.RegisterDecorator(typeof(ISequenceProcessor), typeof(ProfilingSequenceProcessor))
 
-            //container.RegisterDecorator(typeof(IOperatorsProcessor2), typeof(ProfilingOperatorsProcessor));
-            //container.RegisterDecorator(typeof(ISubjectsProcessor2), typeof(ProfilingSubjectsProcessor));
-            //container.RegisterDecorator(typeof(ICommentProcessor2), typeof(ProfilingCommentProcessor));
+            //container.RegisterDecorator(typeof(IOperatorsProcessor2), typeof(ProfilingOperatorsProcessor))
+            //container.RegisterDecorator(typeof(ISubjectsProcessor2), typeof(ProfilingSubjectsProcessor))
+            //container.RegisterDecorator(typeof(ICommentProcessor2), typeof(ProfilingCommentProcessor))
 
             container.RegisterDecorator(typeof(IAbsolutePathSubjectProcessor), typeof(ProfilingAbsolutePathSubjectProcessor));
             container.RegisterDecorator(typeof(IRelativePathSubjectProcessor), typeof(ProfilingRelativePathSubjectProcessor));
@@ -31,12 +30,12 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             container.RegisterDecorator(typeof(IEntriesToDynamicNodesConverter), typeof(ProfilingEntriesToDynamicNodesConverter));
 
             container.RegisterDecorator(typeof(IPathSubjectForOutputConverter), typeof(ProfilingPathSubjectForOutputConverter));
-            //container.RegisterDecorator(typeof(IPathSubjectForFunctionAssignmentOperationConverter2), typeof(ProfilingPathSubjectForFunctionAssignmentOperationConverter));
-            //container.RegisterDecorator(typeof(IPathSubjectForPathAddOperationConverter2), typeof(ProfilingPathSubjectForPathAddOperationConverter));
-            //container.RegisterDecorator(typeof(IPathSubjectForPathAssignmentOperationConverter2), typeof(ProfilingPathSubjectForPathAssignmentOperationConverter));
-            //container.RegisterDecorator(typeof(IPathSubjectForPathRemoveOperationConverter2), typeof(ProfilingPathSubjectForPathRemoveOperationConverter));
-            //container.RegisterDecorator(typeof(IPathSubjectForVariableAddOperationConverter2), typeof(ProfilingPathSubjectForVariableAddOperationConverter));
-            //container.RegisterDecorator(typeof(IPathSubjectForVariableAssignmentOperationConverter2), typeof(ProfilingPathSubjectForVariableAssignmentOperationConverter));
+            //container.RegisterDecorator(typeof(IPathSubjectForFunctionAssignmentOperationConverter2), typeof(ProfilingPathSubjectForFunctionAssignmentOperationConverter))
+            //container.RegisterDecorator(typeof(IPathSubjectForPathAddOperationConverter2), typeof(ProfilingPathSubjectForPathAddOperationConverter))
+            //container.RegisterDecorator(typeof(IPathSubjectForPathAssignmentOperationConverter2), typeof(ProfilingPathSubjectForPathAssignmentOperationConverter))
+            //container.RegisterDecorator(typeof(IPathSubjectForPathRemoveOperationConverter2), typeof(ProfilingPathSubjectForPathRemoveOperationConverter))
+            //container.RegisterDecorator(typeof(IPathSubjectForVariableAddOperationConverter2), typeof(ProfilingPathSubjectForVariableAddOperationConverter))
+            //container.RegisterDecorator(typeof(IPathSubjectForVariableAssignmentOperationConverter2), typeof(ProfilingPathSubjectForVariableAssignmentOperationConverter))
         }
     }
 }

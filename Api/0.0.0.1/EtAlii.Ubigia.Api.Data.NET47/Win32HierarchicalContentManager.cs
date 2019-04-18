@@ -9,11 +9,11 @@
         {
             try
             {
-            //    var fileInfo = new FileInfo(localDataIdentifier);
-            //    var size = fileInfo.Length;
+            //    var fileInfo = new FileInfo(localDataIdentifier)
+            //    var size = fileInfo.Length
             //    using (var stream = File.OpenRead(localDataIdentifier))
             //    {
-            //        base.Upload(stream, (UInt32)size, identifier);
+            //        base.Upload(stream, (UInt32)size, identifier)
             //    }
             }
             catch (Exception e)
@@ -28,7 +28,7 @@
             {
             //    using (var stream = File.Create(localDataIdentifier))
             //    {
-            //        base.Download(stream, identifier, validateChecksum);
+            //        base.Download(stream, identifier, validateChecksum)
             //    }
             }
             catch (Exception e)
@@ -43,7 +43,7 @@
             {
             //    using (var stream = File.Create(localDataIdentifier))
             //    {
-            //        base.Download(stream, identifier, validateChecksum);
+            //        base.Download(stream, identifier, validateChecksum)
             //    }
             }
             catch (Exception e)
