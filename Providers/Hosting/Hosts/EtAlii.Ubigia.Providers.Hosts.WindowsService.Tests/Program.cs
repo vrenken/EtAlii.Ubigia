@@ -1,13 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Net47
 {
-    using EtAlii.xTechnology.Hosting;
-    using global::Microsoft.Extensions.Configuration;
+	using System;
+	using EtAlii.xTechnology.Hosting;
+	using global::Microsoft.Extensions.Configuration;
 
-    public class Program
+	public class Program
     {
         /// <summary>
         /// The main entry point for the application. 
         /// </summary>
+        [STAThread]
         public static void Main()
         {
 	        var applicationConfiguration = new ConfigurationBuilder()
