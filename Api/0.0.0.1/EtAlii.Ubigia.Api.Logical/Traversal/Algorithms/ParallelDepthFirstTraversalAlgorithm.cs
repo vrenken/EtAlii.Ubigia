@@ -15,7 +15,7 @@
             _maxDegreeOfParallelism = Environment.ProcessorCount * ProcessorMultiplier;
         }
         
-        public Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> output)
+        public Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             throw new NotSupportedException();
             //if (graphPath.Any())

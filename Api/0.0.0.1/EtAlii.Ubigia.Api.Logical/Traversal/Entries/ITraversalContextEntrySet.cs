@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Logical
     public interface ITraversalContextEntrySet
     {
         Task<IReadOnlyEntry> Get(Identifier entryIdentifier, ExecutionScope scope);
-        Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope);
-        Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier entryIdentifier, EntryRelation relation, ExecutionScope scope);
+        Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope);
+        Task<IEnumerable<IReadOnlyEntry>> GetRelated(Identifier identifier, EntryRelation relation, ExecutionScope scope);
     }
 }

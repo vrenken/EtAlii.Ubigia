@@ -16,12 +16,11 @@ namespace EtAlii.Ubigia.Api.Logical
             _cache = new Dictionary<string, Root>();
         }
 
-        public async Task<Root> Get(string rootName)
+        public async Task<Root> Get(string name)
         {
-            Root result;
-            if (!_cache.TryGetValue(rootName, out result))
+            if (!_cache.TryGetValue(name, out var result))
             {
-                _cache[rootName] = result = await _fabricContext.Roots.Get(rootName);
+                _cache[name] = result = await _fabricContext.Roots.Get(name);
             }
             return result;
         }

@@ -3,7 +3,6 @@
     using System.IO;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Logical;
 
     public class ProfilingContentManager : IContentManager
     {
@@ -18,22 +17,22 @@
             _profiler = profiler.Create(ProfilingAspects.Logical.Content);
         }
 
-        public async Task Upload(Stream localDataStream, ulong sizeInBytes, Identifier identifier)
+        public async Task Upload(Stream stream, ulong sizeInBytes, Identifier identifier)
         {
             dynamic profile = _profiler.Begin("Upload");
             profile.SizeInBytes = sizeInBytes;
 
-            await _decoree.Upload(localDataStream, sizeInBytes, identifier);
+            await _decoree.Upload(stream, sizeInBytes, identifier);
 
             _profiler.End(profile);
         }
 
-        public async Task Download(Stream localDataStream, Identifier identifier, bool validateChecksum = false)
+        public async Task Download(Stream stream, Identifier identifier, bool validateChecksum = false)
         {
             dynamic profile = _profiler.Begin("Download");
             profile.ValidateChecksum = validateChecksum;
 
-            await _decoree.Download(localDataStream, identifier, validateChecksum);
+            await _decoree.Download(stream, identifier, validateChecksum);
 
             _profiler.End(profile);
         }

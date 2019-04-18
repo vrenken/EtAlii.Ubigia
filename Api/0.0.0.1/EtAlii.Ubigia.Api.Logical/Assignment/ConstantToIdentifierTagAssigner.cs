@@ -19,13 +19,13 @@ namespace EtAlii.Ubigia.Api.Logical
             _graphPathTraverser = graphPathTraverser;
         }
 
-        public async Task<INode> Assign(string tag, Identifier id, ExecutionScope scope)
+        public async Task<INode> Assign(string constant, Identifier id, ExecutionScope scope)
         {
             var latestEntry = await _graphPathTraverser.TraverseToSingle(id, scope);
             id = latestEntry.Id;
 
             var entry = await _fabric.Entries.Get(id, scope);
-            var updatedEntry = await _updateEntryFactory.Create(entry, tag, scope);
+            var updatedEntry = await _updateEntryFactory.Create(entry, constant, scope);
 
             var newNode = (IInternalNode)new DynamicNode((IReadOnlyEntry)updatedEntry);
             return newNode;

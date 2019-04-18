@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Logical
         {
             _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
         }
-        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> output)
+        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             IEnumerable<Identifier> previousResult = new[] { current };
 
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     {
                         foreach (var relatedNode in relatedNodes)
                         {
-                            output.OnNext(relatedNode);
+                            finalOutput.OnNext(relatedNode);
                         }
                     }
                     else

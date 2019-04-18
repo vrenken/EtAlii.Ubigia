@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Logical
             _maxDegreeOfParallelism = Environment.ProcessorCount * ProcessorMultiplier;
         }
         
-        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> output)
+        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             var previousResult = new[] { current };
 
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Logical
                 {
                     foreach (var identifier in iterationResult)
                     {
-                        output.OnNext(identifier);
+                        finalOutput.OnNext(identifier);
                     }
                 }
                 else
