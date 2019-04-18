@@ -13,15 +13,18 @@
    limitations under the License. 
 */
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO.MemoryMappedFiles;
-using System.Threading;
+
+
 // ReSharper disable all
 
 namespace EtAlii.Ubigia.Windows.Client
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.IO.MemoryMappedFiles;
+    using System.Threading;
+
     public class MemoryMappedFileCommunicator : IDisposable
     {
         #region Constants
@@ -218,7 +221,10 @@ namespace EtAlii.Ubigia.Windows.Client
                     view.Dispose();
                     view = null;
                 }
-                catch { }
+                catch
+                {
+                    // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+                }
             }
 
             if (MappedFile != null)
@@ -228,7 +234,10 @@ namespace EtAlii.Ubigia.Windows.Client
                     MappedFile.Dispose();
                     MappedFile = null;
                 }
-                catch { }
+                catch
+                {
+                    // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+                }
             }
 
             disposed = true;
