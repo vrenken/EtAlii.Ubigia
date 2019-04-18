@@ -14,13 +14,9 @@
         internal NodeQueryable(IQueryProvider queryProvider, string startPath)
             : base(queryProvider)
         {
-            if (String.IsNullOrEmpty(startPath))
-            {
-                throw new ArgumentNullException(nameof(startPath));
-            }
             if (String.IsNullOrWhiteSpace(startPath))
             {
-                throw new ArgumentException("startPath");
+                throw new ArgumentNullException(nameof(startPath));
             }
 
             StartPath = startPath;
@@ -29,11 +25,7 @@
         internal NodeQueryable(IQueryProvider queryProvider, Root startRoot, string startPath)
             : this(queryProvider, startPath)
         {
-            if (startRoot == null)
-            {
-                throw new ArgumentNullException(nameof(startRoot));
-            }
-            StartRoot = startRoot;
+            StartRoot = startRoot ?? throw new ArgumentNullException(nameof(startRoot));
         }
 
         internal NodeQueryable(IQueryProvider queryProvider, Root startRoot)
