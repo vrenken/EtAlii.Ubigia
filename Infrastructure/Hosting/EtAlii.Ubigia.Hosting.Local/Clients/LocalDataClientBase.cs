@@ -16,10 +16,12 @@
 
         public virtual void Connect()
         {
+            // Handle Connect.
         }
 
         public virtual void Disconnect()
         {
+            // Handle Disconnect.
         }
     }
 }

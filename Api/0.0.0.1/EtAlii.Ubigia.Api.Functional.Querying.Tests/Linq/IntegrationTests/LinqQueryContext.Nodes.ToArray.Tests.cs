@@ -6,9 +6,7 @@
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
-    
 
-    
     public class LinqQueryContextNodesToArrayTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private readonly LogicalUnitTestContext _testContext;
@@ -20,6 +18,7 @@
 
         public void Dispose()
         {
+            // Dispose any relevant resources.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

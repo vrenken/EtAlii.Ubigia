@@ -45,6 +45,7 @@
 
         public void Validate(FunctionSubjectArgument before, FunctionSubjectArgument argument, int parameterIndex, FunctionSubjectArgument after)
         {
+            // Make sure the argument can can actually be applied on the before/after FunctionSubjectArgument combination.
         }
 
         public bool CanValidate(FunctionSubjectArgument argument)

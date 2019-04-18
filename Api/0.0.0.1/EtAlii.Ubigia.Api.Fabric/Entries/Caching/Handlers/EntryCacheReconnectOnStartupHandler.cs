@@ -4,6 +4,7 @@
     {
         public void Handle()
         {
+            // Handle a Cache reconnect on startup
         }
     }
 }

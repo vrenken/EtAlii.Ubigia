@@ -18,6 +18,7 @@
 
         public void Handle(ItemCheckAction action, string localStart, string remoteStart)
         {
+            // Handle an item check/uncheck action.
         }
 
     }

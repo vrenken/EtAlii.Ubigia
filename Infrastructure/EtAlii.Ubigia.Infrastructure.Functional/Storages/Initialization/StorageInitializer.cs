@@ -6,6 +6,7 @@
     {
         public void Initialize(Storage storage)
         {
+            // Initialize the specified storage.
         }
     }
 }

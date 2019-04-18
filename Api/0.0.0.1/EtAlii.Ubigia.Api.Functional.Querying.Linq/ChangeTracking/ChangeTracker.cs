@@ -17,6 +17,7 @@
 
         public void Dispose()
         {
+            // Dispose any resources that need to be get rid of.
         }
     }
 }

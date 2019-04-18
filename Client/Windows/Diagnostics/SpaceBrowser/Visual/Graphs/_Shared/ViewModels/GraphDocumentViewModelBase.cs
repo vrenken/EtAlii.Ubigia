@@ -66,14 +66,17 @@
 
         protected virtual void OnEntryStored(Identifier id)
         {
+            // Handle an entry store event.
         }
 
         protected virtual void SelectEntry(object parameter)
         {
+            // Handle an entry selected event.
         }
 
         protected virtual void DiscoverEntry(object parameter)
         {
+            // Handle an entry discovered event.
         }
 
         internal void Clear()

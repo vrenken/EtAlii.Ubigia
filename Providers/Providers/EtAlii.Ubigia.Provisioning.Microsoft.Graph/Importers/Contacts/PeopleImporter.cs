@@ -4,10 +4,12 @@ namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
     {
         public void Start()
         {
+            // Handle Start.
         }
 
         public void Stop()
         {
+            // Handle Stop.
         }
     }
 }

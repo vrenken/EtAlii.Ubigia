@@ -13,10 +13,12 @@
 
         protected override void BeginProcessing()
         {
+            // Put any processing that should happen at the beginning here.
         }
 
         protected override void EndProcessing()
         {
+            // Put any processing that should happen at the end here.
         }
     }
 }

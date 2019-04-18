@@ -4,10 +4,12 @@ namespace EtAlii.Ubigia.Provisioning.Google
     {
         public void Start()
         {
+            // Handle Start.
         }
 
         public void Stop()
         {
+            // Handle Stop.
         }
     }
 }

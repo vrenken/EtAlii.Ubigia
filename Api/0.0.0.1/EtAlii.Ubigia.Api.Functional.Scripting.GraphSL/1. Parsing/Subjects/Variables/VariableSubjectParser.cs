@@ -35,6 +35,7 @@
 
         public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
         {
+            // Validate the Subject in combination with the before/after SequencePart combination.
         }
 
         public bool CanValidate(Subject subject)
