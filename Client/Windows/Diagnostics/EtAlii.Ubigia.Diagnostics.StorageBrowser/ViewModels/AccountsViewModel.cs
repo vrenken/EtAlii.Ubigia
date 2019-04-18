@@ -1,14 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows.Input;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Mvvm;
 
     public class AccountsViewModel : BindableBase, IAccountsViewModel
     {
@@ -77,7 +77,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableAccounts();
@@ -109,7 +112,10 @@
                 });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableAccounts();
@@ -131,13 +137,13 @@
             {
                 _logger.Verbose("Removing account: {0}", SelectedAccount.Name);
 
-                var task = Task.Run(async () =>
-                {
-                    await Connection.Accounts.Remove(SelectedAccount.Id);
-                });
+                var task = Task.Run(async () => { await Connection.Accounts.Remove(SelectedAccount.Id); });
                 task.Wait();
             }
-            catch { }
+            catch
+            {
+                // TODO: [TO_REACTIVEUI] Rewrite this tool to ReactiveUI. This should make these kind of patterns easier to handle.
+            }
             finally
             {
                 ReloadAvailableAccounts();
