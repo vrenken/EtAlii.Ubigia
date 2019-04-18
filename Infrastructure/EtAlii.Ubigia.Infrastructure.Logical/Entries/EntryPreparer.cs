@@ -17,8 +17,8 @@
             Identifier previousHeadIdentifier;
             var currentHeadidentifier = _context.Identifiers.GetNextHead(spaceId, out previousHeadIdentifier);
 
-            //var relation = Relation.NewRelation(previousHeadIdentifier);
-            var entry = Entry.NewEntry(currentHeadidentifier);//, relation);
+            //var relation = Relation.NewRelation(previousHeadIdentifier)
+            var entry = Entry.NewEntry(currentHeadidentifier);//, relation)
 
             _context.Entries.Store(entry);
 

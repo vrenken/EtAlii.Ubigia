@@ -17,7 +17,7 @@
 
         public void Connect()
         {
-            //_notificationProxy = NotificationTransport.HubConnection.CreateHubProxy(_hubName);
+            //_notificationProxy = NotificationTransport.HubConnection.CreateHubProxy(_hubName)
             _subscriptions = CreateSubscriptions(_notificationProxy);
         }
 
@@ -25,7 +25,7 @@
         {
             //foreach (var subscription in _subscriptions)
             //{
-            //    subscription.Dispose();
+            //    subscription.Dispose()
             //}
             _notificationProxy = null;
         }

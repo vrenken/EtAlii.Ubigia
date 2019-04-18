@@ -46,7 +46,7 @@
 
                 // Send the updated event.
                 Clients.All.SendAsync("stored", new object[] { entryId });
-                //Clients.All.stored(entryId);
+                //Clients.All.stored(entryId)
             }
             catch (Exception e)
             {

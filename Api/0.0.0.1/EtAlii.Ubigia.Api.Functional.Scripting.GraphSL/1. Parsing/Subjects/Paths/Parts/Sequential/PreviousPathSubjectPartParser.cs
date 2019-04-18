@@ -26,8 +26,8 @@
                 Lp.Lookahead(Lp.Not(Lp.ZeroOrMore(' ') + Lp.Char('=')))
             );
 //            var relationParser = pathRelationParserBuilder.CreatePathRelationParser(RelationDescription, RelationId) +
-//                 Lp.Lookahead(Lp.Not(".");
-//            Parser = new LpsParser(Id, true, relationParser);
+//                 Lp.Lookahead(Lp.Not(".")
+//            Parser = new LpsParser(Id, true, relationParser)
         }
 
         public PathSubjectPart Parse(LpNode node)

@@ -8,8 +8,8 @@
 //            var extensions = new IHostExtension[]
 //            {
 //                new ConsoleHostExtension(),
-//            };
-//            return configuration.Use(extensions);
+//            }
+//            return configuration.Use(extensions)
 //        }
 //    }
 //}

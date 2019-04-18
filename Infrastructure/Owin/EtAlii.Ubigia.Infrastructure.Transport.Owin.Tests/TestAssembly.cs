@@ -10,16 +10,16 @@
         //[AssemblyInitialize]
         //public static void Initialize(TestContext context)
         //{
-        //    var type = typeof(TestAssembly);
-        //    var assembly = type.Assembly;
-        //    var assemblyTitle = ((AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute)).First()).Title;
-        //    var assemblyVersion = assembly.GetName().Version;
-        //    var productName = ((AssemblyProductAttribute)assembly.GetCustomAttributes(typeof(AssemblyProductAttribute)).First()).Product;
+        //    var type = typeof(TestAssembly)
+        //    var assembly = type.Assembly
+        //    var assemblyTitle = ((AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute)).First()).Title
+        //    var assemblyVersion = assembly.GetName().Version
+        //    var productName = ((AssemblyProductAttribute)assembly.GetCustomAttributes(typeof(AssemblyProductAttribute)).First()).Product
 
         //    // Needed for async/await troubleshooting.
-        //    //AppDomain.CurrentDomain.UnhandledException += (sender, args) => { throw (Exception)args.ExceptionObject; };
+        //    //AppDomain.CurrentDomain.UnhandledException += (sender, args) => { throw (Exception)args.ExceptionObject; }
 
-        //    //var diagnostics = TestDiagnostics.Create();
+        //    //var diagnostics = TestDiagnostics.Create()
         //    //if(diagnostics.EnableLogging || diagnostics.EnableProfiling)
         //    {
         //        // Start logging.
@@ -34,7 +34,7 @@
         //public static void Cleanup()
         //{
         //    // End logging.
-        //    //var diagnostics = TestDiagnostics.Create();
+        //    //var diagnostics = TestDiagnostics.Create()
         //    //if (diagnostics.EnableLogging || diagnostics.EnableProfiling)
         //    {
         //        //Logger.EndSession(); // Disabled because of performance loss.

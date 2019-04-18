@@ -1,7 +1,7 @@
 //namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
 //{
-//    using System.Threading.Tasks;
-//    using EtAlii.Ubigia.Api.Functional;
+//    using System.Threading.Tasks
+//    using EtAlii.Ubigia.Api.Functional
 
 //    internal class ProfilingPathSubjectForVariableAssignmentOperationConverter : IPathSubjectForVariableAssignmentOperationConverter
 //    {

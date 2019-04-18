@@ -61,17 +61,17 @@
         //[HttpGet]
         //public IActionResult GetForSpace([RequiredFromQuery]Guid spaceId)
         //{
-        //    IActionResult response;
+        //    IActionResult response
         //    try
         //    {
-        //        var roots = _items.GetAll(spaceId);
-        //        response = Ok(roots);
+        //        var roots = _items.GetAll(spaceId)
+        //        response = Ok(roots)
         //    }
         //    catch (Exception ex)
         //    {
-        //        response = BadRequest(ex.Message);
+        //        response = BadRequest(ex.Message)
         //    }
-        //    return response;
+        //    return response
         //}
 
 
@@ -79,34 +79,34 @@
         //[HttpGet]
         //public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [RequiredFromQuery(Name = "byId")]string byId)
         //{
-        //    IActionResult response;
+        //    IActionResult response
         //    try
         //    {
-        //        var root = _items.Get(spaceId, rootId);
-        //        response = Ok(root);
+        //        var root = _items.Get(spaceId, rootId)
+        //        response = Ok(root)
         //    }
         //    catch (Exception ex)
         //    {
-        //        response = BadRequest(ex.Message);
+        //        response = BadRequest(ex.Message)
         //    }
-        //    return response;
+        //    return response
         //}
 
         //// Get Item by id
         //[HttpGet]
         //public IActionResult GetByName([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]string rootName)
         //{
-        //    IActionResult response;
+        //    IActionResult response
         //    try
         //    {
-        //        var root = _items.Get(spaceId, rootName);
-        //        response = Ok(root);
+        //        var root = _items.Get(spaceId, rootName)
+        //        response = Ok(root)
         //    }
         //    catch (Exception ex)
         //    {
-        //        response = BadRequest(ex.Message);
+        //        response = BadRequest(ex.Message)
         //    }
-        //    return response;
+        //    return response
         //}
 
         // Add item

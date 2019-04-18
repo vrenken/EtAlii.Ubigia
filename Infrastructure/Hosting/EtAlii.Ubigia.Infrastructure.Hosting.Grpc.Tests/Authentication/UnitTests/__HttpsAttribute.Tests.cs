@@ -1,40 +1,40 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 //{
-//    using Xunit;
-//    using System;
-//    using System.Collections.ObjectModel;
-//    using System.Net;
-//    using System.Net.Http;
-//    using System.Threading.Tasks;
-//    using System.Web.Http;
-//    using System.Web.Http.Controllers;
-//    using System.Web.Http.Routing;
-//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi;
+//    using Xunit
+//    using System
+//    using System.Collections.ObjectModel
+//    using System.Net
+//    using System.Net.Http
+//    using System.Threading.Tasks
+//    using System.Web.Http
+//    using System.Web.Http.Controllers
+//    using System.Web.Http.Routing
+//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
     
 //    public class HttpsAttribute_Tests
 //    {
 //        [Fact]
 //        public void HttpsAttribute_Create_Correct()
 //        {
-//            var attribute = new HttpsAttribute();
+//            var attribute = new HttpsAttribute()
 
-//            var actionContext = CreateContext("https://test");
-//            attribute.OnActionExecuting(actionContext);
+//            var actionContext = CreateContext("https://test")
+//            attribute.OnActionExecuting(actionContext)
 
-//            Assert.Null(actionContext.Response);
+//            Assert.Null(actionContext.Response)
 //        }
 
 //        [Fact]
 //        public void HttpsAttribute_Create_Incorrect()
 //        {
-//            var attribute = new HttpsAttribute();
+//            var attribute = new HttpsAttribute()
 
-//            var actionContext = CreateContext("http://test");
-//            attribute.OnActionExecuting(actionContext);
+//            var actionContext = CreateContext("http://test")
+//            attribute.OnActionExecuting(actionContext)
 
-//            Assert.NotNull(actionContext.Response);
-//            Assert.IsType< HttpResponseMessage>(actionContext.Response);
-//            Assert.Equal(HttpStatusCode.BadRequest, actionContext.Response.StatusCode);
+//            Assert.NotNull(actionContext.Response)
+//            Assert.IsType< HttpResponseMessage>(actionContext.Response)
+//            Assert.Equal(HttpStatusCode.BadRequest, actionContext.Response.StatusCode)
 //        }
 
 //        private HttpActionContext CreateContext(string uri)
@@ -48,24 +48,24 @@
 //                    new HttpRequestMessage(HttpMethod.Get, uri)
 //                ),
 //                new ImplementedHttpActionDescriptor()
-//            );
+//            )
 //        }
 
 //        public class ImplementedHttpActionDescriptor : HttpActionDescriptor
 //        {
-//            public override string ActionName => "ActionName";
+//            public override string ActionName => "ActionName"
 
 //            public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)
 //            {
-//                return Task.FromResult(new object());
+//                return Task.FromResult(new object())
 //            }
 
 //            public override Collection<HttpParameterDescriptor> GetParameters()
 //            {
-//                return new Collection<HttpParameterDescriptor>();
+//                return new Collection<HttpParameterDescriptor>()
 //            }
 
-//            public override Type ReturnType => typeof(string);
+//            public override Type ReturnType => typeof(string)
 //        }
 //    }
 //}

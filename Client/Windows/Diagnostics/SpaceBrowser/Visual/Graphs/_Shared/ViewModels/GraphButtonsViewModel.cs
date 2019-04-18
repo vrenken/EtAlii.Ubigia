@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Threading.Tasks;
+    using System.Windows.Input;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
-    using ICommand = System.Windows.Input.ICommand;
 
     public class GraphButtonsViewModel : BindableBase, IGraphButtonsViewModel
     {
@@ -81,7 +80,7 @@
             var canExecute = false;
             if (graphViewModel != null)
             {
-                canExecute = true;// graphViewModel.NodesSource.Count() != 0;
+                canExecute = true;// graphViewModel.NodesSource.Count() != 0
             }
             return canExecute;
         }

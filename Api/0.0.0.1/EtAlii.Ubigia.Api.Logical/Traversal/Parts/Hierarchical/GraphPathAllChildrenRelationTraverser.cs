@@ -121,11 +121,11 @@ namespace EtAlii.Ubigia.Api.Logical
         //{
         //    var ids = relations
         //        .Select(c => c.Id)
-        //        .AsEnumerable();
+        //        .AsEnumerable()
         //    var toRemove = ids.SelectMany(id => _context.Fabric.Entries
         //        .GetRelated(id, EntryRelation.Downdate)
-        //        .Select(c => c.Id));
-        //    list.RemoveRange(toRemove);
+        //        .Select(c => c.Id))
+        //    list.RemoveRange(toRemove)
         //}
 
     }

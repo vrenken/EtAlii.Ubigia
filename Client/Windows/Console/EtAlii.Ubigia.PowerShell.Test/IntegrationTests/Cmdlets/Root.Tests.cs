@@ -1,12 +1,11 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
     using System;
     using System.Collections.Generic;
     using System.Management.Automation;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-
 
     public class RootTest : IDisposable
     {
@@ -94,7 +93,7 @@
         public void PowerShell_Root_Update()
         {
             // Arrange.
-            //var result = _testContext.InvokeGetRoots();
+            //var result = _testContext.InvokeGetRoots()
             var firstName = Guid.NewGuid().ToString();
             _testContext.InvokeAddRoot(firstName);
             var result = _testContext.InvokeGetRootByName(firstName);

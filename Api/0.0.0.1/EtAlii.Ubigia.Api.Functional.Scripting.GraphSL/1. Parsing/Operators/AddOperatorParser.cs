@@ -13,7 +13,7 @@
         public AddOperatorParser(INodeValidator nodeValidator)
         {
             _nodeValidator = nodeValidator;
-            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("+=") + Lp.ZeroOrMore(' '));//.Debug("AddOperatorParser", true);
+            Parser = new LpsParser(Id, true, Lp.ZeroOrMore(' ') + Lp.Term("+=") + Lp.ZeroOrMore(' '));//.Debug("AddOperatorParser", true)
         }
 
         public bool CanParse(LpNode node)
@@ -34,14 +34,14 @@
 
         public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
         {
-            //var pathToAdd = after as PathSubject;
+            //var pathToAdd = after as PathSubject
             //if (pathToAdd != null)
             //{
-            //    var firstPath = pathToAdd.Parts.FirstOrDefault();
-            //    var startsWithRelation = firstPath is ParentPathSubjectPart;
+            //    var firstPath = pathToAdd.Parts.FirstOrDefault()
+            //    var startsWithRelation = firstPath is ParentPathSubjectPart
             //    if (!startsWithRelation)
             //    {
-            //        throw new ScriptParserException("The add operation requires a path to start with a relation symbol.");
+            //        throw new ScriptParserException("The add operation requires a path to start with a relation symbol.")
             //    }
             //}
         }

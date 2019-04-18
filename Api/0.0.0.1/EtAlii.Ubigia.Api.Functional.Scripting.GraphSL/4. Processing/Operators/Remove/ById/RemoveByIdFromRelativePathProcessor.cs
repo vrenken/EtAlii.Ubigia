@@ -43,7 +43,7 @@
 
             //if (leftIds == null || !leftIds.Any())
             //{
-            //    throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires queryable ids from the previous path part");
+            //    throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires queryable ids from the previous path part")
             //}
         }
 

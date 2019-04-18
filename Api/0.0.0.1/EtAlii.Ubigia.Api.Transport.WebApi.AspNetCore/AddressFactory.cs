@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-    using System;
-    using System.Collections.Generic;
+	using System;
+	using System.Collections.Generic;
 
 	public class AddressFactory : IAddressFactory
 	{
@@ -30,7 +30,7 @@
 			};
 
 			builder.Path = builder.Path.TrimEnd('/') + "/" + RelativeUri.ApiRest + relativeAddress.TrimStart('/');
-			return builder.Uri;//ToString();
+			return builder.Uri;//ToString()
 		}
 
 		public Uri Create(Storage storage, string relativeAddress, params string[] parameters)

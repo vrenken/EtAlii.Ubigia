@@ -166,7 +166,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.entryId_ != null) {
         if (entryId_ == null) {
-          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+          EntryId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
         }
         EntryId.MergeFrom(other.EntryId);
       }
@@ -183,9 +183,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (entryId_ == null) {
-              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+              EntryId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
             }
-            input.ReadMessage(entryId_);
+            input.ReadMessage(EntryId);
             break;
           }
         }
@@ -301,7 +301,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.propertyDictionary_ != null) {
         if (propertyDictionary_ == null) {
-          propertyDictionary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
+          PropertyDictionary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
         }
         PropertyDictionary.MergeFrom(other.PropertyDictionary);
       }
@@ -318,9 +318,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (propertyDictionary_ == null) {
-              propertyDictionary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
+              PropertyDictionary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
             }
-            input.ReadMessage(propertyDictionary_);
+            input.ReadMessage(PropertyDictionary);
             break;
           }
         }
@@ -457,13 +457,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.entryId_ != null) {
         if (entryId_ == null) {
-          entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+          EntryId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
         }
         EntryId.MergeFrom(other.EntryId);
       }
       if (other.propertyDictionary_ != null) {
         if (propertyDictionary_ == null) {
-          propertyDictionary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
+          PropertyDictionary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
         }
         PropertyDictionary.MergeFrom(other.PropertyDictionary);
       }
@@ -480,16 +480,16 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (entryId_ == null) {
-              entryId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+              EntryId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
             }
-            input.ReadMessage(entryId_);
+            input.ReadMessage(EntryId);
             break;
           }
           case 18: {
             if (propertyDictionary_ == null) {
-              propertyDictionary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
+              PropertyDictionary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.PropertyDictionary();
             }
-            input.ReadMessage(propertyDictionary_);
+            input.ReadMessage(PropertyDictionary);
             break;
           }
         }

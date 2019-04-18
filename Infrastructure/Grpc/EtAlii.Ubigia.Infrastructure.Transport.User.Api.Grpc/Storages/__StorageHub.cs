@@ -1,34 +1,34 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 //{
-//    using System;
-//    using System.Collections.Generic;
-//    using EtAlii.Ubigia.Api;
-//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using System
+//    using System.Collections.Generic
+//    using EtAlii.Ubigia.Api
+//    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public class StorageHub : HubBase
 //    {
-//        private readonly IStorageRepository _items;
+//        private readonly IStorageRepository _items
 
 //        public StorageHub(
 //            IStorageRepository items,
 //            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
 //            : base(authenticationTokenVerifier)
 //        {
-//            _items = items;
+//            _items = items
 //        }
 
 //        public Storage GetLocal(string local)
 //        {
-//            Storage response;
+//            Storage response
 //            try
 //            {
-//                response = _items.GetLocal();
+//                response = _items.GetLocal()
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 //    }
 //}

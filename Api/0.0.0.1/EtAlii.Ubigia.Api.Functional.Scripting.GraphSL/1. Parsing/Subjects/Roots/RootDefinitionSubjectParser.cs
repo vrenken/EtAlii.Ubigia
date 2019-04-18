@@ -13,9 +13,9 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly ITypeValueParser _typeValueParser;
-//        private readonly IPathSubjectPartsParser _pathSubjectPartsParser;
-//        private const string _textId = "Text";
-//        private const string _pathId = "SchemaPath";
+//        private readonly IPathSubjectPartsParser _pathSubjectPartsParser
+//        private const string _textId = "Text"
+//        private const string _pathId = "SchemaPath"
 
         public RootDefinitionSubjectParser(
             INodeValidator nodeValidator,
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _typeValueParser = typeValueParser;
-//            _pathSubjectPartsParser = pathSubjectPartsParser;
+//            _pathSubjectPartsParser = pathSubjectPartsParser
 
             Parser = new LpsParser
                 (
@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional
                         Lp.End //|
                         //(Lp.Char(':') + _pathSubjectPartsParser.Parser.OneOrMore().Wrap(PathId))
                     )//.Debug("RootDefinitionSubjectParser-inner", true)
-                );//.Debug("RootDefinitionSubjectParser", true);
+                );//.Debug("RootDefinitionSubjectParser", true)
         }
 
         public Subject Parse(LpNode node)
@@ -46,16 +46,16 @@ namespace EtAlii.Ubigia.Api.Functional
             var quotedTextNode = _nodeFinder.FindFirst(node, _typeValueParser.Id);
             var type = _typeValueParser.Parse(quotedTextNode);
 
-            //PathSubject schema = null;
+            //PathSubject schema = null
 
-            //var pathPart = _nodeFinder.FindFirst(node.Children, PathId);
+            //var pathPart = _nodeFinder.FindFirst(node.Children, PathId)
             //if (pathPart != null)
             //{
-            //    var parts = pathPart.Children.ToArray().Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray();
-            //    schema = new PathSubject(parts);
+            //    var parts = pathPart.Children.ToArray().Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray()
+            //    schema = new PathSubject(parts)
             //}
 
-            return new RootDefinitionSubject(type);//, schema);
+            return new RootDefinitionSubject(type);//, schema)
         }
 
         public bool CanParse(LpNode node)

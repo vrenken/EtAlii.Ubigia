@@ -39,7 +39,7 @@
                         }
                         catch (Exception)
                         {
-                            //throw;
+                            //throw
                         }
                     }
                 });

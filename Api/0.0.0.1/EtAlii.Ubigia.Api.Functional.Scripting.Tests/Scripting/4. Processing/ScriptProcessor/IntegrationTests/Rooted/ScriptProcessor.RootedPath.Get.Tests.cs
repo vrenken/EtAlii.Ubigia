@@ -11,7 +11,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    
     public class ScriptProcessorRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
@@ -89,29 +88,29 @@
         //public async Task ScriptProcessor_RootedPath_Get_GetItemByVariable_2()
         //{
         //    // Arrange.
-        //    var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+        //    var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true)
         //    var queries = new[]
         //    {
         //        "$var1 <= \"Time\":",
         //        "$var1"
-        //    };
+        //    }
 
-        //    var script = _parser.Parse(queries).Script;
-        //    var scope = new ScriptScope();
+        //    var script = _parser.Parse(queries).Script
+        //    var scope = new ScriptScope()
         //    var configuration = new ScriptProcessorConfiguration()
         //        .Use(_diagnostics)
         //        .Use(scope)
-        //        .Use(logicalContext);
-        //    var processor = new ScriptProcessorFactory().Create(configuration);
+        //        .Use(logicalContext)
+        //    var processor = new ScriptProcessorFactory().Create(configuration)
 
         //    // Act.
-        //    var lastSequence = await processor.Process(script);
-        //    var result = await lastSequence.Output.ToArray();
+        //    var lastSequence = await processor.Process(script)
+        //    var result = await lastSequence.Output.ToArray()
 
         //    // Assert.
-        //    Assert.NotNull(result);
-        //    Assert.IsType<DynamicNode>(result.Single());
-        //    Assert.Equal("Time", result.Cast<INode>().Single().Type);
+        //    Assert.NotNull(result)
+        //    Assert.IsType<DynamicNode>(result.Single())
+        //    Assert.Equal("Time", result.Cast<INode>().Single().Type)
         //}
 
         [Fact, Trait("Category", TestAssembly.Category)]

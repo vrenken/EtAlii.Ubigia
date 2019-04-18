@@ -1,15 +1,15 @@
 ﻿//namespace RouteDebugging.Pages
 //{
-//    using System.Collections.Generic;
-//    using Newtonsoft.Json;
+//    using System.Collections.Generic
+//    using Newtonsoft.Json
 
 //    public class RoutesModel : PageModel
 //    {
-//        private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
+//        private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider
 
 //        public RoutesModel(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
 //        {
-//            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
+//            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider
 //        }
 
 //        public List<RouteInfo> Routes { get; set; }
@@ -26,7 +26,7 @@
 //                    Constraint = x.ActionConstraints == null ? "" : JsonConvert.SerializeObject(x.ActionConstraints)
 //                })
 //                .OrderBy(r => r.Template)
-//                .ToList();
+//                .ToList()
 //        }
 
 //        public class RouteInfo

@@ -441,7 +441,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       }
       if (other.space_ != null) {
         if (space_ == null) {
-          space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+          Space = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
         }
         Space.MergeFrom(other.Space);
       }
@@ -461,9 +461,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             break;
           case 10: {
             if (space_ == null) {
-              space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+              Space = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
             }
-            input.ReadMessage(space_);
+            input.ReadMessage(Space);
             break;
           }
           case 18: {
@@ -583,7 +583,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       }
       if (other.accountId_ != null) {
         if (accountId_ == null) {
-          accountId_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+          AccountId = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
         }
         AccountId.MergeFrom(other.AccountId);
       }
@@ -600,9 +600,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             break;
           case 10: {
             if (accountId_ == null) {
-              accountId_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
+              AccountId = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(accountId_);
+            input.ReadMessage(AccountId);
             break;
           }
         }
@@ -718,7 +718,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
       }
       if (other.space_ != null) {
         if (space_ == null) {
-          space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+          Space = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
         }
         Space.MergeFrom(other.Space);
       }
@@ -735,9 +735,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol {
             break;
           case 10: {
             if (space_ == null) {
-              space_ = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
+              Space = new global::EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.Space();
             }
-            input.ReadMessage(space_);
+            input.ReadMessage(Space);
             break;
           }
         }

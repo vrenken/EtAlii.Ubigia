@@ -43,7 +43,7 @@ namespace EtAlii.Ubigia.Api.Functional
                         var leftPathSubject = (PathSubject)parameters.LeftSubject;
                         var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope);
                         var result = await Assign(graphPath, identifier, value, parameters.Scope);
-                        //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope);
+                        //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope)
                         parameters.Output.OnNext(result);
                     });
         }

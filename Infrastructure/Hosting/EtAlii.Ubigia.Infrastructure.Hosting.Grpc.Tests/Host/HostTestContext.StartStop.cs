@@ -6,13 +6,13 @@
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.Extensions.Configuration;
 
-    public partial class HostTestContext<TInfrastructureTestHost> 
+	public partial class HostTestContext<TInfrastructureTestHost> 
 	    where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
 
 	    protected override void StartInternal(bool useRandomPorts)
         {
-            //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia";
+            //var tempFolder = Path.Combine(Path.GetTempPath(), "EtAlii", "Ubigia", Guid.NewGuid().ToString());//  "%LOCALAPPDATA%\\EtAlii\\Ubigia"
 
             var ports = GetAvailableTcpPorts(64000, 2)
              .Select(p => p.ToString())
@@ -66,7 +66,7 @@
 
             var hostConfiguration = new HostConfigurationBuilder()
                 .Build(applicationConfiguration);
-            //.UseTestHost(diagnostics);
+            //.UseTestHost(diagnostics)
 
             var host = new HostFactory<TInfrastructureTestHost>().Create(hostConfiguration);
 

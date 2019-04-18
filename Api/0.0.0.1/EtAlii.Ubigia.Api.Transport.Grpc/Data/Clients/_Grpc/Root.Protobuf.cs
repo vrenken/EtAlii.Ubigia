@@ -276,7 +276,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.spaceId_ != null) {
         if (spaceId_ == null) {
-          spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          SpaceId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         SpaceId.MergeFrom(other.SpaceId);
       }
@@ -311,9 +311,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (spaceId_ == null) {
-              spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              SpaceId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(spaceId_);
+            input.ReadMessage(SpaceId);
             break;
           }
           case 18: {
@@ -472,13 +472,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.spaceId_ != null) {
         if (spaceId_ == null) {
-          spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          SpaceId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         SpaceId.MergeFrom(other.SpaceId);
       }
       if (other.root_ != null) {
         if (root_ == null) {
-          root_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
+          Root = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
         }
         Root.MergeFrom(other.Root);
       }
@@ -495,16 +495,16 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (spaceId_ == null) {
-              spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              SpaceId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(spaceId_);
+            input.ReadMessage(SpaceId);
             break;
           }
           case 18: {
             if (root_ == null) {
-              root_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
+              Root = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
             }
-            input.ReadMessage(root_);
+            input.ReadMessage(Root);
             break;
           }
         }
@@ -620,7 +620,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.spaceId_ != null) {
         if (spaceId_ == null) {
-          spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          SpaceId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         SpaceId.MergeFrom(other.SpaceId);
       }
@@ -637,9 +637,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (spaceId_ == null) {
-              spaceId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              SpaceId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(spaceId_);
+            input.ReadMessage(SpaceId);
             break;
           }
         }
@@ -755,7 +755,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.root_ != null) {
         if (root_ == null) {
-          root_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
+          Root = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
         }
         Root.MergeFrom(other.Root);
       }
@@ -772,9 +772,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (root_ == null) {
-              root_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
+              Root = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Root();
             }
-            input.ReadMessage(root_);
+            input.ReadMessage(Root);
             break;
           }
         }

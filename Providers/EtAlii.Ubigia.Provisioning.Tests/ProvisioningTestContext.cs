@@ -12,8 +12,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class ProvisioningTestContext : IProvisioningTestContext
     {
@@ -28,8 +28,8 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 //
 //        public async Task<IGraphSLScriptContext> CreateDataContext(string accountName, string accountPassword, string spaceName)
 //        {
-//            var connection = await CreateDataConnection(accountName, accountPassword, spaceName);
-//            return new GraphSLScriptContextFactory().Create(connection);
+//            var connection = await CreateDataConnection(accountName, accountPassword, spaceName)
+//            return new GraphSLScriptContextFactory().Create(connection)
 //        }
 
 
@@ -38,15 +38,15 @@ namespace EtAlii.Ubigia.Provisioning.Tests
             var connection = await CreateDataConnection(accountName, accountPassword, spaceName);
             return new GraphSLScriptContextFactory().Create(connection);
 //            
-//            var dataContext = await CreateDataContext(accountName, accountPassword, spaceName);
+//            var dataContext = await CreateDataContext(accountName, accountPassword, spaceName)
 //
-//            return dataContext.CreateGraphSLScriptContext();
+//            return dataContext.CreateGraphSLScriptContext()
         }
 
         public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName)
         {
             var diagnostics = TestDiagnostics.Create();
-			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler)
 			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
 			var connectionConfiguration = new DataConnectionConfiguration()
@@ -65,7 +65,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
         public async Task<IManagementConnection> OpenManagementConnection()
         {
             var diagnostics = TestDiagnostics.Create();
-			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler);
+			//var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.Handler)
 			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()

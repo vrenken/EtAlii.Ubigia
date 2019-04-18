@@ -6,7 +6,7 @@
     public class LogicalContextConfiguration : ILogicalContextConfiguration
     {
         //public ILogicalContextExtension[] Extensions { get { return _extensions; } }
-        //private ILogicalContextExtension[] _extensions;
+        //private ILogicalContextExtension[] _extensions
 
         public IFabricContext Fabric { get; private set; }
 
@@ -18,14 +18,14 @@
         //{
         //    if (extensions == null)
         //    {
-        //        throw new ArgumentException(nameof(extensions));
+        //        throw new ArgumentException(nameof(extensions))
         //    }
 
         //    _extensions = extensions
         //        .Concat(_extensions)
         //        .Distinct()
-        //        .ToArray();
-        //    return this;
+        //        .ToArray()
+        //    return this
         //}
 
         public ILogicalContextConfiguration Use(string name, Uri address)

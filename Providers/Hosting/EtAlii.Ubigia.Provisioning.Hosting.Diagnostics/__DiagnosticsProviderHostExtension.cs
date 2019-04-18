@@ -1,16 +1,16 @@
 //namespace EtAlii.Ubigia.Provisioning.Hosting.Diagnostics
 //{
-//    using EtAlii.xTechnology.Diagnostics;
-//    using EtAlii.xTechnology.Logging;
-//    using EtAlii.xTechnology.MicroContainer;
+//    using EtAlii.xTechnology.Diagnostics
+//    using EtAlii.xTechnology.Logging
+//    using EtAlii.xTechnology.MicroContainer
 
 //    public class DiagnosticsProviderHostExtension : IHostExtension
 //    {
-//        private readonly IDiagnosticsConfiguration _diagnostics;
+//        private readonly IDiagnosticsConfiguration _diagnostics
 
 //        internal DiagnosticsProviderHostExtension(IDiagnosticsConfiguration diagnostics)
 //        {
-//            _diagnostics = diagnostics;
+//            _diagnostics = diagnostics
 //        }
 
 //        public void Initialize(Container container)
@@ -19,7 +19,7 @@
 //                () => new DisabledLogFactory(),
 //                () => new DisabledProfilerFactory(),
 //                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"),
-//                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"));
+//                (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Provisioning"))
 
 //            var scaffoldings = new IScaffolding[]
 //            {
@@ -30,11 +30,11 @@
 
 //                //new WebApiProfilingScaffolding(diagnostics),
 //                //new WebApiLoggingScaffolding(diagnostics),
-//            };
+//            }
 
 //            foreach (var scaffolding in scaffoldings)
 //            {
-//                scaffolding.Register(container);
+//                scaffolding.Register(container)
 //            }
 //        }
 //    }

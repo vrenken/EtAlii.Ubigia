@@ -49,8 +49,8 @@
             try
             {
                 // We need to clear the parts before they are stored. Else they are persited in the content file itself.
-                //var contentParts = new List<ContentPart>(content.Parts);
-                //content.Parts.Clear();
+                //var contentParts = new List<ContentPart>(content.Parts)
+                //content.Parts.Clear()
 
                 if (contentParts.Any())
                 {

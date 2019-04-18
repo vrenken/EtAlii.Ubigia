@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi.Tests
 {
-	using System;
-	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Tests;
-	using EtAlii.Ubigia.Api.Transport.Diagnostics;
+    using System;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Tests;
+    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
     using EtAlii.Ubigia.Api.Transport.Tests;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
-	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class WebApiTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>, ITransportTestContext
     {
@@ -17,7 +16,7 @@
         {
             var diagnostics = TestDiagnostics.Create();
 
-			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure);
+			//var httpClientFactory = new TestHttpClientFactory((TestInfrastructure)Context.Host.Infrastructure)
 	        var client = Context.CreateRestInfrastructureClient();
 
 			var connectionConfiguration = new DataConnectionConfiguration()

@@ -23,11 +23,11 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
 //        public async Task<IDataContext> CreateFunctionalContext(bool openOnCreation)
 //        {
-//            var logicalContext = await _logical.CreateLogicalContext(openOnCreation);
+//            var logicalContext = await _logical.CreateLogicalContext(openOnCreation)
 //            var configuration = new DataContextConfiguration()
 //                .Use(_diagnostics)
-//                .Use(logicalContext);
-//            return new DataContextFactory().Create(configuration);
+//                .Use(logicalContext)
+//            return new DataContextFactory().Create(configuration)
 //        }
 
         
@@ -227,21 +227,21 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             await context.Process(addQuery);
 
-//            var testQuery = context.Parse("person:Stark/Tony");
-//            var testResult = await context.Process(testQuery.Script, new ScriptScope());
-//            var result = await testResult.Output.ToArray();
-//            var result = context.Scripts.Process(addQuery);
+//            var testQuery = context.Parse("person:Stark/Tony")
+//            var testResult = await context.Process(testQuery.Script, new ScriptScope())
+//            var result = await testResult.Output.ToArray()
+//            var result = context.Scripts.Process(addQuery)
 //
-//            var list = await result.ToArray();
+//            var list = await result.ToArray()
 //
-//            var ida = await list[list.Length - 6].Output.ToArray();
-//            var arjan = await list[list.Length - 5].Output.ToArray();
-//            var tanja = await list[list.Length - 4].Output.ToArray();
-//            var peter = await list[list.Length - 3].Output.ToArray();
-//            var tony = await list[list.Length - 3].Output.ToArray();
-//            var jane = await list[list.Length - 2].Output.ToArray();
-//            var john = await list[list.Length - 1].Output.ToArray();
-//            var tonyNode = await list[list.Length - 1].Output.ToArray();
+//            var ida = await list[list.Length - 6].Output.ToArray()
+//            var arjan = await list[list.Length - 5].Output.ToArray()
+//            var tanja = await list[list.Length - 4].Output.ToArray()
+//            var peter = await list[list.Length - 3].Output.ToArray()
+//            var tony = await list[list.Length - 3].Output.ToArray()
+//            var jane = await list[list.Length - 2].Output.ToArray()
+//            var john = await list[list.Length - 1].Output.ToArray()
+//            var tonyNode = await list[list.Length - 1].Output.ToArray()
         }
 
         #region start/stop

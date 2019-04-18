@@ -12,7 +12,7 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IKeyValuePairParser _keyValuePairParser;
-//        private const string _textId = "Text";
+//        private const string _textId = "Text"
 
         public ObjectConstantSubjectParser(
             INodeValidator nodeValidator,
@@ -24,17 +24,17 @@
             _nodeFinder = nodeFinder;
             _keyValuePairParser = keyValuePairParser;
 
-            var start = Lp.One(c => c == '{'); //.Debug("StartBracket");
-            var end = Lp.One(c => c == '}'); //.Debug("EndBracket");
+            var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
+            var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
-            var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + newLineParser.OptionalMultiple);//; //.Debug("Comma");
+            var separator = (Lp.ZeroOrMore(' ') + Lp.Char(',') + newLineParser.OptionalMultiple);//; //.Debug("Comma")
             Parser = new LpsParser(Id, true,
                 Lp.InBrackets(
                 start,
                 newLineParser.OptionalMultiple +
                 Lp.List(_keyValuePairParser.Parser, separator, Lp.ZeroOrMore(' ')).Maybe() + newLineParser.OptionalMultiple,
                 end)
-                );//.Debug("ObjectConstant");
+                );//.Debug("ObjectConstant")
         }
 
         public ConstantSubject Parse(LpNode node)

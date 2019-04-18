@@ -26,10 +26,10 @@
 
         //public override Task OnReconnectedAsync()
         //{
-        //    var authenticationToken = Context.Headers.Get("Authentication-Token");
-        //    _authenticationTokenVerifier.Verify(authenticationToken, null);
+        //    var authenticationToken = Context.Headers.Get("Authentication-Token")
+        //    _authenticationTokenVerifier.Verify(authenticationToken, null)
 
-        //    return base.OnReconnected();
+        //    return base.OnReconnected()
         //}
     }
 }

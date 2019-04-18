@@ -9,7 +9,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    
     public class ScriptProcessorAssignDynamic2IntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -409,10 +408,10 @@
             // Assert.
             Assert.NotNull(result1);
             Assert.NotNull(result2);
-            //Assert.Equal(null, result1.ObjectType);
-            //Assert.Equal(null, result2.ObjectType);
-            //Assert.Equal(null, result1.Code);
-            //Assert.Equal(null, result2.Code);
+            //Assert.Equal(null, result1.ObjectType)
+            //Assert.Equal(null, result2.ObjectType)
+            //Assert.Equal(null, result1.Code)
+            //Assert.Equal(null, result2.Code)
             Assert.Equal(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
         }
 
@@ -466,8 +465,8 @@
             Assert.NotNull(result2);
             Assert.Equal("TEST", result1.ObjectType);
             Assert.Equal("TEST", result2.ObjectType);
-            //Assert.Equal(null, result1.Code);
-            //Assert.Equal(null, result2.Code);
+            //Assert.Equal(null, result1.Code)
+            //Assert.Equal(null, result2.Code)
             Assert.Equal(((IInternalNode)result1).Id, ((IInternalNode)result2).Id);
         }
 

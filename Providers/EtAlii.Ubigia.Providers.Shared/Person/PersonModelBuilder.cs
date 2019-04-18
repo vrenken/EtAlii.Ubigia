@@ -148,7 +148,7 @@
             //return _lastNames
             //    .SingleOrDefault(ln => ln.Name == lastName)?
             //    .FirstNames.SingleOrDefault(fn => fn.Name == firstName)
-            //    ?.Persons;
+            //    ?.Persons
         }
 
         private string CleanupPhone(string phone)

@@ -1,20 +1,20 @@
 ﻿//namespace EtAlii.Ubigia.Api.Transport
 //{
-//    using System;
-//    using System.Threading.Tasks;
-//    using EtAlii.xTechnology.Logging;
+//    using System
+//    using System.Threading.Tasks
+//    using EtAlii.xTechnology.Logging
 
 //    public class LoggingDataConnection : IDataConnection
 //    {
-//        private readonly IDataConnection _decoree;
-//        private readonly ILogger _logger;
+//        private readonly IDataConnection _decoree
+//        private readonly ILogger _logger
 
 //        internal LoggingDataConnection(
 //            IDataConnection decoree,
 //            ILogger logger)
 //        {
-//            _decoree = decoree;
-//            _logger = logger;
+//            _decoree = decoree
+//            _logger = logger
 //        }
 
 //        public Storage Storage { get { return _decoree.Storage; } }
@@ -31,30 +31,30 @@
 
 //        public async Task Open()
 //        {
-//            var address = _decoree.Configuration.Address;
-//            var accountName = _decoree.Configuration.AccountName;
-//            var spaceName = _decoree.Configuration.Space;
+//            var address = _decoree.Configuration.Address
+//            var accountName = _decoree.Configuration.AccountName
+//            var spaceName = _decoree.Configuration.Space
 
-//            var message = String.Format("Opening data connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName);
-//            _logger.Info(message);
-//            var start = Environment.TickCount;
-//            await _decoree.Open();
-//            message = String.Format("Opened data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, Environment.TickCount - start);
-//            _logger.Info(message);
+//            var message = String.Format("Opening data connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName)
+//            _logger.Info(message)
+//            var start = Environment.TickCount
+//            await _decoree.Open()
+//            message = String.Format("Opened data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, Environment.TickCount - start)
+//            _logger.Info(message)
 //        }
 
 //        public async Task Close()
 //        {
-//            var address = _decoree.Configuration.Address;
-//            var accountName = _decoree.Configuration.AccountName;
-//            var spaceName = _decoree.Configuration.Space;
+//            var address = _decoree.Configuration.Address
+//            var accountName = _decoree.Configuration.AccountName
+//            var spaceName = _decoree.Configuration.Space
 
-//            var message = String.Format("Closing data connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName);
-//            _logger.Info(message);
-//            var start = Environment.TickCount;
-//            await _decoree.Close();
-//            message = String.Format("Closed data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, Environment.TickCount - start);
-//            _logger.Info(message);
+//            var message = String.Format("Closing data connection (Address: {0} Account: {1} Space: {2})", address, accountName, spaceName)
+//            _logger.Info(message)
+//            var start = Environment.TickCount
+//            await _decoree.Close()
+//            message = String.Format("Closed data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, Environment.TickCount - start)
+//            _logger.Info(message)
 //        }
 //    }
 //}

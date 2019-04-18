@@ -8,7 +8,7 @@
     {
         public TInfrastructureTestHost Host { get; private set; }
 
-		private const string HostSchemaAndIp = "http://127.0.0.1";
+        private const string HostSchemaAndIp = "http://127.0.0.1";
 
 		public Uri HostAddress { get; } = new Uri(HostSchemaAndIp, UriKind.Absolute);
 

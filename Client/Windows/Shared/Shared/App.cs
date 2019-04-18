@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Windows.Shared
 {
-    using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
-    using EtAlii.xTechnology.MicroContainer;
     using System;
     using System.IO;
     using EtAlii.Ubigia.Windows.Settings;
+    using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Mvvm;
 
     public abstract class App : System.Windows.Application
     {
@@ -25,7 +25,7 @@
         protected App()
         {
             Container = new Container();
-            //Container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
+            //Container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); }
 
             Directory.CreateDirectory(ShellExtensionsDirectory);
         }
@@ -44,7 +44,7 @@
                 typeof(ILogger),
             };
 
-            //RegisterKnownTypesInAssembly(Assembly.GetExecutingAssembly(), typesToInclude, typesToExclude);
+            //RegisterKnownTypesInAssembly(Assembly.GetExecutingAssembly(), typesToInclude, typesToExclude)
 
             Container.Register<IGlobalSettings, GlobalSettings>();
             Container.Register<ILogFactory, DisabledLogFactory>();
@@ -59,11 +59,11 @@
         //                                  .Where(type => type.IsClass && !type.IsAbstract)
         //                                  .Where(type => !typesToExclude.Contains(type))
         //                                  .Where(type => !typesToExclude.Any(customRegisteredType => customRegisteredType.IsAssignableFrom(type)))
-        //                                  .Where(type => typesToInclude.Any(type.IsSubclassOf));
+        //                                  .Where(type => typesToInclude.Any(type.IsSubclassOf))
 
         //    foreach (var typeToRegister in typesToRegister)
         //    {
-        //        Container.Register(typeToRegister);
+        //        Container.Register(typeToRegister)
         //    }
         //}
 

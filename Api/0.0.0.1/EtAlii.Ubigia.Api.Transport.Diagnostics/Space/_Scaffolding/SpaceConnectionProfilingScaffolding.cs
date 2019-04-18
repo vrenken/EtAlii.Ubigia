@@ -15,7 +15,7 @@
 
             if (diagnostics.EnableProfiling) // profiling is enabled
             {
-                //container.RegisterDecorator(typeof(IDataConnection), typeof(ProfilingDataConnection));
+                //container.RegisterDecorator(typeof(IDataConnection), typeof(ProfilingDataConnection))
             }
         }
     }

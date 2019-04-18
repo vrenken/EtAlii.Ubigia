@@ -2,7 +2,7 @@
 //{
 //    public interface IComponentManager
 //    {
-//        void Start();
-//        void Stop();
+//        void Start()
+//        void Stop()
 //    }
 //}

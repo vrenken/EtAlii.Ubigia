@@ -18,7 +18,7 @@
         {
             Uri address = null;
 
-            //var currentStorage = StorageCmdlet.Current;
+            //var currentStorage = StorageCmdlet.Current
 
             if (storageInfoProvider.Storage != null)
             {

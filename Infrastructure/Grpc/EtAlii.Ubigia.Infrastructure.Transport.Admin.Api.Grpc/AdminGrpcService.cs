@@ -24,9 +24,9 @@
             new SerializationScaffolding().Register(container);
 
             container.Register<IAccountAuthenticationInterceptor, AccountAuthenticationInterceptor>();
-            //container.Register<ISpaceAuthenticationInterceptor, SpaceAuthenticationInterceptor>();
+            //container.Register<ISpaceAuthenticationInterceptor, SpaceAuthenticationInterceptor>()
 	        
-            //var spaceAuthenticationInterceptor = container.GetInstance<ISpaceAuthenticationInterceptor>();
+            //var spaceAuthenticationInterceptor = container.GetInstance<ISpaceAuthenticationInterceptor>()
             var accountAuthenticationInterceptor = container.GetInstance<IAccountAuthenticationInterceptor>();
 
             serviceDefinitions.Add(new AdminAuthenticationServiceDefinitionFactory().Create(infrastructure));
@@ -34,7 +34,7 @@
             serviceDefinitions.Add(new AdminAccountServiceDefinitionFactory().Create(infrastructure));
             serviceDefinitions.Add(new AdminSpaceServiceDefinitionFactory().Create(infrastructure));
             
-    //        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+    //        var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure
 
     //        applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Grpc.BaseUrl,
     //            services =>
@@ -49,24 +49,24 @@
 
 	   //                 .AddCors()
     //                    .AddGrpc()
-		  //              .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+		  //              .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
 				//},
     //            appBuilder =>
     //            {
     //                appBuilder
     //                    .UseCors(configuration =>
     //                    {
-    //                        configuration.AllowAnyOrigin();
+    //                        configuration.AllowAnyOrigin()
     //                    })
     //                    .UseGrpc(routes =>
     //                    {
-    //                        routes.MapHub<AuthenticationHub>(GrpcHub.Authentication);
+    //                        routes.MapHub<AuthenticationHub>(GrpcHub.Authentication)
 
-    //                        routes.MapHub<StorageHub>(GrpcHub.Storage);
-    //                        routes.MapHub<SpaceHub>(GrpcHub.Space);
-    //                        routes.MapHub<AccountHub>(GrpcHub.Account);
-				//		});
-    //            });
+    //                        routes.MapHub<StorageHub>(GrpcHub.Storage)
+    //                        routes.MapHub<SpaceHub>(GrpcHub.Space)
+    //                        routes.MapHub<AccountHub>(GrpcHub.Account)
+				//		})
+    //            })
         }
     }
 }

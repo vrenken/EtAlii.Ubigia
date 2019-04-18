@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-	using System;
-	using System.Net;
+    using System;
+    using System.Net;
     using System.Net.Http;
-	using System.Text;
-	using System.Threading;
+    using System.Text;
+    using System.Threading;
     using System.Threading.Tasks;
 
     internal class TestHttpClientMessageHandler : DelegatingHandler
@@ -34,8 +34,8 @@
 	            var encoded = Convert.ToBase64String(Encoding.GetEncoding("ISO-8859-1").GetBytes(credentials.UserName + ":" + credentials.Password));
 	            request.Headers.Add("Authorization", "Basic " + encoded);
 
-                //request.Headers.Add("Test-UserName", credentials.UserName);
-                //request.Headers.Add("Test-Password", credentials.Password);
+                //request.Headers.Add("Test-UserName", credentials.UserName)
+                //request.Headers.Add("Test-Password", credentials.Password)
             }
 
             request.Headers.Add("Host-Identifier", _hostIdentifier);

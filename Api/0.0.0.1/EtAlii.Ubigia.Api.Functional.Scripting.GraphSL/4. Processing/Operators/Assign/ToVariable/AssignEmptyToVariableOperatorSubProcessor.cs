@@ -14,8 +14,8 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Assign(OperatorParameters parameters)
         {
             var variableSubject = (VariableSubject)parameters.LeftSubject;
-            //var subject = parameters.RightSubject;
-            //var source = subject.ToString();
+            //var subject = parameters.RightSubject
+            //var source = subject.ToString()
 
             var variableName = variableSubject.Name;
 

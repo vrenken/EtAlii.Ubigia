@@ -18,7 +18,7 @@
             var result = await Connection.Client.Put(changeAddress, entry as Entry);
             scope.Cache.InvalidateEntry(entry.Id);
             // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
-            //scope.Cache.InvalidateEntry(result.Id);
+            //scope.Cache.InvalidateEntry(result.Id)
             return result;
         }
 

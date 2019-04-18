@@ -1,12 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Mail
 {
-    using ActiveUp.Net.Mail;
-    using EtAlii.xTechnology.Logging;
     using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using ActiveUp.Net.Mail;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.xTechnology.Logging;
 
     public class MailImporter : IMailImporter
     {
@@ -94,7 +94,7 @@
 
             try
             {
-                //_imap.StopIdle();
+                //_imap.StopIdle()
 
                 _inbox = _imap.ExamineMailbox("INBOX");
 
@@ -121,7 +121,7 @@
                     task.Wait();
                 }
 
-                //_imap.StartIdle();
+                //_imap.StartIdle()
             }
             catch (Exception exception)
             {

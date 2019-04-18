@@ -16,7 +16,7 @@
         {
             if (_diagnostics.EnableLogging) // logging is enabled.
             {
-                //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton);
+                //container.RegisterDecorator(typeof(IInfrastructureClient), typeof(LoggingInfrastructureClient), Lifestyle.Singleton)
             }
         }
     }

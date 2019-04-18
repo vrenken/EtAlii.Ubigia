@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using EtAlii.xTechnology.Mvvm;
     using System;
     using System.ComponentModel;
     using System.IO;
     using EtAlii.xTechnology.Logging;
+    using EtAlii.xTechnology.Mvvm;
 
     internal class FolderMonitor : BindableBase, IFolderMonitor
     {
@@ -138,8 +138,8 @@
             _logger.Info("Error in folder monitoring");
             Error(this, e);
 
-            //Stop();
-            //Start();
+            //Stop()
+            //Start()
         }
 
         private void OnDeleted(object sender, FileSystemEventArgs e)

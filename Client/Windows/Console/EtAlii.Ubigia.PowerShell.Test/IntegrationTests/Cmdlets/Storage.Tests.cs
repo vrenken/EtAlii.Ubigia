@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Api;
     using Xunit;
 
-    
     public class StorageTest : IDisposable
     {
         private PowerShellTestContext _testContext;
@@ -47,7 +46,7 @@
             Assert.True(result.Count == 1);
             var storage = result[0].BaseObject as Storage;
             Assert.NotNull(storage);
-	        Assert.Equal(_testContext.Context.HostAddress.ToString(), storage.Address);//configuration.Address);
+	        Assert.Equal(_testContext.Context.HostAddress.ToString(), storage.Address);//configuration.Address)
         }
 
         [Fact]

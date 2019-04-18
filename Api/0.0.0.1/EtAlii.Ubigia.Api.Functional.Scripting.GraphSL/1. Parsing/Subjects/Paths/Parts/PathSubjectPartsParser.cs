@@ -71,7 +71,7 @@
             };
             _nodeValidator = nodeValidator;
             var lpsParsers = _parsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser);
-            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("PathSubjectParts", true);
+            Parser = new LpsParser(Id, true, lpsParsers);//.Debug("PathSubjectParts", true)
         }
 
         public PathSubjectPart Parse(LpNode node)
@@ -85,7 +85,7 @@
 
         public void Validate(PathSubjectPartParserArguments arguments)
         {
-            //var parsers = _parsers.Where(p => p.CanValidate(part)).ToArray();
+            //var parsers = _parsers.Where(p => p.CanValidate(part)).ToArray()
             var parser = _parsers.Single(p => p.CanValidate(arguments.Part));
             parser.Validate(arguments);
         }

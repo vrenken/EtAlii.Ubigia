@@ -8,7 +8,7 @@
 
         //IFabricContextExtension[] Extensions { get; }
 
-        //IFabricContextConfiguration Use(IFabricContextExtension[] extensions);
+        //IFabricContextConfiguration Use(IFabricContextExtension[] extensions)
 
         IFabricContextConfiguration Use(IStorage storage);
     }

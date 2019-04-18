@@ -1,18 +1,18 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 //{
-//	using System;
-//	using System.IdentityModel.Tokens.Jwt;
-//	using System.Security.Claims;
-//	using System.Threading.Tasks;
-//	using EtAlii.Ubigia.Infrastructure.Functional;
-//	using Microsoft.Grpc.Authentication.JwtBearer;
-//	using Microsoft.Extensions.DependencyInjection;
-//	using Microsoft.IdentityModel.Tokens;
+//	using System
+//	using System.IdentityModel.Tokens.Jwt
+//	using System.Security.Claims
+//	using System.Threading.Tasks
+//	using EtAlii.Ubigia.Infrastructure.Functional
+//	using Microsoft.Grpc.Authentication.JwtBearer
+//	using Microsoft.Extensions.DependencyInjection
+//	using Microsoft.IdentityModel.Tokens
 
 //	public static partial class ServiceCollectionExtensions
 //	{
-//		private static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray());
-//		private static readonly JwtSecurityTokenHandler JwtTokenHandler = new JwtSecurityTokenHandler();
+//		private static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray())
+//		private static readonly JwtSecurityTokenHandler JwtTokenHandler = new JwtSecurityTokenHandler()
 
 //		public static IServiceCollection AddInfrastructureHttpContextAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
 //		{
@@ -23,11 +23,11 @@
 //				.AddSingleton<IHttpContextAuthenticationVerifier, HttpContextAuthenticationVerifier>()
 //				.AddSingleton<IHttpContextResponseBuilder, HttpContextResponseBuilder>()
 //				.AddSingleton<IHttpContextAuthenticationTokenVerifier, HttpContextAuthenticationTokenVerifier>()
-//				.AddSingleton<IHttpContextAuthenticationIdentityProvider, DefaultHttpContextAuthenticationIdentityProvider>();
+//				.AddSingleton<IHttpContextAuthenticationIdentityProvider, DefaultHttpContextAuthenticationIdentityProvider>()
 
-//			//AddJwtBearer(services);
+//			//AddJwtBearer(services)
 
-//			return services;
+//			return services
 //		}
 
 //		public static IServiceCollection AddInfrastructureSimpleAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
@@ -35,17 +35,17 @@
 //		    services
 //			    .TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
 //			    .TryAddSingleton<IStorageRepository>(infrastructure.Storages)
-//				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver);
+//				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver)
 //				//.AddSingleton<IParameterResolver, GrpcParameterResolver>()
 //				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
 //			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 //			    .AddSingleton<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>()
 //			    .AddSingleton<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>()
-//			    .AddSingleton<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>();
+//			    .AddSingleton<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>()
 
-//			//AddJwtBearer(services);
+//			//AddJwtBearer(services)
 
-//			return services;
+//			return services
 //	    }
 
 //		private static void AddJwtBearer(IServiceCollection services)
@@ -55,10 +55,10 @@
 //			{
 //				options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, policy =>
 //				{
-//					policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
-//					policy.RequireClaim(ClaimTypes.NameIdentifier);
-//				});
-//			});
+//					policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+//					policy.RequireClaim(ClaimTypes.NameIdentifier)
+//				})
+//			})
 //			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //				.AddJwtBearer(options =>
 //				{
@@ -71,29 +71,29 @@
 //							ValidateActor = false,
 //							ValidateLifetime = true,
 //							IssuerSigningKey = SecurityKey
-//						};
+//						}
 //					options.Events = new JwtBearerEvents
 //					{
 //						OnMessageReceived = context =>
 //						{
-//							var accessToken = context.Request.Query["access_token"];
+//							var accessToken = context.Request.Query["access_token"]
 //							if (!string.IsNullOrEmpty(accessToken) &&
 //							    (context.HttpContext.WebSockets.IsWebSocketRequest || context.Request.Headers["Accept"] == "text/event-stream"))
 //							{
-//								context.Token = context.Request.Query["access_token"];
+//								context.Token = context.Request.Query["access_token"]
 //							}
-//							return Task.CompletedTask;
+//							return Task.CompletedTask
 //						}
-//					};
-//				});
+//					}
+//				})
 //		}
 
 
 //		//.AddAuthentication(options =>
 //		//{
-//		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-//		//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-//		//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+//		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme
+//		//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme
+//		//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
 //		//})
 //		//.AddJwtBearer(options =>
 //		//{
@@ -108,8 +108,8 @@
 //		//        ValidateLifetime = true, //validate the expiration and not before values in the token
 //		//        ClockSkew = TimeSpan.FromMinutes(1) //5 minute tolerance for the expiration date
 
-//		//    };
-//		//});
+//		//    }
+//		//})
 
 //	}
 //}

@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
 
-
     public class ScriptParserFunctionFileTests : IDisposable
     {
         private IScriptParser _parser;
@@ -26,14 +25,14 @@
         public void ScriptParser_Function_File_Add()
         {
             // Arrange.
-            //var text = "'SingleLine'";
+            //var text = "'SingleLine'"
 
             // Act.
-            //var script = _parser.Parse(text).Script;
+            //var script = _parser.Parse(text).Script
 
             // Assert.
-            //Assert.NotNull(script);
-            //Assert.True(script.Sequences.Count() == 1);
+            //Assert.NotNull(script)
+            //Assert.True(script.Sequences.Count() == 1)
         }
     }
 }

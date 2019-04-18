@@ -5,7 +5,7 @@
 	using EtAlii.xTechnology.Hosting.Grpc;
 	using EtAlii.xTechnology.MicroContainer;
 	using global::Grpc.Core;
-    using Microsoft.Extensions.Configuration;
+	using Microsoft.Extensions.Configuration;
 
 	public class UserGrpcService : GrpcServiceBase
     {
@@ -40,7 +40,7 @@
 	        serviceDefinitions.Add(new UserContentDefinitionServiceDefinitionFactory().Create(infrastructure, spaceAuthenticationInterceptor));
 
             // TODO: GRPC
-      //      var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
+      //      var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure
 
       //      applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.User.Api.Grpc.BaseUrl,
       //          services =>
@@ -59,7 +59,7 @@
 
 		    //            .AddCors()
 		    //            .AddGrpc()
-		    //            .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings));
+		    //            .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
       //          },
       //          appBuilder =>
       //          {
@@ -70,18 +70,18 @@
       //                  })
       //                  .UseGrpc(routes =>
       //                  {
-      //                      routes.MapHub<AuthenticationHub>(GrpcHub.Authentication);
+      //                      routes.MapHub<AuthenticationHub>(GrpcHub.Authentication)
 
-						//	routes.MapHub<AccountHub>(GrpcHub.Account);
-						//	routes.MapHub<SpaceHub>(GrpcHub.Space);
+						//	routes.MapHub<AccountHub>(GrpcHub.Account)
+						//	routes.MapHub<SpaceHub>(GrpcHub.Space)
 
-						//	routes.MapHub<RootHub>(GrpcHub.Root);
-      //                      routes.MapHub<EntryHub>(GrpcHub.Entry);
-      //                      routes.MapHub<PropertiesHub>(GrpcHub.Property);
-      //                      routes.MapHub<ContentHub>(GrpcHub.Content);
-      //                      routes.MapHub<ContentDefinitionHub>(GrpcHub.ContentDefinition);
-      //                  });
-      //          });
+						//	routes.MapHub<RootHub>(GrpcHub.Root)
+      //                      routes.MapHub<EntryHub>(GrpcHub.Entry)
+      //                      routes.MapHub<PropertiesHub>(GrpcHub.Property)
+      //                      routes.MapHub<ContentHub>(GrpcHub.Content)
+      //                      routes.MapHub<ContentDefinitionHub>(GrpcHub.ContentDefinition)
+      //                  })
+      //          })
         }
     }
 }

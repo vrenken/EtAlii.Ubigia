@@ -21,7 +21,7 @@
 
             container.Register(() => (IProfilingGraphSLScriptContext)documentContext.ScriptContext);
             container.Register(() => (IProfilingGraphQLQueryContext)documentContext.QueryContext);
-            //container.Register(() => (IProfilingLinqQueryContext)linqContext);
+            //container.Register(() => (IProfilingLinqQueryContext)linqContext)
 
             container.Register(() => (IProfilingLogicalContext)documentContext.LogicalContext);
             container.Register(() => (IProfilingFabricContext)documentContext.FabricContext);
@@ -32,7 +32,7 @@
                 return documentContext.GraphContextFactory.Create(documentContext.Logger, documentContext.Journal, documentContext.FabricContext, dvmp);
             });
 
-            //container.Register<IProfilingView, ProfilingView>();
+            //container.Register<IProfilingView, ProfilingView>()
             container.Register<IDocumentViewModelProvider, DocumentViewModelProvider>();
 
             container.Register<IProfileComposer>(() => 

@@ -22,7 +22,7 @@
 //
 //        private ObservableCollection<Space> GetItems()
 //        {
-//            return _logicalContext.Spaces.GetItems();
+//            return _logicalContext.Spaces.GetItems()
 //        }
 
         public async Task<Space> Add(Space item, SpaceTemplate template)

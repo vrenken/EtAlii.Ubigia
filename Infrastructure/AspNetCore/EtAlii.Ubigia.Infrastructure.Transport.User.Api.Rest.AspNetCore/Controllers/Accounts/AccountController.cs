@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
-    using System;
-    using System.Linq;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.Extensions.Primitives;
+	using System;
+	using System.Linq;
+	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+	using Microsoft.AspNetCore.Mvc;
+	using Microsoft.Extensions.Primitives;
 
 	//[RequiresAuthenticationToken]
     [Route(RelativeUri.User.Api.Accounts)]
@@ -37,7 +37,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Critical("Unable to serve a Account GET client request", ex);
+                //Logger.Critical("Unable to serve a Account GET client request", ex)
                 response = BadRequest(ex.Message);
             }
             return response;

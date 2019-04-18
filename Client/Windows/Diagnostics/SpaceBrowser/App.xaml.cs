@@ -29,7 +29,7 @@
                                     $"{Environment.NewLine}" +
                                     $"{e.Exception.StackTrace}", "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
                     //Logger.ReportUnhandledException(e.Exception); // Disabled because of performance loss.
-                    //e.Handled = true;
+                    //e.Handled = true
                 };
             }
         }

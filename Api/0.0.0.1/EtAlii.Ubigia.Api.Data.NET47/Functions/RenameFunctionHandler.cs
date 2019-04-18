@@ -57,7 +57,7 @@
                 else
                 {
                     // No way to throw an exception here. It could be a left side subject so we will have to wait until it is executed from an operator.
-                    //throw new ScriptProcessingException("Unable to convert arguments and input for rename function processing");
+                    //throw new ScriptProcessingException("Unable to convert arguments and input for rename function processing")
                     output.OnCompleted();
                 }
             }

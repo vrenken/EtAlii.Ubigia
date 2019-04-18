@@ -28,7 +28,7 @@
         }
         public static async Task ResultsAreNotEqual(IDocumentWriter documentWriter, QueryProcessingResult expected, QueryProcessingResult actual)
         {
-//            var expectedDocument = JObject.Parse(expected);
+//            var expectedDocument = JObject.Parse(expected)
             var expectedString = await documentWriter.WriteToStringAsync(QueryProcessingResult.ToGraphQlExecutionResult(expected));
             var actualString = await documentWriter.WriteToStringAsync(QueryProcessingResult.ToGraphQlExecutionResult(actual));
             Assert.NotEqual(expectedString, actualString);

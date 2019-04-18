@@ -10,7 +10,7 @@ option java_package = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
 option java_outer_classname = "Ubigia";
 option objc_class_prefix = "Ubigia";
 option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol";
-//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME
 
 package EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
    
@@ -94,7 +94,7 @@ message IdentifierComponent
 {
     // All.
     bool Stored = 1;
-    //string Name = 2;
+    //string Name = 2
 
     // Noncomposite.
 
@@ -106,7 +106,7 @@ message TypeComponent
 {
 	// All.
 	bool Stored = 1;
-	//string Name = 2;
+	//string Name = 2
 
 	// Noncomposite.
 
@@ -118,7 +118,7 @@ message TagComponent
 {
 	// All.
 	bool Stored = 1;
-	//string Name = 2;
+	//string Name = 2
 
 	// Noncomposite.
 
@@ -130,7 +130,7 @@ message RelationComponent
 {
 	// All.
 	bool Stored = 1;
-    //string Name = 2;
+    //string Name = 2
 
 	// Noncomposite.
 	
@@ -142,7 +142,7 @@ message RelationsComponent
 {
 	// All.
 	bool Stored = 1;
-	//string Name = 2;
+	//string Name = 2
 
 	// Composite.
 	fixed64 Id = 2;

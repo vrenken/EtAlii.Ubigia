@@ -44,12 +44,12 @@
             }
             //if (canAdd)
             //{
-            //    var containerId = ContainerIdentifier.ForRoots(spaceId);
-            //    canAdd = !ItemStorage.Has(item.Id, containerId);
+            //    var containerId = ContainerIdentifier.ForRoots(spaceId)
+            //    canAdd = !ItemStorage.Has(item.Id, containerId)
             //}
             //if (canAdd)
             //{
-            //    canAdd = Get(spaceId, item.Id) == null;
+            //    canAdd = Get(spaceId, item.Id) == null
             //}
             if (canAdd)
             {

@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-	using System;
-	using System.Collections.Generic;
+    using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.SignalR.Client;
 
@@ -26,7 +26,7 @@
             var result = await _invoker.Invoke<Entry>(_connection, SignalRHub.Entry, "Put", entry);
             scope.Cache.InvalidateEntry(entry.Id);
             // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
-            //scope.Cache.InvalidateEntry(result.Id);
+            //scope.Cache.InvalidateEntry(result.Id)
             return result;
         }
 
@@ -70,7 +70,7 @@
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Entry, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler);
+			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Entry, UriKind.Absolute));//spaceConnection.Transport.HttpClientHandler)
 	        await _connection.StartAsync();
 
         }

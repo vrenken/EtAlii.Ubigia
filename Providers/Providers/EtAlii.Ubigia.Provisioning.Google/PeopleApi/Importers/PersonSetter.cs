@@ -46,8 +46,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                     var lastSequence = await context.Process(script, scope);
                     await lastSequence.Output.SingleOrDefaultAsync();
 
-                    //var lastSequence2 = await context.Scripts.Process($"<= /Person/\"{familyName}\"/\"{givenName}\"");
-                    //var result2 = await lastSequence2.Output.LastOrDefaultAsync();
+                    //var lastSequence2 = await context.Scripts.Process($"<= /Person/\"{familyName}\"/\"{givenName}\"")
+                    //var result2 = await lastSequence2.Output.LastOrDefaultAsync()
                 });
                 task.Wait();
             }

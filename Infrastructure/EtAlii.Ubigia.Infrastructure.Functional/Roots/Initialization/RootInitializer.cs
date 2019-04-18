@@ -20,8 +20,8 @@
                 var entry = (IEditableEntry) _context.Entries.Prepare(spaceId);
                 entry.Type = root.Name;
 
-                //var tailRoot = Roots.Get(spaceId, DefaultRoot.Tail);
-                //entry.Parent = Relation.NewRelation(tailRoot.Identifier);
+                //var tailRoot = Roots.Get(spaceId, DefaultRoot.Tail)
+                //entry.Parent = Relation.NewRelation(tailRoot.Identifier)
 
                 _context.Entries.Store(entry);
                 root.Identifier = entry.Id;

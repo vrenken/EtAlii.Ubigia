@@ -45,25 +45,25 @@
         }
         //public AuthenticationIdentity Get(HttpContext context)
         //{
-        //    string authHeader = null;
-        //    var auth = context.Request.Headers.Authorization;
+        //    string authHeader = null
+        //    var auth = context.Request.Headers.Authorization
         //    if (auth != null && auth.Scheme == "Basic")
         //    {
-        //        authHeader = auth.Parameter;
+        //        authHeader = auth.Parameter
         //    }
 
         //    if (string.IsNullOrEmpty(authHeader))
         //    {
-        //        return null;
+        //        return null
         //    }
-        //    authHeader = Encoding.Default.GetString(Convert.FromBase64String(authHeader));
+        //    authHeader = Encoding.Default.GetString(Convert.FromBase64String(authHeader))
 
-        //    var tokens = authHeader.Split(':');
+        //    var tokens = authHeader.Split(':')
         //    if (tokens.Length < 2)
         //    {
-        //        return null;
+        //        return null
         //    }
-        //    return new AuthenticationIdentity(tokens[0], tokens[1]);
+        //    return new AuthenticationIdentity(tokens[0], tokens[1])
         //}
     }
 }

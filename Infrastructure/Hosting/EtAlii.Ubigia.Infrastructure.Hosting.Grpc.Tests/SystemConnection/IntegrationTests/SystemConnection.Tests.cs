@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
     using Xunit;
-    
+
     [Trait("Technology", "Grpc")]
     public class SystemConnectionTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -56,7 +56,7 @@
         public async Task SystemConnection_Create_ManagementConnection()
         {
             // Arrange.
-            var userName = Guid.NewGuid().ToString();// "TestUser";
+            var userName = Guid.NewGuid().ToString();// "TestUser"
             var password = "123";
             var spaceName = "TestSpace";
             var systemConnection = await _testContext.HostTestContext.CreateSystemConnection();

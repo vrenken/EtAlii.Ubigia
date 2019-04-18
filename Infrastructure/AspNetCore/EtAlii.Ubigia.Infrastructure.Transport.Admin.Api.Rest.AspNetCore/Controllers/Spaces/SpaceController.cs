@@ -33,7 +33,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Critical("Unable to serve a Space GET client request", ex);
+                //Logger.Critical("Unable to serve a Space GET client request", ex)
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -50,7 +50,7 @@
 			}
 			catch (Exception ex)
 			{
-				//Logger.Critical("Unable to serve a Space GET client request", ex);
+				//Logger.Critical("Unable to serve a Space GET client request", ex)
 				response = BadRequest(ex.Message);
 			}
 			return response;
@@ -68,7 +68,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Warning("Unable to serve a {0} GET client request", ex, typeof(T).Name);
+                //Logger.Warning("Unable to serve a {0} GET client request", ex, typeof(T).Name)
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -86,7 +86,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Warning("Unable to serve a {0} GET client request", ex, typeof(T).Name);
+                //Logger.Warning("Unable to serve a {0} GET client request", ex, typeof(T).Name)
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -105,7 +105,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Warning("Unable to serve a {0} POST client request", ex, typeof(T).Name);
+                //Logger.Warning("Unable to serve a {0} POST client request", ex, typeof(T).Name)
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -123,7 +123,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Warning("Unable to serve a {0} PUT client request", ex, typeof(T).Name);
+                //Logger.Warning("Unable to serve a {0} PUT client request", ex, typeof(T).Name)
                 response = BadRequest(ex.Message);
             }
             return response;
@@ -141,7 +141,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Warning("Unable to serve a {0} DELETE client request", ex, typeof(T).Name);
+                //Logger.Warning("Unable to serve a {0} DELETE client request", ex, typeof(T).Name)
                 response = BadRequest(ex.Message);
             }
             return response;

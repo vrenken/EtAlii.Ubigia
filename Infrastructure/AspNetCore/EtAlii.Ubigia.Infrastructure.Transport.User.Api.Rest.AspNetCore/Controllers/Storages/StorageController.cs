@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.AspNetCore
 {
-	using System;
+    using System;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-	using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc;
 
     //[RequiresAuthenticationToken]
     [Route(RelativeUri.User.Api.Storages)]
@@ -28,7 +28,7 @@
             }
             catch (Exception ex)
             {
-                //Logger.Critical("Unable to serve a Storage GET client request", ex);
+                //Logger.Critical("Unable to serve a Storage GET client request", ex)
                 response = BadRequest(ex.Message);
             }
             return response;

@@ -1,109 +1,109 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 //{
-//    using System;
-//    using System.Collections.Generic;
-//    using EtAlii.Ubigia.Api;
-//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using System
+//    using System.Collections.Generic
+//    using EtAlii.Ubigia.Api
+//    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public class StorageHub : HubBase
 //    {
-//        private readonly IStorageRepository _items;
+//        private readonly IStorageRepository _items
 
 //        public StorageHub(
 //            IStorageRepository items,
 //            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
 //            : base(authenticationTokenVerifier)
 //        {
-//            _items = items;
+//            _items = items
 //        }
 
 //        public Storage GetLocal(string local)
 //        {
-//            Storage response;
+//            Storage response
 //            try
 //            {
-//                response = _items.GetLocal();
+//                response = _items.GetLocal()
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        public Storage GetByName(string storageName)
 //        {
-//            Storage response;
+//            Storage response
 //            try
 //            {
-//                response = _items.Get(storageName);
+//                response = _items.Get(storageName)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 
 //        // Get all Items
 //        public IEnumerable<Storage> GetAll()
 //        {
-//            IEnumerable<Storage> response;
+//            IEnumerable<Storage> response
 //            try
 //            {
-//                response = _items.GetAll();
+//                response = _items.GetAll()
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        // Get Item by id
 //        public Storage Get(Guid storageId)
 //        {
-//            Storage response;
+//            Storage response
 //            try
 //            {
-//                response = _items.Get(storageId);
+//                response = _items.Get(storageId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        // Add item
 //        public Storage Post(Storage item)
 //        {
-//            Storage response;
+//            Storage response
 //            try
 //            {
-//                response = _items.Add(item);
+//                response = _items.Add(item)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage POST client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage POST client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        // Update Item by id
 //        public Storage Put(Guid storageId, Storage storage)
 //        {
-//            Storage response;
+//            Storage response
 //            try
 //            {
-//                response = _items.Update(storageId, storage);
+//                response = _items.Update(storageId, storage)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage PUT client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage PUT client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        // Delete Item by id
@@ -111,11 +111,11 @@
 //        {
 //            try
 //            {
-//                _items.Remove(storageId);
+//                _items.Remove(storageId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Storage DELETE client request", e);
+//                throw new InvalidOperationException("Unable to serve a Storage DELETE client request", e)
 //            }
 //        }
 //    }

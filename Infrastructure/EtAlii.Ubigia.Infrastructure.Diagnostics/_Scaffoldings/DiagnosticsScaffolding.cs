@@ -19,7 +19,7 @@
             //    () => new DisabledLogFactory(),
             //    () => new DisabledProfilerFactory(),
             //    (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"),
-            //    (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"));
+            //    (factory) => factory.Create("EtAlii", "EtAlii.Ubigia.Api"))
 
             if (_diagnostics == null)
             {

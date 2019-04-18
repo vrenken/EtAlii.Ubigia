@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     //_pathSubjectPartsParser.Parser.OneOrMore().Id("path") +
                     _pathSubjectPartsParser.Parser.ZeroOrMore().Id("path") +
                     Lp.Lookahead(Lp.Not("."))
-                );//.Debug("RootedPathSubjectParser", true);
+                );//.Debug("RootedPathSubjectParser", true)
         }
 
         public Subject Parse(LpNode node)

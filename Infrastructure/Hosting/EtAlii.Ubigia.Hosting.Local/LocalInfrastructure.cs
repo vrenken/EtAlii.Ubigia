@@ -4,12 +4,12 @@
     //{
     //    protected override IHostConfiguration CreateHostConfiguration()
     //    {
-    //        throw new NotImplementedException();
+    //        throw new NotImplementedException()
     //    }
 
     //    protected override IDiagnosticsConfiguration CreateDiagnosticsConfiguration()
     //    {
-    //        return base.CreateDiagnosticsConfiguration(false, false, false, () => new LogFactory(), new ProfilerFactory());
+    //        return base.CreateDiagnosticsConfiguration(false, false, false, () => new LogFactory(), new ProfilerFactory())
     //    }
     //}
 }

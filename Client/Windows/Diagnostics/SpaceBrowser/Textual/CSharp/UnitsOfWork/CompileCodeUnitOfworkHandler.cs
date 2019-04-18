@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.xTechnology.Workflow;
     using System;
     using System.CodeDom.Compiler;
     using System.Linq;
+    using EtAlii.xTechnology.Workflow;
 
     public class CompileCodeUnitOfworkHandler : UnitOfWorkHandlerBase<CompileCodeUnitOfwork>, ICompileCodeUnitOfworkHandler
     {
@@ -11,7 +11,7 @@
         private CompilerResults _compilerResults;
         private readonly ICodeCompilerResultsParser _codeCompilerResultsParser;
 
-//        private readonly object _lockObject = new object();
+//        private readonly object _lockObject = new object()
 
         public CompileCodeUnitOfworkHandler(
             ICodeCompiler codeCompiler,

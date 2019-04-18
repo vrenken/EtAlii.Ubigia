@@ -65,8 +65,8 @@
         {
             if (CanStop)
             {
-                //var results = _codeCompilerService.Compile(Code);
-                //Errors = _codeCompilerResultsParser.Parse(results);
+                //var results = _codeCompilerService.Compile(Code)
+                //Errors = _codeCompilerResultsParser.Parse(results)
             }
         }
 
@@ -74,8 +74,8 @@
         {
             if (CanStop)
             {
-                //var results = _codeCompilerService.Compile(Code);
-                //Errors = _codeCompilerResultsParser.Parse(results);
+                //var results = _codeCompilerService.Compile(Code)
+                //Errors = _codeCompilerResultsParser.Parse(results)
             }
         }
 

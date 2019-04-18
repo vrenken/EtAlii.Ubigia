@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Logical
             else if (newPropertyDictionary.Count == oldPropertyDictionary.Count)
             {
                 // If the property count is the same then we completely need to check the two property dictionaries.
-                //return newPropertyDictionary.CompareTo(oldPropertyDictionary) != 0;
+                //return newPropertyDictionary.CompareTo(oldPropertyDictionary) != 0
                 return !newPropertyDictionary.Equals(oldPropertyDictionary);
             }
             else

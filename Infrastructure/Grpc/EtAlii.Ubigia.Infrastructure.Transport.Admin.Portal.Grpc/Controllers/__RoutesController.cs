@@ -1,21 +1,21 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc
 //{
-//    using System.Linq;
-//    using Microsoft.Grpc.Mvc;
-//    using Microsoft.Grpc.Mvc.Infrastructure;
-//    using Newtonsoft.Json;
+//    using System.Linq
+//    using Microsoft.Grpc.Mvc
+//    using Microsoft.Grpc.Mvc.Infrastructure
+//    using Newtonsoft.Json
 
 //    [Route("routes")]
 //    public class RoutesController : AdminPortalController
 //    {
-//        private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider;
-//        private readonly JsonSerializerSettings _settings;
+//        private readonly IActionDescriptorCollectionProvider _actionDescriptorCollectionProvider
+//        private readonly JsonSerializerSettings _settings
 
 //        public RoutesController(IActionDescriptorCollectionProvider actionDescriptorCollectionProvider)
 //        {
-//            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider;
-//            _settings = new JsonSerializerSettings();
-//            _settings.Formatting = Formatting.Indented;
+//            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider
+//            _settings = new JsonSerializerSettings()
+//            _settings.Formatting = Formatting.Indented
 //        }
 
 //        [HttpGet]
@@ -28,9 +28,9 @@
 //                Name = x.AttributeRouteInfo?.Name,
 //                Template = x.AttributeRouteInfo?.Template,
 //                Contraint = x.ActionConstraints
-//            }).ToList();
+//            }).ToList()
 
-//            return Json(routes, _settings);
+//            return Json(routes, _settings)
 //        }
 //    }
 //}

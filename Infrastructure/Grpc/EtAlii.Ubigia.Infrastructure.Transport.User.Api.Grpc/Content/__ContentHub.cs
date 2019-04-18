@@ -1,47 +1,47 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 //{
-//    using System;
-//    using EtAlii.Ubigia.Api;
-//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using System
+//    using EtAlii.Ubigia.Api
+//    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public class ContentHub : HubBase
 //    {
-//        private readonly IContentRepository _items;
+//        private readonly IContentRepository _items
 
 //        public ContentHub(
 //            IContentRepository items,
 //            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
 //            : base(authenticationTokenVerifier)
 //        {
-//            _items = items;
+//            _items = items
 //        }
 
 //        public Content Get(Identifier entryId)
 //        {
-//            Content response = null;
+//            Content response = null
 //            try
 //            {
-//                response = (Content)_items.Get(entryId);
+//                response = (Content)_items.Get(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a content GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a content GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        public ContentPart GetPart(Identifier entryId, UInt64 contentPartId)
 //        {
-//            ContentPart response = null;
+//            ContentPart response = null
 //            try
 //            {
-//                response = (ContentPart)_items.Get(entryId, contentPartId);
+//                response = (ContentPart)_items.Get(entryId, contentPartId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Content part GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a Content part GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        /// <summary>
@@ -55,14 +55,14 @@
 //            try
 //            {
 //                // Store the content.
-//                _items.Store(entryId, content);
+//                _items.Store(entryId, content)
 
 //                // Send the updated event.
-//                SignalUpdated(entryId);
+//                SignalUpdated(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Content POST client request", e);
+//                throw new InvalidOperationException("Unable to serve a Content POST client request", e)
 //            }
 //        }
 
@@ -79,26 +79,26 @@
 //            {
 //                if (contentPartId != contentPart.Id)
 //                {
-//                    throw new InvalidOperationException("ContentPartId does not match");
+//                    throw new InvalidOperationException("ContentPartId does not match")
 //                }
 
 
 //                // Store the content.
-//                _items.Store(entryId, contentPart);
+//                _items.Store(entryId, contentPart)
 
 //                // Send the updated event.
-//                SignalUpdated(entryId);
+//                SignalUpdated(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Content part POST client request", e);
+//                throw new InvalidOperationException("Unable to serve a Content part POST client request", e)
 //            }
 //        }
 
 //        private void SignalUpdated(Identifier identifier)
 //        {
-//            Clients.All.SendAsync("updated", new object[] { identifier });
-//            //Clients.All.updated(identifier);
+//            Clients.All.SendAsync("updated", new object[] { identifier })
+//            //Clients.All.updated(identifier)
 //        }
 //    }
 //}

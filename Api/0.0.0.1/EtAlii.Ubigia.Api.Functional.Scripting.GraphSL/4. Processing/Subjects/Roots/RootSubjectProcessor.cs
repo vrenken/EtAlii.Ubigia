@@ -4,7 +4,7 @@
 
     internal class RootSubjectProcessor : IRootSubjectProcessor
     {
-        //private readonly IPathSubjectForOutputConverter _converter;
+        //private readonly IPathSubjectForOutputConverter _converter
 
         public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {

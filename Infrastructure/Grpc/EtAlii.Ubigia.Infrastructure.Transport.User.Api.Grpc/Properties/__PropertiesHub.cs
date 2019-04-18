@@ -1,33 +1,33 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 //{
-//    using System;
-//    using EtAlii.Ubigia.Api;
-//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using System
+//    using EtAlii.Ubigia.Api
+//    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public class PropertiesHub : HubBase
 //    {
-//        private readonly IPropertiesRepository _items;
+//        private readonly IPropertiesRepository _items
 
 //        public PropertiesHub(
 //            IPropertiesRepository items,
 //            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
 //            : base(authenticationTokenVerifier)
 //        {
-//            _items = items;
+//            _items = items
 //        }
 
 //        public PropertyDictionary Get(Identifier entryId)
 //        {
-//            PropertyDictionary response = null;
+//            PropertyDictionary response = null
 //            try
 //            {
-//                response = _items.Get(entryId);
+//                response = _items.Get(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a properties GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a properties GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        /// <summary>
@@ -41,15 +41,15 @@
 //            try
 //            {
 //                // Store the content.
-//                _items.Store(entryId, properties);
+//                _items.Store(entryId, properties)
 
 //                // Send the updated event.
-//                Clients.All.SendAsync("stored", new object[] { entryId });
-//                //Clients.All.stored(entryId);
+//                Clients.All.SendAsync("stored", new object[] { entryId })
+//                //Clients.All.stored(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a Properties POST client request", e);
+//                throw new InvalidOperationException("Unable to serve a Properties POST client request", e)
 //            }
 //        }
 //    }

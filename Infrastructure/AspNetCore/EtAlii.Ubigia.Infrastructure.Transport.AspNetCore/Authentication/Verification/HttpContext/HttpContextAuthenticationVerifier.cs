@@ -6,8 +6,8 @@
     using System.Threading;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.Http.Extensions;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;
 
@@ -61,7 +61,7 @@
             //// inside of ASP.NET this is required
             //if (HttpContext.Current != null)
             //{
-            //    HttpContext.Current.User = principal;
+            //    HttpContext.Current.User = principal
             //}
             return response;
         }
@@ -74,8 +74,8 @@
         /// <param name="controller"></param>
         private IActionResult Challenge(HttpContext context, Controller controller)
         {
-            //var host = context.Request.RequestUri.DnsSafeHost;
-            //var host = context.Request.GetUri().DnsSafeHost;
+            //var host = context.Request.RequestUri.DnsSafeHost
+            //var host = context.Request.GetUri().DnsSafeHost
             var host = new Uri(context.Request.GetDisplayUrl()).DnsSafeHost;
 
             var respondWithChallenge = true;

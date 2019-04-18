@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Transport.SignalR
 
 		public static SignalRTransportProvider Create(Func<HttpMessageHandler> httpMessageHandlerFactory = null)
         {
-	        return new SignalRTransportProvider(httpMessageHandlerFactory);//new ClientHttpMessageHandler());
+	        return new SignalRTransportProvider(httpMessageHandlerFactory);//new ClientHttpMessageHandler())
         }
 
         public ISpaceTransport GetSpaceTransport(Uri address)

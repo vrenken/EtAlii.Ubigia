@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
-    
+
     public class ManagementConnectionStoragesTests : IAsyncLifetime
     {
         private static ITransportTestContext<InProcessInfrastructureHostTestContext> _testContext;
@@ -158,32 +158,32 @@
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void ManagementConnection_Storages_Get_All()
         //{
-        //    var connection = CreateManagementConnection();
+        //    var connection = CreateManagementConnection()
 
         //    var storages = new List<ItemStorage>(); 
 
         //    for (int i = 0; i < 10; i++)
         //    {
-        //        var name = Guid.NewGuid().ToString();
-        //        var address = Guid.NewGuid().ToString();
+        //        var name = Guid.NewGuid().ToString()
+        //        var address = Guid.NewGuid().ToString()
 
-        //        var storage = await connection.Storages.Add(name, address);
-        //        Assert.NotNull(storage);
-        //        Assert.Equal(name, storage.Name);
-        //        Assert.Equal(address, storage.Address);
-        //        storages.Add(storage);
+        //        var storage = await connection.Storages.Add(name, address)
+        //        Assert.NotNull(storage)
+        //        Assert.Equal(name, storage.Name)
+        //        Assert.Equal(address, storage.Address)
+        //        storages.Add(storage)
         //    }
 
-        //    var retrievedStorages = await connection.Storages.GetAll();
+        //    var retrievedStorages = await connection.Storages.GetAll()
 
-        //    Assert.Equal(storages.Count + 1, retrievedStorages.Count());
+        //    Assert.Equal(storages.Count + 1, retrievedStorages.Count())
 
         //    foreach (var storage in storages)
         //    {
-        //        var matchingStorage = retrievedStorages.Single(s => s.Id == storage.Id);
-        //        Assert.NotNull(matchingStorage);
-        //        Assert.Equal(storage.Name, matchingStorage.Name);
-        //        Assert.Equal(storage.Address, matchingStorage.Address);
+        //        var matchingStorage = retrievedStorages.Single(s => s.Id == storage.Id)
+        //        Assert.NotNull(matchingStorage)
+        //        Assert.Equal(storage.Name, matchingStorage.Name)
+        //        Assert.Equal(storage.Address, matchingStorage.Address)
         //    }
         //}
 
@@ -280,11 +280,11 @@
             var connection = await _testContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Storages.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
+            //var act = new Func<Task>(async () => await connection.Storages.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
 
             // Assert.
             Assert.Null(connection.Storages);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -294,11 +294,11 @@
             var connection = await _testContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Storages.Get(Guid.NewGuid()));
+            //var act = new Func<Task>(async () => await connection.Storages.Get(Guid.NewGuid()))
 
             // Assert.
             Assert.Null(connection.Storages);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -308,11 +308,11 @@
             var connection = await _testContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Storages.Remove(Guid.NewGuid()));
+            //var act = new Func<Task>(async () => await connection.Storages.Remove(Guid.NewGuid()))
 
             // Assert.
             Assert.Null(connection.Storages);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -322,11 +322,11 @@
             var connection = await _testContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Storages.GetAll());
+            //var act = new Func<Task>(async () => await connection.Storages.GetAll())
 
             // Assert.
             Assert.Null(connection.Storages);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -336,11 +336,11 @@
             var connection = await _testContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Storages.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
+            //var act = new Func<Task>(async () => await connection.Storages.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
 
             // Assert.
             Assert.Null(connection.Storages);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
 

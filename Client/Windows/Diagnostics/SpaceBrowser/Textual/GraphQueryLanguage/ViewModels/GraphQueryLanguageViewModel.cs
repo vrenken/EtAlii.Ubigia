@@ -15,7 +15,7 @@
         private string _source;
 
 //        public IQueryScope Scope { get { return _scope; } set { SetProperty(ref _scope, value); } }
-//        private IQueryScope _scope;
+//        private IQueryScope _scope
 
         public Query Query { get => _query; set => SetProperty(ref _query, value); }
         private Query _query;
@@ -44,7 +44,7 @@
 
             PropertyChanged += OnPropertyChanged;
 
-//            _scope = new QueryScope();
+//            _scope = new QueryScope()
 
             _queryChangedSubscription = Observable.FromEvent((handler) => SourceChanged += handler, (handler) => SourceChanged -= handler)
                                 .Throttle(TimeSpan.FromSeconds(1))
@@ -63,8 +63,8 @@
         {
             if (CanStop)
             {
-                //var results = _codeCompilerService.Compile(Code);
-                //Errors = _codeCompilerResultsParser.Parse(results);
+                //var results = _codeCompilerService.Compile(Code)
+                //Errors = _codeCompilerResultsParser.Parse(results)
             }
         }
 
@@ -72,8 +72,8 @@
         {
             if (CanStop)
             {
-                //var results = _codeCompilerService.Compile(Code);
-                //Errors = _codeCompilerResultsParser.Parse(results);
+                //var results = _codeCompilerService.Compile(Code)
+                //Errors = _codeCompilerResultsParser.Parse(results)
             }
         }
 

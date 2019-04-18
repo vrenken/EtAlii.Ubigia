@@ -7,7 +7,6 @@
     using EtAlii.Ubigia.Api.Transport.Tests;
     using Xunit;
 
-    
     public class InfrastructureClientIntegrationTests
     {
         private readonly Uri _url = new Uri("http://api.openkeyval.org/", UriKind.Absolute);
@@ -68,10 +67,10 @@
 
             await client.Post(new Uri(_url + identifier), testMessage);
 
-            //var result = infrastructureClient.Get<TestMessage>(_url + identifier);
-            //Assert.NotNull(result);
-            //Assert.Equal(result.Name, testMessage.Name);
-            //Assert.Equal(result.Value, testMessage.Value);
+            //var result = infrastructureClient.Get<TestMessage>(_url + identifier)
+            //Assert.NotNull(result)
+            //Assert.Equal(result.Name, testMessage.Name)
+            //Assert.Equal(result.Value, testMessage.Value)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

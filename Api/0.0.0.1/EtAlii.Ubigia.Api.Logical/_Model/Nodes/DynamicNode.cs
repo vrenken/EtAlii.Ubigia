@@ -15,7 +15,7 @@
         private IReadOnlyEntry _entry;
 
         //public Identifier Schema { get { return _schema; } private set { SetProperty(ref _schema, value); } }
-        //private Identifier _schema;
+        //private Identifier _schema
 
         bool INode.IsModified => _isModified;
         private bool _isModified;
@@ -36,7 +36,7 @@
 
         //void IInternalNode.ClearIsModified()
         //{
-        //    _isModified = false;
+        //    _isModified = false
         //}
 
         void IInternalNode.Update(PropertyDictionary properties, IReadOnlyEntry entry)

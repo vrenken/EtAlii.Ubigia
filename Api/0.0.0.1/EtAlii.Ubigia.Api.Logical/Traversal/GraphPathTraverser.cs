@@ -62,7 +62,7 @@
             });
 
             // we do not want a cold observable. This should work out of the box as well.
-            //innerObservable = ToHotObservable(innerObservable);
+            //innerObservable = ToHotObservable(innerObservable)
 
             innerObservable.Distinct().SubscribeAsync(
                 onError: output.OnError,

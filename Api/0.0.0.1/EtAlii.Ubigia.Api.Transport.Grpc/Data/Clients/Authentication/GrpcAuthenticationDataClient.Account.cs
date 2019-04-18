@@ -22,7 +22,7 @@
         private Task<Api.Account> GetAccount(string accountName, IGrpcSpaceTransport transport)
         {
             var account = _account;
-            //var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken");
+            //var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken")
             if (account == null)
             {
                 string message = $"Unable to connect using the specified account ({accountName})";

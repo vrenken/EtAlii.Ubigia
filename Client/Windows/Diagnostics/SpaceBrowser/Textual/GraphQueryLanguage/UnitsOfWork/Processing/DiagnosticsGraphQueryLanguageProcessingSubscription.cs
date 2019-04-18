@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     onFirst: () => _statusWriter.Write(viewModel, "Query start"),
                     onNext: o =>
                     {
-//                        _statusWriter.Write(viewModel, $"Query: {o.Sequence} ({o.Step}/{o.Total})");
+//                        _statusWriter.Write(viewModel, $"Query: {o.Sequence} ({o.Step}/{o.Total})")
 //                        o.Output
 //                            //.ObserveOn(NewThreadScheduler.Default)
 //                            //.SubscribeOnDispatcher()
@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                                onError: e2 => _statusWriter.Write(viewModel, $"   Result error: {e2.Message}"),
 //                                onFirst: () => _statusWriter.Write(viewModel, "   Result start"),
 //                                onNext: o2 => _statusWriter.Write(viewModel, $"   Result next: {o2.GetType()}"),
-//                                onCompleted: () => _statusWriter.Write(viewModel, "   Result completed"));
+//                                onCompleted: () => _statusWriter.Write(viewModel, "   Result completed"))
                     },
                     onCompleted: () => _statusWriter.Write(viewModel, "Query completed"));
         }

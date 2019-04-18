@@ -6,8 +6,8 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-	using EtAlii.Ubigia.Infrastructure.Functional;
-	using global::Grpc.Core;
+    using EtAlii.Ubigia.Infrastructure.Functional;
+    using global::Grpc.Core;
 
     public class AdminSpaceService : SpaceGrpcService.SpaceGrpcServiceBase, IAdminSpaceService
     {
@@ -42,8 +42,8 @@
                     space = _items.Get(request.Space.Id.ToLocal());
                     break;
                 //case var _ when !String.IsNullOrWhiteSpace(request.Name): // Get Item by id
-                //    space = _items.Get(request.a.Name);
-                //    break;
+                //    space = _items.Get(request.a.Name)
+                //    break
                 default:
                     throw new InvalidOperationException("Unable to serve a Space GET client request");                
             }

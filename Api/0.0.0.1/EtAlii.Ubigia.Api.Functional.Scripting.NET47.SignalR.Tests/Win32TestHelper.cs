@@ -4,7 +4,6 @@
     using System.IO;
     using System.Reflection;
     using Xunit;
-    using Path = System.IO.Path;
 
     public static class NET47TestHelper
     {
@@ -114,12 +113,12 @@
 
         //public static IContentManager CreateContentManager(ILogicalContext logicalContext)
         //{
-        //    return new ContentManagerFactory().Create(logicalContext.Fabric);
+        //    return new ContentManagerFactory().Create(logicalContext.Fabric)
         //}
 
         //public static IContentManager CreateContentManager(IFabricContext fabric)
         //{
-        //    return new ContentManagerFactory().Create(fabric);
+        //    return new ContentManagerFactory().Create(fabric)
         //}
     }
 }

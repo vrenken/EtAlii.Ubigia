@@ -8,7 +8,7 @@
     {
         private const string Id = "Script";
 
-//        private static readonly string[] _separators = new[] { "\n", "\r\n" };
+//        private static readonly string[] _separators = new[] { "\n", "\r\n" }
 
         private readonly ISequenceParser _sequenceParser;
         private readonly INodeValidator _nodeValidator;

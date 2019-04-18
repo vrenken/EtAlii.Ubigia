@@ -28,7 +28,7 @@
 				string message = $"Unable to connect to the the specified space ({spaceName})";
 				throw new UnauthorizedInfrastructureOperationException(message);
 			}
-			return space;// s.FirstOrDefault(s => s.Name == spaceName);
+			return space;// s.FirstOrDefault(s => s.Name == spaceName)
         }
     }
 }

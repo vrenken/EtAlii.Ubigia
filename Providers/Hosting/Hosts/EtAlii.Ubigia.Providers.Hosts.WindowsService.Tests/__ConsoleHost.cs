@@ -1,6 +1,6 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
 //{
-//    using EtAlii.Ubigia.Api.Functional;
+//    using EtAlii.Ubigia.Api.Functional
 
 //    public class ConsoleHost : ProviderHostBase
 //    {

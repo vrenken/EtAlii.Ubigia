@@ -64,7 +64,7 @@
 
             var window = container.GetInstance<IMainWindow>();
             var viewModel = container.GetInstance<IMainWindowViewModel>();
-            //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container);
+            //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container)
             window.DataContext = viewModel;
             return window;
         }
@@ -98,15 +98,15 @@
 
 //            container.Register<IDataContext>(() =>
 //            {
-//                var logicalContext = container.GetInstance<ILogicalContext>();
+//                var logicalContext = container.GetInstance<ILogicalContext>()
 //                
 //                // And finally, the functional context.
 //                var dataContextConfiguration = new DataContextConfiguration()
 //                                    .Use(diagnostics)
-//                                    .Use(logicalContext);
-//                return new DataContextFactory().CreateForProfiling(dataContextConfiguration);
-//            });
-//            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>());
+//                                    .Use(logicalContext)
+//                return new DataContextFactory().CreateForProfiling(dataContextConfiguration)
+//            })
+//            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>())
 
             container.Register<IGraphSLScriptContext>(() =>
             {
@@ -152,12 +152,12 @@
                 return container.GetInstance<IDiagnosticsConfiguration>().CreateLogger(factory);
             });
             //container.Register<IProfilerFactory>(
-            //    () => container.GetInstance<IDiagnosticsConfiguration>().CreateProfilerFactory());
+            //    () => container.GetInstance<IDiagnosticsConfiguration>().CreateProfilerFactory())
             //container.Register<IProfiler>(() =>
             //{
-            //    var factory = container.GetInstance<IProfilerFactory>();
-            //    return container.GetInstance<IDiagnosticsConfiguration>().CreateProfiler(factory);
-            //});
+            //    var factory = container.GetInstance<IProfilerFactory>()
+            //    return container.GetInstance<IDiagnosticsConfiguration>().CreateProfiler(factory)
+            //})
         }
 
         //private NewDocumentCommand[] CreateNewBlankDocumentCommands(Container container)
@@ -228,7 +228,7 @@
         //            "Create a profiling document",
         //            "Shows profiling details of all API access to a space",
         //            "Useful for advanced query optimization"),
-        //    };
+        //    }
         //}
 
         //private NewDocumentCommand CreateNewDocumentCommand(
@@ -242,14 +242,14 @@
         //    string infoTip2)
         //{
         //    var command = container.GetInstance<NewDocumentCommand>(); 
-        //    command.DocumentFactory = factory;
-        //    command.Header = header;
-        //    command.Icon = icon;
-        //    command.TitleFormat = titleFormat;
-        //    command.InfoLine = infoLine;
-        //    command.InfoTip1 = infoTip1;
-        //    command.InfoTip2 = infoTip2;
-        //    return command;
+        //    command.DocumentFactory = factory
+        //    command.Header = header
+        //    command.Icon = icon
+        //    command.TitleFormat = titleFormat
+        //    command.InfoLine = infoLine
+        //    command.InfoTip1 = infoTip1
+        //    command.InfoTip2 = infoTip2
+        //    return command
         //}
 
     }

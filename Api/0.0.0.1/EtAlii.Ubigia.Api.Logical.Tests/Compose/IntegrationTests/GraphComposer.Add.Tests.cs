@@ -24,7 +24,7 @@
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var entry = hierarchyResult.Item1;
-//            var hierarchy = hierarchyResult.Item2;
+//            var hierarchy = hierarchyResult.Item2
 
             string itemToAdd = Guid.NewGuid().ToString();
 
@@ -65,11 +65,11 @@
 
             var hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, communicationsEntry, depth);
             var firstEntry = hierarchyResult.Item1;
-//            var communicationsHierarchy = hierarchyResult.Item2;
+//            var communicationsHierarchy = hierarchyResult.Item2
 
             hierarchyResult = await _testContext.FabricTestContext.CreateHierarchy(fabric, personEntry, depth);
             var secondEntry = hierarchyResult.Item1;
-//            var personHierarchy = hierarchyResult.Item2;
+//            var personHierarchy = hierarchyResult.Item2
 
             // Act.
             var addedEntry = await composer.Add(firstEntry.Id, secondEntry.Id, scope);

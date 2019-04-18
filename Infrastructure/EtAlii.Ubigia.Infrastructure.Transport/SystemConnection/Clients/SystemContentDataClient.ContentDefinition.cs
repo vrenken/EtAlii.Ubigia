@@ -10,10 +10,10 @@
             _infrastructure.ContentDefinition.Store(identifier, contentDefinition);
             MarkAsStored(contentDefinition);
 
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
-            //await _client.Post(address, contentDefinition);
+            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
+            //await _client.Post(address, contentDefinition)
 
-            //MarkAsStored(contentDefinition);
+            //MarkAsStored(contentDefinition)
             return Task.CompletedTask;
         }
 
@@ -22,10 +22,10 @@
             _infrastructure.ContentDefinition.Store(identifier, contentDefinitionPart); 
             MarkAsStored(contentDefinitionPart);
 
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
-            //await _client.Post(address, contentDefinitionPart);
+            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString())
+            //await _client.Post(address, contentDefinitionPart)
 
-            //MarkAsStored(contentDefinitionPart);
+            //MarkAsStored(contentDefinitionPart)
             return Task.CompletedTask;
         }
 
@@ -34,9 +34,9 @@
             var result = _infrastructure.ContentDefinition.Get(identifier);
             return Task.FromResult(result);
 
-            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
-            //var contentDefinition = await _client.Get<ContentDefinition>(address);
-            //return contentDefinition;
+            //var address = _addressFactory.Create(DataConnection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
+            //var contentDefinition = await _client.Get<ContentDefinition>(address)
+            //return contentDefinition
         }
 
         private void MarkAsStored(ContentDefinition contentDefinition)

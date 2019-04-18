@@ -37,7 +37,7 @@
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
 ////                    }
-////                    mappings.Add(mapping);
+////                    mappings.Add(mapping)
 ////                }
 ////                if (node != null)
 ////                {

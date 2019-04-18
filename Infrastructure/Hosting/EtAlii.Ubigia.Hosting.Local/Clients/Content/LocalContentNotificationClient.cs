@@ -21,21 +21,21 @@
             //{
             //    hubProxy.On<Identifier>("updated", OnUpdated),
             //    hubProxy.On<Identifier>("stored", OnStored),
-            //};
+            //}
         }
 
         private void OnUpdated(Identifier identifier)
         {
             throw new System.NotImplementedException();
 
-            //Updated(identifier);
+            //Updated(identifier)
         }
 
         private void OnStored(Identifier identifier)
         {
             throw new System.NotImplementedException();
 
-            //Stored(identifier);
+            //Stored(identifier)
         }
     }
 }

@@ -4,6 +4,6 @@
 
     public interface ISystemStorageTransport : IStorageTransport
     {
-        //Task Start(IStorageConnection storageConnection);
+        //Task Start(IStorageConnection storageConnection)
     }
 }

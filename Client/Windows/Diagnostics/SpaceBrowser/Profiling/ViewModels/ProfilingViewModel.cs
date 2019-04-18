@@ -4,7 +4,6 @@
     using System.Collections.Specialized;
     using System.Linq;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
     public class ProfilingViewModel : BindableBase, IProfilingViewModel
@@ -27,7 +26,7 @@
         private bool _autoExpandNodes;
 
         //public ScriptButtonsViewModel Buttons { get { return _buttons; } }
-        //private readonly ScriptButtonsViewModel _buttons;
+        //private readonly ScriptButtonsViewModel _buttons
 
         public ProfilingViewModel(
             IGraphContext graphContext,

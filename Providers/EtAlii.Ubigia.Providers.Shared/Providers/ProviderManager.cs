@@ -8,8 +8,8 @@
     {
         private readonly IProvidersContext _context;
         private IProvider[] _providers;
-        //private readonly ILogger _logger;
-        //private readonly ILogFactory _logFactory;
+        //private readonly ILogger _logger
+        //private readonly ILogFactory _logFactory
 
         public string Status { get; private set; }
 
@@ -19,8 +19,8 @@
             )
         {
             _context = context;
-            //_logger = logger;
-            //_logFactory = logFactory;
+            //_logger = logger
+            //_logFactory = logFactory
         }
 
         public void Start()
@@ -45,13 +45,13 @@
                         .Use(connection => _context.CreateScriptContext(connection))
                         .Use(_context.ManagementConnection)
                         .Use(_context.SystemScriptContext);
-                        //.Use(_logFactory);
+                        //.Use(_logFactory)
                     provider = copiedProviderConfiguration.Factory.Create(copiedProviderConfiguration);
                 }
                 catch (Exception)// e)
                 {
                     sb.AppendLine($"Unable to create provider using factory {configuration.Factory.GetType()}");
-                    //_logger.Critical("Unable to create provider using factory {0}", e, configuration.Factory.GetType());
+                    //_logger.Critical("Unable to create provider using factory {0}", e, configuration.Factory.GetType())
                 }
 
                 if (provider != null)
@@ -64,7 +64,7 @@
                     catch (Exception)// e)
                     {
                         sb.AppendLine($"Unable to start provider {provider.GetType()}");
-                        //_logger.Critical("Unable to start provider {0}", e, provider.GetType());
+                        //_logger.Critical("Unable to start provider {0}", e, provider.GetType())
                     }
                 }
             }
@@ -72,7 +72,7 @@
             _providers = providers.ToArray();
 
             sb.AppendLine("Started providers");
-            //_logger.Info("Started providers");
+            //_logger.Info("Started providers")
 
             Status = sb.ToString();
         }
@@ -87,7 +87,7 @@
             var sb = new StringBuilder();
 
             sb.AppendLine("Stopping providers");
-            //_logger.Info("Stopping providers");
+            //_logger.Info("Stopping providers")
 
             foreach (var provider in _providers)
             {
@@ -98,13 +98,13 @@
                 catch (Exception)// e)
                 {
                     sb.AppendLine($"Unable to stop provider {provider.GetType()}");
-                    //_logger.Critical("Unable to stop provider {0}", e, provider.GetType());
+                    //_logger.Critical("Unable to stop provider {0}", e, provider.GetType())
                 }
             }
 
             _providers = null;
             sb.AppendLine($"Stopped providers");
-            //_logger.Info("Stopped providers");
+            //_logger.Info("Stopped providers")
 
             Status = sb.ToString();
         }
