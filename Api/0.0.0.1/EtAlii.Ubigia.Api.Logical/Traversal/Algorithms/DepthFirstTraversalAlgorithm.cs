@@ -12,7 +12,7 @@
         {
             _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
         }
-        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> output)
+        public async Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             if (graphPath.Any())
             {
@@ -26,14 +26,14 @@
                     foreach (var relatedNode in relatedNodes)
                     {
                         var subGraphPath = new GraphPath(subPathParts);
-                        await Traverse(subGraphPath, relatedNode, context, scope, output);
+                        await Traverse(subGraphPath, relatedNode, context, scope, finalOutput);
                     }
                 }
                 else
                 {
                     foreach (var relatedNode in relatedNodes)
                     {
-                        output.OnNext(relatedNode);
+                        finalOutput.OnNext(relatedNode);
                     }
                 }
             }

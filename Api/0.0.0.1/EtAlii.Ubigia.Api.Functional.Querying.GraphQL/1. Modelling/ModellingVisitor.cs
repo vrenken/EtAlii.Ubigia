@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using GraphQL.Language.AST;
-
-namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Collections.Generic;
+    using GraphQL.Language.AST;
+
     internal class ModellingVisitor : IGraphQLAstVisitor
     {
         public Document Document { get; private set; }
@@ -21,12 +21,12 @@ namespace EtAlii.Ubigia.Api.Functional
             }
         }
 
-        public void Visit(GraphQL.Language.AST.Document visitableDocument)
+        public void Visit(GraphQL.Language.AST.Document document)
         {
             Document = new Document();
             Stack.Push(Document);
             
-            foreach (var operation in visitableDocument.Operations)
+            foreach (var operation in document.Operations)
             {
                 operation.Accept(this);
             }

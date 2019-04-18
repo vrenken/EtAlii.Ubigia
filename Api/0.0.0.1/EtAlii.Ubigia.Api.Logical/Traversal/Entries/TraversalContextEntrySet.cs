@@ -44,11 +44,11 @@ namespace EtAlii.Ubigia.Api.Logical
             return result;
         }
 
-        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope)
+        public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> identifiers, ExecutionScope scope)
         {
             var result = new List<IReadOnlyEntry>();
 
-            foreach (var entryIdentifier in entryIdentifiers)
+            foreach (var entryIdentifier in identifiers)
             {
                 IReadOnlyEntry match;
 

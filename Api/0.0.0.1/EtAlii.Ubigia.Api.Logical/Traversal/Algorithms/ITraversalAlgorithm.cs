@@ -10,6 +10,6 @@
             Identifier current,
             ITraversalContext context,
             ExecutionScope scope,
-            IObserver<Identifier> output);
+            IObserver<Identifier> finalOutput);
     }
 }
