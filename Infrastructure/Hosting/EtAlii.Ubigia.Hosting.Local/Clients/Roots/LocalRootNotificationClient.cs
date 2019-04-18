@@ -23,7 +23,7 @@
             //    hubProxy.On<Guid>("added", OnAdded),
             //    hubProxy.On<Guid>("changed", OnChanged),
             //    hubProxy.On<Guid>("removed", OnRemoved),
-            //};
+            //}
         }
 
         private void OnAdded(Guid id)
@@ -37,14 +37,14 @@
         {
             throw new System.NotImplementedException();
 
-            //Changed(id);
+            //Changed(id)
         }
 
         private void OnRemoved(Guid id)
         {
             throw new System.NotImplementedException();
 
-            //Removed(id);
+            //Removed(id)
         }
     }
 }

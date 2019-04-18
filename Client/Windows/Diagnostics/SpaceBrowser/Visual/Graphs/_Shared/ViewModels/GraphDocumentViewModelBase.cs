@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections.ObjectModel;
+    using System.Windows.Input;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Windows;
     using Northwoods.GoXam.Model;
-    using ICommand = System.Windows.Input.ICommand;
 
     public partial class GraphDocumentViewModelBase : GraphLinksModel<EntryNode, Identifier, string, EntryLink>, IGraphDocumentViewModel
     {
@@ -44,13 +43,13 @@
             ContextMenu = contextMenu;
             GraphContext = graphContext;
 
-            //_commandQueue.Register<RetrieveEntryCommand, RetrieveEntryCommandHandler>();
-            //_commandQueue.Register<ProcessEntryCommand, ProcessEntryCommandHandler>();
-            //_commandQueue.Register<AddEntryToGraphCommand, AddEntryToGraphCommandHandler>(handler => handler.GraphViewModel = this);
-            //_commandQueue.Register<AddEntryRelationsToGraphCommand, AddEntryRelationsToGraphCommandHandler>(handler => handler.GraphViewModel = this);
-            //_commandQueue.Register<DiscoverEntryCommand, DiscoverEntryCommandHandler>(handler => handler.GraphViewModel = this);
+            //_commandQueue.Register<RetrieveEntryCommand, RetrieveEntryCommandHandler>()
+            //_commandQueue.Register<ProcessEntryCommand, ProcessEntryCommandHandler>()
+            //_commandQueue.Register<AddEntryToGraphCommand, AddEntryToGraphCommandHandler>(handler => handler.GraphViewModel = this)
+            //_commandQueue.Register<AddEntryRelationsToGraphCommand, AddEntryRelationsToGraphCommandHandler>(handler => handler.GraphViewModel = this)
+            //_commandQueue.Register<DiscoverEntryCommand, DiscoverEntryCommandHandler>(handler => handler.GraphViewModel = this)
 
-            //_fabric.Entries.Prepared += OnEntryPrepared;
+            //_fabric.Entries.Prepared += OnEntryPrepared
             Fabric.Entries.Stored += OnEntryStored;
 
             _discoverEntryCommand = new RelayCommand(DiscoverEntry);

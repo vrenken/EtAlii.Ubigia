@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
 
-
     public class ScriptParserFunctionRenameTests : IDisposable
     {
         private IScriptParser _parser;
@@ -38,8 +37,8 @@
 
             // Assert.
             Assert.NotNull(script);
-            //Assert.NotNull(script);
-            //Assert.True(script.Sequences.Count() == 1);
+            //Assert.NotNull(script)
+            //Assert.True(script.Sequences.Count() == 1)
         }
     }
 }

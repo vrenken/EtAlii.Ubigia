@@ -6,9 +6,9 @@
 
     public partial class GrpcAuthenticationDataClient : GrpcClientBase, IAuthenticationDataClient<IGrpcSpaceTransport>
     {
-        //private HubConnection _accountConnection;
-        //private HubConnection _spaceConnection;
-        //private readonly IHubProxyMethodInvoker _invoker;
+        //private HubConnection _accountConnection
+        //private HubConnection _spaceConnection
+        //private readonly IHubProxyMethodInvoker _invoker
         private AuthenticationGrpcService.AuthenticationGrpcServiceClient _client;
         private StorageGrpcService.StorageGrpcServiceClient _storageClient;
         private SpaceGrpcService.SpaceGrpcServiceClient _spaceClient;

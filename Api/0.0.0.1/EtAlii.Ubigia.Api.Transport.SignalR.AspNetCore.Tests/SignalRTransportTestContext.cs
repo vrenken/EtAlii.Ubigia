@@ -4,11 +4,10 @@
 	using System.Net.Http;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
-    using EtAlii.Ubigia.Api.Transport.Management.SignalR;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.Ubigia.Api.Transport.Tests;
+	using EtAlii.Ubigia.Api.Transport.Management;
+	using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+	using EtAlii.Ubigia.Api.Transport.Management.SignalR;
+	using EtAlii.Ubigia.Api.Transport.Tests;
 	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
 	public class SignalRTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
@@ -47,7 +46,7 @@
         public override async Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true)
         {
             var diagnostics = TestDiagnostics.Create();
-	        //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler());
+	        //var signalRHttpClient = new SignalRTestHttpClient(c => ((TestInfrastructure)Context.Host.Infrastructure).Server.CreateHandler())
 	        var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
 			var connectionConfiguration = new ManagementConnectionConfiguration()

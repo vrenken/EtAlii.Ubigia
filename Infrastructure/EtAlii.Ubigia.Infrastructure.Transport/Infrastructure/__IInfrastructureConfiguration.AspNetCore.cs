@@ -1,6 +1,6 @@
 //namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 //{
-//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public static class IInfrastructureConfigurationAspNetCoreExtension
 //    {
@@ -13,10 +13,10 @@
 //            var extensions = new IInfrastructureExtension[]
 //            {
 //                new AspNetCoreInfrastructureExtension()//applicationManager),
-//            };
+//            }
 //            return configuration
 //                .Use(extensions)
-//                .Use<TInfrastructure>();
+//                .Use<TInfrastructure>()
 //        }
 
 //        public static IInfrastructureConfiguration UseAspNetCore(
@@ -26,10 +26,10 @@
 //            var extensions = new IInfrastructureExtension[]
 //            {
 //                new AspNetCoreInfrastructureExtension()//applicationManager),
-//            };
+//            }
 //            return configuration
 //                .Use(extensions)
-//                .Use<AspNetCoreInfrastructure>();
+//                .Use<AspNetCoreInfrastructure>()
 //        }
 //    }
 //}

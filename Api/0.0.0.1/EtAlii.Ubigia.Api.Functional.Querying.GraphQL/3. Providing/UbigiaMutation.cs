@@ -24,9 +24,9 @@
 //                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<HumanInputType>> {Name = "human"}),
 //                resolve: context =>
 //                {
-//                    var human = context.GetArgument<Human>("human");
-//                    return data.AddHuman(human);
-//                });
+//                    var human = context.GetArgument<Human>("human")
+//                    return data.AddHuman(human)
+//                })
         }
     }
 }

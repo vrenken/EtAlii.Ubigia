@@ -1,7 +1,7 @@
 ﻿//namespace EtAlii.Ubigia.Api.Logical.Tests
 //{
-//    using EtAlii.Ubigia.Api.Logical;
-//    using Xunit;
+//    using EtAlii.Ubigia.Api.Logical
+//    using Xunit
 
 //    public class GraphPathAssignerFactoryTests
 //    {
@@ -11,23 +11,23 @@
 //            // Arrange.
 
 //            // Act.
-//            var factory = new GraphPathAssignerFactory();
+//            var factory = new GraphPathAssignerFactory()
 
 //            // Assert.
-//            Assert.NotNull(factory);
+//            Assert.NotNull(factory)
 //        }
 
 //        [Fact, Trait("Category", TestAssembly.Category)]
 //        public void GraphPathAssignerFactory_Create()
 //        {
 //            // Arrange.
-//            var factory = new GraphPathAssignerFactory();
+//            var factory = new GraphPathAssignerFactory()
 
 //            // Act.
-//            var assigner = factory.Create(null);
+//            var assigner = factory.Create(null)
 
 //            // Assert.
-//            Assert.NotNull(assigner);
+//            Assert.NotNull(assigner)
 //        }
 //    }
 //}

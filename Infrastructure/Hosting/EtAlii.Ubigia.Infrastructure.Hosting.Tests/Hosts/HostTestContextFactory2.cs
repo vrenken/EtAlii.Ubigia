@@ -5,12 +5,12 @@
 //        public THostTestContext Create<THostTestContext>()
 //            where THostTestContext : class, IHostTestContext, new()
 //        {
-//            return new THostTestContext();
+//            return new THostTestContext()
 //        }
 //
 ////        public IHostTestContext Create()
 ////        {
-////            return new HostTestContext();
+////            return new HostTestContext()
 ////        }
 //    }
 //}

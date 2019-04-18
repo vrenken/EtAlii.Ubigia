@@ -20,14 +20,14 @@
         //{
         //    get
         //    {
-        //        return _testContext;
+        //        return _testContext
         //    }
         //    set
         //    {
-        //        _testContext = value;
+        //        _testContext = value
         //    }
         //}
-        //private TestContext _testContext;
+        //private TestContext _testContext
 
         public NET47ContentManagerTests(NET47LogicalUnitTestContext testContext)
         {

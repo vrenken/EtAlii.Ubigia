@@ -272,8 +272,8 @@
             // Assert.
             Assert.NotNull(firstResult);
             Assert.NotNull(secondResult);
-            Assert.Equal(3, firstResult.Length);//, "First result is not correct");
-            Assert.Equal(3, secondResult.Length);//, "Second result is not correct");
+            Assert.Equal(3, firstResult.Length);//, "First result is not correct")
+            Assert.Equal(3, secondResult.Length);//, "Second result is not correct")
             Assert.Equal(firstResult[0].Id, secondResult[0]);
             Assert.Equal(firstResult[1].Id, secondResult[1]);
             Assert.Equal(firstResult[2].Id, secondResult[2]);

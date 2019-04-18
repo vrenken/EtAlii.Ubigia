@@ -3,9 +3,9 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
-    //using EtAlii.Ubigia.Api.Transport.Management.SignalR;
-    //using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.xTechnology.MicroContainer;
+//using EtAlii.Ubigia.Api.Transport.Management.SignalR
+    //using EtAlii.Ubigia.Api.Transport.SignalR
 
     internal class ProvisioningScaffolding2 : IScaffolding
     {

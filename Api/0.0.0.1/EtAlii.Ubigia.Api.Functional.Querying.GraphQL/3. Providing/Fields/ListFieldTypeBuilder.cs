@@ -50,14 +50,14 @@
         private PropertyDictionary MergeProperties(PropertyDictionary[] propertiesCollection)
         {
             return propertiesCollection.First();
-//            var result = new PropertyDictionary();
+//            var result = new PropertyDictionary()
 //
 //            var uniqueProperties = propertiesCollection
 //                .SelectMany(properties => properties.Keys)
 //                .Distinct()
-//                .Select(key => new KeyValuePair<string, object>(key, null));
-//            result.AddRange(uniqueProperties );
-//            return result;
+//                .Select(key => new KeyValuePair<string, object>(key, null))
+//            result.AddRange(uniqueProperties )
+//            return result
         }
     }
 }

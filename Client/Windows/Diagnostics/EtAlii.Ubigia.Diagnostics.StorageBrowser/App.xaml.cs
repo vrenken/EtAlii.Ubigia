@@ -1,12 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.Ubigia.Windows.Management;
     using System;
     using System.Diagnostics;
     using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
+    using EtAlii.Ubigia.Windows.Management;
     using EtAlii.xTechnology.Diagnostics;
 
     /// <summary>
@@ -28,7 +28,7 @@
                                     $"{Environment.NewLine}" +
                                     $"{e.Exception.StackTrace}", "Unhandled exception", MessageBoxButton.OK, MessageBoxImage.Error);
                     //Logger.ReportUnhandledException(e.Exception); // Disabled because of performance loss.
-                    //e.Handled = true;
+                    //e.Handled = true
                 };
             }
         }

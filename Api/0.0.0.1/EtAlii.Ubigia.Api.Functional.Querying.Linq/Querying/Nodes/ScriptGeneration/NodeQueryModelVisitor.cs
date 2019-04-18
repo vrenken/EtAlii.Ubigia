@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public override void VisitQueryModel(QueryModel queryModel)
         {
-            //_scriptAggregator.Clear();
+            //_scriptAggregator.Clear()
 
             queryModel.SelectClause.Accept(this, queryModel);
             queryModel.MainFromClause.Accept(this, queryModel);
@@ -77,7 +77,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public override void VisitGroupJoinClause(GroupJoinClause groupJoinClause, QueryModel queryModel, int index)
         {
             throw new NotSupportedException();
-            //throw new NotSupportedException("Adding a join ... into ... implementation to the query provider is left to the reader for extra points.");
+            //throw new NotSupportedException("Adding a join ... into ... implementation to the query provider is left to the reader for extra points.")
         }
 
         public string GetScriptText()

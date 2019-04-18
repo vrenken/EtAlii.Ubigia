@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Logical
     internal class TraversalScaffolding : IScaffolding
     {
         private readonly IGraphPathTraverserConfiguration _configuration;
-        //private readonly bool _useParallelization = false;
+        //private readonly bool _useParallelization = false
 
         public TraversalScaffolding(IGraphPathTraverserConfiguration configuration)
         {
@@ -25,14 +25,14 @@ namespace EtAlii.Ubigia.Api.Logical
             //if (_useParallelization)
             //{
             //    // Parallel algorithms
-            //    container.Register<IDepthFirstTraversalAlgorithm, ParallelDepthFirstTraversalAlgorithm>();
-            //    container.Register<IBreadthFirstTraversalAlgorithm, ParallelBreadthFirstTraversalAlgorithm>();
+            //    container.Register<IDepthFirstTraversalAlgorithm, ParallelDepthFirstTraversalAlgorithm>()
+            //    container.Register<IBreadthFirstTraversalAlgorithm, ParallelBreadthFirstTraversalAlgorithm>()
             //}
             //else
             //{
             //    // Sequential algorithms
-            //    container.Register<IDepthFirstTraversalAlgorithm, DepthFirstTraversalAlgorithm>();
-            //    container.Register<IBreadthFirstTraversalAlgorithm, BreadthFirstTraversalAlgorithm>();
+            //    container.Register<IDepthFirstTraversalAlgorithm, DepthFirstTraversalAlgorithm>()
+            //    container.Register<IBreadthFirstTraversalAlgorithm, BreadthFirstTraversalAlgorithm>()
             //}
 
             container.Register<IGraphPathNodeTraverser, GraphPathNodeTraverser>();

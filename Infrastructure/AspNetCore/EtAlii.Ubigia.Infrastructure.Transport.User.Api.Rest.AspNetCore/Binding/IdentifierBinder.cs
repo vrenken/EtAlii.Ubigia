@@ -20,7 +20,7 @@
 
             var value = bindingContext.ValueProvider.GetValue(bindingContext.ModelName);
 
-            //string rawValue = value.RawValue as string;
+            //string rawValue = value.RawValue as string
             var rawValue = value.FirstValue;
             if (rawValue == null)
             {

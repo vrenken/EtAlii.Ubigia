@@ -58,7 +58,7 @@
                     var results = _scriptContext.Process(viewModel.Script, viewModel.Scope);
 
                     // First we subscribe our diagnostics observable hierarchy
-                    //_diagnosticsGraphScriptLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
+                    //_diagnosticsGraphScriptLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start)
                     _outputGraphScriptLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
                     _statusGraphScriptLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
                 });

@@ -48,13 +48,13 @@
                 }
                 else
                 {
-                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed;
+                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed
                 }
             }
             catch (Exception ex)
             {
                 response = controller.BadRequest(ex.Message);
-                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk");
+                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk")
             }
             return response;
 

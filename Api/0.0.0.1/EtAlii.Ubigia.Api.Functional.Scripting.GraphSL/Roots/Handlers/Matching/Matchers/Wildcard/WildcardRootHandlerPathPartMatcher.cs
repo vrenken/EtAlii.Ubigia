@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (next != null)
             {
                 var pathPattern = (next as WildcardPathSubjectPart)?.Pattern;
-                //var templatePattern = ((WildcardPathSubjectPart) parameters.CurrentTemplatePart).Pattern;
+                //var templatePattern = ((WildcardPathSubjectPart) parameters.CurrentTemplatePart).Pattern
 
                 //TODO: Currently a wildcard path always matches. We might want to change this in the future.
                 canMatch = pathPattern != null;

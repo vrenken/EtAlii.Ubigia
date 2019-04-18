@@ -2,7 +2,7 @@
 //{
 //    public interface IProviderComponent
 //    {
-//        void Start();
-//        void Stop();
+//        void Start()
+//        void Stop()
 //    }
 //}

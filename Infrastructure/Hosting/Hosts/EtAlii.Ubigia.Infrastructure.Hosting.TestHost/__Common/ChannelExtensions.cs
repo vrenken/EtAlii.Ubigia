@@ -1,5 +1,5 @@
-//using System.Collections.Generic;
-//using System.Threading.Tasks;
+//using System.Collections.Generic
+//using System.Threading.Tasks
 
 //namespace System.Threading.Channels
 //{
@@ -7,19 +7,19 @@
 //    {
 //        public static async Task<List<T>> ReadAllAsync<T>(this ChannelReader<T> channel)
 //        {
-//            var list = new List<T>();
+//            var list = new List<T>()
 //            while (await channel.WaitToReadAsync())
 //            {
 //                while (channel.TryRead(out var item))
 //                {
-//                    list.Add(item);
+//                    list.Add(item)
 //                }
 //            }
 
 //            // Manifest any error from channel.Completion (which should be completed now)
-//            await channel.Completion;
+//            await channel.Completion
 
-//            return list;
+//            return list
 //        }
 //    }
 //}

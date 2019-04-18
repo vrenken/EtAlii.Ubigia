@@ -1,7 +1,7 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 //{
-//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR;
-//    using Xunit;
+//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.SignalR
+//    using Xunit
 
     
 //    public class EntryHub_Tests 
@@ -9,8 +9,8 @@
 //        [Fact]
 //        public void EntryHub_Create()
 //        {
-//            var entryHub = new EntryHub(null, null);
-//            Assert.NotNull(entryHub);
+//            var entryHub = new EntryHub(null, null)
+//            Assert.NotNull(entryHub)
 //        }
 //    }
 //}

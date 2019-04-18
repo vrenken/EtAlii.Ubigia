@@ -23,12 +23,12 @@
             _conditionParser = conditionParser;
             _nodeFinder = nodeFinder;
 
-            var separator = Lp.Char('&');//.Debug("Separator", true);
+            var separator = Lp.Char('&');//.Debug("Separator", true)
             Parser = new LpsParser(Id, true,
                 Lp.One(c => c == '.') + //.Debug("Point") + 
                 newLineParser.OptionalMultiple + //.Debug("NL1") +  
                 Lp.List(_conditionParser.Parser, separator, newLineParser.OptionalMultiple));
-                //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")));
+                //Lp.List(_conditionParser.Parser.Debug("Kvp", true), separator, _newLineParser.OptionalMultiple.Debug("NL4")))
         }
 
         public bool CanParse(LpNode node)

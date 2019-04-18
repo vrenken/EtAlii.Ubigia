@@ -62,7 +62,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             originalItem.Roles = updatedItem.Roles;
 
             // We should not update the created date of the account.
-            //originalItem.Created = updatedItem.Created;
+            //originalItem.Created = updatedItem.Created
 
             // Whenever we touch the account we also register the updated time.
             originalItem.Updated = DateTime.UtcNow;

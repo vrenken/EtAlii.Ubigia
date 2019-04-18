@@ -60,11 +60,11 @@
 
             foreach (var itemToAdd in itemsToAdd)
             {
-                //_itemCreatedHandler.Value.Handle(itemToAdd, localStart, remoteStart);
+                //_itemCreatedHandler.Value.Handle(itemToAdd, localStart, remoteStart)
             }
             foreach (var itemToRemove in itemsToRemove)
             {
-                //_itemDestroyedHandler.Value.Handle(itemToRemove.Type, localStart, remoteStart);
+                //_itemDestroyedHandler.Value.Handle(itemToRemove.Type, localStart, remoteStart)
             }
         }
     }

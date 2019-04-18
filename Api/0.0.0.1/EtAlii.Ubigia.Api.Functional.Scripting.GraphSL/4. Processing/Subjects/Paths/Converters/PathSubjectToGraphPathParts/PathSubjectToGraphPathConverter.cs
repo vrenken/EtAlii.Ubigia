@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var builder = new GraphPathBuilder();
 
-            //var result = new List<GraphPathPart>();
+            //var result = new List<GraphPathPart>()
 
             for (int i = 0; i < pathSubject.Parts.Length; i++)
             {

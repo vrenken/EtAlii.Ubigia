@@ -53,8 +53,8 @@
         //{
         //    var authenticationTokenAsString = actionContext.Request.Headers
         //        .GetValues("Authentication-Token")
-        //        .FirstOrDefault();
-        //    return authenticationTokenAsString != null ? FromString(authenticationTokenAsString) : null;
+        //        .FirstOrDefault()
+        //    return authenticationTokenAsString != null ? FromString(authenticationTokenAsString) : null
         //}
     }
 }

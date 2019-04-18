@@ -1,6 +1,6 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
 //{
-//    using EtAlii.xTechnology.MicroContainer;
+//    using EtAlii.xTechnology.MicroContainer
 
 //    public class ConsoleHostExtension : IHostExtension
 //    {
@@ -9,10 +9,10 @@
 //            var scaffoldings = new IScaffolding[]
 //            {
 //                //new ProviderComponentsScaffolding(),
-//            };
+//            }
 //            foreach (var scaffolding in scaffoldings)
 //            {
-//                scaffolding.Register(container);
+//                scaffolding.Register(container)
 //            }
 //        }
 //    }

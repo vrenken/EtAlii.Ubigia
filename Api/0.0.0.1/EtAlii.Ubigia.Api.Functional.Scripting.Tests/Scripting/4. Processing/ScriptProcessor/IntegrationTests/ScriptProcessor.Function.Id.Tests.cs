@@ -8,7 +8,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    
     public class ScriptProcessorFunctionIdIntegrationTests : IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -58,7 +57,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
 
@@ -81,7 +80,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -103,7 +102,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
 
@@ -126,7 +125,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
 
@@ -149,7 +148,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -171,7 +170,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -193,7 +192,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
 
@@ -217,7 +216,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             // Assert.
             await ObservableExceptionAssert.Throws<ScriptProcessingException, SequenceProcessingResult>(act);
-            //Assert.Equal(1, parseResult.Errors.Length);
+            //Assert.Equal(1, parseResult.Errors.Length)
         }
 
     }

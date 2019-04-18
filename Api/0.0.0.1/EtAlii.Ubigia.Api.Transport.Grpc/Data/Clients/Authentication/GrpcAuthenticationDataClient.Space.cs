@@ -26,7 +26,7 @@
         {
             var request = new SpaceSingleRequest {Name = spaceName};
             var response = await _spaceClient.GetSingleAsync(request, transport.AuthenticationHeaders);
-            //var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName);
+            //var space = await _invoker.Invoke<Space>(_spaceConnection, GrpcHub.Space, "GetForAuthenticationToken", spaceName)
 
             var space = response.Space.ToLocal();
             if (space == null)
@@ -34,7 +34,7 @@
 				var message = $"Unable to connect to the the specified space ({spaceName})";
 				throw new UnauthorizedInfrastructureOperationException(message);
 			}
-			return space;// s.FirstOrDefault(s => s.Name == spaceName);
+			return space;// s.FirstOrDefault(s => s.Name == spaceName)
         }
     }
 }

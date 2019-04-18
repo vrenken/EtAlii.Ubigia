@@ -642,7 +642,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Id.MergeFrom(other.Id);
       }
@@ -665,9 +665,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(Id);
             break;
           }
           case 18: {
@@ -833,7 +833,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Id.MergeFrom(other.Id);
       }
@@ -842,7 +842,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.accountId_ != null) {
         if (accountId_ == null) {
-          accountId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          AccountId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         AccountId.MergeFrom(other.AccountId);
       }
@@ -859,9 +859,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(Id);
             break;
           }
           case 18: {
@@ -870,9 +870,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 26: {
             if (accountId_ == null) {
-              accountId_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              AccountId = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(accountId_);
+            input.ReadMessage(AccountId);
             break;
           }
         }
@@ -1087,7 +1087,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Id.MergeFrom(other.Id);
       }
@@ -1100,13 +1100,13 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       roles_.Add(other.roles_);
       if (other.created_ != null) {
         if (created_ == null) {
-          created_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+          Created = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         Created.MergeFrom(other.Created);
       }
       if (other.updated_ != null) {
         if (updated_ == null) {
-          updated_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+          Updated = new global::Google.Protobuf.WellKnownTypes.Timestamp();
         }
         Updated.MergeFrom(other.Updated);
       }
@@ -1123,9 +1123,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(Id);
             break;
           }
           case 18: {
@@ -1142,16 +1142,16 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 42: {
             if (created_ == null) {
-              created_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+              Created = new global::Google.Protobuf.WellKnownTypes.Timestamp();
             }
-            input.ReadMessage(created_);
+            input.ReadMessage(Created);
             break;
           }
           case 50: {
             if (updated_ == null) {
-              updated_ = new global::Google.Protobuf.WellKnownTypes.Timestamp();
+              Updated = new global::Google.Protobuf.WellKnownTypes.Timestamp();
             }
-            input.ReadMessage(updated_);
+            input.ReadMessage(Updated);
             break;
           }
         }
@@ -1309,7 +1309,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Id.MergeFrom(other.Id);
       }
@@ -1318,7 +1318,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.identifier_ != null) {
         if (identifier_ == null) {
-          identifier_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+          Identifier = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
         }
         Identifier.MergeFrom(other.Identifier);
       }
@@ -1335,9 +1335,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(Id);
             break;
           }
           case 18: {
@@ -1346,9 +1346,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 26: {
             if (identifier_ == null) {
-              identifier_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+              Identifier = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
             }
-            input.ReadMessage(identifier_);
+            input.ReadMessage(Identifier);
             break;
           }
         }
@@ -1569,19 +1569,19 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.storage_ != null) {
         if (storage_ == null) {
-          storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Storage = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Storage.MergeFrom(other.Storage);
       }
       if (other.account_ != null) {
         if (account_ == null) {
-          account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Account = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Account.MergeFrom(other.Account);
       }
       if (other.space_ != null) {
         if (space_ == null) {
-          space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+          Space = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
         }
         Space.MergeFrom(other.Space);
       }
@@ -1607,23 +1607,23 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (storage_ == null) {
-              storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Storage = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(storage_);
+            input.ReadMessage(Storage);
             break;
           }
           case 18: {
             if (account_ == null) {
-              account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Account = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(account_);
+            input.ReadMessage(Account);
             break;
           }
           case 26: {
             if (space_ == null) {
-              space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
+              Space = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Guid();
             }
-            input.ReadMessage(space_);
+            input.ReadMessage(Space);
             break;
           }
           case 33: {
@@ -1979,58 +1979,58 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.IdentifierComponent();
+          Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.IdentifierComponent();
         }
         Id.MergeFrom(other.Id);
       }
       if (other.type_ != null) {
         if (type_ == null) {
-          type_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent();
+          Type = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent();
         }
         Type.MergeFrom(other.Type);
       }
       if (other.tag_ != null) {
         if (tag_ == null) {
-          tag_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent();
+          Tag = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent();
         }
         Tag.MergeFrom(other.Tag);
       }
       if (other.parent_ != null) {
         if (parent_ == null) {
-          parent_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+          Parent = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
         }
         Parent.MergeFrom(other.Parent);
       }
       children_.Add(other.children_);
       if (other.parent2_ != null) {
         if (parent2_ == null) {
-          parent2_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+          Parent2 = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
         }
         Parent2.MergeFrom(other.Parent2);
       }
       children2_.Add(other.children2_);
       if (other.downdate_ != null) {
         if (downdate_ == null) {
-          downdate_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+          Downdate = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
         }
         Downdate.MergeFrom(other.Downdate);
       }
       updates_.Add(other.updates_);
       if (other.previous_ != null) {
         if (previous_ == null) {
-          previous_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+          Previous = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
         }
         Previous.MergeFrom(other.Previous);
       }
       if (other.next_ != null) {
         if (next_ == null) {
-          next_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+          Next = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
         }
         Next.MergeFrom(other.Next);
       }
       if (other.indexed_ != null) {
         if (indexed_ == null) {
-          indexed_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+          Indexed = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
         }
         Indexed.MergeFrom(other.Indexed);
       }
@@ -2048,30 +2048,30 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.IdentifierComponent();
+              Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.IdentifierComponent();
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(Id);
             break;
           }
           case 18: {
             if (type_ == null) {
-              type_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent();
+              Type = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TypeComponent();
             }
-            input.ReadMessage(type_);
+            input.ReadMessage(Type);
             break;
           }
           case 26: {
             if (tag_ == null) {
-              tag_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent();
+              Tag = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.TagComponent();
             }
-            input.ReadMessage(tag_);
+            input.ReadMessage(Tag);
             break;
           }
           case 34: {
             if (parent_ == null) {
-              parent_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+              Parent = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
-            input.ReadMessage(parent_);
+            input.ReadMessage(Parent);
             break;
           }
           case 42: {
@@ -2080,9 +2080,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 50: {
             if (parent2_ == null) {
-              parent2_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+              Parent2 = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
-            input.ReadMessage(parent2_);
+            input.ReadMessage(Parent2);
             break;
           }
           case 58: {
@@ -2091,9 +2091,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 66: {
             if (downdate_ == null) {
-              downdate_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+              Downdate = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
-            input.ReadMessage(downdate_);
+            input.ReadMessage(Downdate);
             break;
           }
           case 74: {
@@ -2102,23 +2102,23 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 82: {
             if (previous_ == null) {
-              previous_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+              Previous = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
-            input.ReadMessage(previous_);
+            input.ReadMessage(Previous);
             break;
           }
           case 90: {
             if (next_ == null) {
-              next_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+              Next = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
-            input.ReadMessage(next_);
+            input.ReadMessage(Next);
             break;
           }
           case 98: {
             if (indexed_ == null) {
-              indexed_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
+              Indexed = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.RelationComponent();
             }
-            input.ReadMessage(indexed_);
+            input.ReadMessage(Indexed);
             break;
           }
           case 106: {
@@ -2268,7 +2268,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.identifier_ != null) {
         if (identifier_ == null) {
-          identifier_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+          Identifier = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
         }
         Identifier.MergeFrom(other.Identifier);
       }
@@ -2289,9 +2289,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 18: {
             if (identifier_ == null) {
-              identifier_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+              Identifier = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
             }
-            input.ReadMessage(identifier_);
+            input.ReadMessage(Identifier);
             break;
           }
         }
@@ -2763,7 +2763,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.relation_ != null) {
         if (relation_ == null) {
-          relation_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Relation();
+          Relation = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Relation();
         }
         Relation.MergeFrom(other.Relation);
       }
@@ -2784,9 +2784,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 18: {
             if (relation_ == null) {
-              relation_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Relation();
+              Relation = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Relation();
             }
-            input.ReadMessage(relation_);
+            input.ReadMessage(Relation);
             break;
           }
         }
@@ -3109,7 +3109,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.id_ != null) {
         if (id_ == null) {
-          id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+          Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
         }
         Id.MergeFrom(other.Id);
       }
@@ -3129,9 +3129,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (id_ == null) {
-              id_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
+              Id = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Identifier();
             }
-            input.ReadMessage(id_);
+            input.ReadMessage(Id);
             break;
           }
           case 17: {
@@ -3504,7 +3504,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.summary_ != null) {
         if (summary_ == null) {
-          summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
+          Summary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
         }
         Summary.MergeFrom(other.Summary);
       }
@@ -3532,9 +3532,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 26: {
             if (summary_ == null) {
-              summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
+              Summary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
             }
-            input.ReadMessage(summary_);
+            input.ReadMessage(Summary);
             break;
           }
           case 32: {
@@ -4005,7 +4005,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.summary_ != null) {
         if (summary_ == null) {
-          summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
+          Summary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
         }
         Summary.MergeFrom(other.Summary);
       }
@@ -4040,9 +4040,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
           }
           case 26: {
             if (summary_ == null) {
-              summary_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
+              Summary = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.BlobSummary();
             }
-            input.ReadMessage(summary_);
+            input.ReadMessage(Summary);
             break;
           }
           case 32: {

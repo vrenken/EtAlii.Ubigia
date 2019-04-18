@@ -41,7 +41,7 @@
 
         public void Validate(SequencePart before, SequencePart part, int partIndex, SequencePart after)
         {
-            //throw new System.NotImplementedException();
+            //throw new System.NotImplementedException()
         }
     }
 }

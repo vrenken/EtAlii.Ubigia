@@ -1,24 +1,24 @@
 ﻿//namespace EtAlii.Ubigia.Api.Transport.Tests
 //{
-//    using System;
-//    using System.Collections.Generic;
-//    using System.Net.Http;
-//    using System.Threading;
-//    using System.Threading.Tasks;
-//    using EtAlii.Ubigia.Api.Transport.SignalR.Tests;
-//    using Microsoft.AspNetCore.SignalR.Client;
-//    using Microsoft.AspNetCore.SignalR.Client.Internal.Http;
+//    using System
+//    using System.Collections.Generic
+//    using System.Net.Http
+//    using System.Threading
+//    using System.Threading.Tasks
+//    using EtAlii.Ubigia.Api.Transport.SignalR.Tests
+//    using Microsoft.AspNetCore.SignalR.Client
+//    using Microsoft.AspNetCore.SignalR.Client.Internal.Http
 
 //    public class SignalRTestHttpClient : IHttpClient
 //    {
-//        private readonly Func<IConnection, HttpMessageHandler> _createMessageHandler;
-//        private HttpClient _longRunningClient;
-//        private HttpClient _shortRunningClient;
-//        private IConnection _connection;
+//        private readonly Func<IConnection, HttpMessageHandler> _createMessageHandler
+//        private HttpClient _longRunningClient
+//        private HttpClient _shortRunningClient
+//        private IConnection _connection
 
 //        public SignalRTestHttpClient(Func<IConnection, HttpMessageHandler> createMessageHandler)
 //        {
-//            _createMessageHandler = createMessageHandler;
+//            _createMessageHandler = createMessageHandler
 //        }
 
 //        /// <summary>
@@ -28,15 +28,15 @@
 //        /// <param name="connection">Connection</param>
 //        public void Initialize(IConnection connection)
 //        {
-//            _connection = connection;
+//            _connection = connection
 //            _longRunningClient = new HttpClient(_createMessageHandler(_connection))
 //            {
 //                Timeout = TimeSpan.FromMilliseconds(-1.0)
-//            };
+//            }
 //            _shortRunningClient = new HttpClient(_createMessageHandler(_connection))
 //            {
 //                Timeout = TimeSpan.FromMilliseconds(-1.0)
-//            };
+//            }
 //        }
 
 //        /// <summary>
@@ -51,26 +51,26 @@
 //        {
 //            if (prepareRequest == null)
 //            {
-//                throw new ArgumentNullException("prepareRequest");
+//                throw new ArgumentNullException("prepareRequest")
 //            }
-//            var responseDisposer = new SignalRDisposer();
-//            var cts = new CancellationTokenSource();
-//            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(url));
+//            var responseDisposer = new SignalRDisposer()
+//            var cts = new CancellationTokenSource()
+//            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(url))
 //            var requestMessageWrapper = new HttpRequestMessageWrapper(httpRequestMessage, () =>
 //            {
-//                cts.Cancel();
-//                responseDisposer.Dispose();
-//            });
-//            prepareRequest((IRequest)requestMessageWrapper);
+//                cts.Cancel()
+//                responseDisposer.Dispose()
+//            })
+//            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
 //            {
 //                if (!responseMessage.IsSuccessStatusCode)
 //                {
-//                    throw new HttpClientException(responseMessage);
+//                    throw new HttpClientException(responseMessage)
 //                }
-//                responseDisposer.Set((IDisposable)responseMessage);
-//                return (IResponse)new HttpResponseMessageWrapper(responseMessage);
-//            }));
+//                responseDisposer.Set((IDisposable)responseMessage)
+//                return (IResponse)new HttpResponseMessageWrapper(responseMessage)
+//            }))
 //        }
 
 //        /// <summary>
@@ -85,31 +85,31 @@
 //        {
 //            if (prepareRequest == null)
 //            {
-//                throw new ArgumentNullException("prepareRequest");
+//                throw new ArgumentNullException("prepareRequest")
 //            }
-//            var responseDisposer = new SignalRDisposer();
-//            var cts = new CancellationTokenSource();
+//            var responseDisposer = new SignalRDisposer()
+//            var cts = new CancellationTokenSource()
 //            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, new Uri(url))
 //            {
 //                Content = postData != null
 //                        ? new SignalRFormUrlEncodedContent(postData)
 //                        : (HttpContent) new StringContent(string.Empty)
-//            };
+//            }
 //            var requestMessageWrapper = new HttpRequestMessageWrapper(httpRequestMessage, () =>
 //            {
-//                cts.Cancel();
-//                responseDisposer.Dispose();
-//            });
-//            prepareRequest((IRequest)requestMessageWrapper);
+//                cts.Cancel()
+//                responseDisposer.Dispose()
+//            })
+//            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
 //            {
 //                if (!responseMessage.IsSuccessStatusCode)
 //                {
-//                    throw new HttpClientException(responseMessage);
+//                    throw new HttpClientException(responseMessage)
 //                }
-//                responseDisposer.Set((IDisposable)responseMessage);
-//                return (IResponse)new HttpResponseMessageWrapper(responseMessage);
-//            }));
+//                responseDisposer.Set((IDisposable)responseMessage)
+//                return (IResponse)new HttpResponseMessageWrapper(responseMessage)
+//            }))
 //        }
 
 //        /// <summary>
@@ -122,9 +122,9 @@
 //        {
 //            if (!isLongRunning)
 //            {
-//                return _shortRunningClient;
+//                return _shortRunningClient
 //            }
-//            return _longRunningClient;
+//            return _longRunningClient
 //        }
 //    }
 //}

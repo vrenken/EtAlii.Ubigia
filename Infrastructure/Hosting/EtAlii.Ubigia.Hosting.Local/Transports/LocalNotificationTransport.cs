@@ -16,23 +16,23 @@
         {
             //if (_hubConnection != null)
             //{
-            //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToNotifications);
+            //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToNotifications)
             //}
-            //_hubConnection = new HubConnection(address + RelativeUri.Notifications, false);
+            //_hubConnection = new HubConnection(address + RelativeUri.Notifications, false)
 
             foreach (var client in _clients)
             {
                 client.Connect();
             }
 
-            //_hubConnection.Start().Wait();
+            //_hubConnection.Start().Wait()
         }
 
         public void Close()
         {
             //if (_hubConnection == null)
             //{
-            //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToNotifications);
+            //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToNotifications)
             //}
 
             foreach (var client in _clients)
@@ -40,8 +40,8 @@
                 client.Disconnect();
             }
 
-            //_hubConnection.Dispose();
-            //_hubConnection = null;
+            //_hubConnection.Dispose()
+            //_hubConnection = null
         }
 
         public void Register(INotificationClient client)

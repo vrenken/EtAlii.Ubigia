@@ -2,11 +2,11 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using global::Google.Apis.PeopleService.v1;
-    using global::Google.Apis.Services;
+	using System;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api.Transport;
+	using global::Google.Apis.PeopleService.v1;
+	using global::Google.Apis.Services;
 
 	public class PeopleDataSpaceUpdater : IPeopleDataSpaceUpdater
     {
@@ -49,8 +49,8 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 	        var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data);
 	        {
                 var request = CreateRequest(systemSettings, userSettings);
-	            var feed = request.Execute();//.GetContacts();
-                //feed.AutoPaging = true;
+	            var feed = request.Execute();//.GetContacts()
+                //feed.AutoPaging = true
                 foreach (var person in feed.Connections)//.Entries)
                 {
 		            _personSetter.Set(userDataScriptContext, person);
@@ -60,13 +60,13 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
 	    //private ContactsRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
 	    //{
-		   // var parameters = new OAuth2Parameters();
-		   // parameters.AccessToken = userSettings.AccessToken;
-		   // parameters.RefreshToken = userSettings.RefreshToken;
+		   // var parameters = new OAuth2Parameters()
+		   // parameters.AccessToken = userSettings.AccessToken
+		   // parameters.RefreshToken = userSettings.RefreshToken
 
-		   // var settings = new RequestSettings(systemSettings.ClientId, parameters);
-		   // var request = new ContactsRequest(settings);
-		   // return request;
+		   // var settings = new RequestSettings(systemSettings.ClientId, parameters)
+		   // var request = new ContactsRequest(settings)
+		   // return request
 	    //}
 
 		private PeopleResource.ConnectionsResource.ListRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
@@ -80,16 +80,16 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
 	        var initializer = new BaseClientService.Initializer();
 			var service = new PeopleServiceService(initializer);
-			//var builder = new global::Google.Apis.Requests.RequestBuilder();
+			//var builder = new global::Google.Apis.Requests.RequestBuilder()
 	        return new PeopleResource.ConnectionsResource.ListRequest(service, "people/me");
 			//builder.
-			//var parameters = new OAuth2Parameters();
-			//         parameters.AccessToken = userSettings.AccessToken;
-			//         parameters.RefreshToken = userSettings.RefreshToken;
+			//var parameters = new OAuth2Parameters()
+			//         parameters.AccessToken = userSettings.AccessToken
+			//         parameters.RefreshToken = userSettings.RefreshToken
 
-			//var settings = new RequestSettings(systemSettings.ClientId, parameters);
-            //var request = new ContactsRequest(settings);
-            //return request;
+			//var settings = new RequestSettings(systemSettings.ClientId, parameters)
+            //var request = new ContactsRequest(settings)
+            //return request
         }
 	}
 }

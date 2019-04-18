@@ -8,12 +8,12 @@
 
 //        public Node Execute(Identifier id)
 //        {
-//            return null;
+//            return null
 //        }
 
 //        public Node Get(Node node)
 //        {
-//            return null;
+//            return null
 //        }
 //    }
 //}

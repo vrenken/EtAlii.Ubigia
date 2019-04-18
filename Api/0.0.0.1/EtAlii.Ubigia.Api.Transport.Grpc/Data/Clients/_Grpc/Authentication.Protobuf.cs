@@ -275,7 +275,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
     public const int AccountFieldNumber = 1;
     private global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account account_;
     /// <summary>
-    ///string AuthenticationToken = 1;
+    ///string AuthenticationToken = 1
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     public global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account Account {
@@ -347,7 +347,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.account_ != null) {
         if (account_ == null) {
-          account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account();
+          Account = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account();
         }
         Account.MergeFrom(other.Account);
       }
@@ -364,9 +364,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (account_ == null) {
-              account_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account();
+              Account = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Account();
             }
-            input.ReadMessage(account_);
+            input.ReadMessage(Account);
             break;
           }
         }

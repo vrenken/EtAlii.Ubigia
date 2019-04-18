@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
-    using System.Security.AccessControl;    //MutexAccessRule
+    using System.Security.AccessControl;
     using System.Security.Principal;
     using System.Threading;
+//MutexAccessRule
 
     public class HostMutex
     {
@@ -17,7 +18,7 @@
             // get application GUID as defined in AssemblyInfo.cs
             //var appGuid = ((GuidAttribute)Assembly.GetExecutingAssembly()
             //    .GetCustomAttributes(typeof(GuidAttribute), false)
-            //    .GetValue(0)).Value.ToString();
+            //    .GetValue(0)).Value.ToString()
             var appGuid = HostId;
             
             // unique id for global mutex - Global prefix means it is global to the machine
@@ -46,7 +47,7 @@
                     {
                         // note, you may want to time out here instead of waiting forever
                         // edited by acidzombie24
-                        // mutex.WaitOne(Timeout.Infinite, false);
+                        // mutex.WaitOne(Timeout.Infinite, false)
                         hasHandle = mutex.WaitOne(Timeout, false);
                         if (hasHandle == false)
                             throw new TimeoutException("Timeout waiting for exclusive access");

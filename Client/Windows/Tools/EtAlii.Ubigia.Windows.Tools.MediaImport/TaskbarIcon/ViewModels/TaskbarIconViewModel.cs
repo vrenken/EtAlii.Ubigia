@@ -1,11 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using EtAlii.xTechnology.Mvvm;
     using System.Text;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.xTechnology.Mvvm;
 
     internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
@@ -44,8 +43,8 @@
             var sb = new StringBuilder();
             
             sb.AppendLine("Ubigia MediaImport");
-            //sb.AppendLine();
-            //sb.AppendFormat("Address: {0}", configuration.Address);
+            //sb.AppendLine()
+            //sb.AppendFormat("Address: {0}", configuration.Address)
             ToolTipText = sb.ToString();
 
             ExitApplicationCommand = new RelayCommand(o =>

@@ -15,7 +15,7 @@
             {
                 var request = new PropertiesPostRequest{EntryId = identifier.ToWire(), PropertyDictionary = properties.ToWire()};
                 await _client.PostAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties);
+                //await _invoker.Invoke(_connection, GrpcHub.Property, "Post", identifier, properties)
                 PropertiesHelper.SetStored(properties, true);
             }
             catch (RpcException e)

@@ -32,7 +32,7 @@
                 field.Writable = true;
                 field.Readable = true;
             }
-            //fields.ForEach(field => { field.Writable = true; p.Readable = true; });
+            //fields.ForEach(field => { field.Writable = true; p.Readable = true; })
             return fields;
 
             //var props = type
@@ -40,9 +40,9 @@
             //    .Select(p => base.CreateProperty(p, memberSerialization))
             //    .Union(type.GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
             //        .Select(f => base.CreateProperty(f, memberSerialization)))
-            //    .ToList();
-            //props.ForEach(p => { p.Writable = true; p.Readable = true; });
-            //return props;
+            //    .ToList()
+            //props.ForEach(p => { p.Writable = true; p.Readable = true; })
+            //return props
         }
     }
 }

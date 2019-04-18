@@ -165,7 +165,7 @@
             var start = Environment.TickCount;
 
             // Arrange.
-            //var scope = new ExecutionScope(false);
+            //var scope = new ExecutionScope(false)
             var items = _context.Nodes.Select(_countryPath);
 
             // Act.

@@ -115,54 +115,54 @@
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Size()
         //{
-        //    var connection = CreateFabricContext();
+        //    var connection = CreateFabricContext()
 
-        //    var root = connection.Roots.Get("Hierarchy");
-        //    var entry = connection.Entries.Get(root.Identifier);
+        //    var root = connection.Roots.Get("Hierarchy")
+        //    var entry = connection.Entries.Get(root.Identifier)
 
-        //    var contentDefinition = Create();
-        //    connection.Content.StoreDefinition(entry.Id, contentDefinition);
+        //    var contentDefinition = Create()
+        //    connection.Content.StoreDefinition(entry.Id, contentDefinition)
 
-        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id);
+        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id)
 
-        //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size);
+        //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size)
         //}
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Checksum()
         //{
-        //    var connection = CreateFabricContext();
+        //    var connection = CreateFabricContext()
 
-        //    var root = connection.Roots.Get("Hierarchy");
-        //    var entry = connection.Entries.Get(root.Identifier);
+        //    var root = connection.Roots.Get("Hierarchy")
+        //    var entry = connection.Entries.Get(root.Identifier)
 
-        //    var contentDefinition = Create();
-        //    connection.Content.StoreDefinition(entry.Id, contentDefinition);
+        //    var contentDefinition = Create()
+        //    connection.Content.StoreDefinition(entry.Id, contentDefinition)
 
-        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id);
+        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id)
 
-        //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum);
+        //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum)
         //}
 
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void FabricContext_ContentDefinition_Store_And_Retrieve_Check_Parts()
         //{
-        //    var connection = CreateFabricContext();
+        //    var connection = CreateFabricContext()
 
-        //    var root = connection.Roots.Get("Hierarchy");
-        //    var entry = connection.Entries.Get(root.Identifier);
+        //    var root = connection.Roots.Get("Hierarchy")
+        //    var entry = connection.Entries.Get(root.Identifier)
 
-        //    var contentDefinition = Create();
-        //    connection.Content.StoreDefinition(entry.Id, contentDefinition);
+        //    var contentDefinition = Create()
+        //    connection.Content.StoreDefinition(entry.Id, contentDefinition)
 
-        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id);
+        //    var retrievedContentDefinition = connection.Content.RetrieveDefinition(entry.Id)
 
-        //    Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count());
+        //    Assert.Equal(contentDefinition.Parts.Count, retrievedContentDefinition.Parts.Count())
         //    for (int i = 0; i < contentDefinition.Parts.Count; i++)
         //    {
-        //        Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum);
-        //        Assert.Equal(contentDefinition.Parts[i].Size, retrievedContentDefinition.Parts.ElementAt(i).Size);
+        //        Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum)
+        //        Assert.Equal(contentDefinition.Parts[i].Size, retrievedContentDefinition.Parts.ElementAt(i).Size)
         //    }
         //}
 

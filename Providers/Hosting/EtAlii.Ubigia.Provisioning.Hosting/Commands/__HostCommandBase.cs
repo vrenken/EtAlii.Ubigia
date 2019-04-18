@@ -1,24 +1,24 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
 //{
-//    using System;
-//    using System.ComponentModel;
-//    using EtAlii.xTechnology.Hosting;
+//    using System
+//    using System.ComponentModel
+//    using EtAlii.xTechnology.Hosting
 
 //    public abstract class HostCommandBase
 //    {
 //        protected IHost Host { get; private set; }
 
 //        public bool CanExecute { get => _canExecute; protected set => SetCanExecute(value); }
-//        private bool _canExecute;
+//        private bool _canExecute
 
-//        public event EventHandler CanExecuteChanged;
+//        public event EventHandler CanExecuteChanged
 
 //        private void SetCanExecute(bool newValue)
 //        {
 //            if (_canExecute != newValue)
 //            {
-//                _canExecute = newValue;
-//                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+//                _canExecute = newValue
+//                CanExecuteChanged?.Invoke(this, EventArgs.Empty)
 //            }
 //        }
 
@@ -26,12 +26,12 @@
 //        {
 //            if (Host != null)
 //            {
-//                Host.PropertyChanged -= OnHostPropertyChanged;
+//                Host.PropertyChanged -= OnHostPropertyChanged
 //            }
-//            Host = host;
+//            Host = host
 //            if (Host != null)
 //            {
-//                Host.PropertyChanged += OnHostPropertyChanged;
+//                Host.PropertyChanged += OnHostPropertyChanged
 //            }
 //        }
 
@@ -40,11 +40,11 @@
 //            switch (e.PropertyName)
 //            {
 //                case nameof(Host.State):
-//                    OnHostStateChanged(Host.State);
-//                    break;
+//                    OnHostStateChanged(Host.State)
+//                    break
 //                case nameof(Host.Status):
-//                    OnHostStatusChanged(Host.Status);
-//                    break;
+//                    OnHostStatusChanged(Host.Status)
+//                    break
 //            }
 //        }
 

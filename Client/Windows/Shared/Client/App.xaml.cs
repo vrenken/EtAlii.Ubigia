@@ -46,20 +46,20 @@
 //        {
 //            if (AlreadyRunning)
 //            {
-//                Current.Shutdown();
+//                Current.Shutdown()
 //            }
 //            else
 //            {
-//                RegisterKnownTypes();
-//                //Container.Verify();
+//                RegisterKnownTypes()
+//                //Container.Verify()
 //
-//                StartServices();
+//                StartServices()
 //            }
 //        }
 //
 //        private void OnApplicationExit(object sender, ExitEventArgs e)
 //        {
-//            StopServices();
+//            StopServices()
 //        }
 
         private void StartServices()
@@ -95,7 +95,7 @@
 
             Container.Register<IShellExtensionService, ShellExtensionService>();
             Container.Register<ITaskbarIconService, TaskbarIconService>();
-            //Container.RegisterCollection<IApplicationService>(new [] { typeof(ShellExtensionService), typeof(TaskbarIconService) });
+            //Container.RegisterCollection<IApplicationService>(new [] { typeof(ShellExtensionService), typeof(TaskbarIconService) })
         }
     }
 }

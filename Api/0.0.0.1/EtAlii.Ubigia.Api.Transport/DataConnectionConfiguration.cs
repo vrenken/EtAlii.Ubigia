@@ -84,7 +84,7 @@
             }
             //if (String.IsNullOrWhiteSpace(password))
             //{
-            //    throw new ArgumentException(nameof(password));
+            //    throw new ArgumentException(nameof(password))
             //}
             if (Password != null)
             {

@@ -5,8 +5,8 @@
     using System.Management.Automation;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
     public class PowerShellTestContext
@@ -136,7 +136,7 @@
 
         public Collection<PSObject> InvokeSelectStorage()
         {
-            //var configuration = Context.Infrastructure.Configuration;
+            //var configuration = Context.Infrastructure.Configuration
             PowerShell.Commands.Clear();
 	        PowerShell
 	            .AddCommand("Select-Storage")

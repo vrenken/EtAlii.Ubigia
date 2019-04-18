@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using GraphQL;
     using GraphQL.Execution;
     using GraphQL.Http;
@@ -64,12 +64,12 @@
                 Document = document,
 
                 // We do this by always returning a dynamic schema which includes everything from the static schema.
-                //_.Schema = DynamicSchema.Create(schema, request.Query);
+                //_.Schema = DynamicSchema.Create(schema, request.Query)
                 Schema = schema,
                 Query = query.Text,
-                OperationName = null, //operationName;//request.OperationName;
-                Inputs = inputs, //request.Variables.ToInputs();
-                UserContext = new UserContext {User = null} // ctx.User ;
+                OperationName = null, //operationName//request.OperationName
+                Inputs = inputs, //request.Variables.ToInputs()
+                UserContext = new UserContext {User = null} // ctx.User 
             };
 
             var executionResult = await _executor.ExecuteAsync(configuration);

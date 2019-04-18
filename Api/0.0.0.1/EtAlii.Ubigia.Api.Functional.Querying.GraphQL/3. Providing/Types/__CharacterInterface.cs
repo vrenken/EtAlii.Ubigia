@@ -1,4 +1,4 @@
-//using GraphQL.Types;
+//using GraphQL.Types
 //
 //namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 //{
@@ -6,13 +6,13 @@
 //    {
 //        public CharacterInterface()
 //        {
-//            Name = "Character";
+//            Name = "Character"
 //
-//            Field(d => d.Id).Description("The id of the character.");
-//            Field(d => d.Name, nullable: true).Description("The name of the character.");
+//            Field(d => d.Id).Description("The id of the character.")
+//            Field(d => d.Name, nullable: true).Description("The name of the character.")
 //
-//            Field<ListGraphType<CharacterInterface>>("friends");
-//            Field<ListGraphType<EpisodeEnum>>("appearsIn", "Which movie they appear in.");
+//            Field<ListGraphType<CharacterInterface>>("friends")
+//            Field<ListGraphType<EpisodeEnum>>("appearsIn", "Which movie they appear in.")
 //        }
 //    }
 //}

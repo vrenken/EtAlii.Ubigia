@@ -12,7 +12,7 @@
 
         //ILogicalContextExtension[] Extensions { get; }
 
-        //ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions);
+        //ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
 
         ILogicalContextConfiguration Use(string name, Uri address);
 

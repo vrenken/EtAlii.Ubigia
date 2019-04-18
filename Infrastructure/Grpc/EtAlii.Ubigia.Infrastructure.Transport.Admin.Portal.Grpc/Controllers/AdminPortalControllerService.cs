@@ -17,13 +17,13 @@
             //applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
             //    services =>
             //    {
-            //        services.AddMvcForTypedController<AdminPortalController>();
+            //        services.AddMvcForTypedController<AdminPortalController>()
             //        //.AddRazorOptions(options =>
             //        //{
-            //        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace));
-            //        //});
+            //        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace))
+            //        //})
             //    },
-            //    appBuilder => appBuilder.UseWelcomePage().UseMvc());
+            //    appBuilder => appBuilder.UseWelcomePage().UseMvc())
         }
     }
 }

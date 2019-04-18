@@ -8,7 +8,7 @@
     internal static class SignalRHttpRuleParser
     {
         private static readonly bool[] tokenChars;
-//        private const int maxNestedCount = 5;
+//        private const int maxNestedCount = 5
         private static readonly string[] dateFormats;
         internal const char CR = '\r';
         internal const char LF = '\n';

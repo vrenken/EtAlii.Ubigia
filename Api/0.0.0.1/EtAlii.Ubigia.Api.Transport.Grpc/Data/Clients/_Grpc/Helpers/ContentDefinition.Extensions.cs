@@ -12,7 +12,7 @@
             { 
                 result = new ContentDefinition
                 {
-    //                Name = contentDefinition.Name;
+    //                Name = contentDefinition.Name
                     Stored = contentDefinition.Stored,
                     Summary = contentDefinition.Summary?.ToLocal(),
                     TotalParts = contentDefinition.TotalParts,               

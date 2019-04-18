@@ -25,8 +25,8 @@
             else
             {
                 output.OnCompleted();
-                //string message = String.Format("Variable {0} not set (subject: {0})", variableName, parameters.Target.ToString());
-                //throw new ScriptParserException(message);
+                //string message = String.Format("Variable {0} not set (subject: {0})", variableName, parameters.Target.ToString())
+                //throw new ScriptParserException(message)
             }
         }
     }

@@ -11,6 +11,6 @@
         IQueryable<INode> Select(Identifier identifier);
         bool IsModified(Node node);
         void Save(INode node);
-        void Reload(INode node);//, bool updateToLatest = false);
+        void Reload(INode node);//, bool updateToLatest = false)
     }
 }

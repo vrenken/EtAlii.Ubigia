@@ -2,8 +2,8 @@
 
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
-	using System.Collections.Generic;
-	using System.Linq;
+    using System.Collections.Generic;
+    using System.Linq;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
     using global::Google.Apis.PeopleService.v1.Data;
@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 	                   GetEmail(person.EmailAddresses);
 					   //GetEmail(person.PrimaryEmail) ??
         //               GetEmail(person.ContactEntry.PrimaryEmail) ??
-        //               GetEmail(person.Emails) ?? GetEmail(person.ContactEntry.Emails);
+        //               GetEmail(person.Emails) ?? GetEmail(person.ContactEntry.Emails)
 
             _logger.Info($"Setting contact: {name}");
 
@@ -46,7 +46,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
 //        private string GetEmail(EmailAddress email)
 //        {
-//            return email?.Value;
+//            return email?.Value
 //        }
 
         private string GetEmail(IList<EmailAddress> emails)

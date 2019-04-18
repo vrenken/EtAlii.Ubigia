@@ -1,10 +1,10 @@
 ﻿//namespace EtAlii.Ubigia.Api.Functional
 //{
-//    using System;
-//    using System.Collections.Generic;
-//    using System.Reactive.Linq;
-//    using System.Threading;
-//    using System.Threading.Tasks;
+//    using System
+//    using System.Collections.Generic
+//    using System.Reactive.Linq
+//    using System.Threading
+//    using System.Threading.Tasks
 
 //    public static class AsyncHelpers
 //    {
@@ -14,28 +14,28 @@
 //        /// <param name="task">Task<T> method to execute</param>
 //        public static void RunSync(Func<Task> task)
 //        {
-//            var oldContext = SynchronizationContext.Current;
-//            var synch = new ExclusiveSynchronizationContext();
-//            SynchronizationContext.SetSynchronizationContext(synch);
+//            var oldContext = SynchronizationContext.Current
+//            var synch = new ExclusiveSynchronizationContext()
+//            SynchronizationContext.SetSynchronizationContext(synch)
 //            synch.Post(async _ =>
 //            {
 //                try
 //                {
-//                    await task();
+//                    await task()
 //                }
 //                catch (Exception e)
 //                {
-//                    synch.InnerException = e;
-//                    throw;
+//                    synch.InnerException = e
+//                    throw
 //                }
 //                finally
 //                {
-//                    synch.EndMessageLoop();
+//                    synch.EndMessageLoop()
 //                }
-//            }, null);
-//            synch.BeginMessageLoop();
+//            }, null)
+//            synch.BeginMessageLoop()
 
-//            SynchronizationContext.SetSynchronizationContext(oldContext);
+//            SynchronizationContext.SetSynchronizationContext(oldContext)
 //        }
 
 //        /// <summary>
@@ -46,29 +46,29 @@
 //        /// <returns></returns>
 //        public static T RunSync<T>(Func<Task<T>> task)
 //        {
-//            var oldContext = SynchronizationContext.Current;
-//            var synch = new ExclusiveSynchronizationContext();
-//            SynchronizationContext.SetSynchronizationContext(synch);
-//            T ret = default(T);
+//            var oldContext = SynchronizationContext.Current
+//            var synch = new ExclusiveSynchronizationContext()
+//            SynchronizationContext.SetSynchronizationContext(synch)
+//            T ret = default(T)
 //            synch.Post(async _ =>
 //            {
 //                try
 //                {
-//                    ret = await task();
+//                    ret = await task()
 //                }
 //                catch (Exception e)
 //                {
-//                    synch.InnerException = e;
-//                    throw;
+//                    synch.InnerException = e
+//                    throw
 //                }
 //                finally
 //                {
-//                    synch.EndMessageLoop();
+//                    synch.EndMessageLoop()
 //                }
-//            }, null);
-//            synch.BeginMessageLoop();
-//            SynchronizationContext.SetSynchronizationContext(oldContext);
-//            return ret;
+//            }, null)
+//            synch.BeginMessageLoop()
+//            SynchronizationContext.SetSynchronizationContext(oldContext)
+//            return ret
 //        }
 
 
@@ -80,87 +80,87 @@
 //        /// <returns></returns>
 //        public static T RunSync<T>(Func<IObservable<T>> observable)
 //        {
-//            var oldContext = SynchronizationContext.Current;
-//            var synch = new ExclusiveSynchronizationContext();
-//            SynchronizationContext.SetSynchronizationContext(synch);
-//            T ret = default(T);
+//            var oldContext = SynchronizationContext.Current
+//            var synch = new ExclusiveSynchronizationContext()
+//            SynchronizationContext.SetSynchronizationContext(synch)
+//            T ret = default(T)
 //            synch.Post(async _ =>
 //            {
 //                try
 //                {
-//                    ret = await observable();
+//                    ret = await observable()
 //                }
 //                catch (Exception e)
 //                {
-//                    synch.InnerException = e;
-//                    throw;
+//                    synch.InnerException = e
+//                    throw
 //                }
 //                finally
 //                {
-//                    synch.EndMessageLoop();
+//                    synch.EndMessageLoop()
 //                }
-//            }, null);
-//            synch.BeginMessageLoop();
-//            SynchronizationContext.SetSynchronizationContext(oldContext);
-//            return ret;
+//            }, null)
+//            synch.BeginMessageLoop()
+//            SynchronizationContext.SetSynchronizationContext(oldContext)
+//            return ret
 //        }
 
 //        private class ExclusiveSynchronizationContext : SynchronizationContext
 //        {
-//            private bool done;
+//            private bool done
 //            public Exception InnerException { private get; set; }
-//            readonly AutoResetEvent _workItemsWaiting = new AutoResetEvent(false);
-//            readonly Queue<Tuple<SendOrPostCallback, object>> _items = new Queue<Tuple<SendOrPostCallback, object>>();
+//            readonly AutoResetEvent _workItemsWaiting = new AutoResetEvent(false)
+//            readonly Queue<Tuple<SendOrPostCallback, object>> _items = new Queue<Tuple<SendOrPostCallback, object>>()
 
 //            public override void Send(SendOrPostCallback d, object state)
 //            {
-//                throw new NotSupportedException("We cannot send to our same thread");
+//                throw new NotSupportedException("We cannot send to our same thread")
 //            }
 
 //            public override void Post(SendOrPostCallback d, object state)
 //            {
 //                lock (_items)
 //                {
-//                    _items.Enqueue(Tuple.Create(d, state));
+//                    _items.Enqueue(Tuple.Create(d, state))
 //                }
-//                _workItemsWaiting.Set();
+//                _workItemsWaiting.Set()
 //            }
 
 //            public void EndMessageLoop()
 //            {
-//                Post(_ => done = true, null);
+//                Post(_ => done = true, null)
 //            }
 
 //            public void BeginMessageLoop()
 //            {
 //                while (!done)
 //                {
-//                    Tuple<SendOrPostCallback, object> task = null;
+//                    Tuple<SendOrPostCallback, object> task = null
 //                    lock (_items)
 //                    {
 //                        if (_items.Count > 0)
 //                        {
-//                            task = _items.Dequeue();
+//                            task = _items.Dequeue()
 //                        }
 //                    }
 //                    if (task != null)
 //                    {
-//                        task.Item1(task.Item2);
+//                        task.Item1(task.Item2)
 //                        if (InnerException != null) // the method threw an exeption
 //                        {
-//                            throw new AggregateException("AsyncHelpers.Run method threw an exception.", InnerException);
+//                            throw new AggregateException("AsyncHelpers.Run method threw an exception.", InnerException)
 //                        }
 //                    }
 //                    else
 //                    {
-//                        _workItemsWaiting.WaitOne();
+//                        _workItemsWaiting.WaitOne()
 //                    }
 //                }
 //            }
 
 //            public override SynchronizationContext CreateCopy()
 //            {
-//                return this;
+//                return this
 //            }
 //        }
 //    }

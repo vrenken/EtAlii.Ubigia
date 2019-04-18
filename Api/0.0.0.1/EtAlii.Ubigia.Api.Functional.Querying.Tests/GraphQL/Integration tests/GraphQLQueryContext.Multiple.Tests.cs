@@ -6,7 +6,6 @@
     using GraphQL.Http;
     using Xunit;
 
-
 // TODO: ENABLE FOR GraphQL
 #pragma warning disable xUnit1000
     internal class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
@@ -191,7 +190,7 @@
                 
             // Assert.
             Assert.Null(result.Errors);
-    //      var actual = await _documentWriter.WriteToStringAsync(result);
+    //      var actual = await _documentWriter.WriteToStringAsync(result)
             await AssertQuery.ResultsAreEqual(_documentWriter, @"
                 {
                     'person':

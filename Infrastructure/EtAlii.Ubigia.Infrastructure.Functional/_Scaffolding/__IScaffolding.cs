@@ -1,9 +1,9 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Functional
 //{
-//    using SimpleInjector;
+//    using SimpleInjector
 
 //    public interface IScaffolding
 //    {
-//        void Register(Container container);
+//        void Register(Container container)
 //    }
 //}

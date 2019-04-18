@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public class AddEntryToGraphCommandHandler : CommandHandlerBase<AddEntryToGraphCommand>, IAddEntryToGraphCommandHandler
     {
@@ -12,7 +12,7 @@
         private readonly IGraphConfiguration _configuration;
         private readonly IMainDispatcherInvoker _mainDispatcherInvoker;
         //protected IGraphDocumentViewModel GraphViewModel { get { return _documentViewModelProvider.GetInstance<IGraphDocumentViewModel>(); } }
-        //private readonly IDocumentViewModelProvider _documentViewModelProvider;
+        //private readonly IDocumentViewModelProvider _documentViewModelProvider
 
         private readonly object _lockObject = new object();
 
@@ -23,7 +23,7 @@
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _fabric = fabric;
-            //_documentViewModelProvider = documentViewModelProvider;
+            //_documentViewModelProvider = documentViewModelProvider
             _configuration = configuration;
             _mainDispatcherInvoker = mainDispatcherInvoker;
         }

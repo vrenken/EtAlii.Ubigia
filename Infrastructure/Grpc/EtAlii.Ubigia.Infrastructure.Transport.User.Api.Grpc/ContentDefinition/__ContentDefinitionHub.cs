@@ -1,33 +1,33 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
 //{
-//    using System;
-//    using EtAlii.Ubigia.Api;
-//    using EtAlii.Ubigia.Infrastructure.Functional;
+//    using System
+//    using EtAlii.Ubigia.Api
+//    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public class ContentDefinitionHub : HubBase
 //    {
-//        private readonly IContentDefinitionRepository _items;
+//        private readonly IContentDefinitionRepository _items
 
 //        public ContentDefinitionHub(
 //            IContentDefinitionRepository items,
 //            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
 //            : base(authenticationTokenVerifier)
 //        {
-//            _items = items;
+//            _items = items
 //        }
 
 //        public ContentDefinition Get(Identifier entryId)
 //        {
-//            ContentDefinition response = null;
+//            ContentDefinition response = null
 //            try
 //            {
-//                response = (ContentDefinition)_items.Get(entryId);
+//                response = (ContentDefinition)_items.Get(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a ContentDefinition GET client request", e);
+//                throw new InvalidOperationException("Unable to serve a ContentDefinition GET client request", e)
 //            }
-//            return response;
+//            return response
 //        }
 
 //        // Post a new contentdefinition for the specified entry.
@@ -36,14 +36,14 @@
 //            try
 //            {
 //                // Store the ContentDefinition.
-//                _items.Store(entryId, contentDefinition);
+//                _items.Store(entryId, contentDefinition)
 
 //                // Send the updated event.
-//                SignalUpdated(entryId);
+//                SignalUpdated(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e);
+//                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e)
 //            }
 //        }
 
@@ -54,32 +54,32 @@
 //            {
 //                if (contentDefinitionPartId != contentDefinitionPart.Id)
 //                {
-//                    throw new InvalidOperationException("ContentDefinitionPartId does not match");
+//                    throw new InvalidOperationException("ContentDefinitionPartId does not match")
 //                }
 
 //                // Store the ContentDefinition.
-//                _items.Store(entryId, contentDefinitionPart);
+//                _items.Store(entryId, contentDefinitionPart)
 
 //                // Send the updated event.
-//                SignalUpdated(entryId);
+//                SignalUpdated(entryId)
 //            }
 //            catch (Exception e)
 //            {
-//                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e);
+//                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e)
 //            }
 //        }
 
 
 //        private void SignalUpdated(Identifier identifier)
 //        {
-//            Clients.All.SendAsync("updated", new object[] { identifier });
-//            //Clients.All.updated(identifier);
+//            Clients.All.SendAsync("updated", new object[] { identifier })
+//            //Clients.All.updated(identifier)
 //        }
 
 //        private void SignalStored(Identifier identifier)
 //        {
-//            Clients.All.SendAsync("stored", new object[] { identifier });
-//            //Clients.All.stored(identifier);
+//            Clients.All.SendAsync("stored", new object[] { identifier })
+//            //Clients.All.stored(identifier)
 //        }
 //    }
 //}

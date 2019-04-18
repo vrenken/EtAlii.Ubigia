@@ -392,7 +392,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.storage_ != null) {
         if (storage_ == null) {
-          storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage();
+          Storage = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage();
         }
         Storage.MergeFrom(other.Storage);
       }
@@ -409,9 +409,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (storage_ == null) {
-              storage_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage();
+              Storage = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Storage();
             }
-            input.ReadMessage(storage_);
+            input.ReadMessage(Storage);
             break;
           }
         }

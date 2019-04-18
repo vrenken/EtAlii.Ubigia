@@ -1,6 +1,6 @@
 //namespace EtAlii.Ubigia.Api.Transport
 //{
-//    using EtAlii.xTechnology.Diagnostics;
+//    using EtAlii.xTechnology.Diagnostics
 
 //    public static class IDataConnectionConfigurationDiagnosticsExtension
 //    {
@@ -9,8 +9,8 @@
 //            var extensions = new IDataConnectionExtension[]
 //            {
 //                new DiagnosticsDataConnectionExtension(diagnostics), 
-//            };
-//            return configuration.Use(extensions);
+//            }
+//            return configuration.Use(extensions)
 //        }
 //    }
 //}

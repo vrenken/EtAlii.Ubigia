@@ -8,40 +8,40 @@
         {
             throw new System.NotImplementedException();
 
-            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
-            //Infrastructure.Post<ContentDefinition>(address, contentDefinition);
+            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
+            //Infrastructure.Post<ContentDefinition>(address, contentDefinition)
 
-            //MarkAsStored(contentDefinition);
+            //MarkAsStored(contentDefinition)
         }
 
         public void StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             throw new System.NotImplementedException();
 
-            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString());
-            //Infrastructure.Post<ContentDefinitionPart>(address, contentDefinitionPart);
+            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString(), UriParameter.ContentDefinitionPartId, contentDefinitionPart.Id.ToString())
+            //Infrastructure.Post<ContentDefinitionPart>(address, contentDefinitionPart)
 
-            //MarkAsStored(contentDefinitionPart);
+            //MarkAsStored(contentDefinitionPart)
         }
 
         public IReadOnlyContentDefinition RetrieveDefinition(Identifier identifier)
         {
             throw new System.NotImplementedException();
 
-            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString());
-            //var contentDefinition = Infrastructure.Get<ContentDefinition>(address);
-            //return contentDefinition as IReadOnlyContentDefinition;
+            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.ContentDefinition, UriParameter.EntryId, identifier.ToString())
+            //var contentDefinition = Infrastructure.Get<ContentDefinition>(address)
+            //return contentDefinition as IReadOnlyContentDefinition
         }
 
         private void MarkAsStored(ContentDefinition contentDefinition)
         {
             throw new System.NotImplementedException();
 
-            //BlobHelper.SetStored(contentDefinition, true);
+            //BlobHelper.SetStored(contentDefinition, true)
 
             //foreach (var contentDefinitionPart in contentDefinition.Parts)
             //{
-            //    MarkAsStored(contentDefinitionPart);
+            //    MarkAsStored(contentDefinitionPart)
             //}
         }
 
@@ -49,7 +49,7 @@
         {
             throw new System.NotImplementedException();
 
-            //BlobPartHelper.SetStored(contentDefinitionPart, true);
+            //BlobPartHelper.SetStored(contentDefinitionPart, true)
         }
     }
 }

@@ -15,44 +15,44 @@
         {
             throw new System.NotImplementedException();
 
-            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Entries, UriParameter.SpaceId, Connection.Space.Id.ToString());
-            //var entry = Infrastructure.Post<Entry>(address);
+            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Entries, UriParameter.SpaceId, Connection.Space.Id.ToString())
+            //var entry = Infrastructure.Post<Entry>(address)
 
-            //return entry;
+            //return entry
         }
 
         public IReadOnlyEntry Change(IEditableEntry entry)
         {
             throw new System.NotImplementedException();
 
-            //var changeAddress = AddressFactory.Create(Connection.Storage, RelativeUri.Entries);
-            //entry = Infrastructure.Put(changeAddress, entry as Entry);
-            //return entry as IReadOnlyEntry;
+            //var changeAddress = AddressFactory.Create(Connection.Storage, RelativeUri.Entries)
+            //entry = Infrastructure.Put(changeAddress, entry as Entry)
+            //return entry as IReadOnlyEntry
         }
 
         public IReadOnlyEntry Get(Root root, EntryRelation entryRelations = EntryRelation.None)
         {
             throw new System.NotImplementedException();
 
-            //return Get(root.Identifier, entryRelations);
+            //return Get(root.Identifier, entryRelations)
         }
 
         public IReadOnlyEntry Get(Identifier entryIdentifier, EntryRelation entryRelations = EntryRelation.None)
         {
             throw new System.NotImplementedException();
 
-            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Entries, UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
-            //var entry = Infrastructure.Get<Entry>(address);
-            //return entry;
+            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Entries, UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntryRelations, entryRelations.ToString())
+            //var entry = Infrastructure.Get<Entry>(address)
+            //return entry
         }
 
         public IEnumerable<IReadOnlyEntry> GetRelated(Identifier entryIdentifier, EntryRelation entriesWithRelation, EntryRelation entryRelations = EntryRelation.None)
         {
             throw new System.NotImplementedException();
 
-            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Entries, UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntriesWithRelation, entriesWithRelation.ToString(), UriParameter.EntryRelations, entryRelations.ToString());
-            //var entries = Infrastructure.Get<IEnumerable<Entry>>(address);
-            //return entries;
+            //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Entries, UriParameter.EntryId, entryIdentifier.ToString(), UriParameter.EntriesWithRelation, entriesWithRelation.ToString(), UriParameter.EntryRelations, entryRelations.ToString())
+            //var entries = Infrastructure.Get<IEnumerable<Entry>>(address)
+            //return entries
         }
     }
 }

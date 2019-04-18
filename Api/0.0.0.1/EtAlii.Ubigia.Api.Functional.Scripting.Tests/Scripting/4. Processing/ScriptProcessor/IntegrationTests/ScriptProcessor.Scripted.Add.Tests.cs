@@ -10,7 +10,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    
     public class ScriptProcessorScriptedAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;
@@ -520,8 +519,8 @@
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.Null(firstJohnEntry);//, "First entry is not null");
-            Assert.NotNull(secondJohnEntry);//, "Second entry is null");
+            Assert.Null(firstJohnEntry);//, "First entry is not null")
+            Assert.NotNull(secondJohnEntry);//, "Second entry is null")
             Assert.Equal("John", secondJohnEntry.ToString());
         }
 
@@ -548,8 +547,8 @@
             dynamic secondJohnEntry = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Assert.
-            Assert.Null(firstJohnEntry);//, "First entry is not null");
-            Assert.NotNull(secondJohnEntry);//, "Second entry is null");
+            Assert.Null(firstJohnEntry);//, "First entry is not null")
+            Assert.NotNull(secondJohnEntry);//, "Second entry is null")
             Assert.Equal("John", secondJohnEntry.ToString());
         }
 

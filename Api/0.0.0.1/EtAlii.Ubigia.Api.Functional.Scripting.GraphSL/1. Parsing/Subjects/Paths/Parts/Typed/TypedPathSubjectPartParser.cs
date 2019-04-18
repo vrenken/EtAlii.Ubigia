@@ -33,7 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     Lp.One(c => c == '[') + //.Debug("Bracket-Open", true) + 
                     Lp.Any(true, types).Id(TextId) + //.Debug("Content", true) + 
                     Lp.One(c => c == ']')//.Debug("Bracket-Close", true)
-                );//.Debug("TypedPathSubjectPartParser", true);
+                );//.Debug("TypedPathSubjectPartParser", true)
         }
 
         public bool CanParse(LpNode node)
@@ -53,22 +53,22 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             //if (before is ConstantPathSubjectPart || after is ConstantPathSubjectPart)
             //{
-            //    throw new ScriptParserException("Two constant path parts cannot be combined.");
+            //    throw new ScriptParserException("Two constant path parts cannot be combined.")
             //}
             //if (partIndex != 0 || after == null)
             //{
-            //    var constant = (ConstantPathSubjectPart)part;
+            //    var constant = (ConstantPathSubjectPart)part
             //    if (constant.Name == String.Empty)
             //    {
-            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
+            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
             //    }
             //}
             //if (partIndex == 0 && after != null)
             //{
-            //    var constant = (ConstantPathSubjectPart)part;
+            //    var constant = (ConstantPathSubjectPart)part
             //    if (constant.Name == String.Empty)
             //    {
-            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
+            //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
             //    }
             //}
         }

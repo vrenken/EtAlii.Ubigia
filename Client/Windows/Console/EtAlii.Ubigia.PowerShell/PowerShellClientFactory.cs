@@ -10,7 +10,7 @@
             where T : class, IPowerShellClient
         {
             var container = new Container();
-            //container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); };
+            //container.ResolveUnregisteredType += (sender, args) => { throw new InvalidOperationException("Unregistered type found: " + args.UnregisteredServiceType.Name); }
 
             container.Register<IPowerShellClient, T>();
             RegisterStructure(container, infrastructureClient);

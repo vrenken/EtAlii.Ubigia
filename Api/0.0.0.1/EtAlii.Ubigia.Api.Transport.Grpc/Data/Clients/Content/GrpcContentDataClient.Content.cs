@@ -12,7 +12,7 @@
             {
                 var request = new ContentPostRequest {EntryId = identifier.ToWire(), Content = content.ToWire()};
                 await _contentClient.PostAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_contentConnection, GrpcHub.Content, "Post", identifier, content);
+                //await _invoker.Invoke(_contentConnection, GrpcHub.Content, "Post", identifier, content)
     
                 // TODO: Should this call be replaced by get instead? 
                 BlobHelper.SetStored(content, true);
@@ -30,7 +30,7 @@
             {
                 var request = new ContentPartPostRequest {EntryId = identifier.ToWire(), ContentPart = contentPart.ToWire(), ContentPartId = contentPart.Id };
                 await _contentClient.PostPartAsync(request, _transport.AuthenticationHeaders);
-                //await _invoker.Invoke(_contentConnection, GrpcHub.Content, "PostPart", identifier, contentPart.Id, contentPart);
+                //await _invoker.Invoke(_contentConnection, GrpcHub.Content, "PostPart", identifier, contentPart.Id, contentPart)
     
                 BlobPartHelper.SetStored(contentPart, true);
             }
@@ -47,7 +47,7 @@
                 var request = new ContentGetRequest { EntryId = identifier.ToWire() };
                 var response = await _contentClient.GetAsync(request, _transport.AuthenticationHeaders);
                 return response.Content.ToLocal();
-                //return await _invoker.Invoke<Content>(_contentConnection, GrpcHub.Content, "Get", identifier);
+                //return await _invoker.Invoke<Content>(_contentConnection, GrpcHub.Content, "Get", identifier)
             }
             catch (RpcException e)
             {
@@ -62,7 +62,7 @@
                 var request = new ContentPartGetRequest { EntryId = identifier.ToWire(), ContentPartId = contentPartId};
                 var response = await _contentClient.GetPartAsync(request, _transport.AuthenticationHeaders);
                 return response.ContentPart.ToLocal();
-                //return await _invoker.Invoke<ContentPart>(_contentConnection, GrpcHub.Content, "GetPart", identifier, contentPartId);
+                //return await _invoker.Invoke<ContentPart>(_contentConnection, GrpcHub.Content, "GetPart", identifier, contentPartId)
             }
             catch (RpcException e)
             {

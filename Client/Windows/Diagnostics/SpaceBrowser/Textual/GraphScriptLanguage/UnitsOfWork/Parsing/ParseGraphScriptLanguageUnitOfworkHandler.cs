@@ -1,15 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.xTechnology.Workflow;
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.xTechnology.Workflow;
 
     public class ParseGraphScriptLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphScriptLanguageUnitOfwork>, IParseGraphScriptLanguageUnitOfworkHandler
     {
         private readonly IGraphSLScriptContext _scriptContext;
 
-//        private readonly object _lockObject = new object();
+//        private readonly object _lockObject = new object()
 
         public ParseGraphScriptLanguageUnitOfworkHandler(IGraphSLScriptContext scriptContext)
         {

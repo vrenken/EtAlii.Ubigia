@@ -1,6 +1,6 @@
 ﻿//namespace EtAlii.Ubigia.Api.Transport
 //{
-//    using System;
+//    using System
 //
 //    public class UnableToAuthorizeInfrastructureOperationException : Exception
 //    {

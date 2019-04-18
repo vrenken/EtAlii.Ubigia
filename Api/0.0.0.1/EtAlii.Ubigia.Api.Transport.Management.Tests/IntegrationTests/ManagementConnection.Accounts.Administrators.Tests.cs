@@ -4,9 +4,8 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-    
+
     public class ManagementConnectionAccountsAdministratorsTests : IClassFixture<NotStartedTransportUnitTestContext>, IAsyncLifetime
     {
         private readonly NotStartedTransportUnitTestContext _testContext;
@@ -580,11 +579,11 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Accounts.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AccountTemplate.Administrator));
+            //var act = new Func<Task>(async () => await connection.Accounts.Add(Guid.NewGuid().ToString(), Guid.NewGuid().ToString(), AccountTemplate.Administrator))
 
             // Assert.
             Assert.Null(connection.Accounts);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -594,11 +593,11 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Accounts.Get(Guid.NewGuid()));
+            //var act = new Func<Task>(async () => await connection.Accounts.Get(Guid.NewGuid()))
 
             // Assert.
             Assert.Null(connection.Accounts);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -608,11 +607,11 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Accounts.Remove(Guid.NewGuid()));
+            //var act = new Func<Task>(async () => await connection.Accounts.Remove(Guid.NewGuid()))
 
             // Assert.
             Assert.Null(connection.Accounts);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -622,11 +621,11 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Accounts.GetAll());
+            //var act = new Func<Task>(async () => await connection.Accounts.GetAll())
 
             // Assert.
             Assert.Null(connection.Accounts);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -636,11 +635,11 @@
             var connection = await _testContext.TransportTestContext.CreateManagementConnection(false);
 
             // Act.
-            //var act = new Func<Task>(async () => await connection.Accounts.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()));
+            //var act = new Func<Task>(async () => await connection.Accounts.Change(Guid.NewGuid(), Guid.NewGuid().ToString(), Guid.NewGuid().ToString()))
 
             // Assert.
             Assert.Null(connection.Accounts);
-            //await Assert.ThrowsAsync<NullReferenceException>(act);
+            //await Assert.ThrowsAsync<NullReferenceException>(act)
         }
     }
 }

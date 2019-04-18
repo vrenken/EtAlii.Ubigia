@@ -11,13 +11,13 @@
         public string Type => _entry.Type;
 
         //public Identifier Schema { get { return _schema; } private set { SetProperty(ref _schema, value); } }
-        //private Identifier _schema;
+        //private Identifier _schema
 
         bool INode.IsModified => _isModified;
         private bool _isModified;
 
         //public LinkCollection Links { get { return _links; } private set { SetProperty(ref _links, value); } }
-        //private LinkCollection _links;
+        //private LinkCollection _links
 
         IReadOnlyEntry IInternalNode.Entry => _entry;
 // set { _entry = value; } }
@@ -30,7 +30,7 @@
 
         //void IInternalNode.ClearIsModified()
         //{
-        //    _isModified = false;
+        //    _isModified = false
         //}
 
         void IInternalNode.Update(PropertyDictionary properties, IReadOnlyEntry entry)

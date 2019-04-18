@@ -36,12 +36,12 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 //if (argumentSet.Arguments.Length == 1)
                 //{
-                //    ProcessByArgument(context, parameterSet, argumentSet, scope, output);
+                //    ProcessByArgument(context, parameterSet, argumentSet, scope, output)
                 //}
                 //else
                 {
                     // No way to throw an exception here. It could be a left side subject so we will have to wait until it is executed from an operator.
-                    //throw new ScriptProcessingException("Unable to convert arguments for rename function processing");
+                    //throw new ScriptProcessingException("Unable to convert arguments for rename function processing")
                     output.OnCompleted();
                 }
             }
@@ -60,23 +60,23 @@ namespace EtAlii.Ubigia.Api.Functional
 
         //private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
         //{
-        //    var input = argumentSet.Arguments[0] as IObservable<object>;
+        //    var input = argumentSet.Arguments[0] as IObservable<object>
         //    if (input == null)
         //    {
-        //        throw new ScriptProcessingException("Unable to convert arguments for Include function processing");
+        //        throw new ScriptProcessingException("Unable to convert arguments for Include function processing")
         //    }
         //    input.Subscribe(
         //        onError: (e) => output.OnError(e),
         //        onCompleted: () => output.OnCompleted(),
         //        onNext: o =>
         //        {
-        //            var converter = ToIdentifierConverterSelector.Select(o);
-        //            var results = converter(context, o, scope);
+        //            var converter = ToIdentifierConverterSelector.Select(o)
+        //            var results = converter(context, o, scope)
         //            foreach (var result in results.ToEnumerable())
         //            {
-        //                output.OnNext(result);
+        //                output.OnNext(result)
         //            }
-        //        });
+        //        })
         //}
 
         private void ProcessByInput(

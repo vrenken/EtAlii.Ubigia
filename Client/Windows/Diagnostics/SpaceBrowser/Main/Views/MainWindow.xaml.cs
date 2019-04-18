@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
-    using Settings = EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties.Settings;
+    using EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.Properties;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -21,12 +21,12 @@
 
         private void OnWindowInitialized(object sender, EventArgs e)
         {
-            //LoadLayoutSettings();
+            //LoadLayoutSettings()
         }
 
         private void OnWindowClosing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //SaveLayoutSettings();
+            //SaveLayoutSettings()
             Settings.Default.Save();
         }
     }

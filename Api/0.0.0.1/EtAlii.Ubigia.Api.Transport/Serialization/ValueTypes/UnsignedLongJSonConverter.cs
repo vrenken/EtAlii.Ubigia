@@ -19,7 +19,7 @@
                 reader.TokenType == JsonToken.String)
             {
                 var bytes = serializer.Deserialize<byte[]>(reader);
-                //var bytes = reader.ReadAsBytes();
+                //var bytes = reader.ReadAsBytes()
                 result = BitConverter.ToUInt64(bytes, 0);
             }
             return result;
@@ -35,7 +35,7 @@
             {
                 var bytes = BitConverter.GetBytes((ulong)value);
                 serializer.Serialize(writer, bytes);
-                //writer.WriteValue(bytes);
+                //writer.WriteValue(bytes)
             }
         }
     }

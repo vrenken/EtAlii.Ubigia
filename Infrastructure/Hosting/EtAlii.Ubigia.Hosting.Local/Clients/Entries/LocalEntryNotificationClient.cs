@@ -21,21 +21,21 @@
             //{
             //    hubProxy.On<Identifier>("prepared", OnPrepared),
             //    hubProxy.On<Identifier>("stored", OnStored),
-            //};
+            //}
         }
 
         private void OnPrepared(Identifier identifier)
         {
             throw new System.NotImplementedException();
 
-            //Prepared(identifier);
+            //Prepared(identifier)
         }
 
         private void OnStored(Identifier identifier)
         {
             throw new System.NotImplementedException();
 
-            //Stored(identifier);
+            //Stored(identifier)
         }
     }
 }

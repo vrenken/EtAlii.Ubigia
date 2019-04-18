@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using Xunit;
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Logical;
+    using Xunit;
 
-    
     [Trait("Technology", "Grpc")]
     public sealed class RootInitializerTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -45,7 +44,7 @@
             var rootInitializer = new RootInitializer(logical);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root);
+            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
             rootInitializer.Initialize(space.Id, root);
 
             // Assert.
@@ -76,7 +75,7 @@
             var rootInitializer = new RootInitializer(logical);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root);
+            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
             rootInitializer.Initialize(space.Id, root);
 
             // Assert.
@@ -110,7 +109,7 @@
             var rootInitializer = new RootInitializer(logical);
 
             // Act.
-            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root);
+            //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
             rootInitializer.Initialize(space.Id, root);
 
             // Assert.

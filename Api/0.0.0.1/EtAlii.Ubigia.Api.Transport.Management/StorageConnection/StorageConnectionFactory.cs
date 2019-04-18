@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     public class StorageConnectionFactory : IStorageConnectionFactory
@@ -32,7 +31,7 @@
             // No extensions on the Storage connection (yet).
             //foreach (var extension in configuration.Extensions)
             //{
-            //    extension.Initialize(container);
+            //    extension.Initialize(container)
             //}
 
             var connection = container.GetInstance<IStorageConnection>();

@@ -9,7 +9,6 @@
     using EtAlii.Ubigia.Provisioning.Tests;
     using Xunit;
 
-    
     public class SystemSettingsTests : IClassFixture<ProvisioningUnitTestContext>
     {
         private readonly ProvisioningUnitTestContext _testContext;
@@ -132,7 +131,7 @@
             var managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var account = await managementConnection.Accounts.Add(accountName, password, AccountTemplate.System);
             var addedSpace = await managementConnection.Spaces.Add(account.Id, spaceName, SpaceTemplate.System);
-            //var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName);
+            //var context = await _testContext.ProvisioningTestContext.CreateScriptContext(accountName, password, spaceName)
             
             var firstSystemSettings = TestSystemSettings.Create();
             var secondSystemSettings = TestSystemSettings.Create();

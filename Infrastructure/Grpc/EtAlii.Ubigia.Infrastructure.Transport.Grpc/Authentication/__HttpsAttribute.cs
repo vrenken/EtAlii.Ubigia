@@ -1,7 +1,7 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
 //{
-//    using Microsoft.Grpc.Mvc;
-//    using Microsoft.Grpc.Mvc.Filters;
+//    using Microsoft.Grpc.Mvc
+//    using Microsoft.Grpc.Mvc.Filters
 
 //    internal class HttpsAttribute : ActionFilterAttribute
 //    {
@@ -9,7 +9,7 @@
 //        {
 //            if (!actionContext.HttpContext.Request.IsHttps)
 //            {
-//                actionContext.Result = new BadRequestResult();
+//                actionContext.Result = new BadRequestResult()
 //            }
 //        }
 //    }

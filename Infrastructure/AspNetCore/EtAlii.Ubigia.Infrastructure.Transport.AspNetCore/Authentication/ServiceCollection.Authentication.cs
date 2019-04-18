@@ -8,7 +8,7 @@
 	public static partial class ServiceCollectionExtensions
 	{
 		private static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray());
-//		private static readonly JwtSecurityTokenHandler JwtTokenHandler = new JwtSecurityTokenHandler();
+//		private static readonly JwtSecurityTokenHandler JwtTokenHandler = new JwtSecurityTokenHandler()
 
 		public static IServiceCollection AddInfrastructureHttpContextAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
 		{
@@ -21,7 +21,7 @@
 				.AddSingleton<IHttpContextAuthenticationTokenVerifier, HttpContextAuthenticationTokenVerifier>()
 				.AddSingleton<IHttpContextAuthenticationIdentityProvider, DefaultHttpContextAuthenticationIdentityProvider>();
 
-			//AddJwtBearer(services);
+			//AddJwtBearer(services)
 
 			return services;
 		}
@@ -31,7 +31,7 @@
 		    services
 			    .TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
 			    .TryAddSingleton<IStorageRepository>(infrastructure.Storages)
-				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver);
+				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver)
 				//.AddSingleton<IParameterResolver, SignalRParameterResolver>()
 				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
 			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
@@ -39,7 +39,7 @@
 			    .AddSingleton<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>()
 			    .AddSingleton<ISimpleAuthenticationTokenVerifier, SimpleAuthenticationTokenVerifier>();
 
-			//AddJwtBearer(services);
+			//AddJwtBearer(services)
 
 			return services;
 	    }
@@ -51,10 +51,10 @@
 //			{
 //				options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, policy =>
 //				{
-//					policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
-//					policy.RequireClaim(ClaimTypes.NameIdentifier);
-//				});
-//			});
+//					policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
+//					policy.RequireClaim(ClaimTypes.NameIdentifier)
+//				})
+//			})
 //			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //				.AddJwtBearer(options =>
 //				{
@@ -67,29 +67,29 @@
 //							ValidateActor = false,
 //							ValidateLifetime = true,
 //							IssuerSigningKey = SecurityKey
-//						};
+//						}
 //					options.Events = new JwtBearerEvents
 //					{
 //						OnMessageReceived = context =>
 //						{
-//							var accessToken = context.Request.Query["access_token"];
+//							var accessToken = context.Request.Query["access_token"]
 //							if (!string.IsNullOrEmpty(accessToken) &&
 //							    (context.HttpContext.WebSockets.IsWebSocketRequest || context.Request.Headers["Accept"] == "text/event-stream"))
 //							{
-//								context.Token = context.Request.Query["access_token"];
+//								context.Token = context.Request.Query["access_token"]
 //							}
-//							return Task.CompletedTask;
+//							return Task.CompletedTask
 //						}
-//					};
-//				});
+//					}
+//				})
 //		}
 
 
 		//.AddAuthentication(options =>
 		//{
-		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-		//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-		//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme
+		//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme
+		//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
 		//})
 		//.AddJwtBearer(options =>
 		//{
@@ -104,8 +104,8 @@
 		//        ValidateLifetime = true, //validate the expiration and not before values in the token
 		//        ClockSkew = TimeSpan.FromMinutes(1) //5 minute tolerance for the expiration date
 
-		//    };
-		//});
+		//    }
+		//})
 
 	}
 }

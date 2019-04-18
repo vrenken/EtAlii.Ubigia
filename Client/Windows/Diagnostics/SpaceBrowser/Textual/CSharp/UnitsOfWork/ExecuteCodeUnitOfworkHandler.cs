@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.xTechnology.Workflow;
     using System.Threading.Tasks;
+    using EtAlii.xTechnology.Workflow;
 
     public class ExecuteCodeUnitOfworkHandler : UnitOfWorkHandlerBase<ExecuteCodeUnitOfwork>, IExecuteCodeUnitOfworkHandler
     {
@@ -28,8 +28,8 @@
                     {
                         viewModel.CanExecute = false;
                         viewModel.CanStop = true;
-                        //var results = _codeCompilerService.Compile(Code);
-                        //Errors = _codeCompilerResultsParser.Parse(results);
+                        //var results = _codeCompilerService.Compile(Code)
+                        //Errors = _codeCompilerResultsParser.Parse(results)
                         Task.Delay(2000).Wait();
                         viewModel.CanStop = false;
                         viewModel.CanExecute = true;

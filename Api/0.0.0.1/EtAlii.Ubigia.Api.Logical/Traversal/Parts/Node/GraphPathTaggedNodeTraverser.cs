@@ -43,21 +43,21 @@ namespace EtAlii.Ubigia.Api.Logical
 //                    {
 //                            if (start == Identifier.Empty)
 //                            {
-//                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
+//                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph")
 //                            }
-//                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
+//                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope)
 //
 //                            if (name != String.Empty && name != entry.Type)
 //                            {
-//                                return;
+//                                return
 //                            }
 //                            if (tag != String.Empty && tag != entry.Tag)
 //                            {
-//                                return;
+//                                return
 //                            }
-//                            parameters.Output.OnNext(entry.Id);
+//                            parameters.Output.OnNext(entry.Id)
 //                    },
-//                    onCompleted: () => parameters.Output.OnCompleted());
+//                    onCompleted: () => parameters.Output.OnCompleted())
 
         }
 
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Logical
             var name = graphTaggedNode.Name;
             var tag = graphTaggedNode.Tag;
 
-            //var regex = scope.GetWildCardRegex(pattern);
+            //var regex = scope.GetWildCardRegex(pattern)
 
             if (start == Identifier.Empty)
             {

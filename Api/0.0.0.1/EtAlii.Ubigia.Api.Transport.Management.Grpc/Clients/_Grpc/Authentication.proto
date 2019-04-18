@@ -10,7 +10,7 @@ option java_package = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol"
 option java_outer_classname = "Ubigia";
 option objc_class_prefix = "Ubigia";
 option csharp_namespace = "EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol";
-//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME;
+//option optimize_for = LITE_RUNTIME;// SPEED, CODE_SIZE, LITE_RUNTIME
 
 package EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
 
@@ -42,12 +42,12 @@ message AuthenticationResponse
 
 //message AuthenticationTokenRequest
 //{
-//	string AuthenticationToken = 1;
+//	string AuthenticationToken = 1
 //}
 //
 //message AuthenticationTokenResponse
 //{
-//	Account Account = 1;
+//	Account Account = 1
 //}
 
 //message LocalStorageRequest
@@ -56,6 +56,6 @@ message AuthenticationResponse
 //
 //message LocalStorageResponse
 //{
-//	Storage Storage = 1;
+//	Storage Storage = 1
 //}
 

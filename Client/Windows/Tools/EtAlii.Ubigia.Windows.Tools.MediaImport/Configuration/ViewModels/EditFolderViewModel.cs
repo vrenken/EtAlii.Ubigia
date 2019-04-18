@@ -8,7 +8,6 @@
     using System.Windows.Forms;
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
     using MessageBox = System.Windows.Forms.MessageBox;
 
@@ -81,7 +80,7 @@
         private bool CanCancelChanges(object obj)
         {
             return true;//LocalFolder != OriginalFolderMonitor.Configuration.LocalFolder ||
-                   //RemoteName != OriginalFolderMonitor.Configuration.RemoteName;
+                   //RemoteName != OriginalFolderMonitor.Configuration.RemoteName
         }
 
         private void OnCancelChanges(object obj)

@@ -1,7 +1,7 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 //{
-//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin;
-//    using Xunit;
+//    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi.Api.Admin
+//    using Xunit
 
     
 //    public sealed class SpaceController_Tests 
@@ -12,10 +12,10 @@
 //            // Arrange.
 
 //            // Act.
-//            var controller = new SpaceController(null);
+//            var controller = new SpaceController(null)
             
 //            // Assert.
-//            Assert.NotNull(controller);
+//            Assert.NotNull(controller)
 //        }
 //    }
 //}

@@ -55,7 +55,7 @@
 
         public void Reload(INode node)//, bool updateToLatest = false)
         {
-            _nodeReloadCommand.Execute(node);//, updateToLatest);
+            _nodeReloadCommand.Execute(node);//, updateToLatest)
         }
     }
 }

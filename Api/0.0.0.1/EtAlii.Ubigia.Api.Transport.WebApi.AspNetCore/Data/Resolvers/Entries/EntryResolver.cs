@@ -29,7 +29,7 @@
             }
 
             return entry ?? currentEntry;
-            //return entry ?? EntryCmdlet.Current;
+            //return entry ?? EntryCmdlet.Current
         }
     }
 }

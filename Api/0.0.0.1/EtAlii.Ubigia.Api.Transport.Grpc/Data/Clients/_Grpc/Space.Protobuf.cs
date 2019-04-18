@@ -413,7 +413,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.space_ != null) {
         if (space_ == null) {
-          space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
+          Space = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
         }
         Space.MergeFrom(other.Space);
       }
@@ -430,9 +430,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 18: {
             if (space_ == null) {
-              space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
+              Space = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
             }
-            input.ReadMessage(space_);
+            input.ReadMessage(Space);
             break;
           }
         }
@@ -649,7 +649,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
       }
       if (other.space_ != null) {
         if (space_ == null) {
-          space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
+          Space = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
         }
         Space.MergeFrom(other.Space);
       }
@@ -666,9 +666,9 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol {
             break;
           case 10: {
             if (space_ == null) {
-              space_ = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
+              Space = new global::EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.Space();
             }
-            input.ReadMessage(space_);
+            input.ReadMessage(Space);
             break;
           }
         }

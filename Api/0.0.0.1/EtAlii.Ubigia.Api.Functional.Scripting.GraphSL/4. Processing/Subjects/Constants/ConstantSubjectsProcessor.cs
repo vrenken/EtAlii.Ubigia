@@ -24,7 +24,7 @@
             //    RightPart = parameters.RightPart,
             //    RightResult = parameters.RightResult,
             //    LeftResult = parameters.LeftResult,
-            //};
+            //}
             processor.Process(constantSubject, scope, output);
         }
     }

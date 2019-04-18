@@ -16,9 +16,9 @@
         //{
         //    if (properties == null)
         //    {
-        //        throw new ArgumentNullException("properties");
+        //        throw new ArgumentNullException("properties")
         //    }
-        //    _properties = properties;
+        //    _properties = properties
         //}
 
         /// <summary>

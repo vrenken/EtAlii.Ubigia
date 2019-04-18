@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     _quotedTextParser.Parser) + //.Debug("Content", true)) + //.Look(c => c != '/', c => c != '/').Debug("Look", true)
                     //new LpsParser(Lp.Char('/').Not().Debug("Stop", true) | Lp.End)
                     Lp.End
-                );//.Debug("StringConstantSubjectParser", true);
+                );//.Debug("StringConstantSubjectParser", true)
         }
 
         public ConstantSubject Parse(LpNode node)

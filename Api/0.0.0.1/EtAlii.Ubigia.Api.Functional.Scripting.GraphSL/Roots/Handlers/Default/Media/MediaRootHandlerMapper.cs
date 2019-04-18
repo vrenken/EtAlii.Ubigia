@@ -8,7 +8,7 @@
 //
 //        public MediaRootHandlerMapper()
 //        {
-//            Name = "media";
+//            Name = "media"
 //
 //            AllowedRootHandlers = new IRootHandler[]
 //            {
@@ -18,7 +18,7 @@
 //                new MediaByCompanyFamilyModelHandler(),
 //
 //                //new MediaByEmptyHandler(), // Should be at the end.
-//            };
+//            }
 //        }
 //    }
 //}
