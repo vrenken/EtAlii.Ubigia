@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Linq;
     using System.Reactive.Linq;
 
     internal class AssignEmptyToRootOperatorSubProcessor : IAssignEmptyToRootOperatorSubProcessor
@@ -16,10 +15,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Assign(OperatorParameters parameters)
         {
-            parameters.RightInput
-                .ToEnumerable()
-                .Cast<RootDefinitionSubject>()
-                .SingleOrDefault(); // We do not support multiple definitions, should be null
+//            parameters.RightInput
+//                .ToEnumerable()
+//                .Cast<RootDefinitionSubject>()
+//                .SingleOrDefault() // We do not support multiple definitions, should be null
 
             parameters.LeftInput
                 .Cast<RootSubject>()

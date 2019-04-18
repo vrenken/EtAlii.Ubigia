@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System.Linq;
     using System.Reactive.Linq;
 
     internal class AssignRootDefinitionToRootOperatorSubProcessor : IAssignRootDefinitionToRootOperatorSubProcessor
@@ -15,10 +14,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Assign(OperatorParameters parameters)
         {
-            parameters.RightInput
-                .ToEnumerable()
-                .Cast<RootDefinitionSubject>()
-                .Single(); // We do not support multiple definitions
+//            parameters.RightInput
+//                .ToEnumerable()
+//                .Cast<RootDefinitionSubject>()
+//                .Single() // We do not support multiple definitions
 
             parameters.LeftInput
                 .Cast<RootSubject>()
