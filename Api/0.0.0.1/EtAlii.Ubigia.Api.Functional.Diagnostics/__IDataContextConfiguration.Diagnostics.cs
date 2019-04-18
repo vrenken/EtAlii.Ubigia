@@ -1,6 +1,6 @@
 //namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 //{
-//    using EtAlii.xTechnology.Diagnostics;
+//    using EtAlii.xTechnology.Diagnostics
 //
 //    public static class DataContextConfigurationDiagnosticsExtension 
 //    {
@@ -10,7 +10,7 @@
 //            {
 //                new DiagnosticsDataContextExtension(diagnostics)
 //            };
-//            return configuration.Use(extensions);
+//            return configuration.Use(extensions)
 //        }
 //    }
 //}

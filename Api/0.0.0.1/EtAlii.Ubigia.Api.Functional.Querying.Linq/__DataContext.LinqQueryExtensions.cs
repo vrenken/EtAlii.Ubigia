@@ -4,7 +4,7 @@
 //    {
 //        public static ILinqQueryContext CreateLinqQueryContext(this IDataContext dataContext)
 //        {
-//            return new LinqQueryContextFactory().Create(dataContext);
+//            return new LinqQueryContextFactory().Create(dataContext)
 //        }
 //    }
 //}

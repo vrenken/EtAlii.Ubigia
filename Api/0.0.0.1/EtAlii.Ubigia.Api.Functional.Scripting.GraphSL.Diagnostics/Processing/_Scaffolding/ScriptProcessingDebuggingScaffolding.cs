@@ -11,6 +11,7 @@
 
             if (diagnostics.EnableDebugging) // diagnostics is enabled
             {
+                // Add registrations needed for debugging.
             }
         }
     }

@@ -16,19 +16,19 @@
 
         public Task<IdDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers)
         {
-//            var result = new IdDirectiveResult();
+//            var result = new IdDirectiveResult()
             
             var pathArgument = directive.Arguments.SingleOrDefault(d => d.Name == "path");
             var pathArgumentValue = pathArgument?.Value as StringValue;
 //
-////            var mappings = new List<IdMapping>();
+////            var mappings = new List<IdMapping>()
 //            foreach (var startIdentifier in startIdentifiers)
 //            {
 //                var path = pathArgumentValue != null
 //                    ? $"/&{startIdentifier.ToDotSeparatedString()}{pathArgumentValue.Value}"
-//                    : $"/&{startIdentifier.ToDotSeparatedString()}";
-//                var subSet = await _nodeFetcher.FetchAsync(path);
-////                var node = subSet?.SingleOrDefault();
+//                    : $"/&{startIdentifier.ToDotSeparatedString()}"
+//                var subSet = await _nodeFetcher.FetchAsync(path)
+////                var node = subSet?.SingleOrDefault()
 //
 ////                foreach (var node in subSet)
 ////                {
@@ -36,8 +36,8 @@
 ////                    {
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
-////                    };
-////                    mappings.Add(mapping); 
+////                    }
+////                    mappings.Add(mapping);
 ////                }
 ////                if (node != null)
 ////                {
@@ -45,8 +45,8 @@
 ////                    {
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
-////                    };
-////                    mappings.Add(mapping);
+////                    }
+////                    mappings.Add(mapping)
 ////                }
 //            }
             
