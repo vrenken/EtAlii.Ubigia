@@ -15,6 +15,7 @@
 
         public void Dispose()
         {
+            // Dispose any relevant resources.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

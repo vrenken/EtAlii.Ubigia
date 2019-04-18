@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class ManagementConnectionTests : IClassFixture<StartedTransportUnitTestContext>, IDisposable
@@ -16,6 +15,7 @@
 
         public void Dispose()
         {
+            // Dispose any relevant resources.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

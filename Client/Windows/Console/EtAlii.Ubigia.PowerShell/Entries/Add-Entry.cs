@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Spaces;
     using System;
     using System.Management.Automation;
+    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.PowerShell.Spaces;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Entry)]
     public class AddEntry : SpaceCmdlet
@@ -72,14 +72,17 @@
 
         protected override void BeginProcessing()
         {
+            // Put any processing that should happen at the beginning here.
         }
 
         protected override void EndProcessing()
         {
+            // Put any processing that should happen at the end here.
         }
 
         protected override void ProcessRecord()
         {
+            // Put any processing that should happen here.
         }
     }
 }

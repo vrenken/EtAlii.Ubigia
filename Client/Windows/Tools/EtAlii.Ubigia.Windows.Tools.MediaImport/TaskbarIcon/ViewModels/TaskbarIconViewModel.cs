@@ -83,10 +83,12 @@
 
         private void ShowAbout(object obj)
         {
+            // Show an about panel.
         }
 
         private void ShowStatus(object obj)
         {
+            // Show a status panel.
         }
 
         private void ShowConfiguration(object obj)

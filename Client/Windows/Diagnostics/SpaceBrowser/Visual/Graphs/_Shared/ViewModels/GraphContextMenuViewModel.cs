@@ -1,10 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System.Linq;
+    using System.Windows.Input;
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Mvvm;
-    using System.Linq;
-    using EtAlii.Ubigia.Windows;
-    using ICommand = System.Windows.Input.ICommand;
 
     public class GraphContextMenuViewModel : BindableBase, IGraphContextMenuViewModel
     {
@@ -82,6 +81,7 @@
 
         private void ShowDowndates(object obj)
         {
+            // Show all downdates.
         }
 
         private bool CanShowDowndates(object obj)
@@ -103,6 +103,7 @@
 
         private void ShowNext(object obj)
         {
+            // Show all next entries.
         }
 
         private bool CanShowNext(object obj)
@@ -124,6 +125,7 @@
 
         private void ShowPrevious(object obj)
         {
+            // Show all previous entries.
         }
 
         private bool CanShowPrevious(object obj)
@@ -145,6 +147,7 @@
 
         private void ShowParent(object obj)
         {
+            // Show all parent entries.
         }
 
         private bool CanShowParent(object obj)
@@ -166,6 +169,7 @@
 
         private void ShowChildren(object obj)
         {
+            // Show all child entries.
         }
 
         private bool CanShowChildren(object obj)

@@ -13,6 +13,7 @@
 
         protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
         {
+            // Put all configuration logic here.
         }
     }
 }

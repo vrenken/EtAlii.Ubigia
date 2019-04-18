@@ -59,6 +59,7 @@
 
         public void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after)
         {
+            // Make sure the operator can can actually be applied on the before/after SequencePart combination.
         }
 
         public bool CanValidate(ConstantSubject constantSubject)

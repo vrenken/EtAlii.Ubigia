@@ -89,6 +89,7 @@
 
         private void OnApplicationExit(object sender, ExitEventArgs e)
         {
+            // Handle an application exit gracefully.
         }
     }
 }

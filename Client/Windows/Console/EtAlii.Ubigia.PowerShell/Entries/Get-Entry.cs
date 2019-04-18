@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
-    using EtAlii.Ubigia.Api;
     using System.Management.Automation;
+    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Entry)]
     public class GetEntry : Cmdlet
@@ -17,10 +17,12 @@
 
         protected override void BeginProcessing()
         {
+            // Put any processing that should happen at the beginning here.
         }
 
         protected override void EndProcessing()
         {
+            // Put any processing that should happen at the end here.
         }
     }
 }
