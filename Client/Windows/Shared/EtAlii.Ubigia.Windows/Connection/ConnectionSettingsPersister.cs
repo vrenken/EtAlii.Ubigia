@@ -145,7 +145,7 @@
 
         private Stream ToEncryptedStream(Stream stream, CryptoStreamMode mode)
         {
-            var cryptic = new DESCryptoServiceProvider
+            var cryptic = new AesCryptoServiceProvider
             {
                 Key = Encoding.ASCII.GetBytes("baadfood"),
                 IV = Encoding.ASCII.GetBytes("foodbaad"),
