@@ -33,8 +33,7 @@
 //            Url = "http://localhost:" + GetNextPort()
 
 //            StartServer(Url)
-//        }
-
+//        ]
 //        private void StartServer(string url)
 //        [
 //            _host = new WebHostBuilder()
@@ -54,9 +53,9 @@
 //                if (t.IsFaulted)
 //                [
 //                    throw t.Exception.InnerException
-//                }
+//                ]
 //                throw new TimeoutException("Timed out waiting for application to start.")
-//            }
+//            ]
 //            _logger.LogInformation("Test Server started")
 
 //            _lifetime.ApplicationStopped.Register(() =>
@@ -64,15 +63,13 @@
 //                _logger.LogInformation("Test server shut down")
 //                _logToken.Dispose()
 //            })
-//        }
-
+//        ]
 //        public void Dispose()
 //        [
 //            _logger.LogInformation("Shutting down test server")
 //            _host.Dispose()
 //            _loggerFactory.Dispose()
-//        }
-
+//        ]
 //        private class ForwardingLoggerProvider : ILoggerProvider
 //        [
 //            private readonly ILoggerFactory _loggerFactory
@@ -80,18 +77,15 @@
 //            public ForwardingLoggerProvider(ILoggerFactory loggerFactory)
 //            [
 //                _loggerFactory = loggerFactory
-//            }
-
+//            ]
 //            public void Dispose()
 //            [
-//            }
-
+//            ]
 //            public ILogger CreateLogger(string categoryName)
 //            [
 //                return _loggerFactory.CreateLogger(categoryName)
-//            }
-//        }
-
+//            ]
+//        ]
 //        // Copied from https://github.com/aspnet/KestrelHttpServer/blob/47f1db20e063c2da75d9d89653fad4eafe24446c/test/Microsoft.AspNetCore.Server.Kestrel.FunctionalTests/AddressRegistrationTests.cs#L508
 //        private static int GetNextPort()
 //        [
@@ -104,7 +98,7 @@
 //                // reuse being enabled by default by the OS.
 //                socket.Bind(new IPEndPoint(IPAddress.Loopback, 0))
 //                return ((IPEndPoint)socket.LocalEndPoint).Port
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

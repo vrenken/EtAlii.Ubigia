@@ -14,36 +14,33 @@
 //            : base(authenticationTokenVerifier)
 //        [
 //            _items = items
-//        }
-
+//        ]
 //        public Content Get(Identifier entryId)
 //        [
 //            Content response = null
 //            try
 //            [
 //                response = (Content)_items.Get(entryId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a content GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        public ContentPart GetPart(Identifier entryId, UInt64 contentPartId)
 //        [
 //            ContentPart response = null
 //            try
 //            [
 //                response = (ContentPart)_items.Get(entryId, contentPartId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Content part GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Post a new contentdefinition for the specified content.
 //        /// </summary>
@@ -59,13 +56,12 @@
 
 //                // Send the updated event.
 //                SignalUpdated(entryId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Content POST client request", e)
-//            }
-//        }
-
+//            ]
+//        ]
 //        /// <summary>
 //        /// Post a new contentPart for the specified content.
 //        /// </summary>
@@ -80,25 +76,22 @@
 //                if (contentPartId != contentPart.Id)
 //                [
 //                    throw new InvalidOperationException("ContentPartId does not match")
-//                }
-
-
+//                ]
 //                // Store the content.
 //                _items.Store(entryId, contentPart)
 
 //                // Send the updated event.
 //                SignalUpdated(entryId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Content part POST client request", e)
-//            }
-//        }
-
+//            ]
+//        ]
 //        private void SignalUpdated(Identifier identifier)
 //        [
 //            Clients.All.SendAsync("updated", new object[] { identifier })
 //            //Clients.All.updated(identifier)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

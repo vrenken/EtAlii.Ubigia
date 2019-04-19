@@ -7,11 +7,11 @@
 //        public UnableToAuthorizeInfrastructureOperationException(string message)
 //            : base(message)
 //        [
-//        }
+//        ]
 //
 //        public UnableToAuthorizeInfrastructureOperationException(string message, Exception innerException)
 //            : base(message, innerException)
 //        [
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

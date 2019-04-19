@@ -27,8 +27,7 @@
 //            if (value.GetType() == descriptor.ParameterType)
 //                return (object)value
 //            return value.ConvertTo(descriptor.ParameterType)
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Resolves method parameter values based on provided objects.
 //        /// </summary>
@@ -40,6 +39,6 @@
 //            if (method == null)
 //                throw new ArgumentNullException(nameof(method))
 //            return (IList<object>)method.Parameters.Zip<ParameterDescriptor, IJsonValue, object>((IEnumerable<IJsonValue>)values, new Func<ParameterDescriptor, IJsonValue, object>(this.ResolveParameter)).ToArray<object>()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

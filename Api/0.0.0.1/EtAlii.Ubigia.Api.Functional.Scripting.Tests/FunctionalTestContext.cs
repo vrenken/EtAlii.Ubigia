@@ -28,9 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 //                .Use(_diagnostics)
 //                .Use(logicalContext)
 //            return new DataContextFactory().Create(configuration)
-//        }
-
-        
+//        ]
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
             return await _logical.CreateLogicalContext(openOnCreation);

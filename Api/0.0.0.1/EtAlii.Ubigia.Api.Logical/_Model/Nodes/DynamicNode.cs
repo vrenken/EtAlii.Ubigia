@@ -37,8 +37,7 @@
         //void IInternalNode.ClearIsModified()
         //[
         //    _isModified = false
-        //}
-
+        //]
         void IInternalNode.Update(PropertyDictionary properties, IReadOnlyEntry entry)
         {
             _entry = entry ?? throw new ArgumentNullException(nameof(entry));

@@ -20,6 +20,6 @@
 //            Field(h => h.HomePlanet, nullable: true).Description("The home planet of the human.")
 //
 //            Interface<CharacterInterface>()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

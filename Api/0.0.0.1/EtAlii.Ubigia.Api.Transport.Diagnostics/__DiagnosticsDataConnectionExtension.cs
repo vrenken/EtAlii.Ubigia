@@ -11,8 +11,7 @@
 //        internal DiagnosticsDataConnectionExtension(IDiagnosticsConfiguration diagnostics)
 //        [
 //            _diagnostics = diagnostics
-//        }
-
+//        ]
 //        public void Initialize(Container container)
 //        [
 //            var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
@@ -28,12 +27,11 @@
 //                new DataConnectionLoggingScaffolding(),
 //                new DataConnectionProfilingScaffolding(),
 //                new DataConnectionDebuggingScaffolding(),
-//            }
-
+//            ]
 //            foreach (var scaffolding in scaffoldings)
 //            [
 //                scaffolding.Register(container)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

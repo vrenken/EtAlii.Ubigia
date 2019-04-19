@@ -12,13 +12,12 @@
 //            try
 //            [
 //                new System.Net.WebSockets.ClientWebSocket().Dispose()
-//            }
+//            ]
 //            catch (PlatformNotSupportedException)
 //            [
 //                return false
-//            }
-
+//            ]
 //            return true
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

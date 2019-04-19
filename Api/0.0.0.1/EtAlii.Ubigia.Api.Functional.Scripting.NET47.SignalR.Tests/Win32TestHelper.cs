@@ -114,11 +114,10 @@
         //public static IContentManager CreateContentManager(ILogicalContext logicalContext)
         //[
         //    return new ContentManagerFactory().Create(logicalContext.Fabric)
-        //}
-
+        //]
         //public static IContentManager CreateContentManager(IFabricContext fabric)
         //[
         //    return new ContentManagerFactory().Create(fabric)
-        //}
+        //]
     }
 }

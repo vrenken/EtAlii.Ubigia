@@ -21,7 +21,7 @@
             //[
             //    hubProxy.On<Identifier>("prepared", OnPrepared),
             //    hubProxy.On<Identifier>("stored", OnStored),
-            //}
+            //]
         }
 
         private void OnPrepared(Identifier identifier)

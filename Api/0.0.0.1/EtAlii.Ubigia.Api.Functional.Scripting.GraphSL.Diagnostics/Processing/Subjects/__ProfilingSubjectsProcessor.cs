@@ -15,8 +15,7 @@
 //        [
 //            _decoree = decoree
 //            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorSubject)
-//        }
-
+//        ]
 //        public async Task<object> Process(
 //            ProcessParameters<SequencePart, SequencePart> parameters, 
 //            ExecutionScope scope,
@@ -30,6 +29,6 @@
 //            _profiler.End(profile)
 
 //            return result
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

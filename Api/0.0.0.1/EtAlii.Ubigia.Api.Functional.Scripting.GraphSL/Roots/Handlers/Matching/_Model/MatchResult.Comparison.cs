@@ -16,8 +16,7 @@
             //if (Object.ReferenceEquals(this, obj))
             //[
             //    return true
-            //}
-
+            //]
             // If run-time types are not exactly the same, return false. 
             if (GetType() != obj.GetType())
             {
@@ -39,15 +38,13 @@
             //if (Object.ReferenceEquals(this, match))
             //[
             //    return true
-            //}
-
+            //]
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
             //if (this.GetType() != match.GetType())
             //[
             //    return false
-            //}
-
+            //]
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 

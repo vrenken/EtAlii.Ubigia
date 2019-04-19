@@ -17,8 +17,7 @@
 //        [
 //            _accountRepository = accountRepository
 //            _authenticationTokenConverter = authenticationTokenConverter
-//        }
-
+//        ]
 //        public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
 //        [
 //            IActionResult result = controller.Forbid()
@@ -37,25 +36,24 @@
 //		                    if (hasOneRequiredRole)
 //		                    [
 //			                    result = controller.Ok()
-//		                    }
-//	                    }
+//		                    ]
+//	                    ]
 //                        else
 //                        [
 //                            result = controller.Ok()
-//                        }
-//                    }
-//                }
+//                        ]
+//                    ]
+//                ]
 //                catch (Exception)
 //                [
 //                    result = controller.Forbid("Unauthorized account")
-//                }
-//            }
+//                ]
+//            ]
 //            else
 //            [
 //                result = controller.BadRequest("Missing Authentication-Token")
-//            }
-
+//            ]
 //            return result
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -32,8 +32,7 @@
             //foreach (var extension in configuration.Extensions)
             //[
             //    extension.Initialize(container)
-            //}
-
+            //]
             var connection = container.GetInstance<IStorageConnection>();
             return connection;
         }

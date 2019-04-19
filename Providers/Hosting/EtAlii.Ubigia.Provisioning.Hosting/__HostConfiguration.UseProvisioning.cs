@@ -12,12 +12,11 @@
 //            var services = new Type[]
 //            [
 //                typeof(IProvisioningService),
-//            }
+//            ]
 //            configuration.Use(services)
 
 //            return configuration
-//        }
-
+//        ]
 //        //IHostConfiguration Use(IProviderConfiguration[] providerConfigurations)
 //        //IHostConfiguration Use(string address, string account, string password)
 
@@ -25,5 +24,5 @@
 //        //IHostConfiguration Use(Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
 //        //IHostConfiguration Use(Action<IDataContextConfiguration> dataContextConfigurationFactoryExtension)
 
-//    }
-//}
+//    ]
+//]

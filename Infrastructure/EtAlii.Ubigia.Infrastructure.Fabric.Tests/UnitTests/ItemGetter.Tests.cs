@@ -18,13 +18,11 @@
         //        new Space { Id = firstId },
         //        new Space { Id = secondId },
         //        new Space { Id = thirdId },
-        //    }
-
+        //    ]
         //    var item = itemGetter.Get(items, secondId)
 
         //    Assert.Equal(secondId, item.Id)
-        //}
-
+        //]
         //[Fact]
         //public void ItemGetter_Get_No_ID()
         //[
@@ -41,6 +39,6 @@
 
         //    // Assert.
         //    Assert.Throws<ArgumentException>(act)
-        //}
+        //]
     }
 }

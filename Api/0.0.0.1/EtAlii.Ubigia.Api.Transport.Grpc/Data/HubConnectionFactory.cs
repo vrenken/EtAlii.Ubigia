@@ -18,31 +18,28 @@
 //		    if (httpClientHandler != null)
 //		    [
 //			    builder = builder.WithMessageHandler(httpClientHandler)
-//		    }
+//		    ]
 //			return builder
-//	    }
-
+//	    ]
 //	    public HubConnection CreateForHost(HttpMessageHandler httpClientHandler, Uri address, string hostIdentifier)
 //	    [
 //		    var builder = CreateBuilder(httpClientHandler, address)
 //		    builder = builder.WithHeader("Host-Identifier", hostIdentifier)
 //			return builder.Build()
-//		}
-
+//		]
 //	    public HubConnection Create(IGrpcSpaceTransport transport, Uri address)
 //	    [
 //		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken)
-//	    }
+//	    ]
 //	    public HubConnection Create(IGrpcStorageTransport transport, Uri address)
 //	    [
 //		    return Create(transport.HttpMessageHandler, address, transport.AuthenticationToken)
-//	    }
-
+//	    ]
 //		public HubConnection Create(HttpMessageHandler httpClientHandler, Uri address, string authenticationToken)
 //	    [
 //		    var builder = CreateBuilder(httpClientHandler, address)
 //			builder = builder.WithHeader("Authentication-Token", authenticationToken)
 //			return builder.Build()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

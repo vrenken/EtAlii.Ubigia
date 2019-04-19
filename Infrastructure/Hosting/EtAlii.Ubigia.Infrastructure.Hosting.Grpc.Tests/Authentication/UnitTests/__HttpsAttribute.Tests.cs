@@ -22,8 +22,7 @@
 //            attribute.OnActionExecuting(actionContext)
 
 //            Assert.Null(actionContext.Response)
-//        }
-
+//        ]
 //        [Fact]
 //        public void HttpsAttribute_Create_Incorrect()
 //        [
@@ -35,8 +34,7 @@
 //            Assert.NotNull(actionContext.Response)
 //            Assert.IsType< HttpResponseMessage>(actionContext.Response)
 //            Assert.Equal(HttpStatusCode.BadRequest, actionContext.Response.StatusCode)
-//        }
-
+//        ]
 //        private HttpActionContext CreateContext(string uri)
 //        [
 //            return new HttpActionContext
@@ -49,8 +47,7 @@
 //                ),
 //                new ImplementedHttpActionDescriptor()
 //            )
-//        }
-
+//        ]
 //        public class ImplementedHttpActionDescriptor : HttpActionDescriptor
 //        [
 //            public override string ActionName => "ActionName"
@@ -58,14 +55,12 @@
 //            public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)
 //            [
 //                return Task.FromResult(new object())
-//            }
-
+//            ]
 //            public override Collection<HttpParameterDescriptor> GetParameters()
 //            [
 //                return new Collection<HttpParameterDescriptor>()
-//            }
-
+//            ]
 //            public override Type ReturnType => typeof(string)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

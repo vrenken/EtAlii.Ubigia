@@ -42,8 +42,8 @@
             //    if (!startsWithRelation)
             //    [
             //        throw new ScriptParserException("The add operation requires a path to start with a relation symbol.")
-            //    }
-            //}
+            //    ]
+            //]
         }
     }
 }

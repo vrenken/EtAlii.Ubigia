@@ -36,20 +36,19 @@
 ////                    [
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
-////                    }
+////                    ]
 ////                    mappings.Add(mapping)
-////                }
+////                ]
 ////                if (node != null)
 ////                [
 ////                    var mapping = new IdMapping
 ////                    [
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
-////                    }
+////                    ]
 ////                    mappings.Add(mapping)
-////                }
-//            }
-            
+////                ]
+//            ]
             return Task.FromResult(new IdDirectiveResult
             {
                 //Mappings = mappings.ToArray(),

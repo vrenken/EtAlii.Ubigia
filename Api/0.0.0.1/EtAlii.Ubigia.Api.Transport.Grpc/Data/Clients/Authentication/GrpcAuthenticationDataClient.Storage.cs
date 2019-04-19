@@ -32,7 +32,7 @@
 //            if (connection.Storage != null)
 //            [
 //                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen)
-//            }
+//            ]
 //
 //            var grpcConnection = (IGrpcStorageConnection)connection
 //
@@ -41,15 +41,14 @@
 //            if (storage == null)
 //            [
 //                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToStorage)
-//            }
+//            ]
 //
 //            //// We do not want the address pushed to us from the server. 
 //            //// If we get here then we already know how to contact the server. 
 //            storage.Address = address.ToString()
 //
 //            return storage
-//        }
-
+//        ]
         private async Task<Api.Storage> GetConnectedStorage(IGrpcTransport transport)
         {
             var request = new StorageSingleRequest{ };

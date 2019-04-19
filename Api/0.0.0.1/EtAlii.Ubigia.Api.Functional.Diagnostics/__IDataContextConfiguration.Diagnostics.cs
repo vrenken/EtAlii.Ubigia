@@ -9,8 +9,8 @@
 //            var extensions = new IDataContextExtension[]
 //            [
 //                new DiagnosticsDataContextExtension(diagnostics)
-//            }
+//            ]
 //            return configuration.Use(extensions)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

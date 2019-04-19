@@ -4,5 +4,5 @@
 //    public abstract class ProcessHandlerBase<T> : CommandQueueCommandHandler<T>
 //        where T : ICommand
 //    [
-//    }
-//}
+//    ]
+//]

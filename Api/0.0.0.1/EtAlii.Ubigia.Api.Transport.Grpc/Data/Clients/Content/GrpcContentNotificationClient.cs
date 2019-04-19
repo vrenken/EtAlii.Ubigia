@@ -16,8 +16,7 @@
 //        public GrpcContentNotificationClient()
 //        [
 //            //_name = GrpcHub.Content
-//        }
-
+//        ]
         private void OnUpdated(Api.Identifier identifier)
         {
             Updated(identifier);
@@ -40,7 +39,7 @@
 	        //[
 		    //    _connection.On<Identifier>("updated", OnUpdated),
 		    //    _connection.On<Identifier>("stored", OnStored),
-	        //}
+	        //]
         }
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)

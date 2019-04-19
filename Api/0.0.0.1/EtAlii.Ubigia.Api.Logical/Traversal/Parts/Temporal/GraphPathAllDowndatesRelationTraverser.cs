@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Logical
 //        public GraphPathAllDowndatesRelationTraverser(IGraphPathFinalRelationTraverser graphPathFinalRelationTraverser) 
 //            : base(graphPathFinalRelationTraverser)
 //        [
-//        }
+//        ]
 //        
         protected override async Task<IEnumerable<Identifier>> GetNextRecursion(Identifier start, ITraversalContext context, ExecutionScope scope)
         {

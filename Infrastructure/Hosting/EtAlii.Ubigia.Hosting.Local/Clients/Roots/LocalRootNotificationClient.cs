@@ -23,7 +23,7 @@
             //    hubProxy.On<Guid>("added", OnAdded),
             //    hubProxy.On<Guid>("changed", OnChanged),
             //    hubProxy.On<Guid>("removed", OnRemoved),
-            //}
+            //]
         }
 
         private void OnAdded(Guid id)

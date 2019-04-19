@@ -35,8 +35,7 @@
         //        var contentManager = new NET47ContentManager(connection)
 
         //        // Assert.
-        //    }
-
+        //    ]
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Upload_Non_Existing_File()
         //    [
@@ -58,8 +57,7 @@
 
         //        // Assert.
         //        Assert.Throws<ContentManagerException>(act)
-        //    }
-
+        //    ]
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Upload_Existing_File()
         //    [
@@ -79,6 +77,6 @@
 
         //        // Assert.
         //        Assert.Throws<ContentManagerException>(act)
-        //    }
+        //    ]
     }
 }

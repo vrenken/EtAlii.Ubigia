@@ -52,13 +52,12 @@
         //        if (_parser.CanParse(node))
         //        [
         //            _parser.Parse(node)
-        //        }
+        //        ]
         //    })
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
-        //}
-
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public void TypeValueParser_Parse_03()
         {
@@ -110,13 +109,12 @@
         //        if (_parser.CanParse(node))
         //        [
         //            _parser.Parse(node)
-        //        }
+        //        ]
         //    })
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
-        //}
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void TypeValueParser_Parse_06()
         //[
@@ -130,13 +128,12 @@
         //        if (_parser.CanParse(node))
         //        [
         //            _parser.Parse(node)
-        //        }
+        //        ]
         //    })
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
-        //}
-
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public void TypeValueParser_Parse_07()
         {
@@ -170,14 +167,12 @@
         //        if (_parser.CanParse(node))
         //        [
         //            _parser.Parse(node)
-        //        }
+        //        ]
         //    })
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
-        //}
-
-
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public void TypeValueParser_Parse_09()
         {

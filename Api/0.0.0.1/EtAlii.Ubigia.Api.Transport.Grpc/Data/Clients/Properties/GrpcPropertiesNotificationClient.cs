@@ -15,8 +15,7 @@
 //        public GrpcPropertiesNotificationClient()
 //        [
 //            //_name = GrpcHub.Property
-//        }
-
+//        ]
         private void OnStored(Api.Identifier identifier)
         {
             Stored(identifier);
@@ -31,7 +30,7 @@
 			//_subscriptions = new[]
 			//[
 			//	_connection.On<Identifier>("stored", OnStored),
-			//}
+			//]
 		}
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)

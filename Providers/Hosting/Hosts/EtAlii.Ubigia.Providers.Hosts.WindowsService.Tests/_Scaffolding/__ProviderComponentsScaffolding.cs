@@ -19,8 +19,8 @@
 //                    container.GetInstance<TimeImporter>(),
 //                    container.GetInstance<tweetImporter>(),
 //                    container.GetInstance<MailImporter>(),
-//                }
+//                ]
 //            })
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -71,8 +71,7 @@
 //            _container = container
 //            _logger = logger
 //            _logicalContext = logicalContext
-//        }
-
+//        ]
 //        public void Start()
 //        [
 //	  //      var configuration = (IConfiguration) null
@@ -112,12 +111,11 @@
 //		       // foreach (var componentManager in _componentManagers)
 //		       // [
 //			      //  componentManager.Start(applicationBuilder)
-//		       // }
+//		       // ]
 //	        //})
 
 //            _logger.Info("Started test infrastructure hosting")
-//        }
-
+//        ]
 //        public void Stop()
 //        [
 //            _logger.Info("Stopping test infrastructure hosting")
@@ -128,11 +126,10 @@
 //            foreach (var componentManager in _componentManagers)
 //            [
 //                componentManager.Stop()
-//            }
-
+//            ]
 //            _logger.Info("Stopped test infrastructure hosting")
 
 //            _logicalContext.Stop()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -70,8 +70,8 @@
 //            var response = new LocalStorageResponse
 //            [
 //                Storage = storage.ToWire()
-//            }
+//            ]
 //            return Task.FromResult(response)
-//        }
+//        ]
     }
 }

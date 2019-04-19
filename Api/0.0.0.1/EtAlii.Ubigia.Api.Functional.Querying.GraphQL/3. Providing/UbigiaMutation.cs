@@ -9,9 +9,9 @@
     ///   "variables": {
     ///     "human": {
     ///       "name": "Boba Fett"
-    ///     }
-    ///   }
-    /// }
+    ///     ]
+    ///   ]
+    /// ]
     /// </example>
     public class UbigiaMutation : ObjectGraphType<object>, IObjectGraphType
     {

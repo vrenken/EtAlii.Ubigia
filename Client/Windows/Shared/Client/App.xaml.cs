@@ -47,21 +47,20 @@
 //            if (AlreadyRunning)
 //            [
 //                Current.Shutdown()
-//            }
+//            ]
 //            else
 //            [
 //                RegisterKnownTypes()
 //                //Container.Verify()
 //
 //                StartServices()
-//            }
-//        }
+//            ]
+//        ]
 //
 //        private void OnApplicationExit(object sender, ExitEventArgs e)
 //        [
 //            StopServices()
-//        }
-
+//        ]
         private void StartServices()
         {
             _services = new IApplicationService[]

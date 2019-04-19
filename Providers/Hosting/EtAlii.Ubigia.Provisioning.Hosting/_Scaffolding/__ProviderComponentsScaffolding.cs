@@ -16,8 +16,8 @@
 //            //        container.GetInstance<TimeComponent>(),
 //            //        container.GetInstance<TwitterComponent>(),
 //            //        container.GetInstance<MailComponent>(),
-//            //    }
+//            //    ]
 //            //})
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

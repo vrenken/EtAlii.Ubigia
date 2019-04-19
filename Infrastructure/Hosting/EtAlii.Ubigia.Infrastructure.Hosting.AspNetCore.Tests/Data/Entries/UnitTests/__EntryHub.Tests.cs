@@ -11,6 +11,6 @@
 //        [
 //            var entryHub = new EntryHub(null, null)
 //            Assert.NotNull(entryHub)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

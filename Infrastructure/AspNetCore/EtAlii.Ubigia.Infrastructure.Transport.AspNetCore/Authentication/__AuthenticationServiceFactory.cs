@@ -14,6 +14,6 @@
 //            container.Register<IConfigurationSection>(() => configuration)
 
 //            return container.GetInstance<IAuthenticationService>()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

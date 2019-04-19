@@ -16,8 +16,7 @@
 //        public GrpcEntryNotificationClient()
 //        [
 //            //_name = GrpcHub.Entry
-//        }
-
+//        ]
         private void OnPrepared(Identifier identifier)
         {
             Prepared(identifier);
@@ -40,7 +39,7 @@
 	        //[
 				//_connection.On<Identifier>("prepared", OnPrepared),
                 //_connection.On<Identifier>("stored", OnStored),
-            //}
+            //]
         }
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)

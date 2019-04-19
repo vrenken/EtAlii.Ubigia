@@ -23,5 +23,5 @@
 //    "client_secret": "jgvSuDubPB6ulAi2bSCqEkat",
 //    "redirect_uris": [ "http://localhost:64000/settings/google/" ],
 //    "javascript_origins": [ "http://localhost:64000" ]
-//  }
-//}
+//  ]
+//]

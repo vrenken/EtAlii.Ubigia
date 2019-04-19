@@ -19,22 +19,20 @@
 //            [
 //                _canExecute = newValue
 //                CanExecuteChanged?.Invoke(this, EventArgs.Empty)
-//            }
-//        }
-
+//            ]
+//        ]
 //        public void Initialize(IHost host)
 //        [
 //            if (Host != null)
 //            [
 //                Host.PropertyChanged -= OnHostPropertyChanged
-//            }
+//            ]
 //            Host = host
 //            if (Host != null)
 //            [
 //                Host.PropertyChanged += OnHostPropertyChanged
-//            }
-//        }
-
+//            ]
+//        ]
 //        private void OnHostPropertyChanged(object sender, PropertyChangedEventArgs e)
 //        [
 //            switch (e.PropertyName)
@@ -45,15 +43,13 @@
 //                case nameof(Host.Status):
 //                    OnHostStatusChanged(Host.Status)
 //                    break
-//            }
-//        }
-
+//            ]
+//        ]
 //        protected virtual void OnHostStatusChanged(Status[] hostStatus)
 //        [
-//        }
-
+//        ]
 //        protected virtual void OnHostStateChanged(State state)
 //        [
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

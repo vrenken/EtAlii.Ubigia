@@ -7,6 +7,6 @@
 //            configuration = configuration ?? new GraphSLScriptContextConfiguration()
 //            configuration = configuration.Use(dataContext)
 //            return new GraphSLScriptContextFactory().Create(configuration)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

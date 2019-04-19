@@ -19,10 +19,9 @@
         //    if (properties == null)
         //    [
         //        throw new ArgumentNullException("properties")
-        //    }
+        //    ]
         //    _properties = properties
-        //}
-
+        //]
         public bool TryGetValue(string key, out object value)
         {
             return _properties.TryGetValue(key, out value);

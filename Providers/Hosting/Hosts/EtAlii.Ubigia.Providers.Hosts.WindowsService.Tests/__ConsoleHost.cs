@@ -10,6 +10,6 @@
 //            IProviderManager providerManager) 
 //            : base(data, configuration, providerManager)
 //        [
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

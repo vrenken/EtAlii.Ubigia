@@ -24,8 +24,7 @@
 //	    public RequiresAuthenticationAttribute(params string[] requiredRoles)
 //	    [
 //		    _requiredRoles = requiredRoles
-//	    }
-
+//	    ]
 //		private IHttpContextAuthenticationVerifier _verifier
 
 //		/// <summary>
@@ -41,18 +40,16 @@
 //	            var dependencyResolver = (IDependencyResolver)context.HttpContext.RequestServices.GetService(typeof(IDependencyResolver))
 //	            _verifier = (IHttpContextAuthenticationVerifier)dependencyResolver.GetService(typeof(IHttpContextAuthenticationVerifier))
 //				//_verifier = (IAuthenticationVerifier)actionContext.ControllerContext.Configuration.DependencyResolver.GetService(typeof(IAuthenticationVerifier))
-//            }
-
+//            ]
 //			Controller controller = null
 //            var status = _verifier.Verify(context.HttpContext, controller, _requiredRoles)
 //            if (status is OkObjectResult)
 //            [
-//            }
+//            ]
 //            else
 //            [
 //	            context.Result = new UnauthorizedResult()
-//            }
-//        }
-
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

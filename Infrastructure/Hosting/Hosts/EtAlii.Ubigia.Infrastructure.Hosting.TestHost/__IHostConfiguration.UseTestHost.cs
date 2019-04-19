@@ -11,6 +11,6 @@
 //	    public static IHostConfiguration UseTestHost(this IHostConfiguration configuration)
 //	    [
 //		    return configuration
-//	    }
-//	}
-//}
+//	    ]
+//	]
+//]

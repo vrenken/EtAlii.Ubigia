@@ -13,8 +13,7 @@
 //            where TController : ControllerBase
 //        [
 //            return AddMvcForTypedController<TController>(services, options => { })
-//        }
-
+//        ]
 //        public static IMvcBuilder AddMvcForTypedController<TController>(this IServiceCollection services, Action<MvcOptions> configureMvcOptions)
 //            where TController : ControllerBase
 //        [
@@ -27,7 +26,6 @@
 //                    manager.FeatureProviders.Add(new TypedControllerFeatureProvider<TController>())
 //                })
 
-//        }
-
-//    }
-//}
+//        ]
+//    ]
+//]

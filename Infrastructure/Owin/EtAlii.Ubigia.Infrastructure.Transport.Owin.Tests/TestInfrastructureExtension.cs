@@ -16,8 +16,7 @@
 //        [
 //            _diagnostics = diagnostics
 //            _signalRDependencyResolver = signalRDependencyResolver
-//        }
-
+//        ]
 //        public void Initialize(Container container)
 //        [
 //            var scaffoldings = new IScaffolding[]
@@ -27,12 +26,11 @@
 //                new SignalRAdminApiScaffolding(_signalRDependencyResolver),
 
 //                new WebApiApiScaffolding<TestAuthenticationIdentityProvider>(),
-//            }
-
+//            ]
 //            foreach (var scaffolding in scaffoldings)
 //            [
 //                scaffolding.Register(container)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

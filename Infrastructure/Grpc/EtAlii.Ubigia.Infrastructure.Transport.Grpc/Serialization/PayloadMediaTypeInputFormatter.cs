@@ -27,33 +27,27 @@
 //		    // Set default supported media type
 //		    SupportedMediaTypes.Add(MediaType)
 //			_serializer = new SerializerFactory().Create()
-//		}
-
-
+//		]
 //		protected override bool CanReadType(Type type)
 //		[
 //			return true
-//		}
-
+//		]
 //		public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
 //		[
 //			var request = context.HttpContext.Request
 //			var result = ReadFromStream(context.ModelType, request.Body)
 //			return await InputFormatterResult.SuccessAsync(result)
-//		}
-
+//		]
 //		private object ReadFromStream(Type type, Stream readStream)
 //        [
 //            if (type == null)
 //            [
 //                throw new ArgumentNullException(nameof(type))
-//            }
-
+//            ]
 //            if (readStream == null)
 //            [
 //                throw new ArgumentNullException(nameof(readStream))
-//            }
-
+//            ]
 //            // Special-case for simple types: Deserialize a Dictionary with a single element named Value.
 //            // Serialization created this Dictionary<string, object> to work around BSON restrictions: BSON cannot
 //            // handle a top-level simple type.  NewtonSoft.Json throws a JsonWriterException with message "Error
@@ -77,8 +71,7 @@
 //                    var e1 = new InvalidOperationException("Missing data")
 //                    e1.Data.Add("dictionaryType.Name", dictionaryType.Name)
 //                    throw e1
-//                }
-
+//                ]
 //                // Unfortunately IDictionary doesn't have TryGetValue()...
 //                var firstKey = String.Empty
 //                foreach (DictionaryEntry item in dictionary)
@@ -87,50 +80,44 @@
 //                    [
 //                        // Success
 //                        return item.Value
-//                    }
+//                    ]
 //                    else
 //                    [
 //                        if (item.Key != null)
 //                        [
 //                            firstKey = item.Key.ToString()
-//                        }
-
+//                        ]
 //                        break
-//                    }
-//                }
-
+//                    ]
+//                ]
 //                var e2 = new InvalidOperationException("Unexpected Data")
 //                e2.Data.Add("dictionary.Count", dictionary.Count)
 //                e2.Data.Add("firstKey", firstKey)
 //                throw e2
-//            }
+//            ]
 //            else
 //            [
 //				return ReadFromStreamInternal(type, readStream)
-//            }
-//        }
-
+//            ]
+//        ]
 //	    private object ReadFromStreamInternal(Type type, Stream readStream)
 //	    [
 //			using (var reader = this.CreateJsonReader(type, readStream))
 //		    [
 //			    reader.CloseInput = false
 //				return _serializer.Deserialize(reader, type)
-//		    }
-//		}
-
+//		    ]
+//		]
 //		public JsonReader CreateJsonReader(Type type, Stream readStream)
 //        [
 //            if (type == null)
 //            [
 //                throw new ArgumentNullException(nameof(type))
-//            }
-
+//            ]
 //            if (readStream == null)
 //            [
 //                throw new ArgumentNullException(nameof(readStream))
-//            }
-
+//            ]
 //            var reader = new BsonDataReader(new BinaryReader(readStream))
 
 //            try
@@ -138,17 +125,15 @@
 //                // Special case discussed at http://stackoverflow.com/questions/16910369/bson-array-deserialization-with-json-net
 //                // Dispensed with string (aka IEnumerable<char>) case above in ReadFromStream()
 //                reader.ReadRootValueAsArray = EnumerableTypeInfo.IsAssignableFrom(type.GetTypeInfo()) && !DictionaryTypeInfo.IsAssignableFrom(type.GetTypeInfo())
-//            }
+//            ]
 //            catch
 //            [
 //                // Ensure instance is cleaned up in case of an issue
 //                ((IDisposable)reader).Dispose()
 //                throw
-//            }
-
+//            ]
 //            return reader
-//        }
-
+//        ]
 //        // Return true if Json.Net will likely convert value of given type to a Json primitive, not JsonArray nor
 //        // JsonObject.
 //        // To do: https://aspnetwebstack.codeplex.com/workitem/1467
@@ -157,6 +142,6 @@
 //            var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string)
 
 //            return isSimpleType
-//        }
-//	}
-//}
+//        ]
+//	]
+//]

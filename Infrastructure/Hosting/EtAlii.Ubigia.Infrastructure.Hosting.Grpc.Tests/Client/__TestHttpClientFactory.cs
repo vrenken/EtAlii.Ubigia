@@ -12,7 +12,7 @@
 //        public TestHttpClientFactory(TestServer testServer)
 //        [
 //			_testServer = testServer
-//        }
+//        ]
 //
 //        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)
 //        [
@@ -24,6 +24,6 @@
 //			client.DefaultRequestHeaders.Accept.Add(PayloadMediaTypeFormatter.MediaType)
 //
 //			return client
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

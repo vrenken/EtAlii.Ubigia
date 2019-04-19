@@ -50,20 +50,19 @@
         //    if (auth != null && auth.Scheme == "Basic")
         //    [
         //        authHeader = auth.Parameter
-        //    }
-
+        //    ]
         //    if (string.IsNullOrEmpty(authHeader))
         //    [
         //        return null
-        //    }
+        //    ]
         //    authHeader = Encoding.Default.GetString(Convert.FromBase64String(authHeader))
 
         //    var tokens = authHeader.Split(':')
         //    if (tokens.Length < 2)
         //    [
         //        return null
-        //    }
+        //    ]
         //    return new AuthenticationIdentity(tokens[0], tokens[1])
-        //}
+        //]
     }
 }

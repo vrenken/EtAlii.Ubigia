@@ -16,6 +16,6 @@
 //			ServiceDescriptor descriptor = ServiceDescriptor.Singleton(typeof(TService), (object)instance)
 //			collection.TryAdd(descriptor)
 //			return collection
-//		}
-//	}
-//}
+//		]
+//	]
+//]

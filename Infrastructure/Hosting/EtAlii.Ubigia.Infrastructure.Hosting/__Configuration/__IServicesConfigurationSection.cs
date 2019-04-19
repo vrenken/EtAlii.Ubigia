@@ -5,5 +5,5 @@
 //    public interface IServicesConfigurationSection
 //    [
 //        IHostService ToService()
-//    }
-//}
+//    ]
+//]

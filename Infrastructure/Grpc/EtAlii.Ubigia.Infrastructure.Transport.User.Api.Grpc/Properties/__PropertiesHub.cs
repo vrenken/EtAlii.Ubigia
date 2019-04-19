@@ -14,22 +14,20 @@
 //            : base(authenticationTokenVerifier)
 //        [
 //            _items = items
-//        }
-
+//        ]
 //        public PropertyDictionary Get(Identifier entryId)
 //        [
 //            PropertyDictionary response = null
 //            try
 //            [
 //                response = _items.Get(entryId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a properties GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Post a new properties for the specified entry.
 //        /// </summary>
@@ -46,11 +44,11 @@
 //                // Send the updated event.
 //                Clients.All.SendAsync("stored", new object[] { entryId })
 //                //Clients.All.stored(entryId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Properties POST client request", e)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

@@ -15,15 +15,13 @@
         //    if (extensions == null)
         //    [
         //        throw new ArgumentException(nameof(extensions))
-        //    }
-
+        //    ]
         //    _extensions = extensions
         //        .Concat(_extensions)
         //        .Distinct()
         //        .ToArray()
         //    return this
-        //}
-
+        //]
         public IFabricContextConfiguration Use(IStorage storage)
         {
             if (storage == null)

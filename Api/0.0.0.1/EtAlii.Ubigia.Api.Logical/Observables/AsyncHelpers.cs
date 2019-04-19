@@ -22,22 +22,21 @@
 //                try
 //                [
 //                    await task()
-//                }
+//                ]
 //                catch (Exception e)
 //                [
 //                    synch.InnerException = e
 //                    throw
-//                }
+//                ]
 //                finally
 //                [
 //                    synch.EndMessageLoop()
-//                }
+//                ]
 //            }, null)
 //            synch.BeginMessageLoop()
 
 //            SynchronizationContext.SetSynchronizationContext(oldContext)
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Execute's an async Task<T> method which has a T return type synchronously
 //        /// </summary>
@@ -55,23 +54,21 @@
 //                try
 //                [
 //                    ret = await task()
-//                }
+//                ]
 //                catch (Exception e)
 //                [
 //                    synch.InnerException = e
 //                    throw
-//                }
+//                ]
 //                finally
 //                [
 //                    synch.EndMessageLoop()
-//                }
+//                ]
 //            }, null)
 //            synch.BeginMessageLoop()
 //            SynchronizationContext.SetSynchronizationContext(oldContext)
 //            return ret
-//        }
-
-
+//        ]
 //        /// <summary>
 //        /// Execute's an async IObservable<T> method which has a T return type synchronously
 //        /// </summary>
@@ -89,22 +86,21 @@
 //                try
 //                [
 //                    ret = await observable()
-//                }
+//                ]
 //                catch (Exception e)
 //                [
 //                    synch.InnerException = e
 //                    throw
-//                }
+//                ]
 //                finally
 //                [
 //                    synch.EndMessageLoop()
-//                }
+//                ]
 //            }, null)
 //            synch.BeginMessageLoop()
 //            SynchronizationContext.SetSynchronizationContext(oldContext)
 //            return ret
-//        }
-
+//        ]
 //        private class ExclusiveSynchronizationContext : SynchronizationContext
 //        [
 //            private bool done
@@ -115,22 +111,19 @@
 //            public override void Send(SendOrPostCallback d, object state)
 //            [
 //                throw new NotSupportedException("We cannot send to our same thread")
-//            }
-
+//            ]
 //            public override void Post(SendOrPostCallback d, object state)
 //            [
 //                lock (_items)
 //                [
 //                    _items.Enqueue(Tuple.Create(d, state))
-//                }
+//                ]
 //                _workItemsWaiting.Set()
-//            }
-
+//            ]
 //            public void EndMessageLoop()
 //            [
 //                Post(_ => done = true, null)
-//            }
-
+//            ]
 //            public void BeginMessageLoop()
 //            [
 //                while (!done)
@@ -141,27 +134,26 @@
 //                        if (_items.Count > 0)
 //                        [
 //                            task = _items.Dequeue()
-//                        }
-//                    }
+//                        ]
+//                    ]
 //                    if (task != null)
 //                    [
 //                        task.Item1(task.Item2)
 //                        if (InnerException != null) // the method threw an exeption
 //                        [
 //                            throw new AggregateException("AsyncHelpers.Run method threw an exception.", InnerException)
-//                        }
-//                    }
+//                        ]
+//                    ]
 //                    else
 //                    [
 //                        _workItemsWaiting.WaitOne()
-//                    }
-//                }
-//            }
-
+//                    ]
+//                ]
+//            ]
 //            public override SynchronizationContext CreateCopy()
 //            [
 //                return this
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

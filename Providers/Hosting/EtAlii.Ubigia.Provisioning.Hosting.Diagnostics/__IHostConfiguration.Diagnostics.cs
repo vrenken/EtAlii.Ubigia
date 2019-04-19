@@ -15,12 +15,12 @@
 //            var extensions = new IHostExtension[]
 //            [
 //                new DiagnosticsProviderHostExtension(diagnostics), 
-//            }
+//            ]
 //            return configuration
 //                .Use(extensions)
 //                .Use((IDataConnectionConfiguration c) => c.Use(diagnostics))
 //                .Use((IManagementConnectionConfiguration c) => c.Use(diagnostics))
 //                .Use((IDataContextConfiguration c) => c.Use(diagnostics))
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

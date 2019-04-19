@@ -87,11 +87,11 @@
 //            if (enumerable != null)
 //            [
 //                output.AddRange(enumerable)
-//            }
+//            ]
 //            else if (o != null)
 //            [
 //                output.Add(o)
-//            }
-//        }
+//            ]
+//        ]
     }
 }

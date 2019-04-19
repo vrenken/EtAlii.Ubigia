@@ -23,8 +23,7 @@
 //        private ObservableCollection<Space> GetItems()
 //        [
 //            return _logicalContext.Spaces.GetItems()
-//        }
-
+//        ]
         public async Task<Space> Add(Space item, SpaceTemplate template)
         {
             var addedSpace = _logicalContext.Spaces.Add(item, template, out bool isAdded);

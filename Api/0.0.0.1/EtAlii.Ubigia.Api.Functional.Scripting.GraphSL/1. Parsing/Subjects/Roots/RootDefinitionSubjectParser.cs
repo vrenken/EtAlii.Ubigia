@@ -53,8 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional
             //[
             //    var parts = pathPart.Children.ToArray().Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray()
             //    schema = new PathSubject(parts)
-            //}
-
+            //]
             return new RootDefinitionSubject(type);//, schema)
         }
 

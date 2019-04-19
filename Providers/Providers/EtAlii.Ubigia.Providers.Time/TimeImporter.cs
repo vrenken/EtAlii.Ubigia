@@ -34,7 +34,7 @@
             //if (addEachTenSeconds)
             //[
             //    _secondEntries = new List<IReadOnlyEntry>()
-            //}
+            //]
         }
 
         public void Start()
@@ -93,8 +93,7 @@
 //        private string GetType(DateTime utcTime, string format)
 //        [
 //            return utcTime.ToString(format)
-//        }
-
+//        ]
         private void Setup()
         {
             if (addEachTenSeconds)

@@ -14,8 +14,7 @@
 //        [
 //            _decoree = decoree
 //            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorPathSubjectConversion)
-//        }
-
+//        ]
 //        public async Task<object> Convert(PathSubject pathSubject, ProcessParameters<Subject, SequencePart> parameters, ExecutionScope scope)
 //        [
 //            dynamic profile = _profiler.Begin("Converting path subject for variable add operation: " + pathSubject.ToString())
@@ -26,6 +25,6 @@
 //            _profiler.End(profile)
 
 //            return result
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

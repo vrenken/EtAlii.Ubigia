@@ -19,15 +19,13 @@
         //    if (extensions == null)
         //    [
         //        throw new ArgumentException(nameof(extensions))
-        //    }
-
+        //    ]
         //    _extensions = extensions
         //        .Concat(_extensions)
         //        .Distinct()
         //        .ToArray()
         //    return this
-        //}
-
+        //]
         public ILogicalContextConfiguration Use(string name, Uri address)
         {
 			Name = name ?? throw new ArgumentNullException(nameof(name));

@@ -44,17 +44,17 @@ namespace EtAlii.Ubigia.Api.Logical
 //                            if (start == Identifier.Empty)
 //                            [
 //                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph")
-//                            }
+//                            ]
 //                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope)
 //
 //                            if (name != String.Empty && name != entry.Type)
 //                            [
 //                                return
-//                            }
+//                            ]
 //                            if (tag != String.Empty && tag != entry.Tag)
 //                            [
 //                                return
-//                            }
+//                            ]
 //                            parameters.Output.OnNext(entry.Id)
 //                    },
 //                    onCompleted: () => parameters.Output.OnCompleted())

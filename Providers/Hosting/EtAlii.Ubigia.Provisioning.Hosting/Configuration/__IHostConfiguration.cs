@@ -27,5 +27,5 @@
 //        IHostConfiguration Use(Action<IManagementConnectionConfiguration> managementConnectionConfigurationFactoryExtension)
 //        IHostConfiguration Use(Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
 //        IHostConfiguration Use(Action<IDataContextConfiguration> dataContextConfigurationFactoryExtension)
-//    }
-//}
+//    ]
+//]

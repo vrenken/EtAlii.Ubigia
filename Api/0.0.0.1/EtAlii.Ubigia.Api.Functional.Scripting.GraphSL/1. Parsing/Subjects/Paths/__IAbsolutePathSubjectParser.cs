@@ -2,5 +2,5 @@
 //[
 //    internal interface IAbsolutePathSubjectParser : ISubjectParser
 //    [
-//    }
-//}
+//    ]
+//]

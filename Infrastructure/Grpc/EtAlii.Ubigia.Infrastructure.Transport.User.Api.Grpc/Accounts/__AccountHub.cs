@@ -21,8 +21,7 @@
 //        [
 //            _items = items
 //			_authenticationTokenConverter = authenticationTokenConverter
-//		}
-
+//		]
 //		public Account GetForAuthenticationToken()
 //		[
 //			Account response
@@ -34,12 +33,12 @@
 //				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString)
 
 //				response = _items.Get(authenticationToken.Name)
-//			}
+//			]
 //			catch (Exception e)
 //			[
 //				throw new InvalidOperationException("Unable to serve a Account GET client request", e)
-//			}
+//			]
 //			return response
-//		}
-//    }
-//}
+//		]
+//    ]
+//]

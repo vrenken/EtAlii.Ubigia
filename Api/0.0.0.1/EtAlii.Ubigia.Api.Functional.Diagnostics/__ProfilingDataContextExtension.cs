@@ -16,6 +16,6 @@
 ////            container.RegisterDecorator(typeof(IScriptParserFactory), typeof(ProfilingScriptParserFactory))
 //
 //            container.Register<IProfiler>(() => new Profiler(ProfilingAspects.Functional.Context))
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

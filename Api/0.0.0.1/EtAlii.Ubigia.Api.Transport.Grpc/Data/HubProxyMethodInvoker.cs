@@ -12,7 +12,7 @@
 //            try
 //            [
 //                return await connection.InvokeAsync<T>(methodName, parameters)
-//            }
+//            ]
 //            catch (Exception e) when (
 //                e.Message == "Invalid account" || 
 //                e.Message == "Unauthorized" ||
@@ -21,25 +21,24 @@
 //                e.Message.StartsWith("Unauthorized account")) 
 //            [
 //                throw new UnauthorizedInfrastructureOperationException(e.Message, e)
-//            }
+//            ]
 //            catch (AggregateException e)
 //            [
 //                var message = String.Format(ErrorMessageFormat, methodName, proxyName)
 //                throw new InvalidInfrastructureOperationException(message, e.InnerException)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                var message = String.Format(ErrorMessageFormat, methodName, proxyName)
 //                throw new InvalidInfrastructureOperationException(message, e)
-//            }
-//        }
-
+//            ]
+//        ]
 //        public async Task Invoke(HubConnection connection, string proxyName, string methodName, params object[] parameters)
 //        [
 //            try
 //            [
 //                await connection.InvokeAsync(methodName, parameters)
-//            }
+//            ]
 //            catch (Exception e) when (
 //                e.Message == "Invalid account" ||
 //                e.Message == "Unauthorized" ||
@@ -48,17 +47,17 @@
 //                e.Message.StartsWith("Unauthorized account"))
 //            [
 //                throw new UnauthorizedInfrastructureOperationException(e.Message, e)
-//            }
+//            ]
 //            catch (AggregateException e)
 //            [
 //                var message = String.Format(ErrorMessageFormat, methodName, proxyName)
 //                throw new InvalidInfrastructureOperationException(message, e.InnerException)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                var message = String.Format(ErrorMessageFormat, methodName, proxyName)
 //                throw new InvalidInfrastructureOperationException(message, e)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

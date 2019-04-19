@@ -17,10 +17,9 @@
         //    if (properties == null)
         //    [
         //        throw new ArgumentNullException("properties")
-        //    }
+        //    ]
         //    _properties = properties
-        //}
-
+        //]
         /// <summary>
         /// Multicast event for property change notifications.
         /// </summary>

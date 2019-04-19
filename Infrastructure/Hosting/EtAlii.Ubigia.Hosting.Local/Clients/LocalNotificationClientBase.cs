@@ -26,7 +26,7 @@
             //foreach (var subscription in _subscriptions)
             //[
             //    subscription.Dispose()
-            //}
+            //]
             _notificationProxy = null;
         }
     }

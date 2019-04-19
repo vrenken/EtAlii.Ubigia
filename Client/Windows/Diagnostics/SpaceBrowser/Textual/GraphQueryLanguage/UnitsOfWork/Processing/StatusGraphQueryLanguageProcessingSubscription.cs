@@ -78,7 +78,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                        _statusWriter.Write(viewModel, "Query execution finished successful.")
 //                        _statusWriter.Write(viewModel,
 //                            $"Total run time: {duration:hh}:{duration:mm}:{duration:ss}.{duration:fff}")
-//                    }
+//                    ]
 //
 //                    Task.Delay(500).Wait()
 //                    viewModel.CanStop = false

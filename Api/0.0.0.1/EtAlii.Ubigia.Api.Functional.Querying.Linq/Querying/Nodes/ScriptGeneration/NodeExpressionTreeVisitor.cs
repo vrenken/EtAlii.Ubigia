@@ -14,23 +14,20 @@
 
 //        public NodeExpressionTreeVisitor()
 //        [
-//        }
-
+//        ]
 //        public string GetGqlExpression()
 //        [
 //            return _gqlExpression.ToString()
-//        }
-
+//        ]
 //        protected override Expression VisitInvocationExpression(InvocationExpression expression)
 //        [
 //            return base.VisitInvocationExpression(expression)
-//        }
+//        ]
 //        protected override Expression VisitQuerySourceReferenceExpression(QuerySourceReferenceExpression expression)
 //        [
 //            _gqlExpression.Append(expression.ReferencedQuerySource.ItemName)
 //            return expression
-//        }
-
+//        ]
 //        protected override Expression VisitBinaryExpression(BinaryExpression expression)
 //        [
 //            _gqlExpression.Append("(")
@@ -73,30 +70,26 @@
 //                default:
 //                    base.VisitBinaryExpression(expression)
 //                    break
-//            }
-
+//            ]
 //            VisitExpression(expression.Right)
 //            _gqlExpression.Append(")")
 
 //            return expression
-//        }
-
+//        ]
 //        protected override Expression VisitMemberExpression(MemberExpression expression)
 //        [
 //            VisitExpression(expression.Expression)
 //            _gqlExpression.AppendFormat(".{0}", expression.Member.Name)
 
 //            return expression
-//        }
-
+//        ]
 //        protected override Expression VisitConstantExpression(ConstantExpression expression)
 //        [
 //            //var namedParameter = _parameterAggregator.AddParameter(expression.Value)
 //            //_gqlExpression.AppendFormat(":{0}", namedParameter.Name)
 
 //            return expression
-//        }
-
+//        ]
 //        protected override Expression VisitMethodCallExpression(MethodCallExpression expression)
 //        [
 //            // In production code, handle this via method lookup tables.
@@ -110,25 +103,23 @@
 //                VisitExpression(expression.Arguments[0])
 //                _gqlExpression.Append("+'%')")
 //                return expression
-//            }
+//            ]
 //            else
 //            [
 //                return base.VisitMethodCallExpression(expression) // throws
-//            }
-//        }
-
+//            ]
+//        ]
 //        // Called when a LINQ expression type is not handled above.
 //        protected override Exception CreateUnhandledItemException<T>(T unhandledItem, string visitMethod)
 //        [
 //            string itemText = FormatUnhandledItem(unhandledItem)
 //            var message = string.Format("The expression '{0}' (type: {1}) is not supported by this LINQ provider.", itemText, typeof(T))
 //            return new NotSupportedException(message)
-//        }
-
+//        ]
 //        private string FormatUnhandledItem<T>(T unhandledItem)
 //        [
 //            var itemAsExpression = unhandledItem as Expression
 //            return itemAsExpression != null ? FormattingExpressionTreeVisitor.Format(itemAsExpression) : unhandledItem.ToString()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]
