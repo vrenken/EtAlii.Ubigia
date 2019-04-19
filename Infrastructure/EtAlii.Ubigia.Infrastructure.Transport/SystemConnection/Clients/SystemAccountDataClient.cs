@@ -16,7 +16,7 @@
             _infrastructure = infrastructure;
         }
 
-        public Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             // TODO: This is where the template functionality should continue.
             var account = new Account
@@ -25,8 +25,8 @@
                 Password = accountPassword,
             };
 
-            account = _infrastructure.Accounts.Add(account, template);
-            return Task.FromResult(account);
+            account = await _infrastructure.Accounts.Add(account, template);
+            return account;
         }
 
         public Task Remove(Guid accountId)

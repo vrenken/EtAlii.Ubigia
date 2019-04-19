@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
@@ -76,10 +77,10 @@
             
         }
 
-        public Account Add(Account account, AccountTemplate template)
+        public async Task<Account> Add(Account account, AccountTemplate template)
         {
             var start = Environment.TickCount;
-            account = _repository.Add(account, template);
+            account = await _repository.Add(account, template);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return account;
         }
