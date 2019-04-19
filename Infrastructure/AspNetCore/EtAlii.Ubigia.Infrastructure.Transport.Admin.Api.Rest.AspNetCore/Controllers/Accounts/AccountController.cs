@@ -2,6 +2,7 @@
 {
 	using System;
 	using System.Linq;
+	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api;
 	using EtAlii.Ubigia.Api.Transport;
 	using EtAlii.Ubigia.Infrastructure.Functional;
@@ -101,13 +102,13 @@
 
         // Add item
         [HttpPost]
-        public IActionResult Post([FromBody]Account item, [RequiredFromQuery]string accountTemplate)
+        public async Task<IActionResult> Post([FromBody]Account item, [RequiredFromQuery]string accountTemplate)
         {
             IActionResult response;
             try
             {
                 var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
-                item = _items.Add(item, template);
+                item = await _items.Add(item, template);
                 response = Ok(item);
             }
             catch (Exception ex)

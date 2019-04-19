@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
-	using EtAlii.Ubigia.Infrastructure.Functional;
+    using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 
     public class AdminAccountService : AccountGrpcService.AccountGrpcServiceBase, IAdminAccountService
@@ -65,19 +65,19 @@
             return Task.FromResult(response);
         }
 
-        public override Task<AccountSingleResponse> Post(AccountPostSingleRequest request, ServerCallContext context)
+        public override async Task<AccountSingleResponse> Post(AccountPostSingleRequest request, ServerCallContext context)
         {
             var account = request.Account.ToLocal();
             var accountTemplate = request.Template;
             var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
             
-            account = _items.Add(account, template);
+            account = await _items.Add(account, template);
 
             var response = new AccountSingleResponse
             {
                 Account = account.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Add item

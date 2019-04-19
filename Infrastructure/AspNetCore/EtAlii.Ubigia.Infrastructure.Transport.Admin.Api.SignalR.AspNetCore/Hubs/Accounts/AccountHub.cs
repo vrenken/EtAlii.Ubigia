@@ -3,13 +3,14 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-	using Microsoft.AspNetCore.SignalR;
-	using Microsoft.Extensions.Primitives;
+    using Microsoft.AspNetCore.SignalR;
+    using Microsoft.Extensions.Primitives;
 
-	public class AccountHub : HubBase
+    public class AccountHub : HubBase
     {
 		private readonly IAccountRepository _items;
 		private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
@@ -89,13 +90,13 @@
         }
 
         // Add item
-        public Account Post(Account item, string accountTemplate)
+        public async Task<Account> Post(Account item, string accountTemplate)
         {
             Account response;
             try
             {
                 var template = AccountTemplate.All.Single(t => t.Name == accountTemplate);
-                response = _items.Add(item, template);
+                response = await _items.Add(item, template);
             }
             catch (Exception e)
             {
