@@ -1,17 +1,17 @@
 //namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
-//{
+//[
 //    using System
 //    using System.Threading.Tasks
 //    using EtAlii.Ubigia.Api.Functional
 
 //    internal class ProfilingCommentProcessor : ICommentProcessor
-//    {
+//    [
 //        private readonly ICommentProcessor _decoree
 //        private readonly IProfiler _profiler
 //        public ProfilingCommentProcessor(
 //            ICommentProcessor decoree,
 //            IProfiler profiler)
-//        {
+//        [
 //            _decoree = decoree
 //            _profiler = profiler
 //        }
@@ -20,7 +20,7 @@
 //            ProcessParameters<SequencePart, SequencePart> parameters, 
 //            ExecutionScope scope,
 //            IObserver<object> output)
-//        {
+//        [
 //            dynamic profile = _profiler.Begin("Comment: " + parameters.Target.ToString())
 //            profile.Operator = parameters.Target
 

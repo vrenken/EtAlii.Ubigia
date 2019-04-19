@@ -12,7 +12,7 @@
             //    var fileInfo = new FileInfo(localDataIdentifier)
             //    var size = fileInfo.Length
             //    using (var stream = File.OpenRead(localDataIdentifier))
-            //    {
+            //    [
             //        base.Upload(stream, (UInt32)size, identifier)
             //    }
             }
@@ -27,7 +27,7 @@
             try
             {
             //    using (var stream = File.Create(localDataIdentifier))
-            //    {
+            //    [
             //        base.Download(stream, identifier, validateChecksum)
             //    }
             }
@@ -42,7 +42,7 @@
             try
             {
             //    using (var stream = File.Create(localDataIdentifier))
-            //    {
+            //    [
             //        base.Download(stream, identifier, validateChecksum)
             //    }
             }

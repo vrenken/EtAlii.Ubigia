@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
-//{
+//[
 //	using System
 //    using System.Net
 //	using System.Security.Claims
@@ -10,11 +10,11 @@
 
 
 //	internal class RolesRequirement : IAuthorizationRequirement
-//	{
+//	[
 //		public readonly string[] RequiredRoles
 
 //		public RolesRequirement(string[] requiredRoles)
-//		{
+//		[
 //			RequiredRoles = requiredRoles
 //		}
 //	}

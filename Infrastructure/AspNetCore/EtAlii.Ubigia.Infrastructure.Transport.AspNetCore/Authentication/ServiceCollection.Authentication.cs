@@ -45,22 +45,22 @@
 	    }
 
 //		private static void AddJwtBearer(IServiceCollection services)
-//		{
+//		[
 //			// Source: https://github.com/aspnet/SignalR/blob/dev/samples/JwtSample/Startup.cs#L36
 //			services.AddAuthorization(options =>
-//			{
+//			[
 //				options.AddPolicy(JwtBearerDefaults.AuthenticationScheme, policy =>
-//				{
+//				[
 //					policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
 //					policy.RequireClaim(ClaimTypes.NameIdentifier)
 //				})
 //			})
 //			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //				.AddJwtBearer(options =>
-//				{
+//				[
 //					options.TokenValidationParameters =
 //						new TokenValidationParameters
-//						{
+//						[
 //							LifetimeValidator = (before, expires, token, parameters) => expires > DateTime.UtcNow,
 //							ValidateAudience = false,
 //							ValidateIssuer = false,
@@ -69,13 +69,13 @@
 //							IssuerSigningKey = SecurityKey
 //						}
 //					options.Events = new JwtBearerEvents
-//					{
+//					[
 //						OnMessageReceived = context =>
-//						{
+//						[
 //							var accessToken = context.Request.Query["access_token"]
 //							if (!string.IsNullOrEmpty(accessToken) &&
 //							    (context.HttpContext.WebSockets.IsWebSocketRequest || context.Request.Headers["Accept"] == "text/event-stream"))
-//							{
+//							[
 //								context.Token = context.Request.Query["access_token"]
 //							}
 //							return Task.CompletedTask
@@ -86,15 +86,15 @@
 
 
 		//.AddAuthentication(options =>
-		//{
+		//[
 		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme
 		//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme
 		//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
 		//})
 		//.AddJwtBearer(options =>
-		//{
+		//[
 		//    options.TokenValidationParameters = new TokenValidationParameters
-		//    {
+		//    [
 		//        ValidateIssuer = true,
 		//        ValidateAudience = true,
 		//        ValidateIssuerSigningKey = true,

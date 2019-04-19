@@ -8,7 +8,7 @@
         /////
         //[AssemblyInitialize]
         //public static void Initialize(TestContext context)
-        //{
+        //[
         //    var type = typeof(TestAssembly)
         //    var assembly = type.Assembly
         //    var assemblyTitle = ((AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute)).First()).Title
@@ -20,7 +20,7 @@
 
         //    var diagnostics = TestDiagnostics.Create()
         //    if(diagnostics.EnableLogging || diagnostics.EnableProfiling)
-        //    {
+        //    [
         //        // Start logging.
         //        //Logger.StartSession(productName, assemblyTitle, assemblyVersion); // Disabled because of performance loss.
         //    }
@@ -31,11 +31,11 @@
         /////
         //[AssemblyCleanup]
         //public static void Cleanup()
-        //{
+        //[
         //    // End logging.
         //    var diagnostics = TestDiagnostics.Create()
         //    if (diagnostics.EnableLogging || diagnostics.EnableProfiling)
-        //    {
+        //    [
         //        //Logger.EndSession(); // Disabled because of performance loss.
         //    }
         //}

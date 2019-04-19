@@ -1,12 +1,12 @@
 ﻿//namespace EtAlii.Ubigia.Api.Transport.Diagnostics
-//{
+//[
 //    using System
 //    using System.Threading.Tasks
 //    using EtAlii.Ubigia.Api.Transport
 //    using EtAlii.xTechnology.Logging
 
 //    public class ProfilingDataConnection : IDataConnection
-//    {
+//    [
 //        private const string _openingDurationCounter = "DataConnection.Opening.Duration"
 //        private const string _closingDurationCounter = "DataConnection.Closing.Duration"
 //        private const string _connectionCounter = "DataConnection.Connections"
@@ -35,7 +35,7 @@
 //        internal ProfilingDataConnection(
 //            IDataConnection decoree,
 //            IProfiler profiler)
-//        {
+//        [
 //            _decoree = decoree
 //            _profiler = profiler
 
@@ -44,7 +44,7 @@
 
 
 //            var values = new[]
-//            {
+//            [
 //                new EventMetricValue { ValueName = "Current opening", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current opening connections", Description = "The number of connections being opened at a specific moment"},
 //                new EventMetricValue { ValueName = "Total opened", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total opened", Description = "The number of times the Open method has executed" },
 //                new EventMetricValue { ValueName = "Current open", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current open connections", Description = "The number of open connections at a specific moment" },
@@ -59,7 +59,7 @@
 //        }
 
 //        public async Task Open()
-//        {
+//        [
 //            _currentOpening += 1
 //            WriteEvent()
             
@@ -74,7 +74,7 @@
 //        }
 
 //        public async Task Close()
-//        {
+//        [
 //            _currentClosing += 1
 //            WriteEvent()
 
@@ -89,7 +89,7 @@
 //        }
 
 //        private void WriteEvent()
-//        {
+//        [
 //            _profiler.WriteEvent(_connectionCounter, _currentOpening, _totalOpened, _currentOpen, _currentClosing, _totalClosed)
 
 //        }

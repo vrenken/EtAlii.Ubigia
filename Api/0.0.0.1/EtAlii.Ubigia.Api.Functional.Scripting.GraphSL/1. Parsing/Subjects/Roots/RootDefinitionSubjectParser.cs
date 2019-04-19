@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             //var pathPart = _nodeFinder.FindFirst(node.Children, PathId)
             //if (pathPart != null)
-            //{
+            //[
             //    var parts = pathPart.Children.ToArray().Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray()
             //    schema = new PathSubject(parts)
             //}

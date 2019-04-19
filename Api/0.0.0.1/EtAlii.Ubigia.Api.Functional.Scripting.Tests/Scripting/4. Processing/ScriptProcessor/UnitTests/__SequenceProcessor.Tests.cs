@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Api.Functional.Tests
-//{
+//[
 //    using System.Collections.Generic
 //    using System.Linq
 //    using System.Reactive.Linq
@@ -9,11 +9,10 @@
 
 //    
 //    public class SequenceProcessor_Tests
-//    {
-
+//    [
 //        [Fact, Trait("Category", TestAssembly.Category)]
 //        public async Task SequenceProcessor_Constant_To_Variable_Assignment()
-//        {
+//        [
 //            // Arrange.
 //            var diagnostics = TestDiagnostics.Create()
 //            var processedParameters = new Dictionary<int, ProcessParameters<SequencePart, SequencePart>>()
@@ -27,7 +26,7 @@
 //            var processor = new ScriptProcessorFactory().Create(configuration)
 
 //            var sequenceParts = new SequencePart[]
-//            {
+//            [
 //                new VariableSubject("first"),
 //                new AssignOperator(),
 //                new StringConstantSubject("second"),
@@ -49,7 +48,7 @@
 
 //        [Fact, Trait("Category", TestAssembly.Category)]
 //        public async Task SequenceProcessor_Path_Addition_To_Path_Into_Variable()
-//        {
+//        [
 //            // Arrange.
 //            var diagnostics = TestDiagnostics.Create()
 //            var processedParameters = new Dictionary<int, ProcessParameters<SequencePart, SequencePart>>()
@@ -62,7 +61,7 @@
 //            var processor = new ScriptProcessorFactory().Create(configuration)
 
 //            var sequenceParts = new SequencePart[]
-//            {
+//            [
 //                new VariableSubject("first"),
 //                new AssignOperator(),
 //                new PathSubject(new ConstantPathSubjectPart("second")),
@@ -90,7 +89,7 @@
 //        }
 
 //        private Script Create(SequencePart[] sequenceParts)
-//        {
+//        [
 //            var sequence = new Sequence(sequenceParts)
 //            var script = new Script(sequence)
 //            return script

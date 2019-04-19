@@ -271,7 +271,7 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Event_Removed()
-        //{
+        //[
         //    var name = Guid.NewGuid().ToString()
 
         //    var root = await connection.Roots.Add(name)
@@ -317,7 +317,7 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Add_With_Closed_Connection()
-        //{
+        //[
         //    // Arrange.
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
@@ -334,7 +334,7 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Get_With_Closed_Connection()
-        //{
+        //[
         //    // Arrange.
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
@@ -350,7 +350,7 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Remove_With_Closed_Connection()
-        //{
+        //[
         //    // Arrange.
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
@@ -366,7 +366,7 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_GetAll_With_Closed_Connection()
-        //{
+        //[
         //    // Arrange.
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()
@@ -382,7 +382,7 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Change_With_Closed_Connection()
-        //{
+        //[
         //    // Arrange.
         //    var connection = await _testContext.CreateDataConnection(false)
         //    var fabricContextConfiguration = new FabricContextConfiguration()

@@ -1,18 +1,18 @@
 //namespace EtAlii.Ubigia.Api.Diagnostics.Profiling
-//{
+//[
 //    using System
 //    using System.Threading.Tasks
 //    using EtAlii.Ubigia.Api.Functional
 
 //    internal class ProfilingSubjectsProcessor : ISubjectsProcessor
-//    {
+//    [
 //        private readonly ISubjectsProcessor _decoree
 //        private readonly IProfiler _profiler
 
 //        public ProfilingSubjectsProcessor(
 //            ISubjectsProcessor decoree, 
 //            IProfiler profiler)
-//        {
+//        [
 //            _decoree = decoree
 //            _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorSubject)
 //        }
@@ -21,7 +21,7 @@
 //            ProcessParameters<SequencePart, SequencePart> parameters, 
 //            ExecutionScope scope,
 //            IObserver<object> output)
-//        {
+//        [
 //            dynamic profile = _profiler.Begin("Subject: " + parameters.Target.ToString())
 //            profile.Operator = parameters.Target
 

@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         }
 
 //        private string GetEmail(EmailAddress email)
-//        {
+//        [
 //            return email?.Value
 //        }
 

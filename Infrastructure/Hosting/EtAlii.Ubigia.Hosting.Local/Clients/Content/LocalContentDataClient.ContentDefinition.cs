@@ -40,7 +40,7 @@
             //BlobHelper.SetStored(contentDefinition, true)
 
             //foreach (var contentDefinitionPart in contentDefinition.Parts)
-            //{
+            //[
             //    MarkAsStored(contentDefinitionPart)
             //}
         }

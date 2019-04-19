@@ -4,17 +4,17 @@
 //using System
 
 //namespace Microsoft.AspNetCore.SignalR.Tests.Common
-//{
+//[
 //	public static class TestHelpers
-//    {
+//    [
 //        public static bool IsWebSocketsSupported()
-//        {
+//        [
 //            try
-//            {
+//            [
 //                new System.Net.WebSockets.ClientWebSocket().Dispose()
 //            }
 //            catch (PlatformNotSupportedException)
-//            {
+//            [
 //                return false
 //            }
 

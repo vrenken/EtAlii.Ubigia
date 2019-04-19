@@ -13,9 +13,9 @@
         }
 
         //void IInternalNode.SetProperties(IPropertiesDictionary properties)
-        //{
+        //[
         //    if (properties == null)
-        //    {
+        //    [
         //        throw new ArgumentNullException("properties")
         //    }
         //    _properties = properties

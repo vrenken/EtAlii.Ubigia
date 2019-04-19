@@ -18,7 +18,7 @@
             throw new System.NotImplementedException();
 
             //return new IDisposable[] 
-            //{
+            //[
             //    hubProxy.On<Identifier>("updated", OnUpdated),
             //    hubProxy.On<Identifier>("stored", OnStored),
             //}

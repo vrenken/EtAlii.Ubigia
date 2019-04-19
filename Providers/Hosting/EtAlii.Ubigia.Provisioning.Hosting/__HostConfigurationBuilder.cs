@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
-//{
+//[
 //    using System
 //    using EtAlii.Ubigia.Api.Transport.Management.SignalR
 //    using EtAlii.Ubigia.Api.Transport.SignalR
@@ -7,9 +7,9 @@
 //    using EtAlii.xTechnology.Hosting
 
 //    public class HostConfigurationBuilder 
-//    {
+//    [
 //        public IHostConfiguration Build(Func<string, object> getConfigurationSection)
-//        {
+//        [
 //            var name = "EtAlii"
 //            var category = "EtAlii.Ubigia.Provisioning"
 //            //var diagnostics = new DiagnosticsFactory().Create(true, false, true,

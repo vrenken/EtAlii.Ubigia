@@ -14,7 +14,7 @@
         public event Action<Api.Identifier> Stored = delegate { };
 
 //        public GrpcContentNotificationClient()
-//        {
+//        [
 //            //_name = GrpcHub.Content
 //        }
 
@@ -37,7 +37,7 @@
 	        //await _connection.StartAsync()
 
 	        //_subscriptions = new[]
-	        //{
+	        //[
 		    //    _connection.On<Identifier>("updated", OnUpdated),
 		    //    _connection.On<Identifier>("stored", OnStored),
 	        //}

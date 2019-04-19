@@ -38,7 +38,7 @@
 
     //        applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Grpc.BaseUrl,
     //            services =>
-    //            {
+    //            [
     //                services
     //                    .AddSingleton<IAccountRepository>(infrastructure.Accounts)
     //                    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
@@ -52,14 +52,14 @@
 		  //              .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
 				//},
     //            appBuilder =>
-    //            {
+    //            [
     //                appBuilder
     //                    .UseCors(configuration =>
-    //                    {
+    //                    [
     //                        configuration.AllowAnyOrigin()
     //                    })
     //                    .UseGrpc(routes =>
-    //                    {
+    //                    [
     //                        routes.MapHub<AuthenticationHub>(GrpcHub.Authentication)
 
     //                        routes.MapHub<StorageHub>(GrpcHub.Storage)

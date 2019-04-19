@@ -14,7 +14,7 @@
 
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, obj))
-            //{
+            //[
             //    return true
             //}
 
@@ -37,14 +37,14 @@
 
             // Optimization for a common success case. 
             //if (Object.ReferenceEquals(this, match))
-            //{
+            //[
             //    return true
             //}
 
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
             //if (this.GetType() != match.GetType())
-            //{
+            //[
             //    return false
             //}
 

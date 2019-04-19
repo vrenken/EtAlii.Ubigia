@@ -1,11 +1,11 @@
 ﻿//namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
-//{
+//[
 //    using global::GraphQL.Types
 //
 //    public class EpisodeEnum : EnumerationGraphType
-//    {
+//    [
 //        public EpisodeEnum()
-//        {
+//        [
 //            Name = "Episode"
 //            Description = "One of the films in the Star Wars Trilogy."
 //            AddValue("NEWHOPE", "Released in 1977.", 4)

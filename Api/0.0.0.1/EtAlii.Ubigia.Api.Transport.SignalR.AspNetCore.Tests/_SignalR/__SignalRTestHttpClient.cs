@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Api.Transport.Tests
-//{
+//[
 //    using System
 //    using System.Collections.Generic
 //    using System.Net.Http
@@ -10,14 +10,14 @@
 //    using Microsoft.AspNetCore.SignalR.Client.Internal.Http
 
 //    public class SignalRTestHttpClient : IHttpClient
-//    {
+//    [
 //        private readonly Func<IConnection, HttpMessageHandler> _createMessageHandler
 //        private HttpClient _longRunningClient
 //        private HttpClient _shortRunningClient
 //        private IConnection _connection
 
 //        public SignalRTestHttpClient(Func<IConnection, HttpMessageHandler> createMessageHandler)
-//        {
+//        [
 //            _createMessageHandler = createMessageHandler
 //        }
 
@@ -27,14 +27,14 @@
 //        /// </summary>
 //        /// <param name="connection">Connection</param>
 //        public void Initialize(IConnection connection)
-//        {
+//        [
 //            _connection = connection
 //            _longRunningClient = new HttpClient(_createMessageHandler(_connection))
-//            {
+//            [
 //                Timeout = TimeSpan.FromMilliseconds(-1.0)
 //            }
 //            _shortRunningClient = new HttpClient(_createMessageHandler(_connection))
-//            {
+//            [
 //                Timeout = TimeSpan.FromMilliseconds(-1.0)
 //            }
 //        }
@@ -48,24 +48,24 @@
 //        /// A <see cref="T:Task{IResponse}"/>.
 //        /// </returns>
 //        public Task<IResponse> Get(string url, Action<IRequest> prepareRequest, bool isLongRunning)
-//        {
+//        [
 //            if (prepareRequest == null)
-//            {
+//            [
 //                throw new ArgumentNullException("prepareRequest")
 //            }
 //            var responseDisposer = new SignalRDisposer()
 //            var cts = new CancellationTokenSource()
 //            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(url))
 //            var requestMessageWrapper = new HttpRequestMessageWrapper(httpRequestMessage, () =>
-//            {
+//            [
 //                cts.Cancel()
 //                responseDisposer.Dispose()
 //            })
 //            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
-//            {
+//            [
 //                if (!responseMessage.IsSuccessStatusCode)
-//                {
+//                [
 //                    throw new HttpClientException(responseMessage)
 //                }
 //                responseDisposer.Set((IDisposable)responseMessage)
@@ -82,29 +82,29 @@
 //        /// A <see cref="T:Task{IResponse}"/>.
 //        /// </returns>
 //        public Task<IResponse> Post(string url, Action<IRequest> prepareRequest, IDictionary<string, string> postData, bool isLongRunning)
-//        {
+//        [
 //            if (prepareRequest == null)
-//            {
+//            [
 //                throw new ArgumentNullException("prepareRequest")
 //            }
 //            var responseDisposer = new SignalRDisposer()
 //            var cts = new CancellationTokenSource()
 //            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, new Uri(url))
-//            {
+//            [
 //                Content = postData != null
 //                        ? new SignalRFormUrlEncodedContent(postData)
 //                        : (HttpContent) new StringContent(string.Empty)
 //            }
 //            var requestMessageWrapper = new HttpRequestMessageWrapper(httpRequestMessage, () =>
-//            {
+//            [
 //                cts.Cancel()
 //                responseDisposer.Dispose()
 //            })
 //            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
-//            {
+//            [
 //                if (!responseMessage.IsSuccessStatusCode)
-//                {
+//                [
 //                    throw new HttpClientException(responseMessage)
 //                }
 //                responseDisposer.Set((IDisposable)responseMessage)
@@ -119,9 +119,9 @@
 //        /// <param name="isLongRunning">Indicates whether the request is long running</param>
 //        /// <returns/>
 //        private HttpClient GetHttpClient(bool isLongRunning)
-//        {
+//        [
 //            if (!isLongRunning)
-//            {
+//            [
 //                return _shortRunningClient
 //            }
 //            return _longRunningClient

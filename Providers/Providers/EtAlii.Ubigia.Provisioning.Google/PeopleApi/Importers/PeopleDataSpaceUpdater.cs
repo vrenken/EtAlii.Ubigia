@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
         }
 
 	    //private ContactsRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
-	    //{
+	    //[
 		   // var parameters = new OAuth2Parameters()
 		   // parameters.AccessToken = userSettings.AccessToken
 		   // parameters.RefreshToken = userSettings.RefreshToken

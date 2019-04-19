@@ -21,7 +21,7 @@
         }
 //
 //        private ObservableCollection<Space> GetItems()
-//        {
+//        [
 //            return _logicalContext.Spaces.GetItems()
 //        }
 

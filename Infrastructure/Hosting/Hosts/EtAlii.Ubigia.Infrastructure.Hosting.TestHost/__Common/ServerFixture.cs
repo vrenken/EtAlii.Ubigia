@@ -11,10 +11,10 @@
 //using Microsoft.Extensions.Logging
 
 //namespace Microsoft.AspNetCore.SignalR.Tests.Common
-//{
+//[
 //    public class ServerFixture<TStartup> : IDisposable
 //        where TStartup : class
-//    {
+//    [
 //        private readonly ILoggerFactory _loggerFactory
 //        private readonly ILogger _logger
 //        private IWebHost _host
@@ -26,7 +26,7 @@
 //        public string Url { get; private set; }
 
 //        public ServerFixture()
-//        {
+//        [
 //            var testLog = AssemblyTestLog.ForAssembly(typeof(ServerFixture<TStartup>).Assembly)
 //            _logToken = testLog.StartTestLog(null, $"{nameof(ServerFixture<TStartup>)}_{typeof(TStartup).Name}", out _loggerFactory, "ServerFixture")
 //            _logger = _loggerFactory.CreateLogger<ServerFixture<TStartup>>()
@@ -36,7 +36,7 @@
 //        }
 
 //        private void StartServer(string url)
-//        {
+//        [
 //            _host = new WebHostBuilder()
 //                .ConfigureLogging(builder => builder.AddProvider(new ForwardingLoggerProvider(_loggerFactory)))
 //                .UseStartup(typeof(TStartup))
@@ -49,10 +49,10 @@
 //            _logger.LogInformation("Starting test server...")
 //            _lifetime = _host.Services.GetRequiredService<IApplicationLifetime>()
 //            if (!_lifetime.ApplicationStarted.WaitHandle.WaitOne(TimeSpan.FromSeconds(5)))
-//            {
+//            [
 //                // t probably faulted
 //                if (t.IsFaulted)
-//                {
+//                [
 //                    throw t.Exception.InnerException
 //                }
 //                throw new TimeoutException("Timed out waiting for application to start.")
@@ -60,43 +60,43 @@
 //            _logger.LogInformation("Test Server started")
 
 //            _lifetime.ApplicationStopped.Register(() =>
-//            {
+//            [
 //                _logger.LogInformation("Test server shut down")
 //                _logToken.Dispose()
 //            })
 //        }
 
 //        public void Dispose()
-//        {
+//        [
 //            _logger.LogInformation("Shutting down test server")
 //            _host.Dispose()
 //            _loggerFactory.Dispose()
 //        }
 
 //        private class ForwardingLoggerProvider : ILoggerProvider
-//        {
+//        [
 //            private readonly ILoggerFactory _loggerFactory
 
 //            public ForwardingLoggerProvider(ILoggerFactory loggerFactory)
-//            {
+//            [
 //                _loggerFactory = loggerFactory
 //            }
 
 //            public void Dispose()
-//            {
+//            [
 //            }
 
 //            public ILogger CreateLogger(string categoryName)
-//            {
+//            [
 //                return _loggerFactory.CreateLogger(categoryName)
 //            }
 //        }
 
 //        // Copied from https://github.com/aspnet/KestrelHttpServer/blob/47f1db20e063c2da75d9d89653fad4eafe24446c/test/Microsoft.AspNetCore.Server.Kestrel.FunctionalTests/AddressRegistrationTests.cs#L508
 //        private static int GetNextPort()
-//        {
+//        [
 //            using (var socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp))
-//            {
+//            [
 //                // Let the OS assign the next available port. Unless we cycle through all ports
 //                // on a test run, the OS will always increment the port number when making these calls.
 //                // This prevents races in parallel test runs where a test is already bound to

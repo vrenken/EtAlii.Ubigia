@@ -30,7 +30,7 @@
 
             // No extensions on the Storage connection (yet).
             //foreach (var extension in configuration.Extensions)
-            //{
+            //[
             //    extension.Initialize(container)
             //}
 

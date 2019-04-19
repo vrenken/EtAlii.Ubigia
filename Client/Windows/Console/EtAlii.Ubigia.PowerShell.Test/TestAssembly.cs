@@ -9,7 +9,7 @@
         /////
         //[AssemblyInitialize]
         //public static void Initialize(TestContext context)
-        //{
+        //[
         //    var type = typeof(TestAssembly)
         //    var assembly = type.Assembly
         //    var assemblyTitle = ((AssemblyTitleAttribute)assembly.GetCustomAttributes(typeof(AssemblyTitleAttribute)).First()).Title
@@ -28,7 +28,7 @@
         /////
         //[AssemblyCleanup]
         //public static void Cleanup()
-        //{
+        //[
         //    // End logging.
         //    //Logger.EndSession(); // Disabled because of performance loss.
         //}

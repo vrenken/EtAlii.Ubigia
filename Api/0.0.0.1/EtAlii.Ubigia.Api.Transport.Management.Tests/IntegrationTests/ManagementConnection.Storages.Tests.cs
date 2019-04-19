@@ -157,13 +157,13 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void ManagementConnection_Storages_Get_All()
-        //{
+        //[
         //    var connection = CreateManagementConnection()
 
         //    var storages = new List<ItemStorage>(); 
 
         //    for (int i = 0; i < 10; i++)
-        //    {
+        //    [
         //        var name = Guid.NewGuid().ToString()
         //        var address = Guid.NewGuid().ToString()
 
@@ -179,7 +179,7 @@
         //    Assert.Equal(storages.Count + 1, retrievedStorages.Count())
 
         //    foreach (var storage in storages)
-        //    {
+        //    [
         //        var matchingStorage = retrievedStorages.Single(s => s.Id == storage.Id)
         //        Assert.NotNull(matchingStorage)
         //        Assert.Equal(storage.Name, matchingStorage.Name)

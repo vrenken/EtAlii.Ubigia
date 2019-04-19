@@ -28,9 +28,9 @@
         }
 //
 //        public async Task<Api.Storage> GetConnectedStorage(IStorageConnection connection, Uri address)
-//        {
+//        [
 //            if (connection.Storage != null)
-//            {
+//            [
 //                throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen)
 //            }
 //
@@ -39,7 +39,7 @@
 //            var storage = await GetConnectedStorage(grpcConnection.Transport)
 //
 //            if (storage == null)
-//            {
+//            [
 //                throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToStorage)
 //            }
 //

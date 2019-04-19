@@ -58,15 +58,15 @@
         //// Get all spaces for the specified accountid
         //[HttpGet]
         //public IActionResult GetForSpace([RequiredFromQuery]Guid spaceId)
-        //{
+        //[
         //    IActionResult response
         //    try
-        //    {
+        //    [
         //        var roots = _items.GetAll(spaceId)
         //        response = Ok(roots)
         //    }
         //    catch (Exception ex)
-        //    {
+        //    [
         //        response = BadRequest(ex.Message)
         //    }
         //    return response
@@ -76,15 +76,15 @@
         //// Get Item by id
         //[HttpGet]
         //public IActionResult GetByName([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]string rootName)
-        //{
+        //[
         //    IActionResult response
         //    try
-        //    {
+        //    [
         //        var root = _items.Get(spaceId, rootName)
         //        response = Ok(root)
         //    }
         //    catch (Exception ex)
-        //    {
+        //    [
         //        response = BadRequest(ex.Message)
         //    }
         //    return response
@@ -93,15 +93,15 @@
         // Get Item by id
         //[HttpGet]
         //public IActionResult GetById([RequiredFromQuery]Guid spaceId, [RequiredFromQuery]Guid rootId, [RequiredFromQuery]string byId)
-        //{
+        //[
         //    IActionResult response
         //    try
-        //    {
+        //    [
         //        var root = _items.Get(spaceId, rootId)
         //        response = Ok(root)
         //    }
         //    catch (Exception ex)
-        //    {
+        //    [
         //        response = BadRequest(ex.Message)
         //    }
         //    return response

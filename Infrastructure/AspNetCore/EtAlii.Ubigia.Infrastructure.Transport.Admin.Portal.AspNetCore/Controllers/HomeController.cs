@@ -8,7 +8,7 @@
         //private IHiService _adminService
 
         //public AdminDataController(IHiService adminService)
-        //{
+        //[
         //    _adminService = adminService
         //}
 

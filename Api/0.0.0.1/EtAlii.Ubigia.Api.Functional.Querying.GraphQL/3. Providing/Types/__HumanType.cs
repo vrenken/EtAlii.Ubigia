@@ -1,11 +1,11 @@
 //using GraphQL.Types
 //
 //namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
-//{
+//[
 //    public class HumanType : ObjectGraphType<Human> 
-//    {
+//    [
 //        public HumanType(IUbigiaData data)
-//        {
+//        [
 //            Name = "Human"
 //
 //            Field(h => h.Id).Description("The id of the human.")

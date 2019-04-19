@@ -13,7 +13,7 @@
 }
 
 
-//{
+//[
 //  "web": {
 //    "client_id": "654017958519-l27t9bn8ec1p3o7kc4k97dnm9ik3iibn.apps.googleusercontent.com",
 //    "project_id": "etalii-ubigia",

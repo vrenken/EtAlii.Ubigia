@@ -50,7 +50,7 @@
         }
 
         //public AuthenticationToken FromHttpActionContext(HttpActionContext actionContext)
-        //{
+        //[
         //    var authenticationTokenAsString = actionContext.Request.Headers
         //        .GetValues("Authentication-Token")
         //        .FirstOrDefault()

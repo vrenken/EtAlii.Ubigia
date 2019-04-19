@@ -32,7 +32,7 @@
             //_hourEntries = new List<IReadOnlyEntry>()
             //_minuteEntries = new List<IReadOnlyEntry>()
             //if (addEachTenSeconds)
-            //{
+            //[
             //    _secondEntries = new List<IReadOnlyEntry>()
             //}
         }
@@ -91,7 +91,7 @@
         }
 
 //        private string GetType(DateTime utcTime, string format)
-//        {
+//        [
 //            return utcTime.ToString(format)
 //        }
 

@@ -13,7 +13,7 @@
 		public event Action<Api.Identifier> Stored = delegate { };
 
 //        public GrpcPropertiesNotificationClient()
-//        {
+//        [
 //            //_name = GrpcHub.Property
 //        }
 
@@ -29,7 +29,7 @@
             // TODO: GRPC
             //_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + GrpcHub.BasePath + "/" + _name, UriKind.Absolute))
 			//_subscriptions = new[]
-			//{
+			//[
 			//	_connection.On<Identifier>("stored", OnStored),
 			//}
 		}

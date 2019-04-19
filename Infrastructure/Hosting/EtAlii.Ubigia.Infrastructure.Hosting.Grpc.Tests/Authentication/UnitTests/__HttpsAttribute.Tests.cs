@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
-//{
+//[
 //    using Xunit
 //    using System
 //    using System.Collections.ObjectModel
@@ -12,10 +12,10 @@
 //    using EtAlii.Ubigia.Infrastructure.Transport.Owin.WebApi
     
 //    public class HttpsAttribute_Tests
-//    {
+//    [
 //        [Fact]
 //        public void HttpsAttribute_Create_Correct()
-//        {
+//        [
 //            var attribute = new HttpsAttribute()
 
 //            var actionContext = CreateContext("https://test")
@@ -26,7 +26,7 @@
 
 //        [Fact]
 //        public void HttpsAttribute_Create_Incorrect()
-//        {
+//        [
 //            var attribute = new HttpsAttribute()
 
 //            var actionContext = CreateContext("http://test")
@@ -38,7 +38,7 @@
 //        }
 
 //        private HttpActionContext CreateContext(string uri)
-//        {
+//        [
 //            return new HttpActionContext
 //            (
 //                new HttpControllerContext
@@ -52,16 +52,16 @@
 //        }
 
 //        public class ImplementedHttpActionDescriptor : HttpActionDescriptor
-//        {
+//        [
 //            public override string ActionName => "ActionName"
 
 //            public override System.Threading.Tasks.Task<object> ExecuteAsync(HttpControllerContext controllerContext, System.Collections.Generic.IDictionary<string, object> arguments, System.Threading.CancellationToken cancellationToken)
-//            {
+//            [
 //                return Task.FromResult(new object())
 //            }
 
 //            public override Collection<HttpParameterDescriptor> GetParameters()
-//            {
+//            [
 //                return new Collection<HttpParameterDescriptor>()
 //            }
 

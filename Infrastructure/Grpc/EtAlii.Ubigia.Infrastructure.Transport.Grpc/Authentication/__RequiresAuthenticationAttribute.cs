@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
-//{
+//[
 //	using System
 //    using System.Net
 //	using AuthorizeAttribute = Microsoft.Grpc.Authorization.AuthorizeAttribute
@@ -18,11 +18,11 @@
 //	/// </remarks>
 //	[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = false)]
 //    internal class RequiresAuthenticationAttribute : AuthorizeAttribute, IAuthorizationFilter
-//	{
+//	[
 //	    private readonly string[] _requiredRoles
 
 //	    public RequiresAuthenticationAttribute(params string[] requiredRoles)
-//	    {
+//	    [
 //		    _requiredRoles = requiredRoles
 //	    }
 
@@ -33,11 +33,11 @@
 //		/// </summary>
 //		/// <param name="context"></param>
 //		public void OnAuthorization(AuthorizationFilterContext context)
-//		{
+//		[
 //            // Delayed dependency injection.
 //            // All other solutions are far slower.
 //            if (_verifier == null)
-//            {
+//            [
 //	            var dependencyResolver = (IDependencyResolver)context.HttpContext.RequestServices.GetService(typeof(IDependencyResolver))
 //	            _verifier = (IHttpContextAuthenticationVerifier)dependencyResolver.GetService(typeof(IHttpContextAuthenticationVerifier))
 //				//_verifier = (IAuthenticationVerifier)actionContext.ControllerContext.Configuration.DependencyResolver.GetService(typeof(IAuthenticationVerifier))
@@ -46,10 +46,10 @@
 //			Controller controller = null
 //            var status = _verifier.Verify(context.HttpContext, controller, _requiredRoles)
 //            if (status is OkObjectResult)
-//            {
+//            [
 //            }
 //            else
-//            {
+//            [
 //	            context.Result = new UnauthorizedResult()
 //            }
 //        }

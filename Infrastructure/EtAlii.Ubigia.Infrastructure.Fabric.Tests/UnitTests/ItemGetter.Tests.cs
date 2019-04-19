@@ -4,7 +4,7 @@
     {
         //[Fact]
         //public void ItemGetter_Get()
-        //{
+        //[
         //    var storage = new StubIItemStorage()
 
         //    var itemGetter = new ItemGetter(storage)
@@ -14,7 +14,7 @@
         //    var thirdId = Guid.NewGuid()
 
         //    var items = new IIdentifiable[] 
-        //    { 
+        //    [
         //        new Space { Id = firstId },
         //        new Space { Id = secondId },
         //        new Space { Id = thirdId },
@@ -27,7 +27,7 @@
 
         //[Fact]
         //public void ItemGetter_Get_No_ID()
-        //{
+        //[
         //    // Arrange.
         //    var storage = new StubIItemStorage()
         //    var itemGetter = new ItemGetter(storage)
@@ -35,7 +35,7 @@
 
         //    // Act.
         //    var act = new Action(() =>
-        //    {
+        //    [
         //        itemGetter.Get(items, Guid.Empty)
         //    })
 

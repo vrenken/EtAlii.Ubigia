@@ -15,9 +15,9 @@
         public Uri Address { get; private set; }
 
         //public ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
-        //{
+        //[
         //    if (extensions == null)
-        //    {
+        //    [
         //        throw new ArgumentException(nameof(extensions))
         //    }
 

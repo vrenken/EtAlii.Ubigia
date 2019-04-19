@@ -53,11 +53,11 @@
                 });
 
             //if (leftResult == null)
-            //{
+            //[
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires path to start from")
             //}
             //if (leftIds == null || !leftIds.Any())
-            //{
+            //[
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part")
             //}
         }

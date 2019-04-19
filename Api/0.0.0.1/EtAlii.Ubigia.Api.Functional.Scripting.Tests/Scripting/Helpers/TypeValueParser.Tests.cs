@@ -41,16 +41,16 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void TypeValueParser_Parse_02()
-        //{
+        //[
         //    // Arrange.
         //    const string text = "EtAlii.."
 
         //    // Act.
         //    var act = new Action(() =>
-        //    {
+        //    [
         //        var node = _parser.Parser.Do(text)
         //        if (_parser.CanParse(node))
-        //        {
+        //        [
         //            _parser.Parse(node)
         //        }
         //    })
@@ -99,16 +99,16 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void TypeValueParser_Parse_05()
-        //{
+        //[
         //    // Arrange.
         //    const string text = "EtAlii."
 
         //    // Act.
         //    var act = new Action(() =>
-        //    {
+        //    [
         //        var node = _parser.Parser.Do(text)
         //        if (_parser.CanParse(node))
-        //        {
+        //        [
         //            _parser.Parse(node)
         //        }
         //    })
@@ -119,16 +119,16 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void TypeValueParser_Parse_06()
-        //{
+        //[
         //    // Arrange.
         //    const string text = "EtAlii..Ubigia"
 
         //    // Act.
         //    var act = new Action(() =>
-        //    {
+        //    [
         //        var node = _parser.Parser.Do(text)
         //        if (_parser.CanParse(node))
-        //        {
+        //        [
         //            _parser.Parse(node)
         //        }
         //    })
@@ -159,16 +159,16 @@
 
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void TypeValueParser_Parse_08()
-        //{
+        //[
         //    // Arrange.
         //    const string text = "EtAlii. .Ubigia"
 
         //    // Act.
         //    var act = new Action(() =>
-        //    {
+        //    [
         //        var node = _parser.Parser.Do(text)
         //        if (_parser.CanParse(node))
-        //        {
+        //        [
         //            _parser.Parse(node)
         //        }
         //    })

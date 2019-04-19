@@ -29,7 +29,7 @@
         }
 
         //public void Stop()
-        //{
+        //[
         //    Task.Delay(500).ContinueWith((o) => _fileSystemMonitor.Stop())
         //}
     }

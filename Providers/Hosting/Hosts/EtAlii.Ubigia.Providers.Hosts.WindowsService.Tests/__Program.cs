@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
-//{
+//[
 //    using System
 //    using System.Configuration
 //    using System.Diagnostics
@@ -9,12 +9,12 @@
 
 
 //    public class Program2
-//    {
+//    [
 //        /// <summary>
 //        /// The main entry point for the application.
 //        /// </summary>
 //        public static void Main(string[] args)
-//        {
+//        [
 //            //var startupDelay = args.Length > 0 ? Int32.Parse(args[0]) * 1000 : 0
 //            //System.Threading.Thread.Sleep(startupDelay)
 
@@ -23,7 +23,7 @@
 
 //            // TODO: Should be removed.
 //            if (Debugger.IsAttached)
-//            {
+//            [
 //                Thread.Sleep(5000)
 //            }
 

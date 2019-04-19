@@ -54,7 +54,7 @@
         }
 
         //protected void RegisterKnownTypesInAssembly(Assembly assembly, Type[] typesToInclude, Type[] typesToExclude)
-        //{
+        //[
         //    var typesToRegister = assembly.GetTypes()
         //                                  .Where(type => type.IsClass && !type.IsAbstract)
         //                                  .Where(type => !typesToExclude.Contains(type))
@@ -62,7 +62,7 @@
         //                                  .Where(type => typesToInclude.Any(type.IsSubclassOf))
 
         //    foreach (var typeToRegister in typesToRegister)
-        //    {
+        //    [
         //        Container.Register(typeToRegister)
         //    }
         //}

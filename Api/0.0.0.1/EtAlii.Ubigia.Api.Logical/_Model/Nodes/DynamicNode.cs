@@ -35,7 +35,7 @@
 // set { _entry = value;} }
 
         //void IInternalNode.ClearIsModified()
-        //{
+        //[
         //    _isModified = false
         //}
 

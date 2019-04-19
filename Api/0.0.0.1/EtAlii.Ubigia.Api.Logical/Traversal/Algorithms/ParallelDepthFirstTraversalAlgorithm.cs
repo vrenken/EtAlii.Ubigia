@@ -19,7 +19,7 @@
         {
             throw new NotSupportedException();
             //if (graphPath.Any())
-            //{
+            //[
             //    var currentGraphPathPart = graphPath.First()
             //    var traverser = _graphPathPartTraverserSelector.Select(currentGraphPathPart)
 
@@ -28,12 +28,12 @@
 
             //    var subPathParts = graphPath.Skip(1).ToArray()
             //    if (subPathParts.Any())
-            //    {
+            //    [
             //        var resultCount = relatedNodes.Length
             //        var subResults = new List<Identifier>[resultCount]
 
             //        await Parallel.ForAsync(relatedNodes, _maxDegreeOfParallelism, async (identifier, index) =>
-            //        {
+            //        [
             //            var subResult = new List<Identifier>()
             //            var subGraphPath = new GraphPath(subPathParts)
             //            await Traverse(subGraphPath, identifier, subResult, context, scope)
@@ -43,7 +43,7 @@
             //        result.AddRange(subResults.SelectMany(sr => sr))
             //    }
             //    else
-            //    {
+            //    [
             //        result.AddRangeOnce(relatedNodes)
             //    }
             //}

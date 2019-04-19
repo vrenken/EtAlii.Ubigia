@@ -11,9 +11,9 @@
         public IStorage Storage { get; private set; }
 
         //public IFabricContextConfiguration Use(IFabricContextExtension[] extensions)
-        //{
+        //[
         //    if (extensions == null)
-        //    {
+        //    [
         //        throw new ArgumentException(nameof(extensions))
         //    }
 

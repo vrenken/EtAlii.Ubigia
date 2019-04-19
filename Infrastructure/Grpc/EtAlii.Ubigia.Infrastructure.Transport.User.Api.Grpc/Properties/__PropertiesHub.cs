@@ -1,30 +1,30 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc
-//{
+//[
 //    using System
 //    using EtAlii.Ubigia.Api
 //    using EtAlii.Ubigia.Infrastructure.Functional
 
 //    public class PropertiesHub : HubBase
-//    {
+//    [
 //        private readonly IPropertiesRepository _items
 
 //        public PropertiesHub(
 //            IPropertiesRepository items,
 //            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
 //            : base(authenticationTokenVerifier)
-//        {
+//        [
 //            _items = items
 //        }
 
 //        public PropertyDictionary Get(Identifier entryId)
-//        {
+//        [
 //            PropertyDictionary response = null
 //            try
-//            {
+//            [
 //                response = _items.Get(entryId)
 //            }
 //            catch (Exception e)
-//            {
+//            [
 //                throw new InvalidOperationException("Unable to serve a properties GET client request", e)
 //            }
 //            return response
@@ -37,9 +37,9 @@
 //        /// <param name="properties"></param>
 //        /// <returns></returns>
 //        public void Post(Identifier entryId, PropertyDictionary properties)
-//        {
+//        [
 //            try
-//            {
+//            [
 //                // Store the content.
 //                _items.Store(entryId, properties)
 
@@ -48,7 +48,7 @@
 //                //Clients.All.stored(entryId)
 //            }
 //            catch (Exception e)
-//            {
+//            [
 //                throw new InvalidOperationException("Unable to serve a Properties POST client request", e)
 //            }
 //        }

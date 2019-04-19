@@ -16,10 +16,10 @@
             // TODO: GRPC
             //applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
             //    services =>
-            //    {
+            //    [
             //        services.AddMvcForTypedController<AdminPortalController>()
             //        //.AddRazorOptions(options =>
-            //        //{
+            //        //[
             //        //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace))
             //        //})
             //    },

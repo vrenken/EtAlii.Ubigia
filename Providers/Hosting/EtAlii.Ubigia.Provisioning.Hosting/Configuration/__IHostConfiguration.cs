@@ -1,12 +1,12 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
-//{
+//[
 //    using System
 //    using EtAlii.Ubigia.Api.Functional
 //    using EtAlii.Ubigia.Api.Transport
 //    using EtAlii.Ubigia.Api.Transport.Management
 
 //    public interface IHostConfiguration 
-//    {
+//    [
 //        IHostExtension[] Extensions { get; }
 
 //        IProviderConfiguration[] ProviderConfigurations { get; }

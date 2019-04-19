@@ -15,7 +15,7 @@
                 await observable.ToArray();
             }
             //catch (AggregateException ex)
-            //{
+            //[
             //    AssertExceptionType<T>(ex., inheritOptions)
             //    AssertExceptionMessage(ex, expectedMessage, messageOptions)
             //    return
@@ -39,61 +39,61 @@
 
         //public static async Task Throws<TException, TObservable>(this IAssertion assertion, IObservable<TObservable> observable, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         //    where TException : Exception
-        //{
+        //[
         //    await Throws<TException, TObservable>(observable, null, ExceptionMessageCompareOptions.None, inheritOptions)
         //}
 
         //public static async Task Throws<TException, TObservable>(IObservable<TObservable> observable, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         //    where TException : Exception
-        //{
+        //[
         //    await Throws<TException, TObservable>(observable, null, ExceptionMessageCompareOptions.None, inheritOptions)
         //}
 
         //public static async Task Throws<TException, TObservable>(this IAssertion assertion, IObservable<TObservable> observable, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         //    where TException : Exception
-        //{
+        //[
         //    await Throws<TException, TObservable>(observable, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions)
         //}
 
         //public static async Task Throws<TException, TObservable>(IObservable<TObservable> observable, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         //    where TException : Exception
-        //{
+        //[
         //    await Throws<TException, TObservable>(observable, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions)
         //}
 
         //public static async Task Throws<TException, TObservable>(this IAssertion assertion, IObservable<TObservable> observable, string expectedMessage, ExceptionMessageCompareOptions options, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
         //    where TException : Exception
-        //{
+        //[
         //    await Throws<TException, TObservable>(observable, expectedMessage, options, inheritOptions)
         //}
 
         //public static async Task Throws<TObservable>(this IAssertion assertion, IObservable<TObservable> observable, string expectedMessage, ExceptionMessageCompareOptions options, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
-        //{
+        //[
         //    await Throws<Exception, TObservable>(observable, expectedMessage, options, inheritOptions)
         //}
 
         //public static async Task Throws<TObservable>(IObservable<TObservable> observable, string expectedMessage, ExceptionMessageCompareOptions options, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
-        //{
+        //[
         //    await Throws<Exception, TObservable>(observable, expectedMessage, options, inheritOptions)
         //}
 
         //public static async Task Throws<TObservable>(this IAssertion assertion, IObservable<TObservable> observable, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
-        //{
+        //[
         //    await Throws<Exception, TObservable>(observable, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions)
         //}
 
         //public static async Task Throws<TObservable>(IObservable<TObservable> observable, string expectedMessage, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
-        //{
+        //[
         //    await Throws<Exception, TObservable>(observable, expectedMessage, ExceptionMessageCompareOptions.Exact, inheritOptions)
         //}
 
         //public static async Task Throws<TObservable>(this IAssertion assertion, IObservable<TObservable> observable, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
-        //{
+        //[
         //    await Throws<Exception, TObservable>(observable, null, ExceptionMessageCompareOptions.None, inheritOptions)
         //}
 
         //public static async Task Throws<TObservable>(IObservable<TObservable> observable, ExceptionInheritanceOptions inheritOptions = ExceptionInheritanceOptions.Inherits)
-        //{
+        //[
         //    await Throws<Exception, TObservable>(observable, null, ExceptionMessageCompareOptions.None, inheritOptions)
         //}
 

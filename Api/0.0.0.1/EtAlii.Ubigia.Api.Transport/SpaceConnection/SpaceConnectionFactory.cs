@@ -30,7 +30,7 @@
 
             // No extensions on the Space connection (yet).
             //foreach (var extension in configuration.Extensions)
-            //{
+            //[
             //    extension.Initialize(container)
             //}
 

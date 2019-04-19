@@ -29,7 +29,7 @@
 
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Create()
-        //    {
+        //    [
         //        // Arrange.
         //        var entries = new StubIEntries()
         //        var connection = new StubIDataConnection()
@@ -43,7 +43,7 @@
 
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Upload_Non_Existing_File()
-        //    {
+        //    [
         //        // Arrange.
         //        var entries = new StubIEntries()
         //        var content = new StubIContent()
@@ -56,7 +56,7 @@
 
         //        // Act.
         //        var act = new Action(() =>
-        //        {
+        //        [
         //            contentManager.Upload(fileName, Identifier.Empty)
         //        })
 
@@ -66,7 +66,7 @@
 
         //    [Fact]
         //    public void NET47ContentManager_Stubbed_Upload_Existing_File()
-        //    {
+        //    [
         //        // Arrange.
         //        var entries = new StubIEntries()
         //        var content = new StubIContent()
@@ -77,7 +77,7 @@
 
         //        // Act.
         //        var act = new Action(() =>
-        //        {
+        //        [
         //            contentManager.Upload(_testImageFileName, Identifier.Empty)
         //        })
 
