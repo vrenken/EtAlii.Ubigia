@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using Microsoft.AspNetCore.SignalR.Client;
 
@@ -78,7 +77,7 @@
 
         public async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)
         {
-            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Account, UriKind.Absolute));
+            _connection = new HubConnectionFactory().Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + SignalRHub.Account, UriKind.Absolute));
 			await _connection.StartAsync();
         }
 

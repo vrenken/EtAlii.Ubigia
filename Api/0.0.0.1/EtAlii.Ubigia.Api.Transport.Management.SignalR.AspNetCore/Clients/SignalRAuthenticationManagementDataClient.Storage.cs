@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
-	using System;
-	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Transport.SignalR;
+    using System;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.SignalR;
 
     public partial class SignalRAuthenticationManagementDataClient
     {
@@ -31,7 +31,7 @@
 
         private async Task<Storage> GetConnectedStorage(ISignalRTransport transport)
         {
-			var connection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + SignalRHub.BasePath + "/" + SignalRHub.Authentication), transport.AuthenticationToken);
+			var connection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + SignalRHub.BasePath + SignalRHub.Authentication), transport.AuthenticationToken);
             await connection.StartAsync();
             var storage = await _invoker.Invoke<Storage>(connection, SignalRHub.Authentication, "GetLocalStorage");
             await connection.DisposeAsync();
