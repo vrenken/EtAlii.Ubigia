@@ -12,8 +12,7 @@
 //        public InfrastructureService(IInfrastructure infrastructure)
 //        [
 //            _infrastructure = infrastructure
-//        }
-
+//        ]
 //        public override void Start()
 //        [
 //            Status.Title = "Ubigia infrastructure"
@@ -29,8 +28,7 @@
 //            sb.AppendLine($"Address: {_infrastructure.Configuration.Address}")
 //            Status.Summary = sb.ToString()
 //            Status.Summary = Status.Description
-//        }
-
+//        ]
 //        public override void Stop()
 //        [
 //            Status.Description = "Stopping..."
@@ -40,11 +38,10 @@
 
 //            Status.Description = "Stopped."
 //            Status.Summary = Status.Description
-//        }
-
+//        ]
 //	    protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
 //	    [
 //			status = new Status(nameof(InfrastructureService))
-//		}
-//    }
-//}
+//		]
+//    ]
+//]

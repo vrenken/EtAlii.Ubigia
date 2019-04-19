@@ -11,23 +11,20 @@
 //        public StorageService(IStorage storage)
 //        [
 //            _storage = storage
-//        }
-
+//        ]
 //        public override void Start()
 //        [
 //            // Nothing that we can do with a storage instance.
 //            // _storage 
-//        }
-
+//        ]
 //        public override void Stop()
 //        [
 //            // Nothing that we can do with a storage instance.
 //            // _storage 
-//        }
-
+//        ]
 //		protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
 //		[
 //			status = new Status(nameof(StorageService))
-//		}
-//	}
-//}
+//		]
+//	]
+//]

@@ -19,8 +19,7 @@
             //var root = new Root
             //[
             //    Name = name,
-            //}
-
+            //]
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString())
             //root = Infrastructure.Post<Root>(address, root)
             //return root
@@ -42,8 +41,7 @@
             //[
             //    Id = rootId,
             //    Name = rootName,
-            //}
-
+            //]
             //var address = AddressFactory.Create(Connection.Storage, RelativeUri.Roots, UriParameter.SpaceId, Connection.Space.Id.ToString(), UriParameter.RootId, rootId.ToString())
             //root = Infrastructure.Put(address, root)
             //return root

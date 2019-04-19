@@ -20,6 +20,6 @@
 //            Field(d => d.PrimaryFunction, nullable: true).Description("The primary function of the droid.")
 //
 //            Interface<CharacterInterface>()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

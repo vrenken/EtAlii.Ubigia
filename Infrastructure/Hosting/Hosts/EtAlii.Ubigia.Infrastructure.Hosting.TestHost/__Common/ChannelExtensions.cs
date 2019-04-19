@@ -13,13 +13,12 @@
 //                while (channel.TryRead(out var item))
 //                [
 //                    list.Add(item)
-//                }
-//            }
-
+//                ]
+//            ]
 //            // Manifest any error from channel.Completion (which should be completed now)
 //            await channel.Completion
 
 //            return list
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

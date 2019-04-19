@@ -24,8 +24,7 @@
 //			_items = items
 //			_accountItems = accountItems
 //			_authenticationTokenConverter = authenticationTokenConverter
-//		}
-
+//		]
 //		public Space GetForAuthenticationToken(string spaceName)
 //		[
 //			Space response
@@ -39,12 +38,12 @@
 //				var account = _accountItems.Get(authenticationToken.Name)
 
 //				response = _items.Get(account.Id, spaceName)
-//			}
+//			]
 //			catch (Exception e)
 //			[
 //				throw new InvalidOperationException("Unable to serve a Space GET client request", e)
-//			}
+//			]
 //			return response
-//		}
-//	}
-//}
+//		]
+//	]
+//]

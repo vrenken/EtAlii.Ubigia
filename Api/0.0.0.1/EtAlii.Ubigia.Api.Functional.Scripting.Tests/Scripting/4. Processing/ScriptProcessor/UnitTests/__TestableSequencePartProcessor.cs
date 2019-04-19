@@ -11,8 +11,7 @@
 //        public TestableSequencePartProcessor(Action<int, ProcessParameters<SequencePart, SequencePart>> logMethod)
 //        [
 //            _logMethod = logMethod
-//        }
-
+//        ]
 //        public Task<object> Process(
 //            ProcessParameters<SequencePart, SequencePart> parameters, 
 //            ExecutionScope scope,
@@ -21,6 +20,6 @@
 //            step += 1
 //            _logMethod(step, parameters)
 //            return Task.FromResult<object>(step)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

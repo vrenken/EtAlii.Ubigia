@@ -10,7 +10,7 @@
 //            if (!actionContext.HttpContext.Request.IsHttps)
 //            [
 //                actionContext.Result = new BadRequestResult()
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

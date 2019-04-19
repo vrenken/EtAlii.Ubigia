@@ -30,9 +30,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 //        [
 //            var connection = await CreateDataConnection(accountName, accountPassword, spaceName)
 //            return new GraphSLScriptContextFactory().Create(connection)
-//        }
-
-
+//        ]
         public async Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string accountPassword, string spaceName)
         {
             var connection = await CreateDataConnection(accountName, accountPassword, spaceName);

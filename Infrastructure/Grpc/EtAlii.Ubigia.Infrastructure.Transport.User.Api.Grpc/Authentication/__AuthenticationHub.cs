@@ -24,13 +24,11 @@
 //            _authenticationTokenVerifier = authenticationTokenVerifier
 //            _storageRepository = storageRepository
 //	        _authenticationBuilder = authenticationBuilder
-//        }
-
+//        ]
 //	    public string Authenticate(string accountName, string password, string hostIdentifier)
 //	    [
 //		    return _authenticationVerifier.Verify(accountName, password, hostIdentifier, Role.User, Role.System)
-//	    }
-
+//	    ]
 //	    public string AuthenticateAs(string accountName, string hostIdentifier)
 //	    [
 //		    Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues)
@@ -38,8 +36,7 @@
 //		    _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System)
 
 //		    return _authenticationBuilder.Build(accountName, hostIdentifier)
-//		}
-
+//		]
 //		public Storage GetLocalStorage()
 //        [
 //            Context.Connection.GetHttpContext().Request.Headers.TryGetValue("Authentication-Token", out StringValues stringValues)
@@ -47,6 +44,6 @@
 //            _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System)
 
 //            return _storageRepository.GetLocal()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

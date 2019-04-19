@@ -19,8 +19,7 @@
 //        public SignalRTestHttpClient(Func<IConnection, HttpMessageHandler> createMessageHandler)
 //        [
 //            _createMessageHandler = createMessageHandler
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Initialize the Http Clients
 //        /// 
@@ -32,13 +31,12 @@
 //            _longRunningClient = new HttpClient(_createMessageHandler(_connection))
 //            [
 //                Timeout = TimeSpan.FromMilliseconds(-1.0)
-//            }
+//            ]
 //            _shortRunningClient = new HttpClient(_createMessageHandler(_connection))
 //            [
 //                Timeout = TimeSpan.FromMilliseconds(-1.0)
-//            }
-//        }
-
+//            ]
+//        ]
 //        /// <summary>
 //        /// Makes an asynchronous http GET request to the specified url.
 //        /// 
@@ -52,7 +50,7 @@
 //            if (prepareRequest == null)
 //            [
 //                throw new ArgumentNullException("prepareRequest")
-//            }
+//            ]
 //            var responseDisposer = new SignalRDisposer()
 //            var cts = new CancellationTokenSource()
 //            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Get, new Uri(url))
@@ -67,12 +65,11 @@
 //                if (!responseMessage.IsSuccessStatusCode)
 //                [
 //                    throw new HttpClientException(responseMessage)
-//                }
+//                ]
 //                responseDisposer.Set((IDisposable)responseMessage)
 //                return (IResponse)new HttpResponseMessageWrapper(responseMessage)
 //            }))
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Makes an asynchronous http POST request to the specified url.
 //        /// 
@@ -86,7 +83,7 @@
 //            if (prepareRequest == null)
 //            [
 //                throw new ArgumentNullException("prepareRequest")
-//            }
+//            ]
 //            var responseDisposer = new SignalRDisposer()
 //            var cts = new CancellationTokenSource()
 //            var httpRequestMessage = new HttpRequestMessage(HttpMethod.Post, new Uri(url))
@@ -94,7 +91,7 @@
 //                Content = postData != null
 //                        ? new SignalRFormUrlEncodedContent(postData)
 //                        : (HttpContent) new StringContent(string.Empty)
-//            }
+//            ]
 //            var requestMessageWrapper = new HttpRequestMessageWrapper(httpRequestMessage, () =>
 //            [
 //                cts.Cancel()
@@ -106,12 +103,11 @@
 //                if (!responseMessage.IsSuccessStatusCode)
 //                [
 //                    throw new HttpClientException(responseMessage)
-//                }
+//                ]
 //                responseDisposer.Set((IDisposable)responseMessage)
 //                return (IResponse)new HttpResponseMessageWrapper(responseMessage)
 //            }))
-//        }
-
+//        ]
 //        /// <summary>
 //        /// Returns the appropriate client based on whether it is a long running request
 //        /// 
@@ -123,8 +119,8 @@
 //            if (!isLongRunning)
 //            [
 //                return _shortRunningClient
-//            }
+//            ]
 //            return _longRunningClient
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -25,8 +25,7 @@
 //                    _pathSubjectPartsParser.Parser.OneOrMore() +
 //                    Lp.Lookahead(Lp.Not("."))
 //                );//.Debug("PathSubjectParser", true)
-//        }
-
+//        ]
 //        public Subject Parse(LpNode node)
 //        [
 //            _nodeValidator.EnsureSuccess(node, Id)
@@ -38,20 +37,17 @@
 //            if (parts.Length == 1 && parts[0] is ConstantPathSubjectPart)
 //            [
 //                result = new StringConstantSubject(((ConstantPathSubjectPart) parts[0]).Name)
-//            }
+//            ]
 //            else
 //            [
 //                result = new PathSubject(parts)
-//            }
+//            ]
 //            return result
-//        }
-
-
+//        ]
 //        public bool CanParse(LpNode node)
 //        [
 //            return node.Id == Id
-//        }
-
+//        ]
 //        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
 //        [
 //            var pathSubject = subject as PathSubject
@@ -66,22 +62,20 @@
 //                    var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null
 //                    var part = parts[i]
 //                    _pathSubjectPartsParser.Validate(beforePathPart, part, i, afterPathPart)
-//                }
-
+//                ]
 //                if (subjectIndex == 0 && pathSubject.Parts.FirstOrDefault() is ConstantPathSubjectPart)
 //                [
 //                    throw new ScriptParserException("A relative path part cannot be used as first subject.")
-//                }
-//            }
+//                ]
+//            ]
 //            else if (stringConstantSubject == null)
 //            [
 //                throw new ScriptParserException("Unsupported path construction.")
-//            }
-//        }
-
+//            ]
+//        ]
 //        public bool CanValidate(Subject subject)
 //        [
 //            return subject is PathSubject
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

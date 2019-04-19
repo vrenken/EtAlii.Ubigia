@@ -6,5 +6,5 @@
 //    internal interface IHttpContextAuthenticationIdentityProvider
 //    [
 //        AuthenticationIdentity Get(HttpContext context)
-//    }
-//}
+//    ]
+//]

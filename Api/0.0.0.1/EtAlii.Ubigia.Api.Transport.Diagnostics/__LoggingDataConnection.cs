@@ -15,8 +15,7 @@
 //        [
 //            _decoree = decoree
 //            _logger = logger
-//        }
-
+//        ]
 //        public Storage Storage { get { return _decoree.Storage; } }
 //        public Account Account { get { return _decoree.Account; } }
 //        public Space Space { get { return _decoree.Space; } }
@@ -41,8 +40,7 @@
 //            await _decoree.Open()
 //            message = String.Format("Opened data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, Environment.TickCount - start)
 //            _logger.Info(message)
-//        }
-
+//        ]
 //        public async Task Close()
 //        [
 //            var address = _decoree.Configuration.Address
@@ -55,6 +53,6 @@
 //            await _decoree.Close()
 //            message = String.Format("Closed data connection (Address: {0} Account: {1} Space: {2} Duration: {3}ms)", address, accountName, spaceName, Environment.TickCount - start)
 //            _logger.Info(message)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

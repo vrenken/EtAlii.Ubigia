@@ -46,11 +46,11 @@
             //[
             //    var containerId = ContainerIdentifier.ForRoots(spaceId)
             //    canAdd = !ItemStorage.Has(item.Id, containerId)
-            //}
+            //]
             //if (canAdd)
             //[
             //    canAdd = Get(spaceId, item.Id) == null
-            //}
+            //]
             if (canAdd)
             {
                 canAdd = _rootGetter.Get(spaceId, item.Name) == null;

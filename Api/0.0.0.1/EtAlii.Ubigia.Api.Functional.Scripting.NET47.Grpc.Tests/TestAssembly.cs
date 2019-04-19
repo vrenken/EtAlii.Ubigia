@@ -21,8 +21,7 @@
 
         //    // Start logging.
         //    //Logger.StartSession(productName, assemblyTitle, assemblyVersion); // Disabled because of performance loss.
-        //}
-
+        //]
         ///// 
         ///// Our one-time cleanup method called at the very end of running unit tests in this assembly
         /////
@@ -31,8 +30,7 @@
         //[
         //    // End logging.
         //    //Logger.EndSession(); // Disabled because of performance loss.
-        //}
-
+        //]
         public const string Category = "EtAlii.Ubigia.Api.Functional.NET47";
         public const string StorageName = "Unit test storage - Api (NET47)";
     }

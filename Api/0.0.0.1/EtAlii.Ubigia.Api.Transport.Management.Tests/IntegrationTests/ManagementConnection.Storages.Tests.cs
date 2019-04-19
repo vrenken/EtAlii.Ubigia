@@ -172,8 +172,7 @@
         //        Assert.Equal(name, storage.Name)
         //        Assert.Equal(address, storage.Address)
         //        storages.Add(storage)
-        //    }
-
+        //    ]
         //    var retrievedStorages = await connection.Storages.GetAll()
 
         //    Assert.Equal(storages.Count + 1, retrievedStorages.Count())
@@ -184,9 +183,8 @@
         //        Assert.NotNull(matchingStorage)
         //        Assert.Equal(storage.Name, matchingStorage.Name)
         //        Assert.Equal(storage.Address, matchingStorage.Address)
-        //    }
-        //}
-
+        //    ]
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ManagementConnection_Storages_Change()
         {

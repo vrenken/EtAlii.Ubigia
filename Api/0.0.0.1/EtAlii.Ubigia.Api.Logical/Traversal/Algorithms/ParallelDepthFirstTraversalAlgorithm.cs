@@ -41,12 +41,12 @@
             //        })
 
             //        result.AddRange(subResults.SelectMany(sr => sr))
-            //    }
+            //    ]
             //    else
             //    [
             //        result.AddRangeOnce(relatedNodes)
-            //    }
-            //}
+            //    ]
+            //]
         }
     }
 }

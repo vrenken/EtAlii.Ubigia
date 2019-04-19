@@ -14,14 +14,13 @@
 //                container.Register<IStorageClient, WebApiStorageClient>()
 //                container.Register<IAccountClient, WebApiAccountClient>()
 //                container.Register<ISpaceClient, WebApiSpaceClient>()
-//            }
+//            ]
 //            else
 //            [
 //                container.Register<IStorageClient, StorageClientStub>()
 //                container.Register<IAccountClient, AccountClientStub>()
 //                container.Register<ISpaceClient, SpaceClientStub>()
-//            }
-//        }
-
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

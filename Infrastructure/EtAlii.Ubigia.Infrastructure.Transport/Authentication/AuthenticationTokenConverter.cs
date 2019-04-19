@@ -55,6 +55,6 @@
         //        .GetValues("Authentication-Token")
         //        .FirstOrDefault()
         //    return authenticationTokenAsString != null ? FromString(authenticationTokenAsString) : null
-        //}
+        //]
     }
 }

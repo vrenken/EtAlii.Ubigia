@@ -16,6 +16,6 @@
 //            Field(p => p.Birthdate, nullable: true).Description("The birth date of the person.")
 //
 //            Field(p => p.Lives, nullable: true).Description("The lives of the person.")
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

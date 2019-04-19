@@ -15,20 +15,19 @@
 //            : base(authenticationTokenVerifier)
 //        [
 //            _items = items
-//        }
-
+//        ]
 //        public Storage GetLocal(string local)
 //        [
 //            Storage response
 //            try
 //            [
 //                response = _items.GetLocal()
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

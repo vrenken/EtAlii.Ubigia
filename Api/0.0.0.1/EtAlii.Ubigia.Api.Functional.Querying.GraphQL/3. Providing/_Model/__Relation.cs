@@ -8,5 +8,5 @@
 //    [
 //        public string Path { get set }
 //        public TypeDefinition Type { get set }
-//    }
-//}
+//    ]
+//]

@@ -64,9 +64,8 @@
         //    foreach (var typeToRegister in typesToRegister)
         //    [
         //        Container.Register(typeToRegister)
-        //    }
-        //}
-
+        //    ]
+        //]
         private ILogger GetLogger()
         {
             var factory = Container.GetInstance<ILogFactory>();

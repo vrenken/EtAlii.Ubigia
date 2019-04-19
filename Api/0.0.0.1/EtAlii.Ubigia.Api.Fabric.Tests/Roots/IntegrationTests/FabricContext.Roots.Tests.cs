@@ -286,8 +286,7 @@
 
         //    Assert.NotEqual(Guid.Empty, removedId)
         //    Assert.NotEqual(root.Id, removedId)
-        //}
-
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Delete_Non_Existing()
         {
@@ -330,8 +329,7 @@
 
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
-        //}
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Get_With_Closed_Connection()
         //[
@@ -346,8 +344,7 @@
 
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
-        //}
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Remove_With_Closed_Connection()
         //[
@@ -362,8 +359,7 @@
 
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
-        //}
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_GetAll_With_Closed_Connection()
         //[
@@ -378,8 +374,7 @@
 
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
-        //}
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public async Task FabricContext_Roots_Change_With_Closed_Connection()
         //[
@@ -394,8 +389,7 @@
 
         //    // Assert.
         //    Assert.Throws<InvalidInfrastructureOperationException>(act)
-        //}
-
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task FabricContext_Roots_Add_Already_Existing_Storage()
         {

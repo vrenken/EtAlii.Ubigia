@@ -11,6 +11,6 @@
 //            AddValue("NEWHOPE", "Released in 1977.", 4)
 //            AddValue("EMPIRE", "Released in 1980.", 5)
 //            AddValue("JEDI", "Released in 1983.", 6)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

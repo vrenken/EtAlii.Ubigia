@@ -17,9 +17,8 @@
 //			//	[
 //			//		var delay = Int32.Parse(arguments[i + 1])
 //			//		System.Threading.Tasks.Task.Delay(delay).Wait()
-//			//	}
-//			//}
-
+//			//	]
+//			//]
 //			//Console.WriteLine("Starting Ubigia infrastructure...")
 
 //			var host = new HostFactory<TestHost>().Create(configuration)
@@ -29,6 +28,6 @@
 
 //			//var consoleDialog = new ConsoleDialog(host)
 //			//consoleDialog.Start()
-//		}
-//	}
-//}
+//		]
+//	]
+//]

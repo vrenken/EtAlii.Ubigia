@@ -190,10 +190,10 @@
 //        [
 //            Stop()
 //            Start()
-//        }
+//        ]
 //
 //        private void OnChanged(object sender, FileSystemEventArgs e)
 //        [
-//        }
+//        ]
     }
 }

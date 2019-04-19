@@ -67,7 +67,7 @@
 //							ValidateActor = false,
 //							ValidateLifetime = true,
 //							IssuerSigningKey = SecurityKey
-//						}
+//						]
 //					options.Events = new JwtBearerEvents
 //					[
 //						OnMessageReceived = context =>
@@ -77,14 +77,12 @@
 //							    (context.HttpContext.WebSockets.IsWebSocketRequest || context.Request.Headers["Accept"] == "text/event-stream"))
 //							[
 //								context.Token = context.Request.Query["access_token"]
-//							}
+//							]
 //							return Task.CompletedTask
-//						}
-//					}
+//						]
+//					]
 //				})
-//		}
-
-
+//		]
 		//.AddAuthentication(options =>
 		//[
 		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme
@@ -104,7 +102,7 @@
 		//        ValidateLifetime = true, //validate the expiration and not before values in the token
 		//        ClockSkew = TimeSpan.FromMinutes(1) //5 minute tolerance for the expiration date
 
-		//    }
+		//    ]
 		//})
 
 	}

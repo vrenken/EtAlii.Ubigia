@@ -123,7 +123,6 @@ namespace EtAlii.Ubigia.Api.Logical
         //        .GetRelated(id, EntryRelation.Downdate)
         //        .Select(c => c.Id))
         //    list.RemoveRange(toRemove)
-        //}
-
+        //]
     }
 }

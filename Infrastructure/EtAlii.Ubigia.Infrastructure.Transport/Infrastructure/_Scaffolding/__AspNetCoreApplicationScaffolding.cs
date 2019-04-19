@@ -10,8 +10,7 @@
 //        public AspNetCoreApplicationScaffolding()//IApplicationManager applicationManager)
 //        [
 //            //_applicationManager = applicationManager
-//        }
-
+//        ]
 //        public void Register(Container container)
 //        [
 //            //container.Register<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
@@ -19,11 +18,11 @@
 //            //if (_applicationManager != null)
 //            //[
 //            //    container.Register(() => _applicationManager)
-//            //}
+//            //]
 //            //else
 //            //[
 //            //    container.Register<IApplicationManager, DefaultApplicationManager>()
-//            //}
-//        }
-//    }
-//}
+//            //]
+//        ]
+//    ]
+//]

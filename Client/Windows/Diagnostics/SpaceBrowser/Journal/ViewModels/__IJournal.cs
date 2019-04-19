@@ -8,5 +8,5 @@
 //        ObservableCollection<JournalItem> Items { get; }
 //        int Size { get; set; }
 //        void AddItem(string action, string description)
-//    }
-//}
+//    ]
+//]

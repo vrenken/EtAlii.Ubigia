@@ -22,6 +22,6 @@
 //            Configuration = configuration
 //            Infrastructure = infrastructure
 //            _logger = logger
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

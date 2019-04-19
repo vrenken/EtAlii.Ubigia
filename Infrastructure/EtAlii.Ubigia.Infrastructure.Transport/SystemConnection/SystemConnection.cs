@@ -63,7 +63,7 @@
 //                        //var task = Task. Run(async () =>
 //                        var task = Close()
 //                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
-                    //}
+                    //]
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.

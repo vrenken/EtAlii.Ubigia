@@ -30,6 +30,6 @@
         //    _authenticationTokenVerifier.Verify(authenticationToken, null)
 
         //    return base.OnReconnected()
-        //}
+        //]
     }
 }

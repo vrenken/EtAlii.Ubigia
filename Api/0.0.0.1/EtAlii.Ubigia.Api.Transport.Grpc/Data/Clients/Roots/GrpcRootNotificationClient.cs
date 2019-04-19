@@ -17,8 +17,7 @@
 //        public GrpcRootNotificationClient()
 //        [
 //            //_name = GrpcHub.Root
-//        }
-
+//        ]
         private void OnAdded(System.Guid id)
         {
             Added(id); 
@@ -47,7 +46,7 @@
 			//	_connection.On<Guid>("added", OnAdded),
 			//	_connection.On<Guid>("changed", OnChanged),
 			//	_connection.On<Guid>("removed", OnRemoved),
-			//}
+			//]
         }
 
         public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)

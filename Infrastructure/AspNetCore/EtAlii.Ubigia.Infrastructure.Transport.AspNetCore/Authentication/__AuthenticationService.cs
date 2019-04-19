@@ -14,8 +14,7 @@
 //        public AuthenticationService(IConfigurationSection configuration) : base(configuration)
 //        [
 //            _configuration = configuration
-//        }
-
+//        ]
 //        protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
 //        [
 //            var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure
@@ -35,6 +34,6 @@
 //                        .UseAuthentication()
 //                        .UseMvc()
 //                })
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

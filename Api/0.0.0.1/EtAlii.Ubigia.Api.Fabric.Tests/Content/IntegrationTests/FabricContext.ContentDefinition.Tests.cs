@@ -273,8 +273,7 @@
         //    var retrievedContentDefinition = await connection.Content.RetrieveDefinition(entry.Id)
 
         //    Assert.Equal(contentDefinition.Size, retrievedContentDefinition.Size)
-        //}
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void DataConnection_ContentDefinition_Store_And_Retrieve_Check_Checksum()
         //[
@@ -289,9 +288,7 @@
         //    var retrievedContentDefinition = await connection.Content.RetrieveDefinition(entry.Id)
 
         //    Assert.Equal(contentDefinition.Checksum, retrievedContentDefinition.Checksum)
-        //}
-
-
+        //]
         //[Fact, Trait("Category", TestAssembly.Category)]
         //public void DataConnection_ContentDefinition_Store_And_Retrieve_Check_Parts()
         //[
@@ -310,8 +307,7 @@
         //    [
         //        Assert.Equal(contentDefinition.Parts[i].Checksum, retrievedContentDefinition.Parts.ElementAt(i).Checksum)
         //        Assert.Equal(contentDefinition.Parts[i].Size, retrievedContentDefinition.Parts.ElementAt(i).Size)
-        //    }
-        //}
-
+        //    ]
+        //]
     }
 }

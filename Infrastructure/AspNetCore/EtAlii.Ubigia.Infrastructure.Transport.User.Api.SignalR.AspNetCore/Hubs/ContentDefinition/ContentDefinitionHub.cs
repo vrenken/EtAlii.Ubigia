@@ -81,6 +81,6 @@
 //        [
 //            Clients.All.SendAsync("stored", new object[] { identifier })
 //            //Clients.All.stored(identifier)
-//        }
+//        ]
     }
 }

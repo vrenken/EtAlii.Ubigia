@@ -5,5 +5,5 @@
 //    public interface IServicesConfigurationSectionGroup
 //    [
 //        IHostService[] ToHostServices()
-//    }
-//}
+//    ]
+//]

@@ -9,11 +9,11 @@
 //            var scaffoldings = new IScaffolding[]
 //            [
 //                //new ProviderComponentsScaffolding(),
-//            }
+//            ]
 //            foreach (var scaffolding in scaffoldings)
 //            [
 //                scaffolding.Register(container)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

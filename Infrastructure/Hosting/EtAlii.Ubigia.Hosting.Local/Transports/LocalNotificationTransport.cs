@@ -17,7 +17,7 @@
             //if (_hubConnection != null)
             //[
             //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToNotifications)
-            //}
+            //]
             //_hubConnection = new HubConnection(address + RelativeUri.Notifications, false)
 
             foreach (var client in _clients)
@@ -33,8 +33,7 @@
             //if (_hubConnection == null)
             //[
             //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToNotifications)
-            //}
-
+            //]
             foreach (var client in _clients)
             {
                 client.Disconnect();

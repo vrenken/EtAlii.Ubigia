@@ -16,8 +16,7 @@
 //            this._actionDescriptorCollectionProvider = actionDescriptorCollectionProvider
 //            _settings = new JsonSerializerSettings()
 //            _settings.Formatting = Formatting.Indented
-//        }
-
+//        ]
 //        [HttpGet]
 //        [HttpPut]
 //        public IActionResult Index()
@@ -31,6 +30,6 @@
 //            }).ToList()
 
 //            return Json(routes, _settings)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

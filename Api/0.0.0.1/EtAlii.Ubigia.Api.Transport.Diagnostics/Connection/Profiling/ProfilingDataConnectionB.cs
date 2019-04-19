@@ -51,13 +51,11 @@
 
 //                new EventMetricValue { ValueName = "Current closing", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current closing connections", Description = "The number of connections being closed at a specific moment" },
 //                new EventMetricValue { ValueName = "Total closed", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total closed connections", Description = "The number of times the Close method has executed" },
-//            }
-
+//            ]
 //            profiler.RegisterEventMetric(_connectionCounter, values)
 
 //            WriteEvent()
-//        }
-
+//        ]
 //        public async Task Open()
 //        [
 //            _currentOpening += 1
@@ -71,8 +69,7 @@
 //            _currentOpen += 1
 //            _currentOpening -= 1
 //            WriteEvent()
-//        }
-
+//        ]
 //        public async Task Close()
 //        [
 //            _currentClosing += 1
@@ -86,12 +83,11 @@
 //            _currentOpen -= 1
 //            _currentClosing -= 1
 //            WriteEvent()
-//        }
-
+//        ]
 //        private void WriteEvent()
 //        [
 //            _profiler.WriteEvent(_connectionCounter, _currentOpening, _totalOpened, _currentOpen, _currentClosing, _totalClosed)
 
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -42,7 +42,6 @@
 //            var httpClientFactory = new TestHttpClientFactory(Host.Server)
 //            var infrastructureClient = new DefaultInfrastructureClient(httpClientFactory)
 //            return infrastructureClient
-//        }
-
+//        ]
     }
 }

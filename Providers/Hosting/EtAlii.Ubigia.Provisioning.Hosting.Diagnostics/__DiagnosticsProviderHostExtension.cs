@@ -11,8 +11,7 @@
 //        internal DiagnosticsProviderHostExtension(IDiagnosticsConfiguration diagnostics)
 //        [
 //            _diagnostics = diagnostics
-//        }
-
+//        ]
 //        public void Initialize(Container container)
 //        [
 //            var diagnostics = _diagnostics ?? new DiagnosticsFactory().Create(false, false, false,
@@ -30,12 +29,11 @@
 
 //                //new WebApiProfilingScaffolding(diagnostics),
 //                //new WebApiLoggingScaffolding(diagnostics),
-//            }
-
+//            ]
 //            foreach (var scaffolding in scaffoldings)
 //            [
 //                scaffolding.Register(container)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

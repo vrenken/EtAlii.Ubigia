@@ -228,9 +228,8 @@
         //            "Create a profiling document",
         //            "Shows profiling details of all API access to a space",
         //            "Useful for advanced query optimization"),
-        //    }
-        //}
-
+        //    ]
+        //]
         //private NewDocumentCommand CreateNewDocumentCommand(
         //    Container container, 
         //    IDocumentFactory factory, 
@@ -250,7 +249,6 @@
         //    command.InfoTip1 = infoTip1
         //    command.InfoTip2 = infoTip2
         //    return command
-        //}
-
+        //]
     }
 }

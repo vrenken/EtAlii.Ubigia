@@ -93,8 +93,7 @@
         //    [
         //        "$var1 <= \"Time\":",
         //        "$var1"
-        //    }
-
+        //    ]
         //    var script = _parser.Parse(queries).Script
         //    var scope = new ScriptScope()
         //    var configuration = new ScriptProcessorConfiguration()
@@ -111,8 +110,7 @@
         //    Assert.NotNull(result)
         //    Assert.IsType<DynamicNode>(result.Single())
         //    Assert.Equal("Time", result.Cast<INode>().Single().Type)
-        //}
-
+        //]
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_RootedPath_Get_GetItemByVariables_1_Absolute_1()
         {

@@ -25,8 +25,7 @@
 //            if (Debugger.IsAttached)
 //            [
 //                Thread.Sleep(5000)
-//            }
-
+//            ]
 //            //var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.Provisioning")
 //            var diagnostics = new DiagnosticsFactory().Create<DebugLogFactory, DisabledProfilerFactory>(true, false, true, "EtAlii", "EtAlii.Ubigia.Provisioning")
 
@@ -56,6 +55,6 @@
 //            Console.ReadKey()
 
 //            host.Stop()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

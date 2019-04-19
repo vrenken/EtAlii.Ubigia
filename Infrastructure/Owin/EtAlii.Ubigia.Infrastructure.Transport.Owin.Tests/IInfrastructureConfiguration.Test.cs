@@ -18,11 +18,11 @@
 //            var extensions = new IInfrastructureExtension[]
 //            [
 //                new TestInfrastructureExtension(diagnostics, signalRDependencyResolver), 
-//            }
+//            ]
 //            return configuration
 //                .Use(extensions)
 //                .Use(_webApiFactory.Create)
 //                .Use((container, components) => _signalRFactory.Create(signalRDependencyResolver, components))
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -10,6 +10,6 @@
 //        public ResultSetCollection(
 //            IObservable<SequenceProcessingResult> resultSets) : base resultSets
 //        [
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -56,7 +56,7 @@
             //[
             //    throw new ScriptParserException("A traversing wildcard path part cannot be used at the beginning of a graph path.")
             //    Not true with rooted paths.
-            //}
+            //]
         }
 
         public bool CanValidate(PathSubjectPart part)

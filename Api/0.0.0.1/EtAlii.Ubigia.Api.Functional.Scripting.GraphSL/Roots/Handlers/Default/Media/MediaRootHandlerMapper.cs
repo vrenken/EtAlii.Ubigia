@@ -18,7 +18,7 @@
 //                new MediaByCompanyFamilyModelHandler(),
 //
 //                //new MediaByEmptyHandler(), // Should be at the end.
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

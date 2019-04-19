@@ -6,11 +6,11 @@
 //            where THostTestContext : class, IHostTestContext, new()
 //        [
 //            return new THostTestContext()
-//        }
+//        ]
 //
 ////        public IHostTestContext Create()
 ////        [
 ////            return new HostTestContext()
-////        }
-//    }
-//}
+////        ]
+//    ]
+//]

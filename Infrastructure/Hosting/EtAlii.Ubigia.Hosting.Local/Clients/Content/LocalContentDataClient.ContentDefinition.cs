@@ -42,7 +42,7 @@
             //foreach (var contentDefinitionPart in contentDefinition.Parts)
             //[
             //    MarkAsStored(contentDefinitionPart)
-            //}
+            //]
         }
 
         private void MarkAsStored(ContentDefinitionPart contentDefinitionPart)

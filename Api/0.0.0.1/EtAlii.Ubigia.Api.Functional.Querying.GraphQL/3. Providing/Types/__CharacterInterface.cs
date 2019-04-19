@@ -13,6 +13,6 @@
 //
 //            Field<ListGraphType<CharacterInterface>>("friends")
 //            Field<ListGraphType<EpisodeEnum>>("appearsIn", "Which movie they appear in.")
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

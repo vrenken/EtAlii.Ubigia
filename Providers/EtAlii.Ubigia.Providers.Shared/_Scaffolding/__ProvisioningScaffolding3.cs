@@ -15,8 +15,7 @@
 //        public ProvisioningExtension(IProvisioningConfiguration configuration)
 //        [
 //            _configuration = configuration
-//        }
-
+//        ]
 //        public void Register(Container container)
 //        [
 //            //container.Register<IProviderHost, TProvider>()
@@ -53,6 +52,6 @@
 
 //                return _configuration.CreateDataContext(connection)
 //            })
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

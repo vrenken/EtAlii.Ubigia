@@ -6,5 +6,5 @@
 //    public interface IHttpContextAuthenticationTokenVerifier
 //    [
 //        IActionResult Verify(HttpContext actionContext, Controller controller, params string[] requiredRoles)
-//    }
-//}
+//    ]
+//]

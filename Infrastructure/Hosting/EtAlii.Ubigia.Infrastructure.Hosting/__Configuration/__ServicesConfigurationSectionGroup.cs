@@ -15,8 +15,8 @@
 //            [
 //                var hostService = serviceConfigurationSection.ToService()
 //                result.Add(hostService)
-//            }
+//            ]
 //            return result.ToArray()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

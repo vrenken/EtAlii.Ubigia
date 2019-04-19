@@ -21,7 +21,7 @@
             //[
             //    hubProxy.On<Identifier>("updated", OnUpdated),
             //    hubProxy.On<Identifier>("stored", OnStored),
-            //}
+            //]
         }
 
         private void OnUpdated(Identifier identifier)

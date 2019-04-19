@@ -17,21 +17,19 @@
 //		public RolesRequirementHandler(IHttpContextAuthenticationVerifier verifier)
 //		[
 //			_verifier = verifier
-//		}
-
+//		]
 //		protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RolesRequirement requirement)
 //		[
 //			var status = _verifier.Verify(null, null, requirement.RequiredRoles)
 //			if (status is OkResult)
 //			[
 //				context.Succeed(requirement)
-//			}
+//			]
 //			else
 //			[
 //				context.Fail()
-//			}
-
+//			]
 //			return Task.CompletedTask
-//		}
-//	}
-//}
+//		]
+//	]
+//]

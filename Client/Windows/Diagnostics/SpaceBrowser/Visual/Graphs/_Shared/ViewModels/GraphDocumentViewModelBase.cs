@@ -62,8 +62,7 @@
 
         //private void OnEntryPrepared(Identifier identifier)
         //[
-        //}
-
+        //]
         protected virtual void OnEntryStored(Identifier id)
         {
             // Handle an entry store event.

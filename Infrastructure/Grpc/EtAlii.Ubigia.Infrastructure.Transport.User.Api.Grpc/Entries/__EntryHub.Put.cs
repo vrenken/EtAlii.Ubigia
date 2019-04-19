@@ -16,12 +16,12 @@
 
 //                // Send the stord event.
 //                SignalStored(entry.Id)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Entry PUT client request", e)
-//            }
+//            ]
 //            return response
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

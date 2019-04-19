@@ -21,13 +21,11 @@
 //            _authenticationVerifier = authenticationVerifier
 //            _authenticationTokenVerifier = authenticationTokenVerifier
 //            _storageRepository = storageRepository
-//        }
-
+//        ]
 //        public string Authenticate(string accountName, string password, string hostIdentifier)
 //        [
 //            return _authenticationVerifier.Verify(accountName, password, hostIdentifier, Role.Admin, Role.System)
-//        }
-
+//        ]
 //        public Storage GetLocalStorage()
 //        [
 //			var httpContext = Context.Connection.GetHttpContext()
@@ -36,6 +34,6 @@
 //            _authenticationTokenVerifier.Verify(authenticationToken, Role.Admin, Role.System)
 
 //            return _storageRepository.GetLocal()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -59,8 +59,8 @@
 //            var response = new LocalStorageResponse
 //            [
 //                StorageName = storage.Name
-//            }
+//            ]
 //            return Task.FromResult(response)
-//        }
+//        ]
     }
 }

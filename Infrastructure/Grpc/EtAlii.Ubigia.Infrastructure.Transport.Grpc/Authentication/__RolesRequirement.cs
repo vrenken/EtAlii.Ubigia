@@ -16,6 +16,6 @@
 //		public RolesRequirement(string[] requiredRoles)
 //		[
 //			RequiredRoles = requiredRoles
-//		}
-//	}
-//}
+//		]
+//	]
+//]

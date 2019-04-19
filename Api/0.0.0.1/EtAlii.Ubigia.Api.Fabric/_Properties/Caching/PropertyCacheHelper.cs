@@ -27,7 +27,7 @@
 //            [
 //                // Yup, we got a cache hit.
 //                _cacheProvider.Cache.Remove(identifier)
-//            }
-//        }
+//            ]
+//        ]
     }
 }

@@ -26,9 +26,9 @@
 //                using (var reader = new StreamReader(stream))
 //                [
 //                    Settings.Default.MainWindowLayout = reader.ReadToEnd()
-//                }
-//            }
-//        }
+//                ]
+//            ]
+//        ]
 //
 //        private void LoadLayoutSettings()
 //        [
@@ -44,12 +44,11 @@
 //                    serializer.LayoutSerializationCallback += (sender, e) =>
 //                    [
 //                        ApplyLayout(currentLayout, e)
-//                    }
+//                    ]
 //                    serializer.Deserialize(stream)
-//                }
-//            }
-//        }
-
+//                ]
+//            ]
+//        ]
         private void ApplyLayout(LayoutContent[] currentLayout, LayoutSerializationCallbackEventArgs e)
         {
             var layoutContent = currentLayout.FirstOrDefault(c => c.ContentId == e.Model.ContentId);

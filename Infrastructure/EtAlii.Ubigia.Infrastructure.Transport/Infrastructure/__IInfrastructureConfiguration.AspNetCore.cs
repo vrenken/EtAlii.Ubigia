@@ -13,12 +13,11 @@
 //            var extensions = new IInfrastructureExtension[]
 //            [
 //                new AspNetCoreInfrastructureExtension()//applicationManager),
-//            }
+//            ]
 //            return configuration
 //                .Use(extensions)
 //                .Use<TInfrastructure>()
-//        }
-
+//        ]
 //        public static IInfrastructureConfiguration UseAspNetCore(
 //            this IInfrastructureConfiguration configuration)//,
 //            //IApplicationManager applicationManager = null)
@@ -26,10 +25,10 @@
 //            var extensions = new IInfrastructureExtension[]
 //            [
 //                new AspNetCoreInfrastructureExtension()//applicationManager),
-//            }
+//            ]
 //            return configuration
 //                .Use(extensions)
 //                .Use<AspNetCoreInfrastructure>()
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

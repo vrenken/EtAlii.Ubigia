@@ -18,8 +18,7 @@
 //            var logicalContext = new LogicalContextFactory().Create(fabricContext, diagnostics)
 //            var configuration = new DataContextConfiguration(logicalContext, _createFunctionHandlersProvider.Value, diagnostics)
 //            return dataContextFactory.Create(configuration)
-//        }
-
+//        ]
 //        public static IDataContext Create(
 //            this DataContextFactory dataContextFactory, 
 //            IFabricContext fabricContext, 
@@ -28,8 +27,7 @@
 //            var logicalContext = new LogicalContextFactory().Create(fabricContext, diagnostics)
 //            var configuration = new DataContextConfiguration(logicalContext, _createFunctionHandlersProvider.Value, diagnostics)
 //            return dataContextFactory.Create(configuration)
-//        }
-
+//        ]
 //        public static IDataContext Create(
 //            this DataContextFactory dataContextFactory, 
 //            IFabricContext fabricContext, 
@@ -39,16 +37,15 @@
 //            var logicalContext = new LogicalContextFactory().Create(fabricContext, diagnostics)
 //            var configuration = new DataContextConfiguration(logicalContext, extensions, _createFunctionHandlersProvider.Value, diagnostics)
 //            return dataContextFactory.Create(configuration)
-//        }
-
+//        ]
 //        private static IFunctionHandlersProvider CreateFunctionHandlersProvider()
 //        [
 //            var functionHandlers = new IFunctionHandler[]
 //            [
 //                new FileFunctionHandlerFactory().Create(),
 //                new FormatFunctionHandlerFactory().Create(),
-//            }
+//            ]
 //            return new FunctionHandlersProvider(functionHandlers)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

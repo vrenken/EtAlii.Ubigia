@@ -62,6 +62,6 @@
 //                .Use(systemCommands)
 
 //            return hostConfiguration
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

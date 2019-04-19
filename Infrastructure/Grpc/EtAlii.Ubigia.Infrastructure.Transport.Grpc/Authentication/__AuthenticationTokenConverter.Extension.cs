@@ -10,6 +10,6 @@
 //            actionContext.Request.Headers.TryGetValue("Authentication-Token", out StringValues values)
 //            var authenticationTokenAsString = values.FirstOrDefault()
 //            return authenticationTokenAsString != null ? converter.FromString(authenticationTokenAsString) : null
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

@@ -10,11 +10,10 @@
 //        public DefaultApplicationManager(IInfrastructureConfiguration configuration)
 //            : base(applicationBuilderFactory => CreateApplicationBuilder(configuration, applicationBuilderFactory))
 //        [
-//        }
-
+//        ]
 //        private static IDisposable CreateApplicationBuilder(IInfrastructureConfiguration configuration, Action<IApplicationBuilder> applicationBuilder)
 //        [
 //            return null;//WebApp.Start(configuration.Address, applicationBuilder)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

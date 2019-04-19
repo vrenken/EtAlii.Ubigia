@@ -21,22 +21,20 @@
 //		[
 //			_items = items
 //			_authenticationTokenConverter = authenticationTokenConverter
-//		}
-
+//		]
 //		public Account GetByName(string accountName)
 //        [
 //            Account response
 //            try
 //            [
 //                response = _items.Get(accountName)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        //public Account GetForAuthenticationToken()
 //        public Account GetForAuthenticationToken()
 //		[
@@ -49,15 +47,13 @@
 //				var authenticationToken = _authenticationTokenConverter.FromString(authenticationTokenAsString)
 
 //				response = _items.Get(authenticationToken.Name)
-//			}
+//			]
 //			catch (Exception e)
 //			[
 //				throw new InvalidOperationException("Unable to serve a Account GET client request", e)
-//			}
+//			]
 //			return response
-//		}
-
-
+//		]
 //		// Get all Items
 //		public IEnumerable<Account> GetAll()
 //        [
@@ -65,14 +61,13 @@
 //            try
 //            [
 //                response = _items.GetAll()
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        // Get Item by id
 //        public Account Get(Guid accountId)
 //        [
@@ -80,14 +75,13 @@
 //            try
 //            [
 //                response = _items.Get(accountId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account GET client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        // Add item
 //        public Account Post(Account item, string accountTemplate)
 //        [
@@ -96,14 +90,13 @@
 //            [
 //                var template = AccountTemplate.All.Single(t => t.Name == accountTemplate)
 //                response = _items.Add(item, template)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account POST client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        // Update Item by id
 //        public Account Put(Guid accountId, Account account)
 //        [
@@ -111,25 +104,24 @@
 //            try
 //            [
 //                response = _items.Update(accountId, account)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account PUT client request", e)
-//            }
+//            ]
 //            return response
-//        }
-
+//        ]
 //        // Delete Item by id
 //        public void Delete(Guid accountId)
 //        [
 //            try
 //            [
 //                _items.Remove(accountId)
-//            }
+//            ]
 //            catch (Exception e)
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account DELETE client request", e)
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]

@@ -14,8 +14,7 @@
 //        [
 //            _decoree = decoree
 //            _profiler = profiler
-//        }
-
+//        ]
 //        public async Task<object> Process(
 //            ProcessParameters<SequencePart, SequencePart> parameters, 
 //            ExecutionScope scope,
@@ -29,6 +28,6 @@
 //            _profiler.End(profile)
 
 //            return result
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

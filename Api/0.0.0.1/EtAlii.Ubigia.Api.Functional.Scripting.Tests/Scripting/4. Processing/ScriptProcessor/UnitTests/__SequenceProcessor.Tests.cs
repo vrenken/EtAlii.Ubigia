@@ -31,7 +31,7 @@
 //                new AssignOperator(),
 //                new StringConstantSubject("second"),
 
-//            }
+//            ]
 //            var script = Create(sequenceParts)
 
 //            // Act.
@@ -44,8 +44,7 @@
 //            Assert.IsType(processedParameters[2].Target, typeof(VariableSubject))
 //            Assert.Equal("first", ((VariableSubject)processedParameters[2].Target).Name)
 //            Assert.IsType(processedParameters[3].Target, typeof(AssignOperator))
-//        }
-
+//        ]
 //        [Fact, Trait("Category", TestAssembly.Category)]
 //        public async Task SequenceProcessor_Path_Addition_To_Path_Into_Variable()
 //        [
@@ -67,7 +66,7 @@
 //                new PathSubject(new ConstantPathSubjectPart("second")),
 //                new AddOperator(),
 //                new StringConstantSubject("third"),
-//            }
+//            ]
 //            var script = Create(sequenceParts)
 
 //            // Act.
@@ -86,13 +85,12 @@
 //            Assert.Equal("first", ((VariableSubject)processedParameters[4].Target).Name)
 
 //            Assert.IsType(processedParameters[5].Target, typeof(AssignOperator))
-//        }
-
+//        ]
 //        private Script Create(SequencePart[] sequenceParts)
 //        [
 //            var sequence = new Sequence(sequenceParts)
 //            var script = new Script(sequence)
 //            return script
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

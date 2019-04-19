@@ -15,8 +15,7 @@
 
 //            // Assert.
 //            Assert.NotNull(factory)
-//        }
-
+//        ]
 //        [Fact, Trait("Category", TestAssembly.Category)]
 //        public void GraphPathAssignerFactory_Create()
 //        [
@@ -28,6 +27,6 @@
 
 //            // Assert.
 //            Assert.NotNull(assigner)
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

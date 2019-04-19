@@ -45,8 +45,7 @@
 //		    _storage = new Lazy<IStorage>(() => this.Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single())
 //		    _adminModule = new Lazy<AdminModule>(() => this.Systems.Single().Modules.OfType<AdminModule>().Single())
 //		    _userModule = new Lazy<UserModule>(() => this.Systems.Single().Modules.OfType<UserModule>().Single())
-//		}
-
+//		]
 //		public override void Initialize(ICommand[] commands, Status[] status)
 //		[
 //			_manager = new AspNetCoreHostManager()
@@ -55,26 +54,22 @@
 //			_manager.ConfigureWebHost += builder => ConfigureWebHost?.Invoke(builder)
 
 //			base.Initialize(commands, status)
-//		}
-
+//		]
 //		protected override void Starting()
 //		[
 //			_manager.Starting()
-//		}
-
+//		]
 //		protected override async void Started()
 //		[
 //			await _manager.Started()
-//		}
-
+//		]
 //		protected override void Stopping()
 //		[
 //			_manager.Stopping()
-//		}
-
+//		]
 //		protected override async void Stopped()
 //		[
 //			await _manager.Stopped()
-//		}
-//	}
-//}
+//		]
+//	]
+//]

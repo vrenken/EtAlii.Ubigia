@@ -17,14 +17,13 @@
 //            if (actionContext.Request.Headers.TryGetValues("Test-UserName", out values))
 //            [
 //                userName = values.SingleOrDefault()
-//            }
+//            ]
 //            if (actionContext.Request.Headers.TryGetValues("Test-Password", out values))
 //            [
 //                password = values.SingleOrDefault()
-//            }
-
+//            ]
 //            var hasCredentials = !String.IsNullOrWhiteSpace(password) && !String.IsNullOrWhiteSpace(userName)
 //            return hasCredentials ? new AuthenticationIdentity(userName, password) : null
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

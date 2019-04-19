@@ -25,8 +25,7 @@
 //            _accountRepository = accountRepository
 //            _authenticationIdentityProvider = authenticationIdentityProvider
 //            _authenticationTokenConverter = authenticationTokenConverter
-//        }
-		
+//        ]
 //        public IActionResult Build(HttpContext context, Controller controller, string accountName)
 //        [
 //            IActionResult response
@@ -42,26 +41,25 @@
 //                        Name = accountName,
 //                        Address = hostIdentifier,
 //                        Salt = DateTime.UtcNow.ToBinary(),
-//                    }
-
+//                    ]
 //                    var authenticationTokenAsBytes = _authenticationTokenConverter.ToBytes(authenticationToken)
 //                    authenticationTokenAsBytes = Aes.Encrypt(authenticationTokenAsBytes)
 //                    var authenticationTokenAsString = Convert.ToBase64String(authenticationTokenAsBytes)
 
 //                    response = controller.Ok(authenticationTokenAsString)
-//                }
+//                ]
 //                else
 //                [
 //                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed
-//                }
-//            }
+//                ]
+//            ]
 //            catch (Exception ex)
 //            [
 //                response = controller.BadRequest(ex.Message)
 //                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk")
-//            }
+//            ]
 //            return response
 
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

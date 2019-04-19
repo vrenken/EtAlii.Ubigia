@@ -11,8 +11,7 @@
 //        public TestHttpClientFactory(TestInfrastructure infrastructure)
 //        [
 //            _infrastructure = infrastructure
-//        }
-
+//        ]
 //        public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)
 //        [
 //            var handler = _infrastructure.Server.Handler
@@ -22,6 +21,6 @@
 //            client.DefaultRequestHeaders.Accept.Add(PayloadMediaTypeFormatter.MediaType)
 
 //            return client
-//        }
-//    }
-//}
+//        ]
+//    ]
+//]

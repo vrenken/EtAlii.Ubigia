@@ -67,8 +67,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 		   // var settings = new RequestSettings(systemSettings.ClientId, parameters)
 		   // var request = new ContactsRequest(settings)
 		   // return request
-	    //}
-
+	    //]
 		private PeopleResource.ConnectionsResource.ListRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
         {
 			var parameters = new global::Google.Apis.Auth.OAuth2.JsonCredentialParameters

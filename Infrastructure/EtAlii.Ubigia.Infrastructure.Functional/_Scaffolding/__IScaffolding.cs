@@ -5,5 +5,5 @@
 //    public interface IScaffolding
 //    [
 //        void Register(Container container)
-//    }
-//}
+//    ]
+//]

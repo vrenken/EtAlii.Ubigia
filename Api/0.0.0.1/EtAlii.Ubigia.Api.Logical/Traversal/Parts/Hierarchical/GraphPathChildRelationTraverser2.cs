@@ -9,8 +9,7 @@
 //    [
 //        public GraphPathChildRelationTraverser2()
 //        [
-//        }
-
+//        ]
 //        public IEnumerable<Identifier> Traverse(GraphPathPart part, Identifier start, ITraversalContext context)
 //        [
 //            var result = new List<Identifier>()
@@ -25,7 +24,7 @@
 //                if (entries.Multiple())
 //                [
 //                    throw new NotSupportedException("The GraphPathChildRelationTraverser is not able to process splitted temporal paths.")
-//                }
+//                ]
 //                entry = entries.SingleOrDefault()
 
 //            } while (entry != null)
@@ -38,12 +37,10 @@
 //                foreach (var child in children)
 //                [
 //                    Update(result, child, context)
-//                }
-//            }
-
+//                ]
+//            ]
 //            return result.AsEnumerable()
-//        }
-
+//        ]
 //        private void Update(List<Identifier> list, IReadOnlyEntry entry, ITraversalContext context)
 //        [
 //            switch (entry.Type)
@@ -56,9 +53,8 @@
 //                    Remove(list, entry.Children, context)
 //                    Remove(list, entry.Children2, context)
 //                    break
-//            }
-//        }
-
+//            ]
+//        ]
 //        private void Remove(List<Identifier> list, IEnumerable<Relation> relations, ITraversalContext context)
 //        [
 //            var idsToRemove = relations
@@ -72,11 +68,10 @@
 //                    if (!list.Remove(entry.Downdate.Id))
 //                    [
 //                        Remove(list, new Relation[] { entry.Downdate }, context)
-//                    }
-//                }
-//            }
-//        }
-
+//                    ]
+//                ]
+//            ]
+//        ]
 //        //private void Remove(List<Identifier> list, IEnumerable<Relation> relations)
 //        //[
 //        //    var ids = relations
@@ -86,7 +81,6 @@
 //        //        .GetRelated(id, EntryRelation.Downdate)
 //        //        .Select(c => c.Id))
 //        //    list.RemoveRange(toRemove)
-//        //}
-
-//    }
-//}
+//        //]
+//    ]
+//]

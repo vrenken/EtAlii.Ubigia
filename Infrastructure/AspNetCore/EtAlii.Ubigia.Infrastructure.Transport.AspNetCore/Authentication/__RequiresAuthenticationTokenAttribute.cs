@@ -13,7 +13,7 @@
 //        public RequiresAuthenticationTokenAttribute(params string[] requiredRoles)
 //        [
 //			_requiredRoles = requiredRoles
-//        }
+//        ]
 //
 //	    public override void OnActionExecuting(ActionExecutingContext context)
 //	    [
@@ -24,14 +24,14 @@
 //	            var dependencyResolver = (IDependencyResolver)context.HttpContext.RequestServices.GetService(typeof(IDependencyResolver))
 //
 //				_verifier = (IHttpContextAuthenticationTokenVerifier)dependencyResolver.GetService(typeof(IHttpContextAuthenticationTokenVerifier))
-//            }
+//            ]
 //			var status = _verifier.Verify(context.HttpContext, (Controller)context.Controller, _requiredRoles)
 //            if (status is OkResult || 
 //                status is UnauthorizedResult)
 //            [
 //                base.OnActionExecuting(context)
-//            }
-//        }
+//            ]
+//        ]
 //
-//    }
-//}
+//    ]
+//]

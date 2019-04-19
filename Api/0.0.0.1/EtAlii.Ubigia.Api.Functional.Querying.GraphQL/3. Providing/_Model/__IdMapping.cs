@@ -6,5 +6,5 @@
 //    [
 //        public string Id { get set }
 //        public Identifier Identifier { get set }
-//    }
-//}
+//    ]
+//]

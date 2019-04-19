@@ -19,8 +19,7 @@
 //            _valueFieldInfo = typeof(IJsonValue).Assembly.GetType("Microsoft.AspNet.SignalR.Json.JRawValue")
 //                .GetTypeInfo()
 //                .GetDeclaredField("_value")
-//        }
-
+//        ]
 //        public override object ResolveParameter(ParameterDescriptor descriptor, IJsonValue value)
 //        [
 //            var pureJson = (string)_valueFieldInfo.GetValue(value)
@@ -28,7 +27,7 @@
 //            [
 //                var result = _serializer.Deserialize(reader, descriptor.ParameterType)
 //                return result
-//            }
-//        }
-//    }
-//}
+//            ]
+//        ]
+//    ]
+//]
