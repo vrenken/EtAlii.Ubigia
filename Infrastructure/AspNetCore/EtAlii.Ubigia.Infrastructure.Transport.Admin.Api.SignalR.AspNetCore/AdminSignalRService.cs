@@ -21,7 +21,7 @@
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
-            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.SignalR.BaseUrl,
+            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.SignalR.BasePath,
                 services =>
                 {
                     services

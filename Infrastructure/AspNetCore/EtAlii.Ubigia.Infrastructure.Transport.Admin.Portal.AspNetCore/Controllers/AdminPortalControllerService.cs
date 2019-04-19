@@ -14,7 +14,7 @@
 
         protected override void OnConfigureApplication(IApplicationBuilder applicationBuilder)
         {
-            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BaseUrl,
+            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Portal.BasePath,
                 services =>
                 {
                     services.AddMvcForTypedController<AdminPortalController>();
