@@ -7,12 +7,15 @@
 
     public class SystemSettingsSetter : ISystemSettingsSetter
     {
-        public async Task Set(IGraphSLScriptContext context, SystemSettings settings)
+        public Task Set(IGraphSLScriptContext context, SystemSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
+
+            return SetInternal(context, settings);
+        }
+
+        private async Task SetInternal(IGraphSLScriptContext context, SystemSettings settings)
+        {
 
             var script = new[]
             {
