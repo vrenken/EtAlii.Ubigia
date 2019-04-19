@@ -16,6 +16,7 @@ namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
         {
             if (_diagnostics.EnableDebugging) // diagnostics is enabled
             {
+                // Invoke all DI container registrations involved in debugging the Grpc test host.
             }
         }
     }

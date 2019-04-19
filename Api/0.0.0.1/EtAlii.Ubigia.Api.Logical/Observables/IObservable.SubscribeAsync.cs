@@ -49,7 +49,10 @@
                 return t;
             }
 
-            void OnNext(IObservable<T> o) { }
+            void OnNext(IObservable<T> o)
+            {
+                // When needed: Do something.
+            }
 
             if (onError != null && onCompleted != null)
             {

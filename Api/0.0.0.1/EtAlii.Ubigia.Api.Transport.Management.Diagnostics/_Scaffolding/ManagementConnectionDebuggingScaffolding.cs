@@ -11,6 +11,7 @@
 
             if (diagnostics.EnableDebugging) // diagnostics is enabled
             {
+                // Invoke all DI container registrations involved in debugging the ManagementConnection.
             }
         }
     }

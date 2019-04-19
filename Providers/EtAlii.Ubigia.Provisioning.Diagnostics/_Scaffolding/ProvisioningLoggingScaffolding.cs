@@ -20,6 +20,7 @@
 
             if (_diagnostics.EnableLogging) // logging is enabled.
             {
+                // Invoke all DI container registrations involved in logging the provisioning subsystem.
             }
         }
     }

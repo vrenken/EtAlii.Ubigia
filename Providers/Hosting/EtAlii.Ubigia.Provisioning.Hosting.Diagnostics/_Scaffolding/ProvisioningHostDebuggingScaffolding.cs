@@ -16,6 +16,7 @@
         {
             if (_diagnostics.EnableDebugging) // diagnostics is enabled
             {
+                // Invoke all DI container registrations involved in debugging the provisioning host.
             }
         }
     }
