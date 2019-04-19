@@ -42,7 +42,7 @@
 //                _items.Store(entryId, properties)
 
 //                // Send the updated event.
-//                Clients.All.SendAsync("stored", new object[] { entryId })
+//                Clients.All.SendAsync("stored", new object[] [ entryId ])
 //                //Clients.All.stored(entryId)
 //            ]
 //            catch (Exception e)

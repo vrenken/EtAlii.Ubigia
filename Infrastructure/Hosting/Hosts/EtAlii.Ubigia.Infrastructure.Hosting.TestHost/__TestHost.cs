@@ -27,8 +27,8 @@
 //	    public IStorage Storage => _storage.Value
 //	    private readonly Lazy<IStorage> _storage
 
-//		public IAddressFactory AddressFactory { get; } = new AddressFactory()
-//		public IInfrastructureClient Client { get; }
+//		public IAddressFactory AddressFactory [ get; ] = new AddressFactory()
+//		public IInfrastructureClient Client [ get; ]
 
 //	    public AdminModule AdminModule => _adminModule.Value
 //	    private readonly Lazy<AdminModule> _adminModule

@@ -27,7 +27,7 @@
 //                ]
 //                entry = entries.SingleOrDefault()
 
-//            } while (entry != null)
+//            ] while (entry != null)
 
 //            for (int i = path.Count; i > 0; i--)
 //            [
@@ -67,7 +67,7 @@
 //                [
 //                    if (!list.Remove(entry.Downdate.Id))
 //                    [
-//                        Remove(list, new Relation[] { entry.Downdate }, context)
+//                        Remove(list, new Relation[] [ entry.Downdate ], context)
 //                    ]
 //                ]
 //            ]

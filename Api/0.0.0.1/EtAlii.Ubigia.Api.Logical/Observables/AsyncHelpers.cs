@@ -32,7 +32,7 @@
 //                [
 //                    synch.EndMessageLoop()
 //                ]
-//            }, null)
+//            ], null)
 //            synch.BeginMessageLoop()
 
 //            SynchronizationContext.SetSynchronizationContext(oldContext)
@@ -64,7 +64,7 @@
 //                [
 //                    synch.EndMessageLoop()
 //                ]
-//            }, null)
+//            ], null)
 //            synch.BeginMessageLoop()
 //            SynchronizationContext.SetSynchronizationContext(oldContext)
 //            return ret
@@ -96,7 +96,7 @@
 //                [
 //                    synch.EndMessageLoop()
 //                ]
-//            }, null)
+//            ], null)
 //            synch.BeginMessageLoop()
 //            SynchronizationContext.SetSynchronizationContext(oldContext)
 //            return ret
@@ -104,7 +104,7 @@
 //        private class ExclusiveSynchronizationContext : SynchronizationContext
 //        [
 //            private bool done
-//            public Exception InnerException { private get; set; }
+//            public Exception InnerException [ private get; set; ]
 //            readonly AutoResetEvent _workItemsWaiting = new AutoResetEvent(false)
 //            readonly Queue<Tuple<SendOrPostCallback, object>> _items = new Queue<Tuple<SendOrPostCallback, object>>()
 

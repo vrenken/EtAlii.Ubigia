@@ -21,12 +21,12 @@
 
 //            Field<HumanType>(
 //                name: "createHuman",
-//                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<HumanInputType>> {Name = "human"}),
+//                arguments: new QueryArguments(new QueryArgument<NonNullGraphType<HumanInputType>> [Name = "human"]),
 //                resolve: context =>
 //                [
 //                    var human = context.GetArgument<Human>("human")
 //                    return data.AddHuman(human)
-//                })
+//                ])
         }
     }
 }

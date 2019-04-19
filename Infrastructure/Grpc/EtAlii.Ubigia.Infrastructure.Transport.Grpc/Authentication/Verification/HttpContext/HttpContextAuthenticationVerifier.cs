@@ -79,7 +79,7 @@
 //            ]
 //            if (respondWithChallenge)
 //            [
-//                context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"{host}\"")
+//                context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"[host]\"")
 //            ]
 //            return controller.Unauthorized()
 //        ]

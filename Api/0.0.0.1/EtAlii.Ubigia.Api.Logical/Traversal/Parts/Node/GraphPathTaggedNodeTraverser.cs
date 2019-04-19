@@ -56,7 +56,7 @@ namespace EtAlii.Ubigia.Api.Logical
 //                                return
 //                            ]
 //                            parameters.Output.OnNext(entry.Id)
-//                    },
+//                    ],
 //                    onCompleted: () => parameters.Output.OnCompleted())
 
         }

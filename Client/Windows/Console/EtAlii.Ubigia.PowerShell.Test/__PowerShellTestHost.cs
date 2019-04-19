@@ -6,9 +6,9 @@
 
 //    public class PowerShellTestHost : HostBase, IHost
 //    [
-//        public IHostConfiguration Configuration { get; }
+//        public IHostConfiguration Configuration [ get; ]
 
-//        public IInfrastructure Infrastructure { get; }
+//        public IInfrastructure Infrastructure [ get; ]
 
 //        private readonly ILogger _logger
 

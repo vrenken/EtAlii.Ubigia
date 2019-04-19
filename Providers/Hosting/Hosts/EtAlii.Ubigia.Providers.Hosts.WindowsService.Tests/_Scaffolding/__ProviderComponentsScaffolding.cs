@@ -20,7 +20,7 @@
 //                    container.GetInstance<tweetImporter>(),
 //                    container.GetInstance<MailImporter>(),
 //                ]
-//            })
+//            ])
 //        ]
 //    ]
 //]

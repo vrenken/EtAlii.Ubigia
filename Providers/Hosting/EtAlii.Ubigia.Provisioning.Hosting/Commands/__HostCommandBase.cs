@@ -6,9 +6,9 @@
 
 //    public abstract class HostCommandBase
 //    [
-//        protected IHost Host { get; private set; }
+//        protected IHost Host [ get; private set; ]
 
-//        public bool CanExecute { get => _canExecute; protected set => SetCanExecute(value); }
+//        public bool CanExecute [ get => _canExecute; protected set => SetCanExecute(value); ]
 //        private bool _canExecute
 
 //        public event EventHandler CanExecuteChanged

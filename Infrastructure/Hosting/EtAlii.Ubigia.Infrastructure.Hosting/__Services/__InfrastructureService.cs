@@ -24,8 +24,8 @@
 
 //            var sb = new StringBuilder()
 //            sb.AppendLine("All OK. Ubigia is serving the storage specified below.")
-//            sb.AppendLine($"Name: {_infrastructure.Configuration.Name}")
-//            sb.AppendLine($"Address: {_infrastructure.Configuration.Address}")
+//            sb.AppendLine($"Name: [_infrastructure.Configuration.Name]")
+//            sb.AppendLine($"Address: [_infrastructure.Configuration.Address]")
 //            Status.Summary = sb.ToString()
 //            Status.Summary = Status.Description
 //        ]

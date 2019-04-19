@@ -17,7 +17,7 @@
 //            //        container.GetInstance<TwitterComponent>(),
 //            //        container.GetInstance<MailComponent>(),
 //            //    ]
-//            //})
+//            //])
 //        ]
 //    ]
 //]

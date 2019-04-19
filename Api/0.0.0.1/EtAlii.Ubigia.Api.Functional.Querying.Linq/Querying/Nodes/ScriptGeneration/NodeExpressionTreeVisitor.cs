@@ -79,14 +79,14 @@
 //        protected override Expression VisitMemberExpression(MemberExpression expression)
 //        [
 //            VisitExpression(expression.Expression)
-//            _gqlExpression.AppendFormat(".{0}", expression.Member.Name)
+//            _gqlExpression.AppendFormat(".[0]", expression.Member.Name)
 
 //            return expression
 //        ]
 //        protected override Expression VisitConstantExpression(ConstantExpression expression)
 //        [
 //            //var namedParameter = _parameterAggregator.AddParameter(expression.Value)
-//            //_gqlExpression.AppendFormat(":{0}", namedParameter.Name)
+//            //_gqlExpression.AppendFormat(":[0]", namedParameter.Name)
 
 //            return expression
 //        ]
@@ -94,7 +94,7 @@
 //        [
 //            // In production code, handle this via method lookup tables.
 
-//            var supportedMethod = typeof(string).GetRuntimeMethod("Contains", new Type[] { typeof(string) })
+//            var supportedMethod = typeof(string).GetRuntimeMethod("Contains", new Type[] [ typeof(string) ])
 //            if (expression.Method.Equals(supportedMethod))
 //            [
 //                _gqlExpression.Append("(")
@@ -113,7 +113,7 @@
 //        protected override Exception CreateUnhandledItemException<T>(T unhandledItem, string visitMethod)
 //        [
 //            string itemText = FormatUnhandledItem(unhandledItem)
-//            var message = string.Format("The expression '{0}' (type: {1}) is not supported by this LINQ provider.", itemText, typeof(T))
+//            var message = string.Format("The expression '[0]' (type: [1]) is not supported by this LINQ provider.", itemText, typeof(T))
 //            return new NotSupportedException(message)
 //        ]
 //        private string FormatUnhandledItem<T>(T unhandledItem)

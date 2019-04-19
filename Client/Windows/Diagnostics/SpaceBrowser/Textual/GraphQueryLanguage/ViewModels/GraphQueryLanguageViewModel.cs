@@ -14,7 +14,7 @@
         public string Source { get => _source; set => SetProperty(ref _source, value); }
         private string _source;
 
-//        public IQueryScope Scope { get { return _scope; } set { SetProperty(ref _scope, value); } }
+//        public IQueryScope Scope [ get [ return _scope; ] set [ SetProperty(ref _scope, value); ] ]
 //        private IQueryScope _scope
 
         public Query Query { get => _query; set => SetProperty(ref _query, value); }

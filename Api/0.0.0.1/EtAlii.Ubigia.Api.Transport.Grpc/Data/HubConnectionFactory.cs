@@ -14,7 +14,7 @@
 //			    //.WithTransport(TransportType.WebSockets) // TODO: Activate websockets based testing when it becomes supported. 
 //			    .WithTransport(TransportType.LongPolling)
 //			    .WithConsoleLogger(LogLevel.Debug)
-//			    .WithJsonProtocol(new JsonHubProtocolOptions { PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() })
+//			    .WithJsonProtocol(new JsonHubProtocolOptions [ PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() ])
 //		    if (httpClientHandler != null)
 //		    [
 //			    builder = builder.WithMessageHandler(httpClientHandler)

@@ -105,7 +105,7 @@
 //                                    .Use(diagnostics)
 //                                    .Use(logicalContext)
 //                return new DataContextFactory().CreateForProfiling(dataContextConfiguration)
-//            })
+//            ])
 //            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>())
 
             container.Register<IGraphSLScriptContext>(() =>

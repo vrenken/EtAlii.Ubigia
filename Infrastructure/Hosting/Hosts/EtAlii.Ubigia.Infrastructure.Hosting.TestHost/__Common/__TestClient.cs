@@ -25,13 +25,13 @@
 //        private readonly CancellationTokenSource _cts
 //        private readonly ChannelConnection<byte[]> _transport
 
-//        public DefaultConnectionContext Connection { get; }
-//        public Channel<byte[]> Application { get; }
+//        public DefaultConnectionContext Connection [ get; ]
+//        public Channel<byte[]> Application [ get; ]
 //        public Task Connected => ((TaskCompletionSource<bool>)Connection.Metadata["ConnectedTask"]).Task
 
 //        public TestClient(bool synchronousCallbacks = false, IHubProtocol protocol = null, IInvocationBinder invocationBinder = null, bool addClaimId = false)
 //        [
-//            var options = new UnboundedChannelOptions { AllowSynchronousContinuations = synchronousCallbacks }
+//            var options = new UnboundedChannelOptions [ AllowSynchronousContinuations = synchronousCallbacks ]
 //            var transportToApplication = Channel.CreateUnbounded<byte[]>(options)
 //            var applicationToTransport = Channel.CreateUnbounded<byte[]>(options)
 
@@ -41,7 +41,7 @@
 //            Connection = new DefaultConnectionContext(Guid.NewGuid().ToString(), _transport, Application)
 
 //            var claimValue = Interlocked.Increment(ref _id).ToString()
-//            var claims = new List<Claim>{ new Claim(ClaimTypes.Name, claimValue) }
+//            var claims = new List<Claim>[ new Claim(ClaimTypes.Name, claimValue) ]
 //            if (addClaimId)
 //            [
 //                claims.Add(new Claim(ClaimTypes.NameIdentifier, claimValue))
@@ -185,7 +185,7 @@
 //            public Type[] GetParameterTypes(string methodName)
 //            [
 //                // TODO: Possibly support actual client methods
-//                return new[] { typeof(object) }
+//                return new[] [ typeof(object) ]
 //            ]
 //            public Type GetReturnType(string invocationId)
 //            [

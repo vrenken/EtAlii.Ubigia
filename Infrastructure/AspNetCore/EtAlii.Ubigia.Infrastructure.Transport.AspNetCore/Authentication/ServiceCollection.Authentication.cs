@@ -53,8 +53,8 @@
 //				[
 //					policy.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme)
 //					policy.RequireClaim(ClaimTypes.NameIdentifier)
-//				})
-//			})
+//				])
+//			])
 //			services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 //				.AddJwtBearer(options =>
 //				[
@@ -81,7 +81,7 @@
 //							return Task.CompletedTask
 //						]
 //					]
-//				})
+//				])
 //		]
 		//.AddAuthentication(options =>
 		//[

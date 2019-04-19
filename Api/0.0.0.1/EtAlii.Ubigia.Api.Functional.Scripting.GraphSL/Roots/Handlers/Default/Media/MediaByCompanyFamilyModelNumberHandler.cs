@@ -5,7 +5,7 @@
 //
 //    internal class MediaByCompanyFamilyModelNumberHandler : IRootHandler
 //    [
-//        public PathSubjectPart[] Template { get; }
+//        public PathSubjectPart[] Template [ get; ]
 //
 //        public MediaByCompanyFamilyModelNumberHandler()
 //        [
@@ -21,7 +21,7 @@
 //
 //        public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
 //        [
-//            var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new ConstantPathSubjectPart("Media"), new ParentPathSubjectPart() }
+//            var parts = new PathSubjectPart[] [ new ParentPathSubjectPart(), new ConstantPathSubjectPart("Media"), new ParentPathSubjectPart() ]
 //               .Concat(match)
 //               .Concat(rest)
 //               .ToArray()

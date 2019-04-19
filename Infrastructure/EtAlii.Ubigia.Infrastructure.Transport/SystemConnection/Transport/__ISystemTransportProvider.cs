@@ -4,6 +4,6 @@
 
 //    public interface ISystemTransportProvider : IStorageTransportProvider
 //    [
-//        IInfrastructure Infrastructure { get; }
+//        IInfrastructure Infrastructure [ get; ]
 //    ]
 //]

@@ -33,7 +33,7 @@
             
 //            if (results.Length == 0)
 //            [
-//                throw new InvalidOperationException($"Unable to process GraphQL query 'path' does not return any results: {path}")
+//                throw new InvalidOperationException($"Unable to process GraphQL query 'path' does not return any results: [path]")
 //            ]
 //            if (results.Length > 1)
 //            [

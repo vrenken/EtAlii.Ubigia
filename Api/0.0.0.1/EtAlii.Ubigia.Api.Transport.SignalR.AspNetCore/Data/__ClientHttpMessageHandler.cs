@@ -8,8 +8,8 @@
 
 //    public class ClientHttpMessageHandler : HttpClientHandler
 //    [
-//        public string HostIdentifier { get; set; }
-//        public string AuthenticationToken { get; set; }
+//        public string HostIdentifier [ get; set; ]
+//        public string AuthenticationToken [ get; set; ]
 
 //        public ClientHttpMessageHandler()
 //        //    ICredentials credentials, 

@@ -20,7 +20,7 @@
         //private LinkCollection _links
 
         IReadOnlyEntry IInternalNode.Entry => _entry;
-// set { _entry = value; } }
+// set [ _entry = value; ] ]
         private IReadOnlyEntry _entry;
 
         public Node(IReadOnlyEntry entry)

@@ -43,7 +43,7 @@
 //        /// </summary>
 //        /// <param name="url">The url to send the request to.</param><param name="prepareRequest">A callback that initializes the request with default values.</param><param name="isLongRunning">Indicates whether the request is long running</param>
 //        /// <returns>
-//        /// A <see cref="T:Task{IResponse}"/>.
+//        /// A <see cref="T:Task[IResponse]"/>.
 //        /// </returns>
 //        public Task<IResponse> Get(string url, Action<IRequest> prepareRequest, bool isLongRunning)
 //        [
@@ -58,7 +58,7 @@
 //            [
 //                cts.Cancel()
 //                responseDisposer.Dispose()
-//            })
+//            ])
 //            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
 //            [
@@ -68,7 +68,7 @@
 //                ]
 //                responseDisposer.Set((IDisposable)responseMessage)
 //                return (IResponse)new HttpResponseMessageWrapper(responseMessage)
-//            }))
+//            ]))
 //        ]
 //        /// <summary>
 //        /// Makes an asynchronous http POST request to the specified url.
@@ -76,7 +76,7 @@
 //        /// </summary>
 //        /// <param name="url">The url to send the request to.</param><param name="prepareRequest">A callback that initializes the request with default values.</param><param name="postData">form url encoded data.</param><param name="isLongRunning">Indicates whether the request is long running</param>
 //        /// <returns>
-//        /// A <see cref="T:Task{IResponse}"/>.
+//        /// A <see cref="T:Task[IResponse]"/>.
 //        /// </returns>
 //        public Task<IResponse> Post(string url, Action<IRequest> prepareRequest, IDictionary<string, string> postData, bool isLongRunning)
 //        [
@@ -96,7 +96,7 @@
 //            [
 //                cts.Cancel()
 //                responseDisposer.Dispose()
-//            })
+//            ])
 //            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
 //            [
@@ -106,7 +106,7 @@
 //                ]
 //                responseDisposer.Set((IDisposable)responseMessage)
 //                return (IResponse)new HttpResponseMessageWrapper(responseMessage)
-//            }))
+//            ]))
 //        ]
 //        /// <summary>
 //        /// Returns the appropriate client based on whether it is a long running request

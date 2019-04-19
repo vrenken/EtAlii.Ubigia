@@ -14,27 +14,27 @@
 
 //	public class TestInfrastructure : IInfrastructure// WebApiInfrastructure
 //    [
-//        public IInfrastructureConfiguration Configuration { get; }
+//        public IInfrastructureConfiguration Configuration [ get; ]
 
-//        public ISpaceRepository Spaces { get; }
+//        public ISpaceRepository Spaces [ get; ]
 
-//        public IIdentifierRepository Identifiers { get; }
+//        public IIdentifierRepository Identifiers [ get; ]
 
-//        public IEntryRepository Entries { get; }
+//        public IEntryRepository Entries [ get; ]
 
-//        public IRootRepository Roots { get; }
+//        public IRootRepository Roots [ get; ]
 
-//        public IAccountRepository Accounts { get; }
+//        public IAccountRepository Accounts [ get; ]
 
-//        public IContentRepository Content { get; }
+//        public IContentRepository Content [ get; ]
 
-//        public IContentDefinitionRepository ContentDefinition { get; }
+//        public IContentDefinitionRepository ContentDefinition [ get; ]
 
-//        public IPropertiesRepository Properties { get; }
+//        public IPropertiesRepository Properties [ get; ]
 
-//        public IStorageRepository Storages { get; }
+//        public IStorageRepository Storages [ get; ]
 
-//        public TestServer Server { get; private set; }
+//        public TestServer Server [ get; private set; ]
 
 //        private readonly Container _container
 //        private readonly ILogger _logger
@@ -87,7 +87,7 @@
 //                    .Use(SystemTransportProvider.Create(this))
 //                    .Use(this)
 //                return new SystemConnectionFactory().Create(configuration)
-//            })
+//            ])
 
 //            _logicalContext.Start()
 
@@ -112,7 +112,7 @@
 //		       // [
 //			      //  componentManager.Start(applicationBuilder)
 //		       // ]
-//	        //})
+//	        //])
 
 //            _logger.Info("Started test infrastructure hosting")
 //        ]
