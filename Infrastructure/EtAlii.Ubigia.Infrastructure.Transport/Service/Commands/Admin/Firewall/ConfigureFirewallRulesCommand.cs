@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System;
     using System.Diagnostics;
     using System.IO;
     using System.Linq;
@@ -37,15 +38,27 @@
                 var assembly = type.Assembly;
                 var assemblyName = assembly.GetName().Name;
 
-                using (var resourceStream = assembly.GetManifestResourceStream(type, "Commands.Admin.Firewall.ConfigureFirewall.ps1"))
-                using (var fileStream = File.Create(scriptFullPath))
-                using (var reader = new StreamReader(resourceStream))
-                using (var writer = new StreamWriter(fileStream))
+                Stream resourceStream = null, fileStream = null;
+                try
                 {
-                    var content = reader.ReadToEnd();
-                    writer.Write(content);
+                    const string resourceName = "Commands.Admin.Firewall.ConfigureFirewall.ps1";
+                    resourceStream = assembly.GetManifestResourceStream(type, resourceName);
+                    fileStream = File.Create(scriptFullPath);
+                    using (var reader = new StreamReader(resourceStream ?? throw new InvalidOperationException($"No manifest resource stream found: {resourceName ?? "NULL"}")))
+                    using (var writer = new StreamWriter(fileStream))
+                    {
+                        resourceStream = null;
+                        fileStream = null;
+                        var content = reader.ReadToEnd();
+                        writer.Write(content);
+                    }
                 }
-
+                finally
+                {
+                    fileStream?.Dispose();
+                    resourceStream?.Dispose();
+                }
+                
                 var logFile = Path.GetTempFileName();
                 var scriptArgs = new[]
                 {

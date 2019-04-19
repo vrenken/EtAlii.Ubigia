@@ -12,12 +12,12 @@
             return Task.CompletedTask;
         }
 
-        public Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
         {
             return Task.FromResult<Storage>(null);
         }
         
-        public Task Connect(IStorageConnection connection)
+        public Task Connect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
         }

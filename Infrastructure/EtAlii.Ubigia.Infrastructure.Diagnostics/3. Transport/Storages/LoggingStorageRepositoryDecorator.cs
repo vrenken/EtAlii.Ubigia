@@ -61,70 +61,70 @@
             return storages;
         }
 
-        public Storage Get(Guid storageId)
+        public Storage Get(Guid itemId)
         {
-            var message = $"Getting storage (Id: {storageId})";
+            var message = $"Getting storage (Id: {itemId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            var storage = _repository.Get(storageId);
+            var storage = _repository.Get(itemId);
 
-            message = $"Got storage (Id: {storageId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Got storage (Id: {itemId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
             return storage;
         }
 
-        public Storage Add(Storage storage)
+        public Storage Add(Storage item)
         {
-            var message = $"Adding storage (Id: {storage.Id})";
+            var message = $"Adding storage (Id: {item.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            storage = _repository.Add(storage);
+            item = _repository.Add(item);
 
-            message = $"Added storage (Id: {storage.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Added storage (Id: {item.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
-            return storage;
+            return item;
         }
 
-        public void Remove(Guid storageId)
+        public void Remove(Guid itemId)
         {
-            var message = $"Removing storage (Id: {storageId})";
+            var message = $"Removing storage (Id: {itemId})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            _repository.Remove(storageId);
+            _repository.Remove(itemId);
 
-            message = $"Removed storage (Id: {storageId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
-            _logger.Info(message);
-        }
-
-        public void Remove(Storage storage)
-        {
-            var message = $"Removing storage (Id: {storage.Id})";
-            _logger.Info(message);
-            var start = Environment.TickCount;
-
-            _repository.Remove(storage);
-
-            message = $"Removed storage (Id: {storage.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Removed storage (Id: {itemId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
         }
 
-        public Storage Update(Guid storageId, Storage storage)
+        public void Remove(Storage item)
         {
-            var message = $"Updating storage (Id: {storageId})";
+            var message = $"Removing storage (Id: {item.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            storage = _repository.Update(storageId, storage);
+            _repository.Remove(item);
 
-            message = $"Updated storage (Id: {storageId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            message = $"Removed storage (Id: {item.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
+            _logger.Info(message);
+        }
+
+        public Storage Update(Guid itemId, Storage item)
+        {
+            var message = $"Updating storage (Id: {itemId})";
+            _logger.Info(message);
+            var start = Environment.TickCount;
+
+            item = _repository.Update(itemId, item);
+
+            message = $"Updated storage (Id: {itemId} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
 
-            return storage;
+            return item;
         }
     }
 }

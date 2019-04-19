@@ -6,17 +6,17 @@
 
     public sealed class AccountDataClientStub : IAccountDataClient 
     {
-        public Task<Account> Add(string name, string password, AccountTemplate template)
+        public Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
         {
             return Task.FromResult<Account>(null);
         }
 
-        public Task Remove(Guid id)
+        public Task Remove(Guid accountId)
         {
             return Task.CompletedTask;
         }
 
-        public Task<Account> Change(Guid rootId, string accountName, string password)
+        public Task<Account> Change(Guid accountId, string accountName, string accountPassword)
         {
             return Task.FromResult<Account>(null);
         }
@@ -31,7 +31,7 @@
             return Task.FromResult<Account>(null);
         }
 
-        public Task<Account> Get(Guid rootId)
+        public Task<Account> Get(Guid accountId)
         {
             return Task.FromResult<Account>(null);
         }

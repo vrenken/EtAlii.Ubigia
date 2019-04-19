@@ -1,11 +1,12 @@
 ﻿
 namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.xTechnology.Workflow;
-    using System.Linq;
+    using System;
     using System.Collections.Generic;
-    using System.Reflection;
     using System.IO;
+    using System.Linq;
+    using System.Reflection;
+    using EtAlii.xTechnology.Workflow;
 
     public class TextTemplateQueryHandler : QueryHandlerBase<TextTemplateQuery, string>, ITextTemplateQueryHandler
     {
@@ -15,15 +16,24 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
             // Get the current executing assembly (in this case it's the test dll)
             var assembly = Assembly.GetExecutingAssembly();
-            // Get the stream (embedded resource) - be sure to wrap in a using block
-            using (var stream = assembly.GetManifestResourceStream(query.Name))
+            
+            Stream stream = null;
+            try
             {
-                using (var reader = new StreamReader(stream))
+                // Get the stream (embedded resource) - be sure to wrap in a using block
+                stream = assembly.GetManifestResourceStream(query.Name);
+                using (var reader = new StreamReader(stream ?? throw new InvalidOperationException($"No manifest resource stream found: {query.Name ?? "NULL"}")))
                 {
+                    stream = null;
                     var template = reader.ReadToEnd();
                     result.Add(template);
                 }
             }
+            finally
+            {
+                stream?.Dispose();
+            }
+            
             return result.AsQueryable();
         }
     }
