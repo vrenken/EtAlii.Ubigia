@@ -3,6 +3,7 @@
     using System.Management.Automation;
     using System.Threading.Tasks;
 
+#pragma warning disable S110 // For the powershell part we don't worry about a too deep inheritance chain.
     [Cmdlet(VerbsCommon.Remove, Nouns.Root, DefaultParameterSetName = "byRootName", SupportsShouldProcess = true)]
     public class RemoveRoot : RootTargetingCmdlet
     {

@@ -1,10 +1,11 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Roots
 {
+    using System.Management.Automation;
     using EtAlii.Ubigia.PowerShell.Accounts;
     using EtAlii.Ubigia.PowerShell.Spaces;
     using EtAlii.Ubigia.PowerShell.Storages;
-    using System.Management.Automation;
 
+#pragma warning disable S110 // For the powershell part we don't worry about a too deep inheritance chain.
     [Cmdlet(VerbsCommon.Select, Nouns.Root, DefaultParameterSetName = "byRootName")]
     public class SelectRoot : RootTargetingCmdlet
     {
