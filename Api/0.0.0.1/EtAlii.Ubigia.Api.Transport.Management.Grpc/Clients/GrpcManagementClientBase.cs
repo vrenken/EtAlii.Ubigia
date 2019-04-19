@@ -5,7 +5,7 @@
 
     public abstract class GrpcManagementClientBase
     {
-        //protected IStorageConnection<IGrpcStorageTransport> Connection { get; private set; }
+        //protected IStorageConnection<IGrpcStorageTransport> Connection [ get; private set; ]
 
         public async Task Connect(IStorageConnection storageConnection)
         {

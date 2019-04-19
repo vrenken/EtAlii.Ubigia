@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Transport
         Storage Storage { get; }
 
         // TODO: is a must.
-        //Account Account { get; }
+        //Account Account [ get ]
         bool IsConnected { get; }
 
         Task Close();

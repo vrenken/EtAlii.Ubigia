@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Transport.Grpc
     {
 	    Channel Channel { get; }
 	    
-	    //HttpMessageHandler HttpMessageHandler { get; }
+	    //HttpMessageHandler HttpMessageHandler [ get ]
 
 		string AuthenticationToken { get; set; }
 	    
