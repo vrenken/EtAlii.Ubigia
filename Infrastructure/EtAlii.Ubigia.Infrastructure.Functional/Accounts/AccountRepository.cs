@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -17,12 +18,6 @@
         {
             _accountInitializer = accountInitializer;
 			_logicalContext = logicalContext;
-            _logicalContext.Accounts.Added += OnAccountAdded;
-        }
-
-        private void OnAccountAdded(object sender, AccountAddedEventArgs e)
-        {
-            _accountInitializer.Initialize(e.Account, e.Template);
         }
 
 		public Account Get(string accountName)
@@ -51,16 +46,20 @@
             return _logicalContext.Accounts.Update(itemId, item);
         }
 
-        public Account Add(Account item, AccountTemplate template)
+        public async Task<Account> Add(Account item, AccountTemplate template)
         {
             var now = DateTime.UtcNow;
             item.Created = now;
             // Nope. we are not updating so we set the updated value to null.
             item.Updated = null;
 
-            item = _logicalContext.Accounts.Add(item, template);
+            var addedAccount = _logicalContext.Accounts.Add(item, template, out var isAdded);
+            if (isAdded)
+            {
+                await _accountInitializer.Initialize(addedAccount, template);
+            }
 
-            return item;
+            return addedAccount;
         }
 
         public void Remove(Guid itemId)

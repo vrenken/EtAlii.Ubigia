@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -9,13 +10,15 @@
     internal class AccountInitializer : IAccountInitializer
     {
         private readonly ILogicalContext _context;
+        private readonly ISpaceInitializer _spaceInitializer;
 
-        public AccountInitializer(ILogicalContext context)
+        public AccountInitializer(ILogicalContext context, ISpaceInitializer spaceInitializer)
         {
             _context = context;
+            _spaceInitializer = spaceInitializer;
         }
 
-        public void Initialize(Account account, AccountTemplate template)
+        public async Task Initialize(Account account, AccountTemplate template)
         {
             var accountId = account.Id;
             var spaces = _context.Spaces.GetAll();
@@ -38,8 +41,12 @@
             // And finally let's add the spaces that 
             foreach (var spaceToCreate in template.SpacesToCreate)
             {
-                // ReSharper disable once UnusedVariable
-                var space = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out bool _);
+                var addedSpace = _context.Spaces.Add(new Space { AccountId = accountId, Name = spaceToCreate.Name }, spaceToCreate, out bool isAdded);
+                if (isAdded)
+                {
+                    await _spaceInitializer.Initialize(addedSpace, spaceToCreate);
+                }
+
             }
         }
     }

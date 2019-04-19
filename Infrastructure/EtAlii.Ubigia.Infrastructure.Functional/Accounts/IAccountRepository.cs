@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
 
@@ -13,7 +14,7 @@
         IEnumerable<Account> GetAll();
         Account Get(Guid itemId);
 
-        Account Add(Account item, AccountTemplate template);
+        Task<Account> Add(Account item, AccountTemplate template);
 
         void Remove(Guid itemId);
         void Remove(Account item);

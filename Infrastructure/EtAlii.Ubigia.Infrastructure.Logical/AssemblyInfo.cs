@@ -2,3 +2,6 @@
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.Owin.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests")]

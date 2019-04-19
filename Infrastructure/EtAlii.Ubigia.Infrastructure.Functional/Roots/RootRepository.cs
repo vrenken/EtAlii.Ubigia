@@ -8,15 +8,10 @@
     internal class RootRepository : IRootRepository
     {
         private readonly ILogicalContext _logicalContext;
-        private readonly IRootInitializer _rootInitializer;
 
-        public RootRepository(
-            ILogicalContext logicalContext, 
-            IRootInitializer rootInitializer)
+        public RootRepository(ILogicalContext logicalContext)
         {
-            _rootInitializer = rootInitializer;
             _logicalContext = logicalContext;
-            _logicalContext.Roots.Added += OnRootAdded;
         }
 
         public IEnumerable<Root> GetAll(Guid spaceId)
@@ -52,11 +47,6 @@
         public Root Update(Guid spaceId, Guid rootId, Root updatedRoot)
         {
             return _logicalContext.Roots.Update(spaceId, rootId, updatedRoot);
-        }
-
-        private void OnRootAdded(object sender, RootAddedEventArgs e)
-        {
-            _rootInitializer.Initialize(e.SpaceId, e.Root);
         }
     }
 }
