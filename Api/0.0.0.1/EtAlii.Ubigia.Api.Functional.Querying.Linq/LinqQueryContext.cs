@@ -18,10 +18,21 @@
             Indexes = indexes;
             ChangeTracker = changeTracker;
         }
-
+     
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             ChangeTracker.Dispose();
+        }
+
+        ~LinqQueryContext()
+        {
+            Dispose(false);
         }
 
         public void SaveChanges()

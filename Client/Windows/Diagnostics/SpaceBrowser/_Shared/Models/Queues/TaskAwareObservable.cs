@@ -28,6 +28,12 @@
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             // cancel consumption and wait task to finish
             _taskCancellationTokenSource.Cancel();
             _task.Wait();
@@ -38,6 +44,11 @@
 
             // dispose subject
             _subject.Dispose();
+        }
+
+        ~TaskAwareObservable()
+        {
+            Dispose(false);
         }
     }
 }
