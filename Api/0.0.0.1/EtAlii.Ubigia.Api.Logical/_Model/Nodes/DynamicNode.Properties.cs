@@ -61,7 +61,7 @@
 
             var oldValue = storage;
             storage = newValue;
-            NotifyPropertyChanged(this, storage, newValue, propertyName);
+            NotifyPropertyChanged(this, oldValue, newValue, propertyName);
 
             MarkAsModified();
 
