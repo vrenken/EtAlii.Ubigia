@@ -64,7 +64,7 @@
                 throw new ScriptParserException("A tagged path part cannot be combined with other constant, tagged, wildcard or string path parts.");
             }
             else if ((arguments.PartIndex == 0 && arguments.Subject is NonRootedPathSubject) || 
-                     (arguments.PartIndex == 1 && arguments.Before is ParentPathSubjectPart) && arguments.Before is VariablePathSubjectPart == false)
+                     (arguments.PartIndex == 1 && arguments.Before is ParentPathSubjectPart) && !(arguments.Before is VariablePathSubjectPart))
             {
                 throw new ScriptParserException("A tagged path part cannot be used at the beginning of a graph path.");
             } 

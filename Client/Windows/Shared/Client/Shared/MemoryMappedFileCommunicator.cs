@@ -52,22 +52,21 @@ namespace EtAlii.Ubigia.Windows.Client
                 if (value != writePosition)
                 {
                     writePosition = value;
-                    view.Write(WritePosition + READ_CONFIRM_OFFSET, true);
+                    _view.Write(WritePosition + READ_CONFIRM_OFFSET, true);
                 }
             }
         }
 
         #endregion
 
-        private MemoryMappedViewAccessor view;
-        private readonly AsyncOperation operation;
-        private readonly SendOrPostCallback callback;
-        private bool started;
-        private bool disposed;
+        private MemoryMappedViewAccessor _view;
+        private readonly AsyncOperation _operation;
+        private readonly SendOrPostCallback _callback;
+        private bool _started;
+        private bool _disposed;
 
-        private Thread writerThread;
-        private readonly List<byte[]> dataToSend;
-        private bool writerThreadRunning;
+        private readonly List<byte[]> _dataToSend;
+        private bool _writerThreadRunning;
 
         public MemoryMappedFileCommunicator(string mapName, long capacity)
             : this(MemoryMappedFile.CreateOrOpen(mapName, capacity), 0, 0, MemoryMappedFileAccess.ReadWrite)
@@ -92,19 +91,19 @@ namespace EtAlii.Ubigia.Windows.Client
         public MemoryMappedFileCommunicator(MemoryMappedFile mappedFile, long offset, long size, MemoryMappedFileAccess access)
         {
             MappedFile = mappedFile;
-            view = mappedFile.CreateViewAccessor(offset, size, access);
+            _view = mappedFile.CreateViewAccessor(offset, size, access);
 
             ReadPosition = -1;
             writePosition = -1;
-            dataToSend = new List<byte[]>();
+            _dataToSend = new List<byte[]>();
 
-            callback = new SendOrPostCallback(OnDataReceivedInternal);
-            operation = AsyncOperationManager.CreateOperation(null);
+            _callback = new SendOrPostCallback(OnDataReceivedInternal);
+            _operation = AsyncOperationManager.CreateOperation(null);
         }
 
         public void StartReader()
         {
-            if (started)
+            if (_started)
                 return;
 
             if (ReadPosition < 0 || writePosition < 0)
@@ -113,7 +112,7 @@ namespace EtAlii.Ubigia.Windows.Client
             Thread t = new Thread(ReaderThread);
             t.IsBackground = true;
             t.Start();
-            started = true;
+            _started = true;
         }
 
         public void Write(string message)
@@ -127,13 +126,13 @@ namespace EtAlii.Ubigia.Windows.Client
             if (ReadPosition < 0 || writePosition < 0)
                 throw new ArgumentException();
 
-            lock (dataToSend)
-                dataToSend.Add(data);
+            lock (_dataToSend)
+                _dataToSend.Add(data);
 
-            if (!writerThreadRunning)
+            if (!_writerThreadRunning)
             {
-                writerThreadRunning = true;
-                writerThread = new Thread(WriterThread);
+                _writerThreadRunning = true;
+                var writerThread = new Thread(WriterThread);
                 writerThread.IsBackground = true;
                 writerThread.Start();
             }
@@ -141,57 +140,57 @@ namespace EtAlii.Ubigia.Windows.Client
 
         public void WriterThread(object stateInfo)
         {
-            while (dataToSend.Count > 0 && !disposed)
+            while (_dataToSend.Count > 0 && !_disposed)
             {
                 byte[] data = null;
-                lock (dataToSend)
+                lock (_dataToSend)
                 {
-                    data = dataToSend[0];
-                    dataToSend.RemoveAt(0);
+                    data = _dataToSend[0];
+                    _dataToSend.RemoveAt(0);
                 }
 
-                while (!view.ReadBoolean(WritePosition + READ_CONFIRM_OFFSET))
+                while (!_view.ReadBoolean(WritePosition + READ_CONFIRM_OFFSET))
                     Thread.Sleep(500);
 
                 // Sets length and write data. 
-                view.Write(writePosition + DATA_LENGTH_OFFSET, data.Length);
-                view.WriteArray(writePosition + DATA_OFFSET, data, 0, data.Length);
+                _view.Write(writePosition + DATA_LENGTH_OFFSET, data.Length);
+                _view.WriteArray(writePosition + DATA_OFFSET, data, 0, data.Length);
 
                 // Resets the flag used to signal that data has been read. 
-                view.Write(writePosition + READ_CONFIRM_OFFSET, false);
+                _view.Write(writePosition + READ_CONFIRM_OFFSET, false);
                 // Sets the flag used to signal that there are data avaibla. 
-                view.Write(writePosition + DATA_AVAILABLE_OFFSET, true);
+                _view.Write(writePosition + DATA_AVAILABLE_OFFSET, true);
             }
 
-            writerThreadRunning = false;
+            _writerThreadRunning = false;
         }
 
         public void CloseReader()
         {
-            started = false;
+            _started = false;
         }
 
         private void ReaderThread(object stateInfo)
         {
-            while (started)
+            while (_started)
             {
                 // Checks if there is something to read. 
-                var dataAvailable = view.ReadBoolean(ReadPosition + DATA_AVAILABLE_OFFSET);
+                var dataAvailable = _view.ReadBoolean(ReadPosition + DATA_AVAILABLE_OFFSET);
                 if (dataAvailable)
                 {
                     // Checks how many bytes to read. 
-                    int availableBytes = view.ReadInt32(ReadPosition + DATA_LENGTH_OFFSET);
+                    int availableBytes = _view.ReadInt32(ReadPosition + DATA_LENGTH_OFFSET);
                     var bytes = new byte[availableBytes];
                     // Reads the byte array. 
-                    int read = view.ReadArray(ReadPosition + DATA_OFFSET, bytes, 0, availableBytes);
+                    int read = _view.ReadArray(ReadPosition + DATA_OFFSET, bytes, 0, availableBytes);
 
                     // Sets the flag used to signal that there aren't available data anymore. 
-                    view.Write(ReadPosition + DATA_AVAILABLE_OFFSET, false);
+                    _view.Write(ReadPosition + DATA_AVAILABLE_OFFSET, false);
                     // Sets the flag used to signal that data has been read.  
-                    view.Write(ReadPosition + READ_CONFIRM_OFFSET, true);
+                    _view.Write(ReadPosition + READ_CONFIRM_OFFSET, true);
 
                     MemoryMappedDataReceivedEventArgs args = new MemoryMappedDataReceivedEventArgs(bytes, read);
-                    operation.Post(callback, args);
+                    _operation.Post(_callback, args);
                 }
 
                 Thread.Sleep(500);
@@ -213,13 +212,13 @@ namespace EtAlii.Ubigia.Windows.Client
 
         public void Dispose()
         {
-            started = false;
-            if (view != null)
+            _started = false;
+            if (_view != null)
             {
                 try
                 {
-                    view.Dispose();
-                    view = null;
+                    _view.Dispose();
+                    _view = null;
                 }
                 catch
                 {
@@ -240,7 +239,7 @@ namespace EtAlii.Ubigia.Windows.Client
                 }
             }
 
-            disposed = true;
+            _disposed = true;
             GC.SuppressFinalize(this);
         }
 
