@@ -22,7 +22,7 @@
             InitializeComponent();
 
             //gridTreeControl.ModelLoaded += (sender, args) =>
-            //{
+            //[
             //    gridTreeControl.Model.
             //}
             _expandAllAtTheEndSubscription = Observable

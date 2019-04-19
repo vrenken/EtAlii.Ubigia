@@ -1,10 +1,10 @@
 ﻿//namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
-//{
+//[
 //    using System.Collections.Generic
 //    using System.Linq
 
 //    public class ResultSet 
-//    {
+//    [
 //        public string Id { get { return _id; } }
 //        private readonly string _id
 
@@ -20,7 +20,7 @@
 //        public ResultSet(
 //            string id, 
 //            IEnumerable<Result> results)
-//        {
+//        [
 //            _id = id
 //            _results = results
 //            _count = results.Count()

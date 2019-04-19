@@ -23,7 +23,7 @@
 //
 ////            var mappings = new List<IdMapping>()
 //            foreach (var startIdentifier in startIdentifiers)
-//            {
+//            [
 //                var path = pathArgumentValue != null
 //                    ? $"/&{startIdentifier.ToDotSeparatedString()}{pathArgumentValue.Value}"
 //                    : $"/&{startIdentifier.ToDotSeparatedString()}"
@@ -31,18 +31,18 @@
 ////                var node = subSet?.SingleOrDefault()
 //
 ////                foreach (var node in subSet)
-////                {
+////                [
 ////                    var mapping = new IdMapping
-////                    {
+////                    [
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
 ////                    }
 ////                    mappings.Add(mapping)
 ////                }
 ////                if (node != null)
-////                {
+////                [
 ////                    var mapping = new IdMapping
-////                    {
+////                    [
 ////                        Id = node.Type,
 ////                        Identifier = node.Id,
 ////                    }

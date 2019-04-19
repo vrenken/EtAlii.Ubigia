@@ -1,17 +1,17 @@
 ﻿//using Microsoft.Extensions.Configuration
 
 //namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
-//{
+//[
 //    using EtAlii.xTechnology.Diagnostics
 //    using EtAlii.xTechnology.Hosting.Grpc
 //    using System
 
 //    public class HostConfigurationBuilder 
-//    {
+//    [
 //        public IHostConfiguration Build(
 //            IConfigurationRoot configuration,
 //            IApplicationManager applicationManager = null)
-//        {
+//        [
 //            //var name = "EtAlii"
 //            //var category = "EtAlii.Ubigia.Infrastructure"
 //            ////var diagnostics = new DiagnosticsFactory().Create(true, false, true,

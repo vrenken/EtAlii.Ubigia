@@ -86,11 +86,11 @@
 
         //[Ignore, TestMethod, TestCategory(TestAssembly.Category)]
         //public async Task ScriptProcessor_RootedPath_Get_GetItemByVariable_2()
-        //{
+        //[
         //    // Arrange.
         //    var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true)
         //    var queries = new[]
-        //    {
+        //    [
         //        "$var1 <= \"Time\":",
         //        "$var1"
         //    }

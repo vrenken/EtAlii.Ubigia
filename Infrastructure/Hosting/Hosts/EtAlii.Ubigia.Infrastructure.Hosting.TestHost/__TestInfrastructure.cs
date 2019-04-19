@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure
-//{
+//[
 //    using System.Linq
 //    using EtAlii.Ubigia.Infrastructure.Functional
 //    using EtAlii.Ubigia.Infrastructure.Logical
@@ -13,7 +13,7 @@
 //    using Microsoft.Extensions.Configuration
 
 //	public class TestInfrastructure : IInfrastructure// WebApiInfrastructure
-//    {
+//    [
 //        public IInfrastructureConfiguration Configuration { get; }
 
 //        public ISpaceRepository Spaces { get; }
@@ -55,7 +55,7 @@
 //            IStorageRepository storages,
 //            ILogger logger,
 //            ILogicalContext logicalContext)
-//        {
+//        [
 //            Configuration = configuration
 //            Identifiers = identifiers
 //            Entries = entries
@@ -74,7 +74,7 @@
 //        }
 
 //        public void Start()
-//        {
+//        [
 //	  //      var configuration = (IConfiguration) null
 //			//var infrastructureService = new InfrastructureService(configuration)
 
@@ -83,7 +83,7 @@
 //			// the initialization of the storage and spaces.
 //			// The functional is the only one that can provide these kind of connections.
 //			Configuration.SystemConnectionCreationProxy.Initialize(() =>
-//            {
+//            [
 //                var configuration = new SystemConnectionConfiguration()
 //                    .Use(SystemTransportProvider.Create(this))
 //                    .Use(this)
@@ -108,9 +108,9 @@
 //			Server = new TestServer(builder)
 
 //	        //applicationBuilder =>
-//	        //{
+//	        //[
 //		       // foreach (var componentManager in _componentManagers)
-//		       // {
+//		       // [
 //			      //  componentManager.Start(applicationBuilder)
 //		       // }
 //	        //})
@@ -119,14 +119,14 @@
 //        }
 
 //        public void Stop()
-//        {
+//        [
 //            _logger.Info("Stopping test infrastructure hosting")
 
 //            Server.Dispose()
 //            Server = null
 
 //            foreach (var componentManager in _componentManagers)
-//            {
+//            [
 //                componentManager.Stop()
 //            }
 

@@ -43,13 +43,13 @@
         }
 //
 //        private void OnApplicationStartup(object sender, StartupEventArgs e)
-//        {
+//        [
 //            if (AlreadyRunning)
-//            {
+//            [
 //                Current.Shutdown()
 //            }
 //            else
-//            {
+//            [
 //                RegisterKnownTypes()
 //                //Container.Verify()
 //
@@ -58,7 +58,7 @@
 //        }
 //
 //        private void OnApplicationExit(object sender, ExitEventArgs e)
-//        {
+//        [
 //            StopServices()
 //        }
 

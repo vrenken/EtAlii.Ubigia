@@ -187,13 +187,13 @@
         }
 //
 //        private void OnError(object sender, ErrorEventArgs e)
-//        {
+//        [
 //            Stop()
 //            Start()
 //        }
 //
 //        private void OnChanged(object sender, FileSystemEventArgs e)
-//        {
+//        [
 //        }
     }
 }

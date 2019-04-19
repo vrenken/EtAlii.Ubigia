@@ -118,7 +118,7 @@ namespace EtAlii.Ubigia.Api.Logical
         }
 
         //private void Remove(List<Identifier> list, IEnumerable<Relation> relations)
-        //{
+        //[
         //    var ids = relations
         //        .Select(c => c.Id)
         //        .AsEnumerable()

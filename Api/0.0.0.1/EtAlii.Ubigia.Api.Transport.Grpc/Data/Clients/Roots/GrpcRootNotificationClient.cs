@@ -15,7 +15,7 @@
         public event Action<System.Guid> Removed = delegate { };
 
 //        public GrpcRootNotificationClient()
-//        {
+//        [
 //            //_name = GrpcHub.Root
 //        }
 
@@ -43,7 +43,7 @@
 	        //await _connection.StartAsync()
 
 			//_subscriptions = new[]
-			//{
+			//[
 			//	_connection.On<Guid>("added", OnAdded),
 			//	_connection.On<Guid>("changed", OnChanged),
 			//	_connection.On<Guid>("removed", OnRemoved),

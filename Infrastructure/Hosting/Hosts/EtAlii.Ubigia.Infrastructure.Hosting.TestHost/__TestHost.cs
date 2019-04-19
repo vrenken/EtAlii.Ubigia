@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Hosting
-//{
+//[
 //	using System
 //    using System.Linq
 //    using EtAlii.Ubigia.Api.Transport.WebApi
@@ -13,7 +13,7 @@
 //	using xTechnology.Hosting
 
 //    public class TestHost : EtAlii.xTechnology.Hosting.HostBase, IAspNetCoreHost
-//    {
+//    [
 //		private IAspNetCoreHostManager _manager
 
 //		public event Action<IApplicationBuilder> ConfigureApplication
@@ -39,7 +39,7 @@
 //		    IHostConfiguration configuration,
 //		    ISystemManager systemManager)
 //		    : base(systemManager)
-//	    {
+//	    [
 //			_configuration = configuration
 //			_infrastructure = new Lazy<IInfrastructure>(() => this.Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single())
 //		    _storage = new Lazy<IStorage>(() => this.Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single())
@@ -48,7 +48,7 @@
 //		}
 
 //		public override void Initialize(ICommand[] commands, Status[] status)
-//		{
+//		[
 //			_manager = new AspNetCoreHostManager()
 //			_manager.Initialize(ref commands, ref status, this)
 //			_manager.ConfigureApplication += builder => ConfigureApplication?.Invoke(builder)
@@ -58,22 +58,22 @@
 //		}
 
 //		protected override void Starting()
-//		{
+//		[
 //			_manager.Starting()
 //		}
 
 //		protected override async void Started()
-//		{
+//		[
 //			await _manager.Started()
 //		}
 
 //		protected override void Stopping()
-//		{
+//		[
 //			_manager.Stopping()
 //		}
 
 //		protected override async void Stopped()
-//		{
+//		[
 //			await _manager.Stopped()
 //		}
 //	}

@@ -1,11 +1,11 @@
 //using GraphQL.Types
 //
 //namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
-//{
+//[
 //    public class CharacterInterface : InterfaceGraphType<StarWarsCharacter>
-//    {
+//    [
 //        public CharacterInterface()
-//        {
+//        [
 //            Name = "Character"
 //
 //            Field(d => d.Id).Description("The id of the character.")

@@ -1,18 +1,18 @@
 ﻿//namespace EtAlii.Ubigia.Api.Transport
-//{
+//[
 //    using System
 //    using System.Threading.Tasks
 //    using EtAlii.xTechnology.Logging
 
 //    public class LoggingDataConnection : IDataConnection
-//    {
+//    [
 //        private readonly IDataConnection _decoree
 //        private readonly ILogger _logger
 
 //        internal LoggingDataConnection(
 //            IDataConnection decoree,
 //            ILogger logger)
-//        {
+//        [
 //            _decoree = decoree
 //            _logger = logger
 //        }
@@ -30,7 +30,7 @@
 //        public IDataConnectionConfiguration Configuration { get { return _decoree.Configuration; } }
 
 //        public async Task Open()
-//        {
+//        [
 //            var address = _decoree.Configuration.Address
 //            var accountName = _decoree.Configuration.AccountName
 //            var spaceName = _decoree.Configuration.Space
@@ -44,7 +44,7 @@
 //        }
 
 //        public async Task Close()
-//        {
+//        [
 //            var address = _decoree.Configuration.Address
 //            var accountName = _decoree.Configuration.AccountName
 //            var spaceName = _decoree.Configuration.Space

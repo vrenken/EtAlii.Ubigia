@@ -80,7 +80,7 @@
                 throw new InvalidOperationException("An accountName has already been assigned to this ManagementConnectionConfiguration");
             }
             //if (String.IsNullOrWhiteSpace(password))
-            //{
+            //[
             //    throw new ArgumentException(nameof(password))
             //}
             if (Password != null)

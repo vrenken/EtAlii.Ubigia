@@ -25,7 +25,7 @@
         }
 
         //public override Task OnReconnectedAsync()
-        //{
+        //[
         //    var authenticationToken = Context.Headers.Get("Authentication-Token")
         //    _authenticationTokenVerifier.Verify(authenticationToken, null)
 

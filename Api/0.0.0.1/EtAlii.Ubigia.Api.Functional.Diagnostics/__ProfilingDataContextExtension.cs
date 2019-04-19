@@ -1,14 +1,14 @@
 //namespace EtAlii.Ubigia.Api.Functional.Diagnostics
-//{
+//[
 //    using EtAlii.Ubigia.Api.Diagnostics.Profiling
 //    using EtAlii.Ubigia.Api.Functional
 //    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 //    using EtAlii.xTechnology.MicroContainer
 //
 //    public class ProfilingDataContextExtension : IDataContextExtension
-//    {
+//    [
 //        public void Initialize(Container container)
-//        {
+//        [
 //            container.RegisterDecorator(typeof(IDataContext), typeof(ProfilingDataContext))
 ////            container.RegisterDecorator(typeof(IGraphSLScriptContext), typeof(ProfilingGraphSLScriptContext))
 ////

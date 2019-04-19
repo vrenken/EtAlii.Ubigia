@@ -15,7 +15,7 @@
             // TODO: GRPC
             //applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.User.Portal.BaseUrl,
             //    services =>
-            //    {
+            //    [
             //        services
             //        //    .AddSingleton<IAccountRepository>(infrastructure.Accounts)
             //        //    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
@@ -23,7 +23,7 @@
             //            .AddMvcForTypedController<UserPortalController>()
             //    },
             //    appBuilder =>
-            //    {
+            //    [
             //        appBuilder.UseMvc()
             //        appBuilder.UseWelcomePage()
             //    })

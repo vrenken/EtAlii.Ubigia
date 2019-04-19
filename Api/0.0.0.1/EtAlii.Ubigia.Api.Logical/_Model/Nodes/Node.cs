@@ -29,7 +29,7 @@
         }
 
         //void IInternalNode.ClearIsModified()
-        //{
+        //[
         //    _isModified = false
         //}
 

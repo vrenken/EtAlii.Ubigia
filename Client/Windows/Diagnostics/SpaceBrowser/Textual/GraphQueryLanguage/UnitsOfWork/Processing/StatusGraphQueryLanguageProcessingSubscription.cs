@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //            // And we want to disable the buttons at the first result.
 //            results.FirstOrDefaultAsync()
 //                .Subscribe(o =>
-//                {
+//                [
 //                    viewModel.CanExecute = false
 //                    viewModel.CanStop = true
 //                })
@@ -69,10 +69,10 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                .Subscribe(
 //                onNext: o => { },
 //                onCompleted: () =>
-//                {
+//                [
 //                    viewModel.Errors = errors.ToArray()
 //                    if (errors.Count == 0)
-//                    {
+//                    [
 //                        var duration = DateTime.Now - start
 //                        Task.Delay(200).Wait()
 //                        _statusWriter.Write(viewModel, "Query execution finished successful.")

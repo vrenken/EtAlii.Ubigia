@@ -13,14 +13,14 @@
                 .Subscribe(o =>
             { 
                 //try
-                //{
+                //[
                     dispatcherInvoker.Invoke(() =>
                     {
                         result.Add(o);
                     });
                 //}
                 //catch (Exception e)
-                //{
+                //[
                 //}
             });
 

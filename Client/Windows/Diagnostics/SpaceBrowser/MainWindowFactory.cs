@@ -97,7 +97,7 @@
             container.Register<IViewFunctionHandler, ViewFunctionHandler>();
 
 //            container.Register<IDataContext>(() =>
-//            {
+//            [
 //                var logicalContext = container.GetInstance<ILogicalContext>()
 //                
 //                // And finally, the functional context.
@@ -154,16 +154,16 @@
             //container.Register<IProfilerFactory>(
             //    () => container.GetInstance<IDiagnosticsConfiguration>().CreateProfilerFactory())
             //container.Register<IProfiler>(() =>
-            //{
+            //[
             //    var factory = container.GetInstance<IProfilerFactory>()
             //    return container.GetInstance<IDiagnosticsConfiguration>().CreateProfiler(factory)
             //})
         }
 
         //private NewDocumentCommand[] CreateNewBlankDocumentCommands(Container container)
-        //{
+        //[
         //    return new[]
-        //    {
+        //    [
         //        CreateNewDocumentCommand(container,
         //            new FunctionalGraphDocumentFactory(),
         //            "Functional graph",
@@ -240,7 +240,7 @@
         //    string infoLine, 
         //    string infoTip1, 
         //    string infoTip2)
-        //{
+        //[
         //    var command = container.GetInstance<NewDocumentCommand>(); 
         //    command.DocumentFactory = factory
         //    command.Header = header

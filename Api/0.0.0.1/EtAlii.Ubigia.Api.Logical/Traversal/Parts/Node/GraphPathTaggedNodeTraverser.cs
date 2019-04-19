@@ -40,19 +40,19 @@ namespace EtAlii.Ubigia.Api.Logical
 //            parameters.Input.SubscribeAsync(
 //                    onError: e => parameters.Output.OnError(e),
 //                    onNext: async start =>
-//                    {
+//                    [
 //                            if (start == Identifier.Empty)
-//                            {
+//                            [
 //                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph")
 //                            }
 //                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope)
 //
 //                            if (name != String.Empty && name != entry.Type)
-//                            {
+//                            [
 //                                return
 //                            }
 //                            if (tag != String.Empty && tag != entry.Tag)
-//                            {
+//                            [
 //                                return
 //                            }
 //                            parameters.Output.OnNext(entry.Id)

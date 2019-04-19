@@ -1,16 +1,16 @@
 ﻿//namespace EtAlii.Ubigia.Provisioning.Hosting
-//{
+//[
 //    using System
 //    using EtAlii.xTechnology.Hosting
 
 //    public static class HostConfigurationUseProvisioningExtension
-//    {
+//    [
 //        public static IHostConfiguration UseProvisioning(this IHostConfiguration configuration, IProvisioning provisioning)
-//        {
+//        [
 //            configuration.Use(new ProvisioningHostExtension(provisioning))
 
 //            var services = new Type[]
-//            {
+//            [
 //                typeof(IProvisioningService),
 //            }
 //            configuration.Use(services)

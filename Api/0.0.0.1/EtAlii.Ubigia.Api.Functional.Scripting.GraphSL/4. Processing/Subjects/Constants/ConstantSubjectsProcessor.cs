@@ -18,7 +18,7 @@
             var processor = _selector.Select(constantSubject);
 
             //var constantSubjectParameters = new ProcessParameters<Subject, SequencePart>(constantSubject)
-            //{
+            //[
             //    FuturePart = parameters.FuturePart,
             //    LeftPart = parameters.LeftPart,
             //    RightPart = parameters.RightPart,

@@ -1,5 +1,5 @@
 ﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.Grpc
-//{
+//[
 //	using System
 //    using System.Collections
 //    using System.Collections.Generic
@@ -14,7 +14,7 @@
 //    using Newtonsoft.Json.Bson
 
 //    public class PayloadMediaTypeInputFormatter : InputFormatter
-//	{
+//	[
 //        private static readonly Type OpenDictionaryType = typeof(Dictionary<,>)
 //        private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo()
 //        private static readonly TypeInfo DictionaryTypeInfo = typeof(IDictionary).GetTypeInfo()
@@ -23,7 +23,7 @@
 //		private readonly ISerializer _serializer
 
 //		public PayloadMediaTypeInputFormatter()
-//		{
+//		[
 //		    // Set default supported media type
 //		    SupportedMediaTypes.Add(MediaType)
 //			_serializer = new SerializerFactory().Create()
@@ -31,26 +31,26 @@
 
 
 //		protected override bool CanReadType(Type type)
-//		{
+//		[
 //			return true
 //		}
 
 //		public override async Task<InputFormatterResult> ReadRequestBodyAsync(InputFormatterContext context)
-//		{
+//		[
 //			var request = context.HttpContext.Request
 //			var result = ReadFromStream(context.ModelType, request.Body)
 //			return await InputFormatterResult.SuccessAsync(result)
 //		}
 
 //		private object ReadFromStream(Type type, Stream readStream)
-//        {
+//        [
 //            if (type == null)
-//            {
+//            [
 //                throw new ArgumentNullException(nameof(type))
 //            }
 
 //            if (readStream == null)
-//            {
+//            [
 //                throw new ArgumentNullException(nameof(readStream))
 //            }
 
@@ -66,11 +66,11 @@
 //            //
 //            // Request for typeof(object) may cause a simple value to round trip as a JObject.
 //            if (IsSimpleType(type) || type == typeof(byte[]))
-//            {
+//            [
 //                // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
 //                var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type)
 //                if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
-//                {
+//                [
 //                    // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
 //                    // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
 //                    // in that case.
@@ -82,16 +82,16 @@
 //                // Unfortunately IDictionary doesn't have TryGetValue()...
 //                var firstKey = String.Empty
 //                foreach (DictionaryEntry item in dictionary)
-//                {
+//                [
 //                    if (dictionary.Count == 1 && (item.Key as string) == "Value")
-//                    {
+//                    [
 //                        // Success
 //                        return item.Value
 //                    }
 //                    else
-//                    {
+//                    [
 //                        if (item.Key != null)
-//                        {
+//                        [
 //                            firstKey = item.Key.ToString()
 //                        }
 
@@ -105,42 +105,42 @@
 //                throw e2
 //            }
 //            else
-//            {
+//            [
 //				return ReadFromStreamInternal(type, readStream)
 //            }
 //        }
 
 //	    private object ReadFromStreamInternal(Type type, Stream readStream)
-//	    {
+//	    [
 //			using (var reader = this.CreateJsonReader(type, readStream))
-//		    {
+//		    [
 //			    reader.CloseInput = false
 //				return _serializer.Deserialize(reader, type)
 //		    }
 //		}
 
 //		public JsonReader CreateJsonReader(Type type, Stream readStream)
-//        {
+//        [
 //            if (type == null)
-//            {
+//            [
 //                throw new ArgumentNullException(nameof(type))
 //            }
 
 //            if (readStream == null)
-//            {
+//            [
 //                throw new ArgumentNullException(nameof(readStream))
 //            }
 
 //            var reader = new BsonDataReader(new BinaryReader(readStream))
 
 //            try
-//            {
+//            [
 //                // Special case discussed at http://stackoverflow.com/questions/16910369/bson-array-deserialization-with-json-net
 //                // Dispensed with string (aka IEnumerable<char>) case above in ReadFromStream()
 //                reader.ReadRootValueAsArray = EnumerableTypeInfo.IsAssignableFrom(type.GetTypeInfo()) && !DictionaryTypeInfo.IsAssignableFrom(type.GetTypeInfo())
 //            }
 //            catch
-//            {
+//            [
 //                // Ensure instance is cleaned up in case of an issue
 //                ((IDisposable)reader).Dispose()
 //                throw
@@ -153,7 +153,7 @@
 //        // JsonObject.
 //        // To do: https://aspnetwebstack.codeplex.com/workitem/1467
 //        private static bool IsSimpleType(Type type)
-//        {
+//        [
 //            var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string)
 
 //            return isSimpleType

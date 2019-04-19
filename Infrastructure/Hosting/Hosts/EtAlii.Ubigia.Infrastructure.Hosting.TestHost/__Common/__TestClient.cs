@@ -16,9 +16,9 @@
 //using Newtonsoft.Json
 
 //namespace Microsoft.AspNetCore.SignalR.Tests
-//{
+//[
 //    public class TestClient : IDisposable
-//    {
+//    [
 //        private static int _id
 //        private readonly HubProtocolReaderWriter _protocolReaderWriter
 //        private readonly IInvocationBinder _invocationBinder
@@ -30,7 +30,7 @@
 //        public Task Connected => ((TaskCompletionSource<bool>)Connection.Metadata["ConnectedTask"]).Task
 
 //        public TestClient(bool synchronousCallbacks = false, IHubProtocol protocol = null, IInvocationBinder invocationBinder = null, bool addClaimId = false)
-//        {
+//        [
 //            var options = new UnboundedChannelOptions { AllowSynchronousContinuations = synchronousCallbacks }
 //            var transportToApplication = Channel.CreateUnbounded<byte[]>(options)
 //            var applicationToTransport = Channel.CreateUnbounded<byte[]>(options)
@@ -43,7 +43,7 @@
 //            var claimValue = Interlocked.Increment(ref _id).ToString()
 //            var claims = new List<Claim>{ new Claim(ClaimTypes.Name, claimValue) }
 //            if (addClaimId)
-//            {
+//            [
 //                claims.Add(new Claim(ClaimTypes.NameIdentifier, claimValue))
 //            }
 
@@ -57,33 +57,33 @@
 //            _cts = new CancellationTokenSource()
 
 //            using (var memoryStream = new MemoryStream())
-//            {
+//            [
 //                NegotiationProtocol.WriteMessage(new NegotiationMessage(protocol.Name), memoryStream)
 //                Application.Writer.TryWrite(memoryStream.ToArray())
 //            }
 //        }
 
 //        public async Task<IList<HubMessage>> StreamAsync(string methodName, params object[] args)
-//        {
+//        [
 //            var invocationId = await SendStreamInvocationAsync(methodName, args)
 
 //            var messages = new List<HubMessage>()
 //            while (true)
-//            {
+//            [
 //                var message = await ReadAsync()
 
 //                if (message == null)
-//                {
+//                [
 //                    throw new InvalidOperationException("Connection aborted!")
 //                }
 
 //                if (message is HubInvocationMessage hubInvocationMessage && !string.Equals(hubInvocationMessage.InvocationId, invocationId))
-//                {
+//                [
 //                    throw new NotSupportedException("TestClient does not support multiple outgoing invocations!")
 //                }
 
 //                switch (message)
-//                {
+//                [
 //                    case StreamItemMessage _:
 //                        messages.Add(message)
 //                        break
@@ -97,25 +97,25 @@
 //        }
 
 //        public async Task<CompletionMessage> InvokeAsync(string methodName, params object[] args)
-//        {
+//        [
 //            var invocationId = await SendInvocationAsync(methodName, args)
 
 //            while (true)
-//            {
+//            [
 //                var message = await ReadAsync()
 
 //                if (message == null)
-//                {
+//                [
 //                    throw new InvalidOperationException("Connection aborted!")
 //                }
 
 //                if (message is HubInvocationMessage hubInvocationMessage && !string.Equals(hubInvocationMessage.InvocationId, invocationId))
-//                {
+//                [
 //                    throw new NotSupportedException("TestClient does not support multiple outgoing invocations!")
 //                }
 
 //                switch (message)
-//                {
+//                [
 //                    case StreamItemMessage result:
 //                        throw new NotSupportedException("Use 'StreamAsync' to call a streaming method")
 //                    case CompletionMessage completion:
@@ -130,82 +130,82 @@
 //        }
 
 //        //public Task<string> SendInvocationAsync(string methodName, params object[] args)
-//        //{
+//        //[
 //        //    return SendInvocationAsync(methodName, nonBlocking: false, args: args)
 //        //}
 
 //        public Task<string> SendInvocationAsync(string methodName, params object[] args)
-//        {
+//        [
 //            var invocationId = GetInvocationId()
 //	        return SendHubMessageAsync(new InvocationMessage(invocationId, methodName, argumentBindingException: null, arguments: args))
 //			//return SendHubMessageAsync(new InvocationMessage(invocationId, nonBlocking, methodName, argumentBindingException: null, arguments: args))
 //        }
 
 //		public Task<string> SendStreamInvocationAsync(string methodName, params object[] args)
-//        {
+//        [
 //            var invocationId = GetInvocationId()
 //            return SendHubMessageAsync(new StreamInvocationMessage(invocationId, methodName,
 //                argumentBindingException: null, arguments: args))
 //        }
 
 //        public async Task<string> SendHubMessageAsync(HubMessage message)
-//        {
+//        [
 //            var payload = _protocolReaderWriter.WriteMessage(message)
 //            await Application.Writer.WriteAsync(payload)
 //            return message is HubInvocationMessage hubMessage ? hubMessage.InvocationId : null
 //        }
 
 //        public async Task<HubMessage> ReadAsync()
-//        {
+//        [
 //            while (true)
-//            {
+//            [
 //                var message = TryRead()
 
 //                if (message == null)
-//                {
+//                [
 //                    if (!await Application.Reader.WaitToReadAsync())
-//                    {
+//                    [
 //                        return null
 //                    }
 //                }
 //                else
-//                {
+//                [
 //                    return message
 //                }
 //            }
 //        }
 
 //        public HubMessage TryRead()
-//        {
+//        [
 //            if (Application.Reader.TryRead(out var buffer) &&
 //                _protocolReaderWriter.ReadMessages(buffer, _invocationBinder, out var messages))
-//            {
+//            [
 //                return messages[0]
 //            }
 //            return null
 //        }
 
 //        public void Dispose()
-//        {
+//        [
 //            _cts.Cancel()
 //            _transport.Dispose()
 //        }
 
 //        private static string GetInvocationId()
-//        {
+//        [
 //            return Guid.NewGuid().ToString("N")
 //        }
 
 //        private class DefaultInvocationBinder : IInvocationBinder
-//        {
+//        [
 //            public Type[] GetParameterTypes(string methodName)
-//            {
+//            [
 //                // TODO: Possibly support actual client methods
 //                return new[] { typeof(object) }
 //            }
 
 //            public Type GetReturnType(string invocationId)
-//            {
+//            [
 //                return typeof(object)
 //            }
 //        }

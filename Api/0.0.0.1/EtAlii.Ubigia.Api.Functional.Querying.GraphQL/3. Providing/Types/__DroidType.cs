@@ -1,11 +1,11 @@
 //namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
-//{
+//[
 //    using global::GraphQL.Types
 //
 //    public class DroidType : ObjectGraphType<Droid>
-//    {
+//    [
 //        public DroidType(IUbigiaData data)
-//        {
+//        [
 //            Name = "Droid"
 //            Description = "A mechanical creature in the Star Wars universe."
 //
