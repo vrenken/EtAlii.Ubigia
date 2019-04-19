@@ -8,9 +8,9 @@
     {
         private readonly string _hostIdentifier;
 
-        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
+        public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
-            var signalRConnection = (ISignalRStorageConnection)connection;
+            var signalRConnection = (ISignalRStorageConnection)storageConnection;
             var authenticationToken = await GetAuthenticationToken(signalRConnection.Transport, accountName, password, signalRConnection.Transport.AuthenticationToken);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
@@ -19,7 +19,7 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                string message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }

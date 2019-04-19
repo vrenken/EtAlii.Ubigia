@@ -4,9 +4,9 @@
 
     public interface IAuthenticationManagementDataClient : IStorageTransportClient
     {
-        Task Authenticate(IStorageConnection connection, string accountName, string password);
+        Task Authenticate(IStorageConnection storageConnection, string accountName, string password);
 
-        Task<Storage> GetConnectedStorage(IStorageConnection connection);
+        Task<Storage> GetConnectedStorage(IStorageConnection storageConnection);
 
     }
 

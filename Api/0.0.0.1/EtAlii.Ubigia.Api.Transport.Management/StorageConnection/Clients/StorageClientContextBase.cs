@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public class StorageClientContextBase<TDataClient, TNotificationClient> : IStorageClientContext
         where TDataClient: IStorageTransportClient
@@ -29,10 +28,10 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             Connection = storageConnection;
         }
 
-        public async Task Close(IStorageConnection spaceConnection)
+        public async Task Close(IStorageConnection storageConnection)
         {
-            await Notifications.Disconnect(spaceConnection);
-            await Data.Disconnect(spaceConnection);
+            await Notifications.Disconnect(storageConnection);
+            await Data.Disconnect(storageConnection);
 
             Connection = null;
         }

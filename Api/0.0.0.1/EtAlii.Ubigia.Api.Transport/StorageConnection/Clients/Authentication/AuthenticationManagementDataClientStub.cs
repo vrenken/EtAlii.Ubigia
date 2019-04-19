@@ -7,7 +7,7 @@
     /// </summary>
     public class AuthenticationManagementDataClientStub : IAuthenticationManagementDataClient
     {
-        public Task Authenticate(IStorageConnection connection, string accountName, string password)
+        public Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
             return Task.CompletedTask;
         }
@@ -22,7 +22,7 @@
             return Task.CompletedTask;
         }
 
-        public Task Disconnect(IStorageConnection connection)
+        public Task Disconnect(IStorageConnection storageConnection)
         {
             return Task.CompletedTask;
         }

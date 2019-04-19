@@ -5,15 +5,15 @@
 
     public partial class WebApiAuthenticationManagementDataClient
     {
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public async Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
         {
-            if (connection.Storage != null)
+            if (storageConnection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.StorageAlreadyOpen);
             }
 
-            var webApiConnection = (IWebApiConnection)connection;
-            var localAddress = webApiConnection.AddressFactory.Create(connection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
+            var webApiConnection = (IWebApiConnection)storageConnection;
+            var localAddress = webApiConnection.AddressFactory.Create(storageConnection.Transport.Address, RelativeUri.Data.Storages, UriParameter.Local);
             var storage = await webApiConnection.Client.Get<Storage>(localAddress);
 			 
             if (storage == null)
@@ -23,7 +23,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = connection.Transport.Address.ToString();
+            storage.Address = storageConnection.Transport.Address.ToString();
 
             return storage;
         }

@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public sealed class AccountContext : StorageClientContextBase<IAccountDataClient, IAccountNotificationClient>, IAccountContext
     {
@@ -14,14 +13,14 @@
         {
         }
 
-        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate template)
+        public async Task<Account> Add(string accountName, string accountPassword, AccountTemplate accountTemplate)
         {
             if (!Connection.IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
 
-            return await Data.Add(accountName, accountPassword, template);
+            return await Data.Add(accountName, accountPassword, accountTemplate);
         }
 
         public async Task Remove(Guid accountId)

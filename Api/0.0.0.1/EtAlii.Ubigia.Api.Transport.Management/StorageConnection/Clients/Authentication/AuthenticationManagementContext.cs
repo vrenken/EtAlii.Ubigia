@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Api.Transport.Management
             Data = data;
         }
 
-        public async Task Open(IStorageConnection connection)
+        public async Task Open(IStorageConnection storageConnection)
         {
-            await Data.Connect(connection);
+            await Data.Connect(storageConnection);
         }
 
-        public async Task Close(IStorageConnection connection)
+        public async Task Close(IStorageConnection storageConnection)
         {
-            await Data.Disconnect(connection);
+            await Data.Disconnect(storageConnection);
         }
 
     }

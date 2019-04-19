@@ -23,7 +23,7 @@
             }
         }
 
-        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
+        public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
             string authenticationToken = await GetAuthenticationToken(accountName, password);
 
@@ -33,7 +33,7 @@
             }
             else
             {
-                string message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                string message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }

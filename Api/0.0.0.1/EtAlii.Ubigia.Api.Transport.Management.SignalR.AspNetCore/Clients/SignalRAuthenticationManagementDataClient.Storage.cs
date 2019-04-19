@@ -6,14 +6,14 @@
 
     public partial class SignalRAuthenticationManagementDataClient
     {
-        public async Task<Storage> GetConnectedStorage(IStorageConnection connection)
+        public async Task<Storage> GetConnectedStorage(IStorageConnection storageConnection)
         {
-            if (connection.Storage != null)
+            if (storageConnection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.StorageAlreadyOpen);
             }
 
-            var signalRConnection = (ISignalRStorageConnection)connection;
+            var signalRConnection = (ISignalRStorageConnection)storageConnection;
 
             var storage = await GetConnectedStorage(signalRConnection.Transport);
 
@@ -24,7 +24,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Transport.Address.ToString();
+            storage.Address = storageConnection.Transport.Address.ToString();
 
             return storage;
         }
