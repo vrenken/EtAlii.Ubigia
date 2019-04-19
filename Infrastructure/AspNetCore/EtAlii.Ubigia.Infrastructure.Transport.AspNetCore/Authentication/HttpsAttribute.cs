@@ -5,11 +5,11 @@
 
     internal class HttpsAttribute : ActionFilterAttribute
     {
-        public override void OnActionExecuting(ActionExecutingContext actionContext)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (!actionContext.HttpContext.Request.IsHttps)
+            if (!context.HttpContext.Request.IsHttps)
             {
-                actionContext.Result = new BadRequestResult();
+                context.Result = new BadRequestResult();
             }
         }
     }

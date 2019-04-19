@@ -11,7 +11,7 @@
         IEnumerable<Entry> Get(IEnumerable<Identifier> identifiers, EntryRelation entryRelations = EntryRelation.None);
 
         Entry Prepare(Guid spaceId);
-        Entry Prepare(Guid spaceId, Identifier id);
+        Entry Prepare(Guid spaceId, Identifier identifier);
 
         Entry Store(Entry entry);
         Entry Store(IEditableEntry entry);

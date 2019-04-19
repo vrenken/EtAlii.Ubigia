@@ -7,16 +7,16 @@
 
     public partial class WebApiAuthenticationManagementDataClient
     {
-        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
+        public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
-            var webApiConnection = (IWebApiStorageConnection)connection;
+            var webApiConnection = (IWebApiStorageConnection)storageConnection;
 
             string authenticationToken = await GetAuthenticationToken(
                 webApiConnection.Client, 
                 webApiConnection.AddressFactory, 
                 accountName, 
                 password, 
-                connection.Transport.Address);
+                storageConnection.Transport.Address);
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -24,7 +24,7 @@
             }
             else
             {
-                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
         }

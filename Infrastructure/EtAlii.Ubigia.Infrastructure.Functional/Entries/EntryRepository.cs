@@ -36,9 +36,9 @@
             return _logicalContext.Entries.Prepare(spaceId);
         }
 
-        public Entry Prepare(Guid spaceId, Identifier id)
+        public Entry Prepare(Guid spaceId, Identifier identifier)
         {
-            return _logicalContext.Entries.Prepare(spaceId, id);
+            return _logicalContext.Entries.Prepare(spaceId, identifier);
         }
 
         public Entry Store(IEditableEntry entry)

@@ -11,11 +11,11 @@
     {
         private readonly string _hostIdentifier;
         
-        public async Task Authenticate(IStorageConnection connection, string accountName, string password)
+        public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
             try
             {
-                var grpcConnection = (IGrpcStorageConnection)connection;
+                var grpcConnection = (IGrpcStorageConnection)storageConnection;
     
                 SetClients(grpcConnection.Transport.Channel);
 
@@ -56,13 +56,13 @@
                 else
                 {
                     grpcConnection.Transport.AuthenticationHeaders = null;
-                    var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                    var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                     throw new UnauthorizedInfrastructureOperationException(message);
                 }
             }
             catch (RpcException e)
             {                
-                var message = $"Unable to authenticate on the specified storage ({connection.Transport.Address})";
+                var message = $"Unable to authenticate on the specified storage ({storageConnection.Transport.Address})";
                 throw new UnauthorizedInfrastructureOperationException(message, e);
             }
         }

@@ -7,14 +7,14 @@
 
     public partial class GrpcAuthenticationManagementDataClient
     {
-        public async Task<Api.Storage> GetConnectedStorage(IStorageConnection connection)
+        public async Task<Api.Storage> GetConnectedStorage(IStorageConnection storageConnection)
         {
-            if (connection.Storage != null)
+            if (storageConnection.Storage != null)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var grpcConnection = (IGrpcStorageConnection) connection;
+            var grpcConnection = (IGrpcStorageConnection) storageConnection;
             var storage = await GetConnectedStorage(
                 grpcConnection.Transport,
                 grpcConnection.Transport.Address);
@@ -26,7 +26,7 @@
 
             //// We do not want the address pushed to us from the server. 
             //// If we get here then we already know how to contact the server. 
-            storage.Address = connection.Transport.Address.ToString();
+            storage.Address = storageConnection.Transport.Address.ToString();
 
             return storage;
         }
