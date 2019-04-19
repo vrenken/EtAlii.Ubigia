@@ -20,6 +20,7 @@
 
             if (_diagnostics.EnableProfiling) // profiling is enabled
             {
+                // Invoke all DI container registrations involved in profiling the provisioning host.
             }
         }
     }

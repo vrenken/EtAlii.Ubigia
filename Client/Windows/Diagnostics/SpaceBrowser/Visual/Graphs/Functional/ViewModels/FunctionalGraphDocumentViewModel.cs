@@ -27,6 +27,7 @@
             }
             if (Configuration.ExpandNewEntries)
             {
+                // Expand all new entries.
             }
         }
 
