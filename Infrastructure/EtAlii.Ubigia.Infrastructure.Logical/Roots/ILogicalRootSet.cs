@@ -20,7 +20,5 @@
 
         void Start();
         void Stop();
-
-        event EventHandler<RootAddedEventArgs> Added;
     }
 }

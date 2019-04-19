@@ -8,21 +8,21 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     public class LogicalRootSet : ILogicalRootSet
     {
         private readonly IFabricContext _fabricContext;
+        private readonly IRootInitializer _rootInitializer;
 
-        public event EventHandler<RootAddedEventArgs> Added { add { _added += value; } remove { var added = _added; if (added != null) added -= value; } }
-        private EventHandler<RootAddedEventArgs> _added;
-
-        public LogicalRootSet(IFabricContext fabricContext)
+        public LogicalRootSet(IFabricContext fabricContext, IRootInitializer rootInitializer)
         {
             _fabricContext = fabricContext;
+            _rootInitializer = rootInitializer;
         }
 
         public Root Add(Guid spaceId, Root root)
         {
             root = _fabricContext.Roots.Add(spaceId, root);
-            if (root != null)
+            var isAdded = root != null;
+            if (isAdded)
             {
-                _added?.Invoke(this, new RootAddedEventArgs(root, spaceId));
+                _rootInitializer.Initialize(spaceId, root);
             }
             return root;
         }

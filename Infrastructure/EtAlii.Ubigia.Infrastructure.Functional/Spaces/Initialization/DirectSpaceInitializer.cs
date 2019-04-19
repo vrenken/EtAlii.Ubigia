@@ -47,7 +47,7 @@
                 }
                 else
                 {
-                    entry.Previous = Relation.NewRelation(previousIdentifier); // All roots are sequenced next to eachother.
+                    entry.Previous = Relation.NewRelation(previousIdentifier); // All roots are sequenced next to each other.
                     entry.Parent = Relation.NewRelation(tailIdentifier); // Everything is child of the tail.
                 }
                 _context.Entries.Store(entry);
@@ -66,7 +66,7 @@
         private void AddRoot(Guid storageId, Guid accountId, Guid spaceId, string name, Identifier identifier)
         {
             // ReSharper disable once UnusedVariable
-            var root = _context.Roots.Add(spaceId, new Root { Name = name, Identifier = identifier });
+            var addedRoot = _context.Roots.Add(spaceId, new Root { Name = name, Identifier = identifier });
         }
     }
 }

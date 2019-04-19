@@ -15,7 +15,6 @@
 
             container.Register<IAccountInitializer, AccountInitializer>();
             container.Register<ISpaceInitializer, DirectSpaceInitializer>();
-            container.Register<IRootInitializer, RootInitializer>();
         }
     }
 }

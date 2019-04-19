@@ -18,9 +18,6 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         private ObservableCollection<Account> Items { get { lock (_lockObject) { return _items ?? (_items = InitializeItems()); } } }
         private ObservableCollection<Account> _items; // We don't us a Lazy construction here because the first get of this property is actually cascaded through the logical layer. A Lazy instance results in a deadlock.
 
-        public event EventHandler<AccountAddedEventArgs> Added { add => _added += value; remove { var added = _added; if (added != null) added -= value; } }
-        private EventHandler<AccountAddedEventArgs> _added;
-
         public LogicalAccountSet(IFabricContext fabric)
         {
             _fabric = fabric;
@@ -77,7 +74,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             return items;
         }
 
-        public Account Add(Account item, AccountTemplate template)
+        public Account Add(Account item, AccountTemplate template, out bool isAdded)
         {
 			// We want to make absolutely sure that the account has the roles described by the template. 
 	        item.Roles = item.Roles
@@ -87,11 +84,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
 			var account = _fabric.Items.Add(Items, CannAddFunction, item);
 
-            if (account != null)
-            {
-                var e = new AccountAddedEventArgs(account, template);
-                _added?.Invoke(this, e);
-            }
+            isAdded = account != null;
             return account;
         }
 

@@ -11,7 +11,7 @@
         Account Get(string accountName);
         Account Get(string accountName, string password);
 
-        Account Add(Account item, AccountTemplate template);
+        Account Add(Account item, AccountTemplate template, out bool isAdded);
 
         IEnumerable<Account> GetAll();
 
@@ -24,8 +24,5 @@
         void Remove(Account itemToRemove);
 
         Account Update(Guid itemId, Account updatedItem);
-
-        event EventHandler<AccountAddedEventArgs> Added;
-
     }
 }

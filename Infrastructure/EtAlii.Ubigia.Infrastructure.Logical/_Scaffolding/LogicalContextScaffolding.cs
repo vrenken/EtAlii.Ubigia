@@ -39,6 +39,7 @@
             container.Register<ILogicalAccountSet, LogicalAccountSet>();
 
             container.Register<ILogicalRootSet, LogicalRootSet>();
+            container.Register<IRootInitializer, RootInitializer>();
 
             container.Register<ILogicalEntrySet, LogicalEntrySet>();
             container.Register<IEntryPreparer, EntryPreparer>();

@@ -4,7 +4,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using Xunit;
@@ -41,7 +40,7 @@
                 .Use(context.HostName, context.HostAddress);
             var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-            var rootInitializer = new RootInitializer(logical);
+            var rootInitializer = new RootInitializer(fabric, logical.Entries);
 
             // Act.
             //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
@@ -72,7 +71,7 @@
                 .Use(context.HostName, context.HostAddress);
             var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-            var rootInitializer = new RootInitializer(logical);
+            var rootInitializer = new RootInitializer(fabric, logical.Entries);
 
             // Act.
             //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
@@ -106,7 +105,7 @@
                 .Use(context.HostName, context.HostAddress);
             var logical = new LogicalContextFactory().Create(logicalContextConfiguration);
 
-            var rootInitializer = new RootInitializer(logical);
+            var rootInitializer = new RootInitializer(fabric, logical.Entries);
 
             // Act.
             //context.Host.Infrastructure.RootInitializer.Initialize(space.Id, root)
