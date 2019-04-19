@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System;
     using System.Collections.Generic;
 
     public class ChangeTracker : IChangeTracker
@@ -14,10 +15,21 @@
             _entries = new List<NodeTrackingReference>();
             HasChanges = false;
         }
-
+ 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             // Dispose any resources that need to be get rid of.
+        }
+
+        ~ChangeTracker()
+        {
+            Dispose(false);
         }
     }
 }

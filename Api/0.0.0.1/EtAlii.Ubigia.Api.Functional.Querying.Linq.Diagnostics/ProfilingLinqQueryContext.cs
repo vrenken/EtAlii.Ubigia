@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
+    using System;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class ProfilingLinqQueryContext : IProfilingLinqQueryContext
     {
@@ -22,7 +22,19 @@
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            // Cleanup
             _decoree.Dispose();
+        }
+
+        ~ProfilingLinqQueryContext()
+        {
+            Dispose(false);
         }
         
         public void SaveChanges()

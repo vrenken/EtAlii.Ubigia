@@ -212,6 +212,12 @@ namespace EtAlii.Ubigia.Windows.Client
 
         public void Dispose()
         {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
             _started = false;
             if (_view != null)
             {
@@ -240,7 +246,11 @@ namespace EtAlii.Ubigia.Windows.Client
             }
 
             _disposed = true;
-            GC.SuppressFinalize(this);
+        }
+
+        ~MemoryMappedFileCommunicator()
+        {
+            Dispose(false);
         }
 
         #endregion
