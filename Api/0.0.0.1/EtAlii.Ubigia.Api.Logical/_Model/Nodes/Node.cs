@@ -35,18 +35,8 @@
 
         void IInternalNode.Update(PropertyDictionary properties, IReadOnlyEntry entry)
         {
-            if (properties == null)
-            {
-                throw new ArgumentNullException(nameof(properties));
-            }
-
-            if (entry == null)
-            {
-                throw new ArgumentNullException(nameof(entry));
-            }
-
-            _entry = entry;
-            _properties = properties;
+            _entry = entry ?? throw new ArgumentNullException(nameof(entry));
+            _properties = properties ?? throw new ArgumentNullException(nameof(properties));
             _isModified = false;
         }
 
