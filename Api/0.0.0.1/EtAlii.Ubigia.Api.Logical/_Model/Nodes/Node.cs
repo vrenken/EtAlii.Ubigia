@@ -10,17 +10,17 @@
 
         public string Type => _entry.Type;
 
-        //public Identifier Schema { get { return _schema; } private set { SetProperty(ref _schema, value); } }
+        //public Identifier Schema [ get [ return _schema; ] private set [ SetProperty(ref _schema, value) ] ]
         //private Identifier _schema
 
         bool INode.IsModified => _isModified;
         private bool _isModified;
 
-        //public LinkCollection Links { get { return _links; } private set { SetProperty(ref _links, value); } }
+        //public LinkCollection Links [ get [ return _links; ] private set [ SetProperty(ref _links, value) ] ]
         //private LinkCollection _links
 
         IReadOnlyEntry IInternalNode.Entry => _entry;
-// set [ _entry = value; ] ]
+        // set [ _entry = value; ] ]
         private IReadOnlyEntry _entry;
 
         public Node(IReadOnlyEntry entry)

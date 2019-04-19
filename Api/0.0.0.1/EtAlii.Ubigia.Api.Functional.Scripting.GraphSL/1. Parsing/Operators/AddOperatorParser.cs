@@ -35,7 +35,7 @@
         public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
         {
             //var pathToAdd = after as PathSubject
-            //if (pathToAdd != null)
+            //if (pathToAdd ! = null)
             //[
             //    var firstPath = pathToAdd.Parts.FirstOrDefault()
             //    var startsWithRelation = firstPath is ParentPathSubjectPart

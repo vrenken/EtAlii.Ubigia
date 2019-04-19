@@ -84,11 +84,11 @@
 //            output.Clear()
 //
 //            var enumerable = o as IEnumerable<object>
-//            if (enumerable != null)
+//            if (enumerable ! = null)
 //            [
 //                output.AddRange(enumerable)
 //            ]
-//            else if (o != null)
+//            else if (o ! = null)
 //            [
 //                output.Add(o)
 //            ]

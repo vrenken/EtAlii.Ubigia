@@ -5,7 +5,7 @@
         PropertyDictionary GetProperties();
         //void SetProperties(IPropertiesDictionary properties)
         
-        IReadOnlyEntry Entry { get; } //set; }
+        IReadOnlyEntry Entry { get; } //set ]
         //void ClearIsModified()
 
         void Update(PropertyDictionary properties, IReadOnlyEntry entry);

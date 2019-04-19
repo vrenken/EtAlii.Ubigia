@@ -92,13 +92,12 @@ namespace EtAlii.Ubigia.Api.Functional
             IScriptScope scope)
         {
             return matches
-                .Where(m =>
+                .FirstOrDefault(m =>
                 {
                     var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
                     var canMatch = matcher.CanMatch(parameters);
                     return canMatch;
-                })
-                .FirstOrDefault() ?? MatchResult.NoMatch;
+                }) ?? MatchResult.NoMatch;
         }
     }
 }

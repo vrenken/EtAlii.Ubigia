@@ -55,7 +55,7 @@
 //                [
 //                    ret = await task()
 //                ]
-//                catch (Exception e)
+//                catc h (Exception e)
 //                [
 //                    synch.InnerException = e
 //                    throw
