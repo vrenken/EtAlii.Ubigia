@@ -15,45 +15,45 @@
             _connection.Content.Notifications.Stored += OnStored;
         }
 
-        public async Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
+        public Task<IReadOnlyContentDefinition> RetrieveDefinition(Identifier identifier)
         {
-            return await _connection.Content.Data.RetrieveDefinition(identifier);
+            return _connection.Content.Data.RetrieveDefinition(identifier);
         }
 
-        public async Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId)
+        public Task<IReadOnlyContentPart> Retrieve(Identifier identifier, UInt64 contentPartId)
         {
-            return await _connection.Content.Data.Retrieve(identifier, contentPartId);
+            return _connection.Content.Data.Retrieve(identifier, contentPartId);
         }
 
-        public async Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
+        public Task StoreDefinition(Identifier identifier, ContentDefinition contentDefinition)
         {
             if (contentDefinition == null)
             {
                 throw new ArgumentNullException(nameof(contentDefinition));
             }
 
-            await _connection.Content.Data.StoreDefinition(identifier, contentDefinition);
+            return _connection.Content.Data.StoreDefinition(identifier, contentDefinition);
         }
 
-        public async Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
+        public Task StoreDefinition(Identifier identifier, ContentDefinitionPart contentDefinitionPart)
         {
             if (contentDefinitionPart == null)
             {
                 throw new ArgumentNullException(nameof(contentDefinitionPart));
             }
 
-            await _connection.Content.Data.StoreDefinition(identifier, contentDefinitionPart);
+            return _connection.Content.Data.StoreDefinition(identifier, contentDefinitionPart);
         }
 
 
-        public async Task Store(Identifier identifier, Content content)
+        public Task Store(Identifier identifier, Content content)
         {
             if (content == null)
             {
                 throw new ArgumentNullException(nameof(content));
             }
 
-            await _connection.Content.Data.Store(identifier, content);
+            return _connection.Content.Data.Store(identifier, content);
         }
 
         public async Task Store(Identifier identifier, ContentPart contentPart)
@@ -66,9 +66,9 @@
             await _connection.Content.Data.Store(identifier, contentPart);
         }
 
-        public async Task<IReadOnlyContent> Retrieve(Identifier identifier)
+        public Task<IReadOnlyContent> Retrieve(Identifier identifier)
         {
-            return await _connection.Content.Data.Retrieve(identifier);
+            return _connection.Content.Data.Retrieve(identifier);
         }
 
         public event Action<Identifier> Updated = delegate { };

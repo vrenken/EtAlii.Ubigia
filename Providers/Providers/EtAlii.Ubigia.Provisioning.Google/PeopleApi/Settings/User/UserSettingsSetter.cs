@@ -7,13 +7,15 @@
 
     public class UserSettingsSetter : IUserSettingsSetter
     {
-        public async Task Set(IGraphSLScriptContext context, string account, UserSettings settings)
+        public Task Set(IGraphSLScriptContext context, string account, UserSettings settings)
         {
-            if (settings == null)
-            {
-                throw new ArgumentNullException(nameof(settings));
-            }
+            if (settings == null) throw new ArgumentNullException(nameof(settings));
 
+            return SetInternal(context, account, settings);
+        }
+
+        private async Task SetInternal(IGraphSLScriptContext context, string account, UserSettings settings)
+        {
             var script = new[]
             {
                 $"/Providers += Google/PeopleApi/\"{account}\"",
