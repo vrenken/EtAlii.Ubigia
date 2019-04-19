@@ -16,14 +16,12 @@
 
         public Entry Store(IEditableEntry entry)
         {
-            var storedComponents = (IEnumerable<IComponent>)null;
-            return Store((Entry)entry, out storedComponents);
+            return Store((Entry)entry, out _);
         }
 
         public Entry Store(Entry entry)
         {
-            var storedComponents = (IEnumerable<IComponent>)null;
-            return Store(entry, out storedComponents);
+            return Store(entry, out _);
         }
 
         public Entry Store(IEditableEntry entry, out IEnumerable<IComponent> storedComponents)

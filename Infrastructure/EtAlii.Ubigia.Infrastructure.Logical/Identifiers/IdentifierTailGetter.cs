@@ -25,8 +25,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             lock (_lockObject)
             {
-                var tailIdentifier = Identifier.Empty;
-                if (!_cachedTailIdentifiers.TryGetValue(spaceId, out tailIdentifier))
+                if (!_cachedTailIdentifiers.TryGetValue(spaceId, out var tailIdentifier))
                 {
                     tailIdentifier = DetermineTail(spaceId);
                     _cachedTailIdentifiers[spaceId] = tailIdentifier;
