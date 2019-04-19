@@ -8,7 +8,7 @@
 //    internal class AbsolutePathSubjectParser : IAbsolutePathSubjectParser
 //    [
 //        public const string Id = "AbsolutePathSubject"
-//        public LpsParser Parser { get { return _parser } }
+//        public LpsParser Parser [ get [ return _parser ] ]
 //        private readonly LpsParser _parser
 //        private readonly INodeValidator _nodeValidator
 //        private readonly IPathSubjectPartsParser _pathSubjectPartsParser
@@ -29,7 +29,7 @@
 //        public Subject Parse(LpNode node)
 //        [
 //            _nodeValidator.EnsureSuccess(node, Id)
-//            var childNodes = node.Children ?? new LpNode[] { }
+//            var childNodes = node.Children ?? new LpNode[] [ ]
 //            var parts = childNodes.Select(childNode => _pathSubjectPartsParser.Parse(childNode)).ToArray()
 
 //            // A relative path with the length of 1 should not be parsed as a path but as a string constant.

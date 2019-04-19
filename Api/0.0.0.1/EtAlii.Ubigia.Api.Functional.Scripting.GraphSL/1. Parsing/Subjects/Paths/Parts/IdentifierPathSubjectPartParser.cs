@@ -83,6 +83,7 @@
         {
             if ((arguments.Before == null || arguments.Before is ParentPathSubjectPart) && arguments.PartIndex <= 1)
             {
+                // All is ok.
             }
             else
             {

@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Api.Functional
             //
             //    throw new ScriptParserException("Two constant path parts cannot be combined.")
             //
-            //if (partIndex != 0 || after == null)
+            //if (partIndex ! = 0 || after = = null)
             //
             //    var constant = (ConstantPathSubjectPart)part
             //    if (constant.Name == String.Empty)
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional
             //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
             //    
             //
-            //if (partIndex == 0 && after != null)
+            //if (partIndex = = 0 && after ! = null)
             //
             //    var constant = (ConstantPathSubjectPart)part
             //    if (constant.Name == String.Empty)
