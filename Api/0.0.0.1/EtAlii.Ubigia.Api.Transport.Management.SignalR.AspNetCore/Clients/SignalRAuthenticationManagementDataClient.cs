@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
-	using System;
-	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Transport.SignalR;
-	using Microsoft.AspNetCore.SignalR.Client;
+    using System;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.SignalR;
+    using Microsoft.AspNetCore.SignalR.Client;
 
     public partial class SignalRAuthenticationManagementDataClient : SignalRManagementClientBase, IAuthenticationManagementDataClient<ISignalRStorageTransport>
     {
@@ -25,8 +25,8 @@
 
             var factory = new HubConnectionFactory();
 
-			_accountConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Account, UriKind.Absolute));
-			_storageConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + "/" + SignalRHub.Storage, UriKind.Absolute));
+			_accountConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + SignalRHub.Account, UriKind.Absolute));
+			_storageConnection = factory.Create(storageConnection.Transport, new Uri(storageConnection.Storage.Address + SignalRHub.BasePath + SignalRHub.Storage, UriKind.Absolute));
 	        await _accountConnection.StartAsync();
 	        await _storageConnection.StartAsync();
         }

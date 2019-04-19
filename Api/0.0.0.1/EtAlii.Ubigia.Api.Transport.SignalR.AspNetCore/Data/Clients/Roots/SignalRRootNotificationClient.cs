@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using Microsoft.AspNetCore.SignalR.Client;
+	using System;
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
+	using Microsoft.AspNetCore.SignalR.Client;
 
-    internal class SignalRRootNotificationClient : SignalRClientBase, IRootNotificationClient<ISignalRSpaceTransport>
+	internal class SignalRRootNotificationClient : SignalRClientBase, IRootNotificationClient<ISignalRSpaceTransport>
     {
         private HubConnection _connection;
         private readonly string _name;
@@ -39,7 +39,7 @@
         {
             await base.Connect(spaceConnection);
 
-			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + "/" + _name, UriKind.Absolute));
+			_connection = new HubConnectionFactory().Create(spaceConnection.Transport, new Uri(spaceConnection.Storage.Address + SignalRHub.BasePath + _name, UriKind.Absolute));
 	        await _connection.StartAsync();
 
 			_subscriptions = new[]
