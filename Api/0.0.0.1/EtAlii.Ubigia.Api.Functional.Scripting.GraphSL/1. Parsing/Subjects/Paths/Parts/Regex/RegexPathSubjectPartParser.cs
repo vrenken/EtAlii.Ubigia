@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Api.Functional
             //        throw new ScriptParserException("An empty constant path part is only allowed in single part paths.")
             //    
             //
-        ]
+        }
         public bool CanValidate(PathSubjectPart part)
         {
             return part is RegexPathSubjectPart;
