@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Linq;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
-    using System.Reflection;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
@@ -18,14 +17,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private readonly ISelector<object, Func<IFunctionContext, ExecutionScope, object, int>> _converterSelector;
 
-        private readonly TypeInfo _identifierTypeInfo;
-        private readonly TypeInfo _internalNodeTypeInfo;
-
         public CountFunctionHandler()
         {
-            _identifierTypeInfo = typeof(Identifier).GetTypeInfo();
-            _internalNodeTypeInfo = typeof(IInternalNode).GetTypeInfo();
-
             ParameterSets = new[]
             {
                 new ParameterSet(true),

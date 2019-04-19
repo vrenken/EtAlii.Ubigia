@@ -1,10 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Runtime.Serialization;
 
+    [Serializable]
     public class ScriptParserException : Exception
     {
-        public ScriptParserException()
+        protected ScriptParserException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 

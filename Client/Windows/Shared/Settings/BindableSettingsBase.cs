@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Settings
 {
-    using EtAlii.xTechnology.Mvvm;
-    using Microsoft.Win32;
     using System;
     using System.Runtime.CompilerServices;
+    using EtAlii.xTechnology.Mvvm;
+    using Microsoft.Win32;
 
     public abstract class BindableSettingsBase : BindableBase
     {
@@ -42,7 +42,7 @@
             return storage;
         }
 
-        protected T GetValue<T>(ref Nullable<T> storage, T defaultValue, [CallerMemberName] string propertyName = null)
+        protected T GetValue<T>(ref T? storage, T defaultValue, [CallerMemberName] string propertyName = null)
             where T: struct
         {
             if (!storage.HasValue)
@@ -62,8 +62,8 @@
 
             if (typeof(T) == typeof(bool))
             {
-                value = productKey.GetValue(propertyName, (bool)(object)defaultValue == true ? 1 : 0);
-                value = (int)value == 1 ? true : false;
+                value = productKey.GetValue(propertyName, (bool)(object)defaultValue ? 1 : 0);
+                value = (int)value == 1;
             }
             else if (typeof(T) == typeof(int))
             {

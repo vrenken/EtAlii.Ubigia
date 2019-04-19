@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Logical;
 
     public class ProfilingPropertiesManager : IPropertiesManager
     {
@@ -47,7 +46,7 @@
             var result = await _decoree.HasProperties(identifier, scope);
 
             profile.Result = result;
-            profile.Action = "Checking for properties: " + identifier.ToTimeString() + (result == false ? "" : " - AVAILABLE");
+            profile.Action = "Checking for properties: " + identifier.ToTimeString() + (!result ? "" : " - AVAILABLE");
             _profiler.End(profile);
 
             return result;

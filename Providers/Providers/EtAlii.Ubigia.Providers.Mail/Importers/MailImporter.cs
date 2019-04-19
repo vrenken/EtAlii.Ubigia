@@ -19,7 +19,6 @@
         private readonly string server = "imap.gmail.com";
         private int _lastMessageCount;
         private Mailbox _inbox;
-        private Task _task;
 
         public MailImporter(
             ILogger logger,
@@ -85,7 +84,7 @@
             _lastMessageCount = _inbox.MessageCount;
             _inbox.Subscribe();
 
-            _task = Task.Run(() => _imap.StartIdle());
+            Task.Run(() => _imap.StartIdle());
         }
  
         public void NewMessageReceived(object source, NewMessageReceivedEventArgs e)

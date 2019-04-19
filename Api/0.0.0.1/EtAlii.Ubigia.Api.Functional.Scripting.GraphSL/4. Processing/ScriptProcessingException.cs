@@ -1,10 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Runtime.Serialization;
 
+    [Serializable]
     public class ScriptProcessingException : Exception
     {
-        public ScriptProcessingException()
+        protected ScriptProcessingException(SerializationInfo info, StreamingContext context)
+            : base(info, context)
         {
         }
 
