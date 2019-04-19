@@ -5,16 +5,16 @@
 
 //    public class ResultSet 
 //    [
-//        public string Id { get { return _id; } }
+//        public string Id [ get [ return _id; ] ]
 //        private readonly string _id
 
-//        public int Count { get { return _count; } }
+//        public int Count [ get [ return _count; ] ]
 //        private readonly int _count
 
-//        public bool ShowCount { get { return _showCount; } }
+//        public bool ShowCount [ get [ return _showCount; ] ]
 //        private readonly bool _showCount
 
-//        public IEnumerable<Result> Results { get { return _results; } }
+//        public IEnumerable<Result> Results [ get [ return _results; ] ]
 //        private readonly IEnumerable<Result> _results
 
 //        public ResultSet(

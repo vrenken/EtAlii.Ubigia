@@ -6,7 +6,7 @@
 //
 //    public class Relation
 //    [
-//        public string Path { get set }
-//        public TypeDefinition Type { get set }
+//        public string Path [ get set ]
+//        public TypeDefinition Type [ get set ]
 //    ]
 //]

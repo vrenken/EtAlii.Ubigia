@@ -23,12 +23,12 @@
 
 //        public string WebSocketsUrl => Url.Replace("http", "ws")
 
-//        public string Url { get; private set; }
+//        public string Url [ get; private set; ]
 
 //        public ServerFixture()
 //        [
 //            var testLog = AssemblyTestLog.ForAssembly(typeof(ServerFixture<TStartup>).Assembly)
-//            _logToken = testLog.StartTestLog(null, $"{nameof(ServerFixture<TStartup>)}_{typeof(TStartup).Name}", out _loggerFactory, "ServerFixture")
+//            _logToken = testLog.StartTestLog(null, $"[nameof(ServerFixture<TStartup>)]_[typeof(TStartup).Name]", out _loggerFactory, "ServerFixture")
 //            _logger = _loggerFactory.CreateLogger<ServerFixture<TStartup>>()
 //            Url = "http://localhost:" + GetNextPort()
 
@@ -62,7 +62,7 @@
 //            [
 //                _logger.LogInformation("Test server shut down")
 //                _logToken.Dispose()
-//            })
+//            ])
 //        ]
 //        public void Dispose()
 //        [

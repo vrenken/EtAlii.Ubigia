@@ -10,18 +10,18 @@
 
 //    public class HostConfiguration : IHostConfiguration
 //    [
-//        public IHostExtension[] Extensions { get; private set; }
+//        public IHostExtension[] Extensions [ get; private set; ]
 
-//        public IProviderConfiguration[] ProviderConfigurations { get; private set; }
+//        public IProviderConfiguration[] ProviderConfigurations [ get; private set; ]
 
-//        //public IStorage Storage { get { return _storage; } }
+//        //public IStorage Storage [ get [ return _storage; ] ]
 //        //private IStorage _storage
 
-//        public string Address { get; private set; }
+//        public string Address [ get; private set; ]
 
-//        public string Account { get; private set; }
+//        public string Account [ get; private set; ]
 
-//        public string Password { get; private set; }
+//        public string Password [ get; private set; ]
 
 //        private Action<IManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions
 //        private Action<IDataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions
@@ -121,7 +121,7 @@
 //            [
 //                throw new ArgumentException(nameof(dataConnectionConfigurationFactoryExtension))
 //            ]
-//            _dataConnectionConfigurationFactoryExtensions = new[] { dataConnectionConfigurationFactoryExtension }
+//            _dataConnectionConfigurationFactoryExtensions = new[] [ dataConnectionConfigurationFactoryExtension ]
 //                .Concat(_dataConnectionConfigurationFactoryExtensions)
 //                .Distinct()
 //                .ToArray()
@@ -133,7 +133,7 @@
 //            [
 //                throw new ArgumentException(nameof(managementConnectionConfigurationFactoryExtension))
 //            ]
-//            _managementConnectionConfigurationFactoryExtensions = new[] { managementConnectionConfigurationFactoryExtension }
+//            _managementConnectionConfigurationFactoryExtensions = new[] [ managementConnectionConfigurationFactoryExtension ]
 //                .Concat(_managementConnectionConfigurationFactoryExtensions)
 //                .Distinct()
 //                .ToArray()
@@ -145,7 +145,7 @@
 //            [
 //                throw new ArgumentException(nameof(dataContextConfigurationFactoryExtension))
 //            ]
-//            _dataContextConfigurationFactoryExtensions = new[] { dataContextConfigurationFactoryExtension }
+//            _dataContextConfigurationFactoryExtensions = new[] [ dataContextConfigurationFactoryExtension ]
 //                .Concat(_dataContextConfigurationFactoryExtensions)
 //                .Distinct()
 //                .ToArray()

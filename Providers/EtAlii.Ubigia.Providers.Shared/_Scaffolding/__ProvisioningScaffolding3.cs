@@ -32,10 +32,10 @@
 //                var task = Task. Run(async () =>
 //                [
 //                    await connection.Open()
-//                })
+//                ])
 //                task.Wait()
 //                return connection
-//            })
+//            ])
 //            container.Register(() =>
 //            [
 //                var configuration = _configuration.CreateDataConnectionConfiguration()
@@ -47,11 +47,11 @@
 //                var task = Task. Run(async () =>
 //                [
 //                    await connection.Open()
-//                })
+//                ])
 //                task.Wait()
 
 //                return _configuration.CreateDataContext(connection)
-//            })
+//            ])
 //        ]
 //    ]
 //]

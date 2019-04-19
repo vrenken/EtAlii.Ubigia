@@ -26,7 +26,7 @@
 //                ]
 //                catch (Exception e)
 //                [
-//                    _logger.Critical("Unable to start component {0}", e, component.GetType())
+//                    _logger.Critical("Unable to start component [0]", e, component.GetType())
 //                ]
 //            ]
 //            _logger.Info("Started provisioning components")
@@ -42,7 +42,7 @@
 //                ]
 //                catch (Exception e)
 //                [
-//                    _logger.Critical("Unable to start component {0}", e, component.GetType())
+//                    _logger.Critical("Unable to start component [0]", e, component.GetType())
 //                ]
 //            ]
 //            _logger.Info("Stopped provisioning components")

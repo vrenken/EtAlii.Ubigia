@@ -27,13 +27,13 @@
 //		                //.AddAuthorization(options => options.AddPolicy("AuthorizedAdministrator", policy => policy.Requirements.Add(new AuthorizationAdministratorRequirement())))
 //		                .AddInfrastructureHttpContextAuthentication(infrastructure)
 //                        .AddMvcForTypedController<AuthenticateController>()
-//                },
+//                ],
 //                appBuilder =>
 //                [
 //                    appBuilder
 //                        .UseAuthentication()
 //                        .UseMvc()
-//                })
+//                ])
 //        ]
 //    ]
 //]

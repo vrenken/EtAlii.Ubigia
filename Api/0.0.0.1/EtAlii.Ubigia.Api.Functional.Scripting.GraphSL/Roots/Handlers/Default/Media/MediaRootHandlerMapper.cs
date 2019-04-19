@@ -2,9 +2,9 @@
 //[
 //    internal class MediaRootHandlerMapper : IRootHandlerMapper
 //    [
-//        public string Name { get; }
+//        public string Name [ get; ]
 //
-//        public IRootHandler[] AllowedRootHandlers { get; }
+//        public IRootHandler[] AllowedRootHandlers [ get; ]
 //
 //        public MediaRootHandlerMapper()
 //        [

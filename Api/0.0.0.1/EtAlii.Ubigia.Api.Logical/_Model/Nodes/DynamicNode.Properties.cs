@@ -55,7 +55,7 @@
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        protected bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
+        private bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
         {
             if (Equals(storage, newValue)) return false;
 

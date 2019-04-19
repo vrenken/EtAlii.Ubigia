@@ -79,7 +79,7 @@
 
 //        private void SignalStored(Identifier identifier)
 //        [
-//            Clients.All.SendAsync("stored", new object[] { identifier })
+//            Clients.All.SendAsync("stored", new object[] [ identifier ])
 //            //Clients.All.stored(identifier)
 //        ]
     }

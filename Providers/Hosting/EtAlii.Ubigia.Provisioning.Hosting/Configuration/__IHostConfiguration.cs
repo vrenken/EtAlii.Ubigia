@@ -7,18 +7,18 @@
 
 //    public interface IHostConfiguration 
 //    [
-//        IHostExtension[] Extensions { get; }
+//        IHostExtension[] Extensions [ get; ]
 
-//        IProviderConfiguration[] ProviderConfigurations { get; }
+//        IProviderConfiguration[] ProviderConfigurations [ get; ]
 //        IHostConfiguration  Use(string address, string account, string password)
 
 //        IHostConfiguration Use(IHostExtension[] extensions)
 
 //        IHostConfiguration Use(IProviderConfiguration[] providerConfigurations)
 
-//        string Account { get; }
-//        string Password { get; }
-//        string Address { get; }
+//        string Account [ get; ]
+//        string Password [ get; ]
+//        string Address [ get; ]
 
 //        IDataConnectionConfiguration CreateDataConnectionConfiguration()
 //        IManagementConnectionConfiguration CreateManagementConnectionConfiguration()

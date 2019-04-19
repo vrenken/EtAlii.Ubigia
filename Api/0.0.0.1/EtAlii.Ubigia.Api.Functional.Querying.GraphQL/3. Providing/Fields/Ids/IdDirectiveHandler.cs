@@ -25,8 +25,8 @@
 //            foreach (var startIdentifier in startIdentifiers)
 //            [
 //                var path = pathArgumentValue != null
-//                    ? $"/&{startIdentifier.ToDotSeparatedString()}{pathArgumentValue.Value}"
-//                    : $"/&{startIdentifier.ToDotSeparatedString()}"
+//                    ? $"/&[startIdentifier.ToDotSeparatedString()][pathArgumentValue.Value]"
+//                    : $"/&[startIdentifier.ToDotSeparatedString()]"
 //                var subSet = await _nodeFetcher.FetchAsync(path)
 ////                var node = subSet?.SingleOrDefault()
 //

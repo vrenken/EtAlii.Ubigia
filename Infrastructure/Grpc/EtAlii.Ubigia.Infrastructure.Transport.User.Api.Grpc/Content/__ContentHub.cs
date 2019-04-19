@@ -90,7 +90,7 @@
 //        ]
 //        private void SignalUpdated(Identifier identifier)
 //        [
-//            Clients.All.SendAsync("updated", new object[] { identifier })
+//            Clients.All.SendAsync("updated", new object[] [ identifier ])
 //            //Clients.All.updated(identifier)
 //        ]
 //    ]

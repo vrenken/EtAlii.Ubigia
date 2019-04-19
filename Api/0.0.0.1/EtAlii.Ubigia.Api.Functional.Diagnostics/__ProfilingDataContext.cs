@@ -7,7 +7,7 @@
 //    [
 //        private readonly IDataContext _decoree
 //
-//        public IProfiler Profiler { get; }
+//        public IProfiler Profiler [ get; ]
 //        public IDataContextConfiguration Configuration => _decoree.Configuration
 //
 //        public ProfilingDataContext(

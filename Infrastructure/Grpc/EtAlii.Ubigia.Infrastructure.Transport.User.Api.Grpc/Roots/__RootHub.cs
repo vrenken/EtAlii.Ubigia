@@ -115,17 +115,17 @@
         
 //        private void SignalAdded(Guid spaceId, Guid rootId)
 //        [
-//            Clients.All.SendAsync("added", new object[] { rootId })
+//            Clients.All.SendAsync("added", new object[] [ rootId ])
 //            //Clients.All.added(rootId)
 //        ]
 //        private void SignalChanged(Guid spaceId, Guid rootId)
 //        [
-//            Clients.All.SendAsync("changed", new object[]{ rootId })
+//            Clients.All.SendAsync("changed", new object[][ rootId ])
 //            //Clients.All.changed(rootId)
 //        ]
 //        private void Grpcemoved(Guid spaceId, Guid rootId)
 //        [
-//            Clients.All.SendAsync("removed", new object[] { rootId })
+//            Clients.All.SendAsync("removed", new object[] [ rootId ])
 //            //Clients.All.removed(rootId)
 //        ]
 //    ]

@@ -32,7 +32,7 @@
         }
 
         IReadOnlyEntry IInternalNode.Entry => _entry;
-// set { _entry = value;} }
+// set [ _entry = value;] ]
 
         //void IInternalNode.ClearIsModified()
         //[

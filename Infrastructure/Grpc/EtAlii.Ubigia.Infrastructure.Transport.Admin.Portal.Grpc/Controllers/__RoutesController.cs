@@ -21,13 +21,13 @@
 //        [HttpPut]
 //        public IActionResult Index()
 //        [
-//            var routes = _actionDescriptorCollectionProvider.ActionDescriptors.Items.Select(x => new {
+//            var routes = _actionDescriptorCollectionProvider.ActionDescriptors.Items.Select(x => new [
 //                Controller = x.RouteValues["Controller"],
 //                Action = x.RouteValues["Action"],
 //                Name = x.AttributeRouteInfo?.Name,
 //                Template = x.AttributeRouteInfo?.Template,
 //                Contraint = x.ActionConstraints
-//            }).ToList()
+//            ]).ToList()
 
 //            return Json(routes, _settings)
 //        ]

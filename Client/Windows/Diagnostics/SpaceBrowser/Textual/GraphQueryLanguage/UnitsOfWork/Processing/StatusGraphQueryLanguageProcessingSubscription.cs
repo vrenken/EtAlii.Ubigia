@@ -35,10 +35,10 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     viewModel.CanExecute = false;
                     viewModel.CanStop = true;
                     
-//                    _statusWriter.Write(viewModel, $"Querying: {o.Sequence} (step {o.Step + 1}/{o.Total})")
+//                    _statusWriter.Write(viewModel, $"Querying: [o.Sequence] (step [o.Step + 1]/[o.Total])")
 //                    o.Output.Subscribe(
 //                        onError: e2 => _errorWriter.Write(viewModel, e2, errors),
-//                        onNext: o2 => { })
+//                        onNext: o2 => [ ])
                 },
                 onCompleted: () =>
                 {
@@ -62,12 +62,12 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                [
 //                    viewModel.CanExecute = false
 //                    viewModel.CanStop = true
-//                })
+//                ])
 //
 //            // We want to give a summary and reactivate the buttons after script processing has ended.
 //            results.LastOrDefaultAsync()
 //                .Subscribe(
-//                onNext: o => { },
+//                onNext: o => [ ],
 //                onCompleted: () =>
 //                [
 //                    viewModel.Errors = errors.ToArray()
@@ -77,13 +77,13 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                        Task.Delay(200).Wait()
 //                        _statusWriter.Write(viewModel, "Query execution finished successful.")
 //                        _statusWriter.Write(viewModel,
-//                            $"Total run time: {duration:hh}:{duration:mm}:{duration:ss}.{duration:fff}")
+//                            $"Total run time: [duration:hh]:[duration:mm]:[duration:ss].[duration:fff]")
 //                    ]
 //
 //                    Task.Delay(500).Wait()
 //                    viewModel.CanStop = false
 //                    viewModel.CanExecute = true
-//                })
+//                ])
         }
     }
 }

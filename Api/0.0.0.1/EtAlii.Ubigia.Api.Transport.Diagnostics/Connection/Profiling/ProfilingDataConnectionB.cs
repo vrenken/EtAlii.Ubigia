@@ -45,12 +45,12 @@
 
 //            var values = new[]
 //            [
-//                new EventMetricValue { ValueName = "Current opening", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current opening connections", Description = "The number of connections being opened at a specific moment"},
-//                new EventMetricValue { ValueName = "Total opened", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total opened", Description = "The number of times the Open method has executed" },
-//                new EventMetricValue { ValueName = "Current open", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current open connections", Description = "The number of open connections at a specific moment" },
+//                new EventMetricValue [ ValueName = "Current opening", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current opening connections", Description = "The number of connections being opened at a specific moment"],
+//                new EventMetricValue [ ValueName = "Total opened", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total opened", Description = "The number of times the Open method has executed" ],
+//                new EventMetricValue [ ValueName = "Current open", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current open connections", Description = "The number of open connections at a specific moment" ],
 
-//                new EventMetricValue { ValueName = "Current closing", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current closing connections", Description = "The number of connections being closed at a specific moment" },
-//                new EventMetricValue { ValueName = "Total closed", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total closed connections", Description = "The number of times the Close method has executed" },
+//                new EventMetricValue [ ValueName = "Current closing", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Current closing connections", Description = "The number of connections being closed at a specific moment" ],
+//                new EventMetricValue [ ValueName = "Total closed", ValueType = typeof(int), SummaryFunction = SummaryFunction.Count, UnitCaption = "Count", MetricCaption = "Total closed connections", Description = "The number of times the Close method has executed" ],
 //            ]
 //            profiler.RegisterEventMetric(_connectionCounter, values)
 

@@ -5,7 +5,7 @@
 
 //    public class HubProxyMethodInvoker : IHubProxyMethodInvoker
 //    [
-//        private const string ErrorMessageFormat = "Unable to invoke method '{0}' on hub '{1}'"
+//        private const string ErrorMessageFormat = "Unable to invoke method '[0]' on hub '[1]'"
 
 //        public async Task<T> Invoke<T>(HubConnection connection, string proxyName, string methodName, params object[] parameters)
 //        [

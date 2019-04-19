@@ -43,7 +43,7 @@
 //        [
 //            if (!string.IsNullOrEmpty(memberName))
 //            [
-//                return $"Operation in {memberName} timed out at {filePath}:{lineNumber}"
+//                return $"Operation in [memberName] timed out at [filePath]:[lineNumber]"
 //            ]
 //            else
 //            [

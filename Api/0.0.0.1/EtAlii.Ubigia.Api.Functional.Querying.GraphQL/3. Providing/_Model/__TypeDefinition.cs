@@ -8,8 +8,8 @@
 //
 //    public class TypeDefinition
 //    [
-//        public string Name { get set }
-//        public Relation[] Children { get set } = Array.Empty<Relation>()
-//        public FieldDefinition[] Fields { get set } = Array.Empty<FieldDefinition>()
+//        public string Name [ get set ]
+//        public Relation[] Children [ get set ] = Array.Empty<Relation>()
+//        public FieldDefinition[] Fields [ get set ] = Array.Empty<FieldDefinition>()
 //    ]
 //]
