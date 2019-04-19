@@ -35,8 +35,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
         {
             lock (_lockObject)
             {
-                var headIdentifier = Identifier.Empty;
-                if (!_cachedHeadIdentifiers.TryGetValue(spaceId, out headIdentifier))
+                if (!_cachedHeadIdentifiers.TryGetValue(spaceId, out var headIdentifier))
                 {
                     headIdentifier = DetermineHead(spaceId);
                     _cachedHeadIdentifiers[spaceId] = headIdentifier;

@@ -43,16 +43,14 @@
 
         public Entry Store(IEditableEntry entry)
         {
-            var storedComponents = (IEnumerable<IComponent>)null;
-            var storedEntry = _logicalContext.Entries.Store(entry, out storedComponents);
+            var storedEntry = _logicalContext.Entries.Store(entry, out var storedComponents);
             _logicalContext.Entries.Update(storedEntry, storedComponents);
             return storedEntry;
         }
 
         public Entry Store(Entry entry)
         {
-            var storedComponents = (IEnumerable<IComponent>)null;
-            var storedEntry = _logicalContext.Entries.Store(entry, out storedComponents);
+            var storedEntry = _logicalContext.Entries.Store(entry, out var storedComponents);
             _logicalContext.Entries.Update(storedEntry, storedComponents);
             return storedEntry;
         }
