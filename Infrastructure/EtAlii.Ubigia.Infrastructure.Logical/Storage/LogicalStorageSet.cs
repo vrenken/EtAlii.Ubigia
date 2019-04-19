@@ -31,15 +31,15 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _configuration = configuration;
         }
 
-        public Storage Add(Storage storage)
+        public Storage Add(Storage item)
         {
-            storage = _fabric.Items.Add(Items, CannAddFunction, storage);
+            item = _fabric.Items.Add(Items, CannAddFunction, item);
 
-            if (storage != null)
+            if (item != null)
             {
-                Added?.Invoke(this, storage);
+                Added?.Invoke(this, item);
             }
-            return storage;
+            return item;
         }
 
         public void Start()

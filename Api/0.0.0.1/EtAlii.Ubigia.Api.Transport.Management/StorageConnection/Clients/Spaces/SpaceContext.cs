@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public sealed class SpaceContext : StorageClientContextBase<ISpaceDataClient, ISpaceNotificationClient>, ISpaceContext
     {
@@ -13,14 +12,14 @@
             : base(notifications, data)
         {
         }
-        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate template)
+        public async Task<Space> Add(Guid accountId, string spaceName, SpaceTemplate spaceTemplate)
         {
             if (!Connection.IsConnected)
             {
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NoConnection);
             }
 
-            return await Data.Add(accountId, spaceName, template);
+            return await Data.Add(accountId, spaceName, spaceTemplate);
         }
 
         public async Task Remove(Guid spaceId)

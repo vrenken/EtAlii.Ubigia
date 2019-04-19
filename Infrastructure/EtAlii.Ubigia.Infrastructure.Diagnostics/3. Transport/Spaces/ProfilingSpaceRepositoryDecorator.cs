@@ -62,42 +62,42 @@
             return spaces;        
         }
 
-        public Space Get(Guid spaceId)
+        public Space Get(Guid itemId)
         {
             var start = Environment.TickCount;
-            var space = _repository.Get(spaceId);
+            var space = _repository.Get(itemId);
             _profiler.WriteSample(GetByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return space;   
         }
 
-        public async Task<Space> Add(Space space, SpaceTemplate template)
+        public async Task<Space> Add(Space item, SpaceTemplate template)
         {
             var start = Environment.TickCount;
-            space = await _repository.Add(space, template);
+            item = await _repository.Add(item, template);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return space;   
+            return item;   
         }
 
-        public void Remove(Guid spaceId)
+        public void Remove(Guid itemId)
         {
             var start = Environment.TickCount;
-            _repository.Remove(spaceId);
+            _repository.Remove(itemId);
             _profiler.WriteSample(RemoveByIdCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public void Remove(Space space)
+        public void Remove(Space item)
         {
             var start = Environment.TickCount;
-            _repository.Remove(space);
+            _repository.Remove(item);
             _profiler.WriteSample(RemoveByInstanceCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
         }
 
-        public Space Update(Guid spaceId, Space space)
+        public Space Update(Guid itemId, Space item)
         {
             var start = Environment.TickCount;
-            space = _repository.Update(spaceId, space);
+            item = _repository.Update(itemId, item);
             _profiler.WriteSample(UpdateCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
-            return space;   
+            return item;   
         }
     }
 }
