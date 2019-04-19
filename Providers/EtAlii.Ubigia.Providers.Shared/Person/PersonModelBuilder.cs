@@ -76,43 +76,53 @@
 
         }
 
-        private void AddEmailIfMatch(Email emailInstance, Phone phoneInstance, Person namePerson, string address)
+        private void AddEmailIfMatch(Email email, Phone phone, Person person, string address)
         {
-            if(emailInstance != null)
+            if (person == null)
             {
-                if (namePerson == phoneInstance?.Person)
+                throw new ArgumentNullException(nameof(person));
+            }
+            
+            if(email != null)
+            {
+                if (person == phone?.Person)
                 {
-                    if (!namePerson.Emails.Any(e => e.Address == emailInstance.Address))
+                    if (person.Emails.All(e => e.Address != email.Address))
                     {
-                        namePerson.Emails.Add(emailInstance);
+                        person.Emails.Add(email);
                     }
                 }
             }
             else
             {
-                emailInstance = new Email(address, namePerson);
-                _emails.Add(emailInstance);
-                namePerson.Emails.Add(emailInstance);
+                email = new Email(address, person);
+                _emails.Add(email);
+                person.Emails.Add(email);
             }
         }
 
-        private void AddPhoneIfMatch(Email emailInstance, Phone phoneInstance, Person namePerson, string number)
+        private void AddPhoneIfMatch(Email email, Phone pone, Person person, string number)
         {
-            if (phoneInstance != null)
+            if (person == null)
             {
-                if (namePerson == emailInstance?.Person)
+                throw new ArgumentNullException(nameof(person));
+            }
+
+            if (pone != null)
+            {
+                if (person == email?.Person)
                 {
-                    if (!namePerson.Phones.Any(p => p.Number == phoneInstance.Number))
+                    if (person.Phones.All(p => p.Number != pone.Number))
                     {
-                        namePerson.Phones.Add(phoneInstance);
+                        person.Phones.Add(pone);
                     }
                 }
             }
             else
             {
-                phoneInstance = new Phone(number, namePerson);
-                _phones.Add(phoneInstance);
-                namePerson.Phones.Add(phoneInstance);
+                pone = new Phone(number, person);
+                _phones.Add(pone);
+                person.Phones.Add(pone);
             }
         }
 
