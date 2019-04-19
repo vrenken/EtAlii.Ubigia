@@ -27,22 +27,22 @@
             return Equals((DynamicNode)obj);
         }
 
-        public bool Equals(DynamicNode node)
+        public bool Equals(DynamicNode other)
         {
             // If parameter is null, return false. 
-            if (ReferenceEquals(node, null))
+            if (ReferenceEquals(other, null))
             {
                 return false;
             }
 
             // Optimization for a common success case. 
-            if (ReferenceEquals(this, node))
+            if (ReferenceEquals(this, other))
             {
                 return true;
             }
 
             // If run-time types are not exactly the same, return false. 
-            if (GetType() != node.GetType())
+            if (GetType() != other.GetType())
             {
                 return false;
             }
@@ -50,7 +50,7 @@
             // Return true if the fields match. 
             // Note that the base class is not invoked because it is 
             // System.Object, which defines Equals as reference equality. 
-            if (_entry.Id != ((IInternalNode)node).Entry.Id)
+            if (_entry.Id != ((IInternalNode)other).Entry.Id)
             {
                 return false;
             }
