@@ -28,15 +28,15 @@
 
                     { "Host:Systems:0:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.InMemory.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.InMemory"  },
                     { "Host:Systems:0:Services:0:Name", "Debug storage"  },
-				    //{ "Host:Systems:0:Services:0:BaseFolder", tempFolder  },
+				    //[ "Host:Systems:0:Services:0:BaseFolder", tempFolder  ],
 
 				    { "Host:Systems:0:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport" },
                     { "Host:Systems:0:Services:1:Name", "Debug storage" },
                     { "Host:Systems:0:Services:1:Address", "http://127.0.0.1" },
 
-					//{ "Host:Systems:0:Services:2:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Grpc.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Grpc" },
-					//{ "Host:Systems:0:Services:2:IpAddress", "0.0.0.0" },
-					//{ "Host:Systems:0:Services:2:Port", authenticationPort },
+					//[ "Host:Systems:0:Services:2:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Grpc.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Grpc" ],
+					//[ "Host:Systems:0:Services:2:IpAddress", "0.0.0.0" ],
+					//[ "Host:Systems:0:Services:2:Port", authenticationPort ],
 
 				    { "Host:Systems:0:Modules:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc" },
                     { "Host:Systems:0:Modules:0:Name", "Admin" },
@@ -46,9 +46,9 @@
                     { "Host:Systems:0:Modules:0:Modules:0:Name", "Api" },
                     { "Host:Systems:0:Modules:0:Modules:0:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.AdminGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc" },
 
-				    //{ "Host:Systems:0:Modules:0:Modules:1:Name", "Portal" },
-				    //{ "Host:Systems:0:Modules:0:Modules:1:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc" },
-				    //{ "Host:Systems:0:Modules:0:Modules:1:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc" },
+				    //[ "Host:Systems:0:Modules:0:Modules:1:Name", "Portal" ],
+				    //[ "Host:Systems:0:Modules:0:Modules:1:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc" ],
+				    //[ "Host:Systems:0:Modules:0:Modules:1:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.Grpc" ],
 
 				    { "Host:Systems:0:Modules:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.User.Grpc.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Grpc" },
                     { "Host:Systems:0:Modules:1:Name", "User" },
@@ -58,9 +58,9 @@
                     { "Host:Systems:0:Modules:1:Modules:0:Name", "Api" },
                     { "Host:Systems:0:Modules:1:Modules:0:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc.UserGrpcServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Grpc" },
 
-					//{ "Host:Systems:0:Modules:1:Modules:1:Name", "Portal" },
-				    //{ "Host:Systems:0:Modules:1:Modules:1:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc" },
-				    //{ "Host:Systems:0:Modules:1:Modules:1:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc" },
+					//[ "Host:Systems:0:Modules:1:Modules:1:Name", "Portal" ],
+				    //[ "Host:Systems:0:Modules:1:Modules:1:Services:0:Factory", "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc" ],
+				    //[ "Host:Systems:0:Modules:1:Modules:1:Services:1:Factory", "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc" ],
 				})
                 .Build();
 
