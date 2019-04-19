@@ -10,7 +10,7 @@
         {
             public static class Portal
             {
-                public const string BaseUrl = "/admin/portal";
+                public const string BasePath = "/admin/portal";
 
                 public const string MicrosoftGraphSettings = "admin/portal/settings/microsoft/graph";
                 public const string GooglePeopleApiSettings = "admin/portal/settings/google/peopleapi";
@@ -25,7 +25,7 @@
             {
                 public static class Rest
                 {
-                    public const string BaseUrl = "/admin/api/rest";
+                    public const string BasePath = "/admin/api/rest";
 
                     public const string Accounts = "admin/api/rest/account";
                     public const string Storages = "admin/api/rest/storage";
@@ -34,7 +34,7 @@
 
                 public static class SignalR
                 {
-                    public const string BaseUrl = "/admin/api/stream";
+                    public const string BasePath = "/admin/api/stream";
                 }
             }
         }

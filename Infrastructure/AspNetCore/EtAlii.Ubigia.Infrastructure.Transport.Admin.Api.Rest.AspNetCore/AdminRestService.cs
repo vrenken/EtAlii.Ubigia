@@ -1,14 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore
 {
-    using System.Linq;
-    using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
+	using System.Linq;
+	using EtAlii.Ubigia.Infrastructure.Functional;
+	using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
+	using EtAlii.xTechnology.Hosting.AspNetCore;
+	using Microsoft.AspNetCore.Builder;
+	using Microsoft.Extensions.Configuration;
+	using Microsoft.Extensions.DependencyInjection;
 
-    public class AdminRestService : AspNetCoreServiceBase
+	public class AdminRestService : AspNetCoreServiceBase
     {
         public AdminRestService(IConfigurationSection configuration) 
             : base(configuration)
@@ -19,7 +19,7 @@
         {
             var infrastructure = System.Services.OfType<IInfrastructureService>().Single().Infrastructure;
 
-            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Rest.BaseUrl,
+            applicationBuilder.UseBranchWithServices(Port, AbsoluteUri.Admin.Api.Rest.BasePath,
                 services =>
                 {
 	                services
