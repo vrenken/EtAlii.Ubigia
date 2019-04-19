@@ -35,7 +35,10 @@
 
         public string AccountPassword { get { return _accountPassword; } set { SetProperty(ref _accountPassword, value); } }
         private string _accountPassword;
-        public const string AccountPasswordProperty = "AccountPassword";
+
+        #pragma warning disable S2068 // False positives. The below isn't a password.
+        private const string AccountPasswordProperty = "AccountPassword";
+        #pragma warning restore S2068 
 
         public AccountTemplate[] AvailableAccountTemplates => AccountTemplate.All;
 
