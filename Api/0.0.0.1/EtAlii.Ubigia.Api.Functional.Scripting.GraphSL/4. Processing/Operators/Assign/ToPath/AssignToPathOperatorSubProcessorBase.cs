@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private readonly TypeInfo _dynamicObjectTypeInfo = typeof(DynamicObject).GetTypeInfo();
 
-        public AssignToPathOperatorSubProcessorBase(
+        protected AssignToPathOperatorSubProcessorBase(
             IToIdentifierConverter toIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
             IProcessingContext context)
@@ -62,14 +62,14 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 return await _context.Logical.Nodes.AssignProperties(location, properties, scope);
             }
-            if (IsDynamicObject(path, o))
+            if (IsDynamicObject(o))
             {
                 return await _context.Logical.Nodes.AssignDynamic(location, o, scope);
             }
             throw new AssignmentException("Object not supported for assignment operations: " + (o != null ? o.ToString() : "NULL"));
         }
 
-        private bool IsDynamicObject(GraphPath path, object value)
+        private bool IsDynamicObject(object value)
         {
             var result = false;
             if (value != null)
