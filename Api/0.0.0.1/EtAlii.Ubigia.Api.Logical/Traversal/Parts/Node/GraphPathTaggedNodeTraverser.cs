@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Api.Logical
 //                    onError: e => parameters.Output.OnError(e),
 //                    onNext: async start =>
 //                    [
-//                            if (start == Identifier.Empty)
+//                            if (start = = Identifier.Empty)
 //                            [
 //                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph")
 //                            ]

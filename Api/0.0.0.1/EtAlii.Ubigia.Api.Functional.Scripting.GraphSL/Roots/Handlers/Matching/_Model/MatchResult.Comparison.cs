@@ -41,7 +41,7 @@
             //]
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
-            //if (this.GetType() != match.GetType())
+            //if (this.GetType() ! = match.GetType())
             //[
             //    return false
             //]

@@ -26,30 +26,30 @@
 ////            [
 ////                return Activator.CreateInstance(type)
 ////            ]
-//            if (type == typeof(PersonType))
+//            if (type = = typeof(PersonType))
 //            [
 //                var data = _container.GetInstance<IUbigiaData>()
 //                return new PersonType(data)
 //            ]
-//            if (type == typeof(HumanType))
+//            if (type = = typeof(HumanType))
 //            [
 //                var data = _container.GetInstance<IUbigiaData>()
 //                return new HumanType(data)
 //            ]
-//            if (type == typeof(HumanInputType))
+//            if (type = = typeof(HumanInputType))
 //            [
 //                return new HumanInputType()
 //            ]
-//            if (type == typeof(DroidType))
+//            if (type = = typeof(DroidType))
 //            [
 //                var data = _container.GetInstance<IUbigiaData>()
 //                return new DroidType(data)
 //            ]
-//            if (type == typeof(CharacterInterface))
+//            if (type = = typeof(CharacterInterface))
 //            [
 //                return new CharacterInterface()
 //            ]
-//            if (type == typeof(EpisodeEnum))
+//            if (type = = typeof(EpisodeEnum))
 //            [
 //                return new EpisodeEnum()
 //            ]

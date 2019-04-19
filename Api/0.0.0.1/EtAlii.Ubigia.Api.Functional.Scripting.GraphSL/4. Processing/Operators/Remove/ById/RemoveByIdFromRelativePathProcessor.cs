@@ -41,7 +41,7 @@
                     await Remove(leftId, rightId, parameters.Scope, parameters.Output);
                 });
 
-            //if (leftIds == null || !leftIds.Any())
+            //if (leftIds = = null | | !leftIds.Any())
             //[
             //    throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires queryable ids from the previous path part")
             //]
