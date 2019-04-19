@@ -64,7 +64,7 @@
         {
             var wasModified = _isModified;
             _isModified = true;
-            NotifyPropertyChanged(this, _isModified, _isModified, "IsModified");
+            NotifyPropertyChanged(this, wasModified, _isModified, "IsModified");
         }
 
         /// <summary>

@@ -18,9 +18,7 @@
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ResultSet(
-            string id, 
-            ObservableCollection<Result> results)
+        public ResultSet(string id, ObservableCollection<Result> results)
         {
             Id = id;
             Results = results;
@@ -44,7 +42,7 @@
 
             var oldValue = storage;
             storage = newValue;
-            NotifyPropertyChanged(this, storage, newValue, propertyName);
+            NotifyPropertyChanged(this, oldValue, newValue, propertyName);
 
             return true;
         }
