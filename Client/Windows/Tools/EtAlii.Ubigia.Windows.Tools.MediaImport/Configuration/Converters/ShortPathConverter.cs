@@ -10,19 +10,16 @@
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string)
+            if (!(value is string valueString)) return value;
+
+            var length = 0;
+            switch (parameter)
             {
-                int length = 0;
-                if (parameter is string)
-                {
-                    length = int.Parse((string)parameter);
-                }
-                else if (parameter is int)
-                {
-                    length = (int)parameter;
-                }
-                value = CompactPath((string)value, length);
+                case string parameterString: length = int.Parse(parameterString); break;
+                case int parameterInt: length = parameterInt; break;
             }
+            value = CompactPath(valueString, length);
+            
             return value;
         }
 
