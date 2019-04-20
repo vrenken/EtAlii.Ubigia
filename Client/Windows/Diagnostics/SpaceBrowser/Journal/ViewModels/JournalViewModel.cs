@@ -58,7 +58,7 @@
                 {
                     Items.RemoveAt(0);
                 }
-            };
+            }
         }
     }
 }
