@@ -4,7 +4,7 @@
     using System.Reflection;
     using System.Reflection.Emit;
 
-    public class DynamicObject
+    public static class DynamicObject
     {
         private static readonly ModuleBuilder ModuleBuilder = CreateModuleBuilder(); 
 

@@ -2,7 +2,7 @@
 {
     using System.Security.Cryptography;
 
-    public class Aes
+    public static class Aes
     {
         private static readonly SymmetricAlgorithm Algorithm = CreateAesCryptoServiceProvider();
 
