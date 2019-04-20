@@ -43,25 +43,13 @@
 
             if (entriesWithRelation.HasFlag(EntryRelation.Child))
             {
-                foreach (var relation in entry.Children)
-                {
-                    var childEntry = Get(relation.Id, entryRelations);
-                    entries.Add(childEntry);
-                }
-                foreach (var relation in entry.Children2)
-                {
-                    var child2Entry = Get(relation.Id, entryRelations);
-                    entries.Add(child2Entry);
-                }
+                entries.AddRange(entry.Children.Select(relation => Get(relation.Id, entryRelations)));
+                entries.AddRange(entry.Children2.Select(relation => Get(relation.Id, entryRelations)));
             }
 
             if (entriesWithRelation.HasFlag(EntryRelation.Index))
             {
-                foreach (var relation in entry.Indexes)
-                {
-                    var indexEntry = Get(relation.Id, entryRelations);
-                    entries.Add(indexEntry);
-                }
+                entries.AddRange(entry.Indexes.Select(relation => Get(relation.Id, entryRelations)));
             }
 
             if (entriesWithRelation.HasFlag(EntryRelation.Indexed))
@@ -102,11 +90,7 @@
 
             if (entriesWithRelation.HasFlag(EntryRelation.Update))
             {
-                foreach (var relation in entry.Updates)
-                {
-                    var updateEntry = Get(relation.Id, entryRelations);
-                    entries.Add(updateEntry);
-                }
+                entries.AddRange(entry.Updates.Select(relation => Get(relation.Id, entryRelations)));
             }
 
             return entries;
