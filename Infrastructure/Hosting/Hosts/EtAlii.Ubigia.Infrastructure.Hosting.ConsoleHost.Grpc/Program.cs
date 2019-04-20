@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.ConsoleHost.Grpc
 {
-    using Microsoft.Extensions.Configuration;
     using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.Hosting.ConsoleHost;
+    using Microsoft.Extensions.Configuration;
 
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application. 
