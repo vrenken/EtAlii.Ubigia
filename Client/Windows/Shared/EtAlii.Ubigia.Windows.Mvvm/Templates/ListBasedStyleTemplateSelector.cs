@@ -16,7 +16,7 @@
 
         public override System.Windows.Style SelectStyle(object item, System.Windows.DependencyObject container)
         {
-            var match = Templates.Where(t => (t.DataType as Type).IsAssignableFrom(item.GetType())).FirstOrDefault();
+            var match = Templates.FirstOrDefault(t => ((Type) t.DataType).IsInstanceOfType(item));
             if (match != null) return match.Style;
             return base.SelectStyle(item, container);
         }
