@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api.Logical;
 
-    public static class NET47HierarchicalContentManagerExtensions
+    public static class DotNet47HierarchicalContentManagerExtensions
     {
         public static void Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, Identifier identifier)
         {
