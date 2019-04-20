@@ -25,24 +25,21 @@
                 .Use(SignalRTransportProvider.Create())
                 .UseDialog(window);
             var newConnection = new DataConnectionFactory().Create(connectionConfiguration);
-            if (newConnection != null)
-            {
-                if (Connection.Storage.Address != newConnection.Storage.Address ||
-                    Connection.Account.Name != newConnection.Account.Name ||
-                    Connection.Account.Password != newConnection.Account.Password ||
-                    Connection.Space.Name != newConnection.Space.Name)
-                {
-                    var dr = MessageBox.Show(window,
-                        "The changes will not take effect until the next time the program is started.\r\n\r\nDo you want to restart the program now?",
-                        "Program restart required", MessageBoxButton.YesNo, MessageBoxImage.Information,
-                        MessageBoxResult.Yes);
-                    if (dr == MessageBoxResult.Yes)
-                    {
-                        Process.Start(Application.ResourceAssembly.Location, "10");
-                        Application.Current.Shutdown();
-                    }
-                }
-            }
+            
+            if (newConnection == null || 
+                (Connection.Storage.Address == newConnection.Storage.Address &&
+                 Connection.Account.Name == newConnection.Account.Name &&
+                 Connection.Account.Password == newConnection.Account.Password &&
+                 Connection.Space.Name == newConnection.Space.Name)) return;
+            
+            var dr = MessageBox.Show(window,
+                "The changes will not take effect until the next time the program is started.\r\n\r\nDo you want to restart the program now?",
+                "Program restart required", MessageBoxButton.YesNo, MessageBoxImage.Information,
+                MessageBoxResult.Yes);
+            
+            if (dr != MessageBoxResult.Yes) return;
+            Process.Start(Application.ResourceAssembly.Location, "10");
+            Application.Current.Shutdown();
         }
     }
 }
