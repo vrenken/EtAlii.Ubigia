@@ -1,90 +1,77 @@
 namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api;
     using System;
     using System.Collections.Generic;
     using System.Text;
     using System.Windows.Data;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Logical;
 
     public class GraphOutputConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (value is Identifier)
+            switch (value)
             {
-                return ((Identifier)value).ToTimeString();
-            }
-            else if (value is IEnumerable<Identifier>)
-            {
-                var result = new StringBuilder();
-                foreach (var v in (IEnumerable<Identifier>)value)
+                case Identifier identifier: return identifier.ToTimeString();
+                case IEnumerable<Identifier> identifiers:
                 {
-                    var itemRepresentation = Convert(v, targetType, parameter, culture);
-                    result.Append(itemRepresentation);
-                    result.AppendLine();
+                    var result = new StringBuilder();
+                    foreach (var v in identifiers)
+                    {
+                        var itemRepresentation = Convert(v, targetType, parameter, culture);
+                        result.Append(itemRepresentation);
+                        result.AppendLine();
+                    }
+                    return result.ToString();
                 }
-                return result.ToString();
-            }
-            else if (value is DynamicNode)
-            {
-                var node = (IInternalNode) value;
-                var properties = node.GetProperties();
-                var result = new StringBuilder();
-                foreach (var kvp in properties)
+                case IInternalNode node:
                 {
-                    result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
-                    result.AppendLine();
+                    var properties = node.GetProperties();
+                    var result = new StringBuilder();
+                    foreach (var kvp in properties)
+                    {
+                        result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
+                        result.AppendLine();
+                    }
+                    return result.ToString();
                 }
-                return result.ToString();
-            }
-            else if (value is IEnumerable<DynamicNode>)
-            {
-                var result = new StringBuilder();
-                foreach (var v in (IEnumerable<DynamicNode>)value)
+                case IEnumerable<DynamicNode> nodes:
                 {
-                    var itemRepresentation = Convert(v, targetType, parameter, culture);
-                    result.Append(itemRepresentation);
-                    result.AppendLine();
+                    var result = new StringBuilder();
+                    foreach (var node in nodes)
+                    {
+                        var itemRepresentation = Convert(node, targetType, parameter, culture);
+                        result.Append(itemRepresentation);
+                        result.AppendLine();
+                    }
+                    return result.ToString();
                 }
-                return result.ToString();
-            }
-            else if (value is IPropertyDictionary)
-            {
-                var result = new StringBuilder();
-                foreach (var kvp in (IPropertyDictionary)value)
+                case IPropertyDictionary propertyDictionary:
                 {
-                    result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
-                    result.AppendLine();
+                    var result = new StringBuilder();
+                    foreach (var kvp in propertyDictionary)
+                    {
+                        result.AppendFormat("{0}: {1}", kvp.Key, kvp.Value);
+                        result.AppendLine();
+                    }
+                    return result.ToString();
                 }
-                return result.ToString();
-            }
-            else if (value is IEnumerable<IPropertyDictionary>)
-            {
-                var result = new StringBuilder();
-                foreach (var v in (IEnumerable<IPropertyDictionary>)value)
+                case IEnumerable<IPropertyDictionary> propertyDictionaries:
                 {
-                    var itemRepresentation = Convert(v, targetType, parameter, culture);
-                    result.Append(itemRepresentation);
-                    result.AppendLine();
+                    var result = new StringBuilder();
+                    foreach (var propertyDictionary in propertyDictionaries)
+                    {
+                        var itemRepresentation = Convert(propertyDictionary, targetType, parameter, culture);
+                        result.Append(itemRepresentation);
+                        result.AppendLine();
+                    }
+                    return result.ToString();
                 }
-                return result.ToString();
-            }
-            else if (value is int)
-            {
-                return ((int) value).ToString();
-            }
-            else if (value is DateTime)
-            {
-                return ((DateTime) value).ToString();
-            }
-            else if (value is string)
-            {
-                return (string) value;
-            }
-            else
-            {
-                return "Unknown";
+                case int i: return i.ToString();
+                case DateTime dateTime: return dateTime.ToString(culture);
+                case string s: return s;
+                default: return "Unknown";
             }
         }
 
