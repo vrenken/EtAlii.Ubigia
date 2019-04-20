@@ -79,7 +79,7 @@
 			    writer.CloseOutput = false;
 			    _serializer.Serialize(writer, value);
 			    writer.Flush();
-		    };
+		    }
 		}
 
 		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)
