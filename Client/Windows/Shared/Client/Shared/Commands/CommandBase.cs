@@ -1,20 +1,20 @@
 ﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using System;
-    using System.ComponentModel;
-    using System.Windows;
-    using System.Windows.Input;
-    using System.Windows.Markup;
-    using System.Windows.Media;
-    using Container = EtAlii.xTechnology.MicroContainer.Container;
+  using System;
+  using System.ComponentModel;
+  using System.Windows;
+  using System.Windows.Input;
+  using System.Windows.Markup;
+  using System.Windows.Media;
+  using Container = EtAlii.xTechnology.MicroContainer.Container;
 
-    /// <summary>
+  /// <summary>
   /// Basic implementation of the <see cref="ICommand"/>
   /// interface, which is also accessible as a markup
   /// extension.
   /// </summary>
   public abstract class CommandBase<T> : MarkupExtension, ICommand
-      where T : class, ICommand, new()
+    where T : class, ICommand, new()
   {
     /// <summary>
     /// A singleton instance.
@@ -23,10 +23,11 @@
 
     protected Container Container { get; }
 
-      protected CommandBase()
+    protected CommandBase()
     {
-        Container = App.Current.Container;
+      Container = App.Current.Container;
     }
+
     /// <summary>
     /// Gets a shared command instance.
     /// </summary>
@@ -42,8 +43,8 @@
     /// </summary>
     public event EventHandler CanExecuteChanged
     {
-      add { CommandManager.RequerySuggested += value; }
-      remove { CommandManager.RequerySuggested -= value; }
+      add => CommandManager.RequerySuggested += value;
+      remove => CommandManager.RequerySuggested -= value;
     }
 
     /// <summary>
@@ -72,12 +73,12 @@
     }
 
 
-    public static bool IsDesignMode => (bool)
-        DependencyPropertyDescriptor.FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement))
-            .Metadata.DefaultValue;
+    public static bool IsDesignMode => (bool) DependencyPropertyDescriptor
+      .FromProperty(DesignerProperties.IsInDesignModeProperty, typeof(FrameworkElement))
+      .Metadata.DefaultValue;
 
 
-      /// <summary>
+    /// <summary>
     /// Resolves the window that owns the TaskbarIcon class.
     /// </summary>
     /// <param name="commandParameter"></param>
@@ -105,7 +106,7 @@
     /// type parameter. If not matching item can be found, a null
     /// reference is being returned.</returns>
     public static D TryFindParent<D>(DependencyObject child)
-        where D : DependencyObject
+      where D : DependencyObject
     {
       //get parent item
       DependencyObject parentObject = GetParentObject(child);
@@ -114,8 +115,7 @@
       if (parentObject == null) return null;
 
       //check if the parent matches the type we're looking for
-      var parent = parentObject as D;
-      if (parent != null)
+      if (parentObject is D parent)
       {
         return parent;
       }
@@ -137,20 +137,20 @@
     /// null.</returns>
     public static DependencyObject GetParentObject(DependencyObject child)
     {
-      if (child == null) return null;
-      ContentElement contentElement = child as ContentElement;
-
-      if (contentElement != null)
+      switch (child)
       {
-        DependencyObject parent = ContentOperations.GetParent(contentElement);
-        if (parent != null) return parent;
+        case null: return null;
+        case ContentElement contentElement:
+        {
+          DependencyObject parent = ContentOperations.GetParent(contentElement);
+          if (parent != null) return parent;
 
-        FrameworkContentElement fce = contentElement as FrameworkContentElement;
-        return fce != null ? fce.Parent : null;
+          return contentElement is FrameworkContentElement fce ? fce.Parent : null;
+        }
+        default:
+          //if it's not a ContentElement, rely on VisualTreeHelper
+          return VisualTreeHelper.GetParent(child);
       }
-
-      //if it's not a ContentElement, rely on VisualTreeHelper
-      return VisualTreeHelper.GetParent(child);
     }
 
     #endregion
