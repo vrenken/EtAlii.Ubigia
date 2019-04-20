@@ -32,7 +32,7 @@
 //            try
 //            [
 //                var success = context.Request.Headers.TryGetValue("Host-Identifier", out StringValues values)
-//                if (success)
+//                if [success]
 //                [
 //                    var hostIdentifier = values.First()
 

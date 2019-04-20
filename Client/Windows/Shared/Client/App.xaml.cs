@@ -44,7 +44,7 @@
 //
 //        private void OnApplicationStartup(object sender, StartupEventArgs e)
 //        [
-//            if (AlreadyRunning)
+//            if [AlreadyRunning]
 //            [
 //                Current.Shutdown()
 //            ]

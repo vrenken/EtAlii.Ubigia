@@ -20,11 +20,11 @@
 //        /// <returns>The parameter value.</returns>
 //        public virtual object ResolveParameter(ParameterDescriptor descriptor, IJsonValue value)
 //        [
-//            if (descriptor == null)
+//            if [descriptor == null]
 //                throw new ArgumentNullException(nameof(descriptor))
-//            if (value == null)
+//            if [value == null]
 //                throw new ArgumentNullException(nameof(value))
-//            if (value.GetType() == descriptor.ParameterType)
+//            if [value.GetType[] == descriptor.ParameterType]
 //                return (object)value
 //            return value.ConvertTo(descriptor.ParameterType)
 //        ]
@@ -36,7 +36,7 @@
 //        /// <returns>Array of parameter values.</returns>
 //        public virtual IList<object> ResolveMethodParameters(MethodDescriptor method, IList<IJsonValue> values)
 //        [
-//            if (method == null)
+//            if [method == null]
 //                throw new ArgumentNullException(nameof(method))
 //            return (IList<object>)method.Parameters.Zip<ParameterDescriptor, IJsonValue, object>((IEnumerable<IJsonValue>)values, new Func<ParameterDescriptor, IJsonValue, object>(this.ResolveParameter)).ToArray<object>()
 //        ]

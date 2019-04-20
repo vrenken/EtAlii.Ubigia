@@ -14,11 +14,11 @@
 //            var userName = String.Empty
 //            var password = String.Empty
 //            IEnumerable<string> values
-//            if (actionContext.Request.Headers.TryGetValues("Test-UserName", out values))
+//            if [actionContext.Request.Headers.TryGetValues["Test-UserName", out values]]
 //            [
 //                userName = values.SingleOrDefault()
 //            ]
-//            if (actionContext.Request.Headers.TryGetValues("Test-Password", out values))
+//            if [actionContext.Request.Headers.TryGetValues["Test-Password", out values]]
 //            [
 //                password = values.SingleOrDefault()
 //            ]

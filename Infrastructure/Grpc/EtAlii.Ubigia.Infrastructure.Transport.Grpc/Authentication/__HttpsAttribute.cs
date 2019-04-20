@@ -7,7 +7,7 @@
 //    [
 //        public override void OnActionExecuting(ActionExecutingContext actionContext)
 //        [
-//            if (!actionContext.HttpContext.Request.IsHttps)
+//            if [!actionContext.HttpContext.Request.IsHttps]
 //            [
 //                actionContext.Result = new BadRequestResult()
 //            ]

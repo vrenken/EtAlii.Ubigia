@@ -84,7 +84,7 @@
 //            output.Clear()
 //
 //            var enumerable = o as IEnumerable<object>
-//            if (enumerable ! = null)
+//            if [enumerable ! = null]
 //            [
 //                output.AddRange(enumerable)
 //            ]

@@ -14,14 +14,14 @@
 //        /// <param name="context"></param>
 //        public AuthenticationIdentity Get(HttpContext context)
 //        [
-//            if (context.Request.Headers.TryGetValue("Authorization", out StringValues values))
+//            if [context.Request.Headers.TryGetValue["Authorization", out StringValues values]]
 //            [
 //                var authenticationHeader = values.FirstOrDefault()
-//                if (String.IsNullOrWhiteSpace(authenticationHeader))
+//                if [String.IsNullOrWhiteSpace[authenticationHeader]]
 //                [
 //                    return null
 //                ]
-//                if (!authenticationHeader.StartsWith("Basic", StringComparison.OrdinalIgnoreCase))
+//                if [!authenticationHeader.StartsWith["Basic", StringComparison.OrdinalIgnoreCase]]
 //                [
 //                    return null
 //                ]
@@ -30,7 +30,7 @@
 //                var usernamePassword = Encoding.Default.GetString(Convert.FromBase64String(encodedUsernamePassword))
 
 //                var separatorIndex = usernamePassword.IndexOf(':')
-//                if (separatorIndex == -1)
+//                if [separatorIndex == -1]
 //                [
 //                    return null
 //                ]

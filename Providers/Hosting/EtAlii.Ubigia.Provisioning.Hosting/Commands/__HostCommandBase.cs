@@ -15,7 +15,7 @@
 
 //        private void SetCanExecute(bool newValue)
 //        [
-//            if (_canExecute != newValue)
+//            if [_canExecute != newValue]
 //            [
 //                _canExecute = newValue
 //                CanExecuteChanged?.Invoke(this, EventArgs.Empty)
@@ -23,12 +23,12 @@
 //        ]
 //        public void Initialize(IHost host)
 //        [
-//            if (Host != null)
+//            if [Host != null]
 //            [
 //                Host.PropertyChanged -= OnHostPropertyChanged
 //            ]
 //            Host = host
-//            if (Host != null)
+//            if [Host != null]
 //            [
 //                Host.PropertyChanged += OnHostPropertyChanged
 //            ]

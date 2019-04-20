@@ -9,7 +9,7 @@
 //        public void Register(Container container)
 //        [
 //            var isWebApiTransport = container.GetInstance<ITransport>() is WebApiTransport
-//            if (isWebApiTransport)
+//            if [isWebApiTransport]
 //            [
 //                container.Register<IStorageClient, WebApiStorageClient>()
 //                container.Register<IAccountClient, WebApiAccountClient>()

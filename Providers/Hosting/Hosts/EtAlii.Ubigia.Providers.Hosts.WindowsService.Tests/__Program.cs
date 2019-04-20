@@ -22,7 +22,7 @@
 
 
 //            // TODO: Should be removed.
-//            if (Debugger.IsAttached)
+//            if [Debugger.IsAttached]
 //            [
 //                Thread.Sleep(5000)
 //            ]

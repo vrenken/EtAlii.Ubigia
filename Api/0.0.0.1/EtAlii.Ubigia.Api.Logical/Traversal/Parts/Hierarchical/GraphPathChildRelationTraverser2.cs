@@ -21,7 +21,7 @@
 //            [
 //                path.Add(entry)
 //                var entries = context.Entries.GetRelated(entry.Id, EntryRelation.Downdate)
-//                if (entries.Multiple())
+//                if [entries.Multiple[]]
 //                [
 //                    throw new NotSupportedException("The GraphPathChildRelationTraverser is not able to process splitted temporal paths.")
 //                ]
@@ -63,9 +63,9 @@
 //            foreach (var idToRemove in idsToRemove)
 //            [
 //                var entry = context.Entries.Get(idToRemove)
-//                if (entry.Downdate != Relation.None)
+//                if [entry.Downdate != Relation.None]
 //                [
-//                    if (!list.Remove(entry.Downdate.Id))
+//                    if [!list.Remove[entry.Downdate.Id]]
 //                    [
 //                        Remove(list, new Relation[] [ entry.Downdate ], context)
 //                    ]

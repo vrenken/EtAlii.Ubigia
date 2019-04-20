@@ -95,7 +95,7 @@
 //            // In production code, handle this via method lookup tables.
 
 //            var supportedMethod = typeof(string).GetRuntimeMethod("Contains", new Type[] [ typeof(string) ])
-//            if (expression.Method.Equals(supportedMethod))
+//            if [expression.Method.Equals[supportedMethod]]
 //            [
 //                _gqlExpression.Append("(")
 //                VisitExpression(expression.Object)

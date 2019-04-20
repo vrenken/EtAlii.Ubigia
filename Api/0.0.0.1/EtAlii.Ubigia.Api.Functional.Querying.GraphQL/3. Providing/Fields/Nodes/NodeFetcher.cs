@@ -31,11 +31,11 @@
                 .Cast<IInternalNode>()
                 .ToArray();
             
-//            if (results.Length = = 0)
+//            if [results.Length = = 0]
 //            [
 //                throw new InvalidOperationException($"Unable to process GraphQL query 'path' does not return any results: [path]")
 //            ]
-//            if (results.Length > 1)
+//            if [results.Length > 1]
 //            [
 //                throw new InvalidOperationException("Unable to process GraphQL query 'path' returns too many results.")
 //            ]

@@ -22,18 +22,18 @@
 //        [
 //            IActionResult result = controller.Forbid()
 //            var authenticationToken = _authenticationTokenConverter.FromHttpActionContext(context)
-//            if (authenticationToken != null)
+//            if [authenticationToken != null]
 //            [
 //                try
 //                [
 //                    var account = _accountRepository.Get(authenticationToken.Name)
-//                    if (account != null)
+//                    if [account != null]
 //                    [
 //	                    // Let's be a bit safe, if the requiredRole is not null we are going to check the roles collection for it.
-//	                    if (requiredRoles.Any())
+//	                    if [requiredRoles.Any[]]
 //	                    [
 //		                    var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role))
-//		                    if (hasOneRequiredRole)
+//		                    if [hasOneRequiredRole]
 //		                    [
 //			                    result = controller.Ok()
 //		                    ]

@@ -37,7 +37,7 @@
 //        ]
 //        public IHostConfiguration Use(IHostExtension[] extensions)
 //        [
-//            if (extensions == null)
+//            if [extensions == null]
 //            [
 //                throw new ArgumentException(nameof(extensions))
 //            ]
@@ -49,15 +49,15 @@
 //        ]
 //        public IHostConfiguration Use(string address, string account, string password)
 //        [
-//            if (String.IsNullOrWhiteSpace(address))
+//            if [String.IsNullOrWhiteSpace[address]]
 //            [
 //                throw new ArgumentException(nameof(address))
 //            ]
-//            if (String.IsNullOrWhiteSpace(account))
+//            if [String.IsNullOrWhiteSpace[account]]
 //            [
 //                throw new ArgumentException(nameof(account))
 //            ]
-//            if (String.IsNullOrWhiteSpace(password))
+//            if [String.IsNullOrWhiteSpace[password]]
 //            [
 //                throw new ArgumentException(nameof(password))
 //            ]
@@ -68,7 +68,7 @@
 //        ]
 //        public IHostConfiguration Use(IProviderConfiguration[] providerConfigurations)
 //        [
-//            if (providerConfigurations == null)
+//            if [providerConfigurations == null]
 //            [
 //                throw new ArgumentException(nameof(providerConfigurations))
 //            ]
@@ -117,7 +117,7 @@
 //        ]
 //        public IHostConfiguration Use(Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
 //        [
-//            if (dataConnectionConfigurationFactoryExtension == null)
+//            if [dataConnectionConfigurationFactoryExtension == null]
 //            [
 //                throw new ArgumentException(nameof(dataConnectionConfigurationFactoryExtension))
 //            ]
@@ -129,7 +129,7 @@
 //        ]
 //        public IHostConfiguration Use(Action<IManagementConnectionConfiguration> managementConnectionConfigurationFactoryExtension)
 //        [
-//            if (managementConnectionConfigurationFactoryExtension == null)
+//            if [managementConnectionConfigurationFactoryExtension == null]
 //            [
 //                throw new ArgumentException(nameof(managementConnectionConfigurationFactoryExtension))
 //            ]
@@ -141,7 +141,7 @@
 //        ]
 //        public IHostConfiguration Use(Action<IDataContextConfiguration> dataContextConfigurationFactoryExtension)
 //        [
-//            if (dataContextConfigurationFactoryExtension == null)
+//            if [dataContextConfigurationFactoryExtension == null]
 //            [
 //                throw new ArgumentException(nameof(dataContextConfigurationFactoryExtension))
 //            ]

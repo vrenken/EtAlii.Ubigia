@@ -49,7 +49,7 @@
 //        [
 //            try
 //            [
-//                if (contentDefinitionPartId != contentDefinitionPart.Id)
+//                if [contentDefinitionPartId != contentDefinitionPart.Id]
 //                [
 //                    throw new InvalidOperationException("ContentDefinitionPartId does not match")
 //                ]

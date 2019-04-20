@@ -20,7 +20,7 @@
 //        public static async Task OrTimeout(this Task task, TimeSpan timeout, [CallerMemberName] string memberName = null, [CallerFilePath] string filePath = null, [CallerLineNumber] int? lineNumber = null)
 //        [
 //            var completed = await Task.WhenAny(task, Task.Delay(Debugger.IsAttached ? Timeout.InfiniteTimeSpan : timeout))
-//            if (completed != task)
+//            if [completed != task]
 //            [
 //                throw new TimeoutException(GetMessage(memberName, filePath, lineNumber))
 //            ]
@@ -33,7 +33,7 @@
 //        public static async Task<T> OrTimeout<T>(this Task<T> task, TimeSpan timeout, [CallerMemberName] string memberName = null, [CallerFilePath] string filePath = null, [CallerLineNumber] int? lineNumber = null)
 //        [
 //            var completed = await Task.WhenAny(task, Task.Delay(Debugger.IsAttached ? Timeout.InfiniteTimeSpan : timeout))
-//            if (completed != task)
+//            if [completed != task]
 //            [
 //                throw new TimeoutException(GetMessage(memberName, filePath, lineNumber))
 //            ]
@@ -41,7 +41,7 @@
 //        ]
 //        private static string GetMessage(string memberName, string filePath, int? lineNumber)
 //        [
-//            if (!string.IsNullOrEmpty(memberName))
+//            if [!string.IsNullOrEmpty[memberName]]
 //            [
 //                return $"Operation in [memberName] timed out at [filePath]:[lineNumber]"
 //            ]

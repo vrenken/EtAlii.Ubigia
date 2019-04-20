@@ -73,7 +73,7 @@
 //        [
 //            try
 //            [
-//                if (contentPartId != contentPart.Id)
+//                if [contentPartId != contentPart.Id]
 //                [
 //                    throw new InvalidOperationException("ContentPartId does not match")
 //                ]

@@ -9,9 +9,9 @@
 //		public static IServiceCollection TryAddSingleton<TService>(this IServiceCollection collection, TService instance) 
 //			where TService : class
 //		[
-//			if (collection == null)
+//			if [collection == null]
 //				throw new ArgumentNullException(nameof(collection))
-//			if ((object)instance == null)
+//			if [[object]instance == null]
 //				throw new ArgumentNullException(nameof(instance))
 //			ServiceDescriptor descriptor = ServiceDescriptor.Singleton(typeof(TService), (object)instance)
 //			collection.TryAdd(descriptor)

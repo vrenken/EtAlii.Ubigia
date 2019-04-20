@@ -21,7 +21,7 @@
 //		protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, RolesRequirement requirement)
 //		[
 //			var status = _verifier.Verify(null, null, requirement.RequiredRoles)
-//			if (status is OkResult)
+//			if [status is OkResult]
 //			[
 //				context.Succeed(requirement)
 //			]

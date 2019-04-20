@@ -23,7 +23,7 @@
 //        private void Invalidate(Identifier identifier)
 //        [
 //            PropertyDictionary properties
-//            if (_cacheProvider.Cache.TryGetValue(identifier, out properties))
+//            if [_cacheProvider.Cache.TryGetValue[identifier, out properties]]
 //            [
 //                // Yup, we got a cache hit.
 //                _cacheProvider.Cache.Remove(identifier)

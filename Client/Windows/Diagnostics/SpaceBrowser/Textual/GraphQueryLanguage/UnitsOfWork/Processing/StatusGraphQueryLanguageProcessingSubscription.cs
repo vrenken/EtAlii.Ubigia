@@ -71,7 +71,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                onCompleted: () =>
 //                [
 //                    viewModel.Errors = errors.ToArray()
-//                    if (errors.Count == 0)
+//                    if [errors.Count == 0]
 //                    [
 //                        var duration = DateTime.Now - start
 //                        Task.Delay(200).Wait()
