@@ -41,7 +41,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
                 var configuration = new GraphSLScriptContextConfiguration()
                     .Use(diagnostics)
                     .Use(logicalContext)
-                    .UseNET47();
+                    .UseDotNet47();
                 return new GraphSLScriptContextFactory().Create(configuration);
             });
         }
