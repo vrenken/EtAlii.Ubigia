@@ -3,21 +3,22 @@
     using System;
     using System.Collections.ObjectModel;
     using System.Collections.Specialized;
+    using System.Text;
     using System.Windows;
 
     public partial class ScriptExecutionView
     {
         public ObservableCollection<string> ExecutionStatus
         {
-            get { return (ObservableCollection<string>)GetValue(ExecutionStatusProperty); }
-            set { SetValue(ExecutionStatusProperty, value); }
+            get => (ObservableCollection<string>)GetValue(ExecutionStatusProperty);
+            set => SetValue(ExecutionStatusProperty, value);
         }
         public static readonly DependencyProperty ExecutionStatusProperty = DependencyProperty.Register("ExecutionStatus", typeof(ObservableCollection<string>), typeof(ScriptExecutionView), new PropertyMetadata(new ObservableCollection<string>(), OnExecutionStatusChanged));
 
         public object Source
         {
-            get { return GetValue(SourceProperty); }
-            set { SetValue(SourceProperty, value); }
+            get => GetValue(SourceProperty);
+            set => SetValue(SourceProperty, value);
         }
         public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(object), typeof(ScriptExecutionView), new PropertyMetadata(null, OnSourceChanged));
         
@@ -38,13 +39,12 @@
         {
             var scriptExecutionView = (ScriptExecutionView) d;
 
-            var oldValue = e.OldValue as ObservableCollection<string>;
-            if (oldValue != null)
+            if (e.OldValue is ObservableCollection<string> oldValue)
             {
                 oldValue.CollectionChanged -= scriptExecutionView.UpdateExecutionStatusTextBox;
             }
-            var newValue = e.NewValue as ObservableCollection<string>;
-            if (newValue != null)
+
+            if (e.NewValue is ObservableCollection<string> newValue)
             {
                 newValue.CollectionChanged += scriptExecutionView.UpdateExecutionStatusTextBox;
             }
@@ -57,18 +57,14 @@
             {
                 case NotifyCollectionChangedAction.Add:
 
-                    var isAtEnd = Math.Abs(ExecutionStatusTextBox.VerticalOffset - (ExecutionStatusTextBox.ExtentHeight - ExecutionStatusTextBox.ViewportHeight)) < 10;
+                    var sb = new StringBuilder();
                     foreach (string line in e.NewItems)
                     {
-                        if (ExecutionStatusTextBox.Text == String.Empty)
-                        {
-                            ExecutionStatusTextBox.Text = line;
-                        }
-                        else
-                        {
-                            ExecutionStatusTextBox.Text += Environment.NewLine + line;
-                        }
+                        sb.AppendLine(line);
                     }
+                    ExecutionStatusTextBox.Text = sb.ToString();
+
+                    var isAtEnd = Math.Abs(ExecutionStatusTextBox.VerticalOffset - (ExecutionStatusTextBox.ExtentHeight - ExecutionStatusTextBox.ViewportHeight)) < 10;
                     if (isAtEnd)
                     {
                         ExecutionStatusTextBox.ScrollToEnd();
