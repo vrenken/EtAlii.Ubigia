@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    public static class NET47ContentManagerExtensions
+    public static class DotNet47ContentManagerExtensions
     {
         public static async Task Upload(this IContentManager contentManager, string localDataIdentifier, Identifier identifier)
         {
