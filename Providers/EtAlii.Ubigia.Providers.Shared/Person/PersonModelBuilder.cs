@@ -78,20 +78,11 @@
 
         private void AddEmailIfMatch(Email email, Phone phone, Person person, string address)
         {
-            if (person == null)
-            {
-                throw new ArgumentNullException(nameof(person));
-            }
+            if (person == null) throw new ArgumentNullException(nameof(person));
             
-            if(email != null)
+            if(email != null && person == phone?.Person && person.Emails.All(e => e.Address != email.Address))
             {
-                if (person == phone?.Person)
-                {
-                    if (person.Emails.All(e => e.Address != email.Address))
-                    {
-                        person.Emails.Add(email);
-                    }
-                }
+                person.Emails.Add(email);
             }
             else
             {
@@ -108,15 +99,9 @@
                 throw new ArgumentNullException(nameof(person));
             }
 
-            if (pone != null)
+            if (pone != null && person == email?.Person && person.Phones.All(p => p.Number != pone.Number))
             {
-                if (person == email?.Person)
-                {
-                    if (person.Phones.All(p => p.Number != pone.Number))
-                    {
-                        person.Phones.Add(pone);
-                    }
-                }
+                person.Phones.Add(pone);
             }
             else
             {
