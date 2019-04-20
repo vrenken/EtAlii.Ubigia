@@ -26,56 +26,30 @@
             return result.Select(n =>
             {
                 var settings = new UserSettings();
-                if (n.TryGetValue("Id", out var value))
-                {
-                    settings.Id = (string)value;
-                }
-                if (n.TryGetValue("DisplayName", out value))
-                {
-                    settings.DisplayName = (string)value;
-                }
-                if (n.TryGetValue("DisplayNameLastFirst", out value))
-                {
-                    settings.DisplayNameLastFirst = (string)value;
-                }
-                if (n.TryGetValue("FamilyName", out value))
-                {
-                    settings.FamilyName = (string)value;
-                }
-                if (n.TryGetValue("GivenName", out value))
-                {
-                    settings.GivenName = (string)value;
-                }
-                if (n.TryGetValue("Email", out value))
-                {
-                    settings.Email = (string)value;
-                }
-                if (n.TryGetValue("AccessToken", out value))
-                {
-                    settings.AccessToken = (string)value;
-                }
-                if (n.TryGetValue("RefreshToken", out value))
-                {
-                    settings.RefreshToken = (string)value;
-                }
-                if (n.TryGetValue("TokenType", out value))
-                {
-                    settings.TokenType = (string)value;
-                }
-                if (n.TryGetValue("ExpiresIn", out value))
-                {
-                    settings.ExpiresIn = (TimeSpan)value;
-                }
-                if (n.TryGetValue("Created", out value))
-                {
-                    settings.Created = (DateTime)value;
-                }
-                if (n.TryGetValue("Updated", out value))
-                {
-                    settings.Updated = (DateTime)value;
-                }
+
+                TryGetValueAndSet<string>(n, "Id", value => settings.Id = value);
+                TryGetValueAndSet<string>(n, "DisplayName", value => settings.DisplayName = value);
+                TryGetValueAndSet<string>(n, "DisplayNameLastFirst", value => settings.DisplayNameLastFirst = value);
+                TryGetValueAndSet<string>(n, "FamilyName", value => settings.FamilyName = value);
+                TryGetValueAndSet<string>(n, "GivenName", value => settings.GivenName = value);
+                TryGetValueAndSet<string>(n, "Email", value => settings.Email = value);
+                TryGetValueAndSet<string>(n, "AccessToken", value => settings.AccessToken = value);
+                TryGetValueAndSet<string>(n, "RefreshToken", value => settings.RefreshToken = value);
+                TryGetValueAndSet<string>(n, "TokenType", value => settings.TokenType = value);
+                TryGetValueAndSet<TimeSpan>(n, "ExpiresIn", value => settings.ExpiresIn = value);
+                TryGetValueAndSet<DateTime>(n, "Created", value => settings.Created = value);
+                TryGetValueAndSet<DateTime>(n, "Updated", value => settings.Updated = value);
+
                 return settings;
             }).ToArray();
+        }
+
+        private void TryGetValueAndSet<T>(DynamicNode n, string key, Action<T> set)
+        {
+            if (n.TryGetValue(key, out var value))
+            {
+                set((T)value);
+            }
         }
     }
 }
