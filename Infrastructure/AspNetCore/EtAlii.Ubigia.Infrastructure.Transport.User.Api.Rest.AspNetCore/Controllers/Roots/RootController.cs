@@ -42,6 +42,9 @@
                             root = _items.Get(spaceId, rootId);
                             break;
                         case "rootName":
+                            var rootName = id;
+                            root = _items.Get(spaceId, rootName);
+                            break;
                         default:
                             root = _items.Get(spaceId, id);
                             break;
