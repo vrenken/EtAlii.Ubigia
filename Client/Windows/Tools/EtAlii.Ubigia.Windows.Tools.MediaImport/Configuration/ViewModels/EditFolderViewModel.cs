@@ -13,7 +13,7 @@
 
     internal class EditFolderViewModel : BindableBase, IEditFolderViewModel
     {
-        private IDataConnection _connection;
+        private readonly IDataConnection _connection;
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         public ICommand SaveChangesCommand { get; }
@@ -24,13 +24,13 @@
 
         public ICommand SelectFolderCommand { get; }
 
-        public IFolderMonitor OriginalFolderMonitor { get { return _originalFolderMonitor; } set { SetProperty(ref _originalFolderMonitor, value); } }
+        public IFolderMonitor OriginalFolderMonitor { get => _originalFolderMonitor; set => SetProperty(ref _originalFolderMonitor, value); }
         private IFolderMonitor _originalFolderMonitor;
 
-        public string LocalFolder { get { return _localFolder; } set { SetProperty(ref _localFolder, value); } }
+        public string LocalFolder { get => _localFolder; set => SetProperty(ref _localFolder, value); }
         private string _localFolder;
 
-        public string RemoteName { get { return _remoteName; } set { SetProperty(ref _remoteName, value); } }
+        public string RemoteName { get => _remoteName; set => SetProperty(ref _remoteName, value); }
         private string _remoteName;
 
         public EditFolderViewModel(IDataConnection connection, IObservableFolderSyncConfigurationCollection folderSyncConfigurations)

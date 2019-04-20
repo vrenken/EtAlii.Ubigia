@@ -14,13 +14,13 @@
 
         private readonly IGraphContext _graphContext;
 
-        public string Source { get { return _source; } set { SetProperty(ref _source, value); } }
+        public string Source { get => _source; set => SetProperty(ref _source, value); }
         private string _source;
 
-        public IScriptScope Scope { get { return _scope; } set { SetProperty(ref _scope, value); } }
+        public IScriptScope Scope { get => _scope; set => SetProperty(ref _scope, value); }
         private IScriptScope _scope;
 
-        public Script Script { get { return _script; } set { SetProperty(ref _script, value); } }
+        public Script Script { get => _script; set => SetProperty(ref _script, value); }
         private Script _script;
 
         public ObservableCollection<Result> ScriptVariables { get; } = new ObservableCollection<Result>();
@@ -28,7 +28,7 @@
         public ObservableCollection<string> ExecutionStatus { get; } = new ObservableCollection<string>();
 
         public event Action SourceChanged = delegate { };
-        private IDisposable _scriptChangedSubscription;
+        private readonly IDisposable _scriptChangedSubscription;
 
         private readonly IProcessGraphScriptLanguageUnitOfworkHandler _processScriptUnitOfworkHandler;
 

@@ -12,11 +12,11 @@
 
         private readonly IGraphContext _graphContext;
 
-        public string Source { get { return _source; } set { SetProperty(ref _source, value); } }
+        public string Source { get => _source; set => SetProperty(ref _source, value); }
         private string _source;
 
         public event Action SourceChanged = delegate { };
-        private IDisposable _codeChangedSubscription;
+        private readonly IDisposable _codeChangedSubscription;
 
         private readonly IExecuteCodeUnitOfworkHandler _executeCodeUnitOfworkHandler;
 
