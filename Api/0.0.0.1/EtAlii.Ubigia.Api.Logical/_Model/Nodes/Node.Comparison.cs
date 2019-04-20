@@ -1,81 +1,20 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
-
-    public partial class Node : IEquatable<Node>
+    public partial class Node
     {
         public override bool Equals(object obj)
         {
-            // If parameter is null, return false. 
-            if (ReferenceEquals(obj, null))
-            {
-                return false;
-            }
-
-            // Optimization for a common success case. 
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            // If run-time types are not exactly the same, return false. 
-            if (GetType() != obj.GetType())
-            {
-                return false;
-            }
-
-            return Equals((Node)obj);
-        }
-
-        public bool Equals(Node other)
-        {
-            // If parameter is null, return false. 
-            if (ReferenceEquals(other, null))
-            {
-                return false;
-            }
-
-            // Optimization for a common success case. 
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            // If run-time types are not exactly the same, return false. 
-            if (GetType() != other.GetType())
-            {
-                return false;
-            }
-
-            // Return true if the fields match. 
-            // Note that the base class is not invoked because it is 
-            // System.Object, which defines Equals as reference equality. 
-            if (_entry.Id != ((IInternalNode)other).Entry.Id)
-            {
-                return false;
-            }
-
-            return true;
+            return NodeEqualityComparer.Default.Equals(this, obj as Node);
         }
 
         public static bool operator ==(Node first, Node second)
         {
-            bool equals = false;
-            if ((object)first != null && (object)second != null)
-            {
-                equals = first.Equals(second);
-            }
-            else if ((object)first == null && (object)second == null)
-            {
-                equals = true;
-            }
-
-            return equals;
+            return NodeEqualityComparer.Default.Equals(first, second);
         }
 
         public static bool operator !=(Node first, Node second)
         {
-            bool equals = first == second;
+            var equals = first == second;
             return !equals;
         }
 
@@ -95,7 +34,8 @@
             return _entry.Id.GetHashCode();
         }
         #pragma warning restore S2328
-
+        
         #endregion Hashing
+
     }
 }
