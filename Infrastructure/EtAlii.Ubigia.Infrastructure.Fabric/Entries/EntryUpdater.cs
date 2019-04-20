@@ -171,14 +171,9 @@
                             index.Indexed = Relation.NewRelation(entry.Id);
                             _entryStorer.Store(index);
                         }
-                        if (index.Indexed.Id == entry.Id)
+                        if (index.Indexed.Id != entry.Id)
                         {
-                            // No actions needed, the relation is already in place.
-                        }
-                        else
-                        {
-                            throw new SpaceFabricException(entry.Id, indexId,
-                                "Unable to add index relation from index to indexed: index.Indexed is already in use");
+                            throw new SpaceFabricException(entry.Id, indexId, "Unable to add index relation from index to indexed: index.Indexed is already in use");
                         }
                     }
                     else
