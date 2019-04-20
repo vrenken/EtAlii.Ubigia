@@ -63,7 +63,7 @@
                 throw new ArgumentNullException(nameof(contentPart));
             }
 
-            _connection.Content.Data.Store(identifier, contentPart);
+            return _connection.Content.Data.Store(identifier, contentPart);
         }
 
         public Task<IReadOnlyContent> Retrieve(Identifier identifier)
