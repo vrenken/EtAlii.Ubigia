@@ -10,7 +10,7 @@
     {
         public new static App Current => System.Windows.Application.Current as App;
 
-        public new MainWindow MainWindow { get { return base.MainWindow as MainWindow; } set { base.MainWindow = value; } }
+        public new MainWindow MainWindow { get => base.MainWindow as MainWindow; set => base.MainWindow = value; }
 
         private IApplicationService[] _services;
 
@@ -27,16 +27,13 @@
                 foreach (var process in processes)
                 {
                     //Ignore the current process 
-                    if (process.Id != current.Id)
-                    {
-                        //Make sure that the process is running from the exe file. 
-                        if (Assembly.GetExecutingAssembly().Location.
-                             Replace("/", "\\") == current.MainModule.FileName)
-                        {
-                            alreadyRunning = true;
-                            break;
-                        }
-                    }
+                    if (process.Id == current.Id) continue;
+                    
+                    //Make sure that the process is running from the exe file. 
+                    if (Assembly.GetExecutingAssembly().Location.Replace("/", "\\") != current.MainModule.FileName) continue;
+                        
+                    alreadyRunning = true;
+                    break;
                 }
                 return alreadyRunning;
             }
