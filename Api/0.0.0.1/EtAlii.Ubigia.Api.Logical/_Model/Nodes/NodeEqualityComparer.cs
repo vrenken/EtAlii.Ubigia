@@ -41,9 +41,9 @@ namespace EtAlii.Ubigia.Api.Logical
         // of activities (providing proof for Ubiquitous Information Systems). Therefore we convert the 
         // SonarCube bug warning into a TODO. Below some more information:
         // http://vrenken.duckdns.org:54001/coding_rules?open=csharpsquid%3AS2328&rule_key=csharpsquid%3AS2328 
-        public int GetHashCode(Node node)
+        public int GetHashCode(Node obj)
         {
-            return ((IInternalNode)node).Entry.Id.GetHashCode();
+            return ((IInternalNode)obj).Entry.Id.GetHashCode();
         }
         #pragma warning restore S2328
     }
