@@ -1,18 +1,18 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
 	using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Reflection;
+	using System.Collections;
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Reflection;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport;
 	using Microsoft.AspNetCore.Mvc.Formatters;
-    using Microsoft.Net.Http.Headers;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Bson;
+	using Microsoft.Net.Http.Headers;
+	using Newtonsoft.Json;
+	using Newtonsoft.Json.Bson;
 
-    public class PayloadMediaTypeInputFormatter : InputFormatter
+	public class PayloadMediaTypeInputFormatter : InputFormatter
 	{
         private static readonly Type OpenDictionaryType = typeof(Dictionary<,>);
         private static readonly TypeInfo EnumerableTypeInfo = typeof(IEnumerable).GetTypeInfo();
@@ -43,15 +43,8 @@
 
 		private object ReadFromStream(Type type, Stream readStream)
         {
-            if (type == null)
-            {
-                throw new ArgumentNullException(nameof(type));
-            }
-
-            if (readStream == null)
-            {
-                throw new ArgumentNullException(nameof(readStream));
-            }
+            if (type == null) throw new ArgumentNullException(nameof(type));
+            if (readStream == null) throw new ArgumentNullException(nameof(readStream));
 
             // Special-case for simple types: Deserialize a Dictionary with a single element named Value.
             // Serialization created this Dictionary<string, object> to work around BSON restrictions: BSON cannot
@@ -64,49 +57,41 @@
             // reliably.)
             //
             // Request for typeof(object) may cause a simple value to round trip as a JObject.
-            if (IsSimpleType(type) || type == typeof(byte[]))
+            if (!IsSimpleType(type) && type != typeof(byte[])) return ReadFromStreamInternal(type, readStream);
+            
+            // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
+            var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
+            if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
             {
-                // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
-                var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
-                if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
-                {
-                    // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
-                    // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
-                    // in that case.
-                    var e1 = new InvalidOperationException("Missing data");
-                    e1.Data.Add("dictionaryType.Name", dictionaryType.Name);
-                    throw e1;
-                }
-
-                // Unfortunately IDictionary doesn't have TryGetValue()...
-                var firstKey = String.Empty;
-                foreach (DictionaryEntry item in dictionary)
-                {
-                    if (dictionary.Count == 1 && (item.Key as string) == "Value")
-                    {
-                        // Success
-                        return item.Value;
-                    }
-                    else
-                    {
-                        if (item.Key != null)
-                        {
-                            firstKey = item.Key.ToString();
-                        }
-
-                        break;
-                    }
-                }
-
-                var e2 = new InvalidOperationException("Unexpected Data");
-                e2.Data.Add("dictionary.Count", dictionary.Count);
-                e2.Data.Add("firstKey", firstKey);
-                throw e2;
+	            // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
+	            // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
+	            // in that case.
+	            var e1 = new InvalidOperationException("Missing data");
+	            e1.Data.Add("dictionaryType.Name", dictionaryType.Name);
+	            throw e1;
             }
-            else
+
+            // Unfortunately IDictionary doesn't have TryGetValue()...
+            var firstKey = String.Empty;
+            foreach (DictionaryEntry item in dictionary)
             {
-				return ReadFromStreamInternal(type, readStream);
+	            if (dictionary.Count == 1 && (item.Key as string) == "Value")
+	            {
+		            // Success
+		            return item.Value;
+	            }
+	            if (item.Key != null)
+	            {
+		            firstKey = item.Key.ToString();
+	            }
+	            break;
             }
+
+            var e2 = new InvalidOperationException("Unexpected Data");
+            e2.Data.Add("dictionary.Count", dictionary.Count);
+            e2.Data.Add("firstKey", firstKey);
+            throw e2;
+
         }
 
 	    private object ReadFromStreamInternal(Type type, Stream readStream)
@@ -118,7 +103,7 @@
 		    }
 		}
 
-		public JsonReader CreateJsonReader(Type type, Stream readStream)
+	    private JsonReader CreateJsonReader(Type type, Stream readStream)
         {
             if (type == null)
             {
