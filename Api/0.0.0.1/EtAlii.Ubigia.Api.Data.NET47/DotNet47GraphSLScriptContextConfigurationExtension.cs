@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.NET47
 {
-    public static class NET47GraphSLScriptContextConfigurationExtension
+    public static class DotNet47GraphSLScriptContextConfigurationExtension
     {
-        public static IGraphSLScriptContextConfiguration UseNET47(this IGraphSLScriptContextConfiguration configuration)
+        public static IGraphSLScriptContextConfiguration UseDotNet47(this IGraphSLScriptContextConfiguration configuration)
         {
             var functionHandlers = new[] 
             {

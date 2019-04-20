@@ -115,7 +115,7 @@
                     .Use(logicalContext)
                     .Use(diagnostics)
                     .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
-                    .UseNET47();
+                    .UseDotNet47();
                 return new GraphSLScriptContextFactory().CreateForProfiling(configuration);
             });
             container.Register(() => (IProfilingGraphSLScriptContext)container.GetInstance<IGraphSLScriptContext>());
