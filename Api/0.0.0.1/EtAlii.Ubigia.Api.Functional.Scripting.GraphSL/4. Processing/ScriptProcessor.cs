@@ -45,56 +45,11 @@
 
                     var totalExecutionPlans = executionPlans.Length;
 
-                    for (int i = 0; i < totalExecutionPlans; i++)
+                    for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
                     {
-                        var sequence = sequences[i];
-                        var executionPlan = executionPlans[i];
-                        var executionScope = new ExecutionScope(_configuration.CachingEnabled);
-
-                        var originalObservableSequenceOutput = executionPlan.Execute(executionScope);
-                        var observableSequenceOutput = Observable.Empty<object>();
-
-                        // We only show output:
-                        // - If we have an assign operator at the start of the sequence.
-                        // - If the first part of the sequence is a path. 
-                        var firstPart = sequence.Parts.FirstOrDefault();
-                        if (firstPart is AssignOperator || firstPart is PathSubject)
-                        {
-                            observableSequenceOutput = originalObservableSequenceOutput;
-                            originalObservableSequenceOutput = null;
-                        }
-
-                        // We want all subscriptions to have access to all results.
-                        observableSequenceOutput = observableSequenceOutput
-                            //.SubscribeOn(CurrentThreadScheduler.Instance)
-                            //.ObserveOn(CurrentThreadScheduler.Instance)
-                            .ToHotObservable();
-
-                        var sequenceResult = new SequenceProcessingResult(sequence, executionPlan, i, totalExecutionPlans, observableSequenceOutput);
-                        scriptOutput.OnNext(sequenceResult);
-
-                        Exception exception = null;
-                        var continueEvent = new ManualResetEvent(false);
-
-                        // We need to halt execution of the next sequence until the current one has finished.
-                        observableSequenceOutput.Subscribe(o => { }, e => { exception = e; continueEvent.Set(); }, () => { continueEvent.Set(); });
-                        continueEvent.WaitOne();
-                        if (exception != null)
-                        {
-                            throw exception;
-                        }
-
-                        if (originalObservableSequenceOutput != null)
-                        {
-                            // But also if we don't attach the original observable sequence output.
-                            continueEvent.Reset();
-                            originalObservableSequenceOutput.Subscribe(o => { }, e => { exception = e; continueEvent.Set(); }, () => { continueEvent.Set(); });
-                            continueEvent.WaitOne();
-                            if (exception != null)
-                            {
-                                throw exception;
-                            }
-                        }
+                        var sequence = sequences[executionPlanIndex];
+                        var executionPlan = executionPlans[executionPlanIndex];
+                        ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput);
                     }
 
                     // After iterating through the sequences script observation has ended. Please keep in mind 
@@ -103,9 +58,9 @@
                 }
                 catch (Exception e)
                 {
-                    while (e is AggregateException)
+                    while (e is AggregateException aggregateException)
                     {
-                        e = ((AggregateException)e).InnerException;
+                        e = aggregateException.InnerException;
                     }
 
                     // An exception on this level should be propagated to the script output observer.
@@ -115,6 +70,75 @@
                 return Disposable.Empty;
             });
             return observableScriptOutput;
+        }
+
+        private void ProcessExecutionPlan(
+            Sequence sequence, 
+            ISequenceExecutionPlan executionPlan, 
+            int executionPlanIndex, 
+            int totalExecutionPlans, 
+            IObserver<SequenceProcessingResult> scriptOutput)
+        {
+            var executionScope = new ExecutionScope(_configuration.CachingEnabled);
+
+            var originalObservableSequenceOutput = executionPlan.Execute(executionScope);
+            var observableSequenceOutput = Observable.Empty<object>();
+
+            // We only show output:
+            // - If we have an assign operator at the start of the sequence.
+            // - If the first part of the sequence is a path. 
+            var firstPart = sequence.Parts.FirstOrDefault();
+            if (firstPart is AssignOperator || firstPart is PathSubject)
+            {
+                observableSequenceOutput = originalObservableSequenceOutput;
+                originalObservableSequenceOutput = null;
+            }
+
+            // We want all subscriptions to have access to all results.
+            observableSequenceOutput = observableSequenceOutput
+                //.SubscribeOn(CurrentThreadScheduler.Instance)
+                //.ObserveOn(CurrentThreadScheduler.Instance)
+                .ToHotObservable();
+
+            var sequenceResult = new SequenceProcessingResult(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, observableSequenceOutput);
+            scriptOutput.OnNext(sequenceResult);
+
+            Exception exception = null;
+            var continueEvent = new ManualResetEvent(false);
+
+            // We need to halt execution of the next sequence until the current one has finished.
+            observableSequenceOutput.Subscribe(
+                onNext: o => { }, 
+                onError: e =>
+                {
+                    exception = e;
+                    continueEvent.Set();
+                }, 
+                onCompleted: () => { continueEvent.Set(); });
+            continueEvent.WaitOne();
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            if (originalObservableSequenceOutput != null)
+            {
+                // But also if we don't attach the original observable sequence output.
+                continueEvent.Reset();
+                originalObservableSequenceOutput.Subscribe(
+                    onNext: o => { }, 
+                    onError: e =>
+                    {
+                        exception = e;
+                        continueEvent.Set();
+                    }, 
+                    onCompleted: () => continueEvent.Set());
+                continueEvent.WaitOne();
+                if (exception != null)
+                {
+                    throw exception;
+                }
+            }
         }
     }
 }
