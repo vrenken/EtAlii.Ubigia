@@ -80,11 +80,14 @@
 		            // Success
 		            return item.Value;
 	            }
-	            if (item.Key != null)
+	            else
 	            {
-		            firstKey = item.Key.ToString();
+		            if (item.Key != null)
+		            {
+			            firstKey = item.Key.ToString();
+		            }
+		            break;
 	            }
-	            break;
             }
 
             var e2 = new InvalidOperationException("Unexpected Data");
