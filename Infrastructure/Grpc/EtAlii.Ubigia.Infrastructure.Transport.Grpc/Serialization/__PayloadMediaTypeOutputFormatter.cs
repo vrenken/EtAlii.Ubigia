@@ -36,11 +36,11 @@
 //		]
 //		public void WriteToStream(Type type, object value, Stream writeStream)
 //        [
-//            if (writeStream == null)
+//            if [writeStream == null]
 //            [
 //                throw new ArgumentNullException(nameof(writeStream))
 //            ]
-//            if (value == null)
+//            if [value == null]
 //            [
 //                // Cannot serialize null at the top level.  Json.Net throws Newtonsoft.Json.JsonWriterException : Error
 //                // writing Null value. BSON must start with an Object or Array. Path ''.  Fortunately
@@ -52,7 +52,7 @@
 //            // Using runtime type here because Json.Net will throw during serialization whenever it cannot handle the
 //            // runtime type at the top level. For e.g. passed type may be typeof(object) and value may be a string.
 //            var runtimeType = value.GetType()
-//            if (IsSimpleType(runtimeType) || runtimeType == typeof(byte[]))
+//            if [IsSimpleType[runtimeType] || runtimeType == typeof[byte[]]]
 //            [
 //                // Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  Is
 //                // written out as binary equivalent of [ "Value": value ] JSON.
@@ -78,11 +78,11 @@
 //		]
 //		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)
 //        [
-//            if (type == null)
+//            if [type == null]
 //            [
 //                throw new ArgumentNullException(nameof(type))
 //            ]
-//            if (writeStream == null)
+//            if [writeStream == null]
 //            [
 //                throw new ArgumentNullException(nameof(writeStream))
 //            ]

@@ -29,19 +29,19 @@
 //        public IActionResult Verify(HttpContext context, Controller controller, params string[] requiredRoles)
 //        [
 //            var identity = _authenticationIdentityProvider.Get(context)
-//            if (identity == null)
+//            if [identity == null]
 //            [
 //                return Challenge(context, controller)
 //            ]
 //            var account = _accountRepository.Get(identity.Name, identity.Password)
-//            if (account == null)
+//            if [account == null]
 //            [
 //                return Challenge(context, controller)
 //            ]
-//	        if (requiredRoles.Any())
+//	        if [requiredRoles.Any[]]
 //	        [
 //		        var hasOneRequiredRole = account.Roles.Any(role => requiredRoles.Any(requiredRole => requiredRole == role))
-//		        if (!hasOneRequiredRole)
+//		        if [!hasOneRequiredRole]
 //		        [
 //			        throw new UnauthorizedInfrastructureOperationException("Invalid role")
 //		        ]
@@ -73,11 +73,11 @@
 //            var host = context.Request.GetUri().DnsSafeHost
 
 //            var respondWithChallenge = true
-//            if (context.Request.Headers.TryGetValue("RespondWithChallenge", out StringValues challenges))
+//            if [context.Request.Headers.TryGetValue["RespondWithChallenge", out StringValues challenges]]
 //            [
 //                respondWithChallenge = challenges.Select(c => c.ToLower()).SingleOrDefault() != "false"
 //            ]
-//            if (respondWithChallenge)
+//            if [respondWithChallenge]
 //            [
 //                context.Response.Headers.Add("WWW-Authenticate", $"Basic realm=\"[host]\"")
 //            ]

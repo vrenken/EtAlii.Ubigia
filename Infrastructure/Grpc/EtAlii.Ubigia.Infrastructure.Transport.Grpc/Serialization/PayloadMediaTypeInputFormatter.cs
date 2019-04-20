@@ -40,11 +40,11 @@
 //		]
 //		private object ReadFromStream(Type type, Stream readStream)
 //        [
-//            if (type == null)
+//            if [type == null]
 //            [
 //                throw new ArgumentNullException(nameof(type))
 //            ]
-//            if (readStream == null)
+//            if [readStream == null]
 //            [
 //                throw new ArgumentNullException(nameof(readStream))
 //            ]
@@ -59,11 +59,11 @@
 //            // reliably.)
 //            //
 //            // Request for typeof(object) may cause a simple value to round trip as a JObject.
-//            if (IsSimpleType(type) || type == typeof(byte[]))
+//            if [IsSimpleType[type] || type == typeof[byte[]]]
 //            [
 //                // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
 //                var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type)
-//                if (!(ReadFromStreamInternal(dictionaryType, readStream) is IDictionary dictionary))
+//                if [![ReadFromStreamInternal[dictionaryType, readStream] is IDictionary dictionary]]
 //                [
 //                    // Not valid since BaseJsonMediaTypeFormatter.ReadFromStream(Type, Stream, HttpContent, IFormatterLogger)
 //                    // handles empty content and does not call ReadFromStream(Type, Stream, Encoding, IFormatterLogger)
@@ -76,14 +76,14 @@
 //                var firstKey = String.Empty
 //                foreach (DictionaryEntry item in dictionary)
 //                [
-//                    if (dictionary.Count == 1 && (item.Key as string) == "Value")
+//                    if [dictionary.Count == 1 && [item.Key as string] == "Value"]
 //                    [
 //                        // Success
 //                        return item.Value
 //                    ]
 //                    else
 //                    [
-//                        if (item.Key != null)
+//                        if [item.Key != null]
 //                        [
 //                            firstKey = item.Key.ToString()
 //                        ]
@@ -110,11 +110,11 @@
 //		]
 //		public JsonReader CreateJsonReader(Type type, Stream readStream)
 //        [
-//            if (type == null)
+//            if [type == null]
 //            [
 //                throw new ArgumentNullException(nameof(type))
 //            ]
-//            if (readStream == null)
+//            if [readStream == null]
 //            [
 //                throw new ArgumentNullException(nameof(readStream))
 //            ]

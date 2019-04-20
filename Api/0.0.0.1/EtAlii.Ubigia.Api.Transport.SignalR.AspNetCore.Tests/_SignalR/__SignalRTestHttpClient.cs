@@ -47,7 +47,7 @@
 //        /// </returns>
 //        public Task<IResponse> Get(string url, Action<IRequest> prepareRequest, bool isLongRunning)
 //        [
-//            if (prepareRequest == null)
+//            if [prepareRequest == null]
 //            [
 //                throw new ArgumentNullException("prepareRequest")
 //            ]
@@ -62,7 +62,7 @@
 //            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
 //            [
-//                if (!responseMessage.IsSuccessStatusCode)
+//                if [!responseMessage.IsSuccessStatusCode]
 //                [
 //                    throw new HttpClientException(responseMessage)
 //                ]
@@ -80,7 +80,7 @@
 //        /// </returns>
 //        public Task<IResponse> Post(string url, Action<IRequest> prepareRequest, IDictionary<string, string> postData, bool isLongRunning)
 //        [
-//            if (prepareRequest == null)
+//            if [prepareRequest == null]
 //            [
 //                throw new ArgumentNullException("prepareRequest")
 //            ]
@@ -100,7 +100,7 @@
 //            prepareRequest((IRequest)requestMessageWrapper)
 //            return SignalRTaskAsyncHelper.Then(GetHttpClient(isLongRunning).SendAsync(httpRequestMessage, HttpCompletionOption.ResponseHeadersRead, cts.Token), (Func<HttpResponseMessage, IResponse>)(responseMessage =>
 //            [
-//                if (!responseMessage.IsSuccessStatusCode)
+//                if [!responseMessage.IsSuccessStatusCode]
 //                [
 //                    throw new HttpClientException(responseMessage)
 //                ]
@@ -116,7 +116,7 @@
 //        /// <returns/>
 //        private HttpClient GetHttpClient(bool isLongRunning)
 //        [
-//            if (!isLongRunning)
+//            if [!isLongRunning]
 //            [
 //                return _shortRunningClient
 //            ]

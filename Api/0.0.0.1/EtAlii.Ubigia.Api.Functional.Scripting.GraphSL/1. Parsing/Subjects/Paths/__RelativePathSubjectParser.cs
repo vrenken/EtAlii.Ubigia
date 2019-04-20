@@ -34,7 +34,7 @@
 
 //            // A relative path with the length of 1 should not be parsed as a path but as a string constant.
 //            Subject result
-//            if (parts.Length == 1 && parts[0] is ConstantPathSubjectPart)
+//            if [parts.Length == 1 && parts[0] is ConstantPathSubjectPart]
 //            [
 //                result = new StringConstantSubject(((ConstantPathSubjectPart) parts[0]).Name)
 //            ]
@@ -52,7 +52,7 @@
 //        [
 //            var pathSubject = subject as PathSubject
 //            var stringConstantSubject = subject as StringConstantSubject
-//            if (pathSubject != null)
+//            if [pathSubject != null]
 //            [
 //                var parts = pathSubject.Parts
 
@@ -63,7 +63,7 @@
 //                    var part = parts[i]
 //                    _pathSubjectPartsParser.Validate(beforePathPart, part, i, afterPathPart)
 //                ]
-//                if (subjectIndex == 0 && pathSubject.Parts.FirstOrDefault() is ConstantPathSubjectPart)
+//                if [subjectIndex == 0 && pathSubject.Parts.FirstOrDefault[] is ConstantPathSubjectPart]
 //                [
 //                    throw new ScriptParserException("A relative path part cannot be used as first subject.")
 //                ]

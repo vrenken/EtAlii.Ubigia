@@ -42,7 +42,7 @@
 
 //            var claimValue = Interlocked.Increment(ref _id).ToString()
 //            var claims = new List<Claim>[ new Claim(ClaimTypes.Name, claimValue) ]
-//            if (addClaimId)
+//            if [addClaimId]
 //            [
 //                claims.Add(new Claim(ClaimTypes.NameIdentifier, claimValue))
 //            ]
@@ -70,11 +70,11 @@
 //            [
 //                var message = await ReadAsync()
 
-//                if (message == null)
+//                if [message == null]
 //                [
 //                    throw new InvalidOperationException("Connection aborted!")
 //                ]
-//                if (message is HubInvocationMessage hubInvocationMessage && !string.Equals(hubInvocationMessage.InvocationId, invocationId))
+//                if [message is HubInvocationMessage hubInvocationMessage && !string.Equals[hubInvocationMessage.InvocationId, invocationId]]
 //                [
 //                    throw new NotSupportedException("TestClient does not support multiple outgoing invocations!")
 //                ]
@@ -99,11 +99,11 @@
 //            [
 //                var message = await ReadAsync()
 
-//                if (message == null)
+//                if [message == null]
 //                [
 //                    throw new InvalidOperationException("Connection aborted!")
 //                ]
-//                if (message is HubInvocationMessage hubInvocationMessage && !string.Equals(hubInvocationMessage.InvocationId, invocationId))
+//                if [message is HubInvocationMessage hubInvocationMessage && !string.Equals[hubInvocationMessage.InvocationId, invocationId]]
 //                [
 //                    throw new NotSupportedException("TestClient does not support multiple outgoing invocations!")
 //                ]
@@ -149,9 +149,9 @@
 //            [
 //                var message = TryRead()
 
-//                if (message == null)
+//                if [message == null]
 //                [
-//                    if (!await Application.Reader.WaitToReadAsync())
+//                    if [!await Application.Reader.WaitToReadAsync[]]
 //                    [
 //                        return null
 //                    ]
@@ -164,7 +164,7 @@
 //        ]
 //        public HubMessage TryRead()
 //        [
-//            if (Application.Reader.TryRead(out var buffer) &&
+//            if [Application.Reader.TryRead[out var buffer] &&
 //                _protocolReaderWriter.ReadMessages(buffer, _invocationBinder, out var messages))
 //            [
 //                return messages[0]

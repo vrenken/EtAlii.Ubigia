@@ -15,7 +15,7 @@
 //			    .WithTransport(TransportType.LongPolling)
 //			    .WithConsoleLogger(LogLevel.Debug)
 //			    .WithJsonProtocol(new JsonHubProtocolOptions [ PayloadSerializerSettings = SerializerFactory.CreateSerializerSettings() ])
-//		    if (httpClientHandler ! = null)
+//		    if [httpClientHandler ! = null]
 //		    [
 //			    builder = builder.WithMessageHandler(httpClientHandler)
 //		    ]

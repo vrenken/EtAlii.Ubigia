@@ -32,7 +32,7 @@
 //
 //        private void LoadLayoutSettings()
 //        [
-//            if (!String.IsNullOrWhiteSpace(Settings.Default.MainWindowLayout))
+//            if [!String.IsNullOrWhiteSpace[Settings.Default.MainWindowLayout]]
 //            [
 //                var currentLayout = DockingManager.Layout.Children.OfType<LayoutContent>()
 //                                                                  .Where(c => c.ContentId != null)

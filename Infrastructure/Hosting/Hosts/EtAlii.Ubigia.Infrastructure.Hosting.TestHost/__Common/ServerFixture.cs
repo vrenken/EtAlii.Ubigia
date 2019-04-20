@@ -47,10 +47,10 @@
 //            var t = Task .Run(() => _host.Start())
 //            _logger.LogInformation("Starting test server...")
 //            _lifetime = _host.Services.GetRequiredService<IApplicationLifetime>()
-//            if (!_lifetime.ApplicationStarted.WaitHandle.WaitOne(TimeSpan.FromSeconds(5)))
+//            if [!_lifetime.ApplicationStarted.WaitHandle.WaitOne[TimeSpan.FromSeconds[5]]]
 //            [
 //                // t probably faulted
-//                if (t.IsFaulted)
+//                if [t.IsFaulted]
 //                [
 //                    throw t.Exception.InnerException
 //                ]

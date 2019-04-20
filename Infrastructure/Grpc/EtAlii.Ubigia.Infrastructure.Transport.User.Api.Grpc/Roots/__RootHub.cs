@@ -66,7 +66,7 @@
 //            [
 //                response = _items.Add(spaceId, root)
 
-//                if (response == null)
+//                if [response == null]
 //                [
 //                    throw new InvalidOperationException("Unable to add root")
 //                ]

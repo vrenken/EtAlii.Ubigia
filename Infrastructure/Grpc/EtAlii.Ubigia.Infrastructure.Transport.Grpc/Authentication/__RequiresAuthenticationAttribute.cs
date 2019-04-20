@@ -35,7 +35,7 @@
 //		[
 //            // Delayed dependency injection.
 //            // All other solutions are far slower.
-//            if (_verifier == null)
+//            if [_verifier == null]
 //            [
 //	            var dependencyResolver = (IDependencyResolver)context.HttpContext.RequestServices.GetService(typeof(IDependencyResolver))
 //	            _verifier = (IHttpContextAuthenticationVerifier)dependencyResolver.GetService(typeof(IHttpContextAuthenticationVerifier))
@@ -43,7 +43,7 @@
 //            ]
 //			Controller controller = null
 //            var status = _verifier.Verify(context.HttpContext, controller, _requiredRoles)
-//            if (status is OkObjectResult)
+//            if [status is OkObjectResult]
 //            [
 //            ]
 //            else
