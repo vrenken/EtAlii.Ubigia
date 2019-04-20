@@ -56,14 +56,14 @@
             return _connection.Content.Data.Store(identifier, content);
         }
 
-        public async Task Store(Identifier identifier, ContentPart contentPart)
+        public Task Store(Identifier identifier, ContentPart contentPart)
         {
             if (contentPart == null)
             {
                 throw new ArgumentNullException(nameof(contentPart));
             }
 
-            await _connection.Content.Data.Store(identifier, contentPart);
+            _connection.Content.Data.Store(identifier, contentPart);
         }
 
         public Task<IReadOnlyContent> Retrieve(Identifier identifier)
