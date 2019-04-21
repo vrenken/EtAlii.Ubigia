@@ -631,7 +631,7 @@
             Assert.Equal("[{\"k\":\"Hello\",\"t\":14,\"v\":\"-79228162514264337593543950335\"}]", result);
         }
 
-        [Fact(Skip = "Gives errors so skipping for now. Should be corrected"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyDictionaryJSonConverter_WriteJson_DateTime_Local()
         {
             // Arrange.
