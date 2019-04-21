@@ -48,7 +48,7 @@
                     var previous = (IEditableEntry)_entryGetter.Get(previousId, EntryRelation.Previous | EntryRelation.Next);
                     if (previous.Next == Relation.None)
                     {
-                        //_logger.Verbose("Updating entry - Adding relation from previous to next: {0} => {1}", previousId.ToTimeString(), entry.Id.ToTimeString())
+                        //_logger.Verbose("Updating entry - Adding relation from previous to next: [0] => [1]", previousId.ToTimeString(), entry.Id.ToTimeString())
                         previous.Next = Relation.NewRelation(entry.Id);
                         _entryStorer.Store(previous);
                     }
@@ -76,7 +76,7 @@
                     var downdate = (IEditableEntry)_entryGetter.Get(downdateId, EntryRelation.Downdate | EntryRelation.Update);
                     if (!downdate.Updates.Contains(entry.Id)) 
                     {
-                        //_logger.Verbose("Updating entry - Adding relation from downdate to update: {0} => {1}", downdateId.ToTimeString(), entry.Id.ToTimeString())
+                        //_logger.Verbose("Updating entry - Adding relation from downdate to update: [0] => [1]", downdateId.ToTimeString(), entry.Id.ToTimeString())
                         downdate.Updates.Add(entry.Id);
                         _entryStorer.Store(downdate);
                     }
@@ -104,7 +104,7 @@
                     var parent = (IEditableEntry)_entryGetter.Get(parentId, EntryRelation.Parent | EntryRelation.Child);
                     if (!parent.Children.Contains(entry.Id))
                     {
-                        //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: {0} => {1}", parentId.ToTimeString(), entry.Id.ToTimeString())
+                        //_logger.Verbose("Updating entry - Adding first type hierarchical relation from parent to child: [0] => [1]", parentId.ToTimeString(), entry.Id.ToTimeString())
                         parent.Children.Add(entry.Id);
                         _entryStorer.Store(parent);
                     }
@@ -132,7 +132,7 @@
                     var parent2 = (IEditableEntry)_entryGetter.Get(parent2Id, EntryRelation.Parent | EntryRelation.Child);
                     if (!parent2.Children2.Contains(entry.Id))
                     {
-                        //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: {0} => {1}", parent2Id.ToTimeString(), entry.Id.ToTimeString())
+                        //_logger.Verbose("Updating entry - Adding second type hierarchical relation from parent to child: [0] => [1]", parent2Id.ToTimeString(), entry.Id.ToTimeString())
                         parent2.Children2.Add(entry.Id);
                         _entryStorer.Store(parent2);
                     }
@@ -167,7 +167,7 @@
                         var index = (IEditableEntry) _entryGetter.Get(indexId, EntryRelation.Index | EntryRelation.Indexed);
                         if (index.Indexed == Relation.None)
                         {
-                            //_logger.Verbose("Updating entry - Adding relation from index to indexed: {0} => {1}", entry.Id.ToTimeString(), indexId.ToTimeString())
+                            //_logger.Verbose("Updating entry - Adding relation from index to indexed: [0] => [1]", entry.Id.ToTimeString(), indexId.ToTimeString())
                             index.Indexed = Relation.NewRelation(entry.Id);
                             _entryStorer.Store(index);
                         }
@@ -197,7 +197,7 @@
                     var indexed = (IEditableEntry) _entryGetter.Get(indexedId, EntryRelation.Index | EntryRelation.Indexed);
                     if (!indexed.Indexes.Contains(entry.Id))
                     {
-                        //_logger.Verbose("Updating entry - Adding relation from indexed to index: {0} => {1}", indexedId.ToTimeString(), entry.Id.ToTimeString())
+                        //_logger.Verbose("Updating entry - Adding relation from indexed to index: [0] => [1]", indexedId.ToTimeString(), entry.Id.ToTimeString())
                         indexed.Indexes.Add(entry.Id);
                         _entryStorer.Store(indexed);
                     }

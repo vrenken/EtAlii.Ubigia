@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             if (processAsSubject)
             {
-                //if (argumentSet.Arguments.Length = = 1)
+                //if [argumentSet.Arguments.Length = = 1]
                 //[
                 //    ProcessByArgument(context, parameterSet, argumentSet, scope, output)
                 //]
@@ -61,7 +61,7 @@ namespace EtAlii.Ubigia.Api.Functional
         //private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
         //[
         //    var input = argumentSet.Arguments[0] as IObservable<object>
-        //    if (input = = null)
+        //    if [input = = null]
         //    [
         //        throw new ScriptProcessingException("Unable to convert arguments for Include function processing")
         //    ]
@@ -76,7 +76,7 @@ namespace EtAlii.Ubigia.Api.Functional
         //            [
         //                output.OnNext(result)
         //            ]
-        //        })
+        //        ])
         //]
         private void ProcessByInput(
             IFunctionContext context, 

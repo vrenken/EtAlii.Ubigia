@@ -21,12 +21,12 @@
             //        //    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
             //        //    .AddSingleton<IStorageRepository>(infrastructure.Storages)
             //            .AddMvcForTypedController<UserPortalController>()
-            //    },
+            //    ],
             //    appBuilder =>
             //    [
             //        appBuilder.UseMvc()
             //        appBuilder.UseWelcomePage()
-            //    })
+            //    ])
         }
     }
 }

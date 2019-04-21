@@ -1,34 +1,35 @@
-﻿using System;
-
-namespace EtAlii.Ubigia.Windows.Settings
+﻿namespace EtAlii.Ubigia.Windows.Settings
 {
+    using System;
+
     public class StorageSettings : BindableSettingsBase
     {
-        public bool MountAsStorage { get { return GetValue(ref _mountAsStorage, true); } set { SetProperty(ref _mountAsStorage, value); } }
-        private Nullable<bool> _mountAsStorage;
+        public bool MountAsStorage { get => GetValue(ref _mountAsStorage, true); set => SetProperty(ref _mountAsStorage, value); }
+        private bool? _mountAsStorage;
 
-        public string Name { get { return GetValue(ref _name, $"Unnamed {Settings.StorageNaming}"); } set { SetProperty(ref _name, value); } }
+        public string Name { get => GetValue(ref _name, $"Unnamed {Settings.StorageNaming}"); set => SetProperty(ref _name, value); }
         private string _name;
 
         public Guid Id { get; }
 
-        public string Account { get { return GetValue(ref _account, null); } set { SetProperty(ref _account, value); } }
+        public string Account { get => GetValue(ref _account, null); set => SetProperty(ref _account, value); }
         private string _account;
 
-        public bool IsHostedStorage { get { return GetValue(ref _isHostedStorage, false); } set { SetProperty(ref _isHostedStorage, value); } }
-        private Nullable<bool> _isHostedStorage;
-
-        public string HostingUrl { get { return GetValue(ref _hostingUrl, "https://"); } set { SetProperty(ref _hostingUrl, value); } }
+        public bool IsHostedStorage { get => GetValue(ref _isHostedStorage, false); set => SetProperty(ref _isHostedStorage, value); }
+        private bool? _isHostedStorage;
+        
+        public string HostingUrl { get => GetValue(ref _hostingUrl, "https://"); set => SetProperty(ref _hostingUrl, value); }
         private string _hostingUrl;
 
-        public string StorageLocation { get { return GetValue(ref _storageLocation, "c:\\"); } set { SetProperty(ref _storageLocation, value); } }
+        public string StorageLocation { get => GetValue(ref _storageLocation, "c:\\"); set => SetProperty(ref _storageLocation, value);
+        }
         private string _storageLocation;
 
-        public bool UseDataEncryption { get { return GetValue(ref _useDataEncryption, false); } set { SetProperty(ref _useDataEncryption, value); } }
-        private Nullable<bool> _useDataEncryption;
+        public bool UseDataEncryption { get => GetValue(ref _useDataEncryption, false); set => SetProperty(ref _useDataEncryption, value); }
+        private bool? _useDataEncryption;
 
-        public double UsedCapacity { get { return GetValue(ref _usedCapacity, new Random().NextDouble()); } set { SetProperty(ref _usedCapacity, value); } }
-        private Nullable<double> _usedCapacity;
+        public double UsedCapacity { get => GetValue(ref _usedCapacity, new Random().NextDouble()); set => SetProperty(ref _usedCapacity, value); }
+        private double? _usedCapacity;
 
         public StorageSettings(string id)
             : base($"{Settings.StoragesNaming}\\{id}")

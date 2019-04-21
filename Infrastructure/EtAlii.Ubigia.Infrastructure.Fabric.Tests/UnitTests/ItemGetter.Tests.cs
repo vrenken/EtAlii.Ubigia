@@ -15,9 +15,9 @@
 
         //    var items = new IIdentifiable[] 
         //    [
-        //        new Space { Id = firstId },
-        //        new Space { Id = secondId },
-        //        new Space { Id = thirdId },
+        //        new Space [ Id = firstId ],
+        //        new Space [ Id = secondId ],
+        //        new Space [ Id = thirdId ],
         //    ]
         //    var item = itemGetter.Get(items, secondId)
 
@@ -29,13 +29,13 @@
         //    // Arrange.
         //    var storage = new StubIItemStorage()
         //    var itemGetter = new ItemGetter(storage)
-        //    var items = new IIdentifiable[] { new Space() }
+        //    var items = new IIdentifiable[] [ new Space() ]
 
         //    // Act.
         //    var act = new Action(() =>
         //    [
         //        itemGetter.Get(items, Guid.Empty)
-        //    })
+        //    ])
 
         //    // Assert.
         //    Assert.Throws<ArgumentException>(act)

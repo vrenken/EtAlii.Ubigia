@@ -85,7 +85,7 @@
             // Arrange.
             const string type = "EtAlii.Ubigia.Roots.Object";
             //const string schema = "/[Words]/[Number]"
-            var text = type;//$"{type}:{schema}"
+            var text = type;//$"[type]:[schema]"
             RootDefinitionSubject result = null;
 
             // Act.
@@ -108,7 +108,7 @@
             // Arrange.
             const string type = "EtAlii.Ubigia.Roots.Time";
             //const string schema = "/[Year]/[Month]/[Day]/[Hour]/[Minute]/[Second]"
-            var text = type;//$"{type}:{schema}"
+            var text = type;//$"[type]:[schema]"
             RootDefinitionSubject result = null;
 
             // Act.

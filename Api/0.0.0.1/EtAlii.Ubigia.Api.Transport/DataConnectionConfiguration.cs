@@ -82,7 +82,7 @@
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this DataConnectionConfiguration");
             }
-            //if (String.IsNullOrWhiteSpace(password))
+            //if [String.IsNullOrWhiteSpace[password]]
             //[
             //    throw new ArgumentException(nameof(password))
             //]

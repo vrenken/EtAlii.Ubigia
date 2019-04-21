@@ -17,7 +17,7 @@
         //    var productName = ((AssemblyProductAttribute)assembly.GetCustomAttributes(typeof(AssemblyProductAttribute)).First()).Product
 
         //    // Needed for async/await troubleshooting.
-        //    //AppDomain.CurrentDomain.UnhandledException += (sender, args) => { throw (Exception) args.ExceptionObject; }
+        //    //AppDomain.CurrentDomain.UnhandledException += (sender, args) => [ throw (Exception) args.ExceptionObject; ]
 
         //    // Start logging.
         //    //Logger.StartSession(productName, assemblyTitle, assemblyVersion); // Disabled because of performance loss.

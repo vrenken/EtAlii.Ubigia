@@ -10,7 +10,7 @@
 
         IFabricContext Fabric { get; }
 
-        //ILogicalContextExtension[] Extensions { get; }
+        //ILogicalContextExtension[] Extensions [ get; ]
 
         //ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
 

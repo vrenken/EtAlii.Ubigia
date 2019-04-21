@@ -21,7 +21,7 @@
                     //.AddRazorOptions(options =>
                     //[
                     //    options.FileProviders.Add(new EmbeddedFileProvider(GetType().Assembly, GetType().Namespace))
-                    //})
+                    //])
                 },
                 appBuilder => appBuilder.UseWelcomePage().UseMvc());
         }

@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IDepthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
             container.Register<IBreadthFirstTraversalAlgorithm, ObservableTraversalAlgorithm>();
 
-            //if (_useParallelization)
+            //if [_useParallelization]
             //[
             //    // Parallel algorithms
             //    container.Register<IDepthFirstTraversalAlgorithm, ParallelDepthFirstTraversalAlgorithm>()

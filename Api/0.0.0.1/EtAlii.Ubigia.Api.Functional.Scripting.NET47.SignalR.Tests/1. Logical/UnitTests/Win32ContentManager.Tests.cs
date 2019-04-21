@@ -53,7 +53,7 @@
         //        var act = new Action(() =>
         //        [
         //            contentManager.Upload(fileName, Identifier.Empty)
-        //        })
+        //        ])
 
         //        // Assert.
         //        Assert.Throws<ContentManagerException>(act)
@@ -73,7 +73,7 @@
         //        var act = new Action(() =>
         //        [
         //            contentManager.Upload(_testImageFileName, Identifier.Empty)
-        //        })
+        //        ])
 
         //        // Assert.
         //        Assert.Throws<ContentManagerException>(act)

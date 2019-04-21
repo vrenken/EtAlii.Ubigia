@@ -44,7 +44,7 @@
             
             sb.AppendLine("Ubigia MediaImport");
             //sb.AppendLine()
-            //sb.AppendFormat("Address: {0}", configuration.Address)
+            //sb.AppendFormat("Address: [0]", configuration.Address)
             ToolTipText = sb.ToString();
 
             ExitApplicationCommand = new RelayCommand(o =>

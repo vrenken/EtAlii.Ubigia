@@ -13,7 +13,7 @@
 
         public override string ToString()
         {
-            return Type;//Schema == null ? $"{Type}" : $"{Type}:{Schema}"
+            return Type;//Schema == null ? $"[Type]" : $"[Type]:[Schema]"
         }
     }
 }

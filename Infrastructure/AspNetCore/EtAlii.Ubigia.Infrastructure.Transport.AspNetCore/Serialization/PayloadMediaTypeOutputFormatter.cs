@@ -58,7 +58,7 @@
             if (IsSimpleType(runtimeType) || runtimeType == typeof(byte[]))
             {
                 // Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  Is
-                // written out as binary equivalent of { "Value": value } JSON.
+                // written out as binary equivalent of [ "Value": value ] JSON.
                 var temporaryDictionary = new Dictionary<string, object>
                 {
                     { "Value", value },

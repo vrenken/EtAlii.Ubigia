@@ -91,7 +91,7 @@
 
             Container.Register<IShellExtensionService, ShellExtensionService>();
             Container.Register<ITaskbarIconService, TaskbarIconService>();
-            //Container.RegisterCollection<IApplicationService>(new [] { typeof(ShellExtensionService), typeof(TaskbarIconService) })
+            //Container.RegisterCollection<IApplicationService>(new [] [ typeof(ShellExtensionService), typeof(TaskbarIconService) ])
         }
     }
 }

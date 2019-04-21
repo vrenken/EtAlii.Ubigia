@@ -18,7 +18,7 @@
         public Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)
         {
             throw new NotSupportedException();
-            //if (graphPath.Any())
+            //if [graphPath.Any[]]
             //[
             //    var currentGraphPathPart = graphPath.First()
             //    var traverser = _graphPathPartTraverserSelector.Select(currentGraphPathPart)
@@ -27,7 +27,7 @@
             //        .ToArray()
 
             //    var subPathParts = graphPath.Skip(1).ToArray()
-            //    if (subPathParts.Any())
+            //    if [subPathParts.Any[]]
             //    [
             //        var resultCount = relatedNodes.Length
             //        var subResults = new List<Identifier>[resultCount]
@@ -38,7 +38,7 @@
             //            var subGraphPath = new GraphPath(subPathParts)
             //            await Traverse(subGraphPath, identifier, subResult, context, scope)
             //            subResults[index] = subResult
-            //        })
+            //        ])
 
             //        result.AddRange(subResults.SelectMany(sr => sr))
             //    ]

@@ -27,7 +27,7 @@
 //                ]
 //                entry = entries.SingleOrDefault()
 
-//            ] while (entry ! = null)
+//            ] while [entry ! = null]
 
 //            for (int i = path.Count; i > 0; i--)
 //            [

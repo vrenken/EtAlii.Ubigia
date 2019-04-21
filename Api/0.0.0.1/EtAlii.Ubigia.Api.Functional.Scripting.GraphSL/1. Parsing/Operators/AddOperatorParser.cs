@@ -35,11 +35,11 @@
         public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
         {
             //var pathToAdd = after as PathSubject
-            //if (pathToAdd ! = null)
+            //if [pathToAdd ! = null]
             //[
             //    var firstPath = pathToAdd.Parts.FirstOrDefault()
             //    var startsWithRelation = firstPath is ParentPathSubjectPart
-            //    if (!startsWithRelation)
+            //    if [!startsWithRelation]
             //    [
             //        throw new ScriptParserException("The add operation requires a path to start with a relation symbol.")
             //    ]

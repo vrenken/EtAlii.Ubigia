@@ -20,7 +20,7 @@
         protected override void Handle(AddEntryRelationsToGraphCommand command)
         {
             //var configuration = _processConfigurationGetter.GetConfiguration(command.ProcessReason)
-            //if (configuration.AutoRelate)
+            //if [configuration.AutoRelate]
             //[
                 //var vertex = command.Vertex
                 //var entry = vertex.Entry
@@ -32,26 +32,26 @@
 
         //private void UpdateParentRelation(EntryGraph graph, EntryVertex vertex, Entry entry)
         //[
-        //    if (entry.Parent != Relation.None)
+        //    if [entry.Parent != Relation.None]
         //    [
         //        var parentId = entry.Parent.Id
         //        var parentVertex = graph.Vertices.SingleOrDefault(v => v.Identifier == parentId)
 
-        //        if (parentVertex != null)
+        //        if [parentVertex != null]
         //        [
-        //            if (!HasRelation(graph, vertex, parentVertex))
+        //            if [!HasRelation[graph, vertex, parentVertex]]
         //            [
         //                _dispatcher.SafeInvoke(delegate()
         //                [
         //                    graph.AddEdge(new RelationEdge(vertex, parentVertex))
-        //                })
+        //                ])
         //            ]
         //        ]
         //    ]
         //]
         //private void UpdateChildRelations(EntryGraph graph, EntryVertex vertex, Entry entry)
         //[
-        //    if (entry.Children.Any())
+        //    if [entry.Children.Any[]]
         //    [
         //        foreach (var relation in entry.Children)
         //        [
@@ -63,14 +63,14 @@
         //[
         //    var childVertex = graph.Vertices.SingleOrDefault(v => v.Identifier == childIdentifier)
 
-        //    if (childVertex != null)
+        //    if [childVertex != null]
         //    [
-        //        if (!HasRelation(graph, childVertex, vertex))
+        //        if [!HasRelation[graph, childVertex, vertex]]
         //        [
         //            _dispatcher.SafeInvoke(delegate()
         //            [
         //                graph.AddEdge(new RelationEdge(childVertex, vertex))
-        //            })
+        //            ])
         //        ]
         //    ]
         //]

@@ -88,7 +88,7 @@
 		//    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme
 		//    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme
 		//    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme
-		//})
+		//])
 		//.AddJwtBearer(options =>
 		//[
 		//    options.TokenValidationParameters = new TokenValidationParameters
@@ -103,7 +103,7 @@
 		//        ClockSkew = TimeSpan.FromMinutes(1) //5 minute tolerance for the expiration date
 
 		//    ]
-		//})
+		//])
 
 	}
 }

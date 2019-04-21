@@ -17,10 +17,10 @@
         //    var productName = ((AssemblyProductAttribute)assembly.GetCustomAttributes(typeof(AssemblyProductAttribute)).First()).Product
 
         //    // Needed for async/await troubleshooting.
-        //    //AppDomain.CurrentDomain.UnhandledException += (sender, args) => { throw (Exception)args.ExceptionObject; }
+        //    //AppDomain.CurrentDomain.UnhandledException += (sender, args) => [ throw (Exception)args.ExceptionObject; ]
 
         //    //var diagnostics = TestDiagnostics.Create()
-        //    //if(diagnostics.EnableLogging || diagnostics.EnableProfiling)
+        //    //if[diagnostics.EnableLogging || diagnostics.EnableProfiling]
         //    [
         //        // Start logging.
         //        //Logger.StartSession(productName, assemblyTitle, assemblyVersion); // Disabled because of performance loss.
@@ -34,7 +34,7 @@
         //[
         //    // End logging.
         //    //var diagnostics = TestDiagnostics.Create()
-        //    //if (diagnostics.EnableLogging || diagnostics.EnableProfiling)
+        //    //if [diagnostics.EnableLogging || diagnostics.EnableProfiling]
         //    [
         //        //Logger.EndSession(); // Disabled because of performance loss.
         //    ]

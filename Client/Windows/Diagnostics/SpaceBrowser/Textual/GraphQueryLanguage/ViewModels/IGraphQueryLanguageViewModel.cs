@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public interface IGraphQueryLanguageViewModel : IDocumentViewModel, IExecutionStatusProvider
     {
-        //IScriptScope Scope { get; }
+        //IScriptScope Scope [ get; ]
         string Source { get; set; }
         Query Query { get; set; }
 
