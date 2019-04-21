@@ -107,7 +107,7 @@ namespace EtAlii.Ubigia.Windows.Client
                 return;
 
             if (ReadPosition < 0 || writePosition < 0)
-                throw new ArgumentException();
+                throw new ArgumentException("Unable to start reading: read or write position < 0");
 
             Thread t = new Thread(ReaderThread);
             t.IsBackground = true;
@@ -124,7 +124,7 @@ namespace EtAlii.Ubigia.Windows.Client
         public void Write(byte[] data)
         {
             if (ReadPosition < 0 || writePosition < 0)
-                throw new ArgumentException();
+                throw new ArgumentException("Unable to write: read or write position < 0");
 
             lock (_dataToSend)
                 _dataToSend.Add(data);
