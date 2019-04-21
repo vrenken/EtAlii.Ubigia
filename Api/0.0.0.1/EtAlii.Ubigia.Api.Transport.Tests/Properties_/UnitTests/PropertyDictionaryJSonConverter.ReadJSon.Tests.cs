@@ -626,7 +626,7 @@
         }
 
 
-        [Fact(Skip = "Gives errors so skipping for now. Should be corrected"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public void PropertyDictionaryJSonConverter_ReadJson_DateTime_Local()
         {
             // Arrange.
