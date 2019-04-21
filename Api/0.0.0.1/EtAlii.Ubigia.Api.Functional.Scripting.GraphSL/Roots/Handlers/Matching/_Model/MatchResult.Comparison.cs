@@ -13,7 +13,7 @@
             }
 
             // Optimization for a common success case. 
-            //if (Object.ReferenceEquals(this, obj))
+            //if [Object.ReferenceEquals[this, obj]]
             //[
             //    return true
             //]
@@ -35,13 +35,13 @@
             }
 
             // Optimization for a common success case. 
-            //if (Object.ReferenceEquals(this, match))
+            //if [Object.ReferenceEquals[this, match]]
             //[
             //    return true
             //]
             // Can happen, but is not problematic.
             // If run-time types are not exactly the same, return false. 
-            //if (this.GetType() ! = match.GetType())
+            //if [this.GetType[] ! = match.GetType[]]
             //[
             //    return false
             //]
@@ -64,7 +64,7 @@
                 return false;
             }
 
-            for (int i = 0; i < Match.Length; i++)
+            for (var i = 0; i < Match.Length; i++)
             {
                 if (Match[i].ToString() != other.Match[i].ToString())
                 {
@@ -72,7 +72,7 @@
                 }
             }
 
-            for (int i = 0; i < Rest.Length; i++)
+            for (var i = 0; i < Rest.Length; i++)
             {
                 if (Rest[i].ToString() != other.Rest[i].ToString())
                 {

@@ -5,14 +5,14 @@
 
     public class FabricContextConfiguration : IFabricContextConfiguration
     {
-        //public IFabricContextExtension[] Extensions { get { return _extensions; } }
+        //public IFabricContextExtension[] Extensions [ get [ return _extensions; ] ]
         //private IFabricContextExtension[] _extensions
 
         public IStorage Storage { get; private set; }
 
         //public IFabricContextConfiguration Use(IFabricContextExtension[] extensions)
         //[
-        //    if (extensions == null)
+        //    if [extensions == null]
         //    [
         //        throw new ArgumentException(nameof(extensions))
         //    ]

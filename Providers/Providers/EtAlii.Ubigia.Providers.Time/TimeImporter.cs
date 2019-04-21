@@ -31,7 +31,7 @@
             //_dayEntries = new List<IReadOnlyEntry>()
             //_hourEntries = new List<IReadOnlyEntry>()
             //_minuteEntries = new List<IReadOnlyEntry>()
-            //if (addEachTenSeconds)
+            //if [addEachTenSeconds]
             //[
             //    _secondEntries = new List<IReadOnlyEntry>()
             //]

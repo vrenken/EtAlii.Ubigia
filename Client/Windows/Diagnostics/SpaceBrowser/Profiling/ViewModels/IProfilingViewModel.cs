@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public interface IProfilingViewModel : IDocumentViewModel
     {
-        //ScriptButtonsViewModel Buttons { get; }
+        //ScriptButtonsViewModel Buttons [ get; ]
         IProfilingAspectsViewModel Aspects { get; }
 
         ReadOnlyObservableCollection<ProfilingResult> Results { get; }

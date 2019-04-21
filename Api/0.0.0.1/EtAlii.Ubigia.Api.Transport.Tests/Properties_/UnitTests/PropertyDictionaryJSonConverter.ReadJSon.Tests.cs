@@ -2,10 +2,9 @@
 {
     using System;
     using System.IO;
-    using Xunit;
     using Newtonsoft.Json;
+    using Xunit;
 
-    
     public class PropertyDictionaryJSonConverterReadJSonTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -282,7 +281,7 @@
         public void PropertyDictionaryJSonConverter_ReadJson_UInt64_Max()
         {
             // Arrange.
-            var json = "[{\"k\":\"Hello\",\"t\":11,\"v\":\"//////////8=\"}]";
+            var json = "[{\"k\":\"Hello\",\"t\":11,\"v\":\"//////////8=\"]]";
 
             // Act.
             var result = ReadJson(json);

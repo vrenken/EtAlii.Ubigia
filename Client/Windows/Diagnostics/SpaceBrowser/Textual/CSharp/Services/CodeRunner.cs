@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System;
-    using System.Linq;
     using System.CodeDom.Compiler;
+    using System.Linq;
     using System.Reflection;
 
     public class CodeRunner
@@ -31,7 +31,7 @@
             }
             else
             {
-                throw new Exception("Unable to load Evaluator assembly");
+                throw new InvalidOperationException("Unable to load Evaluator assembly");
             }
 
             return result;

@@ -60,14 +60,14 @@
 		    //            .AddCors()
 		    //            .AddGrpc()
 		    //            .AddJsonProtocol(options => SerializerFactory.Configure(options.PayloadSerializerSettings))
-      //          },
+      //          ],
       //          appBuilder =>
       //          [
       //              appBuilder
       //                  .UseCors(configuration =>
       //                  [
       //                      configuration.AllowAnyOrigin(); 
-      //                  })
+      //                  ])
       //                  .UseGrpc(routes =>
       //                  [
       //                      routes.MapHub<AuthenticationHub>(GrpcHub.Authentication)
@@ -80,8 +80,8 @@
       //                      routes.MapHub<PropertiesHub>(GrpcHub.Property)
       //                      routes.MapHub<ContentHub>(GrpcHub.Content)
       //                      routes.MapHub<ContentDefinitionHub>(GrpcHub.ContentDefinition)
-      //                  })
-      //          })
+      //                  ])
+      //          ])
         }
     }
 }

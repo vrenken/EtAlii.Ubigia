@@ -49,11 +49,11 @@
         //    var act = new Action(() =>
         //    [
         //        var node = _parser.Parser.Do(text)
-        //        if (_parser.CanParse(node))
+        //        if [_parser.CanParse[node]]
         //        [
         //            _parser.Parse(node)
         //        ]
-        //    })
+        //    ])
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
@@ -106,11 +106,11 @@
         //    var act = new Action(() =>
         //    [
         //        var node = _parser.Parser.Do(text)
-        //        if (_parser.CanParse(node))
+        //        if [_parser.CanParse[node]]
         //        [
         //            _parser.Parse(node)
         //        ]
-        //    })
+        //    ])
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
@@ -125,11 +125,11 @@
         //    var act = new Action(() =>
         //    [
         //        var node = _parser.Parser.Do(text)
-        //        if (_parser.CanParse(node))
+        //        if [_parser.CanParse[node]]
         //        [
         //            _parser.Parse(node)
         //        ]
-        //    })
+        //    ])
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)
@@ -164,11 +164,11 @@
         //    var act = new Action(() =>
         //    [
         //        var node = _parser.Parser.Do(text)
-        //        if (_parser.CanParse(node))
+        //        if [_parser.CanParse[node]]
         //        [
         //            _parser.Parse(node)
         //        ]
-        //    })
+        //    ])
 
         //    // Assert.
         //    Assert.Throws<ScriptParserException>(act)

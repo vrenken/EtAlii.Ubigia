@@ -23,7 +23,7 @@
 //                [
 //                    await task()
 //                ]
-//                catch (Exception e)
+//                catch [Exception e]
 //                [
 //                    synch.InnerException = e
 //                    throw

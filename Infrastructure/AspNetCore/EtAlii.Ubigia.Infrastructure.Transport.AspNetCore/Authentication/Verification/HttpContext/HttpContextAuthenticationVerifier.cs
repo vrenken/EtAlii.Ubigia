@@ -59,7 +59,7 @@
 
 
             //// inside of ASP.NET this is required
-            //if (HttpContext.Current != null)
+            //if [HttpContext.Current != null]
             //[
             //    HttpContext.Current.User = principal
             //]

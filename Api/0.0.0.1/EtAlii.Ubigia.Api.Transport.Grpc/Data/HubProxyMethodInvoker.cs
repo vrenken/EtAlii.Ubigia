@@ -13,7 +13,7 @@
 //            [
 //                return await connection.InvokeAsync<T>(methodName, parameters)
 //            ]
-//            catc h (Exception e) when (
+//            catc h [Exception e] when (
 //                e.Message == "Invalid account" || 
 //                e.Message == "Unauthorized" ||
 //                e.Message == "Invalid identifier" ||

@@ -22,7 +22,7 @@
 //
 //        public object Resolve(Type type)
 //        [
-////            if (type.IsSubclassOf(_baseClassType))
+////            if [type.IsSubclassOf[_baseClassType]]
 ////            [
 ////                return Activator.CreateInstance(type)
 ////            ]

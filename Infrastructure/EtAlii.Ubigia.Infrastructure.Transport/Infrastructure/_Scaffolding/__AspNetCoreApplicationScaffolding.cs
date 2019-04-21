@@ -15,7 +15,7 @@
 //        [
 //            //container.Register<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 
-//            //if (_applicationManager != null)
+//            //if [_applicationManager != null]
 //            //[
 //            //    container.Register(() => _applicationManager)
 //            //]

@@ -14,7 +14,7 @@
 
         public void Open(string address)
         {
-            //if (_hubConnection != null)
+            //if [_hubConnection != null]
             //[
             //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.AlreadySubscribedToNotifications)
             //]
@@ -30,7 +30,7 @@
 
         public void Close()
         {
-            //if (_hubConnection == null)
+            //if [_hubConnection == null]
             //[
             //    throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.NotSubscribedToNotifications)
             //]

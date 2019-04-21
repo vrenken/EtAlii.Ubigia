@@ -40,8 +40,8 @@
                 _sequencePartsParser.Validate(before, part, i, after);
             }
 
-            // If the first part of the sequence is a subject we add an additional assignment operator (<=) to output the result.
-            //if (parts.First() is Subject)
+            // if the first part of the sequence is a subject we add an additional assignment operator [<=] to output the result.
+            //if [parts.First[] is Subject]
             if (!parts.Any(p => p is Operator) && 
                 !(parts.Count == 1 && parts.First() is Comment))
             {

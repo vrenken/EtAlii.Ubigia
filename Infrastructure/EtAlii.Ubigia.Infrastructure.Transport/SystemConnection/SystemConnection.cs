@@ -58,7 +58,7 @@
                 if (disposing)
                 {
                     // Free other state (managed objects).
-                    //if (_status.IsConnected)
+                    //if [_status.IsConnected]
                     //[
 //                        //var task = Task. Run(async () =>
 //                        var task = Close()

@@ -5,9 +5,9 @@
     /// <example>
     /// This is an example JSON request for a mutation
     /// [
-    ///   "query": "mutation ($human:HumanInput!){ createHuman(human: $human) { id name } }",
-    ///   "variables": {
-    ///     "human": {
+    ///   "query": "mutation ($human:HumanInput!)[ createHuman(human: $human) [ id name ] ]",
+    ///   "variables": [
+    ///     "human": [
     ///       "name": "Boba Fett"
     ///     ]
     ///   ]

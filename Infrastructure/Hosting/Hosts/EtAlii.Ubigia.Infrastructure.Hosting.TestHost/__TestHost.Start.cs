@@ -13,7 +13,7 @@
 //			//var arguments = Environment.GetCommandLineArgs()
 //			//for (int i = 0; i < arguments.Length; i++)
 //			//[
-//			//	if (arguments[i] == "-d" && i + 1 < arguments.Length)
+//			//	if [arguments[i] == "-d" && i + 1 < arguments.Length]
 //			//	[
 //			//		var delay = Int32.Parse(arguments[i + 1])
 //			//		System.Threading.Tasks.Task.Delay(delay).Wait()

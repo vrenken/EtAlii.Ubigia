@@ -5,7 +5,7 @@
 
     public class LogicalContextConfiguration : ILogicalContextConfiguration
     {
-        //public ILogicalContextExtension[] Extensions { get { return _extensions; } }
+        //public ILogicalContextExtension[] Extensions [ get [ return _extensions; ] ]
         //private ILogicalContextExtension[] _extensions
 
         public IFabricContext Fabric { get; private set; }
@@ -16,7 +16,7 @@
 
         //public ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
         //[
-        //    if (extensions == null)
+        //    if [extensions == null]
         //    [
         //        throw new ArgumentException(nameof(extensions))
         //    ]

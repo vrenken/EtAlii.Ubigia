@@ -44,7 +44,7 @@
             // The last argument of DefineProperty is null, because the
             // property has no parameters. (If you don't specify null, you must
             // specify an array of Type objects. For a parameterless property,
-            // use an array with no elements: new Type[] {})
+            // use an array with no elements: new Type[] [])
             var propertyBuilder = typeBuilder.DefineProperty(propertyName, PropertyAttributes.HasDefault, propertyType, null);
 
             // The property set and property get methods require a special

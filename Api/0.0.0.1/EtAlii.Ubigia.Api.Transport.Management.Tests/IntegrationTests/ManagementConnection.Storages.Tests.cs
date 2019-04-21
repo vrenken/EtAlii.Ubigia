@@ -191,7 +191,7 @@
             var connection = await _testContext.CreateManagementConnection();
 	        var index = 10;
             var name = Guid.NewGuid().ToString();
-            var address = $"http://www.host{++index}.com";
+            var address = $"http://www.host[++index].com";
 
 			var storage = await connection.Storages.Add(name, address);
             Assert.NotNull(storage);
@@ -204,7 +204,7 @@
             Assert.Equal(address, storage.Address);
 
             name = Guid.NewGuid().ToString();
-	        address = $"http://www.host{++index}.com";
+	        address = $"http://www.host[++index].com";
             storage = await connection.Storages.Change(storage.Id, name, address);
             Assert.NotNull(storage);
             Assert.Equal(name, storage.Name);

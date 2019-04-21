@@ -14,7 +14,7 @@
             if (IsDoubleClick() && Diagram.SelectedNode != null)
             {
                 var node = Diagram.SelectedNode.Data as EntryNode;
-      //          if(_entryInspectedConfiguration.AutoAdd)
+      //          if[_entryInspectedConfiguration.AutoAdd]
                 {
                     GraphContext.CommandProcessor.Process(new DiscoverEntryCommand(node.Entry, ProcessReason.Discovered, 1), GraphContext.DiscoverEntryCommandHandler);
                 }

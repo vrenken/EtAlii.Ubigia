@@ -1,12 +1,12 @@
-﻿using System;
-
-namespace EtAlii.Ubigia.Windows.Shared
+﻿namespace EtAlii.Ubigia.Windows.Shared
 {
+    using System;
+
     public static class Identifiers 
     {
-        // HKEY_CLASSES_ROOT\CLSID\{D90A1734-1783-461B-A0D5-9187EDFE36B3}
+        // HKEY_CLASSES_ROOT\CLSID\[D90A1734-1783-461B-A0D5-9187EDFE36B3]
         // HKEY_CLASSES_ROOT\EtAlii.Ubigia.Client.Windows.ShellExtension\CLSID
-        // HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\{D90A1734-1783-461B-A0D5-9187EDFE36B3}
+        // HKEY_LOCAL_MACHINE\SOFTWARE\Classes\CLSID\[D90A1734-1783-461B-A0D5-9187EDFE36B3]
         // HKEY_LOCAL_MACHINE\SOFTWARE\Classes\EtAlii.Ubigia.Client.Windows.ShellExtension\CLSID
 
         public static readonly Guid ShellExtensionRegistration = new Guid(ShellExtensionRegistrationString);

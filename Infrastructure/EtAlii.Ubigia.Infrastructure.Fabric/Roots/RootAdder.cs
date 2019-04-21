@@ -42,12 +42,12 @@
             {
                 canAdd = item.Id == Guid.Empty;
             }
-            //if (canAdd)
+            //if [canAdd]
             //[
             //    var containerId = ContainerIdentifier.ForRoots(spaceId)
             //    canAdd = !ItemStorage.Has(item.Id, containerId)
             //]
-            //if (canAdd)
+            //if [canAdd]
             //[
             //    canAdd = Get(spaceId, item.Id) == null
             //]

@@ -39,7 +39,7 @@
 ////                    ]
 ////                    mappings.Add(mapping)
 ////                ]
-////                if (node != null)
+////                if [node != null]
 ////                [
 ////                    var mapping = new IdMapping
 ////                    [

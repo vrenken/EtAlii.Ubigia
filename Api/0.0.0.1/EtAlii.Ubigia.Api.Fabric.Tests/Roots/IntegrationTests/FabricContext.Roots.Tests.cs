@@ -279,7 +279,7 @@
         //    var removedEvent = new ManualResetEvent(false)
         //    var removedId = Guid.Empty; 
 
-        //    connection.Roots.Removed += (id) => { removedId = id; removedEvent.Set(); }
+        //    connection.Roots.Removed += (id) => [ removedId = id; removedEvent.Set(); ]
         //    await connection.Roots.Remove(root.Id)
 
         //    removedEvent.WaitOne(TimeSpan.FromSeconds(10))
@@ -324,7 +324,7 @@
 
 
         //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); })
+        //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
         //    //var act = fabric.Roots.Add(Guid.NewGuid().ToString())
 
         //    // Assert.
@@ -339,7 +339,7 @@
         //        .Use(connection)
 
         //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); })
+        //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
         //    //var act = fabric.Roots.Get(Guid.NewGuid())
 
         //    // Assert.
@@ -354,7 +354,7 @@
         //        .Use(connection)
 
         //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); })
+        //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
         //    //var act = fabric.Roots.Remove(Guid.NewGuid())
 
         //    // Assert.
@@ -369,7 +369,7 @@
         //        .Use(connection)
 
         //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); })
+        //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
         //    //var act = fabric.Roots.GetAll()
 
         //    // Assert.
@@ -384,7 +384,7 @@
         //        .Use(connection)
 
         //    // Act.
-        //    var act = (Action)(() => { var fabric = new FabricContextFactory().Create(fabricContextConfiguration); })
+        //    var act = (Action)(() => [ var fabric = new FabricContextFactory().Create(fabricContextConfiguration); ])
         //    //act = fabric.Roots.Change(Guid.NewGuid(), Guid.NewGuid().ToString())
 
         //    // Assert.

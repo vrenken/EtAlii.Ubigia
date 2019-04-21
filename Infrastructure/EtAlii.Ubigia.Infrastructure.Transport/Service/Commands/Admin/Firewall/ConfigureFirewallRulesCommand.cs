@@ -65,7 +65,7 @@
                     //"-ServicePort", _infrastructure.Configuration.Address.Split(':').Last(),
                     "-ServicePort", "UKNOWN",
                     "-ServiceAssemblyName", assemblyName,
-                    //"-RuleDisplayName", $"EtAlii Infrastructure Service ({_infrastructure.Configuration.Name})",
+                    //"-RuleDisplayName", $"EtAlii Infrastructure Service ([_infrastructure.Configuration.Name])",
                     "-RuleDisplayName", $"EtAlii Infrastructure Service (UNKNOWN)",
                     "-LogFile", logFile
                 };
@@ -73,7 +73,7 @@
                 var process = StartElevatedPowerShellScript(scriptFullPath, scriptArgs);
                 process.WaitForExit();
 
-                //Debug.WriteLine($"[{GetType().Name}] Firewall configuration script exit code: {process.ExitCode}")
+                //Debug.WriteLine($"[[GetType().Name]] Firewall configuration script exit code: [process.ExitCode]")
                 ProcessLogFile(logFile);
 
                 taskCompletionSource.SetResult(process.ExitCode == 0);
@@ -96,7 +96,7 @@
 
             var psArgumentsLine = string.Join(" ", arguments);
 
-            //Debug.WriteLine($"[{GetType().Name}] Starting elevated process: {powershell} {psArgumentsLine}")
+            //Debug.WriteLine($"[[GetType().Name]] Starting elevated process: [powershell] [psArgumentsLine]")
 
             var startInfo = new ProcessStartInfo
             {
@@ -121,7 +121,7 @@
             {
                 try
                 {
-                    //Debug.WriteLine($"[{GetType().Name}] Firewall configuration script output:")
+                    //Debug.WriteLine($"[[GetType().Name]] Firewall configuration script output:")
                     //var log = File.ReadAllText(logFile)
                     //Debug.WriteLine(log)
                 }

@@ -52,11 +52,11 @@
                     await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
                 });
 
-            //if (leftResult = = null)
+            //if [leftResult = = null]
             //[
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires path to start from")
             //]
-            //if (leftIds = = null | | !leftIds.Any())
+            //if [leftIds = = null | | !leftIds.Any[]]
             //[
             //    throw new ScriptProcessingException("The RemoveByNameFromRelativePathProcessor requires queryable ids from the previous path part")
             //]

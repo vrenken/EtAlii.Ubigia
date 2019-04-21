@@ -8,7 +8,7 @@
 
     public class ProfilingViewModel : BindableBase, IProfilingViewModel
     {
-        public string Title { get { return _title; } set { SetProperty(ref _title, value); } }
+        public string Title { get => _title; set => SetProperty(ref _title, value); }
         private string _title;
 
         public ReadOnlyObservableCollection<ProfilingResult> Results { get; }
@@ -22,10 +22,10 @@
 
         public System.Windows.Input.ICommand ClearCommand { get; }
 
-        public bool AutoExpandNodes { get { return _autoExpandNodes; } set { SetProperty(ref _autoExpandNodes, value); } }
+        public bool AutoExpandNodes { get => _autoExpandNodes; set => SetProperty(ref _autoExpandNodes, value); }
         private bool _autoExpandNodes;
 
-        //public ScriptButtonsViewModel Buttons { get { return _buttons; } }
+        //public ScriptButtonsViewModel Buttons [ get [ return _buttons; ] ]
         //private readonly ScriptButtonsViewModel _buttons
 
         public ProfilingViewModel(

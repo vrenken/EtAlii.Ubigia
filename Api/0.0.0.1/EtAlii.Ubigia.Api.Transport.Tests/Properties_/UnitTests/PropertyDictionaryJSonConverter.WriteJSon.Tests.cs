@@ -4,7 +4,6 @@
     using System.IO;
     using Xunit;
 
-
     public class PropertyDictionaryJSonConverterWriteJSonTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -321,7 +320,7 @@
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":11,\"v\":\"//////////8=\"}]", result);
+            Assert.Equal("[{\"k\":\"Hello\",\"t\":11,\"v\":\"//////////8=\"]]", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
