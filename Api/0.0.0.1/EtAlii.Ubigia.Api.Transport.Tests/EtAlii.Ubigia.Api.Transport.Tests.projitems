@@ -37,7 +37,7 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)3. Transport\" />
     <Folder Include="$(MSBuildThisFileDirectory)DataConnection\" />
-    <Folder Include="$(MSBuildThisFileDirectory)Properties_\IntegrationTests\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Properties_\IntegrationTests" />
     <Folder Include="$(MSBuildThisFileDirectory)Roots\" />
   </ItemGroup>
 </Project>
