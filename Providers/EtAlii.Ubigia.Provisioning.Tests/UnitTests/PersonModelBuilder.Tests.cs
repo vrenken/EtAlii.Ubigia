@@ -55,14 +55,10 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First", "first.last@nomail.com", "+316343434");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -104,15 +100,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last1", "First", "first1.last@nomail.com", "+316343434");
             builder.Add("Last2", "First", "first2.last@nomail.com", "+316343435");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -131,15 +123,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last1", "First1", "first1.last@nomail.com", "+316343434");
             builder.Add("Last2", "First2", "first2.last@nomail.com", "+316343435");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -158,15 +146,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First", "first.last@nomail.com", "+316343434");
             builder.Add("Last", "First", "first.last@nomail.com", "+316343435");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -184,15 +168,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First", "first1.last@nomail.com", "+316343434");
             builder.Add("Last", "First", "first2.last@nomail.com", "+316343434");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -210,15 +190,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First", "first1.last@nomail.com", "+316343434");
             builder.Add("Last2", "First", "first2.last@nomail.com", "+316343434");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -236,15 +212,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First", "first.last@nomail.com", "+316343434");
             builder.Add("Last2", "First", "first.last@nomail.com", "+316343435");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
@@ -262,15 +234,11 @@
         {
             // Arrange.
             var builder = new PersonModelBuilder();
-            LastName[] lastNames;
-            Email[] emails;
-            Phone[] phones;
-            Photo[] photos;
 
             // Act.
             builder.Add("Last", "First", "first.last@nomail.com", "+316343434");
             builder.Add("Last2", "First", "first2.last@nomail.com", "+316343435");
-            builder.ToModel(out lastNames, out emails, out phones, out photos);
+            builder.ToModel(out var lastNames, out var emails, out var phones, out var photos);
 
             // Assert.
             Assert.NotNull(lastNames);
