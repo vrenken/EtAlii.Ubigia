@@ -99,9 +99,9 @@
 
                 var newMessageCount = _inbox.MessageCount;
 
-                for(int i = _lastMessageCount; i < newMessageCount; i++)
+                for(var i = _lastMessageCount; i < newMessageCount; i++)
                 {
-                    Message message = _inbox.Fetch.MessageObject(i);
+                    var message = _inbox.Fetch.MessageObject(i);
 
                     var task = Task.Run(async () =>
                     {
