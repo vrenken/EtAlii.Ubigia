@@ -1,8 +1,8 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     internal class ProfilingAbsolutePathSubjectProcessor : IAbsolutePathSubjectProcessor
     {
@@ -16,12 +16,12 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             _profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessorPathSubject);
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             dynamic profile = _profiler.Begin("Path subject: " + subject);
             profile.Subject = subject;
 
-            _decoree.Process(subject, scope, output);
+            await _decoree.Process(subject, scope, output);
 
             _profiler.End(profile);
         }
