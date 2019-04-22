@@ -6,13 +6,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal class AddByNameToRelativePathProcessor : IAddByNameToRelativePathProcessor
+    internal class AddByNameToExistingPathProcessor : IAddByNameToExistingPathProcessor
     {
         private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IRecursiveAdder _recursiveAdder;
 
-        public AddByNameToRelativePathProcessor(
+        public AddByNameToExistingPathProcessor(
             IItemToPathSubjectConverter itemToPathSubjectConverter,
             IItemToIdentifierConverter itemToIdentifierConverter,
             IRecursiveAdder recursiveAdder)

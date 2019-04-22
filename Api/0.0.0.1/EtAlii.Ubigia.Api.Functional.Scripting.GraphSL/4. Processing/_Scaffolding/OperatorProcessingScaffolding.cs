@@ -67,10 +67,10 @@
             container.Register<IAddOperatorProcessor, AddOperatorProcessor>();
             container.Register<IAddOperatorSelector, AddOperatorSelector>();
             // Alternatives.
-            container.Register<IAddByNameToAbsolutePathProcessor, AddByNameToAbsolutePathProcessor>();
-            container.Register<IAddByNameToRelativePathProcessor, AddByNameToRelativePathProcessor>();
-            container.Register<IAddByIdToAbsolutePathProcessor, AddByIdToAbsolutePathProcessor>();
-            container.Register<IAddByIdToRelativePathProcessor, AddByIdToRelativePathProcessor>();
+            container.Register<IAddByNameAsNewPathProcessor, AddByNameAsNewPathProcessor>();
+            container.Register<IAddByNameToExistingPathProcessor, AddByNameToExistingPathProcessor>();
+            container.Register<IAddByIdAsNewPathProcessor, AddByIdAsNewPathProcessor>();
+            container.Register<IAddByIdToExistingPathProcessor, AddByIdToExistingPathProcessor>();
             // Assistance.
             container.Register<IRecursiveAdder, RecursiveAdder>();
 
