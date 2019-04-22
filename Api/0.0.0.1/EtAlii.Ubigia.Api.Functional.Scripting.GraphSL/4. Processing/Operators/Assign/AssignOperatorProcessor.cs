@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Structure;
 
     internal class AssignOperatorProcessor : IAssignOperatorProcessor
@@ -88,7 +89,7 @@
                 .Register((l, r) => l is RootSubject && r is EmptySubject, assignEmptyToRootOperatorSubProcessor);
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
             var assigner = _selector.TrySelect(parameters.LeftSubject, parameters.RightSubject);
             if (assigner == null)
@@ -99,7 +100,7 @@
                     $"No supported mapping found for the AssignOperatorProcessor to work with (left: {left}, right: {right})";
                 throw new ScriptProcessingException(message);
             }
-            assigner.Assign(parameters);
+            await assigner.Assign(parameters);
         }
     }
 }

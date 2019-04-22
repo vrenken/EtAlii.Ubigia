@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     public class AssignTagToVariableOperatorSubProcessor : IAssignTagToVariableOperatorSubProcessor
@@ -12,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public Task Assign(OperatorParameters parameters)
         {
             var variableSubject = (VariableSubject)parameters.LeftSubject;
             var subject = parameters.RightSubject;
@@ -32,6 +33,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     var entry = ((IInternalNode)o).Entry;
                     parameters.Output.OnNext(entry.Tag);
                 });
+            return Task.CompletedTask;
         }
     }
 }

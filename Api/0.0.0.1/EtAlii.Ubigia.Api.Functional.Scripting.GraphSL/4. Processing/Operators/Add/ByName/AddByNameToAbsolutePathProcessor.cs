@@ -22,9 +22,9 @@
             _context = context;
         }
 
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
-            var pathToAdd = GetPathToAdd(parameters);
+            var pathToAdd = await GetPathToAdd(parameters);
             if (pathToAdd == null)
             {
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor requires a path on the right side");
@@ -35,36 +35,28 @@
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor requires a constant, hierarchical path");
             }
 
-            if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart && String.IsNullOrWhiteSpace(((ConstantPathSubjectPart)part).Name)))
+            if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart constantPathSubjectPart && string.IsNullOrWhiteSpace(constantPathSubjectPart.Name)))
             {
                 throw new ScriptProcessingException("The AddByNameToAbsolutePathProcessor cannot handle empty parts");
             }
 
-            var task = Task.Run(async () =>
-            {
-                await Add(pathToAdd, parameters.Scope, parameters.Output);
-            });
-            task.Wait();
+            await Add(pathToAdd, parameters.Scope, parameters.Output);
         }
-
-        private PathSubject GetPathToAdd(OperatorParameters parameters)
+        
+        private async Task<PathSubject> GetPathToAdd(OperatorParameters parameters)
         {
             PathSubject pathToAdd = null;
 
-            var task = Task.Run(async () =>
+            if (parameters.RightSubject is PathSubject pathSubject)
             {
-                if (parameters.RightSubject is PathSubject pathSubject)
-                {
-                    pathToAdd = pathSubject;
-                }
-                else
-                {
-                    var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
+                pathToAdd = pathSubject;
+            }
+            else
+            {
+                var rightResult = await parameters.RightInput.SingleOrDefaultAsync();
 
-                    _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
-                }
-            });
-            task.Wait();
+                _itemToPathSubjectConverter.TryConvert(rightResult, out pathToAdd);
+            }
 
             return pathToAdd;
         }

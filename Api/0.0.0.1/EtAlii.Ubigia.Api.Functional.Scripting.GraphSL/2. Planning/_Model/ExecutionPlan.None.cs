@@ -2,6 +2,7 @@
 {
     using System;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     public static class ExecutionPlan
     {
@@ -16,9 +17,9 @@
                 OutputType = GetType();
             }
 
-            public IObservable<object> Execute(ExecutionScope scope)
+            public Task<IObservable<object>> Execute(ExecutionScope scope)
             {
-                return Observable.Empty<object>();
+                return Task.FromResult(Observable.Empty<object>());
             }
 
             public override string ToString()

@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal class AssignEmptyToFunctionOperatorSubProcessor : IAssignEmptyToFunctionOperatorSubProcessor
     {
         private readonly IFunctionContext _functionContext;
@@ -20,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _argumentSetFinder = argumentSetFinder;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public Task Assign(OperatorParameters parameters)
         {
             var functionSubject = (FunctionSubject)parameters.LeftSubject;
 
@@ -32,6 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var parameterSet = _parameterSetFinder.Find(functionSubject, functionHandler, argumentSet);
 
             functionHandler.Process(_functionContext, parameterSet, argumentSet, parameters.RightInput, parameters.Scope, parameters.Output, false);
+            return Task.CompletedTask;
         }
     }
 }

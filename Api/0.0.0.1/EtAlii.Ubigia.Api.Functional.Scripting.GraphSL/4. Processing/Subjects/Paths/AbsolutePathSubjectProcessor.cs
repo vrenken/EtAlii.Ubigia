@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class AbsolutePathSubjectProcessor : IAbsolutePathSubjectProcessor
     {
@@ -25,7 +26,7 @@
             _processingContext = processingContext;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var pathSubject = (AbsolutePathSubject)subject;
 
@@ -48,6 +49,8 @@
 
                 _rootPathProcessor.Process(root, path, scope, output, _processingContext.Scope);
             }
+            
+            return Task.CompletedTask;
         }
     }
 }

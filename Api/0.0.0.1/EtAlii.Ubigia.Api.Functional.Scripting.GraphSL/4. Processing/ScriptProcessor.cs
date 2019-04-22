@@ -5,6 +5,7 @@
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class ScriptProcessor : IScriptProcessor
@@ -35,7 +36,7 @@
 
         private IObservable<SequenceProcessingResult> CreateObservableScriptResult(Script script)
         {
-            var observableScriptOutput = Observable.Create<SequenceProcessingResult>(scriptOutput =>
+            var observableScriptOutput = Observable.Create<SequenceProcessingResult>(async scriptOutput =>
             {
                 try
                 {
@@ -49,7 +50,7 @@
                     {
                         var sequence = sequences[executionPlanIndex];
                         var executionPlan = executionPlans[executionPlanIndex];
-                        ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput);
+                        await ProcessExecutionPlan(sequence, executionPlan, executionPlanIndex, totalExecutionPlans, scriptOutput);
                     }
 
                     // After iterating through the sequences script observation has ended. Please keep in mind 
@@ -72,7 +73,7 @@
             return observableScriptOutput;
         }
 
-        private void ProcessExecutionPlan(
+        private async Task ProcessExecutionPlan(
             Sequence sequence, 
             ISequenceExecutionPlan executionPlan, 
             int executionPlanIndex, 
@@ -81,7 +82,7 @@
         {
             var executionScope = new ExecutionScope(_configuration.CachingEnabled);
 
-            var originalObservableSequenceOutput = executionPlan.Execute(executionScope);
+            var originalObservableSequenceOutput = await executionPlan.Execute(executionScope);
             var observableSequenceOutput = Observable.Empty<object>();
 
             // We only show output:
