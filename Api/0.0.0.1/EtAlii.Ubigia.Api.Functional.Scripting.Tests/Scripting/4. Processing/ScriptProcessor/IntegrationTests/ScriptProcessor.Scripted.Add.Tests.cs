@@ -47,7 +47,7 @@
             // Arrange.
             var addQueries = new[]
             {
-                $"/Location+=/{continent}",
+                $"/Location+={continent}",
                 $"<= /Location/{continent}"
             };
 
@@ -88,11 +88,11 @@
 
             var addQueries = new[]
             {
-                $"/Location+=/{continent}",
-                $"/Location/{continent}+=/{country}",
-                $"/Location/{continent}/{country}+=/{region}",
-                $"/Location/{continent}/{country}/{region}+=/{city}",
-                $"<= /Location/{continent}/{country}/{region}/{city}+=/{location}"
+                $"/Location+={continent}",
+                $"/Location/{continent}+={country}",
+                $"/Location/{continent}/{country}+={region}",
+                $"/Location/{continent}/{country}/{region}+={city}",
+                $"<= /Location/{continent}/{country}/{region}/{city}+={location}"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
@@ -126,11 +126,11 @@
             var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "/Time/{0:yyyy}+=/{0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+=/{0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+=/{0:HH}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+=/{0:mm}",
+                "/Time+={0:yyyy}",
+                "/Time/{0:yyyy}+={0:MM}",
+                "/Time/{0:yyyy}/{0:MM}+={0:dd}",
+                "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
+                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
@@ -165,11 +165,11 @@
             var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "/Time/{0:yyyy}+=/{0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+=/{0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+=/{0:HH}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+=/{0:mm}",
+                "/Time+={0:yyyy}",
+                "/Time/{0:yyyy}+={0:MM}",
+                "/Time/{0:yyyy}/{0:MM}+={0:dd}",
+                "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
+                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}"
             };
 
@@ -204,11 +204,11 @@
             var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}",
-                "/Time/{0:yyyy}+=/{0:MM}",
-                "/Time/{0:yyyy}/{0:MM}+=/{0:dd}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}+=/{0:HH}",
-                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+=/{0:mm}",
+                "/Time+={0:yyyy}",
+                "/Time/{0:yyyy}+={0:MM}",
+                "/Time/{0:yyyy}/{0:MM}+={0:dd}",
+                "/Time/{0:yyyy}/{0:MM}/{0:dd}+={0:HH}",
+                "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}+={0:mm}",
                 "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
@@ -249,7 +249,7 @@
 
             var addQueries = new[]
             {
-                $"<= /Location+=/{continent}/{country}/{region}/{city}/{location}"
+                $"<= /Location+={continent}/{country}/{region}/{city}/{location}"
             };
 
             var addQuery = String.Join("\r\n", addQueries);
@@ -283,7 +283,7 @@
             var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+                "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
@@ -318,7 +318,7 @@
             var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+                "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
                 "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
@@ -353,7 +353,7 @@
             var now = DateTime.Now;
             var addQueries = new[]
             {
-                "/Time+=/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
+                "/Time+={0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
@@ -393,11 +393,11 @@
 
             var addQueries = new[]
             {
-                $"/Location +=/{continent}",
-                $"/Location/{continent} +=/{country}",
-                $"/Location/{continent}/{country} +=/{region}",
-                $"/Location/{continent}/{country}/{region} +=/{city}",
-                $"<= /Location/{continent}/{country}/{region}/{city} +=/{location}",
+                $"/Location +={continent}",
+                $"/Location/{continent} +={country}",
+                $"/Location/{continent}/{country} +={region}",
+                $"/Location/{continent}/{country}/{region} +={city}",
+                $"<= /Location/{continent}/{country}/{region}/{city} +={location}",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
@@ -436,11 +436,11 @@
 
             var addQueries = new[]
             {
-                $"/Location+= /{continent}",
-                $"/Location/{continent}+= /{country}",
-                $"/Location/{continent}/{country}+= /{region}",
-                $"/Location/{continent}/{country}/{region}+= /{city}",
-                $"<= /Location/{continent}/{country}/{region}/{city}+= /{location}",
+                $"/Location+= {continent}",
+                $"/Location/{continent}+= {country}",
+                $"/Location/{continent}/{country}+= {region}",
+                $"/Location/{continent}/{country}/{region}+= {city}",
+                $"<= /Location/{continent}/{country}/{region}/{city}+= {location}",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
@@ -471,7 +471,7 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once()
         {
             // Arrange.
-            var addQuery = "<= /Person+=/Doe/John";
+            var addQuery = "<= /Person+=Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -500,7 +500,7 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_NonSpaced_01()
         {
             // Arrange.
-            var addQuery = "+=/Person/Doe/John";
+            var addQuery = "+=Person/Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -528,7 +528,7 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Spaced_02()
         {
             // Arrange.
-            var addQuery = "+= /Person/Doe/John";
+            var addQuery = "+= Person/Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -556,7 +556,7 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_From_Root_Wrong_Root()
         {
             // Arrange.
-            var addQuery = "+=/Person_Bad/Doe/John";
+            var addQuery = "+=Person_Bad/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;
             var scope = new ScriptScope();
@@ -577,7 +577,7 @@
         public async Task ScriptProcessor_Scripted_Advanced_Add_Tree_At_Once_Spaced()
         {
             // Arrange.
-            var addQuery = "<= /Person += /Doe/John";
+            var addQuery = "<= /Person += Doe/John";
             var selectQuery = "/Person/Doe/John";
 
             var addScript = _parser.Parse(addQuery).Script;

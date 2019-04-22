@@ -120,7 +120,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                $"Location:+=/{continent}",
+                $"Location:+={continent}",
                 "$var1 <= Location",
                 $"$var2 <= {continent}",
                 "/$var1/$var2"
@@ -154,7 +154,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                $"Location:+=/{continent}",
+                $"Location:+={continent}",
                 "$var1 <= /Location",
                 $"$var2 <= {continent}",
                 "$var1/$var2"
@@ -189,7 +189,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                $"Location:+=/{continent}",
+                $"Location:+={continent}",
                 "$var1 <= Location:",
                 $"$var2 <= {continent}",
                 "$var1/$var2"
@@ -223,7 +223,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                $"Location:+=/{continent}",
+                $"Location:+={continent}",
                 "$var1 <= \"Location\"",
                 $"$var2 <= \"{continent}\"",
                 "/$var1/$var2"
@@ -257,7 +257,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                $"Location:+=/{continent}",
+                $"Location:+={continent}",
                 "$var1 <= /\"Location\"",
                 $"$var2 <= \"{continent}\"",
                 "$var1/$var2"
@@ -290,7 +290,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                $"Location:+=/{continent}",
+                $"Location:+={continent}",
                 "$var1 <= \"Location\"",
                 $"$var2 <= \"{continent}\"",
                 "/$var1/$var2"
@@ -354,7 +354,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "Time:+=/{0:yyyy}",
+                "Time:+={0:yyyy}",
                 "$var1 <= Time:{0:yyyy}",
                 "$var1"
             };
@@ -452,7 +452,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "Time: += /{0:yyyy}",
+                "Time: += {0:yyyy}",
                 "$var1 <= Time:{0:yyyy}",
                 "$var1"
             };
@@ -484,7 +484,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var queries = new[]
             {
-                "Time: += /{0:yyyy}",
+                "Time: += {0:yyyy}",
                 "$var1 <= Time:{0:yyyy}{0:MM}{0:dd}{0:HH}{0:mm}{0:ss}{0:fff}",
                 "$var1"
             };

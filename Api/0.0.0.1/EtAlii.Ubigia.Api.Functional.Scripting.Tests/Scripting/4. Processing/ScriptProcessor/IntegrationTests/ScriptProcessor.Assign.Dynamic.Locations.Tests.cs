@@ -44,11 +44,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Location+=/Europe",
-                "/Location/Europe+=/NL",
-                "/Location/Europe/NL+=/Overijssel",
-                "/Location/Europe/NL/Overijssel+=/Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
+                "/Location+=Europe",
+                "/Location/Europe+=NL",
+                "/Location/Europe/NL+=Overijssel",
+                "/Location/Europe/NL/Overijssel+=Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
             dynamic data = new
@@ -97,11 +97,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Location+=/Europe",
-                "/Location/Europe+=/NL",
-                "/Location/Europe/NL+=/Overijssel",
-                "/Location/Europe/NL/Overijssel+=/Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede+=/Helmerhoek"
+                "/Location+=Europe",
+                "/Location/Europe+=NL",
+                "/Location/Europe/NL+=Overijssel",
+                "/Location/Europe/NL/Overijssel+=Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
             dynamic data = new
@@ -144,11 +144,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Location += /Europe",
-                "/Location/Europe += /NL",
-                "/Location/Europe/NL += /Overijssel",
-                "/Location/Europe/NL/Overijssel += /Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += Europe",
+                "/Location/Europe += NL",
+                "/Location/Europe/NL += Overijssel",
+                "/Location/Europe/NL/Overijssel += Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
             dynamic data = new
@@ -196,11 +196,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Location += /Europe",
-                "/Location/Europe += /NL",
-                "/Location/Europe/NL += /Overijssel",
-                "/Location/Europe/NL/Overijssel += /Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += Europe",
+                "/Location/Europe += NL",
+                "/Location/Europe/NL += Overijssel",
+                "/Location/Europe/NL/Overijssel += Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Local);
@@ -252,11 +252,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Location += /Europe",
-                "/Location/Europe += /NL",
-                "/Location/Europe/NL += /Overijssel",
-                "/Location/Europe/NL/Overijssel += /Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += Europe",
+                "/Location/Europe += NL",
+                "/Location/Europe/NL += Overijssel",
+                "/Location/Europe/NL/Overijssel += Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Utc);
@@ -308,11 +308,11 @@
             // Arrange.
             var addQueries = new[]
             {
-                "/Location += /Europe",
-                "/Location/Europe += /NL",
-                "/Location/Europe/NL += /Overijssel",
-                "/Location/Europe/NL/Overijssel += /Enschede",
-                "<= /Location/Europe/NL/Overijssel/Enschede += /Helmerhoek"
+                "/Location += Europe",
+                "/Location/Europe += NL",
+                "/Location/Europe/NL += Overijssel",
+                "/Location/Europe/NL/Overijssel += Enschede",
+                "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
             var dateTime = new DateTime(2016, 04, 10, 21, 21, 04, DateTimeKind.Unspecified);
