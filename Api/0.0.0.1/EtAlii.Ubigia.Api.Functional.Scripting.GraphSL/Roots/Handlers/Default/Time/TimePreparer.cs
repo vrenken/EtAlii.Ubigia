@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 var rightInput = Observable.Empty<object>();
                 var parameters = new OperatorParameters(scope, pathToAddTo, pathToAdd, leftInput, rightInput, outputObserver);
-                await context.AddByNameToExistingPathProcessor.Process(parameters);
+                await context.AddAbsolutePathToExistingPathProcessor.Process(parameters);
 
                 return Disposable.Empty;
             }).ToHotObservable();

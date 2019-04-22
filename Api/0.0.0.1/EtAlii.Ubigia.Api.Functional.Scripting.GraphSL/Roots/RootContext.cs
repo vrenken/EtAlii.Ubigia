@@ -4,14 +4,14 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public IPathSubjectForOutputConverter Converter { get; }
 
-        public IAddByNameToExistingPathProcessor AddByNameToExistingPathProcessor { get; }
+        public IAddAbsolutePathToExistingPathProcessor AddAbsolutePathToExistingPathProcessor { get; }
 
         internal RootContext(
             IPathSubjectForOutputConverter converter,
-            IAddByNameToExistingPathProcessor addByNameToExistingPathProcessor)
+            IAddAbsolutePathToExistingPathProcessor addAbsolutePathToExistingPathProcessor)
         {
             Converter = converter;
-            AddByNameToExistingPathProcessor = addByNameToExistingPathProcessor;
+            AddAbsolutePathToExistingPathProcessor = addAbsolutePathToExistingPathProcessor;
         }
     }
 }
