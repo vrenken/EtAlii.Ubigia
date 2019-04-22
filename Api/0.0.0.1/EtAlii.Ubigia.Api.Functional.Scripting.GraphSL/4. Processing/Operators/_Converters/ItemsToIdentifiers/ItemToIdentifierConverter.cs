@@ -7,23 +7,23 @@
 
     internal class ItemToIdentifierConverter : IItemToIdentifierConverter
     {
-        private readonly ISelector<object, Func<object, ExecutionScope, Task<Identifier>>> _converterselector;
+        private readonly ISelector<object, Func<object, ExecutionScope, Task<Identifier>>> _converterSelector;
         private readonly IProcessingContext _context;
 
         public ItemToIdentifierConverter(IProcessingContext context)
         {
             _context = context;
-            _converterselector = new Selector<object, Func<object, ExecutionScope, Task<Identifier>>>()
+            _converterSelector = new Selector<object, Func<object, ExecutionScope, Task<Identifier>>>()
                 .Register(item => item is Identifier, ConverterItemAsIdentifierToIdentifier)
                 .Register(item => item is IReadOnlyEntry, ConverterItemAsReadOnlyEntryToIdentifier)
                 .Register(item => item is INode, ConverterItemAsNodeToIdentifier)
                 .Register(item => true, ConverterRootToIdentifier);
         }
 
-        public async Task<Identifier> Convert(object items, ExecutionScope scope)
+        public Task<Identifier> Convert(object items, ExecutionScope scope)
         {
-            var converter = _converterselector.Select(items);
-            return await converter(items, scope);
+            var converter = _converterSelector.Select(items);
+            return converter(items, scope);
         }
 
         private Task<Identifier> ConverterItemAsIdentifierToIdentifier(object item, ExecutionScope scope)
