@@ -10,9 +10,9 @@
             IAddByIdToRelativePathProcessor addByIdToRelativePathProcessor,
             IAddByIdToAbsolutePathProcessor addByIdToAbsolutePathProcessor)
         {
-            this.Register(p => p.RightSubject is VariableSubject && !(p.LeftSubject is EmptySubject), addByIdToRelativePathProcessor)
-                .Register(p => p.RightSubject is VariableSubject && (p.LeftSubject is EmptySubject), addByIdToAbsolutePathProcessor)
-                .Register(p => (p.LeftSubject is EmptySubject), addByNameToAbsolutePathProcessor)
+            this.Register(p => !(p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addByIdToRelativePathProcessor)
+                .Register(p =>  (p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addByIdToAbsolutePathProcessor)
+                .Register(p =>  (p.LeftSubject is EmptySubject), addByNameToAbsolutePathProcessor)
                 .Register(p => !(p.LeftSubject is EmptySubject), addByNameToRelativePathProcessor);
         }
     }
