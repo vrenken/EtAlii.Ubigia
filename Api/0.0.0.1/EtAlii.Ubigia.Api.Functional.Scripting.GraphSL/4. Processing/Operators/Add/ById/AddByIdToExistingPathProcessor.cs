@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal class AddByIdToRelativePathProcessor : IAddByIdToRelativePathProcessor
+    internal class AddByIdToExistingPathProcessor : IAddByIdToExistingPathProcessor
     {
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IProcessingContext _context;
 
-        public AddByIdToRelativePathProcessor(
+        public AddByIdToExistingPathProcessor(
             IProcessingContext context,
             IItemToIdentifierConverter itemToIdentifierConverter)
         {

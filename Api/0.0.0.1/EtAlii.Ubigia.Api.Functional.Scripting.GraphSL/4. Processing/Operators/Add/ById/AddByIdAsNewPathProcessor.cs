@@ -2,7 +2,7 @@
 {
     using System.Threading.Tasks;
 
-    internal class AddByIdToAbsolutePathProcessor : IAddByIdToAbsolutePathProcessor
+    internal class AddByIdAsNewPathProcessor : IAddByIdAsNewPathProcessor
     {
         public Task Process(OperatorParameters parameters)
         {

@@ -5,15 +5,15 @@
     internal class AddOperatorSelector : Selector<OperatorParameters, IAddOperatorSubProcessor>, IAddOperatorSelector
     {
         public AddOperatorSelector(
-            IAddByNameToAbsolutePathProcessor addByNameToAbsolutePathProcessor,
-            IAddByNameToRelativePathProcessor addByNameToRelativePathProcessor,
-            IAddByIdToRelativePathProcessor addByIdToRelativePathProcessor,
-            IAddByIdToAbsolutePathProcessor addByIdToAbsolutePathProcessor)
+            IAddByNameAsNewPathProcessor addByNameAsNewPathProcessor,
+            IAddByNameToExistingPathProcessor addByNameToExistingPathProcessor,
+            IAddByIdToExistingPathProcessor addByIdToExistingPathProcessor,
+            IAddByIdAsNewPathProcessor addByIdAsNewPathProcessor)
         {
-            this.Register(p => !(p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addByIdToRelativePathProcessor)
-                .Register(p =>  (p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addByIdToAbsolutePathProcessor)
-                .Register(p =>  (p.LeftSubject is EmptySubject), addByNameToAbsolutePathProcessor)
-                .Register(p => !(p.LeftSubject is EmptySubject), addByNameToRelativePathProcessor);
+            this.Register(p => !(p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addByIdToExistingPathProcessor)
+                .Register(p =>  (p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addByIdAsNewPathProcessor)
+                .Register(p =>  (p.LeftSubject is EmptySubject), addByNameAsNewPathProcessor)
+                .Register(p => !(p.LeftSubject is EmptySubject), addByNameToExistingPathProcessor);
         }
     }
 }
