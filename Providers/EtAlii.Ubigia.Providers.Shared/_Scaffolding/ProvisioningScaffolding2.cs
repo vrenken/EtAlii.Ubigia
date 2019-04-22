@@ -4,6 +4,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.MicroContainer;
+
 //using EtAlii.Ubigia.Api.Transport.Management.SignalR
     //using EtAlii.Ubigia.Api.Transport.SignalR
 
@@ -28,10 +29,7 @@
                 .Use(_configuration.Address)
                 .Use(_configuration.Account, _configuration.Password);
                 var connection = new ManagementConnectionFactory().Create(configuration);
-                var task = Task.Run(async () =>
-                {
-                    await connection.Open();
-                });
+                var task = Task.Run(async () => await connection.Open() );
                 task.Wait();
                 return connection;
             });
@@ -43,10 +41,7 @@
                     .Use(_configuration.Account, SpaceName.System, _configuration.Password);
                 var connection = new DataConnectionFactory().Create(configuration);
 
-                var task = Task.Run(async () =>
-                {
-                    await connection.Open();
-                });
+                var task = Task.Run(async () => await connection.Open() );
                 task.Wait();
 
                 return _configuration.CreateScriptContext(connection);
