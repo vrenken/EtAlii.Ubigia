@@ -1,11 +1,12 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class AssignTagToOutputOperatorSubProcessor : IAssignTagToOutputOperatorSubProcessor
     {
-        public void Assign(OperatorParameters parameters)
+        public Task Assign(OperatorParameters parameters)
         {
             parameters.RightInput.Subscribe(
                 onError: (e) => parameters.Output.OnError(e),
@@ -15,6 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     var entry = ((IInternalNode)o).Entry;
                     parameters.Output.OnNext(entry.Tag);
                 });
+            return Task.CompletedTask;
         }
     }
 }

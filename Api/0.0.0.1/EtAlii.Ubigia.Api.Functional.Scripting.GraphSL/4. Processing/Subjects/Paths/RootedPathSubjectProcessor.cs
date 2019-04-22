@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class RootedPathSubjectProcessor : IRootedPathSubjectProcessor
     {
@@ -18,7 +19,7 @@
             _processingContext = processingContext;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var pathSubject = (RootedPathSubject) subject;
 
@@ -27,6 +28,8 @@
 
             // And handover the root and following path for root path processing.
             _rootPathProcessor.Process(pathSubject.Root, parts, scope, output, _processingContext.Scope);
+            
+            return Task.CompletedTask;
         }
     }
 }

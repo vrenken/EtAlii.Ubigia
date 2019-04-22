@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public Task Assign(OperatorParameters parameters)
         {
             var value = parameters.RightInput
                 .ToEnumerable()
@@ -46,6 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional
                         //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope)
                         parameters.Output.OnNext(result);
                     });
+            return Task.CompletedTask;
         }
 
         public async Task<INode> Assign(GraphPath path, Identifier location, object o, ExecutionScope scope)

@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal class AssignFunctionToOutputOperatorSubProcessor : IAssignFunctionToOutputOperatorSubProcessor
     {
         private readonly IResultConverterSelector _resultConverterSelector;
@@ -9,7 +11,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _resultConverterSelector = resultConverterSelector;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public Task Assign(OperatorParameters parameters)
         {
             parameters.RightInput.SubscribeAsync(
                 onError: (e) => parameters.Output.OnError(e),
@@ -19,6 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     var outputConverter = _resultConverterSelector.Select(o);
                     await outputConverter(o, parameters.Scope, parameters.Output);
                 });
+            return Task.CompletedTask;
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class RelativePathSubjectProcessor : IRelativePathSubjectProcessor
     {
@@ -25,7 +26,7 @@
             _processingContext = processingContext;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var pathSubject = (RelativePathSubject) subject;
 
@@ -54,6 +55,7 @@
                 output.OnNext(pathSubject);
                 output.OnCompleted();
             }
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     public class SubjectOperatorExecutionPlan : ISubjectExecutionPlan 
     {
@@ -14,7 +15,7 @@
             Subject = new CombinedSubject();
         }
 
-        public IObservable<object> Execute(ExecutionScope scope)
+        public Task<IObservable<object>> Execute(ExecutionScope scope)
         {
             return _operatorExecutionPlan.Execute(scope);
         }

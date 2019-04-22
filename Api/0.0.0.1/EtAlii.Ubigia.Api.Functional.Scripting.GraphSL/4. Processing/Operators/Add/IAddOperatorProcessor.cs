@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal interface IAddOperatorProcessor
     {
-        void Process(OperatorParameters parameters);
+        Task Process(OperatorParameters parameters);
     }
 }

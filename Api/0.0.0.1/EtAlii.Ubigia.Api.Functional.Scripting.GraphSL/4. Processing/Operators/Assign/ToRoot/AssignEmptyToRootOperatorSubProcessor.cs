@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     internal class AssignEmptyToRootOperatorSubProcessor : IAssignEmptyToRootOperatorSubProcessor
     {
@@ -13,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public void Assign(OperatorParameters parameters)
+        public Task Assign(OperatorParameters parameters)
         {
 //            parameters.RightInput
 //                .ToEnumerable()
@@ -38,6 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional
                         parameters.Output.OnError(e);
                     }
                 });
+            return Task.CompletedTask;
         }
     }
 }

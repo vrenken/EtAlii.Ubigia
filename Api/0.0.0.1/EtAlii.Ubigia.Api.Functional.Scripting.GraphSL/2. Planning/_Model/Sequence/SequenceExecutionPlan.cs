@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class SequenceExecutionPlan : ISequenceExecutionPlan
     {
@@ -13,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _startExecutionPlan = startExecutionPlan;
         }
 
-        public IObservable<object> Execute(ExecutionScope scope)
+        public Task<IObservable<object>> Execute(ExecutionScope scope)
         {
             return _startExecutionPlan.Execute(scope);
         }

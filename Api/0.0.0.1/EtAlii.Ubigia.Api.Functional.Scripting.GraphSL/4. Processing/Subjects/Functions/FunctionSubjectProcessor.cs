@@ -2,6 +2,7 @@
 {
     using System;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     internal class FunctionSubjectProcessor : IFunctionSubjectProcessor
     {
@@ -23,7 +24,7 @@
             _argumentSetFinder = argumentSetFinder;
         }
 
-        public void Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var functionSubject = (FunctionSubject)subject;
 
@@ -35,6 +36,8 @@
             var parameterSet = _parameterSetFinder.Find(functionSubject, functionHandler, argumentSet);
 
             functionHandler.Process(_functionContext, parameterSet, argumentSet, Observable.Empty<object>(), scope, output, true);
+            
+            return Task.CompletedTask;
         }
     }
 }

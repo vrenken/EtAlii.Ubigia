@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     public class CommentExecutionPlan : IExecutionPlan
     {
@@ -14,7 +15,7 @@
             OutputType = GetType();
         }
 
-        public IObservable<object> Execute(ExecutionScope scope)
+        public Task<IObservable<object>> Execute(ExecutionScope scope)
         {
             throw new NotImplementedException();
         }

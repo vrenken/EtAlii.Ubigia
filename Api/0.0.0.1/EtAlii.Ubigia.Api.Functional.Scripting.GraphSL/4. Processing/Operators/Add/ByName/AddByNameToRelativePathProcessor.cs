@@ -22,7 +22,7 @@
             _recursiveAdder = recursiveAdder;
         }
 
-        public void Process(OperatorParameters parameters)
+        public Task Process(OperatorParameters parameters)
         {
             var pathToAdd = GetPathToAdd(parameters);
             if (pathToAdd == null)
@@ -48,6 +48,7 @@
                     var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
                     await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
                 });
+            return Task.CompletedTask;
         }
 
         private PathSubject GetPathToAdd(OperatorParameters parameters)

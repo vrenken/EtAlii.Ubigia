@@ -2,6 +2,7 @@
 {
     using System;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     public static class SubjectExecutionPlan
     {
@@ -18,9 +19,9 @@
                 Subject = new EmptySubject();
             }
 
-            public IObservable<object> Execute(ExecutionScope scope)
+            public Task<IObservable<object>> Execute(ExecutionScope scope)
             {
-                return Observable.Empty<object>();
+                return Task.FromResult<IObservable<object>>(Observable.Empty<object>()); 
             }
 
             public override string ToString()

@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal class RemoveOperatorProcessor : IRemoveOperatorProcessor
     {
         private readonly IRemoveOperatorSelector _selector;
@@ -9,10 +11,11 @@
             _selector = selector;
         }
 
-        public void Process(OperatorParameters parameters)
+        public Task Process(OperatorParameters parameters)
         {
             var removeOperator = _selector.Select(parameters);
             removeOperator.Process(parameters);
+            return Task.CompletedTask;
         }
     }
 }
