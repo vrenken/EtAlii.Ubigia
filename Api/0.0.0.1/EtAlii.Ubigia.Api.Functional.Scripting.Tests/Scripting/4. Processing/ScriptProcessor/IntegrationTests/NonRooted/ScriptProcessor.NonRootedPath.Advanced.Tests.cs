@@ -322,7 +322,7 @@
             Assert.Equal("Jöhnny", result.Skip(4).First().ToString());
         }
 
-        [Fact(Skip = "Tags not yet completely operational"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Children_Should_Not_Clear_Assign()
         {
             // Arrange.
@@ -448,7 +448,7 @@
         }
 
 
-        [Fact(Skip = "Tags not yet completely operational"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Variables()
         {
             // Arrange.
@@ -571,7 +571,7 @@
 
         }
 
-        [Fact(Skip = "Tags not yet completely operational"), Trait("Category", TestAssembly.Category)]
+        [Fact, Trait("Category", TestAssembly.Category)]
         public async Task ScriptProcessor_NonRootedPath_Add_Friends_Using_Paths()
         {
             // Arrange.
@@ -597,10 +597,10 @@
             
             var linkQueries = new[]
             {
-                "/Person/Stark/Tony/Friends += /Person/Doe/John",
-                "/Person/Doe/John/Friends += /Person/Stark/Tony",
-                "/Person/Doe/John/Friends += /Person/Doe/Jane",
-                "/Person/Doe/Jane/Friends += /Person/Doe/John",
+                "/Person/Stark/Tony/Friends += Person/Doe/John",
+                "/Person/Doe/John/Friends += Person/Stark/Tony",
+                "/Person/Doe/John/Friends += Person/Doe/Jane",
+                "/Person/Doe/Jane/Friends += Person/Doe/John",
             };
 
             var addQuery = String.Join("\r\n", addQueries);

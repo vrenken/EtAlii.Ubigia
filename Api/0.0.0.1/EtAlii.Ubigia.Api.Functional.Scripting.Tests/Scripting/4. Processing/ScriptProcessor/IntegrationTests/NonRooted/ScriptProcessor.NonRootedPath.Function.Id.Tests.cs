@@ -11,8 +11,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-
-    
     public class ScriptProcessorNonRootedPathFunctionId : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -161,7 +159,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             // Arrange.
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            const string query = "$var1 <= /Person += /Doe/Jane\r\n$var2 <= id(/Person/Doe/Jane)";
+            const string query = "$var1 <= /Person += Doe/Jane\r\n$var2 <= id(/Person/Doe/Jane)";
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()

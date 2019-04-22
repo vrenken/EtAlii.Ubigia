@@ -11,7 +11,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-    
     public class ScriptProcessorLogicalAddTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -237,7 +236,7 @@
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Act.
-            var addScript = _parser.Parse("/Person/LastName += /SurName").Script;
+            var addScript = _parser.Parse("/Person/LastName += SurName").Script;
             lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(selectScript);
@@ -271,7 +270,7 @@
             dynamic beforeResult = await lastSequence.Output.SingleOrDefaultAsync();
 
             // Act.
-            var addScript = _parser.Parse("/Person/LastName += /\"SurName\"").Script;
+            var addScript = _parser.Parse("/Person/LastName += \"SurName\"").Script;
             lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             lastSequence = await processor.Process(selectScript);
