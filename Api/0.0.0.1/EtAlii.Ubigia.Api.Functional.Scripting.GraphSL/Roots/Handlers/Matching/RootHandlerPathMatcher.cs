@@ -39,18 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 var matcher = _rootHandlerPathPartMatcherSelector.Select(templatePart);
 
                 // 2. Find first matching rest.
-                MatchResult match;
-                if (isFirst)
-                {
-                    match = matches[0];
-                    isFirst = false;
-                }
-                else
-                {
-                    match = FindFirstMatchingResult(rootHandler, matches, templatePart, matcher, scope);
-                    result.AddRange(match.Match);
-                }
-                rest = match.Rest;
+                rest = FindMatchingRest(scope, rootHandler, matches, templatePart, matcher, result, ref isFirst);
 
                 // 3. Get all matches + rests
                 var parameters = new MatchParameters(rootHandler, templatePart, rest, scope);
@@ -72,32 +61,38 @@ namespace EtAlii.Ubigia.Api.Functional
                     .ToArray();
             }
 
-            if (templateParts.Count == 0 && (result.Count > 0 || isFirst))
+            return templateParts.Count == 0 && (result.Count > 0 || isFirst)
+                ? new MatchResult(rootHandler, result.ToArray(), rest) // 5. if we do have matches: Add match to result.
+                : MatchResult.NoMatch; // 6. If we do not have matches: fail.
+        }
+
+        private PathSubjectPart[] FindMatchingRest(
+            IScriptScope scope, 
+            IRootHandler rootHandler, 
+            MatchResult[] matches,
+            PathSubjectPart templatePart, 
+            IRootHandlerPathPartMatcher matcher, 
+            List<PathSubjectPart> result, ref bool isFirst)
+        {
+            MatchResult match;
+            if (isFirst)
             {
-                // 5. if we do have matches: Add match to result.
-                return new MatchResult(rootHandler, result.ToArray(), rest);
+                match = matches[0];
+                isFirst = false;
             }
             else
             {
-                // 6. If we do not have matches: fail.
-                return MatchResult.NoMatch;
+                match = matches.FirstOrDefault(m =>
+                       {
+                           var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
+                           var canMatch = matcher.CanMatch(parameters);
+                           return canMatch;
+                       }) ?? MatchResult.NoMatch;
+                result.AddRange(match.Match);
             }
-        }
 
-        private MatchResult FindFirstMatchingResult(
-            IRootHandler rootHandler,
-            MatchResult[] matches, 
-            PathSubjectPart templatePart, 
-            IRootHandlerPathPartMatcher matcher, 
-            IScriptScope scope)
-        {
-            return matches
-                .FirstOrDefault(m =>
-                {
-                    var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
-                    var canMatch = matcher.CanMatch(parameters);
-                    return canMatch;
-                }) ?? MatchResult.NoMatch;
+            var rest = match.Rest;
+            return rest;
         }
     }
 }
