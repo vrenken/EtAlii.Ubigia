@@ -8,14 +8,14 @@
     internal abstract class AddToExistingPathProcessorBase
     {
         private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
-        private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
+        protected IItemToIdentifierConverter ItemToIdentifierConverter { get; }
 
         protected AddToExistingPathProcessorBase(
             IItemToPathSubjectConverter itemToPathSubjectConverter,
             IItemToIdentifierConverter itemToIdentifierConverter)
         {
             _itemToPathSubjectConverter = itemToPathSubjectConverter;
-            _itemToIdentifierConverter = itemToIdentifierConverter;
+            ItemToIdentifierConverter = itemToIdentifierConverter;
         }
 
         public async Task Process(OperatorParameters parameters)
@@ -39,9 +39,9 @@
             parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
-                onNext: async o =>
+                onNext: async o => 
                 {
-                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    var leftId = await ItemToIdentifierConverter.Convert(o, parameters.Scope);
                     await Add(leftId, pathToAdd, parameters.Scope, parameters.Output);
                 });
         }

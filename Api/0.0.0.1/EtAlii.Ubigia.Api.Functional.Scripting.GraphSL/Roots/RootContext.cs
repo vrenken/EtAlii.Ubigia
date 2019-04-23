@@ -1,17 +1,18 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    // TODO: Remove this and replace it by the ProcessingContext.
     internal class RootContext : IRootContext
     {
         public IPathSubjectForOutputConverter Converter { get; }
 
-        public IAddAbsolutePathToExistingPathProcessor AddAbsolutePathToExistingPathProcessor { get; }
+        public IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; }
 
         internal RootContext(
-            IPathSubjectForOutputConverter converter,
-            IAddAbsolutePathToExistingPathProcessor addAbsolutePathToExistingPathProcessor)
+            IPathSubjectForOutputConverter converter, 
+            IAddRelativePathToExistingPathProcessor addRelativePathToExistingPathProcessor)
         {
             Converter = converter;
-            AddAbsolutePathToExistingPathProcessor = addAbsolutePathToExistingPathProcessor;
+            AddRelativePathToExistingPathProcessor = addRelativePathToExistingPathProcessor;
         }
     }
 }
