@@ -49,7 +49,7 @@
             AbsolutePathSubjectProcessor = absolutePathSubjectProcessor;
             RelativePathSubjectProcessor = relativePathSubjectProcessor;
             RootedPathSubjectProcessor = rootedPathSubjectProcessor;
-            PathProcessor = pathProcessor;
+            PathProcessor = pathProcessor; 
         }
     }
 }
