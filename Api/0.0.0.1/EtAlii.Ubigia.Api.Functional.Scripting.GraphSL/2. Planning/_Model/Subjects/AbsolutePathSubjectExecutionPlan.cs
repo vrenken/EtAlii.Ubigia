@@ -7,10 +7,8 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         private readonly IAbsolutePathSubjectProcessor _processor;
 
-        public AbsolutePathSubjectExecutionPlan(
-            AbsolutePathSubject subject,
-            IAbsolutePathSubjectProcessor processor)
-            :base (subject)
+        public AbsolutePathSubjectExecutionPlan(AbsolutePathSubject subject, IAbsolutePathSubjectProcessor processor)
+            : base (subject)
         {
             _processor = processor;
         }
