@@ -2,17 +2,17 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class AbsolutePathSubjectExecutionPlanner : IAbsolutePathSubjectExecutionPlanner
     {
-        private readonly IAbsolutePathSubjectProcessor _processor;
+        private readonly IProcessingContext _processingContext;
 
-        public AbsolutePathSubjectExecutionPlanner(IAbsolutePathSubjectProcessor processor)
+        public AbsolutePathSubjectExecutionPlanner(IProcessingContext processingContext)
         {
-            _processor = processor;
+            _processingContext = processingContext;
         }
 
         public ISubjectExecutionPlan Plan(SequencePart part)
         {
             var pathSubject = (AbsolutePathSubject)part;
-            return new AbsolutePathSubjectExecutionPlan(pathSubject, _processor);
+            return new AbsolutePathSubjectExecutionPlan(pathSubject, _processingContext.AbsolutePathSubjectProcessor);
         }
     }
 }

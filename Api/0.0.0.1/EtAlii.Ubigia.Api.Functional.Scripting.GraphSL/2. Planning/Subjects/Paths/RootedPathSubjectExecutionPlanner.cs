@@ -2,17 +2,17 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class RootedPathSubjectExecutionPlanner : IRootedPathSubjectExecutionPlanner
     {
-        private readonly IRootedPathSubjectProcessor _processor;
+        private readonly IProcessingContext _processingContext;
 
-        public RootedPathSubjectExecutionPlanner(IRootedPathSubjectProcessor processor)
+        public RootedPathSubjectExecutionPlanner(IProcessingContext processingContext)
         {
-            _processor = processor;
+            _processingContext = processingContext;
         }
 
         public ISubjectExecutionPlan Plan(SequencePart part)
         {
             var pathSubject = (RootedPathSubject)part;
-            return new RootedPathSubjectExecutionPlan(pathSubject, _processor);
+            return new RootedPathSubjectExecutionPlan(pathSubject, _processingContext.RootedPathSubjectProcessor);
         }
     }
 }
