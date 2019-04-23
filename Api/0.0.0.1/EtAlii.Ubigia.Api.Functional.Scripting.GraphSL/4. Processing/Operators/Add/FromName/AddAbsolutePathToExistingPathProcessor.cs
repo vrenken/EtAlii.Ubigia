@@ -19,7 +19,7 @@
             _processingContext = processingContext;
         }
 
-        protected override Task Add(Identifier parentId, PathSubject pathToAdd, ExecutionScope scope, IObserver<object> output)
+        protected override Task Add(Identifier id, PathSubject pathToAdd, ExecutionScope scope, IObserver<object> output)
         {
             var absolutePathSubjectToAdd = (AbsolutePathSubject )pathToAdd;
             var inputObservable = Observable.Create<object>(async observer =>
@@ -35,7 +35,7 @@
                 onNext: async o =>
                 {
                     var identifierToAdd = await this.ItemToIdentifierConverter.Convert(o, scope);
-                    var newEntry = await _processingContext.Logical.Nodes.Add(parentId, identifierToAdd, scope);
+                    var newEntry = await _processingContext.Logical.Nodes.Add(id, identifierToAdd, scope);
                     var result = new DynamicNode(newEntry);
                     output.OnNext(result);
                 });

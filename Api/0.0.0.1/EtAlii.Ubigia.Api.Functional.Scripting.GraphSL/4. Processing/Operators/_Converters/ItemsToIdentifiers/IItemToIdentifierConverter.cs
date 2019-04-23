@@ -4,6 +4,6 @@
 
     internal interface IItemToIdentifierConverter
     {
-        Task<Identifier> Convert(object items, ExecutionScope scope);
+        Task<Identifier> Convert(object item, ExecutionScope scope);
     }
 }
