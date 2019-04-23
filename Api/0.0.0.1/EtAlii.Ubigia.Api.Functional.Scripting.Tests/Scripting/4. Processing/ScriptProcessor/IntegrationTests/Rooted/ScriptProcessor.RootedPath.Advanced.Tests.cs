@@ -440,7 +440,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_RootedPath_Children_Should_Not_Clear_Assign()
+        public async Task ScriptProcessor_RootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
@@ -485,7 +485,7 @@
             Assert.NotEmpty(result);
             Assert.NotNull(tagBefore);
             Assert.NotNull(tagAfter);
-            Assert.NotEqual("FamilyName", tagBefore);
+            Assert.Equal("FamilyName", tagBefore);
             Assert.Equal("FamilyName", tagAfter);
         }
 
@@ -604,22 +604,22 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var linkQuery = String.Join("\r\n", linkQueries);
-            var nodeSelectQuery1 = "Person:Doe/John";
-            var nodeSelectQuery2 = "Person:Doe/Jane";
-            var nodeSelectQuery3 = "Person:Stark/Tony";
+            var nodeSelectQueryJohn = "Person:Doe/John";
+            var nodeSelectQueryJane = "Person:Doe/Jane";
+            var nodeSelectQueryTony = "Person:Stark/Tony";
 
-            var friendsSelectQuery1 = "Person:Doe/John/Friends/#FirstName";
-            var friendsSelectQuery2 = "Person:Doe/Jane/Friends/#FirstName";
-            var friendsSelectQuery3 = "Person:Stark/Tony/Friends/#FirstName";
+            var friendsSelectQueryJohn = "Person:Doe/John/Friends/#FirstName";
+            var friendsSelectQueryJane = "Person:Doe/Jane/Friends/#FirstName";
+            var friendsSelectQueryTony = "Person:Stark/Tony/Friends/#FirstName";
 
             var addScript = _parser.Parse(addQuery).Script;
             var linkScript = _parser.Parse(linkQuery).Script;
-            var nodeSelectScript1 = _parser.Parse(nodeSelectQuery1).Script;
-            var nodeSelectScript2 = _parser.Parse(nodeSelectQuery2).Script;
-            var nodeSelectScript3 = _parser.Parse(nodeSelectQuery3).Script;
-            var friendsSelectScript1 = _parser.Parse(friendsSelectQuery1).Script;
-            var friendsSelectScript2 = _parser.Parse(friendsSelectQuery2).Script;
-            var friendsSelectScript3 = _parser.Parse(friendsSelectQuery3).Script;
+            var nodeSelectScriptJohn = _parser.Parse(nodeSelectQueryJohn).Script;
+            var nodeSelectScriptJane = _parser.Parse(nodeSelectQueryJane).Script;
+            var nodeSelectScriptTony = _parser.Parse(nodeSelectQueryTony).Script;
+            var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn).Script;
+            var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
+            var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
 
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -632,63 +632,63 @@
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             
-            lastSequence = await processor.Process(nodeSelectScript1);
+            lastSequence = await processor.Process(nodeSelectScriptJohn);
             var result = await lastSequence.Output.ToArray();
-            var beforeNodeCount1 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript2);
+            var beforeNodeCountJohn = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var beforeNodeCount2 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript3);
+            var beforeNodeCountJane = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var beforeNodeCount3 = result.Length;
+            var beforeNodeCountTony = result.Length;
             
-            lastSequence = await processor.Process(friendsSelectScript1);
+            lastSequence = await processor.Process(friendsSelectScriptJohn);
             result = await lastSequence.Output.ToArray();
-            var beforeFriendCount1 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript2);
+            var beforeFriendCountJohn = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var beforeFriendCount2 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript3);
+            var beforeFriendCountJane = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var beforeFriendCount3 = result.Length;
+            var beforeFriendCountTony = result.Length;
 
             lastSequence = await processor.Process(linkScript);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(nodeSelectScript1);
-            result = await lastSequence.Output.ToArray();
-            var afterNodeCount1 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript2);
-            result = await lastSequence.Output.ToArray();
-            var afterNodeCount2 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript3);
-            result = await lastSequence.Output.ToArray();
-            var afterNodeCount3 = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptJohn);
+            var afterNodesJohn = result = await lastSequence.Output.ToArray();
+            var afterNodeCountJohn = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptJane);
+            var afterNodesJane = result = await lastSequence.Output.ToArray();
+            var afterNodeCountJane = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptTony);
+            var afterNodesTony = result = await lastSequence.Output.ToArray();
+            var afterNodeCountTony = result.Length;
             
-            lastSequence = await processor.Process(friendsSelectScript1);
-            result = await lastSequence.Output.ToArray();
-            var afterFriendCount1 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript2);
-            result = await lastSequence.Output.ToArray();
-            var afterFriendCount2 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript3);
-            result = await lastSequence.Output.ToArray();
-            var afterFriendCount3 = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptJohn);
+            var afterFriendsJohn = result = await lastSequence.Output.ToArray();
+            var afterFriendCountJohn = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptJane);
+            var afterFriendsJane = result = await lastSequence.Output.ToArray();
+            var afterFriendCountJane = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptTony);
+            var afterFriendsTony = result = await lastSequence.Output.ToArray();
+            var afterFriendCountTony = result.Length;
 
             // Assert.
-            Assert.Equal(1, beforeNodeCount1);
-            Assert.Equal(1, beforeNodeCount2);
-            Assert.Equal(1, beforeNodeCount3);
-            Assert.Equal(0, beforeFriendCount1);
-            Assert.Equal(0, beforeFriendCount2);
-            Assert.Equal(0, beforeFriendCount3);
+            Assert.Equal(1, beforeNodeCountJohn);
+            Assert.Equal(1, beforeNodeCountJane);
+            Assert.Equal(1, beforeNodeCountTony);
+            Assert.Equal(0, beforeFriendCountJohn);
+            Assert.Equal(0, beforeFriendCountJane);
+            Assert.Equal(0, beforeFriendCountTony);
             
-            Assert.Equal(1, afterNodeCount1);
-            Assert.Equal(1, afterNodeCount2);
-            Assert.Equal(1, afterNodeCount3);
-            Assert.Equal(2, afterFriendCount1);
-            Assert.Equal(1, afterFriendCount2);
-            Assert.Equal(1, afterFriendCount3);
+            Assert.Equal(1, afterNodeCountJohn);
+            Assert.Equal(1, afterNodeCountJane);
+            Assert.Equal(1, afterNodeCountTony);
+            Assert.Equal(2, afterFriendCountJohn);
+            Assert.Equal(1, afterFriendCountJane);
+            Assert.Equal(1, afterFriendCountTony);
 
         }
 
@@ -726,22 +726,22 @@
 
             var addQuery = String.Join("\r\n", addQueries);
             var linkQuery = String.Join("\r\n", linkQueries);
-            var nodeSelectQuery1 = "Person:Doe/John";
-            var nodeSelectQuery2 = "Person:Doe/Jane";
-            var nodeSelectQuery3 = "Person:Stark/Tony";
+            var nodeSelectQueryJohn = "Person:Doe/John";
+            var nodeSelectQueryJane = "Person:Doe/Jane";
+            var nodeSelectQueryTony = "Person:Stark/Tony";
 
-            var friendsSelectQuery1 = "Person:Doe/John/Friends/#FirstName";
-            var friendsSelectQuery2 = "Person:Doe/Jane/Friends/#FirstName";
-            var friendsSelectQuery3 = "Person:Stark/Tony/Friends/#FirstName";
+            var friendsSelectQueryJohn = "Person:Doe/John/Friends/#FirstName";
+            var friendsSelectQueryJane = "Person:Doe/Jane/Friends/#FirstName";
+            var friendsSelectQueryTony = "Person:Stark/Tony/Friends/#FirstName";
 
             var addScript = _parser.Parse(addQuery).Script;
             var linkScript = _parser.Parse(linkQuery).Script;
-            var nodeSelectScript1 = _parser.Parse(nodeSelectQuery1).Script;
-            var nodeSelectScript2 = _parser.Parse(nodeSelectQuery2).Script;
-            var nodeSelectScript3 = _parser.Parse(nodeSelectQuery3).Script;
-            var friendsSelectScript1 = _parser.Parse(friendsSelectQuery1).Script;
-            var friendsSelectScript2 = _parser.Parse(friendsSelectQuery2).Script;
-            var friendsSelectScript3 = _parser.Parse(friendsSelectQuery3).Script;
+            var nodeSelectScriptJohn = _parser.Parse(nodeSelectQueryJohn).Script;
+            var nodeSelectScriptJane = _parser.Parse(nodeSelectQueryJane).Script;
+            var nodeSelectScriptTony = _parser.Parse(nodeSelectQueryTony).Script;
+            var friendsSelectScriptJohn = _parser.Parse(friendsSelectQueryJohn).Script;
+            var friendsSelectScriptJane = _parser.Parse(friendsSelectQueryJane).Script;
+            var friendsSelectScriptTony = _parser.Parse(friendsSelectQueryTony).Script;
 
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -754,63 +754,63 @@
             var lastSequence = await processor.Process(addScript);
             await lastSequence.Output.ToArray();
             
-            lastSequence = await processor.Process(nodeSelectScript1);
+            lastSequence = await processor.Process(nodeSelectScriptJohn);
             var result = await lastSequence.Output.ToArray();
-            var beforeNodeCount1 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript2);
+            var beforeNodeCountJohn = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var beforeNodeCount2 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript3);
+            var beforeNodeCountJane = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var beforeNodeCount3 = result.Length;
+            var beforeNodeCountTony = result.Length;
             
-            lastSequence = await processor.Process(friendsSelectScript1);
+            lastSequence = await processor.Process(friendsSelectScriptJohn);
             result = await lastSequence.Output.ToArray();
-            var beforeFriendCount1 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript2);
+            var beforeFriendCountJohn = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var beforeFriendCount2 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript3);
+            var beforeFriendCountJane = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var beforeFriendCount3 = result.Length;
+            var beforeFriendCountTony = result.Length;
 
             lastSequence = await processor.Process(linkScript);
             await lastSequence.Output.ToArray();
 
-            lastSequence = await processor.Process(nodeSelectScript1);
+            lastSequence = await processor.Process(nodeSelectScriptJohn);
             result = await lastSequence.Output.ToArray();
-            var afterNodeCount1 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript2);
+            var afterNodeCountJohn = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var afterNodeCount2 = result.Length;
-            lastSequence = await processor.Process(nodeSelectScript3);
+            var afterNodeCountJane = result.Length;
+            lastSequence = await processor.Process(nodeSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var afterNodeCount3 = result.Length;
+            var afterNodeCountTony = result.Length;
             
-            lastSequence = await processor.Process(friendsSelectScript1);
+            lastSequence = await processor.Process(friendsSelectScriptJohn);
+            var afterFriendsJohn = result = await lastSequence.Output.ToArray();
+            var afterFriendCountJohn = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var afterFriendCount1 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript2);
+            var afterFriendCountJane = result.Length;
+            lastSequence = await processor.Process(friendsSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var afterFriendCount2 = result.Length;
-            lastSequence = await processor.Process(friendsSelectScript3);
-            result = await lastSequence.Output.ToArray();
-            var afterFriendCount3 = result.Length;
+            var afterFriendCountTony = result.Length;
 
             // Assert.
-            Assert.Equal(1, beforeNodeCount1);
-            Assert.Equal(1, beforeNodeCount2);
-            Assert.Equal(1, beforeNodeCount3);
-            Assert.Equal(0, beforeFriendCount1);
-            Assert.Equal(0, beforeFriendCount2);
-            Assert.Equal(0, beforeFriendCount3);
+            Assert.Equal(1, beforeNodeCountJohn);
+            Assert.Equal(1, beforeNodeCountJane);
+            Assert.Equal(1, beforeNodeCountTony);
+            Assert.Equal(0, beforeFriendCountJohn);
+            Assert.Equal(0, beforeFriendCountJane);
+            Assert.Equal(0, beforeFriendCountTony);
             
-            Assert.Equal(1, afterNodeCount1);
-            Assert.Equal(1, afterNodeCount2);
-            Assert.Equal(1, afterNodeCount3);
-            Assert.Equal(2, afterFriendCount1);
-            Assert.Equal(1, afterFriendCount2);
-            Assert.Equal(1, afterFriendCount3);
+            Assert.Equal(1, afterNodeCountJohn);
+            Assert.Equal(1, afterNodeCountJane);
+            Assert.Equal(1, afterNodeCountTony);
+            Assert.Equal(2, afterFriendCountJohn);
+            Assert.Equal(1, afterFriendCountJane);
+            Assert.Equal(1, afterFriendCountTony);
         }
     }
 }

@@ -323,7 +323,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public async Task ScriptProcessor_NonRootedPath_Children_Should_Not_Clear_Assign()
+        public async Task ScriptProcessor_NonRootedPath_Children_Should_Not_Clear_Assigned_Tag()
         {
             // Arrange.
             var logicalContext = await _testContext.CreateLogicalContext(true);
@@ -368,7 +368,7 @@
             Assert.NotEmpty(result);
             Assert.NotNull(tagBefore);
             Assert.NotNull(tagAfter);
-            Assert.NotEqual("FamilyName", tagBefore);
+            Assert.Equal("FamilyName", tagBefore);
             Assert.Equal("FamilyName", tagAfter);
         }
 
@@ -455,15 +455,15 @@
             var logicalContext = await _testContext.CreateLogicalContext(true);
             var addQueries = new []
             {
-                "/Person/+=Doe/John",
+                "/Person+=Doe/John",
                 "/Person/Doe/John# <= FirstName",
-                "/Person/Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }",
+                "/Person/Doe/John <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }",
                 "/Person/Doe/John += Friends",
-                "/Person/+=Doe/Jane",
+                "/Person+=Doe/Jane",
                 "/Person/Doe/Jane# <= FirstName",
                 "/Person/Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }",
                 "/Person/Doe/Jane += Friends",
-                "/Person/+=Stark/Tony",
+                "/Person+=Stark/Tony",
                 "/Person/Stark/Tony# <= FirstName",
                 "/Person/Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
                 "/Person/Stark/Tony += Friends",
@@ -513,13 +513,13 @@
             
             lastSequence = await processor.Process(nodeSelectScriptJohn);
             var result = await lastSequence.Output.ToArray();
-            var beforeNodeCount1 = result.Length;
+            var beforeNodeCountJohn = result.Length;
             lastSequence = await processor.Process(nodeSelectScriptJane);
             result = await lastSequence.Output.ToArray();
-            var beforeNodeCount2 = result.Length;
+            var beforeNodeCountJane = result.Length;
             lastSequence = await processor.Process(nodeSelectScriptTony);
             result = await lastSequence.Output.ToArray();
-            var beforeNodeCount3 = result.Length;
+            var beforeNodeCountTony = result.Length;
             
             lastSequence = await processor.Process(friendsSelectScriptJohn);
             result = await lastSequence.Output.ToArray();
@@ -535,29 +535,29 @@
             await lastSequence.Output.ToArray();
 
             lastSequence = await processor.Process(nodeSelectScriptJohn);
-            result = await lastSequence.Output.ToArray();
+            var afterNodesJohn = result = await lastSequence.Output.ToArray();
             var afterNodeCountJohn = result.Length;
             lastSequence = await processor.Process(nodeSelectScriptJane);
-            result = await lastSequence.Output.ToArray();
+            var afterNodesJane = result = await lastSequence.Output.ToArray();
             var afterNodeCountJane = result.Length;
             lastSequence = await processor.Process(nodeSelectScriptTony);
-            result = await lastSequence.Output.ToArray();
+            var afterNodesTony = result = await lastSequence.Output.ToArray();
             var afterNodeCountTony = result.Length;
             
             lastSequence = await processor.Process(friendsSelectScriptJohn);
-            result = await lastSequence.Output.ToArray();
+            var afterFriendsJohn = result = await lastSequence.Output.ToArray();
             var afterFriendCountJohn = result.Length;
             lastSequence = await processor.Process(friendsSelectScriptJane);
-            result = await lastSequence.Output.ToArray();
+            var afterFriendsJane = result = await lastSequence.Output.ToArray();
             var afterFriendCountJane = result.Length;
             lastSequence = await processor.Process(friendsSelectScriptTony);
-            result = await lastSequence.Output.ToArray();
+            var afterFriendsTony = result = await lastSequence.Output.ToArray();
             var afterFriendCountTony = result.Length;
 
             // Assert.
-            Assert.Equal(1, beforeNodeCount1);
-            Assert.Equal(1, beforeNodeCount2);
-            Assert.Equal(1, beforeNodeCount3);
+            Assert.Equal(1, beforeNodeCountJohn);
+            Assert.Equal(1, beforeNodeCountJane);
+            Assert.Equal(1, beforeNodeCountTony);
             Assert.Equal(0, beforeFriendCountJohn);
             Assert.Equal(0, beforeFriendCountJane);
             Assert.Equal(0, beforeFriendCountTony);
@@ -578,15 +578,15 @@
             var logicalContext = await _testContext.CreateLogicalContext(true);
             var addQueries = new []
             {
-                "/Person/+=Doe/John",
+                "/Person+=Doe/John",
                 "/Person/Doe/John# <= FirstName",
                 "/Person/Doe/John <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }",
                 "/Person/Doe/John += Friends",
-                "/Person/+=Doe/Jane",
+                "/Person+=Doe/Jane",
                 "/Person/Doe/Jane# <= FirstName",
                 "/Person/Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }",
                 "/Person/Doe/Jane += Friends",
-                "/Person/+=Stark/Tony",
+                "/Person+=Stark/Tony",
                 "/Person/Stark/Tony# <= FirstName",
                 "/Person/Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
                 "/Person/Stark/Tony += Friends",
@@ -597,10 +597,10 @@
             
             var linkQueries = new[]
             {
-                "/Person/Stark/Tony/Friends += Person/Doe/John",
-                "/Person/Doe/John/Friends += Person/Stark/Tony",
-                "/Person/Doe/John/Friends += Person/Doe/Jane",
-                "/Person/Doe/Jane/Friends += Person/Doe/John",
+                "/Person/Stark/Tony/Friends += /Person/Doe/John",
+                "/Person/Doe/John/Friends += /Person/Stark/Tony",
+                "/Person/Doe/John/Friends += /Person/Doe/Jane",
+                "/Person/Doe/Jane/Friends += /Person/Doe/John",
             };
 
             var addQuery = String.Join("\r\n", addQueries);
@@ -609,7 +609,7 @@
             var nodeSelectQueryJane = "/Person/Doe/Jane";
             var nodeSelectQueryTony = "/Person/Stark/Tony";
 
-            var friendsSelectQueryJohn = "/Person/Doe/John/Friends/";
+            var friendsSelectQueryJohn = "/Person/Doe/John/Friends/#FirstName";
             var friendsSelectQueryJane = "/Person/Doe/Jane/Friends/#FirstName";
             var friendsSelectQueryTony = "/Person/Stark/Tony/Friends/#FirstName";
 
@@ -667,7 +667,7 @@
             var afterNodeCountTony = result.Length;
             
             lastSequence = await processor.Process(friendsSelectScriptJohn);
-            result = await lastSequence.Output.ToArray();
+            var afterFriendsJohn = result = await lastSequence.Output.ToArray();
             var afterFriendCountJohn = result.Length;
             lastSequence = await processor.Process(friendsSelectScriptJane);
             result = await lastSequence.Output.ToArray();
