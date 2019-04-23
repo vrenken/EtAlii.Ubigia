@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var variableName = ((VariablePathSubjectPart)pathSubjectPart).Name;
             if (!_context.Scope.Variables.TryGetValue(variableName, out var variable))
             {
-                throw new ScriptProcessingException($"Variable {variableName} not set");
+                throw new ScriptProcessingException($"Variable {variableName} not set"); 
             }
 
             if (variable == null)
