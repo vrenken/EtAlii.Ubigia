@@ -34,7 +34,7 @@
 
 //				response = _items.Get(authenticationToken.Name)
 //			]
-//			catch (Exception e)
+//			catch [Exception ex]
 //			[
 //				throw new InvalidOperationException("Unable to serve a Account GET client request", e)
 //			]

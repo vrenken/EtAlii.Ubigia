@@ -22,7 +22,7 @@
 //            [
 //                response = (ContentDefinition)_items.Get(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a ContentDefinition GET client request", e)
 //            ]
@@ -39,7 +39,7 @@
 //                // Send the updated event.
 //                SignalUpdated(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e)
 //            ]
@@ -59,7 +59,7 @@
 //                // Send the updated event.
 //                SignalUpdated(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a ContentDefinition POST client request", e)
 //            ]

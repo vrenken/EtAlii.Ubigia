@@ -52,9 +52,9 @@
             {
                 throw new ScriptParserException("A traversing wildcard path part cannot be combined with other constant, tagged, wildcard or string path parts.");
             }
-            //else if (partIndex = = 0 | | partIndex = = 1 & & (before is VariablePathSubjectPart) = = false)
+            //else if [partIndex = = 0 | | partIndex = = 1 & & [before is VariablePathSubjectPart] = = false]
             //[
-            //    throw new ScriptParserException("A traversing wildcard path part cannot be used at the beginning of a graph path.")
+            //    throw new ScriptParserException["A traversing wildcard path part cannot be used at the beginning of a graph path."]
             //    Not true with rooted paths.
             //]
         }

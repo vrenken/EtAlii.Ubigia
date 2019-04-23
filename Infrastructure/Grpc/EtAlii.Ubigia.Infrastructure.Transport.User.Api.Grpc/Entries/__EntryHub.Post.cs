@@ -17,7 +17,7 @@
 //                // Send the prepared event.
 //                SignalPrepared(response.Id)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Entry POST client request", e)
 //            ]

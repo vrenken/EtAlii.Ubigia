@@ -33,7 +33,7 @@
 //            [
 //                response = _items.GetAll(accountId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Space GET client request", e)
 //            ]
@@ -46,7 +46,7 @@
 //			[
 //				response = _items.Get(accountId, spaceName)
 //			]
-//			catch (Exception e)
+//			catch [Exception ex]
 //			[
 //				throw new InvalidOperationException("Unable to serve a Space GET client request", e)
 //			]
@@ -66,7 +66,7 @@
 
 //				response = _items.Get(account.Id, spaceName)
 //			]
-//			catch (Exception e)
+//			catch [Exception ex]
 //			[
 //				throw new InvalidOperationException("Unable to serve a Space GET client request", e)
 //			]
@@ -80,7 +80,7 @@
 //            [
 //                response = _items.GetAll()
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Space GET client request", e)
 //            ]
@@ -94,7 +94,7 @@
 //            [
 //                response = _items.Get(spaceId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Space GET client request", e)
 //            ]
@@ -109,7 +109,7 @@
 //                var template = SpaceTemplate.All.Single(t => t.Name == spaceTemplate)
 //                response = _items.Add(item, template)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Space POST client request", e)
 //            ]
@@ -123,7 +123,7 @@
 //            [
 //                response = _items.Update(spaceId, space)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Space PUT client request", e)
 //            ]
@@ -136,7 +136,7 @@
 //            [
 //                _items.Remove(spaceId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Space DELETE client request", e)
 //            ]

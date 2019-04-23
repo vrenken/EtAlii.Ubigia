@@ -24,7 +24,7 @@
 //            [
 //                response = _items.GetAll(spaceId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Root GET client request", e)
 //            ]
@@ -38,7 +38,7 @@
 //            [
 //                response = _items.Get(spaceId, rootId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Root GET client request", e)
 //            ]
@@ -52,7 +52,7 @@
 //            [
 //                response = _items.Get(spaceId, rootName)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Root GET client request", e)
 //            ]
@@ -73,7 +73,7 @@
 //                // Send the add event.
 //                SignalAdded(spaceId, root.Id)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Root POST client request", e)
 //            ]
@@ -90,7 +90,7 @@
 //                // Send the changed event.
 //                SignalChanged(spaceId, root.Id)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Root PUT client request", e)
 //            ]
@@ -106,7 +106,7 @@
 //                // Send the changed event.
 //                Grpcemoved(spaceId, rootId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Root DELETE client request", e)
 //            ]

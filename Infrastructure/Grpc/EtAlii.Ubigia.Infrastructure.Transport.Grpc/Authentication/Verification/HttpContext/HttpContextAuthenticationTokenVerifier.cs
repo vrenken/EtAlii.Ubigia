@@ -44,7 +44,7 @@
 //                        ]
 //                    ]
 //                ]
-//                catch (Exception)
+//                catch [Exception]
 //                [
 //                    result = controller.Forbid("Unauthorized account")
 //                ]

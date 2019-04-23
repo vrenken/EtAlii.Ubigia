@@ -29,7 +29,7 @@
 //            [
 //                response = _items.Get(accountName)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account GET client request", e)
 //            ]
@@ -48,7 +48,7 @@
 
 //				response = _items.Get(authenticationToken.Name)
 //			]
-//			catch (Exception e)
+//			catch [Exception ex]
 //			[
 //				throw new InvalidOperationException("Unable to serve a Account GET client request", e)
 //			]
@@ -62,7 +62,7 @@
 //            [
 //                response = _items.GetAll()
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account GET client request", e)
 //            ]
@@ -76,7 +76,7 @@
 //            [
 //                response = _items.Get(accountId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account GET client request", e)
 //            ]
@@ -91,7 +91,7 @@
 //                var template = AccountTemplate.All.Single(t => t.Name == accountTemplate)
 //                response = _items.Add(item, template)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account POST client request", e)
 //            ]
@@ -105,7 +105,7 @@
 //            [
 //                response = _items.Update(accountId, account)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account PUT client request", e)
 //            ]
@@ -118,7 +118,7 @@
 //            [
 //                _items.Remove(accountId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Account DELETE client request", e)
 //            ]

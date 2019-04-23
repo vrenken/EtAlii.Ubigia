@@ -56,7 +56,7 @@
 //            [
 //                var parts = pathSubject.Parts
 
-//                for (int i = 0 i < parts.Length i++)
+//                fo r [int i = 0 i < parts.Length i+ +]
 //                [
 //                    var beforePathPart = i > 0 ? parts[i - 1] : null
 //                    var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null
