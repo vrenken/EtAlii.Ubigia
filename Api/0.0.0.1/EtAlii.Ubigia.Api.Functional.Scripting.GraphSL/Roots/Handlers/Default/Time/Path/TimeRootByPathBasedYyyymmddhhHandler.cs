@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
             };
         }
 
-        public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var year = Int32.Parse(match[0].ToString());
             var month = Int32.Parse(match[2].ToString());
@@ -47,7 +47,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .ToArray();
             var path = new AbsolutePathSubject(parts);
 
-            context.Converter.Convert(path, scope, output);
+            context.PathSubjectForOutputConverter.Convert(path, scope, output);
         }
     }
 }

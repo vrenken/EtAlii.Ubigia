@@ -5,16 +5,16 @@ namespace EtAlii.Ubigia.Api.Functional
 
     class RootPathProcessor : IRootPathProcessor
     {
-        private readonly IRootContext _rootContext;
+        private readonly IProcessingContext _processingContext;
         private readonly IRootHandlerMapperFinder _rootHandlerMapperFinder;
         private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
 
         public RootPathProcessor(
-            IRootContext rootContext, 
+            IProcessingContext processingContext, 
             IRootHandlerMapperFinder rootHandlerMapperFinder, 
             IRootHandlerPathMatcher rootHandlerPathMatcher)
         {
-            _rootContext = rootContext;
+            _processingContext = processingContext;
             _rootHandlerMapperFinder = rootHandlerMapperFinder;
             _rootHandlerPathMatcher = rootHandlerPathMatcher;
         }
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             // And process...
             var rootHandler = match.RootHandler;
-            rootHandler.Process(_rootContext, match.Match, match.Rest, scope, output);
+            rootHandler.Process(_processingContext, match.Match, match.Rest, scope, output);
         }
     }
 }

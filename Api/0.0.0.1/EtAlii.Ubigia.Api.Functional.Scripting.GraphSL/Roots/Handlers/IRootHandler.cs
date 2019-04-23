@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional
     {
 
         PathSubjectPart[] Template { get; }
-        void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output);
+        void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output);
     }
 }
