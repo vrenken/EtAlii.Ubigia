@@ -23,12 +23,12 @@ namespace EtAlii.Ubigia.Api.Logical
     
                     var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
     
-                    if (name != String.Empty && name != entry.Type)
+                    if (name != string.Empty && name != entry.Type)
                     {
                         return;
                     }
     
-                    if (tag != String.Empty && tag != entry.Tag)
+                    if (tag != string.Empty && tag != entry.Tag)
                     {
                         return;
                     }
@@ -76,11 +76,11 @@ namespace EtAlii.Ubigia.Api.Logical
                 throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
             }
             var entry = await context.Entries.Get(start, scope);
-            if (name != String.Empty && name != entry.Type)
+            if (name != string.Empty && name != entry.Type)
             {
                 return result;
             }
-            if (tag != String.Empty && tag != entry.Tag)
+            if (tag != string.Empty && tag != entry.Tag)
             {
                 return result;
             }
