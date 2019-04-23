@@ -48,7 +48,7 @@
             _selector = new Selector2<Subject, Subject, IAssignOperatorSubProcessor>()
 
                 // Output
-                .Register((l, r) => l is EmptySubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart, assignTagToOutputOperatorSubProcessor)
+                .Register((l, r) => l is EmptySubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart && string.IsNullOrEmpty(taggedPathSubjectPart.Tag), assignTagToOutputOperatorSubProcessor)
                 .Register((l, r) => l is EmptySubject && r is PathSubject, assignPathToOutputOperatorSubProcessor)
                 .Register((l, r) => l is EmptySubject && r is FunctionSubject, assignFunctionToOutputOperatorSubProcessor)
                 .Register((l, r) => l is EmptySubject && r is ConstantSubject, assignConstantToOutputOperatorSubProcessor)
@@ -58,7 +58,7 @@
                 .Register((l, r) => l is EmptySubject && r is EmptySubject, assignEmptyToOutputOperatorSubProcessor)
 
                 // Variable
-                .Register((l, r) => l is VariableSubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart, assignTagToVariableOperatorSubProcessor)
+                .Register((l, r) => l is VariableSubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart && string.IsNullOrEmpty(taggedPathSubjectPart.Tag), assignTagToVariableOperatorSubProcessor)
                 .Register((l, r) => l is VariableSubject && r is PathSubject, assignPathToVariableOperatorSubProcessor)
                 .Register((l, r) => l is VariableSubject && r is FunctionSubject, assignFunctionToVariableOperatorSubProcessor)
                 .Register((l, r) => l is VariableSubject && r is ConstantSubject, assignConstantToVariableOperatorSubProcessor)
@@ -75,7 +75,7 @@
                 .Register((l, r) => l is PathSubject && r is EmptySubject, assignEmptyToPathOperatorSubProcessor)
                 
                 // Function
-                .Register((l, r) => l is FunctionSubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart, assignTagToFunctionOperatorSubProcessor)
+                .Register((l, r) => l is FunctionSubject && r is PathSubject pathSubject && pathSubject.Parts.LastOrDefault() is TaggedPathSubjectPart taggedPathSubjectPart && string.IsNullOrEmpty(taggedPathSubjectPart.Tag), assignTagToFunctionOperatorSubProcessor)
                 .Register((l, r) => l is FunctionSubject && r is PathSubject, assignPathToFunctionOperatorSubProcessor)
                 .Register((l, r) => l is FunctionSubject && r is FunctionSubject, assignFunctionToFunctionOperatorSubProcessor)
                 .Register((l, r) => l is FunctionSubject && r is ConstantSubject, assignConstantToFunctionOperatorSubProcessor)
