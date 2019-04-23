@@ -7,44 +7,20 @@
 
     internal class ItemToIdentifierConverter : IItemToIdentifierConverter
     {
-        private readonly ISelector<object, Func<object, ExecutionScope, Task<Identifier>>> _converterSelector;
-        private readonly IProcessingContext _context;
-
-        public ItemToIdentifierConverter(IProcessingContext context)
+        public Task<Identifier> Convert(object item, ExecutionScope scope)
         {
-            _context = context;
-            _converterSelector = new Selector<object, Func<object, ExecutionScope, Task<Identifier>>>()
-                .Register(item => item is Identifier, ConverterItemAsIdentifierToIdentifier)
-                .Register(item => item is IReadOnlyEntry, ConverterItemAsReadOnlyEntryToIdentifier)
-                .Register(item => item is INode, ConverterItemAsNodeToIdentifier)
-                .Register(item => true, ConverterRootToIdentifier);
-        }
+            switch (item)
+            {
+                case Identifier identifier:
+                    return Task.FromResult(identifier);
+                case IReadOnlyEntry entry:
+                    return Task.FromResult(entry.Id);
+                case INode node:
+                    return Task.FromResult(node.Id);
+                default:
+                    throw new ScriptProcessingException($"The {this.GetType().Name} is unable to convert the specified object: {item ?? "NULL"}");
+            }                    
 
-        public Task<Identifier> Convert(object items, ExecutionScope scope)
-        {
-            var converter = _converterSelector.Select(items);
-            return converter(items, scope);
-        }
-
-        private Task<Identifier> ConverterItemAsIdentifierToIdentifier(object item, ExecutionScope scope)
-        {
-            return Task.FromResult((Identifier)item);
-        }
-
-        private Task<Identifier> ConverterItemAsReadOnlyEntryToIdentifier(object item, ExecutionScope scope)
-        {
-            return Task.FromResult(((IReadOnlyEntry)item).Id);
-        }
-
-        private Task<Identifier> ConverterItemAsNodeToIdentifier(object item, ExecutionScope scope)
-        {
-            return Task.FromResult(((INode)item).Id);
-        }
-
-        private async Task<Identifier> ConverterRootToIdentifier(object item, ExecutionScope scope)
-        {
-            var root = await _context.Logical.Roots.Get(DefaultRoot.Tail);
-            return root.Identifier;
         }
     }
 }
