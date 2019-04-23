@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
             };
         }
 
-        public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var parts = new PathSubjectPart[]
                 {
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
                .Concat(rest)
                .ToArray();
             var path = new AbsolutePathSubject(parts);
-            context.Converter.Convert(path, scope, output);
+            context.PathSubjectForOutputConverter.Convert(path, scope, output);
         }
     }
 }

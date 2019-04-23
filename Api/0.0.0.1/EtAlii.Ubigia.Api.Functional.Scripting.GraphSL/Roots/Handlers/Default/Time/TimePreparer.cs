@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class TimePreparer : ITimePreparer
     {
-        public void Prepare(IRootContext context, ExecutionScope scope, DateTime time)
+        public void Prepare(IProcessingContext context, ExecutionScope scope, DateTime time)
         {
             // TODO: using an empty execution scope should not be needed.
             scope = new ExecutionScope(false);
@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             var leftInput = Observable.Create<object>(leftInputObserver =>
             {
-                context.Converter.Convert(pathToAddTo, scope, leftInputObserver);
+                context.PathSubjectForOutputConverter.Convert(pathToAddTo, scope, leftInputObserver);
 
                 return Disposable.Empty;
             }).ToHotObservable();

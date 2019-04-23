@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Template = new PathSubjectPart[0];
         }
 
-        public void Process(IRootContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var hasMatch = match.Any();
             var hasRest = rest.Any();
@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Concat(match)
                 .Concat(rest);
             var path = new AbsolutePathSubject(parts.ToArray());
-            context.Converter.Convert(path, scope, output);
+            context.PathSubjectForOutputConverter.Convert(path, scope, output);
         }
     }
 }

@@ -17,10 +17,20 @@
         public IRelativePathSubjectProcessor RelativePathSubjectProcessor { get; private set; }
         public IRootedPathSubjectProcessor RootedPathSubjectProcessor { get; private set; }
 
-        public ProcessingContext(IScriptScope scope, ILogicalContext logical)
+        public IPathSubjectForOutputConverter PathSubjectForOutputConverter { get; }
+        public IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; }
+
+        
+        public ProcessingContext(
+            IScriptScope scope, 
+            ILogicalContext logical, 
+            IPathSubjectForOutputConverter pathSubjectForOutputConverter, 
+            IAddRelativePathToExistingPathProcessor addRelativePathToExistingPathProcessor)
         {
             Scope = scope;
             Logical = logical;
+            PathSubjectForOutputConverter = pathSubjectForOutputConverter;
+            AddRelativePathToExistingPathProcessor = addRelativePathToExistingPathProcessor;
         }
 
         public void Initialize(

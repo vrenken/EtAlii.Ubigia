@@ -12,6 +12,9 @@ namespace EtAlii.Ubigia.Api.Functional
         IRelativePathSubjectProcessor RelativePathSubjectProcessor { get; }
         IRootedPathSubjectProcessor RootedPathSubjectProcessor { get; }
 
+        IPathSubjectForOutputConverter PathSubjectForOutputConverter { get; }
+        IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; }
+
         IPathProcessor PathProcessor { get; }
 
         void Initialize(
