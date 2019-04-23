@@ -29,7 +29,7 @@
 
 //            ] while [entry ! = null]
 
-//            for (int i = path.Count; i > 0; i--)
+//            fo r [int i = path.Count; i > 0; i- -]
 //            [
 //                entry = path[i - 1]
 

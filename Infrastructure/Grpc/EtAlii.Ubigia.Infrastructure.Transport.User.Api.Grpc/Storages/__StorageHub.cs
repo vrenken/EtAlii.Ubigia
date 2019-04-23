@@ -23,7 +23,7 @@
 //            [
 //                response = _items.GetLocal()
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            ]

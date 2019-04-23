@@ -22,7 +22,7 @@
 //            [
 //                response = (Content)_items.Get(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a content GET client request", e)
 //            ]
@@ -35,7 +35,7 @@
 //            [
 //                response = (ContentPart)_items.Get(entryId, contentPartId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Content part GET client request", e)
 //            ]
@@ -57,7 +57,7 @@
 //                // Send the updated event.
 //                SignalUpdated(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Content POST client request", e)
 //            ]
@@ -83,7 +83,7 @@
 //                // Send the updated event.
 //                SignalUpdated(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Content part POST client request", e)
 //            ]

@@ -55,7 +55,7 @@
 //                [
 //                    ret = await task()
 //                ]
-//                catc h (Exception e)
+//                catc h [Exception e]
 //                [
 //                    synch.InnerException = e
 //                    throw
@@ -87,7 +87,7 @@
 //                [
 //                    ret = await observable()
 //                ]
-//                catch (Exception e)
+//                catch [Exception e]
 //                [
 //                    synch.InnerException = e
 //                    throw

@@ -23,7 +23,7 @@
 //            [
 //                response = _items.GetLocal()
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            ]
@@ -36,7 +36,7 @@
 //            [
 //                response = _items.Get(storageName)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            ]
@@ -50,7 +50,7 @@
 //            [
 //                response = _items.GetAll()
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            ]
@@ -64,7 +64,7 @@
 //            [
 //                response = _items.Get(storageId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage GET client request", e)
 //            ]
@@ -78,7 +78,7 @@
 //            [
 //                response = _items.Add(item)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage POST client request", e)
 //            ]
@@ -92,7 +92,7 @@
 //            [
 //                response = _items.Update(storageId, storage)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage PUT client request", e)
 //            ]
@@ -105,7 +105,7 @@
 //            [
 //                _items.Remove(storageId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception ex]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Storage DELETE client request", e)
 //            ]

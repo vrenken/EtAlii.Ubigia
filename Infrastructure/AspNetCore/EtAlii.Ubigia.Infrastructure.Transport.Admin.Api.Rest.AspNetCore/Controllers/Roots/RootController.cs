@@ -68,7 +68,7 @@
         //        var roots = _items.GetAll(spaceId)
         //        response = Ok(roots)
         //    ]
-        //    catch (Exception ex)
+        //    catch [Exception ex]
         //    [
         //        response = BadRequest(ex.Message)
         //    ]
@@ -84,7 +84,7 @@
         //        var root = _items.Get(spaceId, rootName)
         //        response = Ok(root)
         //    ]
-        //    catch (Exception ex)
+        //    catch [Exception ex]
         //    [
         //        response = BadRequest(ex.Message)
         //    ]
@@ -100,7 +100,7 @@
         //        var root = _items.Get(spaceId, rootId)
         //        response = Ok(root)
         //    ]
-        //    catch (Exception ex)
+        //    catch[Exception ex]
         //    [
         //        response = BadRequest(ex.Message)
         //    ]

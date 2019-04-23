@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-	using System;
-	using System.Threading.Tasks;
+    using System;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.MicroContainer;
 
     public abstract class SpaceTransportBase : ISpaceTransport
@@ -10,7 +10,7 @@
 
         public Uri Address { get; private set; }
 
-        public SpaceTransportBase(Uri address)
+        protected SpaceTransportBase(Uri address)
         {
             Address = address;
         }

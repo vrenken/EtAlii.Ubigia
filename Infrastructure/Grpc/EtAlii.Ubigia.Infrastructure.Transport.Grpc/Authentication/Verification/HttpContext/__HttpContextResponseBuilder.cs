@@ -53,7 +53,7 @@
 //                    response = new StatusCodeResult(405); //HttpStatusCode.MethodNotAllowed
 //                ]
 //            ]
-//            catch (Exception ex)
+//            catch [Exception ex]
 //            [
 //                response = controller.BadRequest(ex.Message)
 //                //response = actionContext.Request.CreateResponse<string>(HttpStatusCode.OK, "AllOk")

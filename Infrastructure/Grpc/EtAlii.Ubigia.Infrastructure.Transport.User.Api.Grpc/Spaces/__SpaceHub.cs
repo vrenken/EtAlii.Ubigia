@@ -39,7 +39,7 @@
 
 //				response = _items.Get(account.Id, spaceName)
 //			]
-//			catch (Exception e)
+//			catch [Exception ex]
 //			[
 //				throw new InvalidOperationException("Unable to serve a Space GET client request", e)
 //			]
