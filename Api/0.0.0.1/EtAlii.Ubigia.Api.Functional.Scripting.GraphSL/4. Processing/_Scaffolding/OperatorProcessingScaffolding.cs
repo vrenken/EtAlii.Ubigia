@@ -67,11 +67,14 @@
             container.Register<IAddOperatorProcessor, AddOperatorProcessor>();
             container.Register<IAddOperatorSelector, AddOperatorSelector>();
             // Alternatives.
+
             container.Register<IAddByNameAsNewPathProcessor, AddByNameAsNewPathProcessor>();
+            container.Register<IAddRootedPathToExistingPathProcessor, AddRootedPathToExistingPathProcessor>();
             container.Register<IAddAbsolutePathToExistingPathProcessor, AddAbsolutePathToExistingPathProcessor>();
             container.Register<IAddRelativePathToExistingPathProcessor, AddRelativePathToExistingPathProcessor>();
-            container.Register<IAddByIdAsNewPathProcessor, AddByIdAsNewPathProcessor>();
-            container.Register<IAddByIdToExistingPathProcessor, AddByIdToExistingPathProcessor>();
+            container.Register<IAddConstantToExistingPathProcessor, AddConstantToExistingPathProcessor>();
+            container.Register<IAddVariableAsNewPathProcessor, AddVariableAsNewPathProcessor>();
+            container.Register<IAddVariableToExistingPathProcessor, AddVariableToExistingPathProcessor>();
             // Assistance.
             container.Register<IRecursiveAdder, RecursiveAdder>();
 
