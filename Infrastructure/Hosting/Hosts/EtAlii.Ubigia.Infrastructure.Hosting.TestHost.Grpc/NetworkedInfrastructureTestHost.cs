@@ -12,24 +12,29 @@
 
     public class NetworkedInfrastructureTestHost : NetworkedTestHost, IInfrastructureTestHost
     {
-	    public IInfrastructure Infrastructure => _infrastructure.Value;
-	    private readonly Lazy<IInfrastructure> _infrastructure;
+	    public IInfrastructure Infrastructure => _infrastructure;
+	    private IInfrastructure _infrastructure;
 
-	    public IStorage Storage => _storage.Value;
-	    private readonly Lazy<IStorage> _storage;
+	    public IStorage Storage => _storage;
+	    private IStorage _storage;
 
-		public AdminModule AdminModule => _adminModule.Value;
-	    private readonly Lazy<AdminModule> _adminModule;
-	    public UserModule UserModule => _userModule.Value;
-	    private readonly Lazy<UserModule> _userModule;
+		public AdminModule AdminModule => _adminModule;
+	    private AdminModule _adminModule;
+	    public UserModule UserModule => _userModule;
+	    private UserModule _userModule;
 
 		protected NetworkedInfrastructureTestHost(ISystemManager systemManager)
 		    : base(systemManager)
 	    {
-		    _infrastructure = new Lazy<IInfrastructure>(() => Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single());
-		    _storage = new Lazy<IStorage>(() => Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single());
-		    _adminModule = new Lazy<AdminModule>(() => Systems.Single().Modules.OfType<AdminModule>().Single());
-		    _userModule = new Lazy<UserModule>(() => Systems.Single().Modules.OfType<UserModule>().Single());
 		}
-	}
+
+        protected override void Started()
+        {
+            base.Started();
+            _infrastructure = Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single();
+            _storage = Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single();
+            _adminModule = Systems.Single().Modules.OfType<AdminModule>().Single();
+            _userModule = Systems.Single().Modules.OfType<UserModule>().Single();
+        }
+    }
 }
