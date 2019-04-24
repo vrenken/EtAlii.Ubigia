@@ -13,52 +13,30 @@ namespace EtAlii.Ubigia.Api.Logical
             var name = graphTaggedNode.Name;
             var tag = graphTaggedNode.Tag;
 
-            parameters.Input
-                .Select(start => Observable.FromAsync(async () =>
+            parameters.Input.SubscribeAsync(
+                onError: e => parameters.Output.OnError(e),
+                onNext: async start =>
                 {
                     if (start == Identifier.Empty)
                     {
                         throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph");
                     }
-    
+
                     var entry = await parameters.Context.Entries.Get(start, parameters.Scope);
-    
+
                     if (name != string.Empty && name != entry.Type)
                     {
                         return;
                     }
-    
+
                     if (tag != string.Empty && tag != entry.Tag)
                     {
                         return;
                     }
-    
-                    parameters.Output.OnNext(entry.Id);
-                }))
-                .Concat() // one item at a time
-                .Subscribe(onNext: o => {}, onError: parameters.Output.OnError, onCompleted: parameters.Output.OnCompleted);
-//            parameters.Input.SubscribeAsync(
-//                    onError: e => parameters.Output.OnError(e),
-//                    onNext: async start =>
-//                    [
-//                            if [start = = Identifier.Empty]
-//                            [
-//                                throw new GraphTraversalException("Tagged node traversal cannot be done at the root of a graph")
-//                            ]
-//                            var entry = await parameters.Context.Entries.Get(start, parameters.Scope)
-//
-//                            if [name != String.Empty && name != entry.Type]
-//                            [
-//                                return
-//                            ]
-//                            if [tag != String.Empty && tag != entry.Tag]
-//                            [
-//                                return
-//                            ]
-//                            parameters.Output.OnNext(entry.Id)
-//                    ],
-//                    onCompleted: () => parameters.Output.OnCompleted())
 
+                    parameters.Output.OnNext(entry.Id);
+                },
+                onCompleted: () => parameters.Output.OnCompleted());
         }
 
         public async Task<IEnumerable<Identifier>> Traverse(GraphPathPart part, Identifier start, ITraversalContext context, ExecutionScope scope)
@@ -68,8 +46,6 @@ namespace EtAlii.Ubigia.Api.Logical
             var graphTaggedNode = (GraphTaggedNode)part;
             var name = graphTaggedNode.Name;
             var tag = graphTaggedNode.Tag;
-
-            //var regex = scope.GetWildCardRegex(pattern)
 
             if (start == Identifier.Empty)
             {
