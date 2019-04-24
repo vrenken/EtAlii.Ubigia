@@ -17,20 +17,14 @@
         public IRelativePathSubjectProcessor RelativePathSubjectProcessor { get; private set; }
         public IRootedPathSubjectProcessor RootedPathSubjectProcessor { get; private set; }
 
-        public IPathSubjectForOutputConverter PathSubjectForOutputConverter { get; }
-        public IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; }
+        public IPathSubjectForOutputConverter PathSubjectForOutputConverter { get; private set; }
+        public IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; private set; }
 
-        
-        public ProcessingContext(
-            IScriptScope scope, 
-            ILogicalContext logical, 
-            IPathSubjectForOutputConverter pathSubjectForOutputConverter, 
-            IAddRelativePathToExistingPathProcessor addRelativePathToExistingPathProcessor)
+
+        public ProcessingContext(IScriptScope scope, ILogicalContext logical)
         {
             Scope = scope;
             Logical = logical;
-            PathSubjectForOutputConverter = pathSubjectForOutputConverter;
-            AddRelativePathToExistingPathProcessor = addRelativePathToExistingPathProcessor;
         }
 
         public void Initialize(
@@ -38,7 +32,9 @@
             IAbsolutePathSubjectProcessor absolutePathSubjectProcessor,
             IRelativePathSubjectProcessor relativePathSubjectProcessor,
             IRootedPathSubjectProcessor rootedPathSubjectProcessor,
-            IPathProcessor pathProcessor)
+            IPathProcessor pathProcessor,
+            IPathSubjectForOutputConverter pathSubjectForOutputConverter,
+            IAddRelativePathToExistingPathProcessor addRelativePathToExistingPathProcessor)
         {
             if (PathSubjectToGraphPathConverter != null || PathProcessor != null || AbsolutePathSubjectProcessor != null || RelativePathSubjectProcessor != null || RootedPathSubjectProcessor != null)
             {
@@ -49,7 +45,9 @@
             AbsolutePathSubjectProcessor = absolutePathSubjectProcessor;
             RelativePathSubjectProcessor = relativePathSubjectProcessor;
             RootedPathSubjectProcessor = rootedPathSubjectProcessor;
-            PathProcessor = pathProcessor; 
+            PathProcessor = pathProcessor;
+            PathSubjectForOutputConverter = pathSubjectForOutputConverter;
+            AddRelativePathToExistingPathProcessor = addRelativePathToExistingPathProcessor;
         }
     }
 }

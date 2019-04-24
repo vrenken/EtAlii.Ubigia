@@ -22,7 +22,9 @@ namespace EtAlii.Ubigia.Api.Functional
             IAbsolutePathSubjectProcessor absolutePathSubjectProcessor,
             IRelativePathSubjectProcessor relativePathSubjectProcessor,
             IRootedPathSubjectProcessor rootedPathSubjectProcessor,
-            IPathProcessor pathProcessor);
+            IPathProcessor pathProcessor,
+            IPathSubjectForOutputConverter pathSubjectForOutputConverter,
+            IAddRelativePathToExistingPathProcessor addRelativePathToExistingPathProcessor);
 
     }
 }
