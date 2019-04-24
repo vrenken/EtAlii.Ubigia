@@ -5,15 +5,15 @@ namespace EtAlii.Ubigia.Api.Functional
         IPathProcessor IFunctionContext.PathProcessor => _pathProcessor;
         private readonly IPathProcessor _pathProcessor;
 
-        IToIdentifierConverter IFunctionContext.ToIdentifierConverter => _toIdentifierConverter;
-        private readonly IToIdentifierConverter _toIdentifierConverter;
+        IItemToIdentifierConverter IFunctionContext.ItemToIdentifierConverter => _itemToIdentifierConverter;
+        private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
 
         internal FunctionContext(
             IPathProcessor pathProcessor, 
-            IToIdentifierConverter toIdentifierConverter)
+            IItemToIdentifierConverter itemToIdentifierConverter)
         {
             _pathProcessor = pathProcessor;
-            _toIdentifierConverter = toIdentifierConverter;
+            _itemToIdentifierConverter = itemToIdentifierConverter;
         }
     }
 }

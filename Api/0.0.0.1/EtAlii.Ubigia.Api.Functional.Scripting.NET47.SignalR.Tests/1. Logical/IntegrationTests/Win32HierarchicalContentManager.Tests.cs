@@ -32,14 +32,12 @@
         }
 
         [Fact]
-        public async Task NET47HierarchicalContentManager_Create()
+        public void NET47HierarchicalContentManager_Create()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            var contentManager = logicalContext.Content;
 
             // Act.
-            var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
+            var hierarchicalContentManager = new HierarchicalContentManager();
 
             // Assert.
             Assert.NotNull(hierarchicalContentManager);
@@ -54,8 +52,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var folderName = Guid.NewGuid().ToString();
-            var contentManager = logicalContext.Content;
-            var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
+            var hierarchicalContentManager = new HierarchicalContentManager();
 
             // Act.
             var act = new Action(() =>
@@ -76,8 +73,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
-            var contentManager = logicalContext.Content;
-            var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
+            var hierarchicalContentManager = new HierarchicalContentManager();
 
             // Act.
             hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
@@ -94,8 +90,7 @@
             var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
-            var contentManager = logicalContext.Content;
-            var hierarchicalContentManager = new HierarchicalContentManager(logicalContext, contentManager);
+            var hierarchicalContentManager = new HierarchicalContentManager();
             var retrievedFolderPath = NET47TestHelper.CreateTemporaryFolderName();
             hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
 

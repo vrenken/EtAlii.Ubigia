@@ -3,10 +3,10 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class AssignVariableToPathOperatorSubProcessor : AssignToPathOperatorSubProcessorBase, IAssignVariableToPathOperatorSubProcessor
     {
         public AssignVariableToPathOperatorSubProcessor(
-            IToIdentifierConverter toIdentifierConverter,
+            IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
             IProcessingContext context)
-            : base(toIdentifierConverter, pathSubjectToGraphPathConverter, context)
+            : base(itemToIdentifierConverter, pathSubjectToGraphPathConverter, context)
         {
         }
     }

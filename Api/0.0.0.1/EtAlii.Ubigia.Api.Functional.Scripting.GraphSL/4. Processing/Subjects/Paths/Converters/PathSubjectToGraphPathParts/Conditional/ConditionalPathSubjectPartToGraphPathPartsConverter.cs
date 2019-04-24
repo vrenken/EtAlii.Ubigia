@@ -6,14 +6,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class ConditionalPathSubjectPartToGraphPathPartsConverter : IConditionalPathSubjectPartToGraphPathPartsConverter
     {
-        private readonly IProcessingContext _context;
         private readonly IConditionalPredicateFactorySelector _predicateFactorySelector;
 
-        public ConditionalPathSubjectPartToGraphPathPartsConverter(
-            IProcessingContext context,
-            IConditionalPredicateFactorySelector predicateFactorySelector)
+        public ConditionalPathSubjectPartToGraphPathPartsConverter(IConditionalPredicateFactorySelector predicateFactorySelector)
         {
-            _context = context;
             _predicateFactorySelector = predicateFactorySelector;
         }
 

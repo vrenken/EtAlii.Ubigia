@@ -11,17 +11,17 @@ namespace EtAlii.Ubigia.Api.Functional
     internal abstract class AssignToPathOperatorSubProcessorBase 
     {
         private readonly IProcessingContext _context;
-        private readonly IToIdentifierConverter _toIdentifierConverter;
+        private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
 
         private readonly TypeInfo _dynamicObjectTypeInfo = typeof(DynamicObject).GetTypeInfo();
 
         protected AssignToPathOperatorSubProcessorBase(
-            IToIdentifierConverter toIdentifierConverter,
+            IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
             IProcessingContext context)
         {
-            _toIdentifierConverter = toIdentifierConverter;
+            _itemToIdentifierConverter = itemToIdentifierConverter;
             _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;
             _context = context;
         }
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     onCompleted: () => parameters.Output.OnCompleted(),
                     onNext: async (o) =>
                     {
-                        var identifier = _toIdentifierConverter.Convert(o);
+                        var identifier = _itemToIdentifierConverter.Convert(o);
                         var leftPathSubject = (PathSubject)parameters.LeftSubject;
                         var graphPath = await _pathSubjectToGraphPathConverter.Convert(leftPathSubject, parameters.Scope);
                         var result = await Assign(graphPath, identifier, value, parameters.Scope);

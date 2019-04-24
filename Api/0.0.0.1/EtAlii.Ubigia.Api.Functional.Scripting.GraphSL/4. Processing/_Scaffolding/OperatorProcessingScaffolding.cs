@@ -52,7 +52,6 @@
             //container.Register<IPropertiesToIdentifierAssigner, PropertiesToIdentifierAssigner>()
             //container.Register<IDynamicObjectToIdentifierAssigner, DynamicObjectToIdentifierAssigner>()
             //container.Register<INodeToIdentifierAssigner, NodeToIdentifierAssigner>()
-            container.Register<IToIdentifierConverter, ToIdentifierConverter>();
 
             container.Register<IResultConverterSelector, ResultConverterSelector>();
             //container.Register<IUpdateEntryFactory, UpdateEntryFactory>()

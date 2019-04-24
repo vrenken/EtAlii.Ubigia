@@ -5,13 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class TaggedPathSubjectPartToGraphPathPartsConverter : ITaggedPathSubjectPartToGraphPathPartsConverter
     {
-        private readonly IProcessingContext _context;
-
-        public TaggedPathSubjectPartToGraphPathPartsConverter(IProcessingContext context)
-        {
-            _context = context;
-        }
-
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
             var taggedPathSubjectPart = (TaggedPathSubjectPart) pathSubjectPart;

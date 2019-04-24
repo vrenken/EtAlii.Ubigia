@@ -34,7 +34,7 @@
                 onCompleted: output.OnCompleted,
                 onNext: async o =>
                 {
-                    var identifierToAdd = await this.ItemToIdentifierConverter.Convert(o, scope);
+                    var identifierToAdd = this.ItemToIdentifierConverter.Convert(o);
                     var newEntry = await _processingContext.Logical.Nodes.Add(id, identifierToAdd, scope);
                     var result = new DynamicNode(newEntry);
                     output.OnNext(result);
