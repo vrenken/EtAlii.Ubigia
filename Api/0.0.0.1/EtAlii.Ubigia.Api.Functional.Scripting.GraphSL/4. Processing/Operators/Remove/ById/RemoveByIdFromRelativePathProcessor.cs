@@ -19,25 +19,19 @@
         }
         public void Process(OperatorParameters parameters)
         {
-            var rightId = Identifier.Empty;
-
-            var task = Task.Run(async () =>
+            var rightResult = parameters.RightInput.ToEnumerable();
+            var rightId = _itemToIdentifierConverter.Convert(rightResult);
+            if (rightId == Identifier.Empty)
             {
-                var rightResult = parameters.RightInput.ToEnumerable();
-                rightId = await _itemToIdentifierConverter.Convert(rightResult, parameters.Scope);
-                if (rightId == Identifier.Empty)
-                {
-                    throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires a identifier to add");
-                }
-            });
-            task.Wait();
+                throw new ScriptProcessingException("The RemoveByIdFromRelativePathProcessor requires a identifier to add");
+            }
 
             parameters.LeftInput.SubscribeAsync(
                 onError: parameters.Output.OnError,
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    var leftId = _itemToIdentifierConverter.Convert(o);
                     await Remove(leftId, rightId, parameters.Scope, parameters.Output);
                 });
 

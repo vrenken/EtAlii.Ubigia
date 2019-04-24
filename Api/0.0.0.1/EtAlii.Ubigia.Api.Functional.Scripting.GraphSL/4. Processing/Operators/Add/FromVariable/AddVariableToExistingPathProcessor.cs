@@ -28,7 +28,7 @@
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftIdentifier = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    var leftIdentifier = _itemToIdentifierConverter.Convert(o);
 
                     switch (rightResult)
                     {

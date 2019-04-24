@@ -3,10 +3,10 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class AssignEmptyToPathOperatorSubProcessor : AssignToPathOperatorSubProcessorBase, IAssignEmptyToPathOperatorSubProcessor
     {
         public AssignEmptyToPathOperatorSubProcessor(
-            IToIdentifierConverter toIdentifierConverter,
+            IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
             IProcessingContext context)
-            : base(toIdentifierConverter, pathSubjectToGraphPathConverter, context)
+            : base(itemToIdentifierConverter, pathSubjectToGraphPathConverter, context)
         {
         }
     }

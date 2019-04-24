@@ -5,13 +5,6 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class ConstantPathSubjectPartToGraphPathPartsConverter : IConstantPathSubjectPartToGraphPathPartsConverter
     {
-        private readonly IProcessingContext _context;
-
-        public ConstantPathSubjectPartToGraphPathPartsConverter(IProcessingContext context)
-        {
-            _context = context;
-        }
-
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
             GraphPathPart[] result;

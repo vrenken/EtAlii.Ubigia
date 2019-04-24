@@ -131,7 +131,7 @@ namespace EtAlii.Ubigia.Api.Functional
             });
 
             return outputObservable
-                .Select(o => context.ToIdentifierConverter.Convert(o))
+                .Select(context.ItemToIdentifierConverter.Convert)
                 .ToHotObservable();
         }
     }

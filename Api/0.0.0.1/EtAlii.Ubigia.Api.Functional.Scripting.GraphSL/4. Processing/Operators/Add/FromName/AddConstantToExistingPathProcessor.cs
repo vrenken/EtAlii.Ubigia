@@ -45,7 +45,7 @@
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    var leftId = _itemToIdentifierConverter.Convert(o);
                     await Add(leftId, stringConstant, parameters.Scope, parameters.Output);
                 });
             return Task.CompletedTask;

@@ -7,16 +7,16 @@
 
     internal class ItemToIdentifierConverter : IItemToIdentifierConverter
     {
-        public Task<Identifier> Convert(object item, ExecutionScope scope)
+        public Identifier Convert(object item)
         {
             switch (item)
             {
                 case Identifier identifier:
-                    return Task.FromResult(identifier);
+                    return identifier;
                 case IReadOnlyEntry entry:
-                    return Task.FromResult(entry.Id);
+                    return entry.Id;
                 case INode node:
-                    return Task.FromResult(node.Id);
+                    return node.Id;
                 default:
                     throw new ScriptProcessingException($"The {this.GetType().Name} is unable to convert the specified object: {item ?? "NULL"}");
             }                    

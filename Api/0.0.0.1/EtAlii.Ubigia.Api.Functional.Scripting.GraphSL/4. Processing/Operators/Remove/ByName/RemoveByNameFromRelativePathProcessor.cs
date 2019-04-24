@@ -8,18 +8,15 @@
 
     internal class RemoveByNameFromRelativePathProcessor : IRemoveByNameFromRelativePathProcessor
     {
-        private readonly IProcessingContext _context;
         private readonly IRecursiveRemover _recursiveRemover;
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
 
         public RemoveByNameFromRelativePathProcessor(
-            IProcessingContext context,
             IRecursiveRemover recursiveRemover,
             IItemToIdentifierConverter itemToIdentifierConverter,
             IItemToPathSubjectConverter itemToPathSubjectConverter)
         {
-            _context = context;
             _recursiveRemover = recursiveRemover;
             _itemToIdentifierConverter = itemToIdentifierConverter;
             _itemToPathSubjectConverter = itemToPathSubjectConverter;
@@ -48,7 +45,7 @@
                 onCompleted: parameters.Output.OnCompleted,
                 onNext: async o =>
                 {
-                    var leftId = await _itemToIdentifierConverter.Convert(o, parameters.Scope);
+                    var leftId = _itemToIdentifierConverter.Convert(o);
                     await Remove(pathToRemove.Parts.OfType<ConstantPathSubjectPart>().Single(), leftId, parameters.Scope, parameters.Output);
                 });
 
