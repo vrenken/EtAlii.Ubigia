@@ -49,7 +49,10 @@ namespace EtAlii.Ubigia.Api.Functional
             var relativePathSubjectProcessor = container.GetInstance<IRelativePathSubjectProcessor>();
             var rootedPathSubjectProcessor = container.GetInstance<IRootedPathSubjectProcessor>();
 
-            container.GetInstance<IProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor);
+            var pathSubjectForOutputConverter = container.GetInstance<IPathSubjectForOutputConverter>();
+            var addRelativePathToExistingPathProcessor = container.GetInstance<IAddRelativePathToExistingPathProcessor>();
+
+            container.GetInstance<IProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor, pathSubjectForOutputConverter, addRelativePathToExistingPathProcessor);
 
             return scriptProcessor;
         }
