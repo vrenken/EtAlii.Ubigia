@@ -18,44 +18,44 @@
             _testHostFactory = new HostTestContextFactory();
         }
 
-        public async Task<IDataConnection> CreateDataConnection(bool openOnCreation = true)
+        public Task<IDataConnection> CreateDataConnection(bool openOnCreation = true)
         {
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-	        return await CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true, null);
+	        return CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true, null);
 		}
 
-        public async Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
+        public Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)
         {
-			return await CreateDataConnection(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
+			return CreateDataConnection(Context.DataServiceAddress, accountName, accountPassword, spaceName, openOnCreation, useNewSpace, spaceTemplate);
         }
 		public abstract Task<IDataConnection> CreateDataConnection(Uri address, string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null);
 
-        public async Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true)
+        public Task<IManagementConnection> CreateManagementConnection(bool openOnCreation = true)
         {
-			return await CreateManagementConnection(Context.ManagementServiceAddress, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
+			return CreateManagementConnection(Context.ManagementServiceAddress, Context.TestAccountName, Context.TestAccountPassword, openOnCreation);
         }
 
 		public abstract Task<IManagementConnection> CreateManagementConnection(Uri address, string account, string password, bool openOnCreation = true);
 
-        public async Task<Account> AddUserAccount(IManagementConnection connection)
+        public Task<Account> AddUserAccount(IManagementConnection connection)
         {
             var name = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
-            return await connection.Accounts.Add(name, password, AccountTemplate.User);
+            return connection.Accounts.Add(name, password, AccountTemplate.User);
         }
 
         #region start/stop
 
-        public Task Start()
+        public Task Start() 
         {
             Context = _testHostFactory.Create<THostTestContext>();
             Context.Start();
             return Task.CompletedTask;
         }
 
-        public Task Stop()
+        public Task Stop()  
         {
             Context.Stop();
             Context = null;
