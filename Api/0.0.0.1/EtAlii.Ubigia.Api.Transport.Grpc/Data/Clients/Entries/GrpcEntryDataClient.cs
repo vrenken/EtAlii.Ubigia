@@ -81,7 +81,6 @@
                         var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
                         var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                         return response.Entry.ToLocal();
-                        //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations)
                     });
                     result.Add(entry);
                 }
