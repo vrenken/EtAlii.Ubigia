@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     class RootHandlerFinder : IRootHandlerFinder
     {
@@ -11,12 +12,15 @@ namespace EtAlii.Ubigia.Api.Functional
             _rootHandlerPathMatcher = rootHandlerPathMatcher;
         }
 
-        public IRootHandler Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
+        public async Task<IRootHandler> Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject)
         {
-            return rootHandlerMapper.AllowedRootHandlers
-                .Select(rootHandler => _rootHandlerPathMatcher.Match(scope, rootHandler, rootedPathSubject.Parts))
-                .Select(match => match.RootHandler)
-                .FirstOrDefault();
+            foreach (var rootHandler in rootHandlerMapper.AllowedRootHandlers)
+            {
+                var match = await _rootHandlerPathMatcher.Match(scope, rootHandler, rootedPathSubject.Parts);
+                return match.RootHandler;
+            }
+
+            return null;
         }
     }
 }

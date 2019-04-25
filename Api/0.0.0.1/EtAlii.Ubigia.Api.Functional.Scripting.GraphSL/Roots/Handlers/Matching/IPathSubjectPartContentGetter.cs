@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     public interface IPathSubjectPartContentGetter
     {
-        string GetPartContent(PathSubjectPart part, IScriptScope scope);
+        Task<string> GetPartContent(PathSubjectPart part, IScriptScope scope);
     }
 }

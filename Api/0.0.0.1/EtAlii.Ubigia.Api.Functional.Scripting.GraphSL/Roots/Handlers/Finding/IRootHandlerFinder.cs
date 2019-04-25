@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     internal interface IRootHandlerFinder
     {
-        IRootHandler Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject);
+        Task<IRootHandler> Find(IScriptScope scope, IRootHandlerMapper rootHandlerMapper, RootedPathSubject rootedPathSubject);
     }
 }

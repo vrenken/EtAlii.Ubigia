@@ -1,12 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System.Threading.Tasks;
     using Xunit;
 
 
     public partial class RootHandlerPathMatcherTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_01()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_01()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -16,14 +17,14 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_02()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_02()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -42,14 +43,14 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_030()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_030()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -68,7 +69,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.True(match == MatchResult.NoMatch);
@@ -76,7 +77,7 @@
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_031()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_031()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -95,14 +96,14 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_040()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_040()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -121,14 +122,14 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.True(match == MatchResult.NoMatch);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_041()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_041()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -147,7 +148,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -155,7 +156,7 @@
 
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_05_False()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_05_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -174,14 +175,14 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_06_False()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_06_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -200,13 +201,13 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
         }
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_07_False()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_07_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -225,13 +226,13 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
         }
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_08_False()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_08_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -250,14 +251,14 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void RootHandlerPathMatcher_Regex_FirstNameLastName_09_False()
+        public async Task RootHandlerPathMatcher_Regex_FirstNameLastName_09_False()
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
@@ -276,7 +277,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);

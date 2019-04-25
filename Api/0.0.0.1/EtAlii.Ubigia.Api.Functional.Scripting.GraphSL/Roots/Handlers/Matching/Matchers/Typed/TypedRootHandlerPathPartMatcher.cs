@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
     using System.Text.RegularExpressions;
+    using System.Threading.Tasks;
 
     class TypedRootHandlerPathPartMatcher : ITypedRootHandlerPathPartMatcher
     {
@@ -19,13 +20,13 @@ namespace EtAlii.Ubigia.Api.Functional
             return new[] {new MatchResult(null, match, rest)};
         }
 
-        public bool CanMatch(MatchParameters parameters)
+        public async Task<bool> CanMatch(MatchParameters parameters)
         {
             bool canMatch = false;
             var next = parameters.PathRest.FirstOrDefault();
             if (next != null)
             {
-                var content = _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
+                var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
                 if (content != null)
                 {
                     var typedTemplatePart = (TypedPathSubjectPart) parameters.CurrentTemplatePart;

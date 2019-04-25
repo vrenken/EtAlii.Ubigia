@@ -19,7 +19,7 @@
             _processingContext = processingContext;
         }
 
-        public Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
+        public async Task Process(Subject subject, ExecutionScope scope, IObserver<object> output)
         {
             var pathSubject = (RootedPathSubject) subject;
 
@@ -27,9 +27,7 @@
             var parts = _pathVariableExpander.Expand(pathSubject.Parts);
 
             // And handover the root and following path for root path processing.
-            _rootPathProcessor.Process(pathSubject.Root, parts, scope, output, _processingContext.Scope);
-            
-            return Task.CompletedTask;
+            await _rootPathProcessor.Process(pathSubject.Root, parts, scope, output, _processingContext.Scope);
         }
     }
 }

@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     class PreviousRootHandlerPathPartMatcher : IPreviousRootHandlerPathPartMatcher
     {
@@ -12,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             return new[] { new MatchResult(null, match, rest) };
         }
 
-        public bool CanMatch(MatchParameters parameters)
+        public Task<bool> CanMatch(MatchParameters parameters)
         {
             bool canMatch = false;
             var next = parameters.PathRest.FirstOrDefault();
@@ -20,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 canMatch = true;
             }
-            return canMatch;
+            return Task.FromResult(canMatch);
         }
     }
 }
