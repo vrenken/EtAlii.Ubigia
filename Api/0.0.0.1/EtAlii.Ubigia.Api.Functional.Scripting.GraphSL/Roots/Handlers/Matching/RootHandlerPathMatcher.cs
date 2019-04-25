@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     class RootHandlerPathMatcher : IRootHandlerPathMatcher
     {
@@ -12,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _rootHandlerPathPartMatcherSelector = rootHandlerPathPartMatcherSelector;
         }
 
-        public MatchResult Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
+        public async Task<MatchResult> Match(IScriptScope scope, IRootHandler rootHandler, PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
             var matches = new[] { new MatchResult(rootHandler, new PathSubjectPart[0], path) };
@@ -39,11 +40,12 @@ namespace EtAlii.Ubigia.Api.Functional
                 var matcher = _rootHandlerPathPartMatcherSelector.Select(templatePart);
 
                 // 2. Find first matching rest.
-                rest = FindMatchingRest(scope, rootHandler, matches, templatePart, matcher, result, ref isFirst);
+                rest = await FindMatchingRest(scope, rootHandler, matches, templatePart, matcher, result, isFirst);
+                isFirst = false;
 
                 // 3. Get all matches + rests
                 var parameters = new MatchParameters(rootHandler, templatePart, rest, scope);
-                if (matcher.CanMatch(parameters))
+                if (await matcher.CanMatch(parameters))
                 {
                     matches = matcher.Match(parameters);
                 }
@@ -66,28 +68,32 @@ namespace EtAlii.Ubigia.Api.Functional
                 : MatchResult.NoMatch; // 6. If we do not have matches: fail.
         }
 
-        private PathSubjectPart[] FindMatchingRest(
+        private async Task<PathSubjectPart[]> FindMatchingRest(
             IScriptScope scope, 
             IRootHandler rootHandler, 
             MatchResult[] matches,
             PathSubjectPart templatePart, 
             IRootHandlerPathPartMatcher matcher, 
-            List<PathSubjectPart> result, ref bool isFirst)
+            List<PathSubjectPart> result, bool isFirst)
         {
             MatchResult match;
             if (isFirst)
             {
                 match = matches[0];
-                isFirst = false;
             }
             else
             {
-                match = matches.FirstOrDefault(m =>
-                       {
-                           var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
-                           var canMatch = matcher.CanMatch(parameters);
-                           return canMatch;
-                       }) ?? MatchResult.NoMatch;
+                match = MatchResult.NoMatch;
+                foreach (var m in matches)
+                {
+                    var parameters = new MatchParameters(rootHandler, templatePart, m.Rest, scope);
+                    var canMatch = await matcher.CanMatch(parameters);
+                    if (canMatch)
+                    {
+                        match = m;
+                        break;
+                    }
+                }
                 result.AddRange(match.Match);
             }
 
