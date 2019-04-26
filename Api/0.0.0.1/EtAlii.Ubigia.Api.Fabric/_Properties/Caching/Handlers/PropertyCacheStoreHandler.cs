@@ -15,16 +15,15 @@
             _contextProvider = contextProvider;
         }
 
-        public async Task Handle(Identifier identifier)
+        public Task Handle(Identifier identifier)
         {
-            await Task.Run(() =>
+            if (_cacheProvider.Cache.TryGetValue(identifier, out _))
             {
-                if (_cacheProvider.Cache.TryGetValue(identifier, out _))
-                {
-                    // Yup, we got a cache hit.
-                    _cacheProvider.Cache.Remove(identifier);
-                }
-            });
+                // Yup, we got a cache hit.
+                _cacheProvider.Cache.Remove(identifier);
+            }
+
+            return Task.CompletedTask;
         }
 
         public async Task Handle(Identifier identifier, PropertyDictionary properties, ExecutionScope scope)
