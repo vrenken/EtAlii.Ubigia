@@ -15,18 +15,17 @@
             _cacheProvider = cacheProvider;
         }
 
-        public async Task Handle(Identifier identifier)
+        public Task Handle(Identifier identifier)
         {
-            await Task.Run(() =>
+            if (_cacheProvider.Cache.TryGetValue(identifier, out var entry))
             {
-                if (_cacheProvider.Cache.TryGetValue(identifier, out var entry))
-                {
-                    // Yup, we got a cache hit.
-                    _cacheProvider.Cache.Remove(identifier);
+                // Yup, we got a cache hit.
+                _cacheProvider.Cache.Remove(identifier);
 
-                    _cacheHelper.InvalidateRelated(entry);
-                }
-            });
+                _cacheHelper.InvalidateRelated(entry);
+            }
+
+            return Task.CompletedTask;
         }
     }
 }
