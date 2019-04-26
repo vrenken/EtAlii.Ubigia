@@ -27,7 +27,7 @@
                 await _processingContext.AbsolutePathSubjectProcessor.Process(absolutePathSubjectToAdd, scope, observer);
 
                 return Disposable.Empty;
-            });
+            }).ToHotObservable();
 
             inputObservable.SubscribeAsync(
                 onError: output.OnError,
