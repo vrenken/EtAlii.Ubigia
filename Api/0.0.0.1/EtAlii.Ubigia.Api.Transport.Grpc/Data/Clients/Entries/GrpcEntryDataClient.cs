@@ -6,7 +6,7 @@
     using global::Grpc.Core;
     using EntryRelation = EtAlii.Ubigia.Api.EntryRelation;
 
-    internal class GrpcEntryDataClient : GrpcClientBase, IEntryDataClient<IGrpcSpaceTransport> 
+    internal class GrpcEntryDataClient : GrpcClientBase, IEntryDataClient<IGrpcSpaceTransport>
     {
         private EntryGrpcService.EntryGrpcServiceClient _client;
         private IGrpcSpaceTransport _transport;
@@ -30,10 +30,10 @@
         {
             try
             {
-                var request = new EntryPutRequest {Entry = ((IComponentEditableEntry)entry).ToWire()};
+                var request = new EntryPutRequest { Entry = ((IComponentEditableEntry)entry).ToWire() };
                 var response = await _client.PutAsync(request, _transport.AuthenticationHeaders);
                 //var result = await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "Put", entry)
-    
+
                 scope.Cache.InvalidateEntry(entry.Id);
                 // TODO: CACHING - Most probably the invalidateEntry could better be called on the result.id as well.
                 //scope.Cache.InvalidateEntry(result.Id)
@@ -56,7 +56,7 @@
             {
                 return await scope.Cache.GetEntry(entryIdentifier, async () =>
                 {
-                    var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
+                    var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
                     var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                     //return await _invoker.Invoke<Entry>(_connection, GrpcHub.Entry, "GetSingle", entryIdentifier, entryRelations)
                     return response.Entry.ToLocal();
@@ -78,7 +78,7 @@
                 {
                     var entry = await scope.Cache.GetEntry(entryIdentifier, async () =>
                     {
-                        var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire()};
+                        var request = new EntrySingleRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire() };
                         var response = await _client.GetSingleAsync(request, _transport.AuthenticationHeaders);
                         return response.Entry.ToLocal();
                     });
@@ -98,7 +98,7 @@
             {
                 return await scope.Cache.GetRelatedEntries(entryIdentifier, entriesWithRelation, async () =>
                 {
-                    var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire()};
+                    var request = new EntryRelatedRequest { EntryId = entryIdentifier.ToWire(), EntryRelations = entryRelations.ToWire(), EntriesWithRelation = entriesWithRelation.ToWire() };
                     var response = await _client.GetRelatedAsync(request, _transport.AuthenticationHeaders);
                     return response.Entries.ToLocal();
                     //return await _invoker.Invoke<IEnumerable<Entry>>(_connection, GrpcHub.Entry, "GetRelated", entryIdentifier, entriesWithRelation, entryRelations)
@@ -113,7 +113,7 @@
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
             await base.Connect(spaceConnection);
-            
+
             _transport = ((IGrpcSpaceConnection)spaceConnection).Transport;
             _client = new EntryGrpcService.EntryGrpcServiceClient(_transport.Channel);
         }
