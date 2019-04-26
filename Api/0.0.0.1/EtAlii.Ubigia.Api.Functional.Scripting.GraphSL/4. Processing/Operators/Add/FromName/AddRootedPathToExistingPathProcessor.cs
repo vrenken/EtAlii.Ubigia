@@ -27,7 +27,7 @@
                 await _processingContext.RootedPathSubjectProcessor.Process(rootedPathSubjectToAdd, scope, observer);
 
                 return Disposable.Empty;
-            });
+            }).ToHotObservable();
 
             inputObservable.SubscribeAsync(
                 onError: output.OnError,
