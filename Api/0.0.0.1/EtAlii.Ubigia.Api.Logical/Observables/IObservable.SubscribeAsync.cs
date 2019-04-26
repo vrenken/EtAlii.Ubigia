@@ -22,19 +22,15 @@
             {
                 return source.Subscribe(OnNext, onError, onCompleted);
             }
-
-            else if (onCompleted != null)
+            if (onCompleted != null)
             {
                 return source.Subscribe(OnNext, onCompleted);                
             }
-            else if (onError != null)
+            if (onError != null)
             {
                 return source.Subscribe(OnNext, onError);                
             }
-            else
-            {
-                return source.Subscribe(OnNext);
-            }
+            return source.Subscribe(OnNext);
         }
         
         private static IDisposable SubscribeAsyncOld<T>(
