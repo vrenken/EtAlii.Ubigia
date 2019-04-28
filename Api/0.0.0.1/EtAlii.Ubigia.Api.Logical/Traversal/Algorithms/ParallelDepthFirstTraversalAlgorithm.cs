@@ -5,14 +5,14 @@
 
     public class ParallelDepthFirstTraversalAlgorithm : IDepthFirstTraversalAlgorithm
     {
-        private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector;
-        private readonly int _maxDegreeOfParallelism;
-        private readonly int ProcessorMultiplier = 2;
+        //private readonly IGraphPathPartTraverserSelector _graphPathPartTraverserSelector
+        //private readonly int _maxDegreeOfParallelism
+        //private readonly int ProcessorMultiplier = 2
 
-        public ParallelDepthFirstTraversalAlgorithm(IGraphPathPartTraverserSelector graphPathPartTraverserSelector)
+        public ParallelDepthFirstTraversalAlgorithm() // IGraphPathPartTraverserSelector graphPathPartTraverserSelector
         {
-            _graphPathPartTraverserSelector = graphPathPartTraverserSelector;
-            _maxDegreeOfParallelism = Environment.ProcessorCount * ProcessorMultiplier;
+            //_graphPathPartTraverserSelector = graphPathPartTraverserSelector
+            //_maxDegreeOfParallelism = Environment.ProcessorCount * ProcessorMultiplier
         }
         
         public Task Traverse(GraphPath graphPath, Identifier current, ITraversalContext context, ExecutionScope scope, IObserver<Identifier> finalOutput)

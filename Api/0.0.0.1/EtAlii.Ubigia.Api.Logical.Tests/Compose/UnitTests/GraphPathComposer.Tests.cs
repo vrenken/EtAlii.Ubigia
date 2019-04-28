@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
     public class GraphPathComposerUnitTests
@@ -23,7 +22,7 @@
             var graphAdder = new GraphAdder(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
             var graphRemover = new GraphRemover(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
             var graphLinker = new GraphLinker(graphChildAdder, graphLinkAdder, graphUpdater, graphPathTraverser);
-            var graphUnlinker = new GraphUnlinker(graphChildAdder, graphLinkAdder);
+            var graphUnlinker = new GraphUnlinker();//graphChildAdder, graphLinkAdder
             var graphRenamer = new GraphRenamer(graphUpdater, graphPathTraverser);
 
             // Act.

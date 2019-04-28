@@ -1,20 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
 
     public class ProcessEntryCommandHandler : CommandHandlerBase<ProcessEntryCommand>, IProcessEntryCommandHandler
     {
-        private readonly IFabricContext _fabric;
+        //private readonly IFabricContext _fabric
         private readonly IGraphContext _graphContext;
         private readonly IDocumentViewModelProvider _documentViewModelProvider;
 
         public ProcessEntryCommandHandler(
-            IFabricContext fabric,
+            //IFabricContext fabric,
             IGraphContext graphContext,
             IDocumentViewModelProvider documentViewModelProvider)
         {
-            _fabric = fabric;
+            //_fabric = fabric
             _graphContext = graphContext;
             _documentViewModelProvider = documentViewModelProvider;
         }
