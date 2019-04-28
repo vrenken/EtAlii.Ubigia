@@ -11,7 +11,7 @@
 
         public RootQueryExecutor()//IScriptProcessorFactory scriptProcessorFactory)
         {
-            //_scriptProcessorFactory = scriptProcessorFactory;
+            //_scriptProcessorFactory = scriptProcessorFactory
         }
 
         // Executes a query with a scalar result, i.e. a query that ends with a result operator such as Count, Sum, or Average.

@@ -35,7 +35,7 @@
 //            VisitExpression(expression.Left)
 
 //            // In production code, handle this via lookup tables.
-//            switc h (expression.NodeType)
+//            switc h [expression.NodeType]
 //            [
 //                case ExpressionType.Equal:
 //                    _gqlExpression.Append(" = ")
