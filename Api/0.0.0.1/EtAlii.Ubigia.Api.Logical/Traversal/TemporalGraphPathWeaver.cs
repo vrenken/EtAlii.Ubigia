@@ -33,7 +33,7 @@
                 }
                 else
                 {
-                    // TODO: BIG TODO: Improve the Temporal Weaver so that it weaves in temporal 'last' relations
+                    // TODO: BIG One: Improve the Temporal Weaver so that it weaves in temporal 'last' relations
                     // until the first temporal directive is spotted.
                     result.AddRange(path.Skip(i + 1));
                     break;
