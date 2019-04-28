@@ -26,6 +26,74 @@
 
             var entries = new List<Entry>();
 
+            AddHierarchicalEntries(entriesWithRelation, entryRelations, entry, entries);
+
+            AddIndexEntries(entriesWithRelation, entryRelations, entries, entry);
+
+            AddSequentialEntries(entriesWithRelation, entryRelations, entry, entries);
+
+            AddTemporalEntries(entriesWithRelation, entryRelations, entry, entries);
+
+            return entries;
+        }
+
+        private void AddTemporalEntries(
+            EntryRelation entriesWithRelation, 
+            EntryRelation entryRelations, 
+            IReadOnlyEntry entry,
+            List<Entry> entries)
+        {
+            if (entriesWithRelation.HasFlag(EntryRelation.Downdate) && entry.Downdate != Relation.None)
+            {
+                var downdateEntry = Get(entry.Downdate.Id, entryRelations);
+                entries.Add(downdateEntry);
+            }
+
+            if (entriesWithRelation.HasFlag(EntryRelation.Update))
+            {
+                entries.AddRange(entry.Updates.Select(relation => Get(relation.Id, entryRelations)));
+            }
+        }
+
+        private void AddSequentialEntries(
+            EntryRelation entriesWithRelation, 
+            EntryRelation entryRelations, 
+            IReadOnlyEntry entry,
+            List<Entry> entries)
+        {
+            if (entriesWithRelation.HasFlag(EntryRelation.Previous) && entry.Previous != Relation.None)
+            {
+                var previousEntry = Get(entry.Previous.Id, entryRelations);
+                entries.Add(previousEntry);
+            }
+
+            if (!entriesWithRelation.HasFlag(EntryRelation.Next) || entry.Next == Relation.None) return;
+            var nextEntry = Get(entry.Next.Id, entryRelations);
+            entries.Add(nextEntry);
+        }
+
+        private void AddIndexEntries(
+            EntryRelation entriesWithRelation, 
+            EntryRelation entryRelations, 
+            List<Entry> entries, 
+            IReadOnlyEntry entry)
+        {
+            if (entriesWithRelation.HasFlag(EntryRelation.Index))
+            {
+                entries.AddRange(entry.Indexes.Select(relation => Get(relation.Id, entryRelations)));
+            }
+
+            if (!entriesWithRelation.HasFlag(EntryRelation.Indexed) || entry.Indexed == Relation.None) return;
+            var indexedEntry = Get(entry.Parent.Id, entryRelations);
+            entries.Add(indexedEntry);
+        }
+
+        private void AddHierarchicalEntries(
+            EntryRelation entriesWithRelation, 
+            EntryRelation entryRelations, 
+            IReadOnlyEntry entry,
+            List<Entry> entries)
+        {
             if (entriesWithRelation.HasFlag(EntryRelation.Parent))
             {
                 if (entry.Parent != Relation.None)
@@ -41,47 +109,9 @@
                 }
             }
 
-            if (entriesWithRelation.HasFlag(EntryRelation.Child))
-            {
-                entries.AddRange(entry.Children.Select(relation => Get(relation.Id, entryRelations)));
-                entries.AddRange(entry.Children2.Select(relation => Get(relation.Id, entryRelations)));
-            }
-
-            if (entriesWithRelation.HasFlag(EntryRelation.Index))
-            {
-                entries.AddRange(entry.Indexes.Select(relation => Get(relation.Id, entryRelations)));
-            }
-
-            if (entriesWithRelation.HasFlag(EntryRelation.Indexed) && entry.Indexed != Relation.None)
-            {
-                var indexedEntry = Get(entry.Parent.Id, entryRelations);
-                entries.Add(indexedEntry);
-            }
-
-            if (entriesWithRelation.HasFlag(EntryRelation.Previous) && entry.Previous != Relation.None)
-            {
-                var previousEntry = Get(entry.Previous.Id, entryRelations);
-                entries.Add(previousEntry);
-            }
-
-            if (entriesWithRelation.HasFlag(EntryRelation.Next) && entry.Next != Relation.None)
-            {
-                var nextEntry = Get(entry.Next.Id, entryRelations);
-                entries.Add(nextEntry);
-            }
-
-            if (entriesWithRelation.HasFlag(EntryRelation.Downdate) && entry.Downdate != Relation.None)
-            {
-                var downdateEntry = Get(entry.Downdate.Id, entryRelations);
-                entries.Add(downdateEntry);
-            }
-
-            if (entriesWithRelation.HasFlag(EntryRelation.Update))
-            {
-                entries.AddRange(entry.Updates.Select(relation => Get(relation.Id, entryRelations)));
-            }
-
-            return entries;
+            if (!entriesWithRelation.HasFlag(EntryRelation.Child)) return;
+            entries.AddRange(entry.Children.Select(relation => Get(relation.Id, entryRelations)));
+            entries.AddRange(entry.Children2.Select(relation => Get(relation.Id, entryRelations)));
         }
 
         public Entry Get(Identifier identifier, EntryRelation entryRelations)
