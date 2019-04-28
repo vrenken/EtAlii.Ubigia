@@ -69,7 +69,7 @@
             // reliably.)
             //
             // Request for typeof(object) may cause a simple value to round trip as a JObject.
-            if (IsSimpleType(type) || type == typeof(byte[]))
+            if (IsSimpleType(type))
             {
                 // Read as exact expected Dictionary<string, T> to ensure NewtonSoft.Json does correct top-level conversion.
                 var dictionaryType = OpenDictionaryType.MakeGenericType(typeof(string), type);
@@ -84,7 +84,7 @@
                 }
 
                 // Unfortunately IDictionary doesn't have TryGetValue()...
-                var firstKey = String.Empty;
+                var firstKey = string.Empty;
                 foreach (DictionaryEntry item in dictionary)
                 {
                     if (dictionary.Count == 1 && (item.Key as string) == "Value")
@@ -124,7 +124,7 @@
 		    }
 		}
 
-	    public JsonReader CreateJsonReader(Type type, Stream readStream)
+	    private JsonReader CreateJsonReader(Type type, Stream readStream)
         {
             if (type == null)
             {
@@ -195,14 +195,11 @@
             // Using runtime type here because Json.Net will throw during serialization whenever it cannot handle the
             // runtime type at the top level. For e.g. passed type may be typeof(object) and value may be a string.
             var runtimeType = value.GetType();
-            if (IsSimpleType(runtimeType) || runtimeType == typeof(byte[]))
+            if (IsSimpleType(runtimeType))
             {
 				// Wrap value in a Dictionary with a single property named "Value" to provide BSON with an Object.  
 	            // Is written out as binary equivalent of [ "Value": value ] JSON.
-                var temporaryDictionary = new Dictionary<string, object>
-                {
-                    { "Value", value },
-                };
+                var temporaryDictionary = new Dictionary<string, object> { { "Value", value } };
 	            WriteToStreamInternal(typeof(Dictionary<string, object>), temporaryDictionary, writeStream);
 			}
 			else
@@ -224,7 +221,7 @@
 		    }
 		}
 
-		public JsonWriter CreateJsonWriter(Type type, Stream writeStream)
+		private JsonWriter CreateJsonWriter(Type type, Stream writeStream)
         {
             if (type == null)
             {
@@ -244,7 +241,7 @@
         // To do: https://aspnetwebstack.codeplex.com/workitem/1467
         private static bool IsSimpleType(Type type)
         {
-            var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string);
+            var isSimpleType = type.GetTypeInfo().IsValueType || type == typeof(string) || type == typeof(byte[]);
 
             return isSimpleType;
         }
