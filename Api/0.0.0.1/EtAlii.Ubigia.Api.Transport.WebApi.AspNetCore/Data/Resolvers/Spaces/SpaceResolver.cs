@@ -32,7 +32,7 @@
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Spaces, UriParameter.SpaceId, spaceInfoProvider.Space.Id.ToString());
                     space = address != null ? await _client.Get<Space>(address) : null;
                 }
-                else if (!String.IsNullOrWhiteSpace(spaceInfoProvider.SpaceName))
+                else if (!string.IsNullOrWhiteSpace(spaceInfoProvider.SpaceName))
                 {
                     var targetAccount = await _accountResolver.Get((IAccountInfoProvider)spaceInfoProvider, currentAccount);
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Spaces, UriParameter.AccountId, targetAccount.Id.ToString());

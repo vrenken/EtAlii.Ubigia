@@ -70,11 +70,11 @@
 
                 if(addEachTenSeconds)
                 {
-                    datePath = String.Format("/{0} += {1:yyyy}/{1:MM}/{1:dd}/{1:HH}/{1:mm}/{1:ss}", "Time", utcNow);
+                    datePath = string.Format("/{0} += {1:yyyy}/{1:MM}/{1:dd}/{1:HH}/{1:mm}/{1:ss}", "Time", utcNow);
                 }
                 else
                 {
-                    datePath = String.Format("/{0} += {1:yyyy}/{1:MM}/{1:dd}/{1:HH}/{1:mm}", "Time", utcNow);
+                    datePath = string.Format("/{0} += {1:yyyy}/{1:MM}/{1:dd}/{1:HH}/{1:mm}", "Time", utcNow);
                 }
 
                 var sequenceResult = await _context.SystemScriptContext.Process(datePath);

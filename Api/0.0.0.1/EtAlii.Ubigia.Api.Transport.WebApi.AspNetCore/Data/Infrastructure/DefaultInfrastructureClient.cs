@@ -140,7 +140,7 @@
         private async Task<string> GetError(HttpResponseMessage response)
         {
             var errorString = await response.Content.ReadAsStringAsync();
-            errorString = String.IsNullOrWhiteSpace(errorString) ? "UNKNOWN" : errorString;
+            errorString = string.IsNullOrWhiteSpace(errorString) ? "UNKNOWN" : errorString;
             return errorString;
         }
 	}

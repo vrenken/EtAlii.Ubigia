@@ -11,14 +11,14 @@
         {
             var webApiConnection = (IWebApiSpaceConnection)connection;
 
-            string authenticationToken = await GetAuthenticationToken(
+            var authenticationToken = await GetAuthenticationToken(
                 webApiConnection.Client,
                 webApiConnection.AddressFactory,
                 accountName,
                 password,
                 connection.Transport.Address);
 
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
+            if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
                 webApiConnection.Client.AuthenticationToken = authenticationToken;
             }
@@ -33,14 +33,14 @@
         {
             var webApiConnection = (IWebApiStorageConnection)connection;
 
-            string authenticationToken = await GetAuthenticationToken(
+            var authenticationToken = await GetAuthenticationToken(
                 webApiConnection.Client, 
                 webApiConnection.AddressFactory, 
                 accountName, 
                 password, 
                 connection.Transport.Address);
 
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
+            if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
                 webApiConnection.Client.AuthenticationToken = authenticationToken;
             }
@@ -68,7 +68,7 @@
                 authenticationToken = await client.Get<string>(localAddress, credentials);
             }
 
-            if (String.IsNullOrWhiteSpace(authenticationToken))
+            if (string.IsNullOrWhiteSpace(authenticationToken))
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
             }

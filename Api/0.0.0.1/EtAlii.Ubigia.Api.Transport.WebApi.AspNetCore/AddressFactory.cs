@@ -7,7 +7,7 @@
 	{
 		public Uri Create(Uri baseAddress, string relativeAddress, params string[] parameters)
 		{
-			relativeAddress = relativeAddress ?? String.Empty;
+			relativeAddress = relativeAddress ?? string.Empty;
 
 			var queryComponents = new List<string>();
 			for (int i = 0; i < parameters.Length; i += 2)
@@ -16,7 +16,7 @@
 				if (i + 1 < parameters.Length)
 				{
 					var value = Uri.EscapeDataString(parameters[i + 1]);
-					queryComponents.Add(String.Join("=", key, value));
+					queryComponents.Add(string.Join("=", key, value));
 				}
 				else
 				{
@@ -26,7 +26,7 @@
 
 			var builder = new UriBuilder(baseAddress)
 			{
-				Query = String.Join("&", queryComponents)
+				Query = string.Join("&", queryComponents)
 			};
 
 			builder.Path = builder.Path.TrimEnd('/') + "/" + RelativeUri.ApiRest + relativeAddress.TrimStart('/');

@@ -45,9 +45,9 @@
 
             IProfilingDataConnection connection;
             var factory = new DataConnectionFactory();
-            if (String.IsNullOrWhiteSpace(address) ||
-                String.IsNullOrWhiteSpace(account) ||
-                String.IsNullOrWhiteSpace(password) ||
+            if (string.IsNullOrWhiteSpace(address) ||
+                string.IsNullOrWhiteSpace(account) ||
+                string.IsNullOrWhiteSpace(password) ||
                 String.IsNullOrWhiteSpace(space))
             {
                 var connectionConfiguration = new DataConnectionConfiguration()

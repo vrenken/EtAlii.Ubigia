@@ -65,11 +65,11 @@
 
         public IProvisioningConfiguration Use(Uri address, string account, string password)
         {
-			if (String.IsNullOrWhiteSpace(account))
+			if (string.IsNullOrWhiteSpace(account))
             {
                 throw new ArgumentException(nameof(account));
             }
-            if (String.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentException(nameof(password));
             }
