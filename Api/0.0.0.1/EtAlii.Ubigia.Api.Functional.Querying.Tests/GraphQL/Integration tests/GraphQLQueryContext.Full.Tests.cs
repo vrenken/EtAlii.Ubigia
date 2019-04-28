@@ -6,9 +6,7 @@
     using GraphQL.Http;
     using Xunit;
 
-// TODO: ENABLE FOR GraphQL
-#pragma warning disable xUnit1000
-    internal class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class GraphQLQueryContextFullTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext _logicalContext;
         private IGraphSLScriptContext _scriptContext;

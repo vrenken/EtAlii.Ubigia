@@ -6,9 +6,7 @@
     using GraphQL.Http;
     using Xunit;
 
-// TODO: ENABLE FOR GraphQL
-#pragma warning disable xUnit1000
-    internal class GraphQLQueryContextBasicTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class GraphQLQueryContextBasicTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext _logicalContext;
         private IGraphSLScriptContext _scriptContext;
@@ -84,7 +82,7 @@
         public async Task GraphQL_Query_Select_Simple_Full_Relative()
         {
             // Arrange.
-            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\.Type='FamilyName'""), nickname, birthdate, lives } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { firstname @id(path:""""), lastname @id(path:""\\#FamilyName""), nickname, birthdate, lives } }";
             
             // Act.
             var parseResult = await _queryContext.Parse(queryText);
@@ -99,7 +97,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative_01()
         {
             // Arrange.
-            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\.Type='FamilyName'"") } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\#FamilyName"") } }";
             
             // Act.
             var parseResult = await _queryContext.Parse(queryText);
@@ -115,7 +113,7 @@
         public async Task GraphQL_Query_Select_Simple_Path_Relative_Twice()
         {
             // Arrange.
-            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\.Type='FamilyName'"") } }";
+            var queryText = @"query data { person @nodes(path:""person:Stark/Tony"") { lastname @id(path:""\\#FamilyName"") } }";
             var parseResult = await _queryContext.Parse(queryText);
             
             // Act.
@@ -294,7 +292,7 @@
                           { 
                             person @nodes(path:""person:Stark/Tony"") 
                             {
-                                lastname @id(path:""\\.Type='FamilyName'"")
+                                lastname @id(path:""\\#FamilyName"")
                                 nickname 
                             } 
                           }";

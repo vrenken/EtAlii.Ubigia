@@ -6,9 +6,7 @@
     using GraphQL.Http;
     using Xunit;
 
-// TODO: ENABLE FOR GraphQL
-#pragma warning disable xUnit1000
-    internal class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private ILogicalContext  _logicalContext;
         private IGraphSLScriptContext _scriptContext;
@@ -143,7 +141,7 @@
             await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
         }
 
-        [Fact, Trait("Category", TestAssembly.Category)]
+        [Fact(Skip = "Root data queries are not yet supported"), Trait("Category", TestAssembly.Category)]
         public async Task GraphQL_Query_Traverse_Person_Plural_01()
         {
             // Arrange.
@@ -176,11 +174,12 @@
                     person @nodes(path:""person:Stark/Tony"")
                     {
                         name @id,
-                        friends @nodes(path:""/Friends/"") 
+                        friends @nodes(path:""/Friends/#FirstName"") 
                         { 
                             name @id
                             nickname
-                        } 
+                            lastname @id(path:""\\#FamilyName"") 
+                    } 
                     }
                 }";
                         
@@ -190,7 +189,6 @@
                 
             // Assert.
             Assert.Null(result.Errors);
-    //      var actual = await _documentWriter.WriteToStringAsync(result)
             await AssertQuery.ResultsAreEqual(_documentWriter, @"
                 {
                     'person':
@@ -198,9 +196,9 @@
                         'name':'Tony',
                         'friends':
                         [
-                            {'name':'John','nickname':'Johnny'},
-                            {'name':'Jane','nickname':'Janey'},
-                            {'name':'Peter','nickname':'Pete'}
+                            {'name':'John','nickname':'Johnny', 'lastname': 'Doe'},
+                            {'name':'Jane','nickname':'Janey', 'lastname': 'Doe'},
+                            {'name':'Peter','nickname':'Pete', 'lastname': 'Vrenken'}
                         ]
                     }
                 }", result);
@@ -220,7 +218,7 @@
                     { 
                         nickname
                         firstname @id
-                        lastname @id(path:""\\.Type='FamilyName'"") 
+                        lastname @id(path:""\\#FamilyName"") 
                     }
                 }";
             
@@ -248,7 +246,7 @@
                     { 
                         nickname
                         firstname @id
-                        lastname @id(path:""\\.Type='FamilyName'"") 
+                        lastname @id(path:""\\#FamilyName"") 
                     }
                 }";
             
