@@ -535,23 +535,23 @@
             await lastSequence.Output.ToArray();
 
             lastSequence = await processor.Process(nodeSelectScriptJohn);
-            var afterNodesJohn = result = await lastSequence.Output.ToArray();
+            result = await lastSequence.Output.ToArray();
             var afterNodeCountJohn = result.Length;
             lastSequence = await processor.Process(nodeSelectScriptJane);
-            var afterNodesJane = result = await lastSequence.Output.ToArray();
+            result = await lastSequence.Output.ToArray();
             var afterNodeCountJane = result.Length;
             lastSequence = await processor.Process(nodeSelectScriptTony);
-            var afterNodesTony = result = await lastSequence.Output.ToArray();
+            result = await lastSequence.Output.ToArray();
             var afterNodeCountTony = result.Length;
             
             lastSequence = await processor.Process(friendsSelectScriptJohn);
-            var afterFriendsJohn = result = await lastSequence.Output.ToArray();
+            result = await lastSequence.Output.ToArray();
             var afterFriendCountJohn = result.Length;
             lastSequence = await processor.Process(friendsSelectScriptJane);
-            var afterFriendsJane = result = await lastSequence.Output.ToArray();
+            result = await lastSequence.Output.ToArray();
             var afterFriendCountJane = result.Length;
             lastSequence = await processor.Process(friendsSelectScriptTony);
-            var afterFriendsTony = result = await lastSequence.Output.ToArray();
+            result = await lastSequence.Output.ToArray();
             var afterFriendCountTony = result.Length;
 
             // Assert.

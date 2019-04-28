@@ -3,7 +3,7 @@
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Logging;
 
     public class TimeImporter : ITimeImporter

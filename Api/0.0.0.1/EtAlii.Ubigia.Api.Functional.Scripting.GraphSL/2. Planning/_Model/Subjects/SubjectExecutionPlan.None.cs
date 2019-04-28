@@ -21,7 +21,7 @@
 
             public Task<IObservable<object>> Execute(ExecutionScope scope)
             {
-                return Task.FromResult<IObservable<object>>(Observable.Empty<object>()); 
+                return Task.FromResult(Observable.Empty<object>()); 
             }
 
             public override string ToString()
