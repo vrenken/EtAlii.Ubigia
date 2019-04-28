@@ -9,34 +9,29 @@
 
     public class LogicalNodeSet : ILogicalNodeSet
     {
-        private readonly IGraphComposerFactory _graphComposerFactory;
-        private readonly IGraphAssignerFactory _graphAssignerFactory;
+        private readonly IGraphComposer _graphComposer;
+        private readonly IGraphAssigner _graphAssigner;
 
         internal IFabricContext Fabric { get; }
-
-        // TODO: Shouldn't these factories just be their instances? e.g. GraphPathTraverser?
-        internal IGraphPathTraverserFactory GraphPathTraverserFactory { get; }
+        internal IGraphPathTraverser GraphPathTraverser { get; }
 
         public LogicalNodeSet(
             IFabricContext fabric,
-            IGraphPathTraverserFactory graphPathTraverserFactory, 
-            IGraphAssignerFactory graphAssignerFactory,
-            IGraphComposerFactory graphComposerFactory)
+            IGraphPathTraverser graphPathTraverser, 
+            IGraphAssigner graphAssigner,
+            IGraphComposer graphComposer)
         {
             Fabric = fabric;
-            GraphPathTraverserFactory = graphPathTraverserFactory;
-            _graphAssignerFactory = graphAssignerFactory;
-            _graphComposerFactory = graphComposerFactory;
+            GraphPathTraverser = graphPathTraverser;
+            _graphAssigner = graphAssigner;
+            _graphComposer = graphComposer;
         }
 
         public async Task<IEnumerable<IReadOnlyEntry>> SelectMany(GraphPath path, ExecutionScope scope)
         {
-            var configuration = new GraphPathTraverserConfiguration()
-                .Use(Fabric);
-            var traverser = GraphPathTraverserFactory.Create(configuration);
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+                GraphPathTraverser.Traverse(path, Traversal.BreadthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
             return await results.ToArray();
@@ -44,73 +39,60 @@
 
         public void SelectMany(GraphPath path, ExecutionScope scope, IObserver<object> output)
         {
-            var configuration = new GraphPathTraverserConfiguration()
-                .Use(Fabric);
-            var traverser = GraphPathTraverserFactory.Create(configuration);
-            traverser.Traverse(path, Traversal.BreadthFirst, scope, output);
+            GraphPathTraverser.Traverse(path, Traversal.BreadthFirst, scope, output);
         }
 
         public async Task<INode> AssignProperties(Identifier location, IPropertyDictionary properties, ExecutionScope scope)
         {
-            var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignProperties(location, properties, scope);
+            return await _graphAssigner.AssignProperties(location, properties, scope);
         }
 
         // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
         public async Task<INode> AssignTag(Identifier location, string tag, ExecutionScope scope)
         {
-            var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignTag(location, tag, scope);
+            return await _graphAssigner.AssignTag(location, tag, scope);
         }
 
         // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
         public async Task<INode> AssignNode(Identifier location, INode node, ExecutionScope scope)
         {
-            var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignNode(location, node, scope);
+            return await _graphAssigner.AssignNode(location, node, scope);
         }
 
         // TODO: The Assignment result should be a IReadOnlyEntry and not an INode.
         public async Task<INode> AssignDynamic(Identifier location, object o, ExecutionScope scope)
         {
-            var assigner = _graphAssignerFactory.Create(Fabric);
-            return await assigner.AssignDynamic(location, o, scope);
+            return await _graphAssigner.AssignDynamic(location, o, scope);
         }
 
         public async Task<IReadOnlyEntry> Add(Identifier parent, string child, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Add(parent, child, scope);
+            return await _graphComposer.Add(parent, child, scope);
         }
 
         public async Task<IReadOnlyEntry> Add(Identifier parent, Identifier child, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Add(parent, child, scope);
+            return await _graphComposer.Add(parent, child, scope);
         }
 
         public async Task<IReadOnlyEntry> Remove(Identifier parent, string child, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Remove(parent, child, scope);
+            return await _graphComposer.Remove(parent, child, scope);
         }
 
         public async Task<IReadOnlyEntry> Remove(Identifier parent, Identifier child, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Remove(parent, child, scope);
+            return await _graphComposer.Remove(parent, child, scope);
         }
 
         public async Task<IReadOnlyEntry> Link(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Link(location, itemName, item, scope);
+            return await _graphComposer.Link(location, itemName, item, scope);
         }
 
         public async Task<IReadOnlyEntry> Unlink(Identifier location, string itemName, Identifier item, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Unlink(location, itemName, item, scope);
+            return await _graphComposer.Unlink(location, itemName, item, scope);
         }
 
         public async Task<IEditableEntry> Prepare()
@@ -125,8 +107,7 @@
 
         public async Task<IReadOnlyEntry> Rename(Identifier item, string newName, ExecutionScope scope)
         {
-            var composer = _graphComposerFactory.Create(Fabric);
-            return await composer.Rename(item, newName, scope);
+            return await _graphComposer.Rename(item, newName, scope);
         }
     }
 }
