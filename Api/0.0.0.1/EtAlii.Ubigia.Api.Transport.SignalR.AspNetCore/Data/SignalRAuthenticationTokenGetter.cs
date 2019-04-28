@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
     using System;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
 
     public class SignalRAuthenticationTokenGetter : ISignalRAuthenticationTokenGetter
@@ -68,8 +69,8 @@
         private string CreateHostIdentifier()
         {
             var bytes = new byte[64];
-            var rnd = new Random();
-            rnd.NextBytes(bytes);
+            var rnd = RandomNumberGenerator.Create();
+            rnd.GetNonZeroBytes(bytes);
             return Convert.ToBase64String(bytes);
         }
     }

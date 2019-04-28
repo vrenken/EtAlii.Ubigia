@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Security.Cryptography;
     using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
     using global::Grpc.Core;
     using global::Grpc.Core.Logging;
@@ -19,8 +20,8 @@
             }
             
             var bytes = new byte[64];
-            var rnd = new Random();
-            rnd.NextBytes(bytes);
+            var rnd = RandomNumberGenerator.Create();
+            rnd.GetNonZeroBytes(bytes);
             HostIdentifier = Convert.ToBase64String(bytes);
         }
 

@@ -3,6 +3,7 @@
     using System;
     using System.Net;
     using System.Net.Http;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
 
     public sealed class DefaultInfrastructureClient : IInfrastructureClient
@@ -25,8 +26,8 @@
 
             _formatter = new PayloadMediaTypeFormatter();
             var bytes = new byte[64];
-            var rnd = new Random();
-            rnd.NextBytes(bytes);
+            var rnd = RandomNumberGenerator.Create();
+            rnd.GetNonZeroBytes(bytes);
             _hostIdentifier = Convert.ToBase64String(bytes);
         }
 
