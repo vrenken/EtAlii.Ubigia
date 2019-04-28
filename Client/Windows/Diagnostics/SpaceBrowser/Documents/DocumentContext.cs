@@ -9,7 +9,18 @@
 
     class DocumentContext : IDocumentContext
     {
-        public DocumentContext(IGraphSLScriptContext scriptContext, IGraphQLQueryContext queryContext, ILinqQueryContext linqContext, ILogicalContext logicalContext, IFabricContext fabricContext, IDataConnection connection, IDiagnosticsConfiguration diagnostics, ILogger logger, ILogFactory logFactory, IJournalViewModel journal, IGraphContextFactory graphContextFactory)
+        public DocumentContext(
+            IGraphSLScriptContext scriptContext, 
+            IGraphQLQueryContext queryContext, 
+            ILinqQueryContext linqContext, 
+            ILogicalContext logicalContext, 
+            IFabricContext fabricContext, 
+            IDataConnection connection, 
+            IDiagnosticsConfiguration diagnostics, 
+            ILogger logger, 
+            ILogFactory logFactory, 
+            IJournalViewModel journal, 
+            IGraphContextFactory graphContextFactory)
         {
             ScriptContext = scriptContext;
             QueryContext = queryContext;
