@@ -24,7 +24,7 @@
             {
                 address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageId, storageInfoProvider.Storage.Id.ToString());
             }
-            else if (!String.IsNullOrWhiteSpace(storageInfoProvider.StorageName))
+            else if (!string.IsNullOrWhiteSpace(storageInfoProvider.StorageName))
             {
                 address = _addressFactory.Create(currentStorage, RelativeUri.Data.Storages, UriParameter.StorageName, storageInfoProvider.StorageName);
             }

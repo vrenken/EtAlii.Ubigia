@@ -30,7 +30,7 @@
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts, UriParameter.AccountId, accountInfoProvider.Account.Id.ToString());
                     account = address != null ? await _client.Get<Account>(address) : null;
                 }
-                else if (!String.IsNullOrWhiteSpace(accountInfoProvider.AccountName))
+                else if (!string.IsNullOrWhiteSpace(accountInfoProvider.AccountName))
                 {
                     address = _addressFactory.Create(targetStorage, RelativeUri.Data.Accounts);
                     var accounts = await _client.Get<IEnumerable<Account>>(address);

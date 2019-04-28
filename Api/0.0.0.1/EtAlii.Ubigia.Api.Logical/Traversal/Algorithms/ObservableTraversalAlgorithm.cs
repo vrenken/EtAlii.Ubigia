@@ -23,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Logical
                     .ToHotObservable();
                 var input = firstInput;
 
-                for (int i = 0; i < graphPath.Length; i++)
+                for (var i = 0; i < graphPath.Length; i++)
                 {
                     var graphPathPart = graphPath[i];
                     var traverser = _graphPathPartTraverserSelector.Select(graphPathPart);

@@ -28,12 +28,12 @@
             }
             catch (AggregateException e)
             {
-                var message = String.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e.InnerException);
             }
             catch (Exception e)
             {
-                var message = String.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e);
             }
         }
@@ -58,12 +58,12 @@
             }
             catch (AggregateException e)
             {
-                var message = String.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e.InnerException);
             }
             catch (Exception e)
             {
-                var message = String.Format(ErrorMessageFormat, methodName, proxyName);
+                var message = string.Format(ErrorMessageFormat, methodName, proxyName);
                 throw new InvalidInfrastructureOperationException(message, e);
             }
         }
