@@ -78,7 +78,7 @@
 //                [
 //                    throw new NotSupportedException("TestClient does not support multiple outgoing invocations!")
 //                ]
-//                switch (message)
+//                switch [message]
 //                [
 //                    case StreamItemMessage _:
 //                        messages.Add(message)
@@ -107,7 +107,7 @@
 //                [
 //                    throw new NotSupportedException("TestClient does not support multiple outgoing invocations!")
 //                ]
-//                switch (message)
+//                switch [message]
 //                [
 //                    case StreamItemMessage result:
 //                        throw new NotSupportedException("Use 'StreamAsync' to call a streaming method")

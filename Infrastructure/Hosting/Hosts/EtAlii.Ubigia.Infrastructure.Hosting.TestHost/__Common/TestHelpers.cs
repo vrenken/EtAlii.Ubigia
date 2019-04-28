@@ -13,7 +13,7 @@
 //            [
 //                new System.Net.WebSockets.ClientWebSocket().Dispose()
 //            ]
-//            catch (PlatformNotSupportedException)
+//            catch [PlatformNotSupportedException]
 //            [
 //                return false
 //            ]

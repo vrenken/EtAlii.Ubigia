@@ -22,7 +22,7 @@
 //            [
 //                response = _items.Get(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception e]
 //            [
 //                throw new InvalidOperationException("Unable to serve a properties GET client request", e)
 //            ]
@@ -45,7 +45,7 @@
 //                Clients.All.SendAsync("stored", new object[] [ entryId ])
 //                //Clients.All.stored(entryId)
 //            ]
-//            catch (Exception e)
+//            catch [Exception e]
 //            [
 //                throw new InvalidOperationException("Unable to serve a Properties POST client request", e)
 //            ]
