@@ -10,9 +10,12 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
         {
             var logicalNodeSet = (LogicalNodeSet) nodeSet;
             
+            var configuration = new GraphPathTraverserConfiguration()
+                .Use(logicalNodeSet.Fabric);
+            var traverser = logicalNodeSet.GraphPathTraverserFactory.Create(configuration);
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
-                logicalNodeSet.GraphPathTraverser.Traverse(path, Traversal.DepthFirst, scope, output);
+                traverser.Traverse(path, Traversal.DepthFirst, scope, output);
                 return Disposable.Empty;
             }).ToHotObservable();
             return await results.SingleOrDefaultAsync();
