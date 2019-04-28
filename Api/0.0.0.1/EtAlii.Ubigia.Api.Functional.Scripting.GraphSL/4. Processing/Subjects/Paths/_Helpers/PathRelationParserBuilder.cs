@@ -8,16 +8,16 @@
         private readonly LpsParser _leftSource;
         private readonly LpsParser _rightTarget;
 
-        private readonly LpsParser _leftTarget;
-        private readonly LpsParser _rightSource;
+        //private readonly LpsParser _leftTarget
+        //private readonly LpsParser _rightSource
 
         public PathRelationParserBuilder()
         {
             _leftSource = Lp.Term("-");
             _rightTarget = Lp.Term("->");
 
-            _leftTarget = Lp.Term("<-");
-            _rightSource = Lp.Term("-");
+            //_leftTarget = Lp.Term("<-")
+            //_rightSource = Lp.Term("-")
         }
 
         public LpsParser CreatePathRelationParser(string name, string symbol)

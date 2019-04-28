@@ -7,16 +7,16 @@
     class NodesFieldAdder : INodesFieldAdder
     {
         private readonly IComplexFieldTypeBuilder _complexFieldTypeBuilder;
-        private readonly IScalarFieldTypeBuilder _scalarFieldTypeBuilder;
+        //private readonly IScalarFieldTypeBuilder _scalarFieldTypeBuilder
         private readonly IListFieldTypeBuilder _listFieldTypeBuilder;
 
         public NodesFieldAdder(
             IComplexFieldTypeBuilder complexFieldTypeBuilder, 
-            IScalarFieldTypeBuilder scalarFieldTypeBuilder, 
+            //IScalarFieldTypeBuilder scalarFieldTypeBuilder, 
             IListFieldTypeBuilder listFieldTypeBuilder)
         {
             _complexFieldTypeBuilder = complexFieldTypeBuilder;
-            _scalarFieldTypeBuilder = scalarFieldTypeBuilder;
+            //_scalarFieldTypeBuilder = scalarFieldTypeBuilder
             _listFieldTypeBuilder = listFieldTypeBuilder;
         }
 

@@ -10,14 +10,10 @@
     public class AdminStorageService : StorageGrpcService.StorageGrpcServiceBase, IAdminStorageService
     {
         private readonly IStorageRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public AdminStorageService(
-            IStorageRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        public AdminStorageService(IStorageRepository items)
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
         }
 
         public override Task<StorageSingleResponse> GetLocal(StorageSingleRequest request, ServerCallContext context)

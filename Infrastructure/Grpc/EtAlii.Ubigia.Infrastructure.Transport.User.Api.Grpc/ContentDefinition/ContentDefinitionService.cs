@@ -5,21 +5,16 @@
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using ContentDefinition = EtAlii.Ubigia.Api.ContentDefinition;
-
     using global::Grpc.Core;
+    using ContentDefinition = EtAlii.Ubigia.Api.ContentDefinition;
 
     public class UserContentDefinitionService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase, IUserContentDefinitionService
     {
         private readonly IContentDefinitionRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public UserContentDefinitionService(
-            IContentDefinitionRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        public UserContentDefinitionService(IContentDefinitionRepository items)
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
         }
         
         

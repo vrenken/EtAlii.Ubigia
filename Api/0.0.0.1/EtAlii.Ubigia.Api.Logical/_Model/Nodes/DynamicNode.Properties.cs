@@ -3,7 +3,6 @@
     using System;
     using System.ComponentModel;
     using System.Dynamic;
-    using System.Runtime.CompilerServices;
 
     public partial class DynamicNode
     {
@@ -43,6 +42,7 @@
         /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /*
         /// <summary>
         /// Checks if a property already matches a desired value.  Sets the property and
         /// notifies listeners only when necessary.
@@ -55,6 +55,7 @@
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
+        */
 //        private bool SetProperty<T>[ref T storage, T newValue, [CallerMemberName] string propertyName = null]
 //        [
 //            if [Equals[storage, newValue]] return false
@@ -68,28 +69,30 @@
 //            return true
 //        ]
 
-        private void MarkAsModified()
-        {
-            var wasModified = _isModified;
-            _isModified = true;
-            NotifyPropertyChanged(nameof(INode.IsModified)); // this, _isModified, _isModified, 
-        }
+//        private void MarkAsModified()
+//        [
+//            //var wasModified = _isModified
+//            _isModified = true
+//            NotifyPropertyChanged(nameof(INode.IsModified)) // this, _isModified, _isModified, 
+//        ]
 
+/*
         /// <summary>
         /// Notifies listeners that a property value has changed.
         /// </summary>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
-        private void NotifyPropertyChanged([CallerMemberName] string propertyName = null) // object sender, object oldValue, object newValue, 
-        {
-            var eventHandler = PropertyChanged;
-            if (eventHandler != null)
-            {
-                var e = new PropertyChangedEventArgs(propertyName);
-                eventHandler(this, e);
-            }
-        }
+*/
+//        private void NotifyPropertyChanged([CallerMemberName] string propertyName = null) // object sender, object oldValue, object newValue, 
+//        [
+//            var eventHandler = PropertyChanged
+//            if (eventHandler != null)
+//            [
+//                var e = new PropertyChangedEventArgs(propertyName)
+//                eventHandler(this, e)
+//            ]
+//        ]
 
         #region Not supported actions.
 

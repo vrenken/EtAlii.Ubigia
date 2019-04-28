@@ -10,14 +10,10 @@
     public class UserRootService : RootGrpcService.RootGrpcServiceBase, IUserRootService
     {
         private readonly IRootRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public UserRootService(
-            IRootRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        public UserRootService(IRootRepository items)
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
         }
         
         

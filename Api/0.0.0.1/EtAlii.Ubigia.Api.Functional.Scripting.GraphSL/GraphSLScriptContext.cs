@@ -28,8 +28,8 @@
 
         public ScriptParseResult Parse(string text)
         {
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(_logicalContext.Configuration);
+            var scriptParserConfiguration = new ScriptParserConfiguration();
+                //.Use(_logicalContext.Configuration)
                 //.Use(_diagnostics)
             var parser = _scriptParserFactory.Create(scriptParserConfiguration);
             return parser.Parse(text);

@@ -2,13 +2,12 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class ScriptParserConfiguration : IScriptParserConfiguration
     {
         public IScriptParserExtension[] Extensions { get; private set; }
 
-        private ILogicalContextConfiguration _parentConfiguration;
+        //private ILogicalContextConfiguration _parentConfiguration
 
         public ScriptParserConfiguration()
         {
@@ -29,11 +28,11 @@
             return this;
         }
 
-        public IScriptParserConfiguration Use(ILogicalContextConfiguration parentConfiguration)
-        {
-            _parentConfiguration = parentConfiguration ?? throw new ArgumentException(nameof(parentConfiguration));
-            return this;
-        }
+//        public IScriptParserConfiguration Use(ILogicalContextConfiguration parentConfiguration)
+//        [
+//            _parentConfiguration = parentConfiguration ?? throw new ArgumentException(nameof(parentConfiguration))
+//            return this
+//        ]
 
     }
 }

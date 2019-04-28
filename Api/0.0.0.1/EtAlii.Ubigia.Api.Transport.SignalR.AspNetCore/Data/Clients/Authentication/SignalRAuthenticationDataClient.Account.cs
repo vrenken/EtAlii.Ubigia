@@ -24,7 +24,7 @@
 			var account = await _invoker.Invoke<Account>(_accountConnection, SignalRHub.Account, "GetForAuthenticationToken");
             if (account == null)
             {
-                string message = $"Unable to connect using the specified account ({accountName})";
+                var message = $"Unable to connect using the specified account ({accountName})";
                 throw new UnauthorizedInfrastructureOperationException(message);
             }
             return account;

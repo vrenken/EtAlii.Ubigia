@@ -7,11 +7,11 @@
 
     internal class IdDirectiveHandler : IIdDirectiveHandler
     {
-        private readonly INodeFetcher _nodeFetcher;
+        //private readonly INodeFetcher _nodeFetcher
 
-        public IdDirectiveHandler(INodeFetcher nodeFetcher)
+        public IdDirectiveHandler()//(INodeFetcher nodeFetcher)
         {
-            _nodeFetcher = nodeFetcher;
+            //_nodeFetcher = nodeFetcher
         }      
 
         public Task<IdDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers)
