@@ -22,19 +22,14 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public async Task<bool> CanMatch(MatchParameters parameters)
         {
-            bool canMatch = false;
             var next = parameters.PathRest.FirstOrDefault();
-            if (next != null)
-            {
-                var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
-                if (content != null)
-                {
-                    var regexTemplatePart = (RegexPathSubjectPart) parameters.CurrentTemplatePart;
+            if (next == null) return false;
+            var content = await _pathSubjectPartContentGetter.GetPartContent(next, parameters.Scope);
+            if (content == null) return false;
+            var regexTemplatePart = (RegexPathSubjectPart) parameters.CurrentTemplatePart;
 
-                    var match = Regex.Match(content, regexTemplatePart.Regex, RegexOptions.None);
-                    canMatch = match != System.Text.RegularExpressions.Match.Empty;
-                }
-            }
+            var match = Regex.Match(content, regexTemplatePart.Regex, RegexOptions.None);
+            var canMatch = match != System.Text.RegularExpressions.Match.Empty;
             return canMatch;
         }
     }
