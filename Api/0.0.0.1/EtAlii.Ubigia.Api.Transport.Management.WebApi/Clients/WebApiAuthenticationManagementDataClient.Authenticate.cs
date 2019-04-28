@@ -34,7 +34,7 @@
             string authenticationToken;
             if (password == null && client.AuthenticationToken != null)
             {
-				// These lines are needed to make the downscale from admin/system to user accoun based authentication tokens.
+				// These lines are needed to make the downscale from admin/system to user account based authentication tokens.
 	            var credentials = new NetworkCredential(accountName, (string)null);
 	            var localAddress = addressFactory.Create(address, RelativeUri.Authenticate, UriParameter.AccountName, accountName, UriParameter.AuthenticationToken);
 	            authenticationToken = await client.Get<string>(localAddress, credentials);
