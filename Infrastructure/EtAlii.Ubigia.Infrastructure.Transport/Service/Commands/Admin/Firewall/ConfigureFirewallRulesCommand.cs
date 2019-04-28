@@ -26,7 +26,7 @@
             CanExecute = state == State.Stopped || state == State.Shutdown;
         }
 
-        private Task<bool> TryConfigure()
+        private void TryConfigure()
         {
             var taskCompletionSource = new TaskCompletionSource<bool>();
 
@@ -81,7 +81,7 @@
                 File.Delete(scriptFullPath);
             });
 
-            return taskCompletionSource.Task;
+            //return taskCompletionSource.Task
         }
 
         private Process StartElevatedPowerShellScript(string scriptPath, params string[] scriptArgs)
