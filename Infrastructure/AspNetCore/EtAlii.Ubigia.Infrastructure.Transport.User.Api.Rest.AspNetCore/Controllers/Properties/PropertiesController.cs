@@ -39,7 +39,7 @@
         /// Post a new contentdefinition for the specified content.
         /// </summary>
         /// <param name="entryId"></param>
-        /// <param name="content"></param>
+        /// <param name="properties"></param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult Post([RequiredFromQuery, ModelBinder(typeof(IdentifierBinder))]Identifier entryId, [FromBody]PropertyDictionary properties)

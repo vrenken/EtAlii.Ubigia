@@ -8,16 +8,12 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
+
     public class ScriptProcessorRootedPathMediaPathTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
-
-        public ScriptProcessorRootedPathMediaPathTests()
-        {
-        }
 
         public async Task InitializeAsync()
         {

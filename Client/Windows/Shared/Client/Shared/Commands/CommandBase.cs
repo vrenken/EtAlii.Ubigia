@@ -99,7 +99,7 @@
     /// <summary>
     /// Finds a parent of a given item on the visual tree.
     /// </summary>
-    /// <typeparam name="T">The type of the queried item.</typeparam>
+    /// <typeparam name="D">The type of the queried item.</typeparam>
     /// <param name="child">A direct or indirect child of the
     /// queried item.</param>
     /// <returns>The first parent item that matches the submitted
