@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -13,6 +12,7 @@
             container.Register<IHubProxyMethodInvoker, HubProxyMethodInvoker>();
 
             container.Register<IAuthenticationManagementDataClient, SignalRAuthenticationManagementDataClient>();
+            container.Register<ISignalRAuthenticationTokenGetter, SignalRAuthenticationTokenGetter>();
 
             container.Register<IStorageDataClient, SignalRStorageDataClient>();
             container.Register<IAccountDataClient, SignalRAccountDataClient>();

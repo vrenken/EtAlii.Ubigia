@@ -12,17 +12,10 @@
     public class AdminAccountService : AccountGrpcService.AccountGrpcServiceBase, IAdminAccountService
     {
 		private readonly IAccountRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
-        private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-		public AdminAccountService(
-			IAccountRepository items,
-			ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
-			IAuthenticationTokenConverter authenticationTokenConverter)
+		public AdminAccountService(IAccountRepository items)
 		{
 			_items = items;
-		    _authenticationTokenVerifier = authenticationTokenVerifier;
-		    _authenticationTokenConverter = authenticationTokenConverter;
 		}
 	    
 	    

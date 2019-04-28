@@ -9,14 +9,10 @@
     public class UserStorageService : StorageGrpcService.StorageGrpcServiceBase, IUserStorageService
     {
         private readonly IStorageRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public UserStorageService(
-            IStorageRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        public UserStorageService(IStorageRepository items)
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
         }
 
         public override Task<StorageSingleResponse> GetLocal(StorageSingleRequest request, ServerCallContext context)

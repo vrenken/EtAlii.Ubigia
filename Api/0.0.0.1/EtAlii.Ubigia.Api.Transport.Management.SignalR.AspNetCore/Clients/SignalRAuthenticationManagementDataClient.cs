@@ -10,13 +10,14 @@
         private HubConnection _accountConnection;
         private HubConnection _storageConnection;
         private readonly IHubProxyMethodInvoker _invoker;
+        private readonly ISignalRAuthenticationTokenGetter _signalRAuthenticationTokenGetter;
 
         public SignalRAuthenticationManagementDataClient(
-            IHubProxyMethodInvoker invoker)
+            IHubProxyMethodInvoker invoker, 
+            ISignalRAuthenticationTokenGetter signalRAuthenticationTokenGetter)
         {
             _invoker = invoker;
-            _hostIdentifier = CreateHostIdentifier();
-
+            _signalRAuthenticationTokenGetter = signalRAuthenticationTokenGetter;
         }
 
         public override async Task Connect(IStorageConnection<ISignalRStorageTransport> storageConnection)

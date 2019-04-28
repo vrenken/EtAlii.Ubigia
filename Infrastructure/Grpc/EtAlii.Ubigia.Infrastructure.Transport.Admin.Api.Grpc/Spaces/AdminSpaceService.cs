@@ -12,20 +12,10 @@
     public class AdminSpaceService : SpaceGrpcService.SpaceGrpcServiceBase, IAdminSpaceService
     {
 		private readonly ISpaceRepository _items;
-		private readonly IAccountRepository _accountItems;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
-        private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
-		public AdminSpaceService(
-			ISpaceRepository items,
-			IAccountRepository accountItems,
-			ISimpleAuthenticationTokenVerifier authenticationTokenVerifier,
-			IAuthenticationTokenConverter authenticationTokenConverter)
+		public AdminSpaceService(ISpaceRepository items)
 		{
 			_items = items;
-			_accountItems = accountItems;
-		    _authenticationTokenVerifier = authenticationTokenVerifier;
-		    _authenticationTokenConverter = authenticationTokenConverter;
 		}
 
         //public Space GetByName(string spaceName)

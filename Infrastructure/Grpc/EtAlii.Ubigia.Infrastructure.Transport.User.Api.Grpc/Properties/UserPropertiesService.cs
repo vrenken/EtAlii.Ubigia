@@ -9,14 +9,10 @@
     public class UserPropertiesService : PropertiesGrpcService.PropertiesGrpcServiceBase, IUserPropertiesService
     {
         private readonly IPropertiesRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public UserPropertiesService(
-            IPropertiesRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        public UserPropertiesService(IPropertiesRepository items)
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
         }
 
         public override Task<PropertiesGetResponse> Get(PropertiesGetRequest request, ServerCallContext context)

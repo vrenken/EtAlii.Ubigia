@@ -29,7 +29,7 @@
             return storage;
         }
 
-        private async Task<Storage> GetConnectedStorage(ISignalRTransport transport)
+        private async Task<Storage> GetConnectedStorage(ISignalRStorageTransport transport)
         {
 			var connection = new HubConnectionFactory().Create(transport,new Uri(transport.Address + SignalRHub.BasePath + SignalRHub.Authentication), transport.AuthenticationToken);
             await connection.StartAsync();

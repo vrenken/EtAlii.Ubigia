@@ -5,21 +5,17 @@
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
     using EtAlii.Ubigia.Infrastructure.Functional;
+    using global::Grpc.Core;
     using Content = EtAlii.Ubigia.Api.Content;
     using ContentPart = EtAlii.Ubigia.Api.ContentPart;
-    using global::Grpc.Core;
 
     public class UserContentService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGrpcService.ContentGrpcServiceBase, IUserContentService
     {
         private readonly IContentRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 
-        public UserContentService(
-            IContentRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+        public UserContentService(IContentRepository items)
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
         }
 
         public override Task<ContentGetResponse> Get(ContentGetRequest request, ServerCallContext context)

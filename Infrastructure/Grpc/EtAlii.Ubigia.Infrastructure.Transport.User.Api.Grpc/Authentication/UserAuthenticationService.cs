@@ -5,13 +5,10 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 
     public class UserAuthenticationService : AuthenticationGrpcService.AuthenticationGrpcServiceBase, IUserAuthenticationService
     {
-        private readonly IStorageRepository _storageRepository;
-
         private readonly ISimpleAuthenticationVerifier _authenticationVerifier;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 	    private readonly ISimpleAuthenticationBuilder _authenticationBuilder;
@@ -19,12 +16,10 @@
 		public UserAuthenticationService(
             ISimpleAuthenticationVerifier authenticationVerifier,
             ISimpleAuthenticationTokenVerifier authenticationTokenVerifier, 
-            IStorageRepository storageRepository, 
             ISimpleAuthenticationBuilder authenticationBuilder)
         {
             _authenticationVerifier = authenticationVerifier;
             _authenticationTokenVerifier = authenticationTokenVerifier;
-            _storageRepository = storageRepository;
 	        _authenticationBuilder = authenticationBuilder;
         }
 

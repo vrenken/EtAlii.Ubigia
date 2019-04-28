@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class TraversingWildcardPathSubjectPartToGraphPathPartsConverter : ITraversingWildcardPathSubjectPartToGraphPathPartsConverter
     {
-        private readonly IProcessingContext _context;
+        //private readonly IProcessingContext _context
 
-        public TraversingWildcardPathSubjectPartToGraphPathPartsConverter(IProcessingContext context)
+        public TraversingWildcardPathSubjectPartToGraphPathPartsConverter()//IProcessingContext context
         {
-            _context = context;
+            //_context = context
         }
 
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
