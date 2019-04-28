@@ -45,7 +45,7 @@
                             await AddFromString(leftIdentifier, s, parameters);
                             break;
                         default:
-                            throw new ScriptProcessingException($"The {this.GetType().Name} requires a identifier or string to add");
+                            throw new ScriptProcessingException($"The {GetType().Name} requires a identifier or string to add");
                     }                    
                 });
         }

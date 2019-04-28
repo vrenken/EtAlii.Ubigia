@@ -23,17 +23,17 @@
             var pathToAdd = await GetPathToAdd(parameters);
             if (pathToAdd == null)
             {
-                throw new ScriptProcessingException($"The {this.GetType().Name} requires a path on the right side");
+                throw new ScriptProcessingException($"The {GetType().Name} requires a path on the right side");
             }
 
             if (!pathToAdd.Parts.All(part => part is ConstantPathSubjectPart || part is ParentPathSubjectPart))
             {
-                throw new ScriptProcessingException($"The {this.GetType().Name} requires a constant, hierarchical path");
+                throw new ScriptProcessingException($"The {GetType().Name} requires a constant, hierarchical path");
             }
 
             if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart constantPathSubjectPart && String.IsNullOrWhiteSpace(constantPathSubjectPart.Name)))
             {
-                throw new ScriptProcessingException($"The {this.GetType().Name} cannot handle empty parts");
+                throw new ScriptProcessingException($"The {GetType().Name} cannot handle empty parts");
             }
 
             parameters.LeftInput.SubscribeAsync(

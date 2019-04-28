@@ -8,7 +8,7 @@
     using global::Grpc.Core;
     using ContentDefinition = EtAlii.Ubigia.Api.ContentDefinition;
 
-    public class UserContentDefinitionService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase, IUserContentDefinitionService
+    public class UserContentDefinitionService : ContentDefinitionGrpcService.ContentDefinitionGrpcServiceBase, IUserContentDefinitionService
     {
         private readonly IContentDefinitionRepository _items;
 

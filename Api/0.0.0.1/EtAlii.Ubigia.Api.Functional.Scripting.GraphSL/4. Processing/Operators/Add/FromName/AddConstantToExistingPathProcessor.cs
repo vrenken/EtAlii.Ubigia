@@ -32,12 +32,12 @@
         {
             if (!(parameters.RightSubject is StringConstantSubject stringConstant))
             {
-                throw new ScriptProcessingException($"The {this.GetType().Name} requires a string constant on the right side");
+                throw new ScriptProcessingException($"The {GetType().Name} requires a string constant on the right side");
             }
 
             if (string.IsNullOrWhiteSpace(stringConstant.Value))
             {
-                throw new ScriptProcessingException($"The {this.GetType().Name} requires a non-empty string constant on the right side");
+                throw new ScriptProcessingException($"The {GetType().Name} requires a non-empty string constant on the right side");
             }
 
             parameters.LeftInput.SubscribeAsync(

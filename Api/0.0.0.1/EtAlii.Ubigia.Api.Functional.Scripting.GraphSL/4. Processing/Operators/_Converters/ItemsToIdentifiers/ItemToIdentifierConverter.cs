@@ -15,7 +15,7 @@
                 case INode node:
                     return node.Id;
                 default:
-                    throw new ScriptProcessingException($"The {this.GetType().Name} is unable to convert the specified object: {item ?? "NULL"}");
+                    throw new ScriptProcessingException($"The {GetType().Name} is unable to convert the specified object: {item ?? "NULL"}");
             }                    
 
         }

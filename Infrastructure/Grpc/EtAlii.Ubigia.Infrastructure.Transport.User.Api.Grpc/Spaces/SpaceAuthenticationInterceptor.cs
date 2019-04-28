@@ -7,7 +7,7 @@
     using global::Grpc.Core;
     using global::Grpc.Core.Interceptors;
 
-    public class SpaceAuthenticationInterceptor : global::Grpc.Core.Interceptors.Interceptor, ISpaceAuthenticationInterceptor
+    public class SpaceAuthenticationInterceptor : Interceptor, ISpaceAuthenticationInterceptor
     {
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 

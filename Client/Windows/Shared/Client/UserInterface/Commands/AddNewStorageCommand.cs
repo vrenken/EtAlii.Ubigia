@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Client
 {
-    using EtAlii.Ubigia.Windows.Settings;
     using System;
     using System.Windows.Input;
-    
+    using EtAlii.Ubigia.Windows.Settings;
+
     /// <summary>
     /// Shows the add new storage dialog.
     /// </summary>
@@ -14,7 +14,7 @@
             var window = App.Current.MainWindow;
 
             var storageSettings = new StorageSettings(Guid.NewGuid().ToString());
-            storageSettings.Name = $"Unnamed {App.StorageNaming}";
+            storageSettings.Name = $"Unnamed {Shared.App.StorageNaming}";
 
             var storageWindow = Container.GetInstance<StorageWindow>();
             storageWindow.Owner = window;

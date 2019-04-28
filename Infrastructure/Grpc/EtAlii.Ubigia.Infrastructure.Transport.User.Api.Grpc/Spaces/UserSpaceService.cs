@@ -9,7 +9,7 @@
     using EtAlii.Ubigia.Infrastructure.Functional;
     using global::Grpc.Core;
 
-    public class UserSpaceService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.SpaceGrpcService.SpaceGrpcServiceBase, IUserSpaceService
+    public class UserSpaceService : SpaceGrpcService.SpaceGrpcServiceBase, IUserSpaceService
     {
         private readonly ISpaceRepository _items;
         private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;

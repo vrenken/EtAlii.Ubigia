@@ -4,8 +4,8 @@
     using System.Collections.Generic;
     using GraphQL;
     using GraphQL.Instrumentation;
-    using Newtonsoft.Json;
     using GraphQL.Language.AST;
+    using Newtonsoft.Json;
 
     [JsonConverter(typeof(ExecutionResultJsonConverter))]
     public class QueryProcessingResult
@@ -39,16 +39,16 @@
         
         public QueryProcessingResult(ExecutionResult result, string dataAsString)
         {
-            if (result == null)
-                throw new ArgumentNullException(nameof(result));
-            this.Data = result.Data;
-            this.Errors = result.Errors;
-            this.Query = result.Query;
-            this.Operation = result.Operation;
-            this.Document = result.Document;
-            this.Perf = result.Perf;
-            this.ExposeExceptions = result.ExposeExceptions;
-            this.Extensions = result.Extensions;
+            if (result == null) throw new ArgumentNullException(nameof(result));
+            
+            Data = result.Data;
+            Errors = result.Errors;
+            Query = result.Query;
+            Operation = result.Operation;
+            Document = result.Document;
+            Perf = result.Perf;
+            ExposeExceptions = result.ExposeExceptions;
+            Extensions = result.Extensions;
             
             DataAsString = dataAsString;
         }
