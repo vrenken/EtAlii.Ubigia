@@ -19,7 +19,7 @@
             _processingContext = processingContext;
         }
 
-        protected override Task Add(Identifier id, PathSubject pathToAdd, ExecutionScope scope, IObserver<object> output)
+        protected override async Task Add(Identifier id, PathSubject pathToAdd, ExecutionScope scope, IObserver<object> output)
         {
             var absolutePathSubjectToAdd = (AbsolutePathSubject )pathToAdd;
             var inputObservable = Observable.Create<object>(async observer =>
@@ -27,19 +27,20 @@
                 await _processingContext.AbsolutePathSubjectProcessor.Process(absolutePathSubjectToAdd, scope, observer);
 
                 return Disposable.Empty;
-            }).ToHotObservable();
+            });
 
-            inputObservable.SubscribeAsync(
-                onError: output.OnError,
-                onCompleted: output.OnCompleted,
-                onNext: async o =>
-                {
-                    var identifierToAdd = this.ItemToIdentifierConverter.Convert(o);
-                    var newEntry = await _processingContext.Logical.Nodes.Add(id, identifierToAdd, scope);
-                    var result = new DynamicNode(newEntry);
-                    output.OnNext(result);
-                });
-            return Task.CompletedTask;
+            // IMPORTANT: This method needs to wait until the observable is finished.
+            // Else we get race conditions and very weird situations through all scripts being executed.
+            var nodesToAdd = await inputObservable
+                .Cast<INode>()
+                .ToArray();  
+            foreach (INode nodeToAdd in nodesToAdd)
+            {
+                var identifierToAdd = nodeToAdd.Id;
+                var newEntry = await _processingContext.Logical.Nodes.Add(id, identifierToAdd, scope);
+                var result = new DynamicNode(newEntry);
+                output.OnNext(result);
+            }
         }
     }
 }
