@@ -28,7 +28,7 @@
             var locationEntry = await _graphPathTraverser.TraverseToSingle(location, scope);
 
             // The GraphComposer cannot handle multiple updates yet.
-            var itemEntry = await _graphPathTraverser.TraverseToSingle(item, scope);
+            //var itemEntry = await _graphPathTraverser.TraverseToSingle(item, scope)
 
             // Let's check if a path already exists.
             var linkAddResult = await _graphLinkAdder.GetLink(itemName, locationEntry, scope);

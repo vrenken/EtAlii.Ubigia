@@ -13,8 +13,7 @@
             switch (operation.OperationType)
             {
                 case OperationType.Mutation:
-                    var mutation = new Mutation();
-                    
+                    //var mutation = new Mutation()
                     break;
                 case OperationType.Query:
                     break;
