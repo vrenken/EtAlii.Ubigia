@@ -30,9 +30,9 @@
 	        await _spaceConnection.StartAsync();
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
 
             await _accountConnection.DisposeAsync();
             _accountConnection = null;

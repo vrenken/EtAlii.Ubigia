@@ -43,9 +43,9 @@
 	        };
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect(); 
 
             await _connection.DisposeAsync();
             _connection = null;

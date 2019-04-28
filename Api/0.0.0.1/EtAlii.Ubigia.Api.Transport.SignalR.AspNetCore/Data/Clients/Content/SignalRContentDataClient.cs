@@ -28,9 +28,9 @@
 	        await _contentDefinitionConnection.StartAsync();
         }
 
-        public override async Task Disconnect(ISpaceConnection<ISignalRSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
 
             await _contentDefinitionConnection.DisposeAsync();
             _contentDefinitionConnection = null;

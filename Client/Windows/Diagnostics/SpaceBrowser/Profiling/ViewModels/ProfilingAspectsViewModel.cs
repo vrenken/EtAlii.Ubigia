@@ -21,7 +21,7 @@
 
         public ProfilingAspectsViewModel(
             IProfilingGraphSLScriptContext scriptContext,
-            IProfilingGraphQLQueryContext queryContext,
+            //IProfilingGraphQLQueryContext queryContext,
             IProfilingLogicalContext logicalContext,
             IProfilingFabricContext fabricContext,
             IProfilingDataConnection connection)

@@ -23,8 +23,8 @@
         public CodeViewModel(
             IGraphContext graphContext,
             ICodeButtonsViewModel buttons,
-            ICodeCompiler codeCompiler,
-            ICodeCompilerResultsParser codeCompilerResultsParser, 
+            //ICodeCompiler codeCompiler,
+            //ICodeCompilerResultsParser codeCompilerResultsParser, 
             ITextTemplateQueryHandler textTemplateQueryHandler, 
             ICompileCodeUnitOfworkHandler compileCodeUnitOfworkHandler, 
             IExecuteCodeUnitOfworkHandler executeCodeUnitOfworkHandler)

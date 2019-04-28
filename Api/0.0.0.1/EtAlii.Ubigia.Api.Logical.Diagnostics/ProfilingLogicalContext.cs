@@ -29,7 +29,10 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
         protected virtual void Dispose(bool disposing)
         {
-            _decoree.Dispose();
+            if (disposing)
+            {
+                _decoree.Dispose();
+            }
         }
 
         ~ProfilingLogicalContext()

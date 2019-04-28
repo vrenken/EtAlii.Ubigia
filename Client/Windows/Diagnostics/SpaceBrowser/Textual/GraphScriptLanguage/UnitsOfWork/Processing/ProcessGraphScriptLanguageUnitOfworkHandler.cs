@@ -17,7 +17,7 @@
         private readonly IParseGraphScriptLanguageUnitOfworkHandler _parseScriptUnitOfworkHandler;
 
         public ProcessGraphScriptLanguageUnitOfworkHandler(
-            IMultiResultFactory resultFactory,
+            //IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusGraphScriptLanguageProcessingSubscription statusGraphScriptLanguageProcessingSubscription, 
             IDiagnosticsGraphScriptLanguageProcessingSubscription diagnosticsGraphScriptLanguageProcessingSubscription, 

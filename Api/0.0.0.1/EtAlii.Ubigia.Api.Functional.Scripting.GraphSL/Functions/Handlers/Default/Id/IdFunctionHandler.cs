@@ -26,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    ProcessByArgument(context, parameterSet, argumentSet, scope, output);
+                    ProcessByArgument(context, argumentSet, scope, output);
                 }
                 else
                 {
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 0)
                 {
-                    ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                    ProcessByInput(context, input, scope, output); // parameterSet, argumentSet, 
                 }
                 else
                 {
@@ -48,10 +48,9 @@ namespace EtAlii.Ubigia.Api.Functional
             }
         }
 
-        private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
+        private void ProcessByArgument(IFunctionContext context, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output) // , ParameterSet parameterSet
         {
-            var input = argumentSet.Arguments[0] as IObservable<object>;
-            if (input == null)
+            if (!(argumentSet.Arguments[0] is IObservable<object> input))
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Id function processing");
             }
@@ -69,7 +68,13 @@ namespace EtAlii.Ubigia.Api.Functional
                 });
         }
 
-        private void ProcessByInput(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output)
+        private void ProcessByInput(
+            IFunctionContext context, 
+            //ParameterSet parameterSet, 
+            //ArgumentSet argumentSet, 
+            IObservable<object> input, 
+            ExecutionScope scope, 
+            IObserver<object> output)
         {
             input.Subscribe(
                 onError: output.OnError,

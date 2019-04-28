@@ -1,9 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Structure;
 
     internal class ItemToIdentifierConverter : IItemToIdentifierConverter
     {

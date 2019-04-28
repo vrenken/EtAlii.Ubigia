@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.Workflow;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
 
     public class DiscoverEntryCommandHandler : CommandHandlerBase<DiscoverEntryCommand>, IDiscoverEntryCommandHandler
     {
@@ -42,39 +42,39 @@
 
                 if (_configuration.ShowHierarchical)
                 {
-                    EnqueueForDiscovery(entry.Parent, depth, processReason);
-                    EnqueueForDiscovery(entry.Children, depth, processReason);
+                    EnqueueForDiscovery(entry.Parent, depth);//, processReason
+                    EnqueueForDiscovery(entry.Children, depth);//, processReason
                 }
                 if (_configuration.ShowSequential)
                 {
-                    EnqueueForDiscovery(entry.Next, depth, processReason);
-                    EnqueueForDiscovery(entry.Previous, depth, processReason);
+                    EnqueueForDiscovery(entry.Next, depth);//, processReason
+                    EnqueueForDiscovery(entry.Previous, depth);//, processReason
                 }
                 if (_configuration.ShowTemporal)
                 {
-                    EnqueueForDiscovery(entry.Downdate, depth, processReason);
-                    EnqueueForDiscovery(entry.Updates, depth, processReason);
+                    EnqueueForDiscovery(entry.Downdate, depth);//, processReason
+                    EnqueueForDiscovery(entry.Updates, depth);//, processReason
                 }
             }
         }
 
-        private void EnqueueForDiscovery(Relation relation, int depth, ProcessReason processReason)
+        private void EnqueueForDiscovery(Relation relation, int depth)//, ProcessReason processReason
         {
             if (relation != Relation.None)
             {
-                EnqueueForDiscovery(relation.Id, depth, processReason);
+                EnqueueForDiscovery(relation.Id, depth);//, processReason
             }
         }
 
-        private void EnqueueForDiscovery(IEnumerable<Relation> relations, int depth, ProcessReason processReason)
+        private void EnqueueForDiscovery(IEnumerable<Relation> relations, int depth)//, ProcessReason processReason
         {
             foreach(var relation in relations)
             {
-                EnqueueForDiscovery(relation.Id, depth, processReason);
+                EnqueueForDiscovery(relation.Id, depth);//, processReason
             }
         }
 
-        private void EnqueueForDiscovery(Identifier identifier, int depth, ProcessReason processReason)
+        private void EnqueueForDiscovery(Identifier identifier, int depth)//, ProcessReason processReason
         {
             if (GraphViewModel.FindNodeByKey(identifier) == null)
             {

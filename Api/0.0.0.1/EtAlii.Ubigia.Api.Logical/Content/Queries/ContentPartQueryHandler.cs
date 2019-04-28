@@ -19,11 +19,11 @@
             var totalParts = query.Content.TotalParts;
             for (UInt64 part = 0; part < totalParts; part++)
             {
-                await GetContentPart(query.Stream, query.Identifier, query.Content, part);
+                await GetContentPart(query.Stream, query.Identifier, part); // , query.Content
             }
         }
 
-        private async Task GetContentPart(Stream localDataStream, Identifier identifier, IReadOnlyContent content, UInt64 contentPartId)
+        private async Task GetContentPart(Stream localDataStream, Identifier identifier, UInt64 contentPartId) // , IReadOnlyContent content
         {
             var contentPart = await _fabric.Content.Retrieve(identifier, contentPartId);
             var buffer = contentPart.Data;

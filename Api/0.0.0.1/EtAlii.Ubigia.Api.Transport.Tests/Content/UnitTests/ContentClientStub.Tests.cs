@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class ContentDataClientStubTests
@@ -37,7 +36,7 @@
             var contentDataClientStub = new ContentDataClientStub();
 
             // Act.
-            await contentDataClientStub.Disconnect(null);
+            await contentDataClientStub.Disconnect();
 
             // Assert.
         }

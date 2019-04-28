@@ -36,7 +36,11 @@ namespace EtAlii.Ubigia.Api.Logical
 
         protected virtual void Dispose(bool disposing)
         {
-            // Dispose any relevant resources.
+            if (disposing)
+            {
+                // Dispose any relevant resources.
+            }
+
         }
 
         ~LogicalContext()

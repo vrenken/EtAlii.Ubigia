@@ -5,7 +5,6 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Transport;
 
     public class DebuggingEntryDataClient : IEntryDataClient
     {
@@ -31,11 +30,11 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             _profiler.End(profile);
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public async Task Disconnect() 
         {
             dynamic profile = _profiler.Begin("Disconnect");
 
-            await _decoree.Disconnect(spaceConnection);
+            await _decoree.Disconnect(); 
 
             _profiler.End(profile);
         }

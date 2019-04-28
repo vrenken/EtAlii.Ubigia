@@ -51,7 +51,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 2)
                 {
-                    ProcessByArgument(context, parameterSet, argumentSet, scope, output);
+                    ProcessByArgument(context, argumentSet, scope, output); // parameterSet, 
                 }
                 else
                 {
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                    ProcessByInput(context, argumentSet, input, scope, output); // parameterSet, 
                 }
                 else
                 {
@@ -73,7 +73,12 @@ namespace EtAlii.Ubigia.Api.Functional
             }
         }
 
-        private void ProcessByArgument(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, ExecutionScope scope, IObserver<object> output)
+        private void ProcessByArgument(
+            IFunctionContext context, 
+            //ParameterSet parameterSet, 
+            ArgumentSet argumentSet, 
+            ExecutionScope scope, 
+            IObserver<object> output)
         {
             var c = argumentSet.Arguments.Length;
             var f = argumentSet.Arguments.Length > 0 ? argumentSet.Arguments[0] : null;
@@ -81,8 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var nameConverter = _toNameConverterSelector.Select(c, f, s);
             var newName = nameConverter(f, s);
 
-            var input = argumentSet.Arguments[0] as IObservable<object>;
-            if (input == null)
+            if (!(argumentSet.Arguments[0] is IObservable<object> input))
             {
                 throw new ScriptProcessingException("Unable to convert arguments for Rename function processing");
             }
@@ -102,7 +106,13 @@ namespace EtAlii.Ubigia.Api.Functional
                 });
         }
 
-        private void ProcessByInput(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output)
+        private void ProcessByInput(
+            IFunctionContext context, 
+            //ParameterSet parameterSet, 
+            ArgumentSet argumentSet, 
+            IObservable<object> input, 
+            ExecutionScope scope, 
+            IObserver<object> output)
         {
             var newName = (string)(argumentSet.Arguments.Length == 2 ? argumentSet.Arguments[1] : argumentSet.Arguments[0]);
 

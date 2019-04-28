@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
+	using System;
+	using System.Collections.Generic;
+	using System.Threading.Tasks;
 
-    internal class GrpcEntryNotificationClient : GrpcClientBase, IEntryNotificationClient<IGrpcSpaceTransport>
+	internal class GrpcEntryNotificationClient : GrpcClientBase, IEntryNotificationClient<IGrpcSpaceTransport>
     {
         //private HubConnection _connection
 //        private readonly string _name
@@ -17,15 +17,15 @@
 //        [
 //            //_name = GrpcHub.Entry
 //        ]
-        private void OnPrepared(Identifier identifier)
-        {
-            Prepared(identifier);
-        }
-
-        private void OnStored(Identifier identifier)
-        {
-            Stored(identifier);
-        }
+//        private void OnPrepared(Identifier identifier)
+//        [
+//            Prepared(identifier)
+//        ]
+//
+//        private void OnStored(Identifier identifier)
+//        [
+//            Stored(identifier)
+//        ]
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
@@ -42,9 +42,9 @@
             //]
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
 
             // TODO: GRPC
             //return await Task .FromResult<IEnumerable<IReadOnlyEntry>>(null)

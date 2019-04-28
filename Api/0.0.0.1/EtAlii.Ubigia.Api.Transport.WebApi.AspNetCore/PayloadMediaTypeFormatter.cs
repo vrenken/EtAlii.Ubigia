@@ -53,10 +53,10 @@
 			    throw new ArgumentNullException(nameof(readStream));
 		    }
 		    
-		    return ReadFromStreamInternalAsync(type, readStream, content, formatterLogger);
+		    return ReadFromStreamInternalAsync(type, readStream);//, content, formatterLogger
 	    }
 
-	    private Task<object> ReadFromStreamInternalAsync(Type type, Stream readStream, HttpContent content, IFormatterLogger formatterLogger)
+	    private Task<object> ReadFromStreamInternalAsync(Type type, Stream readStream)//, HttpContent content, IFormatterLogger formatterLogger
 	    {
             // Special-case for simple types: Deserialize a Dictionary with a single element named Value.
             // Serialization created this Dictionary<string, object> to work around BSON restrictions: BSON cannot
@@ -167,10 +167,10 @@
 			    throw new ArgumentNullException(nameof(writeStream));
 		    }
 		    
-		    return WriteToStreamInternalAsync(type, value, writeStream, content, transportContext);
+		    return WriteToStreamInternalAsync(type, value, writeStream);//, content, transportContext
 	    }
 
-	    private Task WriteToStreamInternalAsync(Type type, object value, Stream writeStream, HttpContent content, TransportContext transportContext)
+	    private Task WriteToStreamInternalAsync(Type type, object value, Stream writeStream)//, HttpContent content, TransportContext transportContext
 	    {
             if (type == null)
             {

@@ -33,7 +33,7 @@
             return Task.CompletedTask;
         }
 
-        public Task Disconnect(ISpaceConnection spaceConnection)
+        public Task Disconnect()
         {
             return Task.CompletedTask;
         }

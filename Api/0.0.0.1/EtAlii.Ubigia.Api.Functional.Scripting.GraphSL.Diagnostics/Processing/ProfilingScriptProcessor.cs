@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using System;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     internal class ProfilingScriptProcessor : IProfilingScriptProcessor
     {
@@ -15,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             IProfiler profiler)
         {
             _decoree = decoree;
-            Profiler = Profiler.Create(ProfilingAspects.Functional.ScriptProcessor);
+            Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);
         }
 
         public IObservable<SequenceProcessingResult> Process(Script script)

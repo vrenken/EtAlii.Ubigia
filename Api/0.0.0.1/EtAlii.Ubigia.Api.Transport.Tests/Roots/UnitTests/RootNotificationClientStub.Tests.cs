@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class RootNotificationClientStubTests
@@ -36,7 +35,7 @@
             var rootNotificationClientStub = new RootNotificationClientStub();
 
             // Act.
-            rootNotificationClientStub.Disconnect(null);
+            rootNotificationClientStub.Disconnect();
             
             // Assert.
         }

@@ -1,8 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections.Generic;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
 
     internal class GraphPathTaggedNodeTraverser : IGraphPathTaggedNodeTraverser

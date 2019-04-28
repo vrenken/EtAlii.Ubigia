@@ -20,7 +20,7 @@
 
         public ProcessGraphQueryLanguageUnitOfworkHandler(
             IGraphQLQueryContext queryContext,
-            IMultiResultFactory resultFactory,
+            //IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusGraphQueryLanguageProcessingSubscription statusGraphQueryLanguageProcessingSubscription, 
             IDiagnosticsGraphQueryLanguageProcessingSubscription diagnosticsGraphQueryLanguageProcessingSubscription, 

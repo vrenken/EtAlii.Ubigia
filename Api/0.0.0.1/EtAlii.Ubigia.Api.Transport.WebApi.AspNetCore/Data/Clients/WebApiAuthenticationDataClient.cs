@@ -11,18 +11,13 @@
             await Connect((IWebApiSpaceConnection) spaceConnection);
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
-        {
-            await Disconnect((IWebApiSpaceConnection) spaceConnection);
-        }
-
         private Task Connect(IWebApiSpaceConnection connection)
         {
             _connection = connection;
             return Task.CompletedTask;
         }
 
-        private Task Disconnect(IWebApiSpaceConnection connection)
+        public Task Disconnect()
         {
             _connection = null;
             return Task.CompletedTask;

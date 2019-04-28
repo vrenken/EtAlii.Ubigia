@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
-    using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
@@ -16,8 +15,7 @@
 
             var grpcConnection = (IGrpcStorageConnection) storageConnection;
             var storage = await GetConnectedStorage(
-                grpcConnection.Transport,
-                grpcConnection.Transport.Address);
+                grpcConnection.Transport);
 
             if (storage == null)
             {
@@ -31,9 +29,7 @@
             return storage;
         }
 
-        private async Task<Api.Storage> GetConnectedStorage(
-	        IGrpcTransport transport,
-	        Uri address)
+        private async Task<Api.Storage> GetConnectedStorage(IGrpcTransport transport)
         {
             var request = new StorageSingleRequest{ };
             var response = await _storageClient.GetLocalAsync(request, transport.AuthenticationHeaders);

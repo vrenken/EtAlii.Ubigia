@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                    ProcessByInput(context, argumentSet, input, scope, output);
                 }
                 else
                 {
@@ -80,7 +80,6 @@ namespace EtAlii.Ubigia.Api.Functional
         //]
         private void ProcessByInput(
             IFunctionContext context, 
-            ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
             IObservable<object> input, 
             ExecutionScope scope, 

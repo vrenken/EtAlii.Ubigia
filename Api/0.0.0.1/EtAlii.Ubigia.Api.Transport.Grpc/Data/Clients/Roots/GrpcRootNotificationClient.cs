@@ -18,20 +18,20 @@
 //        [
 //            //_name = GrpcHub.Root
 //        ]
-        private void OnAdded(System.Guid id)
-        {
-            Added(id); 
-        }
-
-        private void OnChanged(System.Guid id)
-        {
-            Changed(id);
-        }
-
-        private void OnRemoved(System.Guid id)
-        {
-            Removed(id);
-        }
+//        private void OnAdded[System.Guid id]
+//        [
+//            Added[id]
+//        ]
+//
+//        private void OnChanged[System.Guid id]
+//        [
+//            Changed[id]
+//        ]
+//
+//        private void OnRemoved[System.Guid id]
+//        [
+//            Removed[id]
+//        ]
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
@@ -49,9 +49,9 @@
 			//]
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
 
             // TODO: GRPC
             //await _connection.DisposeAsync()

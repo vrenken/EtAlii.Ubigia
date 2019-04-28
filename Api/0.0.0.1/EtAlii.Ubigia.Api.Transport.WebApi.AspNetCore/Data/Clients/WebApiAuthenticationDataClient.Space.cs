@@ -11,7 +11,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var space = await GetSpace(connection.Account, connection.Configuration.Space);
+            var space = await GetSpace(connection.Configuration.Space);
             if (space == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectToSpace);
@@ -20,15 +20,14 @@
             return space;
         }
 
-        private async Task<Space> GetSpace(Account currentAccount, string spaceName)
+        private Task<Space> GetSpace(string spaceName)
         {
 	        //var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.Data.Spaces, UriParameter.AccountId, currentAccount.Id.ToString())
 	        //var spaces = await _connection.Client.Get<IEnumerable<Space>>(address)
 	        //return spaces.FirstOrDefault(s => s.Name == spaceName)
 
 	        var address = _connection.AddressFactory.Create(_connection.Storage, RelativeUri.Data.Spaces, UriParameter.SpaceName, spaceName, UriParameter.AuthenticationToken);
-	        var space = await _connection.Client.Get<Space>(address);
-	        return space;
+	        return _connection.Client.Get<Space>(address);
         }
 	}
 }

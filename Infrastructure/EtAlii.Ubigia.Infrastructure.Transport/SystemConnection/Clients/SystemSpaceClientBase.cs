@@ -13,7 +13,7 @@
             return Task.CompletedTask;
         }
 
-        public virtual Task Disconnect(ISpaceConnection spaceConnection)
+        public virtual Task Disconnect()
         {
             Connection = null;
             return Task.CompletedTask;

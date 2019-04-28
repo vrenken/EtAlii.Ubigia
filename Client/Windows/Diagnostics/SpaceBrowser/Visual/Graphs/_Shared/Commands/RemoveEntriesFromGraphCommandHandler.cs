@@ -1,9 +1,9 @@
 ﻿
 namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Workflow;
-    using System.Linq;
 
     public class RemoveEntriesFromGraphCommandHandler : CommandHandlerBase<RemoveEntriesFromGraphCommand>, IRemoveEntriesFromGraphCommandHandler
     {
@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
         public RemoveEntriesFromGraphCommandHandler(
             IDocumentViewModelProvider documentViewModelProvider,
-            IGraphConfiguration configuration,
+            //IGraphConfiguration configuration,
             IMainDispatcherInvoker mainDispatcherInvoker)
         {
             _documentViewModelProvider = documentViewModelProvider;

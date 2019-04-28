@@ -16,10 +16,10 @@
 //        [
 //            //_name = GrpcHub.Property
 //        ]
-        private void OnStored(Api.Identifier identifier)
-        {
-            Stored(identifier);
-        }
+//        private void OnStored(Api.Identifier identifier)
+//        [
+//            Stored(identifier)
+//        ]
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
@@ -33,9 +33,9 @@
 			//]
 		}
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
 
             // TODO: GRPC
             //await _connection.DisposeAsync()

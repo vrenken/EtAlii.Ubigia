@@ -36,7 +36,10 @@ namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
         protected virtual void Dispose(bool disposing)
         {
             // Cleanup
-            _decoree.Dispose();
+            if (disposing)
+            {
+                _decoree.Dispose();
+            }
         }
 
         ~ProfilingFabricContext()

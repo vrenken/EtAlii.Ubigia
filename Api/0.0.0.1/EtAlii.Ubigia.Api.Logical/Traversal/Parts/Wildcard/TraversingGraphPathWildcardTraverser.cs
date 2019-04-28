@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Logical
                         }
                         else
                         {
-                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, EntryRelation.Child, limit);
+                            await TraverseChildren(results, start, parameters.Context, parameters.Scope, limit); // EntryRelation.Child, 
                         }
                         foreach (var result in results.Distinct())
                         {
@@ -66,13 +66,18 @@ namespace EtAlii.Ubigia.Api.Logical
             }
             else
             {
-                await TraverseChildren(result, start, context, scope, EntryRelation.Child, limit);
+                await TraverseChildren(result, start, context, scope, limit); // EntryRelation.Child, 
             }
             return result.Distinct();
         }
 
-        private async Task TraverseChildren(List<Identifier> result, Identifier start, ITraversalContext context,
-            ExecutionScope scope, EntryRelation entryRelation, int limit)
+        private async Task TraverseChildren(
+            ICollection<Identifier> result, 
+            Identifier start, 
+            ITraversalContext context,
+            ExecutionScope scope, 
+            //EntryRelation entryRelation, 
+            int limit)
         {
             start = (await _graphPathFinalRelationTraverser.Traverse(null, start, context, scope)).SingleOrDefault();
             result.Add(start);
@@ -84,7 +89,7 @@ namespace EtAlii.Ubigia.Api.Logical
 
                 foreach (var subItem in subItems)
                 {
-                    await TraverseChildren(result, subItem, context, scope, entryRelation, limit - 1);
+                    await TraverseChildren(result, subItem, context, scope, limit - 1); // , entryRelation
                 }
             }
         }

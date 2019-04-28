@@ -11,7 +11,7 @@
                 throw new InvalidInfrastructureOperationException(InvalidInfrastructureOperation.SpaceAlreadyOpen);
             }
 
-            var account = await GetAccount(accountName, ((IGrpcSpaceConnection)connection).Transport);
+            var account = await GetAccount(accountName);
             if (account == null)
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToConnectUsingAccount);
@@ -19,7 +19,7 @@
             return account;
         }
 
-        private Task<Api.Account> GetAccount(string accountName, IGrpcSpaceTransport transport)
+        private Task<Api.Account> GetAccount(string accountName)
         {
             var account = _account;
             //var account = await _invoker.Invoke<Account>(_accountConnection, GrpcHub.Account, "GetForAuthenticationToken")

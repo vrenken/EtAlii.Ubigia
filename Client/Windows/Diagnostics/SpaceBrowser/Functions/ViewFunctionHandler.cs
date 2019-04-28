@@ -53,7 +53,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     }
                     else
                     {
-                        ProcessByInput(context, parameterSet, argumentSet, input, scope, output);
+                        ProcessByInput(context, argumentSet, input, scope, output); // parameterSet, 
                     }
                 }
                 else
@@ -64,7 +64,13 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         }
 
 
-        private void ProcessByInput(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output)
+        private void ProcessByInput(
+            IFunctionContext context, 
+            //ParameterSet parameterSet, 
+            ArgumentSet argumentSet, 
+            IObservable<object> input, 
+            ExecutionScope scope, 
+            IObserver<object> output)
         {
             var name = argumentSet.Arguments[0] as string;
             var document = _documentsProvider.Documents.SingleOrDefault(d => d.Title == name);
