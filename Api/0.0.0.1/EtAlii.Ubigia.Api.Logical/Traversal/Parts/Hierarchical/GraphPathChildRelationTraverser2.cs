@@ -43,7 +43,7 @@
 //        ]
 //        private void Update(List<Identifier> list, IReadOnlyEntry entry, ITraversalContext context)
 //        [
-//            switch (entry.Type)
+//            switch [entry.Type]
 //            [
 //                case EntryType.Add:
 //                    list.AddRangeOnce(entry.Children.Select(c => c.Id))

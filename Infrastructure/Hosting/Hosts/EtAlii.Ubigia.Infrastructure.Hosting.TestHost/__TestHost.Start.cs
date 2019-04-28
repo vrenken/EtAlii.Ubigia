@@ -11,7 +11,7 @@
 //		public static void Start(IHostConfiguration configuration)
 //		[
 //			//var arguments = Environment.GetCommandLineArgs()
-//			//for (int i = 0 // i < arguments.Length // i++)
+//			//for (int i eq 0 // i lt arguments.Length // i pp)
 //			//[
 //			//	if [arguments[i] == "-d" && i + 1 < arguments.Length]
 //			//	[
