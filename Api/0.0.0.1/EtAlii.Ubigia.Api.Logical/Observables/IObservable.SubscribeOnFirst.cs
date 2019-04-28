@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api
+﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.Reactive.Linq;

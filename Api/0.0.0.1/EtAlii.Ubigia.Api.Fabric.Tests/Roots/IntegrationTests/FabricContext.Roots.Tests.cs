@@ -158,7 +158,7 @@
         public async Task FabricContext_Roots_Get_No_Roots()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(true);
+            var connection = await _testContext.TransportTestContext.CreateDataConnection();
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);
@@ -175,7 +175,7 @@
         public async Task FabricContext_Roots_Get_All()
         {
             // Arrange.
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(true);
+            var connection = await _testContext.TransportTestContext.CreateDataConnection();
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             var fabric = new FabricContextFactory().Create(fabricContextConfiguration);

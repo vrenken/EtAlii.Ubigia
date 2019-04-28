@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
 
     internal abstract class AddToExistingPathProcessorBase
     {
