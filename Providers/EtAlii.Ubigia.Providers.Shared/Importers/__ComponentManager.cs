@@ -24,7 +24,7 @@
 //                [
 //                    component.Start()
 //                ]
-//                catch (Exception e)
+//                catch [Exception e]
 //                [
 //                    _logger.Critical("Unable to start component [0]", e, component.GetType())
 //                ]
@@ -40,7 +40,7 @@
 //                [
 //                    component.Stop()
 //                ]
-//                catch (Exception e)
+//                catch [Exception e]
 //                [
 //                    _logger.Critical("Unable to start component [0]", e, component.GetType())
 //                ]

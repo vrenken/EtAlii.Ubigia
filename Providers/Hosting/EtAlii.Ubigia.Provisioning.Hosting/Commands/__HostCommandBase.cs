@@ -35,7 +35,7 @@
 //        ]
 //        private void OnHostPropertyChanged(object sender, PropertyChangedEventArgs e)
 //        [
-//            switch (e.PropertyName)
+//            switch [e.PropertyName]
 //            [
 //                case nameof(Host.State):
 //                    OnHostStateChanged(Host.State)

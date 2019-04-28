@@ -66,7 +66,7 @@
       //              appBuilder
       //                  .UseCors(configuration =>
       //                  [
-      //                      configuration.AllowAnyOrigin(); 
+      //                      configuration.AllowAnyOrigin() 
       //                  ])
       //                  .UseGrpc(routes =>
       //                  [
