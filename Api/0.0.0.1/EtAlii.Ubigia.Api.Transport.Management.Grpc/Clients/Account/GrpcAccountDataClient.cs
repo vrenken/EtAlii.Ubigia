@@ -49,7 +49,7 @@
                     Id = GuidExtension.ToWire(accountId)
                 };
                 var call = _client.DeleteAsync(request, _transport.AuthenticationHeaders);
-                var response = await call.ResponseAsync;
+                await call.ResponseAsync;
             }
             catch (RpcException e)
             {
