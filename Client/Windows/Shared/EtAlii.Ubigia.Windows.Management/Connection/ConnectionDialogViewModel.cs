@@ -6,7 +6,6 @@
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
     internal partial class ConnectionDialogViewModel : BindableBase
@@ -52,7 +51,7 @@
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
             _connectionSettingsPersister.Load(out password);
 
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (Debugger.IsAttached)
             {
                 defaultServer = "http://localhost:64001/admin";
                 defaultLogin = "Administrator";

@@ -13,7 +13,7 @@
             IAddConstantToExistingPathProcessor addConstantToExistingPathProcessor,
             IAddVariableAsNewPathProcessor addVariableAsNewPathProcessor)
         {
-            this.Register(p => !(p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addVariableToExistingPathProcessor)
+            Register(p => !(p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addVariableToExistingPathProcessor)
                 .Register(p =>  (p.LeftSubject is EmptySubject) && p.RightSubject is VariableSubject, addVariableAsNewPathProcessor)
                 .Register(p =>  (p.LeftSubject is EmptySubject), addByNameAsNewPathProcessor)
                 .Register(p => !(p.LeftSubject is EmptySubject) && p.RightSubject is RootedPathSubject, addRootedPathToExistingPathProcessor)

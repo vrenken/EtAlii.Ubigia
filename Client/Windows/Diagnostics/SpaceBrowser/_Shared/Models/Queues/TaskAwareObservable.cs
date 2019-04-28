@@ -13,8 +13,8 @@
 
         public TaskAwareObservable(Subject<T> subject, Task task, CancellationTokenSource tokenSource)
         {
-            this._task = task;
-            this._subject = subject;
+            _task = task;
+            _subject = subject;
             _taskCancellationTokenSource = tokenSource;
         }
 

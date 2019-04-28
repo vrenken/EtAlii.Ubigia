@@ -25,7 +25,7 @@
             IdDirectiveResult idDirectiveResult, 
             FieldContext context,
             GraphType parent,
-            Dictionary<System.Type, GraphType> graphTypes)
+            Dictionary<Type, GraphType> graphTypes)
         {   
             if(parent.Metadata.TryGetValue(ComplexFieldTypeBuilder.NodeMetadataKey, out var node))
             {

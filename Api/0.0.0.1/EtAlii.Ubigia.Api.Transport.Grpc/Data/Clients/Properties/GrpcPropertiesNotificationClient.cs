@@ -10,7 +10,7 @@
 //        private readonly string _name
 		private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-		public event Action<Api.Identifier> Stored = delegate { };
+		public event Action<Identifier> Stored = delegate { };
 
 //        public GrpcPropertiesNotificationClient()
 //        [

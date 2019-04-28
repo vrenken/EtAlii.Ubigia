@@ -8,7 +8,7 @@
     using global::Grpc.Core;
     using global::Grpc.Core.Interceptors;
 
-    public class AccountAuthenticationInterceptor : global::Grpc.Core.Interceptors.Interceptor, IAccountAuthenticationInterceptor 
+    public class AccountAuthenticationInterceptor : Interceptor, IAccountAuthenticationInterceptor 
     {
        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
 

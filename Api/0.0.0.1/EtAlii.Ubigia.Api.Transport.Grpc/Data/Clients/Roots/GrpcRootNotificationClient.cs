@@ -10,9 +10,9 @@
 //        private readonly string _name
 		private readonly IEnumerable<IDisposable> _subscriptions = new IDisposable[0];
 
-		public event Action<System.Guid> Added = delegate { };
-        public event Action<System.Guid> Changed = delegate { };
-        public event Action<System.Guid> Removed = delegate { };
+		public event Action<Guid> Added = delegate { };
+        public event Action<Guid> Changed = delegate { };
+        public event Action<Guid> Removed = delegate { };
 
 //        public GrpcRootNotificationClient()
 //        [

@@ -29,7 +29,7 @@
         public async Task<FieldContext> Process(
             Field field, 
             Context parentContext, 
-            Dictionary<System.Type, GraphType> graphTypes)
+            Dictionary<Type, GraphType> graphTypes)
         {
             FieldContext context = null;
 

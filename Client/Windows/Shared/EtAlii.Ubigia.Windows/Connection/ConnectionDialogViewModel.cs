@@ -53,7 +53,7 @@
             _connectionSettingsPersister = new ConnectionSettingsPersister(this);
             _connectionSettingsPersister.Load(out string password);
 
-			if (System.Diagnostics.Debugger.IsAttached)
+			if (Debugger.IsAttached)
             {
                 defaultServer = "http://localhost:64000/user";
 				defaultLogin = "Administrator";

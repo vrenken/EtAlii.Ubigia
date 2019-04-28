@@ -9,7 +9,7 @@
     using Content = EtAlii.Ubigia.Api.Content;
     using ContentPart = EtAlii.Ubigia.Api.ContentPart;
 
-    public class UserContentService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.ContentGrpcService.ContentGrpcServiceBase, IUserContentService
+    public class UserContentService : ContentGrpcService.ContentGrpcServiceBase, IUserContentService
     {
         private readonly IContentRepository _items;
 
