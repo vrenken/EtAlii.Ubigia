@@ -30,11 +30,11 @@
 
                 // Add the system user.
                 // ReSharper disable once UnusedVariable
-                var systemAccount = await managementConnection.Accounts.Add(systemAccountName, systemAccountPassword, AccountTemplate.System);
+                await managementConnection.Accounts.Add(systemAccountName, systemAccountPassword, AccountTemplate.System);
 
                 // Add the system user.
                 // ReSharper disable once UnusedVariable
-                var administratorAccount = await managementConnection.Accounts.Add(administratorAccountName, administratorAccountPassword, AccountTemplate.Administrator);
+                await managementConnection.Accounts.Add(administratorAccountName, administratorAccountPassword, AccountTemplate.Administrator);
 
                 await managementConnection.Close();
             });
