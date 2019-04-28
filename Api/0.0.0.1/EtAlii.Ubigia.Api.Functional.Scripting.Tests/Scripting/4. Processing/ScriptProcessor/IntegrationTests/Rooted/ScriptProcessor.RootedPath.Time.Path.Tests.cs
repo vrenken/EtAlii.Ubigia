@@ -9,17 +9,11 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-
-    
     public class ScriptProcessorRootedPathTimePathTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
-
-        public ScriptProcessorRootedPathTimePathTests()
-        {
-        }
 
         public async Task InitializeAsync()
         {

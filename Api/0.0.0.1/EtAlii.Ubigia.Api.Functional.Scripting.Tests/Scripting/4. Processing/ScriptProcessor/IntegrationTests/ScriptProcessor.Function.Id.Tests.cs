@@ -14,10 +14,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
 
-        public ScriptProcessorFunctionIdIntegrationTests()
-        {
-        }
-
         public async Task InitializeAsync()
         {
             _testContext = new LogicalTestContextFactory().Create();

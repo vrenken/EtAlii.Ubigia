@@ -44,7 +44,6 @@
         /// Use this method to invalidate a set of relations all at once.
         /// </summary>
         /// <param name="relations"></param>
-        /// <param name="cache"></param>
         private void Invalidate(IEnumerable<Relation> relations)
         {
             foreach (var relation in relations)
@@ -57,7 +56,6 @@
         /// Invalidate a relation.
         /// </summary>
         /// <param name="relation"></param>
-        /// <param name="cache"></param>
         private void Invalidate(Relation relation)
         {
             if (relation != Relation.None)

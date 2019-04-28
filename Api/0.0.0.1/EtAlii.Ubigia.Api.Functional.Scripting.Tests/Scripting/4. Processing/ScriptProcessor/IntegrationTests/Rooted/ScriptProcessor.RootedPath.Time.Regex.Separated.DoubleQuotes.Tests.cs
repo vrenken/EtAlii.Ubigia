@@ -9,17 +9,11 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-
-    
     public class ScriptProcessorRootedPathTimeRegexSeparatedDoubleQuotesTests : IAsyncLifetime
     {
         private IScriptParser _parser;
         private IDiagnosticsConfiguration _diagnostics;
         private static ILogicalTestContext _testContext;
-
-        public ScriptProcessorRootedPathTimeRegexSeparatedDoubleQuotesTests()
-        {
-        }
 
         public async Task InitializeAsync()
         {

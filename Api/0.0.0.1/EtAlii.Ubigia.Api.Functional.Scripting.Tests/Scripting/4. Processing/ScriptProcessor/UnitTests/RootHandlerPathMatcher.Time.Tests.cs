@@ -4,9 +4,17 @@
     using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
+    using Xunit.Abstractions;
 
     public partial class RootHandlerPathMatcherTests
     {
+        private readonly ITestOutputHelper _output;
+
+        public RootHandlerPathMatcherTests(ITestOutputHelper output)
+        {
+            _output = output;
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public async Task RootHandlerPathMatcher_Time_Random()
         {
@@ -14,7 +22,7 @@
             var seed = new Random().Next();
             var random = new Random(seed);
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
@@ -35,11 +43,11 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            Console.WriteLine("Seed: " + seed);
-            Console.WriteLine("Template: " + String.Join("", template.Select(t => t.ToString())));
-            Console.WriteLine("Path: " + String.Join("", path.Select(t => t.ToString())));
+            _output.WriteLine("Seed: " + seed);
+            _output.WriteLine("Template: " + String.Join("", template.Select(t => t.ToString())));
+            _output.WriteLine("Path: " + String.Join("", path.Select(t => t.ToString())));
 
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
@@ -52,7 +60,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
@@ -73,7 +81,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -86,7 +94,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
@@ -107,7 +115,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -120,7 +128,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
@@ -141,7 +149,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -156,7 +164,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
@@ -174,7 +182,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -187,7 +195,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter), new ParentPathSubjectPart(),
                     new TypedPathSubjectPart(TypedPathFormatter.Time.MonthFormatter), new ParentPathSubjectPart(),
@@ -205,7 +213,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -218,7 +226,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                     new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -234,7 +242,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -247,7 +255,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new ParentPathSubjectPart(),
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
@@ -265,7 +273,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -278,7 +286,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new ParentPathSubjectPart(),
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
@@ -291,7 +299,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -304,7 +312,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -315,7 +323,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -328,7 +336,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -339,7 +347,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -352,7 +360,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -363,7 +371,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -376,7 +384,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -387,7 +395,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -400,7 +408,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -411,7 +419,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -424,7 +432,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -435,7 +443,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -448,7 +456,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -459,7 +467,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
@@ -472,7 +480,7 @@
         {
             // Arrange.
             var rootHandlerPathMatcher = CreateRootHandlerPathMatcher();
-            var scriptscope = new ScriptScope();
+            var scriptScope = new ScriptScope();
             var template = new PathSubjectPart[] {
                 new TypedPathSubjectPart(TypedPathFormatter.Time.YearFormatter)
             };
@@ -483,7 +491,7 @@
             var rootHandler = new TestRootHandler(template);
 
             // Act.
-            var match = await rootHandlerPathMatcher.Match(scriptscope, rootHandler, path);
+            var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.Equal(MatchResult.NoMatch, match);
