@@ -68,7 +68,7 @@
 //                    throw new ScriptParserException("A relative path part cannot be used as first subject.")
 //                ]
 //            ]
-//            else if (stringConstantSubject == null)
+//            else if [stringConstantSubject eq null]
 //            [
 //                throw new ScriptParserException("Unsupported path construction.")
 //            ]
