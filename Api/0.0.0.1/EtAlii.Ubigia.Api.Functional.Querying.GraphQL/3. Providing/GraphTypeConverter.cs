@@ -19,7 +19,7 @@
                     ? typeof(DateGraphType)
                     : typeof(DateTimeGraphType);
                 case TimeSpan _: return typeof(TimeSpanMillisecondsGraphType);
-                default: throw new NotSupportedException();
+                default: throw new NotSupportedException($"Unable to convert object to GraphType: {value?.ToString() ?? "NULL"}");
             }
         }
         
@@ -35,7 +35,7 @@
                         ? (ScalarGraphType)new DateGraphType()
                         : new DateTimeGraphType();
                 case TimeSpan _: return new TimeSpanMillisecondsGraphType();
-                default: throw new NotSupportedException();
+                default: throw new NotSupportedException($"Unable to convert object to scalar GraphType: {value?.ToString() ?? "NULL"}");
             }
         }
    }

@@ -12,7 +12,7 @@ query data
 { 
     person @nodes(path:"person:Stark/Tony")
     { 
-        lastname @id(path:"\\") 
+        lastname @id(path:"\\#FamilyName") 
     } 
 }
 
@@ -65,7 +65,7 @@ query data
     person @nodes(path:"person:Vrenken/Peter")
     { 
         firstname 
-        lastname @id(path:"\\") 
+        lastname @id(path:"\\#FamilyName") 
     }
 }
 
