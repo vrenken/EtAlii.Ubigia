@@ -1,16 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore
 {
-	using System;
-    using System.Linq;
-    using EtAlii.Ubigia.Infrastructure.Functional;
+	using System.Linq;
+	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Infrastructure.Transport.Admin.AspNetCore;
 	using EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore;
 	using EtAlii.Ubigia.Storage;
-	using EtAlii.xTechnology.Hosting.TestHost.AspNetCore;
 	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting.TestHost.AspNetCore;
 
-    public class InProcessInfrastructureTestHost : InProcessTestHost, IInfrastructureTestHost
+	public class InProcessInfrastructureTestHost : InProcessTestHost, IInfrastructureTestHost
     {
 	    public IInfrastructure Infrastructure => _infrastructure;
 	    private IInfrastructure _infrastructure;

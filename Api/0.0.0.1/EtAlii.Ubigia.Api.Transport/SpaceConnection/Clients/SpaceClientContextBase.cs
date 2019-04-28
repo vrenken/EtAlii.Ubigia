@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public TDataClient Data { get; }
 
-        public SpaceClientContextBase(
+        protected SpaceClientContextBase(
             TNotificationClient notifications,
             TDataClient data)
         {
@@ -26,8 +26,8 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public async Task Close(ISpaceConnection spaceConnection)
         {
-            await Notifications.Disconnect(spaceConnection);
-            await Data.Disconnect(spaceConnection);
+            await Notifications.Disconnect();
+            await Data.Disconnect();
         }
     }
 }

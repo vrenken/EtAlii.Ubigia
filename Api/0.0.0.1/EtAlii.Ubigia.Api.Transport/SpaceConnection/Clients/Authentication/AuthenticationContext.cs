@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Transport
 
         public async Task Close(ISpaceConnection spaceConnection)
         {
-            await Data.Disconnect(spaceConnection);
+            await Data.Disconnect();
         }
 
     }

@@ -47,12 +47,12 @@
                 items.Add(item);
             }
 
-            items.CollectionChanged += (o, e) => OnItemsChanged<T>(o, e, folder);
+            items.CollectionChanged += (o, e) => OnItemsChanged<T>(e, folder);
 
             return items;
         }
 
-        private void OnItemsChanged<T>(object sender, NotifyCollectionChangedEventArgs e, string folder)
+        private void OnItemsChanged<T>(NotifyCollectionChangedEventArgs e, string folder) // object sender, 
             where T : class, IIdentifiable
         {
             var containerId = _storage.ContainerProvider.ForItems(folder);

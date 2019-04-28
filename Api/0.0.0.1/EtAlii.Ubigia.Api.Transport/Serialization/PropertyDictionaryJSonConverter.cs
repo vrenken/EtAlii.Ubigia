@@ -35,11 +35,11 @@
 
             if (reader.TokenType == JsonToken.StartArray)
             {
-                ReadAsArray(reader, objectType, properties, serializer);
+                ReadAsArray(reader, properties, serializer); // objectType, 
             }
             else
             {
-                ReadAsDictionary(reader, objectType, properties, serializer);
+                ReadAsDictionary(reader, properties, serializer); // objectType, 
             }
 
             return properties;

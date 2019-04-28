@@ -12,7 +12,7 @@
             string defaultAccount = "",
             string defaultPassword = "")
         {
-            configuration.Use(() => CreateUsingDialog(configuration, null, dialogOptions, defaultAddress, defaultAccount, defaultPassword));
+            configuration.Use(() => CreateUsingDialog(null, dialogOptions, defaultAddress, defaultAccount, defaultPassword)); // configuration, 
 
             return configuration;
         }
@@ -25,11 +25,11 @@
             string defaultAccount = "",
             string defaultPassword = "")
         {
-            return configuration.Use(() => CreateUsingDialog(configuration, dialogOwner, dialogOptions, defaultAddress, defaultAccount, defaultPassword));
+            return configuration.Use(() => CreateUsingDialog(dialogOwner, dialogOptions, defaultAddress, defaultAccount, defaultPassword)); // configuration, 
         }
 
         private static IManagementConnection CreateUsingDialog(
-            IManagementConnectionConfiguration configuration,
+            //IManagementConnectionConfiguration configuration,
             Window dialogOwner = null,
             ConnectionDialogOptions dialogOptions = ConnectionDialogOptions.ShowAlways,
             string defaultAddress = "",

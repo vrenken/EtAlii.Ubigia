@@ -9,7 +9,7 @@
         private readonly ISelector<Subject, Subject, IAssignOperatorSubProcessor> _selector;
 
         public AssignOperatorProcessor(
-            IProcessingContext processingContext,
+            //IProcessingContext processingContext,
             IAssignPathToVariableOperatorSubProcessor assignPathToVariableOperatorSubProcessor, 
             IAssignFunctionToVariableOperatorSubProcessor assignFunctionToVariableOperatorSubProcessor, 
             IAssignConstantToVariableOperatorSubProcessor assignConstantToVariableOperatorSubProcessor,

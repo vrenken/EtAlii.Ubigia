@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IArgumentSetFinder _argumentSetFinder;
 
         public AssignFunctionToFunctionOperatorSubProcessor(
-            IFunctionSubjectParameterConverterSelector parameterConverterSelector,
+            //IFunctionSubjectParameterConverterSelector parameterConverterSelector,
             IFunctionContext functionContext, 
             IParameterSetFinder parameterSetFinder, 
             IFunctionHandlerFinder functionHandlerFinder, 

@@ -1,16 +1,15 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
-	using System;
-    using System.Linq;
-    using EtAlii.Ubigia.Infrastructure.Functional;
+	using System.Linq;
+	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
 	using EtAlii.Ubigia.Infrastructure.Transport.User.Grpc;
 	using EtAlii.Ubigia.Storage;
-	using EtAlii.xTechnology.Hosting.TestHost.Grpc;
 	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting.TestHost.Grpc;
 
-    public class NetworkedInfrastructureTestHost : NetworkedTestHost, IInfrastructureTestHost
+	public class NetworkedInfrastructureTestHost : NetworkedTestHost, IInfrastructureTestHost
     {
 	    public IInfrastructure Infrastructure => _infrastructure;
 	    private IInfrastructure _infrastructure;

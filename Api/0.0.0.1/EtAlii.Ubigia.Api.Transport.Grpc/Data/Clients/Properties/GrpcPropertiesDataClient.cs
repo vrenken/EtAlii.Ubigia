@@ -56,9 +56,9 @@
             _client = new PropertiesGrpcService.PropertiesGrpcServiceClient(_transport.Channel);
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
             _transport = null;
             _client = null;
         }

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class RootDataClientStubTests
@@ -62,7 +61,7 @@
             var rootDataClientStub = new RootDataClientStub();
             
             // Act.
-            await rootDataClientStub.Disconnect(null);
+            await rootDataClientStub.Disconnect();
             
             // Assert.
         }

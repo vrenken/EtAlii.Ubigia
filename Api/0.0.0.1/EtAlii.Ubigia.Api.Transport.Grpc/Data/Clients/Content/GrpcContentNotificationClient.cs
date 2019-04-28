@@ -17,15 +17,15 @@
 //        [
 //            //_name = GrpcHub.Content
 //        ]
-        private void OnUpdated(Api.Identifier identifier)
-        {
-            Updated(identifier);
-        }
-
-        private void OnStored(Api.Identifier identifier)
-        {
-            Stored(identifier);
-        }
+//        private void OnUpdated(Api.Identifier identifier)
+//        [
+//            Updated(identifier)
+//        ]
+//
+//        private void OnStored(Api.Identifier identifier)
+//        [
+//            Stored(identifier)
+//        ]
 
         public override async Task Connect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
         {
@@ -42,9 +42,9 @@
 	        //]
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect()
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect();
 
             //await _connection.DisposeAsync()
             //_connection = null

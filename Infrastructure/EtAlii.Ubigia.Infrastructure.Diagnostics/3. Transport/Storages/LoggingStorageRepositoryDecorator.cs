@@ -13,7 +13,7 @@
 
         public LoggingStorageRepositoryDecorator(
             IStorageRepository storageRepository, 
-            IProfiler profiler,
+            //IProfiler profiler,
             ILogger logger)
         {
             _repository = storageRepository;

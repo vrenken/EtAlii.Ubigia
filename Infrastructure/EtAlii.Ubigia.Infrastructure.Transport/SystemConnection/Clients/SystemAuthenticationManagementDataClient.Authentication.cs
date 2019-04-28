@@ -10,7 +10,7 @@
 
         public async Task Authenticate(ISpaceConnection connection, string accountName, string password)
         {
-            string authenticationToken = await GetAuthenticationToken(accountName, password);
+            string authenticationToken = await GetAuthenticationToken(password); // accountName, 
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -25,7 +25,7 @@
 
         public async Task Authenticate(IStorageConnection storageConnection, string accountName, string password)
         {
-            string authenticationToken = await GetAuthenticationToken(accountName, password);
+            string authenticationToken = await GetAuthenticationToken(password); // accountName, 
 
             if (!String.IsNullOrWhiteSpace(authenticationToken))
             {
@@ -38,7 +38,9 @@
             }
         }
 
-        private Task<string> GetAuthenticationToken(string accountName, string password)
+        private Task<string> GetAuthenticationToken(
+            //string accountName, 
+            string password)
         {
             string authenticationToken;
             if (password == null && _authenticationToken != null)
@@ -50,7 +52,7 @@
                 authenticationToken = "System_" + Guid.NewGuid().ToString().Replace("-", "");
             }
 
-            if (String.IsNullOrWhiteSpace(authenticationToken))
+            if (string.IsNullOrWhiteSpace(authenticationToken))
             {
                 throw new UnauthorizedInfrastructureOperationException(InvalidInfrastructureOperation.UnableToAthorize);
             }

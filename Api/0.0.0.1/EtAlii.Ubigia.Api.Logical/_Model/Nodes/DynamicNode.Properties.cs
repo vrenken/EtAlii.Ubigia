@@ -55,24 +55,24 @@
         /// support CallerMemberName.</param>
         /// <returns>True if the value was changed, false if the existing value matched the
         /// desired value.</returns>
-        private bool SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
-        {
-            if (Equals(storage, newValue)) return false;
-
-            var oldValue = storage;
-            storage = newValue;
-            NotifyPropertyChanged(this, oldValue, newValue, propertyName);
-
-            MarkAsModified();
-
-            return true;
-        }
+//        private bool SetProperty<T>[ref T storage, T newValue, [CallerMemberName] string propertyName = null]
+//        [
+//            if [Equals[storage, newValue]] return false
+//
+//            var oldValue = storage
+//            storage = newValue
+//            NotifyPropertyChanged[propertyName] // this, oldValue, newValue, 
+//
+//            MarkAsModified[]
+//
+//            return true
+//        ]
 
         private void MarkAsModified()
         {
             var wasModified = _isModified;
             _isModified = true;
-            NotifyPropertyChanged(this, _isModified, _isModified, nameof(INode.IsModified));
+            NotifyPropertyChanged(nameof(INode.IsModified)); // this, _isModified, _isModified, 
         }
 
         /// <summary>
@@ -81,7 +81,7 @@
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
-        private void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
+        private void NotifyPropertyChanged([CallerMemberName] string propertyName = null) // object sender, object oldValue, object newValue, 
         {
             var eventHandler = PropertyChanged;
             if (eventHandler != null)

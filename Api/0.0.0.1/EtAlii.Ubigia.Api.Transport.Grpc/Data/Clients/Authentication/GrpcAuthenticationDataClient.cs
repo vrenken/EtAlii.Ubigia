@@ -25,9 +25,9 @@
             SetClients(spaceConnection.Transport.Channel);
         }
 
-        public override async Task Disconnect(ISpaceConnection<IGrpcSpaceTransport> spaceConnection)
+        public override async Task Disconnect() 
         {
-            await base.Disconnect(spaceConnection);
+            await base.Disconnect(); 
             _storageClient = null;
             _spaceClient = null;
         }

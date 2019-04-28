@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Tests
 {
-    using EtAlii.Ubigia.Api.Transport;
     using Xunit;
 
     public class ContentNotificationClientStubTests
@@ -36,7 +35,7 @@
             var contentNotificationClientStub = new ContentNotificationClientStub();
 
             // Act,
-            contentNotificationClientStub.Disconnect(null);
+            contentNotificationClientStub.Disconnect();
         
             // Assert.
         }

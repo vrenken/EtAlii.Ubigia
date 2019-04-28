@@ -78,7 +78,7 @@
                 }
 
                 // Send the add event.
-                SignalAdded(spaceId, root.Id);
+                SignalAdded(root.Id); // spaceId, 
             }
             catch (Exception e)
             {
@@ -96,7 +96,7 @@
                 response = _items.Update(spaceId, rootId, root);
 
                 // Send the changed event.
-                SignalChanged(spaceId, root.Id);
+                SignalChanged(root.Id); // spaceId, 
             }
             catch (Exception e)
             {
@@ -113,7 +113,7 @@
                 _items.Remove(spaceId, rootId);
 
                 // Send the changed event.
-                SignalRemoved(spaceId, rootId);
+                SignalRemoved(rootId); // spaceId, 
             }
             catch (Exception e)
             {
@@ -123,19 +123,25 @@
 
         ///=================================
         
-        private void SignalAdded(Guid spaceId, Guid rootId)
+        private void SignalAdded(
+            //Guid spaceId, 
+            Guid rootId)
         {
             Clients.All.SendAsync("added", new object[] { rootId });
             //Clients.All.added(rootId)
         }
 
-        private void SignalChanged(Guid spaceId, Guid rootId)
+        private void SignalChanged(
+            //Guid spaceId, 
+            Guid rootId)
         {
             Clients.All.SendAsync("changed", new object[]{ rootId });
             //Clients.All.changed(rootId)
         }
 
-        private void SignalRemoved(Guid spaceId, Guid rootId)
+        private void SignalRemoved(
+            //Guid spaceId, 
+            Guid rootId)
         {
             Clients.All.SendAsync("removed", new object[] { rootId });
             //Clients.All.removed(rootId)

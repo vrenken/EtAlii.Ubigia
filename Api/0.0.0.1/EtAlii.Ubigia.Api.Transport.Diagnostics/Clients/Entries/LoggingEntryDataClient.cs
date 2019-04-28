@@ -25,9 +25,9 @@
             await _client.Connect(spaceConnection);
         }
 
-        public async Task Disconnect(ISpaceConnection spaceConnection)
+        public async Task Disconnect()
         {
-            await _client.Disconnect(spaceConnection);
+            await _client.Disconnect();
         }
 
         public async Task<IEditableEntry> Prepare()
