@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Security.Cryptography;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport.Grpc;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol;
@@ -70,8 +71,8 @@
         private string CreateHostIdentifier()
         {
             var bytes = new byte[64];
-            var rnd = new Random();
-            rnd.NextBytes(bytes);
+            var rnd = RandomNumberGenerator.Create();
+            rnd.GetNonZeroBytes(bytes);
             return Convert.ToBase64String(bytes);
         }
     }

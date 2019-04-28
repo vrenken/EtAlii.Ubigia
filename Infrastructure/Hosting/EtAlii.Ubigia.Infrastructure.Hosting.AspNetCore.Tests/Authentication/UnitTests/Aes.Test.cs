@@ -1,12 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-    using Xunit;
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Infrastructure.Transport;
+    using System.Security.Cryptography;
+    using Xunit;
+    using Aes = EtAlii.Ubigia.Infrastructure.Transport.Aes;
 
-
-	// TODO: Move all instances of this test class to single testproject
+    // TODO: Move all instances of this test class to single testproject
     [Trait("Technology", "AspNetCore")]
     public class AesTest
     {
@@ -57,9 +57,9 @@
 
         private byte[] CreateBytes(int length)
         {
-            var random = new Random();
             var bytes = new byte[length];
-            random.NextBytes(bytes);
+            var rnd = RandomNumberGenerator.Create();
+            rnd.GetNonZeroBytes(bytes);
             return bytes;
         }
     }
