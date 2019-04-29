@@ -17,8 +17,7 @@
             };
 
             var lastSequence = await context.Process(script);
-            DynamicNode[] result = lastSequence.Output
-                .ToEnumerable()
+            var result = await lastSequence.Output
                 .Cast<DynamicNode>()
                 .ToArray();
 
