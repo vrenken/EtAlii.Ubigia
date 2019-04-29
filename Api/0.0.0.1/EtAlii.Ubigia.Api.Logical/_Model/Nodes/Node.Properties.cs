@@ -38,7 +38,7 @@
         /// <summary>
         /// Checks if a property already matches a desired value.  Sets the property and
         /// notifies listeners only when necessary.
-        /// </summary>
+        /// </summary> 
         /// <typeparam name="T">Type of the property.</typeparam>
         /// <param name="newValue">Desired value for the property.</param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
