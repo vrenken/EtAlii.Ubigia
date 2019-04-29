@@ -6,41 +6,41 @@
 
     public class LoggingSpaceConnection : ISpaceConnection
     {
-        private readonly ISpaceConnection _connection;
+        private readonly ISpaceConnection _decoree;
         private readonly ILogger _logger;
 
         private Uri _address;
 
-        public Account Account => _connection.Account;
-        public Space Space => _connection.Space;
-        public Storage Storage => _connection.Storage;
-        public bool IsConnected => _connection.IsConnected;
-        public ISpaceTransport Transport => ((dynamic)_connection).Transport;
-        public ISpaceConnectionConfiguration Configuration => _connection.Configuration;
+        public Account Account => _decoree.Account;
+        public Space Space => _decoree.Space;
+        public Storage Storage => _decoree.Storage;
+        public bool IsConnected => _decoree.IsConnected;
+        public ISpaceTransport Transport => ((dynamic)_decoree).Transport;
+        public ISpaceConnectionConfiguration Configuration => _decoree.Configuration;
 
-        public IAuthenticationContext Authentication => _connection.Authentication;
-        public IEntryContext Entries => _connection.Entries;
-        public IRootContext Roots => _connection.Roots;
-        public IContentContext Content => _connection.Content;
-        public IPropertiesContext Properties => _connection.Properties;
+        public IAuthenticationContext Authentication => _decoree.Authentication;
+        public IEntryContext Entries => _decoree.Entries;
+        public IRootContext Roots => _decoree.Roots;
+        public IContentContext Content => _decoree.Content;
+        public IPropertiesContext Properties => _decoree.Properties;
 
         public LoggingSpaceConnection(
-            ISpaceConnection connection,
+            ISpaceConnection decoree,
             ILogger logger)
         {
-            _connection = connection;
+            _decoree = decoree;
             _logger = logger;
         }
 
         public async Task Open(string accountName, string password)
         {
-            _address = _connection.Transport.Address;
+            _address = _decoree.Transport.Address;
 
             var message = $"Opening space connection (Address: {_address}";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            await _connection.Open(accountName, password);
+            await _decoree.Open(accountName, password);
 
             message = $"Opened space connection (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
@@ -52,7 +52,7 @@
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            await _connection.Close();
+            await _decoree.Close();
             _address = null;
 
             message = $"Closed space connection (Address: {_address} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
@@ -77,11 +77,7 @@
                 if (disposing)
                 {
                     // Free other state (managed objects).
-                    if (IsConnected)
-                    {
-                        var task = Close();
-                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
-                    }
+                    _decoree.Dispose();
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
