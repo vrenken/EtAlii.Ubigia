@@ -14,8 +14,7 @@
         public Task Process(OperatorParameters parameters)
         {
             var removeOperator = _selector.Select(parameters);
-            removeOperator.Process(parameters);
-            return Task.CompletedTask;
+            return removeOperator.Process(parameters);
         }
     }
 }

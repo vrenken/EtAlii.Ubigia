@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     public interface IPathVariableExpander
     {
-        PathSubjectPart[] Expand(PathSubjectPart[] path);
+        Task<PathSubjectPart[]> Expand(PathSubjectPart[] path);
     }
 }

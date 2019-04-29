@@ -31,7 +31,7 @@
             var pathSubject = (AbsolutePathSubject)subject;
 
             // Let's expand all possible variables within the path.
-            var parts = _pathVariableExpander.Expand(pathSubject.Parts);
+            var parts = await _pathVariableExpander.Expand(pathSubject.Parts);
 
             if (parts[1] is IdentifierPathSubjectPart)
             {

@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Collections.Generic;
+    using System.Threading.Tasks;
 
     class PathVariableExpander : IPathVariableExpander
     {
@@ -15,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _variablePathSubjectPartToPathConverter = variablePathSubjectPartToGraphPathPartsConverter;
         }
 
-        public PathSubjectPart[] Expand(PathSubjectPart[] path)
+        public async Task<PathSubjectPart[]> Expand(PathSubjectPart[] path)
         {
             var result = new List<PathSubjectPart>();
 
@@ -34,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional
                         throw new ScriptProcessingException($"Variable {variableName} not assigned");
                     }
 
-                    var parts = _variablePathSubjectPartToPathConverter.Convert(variable);
+                    var parts = await _variablePathSubjectPartToPathConverter.Convert(variable);
                     result.AddRange(parts);
 
                 }

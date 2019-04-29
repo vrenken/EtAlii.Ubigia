@@ -17,9 +17,9 @@
             _itemToIdentifierConverter = itemToIdentifierConverter;
             _context = context;
         }
-        public void Process(OperatorParameters parameters)
+        public async Task Process(OperatorParameters parameters)
         {
-            var rightResult = parameters.RightInput.ToEnumerable();
+            var rightResult = await parameters.RightInput.ToArray();
             var rightId = _itemToIdentifierConverter.Convert(rightResult);
             if (rightId == Identifier.Empty)
             {
