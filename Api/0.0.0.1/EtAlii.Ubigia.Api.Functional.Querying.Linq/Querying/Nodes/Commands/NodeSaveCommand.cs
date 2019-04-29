@@ -32,8 +32,7 @@
                 // TODO: Attempt to make Linq async.
                 var lastSequence = _scriptContext
                     .Process(scriptParseResult.Script, scope)
-                    .ToEnumerable()
-                    .Last();
+                    .Wait();
                 var output = lastSequence.Output.ToEnumerable();
 
                 UpdateOriginalNode(node, output);
