@@ -15,7 +15,7 @@
             
             var inUsePorts = Array.Empty<int>()
                 .Concat(properties.GetActiveTcpConnections().Select(c => c.LocalEndPoint.Port)) // Ignore active connections            
-                .Concat(properties.GetActiveTcpListeners().Select(l => l.Port)) // Ignore active tcp listners
+                .Concat(properties.GetActiveTcpListeners().Select(l => l.Port)) // Ignore active tcp listeners
                 .Concat(properties.GetActiveUdpListeners().Select(l => l.Port)) // Ignore active udp listeners
                 .OrderBy(p => p)
                 .Where(p => p >= startingPort);
