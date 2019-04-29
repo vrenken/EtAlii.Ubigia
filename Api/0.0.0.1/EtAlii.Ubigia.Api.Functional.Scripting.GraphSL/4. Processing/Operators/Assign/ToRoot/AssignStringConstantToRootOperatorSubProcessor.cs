@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
@@ -18,10 +17,10 @@ namespace EtAlii.Ubigia.Api.Functional
         public Task Assign(OperatorParameters parameters)
         {
             // ReSharper disable once UnusedVariable
-            var definition = parameters.RightInput
-                .ToEnumerable()
-                .Cast<string>()
-                .Single(); // We do not support multiple definitions
+//            var definition = parameters.RightInput
+//                .ToEnumerable()
+//                .Cast<string>()
+//                .Single() // We do not support multiple definitions
 
             parameters.LeftInput
                 .Cast<RootSubject>()
