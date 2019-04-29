@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
+
     public interface IVariablePathSubjectPartToPathConverter
     {
-        PathSubjectPart[] Convert(ScopeVariable variable);
+        Task<PathSubjectPart[]> Convert(ScopeVariable variable);
     }
 }

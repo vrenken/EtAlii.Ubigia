@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public string Name { get; }
 
-        private readonly ISelector<object, Func<IFunctionContext, ExecutionScope, object, int>> _converterSelector;
+        private readonly ISelector<object, Func<IFunctionContext, ExecutionScope, object, Task<int>>> _converterSelector;
 
         public CountFunctionHandler()
         {
@@ -29,15 +29,15 @@ namespace EtAlii.Ubigia.Api.Functional
             };
             Name = "Count";
 
-            _converterSelector = new Selector<object, Func<IFunctionContext, ExecutionScope, object, int>>()
+            _converterSelector = new Selector<object, Func<IFunctionContext, ExecutionScope, object, Task<int>>>()
                 .Register(o => o is PathSubject, (context, scope, o) => CountPath(context, (PathSubject)o, scope))
-                .Register(o => o is Identifier, (context, scope, o) => 1)
-                .Register(o => o is IInternalNode, (context, scope, o) => 1)
+                .Register(o => o is Identifier, (context, scope, o) => Task.FromResult(1))
+                .Register(o => o is IInternalNode, (context, scope, o) => Task.FromResult(1))
                 .Register(o => o is IObservable<object>, (context, scope, o) => CountObservable((IObservable<object>)o))
-                .Register(o => o is IEnumerable<Identifier>, (context, scope, o) => ((IEnumerable<Identifier>)o).Count())
-                .Register(o => o is IEnumerable<IInternalNode>, (context, scope, o) => ((IEnumerable<IInternalNode>)o).Count())
-                .Register(o => o == null, (context, scope, o) => { throw new ScriptProcessingException("No empty argument is allowed for Count function processing");})
-                .Register(o => true, (context, scope, o) => { throw new ScriptProcessingException("Unable to convert arguments for Count function processing");});
+                .Register(o => o is IEnumerable<Identifier>, (context, scope, o) => Task.FromResult(((IEnumerable<Identifier>)o).Count()))
+                .Register(o => o is IEnumerable<IInternalNode>, (context, scope, o) => Task.FromResult(((IEnumerable<IInternalNode>)o).Count()))
+                .Register(o => o == null, (context, scope, o) => Task.FromException<int>(new ScriptProcessingException("No empty argument is allowed for Count function processing")))
+                .Register(o => true, (context, scope, o) => Task.FromException<int>(new ScriptProcessingException("Unable to convert arguments for Count function processing")));
         }
 
         public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
@@ -69,23 +69,23 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private void Process(IFunctionContext context, IObservable<object> input, ExecutionScope scope, IObserver<object> output)
         {
-            int result = 0;
+            var result = 0;
 
-            input.Subscribe(
+            input.SubscribeAsync(
                 onError: output.OnError,
                 onCompleted: () =>
                 {
                     output.OnNext(result);
                     output.OnCompleted();
                 },
-                onNext: (o) =>
+                onNext: async (o) =>
                 {
                     var converter = _converterSelector.Select(o);
-                    result += converter(context, scope, o);
+                    result += await converter(context, scope, o);
                 });
         }
 
-        private int CountPath(IFunctionContext context, PathSubject pathSubject, ExecutionScope scope)
+        private async Task<int> CountPath(IFunctionContext context, PathSubject pathSubject, ExecutionScope scope)
         {
             var outputObservable = Observable.Create<object>(async outputObserver =>
             {
@@ -94,28 +94,14 @@ namespace EtAlii.Ubigia.Api.Functional
                 return Disposable.Empty;
             });
 
-            int result = 0;
-
-            var task = Task.Run(async () =>
-            {
-                result = await outputObservable.Count();
-            });
-            task.Wait();
+            var result = await outputObservable.Count();
 
             return result;
         }
 
-        private int CountObservable(IObservable<object> observable)
+        private async Task<int> CountObservable(IObservable<object> observable)
         {
-
-            int result = 0;
-
-            var task = Task.Run(async () =>
-            {
-                result = await observable.Count();
-            });
-            task.Wait();
-
+            var result = await observable.Count();
             return result;
         }
     }

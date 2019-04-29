@@ -24,7 +24,7 @@
             var pathSubject = (RootedPathSubject) subject;
 
             // Let's expand all possible variables within the path.
-            var parts = _pathVariableExpander.Expand(pathSubject.Parts);
+            var parts = await _pathVariableExpander.Expand(pathSubject.Parts);
 
             // And handover the root and following path for root path processing.
             await _rootPathProcessor.Process(pathSubject.Root, parts, scope, output, _processingContext.Scope);

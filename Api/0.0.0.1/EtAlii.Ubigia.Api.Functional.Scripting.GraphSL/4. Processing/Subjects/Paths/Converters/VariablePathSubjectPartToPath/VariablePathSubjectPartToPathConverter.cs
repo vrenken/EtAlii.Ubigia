@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Linq;
     using System.Reactive.Linq;
-    using System.Reactive.Threading.Tasks;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
     using Moppet.Lapa;
@@ -40,14 +40,10 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Register(s => s is ConstantSubject, constantSubjectsParser);
         }
 
-        public PathSubjectPart[] Convert(ScopeVariable variable)
+        public async Task<PathSubjectPart[]> Convert(ScopeVariable variable)
         {
             // TODO: At this moment we only allow single items to be used as path variables.
-            var task = variable.Value
-                .SingleAsync()
-                .ToTask();
-            task.Wait();
-            var value = task.Result;
+            var value = await variable.Value.SingleAsync();
             var converter = _converterSelector.Select(value);
             return converter(value, variable.Source);
         }

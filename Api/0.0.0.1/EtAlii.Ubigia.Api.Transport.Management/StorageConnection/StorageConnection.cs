@@ -94,8 +94,8 @@
                     // Free other state (managed objects).
                     if (IsConnected)
                     {
-//                        var task = Close()
-//                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                        var task = Close();
+                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
                         Storage = null;
                     }
                 }
