@@ -123,11 +123,7 @@
                 if (disposing)
                 {
                     // Free other state (managed objects).
-                    if (_decoree.IsConnected)
-                    {
-                        var task = Close();
-                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
-                    }
+                    _decoree.Dispose();
                 }
                 // Free your own state (unmanaged objects).
                 // Set large fields to null.
