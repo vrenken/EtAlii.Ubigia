@@ -19,7 +19,7 @@
     /// <summary>
     /// A singleton instance.
     /// </summary>
-    private static T command;
+    private static T _command;
 
     protected Container Container { get; }
 
@@ -33,8 +33,13 @@
     /// </summary>
     public override object ProvideValue(IServiceProvider serviceProvider)
     {
-      if (command == null) command = new T();
-      return command;
+      if (_command == null) SetCommand(new T()); 
+      return _command;
+    }
+
+    private static void SetCommand(T command)
+    {
+      _command = command;
     }
 
     /// <summary>
