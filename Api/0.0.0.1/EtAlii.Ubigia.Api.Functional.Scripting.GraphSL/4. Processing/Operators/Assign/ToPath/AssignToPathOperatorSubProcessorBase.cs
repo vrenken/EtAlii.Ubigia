@@ -26,14 +26,11 @@ namespace EtAlii.Ubigia.Api.Functional
             _context = context;
         }
 
-        public Task Assign(OperatorParameters parameters)
+        public async Task Assign(OperatorParameters parameters)
         {
-            var value = parameters.RightInput
-                .ToEnumerable()
-                .Single(); // We do not support multiple constants (yet)
+            var value = await parameters.RightInput.SingleAsync(); // We do not support multiple constants (yet)
 
             parameters.LeftInput
-//                .Select(o => _toIdentifierConverter.Convert(o))
                 .SubscribeAsync(
                     onError: (e) => parameters.Output.OnError(e),
                     onCompleted: () => parameters.Output.OnCompleted(),
@@ -46,23 +43,20 @@ namespace EtAlii.Ubigia.Api.Functional
                         //var result = await _context.Logical.Nodes.Assign(graphPath, o, value, parameters.Scope)
                         parameters.Output.OnNext(result);
                     });
-            return Task.CompletedTask;
         }
 
-        public async Task<INode> Assign(GraphPath path, Identifier location, object o, ExecutionScope scope)
+        private async Task<INode> Assign(GraphPath path, Identifier location, object o, ExecutionScope scope)
         {
             if(path.Last() is GraphTaggedNode && o is string tag)
             {
                 return await _context.Logical.Nodes.AssignTag(location, tag, scope);
             }
-            if (o is IInternalNode node)
+            switch (o)
             {
-                return await _context.Logical.Nodes.AssignNode(location, node, scope);
+                case IInternalNode node: return await _context.Logical.Nodes.AssignNode(location, node, scope);
+                case IPropertyDictionary properties: return await _context.Logical.Nodes.AssignProperties(location, properties, scope);
             }
-            if (o is IPropertyDictionary properties)
-            {
-                return await _context.Logical.Nodes.AssignProperties(location, properties, scope);
-            }
+
             if (IsDynamicObject(o))
             {
                 return await _context.Logical.Nodes.AssignDynamic(location, o, scope);
@@ -96,7 +90,5 @@ namespace EtAlii.Ubigia.Api.Functional
                 && typeInfo.Name.Contains("AnonymousType")
                 && typeInfo.CustomAttributes.Any(a => a.AttributeType.Name == "CompilerGeneratedAttribute");
         }
-
-
     }
 }
