@@ -4,10 +4,10 @@
     {
         //private readonly IScriptProcessorFactory _scriptProcessorFactory
 
-        public RootQueryExecutorFactory()//IScriptProcessorFactory scriptProcessorFactory)
-        {
+        //public RootQueryExecutorFactory()//IScriptProcessorFactory scriptProcessorFactory)
+        //[
             //_scriptProcessorFactory = scriptProcessorFactory
-        }
+        //]
 
         public IRootQueryExecutor Create()
         {
