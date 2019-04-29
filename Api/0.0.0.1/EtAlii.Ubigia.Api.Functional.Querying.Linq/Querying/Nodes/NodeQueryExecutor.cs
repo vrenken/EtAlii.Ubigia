@@ -50,14 +50,13 @@
             }
 
             // TODO: Attempt to make Linq async.
-            var scriptResult = _scriptContext
+            var sequenceProcessingResult = _scriptContext
                 .Process(scriptParseResult.Script, scope)
-                .ToEnumerable();
+                .Wait();
 
-            var output = scriptResult
-                .Last()
+            var output = sequenceProcessingResult
                 .Output
-                .ToEnumerable()
+                .ToEnumerable() // is this .ToEnumerable and .ToList combination really needed?
                 .ToList();
 
             switch (_nodeQueryModelVisitor.ResultOperator)
