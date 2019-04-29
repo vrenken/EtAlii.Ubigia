@@ -25,8 +25,7 @@
                 return Disposable.Empty;
             }).ToHotObservable();
 
-            var childrenWithSameName = outputObservable
-                .ToEnumerable()
+            var childrenWithSameName = await outputObservable
                 .Cast<IReadOnlyEntry>()
                 .ToArray();
             var childWithSameName = childrenWithSameName.FirstOrDefault();
