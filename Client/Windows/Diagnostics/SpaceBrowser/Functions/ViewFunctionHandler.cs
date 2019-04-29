@@ -77,8 +77,8 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             var graphDocumentViewModel = document as IGraphDocumentViewModel;
 
             input.Subscribe(
-                onError: (e) => output.OnError(e),
-                onCompleted: () => output.OnCompleted(),
+                onError: output.OnError,
+                onCompleted: output.OnCompleted,
                 onNext: o =>
                 {
                     if (graphDocumentViewModel != null)
