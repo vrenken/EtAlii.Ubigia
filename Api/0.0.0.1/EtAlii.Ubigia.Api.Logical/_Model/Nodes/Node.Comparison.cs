@@ -6,17 +6,18 @@
         {
             return NodeEqualityComparer.Default.Equals(this, obj as Node);
         }
-
-        public static bool operator ==(Node first, Node second)
-        {
-            return NodeEqualityComparer.Default.Equals(first, second);
-        }
-
-        public static bool operator !=(Node first, Node second)
-        {
-            var equals = first == second;
-            return !equals;
-        }
+// TODO: Determine if the Node / DynamicNode classes should have their operators overloaded or not.
+// SonarQube states that this shouldn't be the case. 
+//        public static bool operator ==(Node first, Node second)
+//        [
+//            return NodeEqualityComparer.Default.Equals(first, second)
+//        ]
+//
+//        public static bool operator !=(Node first, Node second)
+//        [
+//            var equals = first == second
+//            return !equals
+//        ]
 
         #region Hashing
 
