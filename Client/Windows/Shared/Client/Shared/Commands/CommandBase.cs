@@ -28,9 +28,11 @@
 
         private static T GetInstance()
         {
-            if (Instances.TryGetValue(typeof(T), out var instance)) return (T) instance;
-            instance = new T();
-            Instances.Add(typeof(T), instance);
+            if (!Instances.TryGetValue(typeof(T), out var instance))
+            {
+                instance = new T();
+                Instances.Add(typeof(T), instance);
+            }
             return (T)instance;
         }
 
@@ -131,7 +133,6 @@
                         child = parentObject;
                         continue;
                 }
-                break;
             }
         }
 
