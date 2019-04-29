@@ -4,7 +4,6 @@
 
     internal interface INodeReloadCommand
     {
-        void Execute(INode node)//, bool updateToLatest = false)
-            ;
+        void Execute(INode node); //, bool updateToLatest = false)
     }
 }
