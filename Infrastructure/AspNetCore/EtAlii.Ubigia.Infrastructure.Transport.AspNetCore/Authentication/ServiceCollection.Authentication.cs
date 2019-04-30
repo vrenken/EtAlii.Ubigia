@@ -1,13 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
 {
-	using System;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using Microsoft.Extensions.DependencyInjection;
-	using Microsoft.IdentityModel.Tokens;
 
 	public static partial class ServiceCollectionExtensions
 	{
-		private static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray());
+//		private static readonly SymmetricSecurityKey SecurityKey = new SymmetricSecurityKey(Guid.NewGuid().ToByteArray())
 //		private static readonly JwtSecurityTokenHandler JwtTokenHandler = new JwtSecurityTokenHandler()
 
 		public static IServiceCollection AddInfrastructureHttpContextAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
