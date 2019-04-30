@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             var root = _context.Roots.Get(spaceId, name);
             if (root == null)
             {
-                root = _context.Roots.Add(spaceId, new Root { Name = name, Identifier = id });
+                _context.Roots.Add(spaceId, new Root { Name = name, Identifier = id });
             }
             else
             {

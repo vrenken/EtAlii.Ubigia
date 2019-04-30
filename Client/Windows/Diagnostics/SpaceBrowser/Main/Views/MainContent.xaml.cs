@@ -1,9 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using System.Linq;
-    using Xceed.Wpf.AvalonDock.Layout;
-    using Xceed.Wpf.AvalonDock.Layout.Serialization;
-
     /// <summary>
     /// Interaction logic for MainContent.xaml
     /// </summary>
@@ -49,14 +45,14 @@
 //                ]
 //            ]
 //        ]
-        private void ApplyLayout(LayoutContent[] currentLayout, LayoutSerializationCallbackEventArgs e)
-        {
-            var layoutContent = currentLayout.FirstOrDefault(c => c.ContentId == e.Model.ContentId);
-            if (layoutContent != null)
-            {
-                e.Content = layoutContent.Content;
-            }
-        }
+//        private void ApplyLayout(LayoutContent[] currentLayout, LayoutSerializationCallbackEventArgs e)
+//        [
+//            var layoutContent = currentLayout.FirstOrDefault(c => c.ContentId == e.Model.ContentId)
+//            if (layoutContent != null)
+//            [
+//                e.Content = layoutContent.Content
+//            ]
+//        ]
 
     }
 }

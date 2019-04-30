@@ -13,7 +13,7 @@
             //return IsValidConstantCharacter(c) ||
             //       c = = '+' || c = = '-' ||
             //       c = = ' ' || c = = '|' ||
-            //       c = = '$' || c = = '£' || c = = '€' || 
+            //       c eq $ or c eq £ or c eq € or 
             //       c = = '&' || c = = '#' ||
             //       c = = ':' || c = = '@' ||
             //       c = = '.' || c = = ',' ||
