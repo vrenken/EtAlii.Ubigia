@@ -4,6 +4,7 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
+    <ProjectGuid>36e2573f-79bc-4c09-9632-b175590aca52</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="settings.json" />

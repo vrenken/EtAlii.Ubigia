@@ -2,6 +2,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
     <LangVersion>7.2</LangVersion>
+    <ProjectGuid>8f34baea-91ca-4031-b345-8e79ef9e9c5f</ProjectGuid>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc.csproj" />

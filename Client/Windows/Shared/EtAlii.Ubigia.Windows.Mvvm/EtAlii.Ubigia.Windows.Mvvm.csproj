@@ -8,6 +8,7 @@
     <Description>StorageBrowser</Description>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.19.0</Version>
+    <ProjectGuid>946dd197-89b2-48f9-87c0-82e3d17e55dc</ProjectGuid>
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageIconUrl></PackageIconUrl>
