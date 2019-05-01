@@ -8,9 +8,9 @@ namespace EtAlii.Ubigia.Api.Functional
         ILogicalContext LogicalContext { get; }
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
-        IGraphSLScriptContextConfiguration Use(ILogicalContext logicalContext);
-        IGraphSLScriptContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider);
-        IGraphSLScriptContextConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider);
-        IGraphSLScriptContextConfiguration Use(IDataConnection dataConnection);
+        GraphSLScriptContextConfiguration Use(ILogicalContext logicalContext);
+        GraphSLScriptContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider);
+        GraphSLScriptContextConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider);
+        GraphSLScriptContextConfiguration Use(IDataConnection dataConnection);
     }
 }
