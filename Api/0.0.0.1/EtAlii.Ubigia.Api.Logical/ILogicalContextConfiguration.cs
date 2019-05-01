@@ -6,8 +6,5 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         IFabricContext Fabric { get; }
         bool CachingEnabled { get; }
-
-        LogicalContextConfiguration Use(IFabricContext fabric);
-        LogicalContextConfiguration UseCaching(bool cachingEnabled);
     }
 }

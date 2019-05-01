@@ -2,28 +2,17 @@
 {
     using EtAlii.Ubigia.Api.Fabric;
 
-    public class LogicalContextConfiguration : Configuration<ILogicalContextExtension, LogicalContextConfiguration>, ILogicalContextConfiguration
+    public class LogicalContextConfiguration : Configuration<ILogicalContextExtension, LogicalContextConfiguration>, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
     {
+        IFabricContext IEditableLogicalContextConfiguration.Fabric { get => Fabric; set => Fabric = value; }
         public IFabricContext Fabric { get; private set; }
 
+        bool IEditableLogicalContextConfiguration.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
         public bool CachingEnabled { get; private set; }
-
 
         public LogicalContextConfiguration()
         {
             CachingEnabled = true;
-        }
-
-        public LogicalContextConfiguration UseCaching(bool cachingEnabled)
-        {
-            CachingEnabled = cachingEnabled;
-            return this;
-        }
-
-        public LogicalContextConfiguration Use(IFabricContext fabric)
-        {
-            Fabric = fabric;
-            return this;
         }
     }
 }
