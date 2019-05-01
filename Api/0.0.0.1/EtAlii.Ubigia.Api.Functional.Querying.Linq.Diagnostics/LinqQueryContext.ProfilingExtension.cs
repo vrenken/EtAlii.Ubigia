@@ -1,10 +1,8 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Functional;
-
     public static class LinqQueryContextProfilingExtension
     {
-        public static ILinqQueryContext CreateForProfiling(this LinqQueryContextFactory factory, ILinqQueryContextConfiguration configuration)
+        public static ILinqQueryContext CreateForProfiling(this LinqQueryContextFactory factory, LinqQueryContextConfiguration configuration)
         {
             configuration.Use(new ILinqQueryContextExtension[]
             {

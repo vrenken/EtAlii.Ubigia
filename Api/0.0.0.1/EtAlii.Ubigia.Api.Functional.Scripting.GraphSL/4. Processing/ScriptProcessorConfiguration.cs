@@ -23,7 +23,7 @@
         }
 
 
-        public IScriptProcessorConfiguration Use(IScriptScope scope)
+        public ScriptProcessorConfiguration Use(IScriptScope scope)
         {
             if (scope == null)
             {
@@ -34,7 +34,7 @@
             return this;
         }
 
-        public IScriptProcessorConfiguration Use(ILogicalContext logicalContext)
+        public ScriptProcessorConfiguration Use(ILogicalContext logicalContext)
         {
             if (logicalContext == null)
             {
@@ -45,19 +45,19 @@
             return this;
         }
 
-        public IScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
+        public ScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
             RootHandlerMappersProvider = rootHandlerMappersProvider;
             return this;
         }
 
-        public IScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
+        public ScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
         {
             FunctionHandlersProvider = functionHandlersProvider;
             return this;
         }
 
-        public IScriptProcessorConfiguration UseCaching(bool cachingEnabled)
+        public ScriptProcessorConfiguration UseCaching(bool cachingEnabled)
         {
             CachingEnabled = cachingEnabled;
             return this;

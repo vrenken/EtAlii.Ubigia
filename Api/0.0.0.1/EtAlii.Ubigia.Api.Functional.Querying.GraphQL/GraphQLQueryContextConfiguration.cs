@@ -10,7 +10,7 @@
         {
         }
 
-        public IGraphQLQueryContextConfiguration Use(ILogicalContext logicalContext)
+        public GraphQLQueryContextConfiguration Use(ILogicalContext logicalContext)
         {
             LogicalContext = logicalContext;
             return this;

@@ -4,13 +4,11 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ScriptProcessorFactory : IScriptProcessorFactory
+    internal class ScriptProcessorFactory : Factory<IScriptProcessor, ScriptProcessorConfiguration, IScriptProcessorExtension>, IScriptProcessorFactory
     {
-        public IScriptProcessor Create(IScriptProcessorConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(ScriptProcessorConfiguration configuration)
         {
-            var container = new Container();
-
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new ProcessingContextScaffolding(configuration),
                 new ScriptProcessingScaffolding(),
@@ -25,23 +23,15 @@ namespace EtAlii.Ubigia.Api.Functional
 
                 // Script Parsing
                 new ScriptParserScaffolding(),
+                
+                // Additional processing (for path variable parts).
+                new PathSubjectParsingScaffolding(),
+
             };
+        }
 
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-
-            // Additional processing (for path variable parts).
-            SubjectParsingScaffolding.RegisterPathSubjectParsing(container);
-
-            var scriptProcessor = container.GetInstance<IScriptProcessor>();
-
+        protected override void InitializeInstance(IScriptProcessor instance, Container container)
+        {
             var pathProcessor = container.GetInstance<IPathProcessor>();
             var pathSubjectToGraphPathConverter = container.GetInstance<IPathSubjectToGraphPathConverter>();
 
@@ -53,8 +43,6 @@ namespace EtAlii.Ubigia.Api.Functional
             var addRelativePathToExistingPathProcessor = container.GetInstance<IAddRelativePathToExistingPathProcessor>();
 
             container.GetInstance<IProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor, pathSubjectForOutputConverter, addRelativePathToExistingPathProcessor);
-
-            return scriptProcessor;
         }
     }
 }

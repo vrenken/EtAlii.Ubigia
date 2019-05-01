@@ -2,6 +2,6 @@
 {
     internal interface IScriptProcessorFactory
     {
-        IScriptProcessor Create(IScriptProcessorConfiguration configuration);
+        IScriptProcessor Create(ScriptProcessorConfiguration configuration);
     }
 }

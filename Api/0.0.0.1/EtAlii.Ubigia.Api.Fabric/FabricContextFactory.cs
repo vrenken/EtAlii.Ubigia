@@ -2,13 +2,11 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class FabricContextFactory 
+    public class FabricContextFactory : Factory<IFabricContext, FabricContextConfiguration, IFabricContextExtension>
     {
-        public IFabricContext Create(IFabricContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(FabricContextConfiguration configuration)
         {
-            var container = new Container();
-
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new ContextScaffolding(configuration.Connection),
                 new EntryContextScaffolding(configuration.TraversalCachingEnabled),
@@ -16,19 +14,6 @@
                 new PropertyContextScaffolding(configuration.TraversalCachingEnabled), 
                 new RootContextScaffolding(),
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-
-            return container.GetInstance<IFabricContext>();
         }
-
     }
 }

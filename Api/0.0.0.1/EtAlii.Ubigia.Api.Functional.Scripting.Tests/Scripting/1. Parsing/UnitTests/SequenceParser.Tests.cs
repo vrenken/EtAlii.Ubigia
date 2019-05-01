@@ -7,8 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
-
-    
     public class SequenceParserTests : IDisposable
     {
         private ISequenceParser _parser;
@@ -22,6 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             new SequenceParsingScaffolding().Register(container);
             new OperatorParsingScaffolding().Register(container);
             new SubjectParsingScaffolding().Register(container);
+            new PathSubjectParsingScaffolding().Register(container);
 
             _parser = container.GetInstance<ISequenceParser>();
         }

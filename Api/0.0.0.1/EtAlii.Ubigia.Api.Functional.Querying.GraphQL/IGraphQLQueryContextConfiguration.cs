@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         ILogicalContext LogicalContext { get; }
 
-        IGraphQLQueryContextConfiguration Use(ILogicalContext logicalContext);
+        GraphQLQueryContextConfiguration Use(ILogicalContext logicalContext);
     }
 }

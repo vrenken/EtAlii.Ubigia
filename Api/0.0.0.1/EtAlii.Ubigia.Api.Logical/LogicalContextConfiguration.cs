@@ -14,13 +14,13 @@
             CachingEnabled = true;
         }
 
-        public ILogicalContextConfiguration UseCaching(bool cachingEnabled)
+        public LogicalContextConfiguration UseCaching(bool cachingEnabled)
         {
             CachingEnabled = cachingEnabled;
             return this;
         }
 
-        public ILogicalContextConfiguration Use(IFabricContext fabric)
+        public LogicalContextConfiguration Use(IFabricContext fabric)
         {
             Fabric = fabric;
             return this;

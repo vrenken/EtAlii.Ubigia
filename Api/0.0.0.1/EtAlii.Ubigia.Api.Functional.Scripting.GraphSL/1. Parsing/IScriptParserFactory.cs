@@ -2,6 +2,6 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal interface IScriptParserFactory
     {
-        IScriptParser Create(IScriptParserConfiguration configuration);
+        IScriptParser Create(ScriptParserConfiguration configuration);
     }
 }

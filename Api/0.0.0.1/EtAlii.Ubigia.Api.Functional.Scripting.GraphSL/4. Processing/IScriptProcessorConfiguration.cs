@@ -13,10 +13,10 @@ namespace EtAlii.Ubigia.Api.Functional
         IRootHandlerMappersProvider RootHandlerMappersProvider { get; }
         IFunctionHandlersProvider FunctionHandlersProvider { get; }
 
-        IScriptProcessorConfiguration Use(IScriptScope scope);
-        IScriptProcessorConfiguration Use(ILogicalContext logicalContext);
-        IScriptProcessorConfiguration UseCaching(bool cachingEnabled);
-        IScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider);
-        IScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider);
+        ScriptProcessorConfiguration Use(IScriptScope scope);
+        ScriptProcessorConfiguration Use(ILogicalContext logicalContext);
+        ScriptProcessorConfiguration UseCaching(bool cachingEnabled);
+        ScriptProcessorConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider);
+        ScriptProcessorConfiguration Use(IFunctionHandlersProvider functionHandlersProvider);
     }
 }

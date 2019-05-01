@@ -2,28 +2,14 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class LinqQueryContextFactory
+    public class LinqQueryContextFactory : Factory<ILinqQueryContext, LinqQueryContextConfiguration, ILinqQueryContextExtension>
     {
-        public ILinqQueryContext Create(ILinqQueryContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(LinqQueryContextConfiguration configuration)
         {
-            var container = new Container();
-            
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new LinqQueryContextScaffolding(configuration), 
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-            
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-
-            return container.GetInstance<ILinqQueryContext>();
         }
     }
 }

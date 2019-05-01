@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     internal class ProfilingScriptParserFactory : IScriptParserFactory
     {
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             _profiler = profiler;
         }
 
-        public IScriptParser Create(IScriptParserConfiguration configuration)
+        public IScriptParser Create(ScriptParserConfiguration configuration)
         {
             configuration.Use(new IScriptParserExtension[]
             {

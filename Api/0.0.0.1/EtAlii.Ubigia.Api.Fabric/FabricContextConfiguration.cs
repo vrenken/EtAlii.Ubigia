@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.Ubigia.Api.Transport;
-    
+
     public class FabricContextConfiguration : Configuration<IFabricContextExtension, FabricContextConfiguration>, IFabricContextConfiguration
     {
 
@@ -14,7 +14,7 @@
             TraversalCachingEnabled = true;
         }
 
-        public IFabricContextConfiguration Use(IDataConnection connection)
+        public FabricContextConfiguration Use(IDataConnection connection)
         {
             if (!connection.IsConnected)
             {
@@ -24,7 +24,7 @@
             return this;
         }
 
-        public IFabricContextConfiguration UseTraversalCaching(bool cachingEnabled)
+        public FabricContextConfiguration UseTraversalCaching(bool cachingEnabled)
         {
             TraversalCachingEnabled = cachingEnabled;
             return this;

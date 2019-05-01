@@ -10,7 +10,7 @@
         {
         }
 
-        public ILinqQueryContextConfiguration Use(ILogicalContext logicalContext)
+        public LinqQueryContextConfiguration Use(ILogicalContext logicalContext)
         {
             LogicalContext = logicalContext;
             return this;

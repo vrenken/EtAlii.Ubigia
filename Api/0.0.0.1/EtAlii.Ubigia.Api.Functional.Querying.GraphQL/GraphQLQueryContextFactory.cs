@@ -2,28 +2,14 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphQLQueryContextFactory
+    public class GraphQLQueryContextFactory : Factory<IGraphQLQueryContext, GraphQLQueryContextConfiguration, IGraphQLQueryContextExtension>
     {
-        public IGraphQLQueryContext Create(IGraphQLQueryContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(GraphQLQueryContextConfiguration configuration)
         {
-            var container = new Container();
-            
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new GraphQLQueryContextScaffolding(configuration), 
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-            
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-
-            return container.GetInstance<IGraphQLQueryContext>();
         }
     }
 }

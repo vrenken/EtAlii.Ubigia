@@ -6,6 +6,6 @@ namespace EtAlii.Ubigia.Api.Logical
     {
         IFabricContext FabricContext { get; }
 
-        IGraphPathTraverserConfiguration Use(IFabricContext fabricContext);
+        GraphPathTraverserConfiguration Use(IFabricContext fabricContext);
     }
 }

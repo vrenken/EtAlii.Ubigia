@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 
     public static class ILogicalContextDiagnosticsExtension
     {
-        public static ILogicalContextConfiguration Use(this ILogicalContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static LogicalContextConfiguration Use(this ILogicalContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new ILogicalContextExtension[]
             {
