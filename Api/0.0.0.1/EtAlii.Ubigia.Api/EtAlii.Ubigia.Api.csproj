@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Peter Vrenken</Authors>
+    <Product>Ubigia</Product>
+    <Company>EtAlii</Company>
+    <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
+    <Version>1.0.1.0</Version>
+    <ProjectGuid>b42a4c2b-15b6-4533-b06a-892c6fb7aab6</ProjectGuid>
+    <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/license.txt</PackageLicenseUrl>
+    <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
+    <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
+    <PackageReleaseNotes>Migrated to .NET Standard 2.0</PackageReleaseNotes>
+    <PackageTags>
+    </PackageTags>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.56" />
+    <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+</Project>
