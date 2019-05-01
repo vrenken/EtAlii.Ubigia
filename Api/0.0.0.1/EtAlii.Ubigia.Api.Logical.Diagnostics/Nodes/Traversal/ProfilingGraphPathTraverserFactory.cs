@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Logical;
 
     public class ProfilingGraphPathTraverserFactory : IGraphPathTraverserFactory
     {
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             _profiler = profiler;
         }
 
-        public IGraphPathTraverser Create(IGraphPathTraverserConfiguration configuration)
+        public IGraphPathTraverser Create(GraphPathTraverserConfiguration configuration)
         {
             configuration.Use(new IGraphPathTraverserExtension[]
             {

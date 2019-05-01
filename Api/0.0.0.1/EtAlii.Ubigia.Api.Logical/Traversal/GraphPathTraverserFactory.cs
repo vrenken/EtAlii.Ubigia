@@ -2,28 +2,14 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphPathTraverserFactory : IGraphPathTraverserFactory
+    public class GraphPathTraverserFactory : Factory<IGraphPathTraverser, GraphPathTraverserConfiguration, IGraphPathTraverserExtension>, IGraphPathTraverserFactory
     {
-        public IGraphPathTraverser Create(IGraphPathTraverserConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(GraphPathTraverserConfiguration configuration)
         {
-            var container = new Container();
-
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new TraversalScaffolding(configuration),
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-
-            return container.GetInstance<IGraphPathTraverser>();
         }
     }
 }

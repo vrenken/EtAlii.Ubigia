@@ -9,7 +9,7 @@
     /// </summary>
     /// <typeparam name="TExtension"></typeparam>
     /// <typeparam name="TConfiguration"></typeparam>
-    public class Configuration<TExtension, TConfiguration> : IConfiguration<TExtension, TConfiguration> 
+    public abstract class Configuration<TExtension, TConfiguration> : IConfiguration<TExtension, TConfiguration> 
         where TExtension : IExtension
         where TConfiguration : Configuration<TExtension, TConfiguration>
     {
@@ -18,7 +18,7 @@
         /// </summary>
         public TExtension[] Extensions { get; private set; }
 
-        public Configuration()
+        protected Configuration()
         {
             Extensions = new TExtension[0];
         }

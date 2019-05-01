@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
     public static class ScriptProcessorConfigurationDiagnosticsExtension
     {
-        public static IScriptProcessorConfiguration Use(this IScriptProcessorConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static ScriptProcessorConfiguration Use(this IScriptProcessorConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IScriptProcessorExtension[]
             {

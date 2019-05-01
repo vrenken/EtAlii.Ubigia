@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 
     public static class LinqQueryContextConfigurationDiagnosticsExtension 
     {
-        public static ILinqQueryContextConfiguration Use(this ILinqQueryContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static LinqQueryContextConfiguration Use(this LinqQueryContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new ILinqQueryContextExtension[]
             {

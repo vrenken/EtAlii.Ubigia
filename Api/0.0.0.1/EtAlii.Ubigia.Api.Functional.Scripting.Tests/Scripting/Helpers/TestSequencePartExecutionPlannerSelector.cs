@@ -27,11 +27,12 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
                 // Script Parsing
                 new ScriptParserScaffolding(),
+                
+                // Additional processing (for path variable parts).
+                new PathSubjectParsingScaffolding(),
+
             };
-
-            // Additional processing (for path variable parts).
-            SubjectParsingScaffolding.RegisterPathSubjectParsing(container);
-
+            
             foreach (var scaffolding in scaffoldings)
             {
                 scaffolding.Register(container);

@@ -4,32 +4,19 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ScriptParserFactory : IScriptParserFactory
+    internal class ScriptParserFactory : Factory<IScriptParser, ScriptParserConfiguration, IScriptParserExtension>, IScriptParserFactory
     {
-        public IScriptParser Create(IScriptParserConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(ScriptParserConfiguration configuration)
         {
-            var container = new Container();
-
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new SequenceParsingScaffolding(), 
                 new ScriptParserScaffolding(),
                 new ConstantHelpersScaffolding(), 
                 new SubjectParsingScaffolding(), 
+                new PathSubjectParsingScaffolding(),
                 new OperatorParsingScaffolding(), 
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-
-            return container.GetInstance<IScriptParser>();
         }
     }
 }

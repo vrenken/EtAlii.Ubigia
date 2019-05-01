@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.xTechnology.MicroContainer;
 
-    public class TraversalContextFactory : ITraversalContextFactory
+    public class TraversalContextFactory : Factory<ITraversalContext>, ITraversalContextFactory
     {
         private readonly IFabricContext _fabricContext;
 
@@ -12,20 +12,12 @@
             _fabricContext = fabricContext;
         }
 
-        public ITraversalContext Create()
+        protected override IScaffolding[] CreateScaffoldings()
         {
-            var container = new Container();
-
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new TraversalContextScaffolding(_fabricContext),
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-            return container.GetInstance<ITraversalContext>();
         }
     }
 }

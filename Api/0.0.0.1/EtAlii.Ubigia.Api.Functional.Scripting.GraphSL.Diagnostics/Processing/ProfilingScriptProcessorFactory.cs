@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     internal class ProfilingScriptProcessorFactory : IScriptProcessorFactory
     {
@@ -16,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             _profiler = profiler;
         }
 
-        public IScriptProcessor Create(IScriptProcessorConfiguration configuration)
+        public IScriptProcessor Create(ScriptProcessorConfiguration configuration)
         {
             configuration.Use(new IScriptProcessorExtension[]
             {
