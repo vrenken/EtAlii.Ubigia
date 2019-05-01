@@ -1,10 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
 
-    public interface IScriptParserConfiguration
+    public interface IScriptParserConfiguration : IConfiguration<IScriptParserExtension, ScriptParserConfiguration>
     {
-        IScriptParserExtension[] Extensions { get; }
-
-        IScriptParserConfiguration Use(IScriptParserExtension[] extensions);
     }
 }

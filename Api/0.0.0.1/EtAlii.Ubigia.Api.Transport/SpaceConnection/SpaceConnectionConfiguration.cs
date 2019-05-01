@@ -3,32 +3,11 @@ namespace EtAlii.Ubigia.Api.Transport
     using System;
     using System.Linq;
 
-    public class SpaceConnectionConfiguration : ISpaceConnectionConfiguration
+    public class SpaceConnectionConfiguration : Configuration<ISpaceConnectionExtension, SpaceConnectionConfiguration>, ISpaceConnectionConfiguration
     {
         public ISpaceTransport Transport { get; private set; }
 
         public string Space { get; private set; }
-
-        public ISpaceConnectionExtension[] Extensions { get; private set; }
-
-        public SpaceConnectionConfiguration()
-        {
-            Extensions = new ISpaceConnectionExtension[0];
-        }
-
-        public ISpaceConnectionConfiguration Use(ISpaceConnectionExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException(nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
 
         public ISpaceConnectionConfiguration Use(ISpaceTransport transport)
         {

@@ -3,10 +3,8 @@
     using System;
     using System.Linq;
 
-    public class ManagementConnectionConfiguration : IManagementConnectionConfiguration
+    public class ManagementConnectionConfiguration : Configuration<IManagementConnectionExtension, ManagementConnectionConfiguration>, IManagementConnectionConfiguration
     {
-        public IManagementConnectionExtension[] Extensions { get; private set; }
-
         public IStorageTransportProvider TransportProvider { get; private set; }
 
         public Func<IManagementConnection> FactoryExtension { get; private set; }
@@ -16,25 +14,6 @@
         public string AccountName { get; private set; }
 
         public string Password { get; private set; }
-
-        public ManagementConnectionConfiguration()
-        {
-            Extensions = new IManagementConnectionExtension[0];
-        }
-
-        public IManagementConnectionConfiguration Use(IManagementConnectionExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException("extensions");
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
 
         public IManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension)
         {
