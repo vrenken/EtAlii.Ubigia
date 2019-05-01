@@ -1,10 +1,8 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Functional;
-
     public static class GraphSLScriptContextProfilingExtension
     {
-        public static IGraphSLScriptContext CreateForProfiling(this GraphSLScriptContextFactory factory, IGraphSLScriptContextConfiguration configuration)
+        public static IGraphSLScriptContext CreateForProfiling(this GraphSLScriptContextFactory factory, GraphSLScriptContextConfiguration configuration)
         {
             configuration.Use(new IGraphSLScriptContextExtension[]
             {

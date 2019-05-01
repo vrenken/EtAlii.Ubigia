@@ -18,25 +18,25 @@
             RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
         }
         
-        public IGraphSLScriptContextConfiguration Use(ILogicalContext logicalContext)
+        public GraphSLScriptContextConfiguration Use(ILogicalContext logicalContext)
         {
             LogicalContext = logicalContext;
             return this;
         }
 
-        public IGraphSLScriptContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
+        public GraphSLScriptContextConfiguration Use(IFunctionHandlersProvider functionHandlersProvider)
         {
             FunctionHandlersProvider = new FunctionHandlersProvider(functionHandlersProvider.FunctionHandlers, FunctionHandlersProvider.FunctionHandlers);
             return this;
         }
 
-        public IGraphSLScriptContextConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
+        public GraphSLScriptContextConfiguration Use(IRootHandlerMappersProvider rootHandlerMappersProvider)
         {
             RootHandlerMappersProvider = rootHandlerMappersProvider;
             return this;
         }
         
-        public IGraphSLScriptContextConfiguration Use(IDataConnection dataConnection)
+        public GraphSLScriptContextConfiguration Use(IDataConnection dataConnection)
         {
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(dataConnection);

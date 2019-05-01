@@ -2,9 +2,9 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphSLScriptContextFactory
+    public class GraphSLScriptContextFactory : Factory<IGraphSLScriptContext, GraphSLScriptContextConfiguration, IGraphSLScriptContextExtension>
     {
-        public IGraphSLScriptContext Create(IGraphSLScriptContextConfiguration configuration)
+        protected override IScaffolding[] CreateScaffoldings(GraphSLScriptContextConfiguration configuration)
         {
             // Let's ensure that the function handler configuration is in fact valid. 
             var functionHandlersProvider = configuration.FunctionHandlersProvider;
@@ -16,25 +16,11 @@
             var rootHandlerMapperValidator = new RootHandlerMapperValidator();
             rootHandlerMapperValidator.Validate(rootHandlerMappersProvider);
 
-            var container = new Container();
-            
-            var scaffoldings = new IScaffolding[]
+            return new IScaffolding[]
             {
                 new GraphSLScriptContextScaffolding(configuration),
                 new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
             };
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-            
-            foreach (var extension in configuration.Extensions)
-            {
-                extension.Initialize(container);
-            }
-            
-            return container.GetInstance<IGraphSLScriptContext>();
         }
     }
 }
