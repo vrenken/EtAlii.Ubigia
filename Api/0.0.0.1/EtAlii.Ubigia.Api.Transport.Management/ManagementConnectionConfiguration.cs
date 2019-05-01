@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
-    using System.Linq;
 
     public class ManagementConnectionConfiguration : Configuration<IManagementConnectionExtension, ManagementConnectionConfiguration>, IManagementConnectionConfiguration
     {
