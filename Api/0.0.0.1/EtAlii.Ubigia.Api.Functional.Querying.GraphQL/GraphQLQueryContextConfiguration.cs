@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-    using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
 
     public class GraphQLQueryContextConfiguration : Configuration<IGraphQLQueryContextExtension, GraphQLQueryContextConfiguration>, IGraphQLQueryContextConfiguration
