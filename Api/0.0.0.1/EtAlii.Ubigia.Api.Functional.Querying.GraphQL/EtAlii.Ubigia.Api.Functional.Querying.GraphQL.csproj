@@ -25,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="GraphQL" Version="2.4.0" />

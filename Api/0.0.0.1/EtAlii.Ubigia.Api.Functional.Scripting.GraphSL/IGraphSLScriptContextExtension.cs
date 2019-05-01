@@ -1,9 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface IGraphSLScriptContextExtension
+    public interface IGraphSLScriptContextExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

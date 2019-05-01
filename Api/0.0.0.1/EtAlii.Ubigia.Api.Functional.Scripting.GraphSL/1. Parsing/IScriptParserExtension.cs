@@ -1,9 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface IScriptParserExtension
+    public interface IScriptParserExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

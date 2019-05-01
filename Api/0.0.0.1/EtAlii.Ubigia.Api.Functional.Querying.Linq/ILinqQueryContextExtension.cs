@@ -1,9 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface ILinqQueryContextExtension
+    public interface ILinqQueryContextExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

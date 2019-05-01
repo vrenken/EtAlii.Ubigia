@@ -1,9 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface IManagementConnectionExtension
+    public interface IManagementConnectionExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

@@ -1,9 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface IGraphQLQueryContextExtension
+    public interface IGraphQLQueryContextExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

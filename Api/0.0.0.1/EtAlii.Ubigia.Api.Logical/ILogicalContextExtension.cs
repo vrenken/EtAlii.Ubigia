@@ -1,9 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface ILogicalContextExtension
+    public interface ILogicalContextExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

@@ -2,12 +2,10 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public interface IGraphQLQueryContextConfiguration
+    public interface IGraphQLQueryContextConfiguration : IConfiguration<IGraphQLQueryContextExtension, GraphQLQueryContextConfiguration>
     {
         ILogicalContext LogicalContext { get; }
-        IGraphQLQueryContextExtension[] Extensions { get; }
 
-        IGraphQLQueryContextConfiguration Use(IGraphQLQueryContextExtension[] extensions);
         IGraphQLQueryContextConfiguration Use(ILogicalContext logicalContext);
     }
 }

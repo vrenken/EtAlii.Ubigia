@@ -1,9 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface IGraphPathTraverserExtension
+    public interface IGraphPathTraverserExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

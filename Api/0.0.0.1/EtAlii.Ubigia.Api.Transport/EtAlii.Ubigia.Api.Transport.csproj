@@ -6,7 +6,7 @@
     <Company>EtAlii</Company>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.1.0</Version>
-    <ProjectGuid>d2d0023c-7edf-47f6-9542-76e1021fa2d5</ProjectGuid>
+    <ProjectGuid>{B2479E9D-04DC-4A35-837A-E69C62EB4C8A}</ProjectGuid>
     <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
@@ -20,5 +20,8 @@
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.56" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
   </ItemGroup>
 </Project>
