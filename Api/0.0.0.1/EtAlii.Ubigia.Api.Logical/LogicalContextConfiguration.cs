@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
-    using System.Linq;
     using EtAlii.Ubigia.Api.Fabric;
 
     public class LogicalContextConfiguration : Configuration<ILogicalContextExtension, LogicalContextConfiguration>, ILogicalContextConfiguration
