@@ -6,8 +6,5 @@ namespace EtAlii.Ubigia.Api.Fabric
     {
         IDataConnection Connection { get; }
         bool TraversalCachingEnabled { get; }
-
-        FabricContextConfiguration Use(IDataConnection connection);
-        FabricContextConfiguration UseTraversalCaching(bool cachingEnabled);
     }
 }
