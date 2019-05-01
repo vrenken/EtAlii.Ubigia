@@ -1,8 +1,6 @@
 namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
-    using System.Linq;
-    using EtAlii.Ubigia.Api.Transport;
 
     public class StorageConnectionConfiguration : Configuration<IStorageConnectionExtension, StorageConnectionConfiguration>, IStorageConnectionConfiguration
     {

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
-    using System.Linq;
 
     public class DataConnectionConfiguration : Configuration<IDataConnectionExtension, DataConnectionConfiguration>, IDataConnectionConfiguration
     {
