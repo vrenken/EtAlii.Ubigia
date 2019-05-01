@@ -1,9 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    using EtAlii.xTechnology.MicroContainer;
-
-    public interface IStorageConnectionExtension
+    public interface IStorageConnectionExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

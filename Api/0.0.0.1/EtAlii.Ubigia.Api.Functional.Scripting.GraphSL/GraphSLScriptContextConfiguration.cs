@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
 
-    public class GraphSLScriptContextConfiguration : IGraphSLScriptContextConfiguration
+    public class GraphSLScriptContextConfiguration : Configuration<IGraphSLScriptContextExtension, GraphSLScriptContextConfiguration>, IGraphSLScriptContextConfiguration
     {
         public ILogicalContext LogicalContext { get; private set; }
         
@@ -14,27 +14,10 @@
 
         public IRootHandlerMappersProvider RootHandlerMappersProvider { get; private set; }
 
-        public IGraphSLScriptContextExtension[] Extensions { get; private set; }
-
         public GraphSLScriptContextConfiguration()
         {
-            Extensions = new IGraphSLScriptContextExtension[0];
             FunctionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
             RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
-        }
-
-        public IGraphSLScriptContextConfiguration Use(IGraphSLScriptContextExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException(nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
         }
         
         public IGraphSLScriptContextConfiguration Use(ILogicalContext logicalContext)

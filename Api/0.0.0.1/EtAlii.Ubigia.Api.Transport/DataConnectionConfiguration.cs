@@ -3,10 +3,8 @@
     using System;
     using System.Linq;
 
-    public class DataConnectionConfiguration : IDataConnectionConfiguration
+    public class DataConnectionConfiguration : Configuration<IDataConnectionExtension, DataConnectionConfiguration>, IDataConnectionConfiguration
     {
-        public IDataConnectionExtension[] Extensions { get; private set; }
-
         public ITransportProvider TransportProvider { get; private set; }
 
         public Func<IDataConnection> FactoryExtension { get; private set; }
@@ -18,26 +16,7 @@
         public string Password { get; private set; }
 
         public string Space { get; private set; }
-
-        public DataConnectionConfiguration()
-        {
-            Extensions = new IDataConnectionExtension[0];
-        }
-
-        public IDataConnectionConfiguration Use(IDataConnectionExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException(nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-
+        
         public IDataConnectionConfiguration Use(Func<IDataConnection> factoryExtension)
         {
             FactoryExtension = factoryExtension;
