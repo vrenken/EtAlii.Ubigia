@@ -16,6 +16,8 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<ILogicalContext, LogicalContext>();
             container.Register(() => _configuration);
 
+            // TODO: Continuation of fabric generalisation.
+            //container.Register(() => new FabricContextFactory().Create(_configuration));
             container.Register(() => _configuration.Fabric);
             container.Register<ILogicalNodeSet, LogicalNodeSet>();
             container.Register<ILogicalRootSet, LogicalRootSet>();
@@ -23,7 +25,12 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IPropertiesManager, PropertiesManager>();
             container.Register<IPropertiesGetter, PropertiesGetter>();
 
-            container.Register(() => new ContentManagerFactory().Create(_configuration.Fabric));
+            container.Register(() =>
+            //{
+                //var fabric = container.GetInstance<IFabricContext>();
+                new ContentManagerFactory().Create(_configuration.Fabric)
+            //}
+            );
         }
     }
 }
