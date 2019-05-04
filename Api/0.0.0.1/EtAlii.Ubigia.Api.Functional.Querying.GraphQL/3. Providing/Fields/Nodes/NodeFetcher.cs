@@ -20,7 +20,7 @@
             var scriptParseResult = _scriptContext.Parse(path);
             if (scriptParseResult.Errors.Any())
             {
-                var errorsString = String.Join(Environment.NewLine, scriptParseResult.Errors.Select(error => error.Message));
+                var errorsString = string.Join(Environment.NewLine, scriptParseResult.Errors.Select(error => error.Message));
                 
                 throw new InvalidOperationException($"Unable to process GraphQL argument 'path' of the start directive:{Environment.NewLine}{errorsString}");
             }

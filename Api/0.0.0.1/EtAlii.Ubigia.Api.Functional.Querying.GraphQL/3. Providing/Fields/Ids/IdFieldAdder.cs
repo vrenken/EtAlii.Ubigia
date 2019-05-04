@@ -73,7 +73,7 @@
                 dynamicObject.Instance = DynamicObject.CreateInstance(clonedProperties);
             }
 
-            var fieldType = _scalarFieldTypeBuilder.BuildShallow(idDirectiveResult.Path, name, String.Empty);
+            var fieldType = _scalarFieldTypeBuilder.BuildShallow(idDirectiveResult.Path, name, string.Empty);
 
             var listGraphType = (ComplexGraphType<object>) ((ListGraphType) parent).ResolvedType;
             listGraphType.AddField(fieldType);
@@ -81,7 +81,7 @@
 
         private async Task<string> GetId(Identifier startIdentifier, string path)
         {
-            path = $"/&{startIdentifier.ToDotSeparatedString()}{path ?? String.Empty}";
+            path = $"/&{startIdentifier.ToDotSeparatedString()}{path ?? string.Empty}";
             var subSet = await _nodeFetcher.FetchAsync(path);
             return subSet.SingleOrDefault()?.Type;
         }
