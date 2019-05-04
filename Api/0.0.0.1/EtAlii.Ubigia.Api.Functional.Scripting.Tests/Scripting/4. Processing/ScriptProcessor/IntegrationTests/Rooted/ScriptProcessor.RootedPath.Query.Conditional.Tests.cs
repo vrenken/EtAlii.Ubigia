@@ -9,9 +9,7 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
 
-    
     public class ScriptProcessorRootedPathQueryConditionalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;
@@ -62,7 +60,7 @@
                 "Person:Does/Joan <= { IsMale: false }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale=true";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -114,7 +112,7 @@
                 "Person:Does/Joan <= { IsMale: false }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale=false";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -168,7 +166,7 @@
                 "Person:Does/Joan <= { IsMale: false }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale!=true";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -222,7 +220,7 @@
                 "Person:Does/Joan <= { IsMale: false }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.IsMale!=false";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -275,7 +273,7 @@
                 "Person:Does/Joan <= { IsMale: false, Birthdate: 1982-02-12  }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Does/.Birthdate=1978-08-23";
 
             var addScript = _parser.Parse(addQuery).Script;

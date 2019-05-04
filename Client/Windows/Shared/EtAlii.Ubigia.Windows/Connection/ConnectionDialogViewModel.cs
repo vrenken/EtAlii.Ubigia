@@ -42,7 +42,7 @@
         private readonly ConnectionSettingsPersister _connectionSettingsPersister;
         private readonly ConnectionDialogWindow _window;
 
-        public TransportType Transport{ get { return _transport; } set { SetProperty(ref _transport, value); } }
+        public TransportType Transport{ get => _transport; set => SetProperty(ref _transport, value); }
         private TransportType _transport = TransportType.Grpc;
         
         public bool ShowTransportSelection => Debugger.IsAttached;
@@ -72,17 +72,17 @@
 
         private void SetDefaults(string defaultAddress, string defaultSpace, string defaultAccount, string defaultPassword, string password)
         {
-            if (String.IsNullOrWhiteSpace(_window.PasswordBox.Password) &&
-                String.IsNullOrWhiteSpace(Address) &&
-                String.IsNullOrWhiteSpace(Account) &&
-                String.IsNullOrWhiteSpace(Space))
+            if (string.IsNullOrWhiteSpace(_window.PasswordBox.Password) &&
+                string.IsNullOrWhiteSpace(Address) &&
+                string.IsNullOrWhiteSpace(Account) &&
+                string.IsNullOrWhiteSpace(Space))
             {
                 Address = defaultAddress;
                 Space = defaultSpace;
                 Account = defaultAccount;
                 password = defaultPassword;
             }
-            if (String.IsNullOrWhiteSpace(Space))
+            if (string.IsNullOrWhiteSpace(Space))
             {
                 Space = "Default";
             }
@@ -108,10 +108,10 @@
                         Transport = (TransportType)Enum.Parse(typeof(TransportType), CurrentSettings.TransportType);
                         _window.PasswordBox.Password = CurrentSettings.Password;
                         IsTested =
-                            !String.IsNullOrWhiteSpace(Address) &&
-                            !String.IsNullOrWhiteSpace(Account) &&
-                            !String.IsNullOrWhiteSpace(_window.PasswordBox.Password) &&
-                            !String.IsNullOrWhiteSpace(Space);
+                            !string.IsNullOrWhiteSpace(Address) &&
+                            !string.IsNullOrWhiteSpace(Account) &&
+                            !string.IsNullOrWhiteSpace(_window.PasswordBox.Password) &&
+                            !string.IsNullOrWhiteSpace(Space);
                     }
                     break;
             }

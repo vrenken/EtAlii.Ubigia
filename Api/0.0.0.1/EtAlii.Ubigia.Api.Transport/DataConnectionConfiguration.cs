@@ -52,7 +52,7 @@
 
         public IDataConnectionConfiguration Use(string accountName, string space, string password)
         {
-            if (String.IsNullOrWhiteSpace(accountName))
+            if (string.IsNullOrWhiteSpace(accountName))
             {
                 throw new ArgumentException(nameof(accountName));
             }
@@ -60,7 +60,7 @@
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this DataConnectionConfiguration");
             }
-            //if [String.IsNullOrWhiteSpace[password]]
+            //if [string.IsNullOrWhiteSpace[password]]
             //[
             //    throw new ArgumentException(nameof(password))
             //]
@@ -68,7 +68,7 @@
             {
                 throw new InvalidOperationException("A password has already been assigned to this DataConnectionConfiguration");
             }
-            if (String.IsNullOrWhiteSpace(space))
+            if (string.IsNullOrWhiteSpace(space))
             {
                 throw new ArgumentException(nameof(space));
             }

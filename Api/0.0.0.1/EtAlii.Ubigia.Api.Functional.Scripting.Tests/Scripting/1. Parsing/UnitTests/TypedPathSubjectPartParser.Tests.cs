@@ -1,9 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using Moppet.Lapa;
     using Xunit;
-
 
     public class TypedPathSubjectPartParserTests
     {
@@ -30,7 +28,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal("[Words]", result.Match.ToString());
         }
 
@@ -45,7 +43,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal("[words]", result.Match.ToString());
         }
 
@@ -61,7 +59,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal("[WORDS]", result.Match.ToString());
         }
 
@@ -77,7 +75,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal("[Word]", result.Match.ToString());
         }
 
@@ -92,7 +90,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal("[word]", result.Match.ToString());
         }
 
@@ -108,7 +106,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal("[WORD]", result.Match.ToString());
         }
 
@@ -123,7 +121,7 @@
 
             // Assert.
             Assert.False(result.Success);
-            Assert.Equal(String.Empty, result.Match.ToString());
+            Assert.Equal(string.Empty, result.Match.ToString());
             Assert.Equal("[ WORDS]", result.Rest.ToString());
         }
 
@@ -138,7 +136,7 @@
 
             // Assert.
             Assert.False(result.Success);
-            Assert.Equal(String.Empty, result.Match.ToString());
+            Assert.Equal(string.Empty, result.Match.ToString());
             Assert.Equal("[ WORD]", result.Rest.ToString());
         }
     }

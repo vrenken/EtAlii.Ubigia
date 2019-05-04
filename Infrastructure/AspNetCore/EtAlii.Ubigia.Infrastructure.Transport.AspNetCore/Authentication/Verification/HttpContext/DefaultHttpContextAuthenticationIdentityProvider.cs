@@ -17,7 +17,7 @@
             if (context.Request.Headers.TryGetValue("Authorization", out StringValues values))
             {
                 var authenticationHeader = values.FirstOrDefault();
-                if (String.IsNullOrWhiteSpace(authenticationHeader))
+                if (string.IsNullOrWhiteSpace(authenticationHeader))
                 {
                     return null;
                 }

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -63,7 +62,7 @@
                 "Time:2016/09/01/22/05",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
             var selectQuery2 = "Time:2016/09/01/22/05";
 
@@ -104,7 +103,7 @@
                 "Time:2016/09/01/22/05",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
             var selectQuery2 = "Time:2016/09/01/22/05";
 
@@ -147,7 +146,7 @@
                 "Person:+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/";
             var assignQuery = "Person:Doe# <= FamilyName";
 
@@ -192,7 +191,7 @@
                 "Person:+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John\\";
             
             var addScript = _parser.Parse(addQuery).Script;
@@ -229,7 +228,7 @@
                 "Person:+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var select1Query = "Person:Doe/Jane";
             var select2Query = "$person <= Person:Doe\r\n$person/Jane";
 
@@ -270,7 +269,7 @@
                 "Person:+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var select1Query = "Person:Doe/";
             var select2Query = "$person <= Person:Doe\r\n$person/";
 
@@ -317,7 +316,7 @@
                 "Person:+=Janssen/Jan",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var select1Query = "Person:Doe/";
             var select2Query = "$person <= Person:\r\n$person/Doe/";
 
@@ -363,7 +362,7 @@
                 "Person:+=Janssen/Jan",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var select1Query = "Person:Doe/";
             var select2Query = "$person <= Person:\r\n<= id() <= $person/Doe/";
 
@@ -410,7 +409,7 @@
                 "Person:+=Doe/\"Jöhnny\"",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -451,7 +450,7 @@
                 "Person:+=Doe/Jane",
                 "Person:+=Doe/Johnny",
             };
-            var addQuery2 = String.Join("\r\n", addQueries2);
+            var addQuery2 = string.Join("\r\n", addQueries2);
             var selectQuery = "Person:Doe#";
             var assignQuery = "Person:Doe# <= FamilyName";
 
@@ -514,9 +513,9 @@
                 "Person:Doe -= John",
             };
 
-            var addQuery1 = String.Join("\r\n", addQueries1);
-            var addQuery2 = String.Join("\r\n", addQueries2);
-            var moveQuery = String.Join("\r\n", moveQueries);
+            var addQuery1 = string.Join("\r\n", addQueries1);
+            var addQuery2 = string.Join("\r\n", addQueries2);
+            var moveQuery = string.Join("\r\n", moveQueries);
             var selectQuery1 = "Person:Doe/";
             var selectQuery2 = "Person:Does/";
 
@@ -602,8 +601,8 @@
                 "Person:Doe/Jane/Friends += $john",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
-            var linkQuery = String.Join("\r\n", linkQueries);
+            var addQuery = string.Join("\r\n", addQueries);
+            var linkQuery = string.Join("\r\n", linkQueries);
             var nodeSelectQueryJohn = "Person:Doe/John";
             var nodeSelectQueryJane = "Person:Doe/Jane";
             var nodeSelectQueryTony = "Person:Stark/Tony";
@@ -724,8 +723,8 @@
                 "Person:Doe/Jane/Friends += Person:Doe/John",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
-            var linkQuery = String.Join("\r\n", linkQueries);
+            var addQuery = string.Join("\r\n", addQueries);
+            var linkQuery = string.Join("\r\n", linkQueries);
             var nodeSelectQueryJohn = "Person:Doe/John";
             var nodeSelectQueryJane = "Person:Doe/Jane";
             var nodeSelectQueryTony = "Person:Stark/Tony";

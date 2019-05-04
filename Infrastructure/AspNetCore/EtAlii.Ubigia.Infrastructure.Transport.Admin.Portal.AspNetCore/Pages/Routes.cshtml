@@ -20,7 +20,7 @@
     <tbody>
     @foreach (var route in Model.Routes)
     {
-        @if (!String.IsNullOrEmpty(route.Template))
+        @if (!string.IsNullOrEmpty(route.Template))
          {
              <tr>
                  <td>@route.Template</td>

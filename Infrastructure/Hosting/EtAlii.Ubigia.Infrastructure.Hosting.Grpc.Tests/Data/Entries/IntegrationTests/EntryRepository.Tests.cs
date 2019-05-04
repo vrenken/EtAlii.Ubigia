@@ -1,13 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using Xunit;
     using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-
+    using Xunit;
 
     [Trait("Technology", "Grpc")]
     public class EntryRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
@@ -97,7 +96,7 @@
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
             Assert.True(context.Host.Storage.FolderManager.Exists(folder));
-            var fileName = String.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
+            var fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
             Assert.True(context.Host.Storage.FileManager.Exists(file));
         }
@@ -120,10 +119,10 @@
             var containerId = context.Host.Storage.ContainerProvider.FromIdentifier(entry1.Id);
             var folder = context.Host.Storage.PathBuilder.GetFolder(containerId);
             Assert.True(context.Host.Storage.FolderManager.Exists(folder));
-            var fileName = String.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
+            var fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
             Assert.True(context.Host.Storage.FileManager.Exists(file));
-            fileName = String.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Next");
+            fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Next");
             file = Path.Combine(folder, fileName);
             Assert.True(context.Host.Storage.FileManager.Exists(file));
         }
@@ -530,7 +529,7 @@
             entry = context.Host.Infrastructure.Entries.Store(entry);
 
             // Assert.
-            var fileName = String.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
+            var fileName = string.Format(context.Host.Storage.StorageSerializer.FileNameFormat, "Identifier");
             var file = Path.Combine(folder, fileName);
             Assert.True(context.Host.Storage.FileManager.Exists(file));
 

@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public IRootHandlerMapper Find(string root)
         {
-            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => System.String.Equals(rhp.Name, root, System.StringComparison.OrdinalIgnoreCase));
+            var rootHandlerMapper = _rootHandlerMappersProvider.RootHandlerMappers.SingleOrDefault(rhp => string.Equals(rhp.Name, root, System.StringComparison.OrdinalIgnoreCase));
             if (rootHandlerMapper == null)
             {
                 throw new ScriptParserException($"No root handler found with name '{root}'");

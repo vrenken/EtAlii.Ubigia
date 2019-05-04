@@ -14,7 +14,7 @@
 
         public static IQueryable<INode> Latest(this IQueryable<INode> source)
         {
-            return source.Provider.CreateQuery<INode>(Expression.Call(NodeExtensionMethod.Latest, source.Expression, Expression.Constant(String.Empty)));
+            return source.Provider.CreateQuery<INode>(Expression.Call(NodeExtensionMethod.Latest, source.Expression, Expression.Constant(string.Empty)));
         }
 
         public static IQueryable<INode> Add(this IQueryable<INode> source, string path)

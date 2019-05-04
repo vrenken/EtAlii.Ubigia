@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Management
 {
-    using System;
-
     internal partial class ConnectionDialogViewModel
     {
         private bool CanSaveAndClose(object parameter)
@@ -12,9 +10,9 @@
             if (window != null)
             {
                 var passwordBox = window.PasswordBox;
-                result = !String.IsNullOrEmpty(passwordBox.Password) &&
-                            !String.IsNullOrEmpty(Account) &&
-                            !String.IsNullOrEmpty(Address) &&
+                result = !string.IsNullOrEmpty(passwordBox.Password) &&
+                            !string.IsNullOrEmpty(Account) &&
+                            !string.IsNullOrEmpty(Address) &&
                             IsTested;
             }
             return result;

@@ -57,7 +57,7 @@
                 IntValue = 12,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -108,7 +108,7 @@
             {
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -157,7 +157,7 @@
                 IntValue = 12,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -212,7 +212,7 @@
                 DateTime = dateTime,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -268,7 +268,7 @@
                 DateTime = dateTime,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -324,7 +324,7 @@
                 DateTime = dateTime,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= $data";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 

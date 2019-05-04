@@ -88,7 +88,7 @@
 
         public void Load(out string password)
         {
-            password = String.Empty;
+            password = string.Empty;
             try
             {
                 using (var userStore = IsolatedStorageFile.GetUserStoreForAssembly())
@@ -111,10 +111,10 @@
             catch
             {
                 // Catch all is on purpose.
-                _viewModel.Address = String.Empty;
-                _viewModel.Account = String.Empty;
-                password = String.Empty;
-                _viewModel.Space = String.Empty;
+                _viewModel.Address = string.Empty;
+                _viewModel.Account = string.Empty;
+                password = string.Empty;
+                _viewModel.Space = string.Empty;
                 _viewModel.PreviousSettings = new ConnectionSettings[] { };
             }
         }

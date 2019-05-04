@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using Moppet.Lapa;
 
     internal class WildcardPathSubjectPartParser : IWildcardPathSubjectPartParser
@@ -78,7 +77,7 @@
 
         private string GetMatch(LpNode node, string id)
         {
-            var result = String.Empty;
+            var result = string.Empty;
 
             var matchingNode = _nodeFinder.FindFirst(node, id);
             if (matchingNode != null)

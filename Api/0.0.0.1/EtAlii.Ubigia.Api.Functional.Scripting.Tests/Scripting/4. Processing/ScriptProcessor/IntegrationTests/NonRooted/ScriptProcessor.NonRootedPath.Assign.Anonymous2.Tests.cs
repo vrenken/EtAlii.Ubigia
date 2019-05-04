@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
@@ -48,7 +47,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -98,7 +97,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -148,7 +147,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -201,7 +200,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -253,7 +252,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -306,7 +305,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -359,7 +358,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";
@@ -413,7 +412,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= $first";
             var assignQuery2 = "/Person/Doe/John <= $second";

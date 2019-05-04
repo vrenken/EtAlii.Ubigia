@@ -69,9 +69,9 @@
 
         private void SetDefaults(string defaultAddress, string defaultAccount, string defaultPassword, string password)
         {
-            if (String.IsNullOrWhiteSpace(_window.PasswordBox.Password) &&
-                String.IsNullOrWhiteSpace(Address) &&
-                String.IsNullOrWhiteSpace(Account))
+            if (string.IsNullOrWhiteSpace(_window.PasswordBox.Password) &&
+                string.IsNullOrWhiteSpace(Address) &&
+                string.IsNullOrWhiteSpace(Account))
             {
                 Address = defaultAddress;
                 Account = defaultAccount;
@@ -97,9 +97,9 @@
                         Transport = (TransportType) Enum.Parse(typeof(TransportType), CurrentSettings.TransportType);
                         _window.PasswordBox.Password = CurrentSettings.Password;
                         IsTested =
-                            !String.IsNullOrWhiteSpace(Address) &&
-                            !String.IsNullOrWhiteSpace(Account) &&
-                            !String.IsNullOrWhiteSpace(_window.PasswordBox.Password);
+                            !string.IsNullOrWhiteSpace(Address) &&
+                            !string.IsNullOrWhiteSpace(Account) &&
+                            !string.IsNullOrWhiteSpace(_window.PasswordBox.Password);
                     }
                     break;
             }

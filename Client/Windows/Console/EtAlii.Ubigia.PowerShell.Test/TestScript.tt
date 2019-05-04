@@ -91,7 +91,7 @@ $entry = Update-Entry c:\test.jpg
 			// 3) "..\..\folder"
 			// 4) "folder"
 
-			string path = String.Format("{0}{1}",(char)System.IO.Path.DirectorySeparatorChar, (char)System.IO.Path.DirectorySeparatorChar);
+			string path = string.Format("{0}{1}",(char)System.IO.Path.DirectorySeparatorChar, (char)System.IO.Path.DirectorySeparatorChar);
 			if(outputPath.StartsWith(path))
 			{
 				// This is the case 1: "\\server\folder"

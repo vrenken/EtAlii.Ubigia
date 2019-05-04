@@ -62,7 +62,7 @@
                 throw new ArgumentOutOfRangeException(nameof(occurrences), "Number of occurrences must be a positive integer");
             if (timeUnit != timeUnit.Duration())
                 throw new ArgumentOutOfRangeException(nameof(timeUnit), "Time unit must be a positive span of time");
-            if (timeUnit >= TimeSpan.FromMilliseconds(UInt32.MaxValue))
+            if (timeUnit >= TimeSpan.FromMilliseconds(uint.MaxValue))
                 throw new ArgumentOutOfRangeException(nameof(timeUnit), "Time unit must be less than 2^32 milliseconds");
 
             Occurrences = occurrences;

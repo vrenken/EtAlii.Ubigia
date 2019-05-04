@@ -103,7 +103,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Int16.MaxValue;
+            properties["Hello"] = short.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -117,7 +117,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Int16.MinValue;
+            properties["Hello"] = short.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -145,7 +145,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Int32.MaxValue;
+            properties["Hello"] = int.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -159,7 +159,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Int32.MinValue;
+            properties["Hello"] = int.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -187,7 +187,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Int64.MaxValue;
+            properties["Hello"] = long.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -201,7 +201,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Int64.MinValue;
+            properties["Hello"] = long.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -229,7 +229,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = UInt16.MaxValue;
+            properties["Hello"] = ushort.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -243,7 +243,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = UInt16.MinValue;
+            properties["Hello"] = ushort.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -272,7 +272,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = UInt32.MaxValue;
+            properties["Hello"] = uint.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -286,7 +286,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = UInt32.MinValue;
+            properties["Hello"] = uint.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -300,7 +300,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (UInt64)1234;
+            properties["Hello"] = (ulong)1234;
 
             // Act.
             var result = WriteJSon(properties);
@@ -314,7 +314,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = UInt64.MaxValue;
+            properties["Hello"] = ulong.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -328,7 +328,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = UInt64.MinValue;
+            properties["Hello"] = ulong.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -370,7 +370,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Char.MaxValue;
+            properties["Hello"] = char.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -384,7 +384,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Char.MinValue;
+            properties["Hello"] = char.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -440,7 +440,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = SByte.MaxValue;
+            properties["Hello"] = sbyte.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -454,7 +454,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = SByte.MinValue;
+            properties["Hello"] = sbyte.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -468,7 +468,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Byte)123;
+            properties["Hello"] = (byte)123;
 
             // Act.
             var result = WriteJSon(properties);
@@ -482,7 +482,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Byte.MaxValue;
+            properties["Hello"] = byte.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -496,7 +496,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Byte.MinValue;
+            properties["Hello"] = byte.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -510,7 +510,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Single)123.456;
+            properties["Hello"] = (float)123.456;
 
             // Act.
             var result = WriteJSon(properties);
@@ -524,7 +524,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Single.MaxValue;
+            properties["Hello"] = float.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -538,7 +538,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Single.MinValue;
+            properties["Hello"] = float.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -566,7 +566,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Double.MaxValue;
+            properties["Hello"] = double.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -580,7 +580,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Double.MinValue;
+            properties["Hello"] = double.MinValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -594,7 +594,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = (Decimal)123.456;
+            properties["Hello"] = (decimal)123.456;
 
             // Act.
             var result = WriteJSon(properties);
@@ -608,7 +608,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Decimal.MaxValue;
+            properties["Hello"] = decimal.MaxValue;
 
             // Act.
             var result = WriteJSon(properties);
@@ -622,7 +622,7 @@
         {
             // Arrange.
             var properties = new PropertyDictionary();
-            properties["Hello"] = Decimal.MinValue;
+            properties["Hello"] = decimal.MinValue;
 
             // Act.
             var result = WriteJSon(properties);

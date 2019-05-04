@@ -26,11 +26,11 @@
 //        ]
 //        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
 //        [
-//            if [!String.IsNullOrWhiteSpace[HostIdentifier]]
+//            if [!string.IsNullOrWhiteSpace[HostIdentifier]]
 //            [
 //                request.Headers.Add("Host-Identifier", HostIdentifier)
 //            ]
-//            if [!String.IsNullOrWhiteSpace[AuthenticationToken]]
+//            if [!string.IsNullOrWhiteSpace[AuthenticationToken]]
 //            [
 //                request.Headers.Add("Authentication-Token", AuthenticationToken)
 //            ]

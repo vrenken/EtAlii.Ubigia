@@ -23,7 +23,7 @@
         public ObservableCollection<Result> QueryVariables { get; } = new ObservableCollection<Result>();
         
         public string QueryResult { get => _queryResult; set => SetProperty(ref _queryResult, value); }
-        private string _queryResult = String.Empty;
+        private string _queryResult = string.Empty;
         
         public ObservableCollection<string> ExecutionStatus { get; } = new ObservableCollection<string>();
 

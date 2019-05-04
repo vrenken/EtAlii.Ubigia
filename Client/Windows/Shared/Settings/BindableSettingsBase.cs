@@ -10,7 +10,7 @@
         private readonly string _registryKey;
 
         protected BindableSettingsBase()
-            : this(String.Empty)
+            : this(string.Empty)
         {
         }
 
@@ -24,8 +24,8 @@
 
         protected BindableSettingsBase(string registryKeyName)
         {
-            string format = String.IsNullOrWhiteSpace(registryKeyName) ? "Software\\{0}" : "Software\\{0}\\{1}";
-            _registryKey = String.Format(format, Settings.ProductName, registryKeyName);
+            string format = string.IsNullOrWhiteSpace(registryKeyName) ? "Software\\{0}" : "Software\\{0}\\{1}";
+            _registryKey = string.Format(format, Settings.ProductName, registryKeyName);
         }
 
         protected T GetValue<T>(ref T storage, T defaultValue, [CallerMemberName] string propertyName = null)

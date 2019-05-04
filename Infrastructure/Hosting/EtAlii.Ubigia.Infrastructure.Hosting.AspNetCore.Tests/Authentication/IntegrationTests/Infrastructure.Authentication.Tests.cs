@@ -1,12 +1,12 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-    using System;
-    using System.Net;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
-    using Xunit;
-    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
+	using System;
+	using System.Net;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api.Transport;
+	using EtAlii.Ubigia.Api.Transport.WebApi;
+	using Xunit;
+	using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
 	[Trait("Technology", "AspNetCore")]
 	public class InfrastructureAuthenticationTests : IClassFixture<InfrastructureUnitTestContext>
@@ -32,7 +32,7 @@
 		    var token = await client.Get<string>(address, credentials);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -49,7 +49,7 @@
 		    var token = await client.Get<string>(address, credentials);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -66,7 +66,7 @@
 		    var token = await client.Get<string>(address, credentials);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -83,7 +83,7 @@
 		    var token = await client.Get<string>(address, credentials);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -100,7 +100,7 @@
 		    var token = await client.Get<string>(address, credentials);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -117,7 +117,7 @@
 		    var token = await client.Get<string>(address, credentials);
 
 		    // Assert.
-		    Assert.True(!String.IsNullOrWhiteSpace(token));
+		    Assert.True(!string.IsNullOrWhiteSpace(token));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]

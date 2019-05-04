@@ -1,9 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using Moppet.Lapa;
     using Xunit;
-
 
     public class NewLineParserTests
     {
@@ -30,7 +28,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -44,7 +42,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -58,7 +56,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -72,7 +70,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -86,7 +84,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -100,7 +98,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
         }
     }
 }

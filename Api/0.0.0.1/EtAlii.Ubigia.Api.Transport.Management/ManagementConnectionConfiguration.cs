@@ -49,7 +49,7 @@
 
         public IManagementConnectionConfiguration Use(string accountName, string password)
         {
-            if (String.IsNullOrWhiteSpace(accountName))
+            if (string.IsNullOrWhiteSpace(accountName))
             {
                 throw new ArgumentException(nameof(accountName));
             }
@@ -57,7 +57,7 @@
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this ManagementConnectionConfiguration");
             }
-            //if [String.IsNullOrWhiteSpace[password]]
+            //if [string.IsNullOrWhiteSpace[password]]
             //[
             //    throw new ArgumentException(nameof(password))
             //]

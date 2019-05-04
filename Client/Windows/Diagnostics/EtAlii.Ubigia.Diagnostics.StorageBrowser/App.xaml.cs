@@ -35,17 +35,17 @@
 
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-            var address = e.Args.Length > 0 ? e.Args[0] : String.Empty;
-            var account = e.Args.Length > 1 ? e.Args[1] : String.Empty;
-            var password = e.Args.Length > 2 ? e.Args[2] : String.Empty;
+            var address = e.Args.Length > 0 ? e.Args[0] : string.Empty;
+            var account = e.Args.Length > 1 ? e.Args[1] : string.Empty;
+            var password = e.Args.Length > 2 ? e.Args[2] : string.Empty;
 
             var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.StorageBrowser");
 
             IManagementConnection connection;
             var factory = new ManagementConnectionFactory();
-            if (String.IsNullOrWhiteSpace(address) ||
-                String.IsNullOrWhiteSpace(account) ||
-                String.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(address) ||
+                string.IsNullOrWhiteSpace(account) ||
+                string.IsNullOrWhiteSpace(password))
             {
                 var configuration = new ManagementConnectionConfiguration()
                     .Use(diagnostics)

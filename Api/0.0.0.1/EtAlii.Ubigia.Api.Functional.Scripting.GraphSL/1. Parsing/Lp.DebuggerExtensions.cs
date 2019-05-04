@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Text;
     using Moppet.Lapa;
 
@@ -32,7 +31,7 @@
                         var resultText = result.ToString();
                         resultText = Escape(resultText, spaces);
 
-                        resultText = resultText == String.Empty ? "String.Empty" : resultText;
+                        resultText = resultText == string.Empty ? "string.Empty" : resultText;
                         System.Diagnostics.Debug.WriteLine($"{spaces}  > Match: {resultText}");
                     }
                     var restText = result.Rest.ToString();

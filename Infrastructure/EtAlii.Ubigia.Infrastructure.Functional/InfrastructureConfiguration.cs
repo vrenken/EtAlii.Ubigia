@@ -83,7 +83,7 @@
 
         public IInfrastructureConfiguration Use(string name, Uri address)
         {
-            if (String.IsNullOrWhiteSpace(name))
+            if (string.IsNullOrWhiteSpace(name))
             {
                 throw new ArgumentException(nameof(name));
             }

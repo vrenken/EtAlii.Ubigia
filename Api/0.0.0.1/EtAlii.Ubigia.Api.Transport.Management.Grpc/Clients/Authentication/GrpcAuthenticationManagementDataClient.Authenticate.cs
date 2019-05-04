@@ -49,7 +49,7 @@
                         .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
                 }
     
-                if (!String.IsNullOrWhiteSpace(authenticationToken))
+                if (!string.IsNullOrWhiteSpace(authenticationToken))
                 {
                     grpcConnection.Transport.AuthenticationToken = authenticationToken;
                     grpcConnection.Transport.AuthenticationHeaders = new Metadata { { GrpcHeader.AuthenticationTokenHeaderKey, authenticationToken } };

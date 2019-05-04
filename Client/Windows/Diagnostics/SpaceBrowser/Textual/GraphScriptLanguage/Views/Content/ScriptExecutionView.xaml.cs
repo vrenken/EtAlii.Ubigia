@@ -48,7 +48,7 @@
             {
                 newValue.CollectionChanged += scriptExecutionView.UpdateExecutionStatusTextBox;
             }
-            scriptExecutionView.ExecutionStatusTextBox.Text = String.Empty;
+            scriptExecutionView.ExecutionStatusTextBox.Text = string.Empty;
         }
 
         private void UpdateExecutionStatusTextBox(object sender, NotifyCollectionChangedEventArgs e)
@@ -72,7 +72,7 @@
                     }
                     break;
                 default:
-                    ExecutionStatusTextBox.Text = String.Empty;
+                    ExecutionStatusTextBox.Text = string.Empty;
                     break;
             }
         }

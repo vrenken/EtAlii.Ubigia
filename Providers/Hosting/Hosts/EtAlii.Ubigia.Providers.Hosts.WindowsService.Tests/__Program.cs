@@ -15,7 +15,7 @@
 //        /// </summary>
 //        public static void Main(string[] args)
 //        [
-//            //var startupDelay = args.Length > 0 ? Int32.Parse(args[0]) * 1000 : 0
+//            //var startupDelay = args.Length > 0 ? int.Parse(args[0]) * 1000 : 0
 //            //System.Threading.Thread.Sleep(startupDelay)
 
 //            Console.WriteLine("Starting Ubigia provider...")

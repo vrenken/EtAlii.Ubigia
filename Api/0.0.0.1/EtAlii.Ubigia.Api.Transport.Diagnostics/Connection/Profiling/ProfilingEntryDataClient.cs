@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -88,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
         public async Task<IEnumerable<IReadOnlyEntry>> Get(IEnumerable<Identifier> entryIdentifiers, ExecutionScope scope, EntryRelation entryRelations = EntryRelation.None)
         {
-            dynamic profile = _profiler.Begin("Get multiple by ids: " + String.Join(", ", entryIdentifiers.Select(e => e.ToTimeString())));
+            dynamic profile = _profiler.Begin("Get multiple by ids: " + string.Join(", ", entryIdentifiers.Select(e => e.ToTimeString())));
             profile.EntryIdentifiers = entryIdentifiers;
             profile.EntryRelations = entryRelations;
 

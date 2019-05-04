@@ -28,7 +28,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
             results.Subscribe(
                     onError: e => viewModel.QueryResult = e.Message,
-                    onFirst: () => viewModel.QueryResult = String.Empty,
+                    onFirst: () => viewModel.QueryResult = string.Empty,
                     onNext: o => viewModel.QueryResult = o.DataAsString,
                     onCompleted: () => { });
         }

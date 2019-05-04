@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.xTechnology.Workflow;
-    using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.xTechnology.Workflow;
 
     public class ParseGraphQueryLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphQueryLanguageUnitOfwork>, IParseGraphQueryLanguageUnitOfworkHandler
     {
@@ -22,7 +21,7 @@
             var result = await _queryContext.Parse(viewModel.Source);
             viewModel.Query = result.Query;
             viewModel.Errors = result.Errors.Select(error => new TextualError { Text = error.Message, Line = error.Line, Column = error.Column });
-            viewModel.CanExecute = !viewModel.Errors.Any() && !String.IsNullOrWhiteSpace(viewModel.Source);
+            viewModel.CanExecute = !viewModel.Errors.Any() && !string.IsNullOrWhiteSpace(viewModel.Source);
         }
     }
 }

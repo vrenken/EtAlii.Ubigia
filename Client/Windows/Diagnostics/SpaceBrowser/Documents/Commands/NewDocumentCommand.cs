@@ -51,10 +51,10 @@
         private string DetermineTitle()
         {
             var i = 0;
-            var title = String.Empty;
+            var title = string.Empty;
             do
             {
-                title = String.Format(TitleFormat, ++i);
+                title = string.Format(TitleFormat, ++i);
             }
             while (_mainWindowViewModel.Documents.Any(g => g.Title == title));
             return title;

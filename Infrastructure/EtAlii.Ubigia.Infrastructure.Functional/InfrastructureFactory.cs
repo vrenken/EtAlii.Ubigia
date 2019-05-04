@@ -7,7 +7,7 @@
     {
         public IInfrastructure Create(IInfrastructureConfiguration configuration)
         {
-            if (String.IsNullOrWhiteSpace(configuration.Name))
+            if (string.IsNullOrWhiteSpace(configuration.Name))
             {
                 throw new NotSupportedException("The name is required to construct a Infrastructure instance");
             }

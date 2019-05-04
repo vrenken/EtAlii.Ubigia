@@ -21,7 +21,7 @@
         {
             try
             {
-                var success = !String.IsNullOrWhiteSpace(hostIdentifier);
+                var success = !string.IsNullOrWhiteSpace(hostIdentifier);
                 if (success)
                 {
                     var authenticationToken = new AuthenticationToken

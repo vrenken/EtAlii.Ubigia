@@ -20,11 +20,11 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var timeString = match[0].ToString();
-            var year = Int32.Parse(timeString.Substring(0, 4));
-            var month = Int32.Parse(timeString.Substring(4, 2));
-            var day = Int32.Parse(timeString.Substring(6, 2));
-            var hour = Int32.Parse(timeString.Substring(8, 2));
-            var minute = Int32.Parse(timeString.Substring(10, 2));
+            var year = int.Parse(timeString.Substring(0, 4));
+            var month = int.Parse(timeString.Substring(4, 2));
+            var day = int.Parse(timeString.Substring(6, 2));
+            var hour = int.Parse(timeString.Substring(8, 2));
+            var minute = int.Parse(timeString.Substring(10, 2));
 
             var time = new DateTime(year, month, day, hour, minute, 0, 0);
             _timePreparer.Prepare(context, scope, time);

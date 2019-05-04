@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-    using System;
-    using System.Net;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.WebApi;
-    using Xunit;
-    using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
-
+	using System;
+	using System.Net;
+	using System.Threading;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api;
+	using EtAlii.Ubigia.Api.Transport;
+	using EtAlii.Ubigia.Api.Transport.WebApi;
+	using Xunit;
+	using RelativeUri = EtAlii.Ubigia.Infrastructure.Transport.AspNetCore.RelativeUri;
 
 	[Trait("Technology", "AspNetCore")]
 	public class InfrastructureStorageTests : IClassFixture<InfrastructureUnitTestContext>
@@ -31,7 +30,7 @@
 			var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
+			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
 
@@ -52,7 +51,7 @@
 			var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
+			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
 
@@ -73,7 +72,7 @@
 			var address = addressFactory.Create(context.ManagementServiceAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
+			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
 
@@ -110,7 +109,7 @@
 			var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
+			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			Thread.Sleep(50000);
 			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
@@ -132,7 +131,7 @@
 			var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
+			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			Thread.Sleep(50000);
 			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);
@@ -154,7 +153,7 @@
 			var address = addressFactory.Create(context.HostAddress, RelativeUri.Authenticate);
 			var client = _testContext.HostTestContext.CreateRestInfrastructureClient();
 			var token = await client.Get<string>(address, credentials);
-			Assert.True(!String.IsNullOrWhiteSpace(token));
+			Assert.True(!string.IsNullOrWhiteSpace(token));
 			client.AuthenticationToken = token;
 			Thread.Sleep(50000);
 			address = addressFactory.Create(context.HostAddress, RelativeUri.Admin.Api.Storages, UriParameter.Local);

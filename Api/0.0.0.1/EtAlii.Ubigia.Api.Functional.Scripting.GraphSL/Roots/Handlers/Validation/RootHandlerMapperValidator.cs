@@ -36,7 +36,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (invalidNamedRootHandlerMappers.Any())
             {
                 var message =
-                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with the same name: {(invalidNamedRootHandlerMappers.Multiple() ? String.Join(", ", invalidNamedRootHandlerMappers.Select(c => c.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
+                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with the same name: {(invalidNamedRootHandlerMappers.Multiple() ? string.Join(", ", invalidNamedRootHandlerMappers.Select(c => c.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
 
@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (invalidNamedRootHandlerMappers.Any())
             {
                 var message =
-                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with invalid naming: {(invalidNamedRootHandlerMappers.Multiple() ? String.Join(", ", invalidNamedRootHandlerMappers.Select(fh => fh.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
+                    $"{(invalidNamedRootHandlerMappers.Multiple() ? "Multiple root handler mappers" : "One root handler mapper")} found with invalid naming: {(invalidNamedRootHandlerMappers.Multiple() ? string.Join(", ", invalidNamedRootHandlerMappers.Select(fh => fh.Name)) : invalidNamedRootHandlerMappers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
         }
@@ -77,8 +77,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
             if (first.Length == second.Length)
             {
-                var firstAsString = String.Concat(first.Select(part => part.ToString()));
-                var secondAsString = String.Concat(second.Select(part => part.ToString()));
+                var firstAsString = string.Concat(first.Select(part => part.ToString()));
+                var secondAsString = string.Concat(second.Select(part => part.ToString()));
 
                 result = firstAsString == secondAsString; // TODO: Is this enough to compare root subject paths?!
             }

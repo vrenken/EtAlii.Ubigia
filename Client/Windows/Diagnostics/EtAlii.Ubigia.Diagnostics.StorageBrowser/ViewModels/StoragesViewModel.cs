@@ -51,8 +51,8 @@
         private bool CanAddStorage(object sender)
         {
             var result = SelectedStorage == null;
-            result &= !String.IsNullOrWhiteSpace(StorageName);
-            result &= !String.IsNullOrWhiteSpace(StorageAddress);
+            result &= !string.IsNullOrWhiteSpace(StorageName);
+            result &= !string.IsNullOrWhiteSpace(StorageAddress);
             result &= Uri.IsWellFormedUriString(StorageAddress, UriKind.RelativeOrAbsolute);
             return result;
         }
@@ -82,8 +82,8 @@
         private bool CanSaveStorage(object sender)
         {
             var result = SelectedStorage != null;
-            result &= !String.IsNullOrWhiteSpace(StorageName);
-            result &= !String.IsNullOrWhiteSpace(StorageAddress);
+            result &= !string.IsNullOrWhiteSpace(StorageName);
+            result &= !string.IsNullOrWhiteSpace(StorageAddress);
             result &= Uri.IsWellFormedUriString(StorageAddress, UriKind.RelativeOrAbsolute);
             if (SelectedStorage != null)
             {
@@ -117,8 +117,8 @@
         private bool CanDeleteStorage(object sender)
         {
             var result = SelectedStorage != null;
-            result &= !String.IsNullOrWhiteSpace(StorageName);
-            result &= !String.IsNullOrWhiteSpace(StorageAddress);
+            result &= !string.IsNullOrWhiteSpace(StorageName);
+            result &= !string.IsNullOrWhiteSpace(StorageAddress);
             return result;
         }
 
@@ -164,8 +164,8 @@
             switch (propertyName)
             {
                 case SelectedStorageProperty:
-                    StorageName = SelectedStorage != null ? SelectedStorage.Name : String.Empty;
-                    StorageAddress = SelectedStorage != null ? SelectedStorage.Address : String.Empty;
+                    StorageName = SelectedStorage != null ? SelectedStorage.Name : string.Empty;
+                    StorageAddress = SelectedStorage != null ? SelectedStorage.Address : string.Empty;
                     break;
             }
         }
@@ -188,8 +188,8 @@
         private void ClearSelection()
         {
             SelectedStorage = null;
-            StorageName = String.Empty;
-            StorageAddress = String.Empty;
+            StorageName = string.Empty;
+            StorageAddress = string.Empty;
         }
 
     }

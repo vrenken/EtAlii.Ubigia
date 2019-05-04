@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
@@ -44,7 +43,7 @@
                 "media:Canon/PowerShot/Gtx123",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Media/Canon/PowerShot/Gtx123/000";
             var selectQuery2 = "media:Canon/PowerShot/Gtx123/000";
 

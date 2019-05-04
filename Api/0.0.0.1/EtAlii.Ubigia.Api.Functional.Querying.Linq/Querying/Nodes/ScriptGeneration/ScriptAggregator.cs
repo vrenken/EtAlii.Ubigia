@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void AddVariableAssignment(NodeQueryable<INode> nodeQuery)
         {
-            var variableAssignment = String.Empty;
+            var variableAssignment = string.Empty;
             if (nodeQuery.StartRoot != null && nodeQuery.StartPath == null)
             {
                 variableAssignment = $"/{nodeQuery.StartRoot}";
@@ -70,7 +70,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 throw new InvalidOperationException("A script must have at least one variable assignment.");
             }
 
-            var variableName = String.Empty;
+            var variableName = string.Empty;
             foreach(var kvp in _variableAssignments)
             {
                 variableName = kvp.Key;

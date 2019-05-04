@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical
 {
-    using System;
     using System.Collections;
     using System.Collections.Generic;
     using System.Diagnostics;
@@ -36,7 +35,7 @@
 
         public override string ToString()
         {
-            return String.Join("-", _parts.Select(p => "["+ p.ToString() +"]"));
+            return string.Join("-", _parts.Select(p => "["+ p.ToString() +"]"));
         }
 
         public static GraphPath Create(Identifier startIdentifier)

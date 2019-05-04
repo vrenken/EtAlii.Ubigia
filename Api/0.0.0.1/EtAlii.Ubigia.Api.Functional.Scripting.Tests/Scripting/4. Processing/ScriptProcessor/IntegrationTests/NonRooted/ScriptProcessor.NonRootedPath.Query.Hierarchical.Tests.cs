@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -9,9 +8,7 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
 
-    
     public class ScriptProcessorNonRootedPathQueryHierarchicalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;
@@ -52,7 +49,7 @@
                 "/Person/Does/John <= { IsMale:true, Birthdate:1980-02-25, Weight:76.23 }"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Does/John\\";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -90,7 +87,7 @@
                 "/Person/Does/John <= { IsMale: true, Birthdate:1980-02-25, Weight:76.23 }"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Does/.IsMale=true\\";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -127,7 +124,7 @@
                 "/Person/Does/John <= { IsMale: true, Birthdate: 1980-02-25, Weight: 76.23 }"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Does/.Birthdate=1980-02-25\\";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -165,7 +162,7 @@
                 "/Person/Does/John <= { IsMale: true, Birthdate: 1980-02-25, Weight: 76.23 }"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Does/.Weight=76.23\\";
 
             var addScript = _parser.Parse(addQuery).Script;

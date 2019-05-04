@@ -1,10 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Xunit;
-
 
     public partial class RootHandlerPathMatcherTests
     {
@@ -31,8 +29,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/Vrenken/Peter", String.Join("", match.Match.Select(m => m.ToString())));
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));
+            Assert.Equal("/Vrenken/Peter", string.Join("", match.Match.Select(m => m.ToString())));
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -59,8 +57,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/Vrenken/Peter/0", String.Join("", match.Match.Select(m => m.ToString())));
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));
+            Assert.Equal("/Vrenken/Peter/0", string.Join("", match.Match.Select(m => m.ToString())));
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -86,8 +84,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/Vrenken/Peter", String.Join("", match.Match.Select(m => m.ToString())));
-            Assert.Equal("/0", String.Join("", match.Rest.Select(m => m.ToString())));
+            Assert.Equal("/Vrenken/Peter", string.Join("", match.Match.Select(m => m.ToString())));
+            Assert.Equal("/0", string.Join("", match.Rest.Select(m => m.ToString())));
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

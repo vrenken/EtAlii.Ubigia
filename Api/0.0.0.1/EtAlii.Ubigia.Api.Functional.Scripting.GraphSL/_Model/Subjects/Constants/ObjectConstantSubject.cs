@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
 
     internal class ObjectConstantSubject : ConstantSubject
@@ -15,7 +14,7 @@
         public override string ToString()
         {
             var entries = Values.Select(kvp => $"{kvp.Key}: {kvp.Value}");
-            return String.Join(", ", entries);
+            return string.Join(", ", entries);
         }
     }
 }

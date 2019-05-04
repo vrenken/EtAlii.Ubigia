@@ -48,7 +48,7 @@
                 return Disposable.Empty;
             }).ToHotObservable();
 
-            Source = source ?? String.Empty;
+            Source = source ?? string.Empty;
         }
 
         public ScopeVariable(IObservable<object> value, string source)
@@ -59,7 +59,7 @@
             }
 
             Value = value;
-            Source = source ?? String.Empty;
+            Source = source ?? string.Empty;
         }
     }
 }

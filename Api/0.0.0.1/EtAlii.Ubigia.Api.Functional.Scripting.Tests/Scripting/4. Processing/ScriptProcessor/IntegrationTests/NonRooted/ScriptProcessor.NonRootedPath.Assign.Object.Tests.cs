@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
@@ -50,7 +49,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue1 : \'Test1\', StringValue2 : \'Test2\' }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -95,7 +94,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -139,7 +138,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : true }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -183,7 +182,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : false }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -227,7 +226,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : FALSE }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -272,7 +271,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', BoolValue : False }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -316,7 +315,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede+=Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -358,7 +357,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
 
@@ -402,7 +401,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test2\', IntValue : 13 }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
@@ -456,7 +455,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test2\', IntValue : \'13\', BoolValue : true  }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
@@ -513,7 +512,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test2\', IntValue : , BoolValue : true  }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
@@ -570,7 +569,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : , IntValue : }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
@@ -625,7 +624,7 @@
                 "<= /Location/Europe/NL/Overijssel/Enschede += Helmerhoek"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= /Location/Europe/NL/Overijssel/Enschede/Helmerhoek <= { }";
             var selectQuery = "/Location/Europe/NL/Overijssel/Enschede/Helmerhoek";
@@ -677,7 +676,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= { ObjectType: 'Family' }";
             var assignQuery2 = "/Person/Doe/John <= { ObjectType: 'Person' }";
@@ -725,7 +724,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= { ObjectType: 'Family' }";
             var assignQuery2 = "/Person/Doe/John <= { ObjectType: 'Family' }";
@@ -773,7 +772,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
             var assignQuery2 = "/Person/Doe/John <= { ObjectType: 'Person', Code: 'ABC' }";
@@ -823,7 +822,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= { ObjectType: 'Family' }";
             var assignQuery2 = "/Person/Doe/John <= { ObjectType: 'Person', Code: 'ABC' }";
@@ -872,7 +871,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
             var assignQuery2 = "/Person/Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
@@ -922,7 +921,7 @@
             {
                 "/Person+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John";
             var assignQuery1 = "/Person/Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
             var assignQuery2 = "/Person/Doe/John <= { ObjectType: 'Family' }";

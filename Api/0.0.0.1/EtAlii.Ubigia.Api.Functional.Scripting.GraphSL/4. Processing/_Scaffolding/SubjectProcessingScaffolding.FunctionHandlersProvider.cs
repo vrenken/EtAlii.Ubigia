@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
 
@@ -24,7 +23,7 @@
                 .ToArray();
             if (doubles.Any())
             {
-                var message = $"Double registered function handlers detected: {String.Join(", ", doubles)}";
+                var message = $"Double registered function handlers detected: {string.Join(", ", doubles)}";
                 throw new ScriptParserException(message);   
             }
 

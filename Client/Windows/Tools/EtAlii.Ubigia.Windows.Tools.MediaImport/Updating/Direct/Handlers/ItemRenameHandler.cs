@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -34,13 +33,13 @@
 
             var sourceRemoteItem = _stringEscaper.Escape(sourceLast);
             var sourceRemotePath = sourceRest.Any()
-                ? $"/{String.Join("/", _stringEscaper.Escape(sourceRest))}"
-                : String.Empty;
+                ? $"/{string.Join("/", _stringEscaper.Escape(sourceRest))}"
+                : string.Empty;
 
             var targetRemoteItem = _stringEscaper.Escape(targetLast);
             var targetRemotePath = targetRest.Any()
-                ? $"/{String.Join("/", _stringEscaper.Escape(targetRest))}"
-                : String.Empty;
+                ? $"/{string.Join("/", _stringEscaper.Escape(targetRest))}"
+                : string.Empty;
 
             // TODO: This is not a correct rename!
             // We lack the opportunity for now. We need to be able to change the type of the entry for that. 

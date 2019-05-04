@@ -37,7 +37,7 @@
                 throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
-            var canAdd = !String.IsNullOrWhiteSpace(item.Name);
+            var canAdd = !string.IsNullOrWhiteSpace(item.Name);
             if (canAdd)
             {
                 canAdd = item.Id == Guid.Empty;

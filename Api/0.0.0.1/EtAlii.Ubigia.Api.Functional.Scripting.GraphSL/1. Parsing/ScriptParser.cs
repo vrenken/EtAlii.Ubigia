@@ -33,7 +33,7 @@
 
         public ScriptParseResult Parse(string text)
         {
-            text = text ?? String.Empty;
+            text = text ?? string.Empty;
 
             // Newlines and tabs are nasty. Correct them (newlines) or get rid of them (tabs). 
             text = text.Replace("\r\n", "\n");
@@ -62,12 +62,12 @@
                 errors = new[] { new ScriptParserError(e, e.Message, 0, 0) };
             }
 
-            return new ScriptParseResult(String.Join(Environment.NewLine, text), script, errors);
+            return new ScriptParseResult(string.Join(Environment.NewLine, text), script, errors);
         }
 
         public ScriptParseResult Parse(string[] text)
         {
-            return Parse(String.Join("\n", text));
+            return Parse(string.Join("\n", text));
         }
     }
 }

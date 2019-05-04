@@ -39,7 +39,7 @@
 		    var authenticationToken = call
 			    .GetTrailers()
 			    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
+		    Assert.False(string.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -60,7 +60,7 @@
 		    var authenticationToken = call
 			    .GetTrailers()
 			    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
+		    Assert.False(string.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -81,7 +81,7 @@
 		    var authenticationToken = call
 			    .GetTrailers()
 			    .Single(header => header.Key == GrpcHeader.AuthenticationTokenHeaderKey).Value;
-		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
+		    Assert.False(string.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -102,7 +102,7 @@
 		    var authenticationToken = call
 			    .GetTrailers()
 			    .SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
-		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
+		    Assert.False(string.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 	    [Fact, Trait("Category", TestAssembly.Category)]
@@ -123,7 +123,7 @@
 		    var authenticationToken = call
 			    .GetTrailers()
 			    .SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
-		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
+		    Assert.False(string.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]
@@ -144,7 +144,7 @@
 		    var authenticationToken = call
 			    .GetTrailers()
 			    .SingleOrDefault(trailer => trailer.Key == GrpcHeader.AuthenticationTokenHeaderKey)?.Key;
-		    Assert.False(String.IsNullOrWhiteSpace(authenticationToken));
+		    Assert.False(string.IsNullOrWhiteSpace(authenticationToken));
 	    }
 
 		[Fact, Trait("Category", TestAssembly.Category)]

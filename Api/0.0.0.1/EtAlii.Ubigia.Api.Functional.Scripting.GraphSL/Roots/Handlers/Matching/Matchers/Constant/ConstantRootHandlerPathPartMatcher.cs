@@ -32,7 +32,7 @@
                 {
                     var requiredName = ((ConstantPathSubjectPart) parameters.CurrentTemplatePart).Name;
 
-                    if (String.Equals(requiredName, content, StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(requiredName, content, StringComparison.OrdinalIgnoreCase))
                     {
                         canMatch = true;
                     }

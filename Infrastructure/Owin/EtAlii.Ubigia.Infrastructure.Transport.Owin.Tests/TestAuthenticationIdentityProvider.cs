@@ -11,8 +11,8 @@
 //    [
 //        public AuthenticationIdentity Get(HttpActionContext actionContext)
 //        [
-//            var userName = String.Empty
-//            var password = String.Empty
+//            var userName = string.Empty
+//            var password = string.Empty
 //            IEnumerable<string> values
 //            if [actionContext.Request.Headers.TryGetValues["Test-UserName", out values]]
 //            [
@@ -22,7 +22,7 @@
 //            [
 //                password = values.SingleOrDefault()
 //            ]
-//            var hasCredentials = !String.IsNullOrWhiteSpace(password) && !String.IsNullOrWhiteSpace(userName)
+//            var hasCredentials = !string.IsNullOrWhiteSpace(password) && !string.IsNullOrWhiteSpace(userName)
 //            return hasCredentials ? new AuthenticationIdentity(userName, password) : null
 //        ]
 //    ]

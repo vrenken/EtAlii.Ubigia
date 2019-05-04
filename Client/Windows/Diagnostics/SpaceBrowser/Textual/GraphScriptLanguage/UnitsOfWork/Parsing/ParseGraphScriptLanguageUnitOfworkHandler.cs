@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Workflow;
@@ -24,7 +23,7 @@
                 var result = _scriptContext.Parse(viewModel.Source);
                 viewModel.Script = result.Script;
                 viewModel.Errors = result.Errors.Select(error => new TextualError { Text = error.Message, Line = error.Line, Column = error.Column });
-            viewModel.CanExecute = !viewModel.Errors.Any() && !String.IsNullOrWhiteSpace(viewModel.Source);
+            viewModel.CanExecute = !viewModel.Errors.Any() && !string.IsNullOrWhiteSpace(viewModel.Source);
         }
 
     }

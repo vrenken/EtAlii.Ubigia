@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Collections.Generic;
     using Moppet.Lapa;
 
@@ -40,7 +39,7 @@
             if (failedBecauseOfRest || failedBecauseOfSuccess || failedBecauseOfId)
             {
                 var format = "Unable to process {0}\nId={4}\nNode='{1}'\nRest='{2}'\nText='{3}'";
-                var message = String.Format(format, requiredId, node, node.Rest, node.Match, node.Id);
+                var message = string.Format(format, requiredId, node, node.Rest, node.Match, node.Id);
 
                 throw new ScriptParserException(message);
             }

@@ -1,7 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
-
     public class TaggedPathSubjectPart : PathSubjectPart
     {
         public string Name { get; }
@@ -9,8 +7,8 @@
 
         public TaggedPathSubjectPart(string name, string tag)
         {
-            Name = name ?? String.Empty;
-            Tag = tag ?? String.Empty;
+            Name = name ?? string.Empty;
+            Tag = tag ?? string.Empty;
         }
 
         public override string ToString()

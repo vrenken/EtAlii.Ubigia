@@ -243,7 +243,7 @@
             // Assert.
             Assert.NotNull(result);
             Assert.Single(result);
-            Assert.Equal(UInt32.MaxValue, result["Hello"]);
+            Assert.Equal(uint.MaxValue, result["Hello"]);
         }
 
 

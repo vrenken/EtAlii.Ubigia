@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.ComponentModel;
     using System.IO;
     using System.Linq;
@@ -94,8 +93,8 @@
             var localFolder = LocalFolder != null ? LocalFolder.ToLower() : string.Empty;
             var remoteName = RemoteName != null ? RemoteName.ToLower() : string.Empty;
 
-            var hasData = !String.IsNullOrWhiteSpace(localFolder) &&
-                          !String.IsNullOrWhiteSpace(remoteName);
+            var hasData = !string.IsNullOrWhiteSpace(localFolder) &&
+                          !string.IsNullOrWhiteSpace(remoteName);
             var folderExists = Directory.Exists(localFolder);
             var nameConflicts = _folderSyncConfigurations.Where(c => c.RemoteName.ToLower() == remoteName);
             var noNameConflicts = OriginalFolderMonitor != null ? nameConflicts.All(c => c == OriginalFolderMonitor.Configuration) : !nameConflicts.Any();

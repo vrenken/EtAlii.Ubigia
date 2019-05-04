@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Management
 {
-    using System;
     using System.Windows;
 
     /// <summary>
@@ -15,15 +14,15 @@
 
         private void OnLoaded(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(AddressComboBox.Text))
+            if (string.IsNullOrWhiteSpace(AddressComboBox.Text))
             {
                 AddressComboBox.Focus();
             }
-            else if (String.IsNullOrWhiteSpace(AccountTextBox.Text))
+            else if (string.IsNullOrWhiteSpace(AccountTextBox.Text))
             {
                 AccountTextBox.Focus();
             }
-            else if (String.IsNullOrWhiteSpace(PasswordBox.Password))
+            else if (string.IsNullOrWhiteSpace(PasswordBox.Password))
             {
                 PasswordBox.Focus();
             }

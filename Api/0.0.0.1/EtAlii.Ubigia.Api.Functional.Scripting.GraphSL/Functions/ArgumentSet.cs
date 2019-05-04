@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
     using System.Reflection;
 
@@ -21,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public override string ToString()
         {
-            return String.Join(", ", Arguments.Select(a => a != null ? a.GetType().Name : "NULL"));
+            return string.Join(", ", Arguments.Select(a => a != null ? a.GetType().Name : "NULL"));
         }
     }
 }

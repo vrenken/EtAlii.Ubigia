@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Api.Transport
         
         public ISpaceConnectionConfiguration Use(string space)
         {
-            if (String.IsNullOrWhiteSpace(space))
+            if (string.IsNullOrWhiteSpace(space))
             {
                 throw new ArgumentException(nameof(space));
             }

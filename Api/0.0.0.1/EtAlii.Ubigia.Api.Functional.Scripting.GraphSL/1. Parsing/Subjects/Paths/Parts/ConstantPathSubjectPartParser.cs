@@ -2,7 +2,6 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using Moppet.Lapa;
 
     internal class ConstantPathSubjectPartParser : IConstantPathSubjectPartParser
@@ -51,7 +50,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (arguments.PartIndex != 0 || arguments.After == null)
             {
                 var constant = (ConstantPathSubjectPart)arguments.Part;
-                if (constant.Name == String.Empty)
+                if (constant.Name == string.Empty)
                 {
                     throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
                 }
@@ -59,7 +58,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (arguments.PartIndex == 0 && arguments.After != null)
             {
                 var constant = (ConstantPathSubjectPart)arguments.Part;
-                if (constant.Name == String.Empty)
+                if (constant.Name == string.Empty)
                 {
                     throw new ScriptParserException("An empty constant path part is only allowed in single part paths.");
                 }

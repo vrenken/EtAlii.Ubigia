@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
 
     public class Sequence
@@ -14,7 +13,7 @@
 
         public override string ToString()
         {
-            return String.Concat(Parts.Select(part => part.ToString()));
+            return string.Concat(Parts.Select(part => part.ToString()));
         }
     }
 }

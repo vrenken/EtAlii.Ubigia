@@ -53,7 +53,7 @@
                 IntValue = 12,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -100,7 +100,7 @@
             {
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -145,7 +145,7 @@
                 IntValue = 12,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -196,7 +196,7 @@
                 DateTime = dateTime,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -248,7 +248,7 @@
                 DateTime = dateTime,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -300,7 +300,7 @@
                 DateTime = dateTime,
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= $data";
             var selectQuery = "Time:2014/09/06/16/33";
 
