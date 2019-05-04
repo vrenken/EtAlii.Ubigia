@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using global::GraphQL.Language.AST;
@@ -52,7 +51,7 @@
             return Task.FromResult(new IdDirectiveResult
             {
                 //Mappings = mappings.ToArray(),
-                Path = pathArgumentValue?.Value ?? String.Empty,    
+                Path = pathArgumentValue?.Value ?? string.Empty,    
             });
         }
     }
