@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -54,7 +53,7 @@
         {
             var result = SelectedRole == null;
             result &= SelectedAccount != null;
-            result &= !String.IsNullOrWhiteSpace(RoleName);
+            result &= !string.IsNullOrWhiteSpace(RoleName);
             return result;
         }
 
@@ -86,7 +85,7 @@
         {
             var result = SelectedRole != null;
             result &= SelectedAccount != null;
-            result &= !String.IsNullOrWhiteSpace(RoleName);
+            result &= !string.IsNullOrWhiteSpace(RoleName);
             if (SelectedRole != null)
             {
                 result &= SelectedRole.Name != RoleName;
@@ -122,7 +121,7 @@
         {
             var result = SelectedRole != null;
             result &= SelectedAccount != null;
-            result &= !String.IsNullOrWhiteSpace(RoleName);
+            result &= !string.IsNullOrWhiteSpace(RoleName);
             return result;
         }
 
@@ -152,7 +151,7 @@
         private bool CanClearRole(object sender)
         {
             var result = SelectedRole != null;
-            result |= !String.IsNullOrWhiteSpace(RoleName);
+            result |= !string.IsNullOrWhiteSpace(RoleName);
             return result;
         }
 
@@ -168,7 +167,7 @@
             switch (propertyName)
             {
                 case SelectedRoleProperty:
-                    RoleName = SelectedRole != null ? SelectedRole.Name : String.Empty;
+                    RoleName = SelectedRole != null ? SelectedRole.Name : string.Empty;
                     break;
                 case SelectedAccountProperty:
                     ReloadAvailableRoles();
@@ -196,7 +195,7 @@
         private void ClearSelection()
         {
             SelectedRole = null;
-            RoleName = String.Empty;
+            RoleName = string.Empty;
         }
 
     }

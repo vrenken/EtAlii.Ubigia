@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
@@ -52,7 +51,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue1 : \'Test1\', StringValue2 : \'Test2\' }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -97,7 +96,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -141,7 +140,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : true }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -185,7 +184,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : false }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -229,7 +228,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : FALSE }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -274,7 +273,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', BoolValue : False }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -318,7 +317,7 @@
                 "<= Time:2014/09/06/16+=33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -360,7 +359,7 @@
                 "<= Time:2014/09/06/16 += 33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : 12 }";
             var selectQuery = "Time:2014/09/06/16/33";
 
@@ -404,7 +403,7 @@
                 "<= Time:2014/09/06/16 += 33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test2\', IntValue : 13 }";
             var selectQuery = "Time:2014/09/06/16/33";
@@ -458,7 +457,7 @@
                 "<= Time:2014/09/06/16 += 33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test2\', IntValue : \'13\', BoolValue : true  }";
             var selectQuery = "Time:2014/09/06/16/33";
@@ -515,7 +514,7 @@
                 "<= Time:2014/09/06/16 += 33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test2\', IntValue : , BoolValue : true  }";
             var selectQuery = "Time:2014/09/06/16/33";
@@ -572,7 +571,7 @@
                 "<= Time:2014/09/06/16 += 33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= Time:2014/09/06/16/33 <= { StringValue : , IntValue : }";
             var selectQuery = "Time:2014/09/06/16/33";
@@ -627,7 +626,7 @@
                 "<= Time:2014/09/06/16 += 33"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var updateQuery1 = "<= Time:2014/09/06/16/33 <= { StringValue : \'Test1\', IntValue : \'12\' }";
             var updateQuery2 = "<= Time:2014/09/06/16/33 <= { }";
             var selectQuery = "Time:2014/09/06/16/33";
@@ -679,7 +678,7 @@
             {
                 "Person:+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John";
             var assignQuery1 = "Person:Doe/John <= { ObjectType: 'Family' }";
             var assignQuery2 = "Person:Doe/John <= { ObjectType: 'Person' }";
@@ -727,7 +726,7 @@
             {
                 "Person:+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John";
             var assignQuery1 = "Person:Doe/John <= { ObjectType: 'Family' }";
             var assignQuery2 = "Person:Doe/John <= { ObjectType: 'Family' }";
@@ -775,7 +774,7 @@
             {
                 "Person:+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John";
             var assignQuery1 = "Person:Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
             var assignQuery2 = "Person:Doe/John <= { ObjectType: 'Person', Code: 'ABC' }";
@@ -825,7 +824,7 @@
             {
                 "Person:+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John";
             var assignQuery1 = "Person:Doe/John <= { ObjectType: 'Family' }";
             var assignQuery2 = "Person:Doe/John <= { ObjectType: 'Person', Code: 'ABC' }";
@@ -874,7 +873,7 @@
             {
                 "Person:+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John";
             var assignQuery1 = "Person:Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
             var assignQuery2 = "Person:Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
@@ -924,7 +923,7 @@
             {
                 "Person:+=Doe/John",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "Person:Doe/John";
             var assignQuery1 = "Person:Doe/John <= { ObjectType: 'Family', Code: 'ABC' }";
             var assignQuery2 = "Person:Doe/John <= { ObjectType: 'Family' }";

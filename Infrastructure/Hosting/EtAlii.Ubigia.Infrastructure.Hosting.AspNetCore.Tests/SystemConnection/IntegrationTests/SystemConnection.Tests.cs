@@ -101,7 +101,7 @@
                 "/Person+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
             var addScript = scriptContext.Parse(addQuery).Script;

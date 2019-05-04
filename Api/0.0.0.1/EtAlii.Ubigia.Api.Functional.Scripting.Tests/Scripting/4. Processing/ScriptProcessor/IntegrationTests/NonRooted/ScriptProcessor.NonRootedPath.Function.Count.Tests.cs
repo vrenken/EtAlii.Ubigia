@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -47,7 +46,7 @@
                 "/Person+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Count() <= /Person/Doe/*";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -84,7 +83,7 @@
                 "/Person+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Count(/Person/Doe/*)";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -120,7 +119,7 @@
                 "/Person+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "$var1 <= /Person/Doe/*\r\n<= Count($var1)";
 
             var addScript = _parser.Parse(addQuery).Script;

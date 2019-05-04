@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.Grpc
 {
-    using System;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport.Grpc;
-    using EtAlii.xTechnology.MicroContainer;
-    using global::Grpc.Core;
+	using System;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api.Transport.Grpc;
+	using EtAlii.xTechnology.MicroContainer;
+	using global::Grpc.Core;
 
 	public class GrpcStorageTransport : StorageTransportBase, IGrpcStorageTransport
     {
@@ -33,12 +33,12 @@
 	    private Channel GetChannel()
 	    {
 		    var uriAsString = _channel?.ResolvedTarget;
-		    var hasAddress = !String.IsNullOrWhiteSpace(uriAsString);
+		    var hasAddress = !string.IsNullOrWhiteSpace(uriAsString);
 		    if (hasAddress)
 		    {
 			    var channelAddress = new Uri("http://" + uriAsString);
 
-			    var hasSameHost = String.Equals(Address.DnsSafeHost, channelAddress.DnsSafeHost, StringComparison.InvariantCultureIgnoreCase);
+			    var hasSameHost = string.Equals(Address.DnsSafeHost, channelAddress.DnsSafeHost, StringComparison.InvariantCultureIgnoreCase);
 			    var hasSamePort = Address.Port == channelAddress.Port;
 			    if (hasSameHost && hasSamePort)
 			    {

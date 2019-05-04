@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (invalidNamedFunctionHandlers.Any())
             {
                 var message =
-                    $"{(invalidNamedFunctionHandlers.Multiple() ? "Multiple function handlers" : "One function handler")} found with the same name: {(invalidNamedFunctionHandlers.Multiple() ? String.Join(", ", invalidNamedFunctionHandlers.Select(c => c.Name)) : invalidNamedFunctionHandlers.Single().Name)}";
+                    $"{(invalidNamedFunctionHandlers.Multiple() ? "Multiple function handlers" : "One function handler")} found with the same name: {(invalidNamedFunctionHandlers.Multiple() ? string.Join(", ", invalidNamedFunctionHandlers.Select(c => c.Name)) : invalidNamedFunctionHandlers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
 
@@ -49,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             if (invalidNamedFunctionHandlers.Any())
             {
                 var message =
-                    $"{(invalidNamedFunctionHandlers.Multiple() ? "Multiple function handlers" : "One function handler")} found with invalid naming: {(invalidNamedFunctionHandlers.Multiple() ? String.Join(", ", invalidNamedFunctionHandlers.Select(fh => fh.Name)) : invalidNamedFunctionHandlers.Single().Name)}";
+                    $"{(invalidNamedFunctionHandlers.Multiple() ? "Multiple function handlers" : "One function handler")} found with invalid naming: {(invalidNamedFunctionHandlers.Multiple() ? string.Join(", ", invalidNamedFunctionHandlers.Select(fh => fh.Name)) : invalidNamedFunctionHandlers.Single().Name)}";
                 throw new InvalidOperationException(message);
             }
         }

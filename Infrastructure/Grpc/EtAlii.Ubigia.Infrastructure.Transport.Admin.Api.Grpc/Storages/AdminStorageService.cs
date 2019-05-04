@@ -40,7 +40,7 @@
                 case var _ when request.Storage != null: // Get Item by id
                     storage = _items.Get(request.Storage.Id.ToLocal());
                     break;
-                case var _ when !String.IsNullOrWhiteSpace(request.Name): // Get Item by name
+                case var _ when !string.IsNullOrWhiteSpace(request.Name): // Get Item by name
                     storage = _items.Get(request.Name);
                     break;
                 default:

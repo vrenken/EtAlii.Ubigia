@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -9,9 +8,7 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
-    
 
-    
     public class ScriptProcessorNonRootedPathQueryTraversingWildcardIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private readonly LogicalUnitTestContext _testContext;
@@ -61,7 +58,7 @@
                 "/Person+=Dee/The/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/*3*/John";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -111,7 +108,7 @@
                 "/Person+=Dee/The/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/*2*/Jo*";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -155,7 +152,7 @@
                 "/Person+=Dee/The/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/*2*";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -199,7 +196,7 @@
                 "/Person+=Dee/The/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/*3*";
 
             var addScript = _parser.Parse(addQuery).Script;

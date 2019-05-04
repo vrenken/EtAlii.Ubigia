@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using System.Windows.Input;
@@ -62,8 +61,8 @@
         private bool CanAddAccount(object sender)
         {
             var result = SelectedAccount == null;
-            result &= !String.IsNullOrWhiteSpace(AccountName);
-            result &= !String.IsNullOrWhiteSpace(AccountPassword);
+            result &= !string.IsNullOrWhiteSpace(AccountName);
+            result &= !string.IsNullOrWhiteSpace(AccountPassword);
             result &= SelectedAccountTemplate != null;
             return result;
         }
@@ -93,8 +92,8 @@
         private bool CanSaveAccount(object sender)
         {
             var result = SelectedAccount != null;
-            result &= !String.IsNullOrWhiteSpace(AccountName);
-            result &= !String.IsNullOrWhiteSpace(AccountPassword);
+            result &= !string.IsNullOrWhiteSpace(AccountName);
+            result &= !string.IsNullOrWhiteSpace(AccountPassword);
             result &= SelectedAccountTemplate == null;
             if (SelectedAccount != null)
             {
@@ -128,8 +127,8 @@
         private bool CanDeleteAccount(object sender)
         {
             var result = SelectedAccount != null;
-            result &= !String.IsNullOrWhiteSpace(AccountName);
-            result &= !String.IsNullOrWhiteSpace(AccountPassword);
+            result &= !string.IsNullOrWhiteSpace(AccountName);
+            result &= !string.IsNullOrWhiteSpace(AccountPassword);
             result &= SelectedAccountTemplate == null;
             return result;
         }
@@ -156,8 +155,8 @@
         private bool CanClearAccount(object sender)
         {
             var result = SelectedAccount != null;
-            result |= !String.IsNullOrWhiteSpace(AccountName);
-            result |= !String.IsNullOrWhiteSpace(AccountPassword);
+            result |= !string.IsNullOrWhiteSpace(AccountName);
+            result |= !string.IsNullOrWhiteSpace(AccountPassword);
             return result;
         }
 
@@ -173,8 +172,8 @@
             switch (propertyName)
             {
                 case SelectedAccountProperty:
-                    AccountName = SelectedAccount != null ? SelectedAccount.Name : String.Empty;
-                    AccountPassword = SelectedAccount != null ? SelectedAccount.Password : String.Empty;
+                    AccountName = SelectedAccount != null ? SelectedAccount.Name : string.Empty;
+                    AccountPassword = SelectedAccount != null ? SelectedAccount.Password : string.Empty;
                     SelectedAccountTemplate = null;
                     break;
                 case AccountNameProperty:
@@ -204,8 +203,8 @@
         private void ClearSelection()
         {
             SelectedAccount = null;
-            AccountName = String.Empty;
-            AccountPassword = String.Empty;
+            AccountName = string.Empty;
+            AccountPassword = string.Empty;
         }
 
     }

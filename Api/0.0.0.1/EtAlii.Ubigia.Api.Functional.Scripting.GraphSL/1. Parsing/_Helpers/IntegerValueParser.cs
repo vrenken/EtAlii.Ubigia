@@ -22,7 +22,7 @@
         {     
             _nodeValidator.EnsureSuccess(node, Id);
             var text = node.Match.ToString();
-            return Int32.Parse(text);
+            return int.Parse(text);
         }
 
         public bool CanParse(LpNode node)

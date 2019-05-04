@@ -32,7 +32,7 @@
                 throw new ScriptProcessingException($"The {GetType().Name} requires a constant, hierarchical path");
             }
 
-            if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart constantPathSubjectPart && String.IsNullOrWhiteSpace(constantPathSubjectPart.Name)))
+            if (pathToAdd.Parts.Any(part => part is ConstantPathSubjectPart constantPathSubjectPart && string.IsNullOrWhiteSpace(constantPathSubjectPart.Name)))
             {
                 throw new ScriptProcessingException($"The {GetType().Name} cannot handle empty parts");
             }

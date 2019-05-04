@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
 
     public class ConditionalPathSubjectPart : PathSubjectPart
@@ -14,7 +13,7 @@
 
         public override string ToString()
         {
-            return String.Join("&", Conditions.Select(c => c.ToString()));
+            return string.Join("&", Conditions.Select(c => c.ToString()));
         }
     }
 }

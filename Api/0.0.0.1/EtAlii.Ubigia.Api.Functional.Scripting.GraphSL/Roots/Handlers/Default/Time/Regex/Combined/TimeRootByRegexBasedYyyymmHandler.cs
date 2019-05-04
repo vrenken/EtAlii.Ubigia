@@ -20,8 +20,8 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var timeString = match[0].ToString();
-            var year = Int32.Parse(timeString.Substring(0, 4));
-            var month = Int32.Parse(timeString.Substring(4, 2));
+            var year = int.Parse(timeString.Substring(0, 4));
+            var month = int.Parse(timeString.Substring(4, 2));
 
             var time = new DateTime(year, month, 1);
             _timePreparer.Prepare(context, scope, time);

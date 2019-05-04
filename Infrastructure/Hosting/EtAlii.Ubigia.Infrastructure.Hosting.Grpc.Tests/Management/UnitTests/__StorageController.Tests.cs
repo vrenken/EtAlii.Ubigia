@@ -21,7 +21,7 @@
 //        //public void StorageController_Get_Local_Storage()
 //        //[
 //        //    var controller = new StorageController()
-//        //    var localStorage = controller.GetLocal(String.Empty)
+//        //    var localStorage = controller.GetLocal(string.Empty)
 //        //]
 //    ]
 //]

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Management
 {
-    using System;
     using System.Windows;
 
     internal partial class ConnectionDialogViewModel
@@ -12,9 +11,9 @@
             if (parameter is ConnectionDialogWindow window)
             {
                 var passwordBox = window.PasswordBox;
-                result = !String.IsNullOrEmpty(passwordBox.Password) &&
-                         !String.IsNullOrEmpty(Account) &&
-                         !String.IsNullOrEmpty(Address);
+                result = !string.IsNullOrEmpty(passwordBox.Password) &&
+                         !string.IsNullOrEmpty(Account) &&
+                         !string.IsNullOrEmpty(Address);
             }
             return result;
         }

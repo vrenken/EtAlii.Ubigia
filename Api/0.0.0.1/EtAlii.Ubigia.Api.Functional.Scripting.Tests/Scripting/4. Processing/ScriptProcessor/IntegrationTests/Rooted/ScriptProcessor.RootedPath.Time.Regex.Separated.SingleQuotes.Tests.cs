@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
@@ -44,7 +43,7 @@
                 "time:'2016'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/01/01/00/00/00/000";
             var selectQuery2 = "time:'2016'";
 
@@ -87,7 +86,7 @@
                 "time:'2016-09'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
             var selectQuery2 = "time:'2016-09'";
 
@@ -130,7 +129,7 @@
                 "time:'2016-09-01'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/00/00/00/000";
             var selectQuery2 = "time:'2016-09-01'";
 
@@ -173,7 +172,7 @@
                 "time:'2016-09-01 22'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/22/00/00/000";
             var selectQuery2 = "time:'2016-09-01 22'";
 
@@ -216,7 +215,7 @@
                 "time:'2016-09-01 22:05'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/22/05/00/000";
             var selectQuery2 = "time:'2016-09-01 22:05'";
 
@@ -259,7 +258,7 @@
                 "time:'2016-09-01 22:05:23'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/22/05/23/000";
             var selectQuery2 = "time:'2016-09-01 22:05:23'";
 
@@ -302,7 +301,7 @@
                 "time:'2016-09-01 22:05:23.123'",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery1 = "/Time/2016/09/01/22/05/23/123";
             var selectQuery2 = "time:'2016-09-01 22:05:23.123'";
 

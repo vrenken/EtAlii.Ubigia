@@ -49,7 +49,7 @@
 
         public IObservable<SequenceProcessingResult> Process(string[] text, IScriptScope scope)
         {
-            var scriptParseResult = Parse(String.Join(Environment.NewLine, text));
+            var scriptParseResult = Parse(string.Join(Environment.NewLine, text));
 
             if (scriptParseResult.Errors.Any())
             {
@@ -63,13 +63,13 @@
 
         public IObservable<SequenceProcessingResult> Process(string text, params object[] args)
         {
-            text = String.Format(text, args);
+            text = string.Format(text, args);
             return Process(text);
         }
 
         public IObservable<SequenceProcessingResult> Process(string[] text)
         {
-            return Process(String.Join(Environment.NewLine, text));
+            return Process(string.Join(Environment.NewLine, text));
         }
 
         public IObservable<SequenceProcessingResult> Process(string text)

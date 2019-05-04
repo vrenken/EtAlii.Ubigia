@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
-    using System;
     using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -26,7 +25,7 @@
 
         public string Verify(string accountName, string password, string hostIdentifier, out Account account, params string[] requiredRoles)
         {
-            if (String.IsNullOrWhiteSpace(accountName) || String.IsNullOrWhiteSpace(password))
+            if (string.IsNullOrWhiteSpace(accountName) || string.IsNullOrWhiteSpace(password))
             {
                 throw new InvalidInfrastructureOperationException("Unauthorized");
             }

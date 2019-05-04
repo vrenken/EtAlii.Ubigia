@@ -22,7 +22,7 @@
 
         public override string ToString()
         {
-            return String.Join(Environment.NewLine, Sequences);
+            return string.Join(Environment.NewLine, Sequences);
         }
     }
 }

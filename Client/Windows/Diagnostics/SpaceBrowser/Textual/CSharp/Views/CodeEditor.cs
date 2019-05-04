@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using ICSharpCode.AvalonEdit;
-    using ICSharpCode.AvalonEdit.Document;
     using System;
     using System.Windows;
+    using ICSharpCode.AvalonEdit;
+    using ICSharpCode.AvalonEdit.Document;
 
     public sealed class CodeEditor : TextEditor
     {
@@ -14,7 +14,7 @@
             get { return (string)GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
         }
-        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(nameof(Source), typeof(string), typeof(CodeEditor), new PropertyMetadata(String.Empty));
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register(nameof(Source), typeof(string), typeof(CodeEditor), new PropertyMetadata(string.Empty));
 
         protected override void OnPropertyChanged(DependencyPropertyChangedEventArgs e)
         {

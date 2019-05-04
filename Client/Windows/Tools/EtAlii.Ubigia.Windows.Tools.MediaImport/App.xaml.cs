@@ -1,10 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Threading;
     using System.Windows;
-    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.SignalR;
     using EtAlii.Ubigia.Windows.Tools.MediaImport.Properties;
     using EtAlii.xTechnology.Diagnostics;
@@ -19,7 +18,7 @@
 
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
-            var startupDelay = e.Args.Length > 0 ? Int32.Parse(e.Args[0]) * 1000 : 0;
+            var startupDelay = e.Args.Length > 0 ? int.Parse(e.Args[0]) * 1000 : 0;
             Thread.Sleep(startupDelay);
 
             var diagnostics = CreateDiagnosticsConfiguration();

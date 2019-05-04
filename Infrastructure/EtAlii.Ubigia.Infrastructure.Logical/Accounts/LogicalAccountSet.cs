@@ -40,14 +40,14 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 throw new ArgumentNullException(nameof(item), "No item specified");
             }
 
-            var canAdd = !String.IsNullOrWhiteSpace(item.Name);
+            var canAdd = !string.IsNullOrWhiteSpace(item.Name);
             if (canAdd)
             {
                 canAdd = item.Id == Guid.Empty;
             }
             if (canAdd)
             {
-                canAdd = !items.Any(i => String.CompareOrdinal(i.Name, item.Name) == 0 || i.Id == item.Id);
+                canAdd = !items.Any(i => string.CompareOrdinal(i.Name, item.Name) == 0 || i.Id == item.Id);
             }
             return canAdd;
         }

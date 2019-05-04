@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -39,8 +38,8 @@
 
             var remoteItem = _stringEscaper.Escape(last);
             var remotePath = rest.Any()
-                ? $"/{String.Join("/", _stringEscaper.Escape(rest))}"
-                : String.Empty;
+                ? $"/{string.Join("/", _stringEscaper.Escape(rest))}"
+                : string.Empty;
 
             var task = Task.Run(async () =>
             {

@@ -185,7 +185,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "<= Id(Person:Doe/*)";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -220,7 +220,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:+=Doe/Johnny",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "$var1 <= Person:Doe/*\r\n<= Id($var1)";
 
             var addScript = _parser.Parse(addQuery).Script;

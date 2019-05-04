@@ -31,7 +31,7 @@
                 case var _ when request.Space != null: // Get Item by id
                     space = _items.Get(request.Space.Id.ToLocal());
                     break;
-                //case var _ when !String.IsNullOrWhiteSpace(request.Name): // Get Item by id
+                //case var _ when !string.IsNullOrWhiteSpace(request.Name): // Get Item by id
                 //    space = _items.Get(request.a.Name)
                 //    break
                 default:

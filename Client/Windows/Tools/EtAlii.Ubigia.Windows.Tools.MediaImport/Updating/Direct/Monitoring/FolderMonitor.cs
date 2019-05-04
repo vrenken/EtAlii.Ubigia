@@ -64,11 +64,11 @@
                 {
                     throw new InvalidOperationException("A FolderMonitor instance cannot be started without having a configuration assigned.");
                 }
-                if (String.IsNullOrWhiteSpace(Configuration.LocalFolder))
+                if (string.IsNullOrWhiteSpace(Configuration.LocalFolder))
                 {
                     throw new InvalidOperationException("A FolderMonitor instance cannot be started without having a folder assigned.");
                 }
-                if (String.IsNullOrWhiteSpace(Configuration.RemoteName))
+                if (string.IsNullOrWhiteSpace(Configuration.RemoteName))
                 {
                     throw new InvalidOperationException("A FolderMonitor instance cannot be started without having a remote location assigned.");
                 }

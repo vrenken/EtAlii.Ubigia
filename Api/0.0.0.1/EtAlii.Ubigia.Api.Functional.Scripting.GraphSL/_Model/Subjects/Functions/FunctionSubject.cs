@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
 
     internal class FunctionSubject : Subject
@@ -31,7 +30,7 @@
  
         public override string ToString()
         {
-            return $"{Name}({String.Join(",", Arguments.Select(parameter => parameter.ToString()))})";
+            return $"{Name}({string.Join(",", Arguments.Select(parameter => parameter.ToString()))})";
         }
     }
 }

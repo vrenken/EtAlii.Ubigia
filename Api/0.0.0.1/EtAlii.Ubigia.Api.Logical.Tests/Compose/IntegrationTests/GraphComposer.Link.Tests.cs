@@ -43,7 +43,7 @@
             Assert.NotNull(addedEntry);
             var updatedEntry = (await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope)).SingleOrDefault();
             Assert.NotNull(updatedEntry);
-            Assert.False(String.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
+            Assert.False(string.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
             var linkedEntry = (await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);

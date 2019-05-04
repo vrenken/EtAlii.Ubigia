@@ -129,7 +129,7 @@
                         e = new UnauthorizedInfrastructureOperationException(message);
                         break;
                     default:
-                        message = String.Format("Unable to {0} data on the client ({2}): {1}", method, error, result.StatusCode);
+                        message = string.Format("Unable to {0} data on the client ({2}): {1}", method, error, result.StatusCode);
                         e = new InvalidInfrastructureOperationException(message);
                         break;
                 }

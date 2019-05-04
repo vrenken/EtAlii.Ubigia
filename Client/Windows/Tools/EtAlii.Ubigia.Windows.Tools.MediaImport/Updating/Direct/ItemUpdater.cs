@@ -41,7 +41,7 @@
             {
                 case "Configuration":
                     _remoteStart =
-                        $"\"{String.Join("\"/\"", Configuration.RemoteName.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries))}\"";
+                        $"\"{string.Join("\"/\"", Configuration.RemoteName.Split(new[] {'/'}, StringSplitOptions.RemoveEmptyEntries))}\"";
                     _localStart = Configuration.LocalFolder;
                     break;
             }

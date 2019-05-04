@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using Xunit;
 
@@ -28,7 +27,7 @@
             Assert.IsType<TaggedPathSubjectPart>(absolutePathSubject.Parts.ElementAt(5));
             var taggedPathSubjectPart = absolutePathSubject.Parts.Skip(5).Cast<TaggedPathSubjectPart>().First();
             Assert.Equal("John", taggedPathSubjectPart.Name);
-            Assert.Equal(String.Empty, taggedPathSubjectPart.Tag);
+            Assert.Equal(string.Empty, taggedPathSubjectPart.Tag);
 
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
 
@@ -58,7 +57,7 @@
             Assert.IsType<TaggedPathSubjectPart>(absolutePathSubject.Parts.ElementAt(5));
             var taggedPathSubjectPart = absolutePathSubject.Parts.Skip(5).Cast<TaggedPathSubjectPart>().First();
             Assert.Equal("John", taggedPathSubjectPart.Name);
-            Assert.Equal(String.Empty, taggedPathSubjectPart.Tag);
+            Assert.Equal(string.Empty, taggedPathSubjectPart.Tag);
 
             Assert.IsType<AssignOperator>(sequence.Parts.Skip(1).First());
 
@@ -88,7 +87,7 @@
             Assert.IsType<TaggedPathSubjectPart>(absolutePathSubject.Parts.ElementAt(5));
             var taggedPathSubjectPart = absolutePathSubject.Parts.Skip(5).Cast<TaggedPathSubjectPart>().First();
             Assert.Equal("John", taggedPathSubjectPart.Name);
-            Assert.Equal(String.Empty, taggedPathSubjectPart.Tag);
+            Assert.Equal(string.Empty, taggedPathSubjectPart.Tag);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -112,7 +111,7 @@
             Assert.IsType<ConstantPathSubjectPart>(absolutePathSubject.Parts.ElementAt(3));
             Assert.IsType<TaggedPathSubjectPart>(absolutePathSubject.Parts.ElementAt(5));
             var taggedPathSubjectPart = absolutePathSubject.Parts.Skip(5).Cast<TaggedPathSubjectPart>().First();
-            Assert.Equal(String.Empty, taggedPathSubjectPart.Name);
+            Assert.Equal(string.Empty, taggedPathSubjectPart.Name);
             Assert.Equal("FirstName", taggedPathSubjectPart.Tag);
         }
 

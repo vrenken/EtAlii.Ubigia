@@ -25,7 +25,7 @@
 
         public ICommand ClearCommand { get; }
 
-        public Space SelectedSpace { get { return _selectedSpace; } set { SetProperty(ref _selectedSpace, value); } }
+        public Space SelectedSpace { get => _selectedSpace; set => SetProperty(ref _selectedSpace, value); }
         private Space _selectedSpace;
         public const string SelectedSpaceProperty = "SelectedSpace";
 
@@ -166,7 +166,7 @@
             switch (propertyName)
             {
                 case SelectedSpaceProperty:
-                    SpaceName = SelectedSpace != null ? SelectedSpace.Name : String.Empty;
+                    SpaceName = SelectedSpace != null ? SelectedSpace.Name : string.Empty;
                     SelectedSpaceTemplate = null;
                     break;
                 case SelectedAccountProperty:
@@ -194,7 +194,7 @@
         private void ClearSelection()
         {
             SelectedSpace = null;
-            SpaceName = String.Empty;
+            SpaceName = string.Empty;
         }
 
     }

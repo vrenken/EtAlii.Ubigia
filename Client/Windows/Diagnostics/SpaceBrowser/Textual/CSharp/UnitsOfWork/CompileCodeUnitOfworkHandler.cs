@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using System;
     using System.CodeDom.Compiler;
     using System.Linq;
     using EtAlii.xTechnology.Workflow;
@@ -27,7 +26,7 @@
 
             _compilerResults = _codeCompiler.Compile(viewModel.Source);
             viewModel.Errors = _codeCompilerResultsParser.Parse(_compilerResults);
-            viewModel.CanExecute = !viewModel.Errors.Any() && !String.IsNullOrWhiteSpace(viewModel.Source);
+            viewModel.CanExecute = !viewModel.Errors.Any() && !string.IsNullOrWhiteSpace(viewModel.Source);
         }
 
     }

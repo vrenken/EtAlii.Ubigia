@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
@@ -73,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Location:+=Europe/NL/Overijssel/Enschede/\"van Loenshof\"/32",
                 "Location:+=Europe/DE/\"Nordrhein-Westfalen\"/Ahlen/\"Luise-Hensel-Strasse\"/12",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);
@@ -87,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Vrenken/Peter# <= FirstName",
                 "person:Vrenken/Peter <= { Birthdate: 1978-07-28, Nickname: \'Pete\', Lives: 1 }"
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);
@@ -101,7 +100,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Vrenken/Tanja# <= FirstName",
                 "person:Vrenken/Tanja <= { Birthdate: 1980-03-04, Nickname: \'LadyL\', Lives: 1 }"
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
             await context.Process(addQuery);
         }
@@ -114,7 +113,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Vrenken/Arjan# <= FirstName",
                 "person:Vrenken/Arjan <= { Birthdate: 2015-08-13, Nickname: \'Bengel\', Lives: 1 }"
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
             await context.Process(addQuery);
         }
@@ -128,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Vrenken/Ida# <= FirstName",
                 "person:Vrenken/Ida <= { Birthdate: 2018-11-07, Nickname: \'Scheetje\', Lives: 1 }"
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
             await context.Process(addQuery);
         }
@@ -141,7 +140,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Doe/John# <= FirstName",
                 "person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }"
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);
@@ -155,7 +154,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Doe/Jane# <= FirstName",
                 "person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }"
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);
@@ -169,7 +168,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Stark/Tony# <= FirstName",
                 "person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);
@@ -227,7 +226,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 //                "person:Doe/John/Friends/",
 //                "person:Stark/Tony",
             };
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
 
 
             await context.Process(addQuery);

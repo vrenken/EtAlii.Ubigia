@@ -1,9 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using Moppet.Lapa;
     using Xunit;
-
 
     public class RegexPathSubjectPartParserTests
     {
@@ -32,7 +30,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal(wrappedPattern, result.Match.ToString());
         }
 
@@ -49,7 +47,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal(wrappedPattern, result.Match.ToString());
         }
 
@@ -67,7 +65,7 @@
 
             // Assert.
             Assert.True(result.Success);
-            Assert.Equal(String.Empty, result.Rest.ToString());
+            Assert.Equal(string.Empty, result.Rest.ToString());
             Assert.Equal(wrappedPattern, result.Match.ToString());
         }
 
@@ -151,7 +149,7 @@
 
                 // Assert.
                 Assert.True(result.Success);
-                Assert.Equal(String.Empty, result.Rest.ToString());
+                Assert.Equal(string.Empty, result.Rest.ToString());
                 Assert.Equal(wrappedPattern, result.Match.ToString());
             }
         }

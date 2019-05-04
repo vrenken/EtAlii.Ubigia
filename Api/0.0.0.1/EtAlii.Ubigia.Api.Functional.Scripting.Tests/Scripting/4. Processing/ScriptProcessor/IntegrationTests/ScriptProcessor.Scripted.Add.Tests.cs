@@ -51,7 +51,7 @@
                 $"<= /Location/{continent}"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"<= /Location/{continent}";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -95,7 +95,7 @@
                 $"<= /Location/{continent}/{country}/{region}/{city}+={location}"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -134,8 +134,8 @@
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -173,8 +173,8 @@
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}"
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+            var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -212,8 +212,8 @@
                 "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -252,7 +252,7 @@
                 $"<= /Location+={continent}/{country}/{region}/{city}/{location}"
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"<= /Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -287,8 +287,8 @@
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -322,8 +322,8 @@
                 "/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+            var selectQuery = string.Format("<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -357,8 +357,8 @@
                 "<= /Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}",
             };
 
-            var addQuery = String.Format(String.Join("\r\n", addQueries), now);
-            var selectQuery = String.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
+            var addQuery = string.Format(string.Join("\r\n", addQueries), now);
+            var selectQuery = string.Format("/Time/{0:yyyy}/{0:MM}/{0:dd}/{0:HH}/{0:mm}", now);
 
             var addScript = _parser.Parse(addQuery).Script;
             var selectScript = _parser.Parse(selectQuery).Script;
@@ -400,7 +400,7 @@
                 $"<= /Location/{continent}/{country}/{region}/{city} +={location}",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -443,7 +443,7 @@
                 $"<= /Location/{continent}/{country}/{region}/{city}+= {location}",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = $"/Location/{continent}/{country}/{region}/{city}/{location}";
 
             var addScript = _parser.Parse(addQuery).Script;

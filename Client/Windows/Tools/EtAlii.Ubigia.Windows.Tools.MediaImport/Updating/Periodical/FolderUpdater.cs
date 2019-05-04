@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
@@ -36,8 +35,8 @@
                 .ToArray();
 
             var remotePath = localRelativeParts.Any() ?
-                $"{String.Join("/", _stringEscaper.Escape(localRelativeParts))}/"
-                : String.Empty;
+                $"{string.Join("/", _stringEscaper.Escape(localRelativeParts))}/"
+                : string.Empty;
 
             DynamicNode[] remoteItems = null;
             var task = Task.Run(async () =>

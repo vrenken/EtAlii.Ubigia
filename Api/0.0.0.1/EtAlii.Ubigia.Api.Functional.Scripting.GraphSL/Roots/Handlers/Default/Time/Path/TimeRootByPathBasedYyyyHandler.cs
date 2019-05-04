@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
-            var year = Int32.Parse(match[0].ToString());
+            var year = int.Parse(match[0].ToString());
 
             var time = new DateTime(year, 1, 1);
             _timePreparer.Prepare(context, scope, time);

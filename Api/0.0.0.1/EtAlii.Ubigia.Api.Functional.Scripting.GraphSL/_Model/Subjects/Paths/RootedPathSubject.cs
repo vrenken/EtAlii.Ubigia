@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using System.Linq;
 
     public class RootedPathSubject : PathSubject
@@ -21,7 +20,7 @@
 
         public override string ToString()
         {
-            return Root + ":" + String.Concat(Parts.Select(part => part.ToString()));
+            return Root + ":" + string.Concat(Parts.Select(part => part.ToString()));
         }
 
     }

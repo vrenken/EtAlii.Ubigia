@@ -1,18 +1,14 @@
-﻿using Microsoft.CSharp.RuntimeBinder;
-
-namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
+    using Microsoft.CSharp.RuntimeBinder;
     using Xunit;
-    
 
-    
     public class ScriptProcessorNonRootedPathQueryTemporalIntegrationTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -53,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "/Person/Doe/John <= { Nickname: 'John' }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John{";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -89,7 +85,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "/Person/Doe/John <= { Nickname: 'John' }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John{{";
 
             var addScript = _parser.Parse(addQuery).Script;
@@ -133,7 +129,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "/Person/Doe/John <= { Nickname: 'John' }",
             };
 
-            var addQuery = String.Join("\r\n", addQueries);
+            var addQuery = string.Join("\r\n", addQueries);
             var selectQuery = "/Person/Doe/John{";
 
             var addScript = _parser.Parse(addQuery).Script;

@@ -34,11 +34,11 @@
 //            var accountName = _decoree.Configuration.AccountName
 //            var spaceName = _decoree.Configuration.Space
 
-//            var message = String.Format("Opening data connection (Address: [0] Account: [1] Space: [2])", address, accountName, spaceName)
+//            var message = string.Format("Opening data connection (Address: [0] Account: [1] Space: [2])", address, accountName, spaceName)
 //            _logger.Info(message)
 //            var start = Environment.TickCount
 //            await _decoree.Open()
-//            message = String.Format("Opened data connection (Address: [0] Account: [1] Space: [2] Duration: [3]ms)", address, accountName, spaceName, Environment.TickCount - start)
+//            message = string.Format("Opened data connection (Address: [0] Account: [1] Space: [2] Duration: [3]ms)", address, accountName, spaceName, Environment.TickCount - start)
 //            _logger.Info(message)
 //        ]
 //        public async Task Close()
@@ -47,11 +47,11 @@
 //            var accountName = _decoree.Configuration.AccountName
 //            var spaceName = _decoree.Configuration.Space
 
-//            var message = String.Format("Closing data connection (Address: [0] Account: [1] Space: [2])", address, accountName, spaceName)
+//            var message = string.Format("Closing data connection (Address: [0] Account: [1] Space: [2])", address, accountName, spaceName)
 //            _logger.Info(message)
 //            var start = Environment.TickCount
 //            await _decoree.Close()
-//            message = String.Format("Closed data connection (Address: [0] Account: [1] Space: [2] Duration: [3]ms)", address, accountName, spaceName, Environment.TickCount - start)
+//            message = string.Format("Closed data connection (Address: [0] Account: [1] Space: [2] Duration: [3]ms)", address, accountName, spaceName, Environment.TickCount - start)
 //            _logger.Info(message)
 //        ]
 //    ]

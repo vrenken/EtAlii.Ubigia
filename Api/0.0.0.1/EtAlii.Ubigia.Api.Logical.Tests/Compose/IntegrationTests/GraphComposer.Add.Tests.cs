@@ -35,7 +35,7 @@
             Assert.NotNull(addedEntry);
             var updatedEntry = (await fabric.Entries.GetRelated(entry.Id, EntryRelation.Update, scope)).SingleOrDefault();
             Assert.NotNull(updatedEntry);
-            Assert.False(String.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
+            Assert.False(string.IsNullOrEmpty(updatedEntry.Type)); // TODO: We somehow should be able to make this value empty.
             var linkedEntry = (await fabric.Entries.GetRelated(updatedEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);
@@ -78,7 +78,7 @@
             Assert.NotNull(addedEntry);
             var updatedFirstEntry = (await fabric.Entries.GetRelated(firstEntry.Id, EntryRelation.Update, scope)).SingleOrDefault();
             Assert.NotNull(updatedFirstEntry);
-            Assert.False(String.IsNullOrEmpty(updatedFirstEntry.Type)); // TODO: We somehow should be able to make this value empty.
+            Assert.False(string.IsNullOrEmpty(updatedFirstEntry.Type)); // TODO: We somehow should be able to make this value empty.
             var linkedEntry = (await fabric.Entries.GetRelated(updatedFirstEntry.Id, EntryRelation.Child, scope)).SingleOrDefault();
             Assert.NotNull(linkedEntry);
             Assert.Equal(EntryType.Add, linkedEntry.Type);

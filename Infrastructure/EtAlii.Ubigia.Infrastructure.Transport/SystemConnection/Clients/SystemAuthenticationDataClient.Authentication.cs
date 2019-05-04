@@ -12,7 +12,7 @@
         {
             string authenticationToken = await GetAuthenticationToken(password); // accountName, 
 
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
+            if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
                 _authenticationToken = authenticationToken;
             }
@@ -27,7 +27,7 @@
         {
             string authenticationToken = await GetAuthenticationToken(password); // accountName, 
 
-            if (!String.IsNullOrWhiteSpace(authenticationToken))
+            if (!string.IsNullOrWhiteSpace(authenticationToken))
             {
                 _authenticationToken = authenticationToken;
             }

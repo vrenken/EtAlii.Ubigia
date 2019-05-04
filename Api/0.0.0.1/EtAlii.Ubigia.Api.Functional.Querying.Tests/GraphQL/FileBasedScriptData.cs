@@ -1,11 +1,8 @@
-﻿using System.IO;
-using System.Linq;
-
-namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
+    using System.IO;
+    using System.Linq;
     using Xunit;
-
 
     public class FileBasedScriptData : TheoryData<string, string, string>
     {
@@ -29,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                     if (lines.Length > 1)
                     {
                         var title = lines[0];
-                        var query = String.Join("\n", lines.Skip(1).ToArray());
+                        var query = string.Join("\n", lines.Skip(1).ToArray());
                         Add(fileName, title, query);
                     }
                 }

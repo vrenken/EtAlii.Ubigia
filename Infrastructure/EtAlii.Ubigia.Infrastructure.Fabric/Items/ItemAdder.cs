@@ -10,7 +10,7 @@
         private bool CanAdd<T>(IList<T> items, T item)
             where T : class, IIdentifiable
         {
-            var canAdd = !String.IsNullOrWhiteSpace(item.Name);
+            var canAdd = !string.IsNullOrWhiteSpace(item.Name);
             if (canAdd)
             {
                 canAdd = item.Id == Guid.Empty;

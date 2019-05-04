@@ -5,7 +5,7 @@ public class Query
 {
     public IEnumerable<string> Execute()
     {
-        var v = String.Empty;
+        var v = string.Empty;
         return null;
     }
 }

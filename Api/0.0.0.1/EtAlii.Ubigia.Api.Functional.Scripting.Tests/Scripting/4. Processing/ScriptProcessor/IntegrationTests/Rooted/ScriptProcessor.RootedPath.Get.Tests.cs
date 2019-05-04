@@ -126,7 +126,7 @@
                 "/$var1/$var2"
             };
 
-            var query = String.Join("\r\n", queries);
+            var query = string.Join("\r\n", queries);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -160,7 +160,7 @@
                 "$var1/$var2"
             };
 
-            var query = String.Join("\r\n", queries);
+            var query = string.Join("\r\n", queries);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -195,7 +195,7 @@
                 "$var1/$var2"
             };
 
-            var query = String.Join("\r\n", queries);
+            var query = string.Join("\r\n", queries);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -359,7 +359,7 @@
                 "$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
+            var query = string.Format(string.Join("\r\n", queries), now);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -391,7 +391,7 @@
                 "$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
+            var query = string.Format(string.Join("\r\n", queries), now);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -425,7 +425,7 @@
                 "$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now, past);
+            var query = string.Format(string.Join("\r\n", queries), now, past);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -457,7 +457,7 @@
                 "$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
+            var query = string.Format(string.Join("\r\n", queries), now);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
@@ -489,7 +489,7 @@
                 "$var1"
             };
 
-            var query = String.Format(String.Join("\r\n", queries), now);
+            var query = string.Format(string.Join("\r\n", queries), now);
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()

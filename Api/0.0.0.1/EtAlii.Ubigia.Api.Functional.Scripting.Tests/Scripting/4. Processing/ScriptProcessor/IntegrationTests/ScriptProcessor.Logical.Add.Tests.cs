@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -98,7 +97,7 @@
             var selectQueryParts = selectQuery.Split(new[] {'/'}); 
             var variable = selectQueryParts[3];
             selectQueryParts[3] = "$variable";
-            selectQuery = String.Join("/", selectQueryParts);
+            selectQuery = string.Join("/", selectQueryParts);
             selectQuery = $"$variable <= \"{variable}\"\r\n{selectQuery}"; 
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();

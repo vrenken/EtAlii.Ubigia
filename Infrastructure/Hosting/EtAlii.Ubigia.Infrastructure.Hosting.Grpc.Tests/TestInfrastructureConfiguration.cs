@@ -11,7 +11,7 @@
 
         public static IInfrastructureConfiguration Create()
         {
-	        var address = new Uri(String.Format(TestAddressFormat, TestPort), UriKind.Absolute);
+	        var address = new Uri(string.Format(TestAddressFormat, TestPort), UriKind.Absolute);
 			var systemConnectionCreationProxy = new SystemConnectionCreationProxy();
             return new InfrastructureConfiguration(systemConnectionCreationProxy)
                 .Use("Unit test infrastructure", address);

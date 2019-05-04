@@ -49,7 +49,7 @@
                 {
                     viewModel.CanExecute = false;
                     viewModel.CanStop = true;
-                    viewModel.QueryResult = String.Empty;
+                    viewModel.QueryResult = string.Empty;
                     Task.Delay(100).Wait();
                 });
 

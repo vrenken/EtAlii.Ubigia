@@ -3,7 +3,6 @@
     using System;
     using System.Linq;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class ProfilingGraphSLScriptContext : IProfilingGraphSLScriptContext
     {
@@ -44,7 +43,7 @@
         public IObservable<SequenceProcessingResult> Process(string[] text, IScriptScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
-            profile.Script = String.Join(Environment.NewLine, text);
+            profile.Script = string.Join(Environment.NewLine, text);
 
             var result = _decoree.Process(text, scope);
 
@@ -56,7 +55,7 @@
         public IObservable<SequenceProcessingResult> Process(string[] text)
         {
             dynamic profile = Profiler.Begin("Process");
-            profile.Script = String.Join(Environment.NewLine, text);
+            profile.Script = string.Join(Environment.NewLine, text);
 
             var result = _decoree.Process(text);
 
@@ -80,7 +79,7 @@
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Script = text;
-            profile.Arguments = String.Join(", ", args.Select(a => a.ToString()));
+            profile.Arguments = string.Join(", ", args.Select(a => a.ToString()));
 
             var result = _decoree.Process(text, args);
 

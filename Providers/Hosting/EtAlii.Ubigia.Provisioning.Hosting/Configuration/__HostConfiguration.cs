@@ -49,15 +49,15 @@
 //        ]
 //        public IHostConfiguration Use(string address, string account, string password)
 //        [
-//            if [String.IsNullOrWhiteSpace[address]]
+//            if [string.IsNullOrWhiteSpace[address]]
 //            [
 //                throw new ArgumentException(nameof(address))
 //            ]
-//            if [String.IsNullOrWhiteSpace[account]]
+//            if [string.IsNullOrWhiteSpace[account]]
 //            [
 //                throw new ArgumentException(nameof(account))
 //            ]
-//            if [String.IsNullOrWhiteSpace[password]]
+//            if [string.IsNullOrWhiteSpace[password]]
 //            [
 //                throw new ArgumentException(nameof(password))
 //            ]

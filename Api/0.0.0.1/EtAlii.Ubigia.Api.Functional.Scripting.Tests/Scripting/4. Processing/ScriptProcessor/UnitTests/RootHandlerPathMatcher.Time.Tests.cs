@@ -44,15 +44,15 @@
 
             // Act.
             _output.WriteLine("Seed: " + seed);
-            _output.WriteLine("Template: " + String.Join("", template.Select(t => t.ToString())));
-            _output.WriteLine("Path: " + String.Join("", path.Select(t => t.ToString())));
+            _output.WriteLine("Template: " + string.Join("", template.Select(t => t.ToString())));
+            _output.WriteLine("Path: " + string.Join("", path.Select(t => t.ToString())));
 
             var match = await rootHandlerPathMatcher.Match(scriptScope, rootHandler, path);
 
             // Assert.
             Assert.True(match != MatchResult.NoMatch);
-            Assert.Equal(String.Join("", path.Select(m => m.ToString())), String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal(string.Join("", path.Select(m => m.ToString())), string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -85,8 +85,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2016/11/21/23/45/15", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2016/11/21/23/45/15", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -119,8 +119,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2013/01/02/03/04/05", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2013/01/02/03/04/05", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -153,8 +153,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2013/1/2/3/4/5", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2013/1/2/3/4/5", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
 
@@ -186,8 +186,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2013/01/02", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("/03/04/05", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2013/01/02", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("/03/04/05", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -217,8 +217,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2013/1/2", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("/3/4/5", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2013/1/2", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("/3/4/5", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -246,8 +246,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2013", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("/1/2/3/4/5", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2013", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("/1/2/3/4/5", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -277,8 +277,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/2013", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("/1/2/3/4/5", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("/2013", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("/1/2/3/4/5", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -303,8 +303,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("/2013", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("/2013", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -327,8 +327,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("2013", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("2013", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -351,8 +351,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("1", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("1", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -375,8 +375,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("12", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("12", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -399,8 +399,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("123", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("123", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -423,8 +423,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("1234", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("1234", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -447,8 +447,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("234", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("234", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -471,8 +471,8 @@
 
             // Assert.
             Assert.NotEqual(MatchResult.NoMatch, match);
-            Assert.Equal("34", String.Join("", match.Match.Select(m => m.ToString())));//, "Match")
-            Assert.Equal("", String.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
+            Assert.Equal("34", string.Join("", match.Match.Select(m => m.ToString())));//, "Match")
+            Assert.Equal("", string.Join("", match.Rest.Select(m => m.ToString())));//, "Rest")
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

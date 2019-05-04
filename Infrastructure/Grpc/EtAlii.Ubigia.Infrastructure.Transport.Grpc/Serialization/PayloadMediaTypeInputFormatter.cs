@@ -73,7 +73,7 @@
 //                    throw e1
 //                ]
 //                // Unfortunately IDictionary doesn't have TryGetValue()...
-//                var firstKey = String.Empty
+//                var firstKey = string.Empty
 //                foreach (DictionaryEntry item in dictionary)
 //                [
 //                    if [dictionary.Count == 1 && [item.Key as string] == "Value"]
