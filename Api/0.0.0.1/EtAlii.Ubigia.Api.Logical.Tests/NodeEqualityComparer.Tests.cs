@@ -116,7 +116,25 @@
             // Assert.
             Assert.True(equal);
         }
-                
+        
+
+        [Fact, Trait("Category", TestAssembly.Category)]
+        public void NodeEqualityComparer_Compare_Same_Reference_Type()
+        {
+            // Arrange.
+            var testIdentifierFactory = new TestIdentifierFactory();
+            var identifier = testIdentifierFactory.Create();
+            
+            var comparer = NodeEqualityComparer.Default;
+            var first = new Node(Entry.NewEntry(identifier));
+            
+            // Act.
+            var equal = comparer.Equals(first, first);
+            
+            // Assert.
+            Assert.True(equal);
+        }
+
         [Fact, Trait("Category", TestAssembly.Category)]
         public void NodeEqualityComparer_GetHashCode()
         {
