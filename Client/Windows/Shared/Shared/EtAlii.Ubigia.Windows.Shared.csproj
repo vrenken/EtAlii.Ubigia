@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net472</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
