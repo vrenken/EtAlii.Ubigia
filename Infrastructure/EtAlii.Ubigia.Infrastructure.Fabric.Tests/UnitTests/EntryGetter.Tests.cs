@@ -20,7 +20,7 @@
         }
         
         [Fact]
-        public void EntryGetter_Get_All()
+        public void EntryGetter_Get_All() 
         {
             // Arrange.
             var storage = CreateTestStorage();
