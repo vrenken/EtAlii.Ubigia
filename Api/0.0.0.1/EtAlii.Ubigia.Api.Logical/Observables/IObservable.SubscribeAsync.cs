@@ -27,7 +27,7 @@
             }
             return onError != null 
                 ? source.Subscribe(OnNext, onError) 
-                : source.Subscribe(OnNext);
+                : source.Subscribe(OnNext); 
         }
     }
 }
