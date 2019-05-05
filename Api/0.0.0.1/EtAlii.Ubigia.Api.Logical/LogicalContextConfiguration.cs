@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Fabric;
 
-    public class LogicalContextConfiguration : Configuration<ILogicalContextExtension, LogicalContextConfiguration>, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
+    public class LogicalContextConfiguration : Configuration<LogicalContextConfiguration>, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
     {
         IFabricContext IEditableLogicalContextConfiguration.Fabric { get => Fabric; set => Fabric = value; }
         public IFabricContext Fabric { get; private set; }

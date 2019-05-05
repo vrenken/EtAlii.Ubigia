@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
+    using System.Linq;
     using EtAlii.xTechnology.Diagnostics;
 
     public static class ScriptParserConfigurationDiagnosticsExtension 
@@ -9,7 +10,8 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
             var extensions = new IScriptParserExtension[]
             {
                 new DiagnosticsScriptParserExtension(diagnostics), 
-            };
+            }.Cast<IExtension>().ToArray();
+            
             return configuration.Use(extensions);
 
         }

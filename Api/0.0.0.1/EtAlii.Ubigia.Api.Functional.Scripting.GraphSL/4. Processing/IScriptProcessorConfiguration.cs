@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public interface IScriptProcessorConfiguration : IConfiguration<IScriptProcessorExtension, ScriptProcessorConfiguration>
+    public interface IScriptProcessorConfiguration : IConfiguration<ScriptProcessorConfiguration>
     {
         IScriptScope ScriptScope { get; }
 

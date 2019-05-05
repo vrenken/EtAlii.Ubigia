@@ -6,7 +6,7 @@
     /// Use this as a base class to create configurable and extensible subsystem factories. 
     /// </summary>
     public abstract class Factory<TInstance, TInstanceConfiguration, TExtension>
-        where TInstanceConfiguration : Configuration<TExtension, TInstanceConfiguration>
+        where TInstanceConfiguration : Configuration<TInstanceConfiguration>
         where TExtension: IExtension
     {
         public TInstance Create(TInstanceConfiguration configuration)
@@ -21,7 +21,7 @@
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.Extensions)
+            foreach (var extension in configuration.GetExtensions<TExtension>())
             {
                 extension.Initialize(container);
             }

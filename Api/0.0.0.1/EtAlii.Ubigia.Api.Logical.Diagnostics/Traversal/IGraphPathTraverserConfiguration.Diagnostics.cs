@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
+    using System.Linq;
     using EtAlii.xTechnology.Diagnostics;
 
     public static class IGraphPathTraverserConfigurationDiagnosticsExtension
@@ -9,7 +10,8 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
             var extensions = new IGraphPathTraverserExtension[]
             {
                 new DiagnosticsGraphPathTraverserExtension(diagnostics), 
-            };
+            }.Cast<IExtension>().ToArray();
+            
             return configuration.Use(extensions);
         }
     }

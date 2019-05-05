@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
 
-    public class GraphSLScriptContextConfiguration : Configuration<IGraphSLScriptContextExtension, GraphSLScriptContextConfiguration>, IGraphSLScriptContextConfiguration
+    public class GraphSLScriptContextConfiguration : Configuration<GraphSLScriptContextConfiguration>, IGraphSLScriptContextConfiguration
     {
         public ILogicalContext LogicalContext { get; private set; }
         
