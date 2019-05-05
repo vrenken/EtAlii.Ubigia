@@ -9,7 +9,7 @@ namespace EtAlii.Ubigia.Provisioning
     public static class ProvisioningConfigurationUseExtensions
     {
         
-        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, IProviderConfiguration[] providerConfigurations)
+        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, ProviderConfiguration[] providerConfigurations)
             where TProvisioningConfiguration : ProvisioningConfiguration
         {
             var editableConfiguration = (IEditableProvisioningConfiguration) configuration;
@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Provisioning
         }
         
         
-        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
+        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, Action<DataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
             where TProvisioningConfiguration : ProvisioningConfiguration
         {
             if (dataConnectionConfigurationFactoryExtension == null)
@@ -57,7 +57,7 @@ namespace EtAlii.Ubigia.Provisioning
             return configuration;
         }
 
-        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, Action<IManagementConnectionConfiguration> managementConnectionConfigurationFactoryExtension)
+        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, Action<ManagementConnectionConfiguration> managementConnectionConfigurationFactoryExtension)
             where TProvisioningConfiguration : ProvisioningConfiguration
         {
             if (managementConnectionConfigurationFactoryExtension == null)
@@ -74,7 +74,7 @@ namespace EtAlii.Ubigia.Provisioning
             return configuration;
         }
 
-        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, Action<IGraphSLScriptContextConfiguration> scriptContextConfigurationFactoryExtension)
+        public static TProvisioningConfiguration Use<TProvisioningConfiguration>(this TProvisioningConfiguration configuration, Action<GraphSLScriptContextConfiguration> scriptContextConfigurationFactoryExtension)
             where TProvisioningConfiguration : ProvisioningConfiguration
         {
             if (scriptContextConfigurationFactoryExtension == null)

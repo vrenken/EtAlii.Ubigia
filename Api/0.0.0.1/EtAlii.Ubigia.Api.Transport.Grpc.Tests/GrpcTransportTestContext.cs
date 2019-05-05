@@ -1,15 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Grpc.Tests
 {
-	using System;
-	using System.Threading.Tasks;
-	using EtAlii.Ubigia.Api.Transport.Diagnostics;
+    using System;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
-	using EtAlii.Ubigia.Api.Transport.Grpc;
-	using EtAlii.Ubigia.Api.Transport.Management.Grpc;
-	using EtAlii.Ubigia.Api.Transport.Tests;
-	using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
-	using global::Grpc.Core;
+    using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+    using EtAlii.Ubigia.Api.Transport.Tests;
+    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using global::Grpc.Core;
 
     public class GrpcTransportTestContext : TransportTestContextBase<InProcessInfrastructureHostTestContext>
     {
@@ -20,7 +19,7 @@
 			var grpcChannelFactory = new Func<Uri, Channel>((channelAddress) => Context.CreateGrpcInfrastructureChannel(channelAddress));
             
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            .Use(GrpcTransportProvider.Create(grpcChannelFactory))
+	            .UseTransport(GrpcTransportProvider.Create(grpcChannelFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);

@@ -10,8 +10,8 @@
 
     public class ProvisioningConfiguration : Configuration<ProvisioningConfiguration>, IProvisioningConfiguration, IEditableProvisioningConfiguration
     {
-        IProviderConfiguration[] IEditableProvisioningConfiguration.ProviderConfigurations { get => ProviderConfigurations; set => ProviderConfigurations = value; }
-        public IProviderConfiguration[] ProviderConfigurations { get; private set; }
+        ProviderConfiguration[] IEditableProvisioningConfiguration.ProviderConfigurations { get => ProviderConfigurations; set => ProviderConfigurations = value; }
+        public ProviderConfiguration[] ProviderConfigurations { get; private set; }
 
         Uri IEditableProvisioningConfiguration.Address { get => Address; set => Address = value; }
         public Uri Address { get; private set; }
@@ -22,14 +22,14 @@
         string IEditableProvisioningConfiguration.Password { get => Password; set => Password = value; }
         public string Password { get; private set; }
 
-        Action<IManagementConnectionConfiguration>[] IEditableProvisioningConfiguration.ManagementConnectionConfigurationFactoryExtensions { get => _managementConnectionConfigurationFactoryExtensions; set => _managementConnectionConfigurationFactoryExtensions = value; }
-        private Action<IManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;
+        Action<ManagementConnectionConfiguration>[] IEditableProvisioningConfiguration.ManagementConnectionConfigurationFactoryExtensions { get => _managementConnectionConfigurationFactoryExtensions; set => _managementConnectionConfigurationFactoryExtensions = value; }
+        private Action<ManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;
 
-        Action<IDataConnectionConfiguration>[] IEditableProvisioningConfiguration.DataConnectionConfigurationFactoryExtensions { get => _dataConnectionConfigurationFactoryExtensions; set => _dataConnectionConfigurationFactoryExtensions = value; }
-        private Action<IDataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions;
+        Action<DataConnectionConfiguration>[] IEditableProvisioningConfiguration.DataConnectionConfigurationFactoryExtensions { get => _dataConnectionConfigurationFactoryExtensions; set => _dataConnectionConfigurationFactoryExtensions = value; }
+        private Action<DataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions;
         
-        Action<IGraphSLScriptContextConfiguration>[] IEditableProvisioningConfiguration.ScriptContextConfigurationFactoryExtensions { get => _scriptContextConfigurationFactoryExtensions; set => _scriptContextConfigurationFactoryExtensions = value; }
-        private Action<IGraphSLScriptContextConfiguration>[] _scriptContextConfigurationFactoryExtensions;
+        Action<GraphSLScriptContextConfiguration>[] IEditableProvisioningConfiguration.ScriptContextConfigurationFactoryExtensions { get => _scriptContextConfigurationFactoryExtensions; set => _scriptContextConfigurationFactoryExtensions = value; }
+        private Action<GraphSLScriptContextConfiguration>[] _scriptContextConfigurationFactoryExtensions;
 
         Func<ITransportProvider> IEditableProvisioningConfiguration.TransportProviderFactory { get => _transportProviderFactory; set => _transportProviderFactory = value; }
         private Func<ITransportProvider> _transportProviderFactory;
@@ -39,10 +39,10 @@
 
         public ProvisioningConfiguration()
         {
-            ProviderConfigurations = new IProviderConfiguration[0];
-            _dataConnectionConfigurationFactoryExtensions = new Action<IDataConnectionConfiguration>[0];
-            _managementConnectionConfigurationFactoryExtensions = new Action<IManagementConnectionConfiguration>[0];
-            _scriptContextConfigurationFactoryExtensions = new Action<IGraphSLScriptContextConfiguration>[0];
+            ProviderConfigurations = Array.Empty<ProviderConfiguration>();
+            _dataConnectionConfigurationFactoryExtensions = Array.Empty<Action<DataConnectionConfiguration>>();
+            _managementConnectionConfigurationFactoryExtensions = Array.Empty<Action<ManagementConnectionConfiguration>>();
+            _scriptContextConfigurationFactoryExtensions = Array.Empty<Action<GraphSLScriptContextConfiguration>>();
         }
 
         public IStorageTransportProvider CreateStorageTransportProvider()
@@ -55,7 +55,7 @@
             return _transportProviderFactory();
         }
 
-        public IDataConnectionConfiguration CreateDataConnectionConfiguration()
+        public DataConnectionConfiguration CreateDataConnectionConfiguration()
         {
             var configuration = new DataConnectionConfiguration();
             foreach (var extension in _dataConnectionConfigurationFactoryExtensions)
@@ -65,7 +65,7 @@
             return configuration;
         }
 
-        public IManagementConnectionConfiguration CreateManagementConnectionConfiguration()
+        public ManagementConnectionConfiguration CreateManagementConnectionConfiguration()
         {
             var configuration = new ManagementConnectionConfiguration();
             foreach (var extension in _managementConnectionConfigurationFactoryExtensions)

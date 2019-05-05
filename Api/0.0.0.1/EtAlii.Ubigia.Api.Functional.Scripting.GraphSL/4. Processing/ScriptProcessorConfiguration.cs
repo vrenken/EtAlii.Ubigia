@@ -25,23 +25,13 @@
 
         public ScriptProcessorConfiguration Use(IScriptScope scope)
         {
-            if (scope == null)
-            {
-                throw new ArgumentException("scope");
-            }
-
-            ScriptScope = scope;
+            ScriptScope = scope ?? throw new ArgumentException("scope");
             return this;
         }
 
         public ScriptProcessorConfiguration Use(ILogicalContext logicalContext)
         {
-            if (logicalContext == null)
-            {
-                throw new ArgumentException("logicalContext");
-            }
-
-            LogicalContext = logicalContext;
+            LogicalContext = logicalContext ?? throw new ArgumentException("logicalContext");
             return this;
         }
 

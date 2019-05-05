@@ -1,26 +1,29 @@
 namespace EtAlii.Ubigia.Provisioning.Diagnostics
 {
-    using EtAlii.Ubigia.Api.Transport.Diagnostics;
+    using System.Linq;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
+    using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class ProvidisioningConfigurationDiagnosticsExtension
+    public static class ProvisioningConfigurationDiagnosticsExtension
     {
-        public static IProvisioningConfiguration Use(this IProvisioningConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static ProvisioningConfiguration Use(this ProvisioningConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IProvisioningExtension[]
             {
                 new DiagnosticsProvisioningExtension(diagnostics), 
-            };
+            }.Cast<IExtension>().ToArray();
+            
             return configuration
                 .Use(extensions)
-                .Use((IDataConnectionConfiguration c) => c.Use(diagnostics))
-                .Use((IManagementConnectionConfiguration c) => c.Use(diagnostics))
-                .Use((IGraphSLScriptContextConfiguration c) => c.Use(diagnostics));
+                .Use((DataConnectionConfiguration c) => c.Use(diagnostics))
+                .Use((ManagementConnectionConfiguration c) => c.Use(diagnostics))
+                .Use((GraphSLScriptContextConfiguration c) => c.Use(diagnostics));
         }
     }
 }

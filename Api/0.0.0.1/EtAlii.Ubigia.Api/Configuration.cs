@@ -13,17 +13,17 @@
         /// <summary>
         /// The extensions added to this configuration.
         /// </summary>
-        private IExtension[] _extensions;
+        protected IExtension[] Extensions { get; private set; }
         
         protected Configuration()
         {
-            _extensions = Array.Empty<IExtension>();
+            Extensions = Array.Empty<IExtension>();
         }
 
         public TExtension[] GetExtensions<TExtension>()
             where TExtension : IExtension
         {
-            return _extensions.OfType<TExtension>().ToArray();
+            return Extensions.OfType<TExtension>().ToArray();
         }
 
 
@@ -40,8 +40,8 @@
                 throw new ArgumentException(nameof(extensions));
             }
 
-            _extensions = extensions
-                .Concat(_extensions)
+            Extensions = extensions
+                .Concat(Extensions)
                 .Distinct()
                 .ToArray();
             return (TConfiguration)this;

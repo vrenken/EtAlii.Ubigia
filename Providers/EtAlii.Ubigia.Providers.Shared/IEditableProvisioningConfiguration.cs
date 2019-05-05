@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Provisioning
 
     public interface IEditableProvisioningConfiguration
     {
-        IProviderConfiguration[] ProviderConfigurations { get; set; }
+        ProviderConfiguration[] ProviderConfigurations { get; set; }
 
         Uri Address { get; set; }
 
@@ -15,9 +15,9 @@ namespace EtAlii.Ubigia.Provisioning
 
         string Password { get; set; }
 
-        Action<IManagementConnectionConfiguration>[] ManagementConnectionConfigurationFactoryExtensions { get; set; }
-        Action<IDataConnectionConfiguration>[] DataConnectionConfigurationFactoryExtensions { get; set; }
-        Action<IGraphSLScriptContextConfiguration>[] ScriptContextConfigurationFactoryExtensions { get; set; }
+        Action<ManagementConnectionConfiguration>[] ManagementConnectionConfigurationFactoryExtensions { get; set; }
+        Action<DataConnectionConfiguration>[] DataConnectionConfigurationFactoryExtensions { get; set; }
+        Action<GraphSLScriptContextConfiguration>[] ScriptContextConfigurationFactoryExtensions { get; set; }
         
         Func<ITransportProvider> TransportProviderFactory { get; set; }
         Func<IStorageTransportProvider> StorageTransportProviderFactory { get; set; }

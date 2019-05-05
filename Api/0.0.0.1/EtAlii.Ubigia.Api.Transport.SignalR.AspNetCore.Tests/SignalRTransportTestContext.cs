@@ -21,7 +21,7 @@
 
 			var connectionConfiguration = new DataConnectionConfiguration()
 	            //.Use(SignalRTransportProvider.Create(signalRHttpClient))
-	            .Use(SignalRTransportProvider.Create(httpMessageHandlerFactory))
+	            .UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);

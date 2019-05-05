@@ -50,7 +50,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 			var connectionConfiguration = new DataConnectionConfiguration()
                 .Use(diagnostics)
 				//.Use(SignalRTransportProvider.Create(signalRHttpClient))
-				.Use(SignalRTransportProvider.Create(httpMessageHandlerFactory))
+				.UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(Context.DataServiceAddress)
                 .Use(accountName, spaceName, accountPassword);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);

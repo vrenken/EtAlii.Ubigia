@@ -11,11 +11,5 @@ namespace EtAlii.Ubigia.Api.Transport
 
         ITransportProvider TransportProvider { get; }
         Func<IDataConnection> FactoryExtension { get; }
-
-        IDataConnectionConfiguration Use(Func<IDataConnection> factoryExtension);
-        IDataConnectionConfiguration Use(ITransportProvider transportProvider);
-        IDataConnectionConfiguration Use(Uri address);
-        IDataConnectionConfiguration Use(string accountName, string space, string password);
-
     }
 }

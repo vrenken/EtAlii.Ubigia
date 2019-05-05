@@ -20,7 +20,7 @@
 	        var client = Context.CreateRestInfrastructureClient();
 
 			var connectionConfiguration = new DataConnectionConfiguration()
-	            .Use(WebApiTransportProvider.Create(client))
+	            .UseTransport(WebApiTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
                 .Use(diagnostics);

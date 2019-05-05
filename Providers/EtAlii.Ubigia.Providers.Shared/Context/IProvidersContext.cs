@@ -9,9 +9,9 @@
     {
         IGraphSLScriptContext SystemScriptContext { get; }
         IManagementConnection ManagementConnection { get; }
-        IProviderConfiguration[] ProviderConfigurations { get; }
+        ProviderConfiguration[] ProviderConfigurations { get; }
 
-        void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory);
+        void Initialize(ProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory);
 
         IGraphSLScriptContext CreateScriptContext(IDataConnection connection);
     }
