@@ -51,14 +51,14 @@
                 string.IsNullOrWhiteSpace(space))
             {
                 var connectionConfiguration = new DataConnectionConfiguration()
-                    .Use(diagnostics)
+                    .UseTransportDiagnostics(diagnostics)
                     .UseDialog(ConnectionDialogOptions.ShowAlways, address, account, password, space);
                 connection = factory.CreateForProfiling(connectionConfiguration);
             }
             else
             {
                 var connectionConfiguration = new DataConnectionConfiguration()
-                    .Use(diagnostics)
+                    .UseTransportDiagnostics(diagnostics)
                     .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, space, password);
                 connection = factory.CreateForProfiling(connectionConfiguration);

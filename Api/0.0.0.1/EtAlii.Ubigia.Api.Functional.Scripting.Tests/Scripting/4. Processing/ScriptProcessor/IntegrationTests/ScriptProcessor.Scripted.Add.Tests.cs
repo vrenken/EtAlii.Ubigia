@@ -26,7 +26,7 @@
         {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
@@ -58,7 +58,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -102,7 +102,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -141,7 +141,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -180,7 +180,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -219,7 +219,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -259,7 +259,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -294,7 +294,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -329,7 +329,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -364,7 +364,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -407,7 +407,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -450,7 +450,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -478,7 +478,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -507,7 +507,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -535,7 +535,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -561,7 +561,7 @@
             var addScript = _parser.Parse(addQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -584,7 +584,7 @@
             var selectScript = _parser.Parse(selectQuery).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);

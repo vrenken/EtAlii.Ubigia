@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             _testContext = testContext;
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
         }
         public void Dispose()
@@ -39,7 +39,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -86,7 +86,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -110,7 +110,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -133,7 +133,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -156,7 +156,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -193,7 +193,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -228,7 +228,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);

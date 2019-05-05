@@ -4,7 +4,7 @@
 
 //    public static class IDataConnectionConfigurationDiagnosticsExtension
 //    [
-//        public static DataConnectionConfiguration Use(this DataConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+//        public static DataConnectionConfiguration UseTransportDiagnostics(this DataConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
 //        [
 //            var extensions = new IDataConnectionExtension[]
 //            [

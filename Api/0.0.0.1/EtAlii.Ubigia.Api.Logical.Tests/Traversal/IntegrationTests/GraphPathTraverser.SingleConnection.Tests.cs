@@ -38,7 +38,7 @@
         {
             // Arrange.
             var configuration = new GraphPathTraverserConfiguration()
-            .Use(_testContext.DiagnosticsConfiguration)
+            .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
             .Use(_fabric);
 
             // Act.
@@ -64,7 +64,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -104,7 +104,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-            .Use(_testContext.DiagnosticsConfiguration)
+            .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
             .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -148,7 +148,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -188,7 +188,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -233,7 +233,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -274,7 +274,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -319,7 +319,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -361,7 +361,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(_fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();

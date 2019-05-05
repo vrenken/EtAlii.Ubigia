@@ -30,7 +30,7 @@
             _diagnostics = TestDiagnostics.Create();
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var configuration = new LinqQueryContextConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(_logicalContext);
             _context = new LinqQueryContextFactory().Create(configuration);
                 

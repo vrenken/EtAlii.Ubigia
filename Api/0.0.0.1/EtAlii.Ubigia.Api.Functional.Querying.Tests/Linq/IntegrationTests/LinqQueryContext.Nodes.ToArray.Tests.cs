@@ -33,7 +33,7 @@
             var path = $"{countryPath}/";
             var configuration = new LinqQueryContextConfiguration()
                                 .Use(logicalContext)
-                                .Use(_testContext.Diagnostics);
+                                .UseFunctionalDiagnostics(_testContext.Diagnostics);
             var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
 
@@ -55,7 +55,7 @@
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
             var path = $"{countryPath}/";
             var configuration = new LinqQueryContextConfiguration()
-                .Use(_testContext.Diagnostics)
+                .UseFunctionalDiagnostics(_testContext.Diagnostics)
                 .Use(logicalContext);
             var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
@@ -79,7 +79,7 @@
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
             var path = $"{countryPath}/";
             var configuration = new LinqQueryContextConfiguration()
-                .Use(_testContext.Diagnostics)
+                .UseFunctionalDiagnostics(_testContext.Diagnostics)
                 .Use(logicalContext);
             var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);

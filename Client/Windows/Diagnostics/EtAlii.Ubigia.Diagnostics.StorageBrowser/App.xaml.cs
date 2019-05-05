@@ -48,7 +48,7 @@
                 string.IsNullOrWhiteSpace(password))
             {
                 var configuration = new ManagementConnectionConfiguration()
-                    .Use(diagnostics)
+                    .UseTransportDiagnostics(diagnostics)
                     .UseDialog(ConnectionDialogOptions.ShowAlways, address, account, password);
                 connection = factory.Create(configuration);
             }
@@ -57,7 +57,7 @@
                 var configuration = new ManagementConnectionConfiguration()
                     .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, password)
-                    .Use(diagnostics);
+                    .UseTransportDiagnostics(diagnostics);
                 connection = factory.Create(configuration);
                 try
                 {

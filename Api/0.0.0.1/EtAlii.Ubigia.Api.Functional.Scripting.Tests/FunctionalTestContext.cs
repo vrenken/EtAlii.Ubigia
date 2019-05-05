@@ -37,7 +37,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(logicalContext)
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
             return new GraphSLScriptContextFactory().Create(configuration);
         }
         
@@ -45,7 +45,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var configuration = new GraphQLQueryContextConfiguration()
                 .Use(logicalContext)
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
             return new GraphQLQueryContextFactory().Create(configuration);
         }
         

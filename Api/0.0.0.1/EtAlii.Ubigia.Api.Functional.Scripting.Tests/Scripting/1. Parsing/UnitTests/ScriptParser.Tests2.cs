@@ -7,8 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
 
-
-    
     public class ScriptParserTests2 : IDisposable
     {
         private IScriptParser _parser;
@@ -17,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(diagnostics);
+                .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
         }
 

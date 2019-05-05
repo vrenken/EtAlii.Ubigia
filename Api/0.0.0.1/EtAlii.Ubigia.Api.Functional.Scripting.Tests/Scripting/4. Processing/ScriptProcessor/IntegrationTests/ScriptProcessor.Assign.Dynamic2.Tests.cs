@@ -24,7 +24,7 @@
         {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
@@ -62,7 +62,7 @@
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -114,7 +114,7 @@
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -167,7 +167,7 @@
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
 
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -222,7 +222,7 @@
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
 
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -276,7 +276,7 @@
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
 
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -330,7 +330,7 @@
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -385,7 +385,7 @@
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -440,7 +440,7 @@
             scope.Variables.Add("first", new ScopeVariable(firstVariable, "Variable"));
             scope.Variables.Add("second", new ScopeVariable(secondVariable, "Variable"));
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);

@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
@@ -16,12 +15,12 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
             var fabricContext = new FabricContextFactory().Create(fabricContextConfiguration);
 
             var logicalContextConfiguration = new LogicalContextConfiguration()
-                .Use(diagnostics)
+                .UseLogicalDiagnostics(diagnostics)
                 .Use(fabricContext);
             var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 
             var dataContextConfiguration = new GraphSLScriptContextConfiguration()
-                .Use(diagnostics)
+                .UseFunctionalDiagnostics(diagnostics)
                 .Use(logicalContext);
             return factory.Create(dataContextConfiguration);
         }

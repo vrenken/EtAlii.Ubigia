@@ -25,7 +25,7 @@
             // Arrange.
             var fabric = await _testContext.FabricTestContext.CreateFabricContext(true);
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
 
             // Act.
@@ -51,7 +51,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -92,7 +92,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -138,7 +138,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -179,7 +179,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -226,7 +226,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -268,7 +268,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -314,7 +314,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();
@@ -357,7 +357,7 @@
             var hierarchy = hierarchyResult.Item2;
 
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
             var traverser = new GraphPathTraverserFactory().Create(configuration);
             var graphPathBuilder = (IGraphPathBuilder)new GraphPathBuilder();

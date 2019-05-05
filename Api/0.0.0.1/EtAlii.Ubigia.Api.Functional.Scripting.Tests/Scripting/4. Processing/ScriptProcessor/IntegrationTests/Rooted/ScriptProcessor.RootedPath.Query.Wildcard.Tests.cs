@@ -22,7 +22,7 @@
         public async Task InitializeAsync()
         {
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(_testContext.Diagnostics);
+                .UseFunctionalDiagnostics(_testContext.Diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }
@@ -55,7 +55,7 @@
 
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_testContext.Diagnostics)
+                .UseFunctionalDiagnostics(_testContext.Diagnostics)
                 .Use(scope)
                 .Use(_logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);

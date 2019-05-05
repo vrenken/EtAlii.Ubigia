@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 			var httpMessageHandlerFactory = new Func<HttpMessageHandler>(() => Context.Host.Server.CreateHandler());
 
 			var connectionConfiguration = new DataConnectionConfiguration()
-                .Use(diagnostics)
+                .UseTransportDiagnostics(diagnostics)
 				//.Use(SignalRTransportProvider.Create(signalRHttpClient))
 				.UseTransport(SignalRTransportProvider.Create(httpMessageHandlerFactory))
                 .Use(Context.DataServiceAddress)
@@ -69,7 +69,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
 			var connectionConfiguration = new ManagementConnectionConfiguration()
 	            //.Use(SignalRStorageTransportProvider.Create(signalRHttpClient))
 				.Use(SignalRStorageTransportProvider.Create(httpMessageHandlerFactory))
-                .Use(diagnostics)
+                .UseTransportDiagnostics(diagnostics)
                 .Use(Context.ManagementServiceAddress)
                 .Use(Context.TestAccountName, Context.TestAccountPassword);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);

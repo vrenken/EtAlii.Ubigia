@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Fabric.Diagnostics
 {
-    public static class ProfilingFabricContextFactoryExtension
+    public static class FabricContextConfigurationUseDiagnostics
     {
         public static IProfilingFabricContext CreateForProfiling(this FabricContextFactory fabricContextFactory, FabricContextConfiguration configuration)
         {

@@ -8,8 +8,6 @@
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
-
-    
     public class ScriptProcessorNonRootedPathFunctionRename : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
     {
         private IScriptParser _parser;
@@ -25,7 +23,7 @@
         {
             _diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
             return Task.CompletedTask;
         }
@@ -45,7 +43,7 @@
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -71,7 +69,7 @@
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -97,7 +95,7 @@
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
@@ -123,7 +121,7 @@
             var script = _parser.Parse(query).Script;
             var scope = new ScriptScope();
             var configuration = new ScriptProcessorConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(logicalContext);
             var processor = new ScriptProcessorFactory().Create(configuration);
