@@ -5,6 +5,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
 
     public interface IFabricTestContext
     {
+        Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation);
         Task<IFabricContext> CreateFabricContext(bool openOnCreation);
         Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth);//, out string[] hierarchy)
 

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Tests;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
@@ -11,33 +10,32 @@
     {
         private readonly FabricUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
-        private IFabricContext _fabricContext;
 
         public ProfilingLogicalContextTests(FabricUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
-        public async Task InitializeAsync()
+        public Task InitializeAsync()
         {
             _diagnostics = TestDiagnostics.Create();
-            _fabricContext = await _testContext.FabricTestContext.CreateFabricContext(true);
+            return Task.CompletedTask;
         }
 
         public Task DisposeAsync()
         {
-            _fabricContext.Dispose();
-            _fabricContext = null;
+            //_fabricContext.Dispose();
+            //_fabricContext = null;
             _diagnostics = null;
             return Task.CompletedTask;
         }
 
         [Fact]
-        public void ProfilingLogicalContext_Create_01()
+        public async Task ProfilingLogicalContext_Create_01()
         {
             // Arrange.
-            var configuration = new LogicalContextConfiguration()
-                .Use(_fabricContext);
+            var configuration = new LogicalContextConfiguration();
+            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true);
 
             // Act.
             var context = new LogicalContextFactory().CreateForProfiling(configuration);
@@ -47,27 +45,28 @@
         }
 
         [Fact]
-        public void ProfilingLogicalContext_Create_02()
+        public async Task ProfilingLogicalContext_Create_02()
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .UseLogicalDiagnostics(_diagnostics)
-                .Use(_fabricContext);
-
-            // Act.
-            var context = new LogicalContextFactory().CreateForProfiling(configuration);
-
-            // Assert.
-            Assert.NotNull(context);
-        }
-
-        [Fact]
-        public void ProfilingLogicalContext_Create_03()
-        {
-            // Arrange.
-            var configuration = new LogicalContextConfiguration()
-                .Use(_fabricContext)
                 .UseLogicalDiagnostics(_diagnostics);
+            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true);
+
+
+            // Act.
+            var context = new LogicalContextFactory().CreateForProfiling(configuration);
+
+            // Assert.
+            Assert.NotNull(context);
+        }
+
+        [Fact]
+        public async Task ProfilingLogicalContext_Create_03()
+        {
+            // Arrange.
+            var configuration = new LogicalContextConfiguration()
+                .UseLogicalDiagnostics(_diagnostics);
+            await _testContext.FabricTestContext.ConfigureFabricContextConfiguration(configuration, true);
 
             // Act.
             var context = new LogicalContextFactory().CreateForProfiling(configuration);

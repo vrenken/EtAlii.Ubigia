@@ -5,21 +5,17 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
-    
+
     public static class GraphSLScriptContextFactoryCreateContextExtension
     {
         public static IGraphSLScriptContext Create(this GraphSLScriptContextFactory factory, IDataConnection connection, bool useCaching = true)
         {
-            var fabricContextConfiguration = new FabricContextConfiguration()
-                .UseTraversalCaching(useCaching)
-                .Use(connection);
-            var fabricContext = new FabricContextFactory().Create(fabricContextConfiguration);
-
-            var logicalContextConfiguration = new LogicalContextConfiguration()
+            var configuration = new LogicalContextConfiguration()
                 .UseCaching(useCaching)
                 //.Use(_diagnostics)
-                .Use(fabricContext);
-            var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
+                .UseTraversalCaching(useCaching)
+                .Use(connection);
+            var logicalContext = new LogicalContextFactory().Create(configuration);
 
             var dataContextConfiguration = new GraphSLScriptContextConfiguration()
                 //.Use(_diagnostics)

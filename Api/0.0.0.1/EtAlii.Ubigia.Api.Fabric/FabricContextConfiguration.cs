@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Transport;
 
     public class FabricContextConfiguration : Configuration, IFabricContextConfiguration, IEditableFabricContextConfiguration
-    {
+    { 
         IDataConnection IEditableFabricContextConfiguration.Connection { get => Connection; set => Connection = value; }
         public IDataConnection Connection {get; private set; }
 

@@ -2,10 +2,10 @@
 {
     using EtAlii.Ubigia.Api.Fabric;
 
-    public class LogicalContextConfiguration : Configuration, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
-    {
-        IFabricContext IEditableLogicalContextConfiguration.Fabric { get => Fabric; set => Fabric = value; }
-        public IFabricContext Fabric { get; private set; }
+    public class LogicalContextConfiguration : FabricContextConfiguration, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
+    { 
+//        IFabricContext IEditableLogicalContextConfiguration.Fabric { get => Fabric; set => Fabric = value; }
+//        public IFabricContext Fabric { get; private set; }
 
         bool IEditableLogicalContextConfiguration.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
         public bool CachingEnabled { get; private set; }

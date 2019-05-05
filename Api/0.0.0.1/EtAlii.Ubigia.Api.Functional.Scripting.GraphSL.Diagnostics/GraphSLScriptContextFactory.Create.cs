@@ -10,14 +10,11 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
     {
         public static IGraphSLScriptContext Create(this GraphSLScriptContextFactory factory, IDataConnection connection, IDiagnosticsConfiguration diagnostics)
         {
-            var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(connection);
-            var fabricContext = new FabricContextFactory().Create(fabricContextConfiguration);
-
-            var logicalContextConfiguration = new LogicalContextConfiguration()
+            var configuration = new LogicalContextConfiguration()
                 .UseLogicalDiagnostics(diagnostics)
-                .Use(fabricContext);
-            var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
+                .Use(connection);
+            
+            var logicalContext = new LogicalContextFactory().Create(configuration);
 
             var dataContextConfiguration = new GraphSLScriptContextConfiguration()
                 .UseFunctionalDiagnostics(diagnostics)

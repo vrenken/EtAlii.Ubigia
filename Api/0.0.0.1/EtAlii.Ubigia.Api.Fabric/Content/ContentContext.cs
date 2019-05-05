@@ -10,6 +10,7 @@
 
         internal ContentContext(IDataConnection connection)
         {
+            if (connection == null) return; // In the new setup the LogicalContext and IDataConnection are instantiated at the same time.
             _connection = connection;
             _connection.Content.Notifications.Updated += OnUpdated;
             _connection.Content.Notifications.Stored += OnStored;
