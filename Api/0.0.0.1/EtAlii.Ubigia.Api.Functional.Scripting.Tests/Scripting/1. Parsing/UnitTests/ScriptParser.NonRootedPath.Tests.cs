@@ -5,8 +5,6 @@
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
     using Xunit;
 
-
-    
     public partial class ScriptParserNonRootedPathTests : IDisposable
     {
         private IScriptParser _parser;
@@ -41,7 +39,7 @@
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(diagnostics);
+                .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
         }
 

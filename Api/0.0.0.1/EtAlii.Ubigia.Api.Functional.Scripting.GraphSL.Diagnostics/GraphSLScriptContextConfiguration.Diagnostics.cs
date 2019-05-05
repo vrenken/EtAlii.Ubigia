@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 
     public static class GraphSLScriptContextConfigurationDiagnosticsExtension 
     {
-        public static GraphSLScriptContextConfiguration Use(this GraphSLScriptContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static GraphSLScriptContextConfiguration UseFunctionalDiagnostics(this GraphSLScriptContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IGraphSLScriptContextExtension[]
             {

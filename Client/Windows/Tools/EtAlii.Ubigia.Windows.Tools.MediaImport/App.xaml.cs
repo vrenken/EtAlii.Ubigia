@@ -24,7 +24,7 @@
             var diagnostics = CreateDiagnosticsConfiguration();
             var connectionConfiguration = new DataConnectionConfiguration()
                 .UseTransport(SignalRTransportProvider.Create())
-                .Use(diagnostics)
+                .UseTransportDiagnostics(diagnostics)
                 .UseDialog(ConnectionDialogOptions.ShowOnlyWhenNeeded);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
             if (connection != null)

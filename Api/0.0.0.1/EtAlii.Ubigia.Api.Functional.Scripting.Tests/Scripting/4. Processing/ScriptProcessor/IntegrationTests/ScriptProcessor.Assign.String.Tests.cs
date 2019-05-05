@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             var diagnostics = TestDiagnostics.Create();
             var scriptParserConfiguration = new ScriptParserConfiguration()
-                .Use(diagnostics);
+                .UseFunctionalDiagnostics(diagnostics);
             _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
         }

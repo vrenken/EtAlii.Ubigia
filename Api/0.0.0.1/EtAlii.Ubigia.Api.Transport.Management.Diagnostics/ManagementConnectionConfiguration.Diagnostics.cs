@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Diagnostics
 
     public static class ManagementConnectionConfigurationDiagnosticsExtension
     {
-        public static ManagementConnectionConfiguration Use(this ManagementConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static ManagementConnectionConfiguration UseTransportDiagnostics(this ManagementConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IManagementConnectionExtension[]
             {

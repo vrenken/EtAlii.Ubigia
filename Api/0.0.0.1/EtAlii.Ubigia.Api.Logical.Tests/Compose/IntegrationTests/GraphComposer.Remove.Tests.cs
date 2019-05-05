@@ -34,7 +34,7 @@
             var addedEntry = await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
                 .Use(fabric)
-                .Use(_testContext.DiagnosticsConfiguration);
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
             {
@@ -91,7 +91,7 @@
             string item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>
@@ -128,7 +128,7 @@
             string item = Guid.NewGuid().ToString();
             await composer.Add(entry.Id, item, scope);
             var configuration = new GraphPathTraverserConfiguration()
-                .Use(_testContext.DiagnosticsConfiguration)
+                .UseLogicalDiagnostics(_testContext.DiagnosticsConfiguration)
                 .Use(fabric);
 
             var results = Observable.Create<IReadOnlyEntry>(output =>

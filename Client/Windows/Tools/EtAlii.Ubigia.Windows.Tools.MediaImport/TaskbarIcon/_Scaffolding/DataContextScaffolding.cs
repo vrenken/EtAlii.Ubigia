@@ -35,11 +35,11 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 
                 var logicalContextConfiguration = new LogicalContextConfiguration()
                     .Use(fabricContext)
-                    .Use(diagnostics);
+                    .UseLogicalDiagnostics(diagnostics);
                 var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 
                 var configuration = new GraphSLScriptContextConfiguration()
-                    .Use(diagnostics)
+                    .UseFunctionalDiagnostics(diagnostics)
                     .Use(logicalContext)
                     .UseDotNet47();
                 return new GraphSLScriptContextFactory().Create(configuration);

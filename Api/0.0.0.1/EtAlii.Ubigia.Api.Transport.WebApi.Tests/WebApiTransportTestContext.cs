@@ -23,7 +23,7 @@
 	            .UseTransport(WebApiTransportProvider.Create(client))
                 .Use(address)
                 .Use(accountName, spaceName, accountPassword)
-                .Use(diagnostics);
+                .UseTransportDiagnostics(diagnostics);
             var connection = new DataConnectionFactory().Create(connectionConfiguration);
 
             if (useNewSpace)
@@ -52,7 +52,7 @@
 	            .Use(WebApiStorageTransportProvider.Create(client))
                 .Use(address)
                 .Use(account, password)
-                .Use(diagnostics);
+                .UseTransportDiagnostics(diagnostics);
             var connection = new ManagementConnectionFactory().Create(connectionConfiguration);
             if (openOnCreation)
             {

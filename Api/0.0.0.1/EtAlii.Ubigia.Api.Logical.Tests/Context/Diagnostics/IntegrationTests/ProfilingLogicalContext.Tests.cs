@@ -3,7 +3,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Tests;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -52,7 +51,7 @@
         {
             // Arrange.
             var configuration = new LogicalContextConfiguration()
-                .Use(_diagnostics)
+                .UseLogicalDiagnostics(_diagnostics)
                 .Use(_fabricContext);
 
             // Act.
@@ -68,7 +67,7 @@
             // Arrange.
             var configuration = new LogicalContextConfiguration()
                 .Use(_fabricContext)
-                .Use(_diagnostics);
+                .UseLogicalDiagnostics(_diagnostics);
 
             // Act.
             var context = new LogicalContextFactory().CreateForProfiling(configuration);

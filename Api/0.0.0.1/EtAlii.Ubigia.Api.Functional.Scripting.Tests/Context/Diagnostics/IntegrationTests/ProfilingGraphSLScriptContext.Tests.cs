@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
@@ -52,7 +51,7 @@
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(_logicalContext);
 
             // Act.
@@ -68,7 +67,7 @@
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
                 .Use(_logicalContext)
-                .Use(_diagnostics);
+                .UseFunctionalDiagnostics(_diagnostics);
 
             // Act.
             var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);

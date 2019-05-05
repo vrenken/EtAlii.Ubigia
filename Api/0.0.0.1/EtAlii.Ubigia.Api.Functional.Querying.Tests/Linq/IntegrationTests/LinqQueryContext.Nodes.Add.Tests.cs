@@ -39,7 +39,7 @@
             _diagnostics = TestDiagnostics.Create();
             _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var configuration = new LinqQueryContextConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(_logicalContext);
             _context = new LinqQueryContextFactory().Create(configuration);
             
@@ -185,7 +185,7 @@
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
             var configuration = new LinqQueryContextConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(_logicalContext);
             _context = new LinqQueryContextFactory().Create(configuration);
             items = _context.Nodes.Select(_countryPath);
@@ -207,7 +207,7 @@
             addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
             configuration = new LinqQueryContextConfiguration()
-                .Use(_diagnostics)
+                .UseFunctionalDiagnostics(_diagnostics)
                 .Use(_logicalContext);
             _context = new LinqQueryContextFactory().Create(configuration);
             items = _context.Nodes.Select(_countryPath);
