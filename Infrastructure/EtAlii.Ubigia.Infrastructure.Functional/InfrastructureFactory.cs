@@ -5,7 +5,7 @@
 
     public class InfrastructureFactory : IInfrastructureFactory
     {
-        public IInfrastructure Create(IInfrastructureConfiguration configuration)
+        public IInfrastructure Create(InfrastructureConfiguration configuration)
         {
             if (string.IsNullOrWhiteSpace(configuration.Name))
             {
@@ -36,7 +36,7 @@
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.Extensions)
+            foreach (var extension in configuration.GetExtensions<IInfrastructureExtension>())
             {
                 extension.Initialize(container);
             }

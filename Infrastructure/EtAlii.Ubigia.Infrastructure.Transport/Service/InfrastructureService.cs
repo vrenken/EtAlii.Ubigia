@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
     using System;
+    using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
-    using System.Linq;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.Extensions.Configuration;
 
@@ -77,7 +77,7 @@
 
             // Create a Infrastructure instance.
             infrastructureConfiguration = infrastructureConfiguration
-	            .Use<SystemConnectionInfrastructure>()
+	            .Use<InfrastructureConfiguration, SystemConnectionInfrastructure>()
                 .Use(logicalContext);
             return new InfrastructureFactory().Create(infrastructureConfiguration);
         }

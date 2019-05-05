@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
-    using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.Ubigia.Api;
 
-    public interface IInfrastructureExtension
+    public interface IInfrastructureExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }

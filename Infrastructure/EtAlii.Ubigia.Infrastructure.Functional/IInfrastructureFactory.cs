@@ -2,6 +2,6 @@
 {
     public interface IInfrastructureFactory
     {
-        IInfrastructure Create(IInfrastructureConfiguration configuration);
+        IInfrastructure Create(InfrastructureConfiguration configuration);
     }
 }
