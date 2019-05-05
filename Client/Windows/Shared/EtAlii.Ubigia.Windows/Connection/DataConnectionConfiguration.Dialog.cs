@@ -60,17 +60,18 @@
             IDataConnection connection = null;
             if (tryReturnConnection == true)
             {
+                var dataConnectionExtensions = configuration.GetExtensions<IDataConnectionExtension>();
                 var connectionSucceeded = false;
                 switch (viewModel.Transport)
                 {
                     case TransportType.SignalR:
-                        connection = new SignalRConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        connection = new SignalRConnector().Connect(window, viewModel, out connectionSucceeded, dataConnectionExtensions);
                         break;
                     case TransportType.Grpc:
-                        connection = new GrpcConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        connection = new GrpcConnector().Connect(window, viewModel, out connectionSucceeded, dataConnectionExtensions);
                         break;
                     case TransportType.WebApi:
-                        connection = new WebApiConnector().Connect(window, viewModel, out connectionSucceeded, configuration.Extensions);
+                        connection = new WebApiConnector().Connect(window, viewModel, out connectionSucceeded, dataConnectionExtensions);
                         break;
                 }
                 if(!connectionSucceeded)

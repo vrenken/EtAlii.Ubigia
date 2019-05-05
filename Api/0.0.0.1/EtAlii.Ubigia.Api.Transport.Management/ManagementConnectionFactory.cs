@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.MicroContainer;
 
     public sealed class ManagementConnectionFactory : IManagementConnectionFactory
@@ -31,7 +30,7 @@
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.Extensions)
+            foreach (var extension in configuration.GetExtensions<IManagementConnectionExtension>())
             {
                 extension.Initialize(container);
             }

@@ -7,21 +7,25 @@
     /// This is the base class for all configuration classes.
     /// It provides out of the box support for extensions.
     /// </summary>
-    /// <typeparam name="TExtension"></typeparam>
-    /// <typeparam name="TConfiguration"></typeparam>
-    public abstract class Configuration<TExtension, TConfiguration> : IConfiguration<TExtension, TConfiguration> 
-        where TExtension : IExtension
-        where TConfiguration : Configuration<TExtension, TConfiguration>
+    public abstract class Configuration<TConfiguration> : IConfiguration<TConfiguration> 
+        where TConfiguration: Configuration<TConfiguration>
     {
         /// <summary>
         /// The extensions added to this configuration.
         /// </summary>
-        public TExtension[] Extensions { get; private set; }
-
+        private IExtension[] _extensions;
+        
         protected Configuration()
         {
-            Extensions = new TExtension[0];
+            _extensions = Array.Empty<IExtension>();
         }
+
+        public TExtension[] GetExtensions<TExtension>()
+            where TExtension : IExtension
+        {
+            return _extensions.OfType<TExtension>().ToArray();
+        }
+
 
         /// <summary>
         /// Add a set of extensions to the configuration.
@@ -29,15 +33,15 @@
         /// </summary>
         /// <param name="extensions"></param>
         /// <returns></returns>
-        public TConfiguration Use(TExtension[] extensions)
+        public TConfiguration Use(IExtension[] extensions)
         {
             if (extensions == null)
             {
                 throw new ArgumentException(nameof(extensions));
             }
 
-            Extensions = extensions
-                .Concat(Extensions)
+            _extensions = extensions
+                .Concat(_extensions)
                 .Distinct()
                 .ToArray();
             return (TConfiguration)this;

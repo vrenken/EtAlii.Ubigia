@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class DataConnectionConfiguration : Configuration<IDataConnectionExtension, DataConnectionConfiguration>, IDataConnectionConfiguration
+    public class DataConnectionConfiguration : Configuration<DataConnectionConfiguration>, IDataConnectionConfiguration
     {
         public ITransportProvider TransportProvider { get; private set; }
 

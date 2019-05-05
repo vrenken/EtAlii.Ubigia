@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public interface ILinqQueryContextConfiguration : IConfiguration<ILinqQueryContextExtension, LinqQueryContextConfiguration>
+    public interface ILinqQueryContextConfiguration : IConfiguration<LinqQueryContextConfiguration>
     {
         ILogicalContext LogicalContext { get; }
 

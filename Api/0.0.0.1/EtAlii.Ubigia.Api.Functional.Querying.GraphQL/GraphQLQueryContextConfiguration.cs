@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public class GraphQLQueryContextConfiguration : Configuration<IGraphQLQueryContextExtension, GraphQLQueryContextConfiguration>, IGraphQLQueryContextConfiguration
+    public class GraphQLQueryContextConfiguration : Configuration<GraphQLQueryContextConfiguration>, IGraphQLQueryContextConfiguration
     {
         public ILogicalContext LogicalContext { get; private set; }
         

@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
 
-    public interface IGraphSLScriptContextConfiguration : IConfiguration<IGraphSLScriptContextExtension, GraphSLScriptContextConfiguration>
+    public interface IGraphSLScriptContextConfiguration : IConfiguration<GraphSLScriptContextConfiguration>
     {
         ILogicalContext LogicalContext { get; }
         IFunctionHandlersProvider FunctionHandlersProvider { get; }

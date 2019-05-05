@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
 
-    public class StorageConnectionConfiguration : Configuration<IStorageConnectionExtension, StorageConnectionConfiguration>, IStorageConnectionConfiguration
+    public class StorageConnectionConfiguration : Configuration<StorageConnectionConfiguration>, IStorageConnectionConfiguration
     {
         public IStorageTransport Transport { get; private set; }
 
