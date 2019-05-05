@@ -1,38 +1,44 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
     using System;
-    using System.Linq;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
 
-    public class ProvisioningConfiguration : IProvisioningConfiguration
+    public class ProvisioningConfiguration : Configuration<ProvisioningConfiguration>, IProvisioningConfiguration, IEditableProvisioningConfiguration
     {
-        public IProvisioningExtension[] Extensions { get; private set; }
-
+        IProviderConfiguration[] IEditableProvisioningConfiguration.ProviderConfigurations { get => ProviderConfigurations; set => ProviderConfigurations = value; }
         public IProviderConfiguration[] ProviderConfigurations { get; private set; }
 
-        //public IStorage Storage [ get [ return _storage; ] ]
-        //private IStorage _storage
-
+        Uri IEditableProvisioningConfiguration.Address { get => Address; set => Address = value; }
         public Uri Address { get; private set; }
 
+        string IEditableProvisioningConfiguration.Account { get => Account; set => Account = value; }
         public string Account { get; private set; }
 
+        string IEditableProvisioningConfiguration.Password { get => Password; set => Password = value; }
         public string Password { get; private set; }
 
+        Action<IManagementConnectionConfiguration>[] IEditableProvisioningConfiguration.ManagementConnectionConfigurationFactoryExtensions { get => _managementConnectionConfigurationFactoryExtensions; set => _managementConnectionConfigurationFactoryExtensions = value; }
         private Action<IManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;
+
+        Action<IDataConnectionConfiguration>[] IEditableProvisioningConfiguration.DataConnectionConfigurationFactoryExtensions { get => _dataConnectionConfigurationFactoryExtensions; set => _dataConnectionConfigurationFactoryExtensions = value; }
         private Action<IDataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions;
+        
+        Action<IGraphSLScriptContextConfiguration>[] IEditableProvisioningConfiguration.ScriptContextConfigurationFactoryExtensions { get => _scriptContextConfigurationFactoryExtensions; set => _scriptContextConfigurationFactoryExtensions = value; }
         private Action<IGraphSLScriptContextConfiguration>[] _scriptContextConfigurationFactoryExtensions;
 
+        Func<ITransportProvider> IEditableProvisioningConfiguration.TransportProviderFactory { get => _transportProviderFactory; set => _transportProviderFactory = value; }
         private Func<ITransportProvider> _transportProviderFactory;
+
+        Func<IStorageTransportProvider> IEditableProvisioningConfiguration.StorageTransportProviderFactory { get => _storageTransportProviderFactory; set => _storageTransportProviderFactory = value; }
         private Func<IStorageTransportProvider> _storageTransportProviderFactory;
 
         public ProvisioningConfiguration()
         {
-            Extensions = new IProvisioningExtension[0];
             ProviderConfigurations = new IProviderConfiguration[0];
             _dataConnectionConfigurationFactoryExtensions = new Action<IDataConnectionConfiguration>[0];
             _managementConnectionConfigurationFactoryExtensions = new Action<IManagementConnectionConfiguration>[0];
@@ -48,49 +54,6 @@
         {
             return _transportProviderFactory();
         }
-
-        public IProvisioningConfiguration Use(IProvisioningExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException(nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-
-        public IProvisioningConfiguration Use(Uri address, string account, string password)
-        {
-			if (string.IsNullOrWhiteSpace(account))
-            {
-                throw new ArgumentException(nameof(account));
-            }
-            if (string.IsNullOrWhiteSpace(password))
-            {
-                throw new ArgumentException(nameof(password));
-            }
-
-            Address = address ?? throw new ArgumentNullException(nameof(address));
-            Account = account;
-            Password = password;
-            return this;
-        }
-
-        public IProvisioningConfiguration Use(IProviderConfiguration[] providerConfigurations)
-        {
-            if (providerConfigurations == null)
-            {
-                throw new ArgumentException(nameof(providerConfigurations));
-            }
-            ProviderConfigurations = providerConfigurations;
-
-            return this;
-        }
-
 
         public IDataConnectionConfiguration CreateDataConnectionConfiguration()
         {
@@ -134,59 +97,5 @@
 
             return new GraphSLScriptContextFactory().Create(configuration);
         }
-
-        public IProvisioningConfiguration Use(Action<IDataConnectionConfiguration> dataConnectionConfigurationFactoryExtension)
-        {
-            if (dataConnectionConfigurationFactoryExtension == null)
-            {
-                throw new ArgumentException(nameof(dataConnectionConfigurationFactoryExtension));
-            }
-
-            _dataConnectionConfigurationFactoryExtensions = new[] { dataConnectionConfigurationFactoryExtension }
-                .Concat(_dataConnectionConfigurationFactoryExtensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-
-        public IProvisioningConfiguration Use(Action<IManagementConnectionConfiguration> managementConnectionConfigurationFactoryExtension)
-        {
-            if (managementConnectionConfigurationFactoryExtension == null)
-            {
-                throw new ArgumentException(nameof(managementConnectionConfigurationFactoryExtension));
-            }
-
-            _managementConnectionConfigurationFactoryExtensions = new[] { managementConnectionConfigurationFactoryExtension }
-                .Concat(_managementConnectionConfigurationFactoryExtensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-
-        public IProvisioningConfiguration Use(Action<IGraphSLScriptContextConfiguration> scriptContextConfigurationFactoryExtension)
-        {
-            if (scriptContextConfigurationFactoryExtension == null)
-            {
-                throw new ArgumentException(nameof(scriptContextConfigurationFactoryExtension));
-            }
-
-            _scriptContextConfigurationFactoryExtensions = new[] { scriptContextConfigurationFactoryExtension }
-                .Concat(_scriptContextConfigurationFactoryExtensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-        public IProvisioningConfiguration Use(Func<ITransportProvider> transportProviderFactory)
-        {
-            _transportProviderFactory = transportProviderFactory ?? throw new ArgumentException(nameof(transportProviderFactory));
-            return this;
-        }
-
-        public IProvisioningConfiguration Use(Func<IStorageTransportProvider> storageTransportProviderFactory)
-        {
-            _storageTransportProviderFactory = storageTransportProviderFactory ?? throw new ArgumentException(nameof(storageTransportProviderFactory));
-            return this;
-        }
-
     }
 }

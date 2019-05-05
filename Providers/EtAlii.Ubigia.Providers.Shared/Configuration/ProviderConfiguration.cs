@@ -50,12 +50,7 @@
 
         public IProviderConfiguration Use(IProviderFactory factory)
         {
-            if (factory == null)
-            {
-                throw new ArgumentException(nameof(factory));
-            }
-
-            Factory = factory;
+            Factory = factory ?? throw new ArgumentException(nameof(factory));
 
             return this;
         }

@@ -19,7 +19,7 @@
                 scaffolding.Register(container);
             }
 
-            foreach (var extension in configuration.Extensions)
+            foreach (var extension in configuration.GetExtensions<IProvisioningExtension>())
             {
                 extension.Initialize(container);
             }

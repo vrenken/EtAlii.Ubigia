@@ -5,11 +5,7 @@
     public interface IFabricContextConfiguration
     {
         IStorage Storage { get; }
-
-        //IFabricContextExtension[] Extensions [ get; ]
-
-        //ifabricContextConfiguration Use[IFabricContextExtension[] extensions]
-
+        
         IFabricContextConfiguration Use(IStorage storage);
     }
 }

@@ -9,11 +9,7 @@
 	    Uri Address { get; }
 
         IFabricContext Fabric { get; }
-
-        //ILogicalContextExtension[] Extensions [ get; ]
-
-        //ILogicalContextConfiguration Use(ILogicalContextExtension[] extensions)
-
+        
         ILogicalContextConfiguration Use(string name, Uri address);
 
         ILogicalContextConfiguration Use(IFabricContext fabric);
