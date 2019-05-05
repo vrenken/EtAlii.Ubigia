@@ -38,13 +38,10 @@
         
         public GraphSLScriptContextConfiguration Use(IDataConnection dataConnection)
         {
-            var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(dataConnection);
-            var fabricContext = new FabricContextFactory().Create(fabricContextConfiguration);
-
-            var logicalContextConfiguration = new LogicalContextConfiguration()
-                .Use(fabricContext);
-            var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
+            var configuration = new LogicalContextConfiguration()
+                    .Use(dataConnection);
+            
+            var logicalContext = new LogicalContextFactory().Create(configuration);
 
             return Use(logicalContext);
         }

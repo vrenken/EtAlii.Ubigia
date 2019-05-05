@@ -29,12 +29,9 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
             container.Register<IGraphSLScriptContext>(() =>
             {
                 var diagnostics = container.GetInstance<IDiagnosticsConfiguration>();
-                var fabricContextConfiguration = new FabricContextConfiguration()
-                    .Use(_connection);
-                var fabricContext = new FabricContextFactory().Create(fabricContextConfiguration);
 
                 var logicalContextConfiguration = new LogicalContextConfiguration()
-                    .Use(fabricContext)
+                    .Use(_connection)
                     .UseLogicalDiagnostics(diagnostics);
                 var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
 

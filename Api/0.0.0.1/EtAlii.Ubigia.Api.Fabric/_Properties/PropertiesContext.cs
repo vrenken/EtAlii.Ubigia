@@ -10,6 +10,7 @@
 
         internal PropertiesContext(IDataConnection connection)
         {
+            if (connection == null) return; // In the new setup the LogicalContext and IDataConnection are instantiated at the same time.
             _connection = connection;
             _connection.Properties.Notifications.Stored += OnStored;
         }

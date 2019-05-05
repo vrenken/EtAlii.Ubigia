@@ -1,10 +1,10 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-    using EtAlii.Ubigia.Api.Fabric;
+//    using EtAlii.Ubigia.Api.Fabric;
 
     public interface ILogicalContextConfiguration : IConfiguration
     {
-        IFabricContext Fabric { get; }
+        //IFabricContext Fabric { get; }
         bool CachingEnabled { get; }
     }
 }

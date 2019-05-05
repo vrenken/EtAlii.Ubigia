@@ -15,6 +15,12 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             Transport = transport;
         }
 
+        public async Task ConfigureFabricContextConfiguration(FabricContextConfiguration fabricContextConfiguration, bool openOnCreation)
+        {
+            var connection = await Transport.CreateDataConnection(openOnCreation);
+            fabricContextConfiguration.Use(connection);
+        }
+
         public async Task<IFabricContext> CreateFabricContext(bool openOnCreation)
         {
             var connection = await Transport.CreateDataConnection(openOnCreation);
@@ -26,7 +32,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
         public async Task<Tuple<IEditableEntry, string[]>> CreateHierarchy(IFabricContext fabric, IEditableEntry parent, int depth)//, out string[] hierarchy)
         {
             var hierarchy = new string[depth];
-            for (int i = 0; i < depth; i++)
+            for (var i = 0; i < depth; i++)
             {
                 hierarchy[i] = Guid.NewGuid().ToString();
             };
