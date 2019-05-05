@@ -5,8 +5,8 @@
 
     public static class DataConnectionConfigurationExtension
     {
-        public static IDataConnectionConfiguration UseDialog(
-            this IDataConnectionConfiguration configuration,
+        public static DataConnectionConfiguration UseDialog(
+            this DataConnectionConfiguration configuration,
             ConnectionDialogOptions dialogOptions = ConnectionDialogOptions.ShowAlways,
             string defaultAddress = "",
             string defaultAccount = "",
@@ -18,8 +18,8 @@
             return configuration;
         }
 
-        public static IDataConnectionConfiguration UseDialog(
-            this IDataConnectionConfiguration configuration,
+        public static DataConnectionConfiguration UseDialog(
+            this DataConnectionConfiguration configuration,
             Window dialogOwner = null,
             ConnectionDialogOptions dialogOptions = ConnectionDialogOptions.ShowAlways,
             string defaultAddress = "",
@@ -31,7 +31,7 @@
         }
 
         private static IDataConnection CreateUsingDialog(
-            IDataConnectionConfiguration configuration,
+            DataConnectionConfiguration configuration,
             Window dialogOwner = null,
             ConnectionDialogOptions dialogOptions = ConnectionDialogOptions.ShowAlways,
             string defaultAddress = "",

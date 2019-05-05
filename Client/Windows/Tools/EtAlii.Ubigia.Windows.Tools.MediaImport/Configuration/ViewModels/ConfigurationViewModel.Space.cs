@@ -22,7 +22,7 @@
         {
             var window = (RibbonWindow)obj;
             var connectionConfiguration = new DataConnectionConfiguration()
-                .Use(SignalRTransportProvider.Create())
+                .UseTransport(SignalRTransportProvider.Create())
                 .UseDialog(window);
             var newConnection = new DataConnectionFactory().Create(connectionConfiguration);
             

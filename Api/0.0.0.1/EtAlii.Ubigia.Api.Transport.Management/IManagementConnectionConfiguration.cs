@@ -10,9 +10,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management
         string Password { get; }
         Func<IManagementConnection> FactoryExtension { get; }
 
-        IManagementConnectionConfiguration Use(IStorageTransportProvider transportProvider);
-        IManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension);
-        IManagementConnectionConfiguration Use(Uri address);
-        IManagementConnectionConfiguration Use(string accountName, string password);
+        ManagementConnectionConfiguration Use(IStorageTransportProvider transportProvider);
+        ManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension);
+        ManagementConnectionConfiguration Use(Uri address);
+        ManagementConnectionConfiguration Use(string accountName, string password);
     }
 }

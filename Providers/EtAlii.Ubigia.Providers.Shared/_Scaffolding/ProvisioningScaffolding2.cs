@@ -36,7 +36,7 @@
             container.Register(() =>
             {
                 var configuration = _configuration.CreateDataConnectionConfiguration()
-                    .Use(_configuration.CreateTransportProvider()) // WAS: .Use(SignalRTransportProvider.Create())
+                    .UseTransport(_configuration.CreateTransportProvider()) // WAS: .Use(SignalRTransportProvider.Create())
                     .Use(_configuration.Address)
                     .Use(_configuration.Account, SpaceName.System, _configuration.Password);
                 var connection = new DataConnectionFactory().Create(configuration);

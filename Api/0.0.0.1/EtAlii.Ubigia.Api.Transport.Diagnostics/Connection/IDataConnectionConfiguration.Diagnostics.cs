@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 
     public static class DataConnectionConfigurationDiagnosticsExtension
     {
-        public static IDataConnectionConfiguration Use(this IDataConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static DataConnectionConfiguration Use(this DataConnectionConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IDataConnectionExtension[]
             {

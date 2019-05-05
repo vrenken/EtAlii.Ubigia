@@ -9,7 +9,7 @@
     public interface IProvisioningConfiguration : IConfiguration<ProvisioningConfiguration>
     {
 
-        IProviderConfiguration[] ProviderConfigurations { get; }
+        ProviderConfiguration[] ProviderConfigurations { get; }
 
         string Account { get; }
         string Password { get; }
@@ -18,8 +18,8 @@
         IStorageTransportProvider CreateStorageTransportProvider();
         ITransportProvider CreateTransportProvider();
 
-        IDataConnectionConfiguration CreateDataConnectionConfiguration();
-        IManagementConnectionConfiguration CreateManagementConnectionConfiguration();
+        DataConnectionConfiguration CreateDataConnectionConfiguration();
+        ManagementConnectionConfiguration CreateManagementConnectionConfiguration();
         IGraphSLScriptContext CreateScriptContext(IDataConnection connection, bool useCaching = true);
     }
 }

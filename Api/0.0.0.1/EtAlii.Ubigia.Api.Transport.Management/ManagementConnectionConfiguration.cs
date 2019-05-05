@@ -14,29 +14,25 @@
 
         public string Password { get; private set; }
 
-        public IManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension)
+        public ManagementConnectionConfiguration Use(Func<IManagementConnection> factoryExtension)
         {
             FactoryExtension = factoryExtension;
             return this;
         }
 
-        public IManagementConnectionConfiguration Use(IStorageTransportProvider transportProvider)
+        public ManagementConnectionConfiguration Use(IStorageTransportProvider transportProvider)
         {
             if (TransportProvider != null)
             {
                 throw new ArgumentException("A TransportProvider has already been assigned to this ManagementConnectionConfiguration", nameof(transportProvider));
             }
-            if (transportProvider == null)
-            {
-                throw new ArgumentNullException(nameof(transportProvider));
-            }
 
-            TransportProvider = transportProvider;
+            TransportProvider = transportProvider ?? throw new ArgumentNullException(nameof(transportProvider));
 
             return this;
         }
 
-        public IManagementConnectionConfiguration Use(Uri address)
+        public ManagementConnectionConfiguration Use(Uri address)
         {
 			if (Address != null)
             {
@@ -47,7 +43,7 @@
             return this;
         }
 
-        public IManagementConnectionConfiguration Use(string accountName, string password)
+        public ManagementConnectionConfiguration Use(string accountName, string password)
         {
             if (string.IsNullOrWhiteSpace(accountName))
             {

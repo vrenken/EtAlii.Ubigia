@@ -11,7 +11,7 @@
 
         public IManagementConnection ManagementConnection { get; }
 
-        public IProviderConfiguration[] ProviderConfigurations { get; private set; }
+        public ProviderConfiguration[] ProviderConfigurations { get; private set; }
 
         private Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
 
@@ -23,7 +23,7 @@
             ManagementConnection = managementConnection;
         }
 
-        public void Initialize(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
+        public void Initialize(ProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
         {
             if (ProviderConfigurations != null || _scriptContextFactory != null)
             {

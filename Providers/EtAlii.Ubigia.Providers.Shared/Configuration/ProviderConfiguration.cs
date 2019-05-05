@@ -1,111 +1,45 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
     using System;
-    using System.Linq;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.Logging;
 
-    public class ProviderConfiguration : IProviderConfiguration
+    public class ProviderConfiguration : Configuration<ProviderConfiguration>, IProviderConfiguration, IEditableProviderConfiguration
     {
+        IGraphSLScriptContext IEditableProviderConfiguration.SystemScriptContext { get => SystemScriptContext; set => SystemScriptContext = value; }
         public IGraphSLScriptContext SystemScriptContext { get; private set; }
 
+        IManagementConnection IEditableProviderConfiguration.ManagementConnection { get => ManagementConnection; set => ManagementConnection = value; }
         public IManagementConnection ManagementConnection { get; private set; }
 
-        public IProviderExtension[] Extensions { get; private set; }
-
+        IProviderFactory IEditableProviderConfiguration.Factory { get => Factory; set => Factory = value; }
         public IProviderFactory Factory { get; private set; }
 
+        ILogFactory IEditableProviderConfiguration.LogFactory { get => LogFactory; set => LogFactory = value; }
         public ILogFactory LogFactory { get; private set; }
 
+        Func<IDataConnection, IGraphSLScriptContext> IEditableProviderConfiguration.ScriptContextFactory { get => _scriptContextFactory; set => _scriptContextFactory = value; }
         private Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
 
         public ProviderConfiguration()
         {
-            Extensions = new IProviderExtension[0];
         }
 
-        public ProviderConfiguration(IProviderConfiguration configuration)
+        public ProviderConfiguration(ProviderConfiguration configuration)
             :this()
         {
             Factory = configuration.Factory;
-            Extensions = configuration.Extensions;
+            Use(configuration.Extensions);
             LogFactory = configuration.LogFactory;
         }
-
-        public IProviderConfiguration Use(IProviderExtension[] extensions)
-        {
-            if (extensions == null)
-            {
-                throw new ArgumentException(nameof(extensions));
-            }
-
-            Extensions = extensions
-                .Concat(Extensions)
-                .Distinct()
-                .ToArray();
-            return this;
-        }
-
-        public IProviderConfiguration Use(IProviderFactory factory)
-        {
-            Factory = factory ?? throw new ArgumentException(nameof(factory));
-
-            return this;
-        }
-
-        public IProviderConfiguration Use(IManagementConnection managementConnection)
-        {
-            if (managementConnection == null)
-            {
-                throw new ArgumentException(nameof(managementConnection));
-            }
-
-            ManagementConnection = managementConnection;
-
-            return this;
-        }
-
-        public IProviderConfiguration Use(IGraphSLScriptContext systemScriptContext)
-        {
-            if (systemScriptContext == null)
-            {
-                throw new ArgumentException(nameof(systemScriptContext));
-            }
-
-            SystemScriptContext = systemScriptContext;
-
-            return this;
-        }
-
-        public IProviderConfiguration Use(ILogFactory logFactory)
-        {
-            if (logFactory == null)
-            {
-                throw new ArgumentException(nameof(logFactory));
-            }
-
-            LogFactory = logFactory;
-
-            return this;
-        }
-
-        public IProviderConfiguration Use(Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
-        {
-            if (scriptContextFactory == null)
-            {
-                throw new ArgumentException(nameof(scriptContextFactory));
-            }
-
-            _scriptContextFactory = scriptContextFactory;
-
-            return this;
-        }
-
+        
         public IGraphSLScriptContext CreateScriptContext(IDataConnection connection)
         {
             return _scriptContextFactory(connection);
         }
+
     }
 }

@@ -7,10 +7,10 @@
 
     public class ProvisioningScaffolding : IScaffolding
     {
-        private readonly IProviderConfiguration[] _providerConfigurations;
+        private readonly ProviderConfiguration[] _providerConfigurations;
         private readonly Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
 
-        public ProvisioningScaffolding(IProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
+        public ProvisioningScaffolding(ProviderConfiguration[] providerConfigurations, Func<IDataConnection, IGraphSLScriptContext> scriptContextFactory)
         {
             _providerConfigurations = providerConfigurations;
             _scriptContextFactory = scriptContextFactory;

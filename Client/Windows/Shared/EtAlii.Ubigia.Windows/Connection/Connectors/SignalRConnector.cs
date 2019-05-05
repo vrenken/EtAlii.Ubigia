@@ -23,7 +23,7 @@
             {
                 var address = new Uri(viewModel.Address, UriKind.Absolute);
                 var connectionConfiguration = new DataConnectionConfiguration()
-                    .Use(SignalRTransportProvider.Create())
+                    .UseTransport(SignalRTransportProvider.Create())
                     .Use(address)
                     .Use(viewModel.Account, viewModel.Space, password)
                     .Use(configurationExtensions);

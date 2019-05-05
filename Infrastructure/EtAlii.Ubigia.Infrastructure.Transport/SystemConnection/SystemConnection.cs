@@ -20,7 +20,7 @@
 	        var address = _configuration.Infrastructure.Configuration.Address;
 
             var connectionConfiguration = new DataConnectionConfiguration()
-                .Use(_configuration.TransportProvider)
+                .UseTransport(_configuration.TransportProvider)
                 .Use(address)
                 .Use(accountName, spaceName, null);
             var dataConnection = new DataConnectionFactory().Create(connectionConfiguration);
