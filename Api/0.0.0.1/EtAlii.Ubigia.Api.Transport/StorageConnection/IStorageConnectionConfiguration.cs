@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-	public interface IStorageConnectionConfiguration : IConfiguration<IStorageConnectionConfiguration>
+	public interface IStorageConnectionConfiguration : IConfiguration
     {
         IStorageTransport Transport { get; }
     }

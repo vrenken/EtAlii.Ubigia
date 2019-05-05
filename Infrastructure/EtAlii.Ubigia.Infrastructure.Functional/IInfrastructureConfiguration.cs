@@ -5,7 +5,7 @@
     using EtAlii.Ubigia.Infrastructure.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
-    public interface IInfrastructureConfiguration : IConfiguration<InfrastructureConfiguration>
+    public interface IInfrastructureConfiguration : IConfiguration
     {
         ILogicalContext Logical { get; }
 

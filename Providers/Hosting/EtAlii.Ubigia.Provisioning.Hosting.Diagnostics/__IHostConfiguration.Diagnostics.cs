@@ -10,7 +10,7 @@
 
 //    public static class IHostConfigurationDiagnosticsExtension
 //    [
-//        public static IHostConfiguration Use(this IHostConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+//        public static HostConfiguration Use(this HostConfiguration configuration, IDiagnosticsConfiguration diagnostics)
 //        [
 //            var extensions = new IHostExtension[]
 //            [

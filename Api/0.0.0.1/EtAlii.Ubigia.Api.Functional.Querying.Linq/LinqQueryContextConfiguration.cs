@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public class LinqQueryContextConfiguration : Configuration<LinqQueryContextConfiguration>, ILinqQueryContextConfiguration
+    public class LinqQueryContextConfiguration : Configuration, ILinqQueryContextConfiguration
     {
         public ILogicalContext LogicalContext { get; private set; }
 

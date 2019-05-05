@@ -7,7 +7,7 @@
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.Logging;
 
-    public class ProviderConfiguration : Configuration<ProviderConfiguration>, IProviderConfiguration, IEditableProviderConfiguration
+    public class ProviderConfiguration : Configuration, IProviderConfiguration, IEditableProviderConfiguration
     {
         IGraphSLScriptContext IEditableProviderConfiguration.SystemScriptContext { get => SystemScriptContext; set => SystemScriptContext = value; }
         public IGraphSLScriptContext SystemScriptContext { get; private set; }
@@ -32,8 +32,8 @@
             :this()
         {
             Factory = configuration.Factory;
-            Use(configuration.Extensions);
             LogFactory = configuration.LogFactory;
+            this.Use(configuration.Extensions);
         }
         
         public IGraphSLScriptContext CreateScriptContext(IDataConnection connection)

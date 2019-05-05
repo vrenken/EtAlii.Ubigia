@@ -4,7 +4,7 @@
 //
 //    public static class DataContextConfigurationDiagnosticsExtension 
 //    [
-//        public static IDataContextConfiguration Use(this IDataContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+//        public static DataContextConfiguration Use(this DataContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
 //        [
 //            var extensions = new IDataContextExtension[]
 //            [

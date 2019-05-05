@@ -6,7 +6,7 @@
     /// Use this as a base class to create configurable and extensible subsystem factories. 
     /// </summary>
     public abstract class Factory<TInstance, TInstanceConfiguration, TExtension>
-        where TInstanceConfiguration : Configuration<TInstanceConfiguration>
+        where TInstanceConfiguration : Configuration
         where TExtension: IExtension
     {
         public TInstance Create(TInstanceConfiguration configuration)
