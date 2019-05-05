@@ -6,7 +6,7 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
 
-    public interface IProvisioningConfiguration : IConfiguration<ProvisioningConfiguration>
+    public interface IProvisioningConfiguration : IConfiguration
     {
 
         ProviderConfiguration[] ProviderConfigurations { get; }

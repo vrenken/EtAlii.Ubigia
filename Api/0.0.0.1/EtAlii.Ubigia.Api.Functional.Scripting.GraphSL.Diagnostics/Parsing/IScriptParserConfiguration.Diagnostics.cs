@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
     public static class ScriptParserConfigurationDiagnosticsExtension 
     {
-        public static ScriptParserConfiguration Use(this IScriptParserConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static ScriptParserConfiguration Use(this ScriptParserConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IScriptParserExtension[]
             {

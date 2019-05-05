@@ -2,6 +2,7 @@
 {
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 

@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport
 {
     using System;
 
-    public interface IDataConnectionConfiguration : IConfiguration<DataConnectionConfiguration>
+    public interface IDataConnectionConfiguration : IConfiguration
     {
         Uri Address { get; }
         string AccountName { get; }

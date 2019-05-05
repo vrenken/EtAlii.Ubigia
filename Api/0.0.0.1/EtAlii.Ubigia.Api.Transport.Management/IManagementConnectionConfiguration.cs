@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Transport.Management
 {
     using System;
 
-    public interface IManagementConnectionConfiguration : IConfiguration<ManagementConnectionConfiguration>
+    public interface IManagementConnectionConfiguration : IConfiguration
     {
         IStorageTransportProvider TransportProvider { get; }
 	    Uri Address { get; }

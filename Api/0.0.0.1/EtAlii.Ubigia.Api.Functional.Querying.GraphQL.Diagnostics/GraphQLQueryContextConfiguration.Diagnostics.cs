@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 
     public static class GraphQLQueryContextConfigurationDiagnosticsExtension 
     {
-        public static GraphQLQueryContextConfiguration Use(this IGraphQLQueryContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
+        public static GraphQLQueryContextConfiguration Use(this GraphQLQueryContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {
             var extensions = new IGraphQLQueryContextExtension[]
             {
