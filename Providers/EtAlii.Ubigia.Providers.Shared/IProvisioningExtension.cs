@@ -1,9 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
-    using EtAlii.xTechnology.MicroContainer;
+    using EtAlii.Ubigia.Api;
 
-    public interface IProvisioningExtension
+    public interface IProvisioningExtension : IExtension
     {
-        void Initialize(Container container);
     }
 }
