@@ -84,6 +84,7 @@
                 .UseLogicalDiagnostics(diagnostics)
                 .UseFunctionalGraphSLDiagnostics(diagnostics)
                 .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
+                .UseGraphSLProfiling()
                 .UseDotNet47();
             
             // Then the fabric context.
@@ -96,14 +97,15 @@
             container.Register(() => (IProfilingLogicalContext)logicalContext);
 
 
-            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().CreateForProfiling(configuration));
+            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(configuration));
             container.Register(() => (IProfilingGraphSLScriptContext)container.GetInstance<IGraphSLScriptContext>());
 
             container.Register<IGraphQLQueryContext>(() =>
             {
                 var queryContextConfiguration = new GraphQLQueryContextConfiguration()
-                    .Use(configuration);
-                return new GraphQLQueryContextFactory().CreateForProfiling(queryContextConfiguration);
+                    .Use(configuration)
+                    .UseGraphQLProfiling();
+                return new GraphQLQueryContextFactory().Create(queryContextConfiguration);
             });
             container.Register(() => (IProfilingGraphQLQueryContext)container.GetInstance<IGraphQLQueryContext>());
             
@@ -111,8 +113,9 @@
             {
                 var queryContextConfiguration = new LinqQueryContextConfiguration()
                     .Use(configuration)
-                    .UseFunctionalDiagnostics(diagnostics);
-                return new LinqQueryContextFactory().CreateForProfiling(queryContextConfiguration);
+                    .UseFunctionalDiagnostics(diagnostics)
+                    .UseLinqProfiling();
+                return new LinqQueryContextFactory().Create(queryContextConfiguration);
             });
             container.Register(() => (IProfilingLinqQueryContext)container.GetInstance<ILinqQueryContext>());
 
