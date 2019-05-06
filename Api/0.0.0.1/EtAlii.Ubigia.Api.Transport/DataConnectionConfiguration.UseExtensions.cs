@@ -56,10 +56,6 @@ namespace EtAlii.Ubigia.Api.Transport
             {
                 throw new InvalidOperationException("An accountName has already been assigned to this DataConnectionConfiguration");
             }
-            //if [string.IsNullOrWhiteSpace[password]]
-            //[
-            //    throw new ArgumentException(nameof(password))
-            //]
             if (editableConfiguration.Password != null)
             {
                 throw new InvalidOperationException("A password has already been assigned to this DataConnectionConfiguration");
@@ -78,5 +74,23 @@ namespace EtAlii.Ubigia.Api.Transport
             editableConfiguration.Space = space;
             return configuration;
         }
+        
+        public static TDataConnectionConfiguration Use<TDataConnectionConfiguration>(this TDataConnectionConfiguration configuration, DataConnectionConfiguration otherConfiguration)
+            where TDataConnectionConfiguration : DataConnectionConfiguration
+        {
+            configuration.Use((Configuration)otherConfiguration);
+
+            var editableConfiguration = (IEditableDataConnectionConfiguration) configuration;
+
+            editableConfiguration.TransportProvider = otherConfiguration.TransportProvider;
+            editableConfiguration.FactoryExtension = otherConfiguration.FactoryExtension;
+            editableConfiguration.Address = otherConfiguration.Address;
+            editableConfiguration.AccountName = otherConfiguration.AccountName;
+            editableConfiguration.Password = otherConfiguration.Password;
+            editableConfiguration.Space = otherConfiguration.Space;
+
+            return configuration;
+        }
+
     }
 }
