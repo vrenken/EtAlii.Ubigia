@@ -44,24 +44,25 @@
             var diagnostics = new DiagnosticsFactory().CreateDisabled("EtAlii", "EtAlii.Ubigia.SpaceBrowser");
 
             IProfilingDataConnection connection;
-            var factory = new DataConnectionFactory();
+
+            var connectionConfiguration = new DataConnectionConfiguration()
+                .UseTransportDiagnostics(diagnostics)
+                .UseDataConnectionProfiling();
+            
             if (string.IsNullOrWhiteSpace(address) ||
                 string.IsNullOrWhiteSpace(account) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(space))
             {
-                var connectionConfiguration = new DataConnectionConfiguration()
-                    .UseTransportDiagnostics(diagnostics)
-                    .UseDialog(ConnectionDialogOptions.ShowAlways, address, account, password, space);
-                connection = factory.CreateForProfiling(connectionConfiguration);
+                connectionConfiguration = connectionConfiguration.UseDialog(ConnectionDialogOptions.ShowAlways, address, account, password, space);
+                connection = (IProfilingDataConnection)new DataConnectionFactory().Create(connectionConfiguration);
             }
             else
             {
-                var connectionConfiguration = new DataConnectionConfiguration()
-                    .UseTransportDiagnostics(diagnostics)
+                connectionConfiguration = connectionConfiguration
                     .Use(new Uri(address, UriKind.Absolute))
                     .Use(account, space, password);
-                connection = factory.CreateForProfiling(connectionConfiguration);
+                connection = (IProfilingDataConnection)new DataConnectionFactory().Create(connectionConfiguration);
                 try
                 {
                     var task = Task.Run(async () =>

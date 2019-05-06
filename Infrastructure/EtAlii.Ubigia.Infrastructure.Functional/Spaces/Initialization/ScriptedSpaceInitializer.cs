@@ -3,7 +3,9 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
 
     internal class ScriptedSpaceInitializer : ISpaceInitializer
@@ -20,7 +22,12 @@
             var systemConnection = _systemConnectionCreationProxy.Request();
             var managementConnection = await systemConnection.OpenManagementConnection();
             var spaceConnection = await managementConnection.OpenSpace(space);
-            var scriptContext = new GraphSLScriptContextFactory().Create(spaceConnection);
+
+            var configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(spaceConnection);
+            var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
 
             var rootsToCreate = template.RootsToCreate;
 
