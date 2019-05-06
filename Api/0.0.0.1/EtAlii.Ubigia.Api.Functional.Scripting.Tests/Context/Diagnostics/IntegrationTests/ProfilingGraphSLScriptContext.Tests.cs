@@ -36,11 +36,12 @@
         public async Task ProfilingGraphSLScriptContext_Create_01()
         {
             // Arrange.
-            var configuration = new GraphSLScriptContextConfiguration();
+            var configuration = new GraphSLScriptContextConfiguration()
+                .UseGraphSLProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
-            var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);
+            var context = new GraphSLScriptContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(context);
@@ -51,11 +52,12 @@
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
-                .UseFunctionalGraphSLDiagnostics(_diagnostics);
+                .UseFunctionalGraphSLDiagnostics(_diagnostics)
+                .UseGraphSLProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
-            var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);
+            var context = new GraphSLScriptContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(context);
@@ -66,11 +68,12 @@
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
-                .UseFunctionalGraphSLDiagnostics(_diagnostics);
+                .UseFunctionalGraphSLDiagnostics(_diagnostics)
+                .UseGraphSLProfiling();
             await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
-            var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);
+            var context = new GraphSLScriptContextFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(context);
