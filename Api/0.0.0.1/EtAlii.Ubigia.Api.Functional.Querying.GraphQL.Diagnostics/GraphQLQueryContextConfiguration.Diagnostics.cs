@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
-    using System.Linq;
     using EtAlii.xTechnology.Diagnostics;
 
     public static class GraphQLQueryContextConfigurationDiagnosticsExtension 
@@ -11,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
             var extensions = new IGraphQLQueryContextExtension[]
             {
                 new DiagnosticsGraphQLQueryContextExtension(diagnostics), 
-            }.Cast<IExtension>().ToArray();
+            };
             return configuration.Use(extensions);
         }
     }

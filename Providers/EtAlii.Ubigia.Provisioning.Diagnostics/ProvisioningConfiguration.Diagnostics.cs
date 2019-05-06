@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Provisioning.Diagnostics
 {
-    using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
@@ -17,7 +16,7 @@ namespace EtAlii.Ubigia.Provisioning.Diagnostics
             var extensions = new IProvisioningExtension[]
             {
                 new DiagnosticsProvisioningExtension(diagnostics), 
-            }.Cast<IExtension>().ToArray();
+            };
             
             return configuration
                 .Use(extensions)

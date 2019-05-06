@@ -1,7 +1,5 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
-    using System.Linq;
-
     public static class GraphQLQueryContextProfilingExtension
     {
         public static IGraphQLQueryContext CreateForProfiling(this GraphQLQueryContextFactory factory, GraphQLQueryContextConfiguration configuration)
@@ -9,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics
             var extensions = new IGraphQLQueryContextExtension[]
             {
                 new ProfilingGraphQLQueryContextExtension(),
-            }.Cast<IExtension>().ToArray();
+            };
 
             configuration.Use(extensions);
 

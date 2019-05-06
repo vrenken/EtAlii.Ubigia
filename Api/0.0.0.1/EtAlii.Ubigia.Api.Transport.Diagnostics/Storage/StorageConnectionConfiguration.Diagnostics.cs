@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Transport.Diagnostics
 {
-    using System.Linq;
     using EtAlii.xTechnology.Diagnostics;
 
     public static class StorageConnectionConfigurationDiagnosticsExtension
@@ -10,7 +9,7 @@ namespace EtAlii.Ubigia.Api.Transport.Diagnostics
             var extensions = new IStorageConnectionExtension[]
             {
                 new DiagnosticsStorageConnectionExtension(diagnostics), 
-            }.Cast<IExtension>().ToArray();
+            };
             
             return configuration.Use(extensions);
         }
