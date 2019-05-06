@@ -2,7 +2,6 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
@@ -10,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
     public class FunctionalTestContext : IFunctionalTestContext
     {
         private readonly ILogicalTestContext _logical;
+        public IDiagnosticsConfiguration Diagnostics => _diagnostics;
         private readonly IDiagnosticsConfiguration _diagnostics;
 
         public FunctionalTestContext(
@@ -28,28 +28,17 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
 //                .Use(logicalContext)
 //            return new DataContextFactory().Create(configuration)
 //        ]
-        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
+
+        public Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation)
         {
-            return await _logical.CreateLogicalContext(openOnCreation);
+            return _logical.ConfigureLogicalContextConfiguration(configuration, openOnCreation);
         }
 
-        public IGraphSLScriptContext CreateGraphSLScriptContext(ILogicalContext logicalContext)
-        {
-            var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext)
-                .UseFunctionalDiagnostics(_diagnostics);
-            return new GraphSLScriptContextFactory().Create(configuration);
-        }
-        
-        public IGraphQLQueryContext CreateGraphQLQueryContext(ILogicalContext logicalContext)
-        {
-            var configuration = new GraphQLQueryContextConfiguration()
-                .Use(logicalContext)
-                .UseFunctionalDiagnostics(_diagnostics);
-            return new GraphQLQueryContextFactory().Create(configuration);
-        }
-        
-        
+//        public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
+//        {
+//            return await _logical.CreateLogicalContext(openOnCreation);
+//        }
+
         public async Task AddPeople(IGraphSLScriptContext context)
         {
             await AddJohnDoe(context);

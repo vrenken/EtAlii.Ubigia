@@ -77,15 +77,11 @@
 
         public IGraphSLScriptContext CreateScriptContext(IDataConnection connection, bool useCaching = true)
         {
-            var logicalContextConfiguration = new LogicalContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(useCaching)
                 //.Use(_diagnostics)
                 .UseTraversalCaching(useCaching)
                 .Use(connection);
-            var logicalContext = new LogicalContextFactory().Create(logicalContextConfiguration);
-
-            var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext);
             foreach (var extension in _scriptContextConfigurationFactoryExtensions)
             {
                 extension(configuration);

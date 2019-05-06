@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-
     public class GraphSLScriptContextFactoryFunctionHandlersTests : IClassFixture<LogicalUnitTestContext>
     {
         private readonly LogicalUnitTestContext _testContext;
@@ -20,10 +19,8 @@
         public async Task GraphSLScriptContextFactory_Create()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-
-            var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext);
+            var configuration = new GraphSLScriptContextConfiguration();
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -36,10 +33,8 @@
         public async Task GraphSLScriptContextFactory_Create_With_FunctionHandler_None()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
-            
-            var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext);
+            var configuration = new GraphSLScriptContextConfiguration();
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -52,13 +47,12 @@
         public async Task GraphSLScriptContextFactory_Create_With_FunctionHandler_Single()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var functionHandlers = new IFunctionHandler[] { new TestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext)
                 .Use(functionHandlersProvider);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -71,13 +65,13 @@
         public async Task GraphSLScriptContextFactory_Create_With_FunctionHandler_Single_Invalid()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var functionHandlers = new IFunctionHandler[] { new InvalidTestRenameFunctionHandler() };
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext)
                 .Use(functionHandlersProvider);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
+
             // Act.
             var act = new Action(() =>
             {
@@ -92,7 +86,6 @@
         public async Task GraphSLScriptContextFactory_Create_With_FunctionHandler_Multiple()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var functionHandlers = new IFunctionHandler[]
             {
                 new TestRenameFunctionHandler(),
@@ -101,8 +94,8 @@
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext)
                 .Use(functionHandlersProvider);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
             
             // Act.
             var scriptContext = new GraphSLScriptContextFactory().Create(configuration);
@@ -115,7 +108,6 @@
         public async Task GraphSLScriptContextFactory_Create_With_FunctionHandler_Multiple_Invalid()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
             var functionHandlers = new IFunctionHandler[]
             {
                 new TestRenameFunctionHandler(),
@@ -124,8 +116,8 @@
             var functionHandlersProvider = new FunctionHandlersProvider(functionHandlers);
 
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(logicalContext)
                 .Use(functionHandlersProvider);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var act = new Action(() =>

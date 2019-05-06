@@ -12,6 +12,11 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             _fabric = fabric;
         }
 
+        public async Task ConfigureLogicalContextConfiguration(LogicalContextConfiguration configuration, bool openOnCreation)
+        {
+            await _fabric.ConfigureFabricContextConfiguration(configuration, openOnCreation);
+        }
+        
         public async Task<ILogicalContext> CreateLogicalContext(bool openOnCreation)
         {
             var configuration = new LogicalContextConfiguration();

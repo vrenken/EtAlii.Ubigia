@@ -5,8 +5,8 @@ namespace EtAlii.Ubigia.Api
     using System.Linq;
 
     /// <summary>
-    /// This is the base class for all configuration classes.
-    /// It provides out of the box support for extensions.
+    /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing configuration type.
+    /// This comes in very handy during the fluent method chaining involved. 
     /// </summary>
     public static class ConfigurationUseExtensions
     {
@@ -35,5 +35,16 @@ namespace EtAlii.Ubigia.Api
                 .ToArray();
             return configuration;
         }
+
+        public static TConfiguration Use<TConfiguration>(this TConfiguration configuration, Configuration otherConfiguration)
+            where TConfiguration : Configuration
+        {
+            var editableConfiguration = (IEditableConfiguration) configuration;
+
+            editableConfiguration.Extensions = ((IEditableConfiguration)otherConfiguration).Extensions;
+            
+            return configuration;
+        }
+
     }
 }

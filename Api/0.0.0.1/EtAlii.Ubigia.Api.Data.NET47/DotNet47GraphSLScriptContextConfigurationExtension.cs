@@ -2,7 +2,8 @@
 {
     public static class DotNet47GraphSLScriptContextConfigurationExtension
     {
-        public static GraphSLScriptContextConfiguration UseDotNet47(this GraphSLScriptContextConfiguration configuration)
+        public static TGraphSLScriptContextConfiguration UseDotNet47<TGraphSLScriptContextConfiguration>(this TGraphSLScriptContextConfiguration configuration)
+            where TGraphSLScriptContextConfiguration : GraphSLScriptContextConfiguration
         {
             var functionHandlers = new[] 
             {

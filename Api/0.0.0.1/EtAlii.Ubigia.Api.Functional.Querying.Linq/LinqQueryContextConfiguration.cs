@@ -1,19 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Logical;
-
-    public class LinqQueryContextConfiguration : Configuration, ILinqQueryContextConfiguration
+    public class LinqQueryContextConfiguration : GraphSLScriptContextConfiguration, ILinqQueryContextConfiguration
     {
-        public ILogicalContext LogicalContext { get; private set; }
-
-        public LinqQueryContextConfiguration()
-        {
-        }
-
-        public LinqQueryContextConfiguration Use(ILogicalContext logicalContext)
-        {
-            LogicalContext = logicalContext;
-            return this;
-        }
     }
 }

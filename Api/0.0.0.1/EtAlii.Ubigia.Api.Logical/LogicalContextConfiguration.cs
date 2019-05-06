@@ -4,9 +4,6 @@
 
     public class LogicalContextConfiguration : FabricContextConfiguration, ILogicalContextConfiguration, IEditableLogicalContextConfiguration
     { 
-//        IFabricContext IEditableLogicalContextConfiguration.Fabric { get => Fabric; set => Fabric = value; }
-//        public IFabricContext Fabric { get; private set; }
-
         bool IEditableLogicalContextConfiguration.CachingEnabled { get => CachingEnabled; set => CachingEnabled = value; }
         public bool CachingEnabled { get; private set; }
 

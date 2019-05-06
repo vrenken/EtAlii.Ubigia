@@ -28,10 +28,12 @@
             var start = Environment.TickCount;
 
             _diagnostics = TestDiagnostics.Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            
             var configuration = new LinqQueryContextConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(_logicalContext);
+                .UseFunctionalDiagnostics(_diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+
+            _logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
             _context = new LinqQueryContextFactory().Create(configuration);
                 
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
