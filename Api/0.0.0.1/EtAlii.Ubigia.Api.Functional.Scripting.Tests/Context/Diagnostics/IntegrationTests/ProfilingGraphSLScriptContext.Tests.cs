@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
@@ -11,33 +10,34 @@
     {
         private readonly LogicalUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
-        private ILogicalContext _logicalContext;
+        //private ILogicalContext _logicalContext;
 
         public ProfilingGraphSLScriptContextTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
 
-        public async Task InitializeAsync()
+        public Task InitializeAsync()
         {
             _diagnostics = TestDiagnostics.Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            //_logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            return Task.CompletedTask;
         }
 
         public Task DisposeAsync()
         {
-            _logicalContext.Dispose();
-            _logicalContext = null;
+//            _logicalContext.Dispose();
+//            _logicalContext = null;
             _diagnostics = null;
             return Task.CompletedTask;
         }
 
         [Fact]
-        public void ProfilingGraphSLScriptContext_Create_01()
+        public async Task ProfilingGraphSLScriptContext_Create_01()
         {
             // Arrange.
-            var configuration = new GraphSLScriptContextConfiguration()
-                .Use(_logicalContext);
+            var configuration = new GraphSLScriptContextConfiguration();
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);
@@ -47,12 +47,12 @@
         }
 
         [Fact]
-        public void ProfilingGraphSLScriptContext_Create_02()
+        public async Task ProfilingGraphSLScriptContext_Create_02()
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(_logicalContext);
+                .UseFunctionalGraphSLDiagnostics(_diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);
@@ -62,12 +62,12 @@
         }
 
         [Fact]
-        public void ProfilingGraphSLScriptContext_Create_03()
+        public async Task ProfilingGraphSLScriptContext_Create_03()
         {
             // Arrange.
             var configuration = new GraphSLScriptContextConfiguration()
-                .Use(_logicalContext)
-                .UseFunctionalDiagnostics(_diagnostics);
+                .UseFunctionalGraphSLDiagnostics(_diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration, true);
 
             // Act.
             var context = new GraphSLScriptContextFactory().CreateForProfiling(configuration);

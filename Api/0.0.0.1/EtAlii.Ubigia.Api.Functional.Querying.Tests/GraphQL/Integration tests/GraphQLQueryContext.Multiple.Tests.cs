@@ -2,13 +2,12 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using GraphQL.Http;
     using Xunit;
 
     public class GraphQLQueryContextMultipleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
-        private ILogicalContext  _logicalContext;
         private IGraphSLScriptContext _scriptContext;
         private IGraphQLQueryContext _queryContext;
         
@@ -25,9 +24,13 @@
         {
             var start = Environment.TickCount;
 
-            _logicalContext = await _testContext.FunctionalTestContext.CreateLogicalContext(true);
-            _queryContext = _testContext.FunctionalTestContext.CreateGraphQLQueryContext(_logicalContext);
-            _scriptContext = _testContext.FunctionalTestContext.CreateGraphSLScriptContext(_logicalContext);
+            var configuration = new GraphQLQueryContextConfiguration()
+                .UseFunctionalGraphQLDiagnostics(_testContext.FunctionalTestContext.Diagnostics)
+                .UseFunctionalGraphSLDiagnostics(_testContext.FunctionalTestContext.Diagnostics);
+            await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            
+            _scriptContext = new GraphSLScriptContextFactory().Create(configuration);
+            _queryContext = new GraphQLQueryContextFactory().Create(configuration);
 
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext);
@@ -39,7 +42,6 @@
         {
             var start = Environment.TickCount;
 
-            _logicalContext = null;
             _scriptContext = null;
             _queryContext = null;
 

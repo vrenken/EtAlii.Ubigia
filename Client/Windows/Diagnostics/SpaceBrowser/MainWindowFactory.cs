@@ -75,45 +75,28 @@
             container.Register<IDataConnection>(() => connection);
             container.Register(() => connection);
 
+            var logicalContextConfiguration = new LogicalContextConfiguration()
+                .Use(connection)
+                .UseLogicalDiagnostics(diagnostics);
+            
             // Then the fabric context.
-            var fabricContextConfiguration = new FabricContextConfiguration()
-                .Use(connection);
-            var fabricContext = new FabricContextFactory().CreateForProfiling(fabricContextConfiguration);
+            var fabricContext = new FabricContextFactory().CreateForProfiling(logicalContextConfiguration);
             container.Register<IFabricContext>(() => fabricContext);
             container.Register(() => fabricContext);
 
-            // The logical context.
-            container.Register<ILogicalContext>(() =>
-            {
-                var logicalContextConfiguration = new LogicalContextConfiguration()
-                    .Use(fabricContext)
-                    .UseLogicalDiagnostics(diagnostics);
-                return new LogicalContextFactory().CreateForProfiling(logicalContextConfiguration);
-            });
-            container.Register(() => (IProfilingLogicalContext)container.GetInstance<ILogicalContext>());
+            var logicalContext = new LogicalContextFactory().CreateForProfiling(logicalContextConfiguration);
+            container.Register<ILogicalContext>(() => logicalContext);
+            container.Register(() => (IProfilingLogicalContext)logicalContext);
 
             // Function handling
             container.Register<ISpaceBrowserFunctionHandlersProvider, SpaceBrowserFunctionHandlersProvider>();
             container.Register<IViewFunctionHandler, ViewFunctionHandler>();
 
-//            container.Register<IDataContext>(() =>
-//            [
-//                var logicalContext = container.GetInstance<ILogicalContext>()
-//                
-//                // And finally, the functional context.
-//                var dataContextConfiguration = new DataContextConfiguration()
-//                                    .Use(diagnostics)
-//                                    .Use(logicalContext)
-//                return new DataContextFactory().CreateForProfiling(dataContextConfiguration)
-//            ])
-//            container.Register(() => (IProfilingDataContext)container.GetInstance<IDataContext>())
-
             container.Register<IGraphSLScriptContext>(() =>
             {
-                var logicalContext = container.GetInstance<ILogicalContext>();
                 var configuration = new GraphSLScriptContextConfiguration()
-                    .Use(logicalContext)
-                    .UseFunctionalDiagnostics(diagnostics)
+                    .Use(logicalContextConfiguration)
+                    .UseFunctionalGraphSLDiagnostics(diagnostics)
                     .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
                     .UseDotNet47();
                 return new GraphSLScriptContextFactory().CreateForProfiling(configuration);
@@ -122,19 +105,18 @@
 
             container.Register<IGraphQLQueryContext>(() =>
             {
-                var logicalContext = container.GetInstance<ILogicalContext>();
                 var configuration = new GraphQLQueryContextConfiguration()
-                    .Use(logicalContext)
-                    .UseFunctionalDiagnostics(diagnostics);
+                    .Use(logicalContextConfiguration)
+                    .UseFunctionalGraphQLDiagnostics(diagnostics)
+                    .UseDotNet47();
                 return new GraphQLQueryContextFactory().CreateForProfiling(configuration);
             });
             container.Register(() => (IProfilingGraphQLQueryContext)container.GetInstance<IGraphQLQueryContext>());
             
             container.Register<ILinqQueryContext>(() =>
             {
-                var logicalContext = container.GetInstance<ILogicalContext>();
                 var configuration = new LinqQueryContextConfiguration()
-                    .Use(logicalContext)
+                    .Use(logicalContextConfiguration)
                     .UseFunctionalDiagnostics(diagnostics);
                 return new LinqQueryContextFactory().CreateForProfiling(configuration);
             });

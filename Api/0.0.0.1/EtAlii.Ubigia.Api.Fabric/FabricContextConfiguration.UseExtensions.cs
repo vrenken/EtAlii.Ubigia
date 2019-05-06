@@ -2,6 +2,10 @@ namespace EtAlii.Ubigia.Api.Fabric
 {
     using EtAlii.Ubigia.Api.Transport;
 
+    /// <summary>
+    /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing configuration type.
+    /// This comes in very handy during the fluent method chaining involved. 
+    /// </summary>
     public static class FabricContextConfigurationUseExtensions
     {
         public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, IDataConnection connection)
@@ -21,5 +25,19 @@ namespace EtAlii.Ubigia.Api.Fabric
             ((IEditableFabricContextConfiguration)configuration).TraversalCachingEnabled = cachingEnabled;
             return configuration;
         }
+        
+        public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, FabricContextConfiguration otherConfiguration)
+            where TFabricContextConfiguration: FabricContextConfiguration
+        {
+            configuration.Use((Configuration)otherConfiguration);
+
+            var editableConfiguration = (IEditableFabricContextConfiguration) configuration;
+
+            editableConfiguration.Connection = otherConfiguration.Connection;
+            editableConfiguration.TraversalCachingEnabled = otherConfiguration.TraversalCachingEnabled;
+
+            return configuration;
+        }
+
     }
 }

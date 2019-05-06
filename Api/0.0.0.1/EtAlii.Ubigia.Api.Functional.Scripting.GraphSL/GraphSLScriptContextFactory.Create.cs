@@ -10,17 +10,12 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public static IGraphSLScriptContext Create(this GraphSLScriptContextFactory factory, IDataConnection connection, bool useCaching = true)
         {
-            var configuration = new LogicalContextConfiguration()
+            var configuration = new GraphSLScriptContextConfiguration()
                 .UseCaching(useCaching)
                 //.Use(_diagnostics)
                 .UseTraversalCaching(useCaching)
                 .Use(connection);
-            var logicalContext = new LogicalContextFactory().Create(configuration);
-
-            var dataContextConfiguration = new GraphSLScriptContextConfiguration()
-                //.Use(_diagnostics)
-                .Use(logicalContext);
-            return factory.Create(dataContextConfiguration);
+            return factory.Create(configuration);
         }
     }
 }

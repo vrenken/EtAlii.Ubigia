@@ -37,10 +37,12 @@
             var start = Environment.TickCount;
 
             _diagnostics = TestDiagnostics.Create();
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            
             var configuration = new LinqQueryContextConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(_logicalContext);
+                .UseFunctionalDiagnostics(_diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+
+            _logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
             _context = new LinqQueryContextFactory().Create(configuration);
             
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
@@ -181,13 +183,9 @@
 
             // Arrange.
             start = Environment.TickCount;
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+                        
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
-            var configuration = new LinqQueryContextConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(_logicalContext);
-            _context = new LinqQueryContextFactory().Create(configuration);
             items = _context.Nodes.Select(_countryPath);
 
             // Act.
@@ -203,13 +201,9 @@
 
             // Arrange.
             start = Environment.TickCount;
-            _logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+
             addResult = await _testContext.LogicalTestContext.AddContinentCountry(_logicalContext);
             _countryPath = addResult.Path;
-            configuration = new LinqQueryContextConfiguration()
-                .UseFunctionalDiagnostics(_diagnostics)
-                .Use(_logicalContext);
-            _context = new LinqQueryContextFactory().Create(configuration);
             items = _context.Nodes.Select(_countryPath);
 
             // Act.

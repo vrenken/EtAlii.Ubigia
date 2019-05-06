@@ -1,7 +1,11 @@
 namespace EtAlii.Ubigia.Api.Logical
 {
-//    using EtAlii.Ubigia.Api.Fabric;
+    using EtAlii.Ubigia.Api.Fabric;
 
+    /// <summary>
+    /// The UseExtensions class provides methods with which configuration specific settings can be configured without losing configuration type.
+    /// This comes in very handy during the fluent method chaining involved. 
+    /// </summary>
     public static class LogicalContextConfigurationUseExtensions
     {
 
@@ -11,12 +15,15 @@ namespace EtAlii.Ubigia.Api.Logical
             ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = cachingEnabled;
             return configuration;
         }
+        
+        
+        public static TLogicalContextConfiguration Use<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, LogicalContextConfiguration otherConfiguration)
+            where TLogicalContextConfiguration: LogicalContextConfiguration
+        {
+            configuration.Use((FabricContextConfiguration)otherConfiguration);
 
-//        public static TLogicalContextConfiguration Use<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, IFabricContext fabric)
-//            where TLogicalContextConfiguration: LogicalContextConfiguration
-//        {
-//            ((IEditableLogicalContextConfiguration)configuration).Fabric = fabric;
-//            return configuration;
-//        }
+            ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = otherConfiguration.CachingEnabled;
+            return configuration;
+        }
     }
 }

@@ -1,19 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using EtAlii.Ubigia.Api.Logical;
-
-    public class GraphQLQueryContextConfiguration : Configuration, IGraphQLQueryContextConfiguration
+    public class GraphQLQueryContextConfiguration : GraphSLScriptContextConfiguration, IGraphQLQueryContextConfiguration
     {
-        public ILogicalContext LogicalContext { get; private set; }
-        
-        public GraphQLQueryContextConfiguration()
-        {
-        }
-
-        public GraphQLQueryContextConfiguration Use(ILogicalContext logicalContext)
-        {
-            LogicalContext = logicalContext;
-            return this;
-        }
     }
 }

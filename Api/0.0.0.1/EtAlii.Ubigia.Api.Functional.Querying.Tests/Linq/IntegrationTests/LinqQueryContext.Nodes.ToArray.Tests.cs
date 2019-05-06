@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
@@ -25,16 +26,18 @@
         public async Task Linq_Nodes_Select_Cast_ToArray_With_Single_Item()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var configuration = new LinqQueryContextConfiguration()
+                .UseFunctionalDiagnostics(_testContext.Diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
+            var context = new LinqQueryContextFactory().Create(configuration);
+
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
             var countryPath = addResult.Path;
             var countryEntry = addResult.Entry;
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 1);
             var path = $"{countryPath}/";
-            var configuration = new LinqQueryContextConfiguration()
-                                .Use(logicalContext)
-                                .UseFunctionalDiagnostics(_testContext.Diagnostics);
-            var context = new LinqQueryContextFactory().Create(configuration);
+
             var items = context.Nodes.Select(path);
 
             // Act.
@@ -48,16 +51,17 @@
         public async Task Linq_Nodes_Select_Cast_ToArray_With_Multiple_Item()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var configuration = new LinqQueryContextConfiguration()
+                .UseFunctionalDiagnostics(_testContext.Diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
+            var context = new LinqQueryContextFactory().Create(configuration);
+
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
             var countryPath = addResult.Path;
             var countryEntry = addResult.Entry;
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
             var path = $"{countryPath}/";
-            var configuration = new LinqQueryContextConfiguration()
-                .UseFunctionalDiagnostics(_testContext.Diagnostics)
-                .Use(logicalContext);
-            var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
 
             // Act.
@@ -72,16 +76,17 @@
         public async Task Linq_Nodes_Select_ToArray_With_Multiple_Item()
         {
             // Arrange.
-            var logicalContext = await _testContext.LogicalTestContext.CreateLogicalContext(true);
+            var configuration = new LinqQueryContextConfiguration()
+                .UseFunctionalDiagnostics(_testContext.Diagnostics);
+            await _testContext.LogicalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
+            var logicalContext = new LogicalContextFactory().Create(configuration); // Hmz, I'm not so sure about this action.
+            var context = new LinqQueryContextFactory().Create(configuration);
+
             var addResult = await _testContext.LogicalTestContext.AddContinentCountry(logicalContext);
             var countryPath = addResult.Path;
             var countryEntry = addResult.Entry;
             await _testContext.LogicalTestContext.AddRegions(logicalContext, countryEntry, 2);
             var path = $"{countryPath}/";
-            var configuration = new LinqQueryContextConfiguration()
-                .UseFunctionalDiagnostics(_testContext.Diagnostics)
-                .Use(logicalContext);
-            var context = new LinqQueryContextFactory().Create(configuration);
             var items = context.Nodes.Select(path);
 
             // Act.

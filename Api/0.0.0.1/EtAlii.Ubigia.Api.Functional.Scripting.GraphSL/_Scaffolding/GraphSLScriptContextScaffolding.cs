@@ -1,20 +1,21 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class GraphSLScriptContextScaffolding : IScaffolding
     {
-        private readonly IGraphSLScriptContextConfiguration _configuration;
+        private readonly GraphSLScriptContextConfiguration _configuration;
 
-        public GraphSLScriptContextScaffolding(IGraphSLScriptContextConfiguration configuration)
+        public GraphSLScriptContextScaffolding(GraphSLScriptContextConfiguration configuration)
         {
             _configuration = configuration;
         }
 
         public void Register(Container container)
         {
-            container.Register(() => _configuration);
-            container.Register(() => _configuration.LogicalContext);
+            container.Register<IGraphSLScriptContextConfiguration>(() => _configuration);
+            container.Register(() => new LogicalContextFactory().Create(_configuration));
         }
     }
 }
