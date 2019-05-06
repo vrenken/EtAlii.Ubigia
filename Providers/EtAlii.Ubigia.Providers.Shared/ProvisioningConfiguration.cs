@@ -82,7 +82,7 @@
                 //.Use(_diagnostics)
                 .UseTraversalCaching(useCaching)
                 .Use(connection);
-            foreach (var extension in _scriptContextConfigurationFactoryExtensions)
+            foreach (var extension in _scriptContextConfigurationFactoryExtensions) 
             {
                 extension(configuration);
             }

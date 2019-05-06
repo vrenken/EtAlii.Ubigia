@@ -3,7 +3,9 @@
     using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
     using EtAlii.Ubigia.Provisioning.Tests;
@@ -140,7 +142,11 @@
             // Act.
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var connection = await managementConnection.OpenSpace(accountName, spaceName);
-            var context = new GraphSLScriptContextFactory().Create(connection);
+            var configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(connection);
+            var context = new GraphSLScriptContextFactory().Create(configuration);
 
             await systemSettingsSetter.Set(context, firstSystemSettings);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -148,7 +154,11 @@
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, spaceName);
-            context = new GraphSLScriptContextFactory().Create(connection);
+            configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(connection);
+            context = new GraphSLScriptContextFactory().Create(configuration);
             
             await systemSettingsSetter.Set(context, secondSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -156,7 +166,11 @@
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, spaceName);
-            context = new GraphSLScriptContextFactory().Create(connection);
+            configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(connection);
+            context = new GraphSLScriptContextFactory().Create(configuration);
             
             await systemSettingsSetter.Set(context, thirdSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -189,7 +203,11 @@
             // Act.
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             var connection = await managementConnection.OpenSpace(accountName, spaceName);
-            var context = new GraphSLScriptContextFactory().Create(connection);
+            var configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(connection);
+            var context = new GraphSLScriptContextFactory().Create(configuration);
 
             await systemSettingsSetter.Set(context, firstSystemSettings);
             var processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -198,7 +216,11 @@
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, spaceName);
-            context = new GraphSLScriptContextFactory().Create(connection);
+            configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(connection);
+            context = new GraphSLScriptContextFactory().Create(configuration);
             
             await systemSettingsSetter.Set(context, secondSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
@@ -207,7 +229,11 @@
             
             managementConnection = await _testContext.ProvisioningTestContext.OpenManagementConnection();
             connection = await managementConnection.OpenSpace(accountName, spaceName);
-            context = new GraphSLScriptContextFactory().Create(connection);
+            configuration = new GraphSLScriptContextConfiguration()
+                .UseCaching(true)
+                .UseTraversalCaching(true)
+                .Use(connection);
+            context = new GraphSLScriptContextFactory().Create(configuration);
             
             await systemSettingsSetter.Set(context, thirdSystemSettings);
             processingResult = await context.Process("<= /Providers/Google/PeopleApi");
