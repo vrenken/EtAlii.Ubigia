@@ -75,50 +75,44 @@
             container.Register<IDataConnection>(() => connection);
             container.Register(() => connection);
 
-            var logicalContextConfiguration = new LogicalContextConfiguration()
-                .Use(connection)
-                .UseLogicalDiagnostics(diagnostics);
-            
-            // Then the fabric context.
-            var fabricContext = new FabricContextFactory().CreateForProfiling(logicalContextConfiguration);
-            container.Register<IFabricContext>(() => fabricContext);
-            container.Register(() => fabricContext);
-
-            var logicalContext = new LogicalContextFactory().CreateForProfiling(logicalContextConfiguration);
-            container.Register<ILogicalContext>(() => logicalContext);
-            container.Register(() => (IProfilingLogicalContext)logicalContext);
-
             // Function handling
             container.Register<ISpaceBrowserFunctionHandlersProvider, SpaceBrowserFunctionHandlersProvider>();
             container.Register<IViewFunctionHandler, ViewFunctionHandler>();
 
-            container.Register<IGraphSLScriptContext>(() =>
-            {
-                var configuration = new GraphSLScriptContextConfiguration()
-                    .Use(logicalContextConfiguration)
-                    .UseFunctionalGraphSLDiagnostics(diagnostics)
-                    .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
-                    .UseDotNet47();
-                return new GraphSLScriptContextFactory().CreateForProfiling(configuration);
-            });
+            var configuration = new GraphSLScriptContextConfiguration()
+                .Use(connection)
+                .UseLogicalDiagnostics(diagnostics)
+                .UseFunctionalGraphSLDiagnostics(diagnostics)
+                .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
+                .UseDotNet47();
+            
+            // Then the fabric context.
+            var fabricContext = new FabricContextFactory().CreateForProfiling(configuration);
+            container.Register<IFabricContext>(() => fabricContext);
+            container.Register(() => fabricContext);
+
+            var logicalContext = new LogicalContextFactory().CreateForProfiling(configuration);
+            container.Register<ILogicalContext>(() => logicalContext);
+            container.Register(() => (IProfilingLogicalContext)logicalContext);
+
+
+            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().CreateForProfiling(configuration));
             container.Register(() => (IProfilingGraphSLScriptContext)container.GetInstance<IGraphSLScriptContext>());
 
             container.Register<IGraphQLQueryContext>(() =>
             {
-                var configuration = new GraphQLQueryContextConfiguration()
-                    .Use(logicalContextConfiguration)
-                    .UseFunctionalGraphQLDiagnostics(diagnostics)
-                    .UseDotNet47();
-                return new GraphQLQueryContextFactory().CreateForProfiling(configuration);
+                var queryContextConfiguration = new GraphQLQueryContextConfiguration()
+                    .Use(configuration);
+                return new GraphQLQueryContextFactory().CreateForProfiling(queryContextConfiguration);
             });
             container.Register(() => (IProfilingGraphQLQueryContext)container.GetInstance<IGraphQLQueryContext>());
             
             container.Register<ILinqQueryContext>(() =>
             {
-                var configuration = new LinqQueryContextConfiguration()
-                    .Use(logicalContextConfiguration)
+                var queryContextConfiguration = new LinqQueryContextConfiguration()
+                    .Use(configuration)
                     .UseFunctionalDiagnostics(diagnostics);
-                return new LinqQueryContextFactory().CreateForProfiling(configuration);
+                return new LinqQueryContextFactory().CreateForProfiling(queryContextConfiguration);
             });
             container.Register(() => (IProfilingLinqQueryContext)container.GetInstance<ILinqQueryContext>());
 
