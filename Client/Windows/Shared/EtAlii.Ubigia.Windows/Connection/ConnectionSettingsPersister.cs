@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.IO;
     using System.IO.IsolatedStorage;
+    using System.Linq;
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Security.Cryptography;
     using System.Text;
@@ -145,13 +146,12 @@
 
         private Stream ToEncryptedStream(Stream stream, CryptoStreamMode mode)
         {
-            var cryptic = new AesCryptoServiceProvider
-            {
-                Key = Encoding.ASCII.GetBytes("baadfood"),
-                IV = Encoding.ASCII.GetBytes("foodbaad"),
-            };
+            var keyLength = 128;
+            var key = Encoding.ASCII.GetBytes("BaaDFoodFromDeadBeef").Take(keyLength / 8).ToArray();
+            var iv = Encoding.ASCII.GetBytes("FoodBaaDFromBeefDead").Take(keyLength / 8).ToArray();
+            var cryptic = new AesCryptoServiceProvider {KeySize = keyLength};
 
-            return new CryptoStream(stream, mode == CryptoStreamMode.Read ? cryptic.CreateDecryptor() : cryptic.CreateEncryptor(), mode);
+            return new CryptoStream(stream, mode == CryptoStreamMode.Read ? cryptic.CreateDecryptor(key, iv) : cryptic.CreateEncryptor(key, iv), mode);
         }
     }
 }
