@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -23,8 +23,8 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Transport.Owin.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.56" />
-    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.56" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.58" />
+    <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.58" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />

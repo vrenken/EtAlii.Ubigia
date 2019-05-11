@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net472</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -66,7 +66,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.56" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.58" />
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
