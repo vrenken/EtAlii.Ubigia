@@ -4,7 +4,7 @@
     using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
 
-    public class LoggingStorageConnection : IStorageConnection
+    public sealed class LoggingStorageConnection : IStorageConnection
     {
         private readonly IStorageConnection _decoree;
         private readonly ILogger _logger;

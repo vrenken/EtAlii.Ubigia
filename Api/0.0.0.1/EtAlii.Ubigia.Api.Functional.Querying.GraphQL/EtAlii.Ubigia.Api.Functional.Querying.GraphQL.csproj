@@ -31,4 +31,7 @@
     <PackageReference Include="GraphQL" Version="2.4.0" />
     <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="2. Processing" />
+  </ItemGroup>
 </Project>
