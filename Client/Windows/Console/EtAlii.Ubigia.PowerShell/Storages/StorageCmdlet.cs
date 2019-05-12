@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
 
-    public class StorageCmdlet : StorageCmdletBase
+    public static class StorageCmdlet 
     {
         public static Storage Current { get; set; }
     }

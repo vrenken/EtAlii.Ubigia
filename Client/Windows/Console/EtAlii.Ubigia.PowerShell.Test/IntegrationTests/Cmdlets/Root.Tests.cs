@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
-    using System.Collections.Generic;
     using System.Management.Automation;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -63,7 +62,7 @@
 
             // Act.
             var result = _testContext.InvokeGetRoots();
-            var roots = _testContext.ToAssertedResult<List<Root>>(result);
+            var roots = _testContext.ToAssertedResults<Root>(result);
 
             // Assert.
             Assert.NotEmpty(roots);
@@ -74,8 +73,8 @@
         {
             // Arrange.
             var result = _testContext.InvokeGetRoots();
-            var roots = _testContext.ToAssertedResult<List<Root>>(result);
-            var firstCount = roots.Count;
+            var roots = _testContext.ToAssertedResults<Root>(result);
+            var firstCount = roots.Length;
             var name = Guid.NewGuid().ToString();
 
             // Act.
@@ -83,8 +82,8 @@
 
             // Assert.
             result = _testContext.InvokeGetRoots();
-            roots = _testContext.ToAssertedResult<List<Root>>(result);
-            var secondCount = roots.Count;
+            roots = _testContext.ToAssertedResults<Root>(result);
+            var secondCount = roots.Length;
 
             Assert.True(secondCount == firstCount + 1);
         }

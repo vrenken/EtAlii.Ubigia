@@ -1,14 +1,14 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Roots
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Accounts;
-    using EtAlii.Ubigia.PowerShell.Spaces;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Accounts;
+    using EtAlii.Ubigia.PowerShell.Spaces;
 
-    public class RootTargetingCmdlet : SpaceTargetingCmdlet, IRootInfoProvider
+    public abstract class RootTargetingCmdlet : SpaceTargetingCmdlet, IRootInfoProvider
     {
         [Parameter(Mandatory = false, Position = 70, ParameterSetName = "byRoot", HelpMessage = "The root on which the action should be applied.")]
         public Root Root { get; set; }
@@ -21,21 +21,17 @@
 
         public Root TargetRoot { get; private set; }
 
-        protected override void BeginProcessing()
+        protected override async Task BeginProcessingTask()
         {
-            base.BeginProcessing();
+            await base.BeginProcessingTask();
 
-            var task = Task.Run(async () =>
-            {
-                TargetRoot = await PowerShellClient.Current.RootResolver.Get(this, AccountCmdlet.Current, SpaceCmdlet.Current, RootCmdlet.Current);
-            });
-            task.Wait();
+            TargetRoot = await PowerShellClient.Current.RootResolver.Get(this, AccountCmdlet.Current, SpaceCmdlet.Current, RootCmdlet.Current);
 
             if (TargetRoot == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoRoot, ErrorCategory.InvalidData, null));
             }
-            WriteDebug($"Using root [{(TargetRoot != null ? TargetRoot.Name : "NONE")}]");
+            //WriteDebug($"Using root [{(TargetRoot != null ? TargetRoot.Name : "NONE")}]")
         }
     }
 }

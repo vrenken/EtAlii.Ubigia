@@ -1,13 +1,15 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Roots
 {
     using System.Management.Automation;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Root, DefaultParameterSetName = "byRootName")]
-    public class GetRoot : RootTargetingCmdlet
+    public class GetRoot : RootTargetingCmdlet<Root>
     {
-        protected override void ProcessRecord()
+        protected override Task<Root> ProcessTask()
         {
-            WriteObject(TargetRoot);
+            return Task.FromResult(TargetRoot);
         } 
     }
 }

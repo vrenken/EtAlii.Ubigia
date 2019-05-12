@@ -5,19 +5,12 @@
     using EtAlii.Ubigia.Api;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Account, DefaultParameterSetName = "byStorage")]
-    public class GetAccount : AccountTargetingCmdlet
+    public class GetAccount : AccountTargetingCmdlet<Account>
     {
-        protected override void ProcessRecord()
+        protected override async Task<Account> ProcessTask()
         {
-            Account account = null;
-
-            var task = Task.Run(async () =>
-            {
-                account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
-            });
-            task.Wait();
-
-            WriteObject(account);
+            var account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
+            return account;
         }
     }
 }

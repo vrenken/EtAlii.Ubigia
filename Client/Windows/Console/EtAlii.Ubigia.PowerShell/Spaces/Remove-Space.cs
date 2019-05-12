@@ -9,7 +9,7 @@
         [Parameter(Mandatory = false, Position = 999, HelpMessage = "Force space removal.")]
         public SwitchParameter Force { get; set; }
 
-        protected override void ProcessRecord()
+        protected override async Task ProcessTask()
         {
             var verboseDescription = $"Space '{TargetSpace.Name}' has been removed.";
             var verboseNegativeDescription = $"Space '{TargetSpace.Name}' has not been removed.";
@@ -19,13 +19,9 @@
             {
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
-                    WriteVerbose(verboseDescription);
-                    WriteDebug($"Removing space [{TargetSpace.Name}]");
-                    var task = Task.Run(async () =>
-                    {
-                        await PowerShellClient.Current.ManagementConnection.Spaces.Remove(TargetSpace.Id);
-                    });
-                    task.Wait();
+                    //WriteVerbose(verboseDescription)
+                    //WriteDebug($"Removing space [{TargetSpace.Name}]")
+                    await PowerShellClient.Current.ManagementConnection.Spaces.Remove(TargetSpace.Id);
                     if (SpaceCmdlet.Current != null && SpaceCmdlet.Current.Id == TargetSpace.Id)
                     {
                         SpaceCmdlet.Current = null;
@@ -34,12 +30,12 @@
                 }
                 else
                 {
-                    WriteVerbose(verboseNegativeDescription);
+                    //WriteVerbose(verboseNegativeDescription)
                 }
             }
             else
             {
-                WriteVerbose(verboseNegativeDescription);
+                //WriteVerbose(verboseNegativeDescription)
             }
         }
     }

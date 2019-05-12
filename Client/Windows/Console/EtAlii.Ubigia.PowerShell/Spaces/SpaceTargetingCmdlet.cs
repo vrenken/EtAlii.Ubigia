@@ -1,13 +1,13 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Spaces
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Accounts;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Accounts;
 
-    public class SpaceTargetingCmdlet : AccountTargetingCmdlet, ISpaceInfoProvider
+    public abstract class SpaceTargetingCmdlet : AccountTargetingCmdlet, ISpaceInfoProvider
     {
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "bySpace", HelpMessage = "The space on which the action should be applied.")]
         public Space Space { get; set; }
@@ -20,21 +20,17 @@
 
         public Space TargetSpace { get; private set; }
 
-        protected override void BeginProcessing()
+        protected override async Task BeginProcessingTask()
         {
-            base.BeginProcessing();
+            await base.BeginProcessingTask();
 
-            var task = Task.Run(async () =>
-            {
-                TargetSpace = await PowerShellClient.Current.SpaceResolver.Get(this, SpaceCmdlet.Current, AccountCmdlet.Current);
-            });
-            task.Wait();
+            TargetSpace = await PowerShellClient.Current.SpaceResolver.Get(this, SpaceCmdlet.Current, AccountCmdlet.Current);
 
             if (TargetSpace == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoSpace, ErrorCategory.InvalidData, null));
             }
-            WriteDebug($"Using space [{(TargetSpace != null ? TargetSpace.Name : "NONE")}]");
+            //WriteDebug($"Using space [{(TargetSpace != null ? TargetSpace.Name : "NONE")}]")
         }
     }
 }

@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
+    using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-    using System;
-    using System.Collections.Generic;
-
 
     public class SpaceTest : IDisposable
     {
@@ -47,7 +45,7 @@
             
             // Act.
             var result = _testContext.InvokeGetSpaces();
-            var spaces = _testContext.ToAssertedResult<List<Space>>(result);
+            var spaces = _testContext.ToAssertedResults<Space>(result);
             
             // Assert.
             Assert.NotEmpty(spaces);
@@ -58,8 +56,8 @@
         {
             // Arrange.
             var result = _testContext.InvokeGetSpaces();
-            var spaces = _testContext.ToAssertedResult<List<Space>>(result);
-            var firstCount = spaces.Count;
+            var spaces = _testContext.ToAssertedResults<Space>(result);
+            var firstCount = spaces.Length;
 
             // Act.
             var name = Guid.NewGuid().ToString();
@@ -68,8 +66,8 @@
             
             // Assert.
             result = _testContext.InvokeGetSpaces();
-            spaces = _testContext.ToAssertedResult<List<Space>>(result);
-            var secondCount = spaces.Count;
+            spaces = _testContext.ToAssertedResults<Space>(result);
+            var secondCount = spaces.Length;
             Assert.True(secondCount == firstCount + 1);
         }
 

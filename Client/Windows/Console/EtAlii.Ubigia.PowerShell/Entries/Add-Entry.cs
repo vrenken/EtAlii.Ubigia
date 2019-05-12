@@ -2,11 +2,11 @@
 {
     using System;
     using System.Management.Automation;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Spaces;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Entry)]
-    public class AddEntry : SpaceCmdlet
+    public class AddEntry : TaskCmdlet<Entry>
     {
         #region Content related properties
 
@@ -69,20 +69,9 @@
 
         #endregion Update related properties
 
-
-        protected override void BeginProcessing()
+        protected override Task<Entry> ProcessTask()
         {
-            // Put any processing that should happen at the beginning here.
-        }
-
-        protected override void EndProcessing()
-        {
-            // Put any processing that should happen at the end here.
-        }
-
-        protected override void ProcessRecord()
-        {
-            // Put any processing that should happen here.
+            throw new NotImplementedException();
         }
     }
 }

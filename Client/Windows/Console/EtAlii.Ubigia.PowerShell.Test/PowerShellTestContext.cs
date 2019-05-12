@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Management.Automation;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
@@ -52,6 +53,15 @@
             Assert.NotNull(result);
             Assert.True(result.Count == 1);
             var typedResult = result[0].BaseObject as T;
+            Assert.NotNull(typedResult);
+            return typedResult;
+        }
+
+        public T[] ToAssertedResults<T>(Collection<PSObject> result)
+            where T: class
+        {
+            Assert.NotNull(result);
+            var typedResult = result.Select(r => r.BaseObject).Cast<T>().ToArray();
             Assert.NotNull(typedResult);
             return typedResult;
         }

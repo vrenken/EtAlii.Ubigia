@@ -10,7 +10,7 @@
         [Parameter(Mandatory = false, Position = 999, HelpMessage = "Force root removal.")]
         public SwitchParameter Force { get; set; }
 
-        protected override void ProcessRecord()
+        protected override async Task ProcessTask()
         {
             var verboseDescription = $"Root '{TargetRoot.Name}' has been removed.";
             var verboseNegativeDescription = $"Root '{TargetRoot.Name}' has not been removed.";
@@ -20,13 +20,9 @@
             {
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
-                    WriteVerbose(verboseDescription);
-                    WriteDebug($"Removing root [{TargetRoot.Name}]");
-                    var task = Task.Run(async () =>
-                    {
-                        await PowerShellClient.Current.Fabric.Roots.Remove(TargetRoot.Id);
-                    });
-                    task.Wait();
+                    //WriteVerbose(verboseDescription)
+                    //WriteDebug($"Removing root [{TargetRoot.Name}]")
+                    await PowerShellClient.Current.Fabric.Roots.Remove(TargetRoot.Id);
                     if (RootCmdlet.Current != null && RootCmdlet.Current.Id == TargetRoot.Id)
                     {
                         RootCmdlet.Current = null;
@@ -34,12 +30,12 @@
                 }
                 else
                 {
-                    WriteVerbose(verboseNegativeDescription);
+                    //WriteVerbose(verboseNegativeDescription)
                 }
             }
             else
             {
-                WriteVerbose(verboseNegativeDescription);
+                //WriteVerbose(verboseNegativeDescription)
             }
         }
     }
