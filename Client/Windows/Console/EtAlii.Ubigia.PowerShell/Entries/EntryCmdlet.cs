@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api;
 
-    public class EntryCmdlet : CmdletBase
+    public static class EntryCmdlet 
     {
         public static Entry Current { get; set; }
     }

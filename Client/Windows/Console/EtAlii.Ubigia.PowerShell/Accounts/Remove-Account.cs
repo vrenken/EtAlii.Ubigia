@@ -9,7 +9,7 @@
         [Parameter(Mandatory = false, Position = 999, HelpMessage = "Force account removal.")]
         public SwitchParameter Force { get; set; }
 
-        protected override void ProcessRecord()
+        protected override async Task ProcessTask()
         {
             var verboseDescription = $"Account '{TargetAccount.Name}' has been removed.";
             var verboseNegativeDescription = $"Account '{TargetAccount.Name}' has not been removed.";
@@ -19,13 +19,9 @@
             {
                 if (Force || ShouldContinue(verboseWarning, caption))
                 {
-                    WriteVerbose(verboseDescription);
-                    WriteDebug($"Removing account [{TargetAccount.Name}]");
-                    var task = Task.Run(async () =>
-                    {
-                        await PowerShellClient.Current.ManagementConnection.Accounts.Remove(TargetAccount.Id);
-                    });
-                    task.Wait();
+                    //WriteVerbose(verboseDescription)
+                    //WriteDebug($"Removing account [{TargetAccount.Name}]")
+                    await PowerShellClient.Current.ManagementConnection.Accounts.Remove(TargetAccount.Id);
                     if (AccountCmdlet.Current != null && AccountCmdlet.Current.Id == TargetAccount.Id)
                     {
                         AccountCmdlet.Current = null;
@@ -33,12 +29,12 @@
                 }
                 else
                 {
-                    WriteVerbose(verboseNegativeDescription);
+                    //WriteVerbose(verboseNegativeDescription)
                 }
             }
             else
             {
-                WriteVerbose(verboseNegativeDescription);
+                //WriteVerbose(verboseNegativeDescription)
             }
         }
     }

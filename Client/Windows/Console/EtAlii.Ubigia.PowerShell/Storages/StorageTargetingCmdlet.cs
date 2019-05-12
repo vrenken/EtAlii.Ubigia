@@ -1,12 +1,12 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Storages
 {
-    using EtAlii.Ubigia.Api;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
-    public class StorageTargetingCmdlet : StorageCmdletBase, IStorageInfoProvider
+    public abstract class StorageTargetingCmdlet : TaskCmdlet, IStorageInfoProvider
     {
         [Parameter(Mandatory = false, Position = 100, ParameterSetName = "byStorage", HelpMessage = "The storage on which the action should be applied.")]
         public Storage Storage { get; set; }
@@ -19,20 +19,15 @@
 
         public Storage TargetStorage { get; private set; }
 
-        protected override void BeginProcessing()
+        protected override async Task BeginProcessingTask()
         {
-            var task = Task.Run(async () =>
-            {
-                TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
-            });
-            task.Wait();
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
 
             if (TargetStorage == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(
-                $"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
+            //WriteDebug($"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]")
         }
     }
 }

@@ -4,11 +4,11 @@
     using System.Collections.Generic;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
-    using Storage = EtAlii.Ubigia.Api.Storage;
 
     [Cmdlet(VerbsCommon.Get, Nouns.Storages, DefaultParameterSetName = "byStorage")]
-    public class GetStorages : StorageCmdlet, IStorageInfoProvider
+    public class GetStorages : TaskCmdlet<IEnumerable<Storage>>, IStorageInfoProvider
     {
         [Parameter(Mandatory = false, ParameterSetName = "byStorage", HelpMessage = "The storage from which the storages should be retrieved.")]
         public Storage Storage { get; set; }
@@ -21,34 +21,22 @@
 
         protected Storage TargetStorage { get; private set; }
 
-        protected override void BeginProcessing()
+        protected override async Task BeginProcessingTask()
         {
-            var task = Task.Run(async () =>
-            {
-                TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, Current);
-            });
-            task.Wait();
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
 
             if (TargetStorage == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(
-                $"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
+            //WriteDebug($"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]")
         }
 
-        protected override void ProcessRecord()
+        protected override async Task<IEnumerable<Storage>> ProcessTask()
         {
-            IEnumerable<Storage> storages = null;
-            WriteDebug("Getting storages");
+            //WriteDebug("Getting storages")
 
-            var task = Task.Run(async () =>
-            {
-                storages = await PowerShellClient.Current.ManagementConnection.Storages.GetAll();
-            });
-            task.Wait();
-
-            WriteObject(storages);
+            return await PowerShellClient.Current.ManagementConnection.Storages.GetAll();
         }
     }
 }

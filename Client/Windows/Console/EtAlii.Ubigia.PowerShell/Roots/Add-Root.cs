@@ -1,26 +1,20 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Roots
 {
-    using EtAlii.Ubigia.PowerShell.Spaces;
     using System.Management.Automation;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
+    using EtAlii.Ubigia.PowerShell.Spaces;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Root, DefaultParameterSetName = "bySpaceName")]
-    public class AddRoot : SpaceTargetingCmdlet
+    public class AddRoot : SpaceTargetingCmdlet<Root>
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The name of the root that should be added.")]
         public string RootName { get; set; }
 
-        protected override void ProcessRecord()
+        protected override async Task<Root> ProcessTask()
         {
-            Root root = null;
-            var task = Task.Run(async () =>
-            {
-                root = await PowerShellClient.Current.Fabric.Roots.Add(RootName);
-            });
-            task.Wait();
-
-            WriteObject(root);
+            var root = await PowerShellClient.Current.Fabric.Roots.Add(RootName);
+            return root;
         }
     }
 }

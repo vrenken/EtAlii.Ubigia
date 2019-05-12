@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
     using System;
-    using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
     using Xunit;
 
@@ -55,14 +54,14 @@
             _testContext.InvokeSelectStorage();
 
             var result = _testContext.InvokeGetStorages();
-            var storages = _testContext.ToAssertedResult<List<Storage>>(result);
-            var firstCount = storages.Count;
+            var storages = _testContext.ToAssertedResults<Storage>(result);
+            var firstCount = storages.Length;
 
             _testContext.InvokeAddStorage();
 
             result = _testContext.InvokeGetStorages();
-            storages = _testContext.ToAssertedResult<List<Storage>>(result);
-            Assert.True(storages.Count == firstCount + 1);
+            storages = _testContext.ToAssertedResults<Storage>(result);
+            Assert.True(storages.Length == firstCount + 1);
         }
 
 

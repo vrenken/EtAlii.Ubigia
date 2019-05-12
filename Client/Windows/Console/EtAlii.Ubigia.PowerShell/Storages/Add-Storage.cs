@@ -1,13 +1,13 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Storages
 {
-    using EtAlii.Ubigia.Api;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
 
     [Cmdlet(VerbsCommon.Add, Nouns.Storage, DefaultParameterSetName = "byStorage")]
-    public class AddStorage : StorageCmdlet, IStorageInfoProvider
+    public class AddStorage : TaskCmdlet<Storage>, IStorageInfoProvider
     {
         [Parameter(Mandatory = true, Position = 0, HelpMessage = "The name of the storage that should be added.")]
         public string Name { get; set; }
@@ -26,35 +26,22 @@
 
         protected Storage TargetStorage { get; private set; }
 
-        protected override void BeginProcessing()
+        protected override async Task BeginProcessingTask()
         {
-            var task = Task.Run(async () =>
-            {
-                TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, Current);
-            });
-            task.Wait();
+            TargetStorage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current);
 
             if (TargetStorage == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoStorage, ErrorCategory.InvalidData, null));
             }
-            WriteDebug(
-                $"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]");
+            //WriteDebug($"Using storage '{TargetStorage.Name}' at {TargetStorage.Address} [{PowerShellClient.Current.Client.AuthenticationToken}]")
         }
 
-        protected override void ProcessRecord()
+        protected override async Task<Storage> ProcessTask()
         {
-            Storage storage = null;
+            //WriteDebug($"Adding storage {Name}")
 
-            WriteDebug($"Adding storage {Name}");
-
-            var task = Task.Run(async () =>
-            {
-                storage = await PowerShellClient.Current.ManagementConnection.Storages.Add(Name, Address);
-            });
-            task.Wait();
-
-            WriteObject(storage);
+            return await PowerShellClient.Current.ManagementConnection.Storages.Add(Name, Address);
         }
     }
 }

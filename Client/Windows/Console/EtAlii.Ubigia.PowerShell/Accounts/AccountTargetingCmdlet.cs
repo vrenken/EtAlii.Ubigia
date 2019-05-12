@@ -1,13 +1,13 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Accounts
 {
-    using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.PowerShell.Storages;
     using System;
     using System.Management.Automation;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.WebApi;
+    using EtAlii.Ubigia.PowerShell.Storages;
 
-    public class AccountTargetingCmdlet : StorageTargetingCmdlet, IAccountInfoProvider
+    public abstract class AccountTargetingCmdlet : StorageTargetingCmdlet, IAccountInfoProvider
     {
         [Parameter(Mandatory = false, Position = 90, ParameterSetName = "byAccount", HelpMessage = "The account on which the action should be applied.")]
         public Account Account { get; set; }
@@ -20,21 +20,17 @@
 
         public Account TargetAccount { get; private set; }
 
-        protected override void BeginProcessing()
+        protected override async Task BeginProcessingTask()
         {
-            base.BeginProcessing();
-
-            var task = Task.Run(async () =>
-            {
-                TargetAccount = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
-            });
-            task.Wait();
+            await base.BeginProcessingTask();
+            
+            TargetAccount = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
 
             if (TargetAccount == null)
             {
                 ThrowTerminatingError(new ErrorRecord(new InvalidOperationException(), ErrorId.NoAccount, ErrorCategory.InvalidData, null));
             }
-            WriteDebug($"Using account [{TargetAccount.Name}]");
+            //WriteDebug($"Using account [{TargetAccount.Name}]")
         }
     }
 }

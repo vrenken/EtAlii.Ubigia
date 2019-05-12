@@ -1,11 +1,12 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Entries
 {
+    using System.Management.Automation;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.PowerShell.Spaces;
-    using System.Management.Automation;
 
     [Cmdlet(VerbsData.Update, Nouns.Entry)]
-    public class UpdateEntry : SpaceTargetingCmdlet
+    public class UpdateEntry : SpaceTargetingCmdlet<Entry>
     {
         [Parameter(Mandatory = false, Position = 60, ParameterSetName = "byTextContent", HelpMessage = "The text content that should be added to the entry as content.")]
         public string Text { get; set; }
@@ -40,5 +41,10 @@
         public Identifier UpdateId { get; set; }
 
         public Entry TargetUpdateEntry { get; private set; }
+        
+        protected override Task<Entry> ProcessTask()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

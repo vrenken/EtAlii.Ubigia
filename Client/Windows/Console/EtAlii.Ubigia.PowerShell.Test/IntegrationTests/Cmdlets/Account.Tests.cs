@@ -1,11 +1,9 @@
 ﻿namespace EtAlii.Ubigia.PowerShell.Tests
 {
+    using System;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
     using Xunit;
-    using System;
-    using System.Collections.Generic;
-
 
     public class AccountTest : IDisposable
     {
@@ -39,7 +37,7 @@
 
             // Act.
             var result = _testContext.InvokeGetAccounts();
-            var accounts = _testContext.ToAssertedResult<List<Account>>(result);
+            var accounts = _testContext.ToAssertedResults<Account>(result);
             
             // Assert.
             Assert.NotEmpty(accounts);
@@ -61,8 +59,8 @@
         {
             // Arrange.
             var result = _testContext.InvokeGetAccounts();
-            var accounts = _testContext.ToAssertedResult<List<Account>>(result);
-            var firstCount = accounts.Count;
+            var accounts = _testContext.ToAssertedResults<Account>(result);
+            var firstCount = accounts.Length;
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
 
@@ -71,8 +69,8 @@
 
             // Assert.
             result = _testContext.InvokeGetAccounts();
-            accounts = _testContext.ToAssertedResult<List<Account>>(result);
-            var secondCount = accounts.Count;
+            accounts = _testContext.ToAssertedResults<Account>(result);
+            var secondCount = accounts.Length;
             Assert.True(secondCount == firstCount + 1);
         }
 
