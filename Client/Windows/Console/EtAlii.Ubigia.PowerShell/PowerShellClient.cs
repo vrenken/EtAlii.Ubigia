@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.PowerShell
 {
-	using System;
-	using System.Threading.Tasks;
+    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Api.Transport.Management.WebApi;
@@ -13,7 +13,7 @@
         public const string ProductName = "Ubigia";
         public const string Copyright = "Copyright ©  2014";
 
-        public static IPowerShellClient Current { get { return GetCurrentClient(); } set { _current = value; } }
+        public static IPowerShellClient Current { get => GetCurrentClient(); set => SetCurrentClient(value); }
         private static IPowerShellClient _current;
 
         public IStorageResolver StorageResolver { get; }
@@ -51,12 +51,14 @@
 
         private static IPowerShellClient GetCurrentClient()
         {
-            if (_current == null)
-            {
-                _current = new PowerShellClientFactory().Create<PowerShellClient>();
-            }
-            return _current;
+            return _current ?? (_current = new PowerShellClientFactory().Create<PowerShellClient>());
         }
+        
+        private static void SetCurrentClient(IPowerShellClient current)
+        {
+            _current = current;
+        }
+
 
         public async Task OpenManagementConnection(Uri address, string accountName, string password)
         {
