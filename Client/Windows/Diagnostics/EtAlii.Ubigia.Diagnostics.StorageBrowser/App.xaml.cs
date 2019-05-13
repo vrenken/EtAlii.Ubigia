@@ -61,11 +61,6 @@
                 try
                 {
                     connection.Open().Wait();
-//                    var task = Task.Run(async () =>
-//                    {
-//                        await connection.Open();
-//                    });
-//                    task.Wait();
                 }
                 catch (Exception)
                 {
