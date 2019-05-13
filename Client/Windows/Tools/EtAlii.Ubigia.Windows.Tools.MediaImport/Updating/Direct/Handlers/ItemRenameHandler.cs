@@ -21,7 +21,7 @@
             _scriptContext = scriptContext;
         }
 
-        public void Handle(ItemCheckAction action, string localStart, string remoteStart)
+        public async Task Handle(ItemCheckAction action, string localStart, string remoteStart)
         {
             _localPathSplitter.Split(localStart, action.OldItem, out var sourceLast, out var sourceRest);
 
@@ -39,13 +39,8 @@
 
             // TODO: This is not a correct rename!
             // We lack the opportunity for now. We need to be able to change the type of the entry for that. 
-            var task = Task.Run(async () =>
-            {
-                var lastSequence = await _scriptContext.Process("$source <= /{0}{1}/{2}\r\n/{0}{1} -= {2}\r\n/{0}{3} += {4}", remoteStart, sourceRemotePath, sourceRemoteItem, targetRemotePath, targetRemoteItem);
-                await lastSequence.Output.LastOrDefaultAsync();
-            });
-            task.Wait();
-            
+            var lastSequence = await _scriptContext.Process("$source <= /{0}{1}/{2}\r\n/{0}{1} -= {2}\r\n/{0}{3} += {4}", remoteStart, sourceRemotePath, sourceRemoteItem, targetRemotePath, targetRemoteItem);
+            await lastSequence.Output.LastOrDefaultAsync();
         }
     }
 }

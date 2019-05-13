@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
+    using System.Threading.Tasks;
+
     public interface ILogicalContext
     {
         ILogicalStorageSet Storages { get; }
@@ -15,8 +17,8 @@
         ILogicalPropertiesSet Properties { get; }
         ILogicalIdentifierSet Identifiers { get; }
 
-        void Start();
-        void Stop();
+        Task Start();
+        Task Stop();
 
         void Initialize(
             ILogicalStorageSet storages,

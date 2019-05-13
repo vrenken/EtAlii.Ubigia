@@ -16,7 +16,7 @@
             _infrastructure = infrastructure;
         }
 
-        public Task<Storage> Add(string storageName, string storageAddress)
+        public async Task<Storage> Add(string storageName, string storageAddress)
         {
             var storage = new Storage
             {
@@ -24,8 +24,8 @@
                 Address = storageAddress,
             };
 
-            storage = _infrastructure.Storages.Add(storage);
-            return Task.FromResult(storage);
+            storage = await _infrastructure.Storages.Add(storage);
+            return storage;
         }
 
         public Task Remove(Guid storageId)

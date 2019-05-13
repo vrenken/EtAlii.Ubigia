@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.AspNetCore
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.AspNetCore;
@@ -91,12 +92,12 @@
 
         // Add item
         [HttpPost]
-        public IActionResult Post([FromBody]Storage item)
+        public async Task<IActionResult> Post([FromBody]Storage item)
         {
             IActionResult response;
             try
             {
-                item = _items.Add(item);
+                item = await _items.Add(item);
                 response = Ok(item);
             }
             catch (Exception ex)

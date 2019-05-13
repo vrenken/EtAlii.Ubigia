@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal interface INodeReloadCommand
     {
-        void Execute(INode node); //, bool updateToLatest = false)
+        Task Execute(INode node); //, bool updateToLatest = false)
     }
 }

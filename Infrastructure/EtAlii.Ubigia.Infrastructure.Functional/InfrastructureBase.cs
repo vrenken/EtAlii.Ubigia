@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
     public abstract class InfrastructureBase : IInfrastructure
@@ -53,14 +54,14 @@
             _logicalContext = logicalContext;
         }
 
-        public virtual void Start()
+        public virtual Task Start()
         {
-            _logicalContext.Start();
+            return _logicalContext.Start();
         }
 
-        public virtual void Stop()
+        public virtual Task Stop()
         {
-            _logicalContext.Stop();
+            return _logicalContext.Stop();
         }
     }
 }

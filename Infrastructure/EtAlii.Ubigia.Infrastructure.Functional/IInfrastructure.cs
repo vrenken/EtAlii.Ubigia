@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
+    using System.Threading.Tasks;
+
     public interface IInfrastructure
     {
         IInfrastructureConfiguration Configuration { get; }
@@ -14,7 +16,7 @@
         IContentRepository Content { get; }
         IContentDefinitionRepository ContentDefinition { get ; }
 
-        void Start();
-        void Stop();
+        Task Start();
+        Task Stop();
     }
 }

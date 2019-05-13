@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal interface INodeSaveCommand
     {
-        void Execute(INode node);
+        Task Execute(INode node);
     }
 }

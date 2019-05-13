@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Logical
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
     public class LogicalContext : ILogicalContext
@@ -51,18 +52,18 @@
             Identifiers = identifiers;
         }
 
-        public void Start()
+        public async Task Start()
         {
             _fabricContext.Start();
 
-            Storages.Start();
+            await Storages.Start();
             Roots.Start();
         }
 
-        public void Stop()
+        public async Task Stop()
         {
             Roots.Stop();
-            Storages.Stop();
+            await Storages.Stop();
 
             _fabricContext.Stop();
         }

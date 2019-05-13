@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
@@ -19,8 +20,8 @@
             _localStorageInitializer = localStorageInitializer;
             _storageInitializer = storageInitializer;
 
-            _logicalContext.Storages.Initialized += OnLocalStorageInitialized;
-            _logicalContext.Storages.Added += OnStorageAdded;
+            _logicalContext.Storages.Initialized = OnLocalStorageInitialized;
+            _logicalContext.Storages.Added = OnStorageAdded;
         }
 
         public Storage GetLocal()
@@ -48,7 +49,7 @@
             return _logicalContext.Storages.Update(itemId, item);
         }
 
-        public Storage Add(Storage item)
+        public Task<Storage> Add(Storage item)
         {
             return _logicalContext.Storages.Add(item);
         }
@@ -63,14 +64,14 @@
             _logicalContext.Storages.Remove(item);
         }
 
-        private void OnLocalStorageInitialized(object sender, Storage localStorage)
+        private Task OnLocalStorageInitialized(Storage localStorage)
         {
-            _localStorageInitializer.Initialize(localStorage);
+            return _localStorageInitializer.Initialize(localStorage);
         }
 
-        private void OnStorageAdded(object sender, Storage storage)
+        private Task OnStorageAdded(Storage storage)
         {
-            _storageInitializer.Initialize(storage);
+            return _storageInitializer.Initialize(storage);
         }
     }
 }

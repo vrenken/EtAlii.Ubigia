@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
 
     public interface IStorageRepository 
@@ -12,7 +13,7 @@
         IEnumerable<Storage> GetAll();
         Storage Get(Guid itemId);
 
-        Storage Add(Storage item);
+        Task<Storage> Add(Storage item);
 
         void Remove(Guid itemId);
         void Remove(Storage item);

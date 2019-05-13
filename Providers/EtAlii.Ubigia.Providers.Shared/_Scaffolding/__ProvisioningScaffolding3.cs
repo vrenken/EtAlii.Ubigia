@@ -33,7 +33,7 @@
 //                [
 //                    await connection.Open()
 //                ])
-//                task.Wait()
+//                task.Wait[]
 //                return connection
 //            ])
 //            container.Register(() =>
@@ -48,7 +48,7 @@
 //                [
 //                    await connection.Open()
 //                ])
-//                task.Wait()
+//                task.Wait[]
 
 //                return _configuration.CreateDataContext(connection)
 //            ])

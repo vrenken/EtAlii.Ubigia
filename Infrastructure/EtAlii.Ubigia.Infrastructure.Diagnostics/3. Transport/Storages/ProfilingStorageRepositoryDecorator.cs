@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Logging;
@@ -68,10 +69,10 @@
             return storage;
         }
 
-        public Storage Add(Storage item)
+        public async Task<Storage> Add(Storage item)
         {
             var start = Environment.TickCount;
-            item = _repository.Add(item);
+            item = await _repository.Add(item);
             _profiler.WriteSample(AddCounter, TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds);
             return item;
         }

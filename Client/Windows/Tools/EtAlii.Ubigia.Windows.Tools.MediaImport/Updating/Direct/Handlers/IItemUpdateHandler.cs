@@ -1,7 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
+    using System.Threading.Tasks;
+
     internal interface IItemUpdateHandler
     {
-        void Handle(ItemCheckAction action, string localStart, string remoteStart);
+        Task Handle(ItemCheckAction action, string localStart, string remoteStart);
     }
 }

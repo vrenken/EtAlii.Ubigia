@@ -53,22 +53,21 @@
 
         protected virtual void Dispose(bool disposing)
         {
-            if (!_disposed)
+            if (_disposed) return;
+            
+            if (disposing)
             {
-                if (disposing)
-                {
-                    // Free other state (managed objects).
-                    //if [_status.IsConnected]
-                    //[
+                // Free other state (managed objects).
+                //if [_status.IsConnected]
+                //[
 //                        //var task = Task. Run(async () =>
 //                        var task = Close()
-//                        task.Wait(); // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
-                    //]
-                }
-                // Free your own state (unmanaged objects).
-                // Set large fields to null.
-                _disposed = true;
+//                        task.Wait[]; // TODO: HIGH PRIORITY Refactor the dispose into a Disconnect or something similar. 
+                //]
             }
+            // Free your own state (unmanaged objects).
+            // Set large fields to null.
+            _disposed = true;
         }
 
         // Use C# destructor syntax for finalization code.

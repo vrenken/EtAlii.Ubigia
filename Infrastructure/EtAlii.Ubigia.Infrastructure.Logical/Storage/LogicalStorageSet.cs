@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
 
@@ -18,8 +19,8 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
 
         private ObservableCollection<Storage> Items { get; set; }
 
-	    public event EventHandler<Storage> Initialized;
-	    public event EventHandler<Storage> Added;
+	    public Func<Storage, Task> Initialized { get; set; }
+	    public Func<Storage, Task> Added { get; set; }
 
         public LogicalStorageSet(
             ILocalStorageGetter localStorageGetter, 
@@ -31,18 +32,18 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
             _configuration = configuration;
         }
 
-        public Storage Add(Storage item)
+        public async Task<Storage> Add(Storage item)
         {
             item = _fabric.Items.Add(Items, CannAddFunction, item);
 
-            if (item != null)
+            if (item != null && Added != null)
             {
-                Added?.Invoke(this, item);
+                await Added.Invoke(item);
             }
             return item;
         }
 
-        public void Start()
+        public async Task Start()
         {
             var items = _fabric.Items.GetItems<Storage>(Folder);
 
@@ -54,15 +55,19 @@ namespace EtAlii.Ubigia.Infrastructure.Logical
                 var storage = _localStorageGetter.GetLocal(items);
                 items.Add(storage);
 
-                Initialized?.Invoke(this, storage);
+                if (Initialized != null)
+                {
+                    await Initialized(storage);
+                }
             }
 
             Items = items;
         }
 
-        public void Stop()
+        public Task Stop()
         {
             // Nothing at this moment.
+            return Task.CompletedTask;
         }
 
         private Storage UpdateFunction(Storage itemToUpdate, Storage updatedItem)

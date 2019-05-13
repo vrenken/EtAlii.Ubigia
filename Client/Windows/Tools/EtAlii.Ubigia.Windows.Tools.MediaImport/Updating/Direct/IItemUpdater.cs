@@ -1,9 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
+    using System.Threading.Tasks;
+
     internal interface IItemUpdater
     {
         FolderSyncConfiguration Configuration { get; set; }
 
-        void Update(ItemCheckAction action);
+        Task Update(ItemCheckAction action);
     }
 }

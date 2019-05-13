@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     public interface INodeSet
@@ -10,7 +11,7 @@
         IQueryable<INode> Select(Root root);
         IQueryable<INode> Select(Identifier identifier);
         bool IsModified(Node node);
-        void Save(INode node);
-        void Reload(INode node);//, bool updateToLatest = false)
+        Task Save(INode node);
+        Task Reload(INode node);//, bool updateToLatest = false)
     }
 }

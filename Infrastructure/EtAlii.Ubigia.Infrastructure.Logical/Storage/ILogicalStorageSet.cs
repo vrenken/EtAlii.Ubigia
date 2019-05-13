@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
 
     public interface ILogicalStorageSet
@@ -11,7 +12,7 @@
 
         Storage Get(string name);
 
-        Storage Add(Storage item);
+        Task<Storage> Add(Storage item);
 
         IEnumerable<Storage> GetAll();
 
@@ -25,10 +26,10 @@
 
         Storage Update(Guid itemId, Storage updatedItem);
 
-        void Start();
-        void Stop();
+        Task Start();
+        Task Stop();
 
-        event EventHandler<Storage> Initialized;
-        event EventHandler<Storage> Added;
+        Func<Storage, Task> Initialized { get; set; }
+        Func<Storage, Task> Added { get; set; }
     }
 }
