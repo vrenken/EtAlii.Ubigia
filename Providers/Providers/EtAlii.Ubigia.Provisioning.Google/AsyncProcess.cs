@@ -27,16 +27,17 @@ namespace EtAlii.Ubigia.Provisioning.Google
             };
         }
 
-        public void Start()
+        public Task Start()
         {
             if (_task != null)
             {
                 throw new NotSupportedException($"The {GetType().Name} has already been started.");
             }
             _task = Task.Factory.StartNew(RunInternal);
+            return Task.CompletedTask;
         }
 
-        public void Stop()
+        public Task Stop()
         {
             if (_task == null)
             {
@@ -45,6 +46,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
             _stopEvent.Set();
             _task.Wait();
             _task = null;
+            return Task.CompletedTask;
         }
 
         private void RunInternal()

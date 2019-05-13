@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
     public class Provisioning : IProvisioning
@@ -22,14 +23,14 @@
             _providerManager = providerManager;
         }
 
-        public virtual void Start()
+        public virtual Task Start()
         {
-            _providerManager.Start();
+            return _providerManager.Start();
         }
 
-        public virtual void Stop()
+        public virtual Task Stop()
         {
-            _providerManager.Stop();
+            return _providerManager.Stop();
         }
     }
 }

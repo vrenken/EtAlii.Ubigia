@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Google
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Provisioning.Google.PeopleApi;
 
     public class GoogleProvider : IProvider
@@ -34,11 +35,11 @@
             };
         }
 
-        public void Stop()
+        public async Task Stop()
         {
             foreach (var importer in _importers)
             {
-                importer.Stop();
+                await importer.Stop();
             }
             foreach (var updater in _updaters)
             {
@@ -46,10 +47,9 @@
             }
         }
 
-        public void Start()
+        public async Task Start()
         {
-            var task = _systemSettingsProvider.Update();
-            task.Wait();
+            await _systemSettingsProvider.Update();
             
             foreach (var updater in _updaters)
             {
@@ -57,7 +57,7 @@
             }
             foreach (var importer in _importers)
             {
-                importer.Start();
+                await importer.Start();
             }
         }
     }

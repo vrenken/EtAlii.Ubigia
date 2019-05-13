@@ -3,6 +3,7 @@
 namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
 
     public class DebuggingPeopleImporter : IPeopleImporter
@@ -22,20 +23,20 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger.Critical("Exception PeopleImporter", exception);
         }
 
-        public void Start()
+        public async Task Start()
         {
             _logger.Info("Starting PeopleImporter");
 
-            _decoree.Start();
+            await _decoree.Start();
 
             _logger.Info("Started PeopleImporter");
         }
 
-        public void Stop()
+        public async Task Stop()
         {
             _logger.Info("Stopping PeopleImporter");
 
-            _decoree.Stop();
+            await _decoree.Stop();
 
             _logger.Info("Stopped PeopleImporter");
         }

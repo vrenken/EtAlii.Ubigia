@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Basic.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Full.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Multiple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.At.Tests.cs" />

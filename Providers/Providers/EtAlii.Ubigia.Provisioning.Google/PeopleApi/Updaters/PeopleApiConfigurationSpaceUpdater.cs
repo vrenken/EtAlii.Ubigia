@@ -25,7 +25,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-            var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Space);
+            var userDataScriptContext = await _context.CreateScriptContext(configurationSpace.Space);
             {
                 var allUserSettings = await _userSettingsGetter.Get(userDataScriptContext);
                 foreach (var userSettings in allUserSettings)

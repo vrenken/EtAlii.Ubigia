@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
         public async Task Update(ConfigurationSpace configurationSpace, SystemSettings systemSettings)
         {
-	        var userConfigurationScriptContext = _context.CreateScriptContext(configurationSpace.Space);
+	        var userConfigurationScriptContext = await _context.CreateScriptContext(configurationSpace.Space);
 	        {
                 var allUserSettings = await _userSettingsGetter.Get(userConfigurationScriptContext);
                 foreach (var userSettings in allUserSettings)
@@ -38,22 +38,22 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                     // We don't want to update using deprecated settings, so let's only use them when they are still fresh.
                     if (DateTime.UtcNow - userSettings.Updated < _updateThreshold)
                     {
-                        UpdateDataSpace(configurationSpace, systemSettings, userSettings);
+                        await UpdateDataSpace(configurationSpace, systemSettings, userSettings);
                     }
                 }
             }
         }
 
-        private void UpdateDataSpace(ConfigurationSpace configurationSpace, SystemSettings systemSettings, UserSettings userSettings)
+        private async Task UpdateDataSpace(ConfigurationSpace configurationSpace, SystemSettings systemSettings, UserSettings userSettings)
         {
-	        var userDataScriptContext = _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data);
+	        var userDataScriptContext = await _context.CreateScriptContext(configurationSpace.Account.Name, SpaceName.Data);
 	        {
                 var request = CreateRequest(systemSettings, userSettings);
 	            var feed = request.Execute();//.GetContacts()
                 //feed.AutoPaging = true
                 foreach (var person in feed.Connections)//.Entries)
                 {
-		            _personSetter.Set(userDataScriptContext, person);
+		            await _personSetter.Set(userDataScriptContext, person);
 				}
             }
         }

@@ -22,11 +22,11 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.76" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Diagnostics" Version="1.0.80" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.58" />
     <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.55" />
     <PackageReference Include="EtAlii.Ubigia.Tests" Version="1.0.58" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.AspNetCore" Version="1.0.76" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.AspNetCore" Version="1.0.80" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />

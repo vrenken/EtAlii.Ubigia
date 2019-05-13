@@ -28,13 +28,13 @@
             _scriptContext = scriptContext;
         }
 
-        public void Start()
+        public async Task Start()
         {
             try
             {
                 _logger.Info("Starting mail provider");
 
-                Stop();
+                await Stop();
                 Setup();
 
                 _logger.Info("Started mail provider");
@@ -45,7 +45,7 @@
             }
         }
 
-        public void Stop()
+        public Task Stop()
         {
             try
             {
@@ -59,6 +59,7 @@
             {
                 _logger.Critical("Unable to stop mail provider", e);
             }
+            return Task.CompletedTask;
         }
 
         private void Shutdown()

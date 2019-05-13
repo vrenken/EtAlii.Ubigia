@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting
 {
     using System.Text;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Hosting;
 
     public class ProvisioningService : ServiceBase, IProvisioningService
@@ -12,14 +13,14 @@
             _provisioning = provisioning;
         }
 
-        public override void Start()
+        public override async Task Start()
         {
             Status.Title = "Ubigia provisioning";
 
             Status.Description = "Starting...";
             Status.Summary = Status.Description;
 
-            _provisioning.Start();
+            await _provisioning.Start();
 
             
             var sb = new StringBuilder();
@@ -37,15 +38,14 @@
 
             Status.Description = sb.ToString();
             Status.Summary = Status.Description;
-
         }
 
-        public override void Stop()
+        public override async Task Stop()
         {
             Status.Description = "Stopping...";
             Status.Summary = Status.Description;
 
-            _provisioning.Stop();
+            await _provisioning.Stop();
 
             var sb = new StringBuilder();
             sb.AppendLine("Stopped.");
@@ -57,10 +57,10 @@
             Status.Summary = Status.Description;
         }
 
-	    protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
+	    protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
 	    {
 			status = new Status(nameof(ProvisioningService));
-
+            return Task.CompletedTask;
 	    }
     }
 }

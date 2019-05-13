@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Storage;
     using EtAlii.xTechnology.Hosting;
 
@@ -12,19 +13,22 @@
             Storage = storage;
         }
 
-        public override void Start()
+        public override Task Start()
         {
             // Handle Start.
+            return Task.CompletedTask;
         }
 
-        public override void Stop()
+        public override Task Stop()
         {
             // Handle Stop.
+            return Task.CompletedTask;
         }
 
-        protected override void Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
+        protected override Task Initialize(IHost host, ISystem system, IModule[] moduleChain, out Status status)
         {
             status = new Status(nameof(StorageService));
+            return Task.CompletedTask;
         }
     }
 }

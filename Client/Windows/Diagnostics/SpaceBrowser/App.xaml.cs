@@ -2,7 +2,6 @@
 {
     using System;
     using System.Diagnostics;
-    using System.Threading.Tasks;
     using System.Windows;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
@@ -65,11 +64,12 @@
                 connection = (IProfilingDataConnection)new DataConnectionFactory().Create(connectionConfiguration);
                 try
                 {
-                    var task = Task.Run(async () =>
-                    {
-                        await connection.Open();
-                    });
-                    task.Wait();
+                    connection.Open().Wait();
+//                    var task = Task.Run(async () =>
+//                    {
+//                        await connection.Open();
+//                    });
+//                    task.Wait();
                 }
                 catch (Exception)
                 {

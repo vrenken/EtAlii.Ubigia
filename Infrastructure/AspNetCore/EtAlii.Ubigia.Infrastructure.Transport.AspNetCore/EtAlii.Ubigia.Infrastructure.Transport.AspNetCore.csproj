@@ -23,7 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.58" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.76" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.AspNetCore" Version="1.0.80" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.4.0" />
     <PackageReference Include="System.Memory" Version="4.5.2" />

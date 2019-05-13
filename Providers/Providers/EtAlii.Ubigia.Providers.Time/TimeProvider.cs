@@ -2,6 +2,8 @@
 
 namespace EtAlii.Ubigia.Provisioning.Time
 {
+    using System.Threading.Tasks;
+
     public class TimeProvider : IProvider
     {
         public IProviderConfiguration Configuration { get; }
@@ -16,14 +18,16 @@ namespace EtAlii.Ubigia.Provisioning.Time
             _timeImporter = timeImporter;
         }
 
-        public void Stop()
+        public Task Stop()
         {
             //_timeImporter.Stop()
+            return Task.CompletedTask;
         }
 
-        public void Start()
+        public Task Start()
         {
             //_timeImporter.Start()
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
 
     public interface IProvisioning
@@ -8,7 +9,7 @@
 
         IGraphSLScriptContext Data { get; }
         IProvisioningConfiguration Configuration { get; }
-        void Stop();
-        void Start();
+        Task Stop();
+        Task Start();
     }
 }

@@ -25,25 +25,15 @@
             _configuration = configuration;
         }
 
-        public IGraphSLScriptContext CreateScriptContext(string accountName, string spaceName)
+        public async Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string spaceName)
         {
-            IDataConnection dataConnection = null;
-            var task = Task.Run(async () =>
-            {
-                dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
-            });
-            task.Wait();
+            IDataConnection dataConnection = await ManagementConnection.OpenSpace(accountName, spaceName);
             return _configuration.CreateScriptContext(dataConnection);
         }
 
-        public IGraphSLScriptContext CreateScriptContext(Space space)
+        public async Task<IGraphSLScriptContext> CreateScriptContext(Space space)
         {
-            IDataConnection dataConnection = null;
-            var task = Task.Run(async () =>
-            {
-                dataConnection = await ManagementConnection.OpenSpace(space);
-            });
-            task.Wait();
+            IDataConnection dataConnection = await ManagementConnection.OpenSpace(space);
             return _configuration.CreateScriptContext(dataConnection);
         }
     }

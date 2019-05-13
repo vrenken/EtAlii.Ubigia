@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Twitter
 {
+    using System.Threading.Tasks;
+
     public class TwitterProvider : IProvider
     {
         public IProviderConfiguration Configuration { get; }
@@ -18,19 +20,20 @@
             };
         }
 
-        public void Stop()
+        public Task Stop()
         {
             foreach (var importer in _importers)
             {
                 importer.Stop();
             }
+            return Task.CompletedTask;
         }
 
-        public void Start()
+        public async Task Start()
         {
             foreach (var importer in _importers)
             {
-                importer.Start();
+                await importer.Start();
             }
         }
     }

@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Collections.Generic;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
-    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class IncludeFunctionHandler : FunctionHandlerBase, IFunctionHandler
@@ -94,13 +93,14 @@ namespace EtAlii.Ubigia.Api.Functional
                     throw new ScriptProcessingException("Unable to convert arguments for Include function processing");
                 }
 
-                var task = Task.Run(async () =>
-                {
-                    pathSubject = await argumentInput
-                        .Cast<PathSubject>()
-                        .SingleAsync();
-                });
-                task.Wait();
+                pathSubject = argumentInput.Cast<PathSubject>().Wait();
+//                var task = Task.Run(async () =>
+//                {
+//                    pathSubject = await argumentInput
+//                        .Cast<PathSubject>()
+//                        .SingleAsync();
+//                });
+//                task.Wait();
             }
             if (pathSubject == null)
             {
