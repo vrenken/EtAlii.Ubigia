@@ -43,35 +43,34 @@
 
             _graphContext.UnitOfWorkProcessor.Process(new ParseGraphQueryLanguageUnitOfwork(viewModel), _parseQueryUnitOfworkHandler);
 
-            if (viewModel.CanExecute)
+            if (!viewModel.CanExecute) return;
+            
+            _dispatcherInvoker.Invoke(() =>
             {
-                _dispatcherInvoker.Invoke(() =>
+                viewModel.CanExecute = false;
+                viewModel.CanStop = true;
+                viewModel.QueryResult = string.Empty;
+                Task.Delay(100).Wait();
+            });
+
+            Task.Run(() =>
+            {
+                var start = DateTime.Now;
+                var errors = new List<TextualError>();
+
+                var results = Observable.Create<QueryProcessingResult>(async output =>
                 {
-                    viewModel.CanExecute = false;
-                    viewModel.CanStop = true;
-                    viewModel.QueryResult = string.Empty;
-                    Task.Delay(100).Wait();
-                });
+                    var queryExecutionResults = await _queryContext.Process(viewModel.Query); //, viewModel.Scope)
 
-                Task.Run(() =>
-                {
-                    var start = DateTime.Now;
-                    var errors = new List<TextualError>();
+                    output.OnNext(queryExecutionResults);
+                    return System.Reactive.Disposables.Disposable.Empty;
+                }).ToHotObservable();
 
-                    var results = Observable.Create<QueryProcessingResult>(async output =>
-                    {
-                        var queryExecutionResults = await _queryContext.Process(viewModel.Query); //, viewModel.Scope)
-
-                        output.OnNext(queryExecutionResults);
-                        return System.Reactive.Disposables.Disposable.Empty;
-                    }).ToHotObservable();
-
-                    // First we subscribe our diagnostics observable hierarchy
-                    //_diagnosticsGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start)
-                    _outputGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
-                    _statusGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
-                });
-            }
+                // First we subscribe our diagnostics observable hierarchy
+                //_diagnosticsGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start)
+                _outputGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
+                _statusGraphQueryLanguageProcessingSubscription.Subscribe(results, viewModel, errors, start);
+            });
         }
     }
 }

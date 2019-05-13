@@ -14,7 +14,7 @@
     {
         public new static App Current => Application.Current as App;
 
-        public new IMainWindow MainWindow { get { return base.MainWindow as IMainWindow; } set { base.MainWindow = value as Window; } }
+        public new IMainWindow MainWindow { get => base.MainWindow as IMainWindow; set => base.MainWindow = value as Window; }
 
         public App()
         {
@@ -65,11 +65,6 @@
                 try
                 {
                     connection.Open().Wait();
-//                    var task = Task.Run(async () =>
-//                    {
-//                        await connection.Open();
-//                    });
-//                    task.Wait();
                 }
                 catch (Exception)
                 {
