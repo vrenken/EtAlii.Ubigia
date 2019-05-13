@@ -30,7 +30,7 @@
         {
             await PowerShellClient.Current.ManagementConnection.Storages.Change(Storage.Id, Storage.Name, Storage.Address);
 
-            var verboseDescription = $"Storage '{Storage.Name}' has been updated.";
+            //var verboseDescription = $"Storage '{Storage.Name}' has been updated."
             //WriteVerbose(verboseDescription)
         } 
     }

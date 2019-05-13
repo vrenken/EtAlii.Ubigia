@@ -13,7 +13,7 @@
         protected override async Task ProcessTask()
         {
             var verboseDescription = $"Root '{TargetRoot.Name}' has been removed.";
-            var verboseNegativeDescription = $"Root '{TargetRoot.Name}' has not been removed.";
+            //var verboseNegativeDescription = $"Root '{TargetRoot.Name}' has not been removed."
             var verboseWarning = $"Are you sure you want to remove root '{TargetRoot.Name}'?";
             var caption = "Remove root";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))

@@ -12,7 +12,7 @@
         protected override async Task ProcessTask()
         {
             var verboseDescription = $"Space '{TargetSpace.Name}' has been removed.";
-            var verboseNegativeDescription = $"Space '{TargetSpace.Name}' has not been removed.";
+            //var verboseNegativeDescription = $"Space '{TargetSpace.Name}' has not been removed."
             var verboseWarning = $"Are you sure you want to remove space '{TargetSpace.Name}'?";
             var caption = "Remove space";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))

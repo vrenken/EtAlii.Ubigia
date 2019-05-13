@@ -40,7 +40,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Register(o => true, (context, scope, o) => Task.FromException<int>(new ScriptProcessingException("Unable to convert arguments for Count function processing")));
         }
 
-        public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
+        public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
         {
             if (processAsSubject)
             {
@@ -65,6 +65,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 }
             }
             Process(context, input, scope, output);
+            return Task.CompletedTask;
         }
 
         private void Process(IFunctionContext context, IObservable<object> input, ExecutionScope scope, IObserver<object> output)

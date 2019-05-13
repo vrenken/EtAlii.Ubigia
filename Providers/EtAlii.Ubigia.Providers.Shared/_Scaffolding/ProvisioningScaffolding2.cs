@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.MicroContainer;
 
-//using EtAlii.Ubigia.Api.Transport.Management.SignalR
+    //using EtAlii.Ubigia.Api.Transport.Management.SignalR
     //using EtAlii.Ubigia.Api.Transport.SignalR
 
     internal class ProvisioningScaffolding2 : IScaffolding
@@ -29,8 +29,6 @@
                 .Use(_configuration.Account, _configuration.Password);
                 var connection = new ManagementConnectionFactory().Create(configuration);
                 connection.Open().Wait();
-//                var task = Task.Run(async () => await connection.Open() );
-//                task.Wait();
                 return connection;
             });
             container.Register(() =>
@@ -40,11 +38,7 @@
                     .Use(_configuration.Address)
                     .Use(_configuration.Account, SpaceName.System, _configuration.Password);
                 var connection = new DataConnectionFactory().Create(configuration);
-
                 connection.Open().Wait();
-//                var task = Task.Run(async () => await connection.Open() );
-//                task.Wait();
-
                 return _configuration.CreateScriptContext(connection);
             });
         }

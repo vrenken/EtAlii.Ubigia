@@ -19,7 +19,6 @@ namespace EtAlii.Ubigia.Infrastructure.Transport
             status = new Status(nameof(InfrastructureSystem));
             commands = _systemCommandsFactory.Create(this);
             return Task.CompletedTask;
-            ;
         }
     }
 }

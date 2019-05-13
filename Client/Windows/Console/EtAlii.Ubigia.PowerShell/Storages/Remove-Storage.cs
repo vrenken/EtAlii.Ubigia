@@ -26,7 +26,7 @@
             var storage = await PowerShellClient.Current.StorageResolver.Get(this, StorageCmdlet.Current, false);
 
             var verboseDescription = $"Storage '{storage.Name}' has been removed.";
-            var verboseNegativeDescription = $"Storage '{storage.Name}' has not been removed.";
+            //var verboseNegativeDescription = $"Storage '{storage.Name}' has not been removed."
             var verboseWarning = $"Are you sure you want to remove storage '{storage.Name}'?";
             var caption = "Remove storage";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))

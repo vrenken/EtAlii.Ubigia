@@ -12,7 +12,7 @@
         protected override async Task ProcessTask()
         {
             var verboseDescription = $"Account '{TargetAccount.Name}' has been removed.";
-            var verboseNegativeDescription = $"Account '{TargetAccount.Name}' has not been removed.";
+            //var verboseNegativeDescription = $"Account '{TargetAccount.Name}' has not been removed."
             var verboseWarning = $"Are you sure you want to remove account '{TargetAccount.Name}'?";
             var caption = "Remove account";
             if (ShouldProcess(verboseDescription, verboseWarning, caption))

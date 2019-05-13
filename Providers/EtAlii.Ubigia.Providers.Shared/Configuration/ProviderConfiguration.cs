@@ -21,8 +21,7 @@
         ILogFactory IEditableProviderConfiguration.LogFactory { get => LogFactory; set => LogFactory = value; }
         public ILogFactory LogFactory { get; private set; }
 
-        Func<IDataConnection, IGraphSLScriptContext> IEditableProviderConfiguration.ScriptContextFactory { get => _scriptContextFactory; set => _scriptContextFactory = value; }
-        private Func<IDataConnection, IGraphSLScriptContext> _scriptContextFactory;
+        Func<IDataConnection, IGraphSLScriptContext> IEditableProviderConfiguration.ScriptContextFactory { get; set; }
 
         public ProviderConfiguration()
         {
@@ -38,7 +37,7 @@
         
         public IGraphSLScriptContext CreateScriptContext(IDataConnection connection)
         {
-            return _scriptContextFactory(connection);
+            return ((IEditableProviderConfiguration)this).ScriptContextFactory(connection);
         }
 
     }
