@@ -74,13 +74,13 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 //                    if [errors.Count == 0]
 //                    [
 //                        var duration = DateTime.Now - start
-//                        Task.Delay(200).Wait()
+//                        Task.Delay(200).Wait[]
 //                        _statusWriter.Write(viewModel, "Query execution finished successful.")
 //                        _statusWriter.Write(viewModel,
 //                            $"Total run time: [duration:hh]:[duration:mm]:[duration:ss].[duration:fff]")
 //                    ]
 //
-//                    Task.Delay(500).Wait()
+//                    Task.Delay(500).Wait[]
 //                    viewModel.CanStop = false
 //                    viewModel.CanExecute = true
 //                ])
