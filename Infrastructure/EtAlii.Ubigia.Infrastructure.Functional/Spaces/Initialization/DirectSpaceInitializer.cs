@@ -57,21 +57,10 @@
 
             foreach (var rootEntry in rootEntries)
             {
-                AddRoot(spaceId, rootEntry.Type, rootEntry.Id); //storageId, accountId, 
+                _context.Roots.Add(spaceId, new Root { Name = rootEntry.Type, Identifier = rootEntry.Id });
             }
 
             return Task.CompletedTask;
-        }
-
-        private void AddRoot(
-            //Guid storageId, 
-            //Guid accountId, 
-            Guid spaceId, 
-            string name, 
-            Identifier identifier)
-        {
-            // ReSharper disable once UnusedVariable
-            var addedRoot = _context.Roots.Add(spaceId, new Root { Name = name, Identifier = identifier });
         }
     }
 }
