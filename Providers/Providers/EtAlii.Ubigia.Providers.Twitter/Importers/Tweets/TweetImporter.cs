@@ -1,8 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Twitter
 {
-    using EtAlii.xTechnology.Logging;
     using System;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
+    using EtAlii.xTechnology.Logging;
 
     public class TweetImporter : ITweetImporter
     {
@@ -14,7 +15,7 @@
             _logger = logger;
         }
 
-        public void Start()
+        public Task Start()
         {
             _logger.Info("Starting Twitter provider");
 
@@ -22,9 +23,10 @@
                                       .Subscribe(Add);
 
             _logger.Info("Started Twitter provider");
+            return Task.CompletedTask;
         }
 
-        public void Stop()
+        public Task Stop()
         {
             _logger.Info("Stopping Twitter provider");
 
@@ -32,6 +34,7 @@
             _subscription = null;
 
             _logger.Info("Stopped Twitter provider");
+            return Task.CompletedTask;
         }
 
         private void Add(long time)

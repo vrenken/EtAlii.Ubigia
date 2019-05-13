@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
     using global::Google.Apis.PeopleService.v1.Data;
@@ -19,7 +20,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
             _logger = logger;
         }
 
-        public void Set(IGraphSLScriptContext context, Person person)
+        public Task Set(IGraphSLScriptContext context, Person person)
         {
 	        var name = GetName(person.Names) ??
 	                   //GetName(person.ContactEntry.Name) ??
@@ -30,7 +31,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
             _logger.Info($"Setting contact: {name}");
 
-            _decoree.Set(context, person);
+            return _decoree.Set(context, person);
         }
 
         private string GetName(IList<Name> names)

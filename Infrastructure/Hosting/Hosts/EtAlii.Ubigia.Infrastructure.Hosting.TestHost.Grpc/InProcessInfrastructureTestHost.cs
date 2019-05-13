@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc
 {
 	using System.Linq;
+	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport;
 	using EtAlii.Ubigia.Infrastructure.Transport.Admin.Grpc;
@@ -27,9 +28,9 @@
 	    {
 		}
 
-        protected override void Started()
+        protected override async Task Started()
         {
-            base.Started();
+            await base.Started();
 
             _infrastructure = Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single();
             _storage = Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single();
@@ -37,9 +38,9 @@
             _userModule = Systems.Single().Modules.OfType<UserModule>().Single();
         }
 
-        protected override void Stopped()
+        protected override Task Stopped()
         {
-            base.Stopped();
+            return base.Stopped();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
 {
+    using System.Threading.Tasks;
+
     public class SystemSettingsProvider : ISystemSettingsProvider
     {
         public SystemSettings SystemSettings { get; private set; }
@@ -16,9 +18,9 @@
             _getter = getter;
         }
 
-        public void Update()
+        public async Task Update()
         {
-            SystemSettings = _getter.Get(_context.SystemScriptContext);
+            SystemSettings = await _getter.Get(_context.SystemScriptContext);
         }
     }
 }

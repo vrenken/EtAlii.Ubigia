@@ -7,7 +7,7 @@
 
     public class SystemSettingsGetter : ISystemSettingsGetter
     {
-        public SystemSettings Get(IGraphSLScriptContext context)
+        public async Task<SystemSettings> Get(IGraphSLScriptContext context)
         {
             var settings = new SystemSettings();
 
@@ -17,13 +17,8 @@
                 "<= /Providers/Microsoft/Graph"
             };
 
-            DynamicNode result = null;
-            var task = Task.Run(async () =>
-            {
-                var lastSequence = await context.Process(script);
-                result = await lastSequence.Output.Cast<DynamicNode>();
-            });
-            task.Wait();
+            var lastSequence = await context.Process(script);
+            var result = await lastSequence.Output.Cast<DynamicNode>();
 
             if (result.TryGetValue("ApplicationId", out var value))
             {

@@ -11,7 +11,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public class PersonSetter : IPersonSetter
     {
-        public void Set(IGraphSLScriptContext context, Person person)
+        public async Task Set(IGraphSLScriptContext context, Person person)
         {
             if (person == null)
             {
@@ -39,17 +39,13 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
                     PrimaryPhonenumber = person.PhoneNumbers.FirstOrDefault()?.Value,
                 };
 
-                var task = Task.Run(async () =>
-                {
-                    var scope = new ScriptScope();
-                    scope.Variables.Add("details", new ScopeVariable(details, "Value"));
-                    var lastSequence = await context.Process(script, scope);
-                    await lastSequence.Output.SingleOrDefaultAsync();
+                var scope = new ScriptScope();
+                scope.Variables.Add("details", new ScopeVariable(details, "Value"));
+                var lastSequence = await context.Process(script, scope);
+                await lastSequence.Output.SingleOrDefaultAsync();
 
-                    //var lastSequence2 = await context.Scripts.Process($"<= /Person/\"[familyName]\"/\"[givenName]\"")
-                    //var result2 = await lastSequence2.Output.LastOrDefaultAsync()
-                });
-                task.Wait();
+                //var lastSequence2 = await context.Scripts.Process($"<= /Person/\"[familyName]\"/\"[givenName]\"")
+                //var result2 = await lastSequence2.Output.LastOrDefaultAsync()
             }
         }
     }

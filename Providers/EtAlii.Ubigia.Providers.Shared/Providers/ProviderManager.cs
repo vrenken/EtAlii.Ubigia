@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Text;
+    using System.Threading.Tasks;
 
     public class ProviderManager : IProviderManager
     {
@@ -23,7 +24,7 @@
             //_logFactory = logFactory
         }
 
-        public void Start()
+        public async Task Start()
         {
             if (_providers != null)
             {
@@ -58,7 +59,7 @@
                 {
                     try
                     {
-                        provider.Start();
+                        await provider.Start();
                         providers.Add(provider);
                     }
                     catch (Exception)// e)
@@ -77,7 +78,7 @@
             Status = sb.ToString();
         }
 
-        public void Stop()
+        public async Task Stop()
         {
             if (_providers == null)
             {
@@ -93,7 +94,7 @@
             {
                 try
                 {
-                    provider.Stop();
+                    await provider.Stop();
                 }
                 catch (Exception)// e)
                 {

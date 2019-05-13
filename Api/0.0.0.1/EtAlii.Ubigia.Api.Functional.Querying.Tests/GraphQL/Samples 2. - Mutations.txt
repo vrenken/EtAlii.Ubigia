@@ -1,8 +1,18 @@
 ﻿### 01 Mutation with property assignment and new entity 
 mutation data 
 { 
-    @nodes(path:"person:Stark/ += Tony")
+    @node(path:"person:Stark/ += Tony")
     person 
+    { 
+        nickname: "Iron Man" 
+    } 
+}
+
+### 01a Mutation with property assignment and new entity 
+mutation data 
+{ 
+    @node(path:"person:Stark/ += Tony")
+    add( 
     { 
         nickname: "Iron Man" 
     } 

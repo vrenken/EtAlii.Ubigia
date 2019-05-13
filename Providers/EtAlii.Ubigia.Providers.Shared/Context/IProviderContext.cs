@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport.Management;
@@ -10,8 +11,8 @@
 
         IManagementConnection ManagementConnection { get; }
        
-        IGraphSLScriptContext CreateScriptContext(string accountName, string spaceName);
-        IGraphSLScriptContext CreateScriptContext(Space space);
+        Task<IGraphSLScriptContext> CreateScriptContext(string accountName, string spaceName);
+        Task<IGraphSLScriptContext> CreateScriptContext(Space space);
 
     }
 }

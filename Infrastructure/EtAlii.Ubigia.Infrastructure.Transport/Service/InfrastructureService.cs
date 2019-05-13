@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Fabric;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
@@ -19,24 +20,28 @@
             _configuration = configuration;
         }
 
-        public override void Start()
+        public override Task Start()
         {
             Infrastructure = CreateInfrastructure();
             Infrastructure.Start();
+            return Task.CompletedTask;
         }
 
-        public override void Stop()
+        public override Task Stop()
         {
             Infrastructure.Stop();
+            return Task.CompletedTask;
         }
 
-        protected override void Initialize(
+        protected override Task Initialize(
 	        IHost host, IInfrastructureSystem system, 
             IModule[] moduleChain, out Status status)
         {
             _system = system;
             status = new Status(nameof(InfrastructureService));
+            return Task.CompletedTask;
         }
+        
         private IInfrastructure CreateInfrastructure()
         {
             var storage = _system.Services.OfType<IStorageService>().Single().Storage;

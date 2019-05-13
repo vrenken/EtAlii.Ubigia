@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Microsoft.Graph
 {
+    using System.Threading.Tasks;
+
     public class MicrosoftGraphProvider : IProvider
     {
         private readonly ISystemSettingsProvider _systemSettingsProvider;
@@ -28,21 +30,21 @@
             };
         }
 
-        public void Stop()
+        public async Task Stop()
         {
             foreach (var importer in _importers)
             {
-                importer.Stop();
+                await importer.Stop();
             }
         }
 
-        public void Start()
+        public async Task Start()
         {
-            _systemSettingsProvider.Update();
+            await _systemSettingsProvider.Update();
 
             foreach (var importer in _importers)
             {
-                importer.Start();
+                await importer.Start();
             }
         }
     }

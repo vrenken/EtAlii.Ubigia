@@ -1,8 +1,10 @@
 namespace EtAlii.Ubigia.Provisioning
 {
+    using System.Threading.Tasks;
+
     public interface IImporter
     {
-        void Start();
-        void Stop();
+        Task Start();
+        Task Stop();
     }
 }

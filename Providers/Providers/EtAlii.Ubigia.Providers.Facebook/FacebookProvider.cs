@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Facebook
 {
+    using System.Threading.Tasks;
+
     public class FacebookProvider : IProvider
     {
         public IProviderConfiguration Configuration { get; }
@@ -9,14 +11,16 @@
             Configuration = configuration;
         }
 
-        public void Stop()
+        public Task Stop()
         {
             // Handle Stop.
+            return Task.CompletedTask;
         }
 
-        public void Start()
+        public Task Start()
         {
             // Handle Start.
+            return Task.CompletedTask;
         }
     }
 }
