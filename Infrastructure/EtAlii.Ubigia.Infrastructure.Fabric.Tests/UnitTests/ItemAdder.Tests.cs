@@ -4,10 +4,8 @@
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Fabric;
     using Xunit;
 
-    
     public sealed class ItemAdderTests
     {
         [Fact]
@@ -49,8 +47,7 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+                itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 
             // Assert.
@@ -76,8 +73,7 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" });
+                itemAdder.Add(items, new Space { Id = fourthId, Name = "Test" });
             });
 
             // Assert.
@@ -103,8 +99,7 @@
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, null);
+                itemAdder.Add(items, null);
             });
 
             // Assert.
@@ -126,13 +121,12 @@
                 new Space { Id = secondId },
                 new Space { Id = thirdId },
             });
-            items.CollectionChanged += (o, e) => { throw new ApplicationException(); };
+            items.CollectionChanged += (o, e) => throw new ApplicationException();
 
             // Act.
             var act = new Action(() =>
             {
-                // ReSharper disable once UnusedVariable
-                var item = itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
+                itemAdder.Add(items, new Space { Id = Guid.Empty, Name = "Test" });
             });
 
             // Assert.
