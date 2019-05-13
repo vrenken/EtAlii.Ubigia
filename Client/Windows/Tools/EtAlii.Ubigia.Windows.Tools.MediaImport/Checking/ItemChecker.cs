@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
-    using System;
     using System.Collections.Concurrent;
     using System.ComponentModel;
     using System.Threading;
@@ -17,10 +16,10 @@
         private readonly AutoResetEvent _enqueuedEvent = new AutoResetEvent(false);
         private readonly WaitHandle[] _events;
 
-        public FolderSyncConfiguration Configuration { get { return _configuration; } set { SetProperty(ref _configuration, value); } }
+        public FolderSyncConfiguration Configuration { get => _configuration; set => SetProperty(ref _configuration, value); }
         private FolderSyncConfiguration _configuration;
 
-        public bool IsRunning { get { return _isRunning; } private set { SetProperty(ref _isRunning, value); } }
+        public bool IsRunning { get => _isRunning; private set => SetProperty(ref _isRunning, value); }
         private bool _isRunning;
 
         public ItemChecker(
@@ -53,7 +52,7 @@
         {
             if (!IsRunning)
             {
-                Task.Run((Action) Dequeue);
+                Task.Run(async () => await Dequeue());
             }
         }
 
@@ -71,7 +70,7 @@
             _enqueuedEvent.Set();
         }
 
-        private void Dequeue()
+        private async Task Dequeue()
         {
             IsRunning = true;
 
@@ -83,13 +82,12 @@
                 {
                     break;
                 }
-                if (evt == _enqueuedEvent)
+
+                if (evt != _enqueuedEvent) continue;
+
+                while (_queue.TryDequeue(out var action))
                 {
-                    ItemCheckAction action;
-                    while (_queue.TryDequeue(out action))
-                    {
-                        _itemUpdater.Update(action);
-                    }
+                    await _itemUpdater.Update(action);
                 }
             }
             IsRunning = false;

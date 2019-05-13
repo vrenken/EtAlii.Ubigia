@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Logical;
 
@@ -21,7 +22,7 @@
         {
         }
 
-        public override void Start()
+        public override Task Start()
         {
             // This action is needed because the Logical layer needs a fully functional system connection to do 
             // the initialization of the storage and spaces.
@@ -34,7 +35,7 @@
                 return new SystemConnectionFactory().Create(configuration);
             });
 
-            base.Start();
+            return base.Start();
         }
     }
 }

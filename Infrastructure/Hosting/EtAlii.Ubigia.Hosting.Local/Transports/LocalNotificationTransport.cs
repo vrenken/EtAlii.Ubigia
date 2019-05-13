@@ -25,7 +25,7 @@
                 client.Connect();
             }
 
-            //_hubConnection.Start().Wait()
+            //_hubConnection.Start().Wait[]
         }
 
         public void Close()

@@ -2,12 +2,13 @@
 {
     using System;
     using System.ComponentModel;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Mvvm;
     using EtAlii.xTechnology.Structure;
 
     internal class ItemUpdater : BindableBase, IItemUpdater
     {
-        public FolderSyncConfiguration Configuration { get { return _configuration; } set { SetProperty(ref _configuration, value); } }
+        public FolderSyncConfiguration Configuration { get => _configuration; set => SetProperty(ref _configuration, value); }
         private FolderSyncConfiguration _configuration;
 
         private readonly ISelector<ItemCheckAction, IItemUpdateHandler> _selector;
@@ -29,10 +30,13 @@
                 .Register(a => a.Change == ItemChange.Changed && a.OldItem != null, itemRenameHandler);
         }
 
-        public void Update(ItemCheckAction action)
+        public async Task Update(ItemCheckAction action)
         {
             var handler = _selector.TrySelect(action);
-            handler?.Handle(action, _localStart, _remoteStart);
+            if(handler != null)
+            {
+                await handler.Handle(action, _localStart, _remoteStart);
+            }
         }
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)

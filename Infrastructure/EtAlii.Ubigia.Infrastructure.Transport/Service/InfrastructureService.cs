@@ -20,17 +20,15 @@
             _configuration = configuration;
         }
 
-        public override Task Start()
+        public override async Task Start()
         {
             Infrastructure = CreateInfrastructure();
-            Infrastructure.Start();
-            return Task.CompletedTask;
+            await Infrastructure.Start();
         }
 
-        public override Task Stop()
+        public override async Task Stop()
         {
-            Infrastructure.Stop();
-            return Task.CompletedTask;
+            await Infrastructure.Stop();
         }
 
         protected override Task Initialize(

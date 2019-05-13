@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class NodeSet : INodeSet
@@ -48,14 +49,14 @@
             return ((INode)node).IsModified;
         }
 
-        public void Save(INode node)
+        public Task Save(INode node)
         {
-            _nodeSaveCommand.Execute(node);
+            return _nodeSaveCommand.Execute(node);
         }
 
-        public void Reload(INode node)//, bool updateToLatest = false)
+        public Task Reload(INode node)//, bool updateToLatest = false)
         {
-            _nodeReloadCommand.Execute(node);//, updateToLatest)
+            return _nodeReloadCommand.Execute(node);//, updateToLatest)
         }
     }
 }

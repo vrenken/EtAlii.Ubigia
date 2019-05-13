@@ -1,9 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
 
     public interface IStorageInitializer
     {
-        void Initialize(Storage storage);
+        Task Initialize(Storage storage);
     }
 }

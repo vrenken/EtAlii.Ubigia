@@ -1,12 +1,14 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Functional
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
 
     internal class StorageInitializer : IStorageInitializer
     {
-        public void Initialize(Storage storage)
+        public Task Initialize(Storage storage)
         {
             // Initialize the specified storage.
+            return Task.CompletedTask;
         }
     }
 }

@@ -66,16 +66,16 @@
             return Task.FromResult(response);
         }
 
-        public override Task<StorageSingleResponse> Post(StorageSingleRequest request, ServerCallContext context)
+        public override async Task<StorageSingleResponse> Post(StorageSingleRequest request, ServerCallContext context)
         {
             var storage = request.Storage.ToLocal();
-            storage = _items.Add(storage);
+            storage = await _items.Add(storage);
 
             var response = new StorageSingleResponse
             {
                 Storage = storage.ToWire()
             };
-            return Task.FromResult(response);
+            return response;
         }
 
         // Add item

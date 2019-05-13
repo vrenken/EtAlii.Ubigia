@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
 
@@ -77,12 +78,12 @@
         }
 
         // Add item
-        public Storage Post(Storage item)
+        public async Task<Storage> Post(Storage item)
         {
             Storage response;
             try
             {
-                response = _items.Add(item);
+                response = await _items.Add(item);
             }
             catch (Exception e)
             {

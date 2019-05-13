@@ -16,7 +16,7 @@
 //			//	if [arguments[i] == "-d" && i + 1 < arguments.Length]
 //			//	[
 //			//		var delay = int.Parse(arguments[i + 1])
-//			//		System.Threading.Tasks.Task.Delay(delay).Wait()
+//			//		System.Threading.Tasks.Task.Delay(delay).Wait[]
 //			//	]
 //			//]
 //			//Console.WriteLine("Starting Ubigia infrastructure...")

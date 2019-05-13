@@ -57,7 +57,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void Linq_Nodes_Select_Add_Single_Save_Check_IsModified()
+        public async Task Linq_Nodes_Select_Add_Single_Save_Check_IsModified()
         {
             // Arrange.
             var items = _context.Nodes.Select(_countryPath);
@@ -67,7 +67,7 @@
             // Act.
             single.Value = value;
             var wasModified = ((INode)single).IsModified;
-            _context.Nodes.Save(single);
+            await _context.Nodes.Save(single);
             var isModified = ((INode)single).IsModified;
 
             // Assert.
@@ -76,7 +76,7 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void Linq_Nodes_Select_Add_Single_Save_Check_Id()
+        public async Task Linq_Nodes_Select_Add_Single_Save_Check_Id()
         {
             // Arrange.
             var items = _context.Nodes.Select(_countryPath);
@@ -86,7 +86,7 @@
 
             // Act.
             single.Value = value;
-            _context.Nodes.Save(single);
+            await _context.Nodes.Save(single);
             var newId = ((INode)single).Id;
 
             // Assert.

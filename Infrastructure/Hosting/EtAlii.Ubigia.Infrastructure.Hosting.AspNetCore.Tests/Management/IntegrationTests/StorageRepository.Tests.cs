@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.AspNetCore.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using Xunit;
-    using System;
-    using System.Linq;
+	using System;
+	using System.Linq;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api;
+	using Xunit;
 
-    
 	[Trait("Technology", "AspNetCore")]
     public sealed class StorageRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
@@ -17,7 +17,7 @@
         }
 
         [Fact]
-        public void StorageRepository_Add()
+        public async Task StorageRepository_Add()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
@@ -25,7 +25,7 @@
             var storage = CreateStorage();
 
 			// Act.
-	        var addedStorage = repository.Add(storage);
+	        var addedStorage = await repository.Add(storage);
 
 			// Assert.
 	        Assert.NotNull(addedStorage);
@@ -33,13 +33,13 @@
         }
 
         [Fact]
-        public void StorageRepository_Get()
+        public async Task StorageRepository_Get()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage = await repository.Add(storage);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -56,13 +56,13 @@
         }
 
         [Fact]
-        public void StorageRepository_Remove_By_Id()
+        public async Task StorageRepository_Remove_By_Id()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage = await repository.Add(storage);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -79,13 +79,13 @@
         }
 
         [Fact]
-        public void StorageRepository_Remove_By_Instance()
+        public async Task StorageRepository_Remove_By_Instance()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage = await repository.Add(storage);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -115,15 +115,15 @@
         }
 
         [Fact]
-        public void StorageRepository_GetAll()
+        public async Task StorageRepository_GetAll()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage = await repository.Add(storage);
             storage = CreateStorage();
-            addedStorage = repository.Add(storage);
+            addedStorage = await repository.Add(storage);
 
 			// Act.
             var storages = repository.GetAll();
@@ -135,13 +135,13 @@
 
 
         [Fact]
-        public void StorageRepository_Get_By_Name()
+        public async Task StorageRepository_Get_By_Name()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage = await repository.Add(storage);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 
@@ -156,13 +156,13 @@
         }
 
         [Fact]
-        public void StorageRepository_Get_By_Invalid_Name()
+        public async Task StorageRepository_Get_By_Invalid_Name()
         {
 	        // Arrange.
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Storages;
             var storage = CreateStorage();
-            var addedStorage = repository.Add(storage);
+            var addedStorage = await repository.Add(storage);
             Assert.NotNull(addedStorage);
             Assert.NotEqual(addedStorage.Id, Guid.Empty);
 

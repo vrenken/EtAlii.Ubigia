@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.xTechnology.Logging;
 
@@ -16,10 +17,10 @@
             _scriptContext = scriptContext;
         }
 
-        public void Handle(ItemCheckAction action, string localStart, string remoteStart)
+        public Task Handle(ItemCheckAction action, string localStart, string remoteStart)
         {
             // Handle an item check/uncheck action.
+            return Task.CompletedTask;
         }
-
     }
 }

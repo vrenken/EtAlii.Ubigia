@@ -21,7 +21,7 @@
             _scriptContext = scriptContext;
         }
 
-        public void Handle(ItemCheckAction action, string localStart, string remoteStart)
+        public async Task Handle(ItemCheckAction action, string localStart, string remoteStart)
         {
             _localPathSplitter.Split(localStart, action.Item, out var last, out var rest);
 
@@ -30,12 +30,8 @@
                 ? $"/{string.Join("/", _stringEscaper.Escape(rest))}"
                 : string.Empty;
 
-            var task = Task.Run(async () =>
-            {
-                var lastSequence = await _scriptContext.Process("/{0}{1} -= {2}", remoteStart, remotePath, remoteItem);
-                await lastSequence.Output.LastOrDefaultAsync();
-            });
-            task.Wait();
+            var lastSequence = await _scriptContext.Process("/{0}{1} -= {2}", remoteStart, remotePath, remoteItem);
+            await lastSequence.Output.LastOrDefaultAsync();
         }
     }
 }

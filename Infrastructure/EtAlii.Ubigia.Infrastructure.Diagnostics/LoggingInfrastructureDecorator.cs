@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Diagnostics
 {
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Logging;
 
@@ -29,20 +30,20 @@
             _logger = logger;
         }
 
-        public void Start()
+        public async Task Start()
         {
             _logger.Info("Starting infrastructure hosting");
 
-            _decoree.Start();
+            await _decoree.Start();
 
             _logger.Info("Started infrastructure hosting");
         }
 
-        public void Stop()
+        public async Task Stop()
         {
             _logger.Info("Stopping infrastructure hosting");
 
-            _decoree.Stop();
+            await _decoree.Stop();
 
             _logger.Info("Stopped infrastructure hosting");
         }

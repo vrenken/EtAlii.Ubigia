@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.xTechnology.Logging;
@@ -75,13 +76,13 @@
             return storage;
         }
 
-        public Storage Add(Storage item)
+        public async Task<Storage> Add(Storage item)
         {
             var message = $"Adding storage (Id: {item.Id})";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            item = _repository.Add(item);
+            item = await _repository.Add(item);
 
             message = $"Added storage (Id: {item.Id} Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
             _logger.Info(message);
