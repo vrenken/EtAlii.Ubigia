@@ -23,10 +23,7 @@
 
         public void Handle(ItemCheckAction action, string localStart, string remoteStart)
         {
-            string last;
-            string[] rest;
-
-            _localPathSplitter.Split(localStart, action.Item, out last, out rest);
+            _localPathSplitter.Split(localStart, action.Item, out var last, out var rest);
 
             var remoteItem = _stringEscaper.Escape(last);
             var remotePath = rest.Any()

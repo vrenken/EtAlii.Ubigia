@@ -30,17 +30,7 @@
             Errors = new List<ErrorRecord>();
             WriteErrors = true;
         }
-
-        /// <summary>
-        /// Creates a collection of tasks to be processed
-        /// </summary>
-        /// <returns>A collection of tasks</returns>
-        [Obsolete]
-        protected virtual IEnumerable<Task> GenerateTasks()
-        {
-            return CreateProcessTasks();
-        }
-
+        
         /// <summary>
         /// Creates a collection of tasks to be processed
         /// </summary>

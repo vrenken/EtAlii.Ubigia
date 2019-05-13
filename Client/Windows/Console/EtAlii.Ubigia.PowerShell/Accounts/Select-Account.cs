@@ -23,7 +23,7 @@
             var account = await PowerShellClient.Current.AccountResolver.Get(this, AccountCmdlet.Current);
 
             AccountCmdlet.Current = account;
-            return account;;
+            return account;
         } 
     }
 }

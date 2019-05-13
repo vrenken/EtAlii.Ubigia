@@ -26,7 +26,7 @@
         {
             await PowerShellClient.Current.ManagementConnection.Accounts.Change(Account.Id, Account.Name, Account.Password);
 
-            var verboseDescription = $"Account '{Account.Name}' has been updated.";
+            //var verboseDescription = $"Account '{Account.Name}' has been updated."
             //WriteVerbose(verboseDescription)
         }
     }

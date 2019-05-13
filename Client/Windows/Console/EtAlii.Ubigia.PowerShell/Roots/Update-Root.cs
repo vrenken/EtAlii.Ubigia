@@ -26,7 +26,7 @@
         {
             await PowerShellClient.Current.Fabric.Roots.Change(Root.Id, Root.Name);
 
-            var verboseDescription = $"Root '{Root.Name}' has been updated.";
+            //var verboseDescription = $"Root '{Root.Name}' has been updated."
             //WriteVerbose(verboseDescription)
         }
     }

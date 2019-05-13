@@ -11,13 +11,17 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 
     public class PersonSetter : IPersonSetter
     {
-        public async Task Set(IGraphSLScriptContext context, Person person)
+        public Task Set(IGraphSLScriptContext context, Person person)
         {
             if (person == null)
             {
                 throw new ArgumentNullException(nameof(person));
             }
+            return SetInternal(context, person);
+        }
 
+        private async Task SetInternal(IGraphSLScriptContext context, Person person)
+        {
             var familyName = person.Names.FirstOrDefault()?.FamilyName ?? person.Names.FirstOrDefault()?.FamilyName;
             var givenName = person.Names.FirstOrDefault()?.GivenName ?? person.Names.FirstOrDefault()?.GivenName;
 

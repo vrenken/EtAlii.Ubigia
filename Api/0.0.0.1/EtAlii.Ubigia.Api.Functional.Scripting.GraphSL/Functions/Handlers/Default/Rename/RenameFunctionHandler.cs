@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Linq;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Structure;
 
@@ -45,7 +46,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 .Register((c, f, s) => true, (f, s) => { throw new ScriptProcessingException("Unable to convert name input for Rename function processing"); });
         }
 
-        public void Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
+        public Task Process(IFunctionContext context, ParameterSet parameterSet, ArgumentSet argumentSet, IObservable<object> input, ExecutionScope scope, IObserver<object> output, bool processAsSubject)
         {
             if (processAsSubject)
             {
@@ -71,6 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     throw new ScriptProcessingException("Unable to convert arguments and input for rename function processing");
                 }
             }
+            return Task.CompletedTask;
         }
 
         private void ProcessByArgument(

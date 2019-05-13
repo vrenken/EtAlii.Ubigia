@@ -5,7 +5,6 @@
     using EtAlii.Ubigia.Windows.Settings;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Mvvm;
 
     public abstract class App : System.Windows.Application
     {
@@ -32,17 +31,17 @@
 
         protected virtual void RegisterKnownTypes()
         {
-            var typesToInclude = new[]
-            {
-                typeof(BindableBase),
-            };
-
-            var typesToExclude = new[]
-            {
-                typeof(IGlobalSettings),
-                typeof(StorageSettings),
-                typeof(ILogger),
-            };
+//            var typesToInclude = new[]
+//            [
+//                typeof(BindableBase),
+//            ]
+//
+//            var typesToExclude = new[]
+//            [
+//                typeof(IGlobalSettings),
+//                typeof(StorageSettings),
+//                typeof(ILogger),
+//            ]
 
             //RegisterKnownTypesInAssembly(Assembly.GetExecutingAssembly(), typesToInclude, typesToExclude)
 

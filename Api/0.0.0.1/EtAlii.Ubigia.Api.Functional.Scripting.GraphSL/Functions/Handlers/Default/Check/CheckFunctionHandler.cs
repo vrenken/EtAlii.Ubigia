@@ -1,6 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Threading.Tasks;
 
     internal class CheckFunctionHandler : IFunctionHandler
     {
@@ -18,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Name = "Check";
         }
 
-        public void Process(
+        public Task Process(
             IFunctionContext context, 
             ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
@@ -28,6 +29,7 @@ namespace EtAlii.Ubigia.Api.Functional
             bool processAsSubject)
         {
             output.OnCompleted();
+            return Task.CompletedTask;
         }
     }
 }

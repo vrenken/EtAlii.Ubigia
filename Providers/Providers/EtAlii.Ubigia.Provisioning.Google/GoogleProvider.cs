@@ -43,7 +43,7 @@
             }
             foreach (var updater in _updaters)
             {
-                updater.Stop();
+                await updater.Stop();
             }
         }
 
@@ -53,7 +53,7 @@
             
             foreach (var updater in _updaters)
             {
-                updater.Start();
+                await updater.Start();
             }
             foreach (var importer in _importers)
             {

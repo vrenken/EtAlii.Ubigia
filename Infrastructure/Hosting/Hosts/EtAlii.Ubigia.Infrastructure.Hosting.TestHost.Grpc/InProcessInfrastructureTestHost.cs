@@ -37,10 +37,5 @@
             _adminModule = Systems.Single().Modules.OfType<AdminModule>().Single();
             _userModule = Systems.Single().Modules.OfType<UserModule>().Single();
         }
-
-        protected override Task Stopped()
-        {
-            return base.Stopped();
-        }
     }
 }

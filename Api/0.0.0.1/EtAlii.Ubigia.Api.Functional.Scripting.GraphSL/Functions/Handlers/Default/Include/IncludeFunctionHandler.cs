@@ -4,6 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Collections.Generic;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class IncludeFunctionHandler : FunctionHandlerBase, IFunctionHandler
@@ -22,7 +23,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Name = "Include";
         }
 
-        public void Process(
+        public async Task Process(
             IFunctionContext context, 
             ParameterSet parameterSet, 
             ArgumentSet argumentSet, 
@@ -48,7 +49,7 @@ namespace EtAlii.Ubigia.Api.Functional
             {
                 if (argumentSet.Arguments.Length == 1)
                 {
-                    ProcessByInput(context, argumentSet, input, scope, output);
+                    await ProcessByInput(context, argumentSet, input, scope, output);
                 }
                 else
                 {
@@ -77,30 +78,21 @@ namespace EtAlii.Ubigia.Api.Functional
         //            ]
         //        ])
         //]
-        private void ProcessByInput(
+        private async Task ProcessByInput(
             IFunctionContext context, 
             ArgumentSet argumentSet, 
             IObservable<object> input, 
             ExecutionScope scope, 
             IObserver<object> output)
         {
-            PathSubject pathSubject = argumentSet.Arguments[0] as PathSubject;
-
-            if (pathSubject == null)
+            if (!(argumentSet.Arguments[0] is PathSubject pathSubject))
             {
                 if (!(argumentSet.Arguments[0] is IObservable<object> argumentInput))
                 {
                     throw new ScriptProcessingException("Unable to convert arguments for Include function processing");
                 }
 
-                pathSubject = argumentInput.Cast<PathSubject>().Wait();
-//                var task = Task.Run(async () =>
-//                {
-//                    pathSubject = await argumentInput
-//                        .Cast<PathSubject>()
-//                        .SingleAsync();
-//                });
-//                task.Wait();
+                pathSubject = await argumentInput.Cast<PathSubject>();
             }
             if (pathSubject == null)
             {

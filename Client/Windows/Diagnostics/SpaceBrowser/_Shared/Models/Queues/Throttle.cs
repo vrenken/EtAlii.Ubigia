@@ -176,18 +176,16 @@
         /// <param name="isDisposing">Whether this object is being disposed.</param>
         protected virtual void Dispose(bool isDisposing)
         {
-            if (!_isDisposed)
-            {
-                if (isDisposing)
-                {
-                    // The semaphore and timer both implement IDisposable and 
-                    // therefore must be disposed.
-                    _semaphore.Dispose();
-                    _exitTimer.Dispose();
+            if (_isDisposed) return;
 
-                    _isDisposed = true;
-                }
-            }
+            if (!isDisposing) return;
+            
+            // The semaphore and timer both implement IDisposable and 
+            // therefore must be disposed.
+            _semaphore.Dispose();
+            _exitTimer.Dispose();
+
+            _isDisposed = true;
         }
     }
 }
