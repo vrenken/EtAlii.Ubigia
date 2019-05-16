@@ -1,0 +1,23 @@
+﻿// Query annotation.
+@traverse("Person:Doe/John")
+{
+    "FirstName",
+    "LastName",
+    "NickName",
+}
+
+@traverse("Person:Doe/John")
+{
+    FirstName,
+    LastName,
+    NickName,
+}
+
+@traverse("Person:Doe/John")
+{
+    FirstName @id(),
+    LastName @id("\LastName"),
+    NickName,
+    Friends @traverse("/Friends")  
+}
+    
