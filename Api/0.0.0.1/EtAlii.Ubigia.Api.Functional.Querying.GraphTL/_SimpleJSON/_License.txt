@@ -1,4 +1,6 @@
-﻿/* * * * *
+﻿// Source: https://github.com/Bunny83/SimpleJSON
+
+/* * * * *
  * A simple JSON Parser / builder
  * ------------------------------
  * 

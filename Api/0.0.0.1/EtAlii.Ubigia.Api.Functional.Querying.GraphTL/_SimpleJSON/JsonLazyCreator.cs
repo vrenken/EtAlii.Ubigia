@@ -2,11 +2,11 @@ namespace SimpleJson
 {
     using System.Text;
 
-    internal partial class JsonLazyCreator : JsonNode
+    internal class JsonLazyCreator : JsonNode
     {
-        private JsonNode _mNode = null;
-        private string _mKey = null;
-        public override JsonNodeType Tag { get { return JsonNodeType.None; } }
+        private JsonNode _mNode;
+        private readonly string _mKey;
+        public override JsonNodeType Tag => JsonNodeType.None;
         public override Enumerator GetEnumerator() { return new Enumerator(); }
 
         public JsonLazyCreator(JsonNode aNode)
@@ -31,16 +31,16 @@ namespace SimpleJson
             return aVal;
         }
 
-        public override JsonNode this[int aIndex]
+        public override JsonNode this[int index]
         {
-            get { return new JsonLazyCreator(this); }
-            set { Set(new JsonArray()).Add(value); }
+            get => new JsonLazyCreator(this);
+            set => Set(new JsonArray()).Add(value);
         }
 
         public override JsonNode this[string aKey]
         {
-            get { return new JsonLazyCreator(this, aKey); }
-            set { Set(new JsonObject()).Add(aKey, value); }
+            get => new JsonLazyCreator(this, aKey);
+            set => Set(new JsonObject()).Add(aKey, value);
         }
 
         public override void Add(JsonNode aItem)
@@ -48,16 +48,14 @@ namespace SimpleJson
             Set(new JsonArray()).Add(aItem);
         }
 
-        public override void Add(string aKey, JsonNode aItem)
+        public override void Add(string key, JsonNode item)
         {
-            Set(new JsonObject()).Add(aKey, aItem);
+            Set(new JsonObject()).Add(key, item);
         }
 
         public static bool operator ==(JsonLazyCreator a, object b)
         {
-            if (b == null)
-                return true;
-            return System.Object.ReferenceEquals(a, b);
+            return b == null || ReferenceEquals(a, b);
         }
 
         public static bool operator !=(JsonLazyCreator a, object b)
@@ -67,9 +65,7 @@ namespace SimpleJson
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return true;
-            return System.Object.ReferenceEquals(this, obj);
+            return obj == null || ReferenceEquals(this, obj);
         }
 
         public override int GetHashCode()
@@ -80,19 +76,19 @@ namespace SimpleJson
         public override int AsInt
         {
             get { Set(new JsonNumber(0)); return 0; }
-            set { Set(new JsonNumber(value)); }
+            set => Set(new JsonNumber(value));
         }
 
         public override float AsFloat
         {
             get { Set(new JsonNumber(0.0f)); return 0.0f; }
-            set { Set(new JsonNumber(value)); }
+            set => Set(new JsonNumber(value));
         }
 
         public override double AsDouble
         {
             get { Set(new JsonNumber(0.0)); return 0.0; }
-            set { Set(new JsonNumber(value)); }
+            set => Set(new JsonNumber(value));
         }
 
         public override long AsLong
@@ -117,18 +113,13 @@ namespace SimpleJson
         public override bool AsBool
         {
             get { Set(new JsonBool(false)); return false; }
-            set { Set(new JsonBool(value)); }
+            set => Set(new JsonBool(value));
         }
 
-        public override JsonArray AsArray
-        {
-            get { return Set(new JsonArray()); }
-        }
+        public override JsonArray AsArray => Set(new JsonArray());
 
-        public override JsonObject AsObject
-        {
-            get { return Set(new JsonObject()); }
-        }
+        public override JsonObject AsObject => Set(new JsonObject());
+
         internal override void WriteToStringBuilder(StringBuilder aSb, int aIndent, int aIndentInc, JsonTextMode aMode)
         {
             aSb.Append("null");

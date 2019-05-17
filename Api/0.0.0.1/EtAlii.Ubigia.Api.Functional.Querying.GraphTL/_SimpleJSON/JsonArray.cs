@@ -5,72 +5,69 @@ namespace SimpleJson
 
     public partial class JsonArray : JsonNode
     {
-        private List<JsonNode> _mList = new List<JsonNode>();
+        private readonly List<JsonNode> _list = new List<JsonNode>();
         private bool _inline = false;
         public override bool Inline
         {
-            get { return _inline; }
-            set { _inline = value; }
+            get => _inline;
+            set => _inline = value;
         }
 
-        public override JsonNodeType Tag { get { return JsonNodeType.Array; } }
-        public override bool IsArray { get { return true; } }
-        public override Enumerator GetEnumerator() { return new Enumerator(_mList.GetEnumerator()); }
+        public override JsonNodeType Tag => JsonNodeType.Array;
+        public override bool IsArray => true;
+        public override Enumerator GetEnumerator() { return new Enumerator(_list.GetEnumerator()); }
 
-        public override JsonNode this[int aIndex]
+        public override JsonNode this[int index]
         {
             get
             {
-                if (aIndex < 0 || aIndex >= _mList.Count)
+                if (index < 0 || index >= _list.Count)
                     return new JsonLazyCreator(this);
-                return _mList[aIndex];
+                return _list[index];
             }
             set
             {
                 if (value == null)
                     value = JsonNull.CreateOrGet();
-                if (aIndex < 0 || aIndex >= _mList.Count)
-                    _mList.Add(value);
+                if (index < 0 || index >= _list.Count)
+                    _list.Add(value);
                 else
-                    _mList[aIndex] = value;
+                    _list[index] = value;
             }
         }
 
         public override JsonNode this[string aKey]
         {
-            get { return new JsonLazyCreator(this); }
+            get => new JsonLazyCreator(this);
             set
             {
                 if (value == null)
                     value = JsonNull.CreateOrGet();
-                _mList.Add(value);
+                _list.Add(value);
             }
         }
 
-        public override int Count
-        {
-            get { return _mList.Count; }
-        }
+        public override int Count => _list.Count;
 
-        public override void Add(string aKey, JsonNode aItem)
+        public override void Add(string key, JsonNode item)
         {
-            if (aItem == null)
-                aItem = JsonNull.CreateOrGet();
-            _mList.Add(aItem);
+            if (item == null)
+                item = JsonNull.CreateOrGet();
+            _list.Add(item);
         }
 
         public override JsonNode Remove(int aIndex)
         {
-            if (aIndex < 0 || aIndex >= _mList.Count)
+            if (aIndex < 0 || aIndex >= _list.Count)
                 return null;
-            JsonNode tmp = _mList[aIndex];
-            _mList.RemoveAt(aIndex);
+            var tmp = _list[aIndex];
+            _list.RemoveAt(aIndex);
             return tmp;
         }
 
         public override JsonNode Remove(JsonNode aNode)
         {
-            _mList.Remove(aNode);
+            _list.Remove(aNode);
             return aNode;
         }
 
@@ -78,7 +75,7 @@ namespace SimpleJson
         {
             get
             {
-                foreach (JsonNode n in _mList)
+                foreach (var n in _list)
                     yield return n;
             }
         }
@@ -87,10 +84,10 @@ namespace SimpleJson
         internal override void WriteToStringBuilder(StringBuilder aSb, int aIndent, int aIndentInc, JsonTextMode aMode)
         {
             aSb.Append('[');
-            int count = _mList.Count;
+            var count = _list.Count;
             if (_inline)
                 aMode = JsonTextMode.Compact;
-            for (int i = 0; i < count; i++)
+            for (var i = 0; i < count; i++)
             {
                 if (i > 0)
                     aSb.Append(',');
@@ -99,7 +96,7 @@ namespace SimpleJson
 
                 if (aMode == JsonTextMode.Indent)
                     aSb.Append(' ', aIndent + aIndentInc);
-                _mList[i].WriteToStringBuilder(aSb, aIndent + aIndentInc, aIndentInc, aMode);
+                _list[i].WriteToStringBuilder(aSb, aIndent + aIndentInc, aIndentInc, aMode);
             }
             if (aMode == JsonTextMode.Indent)
                 aSb.AppendLine().Append(' ', aIndent);

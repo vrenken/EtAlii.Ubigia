@@ -6,13 +6,13 @@ namespace SimpleJson
     {
         private bool _mData;
 
-        public override JsonNodeType Tag { get { return JsonNodeType.Boolean; } }
-        public override bool IsBoolean { get { return true; } }
+        public override JsonNodeType Tag => JsonNodeType.Boolean;
+        public override bool IsBoolean => true;
         public override Enumerator GetEnumerator() { return new Enumerator(); }
 
         public override string Value
         {
-            get { return _mData.ToString(); }
+            get => _mData.ToString();
             set
             {
                 bool v;
@@ -22,8 +22,8 @@ namespace SimpleJson
         }
         public override bool AsBool
         {
-            get { return _mData; }
-            set { _mData = value; }
+            get => _mData;
+            set => _mData = value;
         }
 
         public JsonBool(bool aData)
