@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using System;
     using Moppet.Lapa;
 
     internal class BooleanValueParser : IBooleanValueParser
@@ -21,8 +20,8 @@
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             Parser = new LpsParser(Id, true,
-                (Lp.One(c => Char.ToLower(c) == 't') + Lp.One(c => Char.ToLower(c) == 'r') + Lp.One(c => Char.ToLower(c) == 'u') + Lp.One(c => Char.ToLower(c) == 'e')).Id(ValueId) |
-                (Lp.One(c => Char.ToLower(c) == 'f') + Lp.One(c => Char.ToLower(c) == 'a') + Lp.One(c => Char.ToLower(c) == 'l') + Lp.One(c => Char.ToLower(c) == 's') + Lp.One(c => Char.ToLower(c) == 'e')).Id(ValueId)
+                (Lp.One(c => char.ToLower(c) == 't') + Lp.One(c => char.ToLower(c) == 'r') + Lp.One(c => char.ToLower(c) == 'u') + Lp.One(c => char.ToLower(c) == 'e')).Id(ValueId) |
+                (Lp.One(c => char.ToLower(c) == 'f') + Lp.One(c => char.ToLower(c) == 'a') + Lp.One(c => char.ToLower(c) == 'l') + Lp.One(c => char.ToLower(c) == 's') + Lp.One(c => char.ToLower(c) == 'e')).Id(ValueId)
             );
         }
 
