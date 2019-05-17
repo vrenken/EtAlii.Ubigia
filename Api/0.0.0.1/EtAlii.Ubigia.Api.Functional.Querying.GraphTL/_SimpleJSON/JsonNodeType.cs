@@ -9,6 +9,7 @@ namespace SimpleJson
         NullValue = 5,
         Boolean = 6,
         None = 7,
+        Annotation = 8,
         Custom = 0xFF,
     }
 }

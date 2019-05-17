@@ -7,27 +7,23 @@ namespace SimpleJson
 
     public partial class JsonObject : JsonNode
     {
-        private Dictionary<string, JsonNode> _mDict = new Dictionary<string, JsonNode>();
+        private readonly Dictionary<string, JsonNode> _dictionary = new Dictionary<string, JsonNode>();
 
+        public override bool Inline { get => _inline; set => _inline = value; }
         private bool _inline = false;
-        public override bool Inline
-        {
-            get { return _inline; }
-            set { _inline = value; }
-        }
 
-        public override JsonNodeType Tag { get { return JsonNodeType.Object; } }
-        public override bool IsObject { get { return true; } }
+        public override JsonNodeType Tag => JsonNodeType.Object;
+        public override bool IsObject => true;
 
-        public override Enumerator GetEnumerator() { return new Enumerator(_mDict.GetEnumerator()); }
+        public override Enumerator GetEnumerator() { return new Enumerator(_dictionary.GetEnumerator()); }
 
 
         public override JsonNode this[string aKey]
         {
             get
             {
-                if (_mDict.ContainsKey(aKey))
-                    return _mDict[aKey];
+                if (_dictionary.ContainsKey(aKey))
+                    return _dictionary[aKey];
                 else
                     return new JsonLazyCreator(this, aKey);
             }
@@ -35,68 +31,65 @@ namespace SimpleJson
             {
                 if (value == null)
                     value = JsonNull.CreateOrGet();
-                if (_mDict.ContainsKey(aKey))
-                    _mDict[aKey] = value;
+                if (_dictionary.ContainsKey(aKey))
+                    _dictionary[aKey] = value;
                 else
-                    _mDict.Add(aKey, value);
+                    _dictionary.Add(aKey, value);
             }
         }
 
-        public override JsonNode this[int aIndex]
+        public override JsonNode this[int index]
         {
             get
             {
-                if (aIndex < 0 || aIndex >= _mDict.Count)
+                if (index < 0 || index >= _dictionary.Count)
                     return null;
-                return _mDict.ElementAt(aIndex).Value;
+                return _dictionary.ElementAt(index).Value;
             }
             set
             {
                 if (value == null)
                     value = JsonNull.CreateOrGet();
-                if (aIndex < 0 || aIndex >= _mDict.Count)
+                if (index < 0 || index >= _dictionary.Count)
                     return;
-                string key = _mDict.ElementAt(aIndex).Key;
-                _mDict[key] = value;
+                string key = _dictionary.ElementAt(index).Key;
+                _dictionary[key] = value;
             }
         }
 
-        public override int Count
-        {
-            get { return _mDict.Count; }
-        }
+        public override int Count => _dictionary.Count;
 
-        public override void Add(string aKey, JsonNode aItem)
+        public override void Add(string key, JsonNode item)
         {
-            if (aItem == null)
-                aItem = JsonNull.CreateOrGet();
+            if (item == null)
+                item = JsonNull.CreateOrGet();
 
-            if (aKey != null)
+            if (key != null)
             {
-                if (_mDict.ContainsKey(aKey))
-                    _mDict[aKey] = aItem;
+                if (_dictionary.ContainsKey(key))
+                    _dictionary[key] = item;
                 else
-                    _mDict.Add(aKey, aItem);
+                    _dictionary.Add(key, item);
             }
             else
-                _mDict.Add(Guid.NewGuid().ToString(), aItem);
+                _dictionary.Add(Guid.NewGuid().ToString(), item);
         }
 
         public override JsonNode Remove(string aKey)
         {
-            if (!_mDict.ContainsKey(aKey))
+            if (!_dictionary.ContainsKey(aKey))
                 return null;
-            JsonNode tmp = _mDict[aKey];
-            _mDict.Remove(aKey);
+            JsonNode tmp = _dictionary[aKey];
+            _dictionary.Remove(aKey);
             return tmp;
         }
 
         public override JsonNode Remove(int aIndex)
         {
-            if (aIndex < 0 || aIndex >= _mDict.Count)
+            if (aIndex < 0 || aIndex >= _dictionary.Count)
                 return null;
-            var item = _mDict.ElementAt(aIndex);
-            _mDict.Remove(item.Key);
+            var item = _dictionary.ElementAt(aIndex);
+            _dictionary.Remove(item.Key);
             return item.Value;
         }
 
@@ -104,8 +97,8 @@ namespace SimpleJson
         {
             try
             {
-                var item = _mDict.Where(k => k.Value == aNode).First();
-                _mDict.Remove(item.Key);
+                var item = _dictionary.Where(k => k.Value == aNode).First();
+                _dictionary.Remove(item.Key);
                 return aNode;
             }
             catch
@@ -116,13 +109,13 @@ namespace SimpleJson
 
         public override bool HasKey(string aKey)
         {
-            return _mDict.ContainsKey(aKey);
+            return _dictionary.ContainsKey(aKey);
         }
 
         public override JsonNode GetValueOrDefault(string aKey, JsonNode aDefault)
         {
             JsonNode res;
-            if (_mDict.TryGetValue(aKey, out res))
+            if (_dictionary.TryGetValue(aKey, out res))
                 return res;
             return aDefault;
         }
@@ -131,7 +124,7 @@ namespace SimpleJson
         {
             get
             {
-                foreach (KeyValuePair<string, JsonNode> n in _mDict)
+                foreach (KeyValuePair<string, JsonNode> n in _dictionary)
                     yield return n.Value;
             }
         }
@@ -142,7 +135,7 @@ namespace SimpleJson
             bool first = true;
             if (_inline)
                 aMode = JsonTextMode.Compact;
-            foreach (var k in _mDict)
+            foreach (var k in _dictionary)
             {
                 if (!first)
                     aSb.Append(',');
