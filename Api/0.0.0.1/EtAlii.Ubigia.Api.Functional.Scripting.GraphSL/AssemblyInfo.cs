@@ -11,6 +11,7 @@
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.Linq")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphQL")]
+[assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.GraphTL")]
 
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.NET47.SignalR.Tests")]
 [assembly: InternalsVisibleTo("EtAlii.Ubigia.Api.Functional.Querying.NET47.Grpc.Tests")]
