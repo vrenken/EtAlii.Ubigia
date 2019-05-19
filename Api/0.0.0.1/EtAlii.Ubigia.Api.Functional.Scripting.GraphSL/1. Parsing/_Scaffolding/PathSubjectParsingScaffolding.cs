@@ -37,6 +37,10 @@
             
             container.Register<ITypedPathSubjectPartParser, TypedPathSubjectPartParser>();
             container.Register<IRegexPathSubjectPartParser, RegexPathSubjectPartParser>();
+            
+            // Path helpers
+            container.Register<IPathRelationParserBuilder, PathRelationParserBuilder>();
+
         }
     }
 }
