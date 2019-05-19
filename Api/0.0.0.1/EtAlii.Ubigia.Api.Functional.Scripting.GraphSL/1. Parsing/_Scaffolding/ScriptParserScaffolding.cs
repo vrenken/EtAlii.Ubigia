@@ -9,9 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Register(Container container)
         {
             container.Register<IScriptParser, ScriptParser>();
-
-            // Path helpers
-            container.Register<IPathRelationParserBuilder, PathRelationParserBuilder>();
         }
     }
 }
