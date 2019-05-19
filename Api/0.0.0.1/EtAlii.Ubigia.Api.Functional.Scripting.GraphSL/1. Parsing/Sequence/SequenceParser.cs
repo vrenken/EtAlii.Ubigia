@@ -32,7 +32,7 @@
                 .Select(childNode => _sequencePartsParser.Parse(childNode))
                 .ToList();
 
-            for (int i = 0; i < parts.Count; i++)
+            for (var i = 0; i < parts.Count; i++)
             {
                 var before = i > 0 ? parts[i - 1] : null;
                 var after = i < parts.Count - 1 ? parts[i + 1] : null;
