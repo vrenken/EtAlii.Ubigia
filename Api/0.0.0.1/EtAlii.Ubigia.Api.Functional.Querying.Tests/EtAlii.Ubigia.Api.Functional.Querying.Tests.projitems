@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Full.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Multiple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\QueryParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.At.Tests.cs" />
@@ -56,5 +57,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Unit tests\QueryModeller.Tests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)GraphTL\Integration tests" />
   </ItemGroup>
 </Project>
