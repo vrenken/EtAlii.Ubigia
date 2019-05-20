@@ -6,7 +6,7 @@
     <Company>EtAlii</Company>
     <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
     <Version>1.0.1.0</Version>
-    <ProjectGuid>b26d5b6a-8a13-446a-abb4-1b7103e13b0c</ProjectGuid>
+    <ProjectGuid>{60146C7A-1B67-4ED1-A5DB-5801AE0C5FED}</ProjectGuid>
     <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/license.txt</PackageLicenseUrl>
     <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
     <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
