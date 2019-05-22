@@ -12,24 +12,19 @@
 
         public LpNode FindFirst(IEnumerable<LpNode> nodes, string id)
         {
+            if (nodes == null) return null;
+            
             LpNode result = null;
 
-            if(nodes != null)
+            foreach(var node in nodes)
             {
-                foreach(var node in nodes)
+                result = node.Id == id 
+                    ? node 
+                    : FindFirst(node.Children, id);
+                
+                if (result != null)
                 {
-                    if (node.Id == id)
-                    {
-                        result = node;
-                    }
-                    else
-                    {
-                        result = FindFirst(node.Children, id);
-                    }
-                    if (result != null)
-                    {
-                        break;
-                    }
+                    break;
                 }
             }
             return result;
