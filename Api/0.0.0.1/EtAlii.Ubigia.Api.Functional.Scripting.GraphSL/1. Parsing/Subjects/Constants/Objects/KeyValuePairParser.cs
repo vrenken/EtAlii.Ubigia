@@ -51,9 +51,9 @@
                     Lp.Name().Id(KeyId) |
                     _quotedTextParser.Parser.Wrap(KeyId)
                 ) +
-                Lp.OneOrMore(' ').Maybe() +
+                Lp.ZeroOrMore(' ') +
                 Lp.Char(':') +
-                Lp.OneOrMore(' ').Maybe() +
+                Lp.ZeroOrMore(' ') +
                 new LpsParser(ValueId, true, typeParsers).Maybe());
 
             _innerValueFinders = new Func<LpNode, LpNode>[]
