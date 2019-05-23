@@ -48,11 +48,11 @@
             // Arrange.
             var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
             var normalPersonText = @"-- Comment goes here.
-            @select(/Person/Start/Tony)
+            @select(/Person/Stark/Tony)
             {
                 ""age"": ""22"",
                 ""first"": ""Sabrina"",
-                ""last"": ""Stephenson""
+                ""last"": ""Stephenson"",
                 ""company"": ""ISOTRONIC"",
                 ""email"": ""sabrina.stephenson@isotronic.io"",
                 ""phone"": ""+31 (909) 477-2353""
@@ -66,6 +66,11 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.Equal("Person",parseResult.Query.ObjectDefinition.Annotation.Path.Parts[1].ToString());
+            Assert.Equal("Stark",parseResult.Query.ObjectDefinition.Annotation.Path.Parts[3].ToString());
+            Assert.Equal("Tony",parseResult.Query.ObjectDefinition.Annotation.Path.Parts[5].ToString());
+            Assert.Equal("22",parseResult.Query.ObjectDefinition.Properties["age"].ToString());
+            Assert.Equal("sabrina.stephenson@isotronic.io",parseResult.Query.ObjectDefinition.Properties["email"].ToString());
         }
 
         [Fact]
@@ -77,7 +82,7 @@
             {
                 ""age"": ""22"",
                 ""first"": ""Sabrina"",
-                ""last"": ""Stephenson""
+                ""last"": ""Stephenson"",
                 ""company"": ""ISOTRONIC"",
                 ""email"": ""sabrina.stephenson@isotronic.io"",
                 ""phone"": ""+31 (909) 477-2353""

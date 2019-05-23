@@ -3,10 +3,12 @@
     public class ObjectDefinition
     {
         public Annotation Annotation {get;}
-        
-        public ObjectDefinition(Annotation annotation)
+        public IPropertyDictionary Properties { get; }
+
+        public ObjectDefinition(Annotation annotation, IPropertyDictionary properties)
         {
             Annotation = annotation;
+            Properties = properties;
         }
 
     }

@@ -15,7 +15,6 @@
 
 //        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
 
-        private readonly IAnnotationParser _annotationParser;
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly LpsParser _parser;
@@ -30,7 +29,6 @@
         {
             _commentParser = commentParser;
             _objectParser = objectParser;
-            _annotationParser = annotationParser;
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
 
@@ -42,7 +40,8 @@
             
             //_parser = new LpsParser(Id, true, headerParsers + newLineParser.Optional + annotationParser.Parser + newLineParser.Optional + objectParser.Parser + newLineParser.Optional); 
             //_parser = new LpsParser(Id, true, commentParser.Parser + newLineParser.Required + objectParser.Parser + newLineParser.Optional); 
-            _parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _annotationParser.Parser); 
+            _parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _objectParser.Parser); 
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + annotationParser.Parser); 
         }
 
         public QueryParseResult Parse(string text)
