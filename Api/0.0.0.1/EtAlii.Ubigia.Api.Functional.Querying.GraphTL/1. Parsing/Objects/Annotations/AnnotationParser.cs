@@ -32,7 +32,7 @@
                 rootedPathSubjectParser,
                 nonRootedPathSubjectParser
             };
-             var paths =_pathParsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser).Id(PathId, true); 
+             var paths = new LpsParser(PathId, true, _pathParsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser)); 
             // var paths = (rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
             //var paths = (rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser).Id(PathId, true);
                 
@@ -53,10 +53,15 @@
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            var annotationTypeText = _nodeFinder.FindFirst(node, AnnotationTypeId).Match.ToString();
-            var annotationType = (AnnotationType)Enum.Parse(_annotationTypeType, annotationTypeText);
+            var annotationType = AnnotationType.Select;
+            var result = _nodeFinder.FindFirst(node, AnnotationTypeId);
+            if (result != null)
+            {
+                var annotationTypeText = result.Match.ToString();
+                annotationType = (AnnotationType)Enum.Parse(_annotationTypeType, annotationTypeText, true);
+            }
             
-            var childNode = _nodeFinder.FindFirst( node, PathId);
+            var childNode = _nodeFinder.FindFirst(node, PathId).Children.Single();
             var parser = _pathParsers.Single(p => p.CanParse(childNode));
             var path = (PathSubject)parser.Parse(childNode);
 

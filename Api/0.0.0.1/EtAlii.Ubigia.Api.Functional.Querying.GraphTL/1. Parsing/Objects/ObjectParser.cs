@@ -12,36 +12,45 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IKeyValuePairParser _keyValuePairParser;
+
+        private readonly IAnnotationParser _annotationParser;
 //        private const string _textId = "Text"
 
         public ObjectParser(
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
-            IKeyValuePairParser keyValuePairParser)
+            IKeyValuePairParser keyValuePairParser,
+            IAnnotationParser annotationParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _keyValuePairParser = keyValuePairParser;
+            _annotationParser = annotationParser;
 
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t');
+            var newlinedWhiteSpace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\n' || c == '\r');
             
-            var separator = (whitespace + Lp.Char(',') + newLineParser.OptionalMultiple);//; //.Debug("Comma")
-            Parser = new LpsParser(Id, true,
+            var separator = Lp.Char(',');
+            
+            var body = Lp.List(_keyValuePairParser.Parser, separator, newlinedWhiteSpace);
+            Parser = new LpsParser(Id, true, _annotationParser.Parser.Maybe() +  
                 Lp.InBrackets(
-                start,
-                newLineParser.OptionalMultiple +
-                Lp.List(_keyValuePairParser.Parser, separator, whitespace).Maybe() + newLineParser.OptionalMultiple,
-                end)
-                );//.Debug("ObjectConstant")
+                    newlinedWhiteSpace + start + newlinedWhiteSpace,
+                    body,
+                    newlinedWhiteSpace + end + newlinedWhiteSpace)
+                );
         }
 
         public ObjectDefinition Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
+
+            var annotationMatch = _nodeFinder.FindFirst(node, _annotationParser.Id);
+            var annotation = _annotationParser.Parse(annotationMatch);
+            
             var keyValuePairs = _nodeFinder
                 .FindAll(node, _keyValuePairParser.Id)
                 .Select(n => _keyValuePairParser.Parse(n));
@@ -52,7 +61,7 @@
                 dictionary.Add(kvp);
             }
 
-            return new ObjectDefinition(null); //dictionary);
+            return new ObjectDefinition(annotation, dictionary);
         }
 
         public bool CanParse(LpNode node)
