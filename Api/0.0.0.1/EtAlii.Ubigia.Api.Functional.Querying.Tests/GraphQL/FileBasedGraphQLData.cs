@@ -4,9 +4,9 @@
     using System.Linq;
     using Xunit;
 
-    public class FileBasedScriptData : TheoryData<string, string, string>
+    public class FileBasedGraphQLData : TheoryData<string, string, string>
     {
-        public FileBasedScriptData()
+        public FileBasedGraphQLData()
         {
             var folder = Directory.GetCurrentDirectory();
             folder = Path.Combine(folder, "GraphQL");

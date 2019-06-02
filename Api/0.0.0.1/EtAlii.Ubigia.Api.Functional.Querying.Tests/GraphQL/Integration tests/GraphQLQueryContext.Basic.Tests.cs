@@ -50,7 +50,7 @@
             return Task.CompletedTask;
         }
 
-        [Theory, ClassData(typeof(FileBasedScriptData))]
+        [Theory, ClassData(typeof(FileBasedGraphQLData))]
         public async Task GraphQL_Query_From_Files_Execute(string fileName, string title, string queryText)
         {
             // Arrange.
