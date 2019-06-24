@@ -28,5 +28,6 @@
     <ItemGroup>
         <Folder Include="2. Processing" />
         <Folder Include="3. Providing" />
+        <Folder Include="_Model" />
     </ItemGroup>
 </Project>

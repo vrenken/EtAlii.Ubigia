@@ -2,7 +2,8 @@
 {
     public enum AnnotationType
     {
-        Select,
-        Update
+        Node,
+        Nodes,
+        Value
     }
 }

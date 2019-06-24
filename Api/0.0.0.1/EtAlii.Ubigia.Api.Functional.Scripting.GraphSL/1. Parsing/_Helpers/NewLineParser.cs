@@ -12,10 +12,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public NewLineParser()
         {
-            Required = Lp.ZeroOrMore(c => c == ' ') + Lp.OneOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ');
-            Optional = Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ');
+            Required = Lp.ZeroOrMore(c => c == ' ' || c == '\t') + Lp.OneOrMore(c => c == '\n' || c == '\r') + Lp.ZeroOrMore(c => c == ' ' || c == '\t');
+            Optional = Lp.ZeroOrMore(c => c == ' ' || c == '\t') + Lp.ZeroOrMore(c => c == '\n' || c == '\r') + Lp.ZeroOrMore(c => c == ' ' || c == '\t');
 
-            OptionalMultiple = Lp.ZeroOrMore(c => c == ' ' || c == '\n');
+            OptionalMultiple = Lp.ZeroOrMore(c => c == ' ' || c == '\n' || c == '\r' || c == '\t');
             //_optionalMultiple = (Lp.ZeroOrMore(c => c == ' ') + Lp.ZeroOrMore(c => c == '\n') + Lp.ZeroOrMore(c => c == ' ')).ZeroOrMore().Maybe()
         }
     }

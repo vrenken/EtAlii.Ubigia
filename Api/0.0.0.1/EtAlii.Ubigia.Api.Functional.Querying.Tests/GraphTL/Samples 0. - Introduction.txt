@@ -1,23 +1,128 @@
-﻿// Query annotation.
-@traverse("Person:Doe/John")
+﻿-- ==================================================================================================================
+-- Traverses to a node and returns this as a named element. 
+-- All properties that can be found will be returned. 
+Person @node("Person:Doe/John")
+{
+}
+
+-- ==================================================================================================================
+-- Traverses to a node and returns it as a named element. 
+-- Only the properties that can be found will be returned. No error is given if a property cannot be found. 
+Person @node("Person:Doe/John")
+{
+    FirstName
+    LastName
+    NickName
+}
+
+-- ==================================================================================================================
+-- Property identifiers can be quoted for more accurate control. 
+Person @node("Person:Doe/John")
+{
+    "FirstName"
+    "LastName"
+    "NickName"
+}
+
+-- ==================================================================================================================
+-- Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
+Person @node("Person:Doe/John")
+{
+    FirstName
+    LastName
+    NickName
+}
+Person @node("Person:Doe/John")
 {
     "FirstName",
     "LastName",
     "NickName",
 }
-
-@traverse("Person:Doe/John")
+Person @node("Person:Doe/John")
 {
     FirstName,
     LastName,
     NickName,
 }
+Person @node("Person:Doe/John") { FirstName, LastName, NickName }
+Person @node("Person:Doe/John") { "FirstName", "LastName", "NickName" }
 
-@traverse("Person:Doe/John")
+
+-- ==================================================================================================================
+-- Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node("Person:Doe/John")
 {
-    FirstName @id(),
-    LastName @id("\LastName"),
+    !"FirstName"
+    !"LastName"
+    "NickName"
+}
+
+-- Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node("Person:Doe/John")
+{
+    !FirstName
+    !LastName
+    NickName
+}
+
+-- Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node("Person:Doe/John")
+{
+    !FirstName,
+    !LastName,
+    NickName,
+}
+
+-- Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties not marked as optional cannot be found. 
+Person @node("Person:Doe/John")
+{
+    FirstName,
+    LastName,
+    ?NickName,
+}
+
+-- ==================================================================================================================
+-- Traverses to a node and returns it as a named element. 
+-- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
+-- Only the properties that can be found will be returned. No error is given if a property cannot be found. 
+Person @node("Person:Doe/John")
+{
+    FirstName @value(),
+    LastName @value("\LastName"),
+    NickName,
+    Friends @nodes("/Friends/")  
+}
+
+-- Traverses to a node and returns it as a named element. 
+-- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node("Person:Doe/John")
+{
+    !FirstName @value(),
+    !LastName @id("\LastName"),
     NickName,
     Friends @traverse("/Friends")  
 }
-    
+-- Traverses to a node and returns it as a named element. 
+-- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
+-- An error is given when any of the the properties not marked as optional cannot be found. 
+Person @node("Person:Doe/John")
+{
+    FirstName @value(),
+    LastName @id("\LastName"),
+    ?NickName,
+    ?Friends @traverse("/Friends")  
+}
+
+
+Person @node("Person:Doe/John")
+{
+    FirstName @value(),
+    LastName @id("\LastName"),
+    ?NickName,
+    ?Friends @traverse("/Friends")  
+}

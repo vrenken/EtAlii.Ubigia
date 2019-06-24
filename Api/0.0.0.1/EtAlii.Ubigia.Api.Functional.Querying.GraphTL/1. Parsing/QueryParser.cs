@@ -10,7 +10,7 @@
     internal class QueryParser : IQueryParser
     {
         private readonly ICommentParser _commentParser;
-        private readonly IObjectParser _objectParser;
+        private readonly IStructureQueryParser _structureQueryParser;
         private const string Id = "Query";
 
 //        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
@@ -22,26 +22,28 @@
         public QueryParser(
             ICommentParser commentParser,
             IAnnotationParser annotationParser,
-            IObjectParser objectParser,
+            IStructureQueryParser structureQueryParser,
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser)
         {
             _commentParser = commentParser;
-            _objectParser = objectParser;
+            _structureQueryParser = structureQueryParser;
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
 
             var headerParsers = new[]
             {
-                newLineParser.Optional,
-                commentParser.Parser,
+                newLineParser.OptionalMultiple,
+                commentParser.Parser.Maybe(),
             }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser);
             
-            //_parser = new LpsParser(Id, true, headerParsers + newLineParser.Optional + annotationParser.Parser + newLineParser.Optional + objectParser.Parser + newLineParser.Optional); 
-            //_parser = new LpsParser(Id, true, commentParser.Parser + newLineParser.Required + objectParser.Parser + newLineParser.Optional); 
-            _parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _objectParser.Parser); 
-            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + annotationParser.Parser); 
+            _parser = new LpsParser(Id, true, headerParsers + structureQueryParser.Parser + newLineParser.OptionalMultiple); 
+            ////_parser = new LpsParser(Id, true, commentParser.Parser + newLineParser.Required + structureQueryParser.Parser + newLineParser.Optional); 
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _structureQueryParser.Parser); 
+            ////_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + annotationParser.Parser); 
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + _structureQueryParser.Parser + newLineParser.OptionalMultiple); 
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + _structureQueryParser.Parser); 
         }
 
         public QueryParseResult Parse(string text)
@@ -61,8 +63,8 @@
 
                 _nodeValidator.EnsureSuccess(node, Id, false);
 
-                var objectDefinitionMatch = _nodeFinder.FindFirst(node, _objectParser.Id);
-                var objectDefinition = _objectParser.Parse(objectDefinitionMatch); 
+                var objectDefinitionMatch = _nodeFinder.FindFirst(node, _structureQueryParser.Id);
+                var objectDefinition = _structureQueryParser.Parse(objectDefinitionMatch); 
 
                 query = new Query(objectDefinition);
             }
