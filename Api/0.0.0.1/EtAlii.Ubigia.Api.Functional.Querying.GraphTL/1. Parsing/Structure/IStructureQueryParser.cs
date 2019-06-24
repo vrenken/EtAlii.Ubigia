@@ -2,12 +2,12 @@
 {
     using Moppet.Lapa;
 
-    internal interface IObjectParser
+    internal interface IStructureQueryParser
     {
         string Id { get; }
         
         LpsParser Parser { get; }
-        ObjectDefinition Parse(LpNode node);
+        StructureQuery Parse(LpNode node);
         bool CanParse(LpNode node);
 
         void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after);

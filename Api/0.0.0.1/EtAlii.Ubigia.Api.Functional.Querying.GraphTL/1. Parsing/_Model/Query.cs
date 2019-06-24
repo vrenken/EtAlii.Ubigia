@@ -5,11 +5,11 @@
     /// </summary>
     public class Query
     {
-        public ObjectDefinition ObjectDefinition { get; }
+        public StructureQuery Structure { get; }
 
-        public Query(ObjectDefinition objectDefinition)
+        public Query(StructureQuery structure)
         {
-            ObjectDefinition = objectDefinition;
+            Structure = structure;
         }
     }
 }

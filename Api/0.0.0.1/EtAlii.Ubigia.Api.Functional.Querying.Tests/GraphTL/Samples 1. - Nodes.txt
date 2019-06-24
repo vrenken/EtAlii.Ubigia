@@ -1,0 +1,124 @@
+﻿-- ==================================================================================================================
+-- Traverse to a single node and returns it as a named item. 
+-- Throws an error if multiple nodes are found. 
+Person @node("Person:Doe/John")
+{
+    FirstName,
+    LastName,
+    NickName,
+}
+
+-- ==================================================================================================================
+-- Traverse to multiple nodes and returns them as an array. 
+-- Does not throw an error when no node or only one node is found.
+Person @nodes("Person:Doe/")
+{
+    FirstName,
+    LastName,
+    NickName,
+}
+
+-- ==================================================================================================================
+-- Returns both an item and an array in one single response.
+Data
+{
+    Person @node("Person:Doe/John")
+    {
+        FirstName @value(),
+        LastName @value("\LastName"),
+        NickName,
+        Friends @nodes("/Friends")  
+    }
+    Location @nodes("location:DE/Berlin//")
+    {
+        FirstName @value()
+        LastName @value("\LastName")
+        NickName
+        Friends @nodes("/Friends")  
+    }
+}
+
+-- ==================================================================================================================
+-- Returns two different arrays in one single response.
+Data
+{
+    Person @nodes("Person:Doe/*")
+    {
+        FirstName @value(),
+        LastName @value("\LastName"),
+        NickName,
+        Friends @nodes("/Friends")  
+    }
+
+    Location @nodes(path:"location:DE/Berlin//")
+    {
+        FirstName @value(),
+        LastName @value("\LastName"),
+        NickName,
+        Friends @nodes("/Friends")  
+    }
+}
+
+
+-- ==================================================================================================================
+-- Merge two distinct sets of nodes traversed.
+Data
+{
+    Person 
+    @node("person:Doe/John")
+    @nodes("location:DE/Berlin//")
+    @nodes("time:2009//")
+    @union("/Locations/","/Visitors/", "/Events/")
+    {
+        FirstName @value(),
+        LastName @value("\LastName"),
+        NickName,
+    }
+} 
+
+
+-- ==================================================================================================================
+-- Nesting is always possible.
+DataOuter
+{
+    DataInner
+    {
+        Person @node("Person:Doe/John")
+        {
+            FirstName @value(),
+            LastName @value("\LastName"),
+            NickName,
+        }
+    }
+}
+
+-- Nesting is always possible.
+Data
+{
+    Person @node("Person:Doe/John")
+    {
+        Name
+        {
+            First @value(),
+            Last @value("\LastName"),
+            NickName,
+        }
+    }
+}
+
+-- Nest traversal queries to explore additional context.
+Data
+{
+    Person @node("Person:Doe/John")
+    {
+        FirstName @value(),
+        LastName @value("\LastName"),
+        NickName,
+        Friends @nodes("/Friends")
+        {
+            FirstName @value(),
+            LastName @value("\LastName"),
+            NickName,
+        }  
+    }
+}

@@ -39,6 +39,7 @@
             var annotationTypeConstants = Enum
                 .GetNames(_annotationTypeType)
                 .Select(v => v.ToLower())
+                .OrderByDescending(v => v.Length) // Node should be checked after Nodes.
                 .ToArray();
 
             var annotationTypes = annotationTypeConstants
@@ -46,25 +47,29 @@
                 .Aggregate(new LpsAlternatives(), (current, parser) => current | parser)
                 .Id(AnnotationTypeId);
 
-            Parser = new LpsParser(Id, true, Lp.Char('@') + annotationTypes + Lp.Char('(') + paths + Lp.Char(')'));
+            Parser = new LpsParser(Id, true, Lp.Char('@') + annotationTypes + Lp.Char('(') + paths.Maybe() + Lp.Char(')'));
         }
 
         public Annotation Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
-            var annotationType = AnnotationType.Select;
+            var annotationType = AnnotationType.Nodes;
             var result = _nodeFinder.FindFirst(node, AnnotationTypeId);
             if (result != null)
             {
                 var annotationTypeText = result.Match.ToString();
                 annotationType = (AnnotationType)Enum.Parse(_annotationTypeType, annotationTypeText, true);
             }
-            
-            var childNode = _nodeFinder.FindFirst(node, PathId).Children.Single();
-            var parser = _pathParsers.Single(p => p.CanParse(childNode));
-            var path = (PathSubject)parser.Parse(childNode);
 
+            PathSubject path = null;
+            var pathNode = _nodeFinder.FindFirst(node, PathId);
+            if (pathNode != null)
+            {
+                var childNode = pathNode.Children.Single();
+                var parser = _pathParsers.Single(p => p.CanParse(childNode));
+                path = (PathSubject)parser.Parse(childNode);
+            }
             
             return new Annotation(annotationType, path);
         }

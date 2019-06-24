@@ -21,6 +21,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Full.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Multiple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\FileBasedGraphTLData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\AnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\QueryParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\QueryParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\ValueMutationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\ValueQueryParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\StructureQueryParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\Unit tests\QueryParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
@@ -44,14 +51,20 @@
     <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 3. - Advanced Queries.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\FileBasedScriptData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\FileBasedGraphQLData.cs" />
     <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 0. - Introduction.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 1. - Nodes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 1. - Queries.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 2. - Mutations.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

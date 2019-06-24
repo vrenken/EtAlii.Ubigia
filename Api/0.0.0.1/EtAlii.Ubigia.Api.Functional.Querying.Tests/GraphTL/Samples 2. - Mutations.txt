@@ -1,0 +1,16 @@
+﻿-- ==================================================================================================================
+-- Assign a property to an existing node. 
+-- Throws an error if multiple nodes are found. 
+Person @node("Person:Doe/John")
+{
+    NickName <= "Johnny",
+}
+
+
+-- ==================================================================================================================
+-- Changes the name of an existing node. 
+-- Throws an error if multiple nodes are found. 
+Person @node("Person:Doe/Johhn")
+{
+    FirstName @value() <= "John",
+}
