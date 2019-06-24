@@ -13,6 +13,7 @@
 
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
+        private readonly IQuotedTextParser _quotedTextParser;
         private readonly IValueMutationParser _valueMutationParser;
         private readonly IValueQueryParser _valueQueryParser;
 
@@ -24,12 +25,14 @@
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
+            IQuotedTextParser quotedTextParser,
             IValueQueryParser valueQueryParser,
             IAnnotationParser annotationParser, 
             IValueMutationParser valueMutationParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
+            _quotedTextParser = quotedTextParser;
             _valueQueryParser = valueQueryParser;
             _annotationParser = annotationParser;
             _valueMutationParser = valueMutationParser;
@@ -46,9 +49,9 @@
             //structureQueryParser.Parser =  
             var fragmentParsers =
             (
+                structureQueryParser |
                 _valueMutationParser.Parser | //.Debug("VM", true) | 
-                _valueQueryParser.Parser | //.Debug("VQ", true)
-                structureQueryParser
+                _valueQueryParser.Parser //.Debug("VQ", true)
             );
             var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
             
@@ -58,21 +61,32 @@
                 fragments,
                 newlinedWhiteSpace + end + newlinedWhiteSpace);
 
-            var parserBody = Lp.Name().Id(_nameId) + newlinedWhiteSpace +
+            var name = (
+                Lp.Name().Id(_nameId) |
+                _quotedTextParser.Parser.Wrap(_nameId)
+            );
+
+            var parserBody = name + newlinedWhiteSpace +
                              _annotationParser.Parser.Maybe() + newlinedWhiteSpace +
                              scopedFragments;
 
             Parser = new LpsParser(Id, true, parserBody);
 
-            structureQueryParser.Parser = parserBody;
+            structureQueryParser.Parser = parserBody;//.Copy();
         }
 
         public StructureQuery Parse(LpNode node)
         {
-            _nodeValidator.EnsureSuccess(node, Id);
+            return Parse(node, Id, false);
+        }
+
+        private StructureQuery Parse(LpNode node, string requiredId, bool restIsAllowed)
+        {
+            _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
             var nameNode = _nodeFinder.FindFirst(node, _nameId);
-            var name = nameNode.Match.ToString();
+            var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
+            var name = quotedTextNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(quotedTextNode);
             
             var annotationMatch = _nodeFinder.FindFirst(node, _annotationParser.Id);
             var annotation = annotationMatch != null ? _annotationParser.Parse(annotationMatch) : null;
@@ -95,7 +109,7 @@
                 }
                 else if (child.Id == ChildStructureQueryId)
                 {
-                    var childStructureQuery = Parse(child);
+                    var childStructureQuery = Parse(child, ChildStructureQueryId, true);
                     fragments.Add(childStructureQuery);
                 }
             }
