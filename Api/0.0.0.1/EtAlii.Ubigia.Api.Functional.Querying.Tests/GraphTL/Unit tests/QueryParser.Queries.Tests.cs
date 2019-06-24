@@ -209,6 +209,34 @@
         }
 
         [Fact]
+        public void QueryParser_Parse_Query_Nested_03()
+        {
+            // Arrange.
+            var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
+            var normalPersonText = @"
+            Person @node(person:Doe/John) 
+            {
+                age,
+                name @node(\LastName)
+                {
+                    first @value(/FirstName),
+                    last @value()
+                },
+                company,
+                email,
+                phone
+            }";
+            
+            // Act.
+            var parseResult = parser.Parse(normalPersonText);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Query);
+        }
+
+        [Fact]
         public void QueryParser_Parse_Query_Annotated_Root_No_Values()
         {
             // Arrange.
