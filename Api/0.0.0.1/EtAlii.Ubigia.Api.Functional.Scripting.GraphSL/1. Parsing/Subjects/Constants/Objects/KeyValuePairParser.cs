@@ -12,7 +12,7 @@
 
         private readonly INodeFinder _nodeFinder;
 
-        public LpsParser Parser { get; }
+        public LpsParser Parser { get; private set; }
 
         public string Id { get; } = "KeyValuePair";
 
@@ -20,7 +20,8 @@
         private const string ValueId = "Value";
 
         private readonly Func<LpNode, LpNode>[] _innerValueFinders;
-        private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector; 
+        private readonly ISelector<LpNode, Func<LpNode, object>> _valueParserSelector;
+        private readonly LpsAlternatives _typeParsers;
 
         public KeyValuePairParser(
             INodeValidator nodeValidator,
@@ -36,7 +37,7 @@
             _quotedTextParser = quotedTextParser;
             _nodeFinder = nodeFinder;
 
-            var typeParsers = 
+            _typeParsers = 
                 (
                     _quotedTextParser.Parser | 
                     dateTimeValueParser.Parser | 
@@ -46,15 +47,7 @@
                     integerValueParser.Parser
                 );
 
-            Parser = new LpsParser(Id, true,
-                (
-                    Lp.Name().Id(KeyId) |
-                    _quotedTextParser.Parser.Wrap(KeyId)
-                ) +
-                Lp.ZeroOrMore(' ') +
-                Lp.Char(':') +
-                Lp.ZeroOrMore(' ') +
-                new LpsParser(ValueId, true, typeParsers).Maybe());
+            Initialize();
 
             _innerValueFinders = new Func<LpNode, LpNode>[]
             {
@@ -74,6 +67,21 @@
                 .Register(node => node.Id == booleanValueParser.Id, node => booleanValueParser.Parse(node))
                 .Register(node => node.Id == integerValueParser.Id, node => integerValueParser.Parse(node))
                 .Register(node => node.Id == floatValueParser.Id, node => floatValueParser.Parse(node));
+        }
+
+        public void Initialize(LpsParser separator = null)
+        {
+            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t');
+            var defaultSeparator = whitespace + Lp.Char(':') + whitespace;
+            separator = separator ?? defaultSeparator;
+            
+            Parser = new LpsParser(Id, true,
+                (
+                    Lp.Name().Id(KeyId) |
+                    _quotedTextParser.Parser.Wrap(KeyId)
+                ) +
+                separator +
+                new LpsParser(ValueId, true, _typeParsers).Maybe());
         }
 
         public KeyValuePair<string, object> Parse(LpNode node)

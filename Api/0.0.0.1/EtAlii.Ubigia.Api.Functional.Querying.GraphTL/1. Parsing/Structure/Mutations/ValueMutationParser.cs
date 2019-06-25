@@ -6,6 +6,7 @@
     internal class ValueMutationParser : IValueMutationParser
     {
         private readonly IKeyValuePairParser _keyValuePairParser;
+        private readonly IAssignmentParser _assignmentParser;
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IAnnotationParser _annotationParser;
@@ -24,21 +25,22 @@
             IQuotedTextParser quotedTextParser,
             IAnnotationParser annotationParser,
             INodeFinder nodeFinder, 
-            IKeyValuePairParser keyValuePairParser)
+            IKeyValuePairParser keyValuePairParser,
+            IAssignmentParser assignmentParser
+            )
         {
             _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;
             _annotationParser = annotationParser;
             _nodeFinder = nodeFinder;
             _keyValuePairParser = keyValuePairParser;
+            _assignmentParser = assignmentParser;
 
             var keyAnnotationParser = new LpsParser(KeyAnnotationId, true,
          (
                     Lp.Name().Id(KeyId) | _quotedTextParser.Parser.Wrap(KeyId)
                 ) +
-                Lp.ZeroOrMore(' ') +
-                Lp.Char(':') +
-                Lp.ZeroOrMore(' ') +
+                _assignmentParser.Parser +
                 new LpsParser(AnnotationId, true, annotationParser.Parser));
 
             var keyValueParser = _keyValuePairParser.Parser; 

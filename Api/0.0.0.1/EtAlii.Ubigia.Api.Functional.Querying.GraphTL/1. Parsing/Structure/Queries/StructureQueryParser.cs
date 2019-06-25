@@ -43,8 +43,6 @@
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
-            var separator = Lp.Char(',');
-
             var structureQueryParser = new LpsParser(ChildStructureQueryId);
             //structureQueryParser.Parser =  
             var fragmentParsers =
@@ -54,10 +52,25 @@
                 _valueQueryParser.Parser //.Debug("VQ", true)
             );
             var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
+
+//            var fragments  = new LpsParser(new[]
+//            {
+//                Lp.List(fragmentsParser, newLineParser.Required, whitespace),
+//                Lp.List(fragmentsParser, separator, newLineParser.OptionalMultiple),
+//            }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser));
             
-            var fragments = new LpsParser(
-                Lp.List(fragmentsParser, separator, newLineParser.OptionalMultiple) |
-                Lp.List(fragmentsParser, newLineParser.Required, newLineParser.OptionalMultiple));
+            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');
+            var lineSeparator = whitespace + Lp.One(c => c == '\n') + whitespace; 
+            var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+            var commaSeparator = whitespace + ((',' + whitespace + '\n') | ',') + whitespace; 
+
+            var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));
+
+//            var fragments = new LpsParser(
+//                    Lp.List(fragmentsParser, commaSeparator, newLineParser.OptionalMultiple ).Debug("L1", true) | 
+//                    Lp.List(fragmentsParser, lineSeparator, whitespace ).Debug("L2", true) |
+//                    Lp.List(fragmentsParser, spaceSeparator, newLineParser.OptionalMultiple).Debug("L3", true) 
+//                    );
             
             var scopedFragments = Lp.InBrackets(
                 newLineParser.OptionalMultiple + start + newLineParser.OptionalMultiple,

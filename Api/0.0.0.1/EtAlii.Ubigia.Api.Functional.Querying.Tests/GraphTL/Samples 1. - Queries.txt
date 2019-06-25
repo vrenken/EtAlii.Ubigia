@@ -1,6 +1,6 @@
 ﻿-- ==================================================================================================================
 -- 01. Query with nodes directive at entity level and normal property
-Person @node("person:Stark/Tony") 
+Person @node(person:Stark/Tony) 
 { 
     nickname
 } 
@@ -8,23 +8,23 @@ Person @node("person:Stark/Tony")
 
 -- ==================================================================================================================
 -- 02. Query with nodes directive at entity path and relative property
-Person @node("person:Stark/Tony")
+Person @node(person:Stark/Tony)
 { 
-    lastname @value("\\#FamilyName") 
+    lastname @value(\\#FamilyName) 
 } 
 
 -- ==================================================================================================================
 -- 03. Query with nodes directives at multiple entity paths unioned together returning multiple entries and a normal property
--- @node(path:"person:Vrenken/Peter", mode: "Union")
--- @node(path:"person:Vrenken/Tanja")
+-- @node(path:"person:Vrenken/Peter", mode: "Union)
+-- @node(path:"person:Vrenken/Tanja)
 -- { 
 --     nickname 
 -- } 
 
 -- ==================================================================================================================
 -- 04. Query with multiple entity paths unioned together returning multiple entries and a normal property
--- @node("person:Vrenken/Peter", mode: "Union")
--- @node("person:Vrenken/Tanja")
+-- @node(person:Vrenken/Peter", mode: "Union)
+-- @node(person:Vrenken/Tanja)
 -- { 
 --     name @id 
 -- } 
@@ -34,18 +34,18 @@ Person @node("person:Stark/Tony")
 -- 05. Query with multiple entity paths intersected together returning two sets of entries. 
 -- The first for all persons and the second for all locations that match the intersection.
 -- query data
--- @nodes(path:"location:DE/Berlin//", mode: "Intersect")
--- @nodes(path:"time:2012//")
--- @node(path:"person:Vrenken/Peter")
+-- @nodes(path:"location:DE/Berlin//", mode: "Intersect)
+-- @nodes(path:"time:2012//)
+-- @node(path:"person:Vrenken/Peter)
 -- { 
---     person @nodes(path:"\\Contacts\\")
+--     person @nodes(path:"\\Contacts\\)
 --     { 
 --         firstname @id
---         lastname @id(path:"\\") 
+--         lastname @id(path:"\\) 
 --     },
---     location @nodes(path:"\\Location\\") 
+--     location @nodes(path:"\\Location\\) 
 --     { 
---         name @id(path:"\\"),
+--         name @id(path:"\\),
 --     } 
 -- }
 
@@ -53,12 +53,12 @@ Person @node("person:Stark/Tony")
 -- 06. Unnamed query.
 -- data 
 -- { 
---     #location @nodes(path:"location:DE/Berlin//", mode: "Intersect")
---     #time @nodes(path:"time:2012//")
---     person @nodes(path:"person:Vrenken/Peter")
+--     #location @nodes(path:"location:DE/Berlin//", mode: "Intersect)
+--     #time @nodes(path:"time:2012//)
+--     person @nodes(path:"person:Vrenken/Peter)
 --     { 
 --         firstname 
---         lastname @id(path:"\\#FamilyName") 
+--         lastname @id(path:"\\#FamilyName) 
 --     }
 -- }
 
@@ -66,12 +66,12 @@ Person @node("person:Stark/Tony")
 -- 07. Unnamed query.
 -- data 
 -- { 
---     #location @nodes(path:"location:DE/Berlin/*", mode: "Intersect")
---     #time @nodes(path:"time:2012/*")
---     person @nodes(path:"person:Vrenken/*")
+--     #location @nodes(path:"location:DE/Berlin/*", mode: "Intersect)
+--     #time @nodes(path:"time:2012/*)
+--     person @nodes(path:"person:Vrenken/*)
 --     { 
 --         firstname 
---         lastname @id(path:"\\") 
+--         lastname @id(path:"\\) 
 --     }
 -- }
 
@@ -79,10 +79,10 @@ Person @node("person:Stark/Tony")
 -- 08. Unnamed query.
 -- query data 
 -- { 
---     id @nodes(path:"/&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423")
+--     id @nodes(path:"/&2932-232DA2-3F09D-45EC38-8530-A8312.45EC38-2932-232DA2-3F09D-32EC38.2932-232DA2-232DA2-3F09D.93212.54534.9423)
 --     { 
 --         firstname @id
---         lastname @id(path:"\\") 
+--         lastname @id(path:"\\) 
 --     }
 -- }
 
@@ -91,9 +91,9 @@ Person @node("person:Stark/Tony")
 -- 09. Unnamed query.
 -- query data 
 -- { 
---     id @nodes(path:"/$id")
+--     id @nodes(path:"/$id)
 --     { 
 --         firstname @id
---         lastname @id(path:"\\") 
+--         lastname @id(path:"\\) 
 --     }
 -- }

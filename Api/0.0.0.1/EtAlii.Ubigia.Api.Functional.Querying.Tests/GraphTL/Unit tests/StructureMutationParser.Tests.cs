@@ -45,7 +45,7 @@
             var parser = CreateStructureMutationParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
-                key: ""value""
+                key <= ""value""
             }";
             
             
@@ -68,8 +68,8 @@
             var parser = CreateStructureMutationParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
-                key1: ""value1"",
-                key2: ""value2""
+                key1 <= ""value1"",
+                key2 <= ""value2""
             }";
             
             
@@ -92,12 +92,12 @@
             var parser = CreateStructureMutationParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
-                age: ""22"",
-                first: ""Sabrina"",
-                last: ""Stephenson"",
-                company: ""ISOTRONIC"",
-                email: ""sabrina.stephenson@isotronic.io"",
-                phone: ""+31 (909) 477-2353""
+                age <= ""22"",
+                first <= ""Sabrina"",
+                last <= ""Stephenson"",
+                company <= ""ISOTRONIC"",
+                email <= ""sabrina.stephenson@isotronic.io"",
+                phone <= ""+31 (909) 477-2353""
             }";
             
             // Act.
@@ -116,11 +116,11 @@
             var parser = CreateStructureMutationParser();
             var text = @"Person @node(person:Stark/Tony)
             {
-                ""age"": 22,
-                ""firstname"": @value(),
-                ""lastname"": @node(\\),
-                ""email"": ""admin@starkindustries.com"",
-                ""phone"": ""+31 (909) 477-2353""
+                ""age"" <= 22,
+                ""firstname"" <= @value(),
+                ""lastname"" <= @node(\\),
+                ""email"" <= ""admin@starkindustries.com"",
+                ""phone"" <= ""+31 (909) 477-2353""
             }";
             
             // Act.
@@ -147,11 +147,11 @@
             var parser = CreateStructureMutationParser();
             var text = @"Person @node(person:Stark/Tony)
             {
-                age: 22,
-                firstname: @value(),
-                lastname: @node(\\),
-                email: ""admin@starkindustries.com"",
-                phone: ""+31 (909) 477-2353""
+                age <= 22,
+                firstname <= @value(),
+                lastname <= @node(\\),
+                email <= ""admin@starkindustries.com"",
+                phone <= ""+31 (909) 477-2353""
             }";
             
             // Act.

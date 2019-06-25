@@ -40,8 +40,6 @@
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
-            var separator = Lp.Char(',');
-
             var structureMutationParser = new LpsParser(ChildStructureMutationId);
             var fragmentParsers =
             (
@@ -51,10 +49,14 @@
             );
             var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
             
-            var fragments = new LpsParser(
-                Lp.List(fragmentsParser, separator, newLineParser.OptionalMultiple) |
-                Lp.List(fragmentsParser, newLineParser.Required, newLineParser.OptionalMultiple));
+                        
+            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');
+            var lineSeparator = whitespace + Lp.One(c => c == '\n') + whitespace; 
+            var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+            var commaSeparator = whitespace + ((',' + whitespace + '\n') | ',') + whitespace; 
 
+            var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));
+            
             var scopedFragments = Lp.InBrackets(
                 newLineParser.OptionalMultiple + start + newLineParser.OptionalMultiple,
                 fragments.Maybe(),
