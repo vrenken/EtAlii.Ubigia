@@ -1,10 +1,10 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class ValueQuery : MutationFragment
+    public class ValueQuery : QueryFragment
     {
     
-        public ValueQuery(string name, Annotation annotation)
-            : base(name, annotation)
+        public ValueQuery(string name, Annotation annotation, Requirement requirement)
+            : base(name, annotation, requirement)
         {
         }
     }

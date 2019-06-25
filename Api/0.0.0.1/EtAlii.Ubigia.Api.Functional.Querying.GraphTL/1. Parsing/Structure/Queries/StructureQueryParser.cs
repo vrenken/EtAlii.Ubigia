@@ -16,9 +16,10 @@
         private readonly IQuotedTextParser _quotedTextParser;
         private readonly IValueMutationParser _valueMutationParser;
         private readonly IValueQueryParser _valueQueryParser;
+        private readonly IRequirementParser _requirementParser;
 
         private readonly IAnnotationParser _annotationParser;
-        private const string _nameId = "NameId";
+        private const string NameId = "NameId";
         private const string FragmentsId = "FragmentsId";
 
         public StructureQueryParser(
@@ -28,7 +29,8 @@
             IQuotedTextParser quotedTextParser,
             IValueQueryParser valueQueryParser,
             IAnnotationParser annotationParser, 
-            IValueMutationParser valueMutationParser)
+            IValueMutationParser valueMutationParser, 
+            IRequirementParser requirementParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
@@ -36,13 +38,11 @@
             _valueQueryParser = valueQueryParser;
             _annotationParser = annotationParser;
             _valueMutationParser = valueMutationParser;
+            _requirementParser = requirementParser;
 
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
-            var newlinedWhiteSpace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\n' || c == '\r');//.Debug("Whitespace", true);
-
-            
             var separator = Lp.Char(',');
 
             var structureQueryParser = new LpsParser(ChildStructureQueryId);
@@ -55,19 +55,19 @@
             );
             var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
             
-            var fragments = Lp.List(fragmentsParser, separator, newlinedWhiteSpace);
+            var fragments = new LpsParser(
+                Lp.List(fragmentsParser, separator, newLineParser.OptionalMultiple) |
+                Lp.List(fragmentsParser, newLineParser.Required, newLineParser.OptionalMultiple));
+            
             var scopedFragments = Lp.InBrackets(
-                newlinedWhiteSpace + start + newlinedWhiteSpace,
-                fragments,
-                newlinedWhiteSpace + end + newlinedWhiteSpace);
+                newLineParser.OptionalMultiple + start + newLineParser.OptionalMultiple,
+                fragments.Maybe(),
+                newLineParser.OptionalMultiple + end + newLineParser.OptionalMultiple);
 
-            var name = (
-                Lp.Name().Id(_nameId) |
-                _quotedTextParser.Parser.Wrap(_nameId)
-            );
+            var name = (Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId));
 
-            var parserBody = name + newlinedWhiteSpace +
-                             _annotationParser.Parser.Maybe() + newlinedWhiteSpace +
+            var parserBody = _requirementParser.Parser + name + newLineParser.OptionalMultiple +
+                             _annotationParser.Parser.Maybe() + newLineParser.OptionalMultiple +
                              scopedFragments;
 
             Parser = new LpsParser(Id, true, parserBody);
@@ -84,7 +84,10 @@
         {
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
-            var nameNode = _nodeFinder.FindFirst(node, _nameId);
+            var requirementNode = _nodeFinder.FindFirst(node, _requirementParser.Id);
+            var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
+
+            var nameNode = _nodeFinder.FindFirst(node, NameId);
             var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var name = quotedTextNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(quotedTextNode);
             
@@ -93,16 +96,11 @@
 
             var fragmentNodes = _nodeFinder.FindAll(node, FragmentsId);
 
-            var fragments = new List<Fragment>();
+            var fragments = new List<QueryFragment>();
             foreach (var fragmentNode in fragmentNodes)
             {
                 var child = fragmentNode.Children.Single(); 
-                if (child.Id == _valueMutationParser.Id)
-                {
-                    var valueMutation = _valueMutationParser.Parse(child);
-                    fragments.Add(valueMutation);
-                }
-                else if (child.Id == _valueQueryParser.Id)
+                if (child.Id == _valueQueryParser.Id)
                 {
                     var valueQuery = _valueQueryParser.Parse(child);
                     fragments.Add(valueQuery);
@@ -114,7 +112,7 @@
                 }
             }
             
-            return new StructureQuery(name, annotation, fragments.ToArray());
+            return new StructureQuery(name, annotation, requirement, fragments.ToArray());
         }
 
         public bool CanParse(LpNode node)

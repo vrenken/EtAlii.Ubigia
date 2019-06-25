@@ -2,8 +2,10 @@
 {
     public abstract class QueryFragment : Fragment
     {
-        public QueryFragment(string name, Annotation annotation) : base(name, annotation)
+        public Requirement Requirement { get; }
+        public QueryFragment(string name, Annotation annotation, Requirement requirement) : base(name, annotation)
         {
+            Requirement = requirement;
         }
     }
 }
