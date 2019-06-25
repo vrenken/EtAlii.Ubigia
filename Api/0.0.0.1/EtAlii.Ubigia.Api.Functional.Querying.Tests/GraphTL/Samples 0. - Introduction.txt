@@ -1,14 +1,26 @@
 ﻿-- ==================================================================================================================
--- Traverses to a node and returns this as a named element. 
+-- 1. Traverses to a node and returns this as a named element. 
 -- All properties that can be found will be returned. 
-Person @node("Person:Doe/John")
+Person @node(Person:Doe/John)
 {
 }
 
 -- ==================================================================================================================
--- Traverses to a node and returns it as a named element. 
+-- 2.a Traverses to a node and returns it as a named element. 
+-- Only the properties that can be found will be returned. No error is given if a property cannot be found.
+-- Properties can be separated by comma's or by newlines 
+Person @node(Person:Doe/John)
+{
+    FirstName,
+    LastName,
+    NickName
+}
+
+-- ==================================================================================================================
+-- 2.b Traverses to a node and returns it as a named element. 
 -- Only the properties that can be found will be returned. No error is given if a property cannot be found. 
-Person @node("Person:Doe/John")
+-- Properties can be separated by comma's or by newlines 
+Person @node(Person:Doe/John)
 {
     FirstName
     LastName
@@ -16,113 +28,136 @@ Person @node("Person:Doe/John")
 }
 
 -- ==================================================================================================================
--- Property identifiers can be quoted for more accurate control. 
-Person @node("Person:Doe/John")
-{
-    "FirstName"
-    "LastName"
-    "NickName"
-}
-
--- ==================================================================================================================
--- Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
-Person @node("Person:Doe/John")
-{
-    FirstName
-    LastName
-    NickName
-}
-Person @node("Person:Doe/John")
+-- 3. Property identifiers can be quoted for more accurate control. 
+Person @node(Person:Doe/John)
 {
     "FirstName",
     "LastName",
-    "NickName",
-}
-Person @node("Person:Doe/John")
-{
-    FirstName,
-    LastName,
-    NickName,
-}
-Person @node("Person:Doe/John") { FirstName, LastName, NickName }
-Person @node("Person:Doe/John") { "FirstName", "LastName", "NickName" }
-
-
--- ==================================================================================================================
--- Traverses to a node and returns it as a named element. 
--- An error is given when any of the the properties marked as mandatory cannot be found. 
-Person @node("Person:Doe/John")
-{
-    !"FirstName"
-    !"LastName"
     "NickName"
 }
 
--- Traverses to a node and returns it as a named element. 
--- An error is given when any of the the properties marked as mandatory cannot be found. 
-Person @node("Person:Doe/John")
-{
-    !FirstName
-    !LastName
-    NickName
-}
-
--- Traverses to a node and returns it as a named element. 
--- An error is given when any of the the properties marked as mandatory cannot be found. 
-Person @node("Person:Doe/John")
-{
-    !FirstName,
-    !LastName,
-    NickName,
-}
-
--- Traverses to a node and returns it as a named element. 
--- An error is given when any of the the properties not marked as optional cannot be found. 
-Person @node("Person:Doe/John")
+-- ==================================================================================================================
+-- 4.a Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
+Person @node(Person:Doe/John)
 {
     FirstName,
     LastName,
-    ?NickName,
+    NickName
 }
 
 -- ==================================================================================================================
--- Traverses to a node and returns it as a named element. 
+-- 4.b Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
+Person @node(Person:Doe/John)
+{
+    "FirstName",
+    "LastName",
+    "NickName"
+}
+
+-- ==================================================================================================================
+-- 4.c Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
+Person @node(Person:Doe/John)
+{
+    FirstName,
+    LastName,
+    NickName
+}
+
+-- ==================================================================================================================
+-- 4.d Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
+Person @node(Person:Doe/John) { FirstName, LastName, NickName }
+
+-- ==================================================================================================================
+-- 4.e Both quoted and unquoted property identifiers can be comma separated, newline separated or a combination of the two. 
+Person @node(Person:Doe/John) { "FirstName", "LastName", "NickName" }
+
+
+-- ==================================================================================================================
+-- 5.a Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node(Person:Doe/John)
+{
+    !"FirstName",
+    !"LastName",
+    "NickName"
+}
+
+-- ==================================================================================================================
+-- 6. Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node(Person:Doe/John)
+{
+    !FirstName,
+    !LastName,
+    NickName
+}
+
+-- ==================================================================================================================
+-- 7. Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties marked as mandatory cannot be found. 
+Person @node(Person:Doe/John)
+{
+    !FirstName,
+    !LastName,
+    NickName
+}
+
+-- ==================================================================================================================
+-- 8. Traverses to a node and returns it as a named element. 
+-- An error is given when any of the the properties not marked as optional cannot be found. 
+Person @node(Person:Doe/John)
+{
+    FirstName,
+    LastName,
+    ?NickName
+}
+
+-- ==================================================================================================================
+-- 9. Traverses to a node and returns it as a named element. 
 -- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
 -- Only the properties that can be found will be returned. No error is given if a property cannot be found. 
-Person @node("Person:Doe/John")
+Person @node(Person:Doe/John)
 {
     FirstName @value(),
-    LastName @value("\LastName"),
+    LastName @value(\LastName),
     NickName,
-    Friends @nodes("/Friends/")  
+    Friends @nodes(/Friends/)  
 }
 
--- Traverses to a node and returns it as a named element. 
+-- ==================================================================================================================
+-- 10. Traverses to a node and returns it as a named element. 
 -- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
 -- An error is given when any of the the properties marked as mandatory cannot be found. 
-Person @node("Person:Doe/John")
+Person @node(Person:Doe/John)
 {
     !FirstName @value(),
-    !LastName @id("\LastName"),
+    !LastName @value(\LastName),
     NickName,
-    Friends @traverse("/Friends")  
+    Friends @node(/Friends)  
 }
--- Traverses to a node and returns it as a named element. 
+
+-- ==================================================================================================================
+-- 11. Traverses to a node and returns it as a named element. 
 -- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
 -- An error is given when any of the the properties not marked as optional cannot be found. 
-Person @node("Person:Doe/John")
+Person @node(Person:Doe/John)
 {
     FirstName @value(),
-    LastName @id("\LastName"),
+    LastName @value(\LastName),
     ?NickName,
-    ?Friends @traverse("/Friends")  
+    ?Friends @node(/Friends)  
 }
 
 
-Person @node("Person:Doe/John")
+-- ==================================================================================================================
+-- 12. Traverses to a node and returns it as a named element. 
+-- The result will be enriched using the node, nodes and value annotations added to the property identifiers. 
+-- An error is given when any of the the properties not marked as optional cannot be found. 
+
+Person @node(Person:Doe/John)
 {
     FirstName @value(),
-    LastName @id("\LastName"),
+    LastName @value(\LastName),
     ?NickName,
-    ?Friends @traverse("/Friends")  
+    ?Friends @node(/Friends)  
 }
