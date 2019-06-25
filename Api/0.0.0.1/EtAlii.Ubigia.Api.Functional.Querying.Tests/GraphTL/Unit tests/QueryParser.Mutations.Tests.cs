@@ -113,8 +113,10 @@
             Assert.Equal("Person",parseResult.Query.Structure.Annotation.Path.Parts[1].ToString());
             Assert.Equal("Stark",parseResult.Query.Structure.Annotation.Path.Parts[3].ToString());
             Assert.Equal("Tony",parseResult.Query.Structure.Annotation.Path.Parts[5].ToString());
-            Assert.Equal("22",parseResult.Query.Structure.Values.Cast<ValueMutation>().Single(v => v.Name == "age").Value);
-            Assert.Equal("sabrina.stephenson@isotronic.io",parseResult.Query.Structure.Values.Cast<ValueMutation>().Single(v => v.Name == "email").Value);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
+            var structureMutation = (StructureMutation)parseResult.Query.Structure; 
+            Assert.Equal("22",structureMutation.Values.Cast<ValueMutation>().Single(v => v.Name == "age").Value);
+            Assert.Equal("sabrina.stephenson@isotronic.io",structureMutation.Values.Cast<ValueMutation>().Single(v => v.Name == "email").Value);
         }
 
         [Fact]
@@ -126,7 +128,7 @@
             Person @node(person:Stephenson/Sabrina)
             {
                 ""age"": 22,
-                ""name"": 
+                ""name"" 
                 {
                     ""first"": ""Sabrina"",
                     ""last"": ""Stephenson""
@@ -236,7 +238,7 @@
             Person 
             {
                 ""age"": 22,
-                ""name"": 
+                ""name"" 
                 {
                     ""first"": ""Sabrina"",
                     ""last"": ""Stephenson""
@@ -318,7 +320,7 @@
             Person 
             {
                 ""age"": 22,
-                ""name"": 
+                ""name"" 
                 {
                     ""first"" @value(),
                     ""last"": ""Stephenson""
