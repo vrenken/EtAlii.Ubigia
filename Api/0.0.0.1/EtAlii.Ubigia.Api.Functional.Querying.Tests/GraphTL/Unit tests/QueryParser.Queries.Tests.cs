@@ -245,7 +245,7 @@
             Person @node(person:Stephenson/Sabrina)
             {
                 ""age"",
-                ""name"": 
+                ""name"" 
                 {
                     ""first"",
                     ""last""
@@ -303,7 +303,7 @@
             Person 
             {
                 ""age"",
-                ""name"": 
+                ""name"" 
                 {
                     ""first"" @value(),
                     ""last""

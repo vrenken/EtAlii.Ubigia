@@ -70,6 +70,29 @@
             Assert.Null(parseResult.Query);
         }
 
+        
+        [Fact]
+        public void QueryParser_Parse_Comment_MultiLine_And_Object()
+        {
+            // Arrange.
+            var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
+            var text = @"-- This is a comment on the first line.
+            -- And this is a comment on the second line.
+            Person
+            { 
+                ""key"": ""value"" 
+            }";
+            
+            
+            // Act.
+            var parseResult = parser.Parse(text);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Query);
+        }
+
 
     }
 }
