@@ -84,6 +84,42 @@
             Assert.NotEmpty(query.Values);
             Assert.IsType<ValueQuery>(query.Values[0]);
             Assert.IsType<ValueQuery>(query.Values[1]);
-        }        
+        }  
+
+        [Fact]
+        public void StructureQueryParser_Parse_Query_With_Two_Distinct_Results()
+        {
+            // Arrange.
+            var parser = CreateStructureQueryParser();
+            var text = @"Data
+            {
+                Person @nodes(Person:Doe/*)
+                {
+                    FirstName @value(),
+                    LastName @value(\LastName),
+                    NickName,
+                    Friends @nodes(/Friends)  
+                }
+                Location @nodes(location:DE/Berlin//)
+                {
+                    FirstName @value(),
+                    LastName @value(\LastName),
+                    NickName,
+                    Friends @nodes(/Friends)  
+                }
+            }";
+            
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var query = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.NotNull(query);
+            Assert.NotEmpty(query.Values);
+            Assert.IsType<StructureQuery>(query.Values[0]);
+            Assert.IsType<StructureQuery>(query.Values[1]);
+        }  
     }
 }

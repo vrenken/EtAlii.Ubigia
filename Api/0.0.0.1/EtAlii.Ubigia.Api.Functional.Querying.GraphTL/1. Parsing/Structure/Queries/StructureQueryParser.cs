@@ -59,10 +59,10 @@
 //                Lp.List(fragmentsParser, separator, newLineParser.OptionalMultiple),
 //            }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser));
             
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');
-            var lineSeparator = whitespace + Lp.One(c => c == '\n') + whitespace; 
+            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');//.Debug("W");
+            var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
             var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
-            var commaSeparator = whitespace + ((',' + whitespace + '\n') | ',') + whitespace; 
+            var commaSeparator = whitespace + new LpsParser((',' + whitespace + '\n') | ',') + whitespace; 
 
             var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));
 
@@ -75,7 +75,7 @@
             var scopedFragments = Lp.InBrackets(
                 newLineParser.OptionalMultiple + start + newLineParser.OptionalMultiple,
                 fragments.Maybe(),
-                newLineParser.OptionalMultiple + end + newLineParser.OptionalMultiple);
+                newLineParser.OptionalMultiple + end);
 
             var name = (Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId));
 
@@ -83,7 +83,7 @@
                              _annotationParser.Parser.Maybe() + newLineParser.OptionalMultiple +
                              scopedFragments;
 
-            Parser = new LpsParser(Id, true, parserBody);
+            Parser = new LpsParser(Id, true, parserBody + newLineParser.OptionalMultiple);
 
             structureQueryParser.Parser = parserBody;//.Copy();
         }
