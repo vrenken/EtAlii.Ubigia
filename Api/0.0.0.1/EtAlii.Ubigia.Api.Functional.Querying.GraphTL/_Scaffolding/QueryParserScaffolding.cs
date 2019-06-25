@@ -10,10 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             container.Register<IAnnotationParser, AnnotationParser>();
             container.Register<ICommentParser, CommentParser>();
-            container.Register<IStructureQueryParser, StructureQueryParser>();
-            container.Register<IQueryParser, QueryParser>();
 
+            container.Register<IQueryParser, QueryParser>();
+            container.Register<IRequirementParser, RequirementParser>();
+
+            container.Register<IStructureQueryParser, StructureQueryParser>();
             container.Register<IValueQueryParser, ValueQueryParser>();
+
+            container.Register<IStructureMutationParser, StructureMutationParser>();
             container.Register<IValueMutationParser, ValueMutationParser>();
 
             // Path helpers

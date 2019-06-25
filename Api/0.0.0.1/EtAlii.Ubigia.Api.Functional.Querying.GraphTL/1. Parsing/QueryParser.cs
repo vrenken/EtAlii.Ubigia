@@ -11,6 +11,7 @@
     {
         private readonly ICommentParser _commentParser;
         private readonly IStructureQueryParser _structureQueryParser;
+        private readonly IStructureMutationParser _structureMutationParser;
         private const string Id = "Query";
 
 //        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
@@ -23,6 +24,7 @@
             ICommentParser commentParser,
             IAnnotationParser annotationParser,
             IStructureQueryParser structureQueryParser,
+            IStructureMutationParser structureMutationParser,
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser)
@@ -31,14 +33,18 @@
             _structureQueryParser = structureQueryParser;
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
+            _structureMutationParser = structureMutationParser;
 
-            var headerParsers = new[]
+            var structureParsers = new LpsParser(new[]
             {
-                newLineParser.OptionalMultiple,
-                commentParser.Parser.Maybe(),
-            }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser);
+                _structureQueryParser.Parser,
+                _structureMutationParser.Parser
+            }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser)).Maybe();
             
-            _parser = new LpsParser(Id, true, headerParsers + structureQueryParser.Parser + newLineParser.OptionalMultiple); 
+            var headerParsers = (newLineParser.OptionalMultiple + commentParser.Parser).ZeroOrMore();
+
+            //var headerParsers = (commentParsers).Maybe();
+            _parser = new LpsParser(Id, true, headerParsers + newLineParser.OptionalMultiple + structureParsers + newLineParser.OptionalMultiple); 
             ////_parser = new LpsParser(Id, true, commentParser.Parser + newLineParser.Required + structureQueryParser.Parser + newLineParser.Optional); 
             //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _structureQueryParser.Parser); 
             ////_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + annotationParser.Parser); 
@@ -63,10 +69,16 @@
 
                 _nodeValidator.EnsureSuccess(node, Id, false);
 
-                var objectDefinitionMatch = _nodeFinder.FindFirst(node, _structureQueryParser.Id);
-                var objectDefinition = _structureQueryParser.Parse(objectDefinitionMatch); 
-
-                query = new Query(objectDefinition);
+                if (_nodeFinder.FindFirst(node, _structureQueryParser.Id) is LpNode structureQueryMatch)
+                {
+                    var structureQuery = _structureQueryParser.Parse(structureQueryMatch); 
+                    query = new Query(structureQuery);
+                }
+                else if (_nodeFinder.FindFirst(node, _structureMutationParser.Id) is LpNode structureMutationMatch)
+                {
+                    var structureMutation = _structureMutationParser.Parse(structureMutationMatch); 
+                    query = new Query(structureMutation);
+                }
             }
             catch (Exception e)
             {

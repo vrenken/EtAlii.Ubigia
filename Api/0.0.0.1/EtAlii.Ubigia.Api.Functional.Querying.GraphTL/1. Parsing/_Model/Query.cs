@@ -5,9 +5,9 @@
     /// </summary>
     public class Query
     {
-        public StructureQuery Structure { get; }
+        public Fragment Structure { get; }
 
-        public Query(StructureQuery structure)
+        public Query(Fragment structure)
         {
             Structure = structure;
         }

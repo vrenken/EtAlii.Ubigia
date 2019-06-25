@@ -33,8 +33,6 @@
                 nonRootedPathSubjectParser
             };
              var paths = new LpsParser(PathId, true, _pathParsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser)); 
-            // var paths = (rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser);
-            //var paths = (rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser).Id(PathId, true);
                 
             var annotationTypeConstants = Enum
                 .GetNames(_annotationTypeType)
