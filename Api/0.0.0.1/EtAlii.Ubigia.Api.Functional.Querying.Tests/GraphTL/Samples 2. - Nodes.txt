@@ -1,5 +1,5 @@
 ﻿-- ==================================================================================================================
--- 1. Traverse to a single node and returns it as a named item. 
+-- 01. Traverse to a single node and returns it as a named item. 
 -- Throws an error if multiple nodes are found. 
 Person @node(Person:Doe/John)
 {
@@ -9,7 +9,7 @@ Person @node(Person:Doe/John)
 }
 
 -- ==================================================================================================================
--- 2. Traverse to multiple nodes and returns them as an array. 
+-- 02. Traverse to multiple nodes and returns them as an array. 
 -- Does not throw an error when no node or only one node is found.
 Person @nodes(Person:Doe/)
 {
@@ -19,7 +19,7 @@ Person @nodes(Person:Doe/)
 }
 
 -- ==================================================================================================================
--- 3. Returns both an item and an array in one single response.
+-- 03. Returns both an item and an array in one single response.
 Data
 {
     Person @node(Person:Doe/John)
@@ -39,7 +39,27 @@ Data
 }
 
 -- ==================================================================================================================
--- 4. Returns two different arrays in one single response.
+-- 04.a Returns two different arrays in one single response.
+Data
+{
+    Person @nodes(Person:Doe/*)
+    {
+        FirstName @value(),
+        LastName @value(\LastName),
+        NickName,
+        Friends @nodes(/Friends)  
+    },
+    Location @nodes(location:DE/Berlin//)
+    {
+        FirstName @value(),
+        LastName @value(\LastName),
+        NickName,
+        Friends @nodes(/Friends)  
+    }
+}
+
+-- ==================================================================================================================
+-- 04.b Returns two different arrays in one single response.
 Data
 {
     Person @nodes(Person:Doe/*)
@@ -49,8 +69,7 @@ Data
         NickName,
         Friends @nodes(/Friends)  
     }
-
-    Location @nodes(path:"location:DE/Berlin//)
+    Location @nodes(location:DE/Berlin//)
     {
         FirstName @value(),
         LastName @value(\LastName),
@@ -61,24 +80,24 @@ Data
 
 
 -- ==================================================================================================================
--- 5. Merge two distinct sets of nodes traversed.
-Data
-{
-    Person 
-    @node(person:Doe/John)
-    @nodes(location:DE/Berlin//)
-    @nodes(time:2009//)
-    @union(/Locations/","/Visitors/", "/Events/)
-    {
-        FirstName @value(),
-        LastName @value(\LastName),
-        NickName,
-    }
-} 
+-- 05. Merge two distinct sets of nodes traversed.
+-- Data
+-- {
+--     Person 
+--     @node(person:Doe/John)
+--     @nodes(location:DE/Berlin//)
+--     @nodes(time:2009//)
+--     @union(/Locations/","/Visitors/", "/Events/)
+--     {
+--         FirstName @value(),
+--         LastName @value(\LastName),
+--         NickName
+--     }
+-- } 
 
 
 -- ==================================================================================================================
--- 6.a Nesting is always possible.
+-- 06.a Nesting is always possible.
 DataOuter
 {
     DataInner
@@ -87,13 +106,13 @@ DataOuter
         {
             FirstName @value(),
             LastName @value(\LastName),
-            NickName,
+            NickName
         }
     }
 }
 
 -- ==================================================================================================================
--- 6.b Nesting is always possible.
+-- 06.b Nesting is always possible.
 Data
 {
     Person @node(Person:Doe/John)
@@ -102,13 +121,13 @@ Data
         {
             First @value(),
             Last @value(\LastName),
-            NickName,
+            NickName
         }
     }
 }
 
 -- ==================================================================================================================
--- 6.c Nest traversal queries to explore additional context.
+-- 06.c Nest traversal queries to explore additional context.
 Data
 {
     Person @node(Person:Doe/John)
@@ -120,7 +139,7 @@ Data
         {
             FirstName @value(),
             LastName @value(\LastName),
-            NickName,
+            NickName
         }  
     }
 }

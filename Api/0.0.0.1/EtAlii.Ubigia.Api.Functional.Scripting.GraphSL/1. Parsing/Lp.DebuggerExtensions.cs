@@ -17,7 +17,7 @@
                 }
                 var spaces = sb.ToString();
 
-                System.Diagnostics.Debug.WriteLine($"{spaces}+ {debugId} - Input: {text}");
+                System.Diagnostics.Debug.WriteLine($"{spaces}+ {debugId} - Input: \"{Escape(text.ToString())}\"");
                 _indention += 1;
                 var result = parser.Do(text);
                 _indention -= 1;
@@ -29,25 +29,25 @@
                     if (result.Success)
                     {
                         var resultText = result.ToString();
-                        resultText = Escape(resultText, spaces);
+                        resultText = Escape(resultText);//, spaces);
 
                         resultText = resultText == string.Empty ? "string.Empty" : resultText;
-                        System.Diagnostics.Debug.WriteLine($"{spaces}  > Match: {resultText}");
+                        System.Diagnostics.Debug.WriteLine($"{spaces}  > Match: \"{resultText}\"");
                     }
                     var restText = result.Rest.ToString();
-                    restText = Escape(restText, spaces);
-                    System.Diagnostics.Debug.WriteLine($"{spaces}  > Rest: {restText}");
+                    restText = Escape(restText);//, spaces);
+                    System.Diagnostics.Debug.WriteLine($"{spaces}  > Rest: \"{restText}\"");
                 }
                 return result;
             });
         }
 
-        private static string Escape(string s, string spaces)
+        private static string Escape(string s)//, string spaces)
         {
             return s.Replace("\n", "\\n")
                     .Replace("\r", "\\r")
-                    .Replace("\\r\\n", "\\n")
-                    .Replace("\\n", $"\\n{spaces}");
+                    .Replace("\\r\\n", "\\n");
+                    //.Replace("\\n", $"\\n{spaces}");
         }
     }
 }

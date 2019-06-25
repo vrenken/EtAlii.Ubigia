@@ -65,6 +65,31 @@
             var normalPersonText = @"
             Person 
             {
+                age
+                first
+                last
+                company
+                email
+                phone
+            }";
+            
+            
+            // Act.
+            var parseResult = parser.Parse(normalPersonText);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Query);
+        }
+        [Fact]
+        public void QueryParser_Parse_Query_Flat_04()
+        {
+            // Arrange.
+            var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
+            var normalPersonText = @"
+            Person 
+            {
                 age, first, last, company, email, phone
             }";
             

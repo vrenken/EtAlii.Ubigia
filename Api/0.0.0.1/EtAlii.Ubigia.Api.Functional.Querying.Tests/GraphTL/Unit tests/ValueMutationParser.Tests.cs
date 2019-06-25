@@ -42,7 +42,7 @@
         {
             // Arrange.
             var parser = CreateValueMutationParser();
-            var text = @"firstname : ""John""";
+            var text = @"firstname <= ""John""";
             
             // Act.
             var node = parser.Parser.Do(text);
@@ -80,7 +80,7 @@
         {
             // Arrange.
             var parser = CreateValueMutationParser();
-            var text = @"lastname : @value(\\)";
+            var text = @"lastname <= @value(\\)";
             
             // Act.
             var node = parser.Parser.Do(text);

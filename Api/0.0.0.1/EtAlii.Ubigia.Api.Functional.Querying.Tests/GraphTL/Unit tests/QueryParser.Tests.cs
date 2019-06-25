@@ -29,11 +29,17 @@
             
             // Act.
             var parseResult = parser.Parse(queryText);
-             
+            var lines = queryText.Split('\n');
             // Assert.
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
-            Assert.NotNull(parseResult.Query);
+
+            // Let's not assert the query if we don't have one in the original script.
+            var noCode = lines.All(line => line.StartsWith("--") || string.IsNullOrWhiteSpace(line));
+            if (!noCode)
+            {
+                Assert.NotNull(parseResult.Query);
+            }
         }
 
         [Fact]
@@ -80,7 +86,7 @@
             -- And this is a comment on the second line.
             Person
             { 
-                ""key"": ""value"" 
+                ""key"" <= ""value"" 
             }";
             
             
