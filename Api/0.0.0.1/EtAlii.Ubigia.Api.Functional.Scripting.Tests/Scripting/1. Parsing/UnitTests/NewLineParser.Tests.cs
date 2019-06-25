@@ -88,20 +88,6 @@
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
-        public void NewLineParser_Single_Newline_With_Return()
-        {
-            // Arrange.
-            var parser = new NewLineParser();
-
-            // Act.
-            var result = new LpsParser(parser.Optional).Do("\r\n\n");
-
-            // Assert.
-            Assert.True(result.Success);
-            Assert.Equal(string.Empty, result.Rest.ToString());
-        }
-
-        [Fact, Trait("Category", TestAssembly.Category)]
         public void NewLineParser_Single_Newline_Multiple_With_Space_Inbetween()
         {
             // Arrange.

@@ -36,8 +36,8 @@
             text = text ?? string.Empty;
 
             // Newlines and tabs are nasty. Correct them (newlines) or get rid of them (tabs). 
-            // text = text.Replace("\r\n", "\n");
-            // text = text.Replace("\t", " ");
+            text = text.Replace("\r\n", "\n");
+            text = text.Replace("\t", " ");
 
             var errors = Array.Empty<ScriptParserError>();
             Script script = null;

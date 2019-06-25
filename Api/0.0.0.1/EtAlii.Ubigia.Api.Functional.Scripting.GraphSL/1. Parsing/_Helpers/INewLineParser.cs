@@ -4,8 +4,8 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal interface INewLineParser
     {
-        LpsParser Required { get; }
-        LpsParser Optional { get; }
+        LpsChain Required { get; }
+        LpsChain Optional { get; }
         LpsParser OptionalMultiple { get; }
     }
 }
