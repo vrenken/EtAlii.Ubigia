@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using System.Linq;
     using Xunit;
 
     public partial class QueryParserTests 
