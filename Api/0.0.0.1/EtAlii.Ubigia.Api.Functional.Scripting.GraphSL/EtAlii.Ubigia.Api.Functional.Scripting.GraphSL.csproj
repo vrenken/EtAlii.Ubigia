@@ -26,4 +26,7 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting\EtAlii.Ubigia.Api.Functional.Scripting.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api\EtAlii.Ubigia.Api.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="0. Base" />
+  </ItemGroup>
 </Project>

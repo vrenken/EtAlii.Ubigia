@@ -26,8 +26,8 @@
         <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
     </ItemGroup>
     <ItemGroup>
+        <Folder Include="0. Base" />
         <Folder Include="2. Processing" />
         <Folder Include="3. Providing" />
-        <Folder Include="_Model" />
     </ItemGroup>
 </Project>
