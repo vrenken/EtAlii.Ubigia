@@ -8,7 +8,7 @@
     using Newtonsoft.Json;
 
     [JsonConverter(typeof(ExecutionResultJsonConverter))]
-    public class QueryProcessingResult
+    public class GraphQLQueryProcessingResult
     {
         // TODO: Remove everything we don't need. This will be most of the GraphQL specific typed properties.
         public object Data { get; set; }
@@ -30,14 +30,14 @@
 
         public Dictionary<string, object> Extensions { get; }
 
-        public QueryProcessingResult(object data, string dataAsString)
+        public GraphQLQueryProcessingResult(object data, string dataAsString)
         {
             Data = data;
             DataAsString = dataAsString;
         }
 
         
-        public QueryProcessingResult(ExecutionResult result, string dataAsString)
+        public GraphQLQueryProcessingResult(ExecutionResult result, string dataAsString)
         {
             if (result == null) throw new ArgumentNullException(nameof(result));
             
@@ -53,18 +53,18 @@
             DataAsString = dataAsString;
         }
 
-        public static ExecutionResult ToGraphQlExecutionResult(QueryProcessingResult queryProcessingResult)
+        public static ExecutionResult ToGraphQlExecutionResult(GraphQLQueryProcessingResult graphQLQueryProcessingResult)
         {
             return new ExecutionResult
             {
-                Data = queryProcessingResult.Data,
-                Errors = queryProcessingResult.Errors,
-                Query = queryProcessingResult.Query,
-                Operation = queryProcessingResult.Operation,
-                Document = queryProcessingResult.Document,
-                Perf = queryProcessingResult.Perf,
-                ExposeExceptions = queryProcessingResult.ExposeExceptions,
-                Extensions = queryProcessingResult.Extensions,
+                Data = graphQLQueryProcessingResult.Data,
+                Errors = graphQLQueryProcessingResult.Errors,
+                Query = graphQLQueryProcessingResult.Query,
+                Operation = graphQLQueryProcessingResult.Operation,
+                Document = graphQLQueryProcessingResult.Document,
+                Perf = graphQLQueryProcessingResult.Perf,
+                ExposeExceptions = graphQLQueryProcessingResult.ExposeExceptions,
+                Extensions = graphQLQueryProcessingResult.Extensions,
             };
         }
 

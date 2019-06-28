@@ -6,6 +6,6 @@
     {
         Task<QueryParseResult> Parse(string text);
         
-        Task<QueryProcessingResult> Process(Query query);
+        Task<GraphQLQueryProcessingResult> Process(Query query);
     }
 }

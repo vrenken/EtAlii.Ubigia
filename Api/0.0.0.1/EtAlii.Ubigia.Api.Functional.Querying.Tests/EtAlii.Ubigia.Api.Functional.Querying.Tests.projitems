@@ -77,5 +77,6 @@
     <Folder Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)GraphTL\2. Planning" />
     <Folder Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\UnitTests" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
     public interface IGraphQueryLanguageProcessingSubscription
     {
         void Subscribe(
-            IObservable<QueryProcessingResult> results, 
+            IObservable<GraphQLQueryProcessingResult> results, 
             IGraphQueryLanguageViewModel viewModel, 
             List<TextualError> errors, DateTime start);
 

@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             _statusWriter = statusWriter;
         }
 
-        public void Subscribe(IObservable<QueryProcessingResult> results, IGraphQueryLanguageViewModel viewModel, List<TextualError> errors, DateTime start)
+        public void Subscribe(IObservable<GraphQLQueryProcessingResult> results, IGraphQueryLanguageViewModel viewModel, List<TextualError> errors, DateTime start)
         {
             results
                 //.ObserveOn(NewThreadScheduler.Default)
