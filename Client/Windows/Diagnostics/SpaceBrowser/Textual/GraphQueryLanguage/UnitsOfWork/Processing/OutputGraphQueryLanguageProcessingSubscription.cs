@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         }
 
         public void Subscribe(
-            IObservable<QueryProcessingResult> results, 
+            IObservable<GraphQLQueryProcessingResult> results, 
             IGraphQueryLanguageViewModel viewModel, 
             List<TextualError> errors, DateTime start)
         {

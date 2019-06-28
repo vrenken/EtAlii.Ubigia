@@ -2,7 +2,6 @@
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class ProfilingGraphQLQueryContext : IProfilingGraphQLQueryContext
     {
@@ -28,7 +27,7 @@
             return result;
         }
 
-        public async Task<QueryProcessingResult> Process(Query query)
+        public async Task<GraphQLQueryProcessingResult> Process(Query query)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = query;

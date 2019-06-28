@@ -58,7 +58,7 @@
                 var start = DateTime.Now;
                 var errors = new List<TextualError>();
 
-                var results = Observable.Create<QueryProcessingResult>(async output =>
+                var results = Observable.Create<GraphQLQueryProcessingResult>(async output =>
                 {
                     var queryExecutionResults = await _queryContext.Process(viewModel.Query); //, viewModel.Scope)
 

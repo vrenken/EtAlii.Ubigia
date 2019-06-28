@@ -50,7 +50,7 @@
             return Task.FromResult(result);
         }
         
-        public async Task<QueryProcessingResult> Process(Query query) 
+        public async Task<GraphQLQueryProcessingResult> Process(Query query) 
         {
             var document = query.Document;
             var schema = await DynamicSchema.Create(_dependencyResolver, _operationProcessor, _fieldProcessor, document);
@@ -76,7 +76,7 @@
 
             var dataAsString = await _documentWriter.WriteToStringAsync(executionResult);
                 
-            return new QueryProcessingResult(executionResult, dataAsString);
+            return new GraphQLQueryProcessingResult(executionResult, dataAsString);
         }
     }
 }

@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
             _errorWriter = errorWriter;
         }
 
-        public void Subscribe(IObservable<QueryProcessingResult> results, IGraphQueryLanguageViewModel viewModel,
+        public void Subscribe(IObservable<GraphQLQueryProcessingResult> results, IGraphQueryLanguageViewModel viewModel,
             List<TextualError> errors, DateTime start)
         {
             // We want to show all errors and all results.
