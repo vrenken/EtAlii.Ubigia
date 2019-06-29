@@ -9,7 +9,7 @@
             _processor = processor;
         }
 
-        public IExecutionPlan Plan(SequencePart part, ISubjectExecutionPlan left, ISubjectExecutionPlan right)
+        public IScriptExecutionPlan Plan(SequencePart part, ISubjectExecutionPlan left, ISubjectExecutionPlan right)
         {
             return new AddOperatorExecutionPlan(left, right, _processor);
         }

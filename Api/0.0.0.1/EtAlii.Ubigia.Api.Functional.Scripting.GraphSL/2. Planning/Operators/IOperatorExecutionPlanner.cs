@@ -2,6 +2,6 @@
 {
     internal interface IOperatorExecutionPlanner : ISequencePartExecutionPlanner
     {
-        IExecutionPlan Plan(SequencePart part, ISubjectExecutionPlan left, ISubjectExecutionPlan right);
+        IScriptExecutionPlan Plan(SequencePart part, ISubjectExecutionPlan left, ISubjectExecutionPlan right);
     }
 }

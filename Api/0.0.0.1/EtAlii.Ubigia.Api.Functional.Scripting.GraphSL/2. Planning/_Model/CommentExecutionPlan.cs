@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    public class CommentExecutionPlan : IExecutionPlan
+    public class CommentExecutionPlan : IScriptExecutionPlan
     {
         private readonly Comment _comment;
 

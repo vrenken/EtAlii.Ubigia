@@ -4,11 +4,11 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
-    public static class ExecutionPlan
+    public static class ScriptExecutionPlan
     {
-        public static readonly IExecutionPlan Empty = new EmptyExecutionPlan();
+        public static readonly IScriptExecutionPlan Empty = new EmptyExecutionPlan();
 
-        private class EmptyExecutionPlan : IExecutionPlan
+        private class EmptyExecutionPlan : IScriptExecutionPlan
         {
             public Type OutputType { get; }
 

@@ -10,9 +10,8 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             return new IScaffolding[]
             {
-                new ProcessingContextScaffolding(configuration),
-                new ScriptProcessingScaffolding(),
-                new ScriptExecutionScaffolding(),
+                new ScriptProcessingScaffolding(configuration),
+                new ScriptExecutionPlanningScaffolding(),
                 new SubjectProcessingScaffolding(configuration.FunctionHandlersProvider),
                 new RootProcessingScaffolding(configuration.RootHandlerMappersProvider),
                 new PathBuildingScaffolding(),

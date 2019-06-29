@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    internal class ScriptExecutionScaffolding : IScaffolding
+    internal class ScriptExecutionPlanningScaffolding : IScaffolding
     {
         public void Register(Container container)
         {

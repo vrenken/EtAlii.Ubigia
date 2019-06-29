@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class SequenceExecutionPlan : ISequenceExecutionPlan
     {
-        private readonly IExecutionPlan _startExecutionPlan;
+        private readonly IScriptExecutionPlan _startExecutionPlan;
 
-        public static readonly ISequenceExecutionPlan Empty = new SequenceExecutionPlan(ExecutionPlan.Empty);
+        public static readonly ISequenceExecutionPlan Empty = new SequenceExecutionPlan(ScriptExecutionPlan.Empty);
 
-        public SequenceExecutionPlan(IExecutionPlan startExecutionPlan)
+        public SequenceExecutionPlan(IScriptExecutionPlan startExecutionPlan)
         {
             _startExecutionPlan = startExecutionPlan;
         }
