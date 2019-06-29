@@ -6,10 +6,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class AssignRootDefinitionToRootOperatorSubProcessor : IAssignRootDefinitionToRootOperatorSubProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
         public AssignRootDefinitionToRootOperatorSubProcessor(
-            IProcessingContext context)
+            IScriptProcessingContext context)
         {
             _context = context;
         }

@@ -5,9 +5,9 @@
 
     internal class VariableSubjectProcessor : IVariableSubjectProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public VariableSubjectProcessor(IProcessingContext context)
+        public VariableSubjectProcessor(IScriptProcessingContext context)
         {
             _context = context;
         }

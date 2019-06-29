@@ -6,12 +6,12 @@
 
     internal class PathProcessor : IPathProcessor
     {
-        public IProcessingContext Context { get; }
+        public IScriptProcessingContext Context { get; }
 
         private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
 
         public PathProcessor(
-            IProcessingContext context, 
+            IScriptProcessingContext context, 
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter)
         {
             Context = context;

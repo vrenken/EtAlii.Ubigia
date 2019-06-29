@@ -10,14 +10,14 @@
         private readonly IPathVariableExpander _pathVariableExpander;
         private readonly IPathSubjectForOutputConverter _converter;
         private readonly IPathSubjectPartContentGetter _partContentGetter;
-        private readonly IProcessingContext _processingContext;
+        private readonly IScriptProcessingContext _processingContext;
 
         public AbsolutePathSubjectProcessor(
             IRootPathProcessor rootPathProcessor, 
             IPathVariableExpander pathVariableExpander, 
             IPathSubjectForOutputConverter converter, 
             IPathSubjectPartContentGetter partContentGetter, 
-            IProcessingContext processingContext)
+            IScriptProcessingContext processingContext)
         {
             _rootPathProcessor = rootPathProcessor;
             _pathVariableExpander = pathVariableExpander;

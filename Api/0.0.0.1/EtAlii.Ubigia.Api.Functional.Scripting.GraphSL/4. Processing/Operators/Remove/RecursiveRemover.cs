@@ -9,9 +9,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class RecursiveRemover : IRecursiveRemover
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public RecursiveRemover(IProcessingContext context)
+        public RecursiveRemover(IScriptProcessingContext context)
         {
             _context = context;
         }

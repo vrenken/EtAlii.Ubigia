@@ -20,7 +20,7 @@ namespace EtAlii.Ubigia.Api.Functional
             };
         }
 
-        public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var year = int.Parse(match[0].ToString());
             var month = int.Parse(match[2].ToString());

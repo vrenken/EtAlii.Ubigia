@@ -2,9 +2,9 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     internal class RelativePathSubjectExecutionPlanner : IRelativePathSubjectExecutionPlanner
     {
-        private readonly IProcessingContext _processingContext;
+        private readonly IScriptProcessingContext _processingContext;
 
-        public RelativePathSubjectExecutionPlanner(IProcessingContext processingContext)
+        public RelativePathSubjectExecutionPlanner(IScriptProcessingContext processingContext)
         {
             _processingContext = processingContext;
         }

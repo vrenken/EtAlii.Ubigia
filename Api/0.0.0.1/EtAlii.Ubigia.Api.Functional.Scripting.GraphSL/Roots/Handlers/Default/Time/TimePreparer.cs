@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class TimePreparer : ITimePreparer
     {
-        public void Prepare(IProcessingContext context, ExecutionScope scope, DateTime time)
+        public void Prepare(IScriptProcessingContext context, ExecutionScope scope, DateTime time)
         {
             // TODO: using an empty execution scope should not be needed.
             scope = new ExecutionScope(false);

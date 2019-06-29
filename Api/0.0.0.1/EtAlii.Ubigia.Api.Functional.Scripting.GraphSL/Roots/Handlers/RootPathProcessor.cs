@@ -5,12 +5,12 @@ namespace EtAlii.Ubigia.Api.Functional
 
     class RootPathProcessor : IRootPathProcessor
     {
-        private readonly IProcessingContext _processingContext;
+        private readonly IScriptProcessingContext _processingContext;
         private readonly IRootHandlerMapperFinder _rootHandlerMapperFinder;
         private readonly IRootHandlerPathMatcher _rootHandlerPathMatcher;
 
         public RootPathProcessor(
-            IProcessingContext processingContext, 
+            IScriptProcessingContext processingContext, 
             IRootHandlerMapperFinder rootHandlerMapperFinder, 
             IRootHandlerPathMatcher rootHandlerPathMatcher)
         {

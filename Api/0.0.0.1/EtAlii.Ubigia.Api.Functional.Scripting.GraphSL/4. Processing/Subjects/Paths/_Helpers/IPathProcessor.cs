@@ -5,7 +5,7 @@
 
     public interface IPathProcessor
     {
-        IProcessingContext Context { get; }
+        IScriptProcessingContext Context { get; }
         Task Process(PathSubject pathSubject, ExecutionScope scope, IObserver<object> output);
     }
 }

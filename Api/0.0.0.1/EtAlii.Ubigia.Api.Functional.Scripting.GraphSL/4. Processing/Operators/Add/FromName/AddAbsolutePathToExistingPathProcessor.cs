@@ -8,12 +8,12 @@
 
     internal class AddAbsolutePathToExistingPathProcessor : AddToExistingPathProcessorBase, IAddAbsolutePathToExistingPathProcessor
     {
-        private readonly IProcessingContext _processingContext;
+        private readonly IScriptProcessingContext _processingContext;
 
         public AddAbsolutePathToExistingPathProcessor(
             IItemToPathSubjectConverter itemToPathSubjectConverter,
             IItemToIdentifierConverter itemToIdentifierConverter, 
-            IProcessingContext processingContext)
+            IScriptProcessingContext processingContext)
             : base(itemToPathSubjectConverter, itemToIdentifierConverter)
         {
             _processingContext = processingContext;

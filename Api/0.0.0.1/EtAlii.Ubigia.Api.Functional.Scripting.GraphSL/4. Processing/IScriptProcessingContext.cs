@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using EtAlii.Ubigia.Api.Logical;
 
-    public interface IProcessingContext
+    public interface IScriptProcessingContext
     {
         IScriptScope Scope { get; }
         ILogicalContext Logical { get; }

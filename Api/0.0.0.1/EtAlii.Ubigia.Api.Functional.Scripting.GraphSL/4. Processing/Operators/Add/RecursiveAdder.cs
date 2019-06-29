@@ -9,9 +9,9 @@
 
     internal class RecursiveAdder : IRecursiveAdder
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public RecursiveAdder(IProcessingContext context)
+        public RecursiveAdder(IScriptProcessingContext context)
         {
             _context = context;
         }

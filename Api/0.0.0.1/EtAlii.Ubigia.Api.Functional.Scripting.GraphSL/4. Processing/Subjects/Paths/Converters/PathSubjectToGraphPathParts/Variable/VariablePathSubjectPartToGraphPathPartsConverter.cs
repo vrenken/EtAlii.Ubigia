@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class VariablePathSubjectPartToGraphPathPartsConverter : IVariablePathSubjectPartToGraphPathPartsConverter
     {
         private const string Id = "VariablePathSubjectPart";
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly LpsParser _nonRootedParser;
         private readonly INodeValidator _nodeValidator;
@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly ISelector<Subject,ISubjectParser> _parserSelector;
 
         public VariablePathSubjectPartToGraphPathPartsConverter(
-            IProcessingContext context,
+            IScriptProcessingContext context,
             INonRootedPathSubjectParser nonRootedPathSubjectParser,
             INodeValidator nodeValidator, 
             IConstantSubjectsParser constantSubjectsParser)

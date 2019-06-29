@@ -9,9 +9,9 @@
 
     internal class ResultConverterSelector : Selector<object, Func<object, ExecutionScope, IObserver<object>, Task>>, IResultConverterSelector
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public ResultConverterSelector(IProcessingContext context)
+        public ResultConverterSelector(IScriptProcessingContext context)
         {
             _context = context;
 

@@ -7,10 +7,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class AssignEmptyToRootOperatorSubProcessor : IAssignEmptyToRootOperatorSubProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
         public AssignEmptyToRootOperatorSubProcessor(
-            IProcessingContext context)
+            IScriptProcessingContext context)
         {
             _context = context;
         }
