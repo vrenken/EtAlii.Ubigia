@@ -3,14 +3,13 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
 
     public class ProfilingPathProcessor : IPathProcessor
     {
         private readonly IPathProcessor _decoree;
         private readonly IProfiler _profiler;
 
-        public IProcessingContext Context => _decoree.Context;
+        public IScriptProcessingContext Context => _decoree.Context;
 
         public ProfilingPathProcessor(
             IPathProcessor decoree,

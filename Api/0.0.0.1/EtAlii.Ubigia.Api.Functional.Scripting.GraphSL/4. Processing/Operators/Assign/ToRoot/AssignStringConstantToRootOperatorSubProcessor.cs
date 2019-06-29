@@ -6,10 +6,10 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class AssignStringConstantToRootOperatorSubProcessor : IAssignStringConstantToRootOperatorSubProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
         public AssignStringConstantToRootOperatorSubProcessor(
-            IProcessingContext context)
+            IScriptProcessingContext context)
         {
             _context = context;
         }

@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class AssignTagToVariableOperatorSubProcessor : IAssignTagToVariableOperatorSubProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public AssignTagToVariableOperatorSubProcessor(IProcessingContext context)
+        public AssignTagToVariableOperatorSubProcessor(IScriptProcessingContext context)
         {
             _context = context;
         }

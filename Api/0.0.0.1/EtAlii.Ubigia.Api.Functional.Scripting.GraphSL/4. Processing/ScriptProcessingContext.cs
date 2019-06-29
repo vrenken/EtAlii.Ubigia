@@ -3,7 +3,7 @@
     using System;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal class ProcessingContext : IProcessingContext
+    internal class ScriptProcessingContext : IScriptProcessingContext
     {
         public IScriptScope Scope { get; }
 
@@ -21,7 +21,7 @@
         public IAddRelativePathToExistingPathProcessor AddRelativePathToExistingPathProcessor { get; private set; }
 
 
-        public ProcessingContext(IScriptScope scope, ILogicalContext logical)
+        public ScriptProcessingContext(IScriptScope scope, ILogicalContext logical)
         {
             Scope = scope;
             Logical = logical;

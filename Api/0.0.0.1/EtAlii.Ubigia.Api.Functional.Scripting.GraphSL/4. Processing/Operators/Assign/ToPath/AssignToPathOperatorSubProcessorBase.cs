@@ -10,7 +10,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal abstract class AssignToPathOperatorSubProcessorBase 
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IPathSubjectToGraphPathConverter _pathSubjectToGraphPathConverter;
 
@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
         protected AssignToPathOperatorSubProcessorBase(
             IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
-            IProcessingContext context)
+            IScriptProcessingContext context)
         {
             _itemToIdentifierConverter = itemToIdentifierConverter;
             _pathSubjectToGraphPathConverter = pathSubjectToGraphPathConverter;

@@ -15,7 +15,7 @@
         {
             container.Register<IScriptProcessor, ScriptProcessor>();
 
-            container.Register<IProcessingContext, ProcessingContext>();
+            container.Register<IScriptProcessingContext, ScriptProcessingContext>();
             container.Register(() => _configuration.LogicalContext);
             container.Register(() => _configuration.ScriptScope);
             container.Register(() => _configuration);

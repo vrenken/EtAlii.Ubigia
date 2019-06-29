@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class AssignCombinedToVariableOperatorSubProcessor : IAssignCombinedToVariableOperatorSubProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public AssignCombinedToVariableOperatorSubProcessor(IProcessingContext context)
+        public AssignCombinedToVariableOperatorSubProcessor(IScriptProcessingContext context)
         {
             _context = context;
         }

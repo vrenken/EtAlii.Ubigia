@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
             Template = new PathSubjectPart[] { new RegexPathSubjectPart(@"now") };
         }
 
-        public void Process(IProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
+        public void Process(IScriptProcessingContext context, PathSubjectPart[] match, PathSubjectPart[] rest, ExecutionScope scope, IObserver<object> output)
         {
             var time = DateTime.Now;
 

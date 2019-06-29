@@ -7,12 +7,12 @@
     {
         private readonly IRootPathProcessor _rootPathProcessor;
         private readonly IPathVariableExpander _pathVariableExpander;
-        private readonly IProcessingContext _processingContext;
+        private readonly IScriptProcessingContext _processingContext;
 
         public RootedPathSubjectProcessor(
             IRootPathProcessor rootPathProcessor, 
             IPathVariableExpander pathVariableExpander, 
-            IProcessingContext processingContext)
+            IScriptProcessingContext processingContext)
         {
             _rootPathProcessor = rootPathProcessor;
             _pathVariableExpander = pathVariableExpander;

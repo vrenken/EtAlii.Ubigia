@@ -8,12 +8,12 @@
 
     internal class AddRootedPathToExistingPathProcessor : AddToExistingPathProcessorBase, IAddRootedPathToExistingPathProcessor
     {
-        private readonly IProcessingContext _processingContext;
+        private readonly IScriptProcessingContext _processingContext;
 
         public AddRootedPathToExistingPathProcessor(
             IItemToPathSubjectConverter itemToPathSubjectConverter,
             IItemToIdentifierConverter itemToIdentifierConverter, 
-            IProcessingContext processingContext)
+            IScriptProcessingContext processingContext)
             : base(itemToPathSubjectConverter, itemToIdentifierConverter)
         {
             _processingContext = processingContext;

@@ -5,11 +5,11 @@ namespace EtAlii.Ubigia.Api.Functional
 
     class PathVariableExpander : IPathVariableExpander
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
         private readonly IVariablePathSubjectPartToPathConverter _variablePathSubjectPartToPathConverter;
 
         public PathVariableExpander(
-            IProcessingContext context,
+            IScriptProcessingContext context,
             IVariablePathSubjectPartToPathConverter variablePathSubjectPartToGraphPathPartsConverter)
         {
             _context = context;

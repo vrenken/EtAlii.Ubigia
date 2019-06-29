@@ -5,9 +5,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class AssignEmptyToVariableOperatorSubProcessor : IAssignEmptyToVariableOperatorSubProcessor
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public AssignEmptyToVariableOperatorSubProcessor(IProcessingContext context)
+        public AssignEmptyToVariableOperatorSubProcessor(IScriptProcessingContext context)
         {
             _context = context;
         }

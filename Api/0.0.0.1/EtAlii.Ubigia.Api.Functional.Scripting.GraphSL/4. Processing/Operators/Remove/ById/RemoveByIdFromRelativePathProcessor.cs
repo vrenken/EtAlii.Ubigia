@@ -8,10 +8,10 @@
     internal class RemoveByIdFromRelativePathProcessor : IRemoveByIdFromRelativePathProcessor
     {
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
         public RemoveByIdFromRelativePathProcessor(
-            IProcessingContext context,
+            IScriptProcessingContext context,
             IItemToIdentifierConverter itemToIdentifierConverter)
         {
             _itemToIdentifierConverter = itemToIdentifierConverter;

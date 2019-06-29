@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public AssignFunctionToPathOperatorSubProcessor(
             IItemToIdentifierConverter itemToIdentifierConverter,
             IPathSubjectToGraphPathConverter pathSubjectToGraphPathConverter,
-            IProcessingContext context)
+            IScriptProcessingContext context)
             : base(itemToIdentifierConverter, pathSubjectToGraphPathConverter, context)
         {
         }

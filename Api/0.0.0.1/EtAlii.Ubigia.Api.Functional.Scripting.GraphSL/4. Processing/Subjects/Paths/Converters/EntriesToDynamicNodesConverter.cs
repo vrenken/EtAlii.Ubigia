@@ -6,9 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
 
     public class EntriesToDynamicNodesConverter : IEntriesToDynamicNodesConverter
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public EntriesToDynamicNodesConverter(IProcessingContext context)
+        public EntriesToDynamicNodesConverter(IScriptProcessingContext context)
         {
             _context = context;
         }

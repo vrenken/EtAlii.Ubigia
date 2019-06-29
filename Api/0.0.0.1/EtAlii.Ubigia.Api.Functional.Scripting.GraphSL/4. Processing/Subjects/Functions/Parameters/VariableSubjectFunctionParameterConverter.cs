@@ -4,9 +4,9 @@
 
     internal class VariableSubjectFunctionParameterConverter : IVariableSubjectFunctionParameterConverter
     {
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
-        public VariableSubjectFunctionParameterConverter(IProcessingContext context)
+        public VariableSubjectFunctionParameterConverter(IScriptProcessingContext context)
         {
             _context = context;
         }

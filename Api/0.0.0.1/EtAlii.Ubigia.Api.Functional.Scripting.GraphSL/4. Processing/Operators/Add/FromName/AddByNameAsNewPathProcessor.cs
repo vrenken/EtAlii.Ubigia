@@ -10,12 +10,12 @@
     {
         private readonly IItemToPathSubjectConverter _itemToPathSubjectConverter;
         private readonly IRecursiveAdder _recursiveAdder;
-        private readonly IProcessingContext _context;
+        private readonly IScriptProcessingContext _context;
 
         public AddByNameAsNewPathProcessor(
             IItemToPathSubjectConverter itemToPathSubjectConverter,
             IRecursiveAdder recursiveAdder,
-            IProcessingContext context)
+            IScriptProcessingContext context)
         {
             _itemToPathSubjectConverter = itemToPathSubjectConverter;
             _recursiveAdder = recursiveAdder;
