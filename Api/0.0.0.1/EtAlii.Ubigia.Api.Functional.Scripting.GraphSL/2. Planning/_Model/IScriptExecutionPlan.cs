@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    public interface IExecutionPlan
+    public interface IScriptExecutionPlan
     {
         Type OutputType { get; }
 
