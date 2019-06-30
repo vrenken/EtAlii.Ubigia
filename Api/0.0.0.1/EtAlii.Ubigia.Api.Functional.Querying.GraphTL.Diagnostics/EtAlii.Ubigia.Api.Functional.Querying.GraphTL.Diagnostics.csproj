@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <Authors>Peter Vrenken</Authors>
@@ -6,7 +7,7 @@
         <Company>EtAlii</Company>
         <Copyright>Copyright ©2017 Peter Vrenken</Copyright>
         <Version>1.0.1.0</Version>
-        <ProjectGuid>4674ccea-dbe5-43ac-94c0-1d0639635c59</ProjectGuid>
+        <ProjectGuid>b672f721-1f6d-43fe-8435-0c1847bcaad1</ProjectGuid>
         <PackageLicenseUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/license.txt</PackageLicenseUrl>
         <PackageProjectUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport</PackageProjectUrl>
         <PackageIconUrl>http://petervrenken.nl/components/EtAlii.Ubigia.Api.Transport/nuget_icon.png</PackageIconUrl>
@@ -15,19 +16,11 @@
         </PackageTags>
         <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-        <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
+        <RootNamespace>EtAlii.Ubigia.Api.Functional.Diagnostics</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Compile Remove="Scripting\**" />
-        <EmbeddedResource Remove="Scripting\**" />
-        <None Remove="Scripting\**" />
+        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphTL\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.csproj" />
     </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="0. Base" />
-        <Folder Include="2. Planning\Structure\Mutations" />
-        <Folder Include="2. Planning\Structure\Queries" />
-    </ItemGroup>
+
 </Project>

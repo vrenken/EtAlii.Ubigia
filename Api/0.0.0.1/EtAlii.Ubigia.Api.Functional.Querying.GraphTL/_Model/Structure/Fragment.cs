@@ -7,7 +7,7 @@
         /// </summary>
         public string Name {get;}
         public Annotation Annotation { get; }        
-        
+
         public Fragment(string name, Annotation annotation)
         {
             Annotation = annotation;

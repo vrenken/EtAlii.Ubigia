@@ -78,7 +78,7 @@
             }
             else
             {
-                throw new ScriptParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
+                throw new QueryParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
             }
         }
 
