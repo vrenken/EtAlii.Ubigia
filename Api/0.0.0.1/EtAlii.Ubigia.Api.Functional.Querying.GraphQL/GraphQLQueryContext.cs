@@ -26,7 +26,7 @@
         {
             _builder = builder;
             _documentWriter = documentWriter;
-            _executor= executor;
+            _executor = executor;
             _dependencyResolver = dependencyResolver;
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
