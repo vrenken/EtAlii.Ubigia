@@ -33,6 +33,7 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphTL\EtAlii.Ubigia.Api.Functional.Querying.GraphTL.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.GraphQL\EtAlii.Ubigia.Api.Functional.Querying.GraphQL.csproj" />
