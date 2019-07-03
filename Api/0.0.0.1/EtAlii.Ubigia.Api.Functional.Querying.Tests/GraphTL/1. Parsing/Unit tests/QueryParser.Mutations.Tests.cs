@@ -23,6 +23,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -43,6 +45,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -62,6 +66,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         
@@ -83,6 +89,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         
@@ -175,6 +183,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -227,6 +237,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -255,6 +267,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -280,6 +294,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
 
             //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Annotation);
         }
@@ -308,6 +324,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
 
             //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Annotation);
         }
@@ -338,9 +356,10 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureMutation>(parseResult.Query.Structure);
 
             //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Children.ToArray()[0].Annotation);
         }
-
     }
 }

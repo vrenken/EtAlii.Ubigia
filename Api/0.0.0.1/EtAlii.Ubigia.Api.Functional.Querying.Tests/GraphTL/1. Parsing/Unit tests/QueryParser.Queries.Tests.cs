@@ -28,6 +28,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -54,6 +56,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -80,7 +84,10 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
+        
         [Fact]
         public void QueryParser_Parse_Query_Flat_04()
         {
@@ -100,6 +107,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
         
         [Fact]
@@ -126,6 +135,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
         
         [Fact]
@@ -152,6 +163,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
         
         [Fact]
@@ -173,6 +186,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
 
         
@@ -202,6 +217,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -230,6 +247,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -258,6 +277,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
         }
 
         [Fact]
@@ -287,6 +308,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
             //Assert.Equal("traverse(person:Stephenson/Sabrina)",jsonNode.Annotation);
         }
 
@@ -313,6 +336,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
 
             //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Annotation);
         }
@@ -345,6 +370,8 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
 
             //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Children.ToArray()[0].Annotation);
         }
