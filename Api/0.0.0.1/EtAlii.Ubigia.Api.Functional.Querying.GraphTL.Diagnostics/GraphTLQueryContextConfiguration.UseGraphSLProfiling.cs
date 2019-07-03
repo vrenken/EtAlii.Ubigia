@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics 
 {
     public static class GraphTLQueryContextConfigurationUseGraphTLProfiling
     {

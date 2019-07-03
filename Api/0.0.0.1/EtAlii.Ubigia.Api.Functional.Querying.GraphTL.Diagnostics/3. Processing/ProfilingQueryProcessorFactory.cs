@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Querying
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Querying 
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
 
