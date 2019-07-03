@@ -48,7 +48,7 @@
             var fragmentParsers =
             (
                 structureQueryParser |
-                _valueMutationParser.Parser | //.Debug("VM", true) | 
+                //_valueMutationParser.Parser | //.Debug("VM", true) | 
                 _valueQueryParser.Parser //.Debug("VQ", true)
             );
             var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
