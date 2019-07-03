@@ -1,28 +1,13 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
 
-    internal class FragmentExecutionPlan : IQueryExecutionPlan
+    internal abstract class FragmentExecutionPlan
     {
-        private readonly Fragment _fragment;
+        public abstract Type OutputType { get; }
 
-        public Type OutputType { get; }
-
-        public FragmentExecutionPlan(Fragment fragment)
-        {
-            _fragment = fragment;
-            OutputType = GetType();
-        }
-
-        public Task<IObservable<object>> Execute(QueryExecutionScope scope)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return "[FRAGMENT]" + _fragment + "[/FRAGMENT]";
-        }
+        public abstract Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope);
     }
 }

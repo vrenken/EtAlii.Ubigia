@@ -1,6 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
+    using System.Collections.Generic;
+    using System.Collections.ObjectModel;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading;
@@ -33,22 +35,13 @@
             return observableQueryOutput;
         }
 
-        private int CountSteps(Fragment fragment)
+        private int CountSteps(IEnumerable<Structure> structures)
         {
             var count = 1;
-            if (fragment is StructureQuery structureQuery)
+            
+            foreach (var structure in structures)
             {
-                foreach (var value in structureQuery.Values)
-                {
-                    count += CountSteps(value);
-                }
-            }
-            else if (fragment is StructureMutation structureMutation)
-            {
-                foreach (var value in structureMutation.Values)
-                {
-                    count += CountSteps(value);
-                }
+                count += CountSteps(structure.Children);
             }
 
             return count;
@@ -61,18 +54,17 @@
                 try
                 {
                     // We need to create execution plans for all of the sequences.
-                    var executionPlan = _queryExecutionPlanner.Plan(query);
-                    var structure = query.Structure;
+                    var executionPlans = _queryExecutionPlanner.Plan(query, out var rootStructures);
+                    //var structure = query.Structure;
 
-                    var totalExecutionPlans = CountSteps(structure);
+                    var totalExecutionPlans = CountSteps(rootStructures);
 
-                    var executionPlanIndex = 0;
-                    //for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
-                    //{
+                    for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
+                    {
                         //var sequence = sequences[executionPlanIndex];
-                        //var executionPlan = executionPlans[executionPlanIndex];
-                        await ProcessExecutionPlan(structure, executionPlan, executionPlanIndex, totalExecutionPlans, queryOutput);
-                    //}
+                        var executionPlan = executionPlans[executionPlanIndex];
+                        await ProcessExecutionPlan(rootStructures, executionPlan, executionPlanIndex, totalExecutionPlans, queryOutput);
+                    }
 
                     // After iterating through the fragment query observation has ended. Please keep in mind 
                     // this is not the same for all sequence observables. The last one could still be receiving results. 
@@ -95,8 +87,8 @@
         }
 
         private async Task ProcessExecutionPlan(
-            Fragment fragment, 
-            IQueryExecutionPlan executionPlan, 
+            ObservableCollection<Structure> rootStructures,
+            FragmentExecutionPlan executionPlan, 
             int executionPlanIndex, 
             int totalExecutionPlans, 
             IObserver<QueryProcessingResult> queryOutput)
@@ -104,8 +96,11 @@
             Query query = null;
             var executionScope = new QueryExecutionScope();
 
-            var originalObservableQueryOutput = await executionPlan.Execute(executionScope);
-            var observableQueryOutput = Observable.Empty<Structure>();
+            var observableQueryOutput = await executionPlan.Execute(executionScope);
+            //var observableQueryOutput = Observable.Empty<Structure>();
+
+//            var originalObservableQueryOutput = await executionPlan.Execute(executionScope);
+//            var observableQueryOutput = Observable.Empty<Structure>();
 
             // We want all subqueryions to have access to all results.
             observableQueryOutput = observableQueryOutput
@@ -113,7 +108,7 @@
                 //.ObserveOn(CurrentThreadScheduler.Instance)
                 .ToHotObservable();
 
-            var sequenceResult = new QueryProcessingResult(query, executionPlan, executionPlanIndex, totalExecutionPlans, observableQueryOutput, TODO);
+            var sequenceResult = new QueryProcessingResult(query, executionPlan, executionPlanIndex, totalExecutionPlans, observableQueryOutput, new ReadOnlyObservableCollection<Structure>(rootStructures));
             queryOutput.OnNext(sequenceResult);
 
             Exception exception = null;
@@ -134,24 +129,24 @@
                 throw exception;
             }
 
-            if (originalObservableQueryOutput != null)
-            {
-                // But also if we don't attach the original observable sequence output.
-                continueEvent.Reset();
-                originalObservableQueryOutput.Subscribe(
-                    onNext: o => { }, 
-                    onError: e =>
-                    {
-                        exception = e;
-                        continueEvent.Set();
-                    }, 
-                    onCompleted: () => continueEvent.Set());
-                continueEvent.WaitOne();
-                if (exception != null)
-                {
-                    throw exception;
-                }
-            }
+//            if (originalObservableQueryOutput != null)
+//            {
+//                // But also if we don't attach the original observable sequence output.
+//                continueEvent.Reset();
+//                originalObservableQueryOutput.Subscribe(
+//                    onNext: o => { }, 
+//                    onError: e =>
+//                    {
+//                        exception = e;
+//                        continueEvent.Set();
+//                    }, 
+//                    onCompleted: () => continueEvent.Set());
+//                continueEvent.WaitOne();
+//                if (exception != null)
+//                {
+//                    throw exception;
+//                }
+//            }
         }
     }
 }

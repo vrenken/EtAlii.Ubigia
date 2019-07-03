@@ -4,16 +4,16 @@
     using System.Collections.ObjectModel;
     using System.Threading.Tasks;
 
-    internal class QueryFragmentExecutionPlan : FragmentExecutionPlanBase<QueryFragment>
+    internal class MutationFragmentExecutionPlan : FragmentExecutionPlanBase<MutationFragment>
     {
-        private readonly IQueryFragmentProcessor _processor;
+        private readonly IMutationFragmentProcessor _processor;
         //public ObservableCollection<Structure> ParentChildren { get; } = new ObservableCollection<Structure>();
         //public ObservableCollection<Value> ParentValues { get; } = new ObservableCollection<Value>();
 
-        public QueryFragmentExecutionPlan(
-            QueryFragment fragment,
+        public MutationFragmentExecutionPlan(
+            MutationFragment fragment,
             FragmentContext fragmentContext,
-            IQueryFragmentProcessor processor)
+            IMutationFragmentProcessor processor)
             : base(fragment, fragmentContext)
         {
             _processor = processor;
@@ -26,7 +26,7 @@
 
         protected override Task Execute(FragmentContext fragmentContext, QueryExecutionScope executionScope, IObserver<Structure> output)
         {
-            return _processor.Process(Fragment, executionScope, fragmentContext, output);
+            return _processor.Process(this, executionScope, fragmentContext, output);
         }
 
         public override string ToString()
