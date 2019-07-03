@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using EtAlii.xTechnology.MicroContainer;
 
@@ -19,6 +19,7 @@
             return new IScaffolding[]
             {
                 new GraphTLQueryContextScaffolding(configuration),
+                
                 //new ScriptsScaffolding(functionHandlersProvider, rootHandlerMappersProvider),
             };
         }
