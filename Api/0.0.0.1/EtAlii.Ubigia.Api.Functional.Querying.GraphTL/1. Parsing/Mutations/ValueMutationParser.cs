@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System.Linq;
     using Moppet.Lapa;
@@ -66,6 +66,10 @@
                 {
                     var annotationValueNode = _nodeFinder.FindFirst(annotationNode, _annotationParser.Id);
                     annotation = _annotationParser.Parse(annotationValueNode);
+//                    if (annotation != Annotation.None && annotation.Type != AnnotationType.Value)
+//                    {
+//                        throw new QueryParserException("A constant assignment can only be applied to type-annotated elements");
+//                    }
                 }
 
                 return new ValueMutation(key, annotation, null);            
