@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.MicroContainer;
@@ -14,8 +14,12 @@
 
         public void Register(Container container)
         {
+            container.Register<IGraphTLQueryContext, GraphTLQueryContext>();
             container.Register<IGraphTLQueryContextConfiguration>(() => _configuration);
 
+            container.Register<IQueryProcessorFactory, QueryProcessorFactory>();
+            container.Register<IQueryParserFactory, QueryParserFactory>();
+            
             container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(_configuration));
 
             container.Register(() => new LogicalContextFactory().Create(_configuration));
