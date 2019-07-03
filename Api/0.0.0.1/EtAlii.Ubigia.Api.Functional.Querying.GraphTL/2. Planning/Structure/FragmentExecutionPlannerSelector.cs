@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using EtAlii.xTechnology.Structure;
 
@@ -7,12 +7,16 @@
         private readonly ISelector<Fragment, IFragmentExecutionPlanner> _selector;
 
         public FragmentExecutionPlannerSelector(
-            IQueryFragmentExecutionPlanner queryFragmentExecutionPlanner,
-            IMutationFragmentExecutionPlanner mutationFragmentExecutionPlanner)
+            IValueQueryExecutionPlanner valueQueryExecutionPlanner,
+            IStructureQueryExecutionPlanner structureQueryExecutionPlanner,
+            IValueMutationExecutionPlanner valueMutationExecutionPlanner,
+            IStructureMutationExecutionPlanner structureMutationExecutionPlanner)
         {
             _selector = new Selector<Fragment, IFragmentExecutionPlanner>()
-                .Register(fragment => fragment is MutationFragment, mutationFragmentExecutionPlanner)
-                .Register(fragment => fragment is QueryFragment, queryFragmentExecutionPlanner);
+                .Register(fragment => fragment is StructureQuery, structureQueryExecutionPlanner)
+                .Register(fragment => fragment is ValueQuery, valueQueryExecutionPlanner)
+                .Register(fragment => fragment is StructureMutation, structureMutationExecutionPlanner)
+                .Register(fragment => fragment is ValueMutation, valueMutationExecutionPlanner);
         }
 
         public IFragmentExecutionPlanner Select(Fragment fragment)

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using EtAlii.xTechnology.MicroContainer;
 
@@ -8,8 +8,10 @@
         {
             container.Register<IQueryExecutionPlanner, QueryExecutionPlanner>();
             
-            container.Register<IMutationFragmentExecutionPlanner, MutationFragmentExecutionPlanner>();
-            container.Register<IQueryFragmentExecutionPlanner, QueryFragmentExecutionPlanner>();
+            container.Register<IValueMutationExecutionPlanner, ValueMutationExecutionPlanner>();
+            container.Register<IStructureMutationExecutionPlanner, StructureMutationExecutionPlanner>();
+            container.Register<IValueQueryExecutionPlanner, ValueQueryExecutionPlanner>();
+            container.Register<IStructureQueryExecutionPlanner, StructureQueryExecutionPlanner>();
             container.Register<IFragmentExecutionPlannerSelector, FragmentExecutionPlannerSelector>();
             
         }

@@ -1,23 +1,24 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
+    using System.Collections.ObjectModel;
 
     public class QueryProcessingResult
     {
         public Query Query { get; }
-        private IQueryExecutionPlan ExecutionPlan { get;  }
+        private FragmentExecutionPlan ExecutionPlan { get;  }
         public int Step { get; }
         public int Total { get; }
 
         public IObservable<Structure> Output { get; }
-        public Structure Structure {get; }
+        public ReadOnlyObservableCollection<Structure> Structure {get; }
 
         internal QueryProcessingResult(Query query,
-            IQueryExecutionPlan executionPlan,
+            FragmentExecutionPlan executionPlan,
             int step,
             int total,
             IObservable<Structure> output, 
-            Structure structure)
+            ReadOnlyObservableCollection<Structure> structure)
         {
             Query = query;
             ExecutionPlan = executionPlan;
