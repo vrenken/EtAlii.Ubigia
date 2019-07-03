@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using EtAlii.xTechnology.MicroContainer;
 
@@ -14,9 +14,13 @@
         public void Register(Container container)
         {
             container.Register<IQueryProcessor, QueryProcessor>();
-
-            container.Register<IQueryFragmentProcessor, QueryFragmentProcessor>();
-            container.Register<IMutationFragmentProcessor, MutationFragmentProcessor>();
+            
+            container.Register<IValueQueryProcessor, ValueQueryProcessor>();
+            container.Register<IStructureQueryProcessor, StructureQueryProcessor>();
+            
+            container.Register<IValueMutationProcessor, ValueMutationProcessor>();
+            container.Register<IStructureMutationProcessor, StructureMutationProcessor>();
+            
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
             container.Register(() => _configuration.ScriptContext);

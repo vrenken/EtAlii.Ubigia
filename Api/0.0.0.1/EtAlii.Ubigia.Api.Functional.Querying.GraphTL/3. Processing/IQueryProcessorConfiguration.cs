@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional
+namespace EtAlii.Ubigia.Api.Functional 
 {
     public interface IQueryProcessorConfiguration : IConfiguration
     {
