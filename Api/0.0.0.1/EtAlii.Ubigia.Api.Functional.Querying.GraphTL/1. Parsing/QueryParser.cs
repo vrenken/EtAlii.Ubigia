@@ -37,8 +37,8 @@
 
             var structureParsers = new LpsParser(new[]
             {
-                _structureMutationParser.Parser,
-                _structureQueryParser.Parser
+                _structureQueryParser.Parser,
+                _structureMutationParser.Parser
             }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser)).Maybe();
             
             var headerParsers = (newLineParser.OptionalMultiple + commentParser.Parser).ZeroOrMore();
