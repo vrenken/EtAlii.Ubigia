@@ -8,8 +8,8 @@
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Diagnostics;
-    using GraphQL;
     using Xunit;
+
 //using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
 
     public class QueryProcessorSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
