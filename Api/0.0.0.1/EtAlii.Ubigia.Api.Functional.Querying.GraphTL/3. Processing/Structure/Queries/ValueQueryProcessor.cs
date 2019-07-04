@@ -19,7 +19,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var valueQuery = (ValueQuery) fragment;
             
-            var script = new Script(new Sequence(new SequencePart[] {valueQuery.Annotation.Path}));
+            var script = new Script(new Sequence(new SequencePart[] {valueQuery.Annotation.Path})); 
             var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
             var lastOutput = await processResult.Output.LastOrDefaultAsync();
 

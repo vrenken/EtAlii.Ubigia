@@ -19,14 +19,14 @@ namespace EtAlii.Ubigia.Api.Functional
             return GetPlansForFragment(fragment, out rootStructures);
         }
 
-        private FragmentExecutionPlan[] GetPlansForFragment(Fragment fragment, out ObservableCollection<Structure> parentChildren)
+        private FragmentExecutionPlan[] GetPlansForFragment(Fragment fragment, out ObservableCollection<Structure> structures)
         {
             // SOMEWHERE
             var children = new ObservableCollection<Structure>();
             var values = new ObservableCollection<Value>();
-            parentChildren = new ObservableCollection<Structure>();
+            structures = new ObservableCollection<Structure>();
 
-            var fragmentContext = new FragmentContext(parentChildren, children, values);
+            var fragmentContext = new FragmentContext(structures, children, values);
 
             var result = new List<FragmentExecutionPlan>();
             var fragmentExecutionPlanner = _fragmentExecutionPlannerSelector.Select(fragment);

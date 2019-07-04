@@ -7,15 +7,15 @@ namespace EtAlii.Ubigia.Api.Functional
     internal sealed class FragmentContext
     {
         public ObservableCollection<Structure> Children { get; }
-        public ObservableCollection<Structure> ParentChildren { get; }
+        public ObservableCollection<Structure> Structures { get; }
 
         public ObservableCollection<Value> Values { get; }
 
         public FragmentContext(
-            ObservableCollection<Structure> parentChildren,
+            ObservableCollection<Structure> structures,
             ObservableCollection<Structure> children, ObservableCollection<Value> values)
         {
-            ParentChildren = parentChildren;
+            Structures = structures;
             Children = children;
             Values  = values;
         }

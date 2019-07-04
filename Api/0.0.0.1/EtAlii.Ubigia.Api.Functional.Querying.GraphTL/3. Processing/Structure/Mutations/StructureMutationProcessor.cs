@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional
             var childChildren = new ObservableCollection<Structure>();
             var childValues = new ObservableCollection<Value>();
             var result = new Structure(structureMutation.Name, new ReadOnlyObservableCollection<Structure>(childChildren), new ReadOnlyObservableCollection<Value>(childValues));
-            fragmentContext.ParentChildren.Add(result);
+            fragmentContext.Structures.Add(result);
             output.OnNext(result);
         }
     }
