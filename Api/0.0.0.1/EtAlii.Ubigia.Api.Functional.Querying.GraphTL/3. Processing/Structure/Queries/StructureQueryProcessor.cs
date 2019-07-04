@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 case AnnotationType.Node:
                     if (await processResult.Output.LastOrDefaultAsync() is IInternalNode lastOutput)
                     {
-                        AddStructure(lastOutput, output, structureQuery, fragmentContext.ParentChildren);
+                        AddStructure(lastOutput, output, structureQuery, fragmentContext.Structures);
                     }
                     break;
                 case AnnotationType.Nodes:
@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Functional
                         .OfType<IInternalNode>()
                         .Subscribe(
                             onError: e => output.OnError(e),
-                            onNext: o => AddStructure(o, output, structureQuery, fragmentContext.ParentChildren),
+                            onNext: o => AddStructure(o, output, structureQuery, fragmentContext.Structures),
                             onCompleted: () => { });
                     break;
             }
@@ -46,21 +46,21 @@ namespace EtAlii.Ubigia.Api.Functional
             IInternalNode scriptOutput, 
             IObserver<Structure> queryOutput, 
             StructureQuery structureQuery, 
-            ObservableCollection<Structure> parentChildren)
+            ObservableCollection<Structure> structures)
         {
 
             var childChildren = new ObservableCollection<Structure>();
             var childValues = new ObservableCollection<Value>();
 
             var properties = (IPropertyDictionary)scriptOutput.GetProperties();
-            foreach (var property in properties)
+            foreach (var property in properties) 
             {
                 var value = new Value(property.Key, property.Value);
                 childValues.Add(value);
             }
 
             var result = new Structure(structureQuery.Name, new ReadOnlyObservableCollection<Structure>(childChildren), new ReadOnlyObservableCollection<Value>(childValues)); 
-            parentChildren.Add(result);
+            structures.Add(result);
             queryOutput.OnNext(result);
         }
 
