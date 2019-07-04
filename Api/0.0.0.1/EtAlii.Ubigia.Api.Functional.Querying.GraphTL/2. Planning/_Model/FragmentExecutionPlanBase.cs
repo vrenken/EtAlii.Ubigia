@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace EtAlii.Ubigia.Api.Functional 
+﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
     using System.Reactive.Disposables;

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
-    using System.Collections.Generic;
     using System.Threading.Tasks;
 
     internal abstract class FragmentExecutionPlan
