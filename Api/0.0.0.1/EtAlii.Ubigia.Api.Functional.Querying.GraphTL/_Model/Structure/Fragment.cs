@@ -6,12 +6,17 @@
         /// The Name of the Fragment.
         /// </summary>
         public string Name {get;}
-        public Annotation Annotation { get; }        
+        public Annotation Annotation { get; }
 
-        public Fragment(string name, Annotation annotation)
+        protected Fragment(string name, Annotation annotation)
         {
             Annotation = annotation;
             Name = name;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name}{(Annotation != null ? " " + Annotation : string.Empty)}";
         }
     }
 }

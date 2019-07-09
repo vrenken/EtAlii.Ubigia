@@ -15,5 +15,10 @@
             Type = type;
             Path = path;
         }
+
+        public override string ToString()
+        {
+            return $"@{Type}({Path?.ToString() ?? string.Empty})";
+        }
     }
 }
