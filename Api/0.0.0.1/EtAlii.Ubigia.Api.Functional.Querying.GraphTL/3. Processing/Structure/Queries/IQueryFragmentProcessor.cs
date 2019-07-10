@@ -9,6 +9,6 @@
             QueryFragment fragment, 
             QueryExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata, 
-            IObserver<Structure> output);
+            IObserver<Structure> fragmentOutput);
     }
 }
