@@ -9,10 +9,10 @@ namespace EtAlii.Ubigia.Api.Functional
             _queryProcessor = queryProcessor;
         }
 
-        public FragmentExecutionPlan Plan(Fragment fragment, FragmentContext fragmentContext)
+        public FragmentExecutionPlan Plan(Fragment fragment, FragmentMetadata fragmentMetadata)
         {
             var structureQuery = (StructureQuery)fragment;
-            return new QueryFragmentExecutionPlan(structureQuery, fragmentContext, _queryProcessor);
+            return new QueryFragmentExecutionPlan(structureQuery, fragmentMetadata, _queryProcessor);
         }
     }
 }
