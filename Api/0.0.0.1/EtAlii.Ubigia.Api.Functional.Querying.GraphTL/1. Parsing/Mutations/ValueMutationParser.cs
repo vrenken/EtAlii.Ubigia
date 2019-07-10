@@ -78,7 +78,7 @@
             {
                 var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
                 var kvp = _keyValuePairParser.Parse(kvpNode);
-                return new ValueMutation(kvp.Key, Annotation.None, kvp.Value);            
+                return new ValueMutation(kvp.Key, null, kvp.Value);            
             }
             else
             {
