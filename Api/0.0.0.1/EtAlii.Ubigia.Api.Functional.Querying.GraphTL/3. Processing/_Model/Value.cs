@@ -10,5 +10,10 @@
             Name = name;
             Object = @object;
         }
+
+        public override string ToString()
+        {
+            return $"{Name}: {Object ?? "NULL"}";
+        }
     }
 }
