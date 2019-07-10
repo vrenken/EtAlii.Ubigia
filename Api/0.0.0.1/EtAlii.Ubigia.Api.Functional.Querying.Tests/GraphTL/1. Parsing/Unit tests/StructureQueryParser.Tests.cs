@@ -116,9 +116,10 @@
             // Assert.
             Assert.NotNull(node);
             Assert.NotNull(query);
-            Assert.NotEmpty(query.Values);
-            Assert.IsType<StructureQuery>(query.Values[0]);
-            Assert.IsType<StructureQuery>(query.Values[1]);
+            Assert.Empty(query.Values);
+            Assert.NotEmpty(query.Children);
+            Assert.IsType<StructureQuery>(query.Children[0]);
+            Assert.IsType<StructureQuery>(query.Children[1]);
         }  
     }
 }
