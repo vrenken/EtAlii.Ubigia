@@ -9,10 +9,10 @@ namespace EtAlii.Ubigia.Api.Functional
             _mutationProcessor = mutationProcessor;
         }
 
-        public FragmentExecutionPlan Plan(Fragment fragment, FragmentContext fragmentContext)
+        public FragmentExecutionPlan Plan(Fragment fragment, FragmentMetadata fragmentMetadata)
         {
             var valueMutation = (ValueMutation)fragment;
-            return new MutationFragmentExecutionPlan(valueMutation, fragmentContext, _mutationProcessor);
+            return new MutationFragmentExecutionPlan(valueMutation, fragmentMetadata, _mutationProcessor);
         }
     }
 }
