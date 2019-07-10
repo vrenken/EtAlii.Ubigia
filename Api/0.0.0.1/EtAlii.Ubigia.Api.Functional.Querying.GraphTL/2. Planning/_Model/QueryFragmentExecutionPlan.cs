@@ -6,14 +6,12 @@
     internal class QueryFragmentExecutionPlan : FragmentExecutionPlanBase<QueryFragment>
     {
         private readonly IQueryFragmentProcessor _processor;
-        //public ObservableCollection<Structure> ParentChildren { get; } = new ObservableCollection<Structure>();
-        //public ObservableCollection<Value> ParentValues { get; } = new ObservableCollection<Value>();
 
         public QueryFragmentExecutionPlan(
             QueryFragment fragment,
-            FragmentContext fragmentContext,
+            FragmentMetadata fragmentMetadata,
             IQueryFragmentProcessor processor)
-            : base(fragment, fragmentContext)
+            : base(fragment, fragmentMetadata)
         {
             _processor = processor;
         }
@@ -23,9 +21,9 @@
             return typeof(QueryFragment);
         }
 
-        protected override Task Execute(FragmentContext fragmentContext, QueryExecutionScope executionScope, IObserver<Structure> output)
+        protected override Task Execute(FragmentMetadata fragmentMetadata, QueryExecutionScope executionScope, IObserver<Structure> output)
         {
-            return _processor.Process(Fragment, executionScope, fragmentContext, output);
+            return _processor.Process(Fragment, executionScope, fragmentMetadata, output);
         }
 
         public override string ToString()
