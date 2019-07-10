@@ -6,14 +6,12 @@
     internal class MutationFragmentExecutionPlan : FragmentExecutionPlanBase<MutationFragment>
     {
         private readonly IMutationFragmentProcessor _processor;
-        //public ObservableCollection<Structure> ParentChildren { get; } = new ObservableCollection<Structure>();
-        //public ObservableCollection<Value> ParentValues { get; } = new ObservableCollection<Value>();
 
         public MutationFragmentExecutionPlan(
             MutationFragment fragment,
-            FragmentContext fragmentContext,
+            FragmentMetadata fragmentMetadata,
             IMutationFragmentProcessor processor)
-            : base(fragment, fragmentContext)
+            : base(fragment, fragmentMetadata)
         {
             _processor = processor;
         }
@@ -23,9 +21,9 @@
             return typeof(QueryFragment);
         }
 
-        protected override Task Execute(FragmentContext fragmentContext, QueryExecutionScope executionScope, IObserver<Structure> output)
+        protected override Task Execute(FragmentMetadata fragmentMetadata, QueryExecutionScope executionScope, IObserver<Structure> output)
         {
-            return _processor.Process(this, executionScope, fragmentContext, output);
+            return _processor.Process(this, executionScope, fragmentMetadata, output);
         }
 
         public override string ToString()

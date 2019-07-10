@@ -11,16 +11,16 @@
     {
         public TFragment Fragment { get; }
 
-        private readonly FragmentContext _fragmentContext;
+        private readonly FragmentMetadata _fragmentMetadata;
 
         public override Type OutputType => _outputType.Value;
         private readonly Lazy<Type> _outputType;
 
         protected FragmentExecutionPlanBase(TFragment fragment, 
-            FragmentContext fragmentContext)
+            FragmentMetadata fragmentMetadata)
         {
             Fragment = fragment;
-            _fragmentContext = fragmentContext;
+            _fragmentMetadata = fragmentMetadata;
             _outputType = new Lazy<Type>(GetOutputType);
         }
 
@@ -30,7 +30,7 @@
         {
             var outputObservable = Observable.Create<Structure>(async outputObserver =>
             {
-                await Execute(_fragmentContext, executionScope, outputObserver);
+                await Execute(_fragmentMetadata, executionScope, outputObserver);
 
                 outputObserver.OnCompleted();
                 
@@ -39,6 +39,6 @@
 
             return Task.FromResult(outputObservable);
         }
-        protected abstract Task Execute(FragmentContext fragmentContext, QueryExecutionScope executionScope, IObserver<Structure> output);
+        protected abstract Task Execute(FragmentMetadata fragmentMetadata, QueryExecutionScope executionScope, IObserver<Structure> output);
     }
 }
