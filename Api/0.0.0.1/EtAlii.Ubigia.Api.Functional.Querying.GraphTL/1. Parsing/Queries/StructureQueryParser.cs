@@ -9,6 +9,7 @@
         public string Id { get; } = nameof(StructureQuery);
 
         private const string ChildStructureQueryId = "ChildStructureQuery"; 
+        private const string ChildStructureQueryHeaderId = "ChildStructureQueryHeader"; 
         public LpsParser Parser { get; }
 
         private readonly INodeValidator _nodeValidator;
@@ -79,8 +80,8 @@
 
             var name = (Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId));
 
-            var parserBody = _requirementParser.Parser + name + newLineParser.OptionalMultiple +
-                             _annotationParser.Parser.Maybe() + newLineParser.OptionalMultiple +
+            var parserBody = (_requirementParser.Parser + name + newLineParser.OptionalMultiple +
+                             _annotationParser.Parser.Maybe()).Wrap(ChildStructureQueryHeaderId) + newLineParser.OptionalMultiple +
                              scopedFragments;
 
             Parser = new LpsParser(Id, true, parserBody + newLineParser.OptionalMultiple);
@@ -97,35 +98,39 @@
         {
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
-            var requirementNode = _nodeFinder.FindFirst(node, _requirementParser.Id);
+            var headerNode = _nodeFinder.FindFirst(node, ChildStructureQueryHeaderId);
+            
+            var requirementNode = _nodeFinder.FindFirst(headerNode, _requirementParser.Id);
             var requirement = requirementNode != null ? _requirementParser.Parse(requirementNode) : Requirement.None;
 
-            var nameNode = _nodeFinder.FindFirst(node, NameId);
+            var nameNode = _nodeFinder.FindFirst(headerNode, NameId);
             var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var name = quotedTextNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(quotedTextNode);
             
-            var annotationMatch = _nodeFinder.FindFirst(node, _annotationParser.Id);
+            var annotationMatch = _nodeFinder.FindFirst(headerNode, _annotationParser.Id);
             var annotation = annotationMatch != null ? _annotationParser.Parse(annotationMatch) : null;
 
             var fragmentNodes = _nodeFinder.FindAll(node, FragmentsId);
 
-            var fragments = new List<QueryFragment>();
+            var values = new List<ValueQuery>();
+            var children = new List<StructureQuery>();
+            
             foreach (var fragmentNode in fragmentNodes)
             {
                 var child = fragmentNode.Children.Single(); 
                 if (child.Id == _valueQueryParser.Id)
                 {
                     var valueQuery = _valueQueryParser.Parse(child);
-                    fragments.Add(valueQuery);
+                    values.Add(valueQuery);
                 }
                 else if (child.Id == ChildStructureQueryId)
                 {
                     var childStructureQuery = Parse(child, ChildStructureQueryId, true);
-                    fragments.Add(childStructureQuery);
+                    children.Add(childStructureQuery);
                 }
             }
             
-            return new StructureQuery(name, annotation, requirement, fragments.ToArray());
+            return new StructureQuery(name, annotation, requirement, values.ToArray(), children.ToArray());
         }
 
         public bool CanParse(LpNode node)
