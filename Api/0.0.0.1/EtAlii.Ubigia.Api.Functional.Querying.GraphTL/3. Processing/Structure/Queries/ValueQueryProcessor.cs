@@ -65,7 +65,11 @@ namespace EtAlii.Ubigia.Api.Functional
             }
         }
 
-        public async Task Process(QueryFragment fragment, QueryExecutionScope executionScope, FragmentMetadata fragmentMetadata, IObserver<Structure> output)
+        public async Task Process(
+            QueryFragment fragment, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> fragmentOutput)
         {
             var valueQuery = (ValueQuery) fragment;
 
