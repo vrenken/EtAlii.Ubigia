@@ -6,6 +6,9 @@
     internal interface IMutationFragmentProcessor : IFragmentProcessor
     {
         Task Process(
-            MutationFragmentExecutionPlan plan, QueryExecutionScope executionScope, FragmentContext fragmentContext, IObserver<Structure> output);
+            MutationFragmentExecutionPlan plan, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> output);
     }
 }

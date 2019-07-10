@@ -5,6 +5,10 @@
 
     internal interface IQueryFragmentProcessor : IFragmentProcessor
     {
-        Task Process(QueryFragment fragment, QueryExecutionScope executionScope, FragmentContext fragmentContext, IObserver<Structure> output);
+        Task Process(
+            QueryFragment fragment, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> output);
     }
 }
