@@ -5,8 +5,6 @@
     /// </summary>
     public class Annotation
     {
-        public static Annotation None { get; } = new Annotation(AnnotationType.Nodes, null);
-        
         public AnnotationType Type { get; }
         public PathSubject Path { get; }
 
