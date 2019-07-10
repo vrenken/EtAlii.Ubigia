@@ -51,7 +51,7 @@
             // Assert.
             Assert.NotNull(node);
             var annotation = valueMutation.Annotation;
-            Assert.Equal(Annotation.None, annotation);
+            Assert.Null(annotation);
             Assert.NotNull(valueMutation);
             Assert.Equal("John",valueMutation.Value);
         }
@@ -70,7 +70,7 @@
             // Assert.
             Assert.NotNull(node);
             var annotation = valueMutation.Annotation;
-            Assert.Equal(Annotation.None, annotation);
+            Assert.Null(annotation);
             Assert.NotNull(valueMutation);
             Assert.Equal("John",valueMutation.Value);
         }
@@ -90,7 +90,6 @@
             Assert.NotNull(node);
             var annotation = valueMutation.Annotation;
             Assert.NotNull(annotation);
-            Assert.NotEqual(Annotation.None, annotation);
             Assert.Equal(AnnotationType.Value, annotation.Type);
             Assert.Equal(@"\\", annotation.Path.ToString());
         }

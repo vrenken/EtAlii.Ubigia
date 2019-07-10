@@ -83,6 +83,12 @@
             var selectQueryText = @"Time @node(time:Now)
                                {
                                     Millisecond @value()
+                                    Second @value(\)
+                                    Minute @value(\\)
+                                    Hour @value(\\\)
+                                    Day @value(\\\\)
+                                    Month @value(\\\\\)
+                                    Year @value(\\\\\\)
                                }";
 
             var selectQuery = _queryContext.Parse(selectQueryText).Query;
@@ -100,13 +106,25 @@
 
             // Assert.
             Assert.NotNull(result.Output);
-            Assert.NotNull(lastResult);
+            //Assert.NotNull(lastResult);
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             Assert.Same(structure, lastResult);
-            var milliSecond = structure.Values.SingleOrDefault(v => v.Name == "Millisecond");
-            Assert.NotNull(milliSecond);
-            Assert.IsType<int>(milliSecond.Object);
+
+            void AssertTimeValue(string valueName)
+            {
+                var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
+                Assert.NotNull(value);
+                Assert.IsType<int>(value.Object);
+            }
+
+            AssertTimeValue("Millisecond");
+            AssertTimeValue("Second");
+            AssertTimeValue("Minute");
+            AssertTimeValue("Hour");
+            AssertTimeValue("Day");
+            AssertTimeValue("Month");
+            AssertTimeValue("Year");
         }
 
         [Fact]
@@ -116,7 +134,7 @@
             var selectQueryText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     FirstName @value()
-                                    LastName @value(\)
+                                    LastName @value(\#FamilyName)
                                }";
 
             var selectQuery = _queryContext.Parse(selectQueryText).Query;
@@ -135,15 +153,54 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastResult);
+            
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             Assert.Same(structure, lastResult);
-            var firstName = structure.Values.SingleOrDefault(v => v.Name == "FirstName");
-            Assert.NotNull(firstName);
-            Assert.Equal("Tony", firstName.Object);
-            var lastName = structure.Values.SingleOrDefault(v => v.Name == "LastName");
-            Assert.NotNull(lastName);
-            Assert.Equal("Stark", lastName.Object);
+            
+            AssertValue("Tony", structure, "FirstName");
+            AssertValue("Stark", structure, "LastName");
+        }
+
+        
+        [Fact]
+        public async Task QueryProcessor_Process_Person_Nested()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+                               {
+                                    Data
+                                    {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                    }
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+            var lastResult = await result.Output.Cast<Structure>().LastOrDefaultAsync();
+
+            // Assert.
+            Assert.NotNull(result.Output);
+            Assert.NotNull(lastResult);
+            
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            structure = structure.Children.SingleOrDefault();
+            Assert.NotNull(structure);
+            Assert.Same(structure, lastResult);
+            
+            AssertValue("Tony", structure, "FirstName");
+            AssertValue("Stark", structure, "LastName");
         }
 
         [Fact]
@@ -153,7 +210,9 @@
             var selectQueryText = @"Person @nodes(Person:Doe/*)
                                {
                                     FirstName @value()
-                                    LastName @value(\#LastName)
+                                    LastName @value(\#FamilyName)
+                                    Nickname
+                                    Birthdate
                                }";
 
             var selectQuery = _queryContext.Parse(selectQueryText).Query;
@@ -172,28 +231,31 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastResult);
+            
             Assert.Equal(2, result.Structure.Count);
             
             var firstPerson = result.Structure[0];
             Assert.NotNull(firstPerson);
-            //Assert.Same(firstPerson, lastResult);
-            var firstName = firstPerson.Values.SingleOrDefault(v => v.Name == "FirstName");
-            Assert.NotNull(firstName);
-            Assert.Equal("Doe", firstName.Object);
-            var lastName = firstPerson.Values.SingleOrDefault(v => v.Name == "LastName");
-            Assert.NotNull(lastName);
-            Assert.Equal("John", lastName.Object);
+            AssertValue("John", firstPerson, "FirstName");
+            AssertValue("Doe", firstPerson, "LastName");
+            AssertValue(DateTime.Parse("1978-07-28"), firstPerson, "Birthdate");
+            AssertValue("Johnny", firstPerson, "Nickname");
 
             var secondPerson = result.Structure[1];
             Assert.NotNull(secondPerson);
-            Assert.Same(secondPerson, lastResult);
-            firstName = secondPerson.Values.SingleOrDefault(v => v.Name == "FirstName");
-            Assert.NotNull(firstName);
-            Assert.Equal("Doe", firstName.Object);
-            lastName = secondPerson.Values.SingleOrDefault(v => v.Name == "LastName");
-            Assert.NotNull(lastName);
-            Assert.Equal("Jane", lastName.Object);
+            AssertValue("Jane", secondPerson, "FirstName");
+            AssertValue("Doe", secondPerson, "LastName");
+            AssertValue(DateTime.Parse("1980-03-04"), secondPerson, "Birthdate");
+            AssertValue("Janey", secondPerson, "Nickname");
 
+        }
+
+        private void AssertValue(object expected, Structure structure, string valueName)
+        {
+            var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
+            Assert.NotNull(value);
+            Assert.Equal(expected, value.Object);
+            
         }
     }
 }
