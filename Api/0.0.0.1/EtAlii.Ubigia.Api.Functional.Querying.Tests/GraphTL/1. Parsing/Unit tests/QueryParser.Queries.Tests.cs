@@ -375,6 +375,85 @@
 
             //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Children.ToArray()[0].Annotation);
         }
+        
+        [Fact]
+        public void QueryParser_Parse_Query_Nested_04()
+        {
+            // Arrange.
+            var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
+            var queryText = @"Person @nodes(Person:Stark/Tony)
+                               {
+                                    Data
+                                    {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                    }
+                               }";
 
+
+            // Act.
+            var parseResult = parser.Parse(queryText);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
+            var structureQuery = (StructureQuery)parseResult.Query.Structure;
+            Assert.Empty(structureQuery.Values); 
+            Assert.Single(structureQuery.Children); 
+            Assert.Equal("Data", structureQuery.Children[0].Name); 
+            Assert.Null(structureQuery.Children[0].Annotation); 
+            Assert.Equal(2, structureQuery.Children[0].Values.Length); 
+            Assert.Equal("FirstName", structureQuery.Children[0].Values[0].Name); 
+            Assert.Equal("LastName", structureQuery.Children[0].Values[1].Name); 
+        }
+        
+        
+        [Fact]
+        public void QueryParser_Parse_Query_Nested_05()
+        {
+            // Arrange.
+            var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
+            var queryText = @"
+            Person @node(person:Doe/John) 
+            {
+                age,
+                name @node(\#FamilyName)
+                {
+                    first @value(/FirstName),
+                    last @value()
+                },
+                company,
+                email,
+                phone
+            }";
+
+            // Act.
+            var parseResult = parser.Parse(queryText);
+
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Query);
+            Assert.NotNull(parseResult.Query.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Query.Structure);
+            var structureQuery = (StructureQuery)parseResult.Query.Structure;
+            Assert.Equal(4, structureQuery.Values.Length); 
+            Assert.Single(structureQuery.Children); 
+            Assert.Equal("name", structureQuery.Children[0].Name); 
+            Assert.Equal("@Node(\\#FamilyName)", structureQuery.Children[0].Annotation.ToString()); 
+            Assert.Equal(2, structureQuery.Children[0].Values.Length); 
+            Assert.Equal("first", structureQuery.Children[0].Values[0].Name); 
+            Assert.Equal("@Value(/FirstName)", structureQuery.Children[0].Values[0].Annotation.ToString()); 
+            Assert.Equal("last", structureQuery.Children[0].Values[1].Name); 
+            Assert.Equal("@Value()", structureQuery.Children[0].Values[1].Annotation.ToString()); 
+            Assert.Equal("age", structureQuery.Values[0].Name); 
+            Assert.Equal("company", structureQuery.Values[1].Name); 
+            Assert.Equal("email", structureQuery.Values[2].Name); 
+            Assert.Equal("phone", structureQuery.Values[3].Name); 
+
+        }
     }
 }
