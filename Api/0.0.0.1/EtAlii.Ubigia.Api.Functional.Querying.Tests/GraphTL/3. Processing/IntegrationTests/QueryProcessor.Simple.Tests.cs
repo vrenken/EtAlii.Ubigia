@@ -148,7 +148,7 @@
 
             // Act.
             var result = await processor.Process(selectQuery);
-            var lastResult = await result.Output.Cast<Structure>().LastOrDefaultAsync();
+            var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
@@ -187,7 +187,7 @@
 
             // Act.
             var result = await processor.Process(selectQuery);
-            var lastResult = await result.Output.Cast<Structure>().LastOrDefaultAsync();
+            var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
@@ -226,7 +226,7 @@
 
             // Act.
             var result = await processor.Process(selectQuery);
-            var lastResult = await result.Output.Cast<Structure>().LastOrDefaultAsync();
+            var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
