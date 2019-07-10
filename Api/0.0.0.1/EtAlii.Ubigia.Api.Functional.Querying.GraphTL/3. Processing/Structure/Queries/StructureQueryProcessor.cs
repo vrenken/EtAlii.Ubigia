@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
-    using System.Collections.ObjectModel;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
@@ -15,54 +14,50 @@ namespace EtAlii.Ubigia.Api.Functional
             _scriptContext = scriptContext;
         }
 
-        public async Task Process(QueryFragment fragment, QueryExecutionScope executionScope, FragmentContext fragmentContext, IObserver<Structure> output)
+        public async Task Process(
+            QueryFragment fragment, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> fragmentOutput)
         {
             var structureQuery = (StructureQuery) fragment;
-            
-            var script = new Script(new Sequence(new SequencePart[] {structureQuery.Annotation.Path}));
-            var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
 
-            switch (structureQuery.Annotation.Type)
+            var annotation = structureQuery.Annotation;
+            if (annotation != null)
             {
-                case AnnotationType.Node:
-                    if (await processResult.Output.LastOrDefaultAsync() is IInternalNode lastOutput)
-                    {
-                        AddStructure(lastOutput, output, structureQuery, fragmentContext.Structures);
-                    }
-                    break;
-                case AnnotationType.Nodes:
-                    processResult.Output
-                        .OfType<IInternalNode>()
-                        .Subscribe(
-                            onError: e => output.OnError(e),
-                            onNext: o => AddStructure(o, output, structureQuery, fragmentContext.Structures),
-                            onCompleted: () => { });
-                    break;
-            }
+                var script = new Script(new Sequence(new SequencePart[] {annotation.Path}));
+                var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
 
+                switch (annotation.Type)
+                {
+                    case AnnotationType.Node:
+                        if (await processResult.Output.SingleOrDefaultAsync() is IInternalNode lastOutput)
+                        {
+                            AddStructure(lastOutput, fragmentOutput, structureQuery, fragmentMetadata);
+                        }
+                        break;
+                    case AnnotationType.Nodes:
+                        processResult.Output
+                            .OfType<IInternalNode>()
+                            .Subscribe(
+                                onError: fragmentOutput.OnError,
+                                onNext: o => AddStructure(o, fragmentOutput, structureQuery, fragmentMetadata),
+                                onCompleted: () => { });
+                        break;
+                }
+            }
         }
 
         private void AddStructure(
-            IInternalNode scriptOutput, 
-            IObserver<Structure> queryOutput, 
+            IInternalNode node, 
+            IObserver<Structure> fragmentOutput, 
             StructureQuery structureQuery, 
-            ObservableCollection<Structure> structures)
+            FragmentMetadata fragmentMetadata)
         {
 
-            var childChildren = new ObservableCollection<Structure>();
-            var childValues = new ObservableCollection<Value>();
-
-            var properties = (IPropertyDictionary)scriptOutput.GetProperties();
-            foreach (var property in properties) 
-            {
-                var value = new Value(property.Key, property.Value);
-                childValues.Add(value);
-            }
-
-            var result = new Structure(structureQuery.Name, new ReadOnlyObservableCollection<Structure>(childChildren), new ReadOnlyObservableCollection<Value>(childValues)); 
-            structures.Add(result);
-            queryOutput.OnNext(result);
+            var item = new Structure(structureQuery.Name, node.Type, null, node);
+            fragmentMetadata.Items.Add(item);
+            fragmentOutput.OnNext(item);
         }
-
     }
 }
