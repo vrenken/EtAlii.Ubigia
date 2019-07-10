@@ -1,8 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional 
 {
     using System.Collections.Generic;
-    using System.Collections.ObjectModel;
-    using EtAlii.xTechnology.Collections;
 
     internal class QueryExecutionPlanner : IQueryExecutionPlanner
     {
@@ -13,54 +11,51 @@ namespace EtAlii.Ubigia.Api.Functional
             _fragmentExecutionPlannerSelector = fragmentExecutionPlannerSelector;
         }
 
-        public FragmentExecutionPlan[] Plan(Query query, out ObservableCollection<Structure> rootStructures)
+        public void Plan(Query query, out FragmentMetadata rootFragmentMetadata, out FragmentExecutionPlan[] fragmentExecutionPlans)
         {
             var fragment = query.Structure;
-            return GetPlansForFragment(fragment, out rootStructures);
+            GetPlansForFragment(fragment, null, out rootFragmentMetadata, out fragmentExecutionPlans);
         }
 
-        private FragmentExecutionPlan[] GetPlansForFragment(Fragment fragment, out ObservableCollection<Structure> structures)
+        private void GetPlansForFragment(Fragment fragment, FragmentMetadata parent, out FragmentMetadata fragmentMetadata, out FragmentExecutionPlan[] fragmentExecutionPlans)
         {
-            // SOMEWHERE
-            var children = new ObservableCollection<Structure>();
-            var values = new ObservableCollection<Value>();
-            structures = new ObservableCollection<Structure>();
-
-            var fragmentContext = new FragmentContext(structures, children, values);
+            // TODO: Remove to end and include the children. Remove the static FragmentMetadata.SetChildFragments method. 
+            fragmentMetadata = new FragmentMetadata(fragment, parent);
 
             var result = new List<FragmentExecutionPlan>();
             var fragmentExecutionPlanner = _fragmentExecutionPlannerSelector.Select(fragment);
-            var plan = fragmentExecutionPlanner.Plan(fragment, fragmentContext);
-
-            //structure = new Structure(fragment.Name, new ReadOnlyObservableCollection<Structure>(children), new ReadOnlyObservableCollection<Value>(values));
+            var plan = fragmentExecutionPlanner.Plan(fragment, fragmentMetadata);
             
             result.Add(plan);
             
             switch(fragment)
             {
                 case StructureQuery structureQuery:
-                    AddStructures(structureQuery.Values, children, result);
+                    AddStructures(structureQuery.Values, result, fragmentMetadata);
+                    AddStructures(structureQuery.Children, result, fragmentMetadata);
                     break;
                 case StructureMutation structureMutation: 
-                    AddStructures(structureMutation.Values, children, result);
+                    AddStructures(structureMutation.Values, result, fragmentMetadata);
                     break;
             }
 
-            return result.ToArray();
+            fragmentExecutionPlans = result.ToArray();
         }
 
-        private void AddStructures<TFragment>(TFragment[] fragments, ObservableCollection<Structure> children, List<FragmentExecutionPlan> result)
+        private void AddStructures<TFragment>(TFragment[] fragments, List<FragmentExecutionPlan> result, FragmentMetadata fragmentMetadata)
             where TFragment: Fragment
         {
+            var childFragmentMetadatas = new List<FragmentMetadata>();
+            
             foreach (var fragment in fragments)
             {
-                if (fragment is StructureQuery || fragment is StructureMutation)
-                {
-                    var childPlans = GetPlansForFragment(fragment, out var childStructure);
-                    result.AddRange(childPlans);
-                    children.AddRange(childStructure);
-                }
+                GetPlansForFragment(fragment, fragmentMetadata, out var childFragmentMetadata, out var childPlans);
+                
+                childFragmentMetadatas.Add(childFragmentMetadata);
+                result.AddRange(childPlans);
             }
+
+            FragmentMetadata.SetChildFragments(fragmentMetadata, childFragmentMetadatas.ToArray());
         }
     }
 }
