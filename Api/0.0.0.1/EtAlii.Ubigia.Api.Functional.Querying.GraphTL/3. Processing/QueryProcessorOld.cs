@@ -8,12 +8,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal class QueryProcessor : IQueryProcessor
+    internal class QueryProcessorOld : IQueryProcessorOld
     {
         private readonly IQueryExecutionPlanner _queryExecutionPlanner;
         private readonly IQueryProcessorConfiguration _configuration;
 
-        public QueryProcessor(
+        public QueryProcessorOld(
             IQueryExecutionPlanner queryExecutionPlanner,
             IQueryProcessorConfiguration configuration)
         {
