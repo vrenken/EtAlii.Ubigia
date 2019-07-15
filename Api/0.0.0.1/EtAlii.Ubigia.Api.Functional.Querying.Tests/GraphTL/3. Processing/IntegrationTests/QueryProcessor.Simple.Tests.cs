@@ -77,7 +77,56 @@
         
 
         [Fact]
-        public async Task QueryProcessor_Process_Time_Now()
+        public async Task QueryProcessor_Process_Time_Now_By_Structure()
+        {
+            // Arrange.
+            var queryText = @"Time @node(time:Now)
+                               {
+                                    Millisecond @value()
+                                    Second @value(\)
+                                    Minute @value(\\)
+                                    Hour @value(\\\)
+                                    Day @value(\\\\)
+                                    Month @value(\\\\\)
+                                    Year @value(\\\\\\)
+                               }";
+
+            var query = _queryContext.Parse(queryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(query);
+
+            // Assert.
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+
+            void AssertTimeValue(string valueName)
+            {
+                var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
+                Assert.NotNull(value);
+                Assert.IsType<int>(value.Object);
+            }
+
+            AssertTimeValue("Millisecond");
+            AssertTimeValue("Second");
+            AssertTimeValue("Minute");
+            AssertTimeValue("Hour");
+            AssertTimeValue("Day");
+            AssertTimeValue("Month");
+            AssertTimeValue("Year");
+        }
+
+        
+
+        [Fact]
+        public async Task QueryProcessor_Process_Time_Now_By_Last_Output()
         {
             // Arrange.
             var selectQueryText = @"Time @node(time:Now)
@@ -106,29 +155,46 @@
 
             // Assert.
             Assert.NotNull(result.Output);
-            //Assert.NotNull(lastResult);
+            Assert.NotNull(lastResult);
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             Assert.Same(structure, lastResult);
-
-            void AssertTimeValue(string valueName)
-            {
-                var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
-                Assert.NotNull(value);
-                Assert.IsType<int>(value.Object);
-            }
-
-            AssertTimeValue("Millisecond");
-            AssertTimeValue("Second");
-            AssertTimeValue("Minute");
-            AssertTimeValue("Hour");
-            AssertTimeValue("Day");
-            AssertTimeValue("Month");
-            AssertTimeValue("Year");
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Person()
+        public async Task QueryProcessor_Process_Person_By_Structure()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+                               {
+                                    FirstName @value()
+                                    LastName @value(\#FamilyName)
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+
+            // Assert.
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            
+            AssertValue("Tony", structure, "FirstName");
+            AssertValue("Stark", structure, "LastName");
+        }
+
+        
+        
+        [Fact]
+        public async Task QueryProcessor_Process_Person_By_Last_Output()
         {
             // Arrange.
             var selectQueryText = @"Person @nodes(Person:Stark/Tony)
@@ -157,14 +223,48 @@
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             Assert.Same(structure, lastResult);
+        }
+
+        
+        [Fact]
+        public async Task QueryProcessor_Process_Person_Nested_By_Structure()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+                               {
+                                    Data
+                                    {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                    }
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+
+            // Assert.
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            structure = structure.Children.SingleOrDefault();
+            Assert.NotNull(structure);
             
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
         }
 
         
+        
         [Fact]
-        public async Task QueryProcessor_Process_Person_Nested()
+        public async Task QueryProcessor_Process_Person_Nested_By_Last_Output()
         {
             // Arrange.
             var selectQueryText = @"Person @nodes(Person:Stark/Tony)
@@ -196,15 +296,56 @@
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
-            Assert.NotNull(structure);
             Assert.Same(structure, lastResult);
-            
-            AssertValue("Tony", structure, "FirstName");
-            AssertValue("Stark", structure, "LastName");
+
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Persons()
+        public async Task QueryProcessor_Process_Persons_By_Structure()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Doe/*)
+                               {
+                                    FirstName @value()
+                                    LastName @value(\#FamilyName)
+                                    Nickname
+                                    Birthdate
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+            var lastResult = await result.Output.LastOrDefaultAsync();
+
+            // Assert.
+            Assert.Equal(2, result.Structure.Count);
+            
+            var firstPerson = result.Structure[0];
+            Assert.NotNull(firstPerson);
+            AssertValue("John", firstPerson, "FirstName");
+            AssertValue("Doe", firstPerson, "LastName");
+            AssertValue(DateTime.Parse("1978-07-28"), firstPerson, "Birthdate");
+            AssertValue("Johnny", firstPerson, "Nickname");
+
+            var secondPerson = result.Structure[1];
+            Assert.NotNull(secondPerson);
+            AssertValue("Jane", secondPerson, "FirstName");
+            AssertValue("Doe", secondPerson, "LastName");
+            AssertValue(DateTime.Parse("1980-03-04"), secondPerson, "Birthdate");
+            AssertValue("Janey", secondPerson, "Nickname");
+
+        }
+        
+        [Fact]
+        public async Task QueryProcessor_Process_Persons_By_Last_Output()
         {
             // Arrange.
             var selectQueryText = @"Person @nodes(Person:Doe/*)
@@ -231,23 +372,6 @@
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastResult);
-            
-            Assert.Equal(2, result.Structure.Count);
-            
-            var firstPerson = result.Structure[0];
-            Assert.NotNull(firstPerson);
-            AssertValue("John", firstPerson, "FirstName");
-            AssertValue("Doe", firstPerson, "LastName");
-            AssertValue(DateTime.Parse("1978-07-28"), firstPerson, "Birthdate");
-            AssertValue("Johnny", firstPerson, "Nickname");
-
-            var secondPerson = result.Structure[1];
-            Assert.NotNull(secondPerson);
-            AssertValue("Jane", secondPerson, "FirstName");
-            AssertValue("Doe", secondPerson, "LastName");
-            AssertValue(DateTime.Parse("1980-03-04"), secondPerson, "Birthdate");
-            AssertValue("Janey", secondPerson, "Nickname");
-
         }
 
         private void AssertValue(object expected, Structure structure, string valueName)
