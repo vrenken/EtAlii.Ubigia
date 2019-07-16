@@ -26,7 +26,7 @@
 
         protected abstract Type GetOutputType();
 
-        public override Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope)
+        internal override Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope)
         {
             var outputObservable = Observable.Create<Structure>(async outputObserver =>
             {

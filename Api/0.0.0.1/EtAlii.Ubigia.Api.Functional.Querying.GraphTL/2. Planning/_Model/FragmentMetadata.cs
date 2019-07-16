@@ -5,8 +5,9 @@
     internal sealed class FragmentMetadata
     {
         public ObservableCollection<Structure> Items { get; } = new ObservableCollection<Structure>();
-
-        public FragmentMetadata[] Children { get; private set; }
+        
+        public ReadOnlyObservableCollection<FragmentMetadata> Children { get; }
+        private readonly ObservableCollection<FragmentMetadata> _editableChildren;
 
         public FragmentMetadata Parent { get; }
 
@@ -18,11 +19,17 @@
         {
             Source = source;
             Parent = parent;
+            
+            _editableChildren = new ObservableCollection<FragmentMetadata>();
+            Children = new ReadOnlyObservableCollection<FragmentMetadata>(_editableChildren);
         }
         
-        internal static void SetChildFragments(FragmentMetadata fragmentMetadata, FragmentMetadata[] children)
+        internal void AddChildFragments(FragmentMetadata[] children)
         {
-            fragmentMetadata.Children = children;
+            foreach (var child in children)
+            {
+                _editableChildren.Add(child);
+            }
         }
 
         public override string ToString()

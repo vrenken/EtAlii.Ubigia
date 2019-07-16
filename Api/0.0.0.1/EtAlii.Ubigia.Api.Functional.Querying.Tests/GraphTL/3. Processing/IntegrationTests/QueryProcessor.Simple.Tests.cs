@@ -6,7 +6,6 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
-    using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
@@ -80,7 +79,7 @@
         public async Task QueryProcessor_Process_Time_Now_By_Structure()
         {
             // Arrange.
-            var queryText = @"Time @node(time:Now)
+            var queryText = @"Time @node(time:now)
                                {
                                     Millisecond @value()
                                     Second @value(\)
@@ -104,6 +103,7 @@
             var result = await processor.Process(query);
 
             // Assert.
+            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
 
@@ -111,7 +111,8 @@
             {
                 var value = structure.Values.SingleOrDefault(v => v.Name == valueName);
                 Assert.NotNull(value);
-                Assert.IsType<int>(value.Object);
+                Assert.IsType<string>(value.Object);
+                Assert.True(((string)value.Object).All(Char.IsDigit));
             }
 
             AssertTimeValue("Millisecond");
@@ -129,7 +130,7 @@
         public async Task QueryProcessor_Process_Time_Now_By_Last_Output()
         {
             // Arrange.
-            var selectQueryText = @"Time @node(time:Now)
+            var selectQueryText = @"Time @node(time:now)
                                {
                                     Millisecond @value()
                                     Second @value(\)
@@ -151,7 +152,7 @@
 
             // Act.
             var result = await processor.Process(selectQuery);
-            var lastResult = await result.Output.Cast<INode>().LastOrDefaultAsync();
+            var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
@@ -184,6 +185,7 @@
             var result = await processor.Process(selectQuery);
 
             // Assert.
+            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             
@@ -252,6 +254,7 @@
             var result = await processor.Process(selectQuery);
 
             // Assert.
+            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
@@ -287,13 +290,98 @@
 
             // Act.
             var result = await processor.Process(selectQuery);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            var lastResult = await result.Output;
 
             // Assert.
             Assert.NotNull(result.Output);
             Assert.NotNull(lastResult);
             
             var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            structure = structure.Children.SingleOrDefault();
+            Assert.Same(structure, lastResult);
+
+        }
+
+                
+        [Fact]
+        public async Task QueryProcessor_Process_Person_Nested_Double_By_Structure()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+                               {
+                                    Data1
+                                    {
+                                        Data2
+                                        {
+                                            FirstName @value()
+                                            LastName @value(\#FamilyName)
+                                        }
+                                    }
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+
+            // Assert.
+            await result.Output;
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            structure = structure.Children.SingleOrDefault();
+            Assert.NotNull(structure);
+            structure = structure.Children.SingleOrDefault();
+            Assert.NotNull(structure);
+            
+            AssertValue("Tony", structure, "FirstName");
+            AssertValue("Stark", structure, "LastName");
+        }
+
+
+        [Fact]
+        public async Task QueryProcessor_Process_Person_Nested_Double_By_Last_Output()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+                               {
+                                    Data1
+                                    {
+                                        Data2
+                                        {
+                                            FirstName @value()
+                                            LastName @value(\#FamilyName)
+                                        }
+                                    }
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+            var lastResult = await result.Output;
+
+            // Assert.
+            Assert.NotNull(result.Output);
+            Assert.NotNull(lastResult);
+            
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            structure = structure.Children.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
             Assert.Same(structure, lastResult);

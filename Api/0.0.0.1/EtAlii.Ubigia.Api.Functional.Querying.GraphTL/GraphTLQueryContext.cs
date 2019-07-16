@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
 
     internal class GraphTLQueryContext : IGraphTLQueryContext
     {
@@ -28,7 +29,7 @@
             return parser.Parse(text);
         }
 
-        public IObservable<QueryProcessingResult> Process(Query query, IQueryScope scope)
+        public Task<QueryProcessingResult> Process(Query query, IQueryScope scope)
         {
             var configuration = new QueryProcessorConfiguration()
                 .Use(scope)
@@ -37,7 +38,7 @@
             return processor.Process(query);
         }
 
-        public IObservable<QueryProcessingResult> Process(string[] text, IQueryScope scope)
+        public Task<QueryProcessingResult> Process(string[] text, IQueryScope scope)
         {
             var queryParseResult = Parse(string.Join(Environment.NewLine, text));
 
@@ -51,18 +52,18 @@
         }
 
 
-        public IObservable<QueryProcessingResult> Process(string text, params object[] args)
+        public Task<QueryProcessingResult> Process(string text, params object[] args)
         {
             text = string.Format(text, args);
             return Process(text);
         }
 
-        public IObservable<QueryProcessingResult> Process(string[] text)
+        public Task<QueryProcessingResult> Process(string[] text)
         {
             return Process(string.Join(Environment.NewLine, text));
         }
 
-        public IObservable<QueryProcessingResult> Process(string text)
+        public Task<QueryProcessingResult> Process(string text)
         {
             var queryParseResult = Parse(text);
 

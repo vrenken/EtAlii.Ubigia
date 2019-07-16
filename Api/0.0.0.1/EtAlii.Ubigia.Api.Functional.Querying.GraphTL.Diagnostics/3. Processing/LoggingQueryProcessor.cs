@@ -2,6 +2,7 @@
 {
     using System;
     using System.Diagnostics;
+    using System.Threading.Tasks;
     using EtAlii.xTechnology.Logging;
 
     [DebuggerStepThrough]
@@ -18,13 +19,13 @@
             _logger = logger;
         }
 
-        public IObservable<QueryProcessingResult> Process(Query query)
+        public async Task<QueryProcessingResult> Process(Query query)
         {
             var message = "Processing query (async)";
             _logger.Info(message);
             var start = Environment.TickCount;
 
-            var result = _processor.Process(query);
+            var result = await _processor.Process(query);
 
             message =
                 $"Processed query (Duration: {TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds}ms)";
