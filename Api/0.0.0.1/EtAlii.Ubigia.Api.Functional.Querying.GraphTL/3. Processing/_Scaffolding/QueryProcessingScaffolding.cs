@@ -21,6 +21,8 @@
             container.Register<IValueMutationProcessor, ValueMutationProcessor>();
             container.Register<IStructureMutationProcessor, StructureMutationProcessor>();
             
+            container.Register<IRelatedIdentityFinder, RelatedIdentityFinder>();
+
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
             container.Register(() => _configuration.ScriptContext);

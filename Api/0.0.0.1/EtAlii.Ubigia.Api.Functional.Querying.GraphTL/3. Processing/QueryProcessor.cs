@@ -21,49 +21,31 @@
             _configuration = configuration;
         }
 
-        public IObservable<QueryProcessingResult> Process(Query query)
+        public Task<QueryProcessingResult> Process(Query query)
         {
-            var queryOutput = CreateObservableQueryResult(query);
+            // We need to create execution plans for all of the sequences.
+            _queryExecutionPlanner.Plan(query, out var rootFragmentMetadata, out var executionPlans);
 
-            // We want all subqueryions to have access to all results.
-            queryOutput = queryOutput
-                //.SubscribeOn(NewThreadScheduler.Default)
-                //.ObserveOn(NewThreadScheduler.Default)
-                .ToHotObservable();
+            var totalExecutionPlans = executionPlans.Length;
 
-            return queryOutput;
-        }
+            var result = new QueryProcessingResult(query, 
+                totalExecutionPlans, 
+                new ReadOnlyObservableCollection<Structure>(rootFragmentMetadata.Items));
 
-//        private int CountSteps(IEnumerable<FragmentContext> fragments)
-//        {
-//            var count = 1;
-//            
-//            foreach (var fragment in fragments)
-//            {
-//                count += CountSteps(fragment.Children);
-//            }
-//
-//            return count;
-//        }
-        
-        private IObservable<QueryProcessingResult> CreateObservableQueryResult(Query query)
-        {
-            var observableQueryOutput = Observable.Create<QueryProcessingResult>(async queryOutput =>
+            var observableQueryOutput = Observable.Create<Structure>(async queryOutput =>
             {
                 try
                 {
-                    // We need to create execution plans for all of the sequences.
-                    _queryExecutionPlanner.Plan(query, out var rootFragmentMetadata, out var executionPlans);
-                    //var structure = query.Structure;
-
-                    var totalExecutionPlans = executionPlans.Length;//.Select(plan => plan is Stru) CountSteps(rootStructures);
 
                     for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
                     {
                         //var sequence = sequences[executionPlanIndex];
                         var executionPlan = executionPlans[executionPlanIndex];
-                        await ProcessExecutionPlan(query, rootFragmentMetadata, executionPlan, executionPlanIndex, totalExecutionPlans, queryOutput);
+
+                        result.Update(executionPlanIndex, executionPlan);
+                        await ProcessExecutionPlan(executionPlan, queryOutput);
                     }
+                    result.Update(totalExecutionPlans, null);
 
                     // After iterating through the fragment query observation has ended. Please keep in mind 
                     // this is not the same for all sequence observables. The last one could still be receiving results. 
@@ -82,16 +64,16 @@
 
                 return Disposable.Empty; 
             });
-            return observableQueryOutput;
+
+            result.Update(observableQueryOutput);
+
+            return Task.FromResult(result);
         }
 
         private async Task ProcessExecutionPlan(
-            Query query,
-            FragmentMetadata rootFragmentMetadata, 
             FragmentExecutionPlan executionPlan, 
-            int executionPlanIndex, 
-            int totalExecutionPlans, 
-            IObserver<QueryProcessingResult> queryOutput)
+            IObserver<Structure> queryOutput
+            )
         {
             var executionScope = new QueryExecutionScope();
 
@@ -107,15 +89,14 @@
                 //.ObserveOn(CurrentThreadScheduler.Instance)
                 .ToHotObservable();
 
-            var sequenceResult = new QueryProcessingResult(query, executionPlan, executionPlanIndex, totalExecutionPlans, executionPlanOutput, new ReadOnlyObservableCollection<Structure>(rootFragmentMetadata.Items));
-            queryOutput.OnNext(sequenceResult);
+            //queryOutput.OnNext(sequenceResult);
 
             Exception exception = null;
             var continueEvent = new ManualResetEvent(false);
 
             // We need to halt execution of the next sequence until the current one has finished.
             executionPlanOutput.Subscribe(
-                onNext: o => { }, 
+                onNext: o => queryOutput.OnNext(o), 
                 onError: e =>
                 {
                     exception = e;
@@ -127,25 +108,6 @@
             {
                 throw exception;
             }
-
-//            if (originalObservableQueryOutput != null)
-//            {
-//                // But also if we don't attach the original observable sequence output.
-//                continueEvent.Reset();
-//                originalObservableQueryOutput.Subscribe(
-//                    onNext: o => { }, 
-//                    onError: e =>
-//                    {
-//                        exception = e;
-//                        continueEvent.Set();
-//                    }, 
-//                    onCompleted: () => continueEvent.Set());
-//                continueEvent.WaitOne();
-//                if (exception != null)
-//                {
-//                    throw exception;
-//                }
-//            }
         }
     }
 }

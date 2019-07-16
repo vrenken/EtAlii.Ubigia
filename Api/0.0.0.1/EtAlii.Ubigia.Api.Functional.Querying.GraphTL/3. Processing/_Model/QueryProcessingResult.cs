@@ -2,30 +2,51 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
 
-    public class QueryProcessingResult
+    public class QueryProcessingResult : INotifyPropertyChanged
     {
         public Query Query { get; }
-        private FragmentExecutionPlan ExecutionPlan { get;  }
-        public int Step { get; }
+        
+        public FragmentExecutionPlan CurrentExecutionPlan { get => _currentExecutionPlan; set => SetProperty(ref _currentExecutionPlan, value); }
+        private FragmentExecutionPlan _currentExecutionPlan;
+
+        public int Step { get => _step; set => SetProperty(ref _step, value); }
+        private int _step;
+
         public int Total { get; }
 
-        public IObservable<Structure> Output { get; }
+        public IObservable<Structure> Output { get; private set; }
         public ReadOnlyObservableCollection<Structure> Structure {get; }
 
         internal QueryProcessingResult(Query query,
-            FragmentExecutionPlan executionPlan,
-            int step,
             int total,
-            IObservable<Structure> output, 
             ReadOnlyObservableCollection<Structure> structure)
         {
             Query = query;
-            ExecutionPlan = executionPlan;
-            Step = step;
             Total = total;
-            Output = output;
             Structure = structure;
         }
+
+        internal void Update(IObservable<Structure> output)
+        {
+            Output = output;
+        }
+        internal void Update(int step, FragmentExecutionPlan currentExecutionPlan)
+        {
+            CurrentExecutionPlan = currentExecutionPlan;
+            Step = step;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        
+        private void SetProperty<T>(ref T storage, T newValue, [CallerMemberName] string propertyName = null)
+        {
+            if (Equals(storage, newValue)) return;
+            storage = newValue;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
     }
 }

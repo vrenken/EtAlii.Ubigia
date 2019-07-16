@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    using System;
+    using System.Threading.Tasks;
 
     internal interface IQueryProcessor
     {
-        IObservable<QueryProcessingResult> Process(Query query);
+        Task<QueryProcessingResult> Process(Query query);
     }
 }

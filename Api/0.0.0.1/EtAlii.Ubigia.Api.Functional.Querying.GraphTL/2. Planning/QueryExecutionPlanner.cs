@@ -55,7 +55,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 result.AddRange(childPlans);
             }
 
-            FragmentMetadata.SetChildFragments(fragmentMetadata, childFragmentMetadatas.ToArray());
+            fragmentMetadata.AddChildFragments(childFragmentMetadatas.ToArray());
         }
     }
 }

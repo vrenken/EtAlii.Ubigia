@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    using System;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// A <see cref="GraphTLQueryContext"/> can be used to execute GTL queries on a Ubigia space. 
@@ -22,14 +22,14 @@
         //IEnumerable<object> Process(string text, IProgress<QueryProcessingProgress> progress, params object[] args)
 
         // TODO: Rename to ProcessAsync.
-        IObservable<QueryProcessingResult> Process(Query query, IQueryScope scope);
+        Task<QueryProcessingResult> Process(Query query, IQueryScope scope);
         //Task Process(Query query, IQueryScope scope, IProgress<QueryProcessingProgress> progress)
         //Task<IEnumerable<object>> Process(string text, IProgress<QueryProcessingProgress> progress)
-        IObservable<QueryProcessingResult> Process(string text, params object[] args);
-        IObservable<QueryProcessingResult> Process(string[] text);
-        IObservable<QueryProcessingResult> Process(string[] text, IQueryScope scope);
+        Task<QueryProcessingResult> Process(string text, params object[] args);
+        Task<QueryProcessingResult> Process(string[] text);
+        Task<QueryProcessingResult> Process(string[] text, IQueryScope scope);
 
-        IObservable<QueryProcessingResult> Process(string text);
+        Task<QueryProcessingResult> Process(string text);
         //Task<IEnumerable<object>> Process(string text, IProgress<QueryProcessingProgress> progress, params object[] args)
 
     }

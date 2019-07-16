@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
 
     public class ProfilingGraphTLQueryContext : IProfilingGraphTLQueryContext
@@ -28,7 +29,7 @@
             return result;
         }
 
-        public IObservable<QueryProcessingResult> Process(Query query, IQueryScope scope)
+        public Task<QueryProcessingResult> Process(Query query, IQueryScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = query.ToString();
@@ -40,7 +41,7 @@
             return result;
         }
 
-        public IObservable<QueryProcessingResult> Process(string[] text, IQueryScope scope)
+        public Task<QueryProcessingResult> Process(string[] text, IQueryScope scope)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = string.Join(Environment.NewLine, text);
@@ -52,7 +53,7 @@
             return result;
         }
 
-        public IObservable<QueryProcessingResult> Process(string[] text)
+        public Task<QueryProcessingResult> Process(string[] text)
         {
             dynamic profile = Profiler.Begin("Process");
             profile.Query = string.Join(Environment.NewLine, text);
@@ -64,7 +65,7 @@
             return result;
         }
 
-        public IObservable<QueryProcessingResult> Process(string text)
+        public Task<QueryProcessingResult> Process(string text)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;
@@ -75,7 +76,7 @@
             return result;
         }
 
-        public IObservable<QueryProcessingResult> Process(string text, params object[] args)
+        public Task<QueryProcessingResult> Process(string text, params object[] args)
         {
             dynamic profile = Profiler.Begin("Processing");
             profile.Query = text;

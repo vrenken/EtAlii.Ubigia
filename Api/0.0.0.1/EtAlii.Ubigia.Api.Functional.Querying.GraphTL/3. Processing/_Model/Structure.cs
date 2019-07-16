@@ -10,7 +10,7 @@
         public string Name { get; }
 
         public ReadOnlyObservableCollection<Structure> Children { get; }
-        internal ObservableCollection<Structure> EditableChildren { get; }
+        private readonly ObservableCollection<Structure> _editableChildren;
 
         public ReadOnlyObservableCollection<Value> Values { get; }
         internal ObservableCollection<Value> EditableValues { get; }
@@ -23,12 +23,16 @@
             Type = type;
             Name = name;
             
-            EditableChildren = new ObservableCollection<Structure>();
-            Children = new ReadOnlyObservableCollection<Structure>(EditableChildren);
+            _editableChildren = new ObservableCollection<Structure>();
+            Children = new ReadOnlyObservableCollection<Structure>(_editableChildren);
             EditableValues = new ObservableCollection<Value>();
             Values  = new ReadOnlyObservableCollection<Value>(EditableValues);
-            
-            Parent = parent;
+
+            if (parent != null)
+            {
+                Parent = parent;
+                parent._editableChildren.Add(this);
+            }
         }
 
         internal Structure(string type, string name, Structure parent, IInternalNode node)

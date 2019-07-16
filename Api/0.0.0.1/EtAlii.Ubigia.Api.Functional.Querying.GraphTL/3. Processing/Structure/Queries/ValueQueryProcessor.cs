@@ -9,23 +9,14 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class ValueQueryProcessor : IValueQueryProcessor
     {
         private readonly IGraphSLScriptContext _scriptContext;
+        private readonly IRelatedIdentityFinder _relatedIdentityFinder;
 
-        public ValueQueryProcessor(IGraphSLScriptContext scriptContext)
+        public ValueQueryProcessor(
+            IGraphSLScriptContext scriptContext, 
+            IRelatedIdentityFinder relatedIdentityFinder)
         {
             _scriptContext = scriptContext;
-        }
-
-        private Identifier FindRelatedIdentifier(Structure structure)
-        {
-            var node = structure.Node;
-            if (node != null)
-            {
-                return node.Id;
-            }
-            var parent = structure.Parent;
-            return parent != null 
-                ? FindRelatedIdentifier(parent) 
-                : Identifier.Empty;
+            _relatedIdentityFinder = relatedIdentityFinder;
         }
         
         private async Task ProcessFromAnnotation(
@@ -35,7 +26,7 @@ namespace EtAlii.Ubigia.Api.Functional
         {
                 if (valueQuery.Annotation?.Path is PathSubject path) // @value(\#LastName)
                 {
-                    var id = FindRelatedIdentifier(structure);
+                    var id = _relatedIdentityFinder.Find(structure);
                     if (id != Identifier.Empty)
                     {
                         var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new IdentifierPathSubjectPart(id) }.Concat(path.Parts).ToArray(); 

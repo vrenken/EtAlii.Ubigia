@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Querying 
 {
-    using System;
+    using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
 
     internal class ProfilingQueryProcessor : IProfilingQueryProcessor
@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Querying
             Profiler = profiler.Create(ProfilingAspects.Functional.ScriptProcessor);  // TODO: this should be Functional.QueryProcessor.
         }
 
-        public IObservable<QueryProcessingResult> Process(Query query)
+        public Task<QueryProcessingResult> Process(Query query)
         {
             return _decoree.Process(query);
         }
