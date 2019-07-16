@@ -57,7 +57,7 @@
             // Assert.
             Assert.NotNull(fragmentMetadata);
             Assert.Equal("Person @Node(person:Doe/John)", fragmentMetadata.ToString());
-            Assert.Equal(5, fragmentMetadata.Children.Length);
+            Assert.Equal(5, fragmentMetadata.Children.Count);
             Assert.Equal("age", fragmentMetadata.Children[0].ToString());
             Assert.Equal("company", fragmentMetadata.Children[1].ToString());
             Assert.Equal("email", fragmentMetadata.Children[2].ToString());
