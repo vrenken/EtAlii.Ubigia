@@ -30,7 +30,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueMutationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueQueryParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\QueryProcessor.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\QueryProcessor.Mutations.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\FileBasedGraphTLData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
