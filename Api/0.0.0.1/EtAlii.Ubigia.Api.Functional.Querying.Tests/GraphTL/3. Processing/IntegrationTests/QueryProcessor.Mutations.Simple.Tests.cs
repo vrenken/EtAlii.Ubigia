@@ -88,7 +88,7 @@
             var mutationStructure = mutationResult.Structure.Single();
             Assert.NotNull(mutationStructure);
             var queryStructure = queryResult.Structure.Single();
-            Assert.NotNull(queryStructure);
+            Assert.NotNull(queryStructure); 
         }
 
 
