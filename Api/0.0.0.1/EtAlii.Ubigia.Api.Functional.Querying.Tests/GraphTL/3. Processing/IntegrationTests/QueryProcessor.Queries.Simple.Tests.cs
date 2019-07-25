@@ -11,14 +11,14 @@
 
 //using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
 
-    public class QueryProcessorSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class QueryProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private IGraphSLScriptContext _scriptContext;
         private IGraphTLQueryContext _queryContext;
         private readonly QueryingUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
 
-        public QueryProcessorSimpleTests(QueryingUnitTestContext testContext)
+        public QueryProcessorQueriesSimpleTests(QueryingUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -191,6 +191,57 @@
             
             AssertValue("Tony", structure, "FirstName");
             AssertValue("Stark", structure, "LastName");
+        }
+
+        [Fact]
+        public async Task QueryProcessor_Process_Persons_By_Structure_02()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:*/*)
+                               {
+                                    FirstName @value()
+                                    LastName @value(\#FamilyName)
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+
+            // Assert.
+            await result.Output;
+            var structures = result.Structure.ToArray();
+            Assert.NotNull(structures);
+            
+                
+            AssertValue("John", structures[0], "FirstName");
+            AssertValue("Doe", structures[0], "LastName");
+
+            AssertValue("Jane", structures[1], "FirstName");
+            AssertValue("Doe", structures[1], "LastName");
+            
+            AssertValue("Tony", structures[2], "FirstName");
+            AssertValue("Stark", structures[2], "LastName");
+
+            AssertValue("Peter", structures[3], "FirstName");
+            AssertValue("Vrenken", structures[3], "LastName");
+
+            AssertValue("Tanja", structures[4], "FirstName");
+            AssertValue("Vrenken", structures[4], "LastName");
+
+            AssertValue("Arjan", structures[5], "FirstName");
+            AssertValue("Vrenken", structures[5], "LastName");
+
+            AssertValue("Ida", structures[6], "FirstName");
+            AssertValue("Vrenken", structures[6], "LastName");
+
         }
 
         
@@ -389,7 +440,7 @@
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Persons_By_Structure()
+        public async Task QueryProcessor_Process_Persons_By_Structure_01()
         {
             // Arrange.
             var selectQueryText = @"Person @nodes(Person:Doe/*)
