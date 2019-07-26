@@ -58,7 +58,9 @@
             {
                 var keyNode = _nodeFinder.FindFirst(child, KeyId);
                 var constantNode = keyNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
-                var key = constantNode == null ? keyNode.Match.ToString() : _quotedTextParser.Parse(constantNode);
+                var key = constantNode == null 
+                    ? keyNode.Match.ToString() 
+                    : _quotedTextParser.Parse(constantNode);
 
                 var annotationNode = _nodeFinder.FindFirst(child, AnnotationId);
                 Annotation annotation = null;
