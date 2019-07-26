@@ -8,7 +8,7 @@
     {
         public Cache Cache { get; }
 
-        private readonly Dictionary<string, Regex> _regexes;
+        private readonly Dictionary<string, Regex> _regexes; 
 
         public ExecutionScope(bool cacheEnabled)
         {

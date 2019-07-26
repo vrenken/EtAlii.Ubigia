@@ -5,6 +5,9 @@
     using System.Linq;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// This Cache implementation isn't that cool yet. It needs a serious revamp.
+    /// </summary>
     public class Cache
     {
         private readonly bool _cacheEnabled;
@@ -32,15 +35,21 @@
             if (_cacheEnabled)
             {
                 bool hasValue;
-                //lock (_properties)
+                lock (_properties)
                 {
                     hasValue = _properties.TryGetValue(identifier, out result);
                 }
                 if(!hasValue)
                 {
-                    //lock (_properties)
+                    lock (_properties)
                     {
-                        _properties[identifier] = result = await getter();
+                        var task = getter();
+                        task.Wait();
+                        if (task.IsFaulted)
+                        {
+                            throw task.Exception?.InnerException ?? new InvalidOperationException("Unable to fetch properties from cache");
+                        }
+                        _properties[identifier] = result = task.Result;
                     }
                 }
             }
@@ -59,16 +68,22 @@
             if (_cacheEnabled)
             {
                 bool hasValue;
-                //lock (_entries)
+                lock (_entries)
                 {
                     // TODO: This cache is not clever enough yet.
                     hasValue = _entries.TryGetValue(identifier, out result);
                 }
                 if(!hasValue)
                 {
-                    //lock (_entries)
+                    lock (_entries)
                     {
-                        _entries[identifier] = result = await getter();
+                        var task = getter();
+                        task.Wait();
+                        if (task.IsFaulted)
+                        {
+                            throw task.Exception?.InnerException ?? new InvalidOperationException("Unable to fetch entry from cache");
+                        }
+                        _entries[identifier] = result = task.Result;
                     }
                 }
             }
@@ -89,16 +104,22 @@
                 var cacheId = new Tuple<Identifier, EntryRelation>(identifier, relation);
 
                 bool hasValue;
-                //lock (_relatedEntries)
+                lock (_relatedEntries)
                 {
                     // TODO: This cache is not clever enough yet.
                     hasValue = _relatedEntries.TryGetValue(cacheId, out result);
                 }
                 if (!hasValue)
                 {
-                    //lock (_relatedEntries)
+                    lock (_relatedEntries)
                     {
-                        _relatedEntries[cacheId] = result = await getter();
+                        var task = getter();
+                        task.Wait();
+                        if (task.IsFaulted)
+                        {
+                            throw task.Exception?.InnerException ?? new InvalidOperationException("Unable to fetch related entries from cache");
+                        }
+                        _relatedEntries[cacheId] = result = task.Result;
                     }
 
                 }
@@ -113,12 +134,12 @@
 
         public void InvalidateEntry(Identifier identifier)
         {
-            //lock (_entries)
+            lock (_entries)
             {
                 _entries.Remove(identifier);
             }
 
-            //lock (_relatedEntries)
+            lock (_relatedEntries)
             {
                 var itemsToRemove = new List<Tuple<Identifier, EntryRelation>>();
 
