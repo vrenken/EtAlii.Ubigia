@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Linq;
-    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public class StructureMutationParserTests 
@@ -21,19 +20,7 @@
         private IStructureMutationParser CreateStructureMutationParser()
         {
 
-            var scaffoldings = new IScaffolding[]
-            {
-                new PathSubjectParsingScaffolding(),
-                new ConstantHelpersScaffolding(),
-                new QueryParserScaffolding(),
-            };
-            
-            var container = new Container();
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            var container = new QueryParserTestContainerFactory().Create();
 
             return container.GetInstance<IStructureMutationParser>();
         }

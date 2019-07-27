@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\QueryParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\QueryParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\QueryParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\QueryParserTestContainerFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureMutationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureQueryParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueMutationParser.Tests.cs" />
