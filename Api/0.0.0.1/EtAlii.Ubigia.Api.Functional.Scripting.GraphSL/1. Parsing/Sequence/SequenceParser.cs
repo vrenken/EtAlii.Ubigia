@@ -26,7 +26,12 @@
         public Sequence Parse(string text)
         {
             var node = Parser.Do(text);
-            _nodeValidator.EnsureSuccess(node, Id, false);
+            return Parse(node, false);
+        }
+
+        public Sequence Parse(LpNode node, bool restIsAllowed)
+        {
+            _nodeValidator.EnsureSuccess(node, Id, restIsAllowed);
             var childNodes = node.Children ?? new LpNode[] { };
             var parts = childNodes
                 .Select(childNode => _sequencePartsParser.Parse(childNode))
