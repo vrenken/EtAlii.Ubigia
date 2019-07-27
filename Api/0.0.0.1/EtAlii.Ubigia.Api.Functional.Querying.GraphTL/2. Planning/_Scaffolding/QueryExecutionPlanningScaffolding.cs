@@ -13,7 +13,6 @@
             container.Register<IValueQueryExecutionPlanner, ValueQueryExecutionPlanner>();
             container.Register<IStructureQueryExecutionPlanner, StructureQueryExecutionPlanner>();
             container.Register<IFragmentExecutionPlannerSelector, FragmentExecutionPlannerSelector>();
-            
         }
     }
 }
