@@ -2,6 +2,5 @@
 {
     internal interface IAddOperatorParser : IOperatorParser
     {
-        string Id { get; }
     }
 }

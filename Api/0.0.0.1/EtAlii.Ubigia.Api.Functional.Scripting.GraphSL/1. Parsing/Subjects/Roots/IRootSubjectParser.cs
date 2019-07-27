@@ -2,6 +2,5 @@
 {
     internal interface IRootSubjectParser : ISubjectParser
     {
-        string Id { get; }
     }
 }

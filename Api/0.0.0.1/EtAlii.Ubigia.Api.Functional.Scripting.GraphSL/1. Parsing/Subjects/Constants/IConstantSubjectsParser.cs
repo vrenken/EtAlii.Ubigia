@@ -2,6 +2,5 @@
 {
     internal interface IConstantSubjectsParser : ISubjectParser
     {
-        string Id { get; }
     }
 }

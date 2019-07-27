@@ -1,13 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
-    using Moppet.Lapa;
-
-    internal interface IOperatorParser
+    internal interface IOperatorParser : IParser<Operator, SequencePart>
     {
-        LpsParser Parser { get; }
-        bool CanParse(LpNode node);
-        Operator Parse(LpNode node);
-        bool CanValidate(Operator @operator);
-        void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after);
     }
 }

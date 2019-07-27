@@ -4,7 +4,7 @@
 
     internal class RemoveOperatorParser : IRemoveOperatorParser
     {
-        public string Id { get; } = "RemoveOperator";
+        public string Id { get; } = nameof(RemoveOperator);
 
         public LpsParser Parser { get; }
 
