@@ -1,7 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
     using Moppet.Lapa;
 
     internal class ProfilingSequenceParser : ISequenceParser
@@ -19,6 +18,25 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 
         public string Id => _decoree.Id;
         public LpsParser Parser => _decoree.Parser;
+
+        public Sequence Parse(LpNode node, bool restIsAllowed)
+        {
+            var text = node.Match.ToString();
+            dynamic profile = _profiler.Begin("Parsing sequence: " + text);
+            profile.Text = text;
+
+            // We need to ensure that the profiler is always ended, even if sequence parsing encounters any exceptions.
+            try
+            {
+                var result = _decoree.Parse(node, restIsAllowed);
+                profile.Result = result;
+                return result;
+            }
+            finally
+            {
+                _profiler.End(profile);
+            }
+        }
 
         public Sequence Parse(string text)
         {

@@ -1,11 +1,11 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
     using Moppet.Lapa;
 
     internal class ProfilingNonRootedPathSubjectParser : INonRootedPathSubjectParser
     {
+        public string Id { get; }
         private readonly INonRootedPathSubjectParser _decoree;
         private readonly IProfiler _profiler;
 
@@ -15,6 +15,8 @@ namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
         {
             _decoree = decoree;
             _profiler = profiler.Create(ProfilingAspects.Functional.ScriptPathSubjectParser);
+
+            Id = _decoree.Id;
         }
 
         public LpsParser Parser => _decoree.Parser;
