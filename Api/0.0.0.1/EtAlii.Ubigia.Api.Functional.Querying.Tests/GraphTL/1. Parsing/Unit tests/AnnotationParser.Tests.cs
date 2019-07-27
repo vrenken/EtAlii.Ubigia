@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public class AnnotationParserTests 
@@ -19,20 +18,7 @@
 
         private IAnnotationParser CreateAnnotationParser()
         {
-
-            var scaffoldings = new IScaffolding[]
-            {
-                new PathSubjectParsingScaffolding(),
-                new ConstantHelpersScaffolding(),
-                new QueryParserScaffolding(),
-            };
-            
-            var container = new Container();
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
+            var container = new QueryParserTestContainerFactory().Create();
 
             return container.GetInstance<IAnnotationParser>();
         }

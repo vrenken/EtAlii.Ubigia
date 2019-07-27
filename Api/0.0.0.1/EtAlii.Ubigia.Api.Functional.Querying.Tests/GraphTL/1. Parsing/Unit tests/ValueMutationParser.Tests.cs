@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
-    using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
     public class ValueMutationParserTests 
@@ -17,25 +16,7 @@
             Assert.NotNull(parser);
         }
 
-        private IValueMutationParser CreateValueMutationParser()
-        {
-
-            var scaffoldings = new IScaffolding[]
-            {
-                new PathSubjectParsingScaffolding(),
-                new ConstantHelpersScaffolding(),
-                new QueryParserScaffolding(),
-            };
-            
-            var container = new Container();
-
-            foreach (var scaffolding in scaffoldings)
-            {
-                scaffolding.Register(container);
-            }
-
-            return container.GetInstance<IValueMutationParser>();
-        }
+        private IValueMutationParser CreateValueMutationParser() => new QueryParserTestContainerFactory().Create().GetInstance<IValueMutationParser>();
         
         [Fact]
         public void ValueMutationParser_Parse_Value()
