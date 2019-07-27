@@ -21,8 +21,15 @@
             container.Register<IValueMutationProcessor, ValueMutationProcessor>();
             container.Register<IStructureMutationProcessor, StructureMutationProcessor>();
             
+            container.Register<IStructureBuilder, StructureBuilder >();
+            
             container.Register<IRelatedIdentityFinder, RelatedIdentityFinder>();
-
+            container.Register<IValueGetter, ValueGetter>();
+            container.Register<IValueSetter, ValueSetter>();
+            container.Register<IPropertiesValueGetter, PropertiesValueGetter>();
+            container.Register<IPropertiesValueSetter, PropertiesValueSetter>();
+            container.Register<IPathValueGetter, PathValueGetter>();
+            container.Register<IPathValueSetter, PathValueSetter>();
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
             container.Register(() => _configuration.ScriptContext);

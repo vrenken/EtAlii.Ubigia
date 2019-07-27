@@ -23,7 +23,7 @@
 
         protected override Task Execute(FragmentMetadata fragmentMetadata, QueryExecutionScope executionScope, IObserver<Structure> output)
         {
-            return _processor.Process(this, executionScope, fragmentMetadata, output);
+            return _processor.Process(Fragment, executionScope, fragmentMetadata, output);
         }
 
         public override string ToString()

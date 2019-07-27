@@ -1,30 +1,30 @@
 namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class ValueMutationProcessor : IValueMutationProcessor
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly IValueSetter _valueSetter;
 
-        public ValueMutationProcessor(IGraphSLScriptContext scriptContext)
+        public ValueMutationProcessor(IValueSetter valueSetter)
         {
-            _scriptContext = scriptContext;
+            _valueSetter = valueSetter;
         }
 
-        public async Task Process(MutationFragmentExecutionPlan plan, QueryExecutionScope executionScope, FragmentMetadata fragmentMetadata, IObserver<Structure> output)
+        public async Task Process(
+            MutationFragment fragment, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> fragmentOutput)
         {
-            var valueQuery = (ValueMutation) plan.Fragment;
-            
-            var script = new Script(new Sequence(new SequencePart[] {valueQuery.Annotation.Path}));
-            var processResult = await _scriptContext.Process(script, executionScope.ScriptScope); 
-            var node = await processResult.Output.Cast<IInternalNode>().SingleOrDefaultAsync();
+            var valueMutation = (ValueMutation) fragment;
 
-            //var result = new Value(valueQuery.Name, lastOutput);
-            //fragmentMetadata.Values.Add(result);
-            //output.OnNext(result);
+            foreach (var structure in fragmentMetadata.Parent.Items)
+            {
+                var value = await _valueSetter.Set(valueMutation.Name, valueMutation.Value, valueMutation.Annotation, executionScope, structure);
+                structure.EditableValues.Add(value);
+            }
         }
     }
 }

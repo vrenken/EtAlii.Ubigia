@@ -1,59 +1,15 @@
 namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
-    using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class ValueQueryProcessor : IValueQueryProcessor
     {
-        private readonly IGraphSLScriptContext _scriptContext;
-        private readonly IRelatedIdentityFinder _relatedIdentityFinder;
+        private readonly IValueGetter _valueGetter;
 
-        public ValueQueryProcessor(
-            IGraphSLScriptContext scriptContext, 
-            IRelatedIdentityFinder relatedIdentityFinder)
+        public ValueQueryProcessor(IValueGetter valueGetter)
         {
-            _scriptContext = scriptContext;
-            _relatedIdentityFinder = relatedIdentityFinder;
-        }
-        
-        private async Task ProcessFromAnnotation(
-            ValueQuery valueQuery, 
-            QueryExecutionScope executionScope, 
-            Structure structure)
-        {
-                if (valueQuery.Annotation?.Path is PathSubject path) // @value(\#LastName)
-                {
-                    var id = _relatedIdentityFinder.Find(structure);
-                    if (id != Identifier.Empty)
-                    {
-                        var parts = new PathSubjectPart[] { new ParentPathSubjectPart(), new IdentifierPathSubjectPart(id) }.Concat(path.Parts).ToArray(); 
-                        path = new AbsolutePathSubject(parts); 
-                        var script = new Script(new Sequence(new SequencePart[] { path }));
-
-                        var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
-                        var result = await processResult.Output.SingleOrDefaultAsync(); 
-                        if (result is IInternalNode valueNode)
-                        {
-                            structure.EditableValues.Add(new Value(valueQuery.Name, valueNode.Type));                         
-                        }
-                    }
-                }
-                else // @value()
-                {
-                    structure.EditableValues.Add(new Value(valueQuery.Name, structure.Node.Type));                         
-                }
-        }
-
-        private void ProcessFromValue(ValueQuery valueQuery, Structure structure)
-        {
-            var properties = (IPropertyDictionary)structure.Node.GetProperties();
-            if (properties.TryGetValue(valueQuery.Name, out var value))
-            {
-                structure.EditableValues.Add(new Value(valueQuery.Name, value));                        
-            }
+            _valueGetter = valueGetter;
         }
 
         public async Task Process(
@@ -64,18 +20,12 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             var valueQuery = (ValueQuery) fragment;
 
-            if (valueQuery.Annotation != null)
+            foreach (var structure in fragmentMetadata.Parent.Items)
             {
-                foreach (var structure in fragmentMetadata.Parent.Items)
+                var value = await _valueGetter.Get(valueQuery.Name, valueQuery.Annotation , executionScope, structure);
+                if(value != null)
                 {
-                    await ProcessFromAnnotation(valueQuery, executionScope, structure);
-                }
-            }
-            else
-            {
-                foreach (var structure in fragmentMetadata.Parent.Items)
-                {
-                    ProcessFromValue(valueQuery, structure);
+                    structure.EditableValues.Add(value);
                 }
             }
         }

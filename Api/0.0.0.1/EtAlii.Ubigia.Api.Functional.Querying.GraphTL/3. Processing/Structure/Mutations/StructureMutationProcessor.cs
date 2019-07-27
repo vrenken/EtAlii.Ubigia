@@ -1,30 +1,42 @@
 namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
     internal class StructureMutationProcessor : IStructureMutationProcessor
     {
-        private readonly IGraphSLScriptContext _scriptContext;
+        private readonly IRelatedIdentityFinder _relatedIdentityFinder;
+        private readonly IStructureBuilder _structureBuilder;
 
-        public StructureMutationProcessor(IGraphSLScriptContext scriptContext)
+        public StructureMutationProcessor(IRelatedIdentityFinder relatedIdentityFinder, IStructureBuilder structureBuilder)
         {
-            _scriptContext = scriptContext;
+            _relatedIdentityFinder = relatedIdentityFinder;
+            _structureBuilder = structureBuilder;
         }
 
-        public async Task Process(MutationFragmentExecutionPlan plan, QueryExecutionScope executionScope, FragmentMetadata fragmentMetadata, IObserver<Structure> output)
+        public async Task Process(
+            MutationFragment fragment, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> fragmentOutput)
         {
-            var structureMutation = (StructureMutation) plan.Fragment;
-            var script = new Script(new Sequence(new SequencePart[] {structureMutation.Annotation.Path}));
-            var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
-            var node = await processResult.Output.Cast<IInternalNode>().SingleOrDefaultAsync();
+            var structureMutation = (StructureMutation) fragment;
 
-            var result = new Structure(structureMutation.Name, node.Type, null);
+            var annotation = structureMutation.Annotation;
 
-            fragmentMetadata.Items.Add(result);
-            output.OnNext(result);
+            if (fragmentMetadata.Parent != null)
+            {
+                foreach (var structure in fragmentMetadata.Parent.Items)
+                {
+                    var id = _relatedIdentityFinder.Find(structure);
+                    await _structureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, structure);
+                }
+            }
+            else
+            {
+                var id = Identifier.Empty; 
+                await _structureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, null);
+            }
         }
     }
 }

@@ -57,14 +57,14 @@
         public async Task QueryProcessor_Mutate_Person_01()
         {
             // Arrange.
-            var mutationText = @"Person @nodes(Person:Doe/John)
+            var mutationText = @"Person @node(Person:Doe/John)
                                {
                                     Weight <= 160.1,
                                     NickName <= ""HeavyJohnny""
                                }";
             var mutation = _queryContext.Parse(mutationText).Query;
 
-            var queryText = @"Person @nodes(Person:Doe/John)
+            var queryText = @"Person @node(Person:Doe/John)
                               {
                                     Weight,
                                     NickName
@@ -88,7 +88,13 @@
             var mutationStructure = mutationResult.Structure.Single();
             Assert.NotNull(mutationStructure);
             var queryStructure = queryResult.Structure.Single();
-            Assert.NotNull(queryStructure); 
+            Assert.NotNull(queryStructure);
+            
+            AssertValue(160.1f, mutationStructure, "Weight");
+            AssertValue(160.1f, queryStructure, "Weight");
+
+            AssertValue("HeavyJohnny", mutationStructure, "NickName");
+            AssertValue("HeavyJohnny", queryStructure, "NickName");
         }
 
 
