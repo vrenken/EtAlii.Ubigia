@@ -10,12 +10,12 @@ namespace EtAlii.Ubigia.Api.Functional
         {
             return new IScaffolding[]
             {
-                new SequenceParsingScaffolding(), 
                 new ScriptParserScaffolding(),
-                new ConstantHelpersScaffolding(), 
+                new SequenceParsingScaffolding(), 
                 new SubjectParsingScaffolding(), 
                 new PathSubjectParsingScaffolding(),
                 new OperatorParsingScaffolding(), 
+                new ConstantHelpersScaffolding(), 
             };
         }
     }
