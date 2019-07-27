@@ -9,7 +9,6 @@ namespace EtAlii.Ubigia.Api.Functional
         public void Register(Container container)
         {
             container.Register<IAnnotationParser, AnnotationParser>();
-            container.Register<ICommentParser, CommentParser>();
 
             container.Register<IQueryParser, QueryParser>();
             container.Register<IRequirementParser, RequirementParser>();
