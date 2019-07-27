@@ -24,8 +24,9 @@ Person @node(Person:Doe/John)
 
 
 -- ==================================================================================================================
--- 04. Add a new node and give it some properties. 
- Person @node(Person:Doe += /Jane)
+-- 04. Add a new node and give it some properties.  
+THIS NEEDS TO CHANGE.
+ Person @node(Person:Doe += Jane)
  {
      NickName <= "Jahney"
  }
@@ -39,7 +40,7 @@ Person @node(Person:Doe/John)
          FirstName @value(),
          LastName @value(\LastName),
          NickName,
-         Friends @nodes(/Friends) <= @link(Person:Doe/Jane)
+         Friends @nodes(/Friends += Person:Doe/Jane)
          {
             FirstName @value(),
             LastName @value(\LastName),
