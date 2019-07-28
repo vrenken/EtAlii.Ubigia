@@ -9,6 +9,7 @@
         public string Id { get; } = nameof(Annotation);
         private const string AnnotationTypeId = "AnnotationType";
         private const string ContentId = "Content";
+        private const string CombinedContentId = "CombinedContent";
 
         public LpsParser Parser { get; }
 
@@ -16,31 +17,41 @@
         private readonly INodeFinder _nodeFinder;
 
         private readonly Type _annotationTypeType = typeof(AnnotationType);
-        private readonly ISequenceParser _sequenceParser;
         private readonly INonRootedPathSubjectParser _nonRootedPathSubjectParser;
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
-        private readonly IParser[] _contentParsers;
-        
+        private readonly IOperatorsParser _operatorsParser;
+        private readonly ISubjectsParser _subjectsParser;
+        //private readonly IParser[] _contentParsers;
+        private readonly LpsParser _combinedParser;
+
         public AnnotationParser(
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
-            ISequenceParser sequenceParser, 
             INonRootedPathSubjectParser nonRootedPathSubjectParser,
-            IRootedPathSubjectParser rootedPathSubjectParser)
+            IRootedPathSubjectParser rootedPathSubjectParser,
+            IOperatorsParser operatorsParser,
+            ISubjectsParser subjectsParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _sequenceParser = sequenceParser;
             _nonRootedPathSubjectParser = nonRootedPathSubjectParser;
             _rootedPathSubjectParser = rootedPathSubjectParser;
+            _operatorsParser = operatorsParser;
+            _subjectsParser = subjectsParser;
 
-            _contentParsers = new IParser[]
-            {
-                rootedPathSubjectParser,
-                nonRootedPathSubjectParser,
-                sequenceParser
-            };
-            var content = new LpsParser(ContentId, true, _contentParsers.Aggregate(new LpsAlternatives(), (current, parser) => current | parser.Parser)); 
+            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');
+                
+            _combinedParser = new LpsParser(CombinedContentId, true, 
+                (rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser) + 
+                whitespace.Maybe() + 
+                operatorsParser.Parser.Maybe() + 
+                whitespace.Maybe() + 
+                subjectsParser.Parser.Maybe()); 
+            
+            var content = new LpsParser(ContentId, true, 
+                _combinedParser  | 
+                _rootedPathSubjectParser.Parser | 
+                _nonRootedPathSubjectParser.Parser); 
 
             var annotationTypeConstants = Enum
                 .GetNames(_annotationTypeType)
@@ -85,34 +96,36 @@
                     case string id when id == _nonRootedPathSubjectParser.Id:
                         targetPath = (PathSubject)_nonRootedPathSubjectParser.Parse(childNode);
                         break;
-                    case string id when id == _sequenceParser.Id:
-                        var sequence = _sequenceParser.Parse(childNode, true);
-                
-                        // We don't need the assign operator.
-                        var parts = sequence.Parts.SkipWhile(p => p is AssignOperator).ToArray();
 
-                        targetPath = (PathSubject) parts[0];
-                        @operator = (Operator) parts[1];
-                        subject = (Subject)parts[2];
+                    case string id when id == CombinedContentId:
+
+                        if (_nodeFinder.FindFirst(childNode.Children, _rootedPathSubjectParser.Id) is LpNode rootedPathNode)
+                        {
+                            targetPath = (PathSubject) _rootedPathSubjectParser.Parse(rootedPathNode);
+                        }
+                        else if (_nodeFinder.FindFirst(childNode.Children, _nonRootedPathSubjectParser.Id) is LpNode nonRootedPathNode)
+                        {
+                            targetPath = (PathSubject) _nonRootedPathSubjectParser.Parse(nonRootedPathNode);
+                        }
+                        else
+                        {
+                            throw new NotSupportedException($"Cannot find path subject in: {node.Match}");
+                        }
+
+                        if (_nodeFinder.FindFirst(childNode.Children, _operatorsParser.Id) is LpNode operatorNode)
+                        {
+                            @operator = (Operator) _operatorsParser.Parse(operatorNode);
+                            
+                            if (_nodeFinder.FindFirst(childNode.Children, _subjectsParser.Id) is LpNode subjectNode)
+                            {
+                                subject = (Subject) _subjectsParser.Parse(subjectNode);
+                            }
+                        }
                         break;
                 }
             }
             
             return new Annotation(annotationType, targetPath, @operator, subject);
-        }
-
-        public bool CanParse(LpNode node)
-        {
-            return node.Id == Id;
-        }
-
-        public void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after)
-        {
-        }
-
-        public bool CanValidate(ConstantSubject constantSubject)
-        {
-            return constantSubject is ObjectConstantSubject;
         }
     }
 }

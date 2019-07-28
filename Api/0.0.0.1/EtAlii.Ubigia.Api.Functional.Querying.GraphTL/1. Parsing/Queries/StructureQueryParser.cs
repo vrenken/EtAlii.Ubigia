@@ -45,33 +45,17 @@
             var end = Lp.One(c => c == '}'); //.Debug("EndBracket")
 
             var structureQueryParser = new LpsParser(ChildStructureQueryId);
-            //structureQueryParser.Parser =  
-            var fragmentParsers =
-            (
-                structureQueryParser |
-                //_valueMutationParser.Parser | //.Debug("VM", true) | 
-                _valueQueryParser.Parser //.Debug("VQ", true)
-            );
-            var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
 
-//            var fragments  = new LpsParser(new[]
-//            {
-//                Lp.List(fragmentsParser, newLineParser.Required, whitespace),
-//                Lp.List(fragmentsParser, separator, newLineParser.OptionalMultiple),
-//            }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser));
+            var fragmentsParser = new LpsParser(FragmentsId, true, 
+                structureQueryParser | 
+                _valueQueryParser.Parser); //.Debug("VQ", true)
             
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');//.Debug("W");
+            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');//.Debug("W")
             var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
             var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
             var commaSeparator = whitespace + new LpsParser((',' + whitespace + '\n') | ',') + whitespace; 
 
             var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));
-
-//            var fragments = new LpsParser(
-//                    Lp.List(fragmentsParser, commaSeparator, newLineParser.OptionalMultiple ).Debug("L1", true) | 
-//                    Lp.List(fragmentsParser, lineSeparator, whitespace ).Debug("L2", true) |
-//                    Lp.List(fragmentsParser, spaceSeparator, newLineParser.OptionalMultiple).Debug("L3", true) 
-//                    );
             
             var scopedFragments = Lp.InBrackets(
                 newLineParser.OptionalMultiple + start + newLineParser.OptionalMultiple,
@@ -86,7 +70,7 @@
 
             Parser = new LpsParser(Id, true, parserBody + newLineParser.OptionalMultiple);
 
-            structureQueryParser.Parser = parserBody;//.Copy();
+            structureQueryParser.Parser = parserBody;
         }
 
         public StructureQuery Parse(LpNode node)

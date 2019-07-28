@@ -18,7 +18,7 @@
         private readonly IValueQueryParser _valueQueryParser;
 
         private readonly IAnnotationParser _annotationParser;
-        private const string _nameId = "NameId";
+        private const string NameId = "NameId";
         private const string FragmentsId = "FragmentsId";
 
         public StructureMutationParser(
@@ -62,7 +62,7 @@
                 fragments.Maybe(),
                 newLineParser.OptionalMultiple + end + newLineParser.OptionalMultiple);
 
-            var name = ( Lp.Name().Id(_nameId) | _quotedTextParser.Parser.Wrap(_nameId) );
+            var name = ( Lp.Name().Id(NameId) | _quotedTextParser.Parser.Wrap(NameId) );
 
             var parserBody = name + newLineParser.OptionalMultiple + 
                              _annotationParser.Parser.Maybe() + newLineParser.OptionalMultiple +
@@ -70,7 +70,7 @@
 
             Parser = new LpsParser(Id, true, parserBody);
 
-            structureMutationParser.Parser = parserBody;//.Copy();
+            structureMutationParser.Parser = parserBody;
         }
 
         public StructureMutation Parse(LpNode node)
@@ -82,7 +82,7 @@
         {
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
-            var nameNode = _nodeFinder.FindFirst(node, _nameId);
+            var nameNode = _nodeFinder.FindFirst(node, NameId);
             var quotedTextNode = nameNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
             var name = quotedTextNode == null ? nameNode.Match.ToString() : _quotedTextParser.Parse(quotedTextNode);
             
