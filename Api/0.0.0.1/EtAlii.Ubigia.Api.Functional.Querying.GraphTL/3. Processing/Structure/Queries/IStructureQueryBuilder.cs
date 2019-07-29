@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
 
-    internal interface IStructureBuilder
+    internal interface IStructureQueryBuilder
     {
         Task Build(
             QueryExecutionScope executionScope,
