@@ -1,21 +1,20 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal abstract class StructureBuilderBase
+    internal class PathStructureBuilder : IPathStructureBuilder
     {
-        protected readonly IGraphSLScriptContext ScriptContext;
+        private readonly IGraphSLScriptContext _scriptContext;
 
-        protected StructureBuilderBase(IGraphSLScriptContext scriptContext)
+        protected PathStructureBuilder(IGraphSLScriptContext scriptContext)
         {
-            ScriptContext = scriptContext;
+            _scriptContext = scriptContext;
         }
 
-        protected async Task BuildFromPath(
+        public async Task Build(
             QueryExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> fragmentOutput, 
@@ -25,7 +24,7 @@ namespace EtAlii.Ubigia.Api.Functional
             PathSubject path)
         {
             var script = new Script(new Sequence(new SequencePart[] {path}));
-            var scriptResult = await ScriptContext.Process(script, executionScope.ScriptScope);
+            var scriptResult = await _scriptContext.Process(script, executionScope.ScriptScope);
 
             switch (annotation?.Type)
             {
@@ -48,41 +47,6 @@ namespace EtAlii.Ubigia.Api.Functional
                 case AnnotationType.Value:
                     break;
             }
-        }
-
-        protected PathSubject DeterminePath(FragmentMetadata fragmentMetadata, Annotation annotation, Identifier id)
-        {
-            var path = annotation?.Path;
-
-            if (path is RootedPathSubject rootedPath)
-            {
-                // A rooted path.
-                path = rootedPath;
-            }
-            if (id != Identifier.Empty && path != null)
-            {
-                // An Id and a path.
-                var parts = new PathSubjectPart[] {new ParentPathSubjectPart(), new IdentifierPathSubjectPart(id)}
-                    .Concat(path.Parts).ToArray();
-                path = new AbsolutePathSubject(parts);
-            }
-            else if (id == Identifier.Empty && path != null)
-            {
-                // No Id but a path.
-            }
-            else if (id != Identifier.Empty && path == null)
-            {
-                // An Id but no path.
-                var parts = new PathSubjectPart[] {new ParentPathSubjectPart(), new IdentifierPathSubjectPart(id)};
-                path = new AbsolutePathSubject(parts);
-            }
-            else
-            {
-                // No Id and no path.
-                throw new QueryProcessingException($"Unable to process fragment. No Id nor an annotation path found: {fragmentMetadata}");
-            }
-
-            return path;
         }
 
         private void Build(
