@@ -141,6 +141,56 @@
             AssertValue("MinteyMary", queryStructure, "NickName");
         }
 
+        
+        [Fact]
+        public async Task QueryProcessor_Mutate_Persons_01()
+        {
+            // Arrange.
+            var mutationText = @"Person @nodes(Person:Doe += Mary)
+                               {
+                                    Weight <= 160.1,
+                                    NickName <= ""MinteyMary""
+                               }";
+            var mutation = _queryContext.Parse(mutationText).Query;
+
+            var queryText = @"Person @nodes(Person:Doe/)
+                              {
+                                    Weight,
+                                    NickName
+                              }";
+            var query = _queryContext.Parse(queryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var mutationResult = await processor.Process(mutation);
+            await mutationResult.Output;
+            var queryResult = await processor.Process(query);
+            await queryResult.Output;
+
+            // Assert.
+            var mutationStructures = mutationResult.Structure.ToArray();
+            Assert.NotNull(mutationStructures);
+            var queryStructures = queryResult.Structure.ToArray();
+            Assert.NotNull(queryStructures);
+            Assert.Equal(3, mutationStructures.Length);
+            Assert.Equal(3, queryStructures.Length);
+            
+            var mutationStructure = mutationStructures.Single(s => s.Name == "Mary");
+            var queryStructure = queryStructures.Single(s => s.Name == "Mary");
+            
+            AssertValue(160.1f, mutationStructure, "Weight");
+            AssertValue(160.1f, queryStructure, "Weight");
+
+            AssertValue("MinteyMary", mutationStructure, "NickName");
+            AssertValue("MinteyMary", queryStructure, "NickName");
+        }
+
 
         private void AssertValue(object expected, Structure structure, string valueName)
         {
