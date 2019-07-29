@@ -6,12 +6,12 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class StructureQueryProcessor : IStructureQueryProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
-        private readonly IStructureBuilder _structureBuilder;
+        private readonly IStructureQueryBuilder _structureQueryBuilder;
 
-        public StructureQueryProcessor(IRelatedIdentityFinder relatedIdentityFinder, IStructureBuilder structureBuilder)
+        public StructureQueryProcessor(IRelatedIdentityFinder relatedIdentityFinder, IStructureQueryBuilder structureQueryBuilder)
         {
             _relatedIdentityFinder = relatedIdentityFinder;
-            _structureBuilder = structureBuilder;
+            _structureQueryBuilder = structureQueryBuilder;
         }
 
         public async Task Process(
@@ -29,15 +29,14 @@ namespace EtAlii.Ubigia.Api.Functional
                 foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await _structureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureQuery.Name, structure);
+                    await _structureQueryBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureQuery.Name, structure);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await _structureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureQuery.Name, null);
+                await _structureQueryBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureQuery.Name, null);
             }
         }
-
     }
 }
