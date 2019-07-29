@@ -31,6 +31,9 @@
 
 
             container.Register<IRelatedIdentityFinder, RelatedIdentityFinder>();
+            container.Register<IPathDeterminer, PathDeterminer>();
+            container.Register<IPathStructureBuilder, PathStructureBuilder>();
+            container.Register<IPathCorrecter, PathCorrecter>();
 
             container.Register<IScriptProcessingContext, ScriptProcessingContext>();
             container.Register(() => _configuration.ScriptContext);

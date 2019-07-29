@@ -3,11 +3,15 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Threading.Tasks;
 
-    internal class StructureQueryBuilder : StructureBuilderBase, IStructureQueryBuilder
+    internal class StructureQueryBuilder : IStructureQueryBuilder
     {
-        public StructureQueryBuilder(IGraphSLScriptContext scriptContext)
-        : base(scriptContext)
+        private readonly IPathStructureBuilder _pathStructureBuilder;
+        private readonly IPathDeterminer _pathDeterminer;
+
+        public StructureQueryBuilder(IPathStructureBuilder pathStructureBuilder, IPathDeterminer pathDeterminer)
         {
+            _pathStructureBuilder = pathStructureBuilder;
+            _pathDeterminer = pathDeterminer;
         }
 
         public async Task Build(
@@ -19,9 +23,9 @@ namespace EtAlii.Ubigia.Api.Functional
             string structureName,
             Structure parent)
         {
-            var path = DeterminePath(fragmentMetadata, annotation, id);
+            var path = _pathDeterminer.Determine(fragmentMetadata, annotation, id);
 
-            await BuildFromPath(executionScope, fragmentMetadata, fragmentOutput, annotation, structureName, parent, path);
+            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, structureName, parent, path);
         }
     }
 }
