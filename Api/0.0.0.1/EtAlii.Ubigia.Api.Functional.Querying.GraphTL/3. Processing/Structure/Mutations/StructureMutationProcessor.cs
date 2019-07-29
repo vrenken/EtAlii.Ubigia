@@ -6,12 +6,12 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class StructureMutationProcessor : IStructureMutationProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
-        private readonly IStructureBuilder _structureBuilder;
+        private readonly IStructureMutationBuilder _structureMutationBuilder;
 
-        public StructureMutationProcessor(IRelatedIdentityFinder relatedIdentityFinder, IStructureBuilder structureBuilder)
+        public StructureMutationProcessor(IRelatedIdentityFinder relatedIdentityFinder, IStructureMutationBuilder structureMutationBuilder)
         {
             _relatedIdentityFinder = relatedIdentityFinder;
-            _structureBuilder = structureBuilder;
+            _structureMutationBuilder = structureMutationBuilder;
         }
 
         public async Task Process(
@@ -29,13 +29,13 @@ namespace EtAlii.Ubigia.Api.Functional
                 foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await _structureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, structure);
+                    await _structureMutationBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, structure);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await _structureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, null);
+                await _structureMutationBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, null);
             }
         }
     }
