@@ -41,7 +41,28 @@
             Assert.Equal(AnnotationType.Node,annotation.Type);
             Assert.Equal("Person:Stark/Tony",annotation.Path?.ToString());
         }
-        
+       
+        [Fact]
+        public void AnnotationParser_Parse_Node_Person_Add_Relative_Path()
+        {
+            // Arrange.
+            var parser = CreateAnnotationParser();
+            var text = "@node(/Friends += Person:Doe/Jane)";
+            
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var annotation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.NotNull(annotation);
+            Assert.Equal(AnnotationType.Node,annotation.Type);
+            Assert.Equal("/Friends",annotation.Path?.ToString());
+            Assert.Equal(" += ",annotation.Operator?.ToString());
+            Assert.Equal("Person:Doe/Jane",annotation.Subject?.ToString());
+        }
+
         [Fact]
         public void AnnotationParser_Parse_Node_Person_Add_Whitespaces()
         {
