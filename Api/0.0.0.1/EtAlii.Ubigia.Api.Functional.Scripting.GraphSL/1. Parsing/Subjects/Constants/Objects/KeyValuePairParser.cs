@@ -9,12 +9,14 @@
     {
         private readonly INodeValidator _nodeValidator;
         private readonly IQuotedTextParser _quotedTextParser;
+        private readonly IWhitespaceParser _whitespaceParser;
 
         private readonly INodeFinder _nodeFinder;
 
         public LpsParser Parser { get; private set; }
 
-        public string Id { get; } = "KeyValuePair";
+        public const string Id = "KeyValuePair";
+        string IKeyValuePairParser.Id { get; } = Id;
 
         private const string KeyId = "Key";
         private const string ValueId = "Value";
@@ -31,10 +33,12 @@
             IBooleanValueParser booleanValueParser,
             IIntegerValueParser integerValueParser,
             IFloatValueParser floatValueParser,
+            IWhitespaceParser whitespaceParser,
             INodeFinder nodeFinder)
         {
             _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;
+            _whitespaceParser = whitespaceParser;
             _nodeFinder = nodeFinder;
 
             _typeParsers = 
@@ -71,8 +75,7 @@
 
         public void Initialize(LpsParser separator = null)
         {
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t');
-            var defaultSeparator = whitespace + Lp.Char(':') + whitespace;
+            var defaultSeparator = _whitespaceParser.Optional + Lp.Char(':') + _whitespaceParser.Optional;
             separator = separator ?? defaultSeparator;
             
             Parser = new LpsParser(Id, true,

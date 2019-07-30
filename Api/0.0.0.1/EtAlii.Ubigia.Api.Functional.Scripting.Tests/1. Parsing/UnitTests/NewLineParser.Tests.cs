@@ -9,9 +9,10 @@
         public void NewLineParser_Create()
         {
             // Arrange.
+            var whitespaceParser = new WhitespaceParser();
 
             // Act.
-            var parser = new NewLineParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Assert.
             Assert.NotNull(parser);
@@ -21,7 +22,8 @@
         public void NewLineParser_Single_Newline()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = new LpsParser(parser.Optional).Do("\n");
@@ -35,7 +37,8 @@
         public void NewLineParser_Single_Newline_With_Leading_Space()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = new LpsParser(parser.Optional).Do(" \n");
@@ -49,7 +52,8 @@
         public void NewLineParser_Single_Newline_With_Following_Space()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = new LpsParser(parser.Optional).Do("\n ");
@@ -63,7 +67,8 @@
         public void NewLineParser_Single_Newline_With_Leading_And_Following_Space()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = new LpsParser(parser.Optional).Do(" \n ");
@@ -77,7 +82,8 @@
         public void NewLineParser_Single_Newline_Multiple()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = new LpsParser(parser.Optional).Do("\n\n");
@@ -91,7 +97,8 @@
         public void NewLineParser_Single_Newline_Multiple_With_Space_Inbetween()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = parser.OptionalMultiple.Do("\n \n");
@@ -104,7 +111,8 @@
         public void NewLineParser_Single_Newline_Multiple_With_Tab_Inbetween()
         {
             // Arrange.
-            var parser = new NewLineParser();
+            var whitespaceParser = new WhitespaceParser();
+            var parser = new NewLineParser(whitespaceParser);
 
             // Act.
             var result = parser.OptionalMultiple.Do("\n\t\n");

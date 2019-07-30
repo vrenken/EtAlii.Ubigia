@@ -13,6 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<INodeFinder, NodeFinder>();
             container.Register<IConstantHelper, ConstantHelper>();
             container.Register<INewLineParser, NewLineParser>();
+            container.Register<IWhitespaceParser, WhitespaceParser>();
             container.Register<IKeyValuePairParser, KeyValuePairParser>();
             container.Register<IQuotedTextParser, QuotedTextParser>();
             container.Register<IBooleanValueParser, BooleanValueParser>();
