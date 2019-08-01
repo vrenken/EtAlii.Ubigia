@@ -81,14 +81,14 @@
                 Person @nodes(Person:Doe/*)
                 {
                     FirstName @value(),
-                    LastName @value(\LastName),
+                    LastName @value(\#FamilyName),
                     NickName,
                     Friends @nodes(/Friends)  
                 }
                 Location @nodes(location:DE/Berlin//)
                 {
                     FirstName @value(),
-                    LastName @value(\LastName),
+                    LastName @value(\#FamilyName),
                     NickName,
                     Friends @nodes(/Friends)  
                 }
