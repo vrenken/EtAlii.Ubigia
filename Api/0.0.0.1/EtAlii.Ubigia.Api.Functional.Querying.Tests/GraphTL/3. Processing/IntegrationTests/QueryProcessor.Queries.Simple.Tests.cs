@@ -493,7 +493,7 @@
                                     LastName @value(\#FamilyName)
                                     Nickname
                                     Birthdate
-                                    Friends @nodes(/Friends)
+                                    Friends @nodes(/Friends/)
                                     {
                                         FirstName @value()
                                         LastName @value(\#FamilyName)
@@ -523,10 +523,10 @@
             AssertValue(DateTime.Parse("1978-07-28"), person, "Birthdate");
             AssertValue("Johnny", person, "Nickname");
 
-            Assert.Equal(1, person.Children.Count); 
-            AssertValue("John", person.Children[0], "FirstName");
-            AssertValue("Doe", person.Children[0], "LastName");
-            AssertValue("John", person.Children[1], "FirstName");
+            Assert.Equal(2, person.Children.Count); 
+            AssertValue("Tony", person.Children[0], "FirstName");
+            AssertValue("Stark", person.Children[0], "LastName");
+            AssertValue("Jane", person.Children[1], "FirstName");
             AssertValue("Doe", person.Children[1], "LastName");
         }
 
