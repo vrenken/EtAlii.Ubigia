@@ -13,16 +13,14 @@ namespace EtAlii.Ubigia.Api.Functional
         }
 
         public async Task Process(
-            MutationFragment fragment, 
+            ValueMutation fragment, 
             QueryExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata, 
             IObserver<Structure> fragmentOutput)
         {
-            var valueMutation = (ValueMutation) fragment;
-
             foreach (var structure in fragmentMetadata.Parent.Items)
             {
-                var value = await _valueSetter.Set(valueMutation.Name, valueMutation.Value, valueMutation.Annotation, executionScope, structure);
+                var value = await _valueSetter.Set(fragment.Name, fragment.Value, fragment.Annotation, executionScope, structure);
                 structure.EditableValues.Add(value);
             }
         }

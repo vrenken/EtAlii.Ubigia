@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public FragmentExecutionPlan Plan(Fragment fragment, FragmentMetadata fragmentMetadata)
         {
             var structureMutation = (StructureMutation)fragment;
-            return new MutationFragmentExecutionPlan(structureMutation, fragmentMetadata, _mutationProcessor);
+            return new FragmentExecutionPlan<StructureMutation>(structureMutation, fragmentMetadata, _mutationProcessor);
         }
     }
 }

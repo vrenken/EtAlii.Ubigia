@@ -1,11 +1,13 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class ValueQuery : QueryFragment
+    public class ValueQuery : Fragment
     {
-    
+        public Requirement Requirement { get; }
+
         public ValueQuery(string name, Annotation annotation, Requirement requirement)
-            : base(name, annotation, requirement)
+            : base(name, annotation)
         {
+            Requirement = requirement;
         }
     }
 }

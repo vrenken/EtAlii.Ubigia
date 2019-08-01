@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public FragmentExecutionPlan Plan(Fragment fragment, FragmentMetadata fragmentMetadata)
         {
             var structureQuery = (StructureQuery)fragment;
-            return new QueryFragmentExecutionPlan(structureQuery, fragmentMetadata, _queryProcessor);
+            return new FragmentExecutionPlan<StructureQuery>(structureQuery, fragmentMetadata, _queryProcessor);
         }
     }
 }

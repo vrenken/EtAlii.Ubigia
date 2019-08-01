@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class StructureMutation : MutationFragment
+    public class StructureMutation : Fragment
     {
         public Fragment[] Values { get; }
     
