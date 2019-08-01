@@ -23,7 +23,8 @@
             IQuotedTextParser quotedTextParser,
             IAnnotationParser annotationParser,
             INodeFinder nodeFinder, 
-            IRequirementParser requirementParser)
+            IRequirementParser requirementParser,
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;
@@ -37,7 +38,7 @@
                     Lp.Name().Id(KeyId) |
                     _quotedTextParser.Parser.Wrap(KeyId)
                 ) +
-                Lp.ZeroOrMore(c => c == ' ' || c == '\t') +
+                whitespaceParser.Optional +
                 //Lp.Char(':') +
                 //Lp.ZeroOrMore(' ') +
                 new LpsParser(AnnotationId, true, annotationParser.Parser).Maybe());

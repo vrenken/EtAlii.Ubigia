@@ -22,7 +22,6 @@
         private readonly IOperatorsParser _operatorsParser;
         private readonly ISubjectsParser _subjectsParser;
         //private readonly IParser[] _contentParsers;
-        private readonly LpsParser _combinedParser;
 
         public AnnotationParser(
             INodeValidator nodeValidator,
@@ -30,7 +29,8 @@
             INonRootedPathSubjectParser nonRootedPathSubjectParser,
             IRootedPathSubjectParser rootedPathSubjectParser,
             IOperatorsParser operatorsParser,
-            ISubjectsParser subjectsParser)
+            ISubjectsParser subjectsParser, 
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
@@ -39,17 +39,15 @@
             _operatorsParser = operatorsParser;
             _subjectsParser = subjectsParser;
 
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');
-                
-            _combinedParser = new LpsParser(CombinedContentId, true, 
+            var combinedParser = new LpsParser(CombinedContentId, true, 
                 (rootedPathSubjectParser.Parser | nonRootedPathSubjectParser.Parser) + 
-                whitespace.Maybe() + 
+                whitespaceParser.Optional + 
                 operatorsParser.Parser.Maybe() + 
-                whitespace.Maybe() + 
+                whitespaceParser.Optional + 
                 subjectsParser.Parser.Maybe()); 
             
             var content = new LpsParser(ContentId, true, 
-                _combinedParser  | 
+                combinedParser  | 
                 _rootedPathSubjectParser.Parser | 
                 _nonRootedPathSubjectParser.Parser); 
 
@@ -99,11 +97,12 @@
 
                     case string id when id == CombinedContentId:
 
-                        if (_nodeFinder.FindFirst(childNode.Children, _rootedPathSubjectParser.Id) is LpNode rootedPathNode)
+                        var targetPathNode = childNode.Children.FirstOrDefault();
+                        if (_nodeFinder.FindFirst(targetPathNode, _rootedPathSubjectParser.Id) is LpNode rootedPathNode)
                         {
                             targetPath = (PathSubject) _rootedPathSubjectParser.Parse(rootedPathNode);
                         }
-                        else if (_nodeFinder.FindFirst(childNode.Children, _nonRootedPathSubjectParser.Id) is LpNode nonRootedPathNode)
+                        else if (_nodeFinder.FindFirst(targetPathNode, _nonRootedPathSubjectParser.Id) is LpNode nonRootedPathNode)
                         {
                             targetPath = (PathSubject) _nonRootedPathSubjectParser.Parse(nonRootedPathNode);
                         }
@@ -112,11 +111,12 @@
                             throw new NotSupportedException($"Cannot find path subject in: {node.Match}");
                         }
 
-                        if (_nodeFinder.FindFirst(childNode.Children, _operatorsParser.Id) is LpNode operatorNode)
+                        var skippedChildren = childNode.Children.Skip(1).ToArray();
+                        if (_nodeFinder.FindFirst(skippedChildren, _operatorsParser.Id) is LpNode operatorNode)
                         {
                             @operator = (Operator) _operatorsParser.Parse(operatorNode);
                             
-                            if (_nodeFinder.FindFirst(childNode.Children, _subjectsParser.Id) is LpNode subjectNode)
+                            if (_nodeFinder.FindFirst(skippedChildren, _subjectsParser.Id) is LpNode subjectNode)
                             {
                                 subject = (Subject) _subjectsParser.Parse(subjectNode);
                             }

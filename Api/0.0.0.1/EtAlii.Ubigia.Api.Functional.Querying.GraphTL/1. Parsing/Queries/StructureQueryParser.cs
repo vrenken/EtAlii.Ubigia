@@ -31,7 +31,8 @@
             IValueQueryParser valueQueryParser,
             IAnnotationParser annotationParser, 
             IValueMutationParser valueMutationParser, 
-            IRequirementParser requirementParser)
+            IRequirementParser requirementParser,
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
@@ -50,9 +51,11 @@
                 structureQueryParser | 
                 _valueQueryParser.Parser); //.Debug("VQ", true)
             
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');//.Debug("W")
+            var whitespace = whitespaceParser.Optional;//.Debug("W")
             var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
-            var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+
+            //var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+            var spaceSeparator = whitespaceParser.Required; 
             var commaSeparator = whitespace + new LpsParser((',' + whitespace + '\n') | ',') + whitespace; 
 
             var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));

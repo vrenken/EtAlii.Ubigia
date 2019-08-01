@@ -16,9 +16,10 @@
 
         public string Id { get; } = nameof(ValueMutation);
 
-        public const string KeyAnnotationId = "KeyAnnotation";
-        public const string AnnotationId = "Annotation";
-        public const string KeyId = "Key";
+        private const string KeyAnnotationId = "KeyAnnotation";
+        private const string KeyAnnotationValueId = "KeyAnnotationValue";
+        private const string KeyId = "Key";
+        private const string ValueId = "Value";
         
         public ValueMutationParser(
             INodeValidator nodeValidator,
@@ -26,8 +27,8 @@
             IAnnotationParser annotationParser,
             INodeFinder nodeFinder, 
             IKeyValuePairParser keyValuePairParser,
-            IAssignmentParser assignmentParser
-            )
+            IAssignmentParser assignmentParser,
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _quotedTextParser = quotedTextParser;
@@ -36,16 +37,14 @@
             _keyValuePairParser = keyValuePairParser;
             _assignmentParser = assignmentParser;
 
-            var keyAnnotationParser = new LpsParser(KeyAnnotationId, true,
-         (
-                    Lp.Name().Id(KeyId) | _quotedTextParser.Parser.Wrap(KeyId)
-                ) +
-                _assignmentParser.Parser +
-                new LpsParser(AnnotationId, true, annotationParser.Parser));
-
+            var nameParser = Lp.Name().Id(KeyId) | _quotedTextParser.Parser.Wrap(KeyId);
+            var valueParser = Lp.Name().Id(ValueId) | _quotedTextParser.Parser.Wrap(ValueId);
+            
+            var keyAnnotationParser = new LpsParser(KeyAnnotationId, true, nameParser + _assignmentParser.Parser + annotationParser.Parser);
+            var keyAnnotationValueParser = new LpsParser(KeyAnnotationValueId, true, nameParser + whitespaceParser.Required + annotationParser.Parser + _assignmentParser.Parser + valueParser);
             var keyValueParser = _keyValuePairParser.Parser; 
             
-            Parser = new LpsParser(Id, true, (keyAnnotationParser | keyValueParser));
+            Parser = new LpsParser(Id, true, keyAnnotationParser | keyValueParser | keyAnnotationValueParser);
         }
 
         public ValueMutation Parse(LpNode node)
@@ -53,41 +52,63 @@
             _nodeValidator.EnsureSuccess(node, Id);
 
             var child = _nodeFinder.FindFirst(node, Id).Children.Single();
-            
-            if (child.Id == KeyAnnotationId)
-            {
-                var keyNode = _nodeFinder.FindFirst(child, KeyId);
-                var constantNode = keyNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
-                var key = constantNode == null 
-                    ? keyNode.Match.ToString() 
-                    : _quotedTextParser.Parse(constantNode);
 
-                var annotationNode = _nodeFinder.FindFirst(child, AnnotationId);
-                Annotation annotation = null;
-                if (annotationNode != null)
-                {
-                    var annotationValueNode = _nodeFinder.FindFirst(annotationNode, _annotationParser.Id);
-                    annotation = _annotationParser.Parse(annotationValueNode);
-//                    if (annotation != Annotation.None && annotation.Type != AnnotationType.Value)
-//                    {
-//                        throw new QueryParserException("A constant assignment can only be applied to type-annotated elements");
-//                    }
-                }
-
-                return new ValueMutation(key, annotation, null);            
-            }
-            else if (child.Id == _keyValuePairParser.Id)
+            switch (child.Id)
             {
-                var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
-                var kvp = _keyValuePairParser.Parse(kvpNode);
-                return new ValueMutation(kvp.Key, null, kvp.Value);            
-            }
-            else
-            {
-                throw new QueryParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
+                case KeyAnnotationId:
+                    var name1 = ParseName(child);
+                    var annotation1 = ParseAnnotation(child);
+                    return new ValueMutation(name1, annotation1, null);
+                case KeyValuePairParser.Id:
+                    var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
+                    var kvp = _keyValuePairParser.Parse(kvpNode);
+                    return new ValueMutation(kvp.Key, null, kvp.Value);
+                case KeyAnnotationValueId:
+                    var name2 = ParseName(child);
+                    var annotation2 = ParseAnnotation(child);
+                    var @value = ParseValue(child);
+                    return new ValueMutation(name2, annotation2, value);
+                default:
+                    throw new QueryParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
             }
         }
 
+        private string ParseValue(LpNode child)
+        {
+            var keyNode = _nodeFinder.FindFirst(child, ValueId);
+            var quotedTextNode = keyNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
+            var value = quotedTextNode == null 
+                ? keyNode.Match.ToString() 
+                : _quotedTextParser.Parse(quotedTextNode);
+
+            return @value;
+        }
+
+        private string ParseName(LpNode child)
+        {
+            var keyNode = _nodeFinder.FindFirst(child, KeyId);
+            var quotedTextNode = keyNode.FirstOrDefault(n => n.Id == _quotedTextParser.Id);
+            var name = quotedTextNode == null 
+                ? keyNode.Match.ToString() 
+                : _quotedTextParser.Parse(quotedTextNode);
+
+            return name;
+        }
+        private Annotation ParseAnnotation(LpNode node)
+        {
+            var annotationNode = _nodeFinder.FindFirst(node, _annotationParser.Id);
+            if (annotationNode == null)
+            {
+                throw new QueryParserException("An annotation could not be found for parsing.");
+            }
+            var annotation = _annotationParser.Parse(annotationNode);
+//          if (annotation != Annotation.None && annotation.Type != AnnotationType.Value)
+//          {
+//              throw new QueryParserException("A constant assignment can only be applied to type-annotated elements");
+//          }
+
+            return annotation;
+        }
         public bool CanParse(LpNode node)
         {
             return node.Id == Id;
