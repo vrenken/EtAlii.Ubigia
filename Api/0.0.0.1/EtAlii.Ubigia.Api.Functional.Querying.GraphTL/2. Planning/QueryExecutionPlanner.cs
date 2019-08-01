@@ -33,31 +33,41 @@ namespace EtAlii.Ubigia.Api.Functional
         private FragmentMetadata GetPlansForFragment(Fragment fragment, List<FragmentExecutionPlan> executionPlanQueue)
         {
             var childMetaDatas = new List<FragmentMetadata>();
+
+            FragmentExecutionPlan executionPlan;
             
             switch (fragment)
             {
                 case ValueQuery valueQuery:
-                    executionPlanQueue.Add(new FragmentExecutionPlan<ValueQuery>(valueQuery, _valueQueryProcessor));
+                    executionPlan = new FragmentExecutionPlan<ValueQuery>(valueQuery, _valueQueryProcessor);
+                    executionPlanQueue.Add(executionPlan);
                     break;
                 
-                case StructureQuery structureQuery: 
-                    executionPlanQueue.Add(new FragmentExecutionPlan<StructureQuery>(structureQuery, _structureQueryProcessor));
+                case StructureQuery structureQuery:
+                    executionPlan = new FragmentExecutionPlan<StructureQuery>(structureQuery, _structureQueryProcessor);
+                    executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Values);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Children);
                     break;
                 
                 case ValueMutation valueMutation:
-                    executionPlanQueue.Add(new FragmentExecutionPlan<ValueMutation>(valueMutation, _valueMutationProcessor));
+                    executionPlan = new FragmentExecutionPlan<ValueMutation>(valueMutation, _valueMutationProcessor);
+                    executionPlanQueue.Add(executionPlan);
                     break;
                 
                 case StructureMutation structureMutation:
-                    executionPlanQueue.Add(new FragmentExecutionPlan<StructureMutation>(structureMutation, _structureMutationProcessor));
+                    executionPlan = new FragmentExecutionPlan<StructureMutation>(structureMutation, _structureMutationProcessor);
+                    executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureMutation.Values);
                     break;
+                
+                default:
+                    var typeAsString = fragment != null ? fragment.GetType().ToString() : "NULL";
+                    throw new QueryProcessingException($"Unable to plan the specified fragment type: {typeAsString}");
             }
 
             var metadata = new FragmentMetadata(fragment, childMetaDatas.ToArray());
-            fragment.SetMetaData(metadata);
+            executionPlan.SetMetaData(metadata);
 
             return metadata;
 

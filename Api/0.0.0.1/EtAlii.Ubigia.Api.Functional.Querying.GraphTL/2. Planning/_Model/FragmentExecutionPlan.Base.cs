@@ -7,6 +7,13 @@
     {
         public abstract Type OutputType { get; }
 
+        internal FragmentMetadata Metadata { get; private set; }
+
         internal abstract Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope);
+        
+        internal void SetMetaData(FragmentMetadata metadata)
+        {
+            Metadata = metadata;
+        }
     }
 }

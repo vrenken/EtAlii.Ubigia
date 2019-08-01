@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
@@ -55,7 +56,7 @@
             var executionPlans = planner.Plan(query);
 
             // Assert.
-            var fragmentMetadata = query.Structure.Metadata;
+            var fragmentMetadata = executionPlans.FirstOrDefault()?.Metadata;
 
             Assert.NotNull(fragmentMetadata);
             Assert.Equal("Person @Node(person:Doe/John)", fragmentMetadata.ToString());

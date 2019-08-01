@@ -21,29 +21,29 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public async Task Process(
             StructureQuery fragment, 
+            FragmentMetadata fragmentMetadata,
             QueryExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput)
         {
             var annotation = fragment.Annotation;
-            var metaData = fragment.Metadata;
             
-            if (metaData.Parent != null)
+            if (fragmentMetadata.Parent != null)
             {
-                foreach (var structure in metaData.Parent.Items)
+                foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, metaData, fragmentOutput, annotation, id, fragment.Name, structure);
+                    await Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, structure);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await Build(executionScope, metaData, fragmentOutput, annotation, id, fragment.Name, null);
+                await Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, null);
             }
         }
         
         
-        public async Task Build(
+        private async Task Build(
             QueryExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> fragmentOutput, 

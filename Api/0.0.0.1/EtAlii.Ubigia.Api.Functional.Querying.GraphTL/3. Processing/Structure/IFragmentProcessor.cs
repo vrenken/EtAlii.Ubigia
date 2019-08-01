@@ -7,7 +7,8 @@
         where TFragment: Fragment
     {
         Task Process(
-            TFragment fragment, 
+            TFragment fragment,
+            FragmentMetadata metadata,
             QueryExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput);
 
