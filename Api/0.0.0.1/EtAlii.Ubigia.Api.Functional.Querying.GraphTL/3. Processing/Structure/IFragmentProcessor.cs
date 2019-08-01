@@ -9,7 +9,6 @@
         Task Process(
             TFragment fragment, 
             QueryExecutionScope executionScope, 
-            FragmentMetadata fragmentMetadata, 
             IObserver<Structure> fragmentOutput);
 
     }

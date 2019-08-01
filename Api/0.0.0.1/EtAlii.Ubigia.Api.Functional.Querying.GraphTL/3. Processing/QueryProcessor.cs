@@ -24,19 +24,16 @@
         public Task<QueryProcessingResult> Process(Query query)
         {
             // We need to create execution plans for all of the sequences.
-            _queryExecutionPlanner.Plan(query, out var rootFragmentMetadata, out var executionPlans);
-
+            var executionPlans = _queryExecutionPlanner.Plan(query);
+            var rootMetadata = query.Structure.Metadata;
             var totalExecutionPlans = executionPlans.Length;
 
-            var result = new QueryProcessingResult(query, 
-                totalExecutionPlans, 
-                new ReadOnlyObservableCollection<Structure>(rootFragmentMetadata.Items));
+            var result = new QueryProcessingResult(query, totalExecutionPlans, new ReadOnlyObservableCollection<Structure>(rootMetadata.Items));
 
             var observableQueryOutput = Observable.Create<Structure>(async queryOutput =>
             {
                 try
                 {
-
                     for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
                     {
                         //var sequence = sequences[executionPlanIndex];
@@ -70,10 +67,7 @@
             return Task.FromResult(result);
         }
 
-        private async Task ProcessExecutionPlan(
-            FragmentExecutionPlan executionPlan, 
-            IObserver<Structure> queryOutput
-            )
+        private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> queryOutput)
         {
             var executionScope = new QueryExecutionScope();
 

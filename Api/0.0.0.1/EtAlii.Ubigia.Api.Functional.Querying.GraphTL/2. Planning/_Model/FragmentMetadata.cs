@@ -6,29 +6,22 @@
     {
         public ObservableCollection<Structure> Items { get; } = new ObservableCollection<Structure>();
         
-        public ReadOnlyObservableCollection<FragmentMetadata> Children { get; }
-        private readonly ObservableCollection<FragmentMetadata> _editableChildren;
+        public FragmentMetadata[] Children { get; }
 
-        public FragmentMetadata Parent { get; }
+        public FragmentMetadata Parent { get; private set; }
 
         public Fragment Source { get; }
         
         public FragmentMetadata(
             Fragment source,
-            FragmentMetadata parent) 
+            FragmentMetadata[] children) 
         {
             Source = source;
-            Parent = parent;
-            
-            _editableChildren = new ObservableCollection<FragmentMetadata>();
-            Children = new ReadOnlyObservableCollection<FragmentMetadata>(_editableChildren);
-        }
-        
-        internal void AddChildFragments(FragmentMetadata[] children)
-        {
+
+            Children = children;
             foreach (var child in children)
             {
-                _editableChildren.Add(child);
+                child.Parent = this;
             }
         }
 

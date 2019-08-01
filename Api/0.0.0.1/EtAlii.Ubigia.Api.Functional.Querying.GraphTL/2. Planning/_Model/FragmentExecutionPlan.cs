@@ -1,30 +1,44 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
+    using System.Reactive.Disposables;
+    using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
 
-    internal class FragmentExecutionPlan<TFragment> : FragmentExecutionPlanBase<TFragment>
+    internal class FragmentExecutionPlan<TFragment> : FragmentExecutionPlan
         where TFragment: Fragment
     {
         private readonly IFragmentProcessor<TFragment> _processor;
 
+        public TFragment Fragment { get; }
+
+        public override Type OutputType { get; } = typeof(TFragment);
+
         public FragmentExecutionPlan(
             TFragment fragment,
-            FragmentMetadata fragmentMetadata,
             IFragmentProcessor<TFragment> processor)
-            : base(fragment, fragmentMetadata)
         {
             _processor = processor;
+            Fragment = fragment;
         }
 
-        protected override Type GetOutputType()
+        internal override Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope)
         {
-            return typeof(TFragment);
-        }
+            var outputObservable = Observable.Create<Structure>(async outputObserver =>
+            {
+                await Execute(executionScope, outputObserver);
 
-        protected override Task Execute(FragmentMetadata fragmentMetadata, QueryExecutionScope executionScope, IObserver<Structure> output)
+                outputObserver.OnCompleted();
+                
+                return Disposable.Empty;
+            }).ToHotObservable();
+
+            return Task.FromResult(outputObservable);
+        }
+        protected Task Execute(QueryExecutionScope executionScope, IObserver<Structure> output)
         {
-            return _processor.Process(Fragment, executionScope, fragmentMetadata, output);
+            return _processor.Process(Fragment, executionScope, output);
         }
 
         public override string ToString()
