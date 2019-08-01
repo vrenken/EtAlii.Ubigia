@@ -22,6 +22,7 @@
             _processor = processor;
             Fragment = fragment;
         }
+        
 
         internal override Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope)
         {
@@ -38,7 +39,7 @@
         }
         protected Task Execute(QueryExecutionScope executionScope, IObserver<Structure> output)
         {
-            return _processor.Process(Fragment, executionScope, output);
+            return _processor.Process(Fragment, Metadata, executionScope, output);
         }
 
         public override string ToString()

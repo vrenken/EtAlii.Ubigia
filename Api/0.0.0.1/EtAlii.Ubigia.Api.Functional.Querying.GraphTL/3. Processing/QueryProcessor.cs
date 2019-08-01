@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.ObjectModel;
+    using System.Linq;
     using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Threading;
@@ -25,7 +26,7 @@
         {
             // We need to create execution plans for all of the sequences.
             var executionPlans = _queryExecutionPlanner.Plan(query);
-            var rootMetadata = query.Structure.Metadata;
+            var rootMetadata = executionPlans?.FirstOrDefault()?.Metadata ?? new FragmentMetadata(null, Array.Empty<FragmentMetadata>());
             var totalExecutionPlans = executionPlans.Length;
 
             var result = new QueryProcessingResult(query, totalExecutionPlans, new ReadOnlyObservableCollection<Structure>(rootMetadata.Items));
