@@ -4,58 +4,76 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class QueryExecutionPlanner : IQueryExecutionPlanner
     {
-        private readonly IFragmentExecutionPlannerSelector _fragmentExecutionPlannerSelector;
+        private readonly IStructureQueryProcessor _structureQueryProcessor;
+        private readonly IStructureMutationProcessor _structureMutationProcessor;
+        private readonly IValueQueryProcessor _valueQueryProcessor;
+        private readonly IValueMutationProcessor _valueMutationProcessor;
 
-        public QueryExecutionPlanner(IFragmentExecutionPlannerSelector fragmentExecutionPlannerSelector)
+        public QueryExecutionPlanner(IStructureQueryProcessor structureQueryProcessor,
+            IStructureMutationProcessor structureMutationProcessor,
+            IValueQueryProcessor valueQueryProcessor,
+            IValueMutationProcessor valueMutationProcessor)
         {
-            _fragmentExecutionPlannerSelector = fragmentExecutionPlannerSelector;
+            _structureQueryProcessor = structureQueryProcessor;
+            _structureMutationProcessor = structureMutationProcessor;
+            _valueQueryProcessor = valueQueryProcessor;
+            _valueMutationProcessor = valueMutationProcessor;
         }
 
         public void Plan(Query query, out FragmentMetadata rootFragmentMetadata, out FragmentExecutionPlan[] fragmentExecutionPlans)
         {
+            var executionPlanQueue = new List<FragmentExecutionPlan>();
+            
             var fragment = query.Structure;
-            GetPlansForFragment(fragment, null, out rootFragmentMetadata, out fragmentExecutionPlans);
+            GetPlansForFragment(fragment, null, out rootFragmentMetadata, executionPlanQueue);
+
+            fragmentExecutionPlans = executionPlanQueue.ToArray();
         }
 
-        private void GetPlansForFragment(Fragment fragment, FragmentMetadata parent, out FragmentMetadata fragmentMetadata, out FragmentExecutionPlan[] fragmentExecutionPlans)
+        private void GetPlansForFragment(Fragment fragment, FragmentMetadata parent, out FragmentMetadata metadata, List<FragmentExecutionPlan> executionPlanQueue)
         {
             // TODO: Remove to end and include the children. Remove the static FragmentMetadata.SetChildFragments method. 
-            fragmentMetadata = new FragmentMetadata(fragment, parent);
+            metadata = new FragmentMetadata(fragment, parent);
 
-            var result = new List<FragmentExecutionPlan>();
-            var fragmentExecutionPlanner = _fragmentExecutionPlannerSelector.Select(fragment);
-            var plan = fragmentExecutionPlanner.Plan(fragment, fragmentMetadata);
-            
-            result.Add(plan);
-            
-            switch(fragment)
+            switch (fragment)
             {
-                case StructureQuery structureQuery:
-                    AddStructures(structureQuery.Values, result, fragmentMetadata);
-                    AddStructures(structureQuery.Children, result, fragmentMetadata);
+                case ValueQuery valueQuery:
+                    executionPlanQueue.Add(new FragmentExecutionPlan<ValueQuery>(valueQuery, metadata, _valueQueryProcessor));
                     break;
-                case StructureMutation structureMutation: 
-                    AddStructures(structureMutation.Values, result, fragmentMetadata);
+                
+                case StructureQuery structureQuery: 
+                    executionPlanQueue.Add(new FragmentExecutionPlan<StructureQuery>(structureQuery, metadata, _structureQueryProcessor));
+                    var subQueryValueMetaDatas = GetPlansForSubFragments(structureQuery.Values, executionPlanQueue, metadata);
+                    metadata.AddChildFragments(subQueryValueMetaDatas);
+                    var subQueryStructureMetaDatas = GetPlansForSubFragments(structureQuery.Children, executionPlanQueue, metadata);
+                    metadata.AddChildFragments(subQueryStructureMetaDatas);
+                    break;
+                
+                case ValueMutation valueMutation:
+                    executionPlanQueue.Add(new FragmentExecutionPlan<ValueMutation>(valueMutation, metadata, _valueMutationProcessor));
+                    break;
+                
+                case StructureMutation structureMutation:
+                    executionPlanQueue.Add(new FragmentExecutionPlan<StructureMutation>(structureMutation, metadata, _structureMutationProcessor));
+                    var subMutationValueMetaDatas = GetPlansForSubFragments(structureMutation.Values, executionPlanQueue, metadata);
+                    metadata.AddChildFragments(subMutationValueMetaDatas);
                     break;
             }
-
-            fragmentExecutionPlans = result.ToArray();
         }
 
-        private void AddStructures<TFragment>(TFragment[] fragments, List<FragmentExecutionPlan> result, FragmentMetadata fragmentMetadata)
+        private FragmentMetadata[] GetPlansForSubFragments<TFragment>(TFragment[] fragments, List<FragmentExecutionPlan> executionPlanQueue, FragmentMetadata metadata)
             where TFragment: Fragment
         {
-            var childFragmentMetadatas = new List<FragmentMetadata>();
+            var result = new List<FragmentMetadata>();
             
             foreach (var fragment in fragments)
             {
-                GetPlansForFragment(fragment, fragmentMetadata, out var childFragmentMetadata, out var childPlans);
+                GetPlansForFragment(fragment, metadata, out var childFragmentMetadata, executionPlanQueue);
                 
-                childFragmentMetadatas.Add(childFragmentMetadata);
-                result.AddRange(childPlans);
+                result.Add(childFragmentMetadata);
             }
 
-            fragmentMetadata.AddChildFragments(childFragmentMetadatas.ToArray());
+            return result.ToArray();
         }
     }
 }
