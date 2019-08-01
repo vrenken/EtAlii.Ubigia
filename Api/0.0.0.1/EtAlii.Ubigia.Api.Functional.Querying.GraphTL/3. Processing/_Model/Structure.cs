@@ -18,7 +18,7 @@
         internal IInternalNode Node { get; } 
         internal Structure Parent { get; } 
         
-        internal Structure(string type, string name, Structure parent)
+        private Structure(string type, string name, Structure parent)
         {
             Type = type;
             Name = name;
