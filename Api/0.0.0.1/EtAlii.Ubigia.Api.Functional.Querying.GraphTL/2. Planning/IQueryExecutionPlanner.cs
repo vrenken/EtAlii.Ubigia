@@ -2,9 +2,6 @@
 {
     internal interface IQueryExecutionPlanner
     {
-        void Plan(
-            Query query, 
-            out FragmentMetadata rootFragmentMetadata, 
-            out FragmentExecutionPlan[] fragmentExecutionPlans);
+        FragmentExecutionPlan[] Plan(Query query);
     }
 }

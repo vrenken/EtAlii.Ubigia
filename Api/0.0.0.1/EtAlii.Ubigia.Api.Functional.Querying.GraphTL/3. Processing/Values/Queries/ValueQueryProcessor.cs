@@ -15,10 +15,9 @@ namespace EtAlii.Ubigia.Api.Functional
         public async Task Process(
             ValueQuery fragment, 
             QueryExecutionScope executionScope, 
-            FragmentMetadata fragmentMetadata,  
             IObserver<Structure> fragmentOutput)
         {
-            foreach (var structure in fragmentMetadata.Parent.Items)
+            foreach (var structure in fragment.Metadata.Parent.Items)
             {
                 var value = await _valueGetter.Get(fragment.Name, fragment.Annotation, executionScope, structure);
                 if(value != null)

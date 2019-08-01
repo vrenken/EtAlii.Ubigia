@@ -26,9 +26,6 @@
 
             container.Register<IStructureQueryProcessor, StructureQueryProcessor>();
             container.Register<IStructureMutationProcessor, StructureMutationProcessor>();
-            container.Register<IStructureQueryBuilder, StructureQueryBuilder >();
-            container.Register<IStructureMutationBuilder, StructureMutationBuilder>();
-
 
             container.Register<IRelatedIdentityFinder, RelatedIdentityFinder>();
             container.Register<IPathDeterminer, PathDeterminer>();

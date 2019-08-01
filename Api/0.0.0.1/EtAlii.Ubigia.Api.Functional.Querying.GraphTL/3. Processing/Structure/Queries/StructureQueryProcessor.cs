@@ -6,35 +6,55 @@ namespace EtAlii.Ubigia.Api.Functional
     internal class StructureQueryProcessor : IStructureQueryProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
-        private readonly IStructureQueryBuilder _structureQueryBuilder;
+        private readonly IPathStructureBuilder _pathStructureBuilder;
+        private readonly IPathDeterminer _pathDeterminer;
 
-        public StructureQueryProcessor(IRelatedIdentityFinder relatedIdentityFinder, IStructureQueryBuilder structureQueryBuilder)
+        public StructureQueryProcessor(
+            IRelatedIdentityFinder relatedIdentityFinder, 
+            IPathStructureBuilder pathStructureBuilder, 
+            IPathDeterminer pathDeterminer)
         {
             _relatedIdentityFinder = relatedIdentityFinder;
-            _structureQueryBuilder = structureQueryBuilder;
+            _pathStructureBuilder = pathStructureBuilder;
+            _pathDeterminer = pathDeterminer;
         }
 
         public async Task Process(
             StructureQuery fragment, 
             QueryExecutionScope executionScope, 
-            FragmentMetadata fragmentMetadata, 
             IObserver<Structure> fragmentOutput)
         {
             var annotation = fragment.Annotation;
-
-            if (fragmentMetadata.Parent != null)
+            var metaData = fragment.Metadata;
+            
+            if (metaData.Parent != null)
             {
-                foreach (var structure in fragmentMetadata.Parent.Items)
+                foreach (var structure in metaData.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await _structureQueryBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, structure);
+                    await Build(executionScope, metaData, fragmentOutput, annotation, id, fragment.Name, structure);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await _structureQueryBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, null);
+                await Build(executionScope, metaData, fragmentOutput, annotation, id, fragment.Name, null);
             }
+        }
+        
+        
+        public async Task Build(
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata,
+            IObserver<Structure> fragmentOutput, 
+            Annotation annotation, 
+            Identifier id, 
+            string structureName,
+            Structure parent)
+        {
+            var path = _pathDeterminer.Determine(fragmentMetadata, annotation, id);
+
+            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, structureName, parent, path);
         }
     }
 }
