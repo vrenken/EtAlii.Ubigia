@@ -6,6 +6,13 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
+    public abstract class FragmentExecutionPlan
+    {
+        public abstract Type OutputType { get; }
+
+        internal abstract Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope);
+    }
+
     internal abstract class FragmentExecutionPlanBase<TFragment> : FragmentExecutionPlan
         where TFragment : Fragment
     {

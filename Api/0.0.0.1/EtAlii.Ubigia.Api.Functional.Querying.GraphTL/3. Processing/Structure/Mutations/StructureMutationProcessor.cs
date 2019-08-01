@@ -15,27 +15,25 @@ namespace EtAlii.Ubigia.Api.Functional
         }
 
         public async Task Process(
-            MutationFragment fragment, 
+            StructureMutation fragment, 
             QueryExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata, 
             IObserver<Structure> fragmentOutput)
         {
-            var structureMutation = (StructureMutation) fragment;
-
-            var annotation = structureMutation.Annotation;
+            var annotation = fragment.Annotation;
 
             if (fragmentMetadata.Parent != null)
             {
                 foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await _structureMutationBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, structure);
+                    await _structureMutationBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, structure);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await _structureMutationBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, structureMutation.Name, null);
+                await _structureMutationBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, null);
             }
         }
     }

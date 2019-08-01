@@ -1,6 +1,16 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    internal interface IFragmentProcessor
+    using System;
+    using System.Threading.Tasks;
+
+    internal interface IFragmentProcessor<in TFragment>
+        where TFragment: Fragment
     {
+        Task Process(
+            TFragment fragment, 
+            QueryExecutionScope executionScope, 
+            FragmentMetadata fragmentMetadata, 
+            IObserver<Structure> fragmentOutput);
+
     }
 }
