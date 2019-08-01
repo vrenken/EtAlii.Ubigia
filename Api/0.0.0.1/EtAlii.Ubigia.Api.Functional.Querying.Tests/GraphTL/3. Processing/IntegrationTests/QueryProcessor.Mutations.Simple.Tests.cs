@@ -143,6 +143,76 @@
 
         
         [Fact]
+        public async Task QueryProcessor_Mutate_Person_03()
+        {
+            // Arrange.
+            var mutationText = @"Person @node(Person:Doe/John)
+                                 {
+                                     FirstName @value(),
+                                     LastName @value(\#FamilyName),
+                                     NickName,
+                                     Friends @nodes(/Friends += Person:Stark/Tony)
+                                     {
+                                        FirstName @value(),
+                                        LastName @value(\#FamilyName),
+                                        NickName
+                                     }  
+                                 }";
+            var mutation = _queryContext.Parse(mutationText).Query;
+
+            var queryText = @"Person @node(Person:Doe/John)
+                              {    
+                                    FirstName @value(),
+                                    LastName @value(\#FamilyName),
+                                    NickName
+                                    Friend @nodes(/Friends)
+                                    {
+                                        FirstName @value(),
+                                        LastName @value(\#FamilyName),
+                                        NickName
+                                    }
+                              }";
+            var query = _queryContext.Parse(queryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var mutationResult = await processor.Process(mutation);
+            await mutationResult.Output;
+            var queryResult = await processor.Process(query);
+            await queryResult.Output;
+
+            // Assert.
+            var mutationStructure = mutationResult.Structure.Single();
+            Assert.NotNull(mutationStructure);
+            var queryStructure = queryResult.Structure.Single();
+            Assert.NotNull(queryStructure);
+            
+            AssertValue("John", mutationStructure, "FirstName");
+            AssertValue("John", queryStructure, "FirstName");
+
+            AssertValue("Doe", mutationStructure, "LastName");
+            AssertValue("Doe", queryStructure, "LastName");
+
+            AssertValue("Johnny", mutationStructure, "NickName");
+            AssertValue("Johnny", queryStructure, "NickName");
+
+            var mutationFriends = mutationStructure.Children.Where(c => c.Name == "Friend")?.ToArray();
+            var queryFriends = queryStructure.Children.Where(c => c.Name == "Friend")?.ToArray();
+            
+            Assert.NotNull(mutationFriends);
+            Assert.NotNull(queryFriends);
+            Assert.Equal(mutationFriends.Length, queryFriends.Length);
+            
+            throw new NotImplementedException("Implement further friends tests");
+        }
+
+        [Fact]
         public async Task QueryProcessor_Mutate_Persons_01()
         {
             // Arrange.

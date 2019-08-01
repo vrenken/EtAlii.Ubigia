@@ -484,6 +484,53 @@
         }
         
         [Fact]
+        public async Task QueryProcessor_Process_Person_Friends()
+        {
+            // Arrange.
+            var selectQueryText = @"Person @nodes(Person:Doe/John)
+                               {
+                                    FirstName @value()
+                                    LastName @value(\#FamilyName)
+                                    Nickname
+                                    Birthdate
+                                    Friends @nodes(/Friends)
+                                    {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                    }
+                               }";
+
+            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+
+            var scope = new QueryScope();
+            var configuration = new QueryProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new QueryProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectQuery);
+            var lastResult = await result.Output.LastOrDefaultAsync();
+
+            // Assert.
+            Assert.Equal(1, result.Structure.Count);
+            
+            var person = result.Structure[0];
+            Assert.NotNull(person);
+            AssertValue("John", person, "FirstName");
+            AssertValue("Doe", person, "LastName");
+            AssertValue(DateTime.Parse("1978-07-28"), person, "Birthdate");
+            AssertValue("Johnny", person, "Nickname");
+
+            Assert.Equal(1, person.Children.Count); 
+            AssertValue("John", person.Children[0], "FirstName");
+            AssertValue("Doe", person.Children[0], "LastName");
+            AssertValue("John", person.Children[1], "FirstName");
+            AssertValue("Doe", person.Children[1], "LastName");
+        }
+
+        [Fact]
         public async Task QueryProcessor_Process_Persons_By_Last_Output()
         {
             // Arrange.
@@ -520,5 +567,6 @@
             Assert.Equal(expected, value.Object);
             
         }
+        
     }
 }
