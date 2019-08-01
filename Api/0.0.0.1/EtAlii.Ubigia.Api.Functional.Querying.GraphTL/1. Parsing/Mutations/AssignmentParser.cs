@@ -6,10 +6,9 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public LpsParser Parser { get; }
 
-        public AssignmentParser()
+        public AssignmentParser(IWhitespaceParser whitespaceParser)
         {
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t');
-            Parser = whitespace + Lp.Char('<') + Lp.Char('=') + whitespace;
+            Parser = whitespaceParser.Optional + Lp.Char('<') + Lp.Char('=') + whitespaceParser.Optional;
         }
     }
 }

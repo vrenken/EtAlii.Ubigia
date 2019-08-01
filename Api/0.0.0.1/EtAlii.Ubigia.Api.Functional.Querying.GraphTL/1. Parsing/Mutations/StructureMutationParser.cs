@@ -28,7 +28,8 @@
             IQuotedTextParser quotedTextParser,
             IValueQueryParser valueQueryParser,
             IAnnotationParser annotationParser, 
-            IValueMutationParser valueMutationParser)
+            IValueMutationParser valueMutationParser, 
+            IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
@@ -50,9 +51,11 @@
             var fragmentsParser = new LpsParser(FragmentsId, true, fragmentParsers);
             
                         
-            var whitespace = Lp.ZeroOrMore(c => c == ' ' || c == '\t' || c == '\r');
+            var whitespace = whitespaceParser.Optional;
             var lineSeparator = whitespace + Lp.One(c => c == '\n') + whitespace; 
-            var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+
+            //var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+            var spaceSeparator = whitespaceParser.Required; 
             var commaSeparator = whitespace + ((',' + whitespace + '\n') | ',') + whitespace; 
 
             var fragments = new LpsParser(Lp.List(fragmentsParser, new LpsParser(commaSeparator | lineSeparator | spaceSeparator), whitespace));

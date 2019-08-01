@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
 
             foreach (var structure in fragmentMetadata.Parent.Items)
             {
-                var value = await _valueGetter.Get(valueQuery.Name, valueQuery.Annotation , executionScope, structure);
+                var value = await _valueGetter.Get(valueQuery.Name, valueQuery.Annotation, executionScope, structure);
                 if(value != null)
                 {
                     structure.EditableValues.Add(value);
