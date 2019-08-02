@@ -62,14 +62,14 @@
                                     Weight <= 160.1,
                                     NickName <= ""HeavyJohnny""
                                }";
-            var mutation = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText).Schema;
 
             var queryText = @"Person @node(Person:Doe/John)
                               {
                                     Weight,
                                     NickName
                               }";
-            var query = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
@@ -79,9 +79,9 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutation);
+            var mutationResult = await processor.Process(mutationSchema);
             await mutationResult.Output;
-            var queryResult = await processor.Process(query);
+            var queryResult = await processor.Process(querySchema);
             await queryResult.Output;
 
             // Assert.
@@ -106,14 +106,14 @@
                                     Weight <= 160.1,
                                     NickName <= ""MinteyMary""
                                }";
-            var mutation = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText).Schema;
 
             var queryText = @"Person @node(Person:Doe/Mary)
                               {
                                     Weight,
                                     NickName
                               }";
-            var query = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
@@ -123,9 +123,9 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutation);
+            var mutationResult = await processor.Process(mutationSchema);
             await mutationResult.Output;
-            var queryResult = await processor.Process(query);
+            var queryResult = await processor.Process(querySchema);
             await queryResult.Output;
 
             // Assert.
@@ -158,7 +158,7 @@
                                         NickName
                                      }  
                                  }";
-            var mutation = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText).Schema;
 
             var queryText = @"Person @node(Person:Doe/John)
                               {    
@@ -172,7 +172,7 @@
                                         NickName
                                     }
                               }";
-            var query = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
@@ -182,9 +182,9 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutation);
+            var mutationResult = await processor.Process(mutationSchema);
             await mutationResult.Output;
-            var queryResult = await processor.Process(query);
+            var queryResult = await processor.Process(querySchema);
             await queryResult.Output;
 
             // Assert.
@@ -221,14 +221,14 @@
                                     Weight <= 160.1,
                                     NickName <= ""MinteyMary""
                                }";
-            var mutation = _context.Parse(mutationText).Schema;
+            var mutationSchema = _context.Parse(mutationText).Schema;
 
             var queryText = @"Person @nodes(Person:Doe/)
                               {
                                     Weight,
                                     NickName
                               }";
-            var query = _context.Parse(queryText).Schema;
+            var querySchema = _context.Parse(queryText).Schema;
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
@@ -238,9 +238,9 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var mutationResult = await processor.Process(mutation);
+            var mutationResult = await processor.Process(mutationSchema);
             await mutationResult.Output;
-            var queryResult = await processor.Process(query);
+            var queryResult = await processor.Process(querySchema);
             await queryResult.Output;
 
             // Assert.
@@ -266,7 +266,7 @@
         public async Task SchemaProcessor_Mutate_Person_Friends()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Doe/John)
+            var mutationText = @"Person @nodes(Person:Doe/John)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
@@ -279,7 +279,7 @@
                                     }
                                }";
 
-            var selectQuery = _context.Parse(selectQueryText).Schema;
+            var mutationSchema = _context.Parse(mutationText).Schema;
 
             var scope = new SchemaScope();
             var configuration = new SchemaProcessorConfiguration()
@@ -289,7 +289,7 @@
             var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(mutationSchema);
             var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.

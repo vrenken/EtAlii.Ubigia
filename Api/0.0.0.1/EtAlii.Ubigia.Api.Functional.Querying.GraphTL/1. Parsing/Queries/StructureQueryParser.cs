@@ -99,8 +99,8 @@
 
             var fragmentNodes = _nodeFinder.FindAll(node, FragmentsId);
 
-            var values = new List<ValueQuery>();
-            var children = new List<StructureQuery>();
+            var valueFragments = new List<ValueFragment>();
+            var structureFragments = new List<StructureFragment>();
             
             foreach (var fragmentNode in fragmentNodes)
             {
@@ -108,16 +108,16 @@
                 if (child.Id == _valueQueryParser.Id)
                 {
                     var valueQuery = _valueQueryParser.Parse(child);
-                    values.Add(valueQuery);
+                    valueFragments.Add(valueQuery);
                 }
                 else if (child.Id == ChildStructureQueryId)
                 {
                     var childStructureQuery = Parse(child, ChildStructureQueryId, true);
-                    children.Add(childStructureQuery);
+                    structureFragments.Add(childStructureQuery);
                 }
             }
             
-            return new StructureQuery(name, annotation, requirement, values.ToArray(), children.ToArray());
+            return new StructureQuery(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray());
         }
 
         public bool CanParse(LpNode node)

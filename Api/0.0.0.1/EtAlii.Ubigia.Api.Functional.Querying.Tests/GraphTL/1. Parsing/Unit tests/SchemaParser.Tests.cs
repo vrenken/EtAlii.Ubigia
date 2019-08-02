@@ -47,11 +47,11 @@
         {
             // Arrange.
             var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
-            var normalPersonText = @"-- This is a comment { }";
+            var text = @"-- This is a comment { }";
             
             
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(text);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -64,11 +64,11 @@
         {
             // Arrange.
             var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
-            var normalPersonText = @"-- This is a comment { ""key"": ""value"" }";
+            var text = @"-- This is a comment { ""key"": ""value"" }";
             
             
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(text);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -98,7 +98,61 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
         }
+                
+        [Fact]
+        public void SchemaParser_Parse_Nested_Mutation()
+        {
+            // Arrange.
+            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
+            var text = @"Person @nodes(Person:Doe/John)
+                       {
+                            FirstName @value()
+                            LastName @value(\#FamilyName)
+                            Nickname
+                            Birthdate
+                            Friends @nodes(/Friends += Person:Vrenken/Peter)
+                            {
+                                FirstName @value()
+                                LastName @value(\#FamilyName)
+                            }
+                       }";
+            
+            
+            // Act.
+            var parseResult = parser.Parse(text);
 
+            // Assert.
+            Assert.NotNull(parseResult);
+            Assert.Empty(parseResult.Errors);
+            Assert.NotNull(parseResult.Schema);
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            var structureQuery = (StructureQuery)parseResult.Schema.Structure;
+            Assert.Single(structureQuery.Children);
+            var child = structureQuery.Children[0];
 
+            Assert.IsType<StructureMutation>(child);
+            var structureMutation = (StructureMutation) child;
+            Assert.NotNull(structureMutation.Annotation);
+            Assert.NotNull(structureMutation.Annotation.Path);
+            Assert.NotNull(structureMutation.Annotation.Operator);
+            Assert.NotNull(structureMutation.Annotation.Subject);
+            Assert.Equal(AnnotationType.Nodes,structureMutation.Annotation.Type);
+            Assert.Equal("/Friends", structureMutation.Annotation.Path.ToString());
+            Assert.Equal(" += ", structureMutation.Annotation.Operator.ToString());
+            Assert.Equal("Person:Vrenken/Peter", structureMutation.Annotation.Subject.ToString());
+            
+            var valueQuery1 = structureMutation.Values.Single(v => v.Name == "FirstName") as ValueQuery; 
+            Assert.NotNull(valueQuery1);
+            Assert.Equal(AnnotationType.Value,valueQuery1.Annotation.Type);
+            Assert.Null(valueQuery1.Annotation.Path);
+
+            var valueQuery2 = structureMutation.Values.Single(v => v.Name == "LastName") as ValueQuery; 
+            Assert.NotNull(valueQuery2);
+            Assert.Equal(AnnotationType.Value,valueQuery2.Annotation.Type);
+            Assert.Equal(@"\#FamilyName",valueQuery2.Annotation.Path.ToString());
+            
+
+        }
     }
 }

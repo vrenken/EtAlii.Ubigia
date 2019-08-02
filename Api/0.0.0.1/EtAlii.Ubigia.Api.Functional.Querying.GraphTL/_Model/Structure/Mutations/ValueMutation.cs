@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class ValueMutation : Fragment
+    public class ValueMutation : ValueFragment
     {
         public object Value { get; }
     

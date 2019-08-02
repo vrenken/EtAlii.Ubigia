@@ -1,18 +1,18 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class StructureQuery : Fragment
+    public class StructureQuery : StructureFragment
     {
-        public ValueQuery[] Values { get; }
-        public StructureQuery[] Children { get; }
-    
         public Requirement Requirement { get; }
         
-        public StructureQuery(string name, Annotation annotation, Requirement requirement, ValueQuery[] values, StructureQuery[] children)
-            : base(name, annotation)
+        public StructureQuery(
+            string name, 
+            Annotation annotation, 
+            Requirement requirement, 
+            ValueFragment[] values, 
+            StructureFragment[] children)
+            : base(name, annotation, values, children)
         {
             Requirement = requirement;
-            Values = values;
-            Children = children;
         }
     }
 }

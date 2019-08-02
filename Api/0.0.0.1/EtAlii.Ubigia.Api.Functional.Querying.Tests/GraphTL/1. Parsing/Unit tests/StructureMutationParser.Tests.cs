@@ -186,8 +186,6 @@
             Assert.NotNull(valueQuery2);
             Assert.Equal(AnnotationType.Value,valueQuery2.Annotation.Type);
             Assert.Equal(@"\#FamilyName",valueQuery2.Annotation.Path.ToString());
-
-
         }
     }
 }
