@@ -26,7 +26,7 @@
         }
         
         [Fact]
-        public void StructureMutationParser_Parse_Mutation_Key_Value_Single()
+        public void StructureMutationParser_Parse_ValueMutation_Key_Value_Single()
         {
             // Arrange.
             var parser = CreateStructureMutationParser();
@@ -49,7 +49,7 @@
         
                 
         [Fact]
-        public void StructureMutationParser_Parse_Mutation_With_Multiple_ValueMutations_01()
+        public void StructureMutationParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
         {
             // Arrange.
             var parser = CreateStructureMutationParser();
@@ -73,7 +73,7 @@
         }        
 
         [Fact]
-        public void StructureMutationParser_Parse_Mutation_With_Multiple_ValueMutations_02()
+        public void StructureMutationParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
         {
             // Arrange.
             var parser = CreateStructureMutationParser();
@@ -97,7 +97,7 @@
         }
         
         [Fact]
-        public void StructureMutationParser_Parse_Mutation_With_Annotations_00()
+        public void StructureMutationParser_Parse_ValueMutation_With_Annotations_00()
         {
             // Arrange.
             var parser = CreateStructureMutationParser();
@@ -105,7 +105,7 @@
             {
                 ""age"" <= 22,
                 ""firstname"" <= @value(),
-                ""lastname"" <= @node(\\),
+                ""lastname"" <= @value(\#FamilyName),
                 ""email"" <= ""admin@starkindustries.com"",
                 ""phone"" <= ""+31 (909) 477-2353""
             }";
@@ -123,12 +123,12 @@
             Assert.Equal(AnnotationType.Value,valueMutation1.Annotation.Type);
             Assert.Null(valueMutation1.Annotation.Path);
             Assert.NotNull(valueMutation2);
-            Assert.Equal(AnnotationType.Node,valueMutation2.Annotation.Type);
-            Assert.Equal(@"\\",valueMutation2.Annotation.Path.ToString());
+            Assert.Equal(AnnotationType.Value,valueMutation2.Annotation.Type);
+            Assert.Equal(@"\#FamilyName",valueMutation2.Annotation.Path.ToString());
         }
         
         [Fact]
-        public void StructureMutationParser_Parse_Mutation_With_Annotations_01()
+        public void StructureMutationParser_Parse_ValueMutation_With_Annotations_01()
         {
             // Arrange.
             var parser = CreateStructureMutationParser();
@@ -136,18 +136,58 @@
             {
                 age <= 22,
                 firstname <= @value(),
-                lastname <= @node(\\),
+                lastname <= @value(\#FamilyName),
                 email <= ""admin@starkindustries.com"",
                 phone <= ""+31 (909) 477-2353""
             }";
             
             // Act.
             var node = parser.Parser.Do(text);
-            var @object = parser.Parse(node);
+            var structureMutation = parser.Parse(node);
             
             // Assert.
             Assert.NotNull(node);
-            Assert.NotNull(@object);
+            Assert.NotNull(structureMutation);
+        }
+                
+        [Fact]
+        public void StructureMutationParser_Parse_StructureMutation_01()
+        {
+            // Arrange.
+            var parser = CreateStructureMutationParser();
+            var text = @"Friends @nodes(/Friends += Person:Vrenken/Peter)
+                        {
+                            FirstName @value()
+                            LastName @value(\#FamilyName)
+                        }";
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var structureMutation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.NotNull(structureMutation);
+            Assert.NotNull(structureMutation.Annotation);
+            Assert.NotNull(structureMutation.Annotation.Path);
+            Assert.NotNull(structureMutation.Annotation.Operator);
+            Assert.NotNull(structureMutation.Annotation.Subject);
+            Assert.Equal(AnnotationType.Nodes,structureMutation.Annotation.Type);
+            Assert.Equal("/Friends", structureMutation.Annotation.Path.ToString());
+            Assert.Equal(" += ", structureMutation.Annotation.Operator.ToString());
+            Assert.Equal("Person:Vrenken/Peter", structureMutation.Annotation.Subject.ToString());
+            
+            var valueQuery1 = structureMutation.Values.Single(v => v.Name == "FirstName") as ValueQuery; 
+            Assert.NotNull(valueQuery1);
+            Assert.Equal(AnnotationType.Value,valueQuery1.Annotation.Type);
+            Assert.Null(valueQuery1.Annotation.Path);
+
+            var valueQuery2 = structureMutation.Values.Single(v => v.Name == "LastName") as ValueQuery; 
+            Assert.NotNull(valueQuery2);
+            Assert.Equal(AnnotationType.Value,valueQuery2.Annotation.Type);
+            Assert.Equal(@"\#FamilyName",valueQuery2.Annotation.Path.ToString());
+
+
         }
     }
 }
