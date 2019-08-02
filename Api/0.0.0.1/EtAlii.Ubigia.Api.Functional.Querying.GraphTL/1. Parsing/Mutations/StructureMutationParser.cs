@@ -94,28 +94,30 @@
 
             var fragmentNodes = _nodeFinder.FindAll(node, FragmentsId);
 
-            var fragments = new List<Fragment>();
+            var valueFragments = new List<ValueFragment>();
+            var structureFragments = new List<StructureFragment>();
+
             foreach (var fragmentNode in fragmentNodes)
             {
                 var child = fragmentNode.Children.Single(); 
                 if (child.Id == _valueMutationParser.Id)
                 {
                     var valueMutation = _valueMutationParser.Parse(child);
-                    fragments.Add(valueMutation);
+                    valueFragments.Add(valueMutation);
                 }
                 else if (child.Id == _valueQueryParser.Id)
                 {
                     var valueQuery = _valueQueryParser.Parse(child);
-                    fragments.Add(valueQuery);
+                    valueFragments.Add(valueQuery);
                 }
                 else if (child.Id == ChildStructureMutationId)
                 {
                     var childStructureQuery = Parse(child, ChildStructureMutationId, true);
-                    fragments.Add(childStructureQuery);
+                    structureFragments.Add(childStructureQuery);
                 }
             }
             
-            return new StructureMutation(name, annotation, fragments.ToArray());
+            return new StructureMutation(name, annotation, valueFragments.ToArray(), structureFragments.ToArray());
         }
 
         public bool CanParse(LpNode node)

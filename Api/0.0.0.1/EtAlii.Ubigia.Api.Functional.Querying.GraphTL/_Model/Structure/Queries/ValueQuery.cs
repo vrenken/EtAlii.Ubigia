@@ -1,6 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
-    public class ValueQuery : Fragment
+    public class ValueQuery : ValueFragment
     {
         public Requirement Requirement { get; }
 
