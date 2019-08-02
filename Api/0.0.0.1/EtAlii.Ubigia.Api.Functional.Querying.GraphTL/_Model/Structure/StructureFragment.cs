@@ -1,17 +1,19 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    public abstract class StructureFragment : Fragment
+    public class StructureFragment : Fragment
     {
         public StructureFragment[] Children { get; }
 
         public ValueFragment[] Values { get; }
 
-        protected StructureFragment(
+        internal StructureFragment(
             string name, 
             Annotation annotation, 
+            Requirement requirement, 
             ValueFragment[] values, 
-            StructureFragment[] children)
-            : base(name, annotation)
+            StructureFragment[] children, 
+            FragmentType fragmentType)
+            : base(name, annotation, requirement, fragmentType)
         {
             Values = values;
             Children = children;

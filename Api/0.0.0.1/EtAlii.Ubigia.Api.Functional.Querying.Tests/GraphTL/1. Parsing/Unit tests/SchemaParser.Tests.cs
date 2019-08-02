@@ -125,32 +125,33 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
-            Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
-            var structureQuery = (StructureQuery)parseResult.Schema.Structure;
-            Assert.Single(structureQuery.Children);
-            var child = structureQuery.Children[0];
+            var structureFragment = parseResult.Schema.Structure;
+            Assert.NotNull(structureFragment);
+            Assert.Equal(FragmentType.Query, structureFragment.Type);
+            Assert.Single(structureFragment.Children);
+            var childStructure = structureFragment.Children[0];
 
-            Assert.IsType<StructureMutation>(child);
-            var structureMutation = (StructureMutation) child;
-            Assert.NotNull(structureMutation.Annotation);
-            Assert.NotNull(structureMutation.Annotation.Path);
-            Assert.NotNull(structureMutation.Annotation.Operator);
-            Assert.NotNull(structureMutation.Annotation.Subject);
-            Assert.Equal(AnnotationType.Nodes,structureMutation.Annotation.Type);
-            Assert.Equal("/Friends", structureMutation.Annotation.Path.ToString());
-            Assert.Equal(" += ", structureMutation.Annotation.Operator.ToString());
-            Assert.Equal("Person:Vrenken/Peter", structureMutation.Annotation.Subject.ToString());
+            Assert.Equal(FragmentType.Mutation, childStructure.Type);
+            Assert.NotNull(childStructure.Annotation);
+            Assert.NotNull(childStructure.Annotation.Path);
+            Assert.NotNull(childStructure.Annotation.Operator);
+            Assert.NotNull(childStructure.Annotation.Subject);
+            Assert.Equal(AnnotationType.Nodes,childStructure.Annotation.Type);
+            Assert.Equal("/Friends", childStructure.Annotation.Path.ToString());
+            Assert.Equal(" += ", childStructure.Annotation.Operator.ToString());
+            Assert.Equal("Person:Vrenken/Peter", childStructure.Annotation.Subject.ToString());
             
-            var valueQuery1 = structureMutation.Values.Single(v => v.Name == "FirstName") as ValueQuery; 
-            Assert.NotNull(valueQuery1);
-            Assert.Equal(AnnotationType.Value,valueQuery1.Annotation.Type);
-            Assert.Null(valueQuery1.Annotation.Path);
+            var valueFragment1 = childStructure.Values.Single(v => v.Name == "FirstName"); 
+            Assert.NotNull(valueFragment1);
+            Assert.Equal(FragmentType.Query,valueFragment1.Type);
+            Assert.Equal(AnnotationType.Value,valueFragment1.Annotation.Type);
+            Assert.Null(valueFragment1.Annotation.Path);
 
-            var valueQuery2 = structureMutation.Values.Single(v => v.Name == "LastName") as ValueQuery; 
-            Assert.NotNull(valueQuery2);
-            Assert.Equal(AnnotationType.Value,valueQuery2.Annotation.Type);
-            Assert.Equal(@"\#FamilyName",valueQuery2.Annotation.Path.ToString());
+            var valueFragment2 = childStructure.Values.Single(v => v.Name == "LastName"); 
+            Assert.NotNull(valueFragment2);
+            Assert.Equal(FragmentType.Query,valueFragment2.Type);
+            Assert.Equal(AnnotationType.Value,valueFragment2.Annotation.Type);
+            Assert.Equal(@"\#FamilyName",valueFragment2.Annotation.Path.ToString());
             
 
         }

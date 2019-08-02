@@ -3,21 +3,21 @@
     using System.Linq;
     using Xunit;
 
-    public class StructureMutationParserTests 
+    public class StructureParserMutationsTests 
     {
         [Fact]
-        public void StructureMutationParser_Create()
+        public void StructureParser_Create()
         {
             // Arrange.
             
             // Act.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IStructureMutationParser CreateStructureMutationParser()
+        private IStructureMutationParser CreateStructureParser()
         {
 
             var container = new SchemaParserTestContainerFactory().Create();
@@ -26,10 +26,10 @@
         }
         
         [Fact]
-        public void StructureMutationParser_Parse_ValueMutation_Key_Value_Single()
+        public void StructureParser_Parse_ValueMutation_Key_Value_Single()
         {
             // Arrange.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key <= ""value""
@@ -44,15 +44,15 @@
             Assert.NotNull(node);
             Assert.NotNull(query);
             Assert.NotEmpty(query.Values);
-            Assert.IsType<ValueMutation>(query.Values[0]);
+            Assert.Equal(FragmentType.Mutation, query.Values[0].Type);
         }
         
                 
         [Fact]
-        public void StructureMutationParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
+        public void StructureParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
         {
             // Arrange.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1 <= ""value1"",
@@ -68,15 +68,15 @@
             Assert.NotNull(node);
             Assert.NotNull(query);
             Assert.NotEmpty(query.Values);
-            Assert.IsType<ValueMutation>(query.Values[0]);
-            Assert.IsType<ValueMutation>(query.Values[1]);
+            Assert.Equal(FragmentType.Mutation, query.Values[0].Type);
+            Assert.Equal(FragmentType.Mutation, query.Values[1].Type);
         }        
 
         [Fact]
-        public void StructureMutationParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
+        public void StructureParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
         {
             // Arrange.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 age <= ""22"",
@@ -97,10 +97,10 @@
         }
         
         [Fact]
-        public void StructureMutationParser_Parse_ValueMutation_With_Annotations_00()
+        public void StructureParser_Parse_ValueMutation_With_Annotations_00()
         {
             // Arrange.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
             var text = @"Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
@@ -117,21 +117,25 @@
             // Assert.
             Assert.NotNull(node);
             Assert.NotNull(structureMutation);
-            var valueMutation1 = structureMutation.Values.Single(v => v.Name == "firstname") as ValueMutation; 
-            var valueMutation2 = structureMutation.Values.Single(v => v.Name == "lastname") as ValueMutation; 
-            Assert.NotNull(valueMutation1);
-            Assert.Equal(AnnotationType.Value,valueMutation1.Annotation.Type);
-            Assert.Null(valueMutation1.Annotation.Path);
-            Assert.NotNull(valueMutation2);
-            Assert.Equal(AnnotationType.Value,valueMutation2.Annotation.Type);
-            Assert.Equal(@"\#FamilyName",valueMutation2.Annotation.Path.ToString());
+
+            var valueFragment1 = structureMutation.Values.Single(v => v.Name == "firstname"); 
+            Assert.NotNull(valueFragment1);
+            Assert.Equal(FragmentType.Mutation, valueFragment1.Type);
+            Assert.Equal(AnnotationType.Value,valueFragment1.Annotation.Type);
+            Assert.Null(valueFragment1.Annotation.Path);
+            
+            var valueFragment2 = structureMutation.Values.Single(v => v.Name == "lastname"); 
+            Assert.NotNull(valueFragment2);
+            Assert.Equal(FragmentType.Mutation, valueFragment2.Type);
+            Assert.Equal(AnnotationType.Value,valueFragment2.Annotation.Type);
+            Assert.Equal(@"\#FamilyName", valueFragment2.Annotation.Path.ToString());
         }
         
         [Fact]
-        public void StructureMutationParser_Parse_ValueMutation_With_Annotations_01()
+        public void StructureParser_Parse_ValueMutation_With_Annotations_01()
         {
             // Arrange.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
             var text = @"Person @node(person:Stark/Tony)
             {
                 age <= 22,
@@ -151,10 +155,10 @@
         }
                 
         [Fact]
-        public void StructureMutationParser_Parse_StructureMutation_01()
+        public void StructureParser_Parse_StructureMutation_01()
         {
             // Arrange.
-            var parser = CreateStructureMutationParser();
+            var parser = CreateStructureParser();
             var text = @"Friends @nodes(/Friends += Person:Vrenken/Peter)
                         {
                             FirstName @value()
@@ -168,6 +172,7 @@
             // Assert.
             Assert.NotNull(node);
             Assert.NotNull(structureMutation);
+            Assert.Equal(FragmentType.Mutation, structureMutation.Type);
             Assert.NotNull(structureMutation.Annotation);
             Assert.NotNull(structureMutation.Annotation.Path);
             Assert.NotNull(structureMutation.Annotation.Operator);
@@ -177,15 +182,16 @@
             Assert.Equal(" += ", structureMutation.Annotation.Operator.ToString());
             Assert.Equal("Person:Vrenken/Peter", structureMutation.Annotation.Subject.ToString());
             
-            var valueQuery1 = structureMutation.Values.Single(v => v.Name == "FirstName") as ValueQuery; 
-            Assert.NotNull(valueQuery1);
-            Assert.Equal(AnnotationType.Value,valueQuery1.Annotation.Type);
-            Assert.Null(valueQuery1.Annotation.Path);
+            var valueFragment1 = structureMutation.Values.Single(v => v.Name == "FirstName"); 
+            Assert.NotNull(valueFragment1);
+            Assert.Equal(FragmentType.Query, valueFragment1.Type);
+            Assert.Equal(AnnotationType.Value,valueFragment1.Annotation.Type);
+            Assert.Null(valueFragment1.Annotation.Path);
 
-            var valueQuery2 = structureMutation.Values.Single(v => v.Name == "LastName") as ValueQuery; 
-            Assert.NotNull(valueQuery2);
-            Assert.Equal(AnnotationType.Value,valueQuery2.Annotation.Type);
-            Assert.Equal(@"\#FamilyName",valueQuery2.Annotation.Path.ToString());
+            var valueFragment2 = structureMutation.Values.Single(v => v.Name == "LastName"); 
+            Assert.NotNull(valueFragment2);
+            Assert.Equal(AnnotationType.Value,valueFragment2.Annotation.Type);
+            Assert.Equal(@"\#FamilyName",valueFragment2.Annotation.Path.ToString());
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    internal interface IQueryValueProcessor : IFragmentProcessor<ValueQuery>
+    internal interface IQueryValueProcessor : IFragmentProcessor<ValueFragment>
     {
     }
 }

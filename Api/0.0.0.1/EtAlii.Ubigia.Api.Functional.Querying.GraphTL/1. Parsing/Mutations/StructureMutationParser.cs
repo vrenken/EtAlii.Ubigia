@@ -6,7 +6,7 @@
 
     internal class StructureMutationParser : IStructureMutationParser
     {
-        public string Id { get; } = nameof(StructureMutation);
+        public string Id { get; } = "StructureMutation";
 
         private const string ChildStructureMutationId = "ChildStructureMutation"; 
         public LpsParser Parser { get; }
@@ -76,12 +76,12 @@
             structureMutationParser.Parser = parserBody;
         }
 
-        public StructureMutation Parse(LpNode node)
+        public StructureFragment Parse(LpNode node)
         {
             return Parse(node, Id, false);
         }
 
-        private StructureMutation Parse(LpNode node, string requiredId, bool restIsAllowed)
+        private StructureFragment Parse(LpNode node, string requiredId, bool restIsAllowed)
         {
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
@@ -117,7 +117,7 @@
                 }
             }
             
-            return new StructureMutation(name, annotation, valueFragments.ToArray(), structureFragments.ToArray());
+            return new StructureFragment(name, annotation, Requirement.None, valueFragments.ToArray(), structureFragments.ToArray(), FragmentType.Mutation);
         }
 
         public bool CanParse(LpNode node)

@@ -5,9 +5,9 @@
     /// </summary>
     public class Schema
     {
-        public Fragment Structure { get; }
+        public StructureFragment Structure { get; }
 
-        public Schema(Fragment structure)
+        public Schema(StructureFragment structure)
         {
             Structure = structure;
         }

@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    internal interface IMutationStructureProcessor : IFragmentProcessor<StructureMutation>
+    internal interface IMutationStructureProcessor : IFragmentProcessor<StructureFragment>
     {
     }
 }

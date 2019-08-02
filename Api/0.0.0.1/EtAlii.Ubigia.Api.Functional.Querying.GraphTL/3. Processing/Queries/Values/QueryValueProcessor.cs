@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
         }
 
         public async Task Process(
-            ValueQuery fragment,
+            ValueFragment fragment,
             FragmentMetadata fragmentMetadata,
             SchemaExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput)

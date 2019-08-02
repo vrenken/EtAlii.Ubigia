@@ -24,7 +24,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
 
         [Fact]
@@ -46,7 +46,8 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Values.Single().Type);
         }
 
         [Fact]
@@ -67,7 +68,8 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Values.Single().Type);
         }
 
         
@@ -90,7 +92,8 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            Assert.Equal(FragmentType.Mutation, parseResult.Schema.Structure.Values.Single().Type);
         }
 
         
@@ -99,7 +102,7 @@
         {
             // Arrange.
             var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
-            var normalPersonText = @"-- Comment goes here.
+            var schemaText = @"-- Comment goes here.
             Person @node(/Person/Stark/Tony)
             {
                 ""age"" <= ""22"",
@@ -112,7 +115,7 @@
             
             
             // Act.
-            var parseResult = parser.Parse(normalPersonText);
+            var parseResult = parser.Parse(schemaText);
 
             // Assert.
             Assert.NotNull(parseResult);
@@ -121,10 +124,17 @@
             Assert.Equal("Person",parseResult.Schema.Structure.Annotation.Path.Parts[1].ToString());
             Assert.Equal("Stark",parseResult.Schema.Structure.Annotation.Path.Parts[3].ToString());
             Assert.Equal("Tony",parseResult.Schema.Structure.Annotation.Path.Parts[5].ToString());
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
-            var structureMutation = (StructureMutation)parseResult.Schema.Structure; 
-            Assert.Equal("22",structureMutation.Values.Cast<ValueMutation>().Single(v => v.Name == "age").Value);
-            Assert.Equal("sabrina.stephenson@isotronic.io",structureMutation.Values.Cast<ValueMutation>().Single(v => v.Name == "email").Value);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+         
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
+
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
 
         [Fact]
@@ -155,7 +165,18 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.IsType<Annotation>(parseResult.Schema.Structure.Annotation);
-            //Assert.Equal("traverse(person:Stephenson/Sabrina)",jsonNode.Annotation);
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
+
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
 
         
@@ -184,7 +205,17 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
+
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
 
         [Fact]
@@ -211,6 +242,19 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
+            
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
+
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
 
         [Fact]
@@ -238,7 +282,20 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+
+                        
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
+
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
 
         [Fact]
@@ -268,7 +325,19 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
+
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
 
         [Fact]
@@ -295,9 +364,19 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
 
-            //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Annotation);
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("admin@starkindustries.com", emailStructure.Mutation);
         }
         
         
@@ -325,9 +404,19 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
 
-            //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Annotation);
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
         [Fact]
         public void SchemaParser_Parse_Mutation_Annotated_Element_02()
@@ -357,9 +446,19 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureMutation>(parseResult.Schema.Structure);
+            
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+            
+            var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
+            Assert.NotNull(ageStructure);
+            Assert.Equal(FragmentType.Mutation, ageStructure.Type);
+            Assert.Equal("22", ageStructure.Mutation);
 
-            //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Children.ToArray()[0].Annotation);
+            var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
+            Assert.NotNull(emailStructure);
+            Assert.Equal(FragmentType.Mutation, emailStructure.Type);
+            Assert.Equal("sabrina.stephenson@isotronic.io", emailStructure.Mutation);
         }
     }
 }

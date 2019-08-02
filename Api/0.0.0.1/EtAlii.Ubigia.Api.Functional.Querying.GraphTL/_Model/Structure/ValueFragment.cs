@@ -1,10 +1,18 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    public abstract class ValueFragment : Fragment
+    public class ValueFragment : Fragment
     {
-        protected ValueFragment(string name, Annotation annotation)
-            : base(name, annotation)
+        public object Mutation { get; }
+
+        internal ValueFragment(
+            string name, 
+            Annotation annotation, 
+            Requirement requirement, 
+            FragmentType fragmentType, 
+            object mutation)
+            : base(name, annotation, requirement, fragmentType)
         {
+            Mutation = mutation;
         }
     }
 }

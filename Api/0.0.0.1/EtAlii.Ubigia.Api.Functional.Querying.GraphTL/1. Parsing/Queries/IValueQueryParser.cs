@@ -7,7 +7,7 @@ namespace EtAlii.Ubigia.Api.Functional
         LpsParser Parser { get; }
         string Id { get; }
 
-        ValueQuery Parse(LpNode node);
+        ValueFragment Parse(LpNode node);
         bool CanParse(LpNode node);
     }
 }
