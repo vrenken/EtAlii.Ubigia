@@ -41,7 +41,7 @@ Person @node(Person:Doe/John)
      {
         FirstName @value(),
         LastName @value(\#FamilyName),
-        NickName,
+        NickName
      }  
  }
 
@@ -54,11 +54,41 @@ Person @node(Person:Doe/John)
          FirstName @value(),
          LastName @value(\#FamilyName),
          NickName,
-         Friend @nodes(/Friends += Person:Stark/Tony)
+         Friend @nodes(/Friends += Person:Vrenken/Peter)
          {
             FirstName @value(),
             LastName @value(\#FamilyName),
-            NickName,
+            NickName
+         }  
+     }
+ }
+
+-- ==================================================================================================================
+-- 06 Link two nodes and return everything.
+ Data
+ {
+     Person @node(Person:Doe/John)
+     {
+         FirstName @value(),
+         LastName @value(\#FamilyName),
+         NickName,
+         Friend @nodes(/Friends += Person:Vrenken/Peter)
+         {
+            FirstName @value(),
+            LastName @value(\#FamilyName),
+            NickName
+         }  
+     },
+     Person @node(Person:Vrenken/Peter)
+     {
+         FirstName @value(),
+         LastName @value(\#FamilyName),
+         NickName,
+         Friend @nodes(/Friends += Person:Doe/John)
+         {
+            FirstName @value(),
+            LastName @value(\#FamilyName),
+            NickName
          }  
      }
  }
