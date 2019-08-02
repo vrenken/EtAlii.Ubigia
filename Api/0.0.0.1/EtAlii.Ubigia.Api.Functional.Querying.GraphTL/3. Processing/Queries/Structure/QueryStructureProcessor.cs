@@ -3,13 +3,13 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Threading.Tasks;
 
-    internal class StructureQueryProcessor : IStructureQueryProcessor
+    internal class QueryStructureProcessor : IQueryStructureProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
         private readonly IPathStructureBuilder _pathStructureBuilder;
         private readonly IPathDeterminer _pathDeterminer;
 
-        public StructureQueryProcessor(
+        public QueryStructureProcessor(
             IRelatedIdentityFinder relatedIdentityFinder, 
             IPathStructureBuilder pathStructureBuilder, 
             IPathDeterminer pathDeterminer)

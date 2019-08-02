@@ -53,12 +53,7 @@
 
         public QueryScopeVariable(IObservable<object> value, string source)
         {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value));
-            }
-
-            Value = value;
+            Value = value ?? throw new ArgumentNullException(nameof(value));
             Source = source ?? string.Empty;
         }
     }

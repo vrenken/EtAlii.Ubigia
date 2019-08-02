@@ -3,11 +3,11 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Threading.Tasks;
 
-    internal class ValueQueryProcessor : IValueQueryProcessor
+    internal class QueryValueProcessor : IQueryValueProcessor
     {
         private readonly IValueGetter _valueGetter;
 
-        public ValueQueryProcessor(IValueGetter valueGetter)
+        public QueryValueProcessor(IValueGetter valueGetter)
         {
             _valueGetter = valueGetter;
         }
