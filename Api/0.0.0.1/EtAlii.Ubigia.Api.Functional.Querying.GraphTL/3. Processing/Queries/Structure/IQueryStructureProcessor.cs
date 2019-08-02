@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
-    internal interface IQueryStructureProcessor  : IFragmentProcessor<StructureQuery>
+    internal interface IQueryStructureProcessor  : IFragmentProcessor<StructureFragment>
     {
     }
 }

@@ -38,25 +38,25 @@ namespace EtAlii.Ubigia.Api.Functional
             
             switch (fragment)
             {
-                case ValueQuery valueQuery:
-                    executionPlan = new FragmentExecutionPlan<ValueQuery>(valueQuery, _queryValueProcessor);
+                case ValueFragment valueQuery when valueQuery.Type == FragmentType.Query:
+                    executionPlan = new FragmentExecutionPlan<ValueFragment>(valueQuery, _queryValueProcessor);
                     executionPlanQueue.Add(executionPlan);
                     break;
                 
-                case StructureQuery structureQuery:
-                    executionPlan = new FragmentExecutionPlan<StructureQuery>(structureQuery, _queryStructureProcessor);
+                case StructureFragment structureQuery when structureQuery.Type == FragmentType.Query:
+                    executionPlan = new FragmentExecutionPlan<StructureFragment>(structureQuery, _queryStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Values);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Children);
                     break;
                 
-                case ValueMutation valueMutation:
-                    executionPlan = new FragmentExecutionPlan<ValueMutation>(valueMutation, _mutationValueProcessor);
+                case ValueFragment valueMutation when valueMutation.Type == FragmentType.Mutation:
+                    executionPlan = new FragmentExecutionPlan<ValueFragment>(valueMutation, _mutationValueProcessor);
                     executionPlanQueue.Add(executionPlan);
                     break;
                 
-                case StructureMutation structureMutation:
-                    executionPlan = new FragmentExecutionPlan<StructureMutation>(structureMutation, _mutationStructureProcessor);
+                case StructureFragment structureMutation when structureMutation.Type == FragmentType.Mutation:
+                    executionPlan = new FragmentExecutionPlan<StructureFragment>(structureMutation, _mutationStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureMutation.Values);
                     break;

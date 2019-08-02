@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Api.Functional
         }
 
         public async Task Process(
-            StructureMutation fragment,
+            StructureFragment fragment,
             FragmentMetadata fragmentMetadata,
             SchemaExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput)

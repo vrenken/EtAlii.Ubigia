@@ -14,7 +14,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = nameof(ValueMutation);
+        public string Id { get; } = "ValueMutation";
 
         private const string KeyAnnotationId = "KeyAnnotation";
         private const string KeyAnnotationValueId = "KeyAnnotationValue";
@@ -47,7 +47,7 @@
             Parser = new LpsParser(Id, true, keyAnnotationParser | keyValueParser | keyAnnotationValueParser);
         }
 
-        public ValueMutation Parse(LpNode node)
+        public ValueFragment Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
 
@@ -58,18 +58,18 @@
                 case KeyAnnotationId:
                     var name1 = ParseName(child);
                     var annotation1 = ParseAnnotation(child);
-                    return new ValueMutation(name1, annotation1, null);
+                    return new ValueFragment(name1, annotation1, Requirement.None, FragmentType.Mutation, null);
                 case KeyValuePairParser.Id:
                     var kvpNode = _nodeFinder.FindFirst(child, _keyValuePairParser.Id);
                     var kvp = _keyValuePairParser.Parse(kvpNode);
-                    return new ValueMutation(kvp.Key, null, kvp.Value);
+                    return new ValueFragment(kvp.Key, null, Requirement.None, FragmentType.Mutation, kvp.Value);
                 case KeyAnnotationValueId:
                     var name2 = ParseName(child);
                     var annotation2 = ParseAnnotation(child);
                     var @value = ParseValue(child);
-                    return new ValueMutation(name2, annotation2, value);
+                    return new ValueFragment(name2, annotation2, Requirement.None, FragmentType.Mutation, value);
                 default:
-                    throw new SchemaParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
+                    throw new SchemaParserException($"Unable to find correctly formatted {nameof(ValueFragment)}.");
             }
         }
 

@@ -26,10 +26,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParserTestContainerFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureMutationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureQueryParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueMutationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueQueryParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueFragmentParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />

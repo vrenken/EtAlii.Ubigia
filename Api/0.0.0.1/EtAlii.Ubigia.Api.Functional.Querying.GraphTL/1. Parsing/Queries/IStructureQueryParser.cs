@@ -7,7 +7,7 @@
         string Id { get; }
         
         LpsParser Parser { get; }
-        StructureQuery Parse(LpNode node);
+        StructureFragment Parse(LpNode node);
         bool CanParse(LpNode node);
 
         void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after);

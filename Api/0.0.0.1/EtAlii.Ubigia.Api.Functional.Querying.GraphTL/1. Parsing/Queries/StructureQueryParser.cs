@@ -6,7 +6,7 @@
 
     internal class StructureQueryParser : IStructureQueryParser
     {
-        public string Id { get; } = nameof(StructureQuery);
+        public string Id { get; } = "StructureQuery";
 
         private const string ChildStructureQueryId = "ChildStructureQuery"; 
         private const string ChildStructureQueryHeaderId = "ChildStructureQueryHeader"; 
@@ -76,12 +76,12 @@
             structureQueryParser.Parser = parserBody;
         }
 
-        public StructureQuery Parse(LpNode node)
+        public StructureFragment Parse(LpNode node)
         {
             return Parse(node, Id, false);
         }
 
-        private StructureQuery Parse(LpNode node, string requiredId, bool restIsAllowed)
+        private StructureFragment Parse(LpNode node, string requiredId, bool restIsAllowed)
         {
             _nodeValidator.EnsureSuccess(node, requiredId, restIsAllowed);
 
@@ -117,7 +117,7 @@
                 }
             }
             
-            return new StructureQuery(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray());
+            return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), FragmentType.Query);
         }
 
         public bool CanParse(LpNode node)

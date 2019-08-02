@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using System.Linq;
     using Xunit;
 
     public partial class SchemaParserTests 
@@ -29,7 +30,9 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            
+            Assert.NotNull(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
 
         [Fact]
@@ -57,7 +60,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
 
         [Fact]
@@ -85,7 +88,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
         
         [Fact]
@@ -108,7 +111,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
         
         [Fact]
@@ -136,7 +139,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
         
         [Fact]
@@ -164,7 +167,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
         
         [Fact]
@@ -187,7 +190,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
 
         
@@ -218,7 +221,7 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
         }
 
         [Fact]
@@ -248,7 +251,12 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+
+            var childStructure = parseResult.Schema.Structure.Children.SingleOrDefault();
+            Assert.NotNull(childStructure);
+            Assert.Equal(FragmentType.Query, childStructure.Type);
+            Assert.Equal("name", childStructure.Name);
         }
 
         [Fact]
@@ -278,7 +286,12 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+
+            var childStructure = parseResult.Schema.Structure.Children.SingleOrDefault();
+            Assert.NotNull(childStructure);
+            Assert.Equal(FragmentType.Query, childStructure.Type);
+            Assert.Equal("name", childStructure.Name);
         }
 
         [Fact]
@@ -309,8 +322,12 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
-            //Assert.Equal("traverse(person:Stephenson/Sabrina)",jsonNode.Annotation);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
+
+            var childStructure = parseResult.Schema.Structure.Children.SingleOrDefault();
+            Assert.NotNull(childStructure);
+            Assert.Equal(FragmentType.Query, childStructure.Type);
+            Assert.Equal("name", childStructure.Name);
         }
 
         [Fact]
@@ -337,9 +354,12 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
 
-            //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Annotation);
+            var childStructure = parseResult.Schema.Structure.Children.SingleOrDefault();
+            Assert.NotNull(childStructure);
+            Assert.Equal(FragmentType.Query, childStructure.Type);
+            Assert.Equal("name", childStructure.Name);
         }
 
 
@@ -371,9 +391,12 @@
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
+            Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
 
-            //Assert.Equal("id()", jsonNode.Children.ToArray()[1].Children.ToArray()[0].Annotation);
+            var childStructure = parseResult.Schema.Structure.Children.SingleOrDefault();
+            Assert.NotNull(childStructure);
+            Assert.Equal(FragmentType.Query, childStructure.Type);
+            Assert.Equal("name", childStructure.Name);
         }
         
         [Fact]
@@ -398,16 +421,18 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
-            Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
-            var structureQuery = (StructureQuery)parseResult.Schema.Structure;
-            Assert.Empty(structureQuery.Values); 
-            Assert.Single(structureQuery.Children); 
-            Assert.Equal("Data", structureQuery.Children[0].Name); 
-            Assert.Null(structureQuery.Children[0].Annotation); 
-            Assert.Equal(2, structureQuery.Children[0].Values.Length); 
-            Assert.Equal("FirstName", structureQuery.Children[0].Values[0].Name); 
-            Assert.Equal("LastName", structureQuery.Children[0].Values[1].Name); 
+            var structureFragment = parseResult.Schema.Structure;
+            Assert.NotNull(structureFragment);
+            Assert.Equal(FragmentType.Query, structureFragment.Type);
+            Assert.Empty(structureFragment.Values); 
+            Assert.Single(structureFragment.Children); 
+            Assert.Equal("Data", structureFragment.Children[0].Name); 
+            Assert.Null(structureFragment.Children[0].Annotation); 
+            Assert.Equal(2, structureFragment.Children[0].Values.Length); 
+            Assert.Equal("FirstName", structureFragment.Children[0].Values[0].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Children[0].Values[0].Type); 
+            Assert.Equal("LastName", structureFragment.Children[0].Values[1].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Children[0].Values[1].Type); 
         }
         
         
@@ -437,22 +462,29 @@
             Assert.NotNull(parseResult);
             Assert.Empty(parseResult.Errors);
             Assert.NotNull(parseResult.Schema);
-            Assert.NotNull(parseResult.Schema.Structure);
-            Assert.IsType<StructureQuery>(parseResult.Schema.Structure);
-            var structureQuery = (StructureQuery)parseResult.Schema.Structure;
-            Assert.Equal(4, structureQuery.Values.Length); 
-            Assert.Single(structureQuery.Children); 
-            Assert.Equal("name", structureQuery.Children[0].Name); 
-            Assert.Equal("@Node(\\#FamilyName)", structureQuery.Children[0].Annotation.ToString()); 
-            Assert.Equal(2, structureQuery.Children[0].Values.Length); 
-            Assert.Equal("first", structureQuery.Children[0].Values[0].Name); 
-            Assert.Equal("@Value(/FirstName)", structureQuery.Children[0].Values[0].Annotation.ToString()); 
-            Assert.Equal("last", structureQuery.Children[0].Values[1].Name); 
-            Assert.Equal("@Value()", structureQuery.Children[0].Values[1].Annotation.ToString()); 
-            Assert.Equal("age", structureQuery.Values[0].Name); 
-            Assert.Equal("company", structureQuery.Values[1].Name); 
-            Assert.Equal("email", structureQuery.Values[2].Name); 
-            Assert.Equal("phone", structureQuery.Values[3].Name); 
+            var structureFragment = parseResult.Schema.Structure;
+            Assert.NotNull(structureFragment);
+            Assert.Equal(FragmentType.Query, structureFragment.Type);
+            Assert.Equal(4, structureFragment.Values.Length); 
+            Assert.Single(structureFragment.Children); 
+            Assert.Equal("name", structureFragment.Children[0].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Children[0].Type); 
+            Assert.Equal("@Node(\\#FamilyName)", structureFragment.Children[0].Annotation.ToString()); 
+            Assert.Equal(2, structureFragment.Children[0].Values.Length); 
+            Assert.Equal("first", structureFragment.Children[0].Values[0].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Children[0].Values[0].Type); 
+            Assert.Equal("@Value(/FirstName)", structureFragment.Children[0].Values[0].Annotation.ToString()); 
+            Assert.Equal("last", structureFragment.Children[0].Values[1].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Children[0].Values[1].Type); 
+            Assert.Equal("@Value()", structureFragment.Children[0].Values[1].Annotation.ToString()); 
+            Assert.Equal("age", structureFragment.Values[0].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Values[0].Type); 
+            Assert.Equal("company", structureFragment.Values[1].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Values[1].Type); 
+            Assert.Equal("email", structureFragment.Values[2].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Values[2].Type); 
+            Assert.Equal("phone", structureFragment.Values[3].Name); 
+            Assert.Equal(FragmentType.Query, structureFragment.Values[3].Type); 
 
         }
     }

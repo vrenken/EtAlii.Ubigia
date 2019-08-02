@@ -12,7 +12,7 @@
 
         public LpsParser Parser { get; }
 
-        public string Id { get; } = nameof(ValueQuery);
+        public string Id { get; } = "ValueQuery";
 
         private const string KeyId = "Key";
         private const string RequirementId = "Requirement";
@@ -44,7 +44,7 @@
                 new LpsParser(AnnotationId, true, annotationParser.Parser).Maybe());
         }
 
-        public ValueQuery Parse(LpNode node)
+        public ValueFragment Parse(LpNode node)
         {
             _nodeValidator.EnsureSuccess(node, Id);
                 
@@ -63,7 +63,7 @@
                 annotation = _annotationParser.Parse(annotationValueNode);
             }
 
-            return new ValueQuery(name, annotation, requirement);
+            return new ValueFragment(name, annotation, requirement, FragmentType.Query, null);
         }
 
         public bool CanParse(LpNode node)
