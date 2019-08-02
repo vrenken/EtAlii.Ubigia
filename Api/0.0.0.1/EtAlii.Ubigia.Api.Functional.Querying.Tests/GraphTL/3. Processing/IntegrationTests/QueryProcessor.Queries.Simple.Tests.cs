@@ -131,15 +131,15 @@
         {
             // Arrange.
             var selectSchemaText = @"Time @node(time:now)
-                               {
-                                    Millisecond @value()
-                                    Second @value(\)
-                                    Minute @value(\\)
-                                    Hour @value(\\\)
-                                    Day @value(\\\\)
-                                    Month @value(\\\\\)
-                                    Year @value(\\\\\\)
-                               }";
+                                   {
+                                        Millisecond @value()
+                                        Second @value(\)
+                                        Minute @value(\\)
+                                        Hour @value(\\\)
+                                        Day @value(\\\\)
+                                        Month @value(\\\\\)
+                                        Year @value(\\\\\\)
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -168,10 +168,10 @@
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
-                               {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
-                               }";
+                                   {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -199,10 +199,10 @@
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:*/*)
-                               {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
-                               }";
+                                   {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -245,17 +245,15 @@
 
         }
 
-        
-        
         [Fact]
         public async Task SchemaProcessor_Query_Person_By_Last_Output()
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
-                               {
-                                    FirstName @value()
-                                    LastName @value(\#FamilyName)
-                               }";
+                                   {
+                                        FirstName @value()
+                                        LastName @value(\#FamilyName)
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -280,19 +278,56 @@
             Assert.Same(structure, lastStructure);
         }
 
+        //[Fact(Skip = "This would be cool but isn't working (yet)")]
+        [Fact]
+        public async Task SchemaProcessor_Query_Person_By_Values()
+        {
+            // Arrange.
+            var selectSchemaText = @"Data
+                                   {
+                                        FirstName @value(Person:Stark/Tony)
+                                        LastName @value(Person:Stark/Tony\#FamilyName)
+                                   }";
+
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
+
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new SchemaProcessorFactory().Create(configuration);
+
+            // Act.
+            var result = await processor.Process(selectSchema);
+            await result.Completed();
+            var lastStructure = await result.Output.LastOrDefaultAsync();
+
+            // Assert.
+            Assert.NotNull(result.Output);
+            Assert.NotNull(lastStructure);
+            
+            var structure = result.Structure.SingleOrDefault();
+            Assert.NotNull(structure);
+            Assert.Same(structure, lastStructure);
+
+            AssertValue("Tony", structure, "FirstName");
+            AssertValue("Stark", structure, "LastName");
+        }
+
         
         [Fact]
         public async Task SchemaProcessor_Query_Person_Nested_By_Structure()
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
-                               {
-                                    Data
                                     {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
-                                    }
-                               }";
+                                        Data
+                                        {
+                                            FirstName @value()
+                                            LastName @value(\#FamilyName)
+                                        }
+                                    }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -324,13 +359,13 @@
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
-                               {
-                                    Data
-                                    {
-                                        FirstName @value()
-                                        LastName @value(\#FamilyName)
-                                    }
-                               }";
+                                   {
+                                        Data
+                                        {
+                                            FirstName @value()
+                                            LastName @value(\#FamilyName)
+                                        }
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -363,16 +398,16 @@
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
-                               {
-                                    Data1
-                                    {
-                                        Data2
+                                   {
+                                        Data1
                                         {
-                                            FirstName @value()
-                                            LastName @value(\#FamilyName)
+                                            Data2
+                                            {
+                                                FirstName @value()
+                                                LastName @value(\#FamilyName)
+                                            }
                                         }
-                                    }
-                               }";
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
@@ -405,16 +440,16 @@
         {
             // Arrange.
             var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
-                               {
-                                    Data1
-                                    {
-                                        Data2
+                                   {
+                                        Data1
                                         {
-                                            FirstName @value()
-                                            LastName @value(\#FamilyName)
+                                            Data2
+                                            {
+                                                FirstName @value()
+                                                LastName @value(\#FamilyName)
+                                            }
                                         }
-                                    }
-                               }";
+                                   }";
 
             var selectSchema = _context.Parse(selectSchemaText).Schema;
 
