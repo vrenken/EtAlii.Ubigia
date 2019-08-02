@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional
             else
             {
                 // No Id and no path.
-                throw new QueryProcessingException($"Unable to process fragment. No Id nor an annotation path found: {fragmentMetadata}");
+                throw new SchemaProcessingException($"Unable to process fragment. No Id nor an annotation path found: {fragmentMetadata}");
             }
 
             return path;

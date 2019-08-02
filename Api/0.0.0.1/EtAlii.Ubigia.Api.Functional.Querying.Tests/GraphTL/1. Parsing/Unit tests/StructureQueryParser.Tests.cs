@@ -18,7 +18,7 @@
 
         private IStructureQueryParser CreateStructureQueryParser()
         {
-            var container = new QueryParserTestContainerFactory().Create();
+            var container = new SchemaParserTestContainerFactory().Create();
 
             return container.GetInstance<IStructureQueryParser>();
         }

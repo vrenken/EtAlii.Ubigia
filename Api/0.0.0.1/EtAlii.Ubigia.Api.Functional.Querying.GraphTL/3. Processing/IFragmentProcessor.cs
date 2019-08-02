@@ -9,7 +9,7 @@
         Task Process(
             TFragment fragment,
             FragmentMetadata metadata,
-            QueryExecutionScope executionScope, 
+            SchemaExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput);
 
     }

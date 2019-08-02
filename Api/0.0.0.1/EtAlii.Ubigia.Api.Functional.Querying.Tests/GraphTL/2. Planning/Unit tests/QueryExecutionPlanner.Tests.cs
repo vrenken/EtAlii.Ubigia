@@ -7,13 +7,13 @@
     public partial class QueryExecutionPlannerTests 
     {
         
-        private IQueryExecutionPlanner CreatePlanner()
+        private ISchemaExecutionPlanner CreatePlanner()
         {
-            var configuration = new QueryProcessorConfiguration();
+            var configuration = new SchemaProcessorConfiguration();
             var container = new Container();
-            new QueryExecutionPlanningScaffolding().Register(container);
-            new QueryProcessingScaffolding(configuration).Register(container);
-            return container.GetInstance<IQueryExecutionPlanner>();
+            new SchemaExecutionPlanningScaffolding().Register(container);
+            new SchemaProcessingScaffolding(configuration).Register(container);
+            return container.GetInstance<ISchemaExecutionPlanner>();
         }
         
         [Fact]
@@ -32,7 +32,7 @@
         public void QueryExecutionPlanner_Plan_Simple_00()
         {
             // Arrange.
-            var parser = new QueryParserFactory().Create(new QueryParserConfiguration());
+            var parser = new SchemaParserFactory().Create(new SchemaParserConfiguration());
             var planner = CreatePlanner();
 
             var queryText = @"
@@ -50,7 +50,7 @@
             }";
 
             var parseResult = parser.Parse(queryText);
-            var query = parseResult.Query;
+            var query = parseResult.Schema;
             
             // Act.
             var executionPlans = planner.Plan(query);

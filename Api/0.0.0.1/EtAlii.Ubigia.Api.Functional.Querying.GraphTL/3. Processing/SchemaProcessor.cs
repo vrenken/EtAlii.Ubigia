@@ -1,0 +1,108 @@
+﻿namespace EtAlii.Ubigia.Api.Functional 
+{
+    using System;
+    using System.Collections.ObjectModel;
+    using System.Linq;
+    using System.Reactive.Disposables;
+    using System.Reactive.Linq;
+    using System.Threading;
+    using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Logical;
+
+    internal class SchemaProcessor : ISchemaProcessor
+    {
+        private readonly ISchemaExecutionPlanner _schemaExecutionPlanner;
+        private readonly ISchemaProcessorConfiguration _configuration;
+
+        public SchemaProcessor(
+            ISchemaExecutionPlanner schemaExecutionPlanner,
+            ISchemaProcessorConfiguration configuration)
+        {
+            _schemaExecutionPlanner = schemaExecutionPlanner;
+            _configuration = configuration;
+        }
+
+        public Task<SchemaProcessingResult> Process(Schema schema)
+        {
+            // We need to create execution plans for all of the sequences.
+            var executionPlans = _schemaExecutionPlanner.Plan(schema);
+            var rootMetadata = executionPlans?.FirstOrDefault()?.Metadata ?? new FragmentMetadata(null, Array.Empty<FragmentMetadata>());
+            var totalExecutionPlans = executionPlans.Length;
+
+            var result = new SchemaProcessingResult(schema, totalExecutionPlans, new ReadOnlyObservableCollection<Structure>(rootMetadata.Items));
+
+            var observableQueryOutput = Observable.Create<Structure>(async queryOutput =>
+            {
+                try
+                {
+                    for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
+                    {
+                        //var sequence = sequences[executionPlanIndex];
+                        var executionPlan = executionPlans[executionPlanIndex];
+
+                        result.Update(executionPlanIndex, executionPlan);
+                        await ProcessExecutionPlan(executionPlan, queryOutput);
+                    }
+                    result.Update(totalExecutionPlans, null);
+
+                    // After iterating through the fragment query observation has ended. Please keep in mind 
+                    // this is not the same for all sequence observables. The last one could still be receiving results. 
+                    queryOutput.OnCompleted();
+                }
+                catch (Exception e)
+                {
+                    while (e is AggregateException aggregateException)
+                    {
+                        e = aggregateException.InnerException;
+                    }
+
+                    // An exception on this level should be propagated to the query output observer.
+                    queryOutput.OnError(e);
+                }
+
+                return Disposable.Empty; 
+            });
+
+            result.Update(observableQueryOutput);
+
+            return Task.FromResult(result);
+        }
+
+        private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> queryOutput)
+        {
+            var executionScope = new SchemaExecutionScope();
+
+            var executionPlanOutput = await executionPlan.Execute(executionScope);
+            //var observableQueryOutput = Observable.Empty<Structure>();
+
+//            var originalObservableQueryOutput = await executionPlan.Execute(executionScope);
+//            var observableQueryOutput = Observable.Empty<Structure>();
+
+            // We want all subqueryions to have access to all results.
+            executionPlanOutput = executionPlanOutput
+                //.SubscribeOn(CurrentThreadScheduler.Instance)
+                //.ObserveOn(CurrentThreadScheduler.Instance)
+                .ToHotObservable();
+
+            //queryOutput.OnNext(sequenceResult);
+
+            Exception exception = null;
+            var continueEvent = new ManualResetEvent(false);
+
+            // We need to halt execution of the next sequence until the current one has finished.
+            executionPlanOutput.Subscribe(
+                onNext: o => queryOutput.OnNext(o), 
+                onError: e =>
+                {
+                    exception = e;
+                    continueEvent.Set();
+                }, 
+                onCompleted: () => { continueEvent.Set(); });
+            continueEvent.WaitOne();
+            if (exception != null)
+            {
+                throw exception;
+            }
+        }
+    }
+}

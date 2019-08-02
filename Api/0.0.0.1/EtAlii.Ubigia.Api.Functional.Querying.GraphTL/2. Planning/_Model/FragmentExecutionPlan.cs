@@ -24,7 +24,7 @@
         }
         
 
-        internal override Task<IObservable<Structure>> Execute(QueryExecutionScope executionScope)
+        internal override Task<IObservable<Structure>> Execute(SchemaExecutionScope executionScope)
         {
             var outputObservable = Observable.Create<Structure>(async outputObserver =>
             {
@@ -37,7 +37,7 @@
 
             return Task.FromResult(outputObservable);
         }
-        protected Task Execute(QueryExecutionScope executionScope, IObserver<Structure> output)
+        protected Task Execute(SchemaExecutionScope executionScope, IObserver<Structure> output)
         {
             return _processor.Process(Fragment, Metadata, executionScope, output);
         }

@@ -14,11 +14,11 @@
 
         public void Register(Container container)
         {
-            container.Register<IGraphTLQueryContext, GraphTLQueryContext>();
+            container.Register<IGraphTLContext, GraphTLContext>();
             container.Register<IGraphTLQueryContextConfiguration>(() => _configuration);
 
-            container.Register<IQueryProcessorFactory, QueryProcessorFactory>();
-            container.Register<IQueryParserFactory, QueryParserFactory>();
+            container.Register<ISchemaProcessorFactory, SchemaProcessorFactory>();
+            container.Register<ISchemaParserFactory, SchemaParserFactory>();
             
             container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(_configuration));
 

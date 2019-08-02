@@ -18,7 +18,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public async Task<Value> Get(
             string valueName, 
             Annotation annotation, 
-            QueryExecutionScope executionScope, 
+            SchemaExecutionScope executionScope, 
             Structure structure)
         {
             if (annotation == null)

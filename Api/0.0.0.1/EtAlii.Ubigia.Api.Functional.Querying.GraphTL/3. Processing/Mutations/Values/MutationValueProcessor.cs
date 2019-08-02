@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public async Task Process(
             ValueMutation fragment,
             FragmentMetadata fragmentMetadata,
-            QueryExecutionScope executionScope, 
+            SchemaExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput)
         {
             foreach (var structure in fragmentMetadata.Parent.Items)

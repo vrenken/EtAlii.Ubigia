@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
                     }
                     break;
                 case AssignOperator _:
-                    throw new QueryProcessingException("Assignments cannot be done using @node/@nodes mutations. Use @value mutations instead.");
+                    throw new SchemaProcessingException("Assignments cannot be done using @node/@nodes mutations. Use @value mutations instead.");
             }
 
             return path;

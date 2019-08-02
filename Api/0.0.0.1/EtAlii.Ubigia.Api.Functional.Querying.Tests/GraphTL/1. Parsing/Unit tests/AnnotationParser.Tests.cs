@@ -18,7 +18,7 @@
 
         private IAnnotationParser CreateAnnotationParser()
         {
-            var container = new QueryParserTestContainerFactory().Create();
+            var container = new SchemaParserTestContainerFactory().Create();
 
             return container.GetInstance<IAnnotationParser>();
         }

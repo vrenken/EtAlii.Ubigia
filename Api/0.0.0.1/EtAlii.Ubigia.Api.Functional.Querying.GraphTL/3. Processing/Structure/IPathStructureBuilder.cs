@@ -6,7 +6,7 @@ namespace EtAlii.Ubigia.Api.Functional
     internal interface IPathStructureBuilder
     {
         Task Build(
-            QueryExecutionScope executionScope,
+            SchemaExecutionScope executionScope,
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> fragmentOutput,
             Annotation annotation,
