@@ -1,16 +1,21 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
-    using System.Reactive.Linq;
-    using System.Threading.Tasks;
 
     public class SequenceProcessingResult
     {
+        /// <summary>
+        /// The Sequence for which results will be returned through the Output observable.
+        /// </summary>
         public Sequence Sequence { get; }
         private ISequenceExecutionPlan ExecutionPlan { get;  }
         public int Step { get; }
         public int Total { get; }
 
+        /// <summary>
+        /// The observable output for the specified sequence. Make sure to await with LastOrDefaultAsync if you are not
+        /// sure results will be returned.
+        /// </summary>
         public IObservable<object> Output { get; }
 
         public SequenceProcessingResult(
@@ -26,15 +31,5 @@
             Total = total;
             Output = output;
         }
-        
-        /// <summary>
-        /// Awaiting this method ensures GSL sequence processing has finished.
-        /// </summary>
-        /// <returns></returns>
-        public async Task Completed()
-        {
-            await Output.LastOrDefaultAsync();
-        }
-
     }
 }
