@@ -151,7 +151,7 @@
                                      FirstName @value(),
                                      LastName @value(\#FamilyName),
                                      NickName,
-                                     Friends @nodes(/Friends += Person:Stark/Tony)
+                                     Friend @nodes(/Friends += Person:Stark/Tony)
                                      {
                                         FirstName @value(),
                                         LastName @value(\#FamilyName),
