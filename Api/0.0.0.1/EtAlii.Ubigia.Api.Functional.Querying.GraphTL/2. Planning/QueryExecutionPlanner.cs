@@ -4,20 +4,20 @@ namespace EtAlii.Ubigia.Api.Functional
 
     internal class QueryExecutionPlanner : IQueryExecutionPlanner
     {
-        private readonly IStructureQueryProcessor _structureQueryProcessor;
-        private readonly IStructureMutationProcessor _structureMutationProcessor;
-        private readonly IValueQueryProcessor _valueQueryProcessor;
-        private readonly IValueMutationProcessor _valueMutationProcessor;
+        private readonly IQueryStructureProcessor _queryStructureProcessor;
+        private readonly IMutationStructureProcessor _mutationStructureProcessor;
+        private readonly IQueryValueProcessor _queryValueProcessor;
+        private readonly IMutationValueProcessor _mutationValueProcessor;
 
-        public QueryExecutionPlanner(IStructureQueryProcessor structureQueryProcessor,
-            IStructureMutationProcessor structureMutationProcessor,
-            IValueQueryProcessor valueQueryProcessor,
-            IValueMutationProcessor valueMutationProcessor)
+        public QueryExecutionPlanner(IQueryStructureProcessor queryStructureProcessor,
+            IMutationStructureProcessor mutationStructureProcessor,
+            IQueryValueProcessor queryValueProcessor,
+            IMutationValueProcessor mutationValueProcessor)
         {
-            _structureQueryProcessor = structureQueryProcessor;
-            _structureMutationProcessor = structureMutationProcessor;
-            _valueQueryProcessor = valueQueryProcessor;
-            _valueMutationProcessor = valueMutationProcessor;
+            _queryStructureProcessor = queryStructureProcessor;
+            _mutationStructureProcessor = mutationStructureProcessor;
+            _queryValueProcessor = queryValueProcessor;
+            _mutationValueProcessor = mutationValueProcessor;
         }
 
         public FragmentExecutionPlan[] Plan(Query query)
@@ -39,24 +39,24 @@ namespace EtAlii.Ubigia.Api.Functional
             switch (fragment)
             {
                 case ValueQuery valueQuery:
-                    executionPlan = new FragmentExecutionPlan<ValueQuery>(valueQuery, _valueQueryProcessor);
+                    executionPlan = new FragmentExecutionPlan<ValueQuery>(valueQuery, _queryValueProcessor);
                     executionPlanQueue.Add(executionPlan);
                     break;
                 
                 case StructureQuery structureQuery:
-                    executionPlan = new FragmentExecutionPlan<StructureQuery>(structureQuery, _structureQueryProcessor);
+                    executionPlan = new FragmentExecutionPlan<StructureQuery>(structureQuery, _queryStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Values);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureQuery.Children);
                     break;
                 
                 case ValueMutation valueMutation:
-                    executionPlan = new FragmentExecutionPlan<ValueMutation>(valueMutation, _valueMutationProcessor);
+                    executionPlan = new FragmentExecutionPlan<ValueMutation>(valueMutation, _mutationValueProcessor);
                     executionPlanQueue.Add(executionPlan);
                     break;
                 
                 case StructureMutation structureMutation:
-                    executionPlan = new FragmentExecutionPlan<StructureMutation>(structureMutation, _structureMutationProcessor);
+                    executionPlan = new FragmentExecutionPlan<StructureMutation>(structureMutation, _mutationStructureProcessor);
                     executionPlanQueue.Add(executionPlan);
                     GetPlansForChildFragments(executionPlanQueue, childMetaDatas, structureMutation.Values);
                     break;

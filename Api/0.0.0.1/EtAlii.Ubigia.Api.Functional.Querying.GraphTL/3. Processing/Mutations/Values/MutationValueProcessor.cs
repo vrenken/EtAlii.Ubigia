@@ -3,11 +3,11 @@ namespace EtAlii.Ubigia.Api.Functional
     using System;
     using System.Threading.Tasks;
 
-    internal class ValueMutationProcessor : IValueMutationProcessor
+    internal class MutationValueProcessor : IMutationValueProcessor
     {
         private readonly IValueSetter _valueSetter;
 
-        public ValueMutationProcessor(IValueSetter valueSetter)
+        public MutationValueProcessor(IValueSetter valueSetter)
         {
             _valueSetter = valueSetter;
         }

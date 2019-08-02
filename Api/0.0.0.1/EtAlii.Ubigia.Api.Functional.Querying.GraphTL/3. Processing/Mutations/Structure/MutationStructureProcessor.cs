@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
-    internal class StructureMutationProcessor : IStructureMutationProcessor
+    internal class MutationStructureProcessor : IMutationStructureProcessor
     {
         private readonly IRelatedIdentityFinder _relatedIdentityFinder;
         private readonly IGraphSLScriptContext _scriptContext;
@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Functional
         private readonly IPathDeterminer _pathDeterminer;
         private readonly IPathCorrecter _pathCorrecter;
 
-        public StructureMutationProcessor(
+        public MutationStructureProcessor(
             IRelatedIdentityFinder relatedIdentityFinder, 
             IGraphSLScriptContext scriptContext, 
             IPathStructureBuilder pathStructureBuilder, 

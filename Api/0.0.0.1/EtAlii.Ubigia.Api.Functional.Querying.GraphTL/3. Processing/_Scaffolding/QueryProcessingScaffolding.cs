@@ -15,8 +15,8 @@
         {
             container.Register<IQueryProcessor, QueryProcessor>();
             
-            container.Register<IValueQueryProcessor, ValueQueryProcessor>();
-            container.Register<IValueMutationProcessor, ValueMutationProcessor>();
+            container.Register<IQueryValueProcessor, QueryValueProcessor>();
+            container.Register<IMutationValueProcessor, MutationValueProcessor>();
             container.Register<IValueGetter, ValueGetter>();
             container.Register<IValueSetter, ValueSetter>();
             container.Register<IPropertiesValueGetter, PropertiesValueGetter>();
@@ -24,8 +24,8 @@
             container.Register<IPathValueGetter, PathValueGetter>();
             container.Register<IPathValueSetter, PathValueSetter>();
 
-            container.Register<IStructureQueryProcessor, StructureQueryProcessor>();
-            container.Register<IStructureMutationProcessor, StructureMutationProcessor>();
+            container.Register<IQueryStructureProcessor, QueryStructureProcessor>();
+            container.Register<IMutationStructureProcessor, MutationStructureProcessor>();
 
             container.Register<IRelatedIdentityFinder, RelatedIdentityFinder>();
             container.Register<IPathDeterminer, PathDeterminer>();
