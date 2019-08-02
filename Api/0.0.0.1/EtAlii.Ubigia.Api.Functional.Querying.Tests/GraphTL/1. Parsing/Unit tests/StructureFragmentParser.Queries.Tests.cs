@@ -5,18 +5,18 @@
     public class StructureQueryParserTests 
     {
         [Fact]
-        public void StructureParser_Create()
+        public void StructureFragmentParser_Create()
         {
             // Arrange.
             
             // Act.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IStructureQueryParser CreateStructureParser()
+        private IStructureQueryParser CreateStructureFragmentParser()
         {
             var container = new SchemaParserTestContainerFactory().Create();
 
@@ -24,10 +24,10 @@
         }
 
         [Fact]
-        public void StructureParser_Parse_Query_With_Multiple_ValueQueries_01()
+        public void StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_01()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1,
@@ -50,10 +50,10 @@
         }        
 
         [Fact]
-        public void StructureParser_Parse_Query_With_Multiple_ValueQueries_02()
+        public void StructureFragmentParser_Parse_Query_With_Multiple_ValueQueries_02()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 ""key1"",
@@ -76,10 +76,10 @@
         }  
 
         [Fact]
-        public void StructureParser_Parse_Query_With_Two_Distinct_Results()
+        public void StructureFragmentParser_Parse_Query_With_Two_Distinct_Results()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Data
             {
                 Person @nodes(Person:Doe/*)

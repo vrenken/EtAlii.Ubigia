@@ -3,33 +3,33 @@
     using System.Linq;
     using Xunit;
 
-    public class StructureParserMutationsTests 
+    public class StructureFragmentParserMutationsTests 
     {
         [Fact]
-        public void StructureParser_Create()
+        public void StructureFragmentParser_Create()
         {
             // Arrange.
             
             // Act.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
 
             // Assert.
             Assert.NotNull(parser);
         }
 
-        private IStructureMutationParser CreateStructureParser()
+        private IStructureQueryParser CreateStructureFragmentParser()
         {
 
             var container = new SchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<IStructureMutationParser>();
+            return container.GetInstance<IStructureQueryParser>();
         }
         
         [Fact]
-        public void StructureParser_Parse_ValueMutation_Key_Value_Single()
+        public void StructureFragmentParser_Parse_ValueMutation_Key_Value_Single()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key <= ""value""
@@ -49,10 +49,10 @@
         
                 
         [Fact]
-        public void StructureParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
+        public void StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_01()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 key1 <= ""value1"",
@@ -73,10 +73,10 @@
         }        
 
         [Fact]
-        public void StructureParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
+        public void StructureFragmentParser_Parse_ValueMutation_With_Multiple_ValueMutations_02()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(Person:Stark/Tony)
             {
                 age <= ""22"",
@@ -97,10 +97,10 @@
         }
         
         [Fact]
-        public void StructureParser_Parse_ValueMutation_With_Annotations_00()
+        public void StructureFragmentParser_Parse_ValueMutation_With_Annotations_00()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(person:Stark/Tony)
             {
                 ""age"" <= 22,
@@ -132,10 +132,10 @@
         }
         
         [Fact]
-        public void StructureParser_Parse_ValueMutation_With_Annotations_01()
+        public void StructureFragmentParser_Parse_ValueMutation_With_Annotations_01()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Person @node(person:Stark/Tony)
             {
                 age <= 22,
@@ -155,10 +155,10 @@
         }
                 
         [Fact]
-        public void StructureParser_Parse_StructureMutation_01()
+        public void StructureFragmentParser_Parse_StructureMutation_01()
         {
             // Arrange.
-            var parser = CreateStructureParser();
+            var parser = CreateStructureFragmentParser();
             var text = @"Friends @nodes(/Friends += Person:Vrenken/Peter)
                         {
                             FirstName @value()

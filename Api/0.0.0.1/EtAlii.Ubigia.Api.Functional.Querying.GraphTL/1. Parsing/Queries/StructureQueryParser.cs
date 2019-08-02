@@ -15,7 +15,7 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IQuotedTextParser _quotedTextParser;
-        private readonly IValueMutationParser _valueMutationParser;
+        //private readonly IValueMutationParser _valueMutationParser;
         private readonly IValueQueryParser _valueQueryParser;
         private readonly IRequirementParser _requirementParser;
 
@@ -30,7 +30,7 @@
             IQuotedTextParser quotedTextParser,
             IValueQueryParser valueQueryParser,
             IAnnotationParser annotationParser, 
-            IValueMutationParser valueMutationParser, 
+            //IValueMutationParser valueMutationParser, 
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
@@ -39,7 +39,7 @@
             _quotedTextParser = quotedTextParser;
             _valueQueryParser = valueQueryParser;
             _annotationParser = annotationParser;
-            _valueMutationParser = valueMutationParser;
+            //_valueMutationParser = valueMutationParser;
             _requirementParser = requirementParser;
 
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
@@ -116,8 +116,9 @@
                     structureFragments.Add(childStructureQuery);
                 }
             }
-            
-            return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), FragmentType.Query);
+
+            var type = annotation?.Operator == null ? FragmentType.Query : FragmentType.Mutation;
+            return new StructureFragment(name, annotation, requirement, valueFragments.ToArray(), structureFragments.ToArray(), type);
         }
 
         public bool CanParse(LpNode node)
