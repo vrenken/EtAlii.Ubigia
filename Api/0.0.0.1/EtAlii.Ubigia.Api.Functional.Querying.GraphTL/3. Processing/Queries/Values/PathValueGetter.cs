@@ -18,15 +18,33 @@ namespace EtAlii.Ubigia.Api.Functional
 
         public async Task<Value> Get(string valueName, Structure structure, PathSubject path, SchemaExecutionScope executionScope)
         {
-            var id = _relatedIdentityFinder.Find(structure);
-            if (id != Identifier.Empty)
+            if (path is RelativePathSubject)
             {
-                var parts = new PathSubjectPart[]
-                        {new ParentPathSubjectPart(), new IdentifierPathSubjectPart(id)}.Concat(path.Parts)
-                    .ToArray();
-                path = new AbsolutePathSubject(parts);
-                var script = new Script(new Sequence(new SequencePart[] {path}));
+                // If we have a relative path then we need to find out where it relates to. 
+                var id = _relatedIdentityFinder.Find(structure);
+                if (id != Identifier.Empty)
+                {
+                    var parts = new PathSubjectPart[]
+                        {
+                            new ParentPathSubjectPart(),
+                            new IdentifierPathSubjectPart(id)
+                        }.Concat(path.Parts)
+                        .ToArray();
+                    path = new AbsolutePathSubject(parts);
+                    var script = new Script(new Sequence(new SequencePart[] {path}));
 
+                    var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
+                    var result = await processResult.Output.SingleOrDefaultAsync();
+                    if (result is IInternalNode valueNode)
+                    {
+                        return new Value(valueName, valueNode.Type);
+                    }
+                }
+            }
+            else
+            {
+                // We also want to be able to get absolute or rooted paths.
+                var script = new Script(new Sequence(new SequencePart[] {path}));
                 var processResult = await _scriptContext.Process(script, executionScope.ScriptScope);
                 var result = await processResult.Output.SingleOrDefaultAsync();
                 if (result is IInternalNode valueNode)

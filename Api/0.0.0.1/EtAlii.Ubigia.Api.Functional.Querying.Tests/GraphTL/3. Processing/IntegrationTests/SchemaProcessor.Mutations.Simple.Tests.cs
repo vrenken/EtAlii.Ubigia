@@ -140,7 +140,6 @@
             AssertValue("MinteyMary", queryStructure, "NickName");
         }
 
-        
         [Fact]
         public async Task SchemaProcessor_Mutate_Person_03()
         {
@@ -320,6 +319,167 @@
             AssertValue("Vrenken", person.Children[2], "LastName");
         }
 
+        
+                [Fact]
+        public async Task SchemaProcessor_Mutate_Person_Friends_Bidirectional_01()
+        {
+            // Arrange.
+            var mutationText = @"Data
+                                 {
+                                     Person @node(Person:Doe/John)
+                                     {
+                                         FirstName @value(),
+                                         LastName @value(\#FamilyName),
+                                         NickName,
+                                         Friend @nodes(/Friends += Person:Vrenken/Peter)
+                                         {
+                                            FirstName @value(),
+                                            LastName @value(\#FamilyName),
+                                            NickName
+                                         }  
+                                     },
+                                     Person @node(Person:Vrenken/Peter)
+                                     {
+                                         FirstName @value(),
+                                         LastName @value(\#FamilyName),
+                                         NickName,
+                                         Friend @nodes(/Friends += Person:Doe/John)
+                                         {
+                                            FirstName @value(),
+                                            LastName @value(\#FamilyName),
+                                            NickName
+                                         }  
+                                     }
+                                 }";
+
+            var mutationSchema = _context.Parse(mutationText).Schema;
+
+            var queryText = @"Data
+                              {
+                                    Person @node(Person:Doe/John)
+                                    {    
+                                        FirstName @value(),
+                                        LastName @value(\#FamilyName),
+                                        NickName
+                                        Friend @nodes(/Friends/)
+                                        {
+                                            FirstName @value(),
+                                            LastName @value(\#FamilyName),
+                                            NickName
+                                        }
+                                    },
+                                    Person @node(Person:Vrenken/Peter)
+                                    {    
+                                        FirstName @value(),
+                                        LastName @value(\#FamilyName),
+                                        NickName
+                                        Friend @nodes(/Friends/)
+                                        {
+                                            FirstName @value(),
+                                            LastName @value(\#FamilyName),
+                                            NickName
+                                        }
+                                    }
+                              }";
+            var querySchema = _context.Parse(queryText).Schema;
+
+
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
+                .UseFunctionalDiagnostics(_diagnostics)
+                .Use(scope)
+                .Use(_scriptContext);
+            var processor = new SchemaProcessorFactory().Create(configuration);
+
+            // Act.
+            var mutationResult = await processor.Process(mutationSchema);
+            await mutationResult.Completed();
+
+            var queryResult = await processor.Process(querySchema);
+            await queryResult.Completed();
+
+            // Assert.
+            Assert.Single(mutationResult.Structure);
+            var mutationPeople = mutationResult.Structure[0].Children;
+            Assert.Equal(2, mutationPeople.Count);
+            var mutationPerson1 = mutationPeople[0];
+            Assert.NotNull(mutationPerson1);
+            var mutationPerson2 = mutationPeople[1];
+            Assert.NotNull(mutationPerson2);
+
+            Assert.Single(queryResult.Structure);
+            var queryPeople = queryResult.Structure[0].Children;
+            Assert.Equal(2, queryPeople.Count);
+            var queryPerson1 = queryPeople[0];
+            Assert.NotNull(queryPerson1);
+            var queryPerson2 = queryPeople[1];
+            Assert.NotNull(queryPerson2);
+
+                        
+            void AssertJohnDoeFriends(Structure[] friends)
+            {
+                Assert.NotNull(friends);
+                Assert.Equal(3, friends.Length);
+                AssertValue("Tony", friends[0], "FirstName");
+                AssertValue("Stark", friends[0], "LastName");
+                AssertValue("Iron Man", friends[0], "NickName");
+                AssertValue("Jane", friends[1], "FirstName");
+                AssertValue("Doe", friends[1], "LastName");
+                AssertValue("Janey", friends[1], "NickName");
+                AssertValue("Peter", friends[2], "FirstName");
+                AssertValue("Vrenken", friends[2], "LastName");
+                AssertValue("Pete", friends[2], "NickName");
+            }
+
+            void AssertPeterVrenkenFriends(Structure[] friends)
+            {
+                Assert.NotNull(friends);
+                Assert.Equal(5, friends.Length);
+                AssertValue("Tanja", friends[0], "FirstName");
+                AssertValue("Vrenken", friends[0], "LastName");
+                AssertValue("LadyL", friends[0], "NickName");
+
+                AssertValue("Arjan", friends[1], "FirstName");
+                AssertValue("Vrenken", friends[1], "LastName");
+                AssertValue("Bengel", friends[1], "NickName");
+
+                AssertValue("Ida", friends[2], "FirstName");
+                AssertValue("Vrenken", friends[2], "LastName");
+                AssertValue("Scheetje", friends[2], "NickName");
+
+                AssertValue("Tony", friends[3], "FirstName");
+                AssertValue("Stark", friends[3], "LastName");
+                AssertValue("Iron Man", friends[3], "NickName");
+
+                AssertValue("John", friends[4], "FirstName");
+                AssertValue("Doe", friends[4], "LastName");
+                AssertValue("Johnny", friends[4], "NickName");
+            }
+
+            AssertValue("John", mutationPerson1, "FirstName");
+            AssertValue("Doe", mutationPerson1, "LastName");
+            AssertValue("Johnny", mutationPerson1, "NickName");
+            var mutationFriends1 = mutationPerson1.Children.Where(c => c.Type == "Friend").ToArray();
+            AssertJohnDoeFriends(mutationFriends1);
+         
+            AssertValue("John", queryPerson1, "FirstName");
+            AssertValue("Doe", queryPerson1, "LastName");
+            AssertValue("Johnny", queryPerson1, "NickName");
+            var queryFriends1 = queryPerson1.Children.Where(c => c.Type == "Friend").ToArray();
+            AssertJohnDoeFriends(queryFriends1);
+            
+            AssertValue("Peter", mutationPerson2, "FirstName");
+            AssertValue("Vrenken", mutationPerson2, "LastName");
+            AssertValue("Pete", mutationPerson2, "NickName");
+            var mutationFriends2 = mutationPerson2.Children.Where(c => c.Type == "Friend").ToArray();
+            AssertPeterVrenkenFriends(mutationFriends2);
+         
+            AssertValue("Peter", queryPerson2, "FirstName");
+            AssertValue("Vrenken", queryPerson2, "LastName");
+            AssertValue("Pete", queryPerson2, "NickName");
+            var queryFriends2 = queryPerson2.Children.Where(c => c.Type == "Friend").ToArray();
+            AssertPeterVrenkenFriends(queryFriends2);
+        }
 
         private void AssertValue(object expected, Structure structure, string valueName)
         {

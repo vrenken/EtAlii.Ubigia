@@ -23,6 +23,16 @@ namespace EtAlii.Ubigia.Api.Functional
             Structure parent, 
             PathSubject path)
         {
+            if (path == null)
+            {
+                // We've got a placeholder root fragment. Let's add a single structure so that 
+                // other structures can be put inside of it.
+                var item = new Structure(structureName, null, parent, null);
+                fragmentMetadata.Items.Add(item);
+                schemaOutput.OnNext(item);
+                return;
+            }
+            
             var script = new Script(new Sequence(new SequencePart[] {path}));
             var scriptResult = await _scriptContext.Process(script, executionScope.ScriptScope);
 
