@@ -3,7 +3,9 @@
     using System;
     using System.Collections.ObjectModel;
     using System.ComponentModel;
+    using System.Reactive.Linq;
     using System.Runtime.CompilerServices;
+    using System.Threading.Tasks;
 
     public class SchemaProcessingResult : INotifyPropertyChanged
     {
@@ -48,5 +50,13 @@
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        /// <summary>
+        /// Awaiting this method ensures GTL schema processing has finished.
+        /// </summary>
+        /// <returns></returns>
+        public async Task Completed()
+        {
+            await Output.LastOrDefaultAsync();
+        }
     }
 }

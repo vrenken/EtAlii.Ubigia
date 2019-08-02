@@ -63,7 +63,7 @@
                 }
 
                 return Disposable.Empty; 
-            });
+            }).ToHotObservable();
 
             result.Update(observableSchemaOutput);
 

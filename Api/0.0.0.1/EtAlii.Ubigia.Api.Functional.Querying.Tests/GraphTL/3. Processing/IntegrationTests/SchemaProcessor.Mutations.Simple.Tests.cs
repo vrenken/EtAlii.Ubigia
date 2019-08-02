@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
@@ -80,9 +79,9 @@
 
             // Act.
             var mutationResult = await processor.Process(mutationSchema);
-            await mutationResult.Output;
+            await mutationResult.Completed();
             var queryResult = await processor.Process(querySchema);
-            await queryResult.Output;
+            await queryResult.Completed();
 
             // Assert.
             var mutationStructure = mutationResult.Structure.Single();
@@ -124,9 +123,9 @@
 
             // Act.
             var mutationResult = await processor.Process(mutationSchema);
-            await mutationResult.Output;
+            await mutationResult.Completed();
             var queryResult = await processor.Process(querySchema);
-            await queryResult.Output;
+            await queryResult.Completed();
 
             // Assert.
             var mutationStructure = mutationResult.Structure.Single();
@@ -183,9 +182,9 @@
 
             // Act.
             var mutationResult = await processor.Process(mutationSchema);
-            await mutationResult.Output;
+            await mutationResult.Completed();
             var queryResult = await processor.Process(querySchema);
-            await queryResult.Output;
+            await queryResult.Completed();
 
             // Assert.
             var mutationStructure = mutationResult.Structure.Single();
@@ -249,9 +248,9 @@
 
             // Act.
             var mutationResult = await processor.Process(mutationSchema);
-            await mutationResult.Output;
+            await mutationResult.Completed();
             var queryResult = await processor.Process(querySchema);
-            await queryResult.Output;
+            await queryResult.Completed();
 
             // Assert.
             var mutationStructures = mutationResult.Structure.ToArray();
@@ -300,7 +299,7 @@
 
             // Act.
             var result = await processor.Process(mutationSchema);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            await result.Completed();
 
             // Assert.
             Assert.Single(result.Structure);

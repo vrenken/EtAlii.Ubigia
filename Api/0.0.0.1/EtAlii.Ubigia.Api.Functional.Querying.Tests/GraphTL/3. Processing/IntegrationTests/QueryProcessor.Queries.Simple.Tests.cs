@@ -101,9 +101,9 @@
 
             // Act.
             var result = await processor.Process(query);
+            await result.Completed();
 
             // Assert.
-            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
 
@@ -152,14 +152,15 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            await result.Completed();
+            var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
-            Assert.NotNull(lastResult);
+            Assert.NotNull(lastStructure);
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
-            Assert.Same(structure, lastResult);
+            Assert.Same(structure, lastStructure);
         }
 
         [Fact]
@@ -183,9 +184,9 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
+            await result.Completed();
 
             // Assert.
-            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             
@@ -214,9 +215,9 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
+            await result.Completed();
 
             // Assert.
-            await result.Output;
             var structures = result.Structure.ToArray();
             Assert.NotNull(structures);
             
@@ -267,15 +268,16 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            await result.Completed();
+            var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
-            Assert.NotNull(lastResult);
+            Assert.NotNull(lastStructure);
             
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
-            Assert.Same(structure, lastResult);
+            Assert.Same(structure, lastStructure);
         }
 
         
@@ -303,9 +305,9 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
+            await result.Completed();
 
             // Assert.
-            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
@@ -341,16 +343,17 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output;
+            await result.Completed();
+            var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
-            Assert.NotNull(lastResult);
+            Assert.NotNull(lastStructure);
             
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
-            Assert.Same(structure, lastResult);
+            Assert.Same(structure, lastStructure);
 
         }
 
@@ -382,9 +385,9 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
+            await result.Completed();
 
             // Assert.
-            await result.Output;
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
@@ -424,18 +427,19 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output;
+            await result.Completed();
+            var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
-            Assert.NotNull(lastResult);
+            Assert.NotNull(lastStructure);
             
             var structure = result.Structure.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
             Assert.NotNull(structure);
             structure = structure.Children.SingleOrDefault();
-            Assert.Same(structure, lastResult);
+            Assert.Same(structure, lastStructure);
 
         }
 
@@ -462,7 +466,7 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            await result.Completed();
 
             // Assert.
             Assert.Equal(2, result.Structure.Count);
@@ -511,7 +515,7 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            await result.Completed();
 
             // Assert.
             Assert.Single(result.Structure);
@@ -553,11 +557,12 @@
 
             // Act.
             var result = await processor.Process(selectSchema);
-            var lastResult = await result.Output.LastOrDefaultAsync();
+            await result.Completed();
+            var lastStructure = await result.Output.LastOrDefaultAsync();
 
             // Assert.
             Assert.NotNull(result.Output);
-            Assert.NotNull(lastResult);
+            Assert.NotNull(lastStructure);
         }
 
         private void AssertValue(object expected, Structure structure, string valueName)
