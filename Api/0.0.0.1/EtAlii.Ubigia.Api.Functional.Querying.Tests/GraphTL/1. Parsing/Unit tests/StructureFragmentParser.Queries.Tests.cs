@@ -16,11 +16,11 @@
             Assert.NotNull(parser);
         }
 
-        private IStructureQueryParser CreateStructureFragmentParser()
+        private IStructureFragmentParser CreateStructureFragmentParser()
         {
             var container = new SchemaParserTestContainerFactory().Create();
 
-            return container.GetInstance<IStructureQueryParser>();
+            return container.GetInstance<IStructureFragmentParser>();
         }
 
         [Fact]

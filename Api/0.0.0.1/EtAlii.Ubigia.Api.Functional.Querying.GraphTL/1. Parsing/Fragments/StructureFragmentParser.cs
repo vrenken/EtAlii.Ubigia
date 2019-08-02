@@ -4,7 +4,7 @@
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class StructureQueryParser : IStructureQueryParser
+    internal class StructureFragmentParser : IStructureFragmentParser
     {
         public string Id { get; } = "StructureQuery";
 
@@ -15,31 +15,28 @@
         private readonly INodeValidator _nodeValidator;
         private readonly INodeFinder _nodeFinder;
         private readonly IQuotedTextParser _quotedTextParser;
-        //private readonly IValueMutationParser _valueMutationParser;
-        private readonly IValueQueryParser _valueQueryParser;
+        private readonly IValueFragmentParser _valueFragmentParser;
         private readonly IRequirementParser _requirementParser;
 
         private readonly IAnnotationParser _annotationParser;
         private const string NameId = "NameId";
         private const string FragmentsId = "FragmentsId";
 
-        public StructureQueryParser(
+        public StructureFragmentParser(
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser,
             IQuotedTextParser quotedTextParser,
-            IValueQueryParser valueQueryParser,
+            IValueFragmentParser valueFragmentParser,
             IAnnotationParser annotationParser, 
-            //IValueMutationParser valueMutationParser, 
             IRequirementParser requirementParser,
             IWhitespaceParser whitespaceParser)
         {
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
             _quotedTextParser = quotedTextParser;
-            _valueQueryParser = valueQueryParser;
+            _valueFragmentParser = valueFragmentParser;
             _annotationParser = annotationParser;
-            //_valueMutationParser = valueMutationParser;
             _requirementParser = requirementParser;
 
             var start = Lp.One(c => c == '{'); //.Debug("StartBracket")
@@ -49,7 +46,7 @@
 
             var fragmentsParser = new LpsParser(FragmentsId, true, 
                 structureQueryParser | 
-                _valueQueryParser.Parser); //.Debug("VQ", true)
+                _valueFragmentParser.Parser); //.Debug("VQ", true)
             
             var whitespace = whitespaceParser.Optional;//.Debug("W")
             var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
@@ -105,9 +102,9 @@
             foreach (var fragmentNode in fragmentNodes)
             {
                 var child = fragmentNode.Children.Single(); 
-                if (child.Id == _valueQueryParser.Id)
+                if (child.Id == _valueFragmentParser.Id)
                 {
-                    var valueQuery = _valueQueryParser.Parse(child);
+                    var valueQuery = _valueFragmentParser.Parse(child);
                     valueFragments.Add(valueQuery);
                 }
                 else if (child.Id == ChildStructureQueryId)

@@ -59,7 +59,7 @@
                 { 
                     person @nodes(path:""/person/*/*"")
                     {
-                        nickname 
+                        nickName 
                     }
                 }";
             
@@ -73,13 +73,13 @@
                 {
                     'person':
                     [
-                        { 'nickname':'Johnny' },
-                        { 'nickname':'Janey' },
-                        { 'nickname':'Iron Man' },
-                        { 'nickname':'Pete' },
-                        { 'nickname':'LadyL' },
-                        { 'nickname':'Bengel' },
-                        { 'nickname':'Scheetje' }
+                        { 'nickName':'Johnny' },
+                        { 'nickName':'Janey' },
+                        { 'nickName':'Iron Man' },
+                        { 'nickName':'Pete' },
+                        { 'nickName':'LadyL' },
+                        { 'nickName':'Bengel' },
+                        { 'nickName':'Scheetje' }
                     ]
                 }", result);
         }
@@ -95,7 +95,7 @@
                     person @nodes(path:""/person/*/*"")
                     {
                         firstname @id
-                        nickname 
+                        nickName 
                     }
                 }";
             
@@ -109,13 +109,13 @@
                 {
                     'person':
                     [
-                        { 'firstname':'John', 'nickname':'Johnny' },
-                        { 'firstname':'Jane', 'nickname':'Janey' },
-                        { 'firstname':'Tony', 'nickname':'Iron Man' },
-                        { 'firstname':'Peter', 'nickname':'Pete' },
-                        { 'firstname':'Tanja', 'nickname':'LadyL' },
-                        { 'firstname':'Arjan', 'nickname':'Bengel' },
-                        { 'firstname':'Ida', 'nickname':'Scheetje' }
+                        { 'firstname':'John', 'nickName':'Johnny' },
+                        { 'firstname':'Jane', 'nickName':'Janey' },
+                        { 'firstname':'Tony', 'nickName':'Iron Man' },
+                        { 'firstname':'Peter', 'nickName':'Pete' },
+                        { 'firstname':'Tanja', 'nickName':'LadyL' },
+                        { 'firstname':'Arjan', 'nickName':'Bengel' },
+                        { 'firstname':'Ida', 'nickName':'Scheetje' }
                     ]
                 }", result);
         }
@@ -130,7 +130,7 @@
                 { 
                     person @nodes(path:""/person/Doe/*"")
                     {
-                        nickname 
+                        nickName 
                     }
                 }";
             
@@ -140,7 +140,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickName': 'Johnny'} , { 'nickName': 'Janey'} ]}", result);
         }
 
         [Fact(Skip = "Root data queries are not yet supported"), Trait("Category", TestAssembly.Category)]
@@ -152,7 +152,7 @@
                 { 
                     person 
                     { 
-                        nickname 
+                        nickName 
                     } 
                 }";
             
@@ -162,7 +162,7 @@
             
             // Assert.
             Assert.Null(result.Errors);
-            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickname': 'Johnny'} , { 'nickname': 'Janey'} ]}", result);
+            await AssertQuery.ResultsAreEqual(_documentWriter, @"{ 'person': [{ 'nickName': 'Johnny'} , { 'nickName': 'Janey'} ]}", result);
         }
         
         
@@ -179,7 +179,7 @@
                         friends @nodes(path:""/Friends/#FirstName"") 
                         { 
                             name @id
-                            nickname
+                            nickName
                             lastname @id(path:""\\#FamilyName"") 
                     } 
                     }
@@ -198,9 +198,9 @@
                         'name':'Tony',
                         'friends':
                         [
-                            {'name':'John','nickname':'Johnny', 'lastname': 'Doe'},
-                            {'name':'Jane','nickname':'Janey', 'lastname': 'Doe'},
-                            {'name':'Peter','nickname':'Pete', 'lastname': 'Vrenken'}
+                            {'name':'John','nickName':'Johnny', 'lastname': 'Doe'},
+                            {'name':'Jane','nickName':'Janey', 'lastname': 'Doe'},
+                            {'name':'Peter','nickName':'Pete', 'lastname': 'Vrenken'}
                         ]
                     }
                 }", result);
@@ -246,7 +246,7 @@
                     #time @nodes(path:""time:2012//"")
                     person @nodes(path:""person:Vrenken/*"")
                     { 
-                        nickname
+                        nickName
                         firstname @id
                         lastname @id(path:""\\#FamilyName"") 
                     }
@@ -262,10 +262,10 @@
                 {
                     'person':
                     [
-                        {'nickname':'Pete','firstname':'Peter','lastname':'Vrenken'},
-                        {'nickname':'LadyL','firstname':'Tanja','lastname':'Vrenken'},
-                        {'nickname':'Bengel','firstname':'Arjan','lastname':'Vrenken'},
-                        {'nickname':'Scheetje','firstname':'Ida','lastname':'Vrenken'}
+                        {'nickName':'Pete','firstname':'Peter','lastname':'Vrenken'},
+                        {'nickName':'LadyL','firstname':'Tanja','lastname':'Vrenken'},
+                        {'nickName':'Bengel','firstname':'Arjan','lastname':'Vrenken'},
+                        {'nickName':'Scheetje','firstname':'Ida','lastname':'Vrenken'}
                     ]
                 }", result);
             

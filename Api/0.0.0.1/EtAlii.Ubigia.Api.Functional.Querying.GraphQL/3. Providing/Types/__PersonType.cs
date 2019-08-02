@@ -11,7 +11,7 @@
 //            Field(p => p.Id).Description("The id of the person.")
 //            Field(p => p.Firstname, nullable: true).Description("The first name of the person.")
 //            Field(p => p.Lastname, nullable: true).Description("The last name of the person.")
-//            Field(p => p.Nickname, nullable: true).Description("The nickname of the person.")
+//            Field(p => p.NickName, nullable: true).Description("The nickname of the person.")
 //
 //            Field(p => p.Birthdate, nullable: true).Description("The birth date of the person.")
 //

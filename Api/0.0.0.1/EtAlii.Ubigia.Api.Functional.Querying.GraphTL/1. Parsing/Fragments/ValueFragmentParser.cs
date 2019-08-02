@@ -3,7 +3,7 @@
     using System.Linq;
     using Moppet.Lapa;
 
-    internal class ValueQueryParser : IValueQueryParser
+    internal class ValueFragmentParser : IValueFragmentParser
     {
         private readonly IKeyValuePairParser _keyValuePairParser;
         private readonly INodeValidator _nodeValidator;
@@ -26,7 +26,7 @@
         private const string MutationKeyId = "MutationKey";
         private const string MutationValueId = "MutationValue";
 
-        public ValueQueryParser(
+        public ValueFragmentParser(
             INodeValidator nodeValidator,
             IQuotedTextParser quotedTextParser,
             IAnnotationParser annotationParser,

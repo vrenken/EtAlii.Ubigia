@@ -16,7 +16,7 @@
             Assert.NotNull(parser);
         }
 
-        private IValueQueryParser CreateValueFragmentParser() => new SchemaParserTestContainerFactory().Create().GetInstance<IValueQueryParser>(); 
+        private IValueFragmentParser CreateValueFragmentParser() => new SchemaParserTestContainerFactory().Create().GetInstance<IValueFragmentParser>(); 
 
         [Fact]
         public void ValueFragmentParser_Parse_Query_Without_Annotation()
