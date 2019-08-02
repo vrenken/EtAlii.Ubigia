@@ -202,14 +202,24 @@
             AssertValue("Johnny", mutationStructure, "NickName");
             AssertValue("Johnny", queryStructure, "NickName");
 
-            var mutationFriends = mutationStructure.Children.Where(c => c.Name == "Friend")?.ToArray();
-            var queryFriends = queryStructure.Children.Where(c => c.Name == "Friend")?.ToArray();
-            
-            Assert.NotNull(mutationFriends);
-            Assert.NotNull(queryFriends);
-            Assert.Equal(mutationFriends.Length, queryFriends.Length);
-            
-            throw new NotImplementedException("Implement further friends tests");
+            void AssertFriends(Structure[] friends)
+            {
+                Assert.NotNull(friends);
+                Assert.Equal(3, friends.Length);
+                AssertValue("Tony", friends[0], "FirstName");
+                AssertValue("Stark", friends[0], "LastName");
+                AssertValue("Iron Man", friends[0], "NickName");
+                AssertValue("Jane", friends[1], "FirstName");
+                AssertValue("Doe", friends[1], "LastName");
+                AssertValue("Janey", friends[1], "NickName");
+                AssertValue("Peter", friends[2], "FirstName");
+                AssertValue("Vrenken", friends[2], "LastName");
+                AssertValue("Pete", friends[2], "NickName");
+            }
+            var mutationFriends = mutationStructure.Children.Where(c => c.Type == "Friend").ToArray();
+            AssertFriends(mutationFriends);
+            var queryFriends = queryStructure.Children.Where(c => c.Type == "Friend").ToArray();
+            AssertFriends(queryFriends);
         }
 
         [Fact]
@@ -270,7 +280,7 @@
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
-                                    Nickname
+                                    NickName
                                     Birthdate
                                     Friends @nodes(/Friends += Person:Vrenken/Peter)
                                     {
@@ -300,7 +310,7 @@
             AssertValue("John", person, "FirstName");
             AssertValue("Doe", person, "LastName");
             AssertValue(DateTime.Parse("1978-07-28"), person, "Birthdate");
-            AssertValue("Johnny", person, "Nickname");
+            AssertValue("Johnny", person, "NickName");
 
             Assert.Equal(3, person.Children.Count); 
             AssertValue("Tony", person.Children[0], "FirstName");

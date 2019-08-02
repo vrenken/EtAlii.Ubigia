@@ -2,7 +2,7 @@
 {
     using Moppet.Lapa;
 
-    internal interface IStructureQueryParser
+    internal interface IStructureFragmentParser
     {
         string Id { get; }
         

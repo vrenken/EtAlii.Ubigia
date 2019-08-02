@@ -108,7 +108,7 @@
                        {
                             FirstName @value()
                             LastName @value(\#FamilyName)
-                            Nickname
+                            NickName
                             Birthdate
                             Friends @nodes(/Friends += Person:Vrenken/Peter)
                             {

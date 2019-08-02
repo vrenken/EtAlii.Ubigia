@@ -73,7 +73,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "person:+=Vrenken/Peter",
                 "Person:Vrenken/Peter# <= FirstName",
-                "person:Vrenken/Peter <= { Birthdate: 1978-07-28, Nickname: \'Pete\', Lives: 1 }"
+                "person:Vrenken/Peter <= { Birthdate: 1978-07-28, NickName: \'Pete\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -87,7 +87,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "person:+=Vrenken/Tanja",
                 "Person:Vrenken/Tanja# <= FirstName",
-                "person:Vrenken/Tanja <= { Birthdate: 1980-03-04, Nickname: \'LadyL\', Lives: 1 }"
+                "person:Vrenken/Tanja <= { Birthdate: 1980-03-04, NickName: \'LadyL\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -100,7 +100,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "person:+=Vrenken/Arjan",
                 "Person:Vrenken/Arjan# <= FirstName",
-                "person:Vrenken/Arjan <= { Birthdate: 2015-08-13, Nickname: \'Bengel\', Lives: 1 }"
+                "person:Vrenken/Arjan <= { Birthdate: 2015-08-13, NickName: \'Bengel\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -114,7 +114,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "person:+=Vrenken/Ida",
                 "Person:Vrenken/Ida# <= FirstName",
-                "person:Vrenken/Ida <= { Birthdate: 2018-11-07, Nickname: \'Scheetje\', Lives: 1 }"
+                "person:Vrenken/Ida <= { Birthdate: 2018-11-07, NickName: \'Scheetje\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -127,7 +127,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "Person:+=Doe/John",
                 "Person:Doe/John# <= FirstName",
-                "person:Doe/John  <= { Birthdate: 1978-07-28, Nickname: \'Johnny\', Lives: 1 }"
+                "person:Doe/John  <= { Birthdate: 1978-07-28, NickName: \'Johnny\', Lives: 1 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -141,7 +141,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "person:+=Doe/Jane",
                 "Person:Doe/Jane# <= FirstName",
-                "person:Doe/Jane <= { Birthdate: 1980-03-04, Nickname: \'Janey\', Lives: 2 }"
+                "person:Doe/Jane <= { Birthdate: 1980-03-04, NickName: \'Janey\', Lives: 2 }"
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -155,7 +155,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             {
                 "person:+=Stark/Tony",
                 "Person:Stark/Tony# <= FirstName",
-                "person:Stark/Tony <= { Birthdate: 1976-05-12, Nickname: \'Iron Man\', Lives: 9 }",
+                "person:Stark/Tony <= { Birthdate: 1976-05-12, NickName: \'Iron Man\', Lives: 9 }",
             };
             var addQuery = string.Join("\r\n", addQueries);
 
@@ -170,7 +170,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
                 "Person:Doe# <= FamilyName",
                 "Person:Stark# <= FamilyName",
                 "Person:Vrenken# <= FamilyName",
-
+ 
                 "person:Vrenken/Tanja += Friends",
                 "person:Vrenken/Peter += Friends",
                 "person:Vrenken/Ida += Friends",

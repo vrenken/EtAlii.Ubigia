@@ -171,7 +171,7 @@
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.Equal(22, ageStructure.Mutation);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
@@ -332,7 +332,7 @@
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.Equal(22, ageStructure.Mutation);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
@@ -371,7 +371,7 @@
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.Equal(22, ageStructure.Mutation);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
@@ -411,7 +411,7 @@
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.Equal(22, ageStructure.Mutation);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);
@@ -453,7 +453,7 @@
             var ageStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "age");
             Assert.NotNull(ageStructure);
             Assert.Equal(FragmentType.Mutation, ageStructure.Type);
-            Assert.Equal("22", ageStructure.Mutation);
+            Assert.Equal(22, ageStructure.Mutation);
 
             var emailStructure = parseResult.Schema.Structure.Values.SingleOrDefault(v => v.Name == "email");
             Assert.NotNull(emailStructure);

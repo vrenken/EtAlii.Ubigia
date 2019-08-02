@@ -40,5 +40,10 @@
         {
             Node = node;
         }
+
+        public override string ToString()
+        {
+            return $"{Type ?? string.Empty}:{Name ?? string.Empty}";
+        }
     }
 }

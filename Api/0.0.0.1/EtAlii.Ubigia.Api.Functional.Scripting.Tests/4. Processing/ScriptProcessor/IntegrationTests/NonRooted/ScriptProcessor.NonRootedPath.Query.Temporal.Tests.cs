@@ -45,8 +45,8 @@
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
-                "/Person/Doe/John <= { Nickname: 'Joe' }",
-                "/Person/Doe/John <= { Nickname: 'John' }",
+                "/Person/Doe/John <= { NickName: 'Joe' }",
+                "/Person/Doe/John <= { NickName: 'John' }",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
@@ -70,7 +70,7 @@
 
             // Assert.
             Assert.NotNull(person);
-            Assert.Equal("Joe", person.Nickname);
+            Assert.Equal("Joe", person.NickName);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -80,9 +80,9 @@
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
-                "/Person/Doe/John <= { Nickname: 'Joe' }",
-                "/Person/Doe/John <= { Nickname: 'Johnny' }",
-                "/Person/Doe/John <= { Nickname: 'John' }",
+                "/Person/Doe/John <= { NickName: 'Joe' }",
+                "/Person/Doe/John <= { NickName: 'Johnny' }",
+                "/Person/Doe/John <= { NickName: 'John' }",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
@@ -108,13 +108,13 @@
             Assert.NotNull(history);
             Assert.Equal(4, history.Length);
             dynamic personHistory = history[0];
-            Assert.Equal("John", personHistory.Nickname);
+            Assert.Equal("John", personHistory.NickName);
             personHistory = history[1];
-            Assert.Equal("Johnny", personHistory.Nickname);
+            Assert.Equal("Johnny", personHistory.NickName);
             personHistory = history[2];
-            Assert.Equal("Joe", personHistory.Nickname);
+            Assert.Equal("Joe", personHistory.NickName);
             personHistory = history[3];
-            Assert.Throws<RuntimeBinderException>(() => personHistory.Nickname); // The first entry does not have a NickName assigned.
+            Assert.Throws<RuntimeBinderException>(() => personHistory.NickName); // The first entry does not have a NickName assigned.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -124,9 +124,9 @@
             var addQueries = new[]
             {
                 "/Person+=Doe/John",
-                "/Person/Doe/John <= { Nickname: 'Joe' }",
-                "/Person/Doe/John <= { Nickname: 'Johnny' }",
-                "/Person/Doe/John <= { Nickname: 'John' }",
+                "/Person/Doe/John <= { NickName: 'Joe' }",
+                "/Person/Doe/John <= { NickName: 'Johnny' }",
+                "/Person/Doe/John <= { NickName: 'John' }",
             };
 
             var addQuery = string.Join("\r\n", addQueries);
@@ -150,7 +150,7 @@
 
             // Assert.
             Assert.NotNull(person);
-            Assert.Equal("Johnny", person.Nickname);
+            Assert.Equal("Johnny", person.NickName);
         }
     }
 }

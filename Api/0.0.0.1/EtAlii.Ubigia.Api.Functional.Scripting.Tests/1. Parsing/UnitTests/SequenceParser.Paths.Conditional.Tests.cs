@@ -34,7 +34,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_01()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\"Johnny\"";
+            var text = "/Person/*/.NickName=\"Johnny\"";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -54,7 +54,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Single(conditionalPathSubjectPart.Conditions);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
 
@@ -63,7 +63,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_02()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\'Johnny\'";
+            var text = "/Person/*/.NickName=\'Johnny\'";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -83,7 +83,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Single(conditionalPathSubjectPart.Conditions);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
 
@@ -92,7 +92,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_03()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\"Johnny\"&Birthdate=28-07-1978";
+            var text = "/Person/*/.NickName=\"Johnny\"&Birthdate=28-07-1978";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -112,7 +112,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(2, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -123,7 +123,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_04()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\"Johnny\"&Birthdate=1978-07-28";
+            var text = "/Person/*/.NickName=\"Johnny\"&Birthdate=1978-07-28";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -143,7 +143,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(2, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -153,7 +153,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_05()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\"Johnny\"&Birthdate=1978-07-28&IsMale=true";
+            var text = "/Person/*/.NickName=\"Johnny\"&Birthdate=1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -173,7 +173,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -186,7 +186,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_06()
         {
             // Arrange.
-            var text = "/Person/.Type=\"Family\"/.Nickname=\"Johnny\"";
+            var text = "/Person/.Type=\"Family\"/.NickName=\"Johnny\"";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -209,7 +209,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Single(conditionalPathSubjectPart.Conditions);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
 
@@ -217,7 +217,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_07()
         {
             // Arrange.
-            var text = "/Person/.Type=/.Nickname=\"Johnny\"";
+            var text = "/Person/.Type=/.NickName=\"Johnny\"";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -240,7 +240,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Single(conditionalPathSubjectPart.Conditions);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
         }
 
@@ -248,7 +248,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_01()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\"Johnny\"\n" +
+            var text = "/Person/*/.NickName=\"Johnny\"\n" +
                        " & Birthdate=28-07-1978\n" +
                        " & IsMale = true";
 
@@ -270,7 +270,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -283,7 +283,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         {
             // Arrange.
             var text = "/Person/*/.\n" +
-                       " Nickname=\"Johnny\" & \n" +
+                       " NickName=\"Johnny\" & \n" +
                        " Birthdate=28-07-1978 & \n"+
                        " IsMale = true";
 
@@ -305,7 +305,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -317,7 +317,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_03()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"\n" +
+            var text = "/Person/*/John.NickName=\"Johnny\"\n" +
                        " & Birthdate=28-07-1978\n" +
                        " & IsMale = true";
 
@@ -340,7 +340,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -353,7 +353,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_MultiLine_04()
         {
             // Arrange.
-            var text = "/Person/*/.Nickname=\"Johnny\" & \n" +
+            var text = "/Person/*/.NickName=\"Johnny\" & \n" +
                        "Birthdate=28-07-1978 & \n" +
                        "IsMale = true";
 
@@ -375,7 +375,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(5));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(5).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(new DateTime(1978, 07, 28), conditionalPathSubjectPart.Conditions[1].Value);
@@ -387,7 +387,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_11()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"&Birthdate=1978-07-28&IsMale=true";
+            var text = "/Person/*/John.NickName=\"Johnny\"&Birthdate=1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -408,7 +408,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(ConditionType.Equal, conditionalPathSubjectPart.Conditions[1].Type);
@@ -421,7 +421,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_12()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"&Birthdate>1978-07-28&IsMale=true";
+            var text = "/Person/*/John.NickName=\"Johnny\"&Birthdate>1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -442,7 +442,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(ConditionType.MoreThan, conditionalPathSubjectPart.Conditions[1].Type);
@@ -455,7 +455,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_13()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"&Birthdate>=1978-07-28&IsMale=true";
+            var text = "/Person/*/John.NickName=\"Johnny\"&Birthdate>=1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -476,7 +476,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(ConditionType.MoreThanOrEqual, conditionalPathSubjectPart.Conditions[1].Type);
@@ -489,7 +489,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_14()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"&Birthdate!=1978-07-28&IsMale=true";
+            var text = "/Person/*/John.NickName=\"Johnny\"&Birthdate!=1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -510,7 +510,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(ConditionType.NotEqual, conditionalPathSubjectPart.Conditions[1].Type);
@@ -523,7 +523,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_15()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"&Birthdate<1978-07-28&IsMale=true";
+            var text = "/Person/*/John.NickName=\"Johnny\"&Birthdate<1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -544,7 +544,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(ConditionType.LessThan, conditionalPathSubjectPart.Conditions[1].Type);
@@ -557,7 +557,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
         public void SequenceParser_Parse_PathSubject_Conditional_16()
         {
             // Arrange.
-            var text = "/Person/*/John.Nickname=\"Johnny\"&Birthdate<=1978-07-28&IsMale=true";
+            var text = "/Person/*/John.NickName=\"Johnny\"&Birthdate<=1978-07-28&IsMale=true";
 
             // Act.
             var sequence = _parser.Parse(text);
@@ -578,7 +578,7 @@ namespace EtAlii.Ubigia.Api.Functional.Tests
             Assert.IsType<ConditionalPathSubjectPart>(pathSubject.Parts.ElementAt(6));
             var conditionalPathSubjectPart = pathSubject.Parts.Skip(6).Cast<ConditionalPathSubjectPart>().First();
             Assert.Equal(3, conditionalPathSubjectPart.Conditions.Length);
-            Assert.Equal("Nickname", conditionalPathSubjectPart.Conditions[0].Property);
+            Assert.Equal("NickName", conditionalPathSubjectPart.Conditions[0].Property);
             Assert.Equal("Johnny", conditionalPathSubjectPart.Conditions[0].Value);
             Assert.Equal("Birthdate", conditionalPathSubjectPart.Conditions[1].Property);
             Assert.Equal(ConditionType.LessThanOrEqual, conditionalPathSubjectPart.Conditions[1].Type);

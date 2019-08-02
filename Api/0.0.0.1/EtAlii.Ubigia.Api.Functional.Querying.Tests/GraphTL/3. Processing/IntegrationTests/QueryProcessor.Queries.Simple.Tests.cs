@@ -447,7 +447,7 @@
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
-                                    Nickname
+                                    NickName
                                     Birthdate
                                }";
 
@@ -472,14 +472,14 @@
             AssertValue("John", firstPerson, "FirstName");
             AssertValue("Doe", firstPerson, "LastName");
             AssertValue(DateTime.Parse("1978-07-28"), firstPerson, "Birthdate");
-            AssertValue("Johnny", firstPerson, "Nickname");
+            AssertValue("Johnny", firstPerson, "NickName");
 
             var secondPerson = result.Structure[1];
             Assert.NotNull(secondPerson);
             AssertValue("Jane", secondPerson, "FirstName");
             AssertValue("Doe", secondPerson, "LastName");
             AssertValue(DateTime.Parse("1980-03-04"), secondPerson, "Birthdate");
-            AssertValue("Janey", secondPerson, "Nickname");
+            AssertValue("Janey", secondPerson, "NickName");
 
         }
         
@@ -491,7 +491,7 @@
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
-                                    Nickname
+                                    NickName
                                     Birthdate
                                     Friends @nodes(/Friends/)
                                     {
@@ -521,7 +521,7 @@
             AssertValue("John", person, "FirstName");
             AssertValue("Doe", person, "LastName");
             AssertValue(DateTime.Parse("1978-07-28"), person, "Birthdate");
-            AssertValue("Johnny", person, "Nickname");
+            AssertValue("Johnny", person, "NickName");
 
             Assert.Equal(2, person.Children.Count); 
             AssertValue("Tony", person.Children[0], "FirstName");
@@ -538,7 +538,7 @@
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
-                                    Nickname
+                                    NickName
                                     Birthdate
                                }";
 

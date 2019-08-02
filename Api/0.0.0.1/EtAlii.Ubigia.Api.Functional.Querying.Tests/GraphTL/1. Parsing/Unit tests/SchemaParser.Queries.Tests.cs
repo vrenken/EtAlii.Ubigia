@@ -355,11 +355,7 @@
             Assert.NotNull(parseResult.Schema);
             Assert.NotNull(parseResult.Schema.Structure);
             Assert.Equal(FragmentType.Query, parseResult.Schema.Structure.Type);
-
-            var childStructure = parseResult.Schema.Structure.Children.SingleOrDefault();
-            Assert.NotNull(childStructure);
-            Assert.Equal(FragmentType.Query, childStructure.Type);
-            Assert.Equal("name", childStructure.Name);
+            Assert.Equal("Person", parseResult.Schema.Structure.Name);
         }
 
 

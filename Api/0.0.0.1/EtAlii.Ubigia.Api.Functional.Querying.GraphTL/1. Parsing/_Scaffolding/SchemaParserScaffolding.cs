@@ -16,8 +16,8 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IAssignmentParser, AssignmentParser>();
             container.RegisterInitializer<IKeyValuePairParser>(keyValuePairParser => ((KeyValuePairParser)keyValuePairParser).Initialize(container.GetInstance<IAssignmentParser>().Parser));
             
-            container.Register<IStructureQueryParser, StructureQueryParser>();
-            container.Register<IValueQueryParser, ValueQueryParser>();
+            container.Register<IStructureFragmentParser, StructureFragmentParser>();
+            container.Register<IValueFragmentParser, ValueFragmentParser>();
 
             //container.Register<IStructureMutationParser, StructureMutationParser>();
             //container.Register<IValueMutationParser, ValueMutationParser>();
