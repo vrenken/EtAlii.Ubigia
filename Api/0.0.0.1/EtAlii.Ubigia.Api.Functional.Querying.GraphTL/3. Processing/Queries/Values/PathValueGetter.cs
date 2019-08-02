@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _relatedIdentityFinder = relatedIdentityFinder;
         }
 
-        public async Task<Value> Get(string valueName, Structure structure, PathSubject path, QueryExecutionScope executionScope)
+        public async Task<Value> Get(string valueName, Structure structure, PathSubject path, SchemaExecutionScope executionScope)
         {
             var id = _relatedIdentityFinder.Find(structure);
             if (id != Identifier.Empty)

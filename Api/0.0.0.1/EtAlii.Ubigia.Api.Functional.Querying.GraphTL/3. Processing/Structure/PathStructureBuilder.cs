@@ -15,7 +15,7 @@ namespace EtAlii.Ubigia.Api.Functional
         }
 
         public async Task Build(
-            QueryExecutionScope executionScope, 
+            SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> fragmentOutput, 
             Annotation annotation, 

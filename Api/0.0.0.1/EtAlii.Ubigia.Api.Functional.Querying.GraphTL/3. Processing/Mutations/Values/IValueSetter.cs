@@ -4,6 +4,6 @@
 
     internal interface IValueSetter
     {
-        Task<Value> Set(string valueName, object value, Annotation annotation, QueryExecutionScope executionScope, Structure structure);
+        Task<Value> Set(string valueName, object value, Annotation annotation, SchemaExecutionScope executionScope, Structure structure);
     }
 }

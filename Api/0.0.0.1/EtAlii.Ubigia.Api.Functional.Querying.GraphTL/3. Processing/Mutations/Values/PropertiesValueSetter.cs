@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional
             _scriptContext = scriptContext;
         }
 
-        public async Task<Value> Set(string valueName, Structure structure, object value, QueryExecutionScope executionScope)
+        public async Task<Value> Set(string valueName, Structure structure, object value, SchemaExecutionScope executionScope)
         {
             var properties = structure.Node.GetProperties();
             var id = structure.Node.Id;

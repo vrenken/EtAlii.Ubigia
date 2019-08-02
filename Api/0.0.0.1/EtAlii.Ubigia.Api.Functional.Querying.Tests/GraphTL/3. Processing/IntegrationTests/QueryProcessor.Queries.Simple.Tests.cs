@@ -11,14 +11,14 @@
 
 //using EtAlii.Ubigia.Api.Functional.Diagnostics.Querying;
 
-    public class QueryProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
+    public class SchemaProcessorQueriesSimpleTests : IClassFixture<QueryingUnitTestContext>, IAsyncLifetime
     {
         private IGraphSLScriptContext _scriptContext;
-        private IGraphTLQueryContext _queryContext;
+        private IGraphTLContext _context;
         private readonly QueryingUnitTestContext _testContext;
         private IDiagnosticsConfiguration _diagnostics;
 
-        public QueryProcessorQueriesSimpleTests(QueryingUnitTestContext testContext)
+        public SchemaProcessorQueriesSimpleTests(QueryingUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -34,12 +34,12 @@
             await _testContext.FunctionalTestContext.ConfigureLogicalContextConfiguration(configuration,true);
             
             _scriptContext = new GraphSLScriptContextFactory().Create(configuration);
-            _queryContext = new GraphTLQueryContextFactory().Create(configuration);
+            _context = new GraphTLQueryContextFactory().Create(configuration);
         
             await _testContext.FunctionalTestContext.AddPeople(_scriptContext);
             await _testContext.FunctionalTestContext.AddAddresses(_scriptContext); 
 
-            Console.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLQueryContext));
+            Console.WriteLine("{1}.Initialize: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
         }
 
         public Task DisposeAsync()
@@ -47,25 +47,25 @@
             var start = Environment.TickCount;
 
             _scriptContext = null;
-            _queryContext = null;
+            _context = null;
 
-            Console.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLQueryContext));
+            Console.WriteLine("{1}.Cleanup: {0}ms", TimeSpan.FromTicks(Environment.TickCount - start).TotalMilliseconds, nameof(IGraphTLContext));
             return Task.CompletedTask;
         }
 
         
         [Fact]
-        public Task QueryProcessor_Create()
+        public Task SchemaProcessor_Create()
         {
             // Arrange.
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
 
             // Act.
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Assert.
             Assert.NotNull(processor);
@@ -76,7 +76,7 @@
         
 
         [Fact]
-        public async Task QueryProcessor_Process_Time_Now_By_Structure()
+        public async Task SchemaProcessor_Query_Time_Now_By_Structure()
         {
             // Arrange.
             var queryText = @"Time @node(time:now)
@@ -90,14 +90,14 @@
                                     Year @value(\\\\\\)
                                }";
 
-            var query = _queryContext.Parse(queryText).Query;
+            var query = _context.Parse(queryText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
             var result = await processor.Process(query);
@@ -127,10 +127,10 @@
         
 
         [Fact]
-        public async Task QueryProcessor_Process_Time_Now_By_Last_Output()
+        public async Task SchemaProcessor_Query_Time_Now_By_Last_Output()
         {
             // Arrange.
-            var selectQueryText = @"Time @node(time:now)
+            var selectSchemaText = @"Time @node(time:now)
                                {
                                     Millisecond @value()
                                     Second @value(\)
@@ -141,17 +141,17 @@
                                     Year @value(\\\\\\)
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -163,26 +163,26 @@
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Person_By_Structure()
+        public async Task SchemaProcessor_Query_Person_By_Structure()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
 
             // Assert.
             await result.Output;
@@ -194,26 +194,26 @@
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Persons_By_Structure_02()
+        public async Task SchemaProcessor_Query_Persons_By_Structure_02()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:*/*)
+            var selectSchemaText = @"Person @nodes(Person:*/*)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
 
             // Assert.
             await result.Output;
@@ -247,26 +247,26 @@
         
         
         [Fact]
-        public async Task QueryProcessor_Process_Person_By_Last_Output()
+        public async Task SchemaProcessor_Query_Person_By_Last_Output()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -280,10 +280,10 @@
 
         
         [Fact]
-        public async Task QueryProcessor_Process_Person_Nested_By_Structure()
+        public async Task SchemaProcessor_Query_Person_Nested_By_Structure()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     Data
                                     {
@@ -292,17 +292,17 @@
                                     }
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
 
             // Assert.
             await result.Output;
@@ -318,10 +318,10 @@
         
         
         [Fact]
-        public async Task QueryProcessor_Process_Person_Nested_By_Last_Output()
+        public async Task SchemaProcessor_Query_Person_Nested_By_Last_Output()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     Data
                                     {
@@ -330,17 +330,17 @@
                                     }
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output;
 
             // Assert.
@@ -356,10 +356,10 @@
 
                 
         [Fact]
-        public async Task QueryProcessor_Process_Person_Nested_Double_By_Structure()
+        public async Task SchemaProcessor_Query_Person_Nested_Double_By_Structure()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     Data1
                                     {
@@ -371,17 +371,17 @@
                                     }
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
 
             // Assert.
             await result.Output;
@@ -398,10 +398,10 @@
 
 
         [Fact]
-        public async Task QueryProcessor_Process_Person_Nested_Double_By_Last_Output()
+        public async Task SchemaProcessor_Query_Person_Nested_Double_By_Last_Output()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Stark/Tony)
+            var selectSchemaText = @"Person @nodes(Person:Stark/Tony)
                                {
                                     Data1
                                     {
@@ -413,17 +413,17 @@
                                     }
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output;
 
             // Assert.
@@ -440,10 +440,10 @@
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Persons_By_Structure_01()
+        public async Task SchemaProcessor_Query_Persons_By_Structure_01()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Doe/*)
+            var selectSchemaText = @"Person @nodes(Person:Doe/*)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
@@ -451,17 +451,17 @@
                                     Birthdate
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
@@ -484,10 +484,10 @@
         }
         
         [Fact]
-        public async Task QueryProcessor_Process_Person_Friends()
+        public async Task SchemaProcessor_Query_Person_Friends()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Doe/John)
+            var selectSchemaText = @"Person @nodes(Person:Doe/John)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
@@ -500,21 +500,21 @@
                                     }
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.
-            Assert.Equal(1, result.Structure.Count);
+            Assert.Single(result.Structure);
             
             var person = result.Structure[0];
             Assert.NotNull(person);
@@ -531,10 +531,10 @@
         }
 
         [Fact]
-        public async Task QueryProcessor_Process_Persons_By_Last_Output()
+        public async Task SchemaProcessor_Query_Persons_By_Last_Output()
         {
             // Arrange.
-            var selectQueryText = @"Person @nodes(Person:Doe/*)
+            var selectSchemaText = @"Person @nodes(Person:Doe/*)
                                {
                                     FirstName @value()
                                     LastName @value(\#FamilyName)
@@ -542,17 +542,17 @@
                                     Birthdate
                                }";
 
-            var selectQuery = _queryContext.Parse(selectQueryText).Query;
+            var selectSchema = _context.Parse(selectSchemaText).Schema;
 
-            var scope = new QueryScope();
-            var configuration = new QueryProcessorConfiguration()
+            var scope = new SchemaScope();
+            var configuration = new SchemaProcessorConfiguration()
                 .UseFunctionalDiagnostics(_diagnostics)
                 .Use(scope)
                 .Use(_scriptContext);
-            var processor = new QueryProcessorFactory().Create(configuration);
+            var processor = new SchemaProcessorFactory().Create(configuration);
 
             // Act.
-            var result = await processor.Process(selectQuery);
+            var result = await processor.Process(selectSchema);
             var lastResult = await result.Output.LastOrDefaultAsync();
 
             // Assert.

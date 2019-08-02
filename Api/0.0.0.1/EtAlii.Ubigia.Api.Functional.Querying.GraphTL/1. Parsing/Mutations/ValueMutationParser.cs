@@ -69,7 +69,7 @@
                     var @value = ParseValue(child);
                     return new ValueMutation(name2, annotation2, value);
                 default:
-                    throw new QueryParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
+                    throw new SchemaParserException($"Unable to find correctly formatted {nameof(ValueMutation)}.");
             }
         }
 
@@ -99,7 +99,7 @@
             var annotationNode = _nodeFinder.FindFirst(node, _annotationParser.Id);
             if (annotationNode == null)
             {
-                throw new QueryParserException("An annotation could not be found for parsing.");
+                throw new SchemaParserException("An annotation could not be found for parsing.");
             }
             var annotation = _annotationParser.Parse(annotationNode);
 //          if (annotation != Annotation.None && annotation.Type != AnnotationType.Value)

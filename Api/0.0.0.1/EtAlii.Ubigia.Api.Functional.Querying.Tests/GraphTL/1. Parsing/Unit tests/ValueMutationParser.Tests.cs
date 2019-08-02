@@ -16,7 +16,7 @@
             Assert.NotNull(parser);
         }
 
-        private IValueMutationParser CreateValueMutationParser() => new QueryParserTestContainerFactory().Create().GetInstance<IValueMutationParser>();
+        private IValueMutationParser CreateValueMutationParser() => new SchemaParserTestContainerFactory().Create().GetInstance<IValueMutationParser>();
         
         [Fact]
         public void ValueMutationParser_Parse_Value_Space()

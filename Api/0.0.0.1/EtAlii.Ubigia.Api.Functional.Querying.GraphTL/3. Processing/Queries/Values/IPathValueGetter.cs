@@ -4,6 +4,6 @@
 
     internal interface IPathValueGetter
     {
-        Task<Value> Get(string valueName, Structure structure, PathSubject path, QueryExecutionScope executionScope);
+        Task<Value> Get(string valueName, Structure structure, PathSubject path, SchemaExecutionScope executionScope);
     }
 }

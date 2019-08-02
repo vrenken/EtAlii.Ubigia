@@ -2,7 +2,7 @@
 {
     using EtAlii.xTechnology.MicroContainer;
 
-    public class GraphTLQueryContextFactory : Factory<IGraphTLQueryContext, GraphTLQueryContextConfiguration, IGraphTLQueryContextExtension>
+    public class GraphTLQueryContextFactory : Factory<IGraphTLContext, GraphTLQueryContextConfiguration, IGraphTLQueryContextExtension>
     {
         protected override IScaffolding[] CreateScaffoldings(GraphTLQueryContextConfiguration configuration)
         {

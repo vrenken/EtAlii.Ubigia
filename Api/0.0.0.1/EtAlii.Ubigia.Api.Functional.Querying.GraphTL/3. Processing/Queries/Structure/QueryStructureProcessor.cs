@@ -22,7 +22,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public async Task Process(
             StructureQuery fragment, 
             FragmentMetadata fragmentMetadata,
-            QueryExecutionScope executionScope, 
+            SchemaExecutionScope executionScope, 
             IObserver<Structure> fragmentOutput)
         {
             var annotation = fragment.Annotation;
@@ -44,7 +44,7 @@ namespace EtAlii.Ubigia.Api.Functional
         
         
         private async Task Build(
-            QueryExecutionScope executionScope, 
+            SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
             IObserver<Structure> fragmentOutput, 
             Annotation annotation, 

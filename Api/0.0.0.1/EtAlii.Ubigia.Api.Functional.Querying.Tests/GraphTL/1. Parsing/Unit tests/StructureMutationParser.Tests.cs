@@ -20,7 +20,7 @@
         private IStructureMutationParser CreateStructureMutationParser()
         {
 
-            var container = new QueryParserTestContainerFactory().Create();
+            var container = new SchemaParserTestContainerFactory().Create();
 
             return container.GetInstance<IStructureMutationParser>();
         }
@@ -149,6 +149,5 @@
             Assert.NotNull(node);
             Assert.NotNull(@object);
         }
-        
     }
 }
