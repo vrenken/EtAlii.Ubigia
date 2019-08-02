@@ -10,7 +10,7 @@
             TFragment fragment,
             FragmentMetadata metadata,
             SchemaExecutionScope executionScope, 
-            IObserver<Structure> fragmentOutput);
+            IObserver<Structure> schemaOutput);
 
     }
 }

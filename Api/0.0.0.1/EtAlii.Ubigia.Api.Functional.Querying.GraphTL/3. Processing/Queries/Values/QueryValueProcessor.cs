@@ -16,7 +16,7 @@ namespace EtAlii.Ubigia.Api.Functional
             ValueFragment fragment,
             FragmentMetadata fragmentMetadata,
             SchemaExecutionScope executionScope, 
-            IObserver<Structure> fragmentOutput)
+            IObserver<Structure> schemaOutput)
         {
             foreach (var structure in fragmentMetadata.Parent.Items)
             {

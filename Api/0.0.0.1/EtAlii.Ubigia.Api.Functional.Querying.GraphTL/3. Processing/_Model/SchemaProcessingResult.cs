@@ -29,9 +29,9 @@
             Structure = structure;
         }
 
-        internal void Update(IObservable<Structure> output)
+        internal void Update(IObservable<Structure> schemaOutput)
         {
-            Output = output;
+            Output = schemaOutput;
         }
         internal void Update(int step, FragmentExecutionPlan currentExecutionPlan)
         {

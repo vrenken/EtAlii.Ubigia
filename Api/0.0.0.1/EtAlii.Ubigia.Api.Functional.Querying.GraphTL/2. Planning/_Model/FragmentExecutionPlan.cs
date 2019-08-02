@@ -37,9 +37,9 @@
 
             return Task.FromResult(outputObservable);
         }
-        protected Task Execute(SchemaExecutionScope executionScope, IObserver<Structure> output)
+        protected Task Execute(SchemaExecutionScope executionScope, IObserver<Structure> schemaOutput)
         {
-            return _processor.Process(Fragment, Metadata, executionScope, output);
+            return _processor.Process(Fragment, Metadata, executionScope, schemaOutput);
         }
 
         public override string ToString()

@@ -8,7 +8,7 @@ namespace EtAlii.Ubigia.Api.Functional
         Task Build(
             SchemaExecutionScope executionScope,
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> fragmentOutput,
+            IObserver<Structure> schemaOutput,
             Annotation annotation,
             string structureName,
             Structure parent,
