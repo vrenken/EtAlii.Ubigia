@@ -30,7 +30,7 @@ namespace EtAlii.Ubigia.Api.Functional
             StructureFragment fragment,
             FragmentMetadata fragmentMetadata,
             SchemaExecutionScope executionScope, 
-            IObserver<Structure> fragmentOutput)
+            IObserver<Structure> schemaOutput)
         {
             var annotation = fragment.Annotation;
 
@@ -39,20 +39,20 @@ namespace EtAlii.Ubigia.Api.Functional
                 foreach (var structure in fragmentMetadata.Parent.Items)
                 {
                     var id = _relatedIdentityFinder.Find(structure);
-                    await Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, structure);
+                    await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, structure);
                 }
             }
             else
             {
                 var id = Identifier.Empty; 
-                await Build(executionScope, fragmentMetadata, fragmentOutput, annotation, id, fragment.Name, null);
+                await Build(executionScope, fragmentMetadata, schemaOutput, annotation, id, fragment.Name, null);
             }
         }
         
         private async Task Build(
             SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> fragmentOutput, 
+            IObserver<Structure> schemaOutput, 
             Annotation annotation, 
             Identifier id, 
             string structureName,
@@ -72,7 +72,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 path = _pathCorrecter.Correct(annotation, path);
             }
 
-            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, fragmentOutput, annotation, structureName, parent, path);
+            await _pathStructureBuilder.Build(executionScope, fragmentMetadata, schemaOutput, annotation, structureName, parent, path);
 
         }
 

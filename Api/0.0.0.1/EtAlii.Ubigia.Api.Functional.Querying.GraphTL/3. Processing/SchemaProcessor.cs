@@ -31,7 +31,7 @@
 
             var result = new SchemaProcessingResult(schema, totalExecutionPlans, new ReadOnlyObservableCollection<Structure>(rootMetadata.Items));
 
-            var observableQueryOutput = Observable.Create<Structure>(async queryOutput =>
+            var observableSchemaOutput = Observable.Create<Structure>(async schemaOutput =>
             {
                 try
                 {
@@ -41,13 +41,13 @@
                         var executionPlan = executionPlans[executionPlanIndex];
 
                         result.Update(executionPlanIndex, executionPlan);
-                        await ProcessExecutionPlan(executionPlan, queryOutput);
+                        await ProcessExecutionPlan(executionPlan, schemaOutput);
                     }
                     result.Update(totalExecutionPlans, null);
 
                     // After iterating through the fragment query observation has ended. Please keep in mind 
                     // this is not the same for all sequence observables. The last one could still be receiving results. 
-                    queryOutput.OnCompleted();
+                    schemaOutput.OnCompleted();
                 }
                 catch (Exception e)
                 {
@@ -57,18 +57,18 @@
                     }
 
                     // An exception on this level should be propagated to the query output observer.
-                    queryOutput.OnError(e);
+                    schemaOutput.OnError(e);
                 }
 
                 return Disposable.Empty; 
             });
 
-            result.Update(observableQueryOutput);
+            result.Update(observableSchemaOutput);
 
             return Task.FromResult(result);
         }
 
-        private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> queryOutput)
+        private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> schemaOutput)
         {
             var executionScope = new SchemaExecutionScope();
 
@@ -91,7 +91,7 @@
 
             // We need to halt execution of the next sequence until the current one has finished.
             executionPlanOutput.Subscribe(
-                onNext: o => queryOutput.OnNext(o), 
+                onNext: o => schemaOutput.OnNext(o), 
                 onError: e =>
                 {
                     exception = e;

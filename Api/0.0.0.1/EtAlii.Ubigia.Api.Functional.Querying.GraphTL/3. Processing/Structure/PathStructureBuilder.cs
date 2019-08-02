@@ -17,7 +17,7 @@ namespace EtAlii.Ubigia.Api.Functional
         public async Task Build(
             SchemaExecutionScope executionScope, 
             FragmentMetadata fragmentMetadata,
-            IObserver<Structure> fragmentOutput, 
+            IObserver<Structure> schemaOutput, 
             Annotation annotation, 
             string structureName, 
             Structure parent, 
@@ -31,7 +31,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 case AnnotationType.Node:
                     if (await scriptResult.Output.SingleOrDefaultAsync() is IInternalNode lastOutput)
                     {
-                        Build(lastOutput, fragmentOutput, structureName, fragmentMetadata, parent);
+                        Build(lastOutput, schemaOutput, structureName, fragmentMetadata, parent);
                     }
 
                     break;
@@ -40,8 +40,8 @@ namespace EtAlii.Ubigia.Api.Functional
                     scriptResult.Output
                         .OfType<IInternalNode>()
                         .Subscribe(
-                            onError: fragmentOutput.OnError,
-                            onNext: o => Build(o, fragmentOutput, structureName, fragmentMetadata, parent),
+                            onError: schemaOutput.OnError,
+                            onNext: o => Build(o, schemaOutput, structureName, fragmentMetadata, parent),
                             onCompleted: () => { });
                     break;
                 case AnnotationType.Value:
@@ -51,14 +51,14 @@ namespace EtAlii.Ubigia.Api.Functional
 
         private void Build(
             IInternalNode node, 
-            IObserver<Structure> fragmentOutput, 
+            IObserver<Structure> schemaOutput, 
             string structureName, 
             FragmentMetadata fragmentMetadata,
             Structure parent)
         {
             var item = new Structure(structureName, node.Type, parent, node);
             fragmentMetadata.Items.Add(item);
-            fragmentOutput.OnNext(item);
+            schemaOutput.OnNext(item);
         }
     }
 }
