@@ -35,13 +35,15 @@
             {
                 try
                 {
+                    var executionScope = new SchemaExecutionScope();
+
                     for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
                     {
                         //var sequence = sequences[executionPlanIndex];
                         var executionPlan = executionPlans[executionPlanIndex];
 
                         result.Update(executionPlanIndex, executionPlan);
-                        await ProcessExecutionPlan(executionPlan, schemaOutput);
+                        await ProcessExecutionPlan(executionPlan, schemaOutput, executionScope);
                     }
                     result.Update(totalExecutionPlans, null);
 
@@ -68,10 +70,8 @@
             return Task.FromResult(result);
         }
 
-        private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> schemaOutput)
+        private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> schemaOutput, SchemaExecutionScope executionScope)
         {
-            var executionScope = new SchemaExecutionScope();
-
             var executionPlanOutput = await executionPlan.Execute(executionScope);
             //var observableQueryOutput = Observable.Empty<Structure>();
 
