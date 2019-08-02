@@ -11,7 +11,7 @@
     {
         private readonly ICommentParser _commentParser;
         private readonly IStructureQueryParser _structureQueryParser;
-        private readonly IStructureMutationParser _structureMutationParser;
+        //private readonly IStructureMutationParser _structureMutationParser;
         private const string Id = "Query";
 
 //        private static readonly string[] _separators = new[] [ "\n", "\r\n" ]
@@ -24,7 +24,7 @@
             ICommentParser commentParser,
             IAnnotationParser annotationParser,
             IStructureQueryParser structureQueryParser,
-            IStructureMutationParser structureMutationParser,
+            //IStructureMutationParser structureMutationParser,
             INodeValidator nodeValidator,
             INodeFinder nodeFinder,
             INewLineParser newLineParser)
@@ -33,12 +33,12 @@
             _structureQueryParser = structureQueryParser;
             _nodeValidator = nodeValidator;
             _nodeFinder = nodeFinder;
-            _structureMutationParser = structureMutationParser;
+            //_structureMutationParser = structureMutationParser;
 
             var structureParsers = new LpsParser(new[]
-            {
+            { 
                 _structureQueryParser.Parser,
-                _structureMutationParser.Parser
+                //_structureMutationParser.Parser
             }.Aggregate(new LpsAlternatives(), (current, parser) => current | parser)).Maybe();
             
             var headerParsers = (newLineParser.OptionalMultiple + commentParser.Parser).ZeroOrMore();
@@ -74,11 +74,11 @@
                     var structureQuery = _structureQueryParser.Parse(structureQueryMatch); 
                     schema = new Schema(structureQuery);
                 }
-                else if (_nodeFinder.FindFirst(node, _structureMutationParser.Id) is LpNode structureMutationMatch)
-                {
-                    var structureMutation = _structureMutationParser.Parse(structureMutationMatch); 
-                    schema = new Schema(structureMutation);
-                }
+//                else if (_nodeFinder.FindFirst(node, _structureMutationParser.Id) is LpNode structureMutationMatch)
+//                {
+//                    var structureMutation = _structureMutationParser.Parse(structureMutationMatch); 
+//                    schema = new Schema(structureMutation);
+//                }
             }
             catch (Exception e)
             {
