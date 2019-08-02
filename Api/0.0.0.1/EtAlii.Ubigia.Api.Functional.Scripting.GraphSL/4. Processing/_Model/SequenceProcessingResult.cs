@@ -1,6 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using System.Reactive.Linq;
+    using System.Threading.Tasks;
 
     public class SequenceProcessingResult
     {
@@ -24,5 +26,15 @@
             Total = total;
             Output = output;
         }
+        
+        /// <summary>
+        /// Awaiting this method ensures GSL sequence processing has finished.
+        /// </summary>
+        /// <returns></returns>
+        public async Task Completed()
+        {
+            await Output.LastOrDefaultAsync();
+        }
+
     }
 }
