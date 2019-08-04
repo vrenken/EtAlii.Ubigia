@@ -70,6 +70,7 @@
             container.Register<IAddByNameAsNewPathProcessor, AddByNameAsNewPathProcessor>();
             container.Register<IAddRootedPathToExistingPathProcessor, AddRootedPathToExistingPathProcessor>();
             container.Register<IAddAbsolutePathToExistingPathProcessor, AddAbsolutePathToExistingPathProcessor>();
+            container.Register<IAddFunctionToExistingPathProcessor, AddFunctionToExistingPathProcessor>();
             container.Register<IAddRelativePathToExistingPathProcessor, AddRelativePathToExistingPathProcessor>();
             container.Register<IAddConstantToExistingPathProcessor, AddConstantToExistingPathProcessor>();
             container.Register<IAddVariableAsNewPathProcessor, AddVariableAsNewPathProcessor>();

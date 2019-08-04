@@ -5,12 +5,12 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
 
-    internal class AddVariableToExistingPathProcessor : IAddVariableToExistingPathProcessor
+    internal class AddFunctionToExistingPathProcessor : IAddFunctionToExistingPathProcessor
     {
         private readonly IItemToIdentifierConverter _itemToIdentifierConverter;
         private readonly IScriptProcessingContext _context;
 
-        public AddVariableToExistingPathProcessor(
+        public AddFunctionToExistingPathProcessor(
             IScriptProcessingContext context,
             IItemToIdentifierConverter itemToIdentifierConverter)
         {
@@ -52,7 +52,9 @@
 
         private async Task AddFromString(Identifier leftIdentifier, string s, OperatorParameters parameters)
         {
-            await _context.Logical.Nodes.Add(leftIdentifier, s, parameters.Scope);
+            var newEntry = await _context.Logical.Nodes.Add(leftIdentifier, s, parameters.Scope);
+            var result = new DynamicNode(newEntry);
+            parameters.Output.OnNext(result);
         }
 
         private async Task AddFromIdentifier(Identifier leftIdentifier, Identifier identifierToAdd, OperatorParameters parameters)

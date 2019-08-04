@@ -9,6 +9,7 @@ namespace EtAlii.Ubigia.Api.Functional
                 new IdFunctionHandler(),
                 new RenameFunctionHandler(),
                 new CountFunctionHandler(),
+                new NewFunctionHandler(), 
                 new IncludeFunctionHandler(),  
             };
         }
