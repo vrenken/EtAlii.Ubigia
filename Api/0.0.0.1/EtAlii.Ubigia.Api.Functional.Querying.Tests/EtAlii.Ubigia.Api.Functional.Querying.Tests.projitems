@@ -16,70 +16,8 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\AssertQuery.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Basic.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Full.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Multiple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Integration tests\GraphQLQueryContext.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\AnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\SchemaParserTestContainerFactory.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureFragmentParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\StructureFragmentParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueFragmentParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Unit tests\ValueFragmentParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)GraphTL\FileBasedGraphTLData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.ChangeTracker.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Add.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.At.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Save.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.Select.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\IntegrationTests\LinqQueryContext.Nodes.ToArray.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\UnitTests\ChangeTracker.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Linq\UnitTests\NodeSet.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 1. - Queries.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 2. - Mutations.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 3. - Advanced Queries.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\FileBasedGraphQLData.cs" />
-    <Content Include="$(MSBuildThisFileDirectory)GraphQL\Samples 0. - Introduction.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 0. - Introduction.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 2. - Nodes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 1. - Queries.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="$(MSBuildThisFileDirectory)GraphTL\Samples 3. - Mutations.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)GraphQL\Unit tests\QueryModeller.Tests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)GraphTL\0. Base\Unit tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)GraphTL\1. Parsing\Integration tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)GraphTL\2. Planning\Integration tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)GraphTL\3. Processing\UnitTests" />
   </ItemGroup>
 </Project>

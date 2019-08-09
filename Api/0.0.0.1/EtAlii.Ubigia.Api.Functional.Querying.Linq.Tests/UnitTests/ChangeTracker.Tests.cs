@@ -2,7 +2,6 @@
 {
     using Xunit;
 
-
     public class ChangeTrackerTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

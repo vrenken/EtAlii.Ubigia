@@ -2,7 +2,6 @@
 {
     using Xunit;
 
-
     public class LinqQueryContextChangeTrackerTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
