@@ -55,7 +55,7 @@
             Assert.NotNull(result);
             Assert.Single(result);
             Assert.NotNull(result[0]);
-            Assert.Equal("Undefined", result[0].ToString());
+            Assert.StartsWith("Undefined_", result[0].ToString());
 
         }
 

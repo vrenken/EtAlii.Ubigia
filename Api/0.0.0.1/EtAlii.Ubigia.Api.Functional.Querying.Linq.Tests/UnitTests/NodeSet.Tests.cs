@@ -2,7 +2,6 @@
 {
     using Xunit;
 
-
     public class NodeSetTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]

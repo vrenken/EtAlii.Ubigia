@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>FF2EA5E9-BCEA-492C-BA66-25C4DE7D6097</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\AnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParserTestContainerFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)2. Planning\Unit tests\QueryExecutionPlanner.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\QueryProcessor.Queries.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)3. Processing\IntegrationTests\SchemaProcessor.Mutations.Simple.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FileBasedGraphTLData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)QueryingUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestAssembly.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TestDiagnostics.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Nodes.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Mutations.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking - Alternatives.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 4. - Linking.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Variables.txt" />
+  </ItemGroup>
+</Project>
