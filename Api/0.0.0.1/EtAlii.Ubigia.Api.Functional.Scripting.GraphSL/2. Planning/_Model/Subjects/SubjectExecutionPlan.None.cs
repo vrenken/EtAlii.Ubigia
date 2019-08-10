@@ -6,7 +6,10 @@
 
     public static class SubjectExecutionPlan
     {
-        public static readonly ISubjectExecutionPlan Empty = new EmptySubjectExecutionPlan();
+        /// <summary>
+        /// An empty SubjectExecutionPlan.
+        /// </summary>
+        public static ISubjectExecutionPlan Empty { get; } = new EmptySubjectExecutionPlan();
 
         private class EmptySubjectExecutionPlan : ISubjectExecutionPlan
         {
