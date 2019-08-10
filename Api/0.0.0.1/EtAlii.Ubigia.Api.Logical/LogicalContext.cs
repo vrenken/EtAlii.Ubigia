@@ -4,17 +4,19 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class LogicalContext : ILogicalContext
     {
-        /// <summary>
-        /// The Configuration used to instantiate this Context.
-        /// </summary>
+        /// <inheritdoc/>
         public ILogicalContextConfiguration Configuration { get; }
 
+        /// <inheritdoc/>
         public ILogicalNodeSet Nodes { get; }
 
+        /// <inheritdoc/>
         public ILogicalRootSet Roots { get; }
 
+        /// <inheritdoc/>
         public IContentManager Content { get; }
 
+        /// <inheritdoc/>
         public IPropertiesManager Properties { get; }
 
         public LogicalContext(
