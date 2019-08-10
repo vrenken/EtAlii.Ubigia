@@ -8,6 +8,14 @@ namespace EtAlii.Ubigia.Api.Fabric
     /// </summary>
     public static class FabricContextConfigurationUseExtensions
     {
+        /// <summary>
+        /// Set the connection that should be used when instantiating a FabricContext.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="connection"></param>
+        /// <typeparam name="TFabricContextConfiguration"></typeparam>
+        /// <returns></returns>
+        /// <exception cref="InvalidInfrastructureOperationException"></exception>
         public static TFabricContextConfiguration Use<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, IDataConnection connection)
             where TFabricContextConfiguration: FabricContextConfiguration
         {
@@ -19,6 +27,13 @@ namespace EtAlii.Ubigia.Api.Fabric
             return configuration;
         }
         
+        /// <summary>
+        /// When cachingEnabled is set to true the instantiated FabricContext is configured to use traversal caching.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="cachingEnabled"></param>
+        /// <typeparam name="TFabricContextConfiguration"></typeparam>
+        /// <returns></returns>
         public static TFabricContextConfiguration UseTraversalCaching<TFabricContextConfiguration>(this TFabricContextConfiguration configuration, bool cachingEnabled)
             where TFabricContextConfiguration: FabricContextConfiguration
         {
