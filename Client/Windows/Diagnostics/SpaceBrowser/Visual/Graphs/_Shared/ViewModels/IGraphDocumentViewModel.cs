@@ -1,10 +1,13 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api;
     using System.Collections.Generic;
+    using EtAlii.Ubigia.Api;
 
     public interface IGraphDocumentViewModel : IDocumentViewModel
     {
+        /// <summary>
+        /// The Configuration used to instantiate this ViewModel.
+        /// </summary>
         IGraphConfiguration Configuration { get; }
 
         IGraphContext GraphContext { get; }

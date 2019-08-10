@@ -5,6 +5,9 @@
     public interface ISpaceConnection : IConnection, IDisposable
     {
         ISpaceTransport Transport { get; }
+        /// <summary>
+        /// The Configuration used to instantiate this SpaceConnection.
+        /// </summary>
         ISpaceConnectionConfiguration Configuration { get; }
         Space Space { get; }
         Account Account { get; } // TODO: Move to IConnection.

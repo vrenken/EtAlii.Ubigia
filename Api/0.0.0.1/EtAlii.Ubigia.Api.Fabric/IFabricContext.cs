@@ -5,6 +5,9 @@
 
     public interface IFabricContext : IDisposable
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         IFabricContextConfiguration Configuration { get; }
 
         IDataConnection Connection { get; }

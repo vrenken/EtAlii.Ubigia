@@ -22,6 +22,9 @@
 
         public bool IsConnected => Storage != null;
 
+        /// <summary>
+        /// The Configuration used to instantiate this StorageConnection.
+        /// </summary>
         public IStorageConnectionConfiguration Configuration { get; }
 
         protected StorageConnection(

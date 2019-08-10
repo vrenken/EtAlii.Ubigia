@@ -4,6 +4,9 @@
 
     public interface IInfrastructure
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Infrastructure.
+        /// </summary>
         IInfrastructureConfiguration Configuration { get; }
 
         IStorageRepository Storages { get; }

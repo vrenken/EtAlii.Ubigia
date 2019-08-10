@@ -5,6 +5,9 @@
 
     public class FabricContext : IFabricContext
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         public IFabricContextConfiguration Configuration { get; }
 
         public IDataConnection Connection { get; }

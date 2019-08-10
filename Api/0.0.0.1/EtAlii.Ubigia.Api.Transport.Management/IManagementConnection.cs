@@ -2,11 +2,13 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
 
     public interface IManagementConnection : IDisposable
     {
         bool IsConnected { get; }
+        /// <summary>
+        /// The Configuration used to instantiate this ManagementConnection.
+        /// </summary>
         IManagementConnectionConfiguration Configuration { get; }
 
         Storage Storage { get; }

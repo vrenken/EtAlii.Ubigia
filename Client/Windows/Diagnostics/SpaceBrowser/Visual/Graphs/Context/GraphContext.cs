@@ -30,6 +30,9 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
         public IQueryProcessor QueryProcessor { get; }
 
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         public IGraphConfiguration Configuration { get; }
 
         public GraphContext(

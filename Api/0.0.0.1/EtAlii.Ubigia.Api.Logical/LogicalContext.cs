@@ -4,6 +4,9 @@ namespace EtAlii.Ubigia.Api.Logical
 
     internal class LogicalContext : ILogicalContext
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         public ILogicalContextConfiguration Configuration { get; }
 
         public ILogicalNodeSet Nodes { get; }
