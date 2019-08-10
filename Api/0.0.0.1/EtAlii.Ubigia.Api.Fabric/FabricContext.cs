@@ -5,19 +5,22 @@
 
     public class FabricContext : IFabricContext
     {
-        /// <summary>
-        /// The Configuration used to instantiate this Context.
-        /// </summary>
+        /// <inheritdoc/>
         public IFabricContextConfiguration Configuration { get; }
 
+        /// <inheritdoc/>
         public IDataConnection Connection { get; }
 
+        /// <inheritdoc/>
         public IRootContext Roots { get; }
 
+        /// <inheritdoc/>
         public IEntryContext Entries { get; }
 
+        /// <inheritdoc/>
         public IContentContext Content { get; }
 
+        /// <inheritdoc/>
         public IPropertiesContext Properties { get; }
 
         public FabricContext(
