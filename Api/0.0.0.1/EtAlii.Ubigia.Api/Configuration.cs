@@ -13,12 +13,19 @@
         /// The extensions added to this configuration.
         /// </summary>
         protected IExtension[] Extensions { get; private set; }
+        
+        /// <inheritdoc/>        
         IExtension[] IEditableConfiguration.Extensions { get => Extensions; set => Extensions = value; } 
+
+        /// <summary>
+        /// Creates a new Configuration instance. 
+        /// </summary>
         protected Configuration()
         {
             Extensions = Array.Empty<IExtension>();
         }
 
+        /// <inheritdoc/>
         public TExtension[] GetExtensions<TExtension>()
             where TExtension : IExtension
         {

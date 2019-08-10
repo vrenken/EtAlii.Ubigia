@@ -19,6 +19,10 @@
 
         private readonly IDictionary<Identifier, PropertyDictionary> _properties;
 
+        /// <summary>
+        /// Create a new Cache instance. Set the cacheEnabled to false if the cache should be disabled. 
+        /// </summary>
+        /// <param name="cacheEnabled">False when caching should be disabled.</param>
         public Cache(bool cacheEnabled = true)
         {
             _cacheEnabled = cacheEnabled;
@@ -28,6 +32,13 @@
             _properties = new Dictionary<Identifier, PropertyDictionary>();
         }
 
+        /// <summary>
+        /// Returns the properties for the specified identifier.
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="getter"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<PropertyDictionary> GetProperties(Identifier identifier, Func<Task<PropertyDictionary>> getter)
         {
             PropertyDictionary result;
@@ -61,6 +72,13 @@
             return result;
         }
 
+        /// <summary>
+        /// Returns the entry for the specified identifier.
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="getter"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<IReadOnlyEntry> GetEntry(Identifier identifier, Func<Task<IReadOnlyEntry>> getter)
         {
             IReadOnlyEntry result;
@@ -95,6 +113,14 @@
             return result;
         }
 
+        /// <summary>
+        /// Returns the related entries for the specified identifier and relation.
+        /// </summary>
+        /// <param name="identifier"></param>
+        /// <param name="relation"></param>
+        /// <param name="getter"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public async Task<IEnumerable<IReadOnlyEntry>> GetRelatedEntries(Identifier identifier, EntryRelation relation, Func<Task<IEnumerable<IReadOnlyEntry>>> getter)
         {
             IEnumerable<IReadOnlyEntry> result;
@@ -132,6 +158,10 @@
             return result;
         }
 
+        /// <summary>
+        /// Invalidates all cache entries for the specified identifier.
+        /// </summary>
+        /// <param name="identifier"></param>
         public void InvalidateEntry(Identifier identifier)
         {
             lock (_entries)

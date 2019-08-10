@@ -36,6 +36,13 @@ namespace EtAlii.Ubigia.Api
             return configuration;
         }
 
+        /// <summary>
+        /// Use the extensions from one configuration in another.
+        /// </summary>
+        /// <param name="configuration"></param>
+        /// <param name="otherConfiguration"></param>
+        /// <typeparam name="TConfiguration"></typeparam>
+        /// <returns></returns>
         public static TConfiguration Use<TConfiguration>(this TConfiguration configuration, Configuration otherConfiguration)
             where TConfiguration : Configuration
         {
