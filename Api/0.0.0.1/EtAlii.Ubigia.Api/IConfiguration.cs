@@ -5,6 +5,11 @@
     /// </summary>
     public interface IConfiguration
     {
+        /// <summary>
+        /// Returns the Configuration extensions of the type specified by TExtension. 
+        /// </summary>
+        /// <typeparam name="TExtension"></typeparam>
+        /// <returns></returns>
         TExtension[] GetExtensions<TExtension>()
             where TExtension : IExtension;
     }

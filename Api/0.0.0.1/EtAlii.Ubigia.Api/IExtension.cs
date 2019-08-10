@@ -7,6 +7,10 @@
     /// </summary>
     public interface IExtension
     {
+        /// <summary>
+        /// Initialize the Extension by adding the corresponding registrations to the specified container.
+        /// </summary>
+        /// <param name="container"></param>
         void Initialize(Container container);
     }
 }
