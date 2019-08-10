@@ -8,6 +8,9 @@
         string Status { get; }
 
         IGraphSLScriptContext Data { get; }
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         IProvisioningConfiguration Configuration { get; }
         Task Stop();
         Task Start();

@@ -4,6 +4,9 @@
 
     public class MailProvider : IProvider
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Provider.
+        /// </summary>
         public IProviderConfiguration Configuration { get; }
 
         public MailProvider(IProviderConfiguration configuration)

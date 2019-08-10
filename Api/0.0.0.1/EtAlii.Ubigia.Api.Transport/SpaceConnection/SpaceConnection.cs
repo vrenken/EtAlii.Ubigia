@@ -17,6 +17,9 @@
 
         public bool IsConnected => Storage != null && Space != null;
 
+        /// <summary>
+        /// The Configuration used to instantiate this SpaceConnection.
+        /// </summary>
         public ISpaceConnectionConfiguration Configuration { get; }
 
         public IRootContext Roots { get; }

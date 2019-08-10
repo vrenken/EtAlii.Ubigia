@@ -4,6 +4,9 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public interface IGraphContext
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         IGraphConfiguration Configuration { get; }
 
         ICommandProcessor CommandProcessor { get; }

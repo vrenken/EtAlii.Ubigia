@@ -9,6 +9,9 @@
 
         private readonly IProviderManager _providerManager;
 
+        /// <summary>
+        /// The Configuration used to instantiate this Context.
+        /// </summary>
         public IProvisioningConfiguration Configuration { get; }
 
         public string Status => _providerManager.Status;

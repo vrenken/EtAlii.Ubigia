@@ -10,6 +10,9 @@
         private readonly IImporter[] _importers;
         private readonly IUpdater[] _updaters;
 
+        /// <summary>
+        /// The Configuration used to instantiate this Provider.
+        /// </summary>
         public IProviderConfiguration Configuration { get; }
 
         public GoogleProvider(

@@ -4,6 +4,9 @@
 
     public class TwitterProvider : IProvider
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Provider.
+        /// </summary>
         public IProviderConfiguration Configuration { get; }
 
         private readonly IImporter[] _importers;

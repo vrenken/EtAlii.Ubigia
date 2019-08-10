@@ -14,6 +14,9 @@
         IPropertiesContext Properties { get; }
 
         bool IsConnected { get; }
+        /// <summary>
+        /// The Configuration used to instantiate this DataConnection.
+        /// </summary>
         IDataConnectionConfiguration Configuration { get; }
 
         Task Open();

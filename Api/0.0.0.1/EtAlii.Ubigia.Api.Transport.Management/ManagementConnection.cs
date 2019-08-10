@@ -15,6 +15,9 @@
 
         public ISpaceContext Spaces => _connection?.Spaces;
 
+        /// <summary>
+        /// The Configuration used to instantiate this ManagementConnection.
+        /// </summary>
         public IManagementConnectionConfiguration Configuration { get; }
 
         private IStorageConnection _connection;

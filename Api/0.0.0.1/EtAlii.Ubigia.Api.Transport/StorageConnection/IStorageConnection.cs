@@ -9,6 +9,9 @@
         IAccountContext Accounts { get; }
         ISpaceContext Spaces { get; }
 
+        /// <summary>
+        /// The Configuration used to instantiate this StorageConnection.
+        /// </summary>
         IStorageConnectionConfiguration Configuration { get; }
     }
 

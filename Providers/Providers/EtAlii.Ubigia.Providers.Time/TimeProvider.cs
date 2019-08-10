@@ -6,6 +6,9 @@ namespace EtAlii.Ubigia.Provisioning.Time
 
     public class TimeProvider : IProvider
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Provider.
+        /// </summary>
         public IProviderConfiguration Configuration { get; }
 
         private readonly ITimeImporter _timeImporter;

@@ -17,6 +17,9 @@
 
         public IPropertiesContext Properties => _connection?.Properties;
 
+        /// <summary>
+        /// The Configuration used to instantiate this DataConnection.
+        /// </summary>
         public IDataConnectionConfiguration Configuration { get; }
 
         public bool IsConnected => _connection?.IsConnected ?? false;

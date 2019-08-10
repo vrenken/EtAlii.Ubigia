@@ -21,6 +21,9 @@
 
         public bool IsConnected { get; } = false;
 
+        /// <summary>
+        /// The Configuration used to instantiate this DataConnection.
+        /// </summary>
         public IDataConnectionConfiguration Configuration { get; }
 
         public Task Open()

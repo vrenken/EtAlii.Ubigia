@@ -5,6 +5,9 @@
 
     public abstract class InfrastructureBase : IInfrastructure
     {
+        /// <summary>
+        /// The Configuration used to instantiate this Infrastructure.
+        /// </summary>
         public IInfrastructureConfiguration Configuration { get; }
 
         public ISpaceRepository Spaces { get; }
