@@ -7,7 +7,10 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         private readonly IScriptExecutionPlan _startExecutionPlan;
 
-        public static readonly ISequenceExecutionPlan Empty = new SequenceExecutionPlan(ScriptExecutionPlan.Empty);
+        /// <summary>
+        /// An empty SequenceExecutionPlan.
+        /// </summary>
+        public static ISequenceExecutionPlan Empty { get; } = new SequenceExecutionPlan(ScriptExecutionPlan.Empty);
 
         public SequenceExecutionPlan(IScriptExecutionPlan startExecutionPlan)
         {

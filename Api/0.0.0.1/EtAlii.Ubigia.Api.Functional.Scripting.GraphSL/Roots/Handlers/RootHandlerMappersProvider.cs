@@ -4,7 +4,10 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public IRootHandlerMapper[] RootHandlerMappers { get; }
 
-        public static readonly IRootHandlerMappersProvider Empty = new RootHandlerMappersProvider(new IRootHandlerMapper[] {});
+        /// <summary>
+        /// An empty RootHandlerMappersProvider.
+        /// </summary>
+        public static IRootHandlerMappersProvider Empty { get; } = new RootHandlerMappersProvider(new IRootHandlerMapper[] {});
 
         public RootHandlerMappersProvider(IRootHandlerMapper[] rootHandlerMappers)
         {

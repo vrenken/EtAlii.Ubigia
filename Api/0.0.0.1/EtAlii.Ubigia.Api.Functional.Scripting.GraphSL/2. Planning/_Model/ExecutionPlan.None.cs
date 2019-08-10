@@ -6,7 +6,10 @@
 
     public static class ScriptExecutionPlan
     {
-        public static readonly IScriptExecutionPlan Empty = new EmptyExecutionPlan();
+        /// <summary>
+        /// An empty ScriptExecutionPlan.
+        /// </summary>
+        public static IScriptExecutionPlan Empty { get; } = new EmptyExecutionPlan();
 
         private class EmptyExecutionPlan : IScriptExecutionPlan
         {

@@ -8,7 +8,10 @@
     [DebuggerStepThrough]
     public struct GraphPath : IEnumerable<GraphPathPart>
     {
-        public static readonly GraphPath Empty = new GraphPath();
+        /// <summary>
+        /// An Empty GraphPath.
+        /// </summary>
+        public static GraphPath Empty { get; } = new GraphPath();
 
         private readonly GraphPathPart[] _parts;
 

@@ -7,7 +7,10 @@ namespace EtAlii.Ubigia.Api.Functional
     {
         public IFunctionHandler[] FunctionHandlers { get; }
 
-        public static readonly IFunctionHandlersProvider Empty = new FunctionHandlersProvider(new IFunctionHandler[] {});
+        /// <summary>
+        /// An empty FunctionHandlersProvider.
+        /// </summary>
+        public static IFunctionHandlersProvider Empty { get; } = new FunctionHandlersProvider(new IFunctionHandler[] {});
 
         public FunctionHandlersProvider(IFunctionHandler[] functionHandlers)
         {
