@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     internal interface IGraphQLAstVisitor
     {
-        void Visit(GraphQL.Language.AST.Operation operation);
-        void Visit(GraphQL.Language.AST.Document document);
+        void Visit(global::GraphQL.Language.AST.Operation operation);
+        void Visit(global::GraphQL.Language.AST.Document document);
     }
 }

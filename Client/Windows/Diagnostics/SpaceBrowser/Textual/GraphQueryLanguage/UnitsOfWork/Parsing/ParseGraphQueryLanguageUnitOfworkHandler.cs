@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using EtAlii.xTechnology.Workflow;
 
     public class ParseGraphQueryLanguageUnitOfworkHandler : UnitOfWorkHandlerBase<ParseGraphQueryLanguageUnitOfwork>, IParseGraphQueryLanguageUnitOfworkHandler

@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -25,7 +24,7 @@
             IdDirectiveResult idDirectiveResult, 
             FieldContext context,
             GraphType parent,
-            Dictionary<Type, GraphType> graphTypes)
+            Dictionary<System.Type, GraphType> graphTypes)
         {   
             if(parent.Metadata.TryGetValue(ComplexFieldTypeBuilder.NodeMetadataKey, out var node))
             {
@@ -42,7 +41,7 @@
             IdDirectiveResult idDirectiveResult, 
             FieldContext context, 
             GraphType parent,
-            Dictionary<Type, GraphType> graphTypes, 
+            Dictionary<System.Type, GraphType> graphTypes, 
             IInternalNode node)
         {
             var idValue = await GetId(node.Id, idDirectiveResult.Path);

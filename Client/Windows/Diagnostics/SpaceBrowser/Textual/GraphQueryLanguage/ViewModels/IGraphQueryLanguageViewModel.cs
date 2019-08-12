@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
 
     public interface IGraphQueryLanguageViewModel : IDocumentViewModel, IExecutionStatusProvider
     {

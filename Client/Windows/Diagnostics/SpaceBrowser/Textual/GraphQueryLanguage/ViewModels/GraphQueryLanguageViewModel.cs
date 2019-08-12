@@ -5,7 +5,7 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Reactive.Linq;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
 
     public class GraphQueryLanguageViewModel : TextualViewModelBase, IGraphQueryLanguageViewModel
     {

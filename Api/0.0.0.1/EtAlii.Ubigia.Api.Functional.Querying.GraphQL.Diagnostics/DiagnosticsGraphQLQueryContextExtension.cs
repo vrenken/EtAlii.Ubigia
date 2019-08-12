@@ -1,5 +1,6 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
+    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;
     using EtAlii.xTechnology.MicroContainer;

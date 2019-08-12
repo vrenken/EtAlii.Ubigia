@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
+﻿namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using System;
     using System.Diagnostics;

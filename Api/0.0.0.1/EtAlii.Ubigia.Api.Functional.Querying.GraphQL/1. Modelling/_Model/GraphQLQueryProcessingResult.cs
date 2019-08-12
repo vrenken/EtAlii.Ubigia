@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
     using System.Collections.Generic;
-    using GraphQL;
-    using GraphQL.Instrumentation;
-    using GraphQL.Language.AST;
+    using global::GraphQL;
+    using global::GraphQL.Instrumentation;
+    using global::GraphQL.Language.AST;
     using Newtonsoft.Json;
 
     [JsonConverter(typeof(ExecutionResultJsonConverter))]
@@ -20,7 +20,7 @@
 
         public string Query { get; }
 
-        public GraphQL.Language.AST.Document Document { get; }
+        public global::GraphQL.Language.AST.Document Document { get; }
 
         public Operation Operation { get; }
 

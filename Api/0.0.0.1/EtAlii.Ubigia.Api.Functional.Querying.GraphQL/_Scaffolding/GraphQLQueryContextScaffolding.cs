@@ -1,12 +1,11 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using EtAlii.xTechnology.MicroContainer;
-    using GraphQL;
-    using GraphQL.Execution;
-    using GraphQL.Http;
-    using GraphQL.Validation;
-    using GraphQL.Validation.Complexity;
+    using global::GraphQL;
+    using global::GraphQL.Execution;
+    using global::GraphQL.Http;
+    using global::GraphQL.Validation;
+    using global::GraphQL.Validation.Complexity;
 
     internal class GraphQLQueryContextScaffolding : IScaffolding
     {
