@@ -7,7 +7,7 @@
     {
         
 
-        public static Type ToGraphType(object value)
+        public static System.Type ToGraphType(object value)
         {
             switch (value)
             {

@@ -1,9 +1,8 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting
+namespace EtAlii.Ubigia.Api.Functional.Diagnostics
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class ProfilingEntriesToDynamicNodesConverter : IEntriesToDynamicNodesConverter

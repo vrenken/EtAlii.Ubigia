@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
-    using GraphQL;
-    using GraphQL.Execution;
-    using GraphQL.Http;
+    using global::GraphQL;
+    using global::GraphQL.Execution;
+    using global::GraphQL.Http;
 
     internal class GraphQLQueryContext : IGraphQLQueryContext
     {
@@ -34,7 +33,7 @@
 
         public Task<QueryParseResult> Parse(string text)
         {
-            GraphQL.Language.AST.Document document = null;
+            global::GraphQL.Language.AST.Document document = null;
             var errors = Array.Empty<QueryParserError>();
             try
             {

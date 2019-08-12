@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
-    using GraphQL.Language.AST;
+    using global::GraphQL.Language.AST;
 
     internal static class GraphQLAstVisitableExtensions
     {
-        public static object Accept(this GraphQL.Language.AST.Document document, IGraphQLAstVisitor visitor)
+        public static object Accept(this global::GraphQL.Language.AST.Document document, IGraphQLAstVisitor visitor)
         {
             visitor.Visit(document);
             return null;

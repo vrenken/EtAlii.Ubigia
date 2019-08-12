@@ -37,7 +37,7 @@
             return instance;
         }
 
-        private static void AddProperty(TypeBuilder typeBuilder, string propertyName, Type propertyType)
+        private static void AddProperty(TypeBuilder typeBuilder, string propertyName, System.Type propertyType)
         {
             var fieldBuilder = typeBuilder.DefineField($"_{propertyName}", propertyType, FieldAttributes.Private);
 
@@ -52,7 +52,7 @@
             var getSetMethodAttributes = MethodAttributes.Public | MethodAttributes.SpecialName | MethodAttributes.HideBySig;
     
             // Define the "get" accessor method for CustomerName.
-            var getMethodBuilder = typeBuilder.DefineMethod($"get_{propertyName}", getSetMethodAttributes, propertyType, Type.EmptyTypes);
+            var getMethodBuilder = typeBuilder.DefineMethod($"get_{propertyName}", getSetMethodAttributes, propertyType, System.Type.EmptyTypes);
             var getMethodIlGenerator = getMethodBuilder.GetILGenerator();
 
             getMethodIlGenerator.Emit(OpCodes.Ldarg_0);
@@ -60,7 +60,7 @@
             getMethodIlGenerator.Emit(OpCodes.Ret);
 
             // Define the "set" accessor method for CustomerName.
-            var setMethodBuilder = typeBuilder.DefineMethod($"set_{propertyName}", getSetMethodAttributes, null,new Type[] { propertyType });
+            var setMethodBuilder = typeBuilder.DefineMethod($"set_{propertyName}", getSetMethodAttributes, null,new System.Type[] { propertyType });
 
             var setMethodIlGenerator = setMethodBuilder.GetILGenerator();
 

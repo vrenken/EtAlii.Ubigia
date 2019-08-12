@@ -1,7 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
 {
     using System.Collections.Generic;
-    using GraphQL.Language.AST;
+    using global::GraphQL.Language.AST;
 
     internal class ModellingVisitor : IGraphQLAstVisitor
     {
@@ -20,7 +20,7 @@
             }
         }
 
-        public void Visit(GraphQL.Language.AST.Document document)
+        public void Visit(global::GraphQL.Language.AST.Document document)
         {
             Document = new Document();
             Stack.Push(Document);

@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics.Scripting;
+    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using Xunit;
 
     public class ScriptParserFunctionRenameTests : IDisposable

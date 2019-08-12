@@ -10,14 +10,14 @@
 
     public partial class DynamicSchema : Schema
     {
-        private readonly Document _document;
+        private readonly global::GraphQL.Language.AST.Document _document;
         private readonly IOperationProcessor _operationProcessor;
         private readonly IFieldProcessor _fieldProcessor;
-        private readonly Dictionary<Type, GraphType> _graphTypes;
+        private readonly Dictionary<System.Type, GraphType> _graphTypes;
                 
         private DynamicSchema(
             IDependencyResolver dependencyResolver,
-            Document document, 
+            global::GraphQL.Language.AST.Document document, 
             IOperationProcessor operationProcessor, 
             IFieldProcessor fieldProcessor)
             : base(dependencyResolver)
@@ -26,7 +26,7 @@
             _operationProcessor = operationProcessor;
             _fieldProcessor = fieldProcessor;
 
-            _graphTypes = new Dictionary<Type, GraphType>();
+            _graphTypes = new Dictionary<System.Type, GraphType>();
             
             Query = new UbigiaQuery();
             Mutation = new UbigiaMutation();
@@ -37,7 +37,7 @@
             DependencyResolver = new FuncDependencyResolver(ResolveDynamicType);
         }
 
-        private object ResolveDynamicType(Type type)
+        private object ResolveDynamicType(System.Type type)
         {
             if (_graphTypes.TryGetValue(type, out var graphType))
             {
@@ -47,7 +47,7 @@
             return DependencyResolver.Resolve(type);
         }
 
-        internal static async Task<Schema> Create(IDependencyResolver dependencyResolver, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, Document document)
+        internal static async Task<Schema> Create(IDependencyResolver dependencyResolver, IOperationProcessor operationProcessor, IFieldProcessor fieldProcessor, global::GraphQL.Language.AST.Document document)
         {
             var dynamicSchema = new DynamicSchema(dependencyResolver, document, operationProcessor, fieldProcessor);
             await dynamicSchema.AddDynamicTypes();
