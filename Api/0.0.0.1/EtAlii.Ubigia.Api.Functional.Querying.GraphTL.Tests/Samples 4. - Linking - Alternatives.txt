@@ -22,12 +22,12 @@ Person @nodes(Person:Doe/John)
 -- 01.c Add multiple named Track entry to a Person given specific times and locations. 
 Person @nodes(Person:Doe/John) 
 {
-    Track @node-new(/Track, "Love Parade 2006")
+    Track @node-add(/Track, "Love Parade 2006")
     {
         Time @node-link(/Time, Time:2006-04-03 11:23, /Event)
         Location @node-link(Location, Location:Europe/Germany/Berlin, /Visit)
     },
-    Track @node-new(/Track, "Love Parade 2000")
+    Track @node-add(/Track, "Love Parade 2000")
     {
         Time @node-link(/Time, Time:2000-05-02 23:07, /Event)
         Location @node-link(Location, Location:Europe/Germany/Berlin, /Visit)
