@@ -38,3 +38,17 @@ Person @nodes(Person:Doe/John)
         Location @node-link(/Location, Location:Europe/Germany/Essen, /Visit)
     }  
 }
+
+-- ==================================================================================================================
+-- 01.d Assign Values. 
+Person @nodes(Person:Doe/John) 
+{
+    Lastname @value-assign(\\#FamilyName, 'Doesies')  
+}
+
+-- ==================================================================================================================
+-- 01.d Clear Values. 
+Person @nodes(Person:Doe/John) 
+{
+    Lastname @value-clear(/Nickname)  
+}
