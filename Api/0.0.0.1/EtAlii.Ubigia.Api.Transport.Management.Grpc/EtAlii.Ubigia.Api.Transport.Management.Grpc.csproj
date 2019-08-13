@@ -25,7 +25,7 @@
     <PackageReference Include="EtAlii.xTechnology.Grpc.Tools" Version="1.0.7" />
     <PackageReference Include="Grpc" Version="1.22.0" />
     <PackageReference Include="Grpc.Tools" Version="1.22.0" />
-    <PackageReference Include="Google.Protobuf" Version="3.8.0" />
-    <PackageReference Include="Google.Protobuf.Tools" Version="3.8.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.9.1" />
+    <PackageReference Include="Google.Protobuf.Tools" Version="3.9.1" />
   </ItemGroup>
 </Project>
