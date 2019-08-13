@@ -37,24 +37,24 @@
 
         public IEnumerable<LpNode> FindAll(IEnumerable<LpNode> nodes, string id)
         {
-            var result = new List<LpNode>();
-
             if (nodes != null)
             {
                 foreach (var node in nodes)
                 {
                     if (node.Id == id)
                     {
-                        result.Add(node);
+                        yield return node;
                     }
                     else
                     {
-                        var subResult = FindAll(node.Children, id);
-                        result.AddRange(subResult);
+                        var subResults = FindAll(node.Children, id);
+                        foreach (var subResult in subResults)
+                        {
+                            yield return subResult;
+                        }
                     }
                 }
             }
-            return result;
         }
 
         //public LpNode FindFirst(LpNode node)

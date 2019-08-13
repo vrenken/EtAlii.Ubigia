@@ -1,11 +1,11 @@
 ﻿
 namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
     using EtAlii.Ubigia.Api;
     using EtAlii.xTechnology.Workflow;
-    using System;
-    using System.Linq;
-    using System.Collections.Generic;
 
     public class TraverseRelationQueryHandler : QueryHandlerBase<TraverseRelationQuery, Identifier>
     {
@@ -25,8 +25,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
         private IEnumerable<Identifier> Traverse(IReadOnlyEntry entry, Func<IReadOnlyEntry, Relation> selector)
         {
-            var result = new List<Identifier>();
-
             if (entry != null)
             {
                 var relation = selector(entry);
@@ -38,7 +36,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     while (stack.Count > 0)
                     {
                         var id = stack.Pop();
-                        result.Add(id);
+                        yield return id;
 
                         var relatedEntry = _graphContext.QueryProcessor.Process(new FindEntryOnGraphQuery(id), _graphContext.FindEntryOnGraphQueryHandler).FirstOrDefault();
                         if (relatedEntry != null)
@@ -52,7 +50,6 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     }
                 }
             }
-            return result;
         }
     }
 }
