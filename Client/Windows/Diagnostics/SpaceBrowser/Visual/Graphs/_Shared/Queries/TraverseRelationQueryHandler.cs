@@ -27,7 +27,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         {
             if (entry != null)
             {
-                var relation = selector(entry);
+                var relation = selector(entry); 
                 if (relation != Relation.None)
                 {
                     var stack = new Stack<Identifier>();
