@@ -9,11 +9,14 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.GraphTL.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\AnnotationParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParser.Mutations.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParser.Queries.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParser.Tests.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\SchemaParserTestContainerFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\AnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\AssignAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectValueAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Mutations.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Queries.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Schemas\SchemaParserTestContainerFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Mutations.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\StructureFragmentParser.Queries.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\ValueFragmentParser.Mutations.Tests.cs" />
@@ -29,6 +32,7 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
+    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes" />
     <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />
   </ItemGroup>
