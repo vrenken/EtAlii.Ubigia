@@ -12,9 +12,9 @@
     <f:RibbonWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Light.Green.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Color x:Key="{x:Static f:MetroColors.ThemeColorKey}">#359900</Color>
         </ResourceDictionary>
     </f:RibbonWindow.Resources>
 
@@ -40,8 +40,7 @@
             CanCustomizeRibbon="False"
             CanCustomizeQuickAccessToolBar="False"
             Grid.Row="0" 
-            IsCollapsed="True" IsAutomaticCollapseEnabled="False" IsMinimized="True" ShowQuickAccessToolBarAboveRibbon="False">
-        </f:Ribbon>
+            IsCollapsed="True" IsAutomaticCollapseEnabled="False" IsMinimized="True" ShowQuickAccessToolBarAboveRibbon="False" />
 
         <Label Grid.Row="1" Grid.Column="0" Content="Local folder:" />
         <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding LocalFolder, UpdateSourceTrigger=PropertyChanged}" x:Name="LocalFolderTextBox" />
