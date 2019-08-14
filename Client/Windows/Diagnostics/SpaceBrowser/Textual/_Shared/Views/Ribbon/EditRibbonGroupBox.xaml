@@ -12,21 +12,26 @@
     <fluent:Button 
         Command="ApplicationCommands.Undo" 
         Header="Undo" 
+        Icon="pack://siteoforigin:,,,/Images/Command-Undo.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Command-Undo.png" />
     <fluent:Button 
         Command="ApplicationCommands.Redo" 
         Header="Redo" 
+        Icon="pack://siteoforigin:,,,/Images/Command-Redo.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Command-Redo.png" />
     <fluent:Button 
         Command="ApplicationCommands.Cut" 
         Header="Cut" 
+        Icon="pack://siteoforigin:,,,/Images/Instrument-Scissors.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Instrument-Scissors.png" />
     <fluent:Button 
         Command="ApplicationCommands.Copy" 
         Header="Copy" 
-        LargeIcon="pack://siteoforigin:,,,/Images/Command-Paste.png"/>
+        Icon="pack://siteoforigin:,,,/Images/Command-Paste.png" 
+        LargeIcon="pack://siteoforigin:,,,/Images/Command-Paste.png" />
     <fluent:Button 
         Command="ApplicationCommands.Paste" 
         Header="Paste" 
-        LargeIcon="pack://siteoforigin:,,,/Images/Clipboard-Next.png"/>
+        Icon="pack://siteoforigin:,,,/Images/Clipboard-Next.png" 
+        LargeIcon="pack://siteoforigin:,,,/Images/Clipboard-Next.png" />
 </fluent:RibbonGroupBox>

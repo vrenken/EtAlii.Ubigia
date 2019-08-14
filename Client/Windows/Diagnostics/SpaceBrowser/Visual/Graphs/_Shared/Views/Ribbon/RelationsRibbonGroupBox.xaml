@@ -14,13 +14,16 @@
     <fluent:ToggleButton 
         Header="Hierarchical"
         IsChecked="{Binding ShowHierarchical}"
+        Icon="pack://siteoforigin:,,,/Images/Graph-Diagram.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Graph-Diagram.png" />
     <fluent:ToggleButton 
         Header="Sequential"
         IsChecked="{Binding ShowSequential}"
+        Icon="pack://siteoforigin:,,,/Images/Arrow-Expand.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Arrow-Expand.png" />
     <fluent:ToggleButton 
         Header="Temporal"
         IsChecked="{Binding ShowTemporal}"
+        Icon="pack://siteoforigin:,,,/Images/Clock-01.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Clock-01.png" />
 </fluent:RibbonGroupBox>

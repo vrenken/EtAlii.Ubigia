@@ -13,20 +13,24 @@
         Command="{Binding ExecuteCommand}" 
         IsEnabled="{Binding CanExecute, FallbackValue=false}"
         Header="Start" 
+        Icon="pack://siteoforigin:,,,/Images/Media-Play.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Media-Play.png" />
     <fluent:Button 
         Command="{Binding PauseCommand}" 
         IsEnabled="{Binding CanStop, FallbackValue=false}"
         Header="Pause" 
+        Icon="pack://siteoforigin:,,,/Images/Media-Pause.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Media-Pause.png" />
     <fluent:Button 
         Command="{Binding StopCommand}" 
         IsEnabled="{Binding CanStop, FallbackValue=false}"
         Header="Stop" 
+        Icon="pack://siteoforigin:,,,/Images/Media-Stop.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Media-Stop.png" />
     <fluent:Button 
         Command="{x:Null}" 
         IsEnabled="False"
         Header="Analyse" 
+        Icon="pack://siteoforigin:,,,/Images/Search-Find.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Search-Find.png" />
 </fluent:RibbonGroupBox>

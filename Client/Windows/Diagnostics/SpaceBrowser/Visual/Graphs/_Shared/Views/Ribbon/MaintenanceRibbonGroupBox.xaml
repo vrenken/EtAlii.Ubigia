@@ -13,12 +13,15 @@
 
     <fluent:Button 
         Header="Remove distant entries"
+        Icon="pack://siteoforigin:,,,/Images/Grid.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Grid.png" />
     <fluent:DropDownButton 
         Header="Bookmarks"
+        Icon="pack://siteoforigin:,,,/Images/Map-Location.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Map-Location.png" />
     <fluent:Button 
         Header="Clear current view"
         Command="{Binding ClearGraphCommand}"
+        Icon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" />
 </fluent:RibbonGroupBox>

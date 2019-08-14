@@ -13,9 +13,11 @@
     <fluent:ToggleButton
         Header="Add"
         IsChecked="{Binding AddNewEntries}"
+        Icon="pack://siteoforigin:,,,/Images/Share-01.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Share-01.png" />
     <fluent:ToggleButton
         Header="Expand"
         IsChecked="{Binding ExpandNewEntries}"
+        Icon="pack://siteoforigin:,,,/Images/Data-Share.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Data-Share.png" />
 </fluent:RibbonGroupBox>

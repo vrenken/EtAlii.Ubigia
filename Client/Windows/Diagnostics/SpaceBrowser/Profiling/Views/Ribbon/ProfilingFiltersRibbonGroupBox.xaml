@@ -52,6 +52,7 @@
         Name="FunctionalDropDownButton" 
         SizeDefinition="Large" 
         Header="Functional"
+        Icon="pack://siteoforigin:,,,/Images/Formula-Support.png"
         LargeIcon="pack://siteoforigin:,,,/Images/Formula-Support.png">
         <f:Gallery GroupBy="Group" ItemsSource="{Binding Functional}" />
     </f:DropDownButton>
@@ -60,6 +61,7 @@
         Name="LogicalDropDownButton" 
         SizeDefinition="Large" 
         Header="Logical"
+        Icon="pack://siteoforigin:,,,/Images/Graph-Diagram.png"
         LargeIcon="pack://siteoforigin:,,,/Images/Graph-Diagram.png" >
         <f:Gallery GroupBy="Group" ItemsSource="{Binding Logical}" />
     </f:DropDownButton>
@@ -68,6 +70,7 @@
         Name="FabricDropDownButton" 
         SizeDefinition="Large" 
         Header="Fabric"
+        Icon="pack://siteoforigin:,,,/Images/Cube-Molecule.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Cube-Molecule.png" >
         <f:Gallery GroupBy="Group" ItemsSource="{Binding Fabric}" />
     </f:DropDownButton>
@@ -77,6 +80,7 @@
         Name="TransportDropDownButton" 
         SizeDefinition="Large" 
         Header="Transport"
+        Icon="pack://siteoforigin:,,,/Images/Link - 07.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Link - 07.png" >
         <f:Gallery GroupBy="Group" ItemsSource="{Binding Transport}" />
     </f:DropDownButton>
