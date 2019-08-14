@@ -17,25 +17,24 @@
                 False="Collapsed" />
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Margin="0,20,20,20" >
+    <StackPanel Margin="0,20,20,20" Orientation="Vertical"> 
         <fluent:Button 
-            Grid.Column="0"
             Header="{Binding Header}"
             Command="{Binding}"
             LargeIcon="{Binding Icon}" 
             Icon="{Binding Icon}" />
-        <Grid Margin="101,0,0,0">
+        <Grid Width="200">
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Text="{Binding InfoLine}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,5" />
                 <Grid Visibility="{Binding InfoTip1, Converter={StaticResource InfoTipToVisibilityConverter}}">
-                    <Rectangle Width="7" Height="7" Fill="{DynamicResource RibbonThemeColorBrush}" StrokeThickness="0" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <Rectangle Width="7" Height="7" Fill="{DynamicResource Theme.ShowcaseBrush}" StrokeThickness="0" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
                     <TextBlock Text="{Binding InfoTip1}" Margin="14,0,0,0" TextWrapping="Wrap" />
                 </Grid>
                 <Grid Visibility="{Binding InfoTip2, Converter={StaticResource InfoTipToVisibilityConverter}}">
-                    <Rectangle Width="7" Height="7" Fill="{DynamicResource RibbonThemeColorBrush}" StrokeThickness="0" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+                    <Rectangle Width="7" Height="7" Fill="{DynamicResource Theme.ShowcaseBrush}" StrokeThickness="0" Margin="0,5,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
                     <TextBlock Text="{Binding InfoTip2}" Margin="14,0,0,0" TextWrapping="Wrap" />
                 </Grid>
             </StackPanel>
         </Grid>
-    </Grid>
+    </StackPanel>
 </UserControl>

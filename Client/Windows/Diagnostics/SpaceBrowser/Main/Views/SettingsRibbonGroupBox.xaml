@@ -11,5 +11,6 @@
     Header="Settings">
     <fluent:Button 
         Header="Configuration"
+        Icon="pack://siteoforigin:,,,/Images/Gear.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Gear.png" />
 </fluent:RibbonGroupBox>

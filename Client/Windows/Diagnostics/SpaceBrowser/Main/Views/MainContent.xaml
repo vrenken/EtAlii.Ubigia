@@ -16,7 +16,6 @@
     sf:SkinStorage.MetroBrush="#359900"
     d:DesignHeight="300" d:DesignWidth="600">
 
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -25,7 +24,7 @@
         </Grid.RowDefinitions>
 
         <ubigia:Ribbon 
-            Grid.Row="0" 
+            Grid.Row="0" DataContext="{Binding}"
             LastFocusedDocument="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}" />
 
         <DockPanel
