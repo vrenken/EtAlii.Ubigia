@@ -17,46 +17,38 @@
             Style="{DynamicResource InnerBackstageTabControlStyle}"
             SelectedIndex="0">
             <TabItem Header="Blank document">
-                <Grid Margin="35,0,0,0">
-                    <StackPanel>
-                        <fluent:SeparatorTabItem Header="Blank document" />
-                        <Grid>
-                            <ItemsControl ItemsSource="{Binding NewBlankDocumentCommands}">
-                                <ItemsControl.ItemsPanel>
-                                    <ItemsPanelTemplate>
-                                        <WrapPanel />
-                                    </ItemsPanelTemplate>
-                                </ItemsControl.ItemsPanel>
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <u:DocumentDataTemplateContent />
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                                <!--<ItemsControl.Template>
-                                <ControlTemplate>
-                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-                                        <ItemsPresenter />
-                                    </ScrollViewer>
-                                </ControlTemplate>
-                            </ItemsControl.Template>-->
-                            </ItemsControl>
-                        </Grid>
-                    </StackPanel>
-                </Grid>
+                <StackPanel Margin="35,0,0,0" >
+                    <ItemsControl ItemsSource="{Binding NewBlankDocumentCommands}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <u:DocumentDataTemplateContent />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <!--<ItemsControl.Template>
+                        <ControlTemplate>
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                                <ItemsPresenter />
+                            </ScrollViewer>
+                        </ControlTemplate>
+                    </ItemsControl.Template>-->
+                    </ItemsControl>
+                </StackPanel>
             </TabItem>
             <TabItem Header="From template">
-                <Grid Margin="35,0,0,0">
-                    <StackPanel>
-                        <fluent:SeparatorTabItem Header="From template" />
-                        <ItemsControl ItemsSource="{Binding NewDocumentFromTemplateCommands}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <u:DocumentDataTemplateContent />
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Grid>
+                <StackPanel Margin="35,0,0,0">
+                    <ItemsControl ItemsSource="{Binding NewDocumentFromTemplateCommands}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <u:DocumentDataTemplateContent />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </TabItem>
 
         </TabControl>
