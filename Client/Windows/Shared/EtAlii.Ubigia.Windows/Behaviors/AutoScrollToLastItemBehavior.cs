@@ -2,7 +2,7 @@
 {
     using System.Collections.Specialized;
     using System.Windows.Controls;
-    using System.Windows.Interactivity;
+    using Microsoft.Xaml.Behaviors;
 
     public sealed class AutoScrollToLastItemBehavior : Behavior<DataGrid>
     {
@@ -10,8 +10,7 @@
         {
             base.OnAttached();
 
-            var collection = AssociatedObject.Items.SourceCollection as INotifyCollectionChanged;
-            if (collection != null)
+            if (AssociatedObject.Items.SourceCollection is INotifyCollectionChanged collection)
             {
                 collection.CollectionChanged += OnCollectionChanged;
             }
@@ -19,8 +18,7 @@
 
         protected override void OnDetaching()
         {
-            var collection = AssociatedObject.Items.SourceCollection as INotifyCollectionChanged;
-            if (collection != null)
+            if (AssociatedObject.Items.SourceCollection is INotifyCollectionChanged collection)
             {
                 collection.CollectionChanged -= OnCollectionChanged;
             }
