@@ -13,9 +13,9 @@
     <f:RibbonWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Light.Green.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <Color x:Key="{x:Static f:MetroColors.ThemeColorKey}">#359900</Color>
         </ResourceDictionary>
     </f:RibbonWindow.Resources>
 
