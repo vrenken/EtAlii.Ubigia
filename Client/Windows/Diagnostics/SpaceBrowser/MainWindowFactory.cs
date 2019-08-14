@@ -66,7 +66,7 @@
             var window = container.GetInstance<IMainWindow>();
             var viewModel = container.GetInstance<IMainWindowViewModel>();
             //viewModel.NewBlankDocumentCommands = CreateNewBlankDocumentCommands(container)
-            window.DataContext = viewModel;
+            window.ViewModel = viewModel;
             return window;
         }
 

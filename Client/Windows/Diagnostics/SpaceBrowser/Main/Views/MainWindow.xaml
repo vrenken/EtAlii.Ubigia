@@ -15,6 +15,6 @@
     WindowState="{Binding Source={x:Static p:Settings.Default}, Path=MainWindowState, Mode=TwoWay}"
     Initialized="OnWindowInitialized" Closing="OnWindowClosing" Icon="pack://siteoforigin:,,,/Icon.ico">
     
-    <views:MainContent/>
+    <views:MainContent DataContext="{Binding}"/>
     
 </f:RibbonWindow>

@@ -8,10 +8,10 @@
     /// </summary>
     public partial class MainWindow : IMainWindow
     {
-        public new IMainWindowViewModel DataContext
+        public IMainWindowViewModel ViewModel
         {
-            get { return base.DataContext as IMainWindowViewModel; }
-            set { base.DataContext = value; }
+            get => DataContext as IMainWindowViewModel;
+            set => DataContext = value;
         }
 
         public MainWindow()
