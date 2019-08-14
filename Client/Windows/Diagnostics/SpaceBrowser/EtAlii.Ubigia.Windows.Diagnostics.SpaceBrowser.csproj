@@ -35,10 +35,9 @@
     <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
     <PackageReference Include="AvalonDock" Version="2.0.2000" />
     <PackageReference Include="AvalonEdit" Version="5.0.4" />
-    <PackageReference Include="ControlzEx" Version="2.2.0.4" />
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
-    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.0" />
-    <PackageReference Include="Fluent.Ribbon" Version="5.0.2.46" />
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
+    <PackageReference Include="Fluent.Ribbon" Version="7.0.0-alpha0687" />
     <PackageReference Include="Grpc" Version="1.22.0" />
     <PackageReference Include="Grpc.Core" Version="1.22.0" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
@@ -70,14 +69,10 @@
     <EmbeddedResource Include="Textual\GraphQueryLanguage\Templates\SimpleQuery.gql" />
     <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\OldScript.gsl">
       <TransformOnBuild>false</TransformOnBuild>
-      <Link></Link>
-      <CopyToOutputDirectory></CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript.gsl" />
     <EmbeddedResource Include="Textual\GraphScriptLanguage\Templates\SimpleScript2.gsl">
       <TransformOnBuild>false</TransformOnBuild>
-      <Link></Link>
-      <CopyToOutputDirectory></CopyToOutputDirectory>
     </EmbeddedResource>
     <!-- XAML elements -->
     <Page Include="**\*.xaml" Exclude="App.xaml">
