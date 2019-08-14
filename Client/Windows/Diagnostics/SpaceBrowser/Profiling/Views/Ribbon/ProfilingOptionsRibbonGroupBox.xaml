@@ -15,9 +15,11 @@
         Header="Scroll to entries"
         Command="{Binding ClearCommand}"
         CommandParameter="{Binding Source}"
+        Icon="pack://siteoforigin:,,,/Images/Navigation-Down.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Down.png" />
     <fluent:ToggleButton 
         IsChecked="{Binding AutoExpandNodes}"
         Header="Expand new entries"
+        Icon="pack://siteoforigin:,,,/Images/Navigation-Right.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Right.png" />
 </fluent:RibbonGroupBox>

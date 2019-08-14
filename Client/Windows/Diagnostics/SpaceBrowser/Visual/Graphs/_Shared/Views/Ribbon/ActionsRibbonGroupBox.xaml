@@ -14,11 +14,14 @@
         Header="Discover from tail"
         Command="{Binding Buttons.DiscoverFromTailCommand}"
         CommandParameter="{Binding}"
+        Icon="pack://siteoforigin:,,,/Images/Navigation-Down-Right.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Down-Right.png" />
 
     <fluent:Button
         Header="Discover from head"
         Command="{Binding Buttons.DiscoverFromHeadCommand}"
         CommandParameter="{Binding}"
+        Size="Large"
+        Icon="pack://siteoforigin:,,,/Images/Navigation-Up-Left.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Navigation-Up-Left.png" />
 </fluent:RibbonGroupBox>

@@ -13,11 +13,13 @@
     <fluent:ToggleButton
         Header="Update"
         IsChecked="{Binding UpdateSelectedEntries}"
+        Icon="pack://siteoforigin:,,,/Images/Command-Refresh-01.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Command-Refresh-01.png" />
 
     <fluent:ToggleButton
         Header="Expand"
         IsChecked="{Binding ExpandSelectedEntries}"
+        Icon="pack://siteoforigin:,,,/Images/Flow-Cart.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Flow-Cart.png" />
 
 </fluent:RibbonGroupBox>

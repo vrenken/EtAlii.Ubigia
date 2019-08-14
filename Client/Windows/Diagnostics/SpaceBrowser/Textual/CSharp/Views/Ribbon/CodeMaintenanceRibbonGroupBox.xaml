@@ -15,5 +15,6 @@
         Header="Clear current code"
         Command="{Binding ClearCommand}"
         CommandParameter="{Binding Source}"
+        Icon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" 
         LargeIcon="pack://siteoforigin:,,,/Images/Garbage-Closed.png" />
 </fluent:RibbonGroupBox>
