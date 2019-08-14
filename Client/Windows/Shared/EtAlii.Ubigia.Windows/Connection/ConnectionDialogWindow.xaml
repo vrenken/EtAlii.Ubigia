@@ -17,11 +17,11 @@
     <f:RibbonWindow.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Fluent;Component/Themes/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/generic.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Light.Green.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <windows:EnumMatchToBooleanConverter x:Key="enumConverter" />
             <BooleanToVisibilityConverter x:Key="visibilityConverter" />
-            <Color x:Key="{x:Static f:MetroColors.ThemeColorKey}">#359900</Color>
             <SolidColorBrush x:Key="CommonBorderColor">#359900</SolidColorBrush>
 
             <Style TargetType="Label">
