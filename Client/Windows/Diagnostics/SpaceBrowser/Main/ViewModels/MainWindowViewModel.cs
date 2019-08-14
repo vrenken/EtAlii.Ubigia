@@ -4,7 +4,6 @@
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Windows;
     using EtAlii.xTechnology.Mvvm;
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
@@ -86,7 +85,7 @@
         {
             switch (e.PropertyName)
             {
-                case "NewBlankDocumentCommands":
+                case nameof(NewBlankDocumentCommands):
                     break;
             }
         }
