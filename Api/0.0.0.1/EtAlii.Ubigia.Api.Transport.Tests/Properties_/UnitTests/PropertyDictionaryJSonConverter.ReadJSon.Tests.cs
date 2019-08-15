@@ -766,7 +766,7 @@
         public void PropertyDictionaryJSonConverter_ReadJson_Version()
         {
             // Arrange.
-            var json = "[{\"k\":\"Hello\",\"t\":18,\"v\":{\"Major\":1,\"Minor\":2,\"Build\":3,\"Revision\":4,\"MinorRevision\":4}}]";
+            var json = "[{\"k\":\"Hello\",\"t\":18,\"v\":\"1.2.3.4\"}]";
 
             // Act.
             var result = ReadJson(json);
@@ -814,13 +814,10 @@
             var serializer = (Serializer)new SerializerFactory().Create();
             var converter = new PropertyDictionaryJSonConverter();
 
-            using (var textReader = new StringReader(json))
-            {
-                using (var jsonReader = new JsonTextReader(textReader))
-                {
-                    return (PropertyDictionary)converter.ReadJson(jsonReader, typeof(PropertyDictionary), null, serializer);
-                }
-            }
+            using var textReader = new StringReader(json);
+            using var jsonReader = new JsonTextReader(textReader);
+            
+            return (PropertyDictionary)converter.ReadJson(jsonReader, typeof(PropertyDictionary), null, serializer);
         }
     }
 }

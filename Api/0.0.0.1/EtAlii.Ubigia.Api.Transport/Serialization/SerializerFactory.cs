@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport
 {
-    using System.Collections.Generic;
-    using Newtonsoft.Json;
+	using System.Collections.Generic;
+	using Newtonsoft.Json;
 
-    public class SerializerFactory
+	public class SerializerFactory
     {
         public ISerializer Create()
         {
@@ -40,7 +40,7 @@
 		    return settings;
 	    }
 
-		public static void AddDefaultConverters(ICollection<JsonConverter> converters)
+	    private static void AddDefaultConverters(ICollection<JsonConverter> converters)
         {
             // We want custom tailored unsigned long conversion. 
             // Reason for this is that we cannot trust the available ulong serialization because it is not supported by the JSON standard.

@@ -439,8 +439,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_SByte_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = sbyte.MaxValue;
+            var properties = new PropertyDictionary { ["Hello"] = sbyte.MaxValue };
 
             // Act.
             var result = WriteJSon(properties);
@@ -467,8 +466,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Byte()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = (byte)123;
+            var properties = new PropertyDictionary { ["Hello"] = (byte) 123 };
 
             // Act.
             var result = WriteJSon(properties);
@@ -481,8 +479,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Byte_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = byte.MaxValue;
+            var properties = new PropertyDictionary { ["Hello"] = byte.MaxValue };
 
             // Act.
             var result = WriteJSon(properties);
@@ -495,8 +492,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Byte_Min()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = byte.MinValue;
+            var properties = new PropertyDictionary { ["Hello"] = byte.MinValue };
 
             // Act.
             var result = WriteJSon(properties);
@@ -509,8 +505,7 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Single()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = (float)123.456;
+            var properties = new PropertyDictionary { ["Hello"] = (float) 123.456 };
 
             // Act.
             var result = WriteJSon(properties);
@@ -523,14 +518,13 @@
         public void PropertyDictionaryJSonConverter_WriteJson_Single_Max()
         {
             // Arrange.
-            var properties = new PropertyDictionary();
-            properties["Hello"] = float.MaxValue;
+            var properties = new PropertyDictionary { ["Hello"] = float.MaxValue };
 
             // Act.
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":3.40282347E+38}]", result);
+            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":3.4028235E+38}]", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -544,7 +538,7 @@
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":-3.40282347E+38}]", result);
+            Assert.Equal("[{\"k\":\"Hello\",\"t\":12,\"v\":-3.4028235E+38}]", result);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]
@@ -768,7 +762,7 @@
             var result = WriteJSon(properties);
 
             // Assert.
-            Assert.Equal("[{\"k\":\"Hello\",\"t\":18,\"v\":{\"Major\":1,\"Minor\":2,\"Build\":3,\"Revision\":4}}]", result);
+            Assert.Equal("[{\"k\":\"Hello\",\"t\":18,\"v\":\"1.2.3.4\"}]", result);
 
         }
 
