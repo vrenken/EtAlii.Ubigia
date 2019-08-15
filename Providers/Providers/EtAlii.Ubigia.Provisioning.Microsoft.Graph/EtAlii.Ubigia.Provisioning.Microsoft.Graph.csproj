@@ -22,6 +22,14 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
+    <ProjectReference Include="..\..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="System.Dynamic.Runtime" Version="4.3.0" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Remove="Clients\**" />
     <Compile Remove="Transports\**" />
     <EmbeddedResource Remove="Clients\**" />
@@ -35,9 +43,5 @@
     <Compile Remove="ILocalDataConnection.cs" />
     <Compile Remove="LocalDataConnection.cs" />
     <Compile Remove="LocalInfrastructure.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
-    <ProjectReference Include="..\..\EtAlii.Ubigia.Providers.Shared\EtAlii.Ubigia.Provisioning.csproj" />
   </ItemGroup>
 </Project>
