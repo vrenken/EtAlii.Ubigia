@@ -2,7 +2,7 @@
 {
     using global::GraphQL.Types;
 
-    public class UbigiaQuery : ObjectGraphType<object>, IObjectGraphType
+    public class UbigiaQuery : ObjectGraphType<object>
     {
         public UbigiaQuery()
         { 

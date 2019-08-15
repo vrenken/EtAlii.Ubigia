@@ -60,7 +60,7 @@
             getMethodIlGenerator.Emit(OpCodes.Ret);
 
             // Define the "set" accessor method for CustomerName.
-            var setMethodBuilder = typeBuilder.DefineMethod($"set_{propertyName}", getSetMethodAttributes, null,new System.Type[] { propertyType });
+            var setMethodBuilder = typeBuilder.DefineMethod($"set_{propertyName}", getSetMethodAttributes, null,new[] { propertyType });
 
             var setMethodIlGenerator = setMethodBuilder.GetILGenerator();
 
