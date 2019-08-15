@@ -6,7 +6,7 @@
     using System.Diagnostics;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     internal partial class ConnectionDialogViewModel : BindableBase
     {

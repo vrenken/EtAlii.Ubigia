@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.Linq;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.Ubigia.Windows.Tools.MediaImport.Properties;
-    using EtAlii.xTechnology.Mvvm;
 
     public class FolderSyncConfiguration : BindableBase
     {
@@ -13,10 +13,10 @@
             _folderSyncConfigurations = folderSyncConfigurations;
         }
 
-        public string LocalFolder { get { return _localFolder; } set { SetProperty(ref _localFolder, value); } }
+        public string LocalFolder { get => _localFolder; set => SetProperty(ref _localFolder, value); }
         private string _localFolder;
 
-        public string RemoteName { get { return _remoteName; } set { SetProperty(ref _remoteName, value); }}
+        public string RemoteName { get => _remoteName; set => SetProperty(ref _remoteName, value); }
         private string _remoteName;
 
         public void Save()

@@ -4,8 +4,8 @@
     using System.ComponentModel;
     using System.Threading;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
 
     internal class ItemChecker : BindableBase, IItemChecker
     {

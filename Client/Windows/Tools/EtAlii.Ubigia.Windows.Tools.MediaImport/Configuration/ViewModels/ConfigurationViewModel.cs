@@ -1,8 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Windows;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.MicroContainer;
 
     internal partial class ConfigurationViewModel : BindableBase, IConfigurationViewModel

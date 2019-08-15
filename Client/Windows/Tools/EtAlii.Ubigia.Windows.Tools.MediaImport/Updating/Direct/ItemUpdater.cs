@@ -3,7 +3,7 @@
     using System;
     using System.ComponentModel;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.Structure;
 
     internal class ItemUpdater : BindableBase, IItemUpdater

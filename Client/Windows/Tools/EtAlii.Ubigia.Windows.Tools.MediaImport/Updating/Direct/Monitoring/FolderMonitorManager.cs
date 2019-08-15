@@ -6,8 +6,8 @@
     using System.ComponentModel;
     using System.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
     using Container = EtAlii.xTechnology.MicroContainer.Container;
 
     internal class FolderMonitorManager : BindableBase, IFolderMonitorManager

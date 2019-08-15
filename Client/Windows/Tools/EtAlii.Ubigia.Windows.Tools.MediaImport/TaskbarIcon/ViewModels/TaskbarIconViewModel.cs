@@ -3,8 +3,8 @@
     using System.Text;
     using System.Windows;
     using System.Windows.Input;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.MicroContainer;
-    using EtAlii.xTechnology.Mvvm;
 
     internal class TaskbarIconViewModel : BindableBase, ITaskbarIconViewModel
     {
