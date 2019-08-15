@@ -7,7 +7,7 @@
     using System.Windows.Forms;
     using System.Windows.Input;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using MessageBox = System.Windows.Forms.MessageBox;
 
     internal class EditFolderViewModel : BindableBase, IEditFolderViewModel

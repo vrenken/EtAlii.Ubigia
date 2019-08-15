@@ -8,7 +8,7 @@
     using System.Runtime.Serialization.Formatters.Binary;
     using System.Security.Cryptography;
     using System.Text;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     internal class ConnectionSettingsPersister : BindableBase
     {

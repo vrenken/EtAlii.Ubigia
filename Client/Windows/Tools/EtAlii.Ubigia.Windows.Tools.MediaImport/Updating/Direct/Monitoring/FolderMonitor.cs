@@ -3,8 +3,8 @@
     using System;
     using System.ComponentModel;
     using System.IO;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
 
     internal class FolderMonitor : BindableBase, IFolderMonitor
     {

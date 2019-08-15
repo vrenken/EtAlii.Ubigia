@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWpf>true</UseWpf>
+    <UseWindowsForms>true</UseWindowsForms>
+    
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -15,37 +17,11 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
-
-  <!-- 
-  Interesting link:
-  https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
-  -->
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- XAML elements -->
-    <Page Include="**\*.xaml" Exclude="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </Page>
     <Compile Remove="Connection\**" />
     <EmbeddedResource Remove="Connection\**" />
     <None Remove="Connection\**" />
     <Page Remove="Connection\**" />
-     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-
-    <!-- Resources -->
-
-    <!-- Settings -->
   </ItemGroup>
-
 </Project>

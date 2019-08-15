@@ -1,6 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <OutputType>WinExe</OutputType>
+
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -19,75 +22,33 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <OutputType>Exe</OutputType>
     <AssemblyName>EtAlii.Ubigia.Windows.Tools.MediaImport</AssemblyName>
-    <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Tools.MediaImport</NameOfOriginalMSBuildProject>
-  </PropertyGroup>
-  <!-- near the top -->
-  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-  <!-- anywhere in the middle -->
-  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
-    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.MicroMvvm" Version="1.0.0" />
-    <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="3.5.0" />
     <PackageReference Include="Fluent.Ribbon" Version="7.0.0-alpha0687" />
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
     <PackageReference Include="ControlzEx" Version="4.0.1" />
     <PackageReference Include="Northwoods.GoWPF" Version="2.2.4" />
-    <PackageReference Include="Syncfusion.Grid.Base46" Version="16.1.0.26" />
-    <PackageReference Include="Syncfusion.Grid.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="Syncfusion.PropertyGrid.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="Syncfusion.SfChart.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="Syncfusion.SfGrid.WPF46" Version="16.1.0.26" />
-    <PackageReference Include="System.Reactive.Windows.Threading" Version="4.1.6" />
+    <PackageReference Include="Syncfusion.Grid.WPF" Version="17.2.0.41" />
+    <PackageReference Include="Syncfusion.PropertyGrid.WPF" Version="17.2.0.41" />
+    <PackageReference Include="Syncfusion.SfChart.WPF" Version="17.2.0.41" />
+    <PackageReference Include="Syncfusion.SfGrid.WPF" Version="17.2.0.41" />
+    <PackageReference Include="System.Reactive.Windows.Threading" Version="4.2.0-preview.566" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
   </ItemGroup>
-  <!-- 
-  Interesting link:
-  https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
-  -->
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <!-- App.xaml -->
-    <ApplicationDefinition Include="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </ApplicationDefinition>
-    <!-- XAML elements -->
-    <Page Include="**\*.xaml" Exclude="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </Page>
     <Compile Remove="Textual\**" />
     <EmbeddedResource Remove="Textual\**" />
     <None Remove="Textual\**" />
     <Page Remove="Textual\**" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Diagnostics\EtAlii.Ubigia.Api.Transport.Management.Diagnostics.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Management\EtAlii.Ubigia.Windows.Management.csproj" />
     <ProjectReference Include="..\..\Shared\EtAlii.Ubigia.Windows.Mvvm\EtAlii.Ubigia.Windows.Mvvm.csproj" />
-    <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-    <!-- Resources -->
-    <EmbeddedResource Update="Properties\Resources.resx" Generator="ResXFileCodeGenerator" LastGenOutput="Resources.Designer.cs" />
-    <Compile Update="Properties\Resources.Designer.cs" AutoGen="True" DependentUpon="Resources.resx" DesignTime="True" />
-    <!-- Settings -->
-    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
-    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
   </ItemGroup>
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-  <!-- near the bottom -->
-  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>

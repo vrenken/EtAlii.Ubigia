@@ -1,7 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+    
     <Authors>Peter Vrenken</Authors>
     <Product>Ubigia</Product>
     <Company>EtAlii</Company>
@@ -15,60 +17,21 @@
     <PackageReleaseNotes></PackageReleaseNotes>
     <PackageTags></PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <LanguageTargets>$(MSBuildExtensionsPath)\$(VisualStudioVersion)\Bin\Microsoft.CSharp.targets</LanguageTargets>
-    <NameOfOriginalMSBuildProject>EtAlii.Ubigia.Windows.Management</NameOfOriginalMSBuildProject>
   </PropertyGroup>
-
-  <!-- near the top -->
-  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.props" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
-
-  <!-- anywhere in the middle -->
-  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'">
-    <LanguageTargets>$(MSBuildToolsPath)\Microsoft.CSharp.targets</LanguageTargets>
-  </PropertyGroup>
-
-
-  <!-- 
-  Interesting link:
-  https://stackoverflow.com/questions/43693591/how-to-migrate-wpf-projects-to-the-new-vs2017-format
-  -->
   <ItemGroup>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <!-- XAML elements -->
-    <Page Include="**\*.xaml" Exclude="App.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </Page>
     <Content Include="Images\Header-Ubigia.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\Header.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.Grpc\EtAlii.Ubigia.Api.Transport.Management.Grpc.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
     <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.Management.WebApi\EtAlii.Ubigia.Api.Transport.Management.WebApi.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj">
       <Private>true</Private>
     </ProjectReference>
-     <Compile Update="**\*.xaml.cs" SubType="Code" DependentUpon="%(Filename)" />
-
-    <!-- Resources -->
-
-    <!-- Settings -->
   </ItemGroup>
-
-
-  <Import Project="$(MSBuildSDKExtrasTargets)" Condition="Exists('$(MSBuildSDKExtrasTargets)')" />
-
-  <!-- near the bottom -->
-  <Import Project="$(BaseIntermediateOutputPath)$(NameOfOriginalMSBuildProject).*.targets" Condition="'$(MSBuildProjectExtension)' == '.tmp_proj'" />
 </Project>

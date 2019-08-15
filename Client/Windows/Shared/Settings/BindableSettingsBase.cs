@@ -2,7 +2,7 @@
 {
     using System;
     using System.Runtime.CompilerServices;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using Microsoft.Win32;
 
     public abstract class BindableSettingsBase : BindableBase

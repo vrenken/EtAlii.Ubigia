@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Client
 {
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.Ubigia.Windows.Settings;
-    using EtAlii.xTechnology.Mvvm;
 
     public class StorageSettingsViewModel : BindableBase
     {
