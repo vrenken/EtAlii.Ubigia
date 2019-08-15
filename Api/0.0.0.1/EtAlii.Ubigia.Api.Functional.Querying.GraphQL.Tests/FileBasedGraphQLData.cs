@@ -9,8 +9,7 @@
         public FileBasedGraphQLData()
         {
             var folder = Directory.GetCurrentDirectory();
-            folder = Path.Combine(folder, "GraphQL");
-            var files = Directory.GetFiles(folder)
+            var files = Directory.GetFiles(folder, "*Samples*.txt")
                 .Where(fileName => !fileName.EndsWith("Samples 0. - Introduction.txt"))
                 .Where(fileName => !fileName.EndsWith("Samples 2. - Mutations.txt"));
 
