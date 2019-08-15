@@ -7,10 +7,6 @@
     {
         public IFunctionalTestContext FunctionalTestContext { get; private set; }
 
-        public QueryingUnitTestContext()
-        {
-        }
-
         public async Task InitializeAsync()
         {
             FunctionalTestContext = new FunctionalTestContextFactory().Create();
