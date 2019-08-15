@@ -21,9 +21,17 @@
     <Compile Include="$(MSBuildThisFileDirectory)Unit tests\QueryModeller.Tests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Mutations.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Advanced Queries.txt" />
+    <Content Include="$(MSBuildThisFileDirectory)Samples 0. - Introduction.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 1. - Queries.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 2. - Mutations.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 3. - Advanced Queries.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

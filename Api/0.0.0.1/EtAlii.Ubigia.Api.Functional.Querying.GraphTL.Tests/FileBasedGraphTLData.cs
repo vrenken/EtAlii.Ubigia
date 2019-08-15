@@ -9,8 +9,7 @@
         public FileBasedGraphTLData()
         {
             var folder = Directory.GetCurrentDirectory();
-            folder = Path.Combine(folder, "GraphTL");
-            var files = Directory.GetFiles(folder);
+            var files = Directory.GetFiles(folder, "*Samples*.txt");
                 //.Where(fileName => fileName.EndsWith("Samples 0. - Introduction.txt"));
                 //.Where(fileName => !fileName.EndsWith("Samples 2. - Nodes.txt"));
 
@@ -26,13 +25,10 @@
                         .TrimStart('=', '\r', '\n')
                         .Replace("\r\n", "\n")
                         .Split("\n")
-                        //.SkipWhile(string.IsNullOrWhiteSpace)
                         .ToArray();
                     if (lines.Length > 1)
                     {
                         var title = lines[0].Replace("-- ", "");
-                        //if (!title.StartsWith("1. Traverses to a node and returns this as a named element.")) continue;
-                        
                         var query = string.Join("\n", lines.ToArray());
                         Add(fileName, title, query);
                     }
