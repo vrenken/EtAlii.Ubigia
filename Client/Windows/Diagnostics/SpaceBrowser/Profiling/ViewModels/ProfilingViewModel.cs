@@ -4,7 +4,7 @@
     using System.Collections.Specialized;
     using System.Linq;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     public class ProfilingViewModel : BindableBase, IProfilingViewModel
     {

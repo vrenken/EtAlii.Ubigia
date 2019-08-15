@@ -4,7 +4,7 @@
     using System.ComponentModel;
     using System.Windows;
     using System.Windows.Input;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {

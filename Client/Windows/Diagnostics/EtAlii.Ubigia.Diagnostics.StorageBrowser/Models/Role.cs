@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.StorageBrowser
 {
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     public class Role : BindableBase
     {

@@ -4,7 +4,7 @@
     using System.Collections.ObjectModel;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     public class JournalViewModel : BindableBase, IJournalViewModel
     {

@@ -6,8 +6,8 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.Management;
+    using EtAlii.Ubigia.Windows.Mvvm;
     using EtAlii.xTechnology.Logging;
-    using EtAlii.xTechnology.Mvvm;
 
     public class RolesViewModel : BindableBase, IRolesViewModel
     {
