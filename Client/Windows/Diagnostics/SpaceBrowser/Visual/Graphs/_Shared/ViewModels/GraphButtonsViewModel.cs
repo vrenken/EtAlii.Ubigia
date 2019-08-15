@@ -4,7 +4,7 @@
     using System.Windows.Input;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     public class GraphButtonsViewModel : BindableBase, IGraphButtonsViewModel
     {
@@ -37,8 +37,7 @@
 
         private void DiscoverFromHead(object parameter)
         {
-            var graphViewModel = parameter as IGraphDocumentViewModel;
-            if (graphViewModel != null)
+            if (parameter is IGraphDocumentViewModel)
             {
                 IReadOnlyEntry entry = null;
                 var task = Task.Run(async () =>
@@ -76,12 +75,7 @@
 
         private bool CanClearGraph(object parameter)
         {
-            var graphViewModel = parameter as IGraphDocumentViewModel;
-            var canExecute = false;
-            if (graphViewModel != null)
-            {
-                canExecute = true;// graphViewModel.NodesSource.Count() != 0
-            }
+            var canExecute = parameter is IGraphDocumentViewModel;
             return canExecute;
         }
 

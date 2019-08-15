@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Windows;
-    using EtAlii.xTechnology.Mvvm;
+    using EtAlii.Ubigia.Windows.Mvvm;
 
     public class TextualViewModelBase : BindableBase
     {
