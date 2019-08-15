@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    
     <ApplicationIcon />
     <StartupObject />
     <ProjectGuid>36e2573f-79bc-4c09-9632-b175590aca52</ProjectGuid>

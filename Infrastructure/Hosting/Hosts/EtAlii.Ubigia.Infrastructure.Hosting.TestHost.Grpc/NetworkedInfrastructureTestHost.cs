@@ -31,10 +31,12 @@
         protected override async Task Started()
         {
             await base.Started();
-            _infrastructure = Systems.Single().Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single();
-            _storage = Systems.Single().Services.OfType<IStorageService>().Select(service => service.Storage).Single();
-            _adminModule = Systems.Single().Modules.OfType<AdminModule>().Single();
-            _userModule = Systems.Single().Modules.OfType<UserModule>().Single();
+
+            var system = Systems.Single();
+            _infrastructure = system.Services.OfType<IInfrastructureService>().Select(service => service.Infrastructure).Single();
+            _storage = system.Services.OfType<IStorageService>().Select(service => service.Storage).Single();
+            _adminModule = system.Modules.OfType<AdminModule>().Single();
+            _userModule = system.Modules.OfType<UserModule>().Single();
         }
     }
 }
