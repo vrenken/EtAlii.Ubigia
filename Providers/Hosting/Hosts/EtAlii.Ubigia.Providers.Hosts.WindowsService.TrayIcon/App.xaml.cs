@@ -1,14 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost.Net47
 {
-    using System.Windows;
-    using EtAlii.xTechnology.Hosting;
-    using global::Microsoft.Extensions.Configuration;
+	using System.Windows;
+	using EtAlii.xTechnology.Hosting;
+	using global::Microsoft.Extensions.Configuration;
 
-
-	/// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
-    public partial class App
+	partial class App
 	{
         private void OnApplicationStartup(object sender, StartupEventArgs e)
         {
@@ -25,5 +21,5 @@
                     "Icon-Logo-Red.ico");
             TrayIconHost.Start(hostConfiguration);
         }
-    }
+	}
 }
