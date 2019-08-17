@@ -23,7 +23,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.59" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
     <ProjectReference Include="..\Settings\EtAlii.Ubigia.Windows.Settings.csproj" />
   </ItemGroup>
   <ItemGroup>

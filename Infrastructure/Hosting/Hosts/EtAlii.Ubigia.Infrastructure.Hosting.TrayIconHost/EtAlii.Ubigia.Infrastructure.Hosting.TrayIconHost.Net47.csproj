@@ -25,27 +25,27 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.55">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.56.3">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.55">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.56.3">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.55">
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.56.3">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.55">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.56.3">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.55">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.56.3">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -53,9 +53,14 @@
     <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.80" />
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
-    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.59" />
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" />
+    <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" >
+      <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
+    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0" >
+      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <None Remove="settings.json" />

@@ -1,9 +1,0 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <ProjectGuid>cc58d7b1-4c3d-4718-a199-115a60a954d3</ProjectGuid>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.AspNetCore.csproj" />
-  </ItemGroup>
-</Project>

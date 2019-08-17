@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Transport.Management;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public interface IProvisioningTestContext

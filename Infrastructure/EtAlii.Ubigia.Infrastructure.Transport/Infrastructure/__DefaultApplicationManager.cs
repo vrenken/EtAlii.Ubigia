@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
+﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
 //[
 //    using System
 //    using EtAlii.Ubigia.Infrastructure.Functional

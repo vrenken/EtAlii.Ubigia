@@ -22,7 +22,7 @@
     <MSBuildWarningsAsErrors>CS1591</MSBuildWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia" Version="1.0.59" />
+    <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
