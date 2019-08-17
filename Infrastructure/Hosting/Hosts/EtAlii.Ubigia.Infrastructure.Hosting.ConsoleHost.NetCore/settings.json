@@ -1,0 +1,93 @@
+﻿{
+  "Host": {
+    "Systems": [
+      {
+        "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureSystemFactory, EtAlii.Ubigia.Infrastructure.Transport",
+        "Services": [
+          {
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.StorageServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp",
+            "Name": "Debug storage",
+            "BaseFolder": "%LOCALAPPDATA%\\EtAlii\\Ubigia"
+          },
+          {
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.InfrastructureServiceFactory, EtAlii.Ubigia.Infrastructure.Transport",
+            "Name": "Debug storage",
+            "Address": "http://127.0.0.1"
+          }//,
+          //{
+          //  "Factory": "EtAlii.Ubigia.Infrastructure.Transport.NetCore.AuthenticationServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.NetCore",
+          //  "IpAddress": "0.0.0.0",
+          //  "Port": "64002"
+          //}
+        ],
+        "Modules": [
+          {
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.AdminModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore",
+            "Name": "Admin",
+            "IpAddress": "127.0.0.1", // Admin should be accessible over localhost only
+            "Port": "64001",
+            "Modules": [
+              {
+                "Name": "Api",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore.AdminRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.NetCore.AdminSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.NetCore"
+                  }
+                ]
+              },
+              {
+                "Name": "Portal",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore.AdminPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore.AdminPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.UserModuleFactory, EtAlii.Ubigia.Infrastructure.Transport.User.NetCore",
+            "Name": "User",
+            "IpAddress": "0.0.0.0",
+            "Port": "64000",
+            "Modules": [
+              {
+                "Name": "Api",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.NetCore.UserRestServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.Rest.NetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.NetCore.UserSignalRServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Api.SignalR.NetCore"
+                  }
+                ]
+              },
+              {
+                "Name": "Portal",
+                "Services": [
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore.UserPortalControllerServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore"
+                  },
+                  {
+                    "Factory": "EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore.UserPortalFileHostingServiceFactory, EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+    "Logging": {
+      "LogLevel": {
+        "Default": "Warning"
+      }
+    }
+  }

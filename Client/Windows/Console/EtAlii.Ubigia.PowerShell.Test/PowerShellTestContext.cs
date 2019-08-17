@@ -6,7 +6,7 @@
     using System.Management.Automation;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 

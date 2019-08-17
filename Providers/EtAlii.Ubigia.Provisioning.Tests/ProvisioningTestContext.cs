@@ -14,7 +14,7 @@ namespace EtAlii.Ubigia.Provisioning.Tests
     using EtAlii.Ubigia.Api.Transport.Management.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Management.SignalR;
     using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.AspNetCore;
+    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.NetCore;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
 
     public class ProvisioningTestContext : IProvisioningTestContext

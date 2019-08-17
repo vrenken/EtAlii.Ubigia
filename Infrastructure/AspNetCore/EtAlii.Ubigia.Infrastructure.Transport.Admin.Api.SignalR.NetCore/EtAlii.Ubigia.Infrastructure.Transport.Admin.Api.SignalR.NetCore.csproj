@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <ProjectGuid>e151ef0f-254f-4b18-8a5f-71ccc85679b8</ProjectGuid>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore.csproj" />
+  </ItemGroup>
+</Project>

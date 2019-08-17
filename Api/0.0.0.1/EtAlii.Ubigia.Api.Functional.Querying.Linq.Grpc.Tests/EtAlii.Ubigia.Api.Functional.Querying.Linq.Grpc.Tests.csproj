@@ -33,10 +33,10 @@
   <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Data.NET47\EtAlii.Ubigia.Api.Functional.NET47.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Diagnostics\EtAlii.Ubigia.Api.Functional.Diagnostics.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.NET47.Grpc.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq\EtAlii.Ubigia.Api.Functional.Querying.Linq.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying\EtAlii.Ubigia.Api.Functional.Querying.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.Grpc.Tests\EtAlii.Ubigia.Api.Logical.Grpc.Tests.csproj" />
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests\EtAlii.Ubigia.Api.Functional.Querying.Linq.Tests.projitems" Label="Shared" />

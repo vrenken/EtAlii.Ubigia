@@ -1,4 +1,4 @@
-﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.AspNetCore
+﻿//namespace EtAlii.Ubigia.Infrastructure.Transport.NetCore
 //[
 //    using EtAlii.Ubigia.Infrastructure.Transport
 //    using EtAlii.xTechnology.MicroContainer
