@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
-	using System;
-	using System.Net;
+    using System;
+    using System.Net;
     using System.Threading.Tasks;
 
     // TODO: The IInfrastructureClient should be made internal and only used Web Api related code.

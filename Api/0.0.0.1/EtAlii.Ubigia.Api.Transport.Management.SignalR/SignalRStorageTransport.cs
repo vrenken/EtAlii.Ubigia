@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
-    using System;
-    using System.Net.Http;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
-    using EtAlii.xTechnology.MicroContainer;
+	using System;
+	using System.Net.Http;
+	using EtAlii.Ubigia.Api.Transport.SignalR;
+	using EtAlii.xTechnology.MicroContainer;
 
-    public class SignalRStorageTransport : StorageTransportBase, ISignalRStorageTransport
+	public class SignalRStorageTransport : StorageTransportBase, ISignalRStorageTransport
     {
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;

@@ -1,9 +1,9 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.WebApi
 {
 	using System.Net;
-    using System.Net.Http;
+	using System.Net.Http;
 
-    // TODO: Should be made internal
+	// TODO: Should be made internal
     public class DefaultHttpClientFactory : IHttpClientFactory
     {
         public HttpClient Create(ICredentials credentials, string hostIdentifier, string authenticationToken)

@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR
 {
-    using System;
-    using System.Net.Http;
-    using EtAlii.xTechnology.MicroContainer;
+	using System;
+	using System.Net.Http;
+	using EtAlii.xTechnology.MicroContainer;
 
-    public class SignalRSpaceTransport : SpaceTransportBase, ISignalRSpaceTransport
+	public class SignalRSpaceTransport : SpaceTransportBase, ISignalRSpaceTransport
     {
 		public string AuthenticationToken { get => _authenticationTokenGetter(); set => _authenticationTokenSetter(value); }
         private readonly Action<string> _authenticationTokenSetter;

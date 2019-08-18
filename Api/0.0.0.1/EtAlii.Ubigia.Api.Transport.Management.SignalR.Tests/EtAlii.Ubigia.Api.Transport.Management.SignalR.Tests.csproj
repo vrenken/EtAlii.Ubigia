@@ -19,6 +19,7 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Api.Transport.Management.SignalR.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -26,8 +27,8 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR.AspNetCore\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
-    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR.AspNetCore.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.Management.SignalR\EtAlii.Ubigia.Api.Transport.Management.SignalR.csproj" />
+    <ProjectReference Include="..\EtAlii.Ubigia.Api.Transport.SignalR.Tests\EtAlii.Ubigia.Api.Transport.SignalR.Tests.csproj" />
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Transport.Management.Tests\EtAlii.Ubigia.Api.Transport.Management.Tests.projitems" Label="Shared" />
 </Project>
