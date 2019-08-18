@@ -25,9 +25,6 @@
     <Compile Remove="Functions\RenameFunctionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Functions\RenameFunctionHandler.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional\EtAlii.Ubigia.Api.Functional.csproj" />
   </ItemGroup>
