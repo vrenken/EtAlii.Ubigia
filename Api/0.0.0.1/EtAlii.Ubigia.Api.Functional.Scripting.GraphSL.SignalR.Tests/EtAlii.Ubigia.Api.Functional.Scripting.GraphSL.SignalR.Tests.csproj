@@ -19,13 +19,10 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional.NET47.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestImage_01.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
@@ -40,6 +37,9 @@
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Diagnostics.csproj" />
     <ProjectReference Include="..\EtAlii.Ubigia.Api.Logical.SignalR.Tests\EtAlii.Ubigia.Api.Logical.SignalR.Tests.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="1. Logical\UnitTests" />
   </ItemGroup>
   <Import Project="..\EtAlii.Ubigia.Api.Functional.Scripting.Tests\EtAlii.Ubigia.Api.Functional.Scripting.Tests.projitems" Label="Shared" />
 

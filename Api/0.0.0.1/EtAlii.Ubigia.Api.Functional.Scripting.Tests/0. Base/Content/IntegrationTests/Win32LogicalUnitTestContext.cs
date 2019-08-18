@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System;
     using System.IO;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.Ubigia.Tests;
 
-    public class NET47LogicalUnitTestContext : IDisposable
+    public class Win32LogicalUnitTestContext : IDisposable
     {
         public string TestFile2MImage;
         public string TestFile10MRaw;
@@ -15,7 +15,7 @@
         public FolderComparer FolderComparer { get; }
         public ILogicalTestContext LogicalTestContext { get; private set; }
 
-        public NET47LogicalUnitTestContext()
+        public Win32LogicalUnitTestContext()
         {
             FileComparer = new FileComparer();
             FolderComparer = new FolderComparer(FileComparer);
@@ -23,13 +23,13 @@
             LogicalTestContext = new LogicalTestContextFactory().Create();
 
             // Getting Temp file names to use
-            TestFile2MImage = NET47TestHelper.CreateTemporaryFileName();
-            TestFile10MRaw = NET47TestHelper.CreateTemporaryFileName();
-            TestFile100MRaw = NET47TestHelper.CreateTemporaryFileName();
+            TestFile2MImage = Win32TestHelper.CreateTemporaryFileName();
+            TestFile10MRaw = Win32TestHelper.CreateTemporaryFileName();
+            TestFile100MRaw = Win32TestHelper.CreateTemporaryFileName();
 
-            NET47TestHelper.SaveResourceTestImage(TestFile2MImage);
-            NET47TestHelper.SaveTestFile(TestFile10MRaw, 10);
-            NET47TestHelper.SaveTestFile(TestFile100MRaw, 100);
+            Win32TestHelper.SaveResourceTestImage(TestFile2MImage);
+            Win32TestHelper.SaveTestFile(TestFile10MRaw, 10);
+            Win32TestHelper.SaveTestFile(TestFile100MRaw, 100);
         }
 
         public void Dispose()

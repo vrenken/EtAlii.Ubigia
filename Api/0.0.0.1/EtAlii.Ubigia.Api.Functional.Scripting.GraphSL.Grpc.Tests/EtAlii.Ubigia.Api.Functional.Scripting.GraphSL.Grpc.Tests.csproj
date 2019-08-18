@@ -19,13 +19,10 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional.NET47.Tests</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="TestImage_01.jpg" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />

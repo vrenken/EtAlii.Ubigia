@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System;
     using System.IO;
@@ -7,10 +7,10 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class NET47ContentManagerTests : IClassFixture<NET47LogicalUnitTestContext>, IAsyncLifetime
+    public class Win32ContentManagerTests : IClassFixture<Win32LogicalUnitTestContext>, IAsyncLifetime
     {
 
-        private readonly NET47LogicalUnitTestContext _testContext;
+        private readonly Win32LogicalUnitTestContext _testContext;
 
         /// <summary>
         ///Gets or sets the test context which provides
@@ -29,7 +29,7 @@
         //]
         //private TestContext _testContext
 
-        public NET47ContentManagerTests(NET47LogicalUnitTestContext testContext)
+        public Win32ContentManagerTests(Win32LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
         }
@@ -45,7 +45,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Create()
+        public async Task Win32ContentManager_Create()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -63,7 +63,7 @@
 
 
         [Fact]
-        public async Task NET47ContentManager_Upload_Non_Existing_File()
+        public async Task Win32ContentManager_Upload_Non_Existing_File()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -82,7 +82,7 @@
 
 
         [Fact]
-        public async Task NET47ContentManager_Upload_2M_File()
+        public async Task Win32ContentManager_Upload_2M_File()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -98,7 +98,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Upload_2M_File_Timed()
+        public async Task Win32ContentManager_Upload_2M_File_Timed()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -119,7 +119,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Upload_10M_File_Timed()
+        public async Task Win32ContentManager_Upload_10M_File_Timed()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -139,7 +139,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Upload_100M_File_Timed()
+        public async Task Win32ContentManager_Upload_100M_File_Timed()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -159,7 +159,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Download_2M_File()
+        public async Task Win32ContentManager_Download_2M_File()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -167,7 +167,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = NET47TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
 
             // Act.
@@ -185,7 +185,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Download_10M_File()
+        public async Task Win32ContentManager_Download_10M_File()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -193,7 +193,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = NET47TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
 
             // Act.
@@ -211,7 +211,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Download_2M_File_Timed()
+        public async Task Win32ContentManager_Download_2M_File_Timed()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -219,7 +219,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = NET47TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile2MImage, entry.Id);
 
             // Act.
@@ -240,7 +240,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Download_10M_File_Timed()
+        public async Task Win32ContentManager_Download_10M_File_Timed()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -248,7 +248,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = NET47TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile10MRaw, entry.Id);
 
             // Act.
@@ -269,7 +269,7 @@
         }
 
         [Fact]
-        public async Task NET47ContentManager_Download_100M_File_Timed()
+        public async Task Win32ContentManager_Download_100M_File_Timed()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -277,7 +277,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var contentManager = logicalContext.Content;
-            var retrievedFilePath = NET47TestHelper.CreateTemporaryFileName();
+            var retrievedFilePath = Win32TestHelper.CreateTemporaryFileName();
             await contentManager.Upload(_testContext.TestFile100MRaw, entry.Id);
 
             // Act.

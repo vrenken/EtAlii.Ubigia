@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47
+﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
     using System.Threading.Tasks;

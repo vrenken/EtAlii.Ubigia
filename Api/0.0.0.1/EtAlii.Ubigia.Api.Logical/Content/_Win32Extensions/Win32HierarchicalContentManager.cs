@@ -1,9 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47
+﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
-    using EtAlii.Ubigia.Api.Logical;
 
-    public static class DotNet47HierarchicalContentManagerExtensions
+    public static class Win32HierarchicalContentManagerExtensions
     {
         public static void Upload(this IHierarchicalContentManager hierarchicalContentManager, string localDataIdentifier, Identifier identifier)
         {

@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Ubigia.Api.Functional.Tests
+namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;

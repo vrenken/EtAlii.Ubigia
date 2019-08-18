@@ -1,12 +1,11 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System;
     using System.IO;
     using System.Reflection;
-    using System.Threading.Tasks;
     using Xunit;
 
-    public static class NET47TestHelper
+    public static class Win32TestHelper
     {
         public static string CreateTemporaryFileName()
         {
@@ -32,20 +31,20 @@
             return folderName;
         }
 
-        public static async Task SaveResourceTestImage(string fileName)
+        public static void SaveResourceTestImage(string fileName)
         {
             // Get the current executing assembly (in this case it's the test dll)
-            var assembly = Assembly.GetAssembly(typeof(NET47TestHelper));
+            var assembly = Assembly.GetAssembly(typeof(Win32TestHelper));
             // Get the stream (embedded resource) - be sure to wrap in a using block
-            using (Stream stream = assembly.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.NET47.Tests.TestImage_01.jpg"))
+            using (Stream stream = assembly.GetManifestResourceStream("EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.TestImage_01.jpg"))
             {
                 var bytes = new byte[stream.Length];
-                await stream.ReadAsync(bytes, 0, (int)stream.Length);
-                await File.WriteAllBytesAsync(fileName, bytes);
+                stream.Read(bytes, 0, (int)stream.Length);
+                File.WriteAllBytes(fileName, bytes);
             }
         }
 
-        public static async Task SaveTestFolder(string folderName, int depth, int foldersPerFolder, int filesPerFolder, float fileMinSize, float fileMaxSize)
+        public static void SaveTestFolder(string folderName, int depth, int foldersPerFolder, int filesPerFolder, float fileMinSize, float fileMaxSize)
         {
             Directory.CreateDirectory(folderName);
 
@@ -54,7 +53,7 @@
                 for (int folder = 0; folder < foldersPerFolder; folder++)
                 {
                     var subFolder = Path.Combine(folderName, Guid.NewGuid().ToString());
-                    await SaveTestFolder(subFolder, depth - 1, foldersPerFolder, filesPerFolder, fileMinSize, fileMaxSize);
+                    SaveTestFolder(subFolder, depth - 1, foldersPerFolder, filesPerFolder, fileMinSize, fileMaxSize);
                 }
             }
 
@@ -62,11 +61,11 @@
             {
                 var fileName = $"{Guid.NewGuid()}.bin";
                 fileName = Path.Combine(folderName, fileName);
-                await SaveTestFile(fileName, fileMinSize, fileMaxSize);
+                SaveTestFile(fileName, fileMinSize, fileMaxSize);
             }
         }
 
-        public static async Task SaveTestFile(string fileName, int megaBytes)
+        public static void SaveTestFile(string fileName, int megaBytes)
         {
             const int bytesInMegaByte = 1024 * 1024;
             var data = new byte[bytesInMegaByte];
@@ -77,12 +76,12 @@
                 for (int megaByte = 0; megaByte < megaBytes; megaByte++)
                 {
                     rnd.NextBytes(data);
-                    await stream.WriteAsync(data, 0, bytesInMegaByte);
+                    stream.Write(data, 0, bytesInMegaByte);
                 }
             }
         }
 
-        private static async Task SaveTestFile(string fileName, float megaBytesMin, float megaBytesMax)
+        private static void SaveTestFile(string fileName, float megaBytesMin, float megaBytesMax)
         {
             const int bytesInKiloByte = 1024;
             var data = new byte[bytesInKiloByte];
@@ -95,15 +94,15 @@
                 for (int kiloByte = 0; kiloByte < kiloBytes; kiloByte++)
                 {
                     rnd.NextBytes(data);
-                    await stream.WriteAsync(data, 0, bytesInKiloByte);
+                    stream.Write(data, 0, bytesInKiloByte);
                 }
             }
         }
 
-        public static async Task AssertFilesAreEqual(string expectedFile, string actualFile)
+        public static void AssertFilesAreEqual(string expectedFile, string actualFile)
         {
-            var expectedBytes = await File.ReadAllBytesAsync(expectedFile);
-            var actualBytes = await File.ReadAllBytesAsync(actualFile);
+            var expectedBytes = File.ReadAllBytes(expectedFile);
+            var actualBytes = File.ReadAllBytes(actualFile);
             Assert.Equal(expectedBytes.Length, actualBytes.Length);
             for (int i = 0; i < expectedBytes.Length; i++)
             {

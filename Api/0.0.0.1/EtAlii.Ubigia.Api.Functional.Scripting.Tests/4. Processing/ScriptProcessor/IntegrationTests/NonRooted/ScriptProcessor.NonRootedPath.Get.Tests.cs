@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System.Collections.Generic;
     using System.Linq;

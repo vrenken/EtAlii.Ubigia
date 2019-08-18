@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47
+﻿namespace EtAlii.Ubigia.Api.Logical
 {
     using System;
     using System.IO;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Logical;
 
-    public static class DotNet47ContentManagerExtensions
+    public static class Win32ContentManagerExtensions
     {
         public static async Task Upload(this IContentManager contentManager, string localDataIdentifier, Identifier identifier)
         {

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.NET47.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System;
     using System.IO;
@@ -7,35 +7,30 @@
     using EtAlii.Ubigia.Api.Logical.Tests;
     using Xunit;
 
-    public class NET47HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IAsyncLifetime
+    public class Win32HierarchicalContentManagerTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private readonly string _testFolderSimple;
         private readonly LogicalUnitTestContext _testContext;
 
-        public NET47HierarchicalContentManagerTests(LogicalUnitTestContext testContext)
+        public Win32HierarchicalContentManagerTests(LogicalUnitTestContext testContext)
         {
             _testContext = testContext;
 
             // Getting Temp folder names to use
-            _testFolderSimple = NET47TestHelper.CreateTemporaryFolderName();
+            _testFolderSimple = Win32TestHelper.CreateTemporaryFolderName();
+            Win32TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
         }
 
-        public async Task InitializeAsync()
-        {
-            await NET47TestHelper.SaveTestFolder(_testFolderSimple, 3, 3, 3, 0.2f, 1.2f);
-        }
-
-        public Task DisposeAsync()
+        public void Dispose()
         {
             if (Directory.Exists(_testFolderSimple))
             {
                 Directory.Delete(_testFolderSimple, true);
             }
-            return Task.CompletedTask;
         }
 
         [Fact]
-        public void NET47HierarchicalContentManager_Create()
+        public void Win32HierarchicalContentManager_Create()
         {
             // Arrange.
 
@@ -47,7 +42,7 @@
         }
 
         [Fact(Skip="Not working yet")]
-        public async Task NET47HierarchicalContentManager_Upload_Non_Existing_Folder_Hierarchy()
+        public async Task Win32HierarchicalContentManager_Upload_Non_Existing_Folder_Hierarchy()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -69,7 +64,7 @@
 
 
         [Fact]
-        public async Task NET47HierarchicalContentManager_Upload_Folder_Hierarchy()
+        public async Task Win32HierarchicalContentManager_Upload_Folder_Hierarchy()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -86,7 +81,7 @@
 
 
         [Fact(Skip = "Not working yet")]
-        public async Task NET47HierarchicalContentManager_Download_Folder_Hierarchy()
+        public async Task Win32HierarchicalContentManager_Download_Folder_Hierarchy()
         {
             // Arrange.
             var scope = new ExecutionScope(false);
@@ -94,7 +89,7 @@
             var root = await logicalContext.Roots.Get("Hierarchy");
             var entry = await logicalContext.Nodes.Select(GraphPath.Create(root.Identifier), scope);
             var hierarchicalContentManager = new HierarchicalContentManager();
-            var retrievedFolderPath = NET47TestHelper.CreateTemporaryFolderName();
+            var retrievedFolderPath = Win32TestHelper.CreateTemporaryFolderName();
             hierarchicalContentManager.Upload(_testFolderSimple, entry.Id);
 
             // Act.
