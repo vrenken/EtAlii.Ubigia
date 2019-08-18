@@ -386,7 +386,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functiona
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics\EtAlii.Ubigia.Api.Functional.Querying.Linq.Diagnostics.csproj", "{394628B7-7F88-489B-B049-A0ED14921410}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Scripting.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.Tests\EtAlii.Ubigia.Api.Functional.Scripting.Tests.shproj", "{AB4D1142-4552-408E-98D4-D8161B2F0D6E}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests.shproj", "{AB4D1142-4552-408E-98D4-D8161B2F0D6E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests", "Api\0.0.0.1\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests\EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Grpc.Tests.csproj", "{9243C0EB-59BD-4DAB-B631-CC8B14BA3585}"
 EndProject

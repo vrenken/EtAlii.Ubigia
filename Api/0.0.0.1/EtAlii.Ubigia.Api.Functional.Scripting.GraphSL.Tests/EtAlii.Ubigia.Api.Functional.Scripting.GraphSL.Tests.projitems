@@ -6,7 +6,7 @@
     <SharedGUID>B77CF34C-3334-40B1-AD13-51F02504D91A</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.Tests</Import_RootNamespace>
+    <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32ContentManager.Tests.cs" />
