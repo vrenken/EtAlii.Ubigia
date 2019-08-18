@@ -29,7 +29,7 @@
     <PackageReference Include="EtAlii.xTechnology.Hosting.TestHost.AspNetCore" Version="1.0.80" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi.AspNetCore\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\..\Api\0.0.0.1\EtAlii.Ubigia.Api.Transport.WebApi\EtAlii.Ubigia.Api.Transport.WebApi.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.SignalR.NetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore\EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore.csproj" />

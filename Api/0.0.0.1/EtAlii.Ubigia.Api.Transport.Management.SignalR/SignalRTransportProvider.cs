@@ -2,10 +2,9 @@ namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
 	using System;
 	using System.Net.Http;
-	using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Api.Transport.SignalR;
+	using EtAlii.Ubigia.Api.Transport.SignalR;
 
-    public class SignalRStorageTransportProvider : IStorageTransportProvider
+	public class SignalRStorageTransportProvider : IStorageTransportProvider
     {
         private string _authenticationToken;
 	    private readonly Func<HttpMessageHandler> _httpMessageHandlerFactory;

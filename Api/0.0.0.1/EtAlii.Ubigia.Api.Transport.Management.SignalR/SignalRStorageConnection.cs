@@ -1,6 +1,5 @@
 namespace EtAlii.Ubigia.Api.Transport.Management.SignalR
 {
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.SignalR;
 
     internal class SignalRStorageConnection : StorageConnection<ISignalRStorageTransport>, ISignalRStorageConnection
