@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests;
     using Xunit;
 
     public class QueryingUnitTestContext : IAsyncLifetime

@@ -9,6 +9,10 @@
     <Import_RootNamespace>EtAlii.Ubigia.Api.Functional.Scripting.Tests</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32ContentManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32HierarchicalContentManager.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\IntegrationTests\Win32LogicalUnitTestContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)0. Base\Content\Win32TestHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\Diagnostics\IntegrationTests\ProfilingGraphSLScriptContext.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\GraphSLScriptContextFactory.FunctionHandlers.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)0. Base\Context\IntegrationTests\GraphSLScriptContextFactory.RootHandlers.Tests.cs" />
@@ -167,5 +171,11 @@
     <Content Include="$(MSBuildThisFileDirectory)Samples 7. - Roots.Definitions.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Samples 8. - Technical.txt" />
     <Content Include="$(MSBuildThisFileDirectory)Samples 9. - Tags.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)0. Base\Content\UnitTests" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="$(MSBuildThisFileDirectory)TestImage_01.jpg" />
   </ItemGroup>
 </Project>
