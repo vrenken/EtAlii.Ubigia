@@ -3,7 +3,6 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;
@@ -32,8 +31,7 @@ namespace EtAlii.Ubigia.Windows.Tools.MediaImport
                 var configuration = new GraphSLScriptContextConfiguration()
                     .UseFunctionalGraphSLDiagnostics(diagnostics)
                     .Use(_connection)
-                    .UseLogicalDiagnostics(diagnostics)
-                    .UseDotNet47();
+                    .UseLogicalDiagnostics(diagnostics);
                 return new GraphSLScriptContextFactory().Create(configuration);
             });
         }

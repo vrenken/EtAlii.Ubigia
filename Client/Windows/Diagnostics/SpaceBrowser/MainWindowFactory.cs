@@ -4,7 +4,6 @@
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
     using EtAlii.Ubigia.Api.Functional;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.NET47;
     using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
@@ -85,8 +84,7 @@
                 .UseLogicalDiagnostics(diagnostics)
                 .UseFunctionalGraphSLDiagnostics(diagnostics)
                 .Use(container.GetInstance<ISpaceBrowserFunctionHandlersProvider>())
-                .UseGraphSLProfiling()
-                .UseDotNet47();
+                .UseGraphSLProfiling();
             
             // Then the fabric context.
             var fabricContext = new FabricContextFactory().CreateForProfiling(configuration);
