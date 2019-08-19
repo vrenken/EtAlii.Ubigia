@@ -4,9 +4,9 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore;
     using EtAlii.Ubigia.Infrastructure.Transport.User.NetCore;
     using EtAlii.Ubigia.Storage;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
+    using EtAlii.xTechnology.Hosting.NetCore;
 
-    public interface IInfrastructureTestHost : IAspNetCoreHost
+    public interface IInfrastructureTestHost : INetCoreHost
     {
         IInfrastructure Infrastructure { get; }
 

@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore
 {
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
+    using EtAlii.xTechnology.Hosting.NetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public class UserPortalControllerService : AspNetCoreServiceBase
+    public class UserPortalControllerService : NetCoreServiceBase
     {
         public UserPortalControllerService(IConfigurationSection configuration) : base(configuration)
         {

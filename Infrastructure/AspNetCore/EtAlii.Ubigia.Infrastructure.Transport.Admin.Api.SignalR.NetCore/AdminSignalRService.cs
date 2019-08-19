@@ -5,12 +5,12 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
+    using EtAlii.xTechnology.Hosting.NetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
 
-    public class AdminSignalRService : AspNetCoreServiceBase
+    public class AdminSignalRService : NetCoreServiceBase
     {
         public AdminSignalRService(IConfigurationSection configuration) 
             : base(configuration)
