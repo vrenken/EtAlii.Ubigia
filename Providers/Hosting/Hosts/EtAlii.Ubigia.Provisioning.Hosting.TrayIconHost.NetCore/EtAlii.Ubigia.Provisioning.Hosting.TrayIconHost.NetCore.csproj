@@ -21,10 +21,12 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <AssemblyName>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</AssemblyName>
+    <RootNamespace>EtAlii.Ubigia.Provisioning.Hosting.TrayIconHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" >
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
       <NoWarn>NU1701</NoWarn>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
