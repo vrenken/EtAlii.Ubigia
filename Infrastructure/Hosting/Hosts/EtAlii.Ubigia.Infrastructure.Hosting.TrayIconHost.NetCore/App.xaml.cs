@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost.NET47
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost
 {
 	using System.Windows;
 	using EtAlii.xTechnology.Hosting;
