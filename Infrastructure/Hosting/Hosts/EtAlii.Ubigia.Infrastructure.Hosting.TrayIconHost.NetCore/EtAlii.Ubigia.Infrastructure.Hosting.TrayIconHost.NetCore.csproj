@@ -23,6 +23,7 @@
     <PackageTags>
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.56.3">
@@ -54,11 +55,11 @@
     <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" >
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SlowCheetah" Version="3.2.20" />
-    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0" >
+    <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
   </ItemGroup>
@@ -81,15 +82,16 @@
   </ItemGroup>
   <ItemGroup>
     <!-- Settings -->
-    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />
-    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />
+<!--    <None Update="Properties\Settings.settings" Generator="SettingsSingleFileGenerator" LastGenOutput="Settings.Designer.cs" />-->
+<!--    <Compile Update="Properties\Settings.Designer.cs" AutoGen="True" DependentUpon="Settings.settings" />-->
   </ItemGroup>
   <ItemGroup>
     <!-- Configuration elements -->
     <None Update="App.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
-    <None Update="App.*.config" DependentUpon="App.config">
+    <None Update="App.*.config">
+      <DependentUpon>App.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>
