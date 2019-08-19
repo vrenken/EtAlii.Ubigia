@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore;
     using EtAlii.Ubigia.Infrastructure.Transport.User.NetCore;
     using EtAlii.Ubigia.Storage;
-    using EtAlii.xTechnology.Hosting.NetCore;
+    using EtAlii.xTechnology.Hosting;
 
     public interface IInfrastructureTestHost : INetCoreHost
     {

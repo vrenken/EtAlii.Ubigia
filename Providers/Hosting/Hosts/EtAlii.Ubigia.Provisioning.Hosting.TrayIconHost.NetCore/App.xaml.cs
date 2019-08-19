@@ -2,7 +2,6 @@
 {
 	using System.Windows;
 	using EtAlii.xTechnology.Hosting;
-	using EtAlii.xTechnology.Hosting.TrayIconHost;
 	using global::Microsoft.Extensions.Configuration;
 
 	partial class App
