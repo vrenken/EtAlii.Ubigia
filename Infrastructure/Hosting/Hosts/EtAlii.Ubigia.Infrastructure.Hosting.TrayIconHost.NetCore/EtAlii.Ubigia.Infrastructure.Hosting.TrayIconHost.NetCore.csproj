@@ -26,33 +26,33 @@
     <RootNamespace>EtAlii.Ubigia.Infrastructure.Hosting.TrayIconHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.56.3">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Ntfs" Version="1.0.56.4">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.56.3">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Azure" Version="1.0.56.4">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.56.3">
+    <PackageReference Include="EtAlii.Ubigia.Storage.InMemory" Version="1.0.56.4">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.56.3">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Cassandra" Version="1.0.56.4">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.56.3">
+    <PackageReference Include="EtAlii.Ubigia.Storage.Portable" Version="1.0.56.4">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <OutputItemType>Content</OutputItemType>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </PackageReference>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.80" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.2.1" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.83" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.TrayIconHost" Version="1.0.83" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <PackageReference Include="EtAlii.Ubigia.Diagnostics" Version="1.0.62" />
     <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
@@ -62,6 +62,17 @@
     <PackageReference Include="Microsoft.Experimental.IO" Version="1.0.0">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
+
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.0.1" >
+      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
+    </PackageReference>
+    <PackageReference Include="Microsoft.Owin" Version="4.0.1" >
+      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
+    </PackageReference>
+    <PackageReference Include="Owin" Version="1.0.0" >
+      <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
+    </PackageReference>
+
   </ItemGroup>
   <ItemGroup>
     <None Remove="settings.json" />

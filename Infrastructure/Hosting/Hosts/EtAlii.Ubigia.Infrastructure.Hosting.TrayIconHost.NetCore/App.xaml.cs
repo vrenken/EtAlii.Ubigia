@@ -2,6 +2,7 @@
 {
 	using System.Windows;
 	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting.TrayIconHost;
 
 	/// <summary>
 	/// Interaction logic for App.xaml
