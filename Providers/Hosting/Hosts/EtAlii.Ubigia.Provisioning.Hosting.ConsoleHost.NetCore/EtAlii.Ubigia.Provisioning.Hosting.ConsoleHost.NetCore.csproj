@@ -55,7 +55,8 @@
     <None Update="App.config">
       <TransformOnBuild>true</TransformOnBuild>
     </None>
-    <None Update="App.*.config" DependentUpon="App.config">
+    <None Update="App.*.config">
+      <DependentUpon>App.config</DependentUpon>
       <IsTransformFile>True</IsTransformFile>
     </None>
   </ItemGroup>

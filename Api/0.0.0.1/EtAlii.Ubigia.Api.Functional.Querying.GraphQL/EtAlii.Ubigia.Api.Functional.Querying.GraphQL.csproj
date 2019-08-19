@@ -15,7 +15,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.GraphQL</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Api.Functional</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Remove="Scripting\**" />

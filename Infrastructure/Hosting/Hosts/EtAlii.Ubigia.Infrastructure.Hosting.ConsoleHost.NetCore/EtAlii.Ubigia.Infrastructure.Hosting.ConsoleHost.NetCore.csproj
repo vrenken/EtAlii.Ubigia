@@ -26,6 +26,8 @@
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.NetCore.csproj" />
     <ProjectReference Include="..\..\..\AspNetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore\EtAlii.Ubigia.Infrastructure.Transport.User.Portal.NetCore.csproj" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
-    <Content Update="settings.*.json" DependentUpon="settings.json" />
+    <Content Update="settings.*.json">
+      <DependentUpon>settings.json</DependentUpon>
+    </Content>
   </ItemGroup>
 </Project>
