@@ -13,10 +13,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.xTechnology.MicroContainer" Version="1.0.6" />
-    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8" >
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.0.8">
       <NoWarn>NU1701</NoWarn> <!-- Remove this warning when the package has been updated to support netcore3.0 -->
     </PackageReference>
-    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1" >
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.0.1">
       <NoWarn>NU1701</NoWarn> <!-- This is a nested package. Remove when the warning is no longer needed -->
     </PackageReference>
     <ProjectReference Include="..\EtAlii.Ubigia.Windows\EtAlii.Ubigia.Windows.csproj" />
