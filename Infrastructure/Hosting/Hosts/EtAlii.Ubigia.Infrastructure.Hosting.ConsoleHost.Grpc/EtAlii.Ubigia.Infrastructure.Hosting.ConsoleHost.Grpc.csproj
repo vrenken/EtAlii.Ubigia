@@ -14,10 +14,10 @@
     <Content Include="settings.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Update="settings.*.json" >
+    <Content Update="settings.*.json">
       <DependentUpon>settings.json</DependentUpon>
     </Content>
-    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Grpc" Version="1.0.80" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.ConsoleHost.Grpc" Version="1.0.83" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
     <ProjectReference Include="..\..\..\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp\EtAlii.Ubigia.Infrastructure.Transport.NetCoreApp.csproj" />
     <ProjectReference Include="..\..\..\Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc\EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc.csproj" />
