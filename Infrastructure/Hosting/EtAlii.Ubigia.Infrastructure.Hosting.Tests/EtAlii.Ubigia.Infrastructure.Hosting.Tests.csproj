@@ -22,7 +22,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.84.2" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting" Version="1.0.84.3" />
     <PackageReference Include="System.Security.Principal" Version="4.3.0" />
     <PackageReference Include="System.Threading.AccessControl" Version="4.5.0" />
   </ItemGroup>

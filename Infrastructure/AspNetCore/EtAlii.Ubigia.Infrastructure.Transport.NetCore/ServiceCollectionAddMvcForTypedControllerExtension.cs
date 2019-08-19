@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.xTechnology.Hosting.NetCore;
+    using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Controllers;
     using Microsoft.Extensions.DependencyInjection;

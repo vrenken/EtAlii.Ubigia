@@ -2,7 +2,7 @@
 {
     using System.Linq;
     using EtAlii.Ubigia.Infrastructure.Transport.Grpc;
-    using EtAlii.xTechnology.Hosting.Grpc;
+    using EtAlii.xTechnology.Hosting;
     using EtAlii.xTechnology.MicroContainer;
     using global::Grpc.Core;
     using Microsoft.Extensions.Configuration;
