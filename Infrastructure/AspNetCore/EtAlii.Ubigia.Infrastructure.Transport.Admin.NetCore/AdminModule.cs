@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.NetCore
 {
-    using EtAlii.xTechnology.Hosting.AspNetCore;
+    using EtAlii.xTechnology.Hosting.NetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public class AdminModule : AspNetCoreModuleBase
+    public class AdminModule : NetCoreModuleBase
     {
         public AdminModule(IConfigurationSection configuration) 
             : base(configuration)

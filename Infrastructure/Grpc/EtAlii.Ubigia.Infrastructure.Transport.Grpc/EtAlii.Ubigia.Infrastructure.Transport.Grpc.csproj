@@ -23,7 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="EtAlii.Ubigia" Version="1.0.62" />
-    <PackageReference Include="EtAlii.xTechnology.Hosting.Grpc" Version="1.0.83" />
+    <PackageReference Include="EtAlii.xTechnology.Hosting.Grpc" Version="1.0.84.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\EtAlii.Ubigia.Infrastructure.Transport\EtAlii.Ubigia.Infrastructure.Transport.csproj" />

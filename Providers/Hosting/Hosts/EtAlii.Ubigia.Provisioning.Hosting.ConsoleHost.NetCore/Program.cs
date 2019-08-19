@@ -2,6 +2,7 @@
 {
 	using System;
 	using EtAlii.xTechnology.Hosting;
+	using EtAlii.xTechnology.Hosting.ConsoleHost;
 	using global::Microsoft.Extensions.Configuration;
 
 	public static class Program

@@ -7,7 +7,7 @@
 //    using Microsoft.Extensions.Configuration
 //    using Microsoft.Extensions.DependencyInjection
 
-//	public class AuthenticationService : AspNetCoreServiceBase, IAuthenticationService
+//	public class AuthenticationService : NetCoreServiceBase, IAuthenticationService
 //    [
 //        private readonly IConfigurationSection _configuration
 

@@ -1,10 +1,10 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.NetCore
 {
-    using EtAlii.xTechnology.Hosting.AspNetCore;
+    using EtAlii.xTechnology.Hosting.NetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public class UserModule : AspNetCoreModuleBase
+    public class UserModule : NetCoreModuleBase
     {
         public UserModule(IConfigurationSection configuration) 
             : base(configuration)

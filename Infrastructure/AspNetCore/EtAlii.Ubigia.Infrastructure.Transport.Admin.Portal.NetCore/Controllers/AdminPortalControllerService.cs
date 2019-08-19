@@ -1,11 +1,11 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Portal.NetCore
 {
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-    using EtAlii.xTechnology.Hosting.AspNetCore;
+    using EtAlii.xTechnology.Hosting.NetCore;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.Extensions.Configuration;
 
-    public class AdminPortalControllerService : AspNetCoreServiceBase
+    public class AdminPortalControllerService : NetCoreServiceBase
     {
         public AdminPortalControllerService(IConfigurationSection configuration) 
             : base(configuration)

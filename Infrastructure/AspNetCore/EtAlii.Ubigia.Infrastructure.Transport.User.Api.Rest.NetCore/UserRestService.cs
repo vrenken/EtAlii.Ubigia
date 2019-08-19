@@ -3,12 +3,12 @@
 	using System.Linq;
 	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
-	using EtAlii.xTechnology.Hosting.AspNetCore;
+	using EtAlii.xTechnology.Hosting.NetCore;
 	using Microsoft.AspNetCore.Builder;
 	using Microsoft.Extensions.Configuration;
 	using Microsoft.Extensions.DependencyInjection;
 
-	public class UserRestService : AspNetCoreServiceBase
+	public class UserRestService : NetCoreServiceBase
     {
         public UserRestService(IConfigurationSection configuration) : base(configuration)
         {
