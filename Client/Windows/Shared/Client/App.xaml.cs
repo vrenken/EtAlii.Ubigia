@@ -62,7 +62,7 @@
         {
             _services = new IApplicationService[]
             {
-                Container.GetInstance<IShellExtensionService>(),
+                //Container.GetInstance[IShellExtensionService][]
                 Container.GetInstance<ITaskbarIconService>()
             };
             foreach (var service in _services)
@@ -89,7 +89,7 @@
             Container.RegisterInitializer<StorageWindow>(window => window.DataContext = Container.GetInstance<StorageSettingsViewModel>());
             Container.RegisterInitializer<TaskbarIcon>(window => window.DataContext = Container.GetInstance<TaskbarIconViewModel>());
 
-            Container.Register<IShellExtensionService, ShellExtensionService>();
+            //Container.Register[IShellExtensionService, ShellExtensionService][]
             Container.Register<ITaskbarIconService, TaskbarIconService>();
             //Container.RegisterCollection<IApplicationService>(new [] [ typeof(ShellExtensionService), typeof(TaskbarIconService) ])
         }
