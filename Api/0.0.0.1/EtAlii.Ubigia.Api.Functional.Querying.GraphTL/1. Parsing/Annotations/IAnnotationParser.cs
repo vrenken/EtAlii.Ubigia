@@ -12,8 +12,8 @@
         // TODO: We should implement this on a similar way to how it is done in the ScriptParser.
         //bool CanParse(LpNode node)
 
-        //void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after)
-        //bool CanValidate(ConstantSubject constantSubject)
+        //void Validate(SequencePart before, ConstantSubject item, int itemIndex, SequencePart after)
+        //bool CanValidate(ConstantSubject item)
 
     }
 }

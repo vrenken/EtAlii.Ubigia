@@ -42,9 +42,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         /// </summary>
         /// <param name="before"></param>
         /// <param name="item"></param>
-        /// <param name="subjectIndex"></param>
+        /// <param name="itemIndex"></param>
         /// <param name="after"></param>
-        void Validate(TOtherItem before, TItem item, int subjectIndex, TOtherItem after);
+        void Validate(TOtherItem before, TItem item, int itemIndex, TOtherItem after);
         
         /// <summary>
         /// Return true when the instance can be validated by the parser.

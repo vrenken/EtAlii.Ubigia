@@ -48,9 +48,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             return node.Id == Id;
         }
 
-        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
+        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
         {
-            var rootedPathSubject = (RootedPathSubject)subject;
+            var rootedPathSubject = (RootedPathSubject)item;
             var parts = rootedPathSubject.Parts;
 
             for (int i = 0; i < parts.Length; i++)
@@ -58,14 +58,14 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                 var beforePathPart = i > 0 ? parts[i - 1] : null;
                 var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
                 var part = parts[i];
-                var arguments = new PathSubjectPartParserArguments(subject, beforePathPart, part, i, afterPathPart);
+                var arguments = new PathSubjectPartParserArguments(item, beforePathPart, part, i, afterPathPart);
                 _pathSubjectPartsParser.Validate(arguments);
             }
         }
 
-        public bool CanValidate(Subject subject)
+        public bool CanValidate(Subject item)
         {
-            return subject is RootedPathSubject;
+            return item is RootedPathSubject;
         }
     }
 }

@@ -59,14 +59,14 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             return node.Id == Id;
         }
 
-        public void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after)
+        public void Validate(SequencePart before, ConstantSubject item, int itemIndex, SequencePart after)
         {
             // Make sure the operator can can actually be applied on the before/after SequencePart combination.
         }
 
-        public bool CanValidate(ConstantSubject constantSubject)
+        public bool CanValidate(ConstantSubject item)
         {
-            return constantSubject is StringConstantSubject;
+            return item is StringConstantSubject;
         }
     }
 }
