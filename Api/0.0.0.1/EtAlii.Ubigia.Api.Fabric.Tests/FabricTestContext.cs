@@ -35,7 +35,7 @@ namespace EtAlii.Ubigia.Api.Fabric.Tests
             for (var i = 0; i < depth; i++)
             {
                 hierarchy[i] = Guid.NewGuid().ToString();
-            };
+            }
 
             var entry = await CreateHierarchy(fabric, parent, hierarchy);
 

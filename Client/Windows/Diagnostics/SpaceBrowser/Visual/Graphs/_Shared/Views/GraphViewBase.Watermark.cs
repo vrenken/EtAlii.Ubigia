@@ -42,7 +42,7 @@
             if (_watermark != null)
             {
                 var descriptor = DependencyPropertyDescriptor.FromProperty(VisibilityProperty, typeof(UIElement));
-                descriptor.RemoveValueChanged(_watermark, new EventHandler(_watermark_IsVisibleChanged));
+                descriptor.RemoveValueChanged(_watermark, _watermark_IsVisibleChanged);
             }
         }
 
@@ -51,7 +51,7 @@
             if (_watermark != null)
             {
                 var descriptor = DependencyPropertyDescriptor.FromProperty(VisibilityProperty, typeof(UIElement));
-                descriptor.AddValueChanged(_watermark, new EventHandler(_watermark_IsVisibleChanged));
+                descriptor.AddValueChanged(_watermark, _watermark_IsVisibleChanged);
             }
         }
 

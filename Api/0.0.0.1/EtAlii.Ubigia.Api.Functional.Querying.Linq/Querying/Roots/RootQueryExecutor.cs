@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System.Collections.Generic;
     using System.Linq;
@@ -8,11 +8,6 @@
     internal class RootQueryExecutor : IRootQueryExecutor 
     {
         //private readonly IScriptProcessorFactory _scriptProcessorFactory
-
-        public RootQueryExecutor()//IScriptProcessorFactory scriptProcessorFactory)
-        {
-            //_scriptProcessorFactory = scriptProcessorFactory
-        }
 
         // Executes a query with a scalar result, i.e. a query that ends with a result operator such as Count, Sum, or Average.
         public T ExecuteScalar<T>(QueryModel queryModel)

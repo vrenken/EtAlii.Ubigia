@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;
 
     public class CodeDocumentFactory : ICodeDocumentFactory
@@ -13,7 +12,7 @@
             new StructureScaffolding().Register(container);
 
             container.Register(() => documentContext.FabricContext);
-            container.Register<IGraphSLScriptContext>(() => documentContext.ScriptContext);
+            container.Register(() => documentContext.ScriptContext);
             container.Register(() =>
             {
                 var dvmp = container.GetInstance<IDocumentViewModelProvider>();

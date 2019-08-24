@@ -8,7 +8,7 @@
     using AdminStorageSingleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageSingleRequest;
     using AdminStorageMultipleRequest = EtAlii.Ubigia.Api.Transport.Management.Grpc.WireProtocol.StorageMultipleRequest;
 
-    public sealed partial class GrpcStorageDataClient : IStorageDataClient<IGrpcStorageTransport>
+    public sealed class GrpcStorageDataClient : IStorageDataClient<IGrpcStorageTransport>
     {
         private StorageGrpcService.StorageGrpcServiceClient _client;
         private IGrpcStorageTransport _transport;
@@ -119,9 +119,7 @@
         {
             try
             {
-                var request = new AdminStorageMultipleRequest
-                {
-                };
+                var request = new AdminStorageMultipleRequest();
                 var call = _client.GetMultipleAsync(request, _transport.AuthenticationHeaders);
                 var response = await call.ResponseAsync;
                 return response.Storages.ToLocal();

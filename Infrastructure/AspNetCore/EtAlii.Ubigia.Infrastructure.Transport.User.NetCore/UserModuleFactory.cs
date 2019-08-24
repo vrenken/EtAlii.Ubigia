@@ -12,7 +12,7 @@
 
             container.Register<IModule, UserModule>();
 
-            container.Register<IConfigurationSection>(() => configuration);
+            container.Register(() => configuration);
 
             return container.GetInstance<IModule>();
         }

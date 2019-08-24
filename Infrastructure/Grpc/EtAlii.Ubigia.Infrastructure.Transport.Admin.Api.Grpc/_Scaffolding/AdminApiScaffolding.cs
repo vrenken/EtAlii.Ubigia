@@ -14,10 +14,10 @@
 
 		public void Register(Container container)
 		{
-			container.Register<IAccountRepository>(() => _infrastructure.Accounts);
-			container.Register<IStorageRepository>(() => _infrastructure.Storages);
-			container.Register<ISpaceRepository>(() => _infrastructure.Spaces);
-			container.Register<IInfrastructureConfiguration>(() => _infrastructure.Configuration);
+			container.Register(() => _infrastructure.Accounts);
+			container.Register(() => _infrastructure.Storages);
+			container.Register(() => _infrastructure.Spaces);
+			container.Register(() => _infrastructure.Configuration);
 		}
 	}
 }

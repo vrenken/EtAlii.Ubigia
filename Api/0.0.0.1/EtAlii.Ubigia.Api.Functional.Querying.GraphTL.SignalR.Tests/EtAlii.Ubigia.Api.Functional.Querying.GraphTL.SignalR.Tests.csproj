@@ -20,6 +20,7 @@
     </PackageTags>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <RootNamespace>EtAlii.Ubigia.Api.Functional.Querying.Tests</RootNamespace>
+    <OutputType>Library</OutputType>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="TestImage_01.jpg" />

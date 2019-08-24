@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Tests
+namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using EtAlii.xTechnology.Diagnostics;
     using EtAlii.xTechnology.Logging;

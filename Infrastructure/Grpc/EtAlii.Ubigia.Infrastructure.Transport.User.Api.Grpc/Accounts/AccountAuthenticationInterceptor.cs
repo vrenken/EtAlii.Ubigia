@@ -19,8 +19,7 @@
 
         private void EnsureUserIsAuthenticated(Metadata headers)
         {
-            if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is Metadata.Entry
-                authenticationTokenHeader))
+            if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is { } authenticationTokenHeader))
             {
                 throw new InvalidOperationException("Unable to authenticate: no authentication token header.");                
             }

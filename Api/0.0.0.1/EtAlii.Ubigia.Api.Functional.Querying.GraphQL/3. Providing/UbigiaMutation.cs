@@ -13,7 +13,7 @@
     ///   ]
     /// ]
     /// </example>
-    public class UbigiaMutation : ObjectGraphType<object>, IObjectGraphType
+    public class UbigiaMutation : ObjectGraphType<object>
     {
         public UbigiaMutation()
         {

@@ -2,7 +2,7 @@
 {
     internal interface IGraphQLAstVisitor
     {
-        void Visit(global::GraphQL.Language.AST.Operation operation);
+        void Visit(GraphQL.Language.AST.Operation operation);
         void Visit(global::GraphQL.Language.AST.Document document);
     }
 }

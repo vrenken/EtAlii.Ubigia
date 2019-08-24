@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.User.Portal.Grpc
 {
     using EtAlii.xTechnology.Hosting;
-    using Microsoft.Extensions.Configuration;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class UserPortalControllerServiceFactory : ServiceFactoryBase
     {
@@ -12,7 +12,7 @@
 
             container.Register<IService, UserPortalControllerService>();
 
-            container.Register<IConfigurationSection>(() => configuration);
+            container.Register(() => configuration);
 
             return container.GetInstance<IService>();
         }

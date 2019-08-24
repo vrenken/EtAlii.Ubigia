@@ -2,7 +2,7 @@
 {
     using Xunit;
 
-    public class ExecutionScope_Tests
+    public class ExecutionScopeTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ExecutionScope_Create_Cache_Enabled()

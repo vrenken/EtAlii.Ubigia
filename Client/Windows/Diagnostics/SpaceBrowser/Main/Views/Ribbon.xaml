@@ -16,12 +16,6 @@
     IsAutomaticCollapseEnabled="False" 
     IsQuickAccessToolBarVisible="False"
     Initialized="OnRibbonInitialized">
-
-    <fluent:Ribbon.ToolBarItems>
-    </fluent:Ribbon.ToolBarItems>
-
-    <fluent:Ribbon.Resources>
-    </fluent:Ribbon.Resources>
     <fluent:Ribbon.Menu>
         <fluent:Backstage>
             <fluent:BackstageTabControl SelectedIndex="0">

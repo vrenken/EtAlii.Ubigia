@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
 	using System;
 	using System.Linq;
 	using System.Threading.Tasks;
 	using EtAlii.Ubigia.Api.Transport.Grpc;
-	using global::Grpc.Core;
+	using Grpc.Core;
 	using Xunit;
 	using UserAuthenticationClient = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationGrpcService.AuthenticationGrpcServiceClient;
     using UserAuthenticationRequest = EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.AuthenticationRequest;

@@ -1,6 +1,6 @@
 ﻿// Copyright (c) Peter Vrenken. All rights reserved. See License.txt in the project root for license information.
 
-namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
+namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System;
     using System.Linq;
@@ -191,12 +191,13 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
             // Arrange.
             var text = "/First/Second/Third{{{";
 
-            Sequence sequence;
+            Sequence sequence = null;
             // Act.
             var act = new Action(() => sequence = _parser.Parse(text));
 
             // Assert.
             Assert.Throws<ScriptParserException>(act);
+            Assert.Null(sequence);
         }
 
         

@@ -10,8 +10,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            var items = value as IEnumerable<object>;
-            bool isVisible = items != null && items.Any();
+            var isVisible = value is IEnumerable<object> items && items.Any();
             if ((string)parameter == "negate") isVisible = !isVisible;
             return isVisible ? Visibility.Visible : Visibility.Collapsed;
         }

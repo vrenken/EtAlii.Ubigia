@@ -4,7 +4,7 @@
     using EtAlii.Ubigia.Tests;
     using Xunit;
 
-    public class Cache_Tests
+    public class CacheTests
     {
         [Fact, Trait("Category", TestAssembly.Category)]
         public void Cache_Create()
@@ -12,7 +12,7 @@
             // Arrange.
 
             // Act.
-            var cache = new Cache(true);
+            var cache = new Cache();
 
             // Assert.
             Assert.NotNull(cache);
@@ -23,7 +23,7 @@
         {
             // Arrange.
             var identifier = new TestIdentifierFactory().Create();
-            var cache = new Cache(true);
+            var cache = new Cache();
 
             // Act.
             var entry = await cache.GetEntry(identifier, () => Task.FromResult<IReadOnlyEntry>(null));

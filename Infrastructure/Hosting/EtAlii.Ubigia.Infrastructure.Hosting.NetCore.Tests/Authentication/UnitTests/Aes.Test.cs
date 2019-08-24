@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
     using System.Collections.Generic;

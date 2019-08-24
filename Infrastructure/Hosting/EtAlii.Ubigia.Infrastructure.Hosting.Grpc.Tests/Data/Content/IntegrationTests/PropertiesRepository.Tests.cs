@@ -1,9 +1,7 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
-
 
     [Trait("Technology", "Grpc")]
     public sealed class PropertiesRepositoryTests : IClassFixture<InfrastructureUnitTestContext>

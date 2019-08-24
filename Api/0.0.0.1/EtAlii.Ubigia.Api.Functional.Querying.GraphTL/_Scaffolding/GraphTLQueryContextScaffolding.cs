@@ -21,7 +21,7 @@
             container.Register<ISchemaProcessorFactory, SchemaProcessorFactory>();
             container.Register<ISchemaParserFactory, SchemaParserFactory>();
             
-            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(_configuration));
+            container.Register(() => new GraphSLScriptContextFactory().Create(_configuration));
 
             container.Register(() => new LogicalContextFactory().Create(_configuration));
         }

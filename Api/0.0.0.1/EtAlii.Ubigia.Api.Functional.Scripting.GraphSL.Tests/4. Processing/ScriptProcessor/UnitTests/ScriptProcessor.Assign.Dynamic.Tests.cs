@@ -1,22 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
-    using System;
-
-    public class ScriptProcessorAssignDynamicUnitTests : IDisposable
+    public class ScriptProcessorAssignDynamicUnitTests 
     {
-        private IScriptParser _parser;
-
-        public ScriptProcessorAssignDynamicUnitTests()
-        {
-            var diagnostics = TestDiagnostics.Create();
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-        }
-
-        public void Dispose()
-        {
-            _parser = null;
-        }
     }
 }

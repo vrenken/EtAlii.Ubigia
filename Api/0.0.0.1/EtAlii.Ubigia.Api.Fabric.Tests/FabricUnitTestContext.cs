@@ -9,10 +9,6 @@
         public IFabricTestContext FabricTestContext { get; private set; }
         public IDiagnosticsConfiguration DiagnosticsConfiguration { get; private set; }
 
-        public FabricUnitTestContext()
-        {
-        }
-
         public async Task InitializeAsync()
         {
             DiagnosticsConfiguration = TestDiagnostics.Create();

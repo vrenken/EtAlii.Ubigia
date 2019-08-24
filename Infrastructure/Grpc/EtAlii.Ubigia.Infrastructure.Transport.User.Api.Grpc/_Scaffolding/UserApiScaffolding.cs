@@ -14,15 +14,15 @@
 
 		public void Register(Container container)
 		{
-			container.Register<IStorageRepository>(() => _infrastructure.Storages);
-			container.Register<IAccountRepository>(() => _infrastructure.Accounts);
-			container.Register<ISpaceRepository>(() => _infrastructure.Spaces);
-			container.Register<IRootRepository>(() => _infrastructure.Roots);
-			container.Register<IEntryRepository>(() => _infrastructure.Entries);
-			container.Register<IPropertiesRepository>(() => _infrastructure.Properties);
-			container.Register<IContentRepository>(() => _infrastructure.Content);
-			container.Register<IContentDefinitionRepository>(() => _infrastructure.ContentDefinition);
-			container.Register<IInfrastructureConfiguration>(() => _infrastructure.Configuration);
+			container.Register(() => _infrastructure.Storages);
+			container.Register(() => _infrastructure.Accounts);
+			container.Register(() => _infrastructure.Spaces);
+			container.Register(() => _infrastructure.Roots);
+			container.Register(() => _infrastructure.Entries);
+			container.Register(() => _infrastructure.Properties);
+			container.Register(() => _infrastructure.Content);
+			container.Register(() => _infrastructure.ContentDefinition);
+			container.Register(() => _infrastructure.Configuration);
 		}
 	}
 }

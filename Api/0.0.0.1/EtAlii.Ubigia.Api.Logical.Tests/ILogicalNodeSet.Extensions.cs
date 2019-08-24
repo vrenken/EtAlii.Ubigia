@@ -4,7 +4,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
-    public static class ILogicalNodeSetExtensions
+    public static class LogicalNodeSetExtensions
     {
         public static async Task<IReadOnlyEntry> Select(this ILogicalNodeSet nodeSet, GraphPath path, ExecutionScope scope)
         {

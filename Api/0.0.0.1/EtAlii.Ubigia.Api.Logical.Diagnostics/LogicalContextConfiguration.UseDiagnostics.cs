@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class ILogicalContextDiagnosticsExtension
+    public static class LogicalContextDiagnosticsExtension
     {
         public static TLogicalContextConfiguration UseLogicalDiagnostics<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, IDiagnosticsConfiguration diagnostics)
             where TLogicalContextConfiguration : LogicalContextConfiguration

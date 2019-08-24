@@ -2,8 +2,6 @@
 {
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical;
@@ -94,13 +92,13 @@
 
             var logicalContext = new LogicalContextFactory().CreateForProfiling(configuration);
             container.Register<ILogicalContext>(() => logicalContext);
-            container.Register(() => (IProfilingLogicalContext)logicalContext);
+            container.Register(() => logicalContext);
 
 
-            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(configuration));
+            container.Register(() => new GraphSLScriptContextFactory().Create(configuration));
             container.Register(() => (IProfilingGraphSLScriptContext)container.GetInstance<IGraphSLScriptContext>());
 
-            container.Register<IGraphQLQueryContext>(() =>
+            container.Register(() =>
             {
                 var queryContextConfiguration = new GraphQLQueryContextConfiguration()
                     .Use(configuration)
@@ -109,7 +107,7 @@
             });
             container.Register(() => (IProfilingGraphQLQueryContext)container.GetInstance<IGraphQLQueryContext>());
             
-            container.Register<ILinqQueryContext>(() =>
+            container.Register(() =>
             {
                 var queryContextConfiguration = new LinqQueryContextConfiguration()
                     .Use(configuration)

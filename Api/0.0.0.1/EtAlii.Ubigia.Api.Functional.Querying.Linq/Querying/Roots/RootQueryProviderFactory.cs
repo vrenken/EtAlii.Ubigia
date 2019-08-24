@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using Remotion.Linq.Parsing.ExpressionVisitors.Transformation;
     using Remotion.Linq.Parsing.Structure;

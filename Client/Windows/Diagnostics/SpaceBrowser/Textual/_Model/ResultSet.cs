@@ -8,10 +8,10 @@
     {
         public string Id { get; }
 
-        public int Count { get { return _count; } private set { SetProperty(ref _count, value); } }
+        public int Count { get => _count; private set => SetProperty(ref _count, value); }
         private int _count;
 
-        public bool ShowCount { get { return _showCount; } private set { SetProperty(ref _showCount, value); } }
+        public bool ShowCount { get => _showCount; private set => SetProperty(ref _showCount, value); }
         private bool _showCount;
 
         public ObservableCollection<Result> Results { get; }
@@ -30,7 +30,7 @@
         /// </summary>
         /// <typeparam name="T">Type of the property.</typeparam>
         /// <param name="storage">Reference to a property with both getter and setter.</param>
-        /// <param name="value">Desired value for the property.</param>
+        /// <param name="newValue">Desired value for the property.</param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers that
         /// support CallerMemberName.</param>
@@ -51,9 +51,12 @@
         /// <summary>
         /// Notifies listeners that a property value has changed.
         /// </summary>
+        /// <param name="newValue"></param>
         /// <param name="propertyName">Name of the property used to notify listeners.  This
         /// value is optional and can be provided automatically when invoked from compilers
         /// that support <see cref="CallerMemberNameAttribute"/>.</param>
+        /// <param name="sender"></param>
+        /// <param name="oldValue"></param>
         protected virtual void NotifyPropertyChanged(object sender, object oldValue, object newValue, [CallerMemberName] string propertyName = null)
         {
             var eventHandler = PropertyChanged;

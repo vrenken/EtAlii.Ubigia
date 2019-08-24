@@ -7,10 +7,6 @@
     {
         public IProvisioningTestContext ProvisioningTestContext { get; private set; }
 
-        public ProvisioningUnitTestContext()
-        {
-        }
-
         public async Task InitializeAsync()
         {
             ProvisioningTestContext = new ProvisioningTestContextFactory().Create();

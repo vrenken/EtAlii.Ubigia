@@ -3,7 +3,6 @@
     using System.Diagnostics;
     using System.Linq;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
     using EtAlii.xTechnology.Hosting;
     using Microsoft.AspNetCore.Builder;
@@ -25,9 +24,9 @@
                 services =>
                 {
                     services
-                        .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-                        .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
-                        .AddSingleton<IStorageRepository>(infrastructure.Storages)
+                        .AddSingleton(infrastructure.Accounts)
+                        .AddSingleton(infrastructure.Spaces)
+                        .AddSingleton(infrastructure.Storages)
 
                         .AddInfrastructureSimpleAuthentication(infrastructure)
                         .AddInfrastructureSerialization()

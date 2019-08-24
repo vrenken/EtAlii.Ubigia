@@ -6,7 +6,7 @@
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : EtAlii.Ubigia.Windows.Shared.App
+    public partial class App
     {
         public new static App Current => System.Windows.Application.Current as App;
 

@@ -11,8 +11,8 @@
 		public static IServiceCollection AddInfrastructureHttpContextAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
 		{
 			services
-				.TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
-				.TryAddSingleton<IStorageRepository>(infrastructure.Storages)
+				.TryAddSingleton(infrastructure.Accounts)
+				.TryAddSingleton(infrastructure.Storages)
 				.AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 				.AddSingleton<IHttpContextAuthenticationVerifier, HttpContextAuthenticationVerifier>()
 				.AddSingleton<IHttpContextResponseBuilder, HttpContextResponseBuilder>()
@@ -27,11 +27,11 @@
 		public static IServiceCollection AddInfrastructureSimpleAuthentication(this IServiceCollection services, IInfrastructure infrastructure)
 	    {
 		    services
-			    .TryAddSingleton<IAccountRepository>(infrastructure.Accounts)
-			    .TryAddSingleton<IStorageRepository>(infrastructure.Storages)
+			    .TryAddSingleton(infrastructure.Accounts)
+			    .TryAddSingleton(infrastructure.Storages)
 				//.AddSingleton<IDependencyResolver>(() => _signalRDependencyResolver)
 				//.AddSingleton<IParameterResolver, SignalRParameterResolver>()
-				.TryAddSingleton<IInfrastructureConfiguration>(infrastructure.Configuration)
+				.TryAddSingleton(infrastructure.Configuration)
 			    .AddSingleton<IAuthenticationTokenConverter, AuthenticationTokenConverter>()
 			    .AddSingleton<ISimpleAuthenticationVerifier, SimpleAuthenticationVerifier>()
 			    .AddSingleton<ISimpleAuthenticationBuilder, SimpleAuthenticationBuilder>()

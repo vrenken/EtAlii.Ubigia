@@ -8,7 +8,7 @@
 		public void Register(Container container)
 		{
 			// We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.
-			container.Register<ISerializer>(() => new SerializerFactory().Create());
+			container.Register(() => new SerializerFactory().Create());
 		}
 	}
 }

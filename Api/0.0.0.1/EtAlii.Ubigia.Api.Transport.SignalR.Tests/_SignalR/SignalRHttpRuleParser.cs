@@ -10,8 +10,8 @@
         private static readonly bool[] tokenChars;
 //        private const int maxNestedCount = 5
         private static readonly string[] dateFormats;
-        internal const char CR = '\r';
-        internal const char LF = '\n';
+        internal const char Cr = '\r';
+        internal const char Lf = '\n';
         internal const int MaxInt64Digits = 19;
         internal const int MaxInt32Digits = 10;
         internal static readonly Encoding DefaultHttpEncoding;
@@ -307,8 +307,7 @@
 
         private static bool IsValidHostName(string host)
         {
-            Uri result;
-            return Uri.TryCreate("http://u@" + host + "/", UriKind.Absolute, out result);
+            return Uri.IsWellFormedUriString("http://u@" + host + "/", UriKind.Absolute);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using Xunit;
     using System;
     using EtAlii.Ubigia.Api.Transport.Management.Grpc;
+    using Xunit;
 
     [Trait("Technology", "Grpc")]
     public class GuidTest

@@ -1,8 +1,8 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Grpc
 {
     using EtAlii.xTechnology.Hosting;
-    using Microsoft.Extensions.Configuration;
     using EtAlii.xTechnology.MicroContainer;
+    using Microsoft.Extensions.Configuration;
 
     public class AdminGrpcServiceFactory : ServiceFactoryBase
     {
@@ -12,7 +12,7 @@
 
             container.Register<IService, AdminGrpcService>();
 
-            container.Register<IConfigurationSection>(() => configuration);
+            container.Register(() => configuration);
 
             return container.GetInstance<IService>();
         }

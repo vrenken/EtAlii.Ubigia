@@ -17,7 +17,7 @@
 
             // We do not want the address pushed to us from the server. 
             // If we get here then we already know how to contact the server. 
-            storage.Address = address.ToString();
+            storage.Address = address;
 
             return Task.FromResult(storage);
         }

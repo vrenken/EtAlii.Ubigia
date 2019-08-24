@@ -6,7 +6,7 @@
     xmlns:windows="clr-namespace:EtAlii.Ubigia.Windows"
     ResizeMode="NoResize"
     WindowStartupLocation="CenterOwner"
-    x:Name="root"
+    x:Name="Root"
     FlowDirection="LeftToRight"
     Title=""
     TitleBarHeight="0"
@@ -20,8 +20,8 @@
                 <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Light.Green.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <windows:EnumMatchToBooleanConverter x:Key="enumConverter" />
-            <BooleanToVisibilityConverter x:Key="visibilityConverter" />
+            <windows:EnumMatchToBooleanConverter x:Key="EnumConverter" />
+            <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <SolidColorBrush x:Key="CommonBorderColor">#359900</SolidColorBrush>
 
             <Style TargetType="Label">
@@ -113,24 +113,24 @@
         <CheckBox Grid.Row="5" Grid.Column="1" Content="Remember password" IsChecked="{Binding RememberPassword, UpdateSourceTrigger=PropertyChanged}" />
 
         <Label Grid.Row="6" Grid.Column="0" Content="Transport" 
-               Visibility="{Binding ShowTransportSelection, Converter={StaticResource visibilityConverter}}" />
+               Visibility="{Binding ShowTransportSelection, Converter={StaticResource VisibilityConverter}}" />
         <StackPanel 
             Grid.Row="6" Grid.Column="1" Orientation="Horizontal" 
-            Visibility="{Binding ShowTransportSelection, Converter={StaticResource visibilityConverter}}" >
+            Visibility="{Binding ShowTransportSelection, Converter={StaticResource VisibilityConverter}}" >
             <RadioButton 
                 GroupName="Transport"  Content="SignalR" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
-                                 Converter={StaticResource enumConverter},
+                                 Converter={StaticResource EnumConverter},
                                  ConverterParameter=SignalR}"  />
             <RadioButton 
                 GroupName="Transport"  Content="Grpc" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
-                                 Converter={StaticResource enumConverter},
+                                 Converter={StaticResource EnumConverter},
                                  ConverterParameter=Grpc}"  />
             <RadioButton 
                 GroupName="Transport"  Content="Web Api" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
-                                 Converter={StaticResource enumConverter},
+                                 Converter={StaticResource EnumConverter},
                                  ConverterParameter=WebApi}"  />
 
         </StackPanel>
@@ -146,18 +146,18 @@
                 Grid.Column="0" 
                 Content="Test connection" 
                 Command="{Binding Path=TestCommand}"
-                CommandParameter="{Binding ElementName=root}"/>
+                CommandParameter="{Binding ElementName=Root}"/>
             <Button 
                 Grid.Column="2" 
                 Content="Ok"
                 IsDefault="True"
                 Command="{Binding Path=SaveAndCloseCommand}"
-                CommandParameter="{Binding ElementName=root}"/>
+                CommandParameter="{Binding ElementName=Root}"/>
             <Button 
                 Grid.Column="3" 
                 Content="Cancel" 
                 Command="{Binding Path=CancelCommand}"
-                CommandParameter="{Binding ElementName=root}"/>
+                CommandParameter="{Binding ElementName=Root}"/>
         </Grid>
     </Grid>
 </f:RibbonWindow>

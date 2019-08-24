@@ -12,7 +12,7 @@ namespace EtAlii.Ubigia.Api.Logical
             container.Register<IGraphAssignerFactory, GraphAssignerFactory>();
 
             container.Register<IGraphPathTraverserFactory, GraphPathTraverserFactory>();
-            container.Register<IGraphPathTraverser>(() =>
+            container.Register(() =>
             {
                 var fabric = container.GetInstance<IFabricContext>();
                 var configuration = new GraphPathTraverserConfiguration()

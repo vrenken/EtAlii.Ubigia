@@ -1,8 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using GraphQL.Http;
     using Xunit;

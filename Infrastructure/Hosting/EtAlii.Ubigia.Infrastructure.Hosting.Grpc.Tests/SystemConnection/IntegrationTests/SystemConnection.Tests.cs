@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
     using System.Linq;

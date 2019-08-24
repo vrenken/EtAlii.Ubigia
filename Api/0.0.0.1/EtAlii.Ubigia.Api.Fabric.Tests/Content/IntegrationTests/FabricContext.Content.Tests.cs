@@ -16,7 +16,7 @@
 
         public async Task InitializeAsync()
         {
-            var connection = await _testContext.TransportTestContext.CreateDataConnection(true);
+            var connection = await _testContext.TransportTestContext.CreateDataConnection();
             var fabricContextConfiguration = new FabricContextConfiguration()
                 .Use(connection);
             _fabric = new FabricContextFactory().Create(fabricContextConfiguration);
@@ -84,7 +84,7 @@
             var contentdefinition = _testContext.TestContentDefinitionFactory.Create(datas);
             await _fabric.Content.StoreDefinition(entry.Id, contentdefinition);
             var content = _testContext.TestContentFactory.Create(3);
-            var contentPartFirst = _testContext.TestContentFactory.CreatePart(datas[0], 0);
+            var contentPartFirst = _testContext.TestContentFactory.CreatePart(datas[0]);
             var contentPartSecond = _testContext.TestContentFactory.CreatePart(datas[1], 1);
             var contentPartThird = _testContext.TestContentFactory.CreatePart(datas[2], 2);
 

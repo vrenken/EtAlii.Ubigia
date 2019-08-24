@@ -1,10 +1,9 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Infrastructure.Logical;
     using Xunit;
 

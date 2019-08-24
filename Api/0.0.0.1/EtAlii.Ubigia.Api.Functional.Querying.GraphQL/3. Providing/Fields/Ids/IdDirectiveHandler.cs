@@ -8,11 +8,6 @@
     {
         //private readonly INodeFetcher _nodeFetcher
 
-        public IdDirectiveHandler()//(INodeFetcher nodeFetcher)
-        {
-            //_nodeFetcher = nodeFetcher
-        }      
-
         public Task<IdDirectiveResult> Handle(Directive directive, Identifier[] startIdentifiers)
         {
 //            var result = new IdDirectiveResult()

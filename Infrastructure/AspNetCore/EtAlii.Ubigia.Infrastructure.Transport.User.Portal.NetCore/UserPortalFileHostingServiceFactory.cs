@@ -12,7 +12,7 @@
 
             container.Register<IService, UserPortalFileHostingService>();
 
-            container.Register<IConfigurationSection>(() => configuration);
+            container.Register(() => configuration);
 
             return container.GetInstance<IService>();
         }
