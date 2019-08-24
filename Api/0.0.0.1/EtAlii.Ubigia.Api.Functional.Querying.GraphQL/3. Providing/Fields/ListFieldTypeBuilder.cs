@@ -1,9 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System.Linq;
     using EtAlii.Ubigia.Api.Logical;
-    using global::GraphQL.Resolvers;
-    using global::GraphQL.Types;
+    using GraphQL.Resolvers;
+    using GraphQL.Types;
 
     internal class ListFieldTypeBuilder : IListFieldTypeBuilder
     {

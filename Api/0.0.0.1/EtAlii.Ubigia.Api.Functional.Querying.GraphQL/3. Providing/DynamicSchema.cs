@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
-    using global::GraphQL;
-    using global::GraphQL.Execution;
-    using global::GraphQL.Language.AST;
-    using global::GraphQL.Types;
+    using GraphQL;
+    using GraphQL.Execution;
+    using GraphQL.Language.AST;
+    using GraphQL.Types;
 
     public partial class DynamicSchema : Schema
     {

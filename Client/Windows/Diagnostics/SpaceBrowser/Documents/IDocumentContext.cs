@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Fabric;
     using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
+    using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;

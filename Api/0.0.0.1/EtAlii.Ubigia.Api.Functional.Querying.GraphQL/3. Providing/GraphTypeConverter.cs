@@ -1,7 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System;
-    using global::GraphQL.Types;
+    using GraphQL.Types;
 
     public static class GraphTypeConverter
     {

@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
+    using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.Ubigia.Api.Logical;
     using EtAlii.xTechnology.Workflow;
 

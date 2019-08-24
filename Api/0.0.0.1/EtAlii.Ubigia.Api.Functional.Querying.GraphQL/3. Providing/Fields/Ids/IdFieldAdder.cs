@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;
-    using global::GraphQL.Types;
+    using GraphQL.Types;
 
     class IdFieldAdder : IIdFieldAdder
     {

@@ -1,8 +1,8 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System.Linq;
     using System.Threading.Tasks;
-    using global::GraphQL.Language.AST;
+    using GraphQL.Language.AST;
 
     internal class IdDirectiveHandler : IIdDirectiveHandler
     {

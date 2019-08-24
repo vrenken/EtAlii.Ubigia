@@ -1,7 +1,7 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using EtAlii.Ubigia.Api.Logical;
-    using global::GraphQL.Types;
+    using GraphQL.Types;
 
     internal interface IComplexFieldTypeBuilder
     {

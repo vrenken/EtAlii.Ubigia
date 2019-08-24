@@ -2,7 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
+    using EtAlii.Ubigia.Api.Functional.Querying;
 
     public interface IGraphQueryLanguageProcessingSubscription
     {

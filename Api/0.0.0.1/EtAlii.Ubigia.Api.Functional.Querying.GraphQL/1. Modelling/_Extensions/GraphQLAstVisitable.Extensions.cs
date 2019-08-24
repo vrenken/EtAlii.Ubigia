@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using global::GraphQL.Language.AST;
+    using GraphQL.Language.AST;
 
     internal static class GraphQLAstVisitableExtensions
     {

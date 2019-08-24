@@ -1,11 +1,11 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using global::GraphQL.Language.AST;
-    using global::GraphQL.Types;
+    using GraphQL.Language.AST;
+    using GraphQL.Types;
 
     internal class FieldProcessor : IFieldProcessor
     {

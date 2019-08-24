@@ -1,6 +1,6 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using global::GraphQL.Types;
+    using GraphQL.Types;
 
     public class UbigiaQuery : ObjectGraphType<object>
     {
