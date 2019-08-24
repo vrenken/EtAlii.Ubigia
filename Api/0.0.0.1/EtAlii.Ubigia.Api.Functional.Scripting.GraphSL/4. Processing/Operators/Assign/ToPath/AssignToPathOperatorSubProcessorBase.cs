@@ -84,7 +84,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         {
             return
                 //typeInfo.IsGenericType
-                (typeInfo.Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic && 
+                //[typeInfo.Attributes & TypeAttributes.NotPublic] = = TypeAttributes.NotPublic & & 
+                (typeInfo.Attributes.HasFlag(TypeAttributes.NotPublic)) && 
                 (typeInfo.Name.StartsWith("<>", StringComparison.OrdinalIgnoreCase)
                     || typeInfo.Name.StartsWith("VB$", StringComparison.OrdinalIgnoreCase))
                 && typeInfo.Name.Contains("AnonymousType")
