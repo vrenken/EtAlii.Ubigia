@@ -8,7 +8,7 @@
     {
         Task Process(
             TFragment fragment,
-            FragmentMetadata metadata,
+            FragmentMetadata fragmentMetadata,
             SchemaExecutionScope executionScope, 
             IObserver<Structure> schemaOutput);
 

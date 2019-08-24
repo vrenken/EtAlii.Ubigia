@@ -59,17 +59,17 @@
         ///// or Visual Studio).
         ///// </summary>
         //public bool IsInDesignMode
-        //{
+        //[
         //    get
-        //    {
-        //        return _isInDesignMode.Value;
-        //    }
-        //}
+        //    [
+        //        return _isInDesignMode.Value
+        //    ]
+        //]
         //private static Lazy<bool> _isInDesignMode = new Lazy<bool>(() =>
-        //{
-        //    var prop = DesignerProperties.IsInDesignModeProperty;
+        //[
+        //    var prop = DesignerProperties.IsInDesignModeProperty
         //    return (bool)DependencyPropertyDescriptor.FromProperty(prop, typeof(FrameworkElement))
-        //                                             .Metadata.DefaultValue;
-        //});
+        //                                             .Metadata.DefaultValue
+        //])
     }
 }

@@ -48,7 +48,7 @@
 //        private void ApplyLayout(LayoutContent[] currentLayout, LayoutSerializationCallbackEventArgs e)
 //        [
 //            var layoutContent = currentLayout.FirstOrDefault(c => c.ContentId == e.Model.ContentId)
-//            if (layoutContent != null)
+//            if [layoutContent != null]
 //            [
 //                e.Content = layoutContent.Content
 //            ]

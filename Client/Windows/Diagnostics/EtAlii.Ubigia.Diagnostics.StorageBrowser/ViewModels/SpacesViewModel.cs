@@ -49,7 +49,7 @@
             //ILogger logger
             )
         {
-            //_logger = logger;   
+            //_logger = logger
             Connection = connection;
             AddCommand = new RelayCommand(AddSpace, CanAddSpace);
             SaveCommand = new RelayCommand(SaveSpace, CanSaveSpace);

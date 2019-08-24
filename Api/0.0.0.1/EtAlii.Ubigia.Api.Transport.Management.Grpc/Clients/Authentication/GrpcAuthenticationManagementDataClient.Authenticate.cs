@@ -31,7 +31,7 @@
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsAsync(request);
                     await call.ResponseAsync;
-                    //var response = await call.ResponseAsync;
+                    //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
                     
                     authenticationToken = call
@@ -43,7 +43,7 @@
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsync(request);
                     await call.ResponseAsync;
-                    //var response = await call.ResponseAsync;
+                    //var response = await call.ResponseAsync
                     //_account = response.Account?.ToLocal()
                     
                     authenticationToken= call
