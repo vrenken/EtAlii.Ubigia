@@ -11,7 +11,7 @@
     public class ScriptProcessorRootedPathFunctionIncludeTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
         public ScriptProcessorRootedPathFunctionIncludeTests(LogicalUnitTestContext testContext)

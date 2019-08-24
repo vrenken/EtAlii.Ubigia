@@ -24,7 +24,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
         protected override void Handle(RemoveEntriesFromGraphCommand command)
         {
-            _mainDispatcherInvoker.Invoke(delegate()
+            _mainDispatcherInvoker.Invoke(delegate
             {
                 GraphViewModel.StartTransaction("NodeRemoved");
 

@@ -57,7 +57,7 @@
         <Label Grid.Row="2" Grid.Column="0" Content="Remote name:" />
         <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding RemoteName, UpdateSourceTrigger=PropertyChanged}" />
 
-        <Grid Grid.Row="3" ColumnSpan="3" HorizontalAlignment="Stretch" >
+        <Grid Grid.Row="3" ColumnSpan="3" Grid.Column="0" HorizontalAlignment="Stretch" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="*" />

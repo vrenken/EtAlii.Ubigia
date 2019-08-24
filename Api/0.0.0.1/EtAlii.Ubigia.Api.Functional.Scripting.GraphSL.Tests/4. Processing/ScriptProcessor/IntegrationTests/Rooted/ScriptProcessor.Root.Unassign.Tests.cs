@@ -10,7 +10,7 @@
     public class ScriptProcessorRootUnassignTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
         public ScriptProcessorRootUnassignTests(LogicalUnitTestContext testContext)

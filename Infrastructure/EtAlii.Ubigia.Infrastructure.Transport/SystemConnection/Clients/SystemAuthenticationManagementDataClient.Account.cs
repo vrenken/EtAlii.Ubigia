@@ -9,12 +9,11 @@
         private Task<Account> GetAccount(string accountName)
         {
             var account = _infrastructure.Accounts.Get(accountName);
-            if (account == null)
-            {
-                string message = $"Unable to connect using the specified account ({accountName})";
-                throw new UnauthorizedInfrastructureOperationException(message);
-            }
-            return Task.FromResult(account);
+            
+            if (account != null) return Task.FromResult(account);
+            
+            string message = $"Unable to connect using the specified account ({accountName})";
+            throw new UnauthorizedInfrastructureOperationException(message);
         }
     }
 }

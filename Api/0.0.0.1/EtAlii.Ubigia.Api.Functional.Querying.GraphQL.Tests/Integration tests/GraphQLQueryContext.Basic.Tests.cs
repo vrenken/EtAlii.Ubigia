@@ -55,8 +55,10 @@
         {
             // Arrange.
 #pragma warning disable 1717
+            // ReSharper disable RedundantAssignment
             title = title;
             fileName = fileName;
+            // ReSharper restore RedundantAssignment
 #pragma warning restore 1717
             
             // Act.

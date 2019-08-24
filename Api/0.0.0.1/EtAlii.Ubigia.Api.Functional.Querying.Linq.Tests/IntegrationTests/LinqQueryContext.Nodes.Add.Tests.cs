@@ -223,12 +223,14 @@
         {
             // Arrange.
             var items = _context.Nodes.Select(_countryPath);
-
+            INode result = null;
+            
             // Act.
-            var act = new Action(() => items.Add("\"Overijssel_01").Single());
+            var act = new Action(() => result = items.Add("\"Overijssel_01").Single());
 
             // Assert.
             Assert.Throws<NodeQueryingException>(act);
+            Assert.Null(result);
         }
     }
 }

@@ -177,6 +177,7 @@
             dynamic thirdResult = await processingResult.Output.LastOrDefaultAsync();
             
             // Assert.
+            Assert.NotNull(addedSpace);
             TestSystemSettings.AreEqual(firstSystemSettings, firstResult);
             TestSystemSettings.AreEqual(secondSystemSettings, secondResult);
             TestSystemSettings.AreEqual(thirdSystemSettings, thirdResult);

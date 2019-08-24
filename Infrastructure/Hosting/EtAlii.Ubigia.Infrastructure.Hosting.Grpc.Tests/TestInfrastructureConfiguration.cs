@@ -7,7 +7,7 @@
     public static class TestInfrastructureConfiguration
     {
         private const int TestPort = 62000;
-        private const string TestAddressFormat = "http://localhost:[0]";
+        private const string TestAddressFormat = "http://localhost:{0}";
 
         public static IInfrastructureConfiguration Create()
         {

@@ -26,7 +26,7 @@
         {
             await PowerShellClient.Current.ManagementConnection.Spaces.Change(Space.Id, Space.Name);
 
-            var verboseDescription = $"Space '{Space.Name}' has been updated.";
+            //var verboseDescription = $"Space '{Space.Name}' has been updated."
             //WriteVerbose(verboseDescription)
         } 
     }

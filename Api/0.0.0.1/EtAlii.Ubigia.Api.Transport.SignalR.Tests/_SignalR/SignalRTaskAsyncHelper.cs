@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Transport.SignalR.Tests
 {
     using System;
-    using System.Globalization;
     using System.Threading;
     using System.Threading.Tasks;
     using TaskAsyncHelper = SignalRTaskAsyncHelper;
@@ -611,6 +610,7 @@
                 tcs.SetException(e);
         }
 
+        // ReSharper disable once UnusedMethodReturnValue.Local
         private static bool TrySetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
             if (e is AggregateException aggregateException)
@@ -633,16 +633,16 @@
 
         private static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction, TaskContinuationOptions continuationOptions)
         {
-            CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
-            CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
+            var preservedCulture = Thread.CurrentThread.CurrentCulture;
+            var preservedUiCulture = Thread.CurrentThread.CurrentUICulture;
             return task.ContinueWith(t =>
             {
-                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
+                var currentCulture = Thread.CurrentThread.CurrentCulture;
+                var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
                 try
                 {
                     Thread.CurrentThread.CurrentCulture = preservedCulture;
-                    Thread.CurrentThread.CurrentUICulture = preservedUICulture;
+                    Thread.CurrentThread.CurrentUICulture = preservedUiCulture;
                     continuationAction(t);
                 }
                 finally
@@ -655,16 +655,16 @@
 
         private static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction, TaskContinuationOptions continuationOptions)
         {
-            CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
-            CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
+            var preservedCulture = Thread.CurrentThread.CurrentCulture;
+            var preservedUiCulture = Thread.CurrentThread.CurrentUICulture;
             return task.ContinueWith(t =>
             {
-                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
+                var currentCulture = Thread.CurrentThread.CurrentCulture;
+                var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
                 try
                 {
                     Thread.CurrentThread.CurrentCulture = preservedCulture;
-                    Thread.CurrentThread.CurrentUICulture = preservedUICulture;
+                    Thread.CurrentThread.CurrentUICulture = preservedUiCulture;
                     continuationAction(t);
                 }
                 finally
@@ -677,16 +677,16 @@
 
         private static Task<TResult> ContinueWithPreservedCulture<T, TResult>(this Task<T> task, Func<Task<T>, TResult> continuationAction, TaskContinuationOptions continuationOptions)
         {
-            CultureInfo preservedCulture = Thread.CurrentThread.CurrentCulture;
-            CultureInfo preservedUICulture = Thread.CurrentThread.CurrentUICulture;
+            var preservedCulture = Thread.CurrentThread.CurrentCulture;
+            var preservedUiCulture = Thread.CurrentThread.CurrentUICulture;
             return task.ContinueWith((t =>
             {
-                CultureInfo currentCulture = Thread.CurrentThread.CurrentCulture;
-                CultureInfo currentUiCulture = Thread.CurrentThread.CurrentUICulture;
+                var currentCulture = Thread.CurrentThread.CurrentCulture;
+                var currentUiCulture = Thread.CurrentThread.CurrentUICulture;
                 try
                 {
                     Thread.CurrentThread.CurrentCulture = preservedCulture;
-                    Thread.CurrentThread.CurrentUICulture = preservedUICulture;
+                    Thread.CurrentThread.CurrentUICulture = preservedUiCulture;
                     return continuationAction(t);
                 }
                 finally
@@ -697,11 +697,13 @@
             }), continuationOptions);
         }
 
+        // ReSharper disable once UnusedMethodReturnValue.Local
         private static Task ContinueWithPreservedCulture(this Task task, Action<Task> continuationAction)
         {
             return ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);
         }
 
+        // ReSharper disable once UnusedMethodReturnValue.Local
         private static Task ContinueWithPreservedCulture<T>(this Task<T> task, Action<Task<T>> continuationAction)
         {
             return ContinueWithPreservedCulture(task, continuationAction, TaskContinuationOptions.None);

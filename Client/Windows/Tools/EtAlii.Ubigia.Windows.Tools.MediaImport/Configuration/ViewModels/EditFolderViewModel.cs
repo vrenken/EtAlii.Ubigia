@@ -69,12 +69,12 @@
         {
             var window = (Window)obj;
             var win32Window = window.GetWin32Window();
-            var dr = MessageBox.Show(win32Window, "Do you really want to stop synchronizing this folder?", "Remove synchronization", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
-            if (dr == DialogResult.Yes)
-            {
-                OriginalFolderMonitor.Configuration.Delete();
-                window.DialogResult = false;
-            }
+            var dr = MessageBox.Show(win32Window, @"Do you really want to stop synchronizing this folder?", @"Remove synchronization", MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+            
+            if (dr != DialogResult.Yes) return;
+            
+            OriginalFolderMonitor.Configuration.Delete();
+            window.DialogResult = false;
         }
 
         private bool CanCancelChanges(object obj)

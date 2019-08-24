@@ -59,7 +59,7 @@ namespace EtAlii.Ubigia.Api.Logical.Tests
             var countryEntry = (IEditableEntry)await context.Nodes.Add(continentEntry.Id, country, scope);
             var regionEntry = (IEditableEntry)await context.Nodes.Add(countryEntry.Id, region, scope);
             var cityEntry = (IEditableEntry)await context.Nodes.Add(regionEntry.Id, city, scope);
-            var locationEntry = (IEditableEntry)await context.Nodes.Add(cityEntry.Id, location, scope);
+            await context.Nodes.Add(cityEntry.Id, location, scope);
             return $"/Location/{continent}/{country}/{region}/{city}/{location}";
         }
 

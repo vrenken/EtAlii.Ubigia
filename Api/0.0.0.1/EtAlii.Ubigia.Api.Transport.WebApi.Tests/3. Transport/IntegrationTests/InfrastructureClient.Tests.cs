@@ -37,9 +37,9 @@
 
                 var result = await client.Get<TestPackage>(new Uri("http://echo.jsontest.com/first/ping/second/pong/third/42", UriKind.Absolute));
                 Assert.NotNull(result);
-                Assert.Equal("ping", result.first);
-                Assert.Equal("pong", result.second);
-                Assert.Equal(42, result.third);
+                Assert.Equal("ping", result.First);
+                Assert.Equal("pong", result.Second);
+                Assert.Equal(42, result.Third);
             }
         }
 

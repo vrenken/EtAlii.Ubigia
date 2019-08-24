@@ -8,7 +8,7 @@
         /// The Sequence for which results will be returned through the Output observable.
         /// </summary>
         public Sequence Sequence { get; }
-        private ISequenceExecutionPlan ExecutionPlan { get;  }
+        public ISequenceExecutionPlan ExecutionPlan { get;  }
         public int Step { get; }
         public int Total { get; }
 

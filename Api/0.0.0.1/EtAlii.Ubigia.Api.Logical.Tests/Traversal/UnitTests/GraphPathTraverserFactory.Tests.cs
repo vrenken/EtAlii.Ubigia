@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
-    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
     public class GraphPathTraverserFactoryTests
@@ -14,6 +13,7 @@
             var factory = new GraphPathTraverserFactory();
 
             // Assert.
+            Assert.NotNull(factory);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

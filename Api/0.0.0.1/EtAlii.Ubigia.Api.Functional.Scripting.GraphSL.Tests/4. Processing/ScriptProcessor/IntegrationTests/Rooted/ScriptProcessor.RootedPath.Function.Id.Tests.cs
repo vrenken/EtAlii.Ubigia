@@ -13,7 +13,7 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
     public class ScriptProcessorRootedPathFunctionIdTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
         public ScriptProcessorRootedPathFunctionIdTests(LogicalUnitTestContext testContext)

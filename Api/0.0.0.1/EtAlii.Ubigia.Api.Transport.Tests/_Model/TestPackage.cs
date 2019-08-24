@@ -2,8 +2,8 @@
 {
     public class TestPackage
     {
-        public string first { get; set; }
-        public string second { get; set; }
-        public int third { get; set; }
+        public string First { get; set; }
+        public string Second { get; set; }
+        public int Third { get; set; }
     }
 }

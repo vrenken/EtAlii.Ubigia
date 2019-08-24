@@ -22,7 +22,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byChildEntryId", HelpMessage = "The child entry ID that relates to the entry instance.")]
         public Identifier ChildId { get; set; }
 
-        public Entry TargetChildEntry { get; private set; }
+        //public Entry TargetChildEntry [ get private set ] 
 
 
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byNextEntry", HelpMessage = "The next entry that relates to the entry instance.")]
@@ -31,7 +31,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byNextEntryId", HelpMessage = "The next entry ID that relates to the entry instance.")]
         public Identifier NextId { get; set; }
 
-        public Entry TargetNextEntry { get; private set; }
+        //public Entry TargetNextEntry [ get private set ]
 
 
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byUpdateEntry", HelpMessage = "The update entry that relates to the entry instance.")]
@@ -40,7 +40,7 @@
         [Parameter(Mandatory = false, Position = 80, ParameterSetName = "byUpdateEntryId", HelpMessage = "The update entry ID that relates to the entry instance.")]
         public Identifier UpdateId { get; set; }
 
-        public Entry TargetUpdateEntry { get; private set; }
+        //public Entry TargetUpdateEntry [ get private set ]
         
         protected override Task<Entry> ProcessTask()
         {

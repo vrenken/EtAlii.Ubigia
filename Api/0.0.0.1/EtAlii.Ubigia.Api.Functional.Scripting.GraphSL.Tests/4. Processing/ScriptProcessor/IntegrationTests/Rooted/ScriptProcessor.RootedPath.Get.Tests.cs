@@ -13,7 +13,7 @@
     public class ScriptProcessorRootedPathGetTests : IClassFixture<LogicalUnitTestContext>, IDisposable
     {
         private IScriptParser _parser;
-        private IDiagnosticsConfiguration _diagnostics;
+        private readonly IDiagnosticsConfiguration _diagnostics;
         private readonly LogicalUnitTestContext _testContext;
 
         public ScriptProcessorRootedPathGetTests(LogicalUnitTestContext testContext)
@@ -208,6 +208,9 @@
             var result = await lastSequence.Output.ToArray();
 
             // Assert.
+            Assert.NotNull(lastSequence);
+            Assert.NotNull(lastSequence.Sequence);
+            Assert.NotNull(lastSequence.ExecutionPlan);
             Assert.NotNull(result);
             Assert.IsAssignableFrom<IEnumerable<object>>(result);
             Assert.Equal(continent, result.Cast<INode>().Single().Type);

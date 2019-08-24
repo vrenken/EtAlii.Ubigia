@@ -5,9 +5,9 @@
     using EtAlii.Ubigia.Api;
 
     [Serializable]
-    public class SpaceFabricException : Exception
+    public sealed class SpaceFabricException : Exception
     {
-        protected SpaceFabricException(SerializationInfo info, StreamingContext context)
+        private SpaceFabricException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }
