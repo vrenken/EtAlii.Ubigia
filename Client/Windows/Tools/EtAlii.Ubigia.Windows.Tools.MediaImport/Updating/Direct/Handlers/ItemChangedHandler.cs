@@ -9,14 +9,14 @@
         //private readonly ILogger _logger
         //private readonly IGraphSLScriptContext _scriptContext
 
-        public ItemChangedHandler(
-            //IGraphSLScriptContext scriptContext
-            //ILogger logger
-            )
-        {
-            //_logger = logger
-            //_scriptContext = scriptContext
-        }
+//        public ItemChangedHandler(
+//            //IGraphSLScriptContext scriptContext
+//            //ILogger logger
+//            )
+//        [
+//            //_logger = logger
+//            //_scriptContext = scriptContext
+//        ]
 
         public Task Handle(ItemCheckAction action, string localStart, string remoteStart)
         {

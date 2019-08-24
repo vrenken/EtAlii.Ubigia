@@ -12,7 +12,7 @@
 
         public new MainWindow MainWindow { get => base.MainWindow as MainWindow; set => base.MainWindow = value; }
 
-        private IApplicationService[] _services;
+        //private IApplicationService[] _services
 
         public static bool AlreadyRunning
         {
@@ -58,28 +58,28 @@
 //        [
 //            StopServices()
 //        ]
-        private void StartServices()
-        {
-            _services = new IApplicationService[]
-            {
-                //Container.GetInstance[IShellExtensionService][]
-                Container.GetInstance<ITaskbarIconService>()
-            };
-            foreach (var service in _services)
-            {
-                service.Start();
-            }
-        }
+//        private void StartServices()
+//        [
+//            _services = new IApplicationService[]
+//            [
+//                //Container.GetInstance[IShellExtensionService][]
+//                Container.GetInstance<ITaskbarIconService>()
+//            ]
+//            foreach (var service in _services)
+//            [
+//                service.Start()
+//            ]
+//        ]
 
-        private void StopServices()
-        {
-            foreach (var service in _services)
-            {
-                service.Stop();
-            }
-
-            _services = null;
-        }
+//        private void StopServices()
+//        [
+//            foreach (var service in _services)
+//            [
+//                service.Stop()
+//            ]
+//
+//            _services = null
+//        ]
 
         protected override void RegisterKnownTypes()
         {

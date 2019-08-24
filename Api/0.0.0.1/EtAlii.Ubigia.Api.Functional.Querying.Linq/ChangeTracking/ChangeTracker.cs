@@ -8,11 +8,12 @@
         public bool HasChanges { get; }
 
         public IEnumerable<NodeTrackingReference> Entries => _entries;
-        private readonly List<NodeTrackingReference> _entries;
+        private readonly NodeTrackingReference[] _entries;
 
         public ChangeTracker()
         {
-            _entries = new List<NodeTrackingReference>();
+            //_entries = new List<NodeTrackingReference>()
+            _entries = Array.Empty<NodeTrackingReference>();
             HasChanges = false;
         }
  

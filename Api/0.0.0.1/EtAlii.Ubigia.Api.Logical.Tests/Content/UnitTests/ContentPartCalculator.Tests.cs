@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
     public class ContentPartCalculatorTests
@@ -9,7 +8,13 @@
         [Fact, Trait("Category", TestAssembly.Category)]
         public void PartCalculator_Create()
         {
+            // Arrange.
+            
+            // Act.
             var partCalculator = new ContentPartCalculator();
+            
+            // Assert.
+            Assert.NotNull(partCalculator);
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

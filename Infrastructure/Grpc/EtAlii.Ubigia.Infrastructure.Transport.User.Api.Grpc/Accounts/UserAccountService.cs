@@ -6,12 +6,12 @@
     {
         //private readonly IAccountRepository _items
 
-		public UserAccountService(
-			//IAccountRepository items
-			)
-        {
-            //_items = items
-		}
+//		public UserAccountService(
+//			//IAccountRepository items
+//			)
+//      [
+//            //_items = items
+//		]
 
     }
 }

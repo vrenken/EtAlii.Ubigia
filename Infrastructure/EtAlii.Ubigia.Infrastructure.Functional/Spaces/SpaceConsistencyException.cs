@@ -5,9 +5,9 @@
     using EtAlii.Ubigia.Api;
 
     [Serializable]
-    public class SpaceConsistencyException : Exception
+    public sealed class SpaceConsistencyException : Exception
     {
-        protected SpaceConsistencyException(SerializationInfo info, StreamingContext context)
+        private SpaceConsistencyException(SerializationInfo info, StreamingContext context)
             : base(info, context)
         {
         }

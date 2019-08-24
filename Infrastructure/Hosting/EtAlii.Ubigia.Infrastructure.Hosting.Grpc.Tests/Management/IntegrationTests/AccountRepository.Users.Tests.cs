@@ -205,11 +205,16 @@
 	        var context = _testContext.HostTestContext;
             var repository = context.Host.Infrastructure.Accounts;
             var account = CreateAccount();
-            var addedAccount = await repository.Add(account, AccountTemplate.User);
+            var addedAccount1 = await repository.Add(account, AccountTemplate.User);
             account = CreateAccount();
-            addedAccount = await repository.Add(account, AccountTemplate.User);
+            var addedAccount2 = await repository.Add(account, AccountTemplate.User);
 
+            // Act.
             var accounts = repository.GetAll();
+            
+            // Assert.
+            Assert.NotNull(addedAccount1);
+            Assert.NotNull(addedAccount2);
             Assert.NotNull(accounts);
             Assert.True(accounts.Count() >= 2);
         }

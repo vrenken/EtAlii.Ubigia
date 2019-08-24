@@ -18,7 +18,7 @@
         public string Id { get; } = "ValueQuery";
 
         private const string KeyId = "Key";
-        private const string RequirementId = "Requirement";
+        //private const string RequirementId = "Requirement"
         private const string AnnotationId = "Annotation";
 
         private const string QueryValueId = "QueryValue"; 

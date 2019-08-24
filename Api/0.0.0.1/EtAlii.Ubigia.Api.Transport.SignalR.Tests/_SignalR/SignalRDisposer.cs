@@ -9,7 +9,7 @@
     /// </summary>
     internal class SignalRDisposer : IDisposable
     {
-        private static readonly object _disposedSentinel = new object();
+        private static readonly object DisposedSentinel = new object();
         private object _disposable;
 
         public void Set(IDisposable disposable)
@@ -17,7 +17,7 @@
             if (disposable == null)
                 throw new ArgumentNullException(nameof(disposable));
             object obj = Interlocked.CompareExchange(ref _disposable, disposable, null);
-            if (obj == null || obj != _disposedSentinel)
+            if (obj == null || obj != DisposedSentinel)
                 return;
             disposable.Dispose();
         }
@@ -26,7 +26,7 @@
         {
             if (!disposing)
                 return;
-            IDisposable disposable = Interlocked.Exchange<object>(ref _disposable, _disposedSentinel) as IDisposable;
+            IDisposable disposable = Interlocked.Exchange<object>(ref _disposable, DisposedSentinel) as IDisposable;
             if (disposable == null)
                 return;
             disposable.Dispose();

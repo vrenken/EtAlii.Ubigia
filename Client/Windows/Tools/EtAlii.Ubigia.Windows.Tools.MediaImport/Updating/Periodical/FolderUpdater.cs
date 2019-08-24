@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
@@ -49,21 +48,21 @@
             {
                 remoteItems = new DynamicNode[] {};
             }
-            var localItems = Directory
-                .EnumerateFileSystemEntries(folder)
-                .ToArray();
+//            var localItems = Directory
+//                .EnumerateFileSystemEntries(folder)
+//                .ToArray()
 
-            var itemsToAdd = localItems.Where(li => remoteItems.Any(ri => ri.ToString() == Path.GetFileName(li)));
-            var itemsToRemove = remoteItems.Where(ri => localItems.All(li => ri.ToString() != Path.GetFileName(li)));
+//            var itemsToAdd = localItems.Where(li => remoteItems.Any(ri => ri.ToString() == Path.GetFileName(li)))
+//            var itemsToRemove = remoteItems.Where(ri => localItems.All(li => ri.ToString() != Path.GetFileName(li)))
 
-            foreach (var itemToAdd in itemsToAdd)
-            {
-                //_itemCreatedHandler.Value.Handle(itemToAdd, localStart, remoteStart)
-            }
-            foreach (var itemToRemove in itemsToRemove)
-            {
-                //_itemDestroyedHandler.Value.Handle(itemToRemove.Type, localStart, remoteStart)
-            }
+//            foreach (var itemToAdd in itemsToAdd)
+//            [
+//                //_itemCreatedHandler.Value.Handle(itemToAdd, localStart, remoteStart)
+//            ]
+//            foreach (var itemToRemove in itemsToRemove)
+//            [
+//                //_itemDestroyedHandler.Value.Handle(itemToRemove.Type, localStart, remoteStart)
+//            ]
         }
     }
 }

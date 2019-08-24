@@ -9,14 +9,15 @@
         private readonly List<LastName> _lastNames;
         private readonly List<Email> _emails;
         private readonly List<Phone> _phones;
-        private readonly List<Photo> _photos;
+        private readonly Photo[] _photos;
 
         public PersonModelBuilder()
         {
             _lastNames = new List<LastName>();
             _emails = new List<Email>();
             _phones = new List<Phone>();
-            _photos = new List<Photo>();
+            //_photos = new List<Photo>()
+            _photos = Array.Empty<Photo>();
         }
 
         public void Clear()
@@ -24,7 +25,7 @@
             _lastNames.Clear();
             _emails.Clear();
             _phones.Clear();
-            _photos.Clear();
+            //_photos.Clear()
         }
 
         public void Add(string lastName, string firstName, string email, string phone)

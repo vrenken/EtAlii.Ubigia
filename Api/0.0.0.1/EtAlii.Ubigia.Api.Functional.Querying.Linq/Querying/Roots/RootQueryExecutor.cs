@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Remotion.Linq;
@@ -29,7 +30,8 @@
             //var commandData = visitor.GetGqlCommand()
 
             //var script = commandData.CreateScript(_fabric)
-            var output = new List<T>();
+            //var output = new List<T>();
+            var output = Array.Empty<T>();
             //var scriptProcessor = _scriptProcessorFactory.Create(, new ScriptScope(o => output.Add((T) o)), _fabric)
             //scriptProcessor.Process(script)
             return output;

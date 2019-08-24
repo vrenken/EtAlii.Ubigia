@@ -29,7 +29,6 @@
         {
             if (Equals(storage, newValue)) return false;
 
-            var oldValue = storage;
             storage = newValue;
             NotifyPropertyChanged(this, storage, newValue, propertyName);
 

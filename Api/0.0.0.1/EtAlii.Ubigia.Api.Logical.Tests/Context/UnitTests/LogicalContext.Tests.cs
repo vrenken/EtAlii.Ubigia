@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Api.Logical.Tests.UnitTests
 {
-    using EtAlii.Ubigia.Api.Logical;
     using Xunit;
 
     public class LogicalContextTests
@@ -27,9 +26,9 @@
             // Act.
             using (var context = new LogicalContextFactory().Create(configuration))
             {
+                // Assert.
+                Assert.NotNull(context);
             }
-
-            // Assert.
         }
 
         [Fact, Trait("Category", TestAssembly.Category)]

@@ -7,9 +7,9 @@
 
     internal static class SignalRHttpRuleParser
     {
-        private static readonly bool[] tokenChars;
+        private static readonly bool[] TokenChars;
 //        private const int maxNestedCount = 5
-        private static readonly string[] dateFormats;
+        private static readonly string[] DateFormats;
         internal const char Cr = '\r';
         internal const char Lf = '\n';
         internal const int MaxInt64Digits = 19;
@@ -64,35 +64,35 @@
             int index15 = 14;
             string str15 = "d MMM yyyy H:m:s";
             strArray[index15] = str15;
-            dateFormats = strArray;
+            DateFormats = strArray;
             DefaultHttpEncoding = Encoding.GetEncoding(28591);
-            tokenChars = new bool[128];
+            TokenChars = new bool[128];
             for (int index16 = 33; index16 < (int)sbyte.MaxValue; ++index16)
-                tokenChars[index16] = true;
-            tokenChars[40] = false;
-            tokenChars[41] = false;
-            tokenChars[60] = false;
-            tokenChars[62] = false;
-            tokenChars[64] = false;
-            tokenChars[44] = false;
-            tokenChars[59] = false;
-            tokenChars[58] = false;
-            tokenChars[92] = false;
-            tokenChars[34] = false;
-            tokenChars[47] = false;
-            tokenChars[91] = false;
-            tokenChars[93] = false;
-            tokenChars[63] = false;
-            tokenChars[61] = false;
-            tokenChars[123] = false;
-            tokenChars[125] = false;
+                TokenChars[index16] = true;
+            TokenChars[40] = false;
+            TokenChars[41] = false;
+            TokenChars[60] = false;
+            TokenChars[62] = false;
+            TokenChars[64] = false;
+            TokenChars[44] = false;
+            TokenChars[59] = false;
+            TokenChars[58] = false;
+            TokenChars[92] = false;
+            TokenChars[34] = false;
+            TokenChars[47] = false;
+            TokenChars[91] = false;
+            TokenChars[93] = false;
+            TokenChars[63] = false;
+            TokenChars[61] = false;
+            TokenChars[123] = false;
+            TokenChars[125] = false;
         }
 
         private static bool IsTokenChar(char character)
         {
             if (character > sbyte.MaxValue)
                 return false;
-            return tokenChars[character];
+            return TokenChars[character];
         }
 
         internal static int GetTokenLength(string input, int startIndex)
@@ -256,7 +256,7 @@
 
         internal static bool TryStringToDate(string input, out DateTimeOffset result)
         {
-            return DateTimeOffset.TryParseExact(input, dateFormats, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result);
+            return DateTimeOffset.TryParseExact(input, DateFormats, DateTimeFormatInfo.InvariantInfo, DateTimeStyles.AllowWhiteSpaces | DateTimeStyles.AssumeUniversal, out result);
         }
 
         private static HttpParseResult GetExpressionLength(string input, int startIndex, char openChar, char closeChar, bool supportsNesting, ref int nestedCount, out int length)

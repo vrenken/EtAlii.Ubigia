@@ -8,8 +8,8 @@
     {
         public IReadOnlyEntry Entry
         {
-            get { return _entry; }
-            set { if (_entry != value) { var old = _entry; _entry = value; RaisePropertyChanged("Entry", old, value); } }
+            get => _entry;
+            set { if (Equals(_entry, value)) return; var old = _entry; _entry = value; RaisePropertyChanged("Entry", old, value); }
         }
         private IReadOnlyEntry _entry;
 

@@ -30,7 +30,7 @@
 
         protected override void Handle(AddEntryToGraphCommand command)
         {
-            _mainDispatcherInvoker.SafeInvoke(delegate()
+            _mainDispatcherInvoker.SafeInvoke(delegate
             {
                 var entry = command.Entry;
                 var identifier = entry.Id;

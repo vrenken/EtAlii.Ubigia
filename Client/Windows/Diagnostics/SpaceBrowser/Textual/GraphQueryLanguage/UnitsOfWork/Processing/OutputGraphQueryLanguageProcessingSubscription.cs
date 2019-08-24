@@ -11,14 +11,14 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
         //private readonly IMultiResultFactory _resultFactory
 
 
-        public OutputGraphQueryLanguageProcessingSubscription(
-            //IErrorWriter errorWriter, 
-            //IMultiResultFactory resultFactory
-            )
-        {
-            //_errorWriter = errorWriter
-            //_resultFactory = resultFactory
-        }
+//        public OutputGraphQueryLanguageProcessingSubscription(
+//            //IErrorWriter errorWriter, 
+//            //IMultiResultFactory resultFactory
+//            )
+//        [
+//            //_errorWriter = errorWriter
+//            //_resultFactory = resultFactory
+//        ]
 
         public void Subscribe(
             IObservable<GraphQLQueryProcessingResult> results, 

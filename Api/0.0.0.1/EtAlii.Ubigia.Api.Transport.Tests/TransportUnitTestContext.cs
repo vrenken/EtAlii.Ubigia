@@ -4,13 +4,12 @@
     using EtAlii.Ubigia.Api.Tests;
     using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using EtAlii.Ubigia.Tests;
-    using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 
     public class TransportUnitTestContext : IAsyncLifetime
     {
         public ITransportTestContext<InProcessInfrastructureHostTestContext> TransportTestContext { get; private set; }
-        public IDiagnosticsConfiguration DiagnosticsConfiguration { get; private set; }
+        //public IDiagnosticsConfiguration DiagnosticsConfiguration [ get private set ]
 
         public ByteArrayComparer ByteArrayComparer { get; }
         public ContentComparer ContentComparer { get; }

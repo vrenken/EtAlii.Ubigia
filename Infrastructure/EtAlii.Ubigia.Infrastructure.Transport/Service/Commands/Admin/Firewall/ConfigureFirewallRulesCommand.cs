@@ -44,14 +44,13 @@
                     const string resourceName = "Commands.Admin.Firewall.ConfigureFirewall.ps1";
                     resourceStream = assembly.GetManifestResourceStream(type, resourceName);
                     fileStream = File.Create(scriptFullPath);
-                    using (var reader = new StreamReader(resourceStream ?? throw new InvalidOperationException($"No manifest resource stream found: {resourceName ?? "NULL"}")))
-                    using (var writer = new StreamWriter(fileStream))
-                    {
-                        resourceStream = null;
-                        fileStream = null;
-                        var content = reader.ReadToEnd();
-                        writer.Write(content);
-                    }
+                    using var reader = new StreamReader(resourceStream ?? throw new InvalidOperationException($"No manifest resource stream found: {resourceName ?? "NULL"}"));
+                    using var writer = new StreamWriter(fileStream);
+                    
+                    resourceStream = null;
+                    fileStream = null;
+                    var content = reader.ReadToEnd();
+                    writer.Write(content);
                 }
                 finally
                 {

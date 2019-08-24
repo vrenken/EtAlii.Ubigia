@@ -42,7 +42,7 @@
 
         public void AddItem(string action, string description)
         {
-            _mainDispatcherInvoker.SafeInvoke(delegate()
+            _mainDispatcherInvoker.SafeInvoke(delegate
             {
                 _currentId += 1;
                 Items.Add(new JournalItem { Id = _currentId, Action = action, Moment = DateTime.Now, Description = description });

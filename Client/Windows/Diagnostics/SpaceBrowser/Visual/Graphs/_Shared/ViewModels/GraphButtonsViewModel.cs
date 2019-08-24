@@ -58,18 +58,17 @@
 
         private void DiscoverFromTail(object parameter)
         {
-            if (parameter is IGraphDocumentViewModel graphViewModel)
+            if (!(parameter is IGraphDocumentViewModel)) return;
+            
+            IReadOnlyEntry entry = null;
+            var task = Task.Run(async () =>
             {
-                IReadOnlyEntry entry = null;
-                var task = Task.Run(async () =>
-                {
-                    var root = await _fabric.Roots.Get(DefaultRoot.Tail);
-                    entry = await _fabric.Entries.Get(root, new ExecutionScope(false));
-                });
-                task.Wait();
+                var root = await _fabric.Roots.Get(DefaultRoot.Tail);
+                entry = await _fabric.Entries.Get(root, new ExecutionScope(false));
+            });
+            task.Wait();
 
-                _graphContext.CommandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3), _graphContext.DiscoverEntryCommandHandler);
-            }
+            _graphContext.CommandProcessor.Process(new DiscoverEntryCommand(entry, ProcessReason.Discovered, 3), _graphContext.DiscoverEntryCommandHandler);
         }
 
         private bool CanClearGraph(object parameter)

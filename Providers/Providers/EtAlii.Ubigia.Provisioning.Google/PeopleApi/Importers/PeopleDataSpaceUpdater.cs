@@ -69,13 +69,14 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 		   // return request
 	    //]
 		private PeopleResource.ConnectionsResource.ListRequest CreateRequest(SystemSettings systemSettings, UserSettings userSettings)
-        {
+		{
+			// ReSharper disable once UnusedVariable
 			var parameters = new global::Google.Apis.Auth.OAuth2.JsonCredentialParameters
-		        {
-					ClientId = systemSettings.ClientId,
-			        PrivateKey = userSettings.AccessToken,
-			        RefreshToken = userSettings.RefreshToken
-		        };
+			{
+				ClientId = systemSettings.ClientId,
+				PrivateKey = userSettings.AccessToken,
+				RefreshToken = userSettings.RefreshToken
+			};
 
 	        var initializer = new BaseClientService.Initializer();
 			var service = new PeopleServiceService(initializer);
