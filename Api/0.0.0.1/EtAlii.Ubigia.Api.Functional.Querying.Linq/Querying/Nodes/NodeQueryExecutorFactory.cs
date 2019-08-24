@@ -1,5 +1,7 @@
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using EtAlii.Ubigia.Api.Functional.Scripting;
+
     internal class NodeQueryExecutorFactory : INodeQueryExecutorFactory
     {
         private readonly IGraphSLScriptContext _scriptContext;

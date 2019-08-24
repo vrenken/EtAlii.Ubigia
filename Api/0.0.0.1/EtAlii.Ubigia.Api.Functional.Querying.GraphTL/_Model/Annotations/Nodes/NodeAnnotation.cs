@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using EtAlii.Ubigia.Api.Functional.Scripting;
+
     public abstract class NodeAnnotation : AnnotationNew
     {
         /// <summary>

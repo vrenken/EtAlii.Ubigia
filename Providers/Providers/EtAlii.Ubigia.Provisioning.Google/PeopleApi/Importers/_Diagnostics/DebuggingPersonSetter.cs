@@ -5,7 +5,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.Logging;
     using global::Google.Apis.PeopleService.v1.Data;
 

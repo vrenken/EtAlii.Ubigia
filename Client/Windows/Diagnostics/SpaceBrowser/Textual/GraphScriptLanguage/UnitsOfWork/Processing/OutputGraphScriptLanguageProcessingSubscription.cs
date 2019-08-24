@@ -3,7 +3,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System;
     using System.Collections.Generic;
     using System.Reactive.Linq;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical;
 
     public class OutputGraphScriptLanguageProcessingSubscription : IOutputGraphScriptLanguageProcessingSubscription

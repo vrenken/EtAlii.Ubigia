@@ -1,5 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using Xunit;
 
     public class AssignAndSelectValueAnnotationParser 

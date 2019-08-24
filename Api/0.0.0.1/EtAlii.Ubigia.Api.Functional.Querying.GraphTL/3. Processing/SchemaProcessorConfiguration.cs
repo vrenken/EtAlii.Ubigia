@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional 
 {
     using System;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     public class SchemaProcessorConfiguration : Configuration, ISchemaProcessorConfiguration
     {

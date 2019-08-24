@@ -2,7 +2,7 @@
 {
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     public class SystemSettingsSetter : ISystemSettingsSetter
     {

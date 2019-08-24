@@ -4,7 +4,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using Xunit;
 
     public class ScriptParserAssignVariableObjectTests : IDisposable

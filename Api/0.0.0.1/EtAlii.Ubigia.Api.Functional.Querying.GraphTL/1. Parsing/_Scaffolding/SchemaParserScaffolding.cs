@@ -2,6 +2,7 @@
 
 namespace EtAlii.Ubigia.Api.Functional
 {
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;
 
     internal class SchemaParserScaffolding : IScaffolding

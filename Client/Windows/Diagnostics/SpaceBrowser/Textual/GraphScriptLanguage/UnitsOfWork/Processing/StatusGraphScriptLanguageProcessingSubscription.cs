@@ -4,8 +4,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
     using System.Collections.Generic;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
-
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     public class StatusGraphScriptLanguageProcessingSubscription : IStatusGraphScriptLanguageProcessingSubscription
     {

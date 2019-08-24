@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using Xunit;
 
     public partial class ScriptParserTests : IDisposable

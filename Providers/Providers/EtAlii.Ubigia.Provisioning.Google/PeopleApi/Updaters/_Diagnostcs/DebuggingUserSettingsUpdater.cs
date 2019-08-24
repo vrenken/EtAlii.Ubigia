@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Provisioning.Google.PeopleApi
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.Logging;
 
     public class DebuggingUserSettingsUpdater : IUserSettingsUpdater

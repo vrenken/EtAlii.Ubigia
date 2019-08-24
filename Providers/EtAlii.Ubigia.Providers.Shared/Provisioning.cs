@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Provisioning
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     public class Provisioning : IProvisioning
     {
