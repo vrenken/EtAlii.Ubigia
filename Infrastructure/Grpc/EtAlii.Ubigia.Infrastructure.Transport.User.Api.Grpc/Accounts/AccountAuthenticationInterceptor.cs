@@ -19,10 +19,15 @@
 
         private void EnsureUserIsAuthenticated(Metadata headers)
         {
-            if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is { } authenticationTokenHeader))
+            var authenticationTokenHeader = headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey);
+            if (authenticationTokenHeader == null)
             {
                 throw new InvalidOperationException("Unable to authenticate: no authentication token header.");                
             }
+//            if (!(headers.SingleOrDefault(h => h.Key == GrpcHeader.AuthenticationTokenHeaderKey) is { } authenticationTokenHeader))
+//            {
+//                throw new InvalidOperationException("Unable to authenticate: no authentication token header.");                
+//            }
             
             var authenticationToken = authenticationTokenHeader.Value;
             _authenticationTokenVerifier.Verify(authenticationToken, Role.User, Role.System);

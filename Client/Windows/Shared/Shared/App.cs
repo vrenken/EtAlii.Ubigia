@@ -11,11 +11,11 @@
         public const string StorageNaming = "Space";
         public const string StoragesNaming = "Spaces";
 
-        public static string CurrentDirectory => _currentDirectory.Value;
-        private static readonly Lazy<string> _currentDirectory = new Lazy<string>(Directory.GetCurrentDirectory);
+        public static string CurrentDirectory => CurrentDirectoryInternal.Value;
+        private static readonly Lazy<string> CurrentDirectoryInternal = new Lazy<string>(Directory.GetCurrentDirectory);
 
-        public static string ShellExtensionsDirectory => _shellExtensionsDirectory.Value;
-        private static readonly Lazy<string> _shellExtensionsDirectory = new Lazy<string>(() => Path.Combine(CurrentDirectory, "ShellExtensions"));
+        public static string ShellExtensionsDirectory => ShellExtensionsDirectoryInternal.Value;
+        private static readonly Lazy<string> ShellExtensionsDirectoryInternal = new Lazy<string>(() => Path.Combine(CurrentDirectory, "ShellExtensions"));
 
         public new static App Current => System.Windows.Application.Current as App;
 

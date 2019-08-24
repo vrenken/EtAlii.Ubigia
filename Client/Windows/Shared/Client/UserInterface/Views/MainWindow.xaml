@@ -28,9 +28,6 @@
                                             <ColumnDefinition Width="*" />
                                             <ColumnDefinition Width="auto" />
                                         </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition />
-                                        </Grid.RowDefinitions>
                                         <TextBlock Grid.Column="0" Text="{Binding Name}" Style="{StaticResource LabelStyle}" />
                                         <ProgressBar 
                                             Grid.Column="1" 
@@ -54,10 +51,7 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Column="1" Grid.Row="1" Text="Add" Style="{StaticResource HyperlinkStyle}">
+                            <TextBlock Grid.Column="1" Grid.Row="0" Text="Add" Style="{StaticResource HyperlinkStyle}">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger EventName="MouseLeftButtonUp">
                                         <i:InvokeCommandAction Command="{ui:AddNewStorageCommand}" />

@@ -32,6 +32,7 @@
         // http://vrenken.duckdns.org:54001/coding_rules?open=csharpsquid%3AS2328&rule_key=csharpsquid%3AS2328 
         public override int GetHashCode()
         {
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             return _entry.Id.GetHashCode();
         }
         #pragma warning restore S2328

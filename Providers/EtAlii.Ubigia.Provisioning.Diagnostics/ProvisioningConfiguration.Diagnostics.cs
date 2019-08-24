@@ -21,7 +21,7 @@ namespace EtAlii.Ubigia.Provisioning.Diagnostics
                 .Use(extensions)
                 .Use((DataConnectionConfiguration c) => c.UseTransportDiagnostics(diagnostics))
                 .Use((ManagementConnectionConfiguration c) => c.UseTransportDiagnostics(diagnostics))
-                .Use((GraphSLScriptContextConfiguration c) => c.UseFunctionalGraphSLDiagnostics(diagnostics));
+                .Use(c => c.UseFunctionalGraphSLDiagnostics(diagnostics));
         }
     }
 }

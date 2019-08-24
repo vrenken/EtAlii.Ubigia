@@ -3,11 +3,9 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Hosting.TestHost.Grpc;
     using EtAlii.Ubigia.Infrastructure.Transport;
 
     public partial class HostTestContext<TInfrastructureTestHost> 
-        where TInfrastructureTestHost : class, IInfrastructureTestHost
     {
         public Task<ISystemConnection> CreateSystemConnection()
         {
