@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional
+namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Logical;

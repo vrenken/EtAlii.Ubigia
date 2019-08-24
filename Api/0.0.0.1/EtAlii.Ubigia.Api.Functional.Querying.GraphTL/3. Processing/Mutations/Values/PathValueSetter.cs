@@ -3,6 +3,7 @@ namespace EtAlii.Ubigia.Api.Functional
     using System.Linq;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical;
 
     internal class PathValueSetter : IPathValueSetter
