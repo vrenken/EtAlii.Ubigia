@@ -1,7 +1,5 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics
+namespace EtAlii.Ubigia.Api.Functional.Querying
 {
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
-
     public static class GraphQLQueryContextConfigurationUseGraphQLProfiling
     {
         public static TGraphQLQueryContextConfiguration UseGraphQLProfiling<TGraphQLQueryContextConfiguration>(this TGraphQLQueryContextConfiguration configuration)

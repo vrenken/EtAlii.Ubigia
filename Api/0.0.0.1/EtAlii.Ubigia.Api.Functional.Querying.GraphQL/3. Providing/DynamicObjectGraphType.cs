@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using System;
     using System.Linq;
     using System.Reflection;
     using System.Reflection.Emit;
-    using global::GraphQL.Types;
+    using GraphQL.Types;
 
     public class DynamicObjectGraphType : ObjectGraphType<object>
     {

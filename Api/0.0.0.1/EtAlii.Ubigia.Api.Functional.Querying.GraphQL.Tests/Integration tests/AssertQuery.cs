@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
+    using EtAlii.Ubigia.Api.Functional.Querying;
     using GraphQL.Http;
     using Newtonsoft.Json.Linq;
     using Xunit;

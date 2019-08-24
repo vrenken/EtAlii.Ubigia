@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api.Functional.Querying.GraphQL;
+    using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.xTechnology.MicroContainer;
 
     public class GraphQueryLanguageDocumentFactory : IGraphQueryLanguageDocumentFactory

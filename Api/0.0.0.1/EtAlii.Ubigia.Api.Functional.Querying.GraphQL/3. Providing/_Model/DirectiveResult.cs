@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     internal class DirectiveResult
     {

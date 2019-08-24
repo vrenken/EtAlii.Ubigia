@@ -1,6 +1,6 @@
 ﻿//using System.Collections.Generic
 //
-//namespace EtAlii.Ubigia.Api.Functional.Querying.GraphQL
+//namespace EtAlii.Ubigia.Api.Functional.Querying
 //[
 //    using System
 //    using global::GraphQL.Language.AST
