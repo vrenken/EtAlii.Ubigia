@@ -12,7 +12,7 @@
             
             if (account != null) return Task.FromResult(account);
             
-            string message = $"Unable to connect using the specified account ({accountName})";
+            var message = $"Unable to connect using the specified account ({accountName})";
             throw new UnauthorizedInfrastructureOperationException(message);
         }
     }

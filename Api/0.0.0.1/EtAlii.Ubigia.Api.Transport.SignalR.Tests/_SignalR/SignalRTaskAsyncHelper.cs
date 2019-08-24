@@ -25,7 +25,7 @@
 
         public static Task<T> OrEmpty<T>(this Task<T> task)
         {
-            return task ?? TaskCache<T>.Empty;
+            return task ?? TaskCache<T>.EmptyTaskCache;
         }
 
         public static Task FromAsync(Func<AsyncCallback, object, IAsyncResult> beginMethod, Action<IAsyncResult> endMethod, object state)
@@ -904,7 +904,7 @@
 
         private static class TaskCache<T>
         {
-            public static readonly Task<T> Empty = MakeTask(default(T));
+            public static readonly Task<T> EmptyTaskCache = MakeTask(default(T));
         }
     }
 }

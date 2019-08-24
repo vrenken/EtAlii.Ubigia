@@ -14,9 +14,9 @@ namespace EtAlii.Ubigia.Provisioning.Google
 
         protected TimeSpan Interval { get; set; } = TimeSpan.FromMinutes(1);
 
-        public event Action<Exception> Error { add => _error += value; remove => _error -= value;
-        }
-        private Action<Exception> _error;
+        public event Action<Exception> Error; 
+//        { add => _error += value; remove => _error -= value; }
+//        private Action<Exception> _error;
 
         private static readonly object LockObject = new object();
 
@@ -64,7 +64,7 @@ namespace EtAlii.Ubigia.Provisioning.Google
                 }
                 catch (Exception e)
                 {
-                    _error?.Invoke(e);
+                    Error?.Invoke(e);
                 }
 
                 // See if we need to iterate once more.

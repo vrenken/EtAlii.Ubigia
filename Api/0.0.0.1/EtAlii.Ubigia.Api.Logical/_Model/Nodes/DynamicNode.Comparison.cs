@@ -60,7 +60,7 @@
 
         public static bool operator ==(DynamicNode first, DynamicNode second)
         {
-            bool equals = false;
+            var equals = false;
             if ((object)first != null && (object)second != null)
             {
                 equals = first.Equals(second);
@@ -75,7 +75,7 @@
 
         public static bool operator !=(DynamicNode first, DynamicNode second)
         {
-            bool equals = first == second;
+            var equals = first == second;
             return !equals;
         }
 
@@ -92,6 +92,7 @@
         // http://vrenken.duckdns.org:54001/coding_rules?open=csharpsquid%3AS2328&rule_key=csharpsquid%3AS2328 
         public override int GetHashCode()
         {
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             return _entry.Id.GetHashCode();
         }
         #pragma warning restore S2328

@@ -8,10 +8,10 @@
     {
         public string Id { get; }
 
-        public int Count { get => _count; private set => SetProperty(ref _count, value); }
+        public int Count { get => _count; set => SetProperty(ref _count, value); }
         private int _count;
 
-        public bool ShowCount { get => _showCount; private set => SetProperty(ref _showCount, value); }
+        public bool ShowCount { get => _showCount; set => SetProperty(ref _showCount, value); }
         private bool _showCount;
 
         public ObservableCollection<Result> Results { get; }
