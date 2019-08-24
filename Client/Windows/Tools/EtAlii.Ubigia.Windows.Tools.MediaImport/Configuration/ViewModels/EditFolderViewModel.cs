@@ -6,13 +6,12 @@
     using System.Windows;
     using System.Windows.Forms;
     using System.Windows.Input;
-    using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Windows.Mvvm;
     using MessageBox = System.Windows.Forms.MessageBox;
 
     internal class EditFolderViewModel : BindableBase, IEditFolderViewModel
     {
-        private readonly IDataConnection _connection;
+        //private readonly IDataConnection _connection
         private readonly IObservableFolderSyncConfigurationCollection _folderSyncConfigurations;
 
         public ICommand SaveChangesCommand { get; }
@@ -32,9 +31,11 @@
         public string RemoteName { get => _remoteName; set => SetProperty(ref _remoteName, value); }
         private string _remoteName;
 
-        public EditFolderViewModel(IDataConnection connection, IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
+        public EditFolderViewModel(
+            //IDataConnection connection,
+            IObservableFolderSyncConfigurationCollection folderSyncConfigurations)
         {
-            _connection = connection;
+            //_connection = connection
             _folderSyncConfigurations = folderSyncConfigurations;
 
             SaveChangesCommand = new RelayCommand(OnSaveChanges, CanSaveChanges);

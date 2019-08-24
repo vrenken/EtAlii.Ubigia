@@ -3,16 +3,17 @@
     using System.Collections.Generic;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Fabric;
-    using EtAlii.xTechnology.Logging;
 
     internal class LoggingEntryUpdaterDecorator : IEntryUpdater
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
         private readonly IEntryUpdater _entryUpdater;
 
-        public LoggingEntryUpdaterDecorator(ILogger logger, IEntryUpdater entryUpdater)
+        public LoggingEntryUpdaterDecorator(
+            //ILogger logger,
+            IEntryUpdater entryUpdater)
         {
-            _logger = logger;
+            //_logger = logger
             _entryUpdater = entryUpdater;
         }
 

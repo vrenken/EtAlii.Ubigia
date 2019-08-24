@@ -7,20 +7,19 @@
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical;
-    using EtAlii.xTechnology.Logging;
 
     internal class FolderUpdater : IFolderUpdater
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
         private readonly IGraphSLScriptContext _scriptContext;
         private readonly IStringEscaper _stringEscaper;
 
         public FolderUpdater(
-            ILogger logger,
+            //ILogger logger,
             IStringEscaper stringEscaper, 
             IGraphSLScriptContext scriptContext)
         {
-            _logger = logger;
+            //_logger = logger
             _stringEscaper = stringEscaper;
             _scriptContext = scriptContext;
         }

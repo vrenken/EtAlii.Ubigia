@@ -10,12 +10,14 @@ namespace EtAlii.Ubigia.Api.Functional
         public string Id { get; } = nameof(Requirement);
 
         private readonly INodeValidator _nodeValidator;
-        private readonly INodeFinder _nodeFinder;
+        //private readonly INodeFinder _nodeFinder
 
-        public RequirementParser(INodeValidator nodeValidator, INodeFinder nodeFinder)
+        public RequirementParser(INodeValidator nodeValidator
+            //INodeFinder nodeFinder
+            )
         {
             _nodeValidator = nodeValidator;
-            _nodeFinder = nodeFinder;
+            //_nodeFinder = nodeFinder
             Parser = new LpsParser(Id, true, Lp.Char('!') | Lp.Char('?')).Maybe();
         }
 

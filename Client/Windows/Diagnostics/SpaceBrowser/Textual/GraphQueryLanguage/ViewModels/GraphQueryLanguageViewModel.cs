@@ -7,7 +7,7 @@
     using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Functional.Querying;
 
-    public class GraphQueryLanguageViewModel : TextualViewModelBase, IGraphQueryLanguageViewModel
+    public sealed class GraphQueryLanguageViewModel : TextualViewModelBase, IGraphQueryLanguageViewModel, IDisposable
     {
         private readonly IGraphContext _graphContext;
 
@@ -95,6 +95,31 @@
                     SourceChanged();
                     break;
             }
+        }
+
+        private void ReleaseUnmanagedResources()
+        {
+            // TODO release unmanaged resources here
+        }
+
+        private void Dispose(bool disposing)
+        {
+            ReleaseUnmanagedResources();
+            if (disposing)
+            {
+                _queryChangedSubscription?.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~GraphQueryLanguageViewModel()
+        {
+            Dispose(false);
         }
     }
 }

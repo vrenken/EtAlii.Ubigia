@@ -12,14 +12,15 @@
     internal class SchemaProcessor : ISchemaProcessor
     {
         private readonly ISchemaExecutionPlanner _schemaExecutionPlanner;
-        private readonly ISchemaProcessorConfiguration _configuration;
+        //private readonly ISchemaProcessorConfiguration _configuration
 
         public SchemaProcessor(
-            ISchemaExecutionPlanner schemaExecutionPlanner,
-            ISchemaProcessorConfiguration configuration)
+            ISchemaExecutionPlanner schemaExecutionPlanner
+            //ISchemaProcessorConfiguration configuration
+            )
         {
             _schemaExecutionPlanner = schemaExecutionPlanner;
-            _configuration = configuration;
+            //_configuration = configuration
         }
 
         public Task<SchemaProcessingResult> Process(Schema schema)

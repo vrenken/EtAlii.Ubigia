@@ -2,18 +2,17 @@
 {
     using System;
     using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Functional;
 
     public class SimpleAuthenticationBuilder : ISimpleAuthenticationBuilder
 	{
-        private readonly IAccountRepository _accountRepository;
+        //private readonly IAccountRepository _accountRepository
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public SimpleAuthenticationBuilder(
-            IAccountRepository accountRepository,
+            //IAccountRepository accountRepository,
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
-            _accountRepository = accountRepository;
+            //_accountRepository = accountRepository
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 		

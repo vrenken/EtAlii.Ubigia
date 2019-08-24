@@ -11,6 +11,7 @@ namespace EtAlii.Ubigia.Provisioning.Time
         /// </summary>
         public IProviderConfiguration Configuration { get; }
 
+        // ReSharper disable once NotAccessedField.Local
         private readonly ITimeImporter _timeImporter;
 
         public TimeProvider(

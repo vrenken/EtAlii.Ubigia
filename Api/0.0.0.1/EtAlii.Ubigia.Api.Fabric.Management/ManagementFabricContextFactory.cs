@@ -9,7 +9,7 @@
         {
             var container = new Container();
             container.Register<IManagementFabricContext, ManagementFabricContext>();
-            container.Register<IManagementConnection>(() => connection);
+            container.Register(() => connection);
 
             //container.RegisterSingle<IStorageContext, StorageContext>()
             //container.RegisterSingle<IAccountContext, AccountContext>()

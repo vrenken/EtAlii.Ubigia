@@ -7,7 +7,7 @@
     using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public class GraphScriptLanguageViewModel : TextualViewModelBase, IGraphScriptLanguageViewModel
+    public sealed class GraphScriptLanguageViewModel : TextualViewModelBase, IGraphScriptLanguageViewModel, IDisposable
     {
 
         public IScriptButtonsViewModel Buttons { get; }
@@ -97,6 +97,31 @@
                     SourceChanged();
                     break;
             }
+        }
+
+        private void ReleaseUnmanagedResources()
+        {
+            // TODO release unmanaged resources here
+        }
+
+        private void Dispose(bool disposing)
+        {
+            ReleaseUnmanagedResources();
+            if (disposing)
+            {
+                _scriptChangedSubscription?.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~GraphScriptLanguageViewModel()
+        {
+            Dispose(false);
         }
     }
 }

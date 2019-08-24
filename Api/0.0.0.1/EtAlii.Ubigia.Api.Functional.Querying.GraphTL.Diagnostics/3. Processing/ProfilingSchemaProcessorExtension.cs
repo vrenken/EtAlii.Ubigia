@@ -1,16 +1,18 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics 
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    //using EtAlii.Ubigia.Api.Diagnostics.Profiling
     using EtAlii.xTechnology.MicroContainer;
 
     public class ProfilingSchemaProcessorExtension : ISchemaProcessorExtension
     {
-        private readonly IProfiler _profiler;
+        //private readonly IProfiler _profiler
 
-        public ProfilingSchemaProcessorExtension(IProfiler profiler)
-        {
-            _profiler = profiler;
-        }
+//        public ProfilingSchemaProcessorExtension(
+//            //IProfiler profiler
+//            )
+//        [
+//            //_profiler = profiler
+//        ]
 
         public void Initialize(Container container)
         {

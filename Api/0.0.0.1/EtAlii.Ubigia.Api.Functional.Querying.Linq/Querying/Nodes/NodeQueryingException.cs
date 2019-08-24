@@ -8,6 +8,7 @@
     public class NodeQueryingException : Exception
     {
         [NonSerialized] 
+        // ReSharper disable once NotAccessedField.Local
         private ScriptParseResult _parseResult;
 
         protected NodeQueryingException(SerializationInfo info, StreamingContext context)

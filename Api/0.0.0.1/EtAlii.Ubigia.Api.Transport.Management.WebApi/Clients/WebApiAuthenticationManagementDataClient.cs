@@ -5,7 +5,7 @@
 
     public partial class WebApiAuthenticationManagementDataClient : IAuthenticationManagementDataClient
     {
-        private IWebApiStorageConnection _connection;
+        //private IWebApiStorageConnection _connection
 
         public Task Connect(IStorageConnection storageConnection)
         {
@@ -17,15 +17,16 @@
             return Disconnect();
         }
 
+        // ReSharper disable once UnusedParameter.Local
         private Task Connect(IWebApiStorageConnection connection)
         {
-            _connection = connection;
+            //_connection = connection
             return Task.CompletedTask;
         }
 
         private Task Disconnect()
         {
-            _connection = null;
+            //_connection = null
             return Task.CompletedTask;
         }
     }

@@ -8,11 +8,7 @@
 
     public partial class ProfilingView //, IProfilingView
     {
-        public bool AutoExpandNodes
-        {
-            get { return (bool)GetValue(AutoExpandNodesProperty); }
-            set { SetValue(AutoExpandNodesProperty, value); }
-        }
+        public bool AutoExpandNodes { get => (bool)GetValue(AutoExpandNodesProperty); set => SetValue(AutoExpandNodesProperty, value); }
         public static readonly DependencyProperty AutoExpandNodesProperty = DependencyProperty.Register("AutoExpandNodes", typeof(bool), typeof(ProfilingView), new PropertyMetadata(false));
 
         private readonly IDisposable _expandAllAtTheEndSubscription;
@@ -20,6 +16,8 @@
         public ProfilingView()
         {
             InitializeComponent();
+
+            this.Unloaded += OnUnload;
 
             //gridTreeControl.ModelLoaded += (sender, args) =>
             //[
@@ -54,6 +52,12 @@
                         e.EventArgs.ParentNode.Expanded = true;
                     }
                 });
+        }
+
+        private void OnUnload(object sender, RoutedEventArgs e)
+        {
+            _expandAlwaysSubscription?.Dispose();
+            _expandAllAtTheEndSubscription?.Dispose();
         }
 
         private void GridTreeControl_OnPreviewKeyUp(object sender, KeyEventArgs e)
