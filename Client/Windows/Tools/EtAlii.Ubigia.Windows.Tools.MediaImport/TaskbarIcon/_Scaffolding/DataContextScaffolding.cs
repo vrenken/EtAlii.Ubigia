@@ -1,8 +1,7 @@
 namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using EtAlii.Ubigia.Api.Fabric;
-    using EtAlii.Ubigia.Api.Functional;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.xTechnology.Diagnostics;

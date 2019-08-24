@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
     internal class ValueFragmentParser : IValueFragmentParser

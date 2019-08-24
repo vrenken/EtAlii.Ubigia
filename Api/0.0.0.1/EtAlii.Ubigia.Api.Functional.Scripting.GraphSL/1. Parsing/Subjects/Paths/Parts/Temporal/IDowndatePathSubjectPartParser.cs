@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     internal interface IDowndatePathSubjectPartParser : IPathSubjectPartParser
     {

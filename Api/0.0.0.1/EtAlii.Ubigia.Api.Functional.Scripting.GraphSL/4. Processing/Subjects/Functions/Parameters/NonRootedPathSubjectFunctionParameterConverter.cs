@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System.Reactive.Linq;
     using EtAlii.Ubigia.Api.Logical;

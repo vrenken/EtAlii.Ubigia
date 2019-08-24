@@ -1,7 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Windows.Tools.MediaImport
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.Logging;
 
     internal class ItemChangedHandler : IItemChangedHandler

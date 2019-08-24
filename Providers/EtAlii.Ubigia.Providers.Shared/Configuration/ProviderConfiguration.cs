@@ -2,7 +2,7 @@
 {
     using System;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.xTechnology.Logging;

@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
     internal class StructureFragmentParser : IStructureFragmentParser

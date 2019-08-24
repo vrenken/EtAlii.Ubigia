@@ -2,6 +2,7 @@ namespace EtAlii.Ubigia.Api.Functional
 {
     using System.Collections.Generic;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     internal class PathCorrecter : IPathCorrecter
     {

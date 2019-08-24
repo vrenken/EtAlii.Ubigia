@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics
+namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

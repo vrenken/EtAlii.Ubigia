@@ -2,6 +2,7 @@
 {
     using System;
     using System.Runtime.Serialization;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
 
     [Serializable]
     public class NodeQueryingException : Exception

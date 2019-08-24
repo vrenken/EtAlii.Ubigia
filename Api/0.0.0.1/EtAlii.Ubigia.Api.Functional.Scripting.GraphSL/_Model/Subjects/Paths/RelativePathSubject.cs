@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     /// <summary>
     /// This PoCo represents a path subject without an absolute point of reference.

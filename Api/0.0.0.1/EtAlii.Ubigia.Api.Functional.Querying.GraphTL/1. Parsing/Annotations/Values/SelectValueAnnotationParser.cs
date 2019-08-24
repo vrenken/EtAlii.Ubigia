@@ -2,6 +2,7 @@
 {
     using System;
     using System.Linq;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
     internal class SelectValueAnnotationParser : ISelectValueAnnotationParser

@@ -1,5 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
+    using EtAlii.Ubigia.Api.Functional.Scripting;
+
     /// <summary>
     /// The Query class contains all information needed to execute graph traversal actions on the current infrastructureClient.
     /// </summary>

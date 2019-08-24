@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using IGraphSLScriptContext = EtAlii.Ubigia.Api.Functional.Scripting.IGraphSLScriptContext;
 
     internal class GraphTLContext : IGraphTLContext
     {

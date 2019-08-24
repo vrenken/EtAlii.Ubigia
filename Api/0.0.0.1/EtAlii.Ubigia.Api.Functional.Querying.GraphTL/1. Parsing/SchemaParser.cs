@@ -1,6 +1,7 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional
 {
     using System;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
 //    using System.Linq;

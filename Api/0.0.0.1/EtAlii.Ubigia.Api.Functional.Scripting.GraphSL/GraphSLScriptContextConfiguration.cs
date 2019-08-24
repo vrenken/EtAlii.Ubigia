@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using EtAlii.Ubigia.Api.Logical;
 
@@ -12,8 +12,8 @@
 
         public GraphSLScriptContextConfiguration()
         {
-            FunctionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
-            RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
+            FunctionHandlersProvider = EtAlii.Ubigia.Api.Functional.Scripting.FunctionHandlersProvider.Empty;
+            RootHandlerMappersProvider = EtAlii.Ubigia.Api.Functional.Scripting.RootHandlerMappersProvider.Empty;
         }
     }
 }

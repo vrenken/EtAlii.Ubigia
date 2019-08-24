@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting
 {
     using System;
     using EtAlii.Ubigia.Api.Logical;
@@ -18,8 +18,8 @@
         public ScriptProcessorConfiguration()
         {
             CachingEnabled = true;
-            RootHandlerMappersProvider = Functional.RootHandlerMappersProvider.Empty;
-            FunctionHandlersProvider = Functional.FunctionHandlersProvider.Empty;
+            RootHandlerMappersProvider = EtAlii.Ubigia.Api.Functional.Scripting.RootHandlerMappersProvider.Empty;
+            FunctionHandlersProvider = EtAlii.Ubigia.Api.Functional.Scripting.FunctionHandlersProvider.Empty;
         }
 
 
