@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Logical.Tests;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;

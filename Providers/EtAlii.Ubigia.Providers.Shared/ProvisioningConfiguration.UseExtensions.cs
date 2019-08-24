@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Provisioning
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
 

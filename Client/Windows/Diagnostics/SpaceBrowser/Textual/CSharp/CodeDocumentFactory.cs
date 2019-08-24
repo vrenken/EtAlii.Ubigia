@@ -1,6 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;
 
     public class CodeDocumentFactory : ICodeDocumentFactory

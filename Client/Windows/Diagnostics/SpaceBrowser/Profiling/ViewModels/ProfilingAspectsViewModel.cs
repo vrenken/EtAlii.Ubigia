@@ -4,7 +4,7 @@
     using System.Linq;
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.Ubigia.Api.Fabric.Diagnostics;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.Ubigia.Api.Logical.Diagnostics;
     using EtAlii.Ubigia.Api.Transport.Diagnostics;
     using EtAlii.Ubigia.Windows.Mvvm;

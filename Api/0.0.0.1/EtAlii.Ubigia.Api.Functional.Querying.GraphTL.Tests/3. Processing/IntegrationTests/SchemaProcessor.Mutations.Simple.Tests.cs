@@ -4,6 +4,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Diagnostics;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.Diagnostics;
     using Xunit;
 

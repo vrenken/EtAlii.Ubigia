@@ -2,8 +2,8 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using EtAlii.Ubigia.Api.Functional.Querying;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using GraphQL.Http;
     using Xunit;
 

@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
 {
     using System;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using Xunit;
 
     public class ScriptParserFunctionFileTests : IDisposable

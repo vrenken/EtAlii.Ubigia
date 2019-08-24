@@ -5,7 +5,7 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using ActiveUp.Net.Mail;
-    using EtAlii.Ubigia.Api.Functional;
+    using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.Logging;
 
     public class MailImporter : IMailImporter

@@ -2,7 +2,6 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Api.Functional.Diagnostics;
     using Xunit;
 
     public class ScriptParserFunctionIdTests : IDisposable
