@@ -32,7 +32,7 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
                     onFirst: () => viewModel.ScriptResults.Clear(),
                     onNext: o =>
                     {
-                        var outputGroup = $"{outputIndex++:000}: {o.Sequence.ToString()}";
+                        var outputGroup = $"{outputIndex++:000}: {o.Sequence}";
                         var groupSpacerToRemove = viewModel.ScriptResults.Count;
                         viewModel.ScriptResults.Add(new Result(null, null, null, outputGroup));
                         o.Output

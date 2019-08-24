@@ -9,10 +9,6 @@
         
         public IGraphSLScriptContext ScriptContext { get; private set; }
 
-        public SchemaProcessorConfiguration()
-        {
-        }
-
 
         public SchemaProcessorConfiguration Use(ISchemaScope scope)
         {

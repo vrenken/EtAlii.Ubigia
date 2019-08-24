@@ -1,7 +1,6 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System.Threading.Tasks;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
     [Trait("Technology", "NetCore")]

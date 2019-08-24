@@ -1,7 +1,6 @@
 ﻿namespace EtAlii.Ubigia.Infrastructure.Transport.Admin.Api.Rest.NetCore
 {
 	using System.Linq;
-	using EtAlii.Ubigia.Infrastructure.Functional;
 	using EtAlii.Ubigia.Infrastructure.Transport.NetCore;
 	using EtAlii.xTechnology.Hosting;
 	using Microsoft.AspNetCore.Builder;
@@ -23,11 +22,11 @@
                 services =>
                 {
 	                services
-		                .AddSingleton<IStorageRepository>(infrastructure.Storages)
-		                .AddSingleton<IAccountRepository>(infrastructure.Accounts)
-	                    .AddSingleton<ISpaceRepository>(infrastructure.Spaces)
+		                .AddSingleton(infrastructure.Storages)
+		                .AddSingleton(infrastructure.Accounts)
+	                    .AddSingleton(infrastructure.Spaces)
 
-	                    .AddSingleton<IRootRepository>(infrastructure.Roots) // We wand the management portal to manage the roots as well.
+	                    .AddSingleton(infrastructure.Roots) // We wand the management portal to manage the roots as well.
 
                         //.AddInfrastructureSimpleAuthentication(infrastructure)
                         .AddInfrastructureHttpContextAuthentication(infrastructure)

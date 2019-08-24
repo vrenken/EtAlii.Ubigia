@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     internal class TestRoot2HandlerMapper : IRootHandlerMapper
     {

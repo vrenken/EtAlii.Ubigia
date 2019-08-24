@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using EtAlii.Ubigia.Api;
-    using Xunit;
     using System;
     using System.Threading.Tasks;
+    using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Infrastructure.Functional;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+    using Xunit;
 
     [Trait("Technology", "Grpc")]
     public sealed class ContentDefinitionRepositoryTests : IClassFixture<InfrastructureUnitTestContext>

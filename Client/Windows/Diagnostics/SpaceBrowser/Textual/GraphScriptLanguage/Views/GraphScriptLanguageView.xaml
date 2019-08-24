@@ -4,19 +4,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:diagnostics="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:sf="http://schemas.syncfusion.com/wpf"
     mc:Ignorable="d" 
     sf:SkinStorage.VisualStyle="Metro"
     sf:SkinStorage.MetroBrush="#359900"
     d:DesignHeight="300" d:DesignWidth="300">
-
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <diagnostics:ItemsToVisibilityConverter x:Key="ItemsToVisibilityConverter" />
-        </ResourceDictionary>
-    </UserControl.Resources>
-        <views:GraphScriptLanguageEditor
+    <views:GraphScriptLanguageEditor
             ScrollViewer.VerticalScrollBarVisibility="Auto"
             ScrollViewer.HorizontalScrollBarVisibility="Auto"
             BorderThickness="0" 

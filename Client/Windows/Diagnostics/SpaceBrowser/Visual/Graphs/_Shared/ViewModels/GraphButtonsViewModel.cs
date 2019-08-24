@@ -58,8 +58,7 @@
 
         private void DiscoverFromTail(object parameter)
         {
-            var graphViewModel = parameter as IGraphDocumentViewModel;
-            if (graphViewModel != null)
+            if (parameter is IGraphDocumentViewModel graphViewModel)
             {
                 IReadOnlyEntry entry = null;
                 var task = Task.Run(async () =>

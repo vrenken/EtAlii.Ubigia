@@ -1,24 +1,9 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
-    using System;
     using Xunit;
 
-    public class ParentPathSubjectPartTests : IDisposable
+    public class ParentPathSubjectPartTests
     {
-        private IScriptParser _parser;
-
-        public ParentPathSubjectPartTests()
-        {
-            var diagnostics = TestDiagnostics.Create();
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-        }
-
-        public void Dispose()
-        {
-            _parser = null;
-        }
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ParentPathSubjectPart_ToString()

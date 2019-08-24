@@ -4,10 +4,6 @@
 
     class WebsiteBrowser : IWebsiteBrowser
     {
-        public WebsiteBrowser()
-        {
-        }
-
         public void BrowseTo(string relativeAddress)
         {
             var hostAddress = "http://localhost";

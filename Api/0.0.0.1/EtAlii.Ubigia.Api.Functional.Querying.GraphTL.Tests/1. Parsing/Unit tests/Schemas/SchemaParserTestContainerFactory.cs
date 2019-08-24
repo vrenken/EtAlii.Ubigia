@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;

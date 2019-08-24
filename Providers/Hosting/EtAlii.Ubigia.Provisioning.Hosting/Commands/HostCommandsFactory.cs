@@ -5,10 +5,6 @@
 
     public class HostCommandsFactory
     {
-        public HostCommandsFactory()
-        {
-        }
-
         public ICommand[] Create()
         {
             var container = new Container();

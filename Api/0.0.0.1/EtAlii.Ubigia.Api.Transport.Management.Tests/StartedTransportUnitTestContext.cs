@@ -11,10 +11,6 @@ namespace EtAlii.Ubigia.Api.Transport.Management.Tests
         public ITransportTestContext<InProcessInfrastructureHostTestContext> TransportTestContext { get; private set; }
         public IDiagnosticsConfiguration Diagnostics { get; private set; }
 
-        public StartedTransportUnitTestContext()
-        {
-        }
-
         public async Task InitializeAsync()
         {
             Diagnostics = TestDiagnostics.Create();

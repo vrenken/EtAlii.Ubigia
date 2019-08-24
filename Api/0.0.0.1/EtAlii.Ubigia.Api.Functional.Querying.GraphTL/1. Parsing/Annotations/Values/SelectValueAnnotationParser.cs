@@ -89,21 +89,21 @@
 
                 switch (childNode.Id)
                 {
-                    case string id when id == _rootedPathSubjectParser.Id:
+                    case { } id when id == _rootedPathSubjectParser.Id:
                         targetPath = (PathSubject)_rootedPathSubjectParser.Parse(childNode);
                         break;
-                    case string id when id == _nonRootedPathSubjectParser.Id:
+                    case { } id when id == _nonRootedPathSubjectParser.Id:
                         targetPath = (PathSubject)_nonRootedPathSubjectParser.Parse(childNode);
                         break;
 
-                    case string id when id == CombinedContentId:
+                    case { } id when id == CombinedContentId:
 
                         var targetPathNode = childNode.Children.FirstOrDefault();
-                        if (_nodeFinder.FindFirst(targetPathNode, _rootedPathSubjectParser.Id) is LpNode rootedPathNode)
+                        if (_nodeFinder.FindFirst(targetPathNode, _rootedPathSubjectParser.Id) is { } rootedPathNode)
                         {
                             targetPath = (PathSubject) _rootedPathSubjectParser.Parse(rootedPathNode);
                         }
-                        else if (_nodeFinder.FindFirst(targetPathNode, _nonRootedPathSubjectParser.Id) is LpNode nonRootedPathNode)
+                        else if (_nodeFinder.FindFirst(targetPathNode, _nonRootedPathSubjectParser.Id) is { } nonRootedPathNode)
                         {
                             targetPath = (PathSubject) _nonRootedPathSubjectParser.Parse(nonRootedPathNode);
                         }
@@ -113,11 +113,11 @@
                         }
 
                         var skippedChildren = childNode.Children.Skip(1).ToArray();
-                        if (_nodeFinder.FindFirst(skippedChildren, _operatorsParser.Id) is LpNode operatorNode)
+                        if (_nodeFinder.FindFirst(skippedChildren, _operatorsParser.Id) is { } operatorNode)
                         {
                             @operator = (Operator) _operatorsParser.Parse(operatorNode);
                             
-                            if (_nodeFinder.FindFirst(skippedChildren, _subjectsParser.Id) is LpNode subjectNode)
+                            if (_nodeFinder.FindFirst(skippedChildren, _subjectsParser.Id) is { } subjectNode)
                             {
                                 subject = (Subject) _subjectsParser.Parse(subjectNode);
                             }

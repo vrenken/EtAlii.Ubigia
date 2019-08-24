@@ -1,10 +1,10 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     using System.Linq;
     using EtAlii.xTechnology.MicroContainer;
     using Xunit;
 
-    public partial class QueryExecutionPlannerTests 
+    public class QueryExecutionPlannerTests 
     {
         
         private ISchemaExecutionPlanner CreatePlanner()

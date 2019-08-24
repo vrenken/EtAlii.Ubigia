@@ -1,14 +1,12 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using Xunit;
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using EtAlii.Ubigia.Api.Transport;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
+	using System;
+	using System.Linq;
+	using System.Threading.Tasks;
+	using EtAlii.Ubigia.Api.Transport;
+	using Xunit;
 
-
-    [Trait("Technology", "Grpc")]
+	[Trait("Technology", "Grpc")]
 	public sealed class SpaceRepositoryTests : IClassFixture<InfrastructureUnitTestContext>
     {
         private readonly InfrastructureUnitTestContext _testContext;
@@ -100,11 +98,16 @@
 			// Arrange.
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            var addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var addedSpace1 = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
             space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure, false);
-            addedSpace = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
+            var addedSpace2 = await context.Host.Infrastructure.Spaces.Add(space, SpaceTemplate.Data);
 
+            // Act.
             var spaces = context.Host.Infrastructure.Spaces.GetAll();
+            
+            // Assert.
+            Assert.NotNull(addedSpace1);
+            Assert.NotNull(addedSpace2);
             Assert.NotNull(spaces);
             Assert.True(spaces.Count() >= 4);
         }

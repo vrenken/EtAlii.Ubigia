@@ -2,7 +2,7 @@ namespace EtAlii.Ubigia.Api.Logical.Diagnostics
 {
     using EtAlii.xTechnology.Diagnostics;
 
-    public static class IGraphPathTraverserConfigurationDiagnosticsExtension
+    public static class GraphPathTraverserConfigurationDiagnosticsExtension
     {
         public static GraphPathTraverserConfiguration UseLogicalDiagnostics(this GraphPathTraverserConfiguration configuration, IDiagnosticsConfiguration diagnostics)
         {

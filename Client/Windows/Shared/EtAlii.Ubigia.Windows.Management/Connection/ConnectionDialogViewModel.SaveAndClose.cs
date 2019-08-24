@@ -6,8 +6,7 @@
         {
             var result = false;
 
-            var window = parameter as ConnectionDialogWindow;
-            if (window != null)
+            if (parameter is ConnectionDialogWindow window)
             {
                 var passwordBox = window.PasswordBox;
                 result = !string.IsNullOrEmpty(passwordBox.Password) &&
@@ -20,8 +19,7 @@
 
         private void SaveAndClose(object parameter)
         {
-            var window = parameter as ConnectionDialogWindow;
-            if (window != null)
+            if (parameter is ConnectionDialogWindow window)
             {
                 var passwordBox = window.PasswordBox;
                 _connectionSettingsPersister.Save(passwordBox.Password);

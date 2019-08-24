@@ -5,7 +5,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:windows="clr-namespace:EtAlii.Ubigia.Windows;assembly=EtAlii.Ubigia.Windows"
-    xmlns:diagnostics="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
     mc:Ignorable="d" 
     x:Name="Root"
@@ -13,12 +12,6 @@
     d:DesignHeight="300" 
     d:DesignWidth="300" 
     Height="auto" >
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <diagnostics:ItemsToVisibilityConverter x:Key="ItemsToVisibilityConverter" />
-        </ResourceDictionary>
-    </UserControl.Resources>
-
     <Grid>
         <DataGrid 
             Height="auto"

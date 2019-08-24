@@ -12,8 +12,8 @@
 
 			// We need to use our in-house serialization. This to ensure that dictionaries, ulongs and floats are serialized correctly.
 			services
-				.AddSingleton<ISerializer>(serializer)
-				.AddSingleton<JsonSerializer>((JsonSerializer) serializer);
+				.AddSingleton(serializer)
+				.AddSingleton((JsonSerializer) serializer);
 				//.AddSingleton<IParameterResolver, SignalRParameterResolver>()
 
 			return services;

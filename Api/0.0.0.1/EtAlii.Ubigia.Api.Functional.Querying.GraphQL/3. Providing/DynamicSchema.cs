@@ -8,7 +8,7 @@
     using GraphQL.Language.AST;
     using GraphQL.Types;
 
-    public partial class DynamicSchema : Schema
+    public class DynamicSchema : Schema
     {
         private readonly global::GraphQL.Language.AST.Document _document;
         private readonly IOperationProcessor _operationProcessor;

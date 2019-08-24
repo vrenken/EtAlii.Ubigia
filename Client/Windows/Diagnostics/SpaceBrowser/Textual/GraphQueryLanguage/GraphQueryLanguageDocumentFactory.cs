@@ -1,6 +1,5 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
-    using EtAlii.Ubigia.Api.Functional.Querying;
     using EtAlii.xTechnology.MicroContainer;
 
     public class GraphQueryLanguageDocumentFactory : IGraphQueryLanguageDocumentFactory
@@ -13,7 +12,7 @@
             new StructureScaffolding().Register(container);
 
             container.Register(() => documentContext.FabricContext);
-            container.Register<IGraphQLQueryContext>(() => documentContext.QueryContext);
+            container.Register(() => documentContext.QueryContext);
             
             container.Register(() =>
             {

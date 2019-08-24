@@ -1,12 +1,12 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Grpc.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
-    using Xunit;
-    using Newtonsoft.Json;
     using System;
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Infrastructure.Transport;
+    using Newtonsoft.Json;
+    using Xunit;
 
-	// TODO: Move all instances of this test class to single testproject
+    // TODO: Move all instances of this test class to single testproject
     [Trait("Technology", "Grpc")]
     public class AuthenticationTokenConverterTests
     {

@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using EtAlii.xTechnology.MicroContainer;
@@ -16,7 +16,7 @@
         {
             container.Register<ILinqQueryContext, LinqQueryContext>();
 
-            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(_configuration));
+            container.Register(() => new GraphSLScriptContextFactory().Create(_configuration));
             container.Register<IChangeTracker, ChangeTracker>();
             
             container.Register<IIndexSet, IndexSet>();

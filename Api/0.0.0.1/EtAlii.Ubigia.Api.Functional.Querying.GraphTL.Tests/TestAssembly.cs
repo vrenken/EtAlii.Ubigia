@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Querying.Tests
 {
     //you have to label the class with this or it is never scanned for methods
     internal class TestAssembly

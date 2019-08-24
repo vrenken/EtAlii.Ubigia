@@ -20,8 +20,8 @@
                 <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/generic.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/Fluent;component/Themes/Themes/Light.Green.xaml" />
             </ResourceDictionary.MergedDictionaries>
-            <windows:EnumMatchToBooleanConverter x:Key="enumConverter" />
-            <BooleanToVisibilityConverter x:Key="visibilityConverter" />
+            <windows:EnumMatchToBooleanConverter x:Key="EnumConverter" />
+            <BooleanToVisibilityConverter x:Key="VisibilityConverter" />
             <SolidColorBrush x:Key="CommonBorderColor">#359900</SolidColorBrush>
 
             <Style TargetType="Label">
@@ -110,24 +110,24 @@
 
         <Label 
             Grid.Row="5" Grid.Column="0" Content="Transport" 
-            Visibility="{Binding ShowTransportSelection, Converter={StaticResource visibilityConverter}}" />
+            Visibility="{Binding ShowTransportSelection, Converter={StaticResource VisibilityConverter}}" />
         <StackPanel 
             Grid.Row="5" Grid.Column="1" Orientation="Horizontal" 
-            Visibility="{Binding ShowTransportSelection, Converter={StaticResource visibilityConverter}}" >
+            Visibility="{Binding ShowTransportSelection, Converter={StaticResource VisibilityConverter}}" >
             <RadioButton 
                 GroupName="Transport"  Content="SignalR" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
-                                 Converter={StaticResource enumConverter},
+                                 Converter={StaticResource EnumConverter},
                                  ConverterParameter=SignalR}"  />
             <RadioButton 
                 GroupName="Transport"  Content="Grpc" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
-                                 Converter={StaticResource enumConverter},
+                                 Converter={StaticResource EnumConverter},
                                  ConverterParameter=Grpc}"  />
             <RadioButton 
                 GroupName="Transport"  Content="Web Api" 
                 IsChecked="{Binding Path=Transport, Mode=TwoWay, 
-                                 Converter={StaticResource enumConverter},
+                                 Converter={StaticResource EnumConverter},
                                  ConverterParameter=WebApi}"  />
 
         </StackPanel>

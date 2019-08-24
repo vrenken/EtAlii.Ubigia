@@ -416,24 +416,24 @@
                 case TaskStatus.Faulted:
                     return task;
                 default:
-                    return RunTaskSynchronously(task, state => ((Action)state)(), successor, true);
+                    return RunTaskSynchronously(task, state => ((Action)state)(), successor);
             }
         }
 
         private static Task FastUnwrap(this Task<Task> task)
         {
-            return (task.Status == TaskStatus.RanToCompletion ? task.Result : null) ?? TaskExtensions.Unwrap(task);
+            return (task.Status == TaskStatus.RanToCompletion ? task.Result : null) ?? task.Unwrap();
         }
 
         private static Task<T> FastUnwrap<T>(this Task<Task<T>> task)
         {
-            return (task.Status == TaskStatus.RanToCompletion ? task.Result : null) ?? TaskExtensions.Unwrap(task);
+            return (task.Status == TaskStatus.RanToCompletion ? task.Result : null) ?? task.Unwrap();
         }
 
         public static Task Delay(TimeSpan timeOut)
         {
             TaskCompletionSource<object> completionSource = new TaskCompletionSource<object>();
-            Timer timer = new Timer(new TimerCallback(completionSource.SetResult), null, timeOut, TimeSpan.FromMilliseconds(-1.0));
+            Timer timer = new Timer(completionSource.SetResult, null, timeOut, TimeSpan.FromMilliseconds(-1.0));
             return ContinueWithPreservedCulture(completionSource.Task, _ => timer.Dispose(), TaskContinuationOptions.ExecuteSynchronously);
         }
 
@@ -605,8 +605,7 @@
 
         private static void SetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
-            AggregateException aggregateException = e as AggregateException;
-            if (aggregateException != null)
+            if (e is AggregateException aggregateException)
                 tcs.SetException(aggregateException.InnerExceptions);
             else
                 tcs.SetException(e);
@@ -614,8 +613,7 @@
 
         private static bool TrySetUnwrappedException<T>(this TaskCompletionSource<T> tcs, Exception e)
         {
-            AggregateException aggregateException = e as AggregateException;
-            if (aggregateException != null)
+            if (e is AggregateException aggregateException)
                 return tcs.TrySetException(aggregateException.InnerExceptions);
             return tcs.TrySetException(e);
         }

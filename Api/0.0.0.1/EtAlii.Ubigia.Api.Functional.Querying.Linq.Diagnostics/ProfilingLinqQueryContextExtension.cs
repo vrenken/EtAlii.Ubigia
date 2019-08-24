@@ -1,4 +1,4 @@
-namespace EtAlii.Ubigia.Api.Functional.Diagnostics
+namespace EtAlii.Ubigia.Api.Functional.Querying
 {
     using EtAlii.Ubigia.Api.Diagnostics.Profiling;
     using EtAlii.xTechnology.MicroContainer;

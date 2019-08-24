@@ -1,4 +1,4 @@
-﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
+﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System.Linq;
     using System.Reactive.Linq;
@@ -675,6 +675,7 @@
             var afterFriendCountTony = result.Length;
 
             // Assert.
+            Assert.NotNull(afterFriendsJohn);
             Assert.Equal(1, beforeNodeCountJohn);
             Assert.Equal(1, beforeNodeCountJane);
             Assert.Equal(1, beforeNodeCountTony);

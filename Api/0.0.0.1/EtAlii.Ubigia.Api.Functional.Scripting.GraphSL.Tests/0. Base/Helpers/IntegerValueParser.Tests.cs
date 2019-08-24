@@ -1,5 +1,5 @@
 ﻿
-namespace EtAlii.Ubigia.Api.Functional.Scripting.GraphSL.Tests
+namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
     using System;
     using Xunit;

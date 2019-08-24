@@ -19,7 +19,7 @@
         public void Register(Container container)
         {
             container.Register<IGraphQLQueryContext, GraphQLQueryContext>();
-            container.Register<IGraphSLScriptContext>(() => new GraphSLScriptContextFactory().Create(_configuration));
+            container.Register(() => new GraphSLScriptContextFactory().Create(_configuration));
 
             container.Register<IDependencyResolver>(() => new FuncDependencyResolver(container.GetInstance));
 

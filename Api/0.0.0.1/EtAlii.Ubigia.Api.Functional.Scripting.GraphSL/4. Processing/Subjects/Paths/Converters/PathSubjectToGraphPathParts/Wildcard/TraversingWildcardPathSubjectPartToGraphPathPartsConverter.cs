@@ -7,11 +7,6 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
     {
         //private readonly IProcessingContext _context
 
-        public TraversingWildcardPathSubjectPartToGraphPathPartsConverter()//IProcessingContext context
-        {
-            //_context = context
-        }
-
         public Task<GraphPathPart[]> Convert(PathSubjectPart pathSubjectPart, int pathSubjectPartPosition, PathSubjectPart previousPathSubjectPart, PathSubjectPart nextPathSubjectPart, ExecutionScope scope)
         {
             var limit = ((TraversingWildcardPathSubjectPart)pathSubjectPart).Limit;

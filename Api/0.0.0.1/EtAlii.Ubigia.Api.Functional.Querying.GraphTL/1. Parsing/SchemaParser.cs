@@ -57,7 +57,7 @@
 
                 _nodeValidator.EnsureSuccess(node, Id, false);
 
-                if (_nodeFinder.FindFirst(node, _structureFragmentParser.Id) is LpNode structureFragmentMatch)
+                if (_nodeFinder.FindFirst(node, _structureFragmentParser.Id) is { } structureFragmentMatch)
                 {
                     var structureFragment = _structureFragmentParser.Parse(structureFragmentMatch); 
                     schema = new Schema(structureFragment);

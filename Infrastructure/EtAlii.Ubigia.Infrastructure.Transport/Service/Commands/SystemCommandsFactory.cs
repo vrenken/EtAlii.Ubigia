@@ -5,15 +5,11 @@
 
     public class SystemCommandsFactory : ISystemCommandsFactory
     {
-        public SystemCommandsFactory()
-        {
-        }
-
         public ICommand[] Create(ISystem system)
         {
             var container = new Container();
 
-            container.Register<ISystem>(() => system);
+            container.Register(() => system);
 
             container.Register<IProcessStarter, ProcessStarter>();
             container.Register<IWebsiteBrowser, WebsiteBrowser>();

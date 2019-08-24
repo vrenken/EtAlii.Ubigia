@@ -34,7 +34,7 @@
                 .UseNtfsStorage(baseFolder);
             var storage = new StorageFactory().Create(storageConfiguration);
 
-            container.Register<IStorage>(() => storage);
+            container.Register(() => storage);
 
             return container.GetInstance<IStorageService>();
         }

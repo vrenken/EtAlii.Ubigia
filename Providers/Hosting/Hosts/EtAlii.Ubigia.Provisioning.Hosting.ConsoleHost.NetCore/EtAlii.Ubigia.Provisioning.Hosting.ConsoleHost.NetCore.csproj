@@ -23,7 +23,7 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <ApplicationIcon />
     <StartupObject>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.Program</StartupObject>
-    <RootNamespace>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost.NetCore</RootNamespace>
+    <RootNamespace>EtAlii.Ubigia.Provisioning.Hosting.ConsoleHost</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="settings.json" />

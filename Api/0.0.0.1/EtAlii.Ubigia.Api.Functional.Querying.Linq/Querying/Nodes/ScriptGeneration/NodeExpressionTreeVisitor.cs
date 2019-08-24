@@ -1,4 +1,4 @@
-//namespace EtAlii.Ubigia.Api.Functional
+//namespace EtAlii.Ubigia.Api.Functional.Querying
 //[
 //    using Remotion.Linq.Clauses.Expressions
 //    using Remotion.Linq.Clauses.ExpressionTreeVisitors

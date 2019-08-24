@@ -5,25 +5,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:sf="http://schemas.syncfusion.com/wpf"
-    xmlns:windows="clr-namespace:EtAlii.Ubigia.Windows;assembly=EtAlii.Ubigia.Windows"
     mc:Ignorable="d" 
     x:Name="Root"
     Background="Transparent"
     d:DesignHeight="300" 
     d:DesignWidth="600" 
     Height="auto" >
-    <UserControl.Resources>
-        <ResourceDictionary>
-            <windows:BooleanToVisibilityConverter 
-                            x:Key="BooleanToVisibilityConverter" 
-                            True="Visible" 
-                            False="Collapsed" />
-            <windows:BooleanToVisibilityConverter 
-                            x:Key="NegatedBooleanToVisibilityConverter" 
-                            True="Collapsed" 
-                            False="Visible" />
-        </ResourceDictionary>
-    </UserControl.Resources>
     <Grid>
         <sf:SfDataGrid
             x:Name="DataGrid"

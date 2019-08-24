@@ -1,11 +1,10 @@
-﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.NetCore.Tests
+﻿namespace EtAlii.Ubigia.Infrastructure.Hosting.Tests
 {
     using System;
     using System.IO;
     using System.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api;
-    using EtAlii.Ubigia.Infrastructure.Hosting.Tests;
     using Xunit;
 
     [Trait("Technology", "NetCore")]

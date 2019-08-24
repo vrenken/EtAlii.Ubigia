@@ -8,14 +8,6 @@
 
         //private readonly IFabricContext _fabric
 
-        public AddEntryRelationsToGraphCommandHandler()
-            //IFabricContext fabric,
-            //IDocumentViewModelProvider documentViewModelProvider
-        {
-            //_fabric = fabric
-            //_documentViewModelProvider = documentViewModelProvider
-        }
-
         protected override void Handle(AddEntryRelationsToGraphCommand command)
         {
             //var configuration = _processConfigurationGetter.GetConfiguration(command.ProcessReason)

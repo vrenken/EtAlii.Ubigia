@@ -9,14 +9,14 @@
     /// </summary>
     /// <remarks>
     ///     <para>
-    ///     To control the rate of an action using a <see cref="RateGate"/>, 
+    ///     To control the rate of an action using a <see cref="Throttle"/>, 
     ///     code should simply call <see cref="WaitToProceed()"/> prior to 
     ///     performing the action. <see cref="WaitToProceed()"/> will block
     ///     the current thread until the action is allowed based on the rate 
     ///     limit.
     ///     </para>
     ///     <para>
-    ///     This class is thread safe. A single <see cref="RateGate"/> instance 
+    ///     This class is thread safe. A single <see cref="Throttle"/> instance 
     ///     may be used to control the rate of an occurrence across multiple 
     ///     threads.
     ///     </para>
@@ -47,7 +47,7 @@
         public int TimeUnitMilliseconds { get; }
 
         /// <summary>
-        /// Initializes a <see cref="RateGate"/> with a rate of <paramref name="occurrences"/> 
+        /// Initializes a <see cref="Throttle"/> with a rate of <paramref name="occurrences"/> 
         /// per <paramref name="timeUnit"/>.
         /// </summary>
         /// <param name="occurrences">Number of occurrences allowed per unit of time.</param>
@@ -158,7 +158,7 @@
         private void CheckDisposed()
         {
             if (_isDisposed)
-                throw new ObjectDisposedException("RateGate is already disposed");
+                throw new ObjectDisposedException("Throttle is already disposed");
         }
 
         /// <summary>

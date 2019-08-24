@@ -16,7 +16,6 @@
         </Grid.RowDefinitions>
         <views:GraphScriptLanguageEditor
             Grid.Row="0"
-            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
             FontFamily="Consolas"
             SyntaxHighlighting="C#"
             FontSize="10pt"

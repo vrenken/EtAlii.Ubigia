@@ -23,7 +23,7 @@
             var accountName = Guid.NewGuid().ToString();
             var password = Guid.NewGuid().ToString();
             var spaceName = Guid.NewGuid().ToString();
-	        return CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true, null);
+	        return CreateDataConnection(Context.DataServiceAddress, accountName, password, spaceName, openOnCreation, true);
 		}
 
         public Task<IDataConnection> CreateDataConnection(string accountName, string accountPassword, string spaceName, bool openOnCreation, bool useNewSpace, SpaceTemplate spaceTemplate = null)

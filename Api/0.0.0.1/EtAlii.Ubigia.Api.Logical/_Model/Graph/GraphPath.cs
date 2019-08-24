@@ -38,7 +38,7 @@
 
         public override string ToString()
         {
-            return string.Join("-", _parts.Select(p => "["+ p.ToString() +"]"));
+            return string.Join("-", _parts.Select(p => "["+ p +"]"));
         }
 
         public static GraphPath Create(Identifier startIdentifier)
