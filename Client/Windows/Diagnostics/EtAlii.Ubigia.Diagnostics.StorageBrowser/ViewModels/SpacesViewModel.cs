@@ -8,7 +8,6 @@
     using EtAlii.Ubigia.Api.Transport;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Logging;
 
     public class SpacesViewModel : BindableBase, ISpacesViewModel
     {
@@ -29,24 +28,28 @@
         private Space _selectedSpace;
         public const string SelectedSpaceProperty = "SelectedSpace";
 
-        public Account SelectedAccount { get { return _selectedAccount; } set { SetProperty(ref _selectedAccount, value); } }
+        public Account SelectedAccount { get => _selectedAccount; set => SetProperty(ref _selectedAccount, value); }
         private Account _selectedAccount;
         public const string SelectedAccountProperty = "SelectedAccount";
 
-        public string SpaceName { get { return _spaceName; } set { SetProperty(ref _spaceName, value); } }
+        public string SpaceName { get => _spaceName;
+            set => SetProperty(ref _spaceName, value);
+        }
         private string _spaceName;
         public const string SpaceNameProperty = "SpaceName";
 
         public SpaceTemplate[] AvailableSpaceTemplates => SpaceTemplate.All;
 
-        public SpaceTemplate SelectedSpaceTemplate { get { return _selectedSpaceTemplate; } set { SetProperty(ref _selectedSpaceTemplate, value); } }
+        public SpaceTemplate SelectedSpaceTemplate { get => _selectedSpaceTemplate; set => SetProperty(ref _selectedSpaceTemplate, value); }
         private SpaceTemplate _selectedSpaceTemplate;
 
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
 
-        public SpacesViewModel(IManagementConnection connection, ILogger logger)
+        public SpacesViewModel(IManagementConnection connection 
+            //ILogger logger
+            )
         {
-            _logger = logger;   
+            //_logger = logger;   
             Connection = connection;
             AddCommand = new RelayCommand(AddSpace, CanAddSpace);
             SaveCommand = new RelayCommand(SaveSpace, CanSaveSpace);

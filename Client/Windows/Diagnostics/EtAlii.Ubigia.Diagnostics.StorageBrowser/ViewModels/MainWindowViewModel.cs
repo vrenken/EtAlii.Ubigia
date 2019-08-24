@@ -2,7 +2,6 @@
 {
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Logging;
 
     public class MainWindowViewModel : BindableBase, IMainWindowViewModel
     {
@@ -16,17 +15,18 @@
 
         protected IManagementConnection Connection { get; }
 
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
 
         public MainWindowViewModel(
             IManagementConnection connection, 
             IStoragesViewModel storagesViewModel,
             IAccountsViewModel accountsViewModel, 
             ISpacesViewModel spacesViewModel, 
-            IRolesViewModel rolesViewModel,
-            ILogger logger)
+            IRolesViewModel rolesViewModel
+            //ILogger logger
+            )
         {
-            _logger = logger;   
+            //_logger = logger   
             Connection = connection;
             Storages = storagesViewModel;
             Accounts = accountsViewModel;

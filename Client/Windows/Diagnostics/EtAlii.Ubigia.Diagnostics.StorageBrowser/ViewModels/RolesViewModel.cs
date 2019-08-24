@@ -7,11 +7,10 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Transport.Management;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Logging;
 
     public class RolesViewModel : BindableBase, IRolesViewModel
     {
-        public IEnumerable<Role> AvailableRoles { get { return _availableRoles; } private set { SetProperty(ref _availableRoles, value); } }
+        public IEnumerable<Role> AvailableRoles { get => _availableRoles; private set => SetProperty(ref _availableRoles, value); }
         private IEnumerable<Role> _availableRoles;
 
         protected IManagementConnection Connection { get; }
@@ -24,22 +23,24 @@
 
         public ICommand ClearCommand { get; }
 
-        public Role SelectedRole { get { return _selectedRole; } set { SetProperty(ref _selectedRole, value); } }
+        public Role SelectedRole { get => _selectedRole; set => SetProperty(ref _selectedRole, value); }
         private Role _selectedRole;
         public const string SelectedRoleProperty = "SelectedRole";
 
-        public Account SelectedAccount { get { return _selectedAccount; } set { SetProperty(ref _selectedAccount, value); } }
+        public Account SelectedAccount { get => _selectedAccount; set => SetProperty(ref _selectedAccount, value); }
         private Account _selectedAccount;
         public const string SelectedAccountProperty = "SelectedAccount";
 
-        public string RoleName { get { return _roleName; } set { SetProperty(ref _roleName, value); } }
+        public string RoleName { get => _roleName; set => SetProperty(ref _roleName, value); }
         private string _roleName;
 
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
 
-        public RolesViewModel(IManagementConnection connection, ILogger logger)
+        public RolesViewModel(IManagementConnection connection
+            //ILogger logger
+            )
         {
-            _logger = logger;   
+            //_logger = logger   
             Connection = connection;
             AddCommand = new RelayCommand(AddRole, CanAddRole);
             SaveCommand = new RelayCommand(SaveRole, CanSaveRole);

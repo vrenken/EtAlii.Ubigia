@@ -13,14 +13,14 @@
         private readonly IMainDispatcherInvoker _dispatcherInvoker;
         private readonly IStatusGraphScriptLanguageProcessingSubscription _statusGraphScriptLanguageProcessingSubscription;
         private readonly IOutputGraphScriptLanguageProcessingSubscription _outputGraphScriptLanguageProcessingSubscription;
-        private readonly IDiagnosticsGraphScriptLanguageProcessingSubscription _diagnosticsGraphScriptLanguageProcessingSubscription;
+        //private readonly IDiagnosticsGraphScriptLanguageProcessingSubscription _diagnosticsGraphScriptLanguageProcessingSubscription
         private readonly IParseGraphScriptLanguageUnitOfworkHandler _parseScriptUnitOfworkHandler;
 
         public ProcessGraphScriptLanguageUnitOfworkHandler(
             //IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusGraphScriptLanguageProcessingSubscription statusGraphScriptLanguageProcessingSubscription, 
-            IDiagnosticsGraphScriptLanguageProcessingSubscription diagnosticsGraphScriptLanguageProcessingSubscription, 
+            //IDiagnosticsGraphScriptLanguageProcessingSubscription diagnosticsGraphScriptLanguageProcessingSubscription 
             IOutputGraphScriptLanguageProcessingSubscription outputGraphScriptLanguageProcessingSubscription, 
             IParseGraphScriptLanguageUnitOfworkHandler parseScriptUnitOfworkHandler, 
             IGraphContext graphContext, 
@@ -28,7 +28,7 @@
         {
             _dispatcherInvoker = dispatcherInvoker;
             _statusGraphScriptLanguageProcessingSubscription = statusGraphScriptLanguageProcessingSubscription;
-            _diagnosticsGraphScriptLanguageProcessingSubscription = diagnosticsGraphScriptLanguageProcessingSubscription;
+            //_diagnosticsGraphScriptLanguageProcessingSubscription = diagnosticsGraphScriptLanguageProcessingSubscription
             _outputGraphScriptLanguageProcessingSubscription = outputGraphScriptLanguageProcessingSubscription;
             _parseScriptUnitOfworkHandler = parseScriptUnitOfworkHandler;
             _graphContext = graphContext;

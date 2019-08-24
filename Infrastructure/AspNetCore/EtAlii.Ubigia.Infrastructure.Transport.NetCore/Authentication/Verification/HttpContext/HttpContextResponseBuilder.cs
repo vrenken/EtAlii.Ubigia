@@ -2,24 +2,23 @@
 {
     using System;
     using System.Linq;
-    using EtAlii.Ubigia.Infrastructure.Functional;
     using Microsoft.AspNetCore.Http;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.Extensions.Primitives;
 
     internal class HttpContextResponseBuilder : IHttpContextResponseBuilder
 	{
-        private readonly IAccountRepository _accountRepository;
-        private readonly IHttpContextAuthenticationIdentityProvider _authenticationIdentityProvider;
+        //private readonly IAccountRepository _accountRepository
+        //private readonly IHttpContextAuthenticationIdentityProvider _authenticationIdentityProvider
         private readonly IAuthenticationTokenConverter _authenticationTokenConverter;
 
         public HttpContextResponseBuilder(
-            IAccountRepository accountRepository,
-            IHttpContextAuthenticationIdentityProvider authenticationIdentityProvider,
+            //IAccountRepository accountRepository,
+            //IHttpContextAuthenticationIdentityProvider authenticationIdentityProvider,
             IAuthenticationTokenConverter authenticationTokenConverter)
         {
-            _accountRepository = accountRepository;
-            _authenticationIdentityProvider = authenticationIdentityProvider;
+            //_accountRepository = accountRepository
+            //_authenticationIdentityProvider = authenticationIdentityProvider
             _authenticationTokenConverter = authenticationTokenConverter;
         }
 		

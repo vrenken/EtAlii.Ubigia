@@ -1,19 +1,16 @@
 ﻿namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 {
     using System.Collections.ObjectModel;
-    using System.Windows.Input;
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using Northwoods.GoXam.Model;
+//using System.Windows.Input
 
     public partial class GraphDocumentViewModelBase : GraphLinksModel<EntryNode, Identifier, string, EntryLink>, IGraphDocumentViewModel
     {
         #region Properties
 
         protected IFabricContext Fabric { get; }
-
-        private readonly ICommand _selectEntryCommand;
-        private readonly ICommand _discoverEntryCommand;
 
         public IGraphConfiguration Configuration => GraphContext.Configuration;
 
@@ -25,7 +22,7 @@
 
         public string Title 
         {
-            get { return _title; }
+            get => _title;
             set { if (_title != value) { var old = _title; _title = value; RaisePropertyChanged("Title", this, old, value); } }
         }
         private string _title;
@@ -52,8 +49,8 @@
             //_fabric.Entries.Prepared += OnEntryPrepared
             Fabric.Entries.Stored += OnEntryStored;
 
-            _discoverEntryCommand = new RelayCommand(DiscoverEntry);
-            _selectEntryCommand = new RelayCommand(SelectEntry);
+            //_discoverEntryCommand = new RelayCommand(DiscoverEntry)
+            //_selectEntryCommand = new RelayCommand(SelectEntry)
 
             Clear();
 

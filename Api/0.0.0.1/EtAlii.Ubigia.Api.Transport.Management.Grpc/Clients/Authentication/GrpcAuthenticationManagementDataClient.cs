@@ -12,7 +12,7 @@
         //private readonly IHubProxyMethodInvoker _invoker
         private AuthenticationGrpcService.AuthenticationGrpcServiceClient _client;
         private StorageGrpcService.StorageGrpcServiceClient _storageClient;
-        private Api.Account _account;
+        //private Api.Account _account
 
         public GrpcAuthenticationManagementDataClient()
         {

@@ -2,19 +2,21 @@
 {
     using System;
     using System.Threading.Tasks;
-    using EtAlii.xTechnology.Logging;
+
+    //using EtAlii.xTechnology.Logging
 
     public class ProfilingManagementConnection : IManagementConnection
     {
         private readonly IManagementConnection _decoree;
-        private readonly IProfiler _profiler;
+        //private readonly IProfiler _profiler
 
         public ProfilingManagementConnection(
-            IManagementConnection decoree,
-            IProfiler profiler)
+            IManagementConnection decoree
+            //IProfiler profiler
+            )
         {
             _decoree = decoree;
-            _profiler = profiler;
+            //_profiler = profiler
         }
 
         public Storage Storage => _decoree.Storage;

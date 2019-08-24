@@ -20,7 +20,8 @@ namespace EtAlii.Ubigia.Api.Logical
         public static TLogicalContextConfiguration Use<TLogicalContextConfiguration>(this TLogicalContextConfiguration configuration, LogicalContextConfiguration otherConfiguration)
             where TLogicalContextConfiguration: LogicalContextConfiguration
         {
-            configuration.Use((FabricContextConfiguration)otherConfiguration);
+            // ReSharper disable once RedundantCast
+            configuration.Use((FabricContextConfiguration)otherConfiguration); // This cast is needed!
 
             ((IEditableLogicalContextConfiguration)configuration).CachingEnabled = otherConfiguration.CachingEnabled;
             return configuration;

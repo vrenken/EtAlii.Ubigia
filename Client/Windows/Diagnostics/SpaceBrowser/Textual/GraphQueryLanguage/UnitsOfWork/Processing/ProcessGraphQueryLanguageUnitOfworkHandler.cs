@@ -15,7 +15,7 @@
         private readonly IMainDispatcherInvoker _dispatcherInvoker;
         private readonly IStatusGraphQueryLanguageProcessingSubscription _statusGraphQueryLanguageProcessingSubscription;
         private readonly IOutputGraphQueryLanguageProcessingSubscription _outputGraphQueryLanguageProcessingSubscription;
-        private readonly IDiagnosticsGraphQueryLanguageProcessingSubscription _diagnosticsGraphQueryLanguageProcessingSubscription;
+        //private readonly IDiagnosticsGraphQueryLanguageProcessingSubscription _diagnosticsGraphQueryLanguageProcessingSubscription
         private readonly IParseGraphQueryLanguageUnitOfworkHandler _parseQueryUnitOfworkHandler;
 
         public ProcessGraphQueryLanguageUnitOfworkHandler(
@@ -23,7 +23,7 @@
             //IMultiResultFactory resultFactory,
             IMainDispatcherInvoker dispatcherInvoker, 
             IStatusGraphQueryLanguageProcessingSubscription statusGraphQueryLanguageProcessingSubscription, 
-            IDiagnosticsGraphQueryLanguageProcessingSubscription diagnosticsGraphQueryLanguageProcessingSubscription, 
+            //IDiagnosticsGraphQueryLanguageProcessingSubscription diagnosticsGraphQueryLanguageProcessingSubscription 
             IOutputGraphQueryLanguageProcessingSubscription outputGraphQueryLanguageProcessingSubscription, 
             IParseGraphQueryLanguageUnitOfworkHandler parseQueryUnitOfworkHandler, 
             IGraphContext graphContext) 
@@ -31,7 +31,7 @@
             _queryContext = queryContext;
             _dispatcherInvoker = dispatcherInvoker;
             _statusGraphQueryLanguageProcessingSubscription = statusGraphQueryLanguageProcessingSubscription;
-            _diagnosticsGraphQueryLanguageProcessingSubscription = diagnosticsGraphQueryLanguageProcessingSubscription;
+            //_diagnosticsGraphQueryLanguageProcessingSubscription = diagnosticsGraphQueryLanguageProcessingSubscription
             _outputGraphQueryLanguageProcessingSubscription = outputGraphQueryLanguageProcessingSubscription;
             _parseQueryUnitOfworkHandler = parseQueryUnitOfworkHandler;
             _graphContext = graphContext;

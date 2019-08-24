@@ -5,14 +5,15 @@
     public partial class UserEntryService : EtAlii.Ubigia.Api.Transport.Grpc.WireProtocol.EntryGrpcService.EntryGrpcServiceBase, IUserEntryService
     {
         private readonly IEntryRepository _items;
-        private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier;
+        //private readonly ISimpleAuthenticationTokenVerifier _authenticationTokenVerifier
 
         public UserEntryService(
-            IEntryRepository items,
-            ISimpleAuthenticationTokenVerifier authenticationTokenVerifier)
+            IEntryRepository items
+            //ISimpleAuthenticationTokenVerifier authenticationTokenVerifier
+            )
         {
             _items = items;
-            _authenticationTokenVerifier = authenticationTokenVerifier;
+            //_authenticationTokenVerifier = authenticationTokenVerifier
         }
     }
 }

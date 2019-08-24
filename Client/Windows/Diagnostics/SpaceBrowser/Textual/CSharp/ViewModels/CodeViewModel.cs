@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Reactive.Linq;
 
-    public class CodeViewModel : TextualViewModelBase, ICodeViewModel
+    public sealed class CodeViewModel : TextualViewModelBase, ICodeViewModel, IDisposable
     {
 
         public ICodeButtonsViewModel Buttons { get; }
@@ -84,6 +84,31 @@
                     SourceChanged();
                     break;
             }
+        }
+
+        private void ReleaseUnmanagedResources()
+        {
+            // TODO release unmanaged resources here
+        }
+
+        private void Dispose(bool disposing)
+        {
+            ReleaseUnmanagedResources();
+            if (disposing)
+            {
+                _codeChangedSubscription?.Dispose();
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~CodeViewModel()
+        {
+            Dispose(false);
         }
     }
 }

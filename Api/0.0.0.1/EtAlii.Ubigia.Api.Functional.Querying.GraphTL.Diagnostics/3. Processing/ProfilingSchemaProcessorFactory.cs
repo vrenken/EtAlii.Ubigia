@@ -1,18 +1,19 @@
 namespace EtAlii.Ubigia.Api.Functional.Diagnostics 
 {
-    using EtAlii.Ubigia.Api.Diagnostics.Profiling;
+    //using EtAlii.Ubigia.Api.Diagnostics.Profiling
 
     internal class ProfilingSchemaProcessorFactory : ISchemaProcessorFactory
     {
         private readonly ISchemaProcessorFactory _decoree;
-        private readonly IProfiler _profiler;
+        //private readonly IProfiler _profiler
 
         public ProfilingSchemaProcessorFactory(
-            ISchemaProcessorFactory decoree, 
-            IProfiler profiler)
+            ISchemaProcessorFactory decoree 
+            //IProfiler profiler
+            )
         {
             _decoree = decoree;
-            _profiler = profiler;
+            //_profiler = profiler
         }
 
         public ISchemaProcessor Create(SchemaProcessorConfiguration configuration)

@@ -15,7 +15,7 @@
 
         private readonly IDictionary<Tuple<Identifier, EntryRelation>, IEnumerable<IReadOnlyEntry>> _relatedEntries;
 
-        private readonly IDictionary<string, Root> _roots;
+        //private readonly IDictionary<string, Root> _roots
 
         private readonly IDictionary<Identifier, PropertyDictionary> _properties;
 
@@ -28,7 +28,7 @@
             _cacheEnabled = cacheEnabled;
             _entries = new Dictionary<Identifier, IReadOnlyEntry>();
             _relatedEntries = new Dictionary<Tuple<Identifier, EntryRelation>, IEnumerable<IReadOnlyEntry>>();
-            _roots = new Dictionary<string, Root>();
+            //_roots = new Dictionary<string, Root>()
             _properties = new Dictionary<Identifier, PropertyDictionary>();
         }
 

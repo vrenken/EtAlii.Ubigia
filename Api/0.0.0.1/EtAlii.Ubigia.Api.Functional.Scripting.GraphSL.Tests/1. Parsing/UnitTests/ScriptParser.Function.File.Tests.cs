@@ -1,24 +1,23 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
-    using System;
     using Xunit;
 
-    public class ScriptParserFunctionFileTests : IDisposable
+    public class ScriptParserFunctionFileTests //: IDisposable
     {
-        private IScriptParser _parser;
+        //private IScriptParser _parser
 
-        public ScriptParserFunctionFileTests()
-        {
-            var diagnostics = TestDiagnostics.Create();
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-        }
+//        public ScriptParserFunctionFileTests()
+//        [
+//            var diagnostics = TestDiagnostics.Create();
+//            var scriptParserConfiguration = new ScriptParserConfiguration()
+//                .UseFunctionalDiagnostics(diagnostics)
+//            _parser = new ScriptParserFactory().Create(scriptParserConfiguration)
+//        ]
 
-        public void Dispose()
-        {
-            _parser = null;
-        }
+//        public void Dispose()
+//        [
+//            _parser = null
+//        ]
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ScriptParser_Function_File_Add()

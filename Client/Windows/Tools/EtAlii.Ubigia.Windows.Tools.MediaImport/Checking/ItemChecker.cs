@@ -5,11 +5,10 @@
     using System.Threading;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Windows.Mvvm;
-    using EtAlii.xTechnology.Logging;
 
     internal class ItemChecker : BindableBase, IItemChecker
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
         private readonly IItemUpdater _itemUpdater;
         private readonly ConcurrentQueue<ItemCheckAction> _queue = new ConcurrentQueue<ItemCheckAction>();
         private readonly AutoResetEvent _stopEvent = new AutoResetEvent(false);
@@ -23,10 +22,10 @@
         private bool _isRunning;
 
         public ItemChecker(
-            ILogger logger,
+            //ILogger logger,
             IItemUpdater itemUpdater)
         {
-            _logger = logger;
+            //_logger = logger
             _itemUpdater = itemUpdater;
             _events = new WaitHandle[]
             {

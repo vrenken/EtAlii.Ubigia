@@ -31,7 +31,7 @@
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsAsync(request);
                     var response = await call.ResponseAsync;
-                    _account = response.Account?.ToLocal();
+                    //_account = response.Account?.ToLocal()
                     
                     authenticationToken = call
                         .GetTrailers()
@@ -42,7 +42,7 @@
                     var request = new AuthenticationRequest { AccountName = accountName, Password = password, HostIdentifier = _hostIdentifier };
                     var call = _client.AuthenticateAsync(request);
                     var response = await call.ResponseAsync;
-                    _account = response.Account?.ToLocal();
+                    //_account = response.Account?.ToLocal()
                     
                     authenticationToken= call
                         .GetTrailers()

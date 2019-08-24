@@ -47,7 +47,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             {
                 parentId = Identifier.Empty;
             }
-            return new RecursiveRemoveResult(parentId, newEntry);
+
+            return new RecursiveRemoveResult(newEntry); //(parentId, newEntry)
         }
     }
 }

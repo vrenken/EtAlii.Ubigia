@@ -1,24 +1,23 @@
 ﻿namespace EtAlii.Ubigia.Api.Functional.Scripting.Tests
 {
-    using System;
     using Xunit;
 
-    public class ConstantPathSubjectPartTests : IDisposable
+    public class ConstantPathSubjectPartTests //: IDisposable
     {
-        private IScriptParser _parser;
+        //private IScriptParser _parser
 
-        public ConstantPathSubjectPartTests()
-        {
-            var diagnostics = TestDiagnostics.Create();
-            var scriptParserConfiguration = new ScriptParserConfiguration()
-                .UseFunctionalDiagnostics(diagnostics);
-            _parser = new ScriptParserFactory().Create(scriptParserConfiguration);
-        }
+        //public ConstantPathSubjectPartTests()
+        //[
+            //var diagnostics = TestDiagnostics.Create()
+            //var scriptParserConfiguration = new ScriptParserConfiguration()
+            //    .UseFunctionalDiagnostics(diagnostics)
+            //_parser = new ScriptParserFactory().Create(scriptParserConfiguration)
+        //]
 
-        public void Dispose()
-        {
-            _parser = null;
-        }
+        //public void Dispose()
+        //[
+            //_parser = null
+        //]
 
         [Fact, Trait("Category", TestAssembly.Category)]
         public void ConstantPathSubjectPart_ToString()

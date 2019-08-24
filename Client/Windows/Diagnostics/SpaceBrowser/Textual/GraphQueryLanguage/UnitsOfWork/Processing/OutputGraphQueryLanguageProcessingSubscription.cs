@@ -7,16 +7,17 @@ namespace EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser
 
     public class OutputGraphQueryLanguageProcessingSubscription : IOutputGraphQueryLanguageProcessingSubscription
     {
-        private readonly IErrorWriter _errorWriter;
-        private readonly IMultiResultFactory _resultFactory;
+        //private readonly IErrorWriter _errorWriter
+        //private readonly IMultiResultFactory _resultFactory
 
 
         public OutputGraphQueryLanguageProcessingSubscription(
-            IErrorWriter errorWriter, 
-            IMultiResultFactory resultFactory)
+            //IErrorWriter errorWriter, 
+            //IMultiResultFactory resultFactory
+            )
         {
-            _errorWriter = errorWriter;
-            _resultFactory = resultFactory;
+            //_errorWriter = errorWriter
+            //_resultFactory = resultFactory
         }
 
         public void Subscribe(

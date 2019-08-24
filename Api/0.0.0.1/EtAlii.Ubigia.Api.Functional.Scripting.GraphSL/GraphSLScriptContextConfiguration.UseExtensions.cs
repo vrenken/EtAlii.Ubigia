@@ -29,7 +29,8 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
         public static TGraphSLScriptContextConfiguration Use<TGraphSLScriptContextConfiguration>(this TGraphSLScriptContextConfiguration configuration, GraphSLScriptContextConfiguration otherConfiguration)
             where TGraphSLScriptContextConfiguration : GraphSLScriptContextConfiguration
         {
-            configuration.Use((LogicalContextConfiguration)otherConfiguration);
+            // ReSharper disable once RedundantCast
+            configuration.Use((LogicalContextConfiguration)otherConfiguration); // This cast is needed!
             
             var editableConfiguration = (IEditableGraphSLScriptContextConfiguration) configuration;
 

@@ -4,24 +4,23 @@
     using System.Reactive.Linq;
     using System.Threading.Tasks;
     using EtAlii.Ubigia.Api.Functional.Scripting;
-    using EtAlii.xTechnology.Logging;
 
     internal class ItemCreatedHandler : IItemCreatedHandler
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger
         private readonly IDirectoryHelper _directoryHelper;
         private readonly IGraphSLScriptContext _scriptContext;
         private readonly IStringEscaper _stringEscaper;
         private readonly ILocalPathSplitter _localPathSplitter;
 
         public ItemCreatedHandler(
-            ILogger logger,
+            //ILogger logger,
             IDirectoryHelper directoryHelper,
             IStringEscaper stringEscaper,
             ILocalPathSplitter localPathSplitter, 
             IGraphSLScriptContext scriptContext)
         {
-            _logger = logger;
+            //_logger = logger
             _directoryHelper = directoryHelper;
             _stringEscaper = stringEscaper;
             _localPathSplitter = localPathSplitter;
