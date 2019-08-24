@@ -11,8 +11,8 @@
         StructureFragment Parse(LpNode node);
         bool CanParse(LpNode node);
 
-        void Validate(SequencePart before, ConstantSubject subject, int constantSubjectIndex, SequencePart after);
-        bool CanValidate(ConstantSubject constantSubject);
+        void Validate(SequencePart before, ConstantSubject item, int itemIndex, SequencePart after);
+        bool CanValidate(ConstantSubject item);
 
     }
 }

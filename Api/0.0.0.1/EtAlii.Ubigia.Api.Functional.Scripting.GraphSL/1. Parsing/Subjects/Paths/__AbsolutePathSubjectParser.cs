@@ -48,7 +48,7 @@
 //        [
 //            return node.Id == Id
 //        ]
-//        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
+//        public void Validate(SequencePart before, Subject item, int subjectIndex, SequencePart after)
 //        [
 //            var pathSubject = subject as PathSubject
 //            var stringConstantSubject = subject as StringConstantSubject
@@ -73,7 +73,7 @@
 //                throw new ScriptParserException("Unsupported path construction.")
 //            ]
 //        ]
-//        public bool CanValidate(Subject subject)
+//        public bool CanValidate(Subject item)
 //        [
 //            return subject is PathSubject
 //        ]

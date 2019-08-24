@@ -27,12 +27,12 @@
             return new AddOperator();
         }
 
-        public bool CanValidate(Operator @operator)
+        public bool CanValidate(Operator item)
         {
-            return @operator is AddOperator;
+            return item is AddOperator;
         }
 
-        public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
+        public void Validate(SequencePart before, Operator item, int itemIndex, SequencePart after)
         {
             //var pathToAdd = after as PathSubject
             //if [pathToAdd ! = null]

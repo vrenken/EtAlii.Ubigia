@@ -43,9 +43,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             return node.Id == Id;
         }
 
-        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
+        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
         {
-            if (subjectIndex != 0 || before != null)
+            if (itemIndex != 0 || before != null)
             {
                 throw new ScriptParserException("A root subject can only be used as first subject.");
             }
@@ -55,9 +55,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             }
         }
 
-        public bool CanValidate(Subject subject)
+        public bool CanValidate(Subject item)
         {
-            return subject is RootSubject;
+            return item is RootSubject;
         }
     }
 }

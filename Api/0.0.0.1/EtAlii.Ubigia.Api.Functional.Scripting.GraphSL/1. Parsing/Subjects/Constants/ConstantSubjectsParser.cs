@@ -44,21 +44,21 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             return node.Id == Id;
         }
 
-        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
+        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
         {
-            var constantSubject = (ConstantSubject)subject;
+            var constantSubject = (ConstantSubject)item;
             var parser = _parsers.Single(p => p.CanValidate(constantSubject));
-            parser.Validate(before, constantSubject, subjectIndex, after);
+            parser.Validate(before, constantSubject, itemIndex, after);
 
-            if (subjectIndex == 0)
+            if (itemIndex == 0)
             {
                 throw new ScriptParserException("A constant cannot be used as first subject.");
             }
         }
 
-        public bool CanValidate(Subject subject)
+        public bool CanValidate(Subject item)
         {
-            return subject is ConstantSubject;
+            return item is ConstantSubject;
         }
     }
 }

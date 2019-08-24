@@ -33,18 +33,15 @@
             return new AssignOperator();
         }
 
-        public bool CanValidate(Operator @operator)
+        public bool CanValidate(Operator item)
         {
-            return @operator is AssignOperator;
+            return item is AssignOperator;
         }
 
-        public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
+        public void Validate(SequencePart before, Operator item, int itemIndex, SequencePart after)
         {
             var validation = _validationSelector.TrySelect(before, after);
-            if (validation != null)
-            {
-                validation();
-            }
+            validation?.Invoke();
         }
     }
 }

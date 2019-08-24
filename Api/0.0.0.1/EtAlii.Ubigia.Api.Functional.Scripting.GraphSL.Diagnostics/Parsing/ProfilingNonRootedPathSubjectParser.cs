@@ -41,14 +41,14 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             return _decoree.CanParse(node);
         }
 
-        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
+        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
         {
-            _decoree.Validate(before, subject, subjectIndex, after);
+            _decoree.Validate(before, item, itemIndex, after);
         }
 
-        public bool CanValidate(Subject subject)
+        public bool CanValidate(Subject item)
         {
-            return _decoree.CanValidate(subject);
+            return _decoree.CanValidate(item);
         }
     }
 }

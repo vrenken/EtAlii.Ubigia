@@ -59,10 +59,10 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             return node.Id == Id;
         }
 
-        public void Validate(SequencePart before, Subject subject, int subjectIndex, SequencePart after)
+        public void Validate(SequencePart before, Subject item, int itemIndex, SequencePart after)
         {
-            var pathSubject = subject as NonRootedPathSubject;
-            var stringConstantSubject = subject as StringConstantSubject;
+            var pathSubject = item as NonRootedPathSubject;
+            var stringConstantSubject = item as StringConstantSubject;
             if (pathSubject != null)
             {
                 var parts = pathSubject.Parts;
@@ -72,11 +72,11 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
                     var beforePathPart = i > 0 ? parts[i - 1] : null;
                     var afterPathPart = i < parts.Length - 1 ? parts[i + 1] : null;
                     var part = parts[i];
-                    var arguments = new PathSubjectPartParserArguments(subject, beforePathPart, part, i, afterPathPart);
+                    var arguments = new PathSubjectPartParserArguments(item, beforePathPart, part, i, afterPathPart);
                     _pathSubjectPartsParser.Validate(arguments);
                 }
 
-                if (subjectIndex == 0 && pathSubject.Parts.FirstOrDefault() is ConstantPathSubjectPart)
+                if (itemIndex == 0 && pathSubject.Parts.FirstOrDefault() is ConstantPathSubjectPart)
                 {
                     throw new ScriptParserException("A relative path part cannot be used as first subject.");
                 }
@@ -87,9 +87,9 @@ namespace EtAlii.Ubigia.Api.Functional.Scripting
             }
         }
 
-        public bool CanValidate(Subject subject)
+        public bool CanValidate(Subject item)
         {
-            return subject is NonRootedPathSubject;
+            return item is NonRootedPathSubject;
         }
     }
 }

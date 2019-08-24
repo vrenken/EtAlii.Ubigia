@@ -27,12 +27,12 @@
             return new RemoveOperator();
         }
 
-        public bool CanValidate(Operator @operator)
+        public bool CanValidate(Operator item)
         {
-            return @operator is RemoveOperator;
+            return item is RemoveOperator;
         }
 
-        public void Validate(SequencePart before, Operator @operator, int partIndex, SequencePart after)
+        public void Validate(SequencePart before, Operator item, int itemIndex, SequencePart after)
         {
             // Make sure the after SequencePart can actually be removed from the before SequencePart.
         }
