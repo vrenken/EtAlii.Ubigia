@@ -35,14 +35,11 @@
                     newDocument.TextChanged += OnDocumentTextChanged;
                 }
             }
-            else if (e.Property == SourceProperty && _updateDocumentFromSource)
+            else if (e.Property == SourceProperty && _updateDocumentFromSource && Document != null)
             {
-                if (Document != null)
-                {
-                    Document.TextChanged -= OnDocumentTextChanged;
-                    Document.Text = e.NewValue as string ?? string.Empty;
-                    Document.TextChanged += OnDocumentTextChanged;
-                }
+                Document.TextChanged -= OnDocumentTextChanged;
+                Document.Text = e.NewValue as string ?? string.Empty;
+                Document.TextChanged += OnDocumentTextChanged;
             }
         }
 

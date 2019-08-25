@@ -115,10 +115,10 @@
                 throw new SchemaParserException("An annotation could not be found for parsing.");
             }
             var annotation = _annotationParser.Parse(annotationNode);
-//          if (annotation != Annotation.None && annotation.Type != AnnotationType.Value)
-//          {
-//              throw new QueryParserException("A constant assignment can only be applied to type-annotated elements");
-//          }
+//          if [annotation ! = Annotation.None & & annotation.Type ! = AnnotationType.Value]
+//          [
+//              throw new QueryParserException["A constant assignment can only be applied to type-annotated elements"]
+//          ]
 
             return annotation;
         }

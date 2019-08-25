@@ -48,7 +48,7 @@ namespace EtAlii.Ubigia.Api.Functional
                             !(last is ParentPathSubjectPart) && !(last is ChildrenPathSubjectPart))
                         {
                             // If no separator is given we assume a parent 2 child relation is requested.
-                            //correctedParts.Add(new AllUpdatesPathSubjectPart());
+                            //correctedParts.Add(new AllUpdatesPathSubjectPart())
                             correctedParts.Add(new ParentPathSubjectPart());
                         }
                         correctedParts.AddRange(relativePathSubject.Parts);

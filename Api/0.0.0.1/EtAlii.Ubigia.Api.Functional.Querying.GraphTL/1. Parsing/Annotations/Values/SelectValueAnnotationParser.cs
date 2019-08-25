@@ -22,7 +22,7 @@
         private readonly IRootedPathSubjectParser _rootedPathSubjectParser;
         private readonly IOperatorsParser _operatorsParser;
         private readonly ISubjectsParser _subjectsParser;
-        //private readonly IParser[] _contentParsers;
+        //private readonly IParser[] _contentParsers
 
         public SelectValueAnnotationParser(
             INodeValidator nodeValidator,

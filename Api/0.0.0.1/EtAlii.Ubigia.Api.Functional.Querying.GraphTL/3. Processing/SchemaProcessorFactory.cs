@@ -31,17 +31,17 @@ namespace EtAlii.Ubigia.Api.Functional
 
         protected override void InitializeInstance(ISchemaProcessor instance, Container container)
         {
-//            var pathProcessor = container.GetInstance<IPathProcessor>();
-//            var pathSubjectToGraphPathConverter = container.GetInstance<IPathSubjectToGraphPathConverter>();
+//            var pathProcessor = container.GetInstance<IPathProcessor>()
+//            var pathSubjectToGraphPathConverter = container.GetInstance<IPathSubjectToGraphPathConverter>()
 //
-//            var absolutePathSubjectProcessor = container.GetInstance<IAbsolutePathSubjectProcessor>();
-//            var relativePathSubjectProcessor = container.GetInstance<IRelativePathSubjectProcessor>();
-//            var rootedPathSubjectProcessor = container.GetInstance<IRootedPathSubjectProcessor>();
+//            var absolutePathSubjectProcessor = container.GetInstance<IAbsolutePathSubjectProcessor>()
+//            var relativePathSubjectProcessor = container.GetInstance<IRelativePathSubjectProcessor>()
+//            var rootedPathSubjectProcessor = container.GetInstance<IRootedPathSubjectProcessor>()
 //
-//            var pathSubjectForOutputConverter = container.GetInstance<IPathSubjectForOutputConverter>();
-//            var addRelativePathToExistingPathProcessor = container.GetInstance<IAddRelativePathToExistingPathProcessor>();
+//            var pathSubjectForOutputConverter = container.GetInstance<IPathSubjectForOutputConverter>()
+//            var addRelativePathToExistingPathProcessor = container.GetInstance<IAddRelativePathToExistingPathProcessor>()
 //
-//            container.GetInstance<IProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor, pathSubjectForOutputConverter, addRelativePathToExistingPathProcessor);
+//            container.GetInstance<IProcessingContext>().Initialize(pathSubjectToGraphPathConverter, absolutePathSubjectProcessor, relativePathSubjectProcessor, rootedPathSubjectProcessor, pathProcessor, pathSubjectForOutputConverter, addRelativePathToExistingPathProcessor)
         }
     }
 }

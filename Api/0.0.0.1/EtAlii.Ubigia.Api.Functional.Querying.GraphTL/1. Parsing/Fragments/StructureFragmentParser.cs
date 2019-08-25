@@ -52,7 +52,7 @@
             var whitespace = whitespaceParser.Optional;//.Debug("W")
             var lineSeparator = whitespace + new LpsParser(Lp.Term("\r\n") | Lp.Term("\n")) + whitespace; 
 
-            //var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace; 
+            //var spaceSeparator = whitespace + Lp.One(c => c == ' ' || c == '\t') + whitespace 
             var spaceSeparator = whitespaceParser.Required; 
             var commaSeparator = whitespace + new LpsParser((',' + whitespace + '\n') | ',') + whitespace; 
 
