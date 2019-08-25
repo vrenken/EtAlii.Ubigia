@@ -12,9 +12,6 @@ namespace EtAlii.Ubigia.Infrastructure.Functional
 
         Uri Address { get; set; }
 
-        Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; set; }
-
-        Func<Container, object>[] ComponentFactories { get; set; }
 
         ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; set; }
 
