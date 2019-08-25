@@ -15,13 +15,7 @@
 
         Uri IEditableInfrastructureConfiguration.Address { get => Address; set => Address = value; }
         public Uri Address { get; private set; }
-
-        Func<Container, Func<Container, object>[], object>[] IEditableInfrastructureConfiguration.ComponentManagerFactories { get => ComponentManagerFactories; set => ComponentManagerFactories = value; }
-        public Func<Container, Func<Container, object>[], object>[] ComponentManagerFactories { get; private set; }
-
-        Func<Container, object>[] IEditableInfrastructureConfiguration.ComponentFactories { get => ComponentFactories; set => ComponentFactories = value; }
-        public Func<Container, object>[] ComponentFactories { get; private set; }
-
+        
         ISystemConnectionCreationProxy IEditableInfrastructureConfiguration.SystemConnectionCreationProxy { get => SystemConnectionCreationProxy; set => SystemConnectionCreationProxy = value; }
         public ISystemConnectionCreationProxy SystemConnectionCreationProxy { get; private set; }
 
@@ -31,8 +25,6 @@
         public InfrastructureConfiguration(ISystemConnectionCreationProxy systemConnectionCreationProxy)
         {
             SystemConnectionCreationProxy = systemConnectionCreationProxy;
-            ComponentManagerFactories = new Func<Container, Func<Container, object>[], object>[0];
-            ComponentFactories = new Func<Container, object>[0];
         }
 
         public IInfrastructure GetInfrastructure(Container container)
