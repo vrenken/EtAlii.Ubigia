@@ -81,16 +81,15 @@
                 <xcad:LayoutRoot x:Name="LayoutRoot">
                     <xcad:LayoutPanel Orientation="Horizontal">
                         <xcad:LayoutAnchorablePane DockWidth="200">
-
                             <!--IconSource="../Images/Icons/Document-01.png"-->
                             <xcad:LayoutAnchorable 
-                            ContentId="properties" 
-                            Title="Properties" 
-                            CanHide="False" 
-                            CanClose="False"
-                            AutoHideWidth="240">
-
-                                <xctk:PropertyGrid
+                                ContentId="properties" 
+                                Title="Properties" 
+                                CanHide="False" 
+                                CanClose="False"
+                                AutoHideWidth="240">
+                            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                            <xctk:PropertyGrid
                                 NameColumnWidth="110"
                                 SelectedObject="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content.SelectedObject}"/>
                             </xcad:LayoutAnchorable>
@@ -112,6 +111,7 @@
                                     </Grid>
                                 </xcad:LayoutAnchorable>
                                 <xcad:LayoutAnchorable ContentId="variables" Title="Variables">
+                                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
                                     <views:ScriptResultView 
                                         DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                         ItemsSource="{Binding ScriptVariables}" />
