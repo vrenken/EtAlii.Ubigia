@@ -22,43 +22,38 @@
         string IEditableProvisioningConfiguration.Password { get => Password; set => Password = value; }
         public string Password { get; private set; }
 
-        Action<ManagementConnectionConfiguration>[] IEditableProvisioningConfiguration.ManagementConnectionConfigurationFactoryExtensions { get => _managementConnectionConfigurationFactoryExtensions; set => _managementConnectionConfigurationFactoryExtensions = value; }
-        private Action<ManagementConnectionConfiguration>[] _managementConnectionConfigurationFactoryExtensions;
+        Action<ManagementConnectionConfiguration>[] IEditableProvisioningConfiguration.ManagementConnectionConfigurationFactoryExtensions { get; set; }
 
-        Action<DataConnectionConfiguration>[] IEditableProvisioningConfiguration.DataConnectionConfigurationFactoryExtensions { get => _dataConnectionConfigurationFactoryExtensions; set => _dataConnectionConfigurationFactoryExtensions = value; }
-        private Action<DataConnectionConfiguration>[] _dataConnectionConfigurationFactoryExtensions;
+        Action<DataConnectionConfiguration>[] IEditableProvisioningConfiguration.DataConnectionConfigurationFactoryExtensions { get; set; }
         
-        Action<GraphSLScriptContextConfiguration>[] IEditableProvisioningConfiguration.ScriptContextConfigurationFactoryExtensions { get => _scriptContextConfigurationFactoryExtensions; set => _scriptContextConfigurationFactoryExtensions = value; }
-        private Action<GraphSLScriptContextConfiguration>[] _scriptContextConfigurationFactoryExtensions;
+        Action<GraphSLScriptContextConfiguration>[] IEditableProvisioningConfiguration.ScriptContextConfigurationFactoryExtensions { get; set; }
 
-        Func<ITransportProvider> IEditableProvisioningConfiguration.TransportProviderFactory { get => _transportProviderFactory; set => _transportProviderFactory = value; }
-        private Func<ITransportProvider> _transportProviderFactory;
+        Func<ITransportProvider> IEditableProvisioningConfiguration.TransportProviderFactory { get; set; }
 
-        Func<IStorageTransportProvider> IEditableProvisioningConfiguration.StorageTransportProviderFactory { get => _storageTransportProviderFactory; set => _storageTransportProviderFactory = value; }
-        private Func<IStorageTransportProvider> _storageTransportProviderFactory;
+        Func<IStorageTransportProvider> IEditableProvisioningConfiguration.StorageTransportProviderFactory { get; set; }
 
         public ProvisioningConfiguration()
         {
             ProviderConfigurations = Array.Empty<ProviderConfiguration>();
-            _dataConnectionConfigurationFactoryExtensions = Array.Empty<Action<DataConnectionConfiguration>>();
-            _managementConnectionConfigurationFactoryExtensions = Array.Empty<Action<ManagementConnectionConfiguration>>();
-            _scriptContextConfigurationFactoryExtensions = Array.Empty<Action<GraphSLScriptContextConfiguration>>();
+            ((IEditableProvisioningConfiguration) this).DataConnectionConfigurationFactoryExtensions  = Array.Empty<Action<DataConnectionConfiguration>>();
+            ((IEditableProvisioningConfiguration) this).ManagementConnectionConfigurationFactoryExtensions = Array.Empty<Action<ManagementConnectionConfiguration>>();
+            ((IEditableProvisioningConfiguration) this).ScriptContextConfigurationFactoryExtensions = Array.Empty<Action<GraphSLScriptContextConfiguration>>();
         }
 
         public IStorageTransportProvider CreateStorageTransportProvider()
         {
-            return _storageTransportProviderFactory();
+            return ((IEditableProvisioningConfiguration) this).StorageTransportProviderFactory();
         }
 
         public ITransportProvider CreateTransportProvider()
         {
-            return _transportProviderFactory();
+            return ((IEditableProvisioningConfiguration) this).TransportProviderFactory();
         }
 
         public DataConnectionConfiguration CreateDataConnectionConfiguration()
         {
             var configuration = new DataConnectionConfiguration();
-            foreach (var extension in _dataConnectionConfigurationFactoryExtensions)
+            foreach (var extension in ((IEditableProvisioningConfiguration) this).DataConnectionConfigurationFactoryExtensions)
             {
                 extension(configuration);
             }
@@ -68,7 +63,7 @@
         public ManagementConnectionConfiguration CreateManagementConnectionConfiguration()
         {
             var configuration = new ManagementConnectionConfiguration();
-            foreach (var extension in _managementConnectionConfigurationFactoryExtensions)
+            foreach (var extension in ((IEditableProvisioningConfiguration) this).ManagementConnectionConfigurationFactoryExtensions)
             {
                 extension(configuration);
             }
@@ -82,7 +77,7 @@
                 //.Use(_diagnostics)
                 .UseTraversalCaching(useCaching)
                 .Use(connection);
-            foreach (var extension in _scriptContextConfigurationFactoryExtensions) 
+            foreach (var extension in ((IEditableProvisioningConfiguration) this).ScriptContextConfigurationFactoryExtensions) 
             {
                 extension(configuration);
             }
