@@ -4,6 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ui="clr-namespace:EtAlii.Ubigia.Windows.Client"
     xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:settings="clr-namespace:EtAlii.Ubigia.Windows.Settings;assembly=EtAlii.Ubigia.Windows.Settings"
     WindowStartupLocation="CenterScreen"
     Icon="/Storage.ico"
     ResizeMode="NoResize"
@@ -21,7 +22,7 @@
                             ItemsSource="{Binding Storage}"
                             HorizontalAlignment="Stretch">
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate>
+                                <DataTemplate DataType="settings:StorageSettings">
                                     <Grid HorizontalAlignment="Stretch">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" />

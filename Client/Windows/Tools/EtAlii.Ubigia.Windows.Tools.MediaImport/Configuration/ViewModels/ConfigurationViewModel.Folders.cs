@@ -11,7 +11,7 @@
 
         public IFolderMonitorManager Manager { get; }
 
-        public IFolderMonitor SelectedFolderMonitor { get { return _selectedFolderMonitor; } set { SetProperty(ref _selectedFolderMonitor, value); } }
+        public IFolderMonitor SelectedFolderMonitor { get => _selectedFolderMonitor; set => SetProperty(ref _selectedFolderMonitor, value); }
         private IFolderMonitor _selectedFolderMonitor;
 
         public IObservableFolderSyncConfigurationCollection FolderSyncConfigurations { get; }

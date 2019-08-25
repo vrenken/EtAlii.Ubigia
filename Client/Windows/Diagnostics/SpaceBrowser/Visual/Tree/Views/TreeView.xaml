@@ -1,11 +1,9 @@
-﻿<views:GraphViewBase x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.TreeView"
+﻿<local:GraphViewBase x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.TreeView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:go="http://schemas.nwoods.com/GoXam"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
-    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
-             
     xmlns:mvvm="clr-namespace:EtAlii.Ubigia.Windows.Mvvm;assembly=EtAlii.Ubigia.Windows.Mvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                      mc:Ignorable="d" 
@@ -75,4 +73,4 @@
         <go:Diagram.Layout><local:TreeLayout /></go:Diagram.Layout>
         <go:Diagram.LayoutManager><local:ContinuousLayoutManager /></go:Diagram.LayoutManager>
     </go:Diagram>
-</views:GraphViewBase>
+</local:GraphViewBase>

@@ -104,7 +104,7 @@
                                 DockHeight="400">
                                 <xcad:LayoutAnchorable ContentId="results" Title="Results">
                                     <Grid>
-                                        <views:ScriptResultView 
+                                        <views:ScriptResultView d:DataContext="IGraphScriptLanguageViewModel" 
                                             DataContext="{Binding ElementName=LayoutRoot, Path=LastFocusedDocument.Content}"
                                             ItemsSource="{Binding ScriptResults}" />
                                         <views:QueryResultView 

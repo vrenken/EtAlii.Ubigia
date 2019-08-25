@@ -98,7 +98,7 @@
                             False="Visible" />
                         </ListBox.Resources>
                         <ListBox.ItemTemplate>
-                            <DataTemplate>
+                            <DataTemplate DataType="u:IFolderMonitor">
                                 <Grid HorizontalAlignment="Stretch">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="350" />
