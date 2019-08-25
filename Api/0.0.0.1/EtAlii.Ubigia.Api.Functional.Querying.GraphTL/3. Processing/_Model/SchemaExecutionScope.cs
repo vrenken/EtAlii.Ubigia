@@ -4,7 +4,7 @@
 
     internal class SchemaExecutionScope
     {
-        //public IGraphSLScriptContext ScriptContext { get; }
+        //public IGraphSLScriptContext ScriptContext [ get ]
 
         public IScriptScope ScriptScope { get; }
         
@@ -12,7 +12,7 @@
         {
             ScriptScope = new ScriptScope();
             
-            //ScriptContext = scriptContext;
+            //ScriptContext = scriptContext
         }
     }
 

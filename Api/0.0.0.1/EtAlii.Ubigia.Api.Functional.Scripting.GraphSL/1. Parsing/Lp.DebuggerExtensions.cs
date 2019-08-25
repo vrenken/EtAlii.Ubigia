@@ -29,13 +29,13 @@
                     if (result.Success)
                     {
                         var resultText = result.ToString();
-                        resultText = Escape(resultText);//, spaces);
+                        resultText = Escape(resultText);//, spaces]
 
                         resultText = resultText == string.Empty ? "string.Empty" : resultText;
                         System.Diagnostics.Debug.WriteLine($"{spaces}  > Match: \"{resultText}\"");
                     }
                     var restText = result.Rest.ToString();
-                    restText = Escape(restText);//, spaces);
+                    restText = Escape(restText);//, spaces]
                     System.Diagnostics.Debug.WriteLine($"{spaces}  > Rest: \"{restText}\"");
                 }
                 return result;
@@ -47,7 +47,7 @@
             return s.Replace("\n", "\\n")
                     .Replace("\r", "\\r")
                     .Replace("\\r\\n", "\\n");
-                    //.Replace("\\n", $"\\n{spaces}");
+                    //.Replace("\\n", $"\\n{spaces}")
         }
     }
 }

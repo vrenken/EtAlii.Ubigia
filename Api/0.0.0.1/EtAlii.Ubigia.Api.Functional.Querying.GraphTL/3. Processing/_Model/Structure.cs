@@ -5,7 +5,7 @@
 
     public sealed class Structure
     {
-        //public Identifier Id { get; }
+        //public Identifier Id [ get ]
         public string Type { get; }
         public string Name { get; }
 

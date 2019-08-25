@@ -4,8 +4,8 @@
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Moppet.Lapa;
 
-//    using System.Linq;
-//    using Moppet.Lapa;
+//    using System.Linq
+//    using Moppet.Lapa
 
     internal class SchemaParser : ISchemaParser
     {
@@ -31,13 +31,13 @@
 
             var headerParsers = (newLineParser.OptionalMultiple + commentParser.Parser).ZeroOrMore();
 
-            //var headerParsers = (commentParsers).Maybe();
+            //var headerParsers = (commentParsers).Maybe()
             _parser = new LpsParser(Id, true, headerParsers + newLineParser.OptionalMultiple + _structureFragmentParser.Parser.Maybe() + newLineParser.OptionalMultiple); 
-            ////_parser = new LpsParser(Id, true, commentParser.Parser + newLineParser.Required + structureQueryParser.Parser + newLineParser.Optional); 
-            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _structureQueryParser.Parser); 
-            ////_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + annotationParser.Parser); 
-            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + _structureQueryParser.Parser + newLineParser.OptionalMultiple); 
-            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + _structureQueryParser.Parser); 
+            ////_parser = new LpsParser(Id, true, commentParser.Parser + newLineParser.Required + structureQueryParser.Parser + newLineParser.Optional) 
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + _structureQueryParser.Parser) 
+            ////_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + commentParser.Parser + newLineParser.OptionalMultiple + annotationParser.Parser)
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + _structureQueryParser.Parser + newLineParser.OptionalMultiple)
+            //_parser = new LpsParser(Id, true, newLineParser.OptionalMultiple + _structureQueryParser.Parser)
         }
 
         public SchemaParseResult Parse(string text)
@@ -45,8 +45,8 @@
             text = text ?? string.Empty;
 
             // Newlines and tabs are nasty. Correct them (newlines) or get rid of them (tabs). 
-//            text = text.Replace("\r\n", "\n");
-//            text = text.Replace("\t", " ");
+//            text = text.Replace("\r\n", "\n")
+//            text = text.Replace("\t", " ")
 
             var errors = Array.Empty<SchemaParserError>();
             Schema schema = null;

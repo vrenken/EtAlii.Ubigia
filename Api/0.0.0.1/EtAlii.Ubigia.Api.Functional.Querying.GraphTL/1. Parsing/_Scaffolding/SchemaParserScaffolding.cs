@@ -20,11 +20,11 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
             container.Register<IValueFragmentParser, ValueFragmentParser>();
 
-            //container.Register<IStructureMutationParser, StructureMutationParser>();
-            //container.Register<IValueMutationParser, ValueMutationParser>();
+            //container.Register<IStructureMutationParser, StructureMutationParser>()
+            //container.Register<IValueMutationParser, ValueMutationParser>()
 
             // Path helpers
-            //container.Register<IPathRelationParserBuilder, PathRelationParserBuilder>();
+            //container.Register<IPathRelationParserBuilder, PathRelationParserBuilder>()
         }
     }
 }

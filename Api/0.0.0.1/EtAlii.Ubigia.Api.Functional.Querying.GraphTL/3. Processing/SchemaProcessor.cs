@@ -40,7 +40,7 @@
 
                     for (var executionPlanIndex = 0; executionPlanIndex < totalExecutionPlans; executionPlanIndex++)
                     {
-                        //var sequence = sequences[executionPlanIndex];
+                        //var sequence = sequences[executionPlanIndex]
                         var executionPlan = executionPlans[executionPlanIndex];
 
                         result.Update(executionPlanIndex, executionPlan);
@@ -74,10 +74,10 @@
         private async Task ProcessExecutionPlan(FragmentExecutionPlan executionPlan, IObserver<Structure> schemaOutput, SchemaExecutionScope executionScope)
         {
             var executionPlanOutput = await executionPlan.Execute(executionScope);
-            //var observableQueryOutput = Observable.Empty<Structure>();
+            //var observableQueryOutput = Observable.Empty<Structure>()
 
-//            var originalObservableQueryOutput = await executionPlan.Execute(executionScope);
-//            var observableQueryOutput = Observable.Empty<Structure>();
+//            var originalObservableQueryOutput = await executionPlan.Execute(executionScope)
+//            var observableQueryOutput = Observable.Empty<Structure>()
 
             // We want all subqueryions to have access to all results.
             executionPlanOutput = executionPlanOutput
@@ -85,7 +85,7 @@
                 //.ObserveOn(CurrentThreadScheduler.Instance)
                 .ToHotObservable();
 
-            //queryOutput.OnNext(sequenceResult);
+            //queryOutput.OnNext(sequenceResult)
 
             Exception exception = null;
             var continueEvent = new ManualResetEvent(false);

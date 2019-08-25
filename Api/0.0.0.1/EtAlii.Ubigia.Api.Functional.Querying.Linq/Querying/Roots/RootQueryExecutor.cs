@@ -30,7 +30,7 @@
             //var commandData = visitor.GetGqlCommand()
 
             //var script = commandData.CreateScript(_fabric)
-            //var output = new List<T>();
+            //var output = new List<T>()
             var output = Array.Empty<T>();
             //var scriptProcessor = _scriptProcessorFactory.Create(, new ScriptScope(o => output.Add((T) o)), _fabric)
             //scriptProcessor.Process(script)
