@@ -101,23 +101,25 @@
                 <go:NodePanel 
                 Sizing="Auto"
                 go:Part.SelectionAdorned="True" 
-                go:Part.SelectionElementName="ellipse">
+                go:Part.SelectionElementName="Ellipse">
                     <go:NodeShape
                         go:NodePanel.Figure="Ellipse" 
-                        x:Name="ellipse"
+                        x:Name="Ellipse"
                         Fill="White" StrokeThickness="2" Stroke="Black"
                         go:Node.LinkableFrom="True" go:Node.LinkableTo="True"
                         go:Node.LinkableDuplicates="False" Cursor="Hand"/>
-                        <TextBlock
-                            Text="{Binding Path=Data.Entry.Type}" 
-                            Foreground="Black"
-                            TextWrapping="Wrap" Margin="10" />
-                        <TextBlock 
-                            Text="{Binding Path=Data.Entry.Id, Converter={StaticResource IdentifierToTimeConverter}}" 
-                            Foreground="DarkGray"
-                            TextWrapping="NoWrap" 
-                            Margin="0" 
-                            HorizontalAlignment="Center" VerticalAlignment="Bottom" />
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                    <TextBlock
+                        Text="{Binding Path=Data.Entry.Type}" 
+                        Foreground="Black"
+                        TextWrapping="Wrap" Margin="10" />
+                    <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
+                    <TextBlock 
+                        Text="{Binding Path=Data.Entry.Id, Converter={StaticResource IdentifierToTimeConverter}}" 
+                        Foreground="DarkGray"
+                        TextWrapping="NoWrap" 
+                        Margin="0" 
+                        HorizontalAlignment="Center" VerticalAlignment="Bottom" />
                     <!--<go:NodePanel.ContextMenu>
                         <local:GraphContextMenu DataContext="{Binding Path=Node}" />
                     </go:NodePanel.ContextMenu>-->                    

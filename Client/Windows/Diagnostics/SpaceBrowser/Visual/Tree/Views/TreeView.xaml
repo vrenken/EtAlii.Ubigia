@@ -20,6 +20,7 @@
         </DataTemplate>
 
         <DataTemplate x:Key="TreeNodeTemplate">
+            <!-- ReSharper disable once Xaml.BindingWithContextNotResolved -->
             <TextBlock 
                 Text="{Binding Path=Data.Entry.Type}"
                 FontSize="14" 
