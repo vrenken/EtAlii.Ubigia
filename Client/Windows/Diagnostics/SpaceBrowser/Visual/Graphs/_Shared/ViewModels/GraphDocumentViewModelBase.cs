@@ -4,12 +4,11 @@
     using EtAlii.Ubigia.Api;
     using EtAlii.Ubigia.Api.Fabric;
     using Northwoods.GoXam.Model;
+
 //using System.Windows.Input
 
     public partial class GraphDocumentViewModelBase : GraphLinksModel<EntryNode, Identifier, string, EntryLink>, IGraphDocumentViewModel
     {
-        #region Properties
-
         protected IFabricContext Fabric { get; }
 
         public IGraphConfiguration Configuration => GraphContext.Configuration;
@@ -20,14 +19,8 @@
 
         public IGraphContext GraphContext { get; }
 
-        public string Title 
-        {
-            get => _title;
-            set { if (_title != value) { var old = _title; _title = value; RaisePropertyChanged("Title", this, old, value); } }
-        }
+        public string Title { get => _title; set { if (_title != value) { var old = _title; _title = value; RaisePropertyChanged("Title", this, old, value); } } }
         private string _title;
-
-        #endregion
 
         public GraphDocumentViewModelBase(
             IFabricContext fabric,

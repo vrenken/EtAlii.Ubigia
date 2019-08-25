@@ -7,8 +7,8 @@
     {
         public new StorageSettingsViewModel DataContext
         {
-            get { return base.DataContext as StorageSettingsViewModel; }
-            set { base.DataContext = value; }
+            get => base.DataContext as StorageSettingsViewModel;
+            set => base.DataContext = value;
         }
 
         public StorageWindow()

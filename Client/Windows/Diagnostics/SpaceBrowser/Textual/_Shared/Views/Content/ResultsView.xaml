@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:sf="http://schemas.syncfusion.com/wpf"
     xmlns:windows="clr-namespace:EtAlii.Ubigia.Windows;assembly=EtAlii.Ubigia.Windows"
+    xmlns:spaceBrowser="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     mc:Ignorable="d" 
     x:Name="Root"
     Background="Transparent"
@@ -39,7 +40,7 @@
             ItemsSource="{Binding ElementName=Root, Path=ItemsSource}">
             <sf:TabControlExt.ItemTemplate>
                 <!-- this is the header template-->
-                <DataTemplate>
+                <DataTemplate DataType="spaceBrowser:ResultSet">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" SharedSizeGroup="ResultViewTabHeaderGroup" />
@@ -65,7 +66,7 @@
             </sf:TabControlExt.ItemTemplate>
             <sf:TabControlExt.ContentTemplate>
                 <!-- this is the body of the TabItem template-->
-                <DataTemplate>
+                <DataTemplate DataType="spaceBrowser:ResultSet">
                     <sf:CardView
                         ItemsSource="{Binding Results}"
                         BorderThickness="0" 

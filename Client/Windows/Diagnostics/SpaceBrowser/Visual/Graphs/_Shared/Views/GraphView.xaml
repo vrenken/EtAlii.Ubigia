@@ -1,11 +1,10 @@
-﻿<views:GraphViewBase 
+﻿<local:GraphViewBase 
     x:Class="EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser.GraphView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:go="http://schemas.nwoods.com/GoXam"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
-    xmlns:views="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
     xmlns:mvvm="clr-namespace:EtAlii.Ubigia.Windows.Mvvm;assembly=EtAlii.Ubigia.Windows.Mvvm"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:diagnostics="clr-namespace:EtAlii.Ubigia.Windows.Diagnostics.SpaceBrowser"
@@ -13,11 +12,11 @@
     x:Name="Root"
     d:DesignHeight="300" d:DesignWidth="300">
 
-    <views:GraphViewBase.Resources>
+    <local:GraphViewBase.Resources>
         <ResourceDictionary>
             <diagnostics:IdentifierToTimeConverter x:Key="IdentifierToTimeConverter" />
         </ResourceDictionary>
-    </views:GraphViewBase.Resources>
+    </local:GraphViewBase.Resources>
     <go:Diagram 
         Model="{Binding}"
         InitialStretch="UniformToFill"
@@ -51,6 +50,7 @@
         </go:Diagram.ClickSelectingTool>
         <go:Diagram.LinkTemplateDictionary>
             <go:DataTemplateDictionary>
+                <!-- ReSharper disable Xaml.RedundantResource -->
                 <DataTemplate x:Key="None">
                     <go:LinkShape 
                         Stroke="Black" 
@@ -93,6 +93,7 @@
                         <Polygon Fill="LimeGreen" Points="8 4 0 8 2 4 0 0" go:LinkPanel.Alignment="1 0.5" go:LinkPanel.Index="-1" go:LinkPanel.Orientation="Along" />
                     </go:LinkPanel>
                 </DataTemplate>
+                <!-- ReSharper restore Xaml.RedundantResource -->
             </go:DataTemplateDictionary>
         </go:Diagram.LinkTemplateDictionary>
         <go:Diagram.NodeTemplate>
@@ -106,7 +107,7 @@
                         x:Name="ellipse"
                         Fill="White" StrokeThickness="2" Stroke="Black"
                         go:Node.LinkableFrom="True" go:Node.LinkableTo="True"
-                        go:Node.LinkableDuplicates="False" Cursor="Hand" />
+                        go:Node.LinkableDuplicates="False" Cursor="Hand"/>
                         <TextBlock
                             Text="{Binding Path=Data.Entry.Type}" 
                             Foreground="Black"
@@ -134,4 +135,4 @@
         <go:Diagram.Layout><local:ContinuousForceDirectedLayout /></go:Diagram.Layout>
         <go:Diagram.LayoutManager><local:ContinuousLayoutManager /></go:Diagram.LayoutManager>
     </go:Diagram>
-</views:GraphViewBase>
+</local:GraphViewBase>

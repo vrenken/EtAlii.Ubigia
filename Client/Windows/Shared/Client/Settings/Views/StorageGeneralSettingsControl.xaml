@@ -50,7 +50,7 @@
                     Text="Remove" 
                     Style="{StaticResource HyperlinkStyle}" >
                     <TextBlock.Visibility>
-                        <Binding Path="DataContext.StorageCanBeRemoved" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type Window}}">
+                        <Binding Path="DataContext.StorageCanBeRemoved" RelativeSource="{RelativeSource FindAncestor, AncestorType={x:Type ui:StorageWindow}}">
                             <Binding.Converter>
                                 <BooleanToVisibilityConverter />
                             </Binding.Converter>
