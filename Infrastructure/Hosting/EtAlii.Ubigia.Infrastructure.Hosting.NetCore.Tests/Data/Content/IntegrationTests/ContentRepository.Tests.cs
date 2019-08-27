@@ -127,12 +127,11 @@
 	        var context = _testContext.HostTestContext;
             var space = await InfrastructureTestHelper.CreateSpace(context.Host.Infrastructure);
             var entry = context.Host.Infrastructure.Entries.Prepare(space.Id);
-            var content = (Content)null;
 
             // Act.
             var act = new Action(() =>
             {
-                context.Host.Infrastructure.Content.Store(entry.Id, content);
+                context.Host.Infrastructure.Content.Store(entry.Id, (Content) null);
             });
 
             // Assert.
