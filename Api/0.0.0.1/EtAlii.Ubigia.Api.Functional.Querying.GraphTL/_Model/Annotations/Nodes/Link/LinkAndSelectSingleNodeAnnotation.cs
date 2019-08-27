@@ -4,7 +4,7 @@
 
     public class LinkAndSelectSingleNodeAnnotation : NodeAnnotation
     {
-        public LinkAndSelectSingleNodeAnnotation(PathSubject target) : base(target)
+        public LinkAndSelectSingleNodeAnnotation(PathSubject target) : base(target) 
         {
         }
     }

@@ -51,8 +51,10 @@
         [Fact]
         public void PowerShell_Storages_Get()
         {
+            // Arrange.
             _testContext.InvokeSelectStorage();
 
+            // Act.
             var result = _testContext.InvokeGetStorages();
             var storages = _testContext.ToAssertedResults<Storage>(result);
             var firstCount = storages.Length;
@@ -61,6 +63,8 @@
 
             result = _testContext.InvokeGetStorages();
             storages = _testContext.ToAssertedResults<Storage>(result);
+            
+            // Assert.
             Assert.True(storages.Length == firstCount + 1);
         }
 
@@ -68,8 +72,8 @@
         [Fact]
         public void PowerShell_Storage_Update()
         {
+            // Arrange.
             _testContext.InvokeSelectStorage();
-
             _testContext.InvokeGetStorages();
 
             var firstName = Guid.NewGuid().ToString();
@@ -88,6 +92,7 @@
             storage.Name = secondName;
             storage.Address = secondAddress;
 
+            // Act.
             _testContext.InvokeUpdateStorage(storage);
 
             Exception exceptedException = null;
@@ -100,6 +105,8 @@
             {
                 exceptedException = e;
             }
+            
+            //Assert.
             Assert.NotNull(exceptedException);
 
             result = _testContext.InvokeGetStorageByName(secondName);

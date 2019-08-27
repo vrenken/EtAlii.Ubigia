@@ -13,7 +13,7 @@
         /// Create a new NodeAnnotation inheriting instance given the specified target.
         /// </summary>
         /// <param name="target"></param>
-        protected NodeAnnotation(PathSubject target)
+        protected NodeAnnotation(PathSubject target) 
         {
             Target = target;
         }
