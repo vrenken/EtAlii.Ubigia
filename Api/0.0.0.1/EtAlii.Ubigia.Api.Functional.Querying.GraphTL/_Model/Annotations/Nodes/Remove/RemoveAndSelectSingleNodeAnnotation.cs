@@ -9,7 +9,7 @@
         /// </summary>
         public string Name { get; }
 
-        public RemoveAndSelectSingleNodeAnnotation(PathSubject target, string name) : base(target)
+        public RemoveAndSelectSingleNodeAnnotation(PathSubject target, string name) : base(target) 
         {
             Name = name;
         }

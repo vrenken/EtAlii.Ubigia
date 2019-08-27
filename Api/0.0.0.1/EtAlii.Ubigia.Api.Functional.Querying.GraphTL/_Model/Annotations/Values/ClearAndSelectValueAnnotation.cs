@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public class ClearAndSelectValueAnnotation : ValueAnnotation
+    public class ClearAndSelectValueAnnotation : ValueAnnotation 
     {
         public ClearAndSelectValueAnnotation(PathSubject target) : base(target)
         {

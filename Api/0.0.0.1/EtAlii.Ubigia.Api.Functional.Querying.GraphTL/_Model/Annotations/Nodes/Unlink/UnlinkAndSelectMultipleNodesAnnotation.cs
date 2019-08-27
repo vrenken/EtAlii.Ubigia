@@ -4,7 +4,7 @@
 
     public class UnlinkAndSelectMultipleNodesAnnotation : NodeAnnotation
     {
-        public UnlinkAndSelectMultipleNodesAnnotation(PathSubject target) : base(target)
+        public UnlinkAndSelectMultipleNodesAnnotation(PathSubject target) : base(target) 
         {
         }
     }

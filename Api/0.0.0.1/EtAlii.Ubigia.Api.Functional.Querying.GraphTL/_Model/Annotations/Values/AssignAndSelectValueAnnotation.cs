@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public class AssignAndSelectValueAnnotation : ValueAnnotation
+    public class AssignAndSelectValueAnnotation : ValueAnnotation 
     {
         public Subject Subject { get; }
         

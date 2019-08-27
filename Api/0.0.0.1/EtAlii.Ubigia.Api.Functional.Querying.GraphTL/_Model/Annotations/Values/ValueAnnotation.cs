@@ -2,7 +2,7 @@
 {
     using EtAlii.Ubigia.Api.Functional.Scripting;
 
-    public class ValueAnnotation : AnnotationNew
+    public class ValueAnnotation : AnnotationNew 
     {
         /// <summary>
         /// The target path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.

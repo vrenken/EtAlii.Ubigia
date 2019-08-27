@@ -27,6 +27,5 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="0. Base" />
-        <Folder Include="1. Parsing\Annotations\Nodes" />
     </ItemGroup>
 </Project>

@@ -4,7 +4,7 @@
 
     public class LinkAndSelectMultipleNodesAnnotation : NodeAnnotation
     {
-        public LinkAndSelectMultipleNodesAnnotation(PathSubject target) : base(target)
+        public LinkAndSelectMultipleNodesAnnotation(PathSubject target) : base(target) 
         {
         }
     }
