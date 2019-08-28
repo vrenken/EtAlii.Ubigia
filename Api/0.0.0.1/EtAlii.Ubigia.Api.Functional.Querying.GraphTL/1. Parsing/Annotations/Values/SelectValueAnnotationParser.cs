@@ -7,7 +7,7 @@
 
     internal class SelectValueAnnotationParser : ISelectValueAnnotationParser
     {
-        public string Id { get; } = nameof(ValueAnnotation);
+        public string Id { get; } = nameof(SelectValueAnnotation);
         private const string AnnotationTypeId = "AnnotationType";
         private const string ContentId = "Content";
         private const string CombinedContentId = "CombinedContent";
@@ -63,7 +63,7 @@
                 .Aggregate(new LpsAlternatives(), (current, parser) => current | parser)
                 .Id(AnnotationTypeId);
 
-            Parser = new LpsParser(Id, true, Lp.Char('@') + annotationTypes + Lp.Char('(') + content.Maybe() + Lp.Char(')'));
+            Parser = new LpsParser(Id, true, "@" + AnnotationPrefix.Value + "(" + content.Maybe() + ")");
         }
 
         public AnnotationNew Parse(LpNode node)
@@ -113,7 +113,7 @@
                         }
 
                         var skippedChildren = childNode.Children.Skip(1).ToArray();
-                        if (_nodeFinder.FindFirst(skippedChildren, _operatorsParser.Id) is { } operatorNode)
+                        if (_nodeFinder.FindFirst(skippedChildren, _operatorsParser.Id) is { } operatorNode) 
                         {
                             @operator = (Operator) _operatorsParser.Parse(operatorNode);
                             
@@ -131,7 +131,7 @@
 
         public bool CanParse(LpNode node)
         {
-            throw new NotImplementedException();
+            return node.Id == Id;
         }
 
         public void Validate(StructureFragment parent, StructureFragment self, AnnotationNew annotation, int depth)

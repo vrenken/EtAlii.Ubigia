@@ -3,4 +3,4 @@
     internal interface IAssignAndSelectValueAnnotationParser : IAnnotationNewParser
     {
     }
-}
+} 
