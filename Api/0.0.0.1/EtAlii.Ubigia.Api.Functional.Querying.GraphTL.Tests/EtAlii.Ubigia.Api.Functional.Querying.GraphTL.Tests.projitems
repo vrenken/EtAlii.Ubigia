@@ -10,6 +10,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\AnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Add\AddAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Link\LinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Remove\RemoveAndSelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Select\SelectSingleNodeAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectMultipleNodesAnnotationParser.Tests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes\Unlink\UnlinkAndSelectSingleNodeAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\AssignAndSelectValueAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\ClearAndSelectValueAnnotationParser.Tests.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Values\SelectValueAnnotationParser.Tests.cs" />
@@ -32,7 +42,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)0. Base\Unit tests" />
     <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Integration tests" />
-    <Folder Include="$(MSBuildThisFileDirectory)1. Parsing\Unit tests\Annotations\Nodes" />
     <Folder Include="$(MSBuildThisFileDirectory)2. Planning\Integration tests" />
     <Folder Include="$(MSBuildThisFileDirectory)3. Processing\UnitTests" />
   </ItemGroup>
@@ -56,6 +65,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="$(MSBuildThisFileDirectory)Samples 5. - Variables.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Samples 6. - Schema.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
