@@ -2,7 +2,7 @@
 {
     using Xunit;
 
-    public class ClearAndSelectValueAnnotationParser 
+    public class ClearAndSelectValueAnnotationParserTests 
     {
         [Fact]
         public void ClearAndSelectValueAnnotationParser_Create()

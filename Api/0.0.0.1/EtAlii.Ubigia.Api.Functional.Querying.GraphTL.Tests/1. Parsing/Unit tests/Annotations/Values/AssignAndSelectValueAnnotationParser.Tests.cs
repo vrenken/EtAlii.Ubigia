@@ -3,7 +3,7 @@
     using EtAlii.Ubigia.Api.Functional.Scripting;
     using Xunit;
 
-    public class AssignAndSelectValueAnnotationParser 
+    public class AssignAndSelectValueAnnotationParserTests 
     {
         [Fact]
         public void AssignAndSelectValueAnnotationParser_Create()
@@ -25,7 +25,7 @@
         }
         
         [Fact]
-        public void AssignAndSelectValueAnnotationParser_Parse_Value_LastName()
+        public void AssignAndSelectValueAnnotationParser_Parse_Value_LastName_01()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
@@ -43,13 +43,75 @@
             Assert.Equal(@"\\LastName",valueAnnotation.Target.ToString());
             Assert.Equal("Does2", ((StringConstantSubject)valueAnnotation.Subject).Value);
         }
-        
+
+                
         [Fact]
-        public void AssignAndSelectValueAnnotationParser_Parse_Value()
+        public void AssignAndSelectValueAnnotationParser_Parse_Value_LastName_02()
+        {
+            // Arrange.
+            var parser = CreateAnnotationParser();
+            var text = @"@value-assign(\\LastName, ""Does2"")";
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var annotation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.Empty(node.Rest);
+            var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
+            Assert.NotNull(valueAnnotation);
+            Assert.Equal(@"\\LastName",valueAnnotation.Target.ToString());
+            Assert.Equal("Does2", ((StringConstantSubject)valueAnnotation.Subject).Value);
+        }
+
+                
+        [Fact]
+        public void AssignAndSelectValueAnnotationParser_Parse_Value_Integer()
+        {
+            // Arrange.
+            var parser = CreateAnnotationParser();
+            var text = @"@value-assign(\\Weight, 42)";
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var annotation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.Empty(node.Rest);
+            var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
+            Assert.NotNull(valueAnnotation);
+            Assert.Equal(@"\\Weight",valueAnnotation.Target.ToString());
+            Assert.Equal("42", ((StringConstantSubject)valueAnnotation.Subject).Value);
+        }
+
+        [Fact]
+        public void AssignAndSelectValueAnnotationParser_Parse_Value_01()
         {
             // Arrange.
             var parser = CreateAnnotationParser();
             var text = @"@value-assign('John2')";
+            
+            // Act.
+            var node = parser.Parser.Do(text);
+            var annotation = parser.Parse(node);
+            
+            // Assert.
+            Assert.NotNull(node);
+            Assert.Empty(node.Rest);
+            var valueAnnotation = annotation as AssignAndSelectValueAnnotation;
+            Assert.NotNull(valueAnnotation);
+            Assert.Null(valueAnnotation.Target);
+            Assert.Equal("John2", ((StringConstantSubject)valueAnnotation.Subject).Value);
+        }
+
+        [Fact]
+        public void AssignAndSelectValueAnnotationParser_Parse_Value_02()
+        {
+            // Arrange.
+            var parser = CreateAnnotationParser();
+            var text = @"@value-assign(""John2"")";
             
             // Act.
             var node = parser.Parser.Do(text);
