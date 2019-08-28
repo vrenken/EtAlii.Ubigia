@@ -20,7 +20,26 @@ namespace EtAlii.Ubigia.Api.Functional
             container.Register<IStructureFragmentParser, StructureFragmentParser>();
             container.Register<IValueFragmentParser, ValueFragmentParser>();
 
-            //container.Register<IStructureMutationParser, StructureMutationParser>()
+            container.Register<IAddAndSelectMultipleNodesAnnotationParser, AddAndSelectMultipleNodesAnnotationParser>();
+            container.Register<IAddAndSelectSingleNodeAnnotationParser, AddAndSelectSingleNodeAnnotationParser>();
+
+            container.Register<ILinkAndSelectMultipleNodesAnnotationParser, LinkAndSelectMultipleNodesAnnotationParser>();
+            container.Register<ILinkAndSelectSingleNodeAnnotationParser, LinkAndSelectSingleNodeAnnotationParser>();
+
+            container.Register<IRemoveAndSelectMultipleNodesAnnotationParser, RemoveAndSelectMultipleNodesAnnotationParser>();
+            container.Register<IRemoveAndSelectSingleNodeAnnotationParser, RemoveAndSelectSingleNodeAnnotationParser>();
+
+            container.Register<ISelectMultipleNodesAnnotationParser, SelectMultipleNodesAnnotationParser>();
+            container.Register<ISelectSingleNodeAnnotationParser, SelectSingleNodeAnnotationParser>();
+
+            container.Register<IUnlinkAndSelectMultipleNodesAnnotationParser, UnlinkAndSelectMultipleNodesAnnotationParser>();
+            container.Register<IUnlinkAndSelectSingleNodeAnnotationParser, UnlinkAndSelectSingleNodeAnnotationParser>();
+
+            container.Register<IAssignAndSelectValueAnnotationParser, AssignAndSelectValueAnnotationParser>();
+            container.Register<IClearAndSelectValueAnnotationParser, ClearAndSelectValueAnnotationParser>();
+            container.Register<ISelectValueAnnotationParser, SelectValueAnnotationParser>();
+
+            //container.Register<IStructureMutationParser, StructureMutationParser>() 
             //container.Register<IValueMutationParser, ValueMutationParser>()
 
             // Path helpers

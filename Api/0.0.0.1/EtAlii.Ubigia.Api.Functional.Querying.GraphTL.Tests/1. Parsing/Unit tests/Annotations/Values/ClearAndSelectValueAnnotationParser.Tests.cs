@@ -24,7 +24,7 @@
         }
         
         [Fact]
-        public void ClearAndSelectValueAnnotationParser_Parse_Value_LastName()
+        public void ClearAndSelectValueAnnotationParser_Parse_Value_LastName() 
         {
             // Arrange.
             var parser = CreateAnnotationParser();

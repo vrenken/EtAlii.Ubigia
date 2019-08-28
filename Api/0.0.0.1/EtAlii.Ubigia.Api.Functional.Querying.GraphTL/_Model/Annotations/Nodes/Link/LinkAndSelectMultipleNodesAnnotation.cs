@@ -4,8 +4,20 @@
 
     public class LinkAndSelectMultipleNodesAnnotation : NodeAnnotation
     {
-        public LinkAndSelectMultipleNodesAnnotation(PathSubject target) : base(target) 
+        /// <summary>
+        /// The target path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
+        /// </summary>
+        public PathSubject Target { get; }
+
+        /// <summary>
+        /// The relative target path subject where the source should be linked to.
+        /// </summary>
+        public PathSubject TargetLink { get; }
+
+        public LinkAndSelectMultipleNodesAnnotation(PathSubject source, PathSubject target, RelativePathSubject targetLink) : base(source)
         {
+            Target = target;
+            TargetLink = targetLink;
         }
     }
 }

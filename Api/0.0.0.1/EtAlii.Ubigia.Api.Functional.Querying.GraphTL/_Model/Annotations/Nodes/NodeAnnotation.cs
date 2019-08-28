@@ -5,17 +5,17 @@
     public abstract class NodeAnnotation : AnnotationNew
     {
         /// <summary>
-        /// The target path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
+        /// The source path subject, i.e. absolute, relative or rooted path towards one or multiple nodes.
         /// </summary>
-        public PathSubject Target { get; }
+        public PathSubject Source { get; }
 
         /// <summary>
         /// Create a new NodeAnnotation inheriting instance given the specified target.
         /// </summary>
-        /// <param name="target"></param>
-        protected NodeAnnotation(PathSubject target) 
+        /// <param name="source"></param>
+        protected NodeAnnotation(PathSubject source) 
         {
-            Target = target;
+            Source = source;
         }
     }
 }
